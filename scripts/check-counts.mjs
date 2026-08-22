@@ -68,7 +68,7 @@ const ORDINAL_TENS = {
 //
 // The band above ninety-nine reads "a hundred and ninety-three" rather than "one hundred and
 // ninety-three" because that is how the backlog already writes a figure of that size, at
-// `PRODUCT_BACKLOG.md:2627`. Both are correct English and only one of them matches the
+// `PRODUCT_BACKLOG.md:2628`. Both are correct English and only one of them matches the
 // document, which is the only thing these words are for. The ceiling stops below two hundred
 // because no document here writes a figure that large, so its wording would be guessed
 // rather than matched, and a guess is what the null is here to prevent.

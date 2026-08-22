@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { resolveMapping } from './resolve-cbh-order.mjs';
 import { normalizeTitle } from '../src/js/lib/markdown.js';
+import { mappingDigestFor, validateFrozenPacket } from './lib/cbh-inventory.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const OUTPUT_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
+const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
+const INVENTORY_PATH = path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json');
+const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const RETRIEVED_AT = '2026-08-21';
 
 const SERIES = Object.freeze({
@@ -2785,6 +2789,85 @@ async function readExistingMapping(outputPath) {
   }
 }
 
+async function indexFrozenPackets(packetsDir) {
+  let entries;
+  try {
+    entries = await readdir(packetsDir, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return new Map();
+    throw error;
+  }
+
+  const byInventoryId = new Map();
+  for (const entry of entries
+    .filter((candidate) => candidate.isFile() && candidate.name.endsWith('.json'))
+    .sort((left, right) => left.name.localeCompare(right.name))) {
+    const packet = JSON.parse(await readFile(path.join(packetsDir, entry.name), 'utf8'));
+    const fileId = entry.name.slice(0, -'.json'.length);
+    if (packet.id !== fileId) {
+      throw new Error(`${entry.name} packet id must match its filename`);
+    }
+    const matches = byInventoryId.get(packet.inventoryId) ?? [];
+    matches.push(packet);
+    byInventoryId.set(packet.inventoryId, matches);
+  }
+  return byInventoryId;
+}
+
+export async function selectPreparationGuides(onlyIds, {
+  packetsDir = PACKETS_DIR,
+  inventoryPath = INVENTORY_PATH,
+  manifestPath = MANIFEST_PATH,
+} = {}) {
+  if (onlyIds == null) return GUIDES;
+  const requestedIds = Array.isArray(onlyIds) ? onlyIds : [...onlyIds];
+  const legacyById = new Map(GUIDES.map((guide) => [guide.id, guide]));
+  const packetsByInventoryId = await indexFrozenPackets(packetsDir);
+  let inventory = null;
+  let catalogEntries = null;
+  const selected = [];
+
+  for (const id of requestedIds) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
+      throw new Error(`Invalid inventory id: ${id}`);
+    }
+    const matchingPackets = packetsByInventoryId.get(id) ?? [];
+    if (matchingPackets.length > 1) {
+      throw new Error(`Inventory id ${id} has multiple frozen packets`);
+    }
+    const packet = matchingPackets[0] ?? null;
+    if (!packet) {
+      const legacy = legacyById.get(id);
+      if (!legacy) throw new Error(`Unknown inventory id: ${id}`);
+      selected.push(legacy);
+      continue;
+    }
+
+    inventory ??= JSON.parse(await readFile(inventoryPath, 'utf8'));
+    const manifest = catalogEntries == null
+      ? JSON.parse(await readFile(manifestPath, 'utf8'))
+      : null;
+    catalogEntries ??= Array.isArray(manifest?.lists) ? manifest.lists : [];
+    const inventoryRecord = inventory.find((record) => record.id === id);
+    if (!inventoryRecord) {
+      throw new Error(`${packet.id} names unknown inventory id ${id}`);
+    }
+    validateFrozenPacket(packet, {
+      expectedId: packet.id,
+      inventoryRecord,
+      catalogEntries,
+    });
+    selected.push({
+      ...packet,
+      isFrozenPacket: true,
+      approvedSourceCount: packet.expectedCount,
+      sourceUnavailable: false,
+    });
+  }
+
+  return selected;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const forceApproved = args.includes('--force-approved');
@@ -2793,16 +2876,15 @@ async function main() {
     throw new Error('Use either --force-approved or --refresh-approved, not both');
   }
   const onlyArgs = args.filter((arg) => arg.startsWith('--only='));
-  if (onlyArgs.length > 1) throw new Error('Use --only once with a comma-separated guide id list');
+  if (onlyArgs.length > 1) throw new Error('Use --only once with a comma-separated inventory id list');
   const onlyIds = onlyArgs.length === 0
     ? null
-    : new Set(onlyArgs[0].slice('--only='.length).split(',').map((id) => id.trim()).filter(Boolean));
-  if (onlyIds?.size === 0) throw new Error('--only must name at least one guide id');
-  const guides = onlyIds ? GUIDES.filter((guide) => onlyIds.has(guide.id)) : GUIDES;
-  const unknownIds = onlyIds
-    ? [...onlyIds].filter((id) => !guides.some((guide) => guide.id === id))
-    : [];
-  if (unknownIds.length > 0) throw new Error(`Unknown guide id(s): ${unknownIds.join(', ')}`);
+    : onlyArgs[0].slice('--only='.length).split(',').map((id) => id.trim()).filter(Boolean);
+  if (onlyIds?.length === 0) throw new Error('--only must name at least one inventory id');
+  if (onlyIds && new Set(onlyIds).size !== onlyIds.length) {
+    throw new Error('--only contains a duplicate inventory id');
+  }
+  const guides = await selectPreparationGuides(onlyIds);
   const { getJson } = createJsonFetcher();
   const getSeriesPage = async (url) => {
     for (let attempt = 0; ; attempt += 1) {
@@ -2919,9 +3001,13 @@ async function main() {
       };
     });
 
-    const manifestProposal = MANIFEST_PROPOSALS[guide.id] ?? null;
-    const coverRow = manifestProposal ? rows[manifestProposal.coverPosition - 1] : null;
-    const proposedManifest = manifestProposal ? {
+    const manifestProposal = guide.isFrozenPacket
+      ? guide.proposedManifest
+      : (MANIFEST_PROPOSALS[guide.id] ?? null);
+    const coverRow = manifestProposal?.coverPosition
+      ? rows[manifestProposal.coverPosition - 1]
+      : null;
+    const proposedManifest = guide.isFrozenPacket ? { ...manifestProposal } : (manifestProposal ? {
       id: guide.id,
       name: manifestProposal.name,
       description: manifestProposal.description,
@@ -2952,14 +3038,15 @@ async function main() {
       variant: null,
       timeline: guide.proposedTimeline,
       coverSourceReference: guide.proposedCoverReference,
-    };
+    });
 
     const mapping = {
       id: guide.id,
       inventoryId: guide.inventoryId ?? guide.id,
+      ...(guide.packetDigest ? { packetDigest: guide.packetDigest } : {}),
       sourceUrl: guide.sourceUrl,
       ...(guide.sourceSection ? { sourceSection: guide.sourceSection } : {}),
-      sourceRetrievedAt: RETRIEVED_AT,
+      sourceRetrievedAt: guide.sourceRetrievedAt ?? RETRIEVED_AT,
       sourceRetrievalStatus: guide.sourceUnavailable ? guide.sourceError : 'retrieved',
       approvedSourceCount: guide.sourceUnavailable
         ? null
@@ -2977,26 +3064,32 @@ async function main() {
     const preparedMapping = hasResolutionBlocker
       ? mapping
       : await resolveMapping(mapping);
-    let outputMapping = preparedMapping;
+    const digestedMapping = guide.packetDigest
+      ? { ...preparedMapping, mappingDigest: mappingDigestFor(preparedMapping) }
+      : preparedMapping;
+    let outputMapping = digestedMapping;
     if (existingMapping?.reviewStatus === 'approved' && refreshApproved) {
       if (hasResolutionBlocker) {
         throw new Error(`${guide.id} cannot preserve approval because its refreshed mapping is blocked`);
       }
       const existingIds = existingMapping.rows.map((row) => String(row.selectedIssueId));
-      const refreshedIds = preparedMapping.rows.map((row) => String(row.selectedIssueId));
+      const refreshedIds = digestedMapping.rows.map((row) => String(row.selectedIssueId));
       if (existingIds.join('|') !== refreshedIds.join('|')) {
         throw new Error(`${guide.id} cannot preserve approval because its issue sequence changed`);
       }
-      if (JSON.stringify(existingMapping.approvedManifest) !== JSON.stringify(preparedMapping.proposedManifest)) {
+      if (JSON.stringify(existingMapping.approvedManifest) !== JSON.stringify(digestedMapping.proposedManifest)) {
         throw new Error(`${guide.id} cannot preserve approval because its manifest fields changed`);
       }
       outputMapping = {
-        ...preparedMapping,
+        ...digestedMapping,
         reviewStatus: 'approved',
         packetReview: existingMapping.packetReview,
         approvedManifest: existingMapping.approvedManifest,
+        ...(existingMapping.relationshipReview
+          ? { relationshipReview: existingMapping.relationshipReview }
+          : {}),
       };
-      delete outputMapping.proposedManifest;
+      if (!guide.packetDigest) delete outputMapping.proposedManifest;
     }
     const json = JSON.stringify(outputMapping, null, 2)
       .replace(/\u2013/g, '\\u2013').replace(/\u2014/g, '\\u2014');

@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Made future Comic Book Herald additions use one frozen candidate packet
+
+In plain English: adding another source-backed reading order no longer starts with editing the large
+program that prepared every earlier batch. A maintainer can now freeze one candidate, give its issue
+mapping to a bounded worker, and require a central overlap decision before anything is published.
+This changes no reading list in the app, and nothing you have saved is affected.
+
+For maintainers: canonical SHA-256 digests bind the frozen packet, resolved mapping, complete live
+library, mapped peers, factual relationship report, and central approval. Exact duplicates stop;
+either subset direction needs explicit central approval; partial overlap needs human or
+stronger-model authority. Named preparation and authoring preserve every legacy batch, add no runtime
+dependency, and are covered by nine focused semantic cases in the existing test files.
+
 ### Added ten more modern Marvel crossover reading orders
 
 In plain English: the catalog now follows Minimum Carnage, X-Termination, The Enemy Within, Battle

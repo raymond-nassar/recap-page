@@ -5,11 +5,20 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   FIRST_PACKET_IDS,
+  assertApprovedRelationshipReview,
   assertCompleteOverlapReport,
+  authorIdsFromArgs,
   existingEntriesForPacket,
   manifestEntryForMapping,
+  mergePacketEntries,
 } from '../scripts/author-cbh-packet.mjs';
-import { validateBatchNoDuplicates } from '../scripts/lib/cbh-inventory.mjs';
+import {
+  approvalDigestFor,
+  mappingDigestFor,
+  packetDigestFor,
+  reportDigestFor,
+  validateBatchNoDuplicates,
+} from '../scripts/lib/cbh-inventory.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -24,6 +33,192 @@ async function readJson(filePath) {
 
 function mappingIds(mapping) {
   return mapping.rows.map((row) => String(row.selectedIssueId));
+}
+
+function genericPacket() {
+  const packet = {
+    schemaVersion: 1,
+    id: 'future-event',
+    inventoryId: 'future-event',
+    sourceUrl: 'https://www.comicbookherald.com/future-event/',
+    sourceRetrievedAt: '2026-08-22',
+    sourceBoundary: 'The explicit issue-by-issue reading-order section.',
+    excludedSourceReferences: [],
+    expectedCount: 2,
+    proposedManifest: {
+      id: 'future-event',
+      name: 'Future Event',
+      description: 'A frozen two-issue event.',
+      type: 'event',
+      depth: 'complete',
+      beginner: false,
+      group: null,
+      groupName: null,
+      variant: null,
+      sourceFile: 'future-event.md',
+      sourcePage: 'https://www.comicbookherald.com/future-event/',
+      sourceOrigin: "Compiled for this project from Comic Book Herald's guide",
+      sourceLicense: null,
+      out: 'future_event.json',
+      characters: ['Tester'],
+      keywords: ['Future Event'],
+      expect: 2,
+      timeline: 2026,
+      coverIssueId: 9001,
+    },
+    insertionAnchor: { beforeId: 'chronology-anchor' },
+    sourceReview: {
+      authorityType: 'human',
+      authorityIdentity: 'source-owner',
+      rationale: 'The visible boundary and chronology were reviewed.',
+      reviewedAt: '2026-08-22T12:00:00Z',
+    },
+    rows: [
+      {
+        sourceIssueReference: 'Future Event #1',
+        sourceRangeReference: null,
+        normalizedSeriesTitle: 'Future Event',
+        seriesYear: 2026,
+        issueNumber: '1',
+        seriesId: 900,
+        candidateIssueId: 9001,
+        manualSeriesSelectionApproved: false,
+        selectionNote: null,
+      },
+      {
+        sourceIssueReference: 'Future Event #2',
+        sourceRangeReference: null,
+        normalizedSeriesTitle: 'Future Event',
+        seriesYear: 2026,
+        issueNumber: '2',
+        seriesId: 900,
+        candidateIssueId: 9002,
+        manualSeriesSelectionApproved: false,
+        selectionNote: null,
+      },
+    ],
+  };
+  packet.packetDigest = packetDigestFor(packet);
+  return packet;
+}
+
+function genericMapping(packet, id = packet.id) {
+  const rows = [1, 2].map((issueNumber, index) => ({
+    sourcePosition: index + 1,
+    sourceIssueReference: `Future Event #${issueNumber}`,
+    sourceRangeReference: null,
+    normalizedSeriesTitle: 'Future Event',
+    seriesYear: 2026,
+    issueNumber: String(issueNumber),
+    seriesId: 900,
+    candidateIssueId: 9000 + issueNumber,
+    manualSeriesSelectionApproved: false,
+    resolutionStatus: 'exact',
+    candidateIssueIds: [String(9000 + issueNumber)],
+    selectedIssueId: 9000 + issueNumber,
+    marvelIssueUrl: `https://www.marvel.com/comics/issue/${9000 + issueNumber}/future_event_${issueNumber}`,
+    resolvedIssueTitle: `Future Event (2026) #${issueNumber}`,
+    note: 'Exact reviewed metadata identity.',
+  }));
+  const mapping = {
+    id,
+    inventoryId: id,
+    packetDigest: packet.packetDigest,
+    sourceUrl: packet.sourceUrl,
+    sourceRetrievedAt: packet.sourceRetrievedAt,
+    sourceRetrievalStatus: 'retrieved',
+    approvedSourceCount: rows.length,
+    excludedSourceReferences: [],
+    proposedManifest: packet.proposedManifest,
+    candidateMetadata: [],
+    rows,
+  };
+  mapping.mappingDigest = mappingDigestFor(mapping);
+  return mapping;
+}
+
+function genericEvidence({
+  relationship = 'none',
+  dispositionAuthority = relationship === 'none' ? 'policy' : 'human',
+  withPeer = false,
+} = {}) {
+  const packet = genericPacket();
+  const mapping = genericMapping(packet);
+  const peerMappings = withPeer
+    ? [{
+      ...genericMapping({
+        ...packet,
+        packetDigest: 'b'.repeat(64),
+      }, 'peer-event'),
+      packetDigest: 'b'.repeat(64),
+    }]
+    : [];
+  if (withPeer) peerMappings[0].mappingDigest = mappingDigestFor(peerMappings[0]);
+  const peerDigests = Object.fromEntries(peerMappings.map((peer) => [peer.id, peer.mappingDigest]));
+  const comparisons = [
+    {
+      orderId: 'existing',
+      relationship,
+      sharedCount: relationship === 'none' ? 0 : 1,
+      sharedIds: relationship === 'none' ? [] : ['9001'],
+    },
+    ...(withPeer ? [{
+      orderId: 'peer-event',
+      relationship: 'none',
+      sharedCount: 0,
+      sharedIds: [],
+    }] : []),
+  ];
+  const report = {
+    candidateId: packet.id,
+    packetDigest: packet.packetDigest,
+    mappingDigest: mapping.mappingDigest,
+    libraryDigest: 'c'.repeat(64),
+    peerDigests,
+    candidateCount: 2,
+    comparisonCount: comparisons.length,
+    comparisons,
+  };
+  report.reportDigest = reportDigestFor(report);
+  const reviewedAt = '2026-08-22T13:00:00Z';
+  const dispositions = comparisons.map((comparison) => ({
+    orderId: comparison.orderId,
+    relationship: comparison.relationship,
+    decision: 'approved',
+    rationale: comparison.relationship === 'none'
+      ? 'No shared issues require an exception.'
+      : 'The narrower and broader paths serve distinct reviewed purposes.',
+    authorityType: comparison.orderId === 'existing' ? dispositionAuthority : 'policy',
+    authorityIdentity: comparison.orderId === 'existing' ? 'relationship-reviewer' : 'relationship-policy-v1',
+    reviewedAt,
+  }));
+  const relationshipReview = {
+    reportDigest: report.reportDigest,
+    packetDigest: packet.packetDigest,
+    mappingDigest: mapping.mappingDigest,
+    libraryDigest: report.libraryDigest,
+    peerDigests,
+    dispositions,
+    authorityType: 'human',
+    authorityIdentity: 'relationship-reviewer',
+    rationale: 'Every current library and peer comparison was reviewed.',
+    reviewedAt,
+  };
+  relationshipReview.approvalDigest = approvalDigestFor(relationshipReview);
+  Object.assign(mapping, {
+    reviewStatus: 'approved',
+    packetReview: 'central source review',
+    approvedManifest: structuredClone(packet.proposedManifest),
+    relationshipReview,
+  });
+  return {
+    packet,
+    mapping,
+    report,
+    peerMappings,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: comparisons.map((comparison) => comparison.orderId),
+  };
 }
 
 test('the approved Comic Book Herald packet stays exact through every generated surface', async () => {
@@ -165,4 +360,84 @@ test('the authored packet has no aggregate identity, sequence, or issue overlap'
       && comparison.sharedIds.length === 0
     )), `${id} has an unapproved semantic overlap`);
   }
+});
+
+test('approved generic evidence stays current through named chronology insertion', () => {
+  const evidence = genericEvidence();
+  assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
+  assert.deepEqual(authorIdsFromArgs(['--only=future-event']), ['future-event']);
+  const entry = manifestEntryForMapping(evidence.mapping);
+  const merged = mergePacketEntries(
+    [{ id: 'before' }, { id: 'chronology-anchor' }, { id: 'after' }],
+    [entry],
+    { 'future-event': evidence.packet.insertionAnchor },
+  );
+  assert.deepEqual(merged.map((item) => item.id), [
+    'before',
+    'future-event',
+    'chronology-anchor',
+    'after',
+  ]);
+});
+
+test('exact relationships have no approval path', () => {
+  const evidence = genericEvidence({ relationship: 'exact', dispositionAuthority: 'human' });
+  assert.throws(
+    () => assertApprovedRelationshipReview(evidence),
+    /exactly duplicates.+no approval path/i,
+  );
+});
+
+test('either subset direction can pass only with central authority', () => {
+  for (const relationship of ['candidate-subset', 'existing-subset']) {
+    const approved = genericEvidence({ relationship, dispositionAuthority: 'stronger-model' });
+    assert.doesNotThrow(() => assertApprovedRelationshipReview(approved));
+    const worker = genericEvidence({ relationship, dispositionAuthority: 'lower-cost-worker' });
+    assert.throws(
+      () => assertApprovedRelationshipReview(worker),
+      /unauthorized authority type/i,
+    );
+  }
+});
+
+test('partial overlap requires stronger-model or human disposition', () => {
+  const approved = genericEvidence({ relationship: 'partial', dispositionAuthority: 'human' });
+  assert.doesNotThrow(() => assertApprovedRelationshipReview(approved));
+  const policyOnly = genericEvidence({ relationship: 'partial', dispositionAuthority: 'policy' });
+  assert.throws(
+    () => assertApprovedRelationshipReview(policyOnly),
+    /unauthorized authority type/i,
+  );
+});
+
+test('authoring rejects packet, mapping, report, library, or peer freshness drift', () => {
+  const sourceDrift = genericEvidence();
+  sourceDrift.packet.sourceBoundary = 'A changed source boundary.';
+  assert.throws(() => assertApprovedRelationshipReview(sourceDrift), /packet digest is stale/i);
+
+  const mappingDrift = genericEvidence();
+  mappingDrift.mapping.rows[0].selectedIssueId = 9999;
+  assert.throws(() => assertApprovedRelationshipReview(mappingDrift), /mapping digest is stale/i);
+
+  const reportDrift = genericEvidence();
+  reportDrift.report.comparisons[0].sharedCount = 2;
+  assert.throws(() => assertApprovedRelationshipReview(reportDrift), /report digest is stale/i);
+
+  const libraryDrift = genericEvidence();
+  libraryDrift.currentLibraryDigest = 'd'.repeat(64);
+  assert.throws(() => assertApprovedRelationshipReview(libraryDrift), /library changed/i);
+
+  const peerDrift = genericEvidence({ withPeer: true });
+  peerDrift.peerMappings[0].rows[0].selectedIssueId = 9999;
+  assert.throws(() => assertApprovedRelationshipReview(peerDrift), /mapping digest is stale/i);
+});
+
+test('authoring rejects disposition or approved-manifest drift after approval', () => {
+  const dispositionDrift = genericEvidence();
+  dispositionDrift.mapping.relationshipReview.dispositions[0].rationale = 'Changed later.';
+  assert.throws(() => assertApprovedRelationshipReview(dispositionDrift), /approval digest is stale/i);
+
+  const manifestDrift = genericEvidence();
+  manifestDrift.mapping.approvedManifest.name = 'Changed later';
+  assert.throws(() => assertApprovedRelationshipReview(manifestDrift), /approved manifest differs/i);
 });

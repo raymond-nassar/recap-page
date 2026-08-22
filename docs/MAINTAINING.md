@@ -211,23 +211,33 @@ Never scrape `marvel.com` or `read.marvel.com`. Do not commit comic images.
 
 ## Build a Comic Book Herald continuity packet
 
-For a modern continuity order, preserve four evidence layers before editing product data:
+For a modern continuity order, preserve five evidence layers before editing product data:
 
-1. A source snapshot containing the useful reading-list prose and links.
-2. A normalized extraction of headings, entries, labels, and source URLs.
-3. A resolution report mapping each entry to issue IDs.
-4. A discrepancy and browser review report explaining every exception.
+1. A centrally frozen candidate packet containing the exact source boundary and ordered rows.
+2. A worker-owned mapping that resolves every frozen row to one issue ID.
+3. A factual relationship report against the live catalog and every mapped chunk peer.
+4. A central approval in the mapping for every reported relationship.
+5. A discrepancy and browser review report explaining every exception.
 
-Run the maintained preparation and overlap reports before authoring:
+The central source owner writes `scripts/data/cbh-packets/<id>.json`. The packet fixes the inventory
+identity, exact page and visible section, source boundary, exclusions, row order, expected count,
+complete manifest proposal, chronology insertion anchor, and source-review identity. Its
+`packetDigest` is SHA-256 over canonical JSON with recursively sorted object keys and preserved
+array order. Changing any frozen field requires a new digest and a new downstream review.
+
+Prepare exactly one packet by its stable id:
 
 ```text
-npm run cbh:prepare
-npm run orders:overlap
+npm run cbh:prepare -- --only=<id>
+npm run cbh:resolve -- scripts/data/cbh-mappings/<id>.json
 ```
 
-Keep source sequence. Do not regroup issues just to make the file look cleaner. Exclude prose-only
-recommendations, optional older runs, collected editions, and non-comic notes unless the source
-clearly makes them part of the issue order.
+The preparation command validates the packet against its inventory record and the current catalog.
+It writes only `scripts/data/cbh-mappings/<id>.json`. A mapping worker may edit that one mapping and
+nothing else. The worker does not choose source boundaries, chronology, overlap dispositions, or
+manifest fields. Keep source sequence. Do not regroup issues just to make the file look cleaner.
+Exclude prose-only recommendations, optional older runs, collected editions, and non-comic notes
+unless the source clearly makes them part of the issue order.
 
 When one page contains several distinct guides, keep its exact URL and set `sourceSection` to the
 stable visible heading for each guide. The page and section together are the source identity. A
@@ -243,19 +253,39 @@ Before shipping, verify:
 
 * Every source entry has a resolution or a documented exclusion.
 * Every added issue ID exists.
-* Part labels preserve the source's narrative structure.
+* The mapping digest still matches the exact resolved rows and proposed manifest.
 * The first and last entries match the intended boundaries.
-* Neighboring modern-continuity packets do not overlap accidentally.
+* The relationship report covers every current catalog order and every mapped chunk peer.
 
-Only an approved mapping can be authored and vendored:
+Generate the factual relationship report after every candidate in the chunk is mapped:
 
 ```text
-node scripts/author-cbh-packet.mjs
+npm run orders:overlap -- scripts/data/cbh-mappings/<id>.json [peer-mapping-path...]
+```
+
+The report classifies each comparison as `exact`, `candidate-subset`, `existing-subset`, `partial`,
+or `none`. Exact matches have no approval path. Either subset direction needs an explicit central
+approval. Partial overlap needs a human or stronger-model authority with a rationale. A `none`
+comparison may cite the maintained policy authority. Lower-cost mapping workers cannot approve any
+relationship.
+
+The central reviewer records one disposition per comparison in `relationshipReview.dispositions`,
+plus the report, packet, mapping, library, and peer digests, reviewer identity, rationale, timestamp,
+and `approvalDigest`. Review fields do not participate in `mappingDigest`, so adding a correct
+approval cannot invalidate its own mapping evidence.
+
+Only an approved, current mapping can be authored and vendored:
+
+```text
+node scripts/author-cbh-packet.mjs --only=<id>[,<id>...]
 npm run vendor -- --only=<id>
 ```
 
-The author refuses unresolved mappings and nonzero overlap. Every resulting catalog card must credit
-Comic Book Herald and link to the exact guide section followed.
+Authoring validates every named candidate before writing any checklist or manifest entry. It stops
+when the packet, mapping sequence, report, live catalog, peer mapping, disposition, or approved
+manifest differs from the reviewed evidence. Omitting `--only` retains the existing legacy batch
+behavior. Every resulting catalog card must credit Comic Book Herald and link to the exact guide
+section followed.
 
 ### Validate the packet
 
@@ -263,6 +293,7 @@ Run the targeted data tests first, then the full repository check set:
 
 ```text
 npm test
+npm run lint
 npm run counts
 npm run anchors
 ```
