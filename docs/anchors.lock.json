@@ -354,6 +354,101 @@
     "fp": "1b7fbd3be551058b",
     "head": "import test from 'node:test';"
   },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c1|src/data/catalog.json:1-2637|0": {
+    "anchor": "src/data/catalog.json:1-2637",
+    "fp": "632942b2a0087652",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c1|src/data/curated-lists.json:1-2243|0": {
+    "anchor": "src/data/curated-lists.json:1-2243",
+    "fp": "08afe727a4433ca0",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c10|package.json:14-16|0": {
+    "anchor": "package.json:14-16",
+    "fp": "69f960fce4a09bbf",
+    "head": "\"cbh:prepare\": \"node scripts/prepare-cbh-batch.mjs\","
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c10|package.json:24-25|0": {
+    "anchor": "package.json:24-25",
+    "fp": "f0dc034fc95abb60",
+    "head": "\"vendor\": \"node scripts/vendor-orders.mjs\","
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c11|scripts/prepare-cbh-batch.mjs:15-220|0": {
+    "anchor": "scripts/prepare-cbh-batch.mjs:15-220",
+    "fp": "17e7631d10227ddf",
+    "head": "const SERIES = Object.freeze({"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c11|scripts/prepare-cbh-batch.mjs:2922-3017|0": {
+    "anchor": "scripts/prepare-cbh-batch.mjs:2922-3017",
+    "fp": "eddc55f2e5687d6e",
+    "head": "const manifestProposal = MANIFEST_PROPOSALS[guide.id] ?? null;"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c12|scripts/lib/cbh-inventory.mjs:31-75|0": {
+    "anchor": "scripts/lib/cbh-inventory.mjs:31-75",
+    "fp": "3ab0598e4c439964",
+    "head": "export function sourceIdentityForRecord(record) {"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c12|scripts/lib/cbh-inventory.mjs:84-140|0": {
+    "anchor": "scripts/lib/cbh-inventory.mjs:84-140",
+    "fp": "b263975262da9684",
+    "head": "export function validateBatchNoDuplicates(batchRecords = [], existingRecords = [], peerRecords = [])"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c2|scripts/data/cbh-modern-inventory.json:1-1289|0": {
+    "anchor": "scripts/data/cbh-modern-inventory.json:1-1289",
+    "fp": "6eb978284497e383",
+    "head": "["
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c2|test/cbh-modern-inventory.test.js:12-55|0": {
+    "anchor": "test/cbh-modern-inventory.test.js:12-55",
+    "fp": "013d8ca27c14a446",
+    "head": "test('the maintained inventory matches the current lifecycle contract', () => {"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c3|src/data/curated-lists.json:582-1599|0": {
+    "anchor": "src/data/curated-lists.json:582-1599",
+    "fp": "fd5b0ee8659cdcae",
+    "head": "\"type\": \"event\","
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c4|docs/MAINTAINING.md:212-271|0": {
+    "anchor": "docs/MAINTAINING.md:212-271",
+    "fp": "a6335da658024f2d",
+    "head": "## Build a Comic Book Herald continuity packet"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c5|scripts/lib/cbh-overlap.mjs:29-55|0": {
+    "anchor": "scripts/lib/cbh-overlap.mjs:29-55",
+    "fp": "0a03cd514684a212",
+    "head": "export function compareIssueSets(candidateIds, existingIds) {"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c5|scripts/report-order-overlap.mjs:99-117|0": {
+    "anchor": "scripts/report-order-overlap.mjs:99-117",
+    "fp": "160a0ff47e506e39",
+    "head": "const candidateOrderId = String(mapping.id ?? path.basename(mappingPath, path.extname(mappingPath)))"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c6|scripts/author-cbh-packet.mjs:236-267|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:236-267",
+    "fp": "91a2a32189f070b0",
+    "head": "export function assertCompleteOverlapReport(report, {"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c6|scripts/author-cbh-packet.mjs:285-347|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:285-347",
+    "fp": "6b260008c5f5ab5d",
+    "head": "export async function authorPacket(packetIds = FOURTH_PACKET_IDS) {"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c6|scripts/author-cbh-packet.mjs:95-142|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:95-142",
+    "fp": "74a7dcfaaca0c703",
+    "head": "export const FOURTH_SELECTION_IDS = Object.freeze(["
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c7|src/data/curated-lists.json:1-2243|0": {
+    "anchor": "src/data/curated-lists.json:1-2243",
+    "fp": "08afe727a4433ca0",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md|codebase-evidence#c9|docs/DATA_PROVENANCE.md:316-334|0": {
+    "anchor": "docs/DATA_PROVENANCE.md:316-334",
+    "fp": "18fc220d66a38ef3",
+    "head": "> Hi Raymond,"
+  },
   ".copilot-tracking/research/subagents/2026-08-20/modern-marvel-continuity-guides-deeper.md|lower-model-normalization-contract|scripts/vendor-orders.mjs:270-323|0": {
     "anchor": "scripts/vendor-orders.mjs:270-323",
     "fp": "442d0840b0e45b52",
