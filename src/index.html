@@ -54,7 +54,15 @@
             <ul class="rail-list">
               <li><button type="button" class="ri ri-action" data-view="catalog">
                 <span class="gi" aria-hidden="true">&#xE736;</span>
-                <span class="lbl">Browse the catalog <span class="ri-sub">curated reading orders</span></span>
+                <span class="lbl">Browse by era <span class="ri-sub">the line, in order</span></span>
+              </button></li>
+              <li><button type="button" class="ri ri-action" data-view="lines">
+                <span class="gi" aria-hidden="true">&#xE8FD;</span>
+                <span class="lbl">Line-wide reading lists <span class="ri-sub">a whole run, start to finish</span></span>
+              </button></li>
+              <li><button type="button" class="ri ri-action" data-view="spotlights">
+                <span class="gi" aria-hidden="true">&#xE77B;</span>
+                <span class="lbl">Character spotlights <span class="ri-sub">one hero at a time</span></span>
               </button></li>
               <li><button type="button" class="ri ri-action" id="btn-new-list">
                 <span class="gi" aria-hidden="true">&#xE710;</span>
@@ -262,7 +270,6 @@
             <section class="sec" id="home-catalog" aria-labelledby="home-cat-h">
               <div class="sec-h">
                 <h2 id="home-cat-h">Reading orders</h2>
-                <button type="button" class="linkish" id="home-see-all" hidden></button>
               </div>
               <div id="home-cat-report" class="report"></div>
 
@@ -278,12 +285,7 @@
                 </div>
               </form>
 
-              <ul class="ogrid" id="home-grid"></ul>
-              <p class="rail-hint" id="home-overflow" hidden></p>
-              <!-- The same action as the header button, at the place the reader reaches it.
-                   A reader who has scrolled past twelve cards is more than a viewport below the
-                   header, so the header copy is not an escape hatch for them; it is off screen. -->
-              <button type="button" class="btn btn-g home-more" id="home-more" hidden></button>
+              <div class="ogrid-groups" id="home-grid"></div>
               <p class="rail-hint attribution">Marvel metadata via marvel.emreparker.com. <span id="marvel-copyright">© MARVEL</span></p>
             </section>
 
@@ -462,8 +464,8 @@
 
           <!-- ---------------------------------------- catalog view -->
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
-            <div class="head"><div class="head-left"><h1 id="catalog-h">Reading list catalog</h1>
-              <div class="sub">Curated orders bundled with the app. Importing one creates a new list; issues you have already read stay read.</div>
+            <div class="head"><div class="head-left"><h1 id="catalog-h">Browse by era</h1>
+              <div class="sub">Every event bundled with the app, in the order it was published, signposted by the stretch of publishing history it belongs to.</div>
             </div></div>
             <div id="catalog-report" class="report"></div>
             <form id="form-catalog-search" class="stack" role="search">
@@ -477,6 +479,49 @@
               <legend class="visually-hidden">Filter the catalog by category</legend>
             </fieldset>
             <div id="catalog-results" class="results"></div>
+          </section>
+
+          <!-- ---------------------------------------- line-wide reading lists view
+
+               The three catalog screens are one renderer over one table, so every id here is the
+               shelf key with the same suffix the catalog view uses. Changing a suffix on one screen
+               and not the others is how they would drift apart, and a test asserts all three carry
+               the same set. -->
+          <section id="view-lines" class="view" hidden aria-labelledby="lines-h">
+            <div class="head"><div class="head-left"><h1 id="lines-h">Line-wide reading lists</h1>
+              <div class="sub">Orders that cover a whole stretch of the line rather than one event, so you can read a period the way it was published.</div>
+            </div></div>
+            <div id="lines-report" class="report"></div>
+            <form id="form-lines-search" class="stack" role="search" hidden>
+              <label for="lines-q">Search the catalog by title or character</label>
+              <div class="field-row">
+                <input type="search" id="lines-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
+                <button type="button" class="btn" id="lines-clear" hidden>Clear</button>
+              </div>
+            </form>
+            <fieldset class="filters" id="lines-filters" hidden>
+              <legend class="visually-hidden">Filter the catalog by category</legend>
+            </fieldset>
+            <div id="lines-results" class="results"></div>
+          </section>
+
+          <!-- ---------------------------------------- character spotlights view -->
+          <section id="view-spotlights" class="view" hidden aria-labelledby="spotlights-h">
+            <div class="head"><div class="head-left"><h1 id="spotlights-h">Character spotlights</h1>
+              <div class="sub">Everything worth reading about one hero or team, gathered in one place. These range across the decades rather than sitting at a point on the timeline.</div>
+            </div></div>
+            <div id="spotlights-report" class="report"></div>
+            <form id="form-spotlights-search" class="stack" role="search" hidden>
+              <label for="spotlights-q">Search the catalog by title or character</label>
+              <div class="field-row">
+                <input type="search" id="spotlights-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
+                <button type="button" class="btn" id="spotlights-clear" hidden>Clear</button>
+              </div>
+            </form>
+            <fieldset class="filters" id="spotlights-filters" hidden>
+              <legend class="visually-hidden">Filter the catalog by category</legend>
+            </fieldset>
+            <div id="spotlights-results" class="results"></div>
           </section>
 
           <!-- ---------------------------------------- add view -->

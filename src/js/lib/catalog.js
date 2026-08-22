@@ -497,11 +497,14 @@ export function pathPlacements(paths, lists) {
 
   const storyName = new Map();
   const storyOfOrder = new Map();
+  const storyLists = new Map();
   for (const list of all) {
     const key = storyKey(list);
     // The story's name, taken the way the shelf takes it, so a stop reads "House of M" rather
     // than naming one particular reading of it.
     if (!storyName.has(key)) storyName.set(key, list.groupName ?? list.name);
+    if (!storyLists.has(key)) storyLists.set(key, []);
+    storyLists.get(key).push(list);
     storyOfOrder.set(list.id, key);
   }
 
@@ -519,7 +522,18 @@ export function pathPlacements(paths, lists) {
     for (const step of Array.isArray(path?.steps) ? path.steps : []) {
       const key = storyOfOrder.get(str(step));
       if (!key || stops.some((s) => s.key === key)) continue;
-      stops.push({ key, name: storyName.get(key) });
+      // Which screen the stop is drawn on travels with the stop, decided by the same two rules
+      // the renderers use rather than by a second copy of them. A "Next" that names a row on
+      // another screen has to be able to say which screen, and asking here means the answer is
+      // taken from the whole catalog: a shelf's own renderer only ever sees its own share, so it
+      // could not resolve a stop that is not its.
+      const story = { key, lists: storyLists.get(key) ?? [] };
+      stops.push({
+        key,
+        name: storyName.get(key),
+        shelf: shelfKey(story),
+        onHome: inHomeAge(story),
+      });
     }
     // One stop is not a sequence, and the reader learns nothing from "step 1 of 1".
     if (stops.length < 2) continue;
@@ -535,6 +549,12 @@ export function pathPlacements(paths, lists) {
         total: stops.length,
         previous: i > 0 ? stops[i - 1] : null,
         next: i < stops.length - 1 ? stops[i + 1] : null,
+        // The head of the path, carried on every stop rather than looked up by whoever draws the
+        // row. A row drawn on a screen the path does not start on has no way back to the start by
+        // scrolling, and the path's own name is already printed on it, so the name is what carries
+        // the reader there. On stop one this is the stop itself, which needs no special case: the
+        // rule that draws a link only to a screen the reader is not on suppresses it there.
+        first: stops[0],
       });
     });
   }
@@ -553,57 +573,310 @@ export function timelineLabel(list) {
 
 // ------------------------------------------------------------------ shelf sections
 
-// The shelf's two halves. A reader who does not know where to start is choosing between two
-// different kinds of reading, and until now the shelf offered them as one undifferentiated list
-// whose boundary was real but unexplained: the year sort already puts every character run last,
-// because none of them carries a year, and nothing on the page said why they sat together.
+// The three shelves the catalog is split across, and the only place any story's screen is decided.
+// One screen per kind of reading rather than one screen with headings in it, because the three
+// answer different questions: where the line goes, what a whole run of it looks like, and what to
+// read about one character. Three renderers read this table; none of them tests `type` itself.
 //
 // Keyed on `type` rather than on whether an order carries a `timeline` year. Today those two rules
 // produce the same split, but that is a property of the data as it stands rather than a rule
-// anything enforces, and a dated character run would silently land in the shared story.
+// anything enforces, and a dated character run would silently land on the wrong shelf.
 //
-// `creator-run` sits with the shared story rather than with the character runs, on the evidence
-// rather than on the label. Both bundled creator-run orders are one story, Hickman's Avengers, and
-// that story is stop 8 of the modern Avengers path. Filing it under the spotlights would take a
-// stop out of the middle of the sequence and put it in the half the sequence does not run through.
-const SPOTLIGHT_TYPES = new Set(['character-run']);
-
-export const SHELF_SECTIONS = [
+// Exactly one shelf declares no `types` and takes everything the others refuse. That is what makes
+// the split total rather than merely complete against the catalog as it stands: a reading type
+// nobody has written yet lands on a screen instead of falling out of the app between three
+// renderers that each decided it was not theirs. Line-wide is the right shelf to hold it, because
+// it is already the one for a run of the line rather than for a single event or a single character.
+//
+// `creator-run` sits with the line-wide lists rather than with the character spotlights, on the
+// evidence rather than on the label. Both bundled creator-run orders are one story, Hickman's
+// Avengers, and that story is stop 8 of the modern Avengers path. Filing it under the spotlights
+// would take a stop out of the middle of a sequence and put it on the screen that sequence does
+// not run through.
+//
+// `key` is also the view id, so `catalog` is kept for the events shelf rather than renamed to
+// something tidier. Every address this app has ever written for the catalog is `#/catalog`, and a
+// rename would turn every bookmark and every Back entry into a route that parses to nothing.
+export const CATALOG_SHELVES = [
   {
-    key: 'story',
-    heading: 'The shared story',
-    blurb: 'Events and eras in the order they happened. These build on each other, so reading them front to back is the surest way through.',
-    // Held apart from the blurb because it is a claim about the screen rather than about the
-    // section. It names a badge, and the badge is drawn on one story only. Measured against the
-    // shipped catalog, three of the eight facet chips and most searches keep rows in this section
-    // while dropping that story, so a blurb that always said this would point at nothing on screen
-    // in exactly the states a lost reader is most likely to have reached.
-    routeBlurb: 'One of them below is marked Start here, and each stop names the one to read next.',
+    key: 'catalog',
+    types: ['event'],
+    eras: true,
+    heading: 'Browse by era',
+    railSub: 'the line, in order',
+    sub: 'Every event bundled with the app, in the order it was published, signposted by the stretch of publishing history it belongs to.',
+    blurb: 'Events in the order they happened. These build on each other, so reading them front to back is the surest way through.',
+    empty: 'No events are bundled with this build.',
   },
   {
-    key: 'spotlight',
+    key: 'lines',
+    types: null,
+    eras: false,
+    heading: 'Line-wide reading lists',
+    railSub: 'a whole run, start to finish',
+    sub: 'Orders that cover a whole stretch of the line rather than one event, so you can read a period the way it was published.',
+    blurb: 'Whole runs rather than single events. Each one stands on its own, and several of them thread through the same years the events do.',
+    empty: 'No line-wide reading lists are bundled with this build.',
+  },
+  {
+    key: 'spotlights',
+    types: ['character-run'],
+    eras: false,
     heading: 'Character spotlights',
+    railSub: 'one hero at a time',
+    sub: 'Everything worth reading about one hero or team, gathered in one place. These range across the decades rather than sitting at a point on the timeline.',
     blurb: 'Everything worth reading about one hero or team, in one place. These stand on their own, so you can begin with whichever character you already like.',
+    empty: 'No character spotlights are bundled with this build.',
   },
 ];
 
-// Which half a story belongs to. Every one of its readings has to be a spotlight, not merely one of
-// them: a story carrying even one shared-universe order stays in the shared story, which is the
-// side that cannot cut a reading path in two. No bundled story mixes types today, so the rule
-// decides nothing yet. It decides what happens the first time one does.
-export function sectionKey(story) {
+// The shelf declared to take whatever the others refuse. Found rather than named, so the table
+// stays the only place the arrangement is written down.
+const FALLBACK_SHELF = CATALOG_SHELVES.find((shelf) => !shelf.types);
+
+// Which shelf a story belongs to. Every one of its readings has to match, not merely one of them: a
+// story mixing types falls through to the shelf that takes everything, which is the one that cannot
+// cut a reading path in two. No bundled story mixes types today, so the rule decides nothing yet.
+// It decides what happens the first time one does.
+export function shelfKey(story) {
   const lists = Array.isArray(story?.lists) ? story.lists : [];
-  return lists.length && lists.every((l) => SPOTLIGHT_TYPES.has(l?.type)) ? 'spotlight' : 'story';
+  const shelf = lists.length
+    ? CATALOG_SHELVES.find((s) => s.types && lists.every((l) => s.types.includes(l?.type)))
+    : null;
+  return (shelf ?? FALLBACK_SHELF).key;
 }
 
-// The shelf, divided, in the order the sections are declared and with each section's own order left
-// exactly as it arrived. Sorting already placed the rows; this only says where the boundary is.
+// The stories one shelf holds, in the order they arrived. Sorting already placed them; this only
+// says which screen they are on.
+export function shelfStories(stories, key) {
+  const all = Array.isArray(stories) ? stories : [];
+  return all.filter((story) => shelfKey(story) === key);
+}
+
+// The same question asked of raw readings rather than of grouped stories, for the callers that
+// have to narrow the catalog before grouping it: a shelf's search box and facet chips both count
+// readings, and they must count only the ones their own screen can show.
 //
-// An empty section is dropped rather than rendered with a heading and nothing under it, so a search
-// or a facet that narrows the shelf to one kind of reading still names the kind it is showing.
+// Grouped first and flattened after, rather than testing each reading on its own. A story's shelf
+// is decided by all of its readings together, so testing them one at a time would let a story
+// mixing types be torn in half and drawn on two screens, which is the one outcome the `every` rule
+// in `shelfKey` exists to prevent. Order is preserved, because the year sort has already settled it.
+export function shelfLists(lists, key) {
+  const mine = new Set();
+  for (const story of shelfStories(groupCatalog(lists), key)) {
+    for (const list of story.lists) mine.add(list);
+  }
+  return (Array.isArray(lists) ? lists : []).filter((list) => mine.has(list));
+}
+
+// ------------------------------------------------------------------ shelf sections
+
+// The sentence that points at the "Start here" badge, held apart from every blurb because it is a
+// claim about what is on the screen rather than about what the screen is for. The badge is drawn on
+// one story out of fifty-nine, and narrowing can leave a section full of rows with that one story
+// gone: measured against the shipped catalog on the landing page, four of the seven facet chips
+// hide it while still showing rows, as do the searches "x-men", "civil war" and "spider". A blurb
+// that always said this would point at nothing on screen in exactly the states a lost reader is
+// most likely to have reached.
+//
+// One sentence rather than a property on a shelf, which is where it used to live and where the
+// split stranded it. Which screen holds the first stop is a fact about the data and it has already
+// moved once: retyping one order took the badge from the events shelf to the character spotlights.
+// A sentence attached to a named screen was silently wrong the moment that happened, so the caller
+// asks the placements it is drawing from instead.
+export const ROUTE_BLURB = 'One of them below is marked Start here, and each stop names the one to read next.';
+
+
 export function shelfSections(stories) {
   const all = Array.isArray(stories) ? stories : [];
-  return SHELF_SECTIONS
-    .map((section) => ({ ...section, stories: all.filter((s) => sectionKey(s) === section.key) }))
+  return CATALOG_SHELVES
+    .map((shelf) => ({ ...shelf, stories: shelfStories(all, shelf.key) }))
+    .filter((shelf) => shelf.stories.length);
+}
+
+// ------------------------------------------------------------------ publishing ages
+
+// The ages of publishing history the catalog is divided into by year, and which of them the landing
+// page is for. Separate from `CATALOG_ERAS`, which divides one screen into named stretches: this
+// divides the catalog between screens, and the two answer different questions at different scales.
+//
+// One row today. The landing page is the modern era, from 1998, which is the owner's definition of
+// where the modern line starts rather than anything derived from the bundled data. Nothing bundled
+// reaches back that far: the earliest dated story is 2000, so 1998 admits exactly what 2000 would
+// and the boundary is forward-looking. It is written as 1998 anyway, because a definition belongs
+// where the code can be read against it, and because pre-modern content is expected rather than
+// hypothetical. No blurb claims a 1998 start; displayed ranges come from what landed.
+//
+// Silver Age and Bronze Age screens are the owner's stated direction and are deliberately not built
+// here, because there is nothing to put on them: no bundled story predates 1998 at all. Adding one
+// is a row in this table plus its shelf, which is the same one-line-per-row edit adding an era is.
+export const PUBLISHING_AGES = [
+  {
+    key: 'modern',
+    heading: 'The modern era',
+    from: 1998,
+    home: true,
+  },
+];
+
+// Whether the landing page shows a story. Undated stories are shown rather than filtered out, and
+// that is a decision rather than a fallthrough. A story with no year cannot be placed in an age at
+// all, and every undated story bundled is a character run, which is curated across the decades by
+// nature: "X-Men: Silver Age to Claremont" is Silver and Bronze Age material with no year to filter
+// on. Inferring an age for it from its title or its keywords would be guessing, and guessing wrong
+// would hide it. So the age boundary simply does not reach stories that carry no year.
+export function inHomeAge(story) {
+  const year = storyYear(story);
+  if (year === null) return true;
+  return PUBLISHING_AGES.some((age) => age.home
+    && (age.from == null || year >= age.from)
+    && (age.to == null || year <= age.to));
+}
+
+// ------------------------------------------------------------------ publishing eras
+
+// The named stretches of publishing history the browse screen signposts, and the only place any of
+// them is written down. Every heading, blurb, span and count on that screen is derived from this
+// table, so moving a boundary, renaming an era or adding one is an edit here and nowhere else.
+//
+// `from` and `to` are inclusive, and every named era is closed at both ends. Leaving the first open
+// at the start and the last open at the end would make the partition total for free, and it is the
+// wrong trade: a 1975 event would land, silently and correctly by the code's own rule, under a
+// heading naming events from 2004. The catalog is being grown, and content earlier than 2000 is
+// expected rather than hypothetical, so the shape that fails loudly is worth more than the shape
+// that cannot fail. New content outside these years gets a new row, which is why this table exists.
+//
+// The named eras are also contiguous: each starts the year after the last one ends. A gap between
+// two eras is not an empty stretch of the shelf, it is an order that is on this screen and drawn on
+// none of it, so the bounds claim every year between them even where no order carries that year.
+//
+// The last row is the fallback, and it is the dangerous one. It catches a story no era claims, so
+// it runs only once something is already wrong, which in this repository is reliably where the
+// risk is. Three rules hold it: it is dropped when empty like every other era, so it is invisible
+// in the state it is expected to be in; it never prints a range, because its contents share nothing
+// but the fact that nothing else wanted them; and `catalog-eras.test.js` asserts it is empty on the
+// shipped catalog as well as asserting it catches a stray. Those two tests fail in opposite
+// directions, so between them the fallback cannot quietly become where everything lands.
+//
+// No year appears in a heading, on purpose. The bounds and the content disagree, because the
+// catalog has no event in 2001, 2002, 2003, 2015 or 2019, so a heading advertising a boundary would
+// promise a reader years the section cannot show. That is the same defect as a blurb naming a badge
+// that is not on screen, and the fix is the same: say what landed, which is what `eraSections`
+// derives from the stories themselves.
+//
+// Every era is named after orders the catalog actually contains, checked rather than assumed:
+// Avengers Disassembled, Civil War, Secret Invasion, Schism, Battle of the Atom, Spider-Verse,
+// Inhumans vs. X-Men and King in Black are all bundled. Siege is not, so it names nothing here.
+export const CATALOG_ERAS = [
+  {
+    key: 'disassembled',
+    heading: 'Disassembled to Civil War',
+    blurb: 'Where the modern line starts. The Avengers foundation, then the run of crossovers that builds to Civil War and the fallout it left behind.',
+    from: 2000,
+    to: 2007,
+  },
+  {
+    key: 'invasion',
+    heading: 'Secret Invasion to Schism',
+    blurb: 'The company-wide crossovers of the late 2000s, and the mutant line pulling itself apart into two camps.',
+    from: 2008,
+    to: 2011,
+  },
+  {
+    key: 'atom',
+    heading: 'Battle of the Atom to Spider-Verse',
+    blurb: 'Tighter crossovers, each built around one corner of the universe rather than all of it at once.',
+    from: 2012,
+    to: 2015,
+  },
+  {
+    // Closed at 2020 rather than left open or stretched to the newest year anything in the catalog
+    // carries. King in Black is 2020, so 2020 is the last year this era's own name reaches, and a
+    // bound past that would claim years the heading cannot account for.
+    key: 'inhumans',
+    heading: 'Inhumans vs. X-Men to King in Black',
+    blurb: 'The most recent events bundled with the app, and the relaunches that arrived alongside them.',
+    from: 2016,
+    to: 2020,
+  },
+  {
+    key: 'undated',
+    heading: 'Outside the timeline',
+    blurb: 'Orders that range over the timeline rather than sitting at a point on it, so no year above is theirs.',
+    undated: true,
+  },
+  {
+    key: 'unplaced',
+    fallback: true,
+    heading: 'Not yet placed in an era',
+    blurb: 'These carry a year that no era above has a name for yet. They are shown here so nothing is lost while the eras catch up.',
+  },
+];
+
+// The year a story starts, taken as the earliest year any of its readings claims. A story read
+// several ways is one thing on the shelf and has to sit at one point on the timeline; taking the
+// earliest is the same answer the year sort already gives it, because the sort is stable and the
+// readings of a story are adjacent.
+export function storyYear(story) {
+  const years = (Array.isArray(story?.lists) ? story.lists : [])
+    .map((list) => list?.timeline)
+    .filter((year) => Number.isInteger(year));
+  return years.length ? Math.min(...years) : null;
+}
+
+// Which era claims a story, or null if none does. One rule, asked once per story, so the assignment
+// cannot differ between the section that draws it and the test that checks nothing was lost.
+function inEra(era, year) {
+  if (era.fallback) return false;
+  if (year === null) return Boolean(era.undated);
+  if (era.undated) return false;
+  return (era.from == null || year >= era.from) && (era.to == null || year <= era.to);
+}
+
+// The era a story belongs to, by key, or the fallback's key when no era claims its year. Exported
+// because the suite has to be able to ask the same question the renderer asks: a test that decided
+// membership for itself would pass while the screen dropped a row.
+export function eraKey(story) {
+  const year = storyYear(story);
+  const era = CATALOG_ERAS.find((e) => inEra(e, year));
+  return (era ?? CATALOG_ERAS.find((e) => e.fallback)).key;
+}
+
+// The span a section can actually show, as a phrase, derived from what landed in it rather than
+// from the boundary it was selected by. A section holding one year says that year once instead of
+// claiming a range with nothing at one end of it.
+export function spanLabel(span) {
+  if (!span) return null;
+  return span.from === span.to ? `${span.from}` : `${span.from} to ${span.to}`;
+}
+
+// The shelf divided into eras, in the order the table declares them and with each era's own order
+// left exactly as it arrived, which the year sort has already settled. An empty era is dropped
+// rather than drawn as a heading with nothing under it, the fallback included: the state it is
+// built for is the state it is expected never to be in, and a heading standing over nothing would
+// be on screen in every ordinary run.
+export function eraSections(stories) {
+  const all = Array.isArray(stories) ? stories : [];
+  const byKey = new Map(CATALOG_ERAS.map((era) => [era.key, []]));
+  for (const story of all) byKey.get(eraKey(story)).push(story);
+
+  return CATALOG_ERAS
+    .map((era) => {
+      const inSection = byKey.get(era.key);
+      const years = inSection.map(storyYear).filter((year) => year !== null);
+      const span = years.length ? { from: Math.min(...years), to: Math.max(...years) } : null;
+      // The fallback prints no range however many years it holds. Its rows have nothing in common
+      // but having been refused by every era above, so "Dated 1975 to 2031" would read as a span
+      // the section covers rather than as two unrelated strays.
+      const label = era.fallback ? null : spanLabel(span);
+      return {
+        ...era,
+        stories: inSection,
+        span,
+        // Appended rather than held apart, because it is a claim about this section's own contents
+        // and cannot be true of the table's text alone.
+        blurb: label ? `${era.blurb} Dated ${label}.` : era.blurb,
+      };
+    })
     .filter((section) => section.stories.length);
 }

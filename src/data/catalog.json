@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T05:47:30.542Z",
+  "generatedAt": "2026-08-22T18:01:44.097Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1446,7 +1446,7 @@
       "file": "essential_avengers.json",
       "name": "Essential Avengers",
       "description": "Ten runs out of the first 285 issues of Avengers, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It takes the team from its assembly and the return of Captain America through the arrival of the Vision, the Kree and Skrull War, the Bride of Ultron, the Korvac Saga, the nights of Wundagore, Heart of Stone, the legacy of Thanos, Under Siege and the assault on Olympus. The gaps between sections are the outline's own: this is a selection rather than a continuous read.",
-      "type": "era",
+      "type": "character-run",
       "depth": "essential",
       "count": 120,
       "collections": 10,
@@ -1475,7 +1475,7 @@
       "groupName": null,
       "variant": null,
       "beginner": true,
-      "timeline": 1963,
+      "timeline": null,
       "coverIssueId": 6951,
       "cover": {
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/519b819d54e34",

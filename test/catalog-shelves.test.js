@@ -1,0 +1,217 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import {
+  CATALOG_SHELVES,
+  PUBLISHING_AGES,
+  groupCatalog,
+  inHomeAge,
+  parseCatalog,
+  shelfLists,
+  shelfSections,
+  pathPlacements,
+  shelfStories,
+  storyYear,
+} from '../src/js/lib/catalog.js';
+import { VIEWS } from '../src/js/lib/route.js';
+
+// The catalog is split across three screens. Three screens is three chances to drop a story, and a
+// story reachable from no screen at all is the worst outcome available here: it is bundled with the
+// app, listed in no index, and the reader has no way to learn it exists. So the partition is
+// asserted as a property rather than as three counts, and it is asserted at both levels, because a
+// story is only whole on a shelf if every one of its readings came with it.
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
+const stories = groupCatalog(catalog.lists);
+const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
+
+test('every story reaches exactly one screen', () => {
+  const reached = new Map();
+  for (const key of keys) {
+    for (const story of shelfStories(stories, key)) {
+      reached.set(story.key, [...(reached.get(story.key) ?? []), key]);
+    }
+  }
+
+  const unreachable = stories
+    .filter((s) => !reached.has(s.key))
+    .map((s) => `${s.name ?? s.lists[0].name} (${s.lists.map((l) => l.type).join('/')})`);
+  assert.deepEqual(unreachable, [], `listed on no screen at all: ${unreachable.join(', ')}`);
+
+  const twice = [...reached.entries()].filter(([, on]) => on.length > 1);
+  assert.deepEqual(twice, [], `listed on more than one screen: ${twice.map(([k, on]) => `${k} on ${on.join(' and ')}`).join(', ')}`);
+});
+
+test('the screens sum to the catalog, in stories and in reading paths alike', () => {
+  const byStory = keys.reduce((n, key) => n + shelfStories(stories, key).length, 0);
+  assert.equal(byStory, stories.length, 'the screens and the catalog disagree about how many stories exist');
+
+  const byList = keys.reduce((n, key) => n + shelfLists(catalog.lists, key).length, 0);
+  assert.equal(byList, catalog.lists.length, 'the screens and the catalog disagree about how many orders exist');
+});
+
+// A story is assigned by all of its readings together, so a story read two ways cannot be torn in
+// half and drawn on two screens. No bundled story mixes types today, which is why this is asserted
+// on a fixture: the rule decides nothing yet, and it decides everything the first time one does.
+test('a story whose readings disagree about type is not split across two screens', () => {
+  const mixed = [{
+    key: 'mixed',
+    lists: [
+      { id: 'mixed-a', name: 'Mixed', type: 'event', timeline: 2006 },
+      { id: 'mixed-b', name: 'Mixed', type: 'character-run', timeline: 2006 },
+    ],
+  }];
+  const on = keys.filter((key) => shelfStories(mixed, key).length);
+  assert.deepEqual(on.length, 1, `a mixed story was drawn on ${on.length} screens: ${on.join(', ')}`);
+  const fallback = CATALOG_SHELVES.find((shelf) => !shelf.types);
+  assert.equal(on[0], fallback.key, 'a mixed story went to a typed screen rather than to the one that takes everything');
+});
+
+// Exactly one shelf takes whatever the others refuse. Two would make the assignment depend on which
+// row is written first; none would let a new type fall off every screen at once.
+test('exactly one screen takes what the others refuse', () => {
+  const open = CATALOG_SHELVES.filter((shelf) => !shelf.types);
+  assert.equal(open.length, 1, 'the shelves declare no single home for a type none of them names');
+});
+
+test('a type no screen names still reaches a reader', () => {
+  const odd = [{ key: 'odd', lists: [{ id: 'odd', name: 'Odd', type: 'not-a-type', timeline: 2006 }] }];
+  const on = keys.filter((key) => shelfStories(odd, key).length);
+  assert.equal(on.length, 1, `an unknown type was drawn on ${on.length} screens`);
+});
+
+// An empty screen is dropped rather than drawn as a heading with nothing under it, the same rule the
+// eras follow. Home draws every shelf, and a search narrowing the catalog to one kind of reading is
+// a state a reader reaches rather than a theoretical one.
+test('a screen with nothing on it is not drawn', () => {
+  const events = shelfStories(stories, 'catalog');
+  assert.ok(events.length, 'the events shelf is empty');
+  const drawn = shelfSections(events);
+  assert.equal(drawn.length, 1, 'a shelf with nothing on it was drawn');
+  assert.equal(drawn[0].key, 'catalog');
+});
+
+test('every screen carries the words its own empty state and heading need', () => {
+  for (const shelf of CATALOG_SHELVES) {
+    for (const field of ['key', 'heading', 'sub', 'blurb', 'empty', 'railSub']) {
+      assert.equal(typeof shelf[field], 'string', `the ${shelf.key} shelf has no ${field}`);
+      assert.ok(shelf[field].trim().length, `the ${shelf.key} shelf has an empty ${field}`);
+    }
+  }
+  const headings = CATALOG_SHELVES.map((shelf) => shelf.heading);
+  assert.equal(new Set(headings).size, headings.length, 'two screens share a heading');
+});
+
+// The shelf key doubles as the view id, so a shelf the router does not know is a rail entry leading
+// nowhere and a screen with no address.
+test('every screen is a route the app can reach', () => {
+  for (const shelf of CATALOG_SHELVES) {
+    assert.ok(VIEWS.includes(shelf.key), `the ${shelf.key} shelf is not a view the router accepts`);
+  }
+});
+
+// ------------------------------------------------------------------ publishing ages
+
+// The modern-era boundary is data in the same table-driven place the eras are, so adding a Silver
+// Age or Bronze Age screen is a row rather than an edit to a render function.
+test('the landing page draws its boundary from the table rather than from a literal year', () => {
+  const home = PUBLISHING_AGES.filter((age) => age.home);
+  assert.equal(home.length, 1, 'exactly one age is expected to be the landing page');
+  assert.equal(typeof home[0].from, 'number', 'the landing page age declares no start year');
+});
+
+test('a story older than the landing page age is kept off it', () => {
+  const from = PUBLISHING_AGES.find((age) => age.home).from;
+  const older = { key: 'old', lists: [{ id: 'old', name: 'Old', type: 'event', timeline: from - 1 }] };
+  const newer = { key: 'new', lists: [{ id: 'new', name: 'New', type: 'event', timeline: from }] };
+  assert.equal(inHomeAge(older), false);
+  assert.equal(inHomeAge(newer), true);
+});
+
+// Deliberate, not an oversight. A story with no year cannot be placed in an age at all, and every
+// undated story bundled is a character spotlight, curated across the decades by nature. Inferring an
+// age from a title or a keyword would be guessing, and guessing wrong would hide it.
+test('a story with no year is exempt from the boundary rather than hidden by it', () => {
+  const undated = { key: 'best-of', lists: [{ id: 'best-of', name: 'Best of', type: 'character-run' }] };
+  assert.equal(storyYear(undated), null);
+  assert.equal(inHomeAge(undated), true);
+});
+
+// The one that matters most. Whatever the boundary keeps off the landing page has to remain listed
+// somewhere, or the app is bundling an order no reader can find.
+test('nothing the landing page filters out becomes unreachable', () => {
+  for (const story of stories.filter((s) => !inHomeAge(s))) {
+    const on = keys.filter((key) => shelfStories([story], key).length);
+    assert.equal(
+      on.length,
+      1,
+      `${story.name ?? story.lists[0].name} is off the landing page and on ${on.length} other screens`,
+    );
+  }
+});
+
+// ------------------------------------------------------------- path links
+
+// A "Next" that crosses a screen boundary is a link, so it has to know which screen. The answer
+// travels on the stop rather than being worked out by whichever renderer drew the row, because a
+// shelf's renderer only ever sees its own share of the catalog and could not resolve a stop that is
+// not its.
+test('every path stop carries the screen it is drawn on', () => {
+  const placed = pathPlacements(catalog.paths, catalog.lists);
+  assert.ok(placed.size >= 2, 'the catalog ships a reading path');
+  for (const [key, placement] of placed) {
+    assert.ok(placement.first, `${key} carries no head of its path, so its name can link nowhere`);
+    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
+      assert.ok(keys.includes(stop.shelf), `${key}'s neighbour ${stop.key} names a screen that exists`);
+      assert.equal(typeof stop.onHome, 'boolean', `${key}'s neighbour ${stop.key} answers the landing page's boundary`);
+    }
+  }
+});
+
+// The one that keeps the link honest, and the reason arriving clears the destination's search box
+// and facet chips. A link names one order and lands the reader at the top of a screen; if that
+// order is not on the screen at all, the app has told them something untrue. Nothing at render time
+// can repair that, so it is settled here instead: the screen a stop names is a screen that lists
+// it, for every stop of every path, at both the story level and the reading level the facet counts
+// are taken from. The head of the path is in this set because the path's own name links to it, so
+// it makes the same promise the forward link does and has to keep it the same way.
+test('every stop is listed on the screen its own link names', () => {
+  const placed = pathPlacements(catalog.paths, catalog.lists);
+  const named = new Set();
+  for (const placement of placed.values()) {
+    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) named.add(stop);
+  }
+  assert.ok(named.size >= 2, 'the path names neighbours to link to');
+
+  for (const stop of named) {
+    assert.ok(
+      shelfStories(stories, stop.shelf).some((s) => s.key === stop.key),
+      `${stop.name} is linked to ${stop.shelf}, which does not list it`,
+    );
+    assert.ok(
+      groupCatalog(shelfLists(catalog.lists, stop.shelf)).some((s) => s.key === stop.key),
+      `${stop.name}'s readings do not reach ${stop.shelf}, so that screen would count it and not draw it`,
+    );
+  }
+});
+
+// The landing page is the one screen that filters by year, so it is the one screen a stop can be
+// missing from while still being on its shelf. This flag is what lets a row drawn there send the
+// reader to the shelf rather than to a card the page is not showing.
+test('a stop the landing page filters out says so', () => {
+  const placed = pathPlacements(catalog.paths, catalog.lists);
+  for (const placement of placed.values()) {
+    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
+      const story = stories.find((s) => s.key === stop.key);
+      assert.equal(
+        stop.onHome,
+        inHomeAge(story),
+        `${stop.name} disagrees with the boundary the landing page applies`,
+      );
+    }
+  }
+});

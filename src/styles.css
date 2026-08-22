@@ -124,7 +124,7 @@
   --amber: #eab654;
   --blue: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:697-698`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:695-696`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -1111,6 +1111,11 @@ body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
   list-style: none; margin: .9rem 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .9rem;
 }
+/* The landing grid is now one list per group rather than one list for everything, so the spacing
+   between a group's cards and the next group's heading has to come from the container rather than
+   from the grid's own top margin, which only separates a grid from what precedes it. */
+.ogrid-groups { display: flex; flex-direction: column; gap: 1.6rem; margin: .9rem 0 0; }
+.ogrid-groups .ogrid { margin-top: .6rem; }
 .ocard {
   position: relative;
   display: flex; flex-direction: column;
