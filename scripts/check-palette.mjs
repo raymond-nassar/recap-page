@@ -348,7 +348,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1295` in the rail and `src/js/main.js:5143` in the
+// stated as text beside it, at `src/js/main.js:1295` in the rail and `src/js/main.js:5154` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when

@@ -549,6 +549,12 @@ export function pathPlacements(paths, lists) {
         total: stops.length,
         previous: i > 0 ? stops[i - 1] : null,
         next: i < stops.length - 1 ? stops[i + 1] : null,
+        // The head of the path, carried on every stop rather than looked up by whoever draws the
+        // row. A row drawn on a screen the path does not start on has no way back to the start by
+        // scrolling, and the path's own name is already printed on it, so the name is what carries
+        // the reader there. On stop one this is the stop itself, which needs no special case: the
+        // rule that draws a link only to a screen the reader is not on suppresses it there.
+        first: stops[0],
       });
     });
   }

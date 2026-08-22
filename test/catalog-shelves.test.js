@@ -164,7 +164,8 @@ test('every path stop carries the screen it is drawn on', () => {
   const placed = pathPlacements(catalog.paths, catalog.lists);
   assert.ok(placed.size >= 2, 'the catalog ships a reading path');
   for (const [key, placement] of placed) {
-    for (const stop of [placement.previous, placement.next].filter(Boolean)) {
+    assert.ok(placement.first, `${key} carries no head of its path, so its name can link nowhere`);
+    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
       assert.ok(keys.includes(stop.shelf), `${key}'s neighbour ${stop.key} names a screen that exists`);
       assert.equal(typeof stop.onHome, 'boolean', `${key}'s neighbour ${stop.key} answers the landing page's boundary`);
     }
@@ -176,12 +177,13 @@ test('every path stop carries the screen it is drawn on', () => {
 // order is not on the screen at all, the app has told them something untrue. Nothing at render time
 // can repair that, so it is settled here instead: the screen a stop names is a screen that lists
 // it, for every stop of every path, at both the story level and the reading level the facet counts
-// are taken from.
+// are taken from. The head of the path is in this set because the path's own name links to it, so
+// it makes the same promise the forward link does and has to keep it the same way.
 test('every stop is listed on the screen its own link names', () => {
   const placed = pathPlacements(catalog.paths, catalog.lists);
   const named = new Set();
   for (const placement of placed.values()) {
-    for (const stop of [placement.previous, placement.next].filter(Boolean)) named.add(stop);
+    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) named.add(stop);
   }
   assert.ok(named.size >= 2, 'the path names neighbours to link to');
 
@@ -203,7 +205,7 @@ test('every stop is listed on the screen its own link names', () => {
 test('a stop the landing page filters out says so', () => {
   const placed = pathPlacements(catalog.paths, catalog.lists);
   for (const placement of placed.values()) {
-    for (const stop of [placement.previous, placement.next].filter(Boolean)) {
+    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
       const story = stories.find((s) => s.key === stop.key);
       assert.equal(
         stop.onHome,

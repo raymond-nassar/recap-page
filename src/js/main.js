@@ -3952,37 +3952,47 @@ function catalogRow(story, placement, { surface = 'catalog', level = 'h3' } = {}
 //
 // Splitting the catalog into three screens by kind of reading gave that half a boundary condition
 // rather than falsifying it. The one bundled path runs through all three screens, so seven of its
-// nine hops still have the predecessor directly above and two of them do not. Those two are the
-// only rows where a backward link would say anything a reader cannot already see, and whether to
-// draw one there is with the owner rather than settled here.
+// nine hops still have the predecessor directly above and two of them do not. A backward stop link
+// on those two was costed and declined: the orientation it buys is bought instead by the path's
+// own name, which is already printed on all ten rows, so the same gap closes for no added words.
 //
-// "Next" becomes a link on exactly the hops that cross a screen, which is the same boundary
-// condition read forwards. On the seven hops that do not cross, the next stop is a row further
-// down the screen the reader is already on and a link would land them at the top of it, which is
-// further from the row than they started. On the two that do, the name is otherwise an instruction
-// with no way to follow it. The words are identical either way: nothing is appended to say where
-// the link goes, because the screen it lands on says that on arrival and the complaint this whole
-// change answers was that these screens carry too much text.
+// Two links, one rule. "Next" is a link on exactly the hops that cross a screen, and the path name
+// is a link to the first stop on exactly the rows drawn away from it, so both go through stopLink
+// rather than through two functions holding one idea. Where the screen already holds the stop, a
+// link would land the reader at the top of the screen they are standing on, which is further from
+// the row than they started. Measured against the shipped path: nine rows take a linked name and
+// two take a linked "Next", and one row, step five, takes both.
 //
-// No aria-label: every word of it is already on screen, and `aria-label` on a <p> has no role to
-// attach to, so it is the kind of markup that reads correctly in a review and is dropped by the
-// accessibility tree.
-function pathLine(placement, surface) {
+// The words are identical either way. Nothing is appended to say where either link goes, because
+// the screen it lands on says that on arrival and the complaint this whole change answers was that
+// these screens carry too much text. Both links sit inside one span rather than beside the badge,
+// because .path-step is a flex row and a link parented directly by it becomes an item with a gap
+// each side, which reads as a control strip rather than as a sentence.
+//
+// The <p> takes no aria-label: every word of it is already on screen, and `aria-label` on a <p>
+// has no role to attach to, so it is markup that reads correctly in a review and is dropped by the
+// accessibility tree. An <a> is the opposite case, and the path name is the one that needs it,
+// because "The Modern Avengers" alone does not say that pressing it goes to the start. Its name is
+// built out of the visible words rather than beside them, which is what accname.js exists to hold.
+export function pathLine(placement, surface) {
   if (!placement) return null;
-  const first = placement.previous === null;
-  const lead = [
-    placement.pathName,
-    first ? `Step 1 of ${placement.total}` : null,
-  ].filter(Boolean).join(' · ');
+  const opens = placement.previous === null;
+  const start = stopLink(placement.first, surface, {
+    text: placement.pathName,
+    label: labelledName(placement.pathName, `Start at ${placement.first.name}`),
+  });
   const link = placement.next ? stopLink(placement.next, surface) : null;
+  const lead = opens ? ` · Step 1 of ${placement.total} · ` : ' · ';
   return el('p', { class: 'result-meta path-step' }, [
     el('span', {
-      class: first ? 'pill pill-start' : 'pill',
-      text: first ? 'Start here' : `Step ${placement.position} of ${placement.total}`,
+      class: opens ? 'pill pill-start' : 'pill',
+      text: opens ? 'Start here' : `Step ${placement.position} of ${placement.total}`,
     }),
-    ...(placement.next
-      ? [el('span', {}, [`${lead} · Next: `, link ?? placement.next.name])]
-      : [`${lead} · Last stop`]),
+    el('span', {}, [
+      start ?? placement.pathName,
+      lead,
+      ...(placement.next ? ['Next: ', link ?? placement.next.name] : ['Last stop']),
+    ]),
   ]);
 }
 
@@ -4002,16 +4012,17 @@ function stopView(stop, surface) {
 // middle-click opens it, and Back returns to the row that named it without this code owning any of
 // that. Constraint 5 makes the origin load-bearing, so the address it writes is a fragment and
 // nothing else. The click is taken over only to clear the destination's narrowing first.
-function stopLink(stop, surface) {
+function stopLink(stop, surface, { text = stop.name, label = null } = {}) {
   const dest = stopView(stop, surface);
   if (dest === surface) return null;
   return el('a', {
     href: formatRoute({ view: dest }),
+    'aria-label': label,
     onclick: (e) => {
       e.preventDefault();
       goToStop(stop, surface);
     },
-  }, stop.name);
+  }, text);
 }
 
 // Following the path across a screen boundary. Clearing the destination's narrowing is the

@@ -30,7 +30,9 @@ character selections and no longer claims to belong to 1963. One consequence of 
 catalogue is that the ten stops of the bundled reading path no longer sit on one screen, so the note
 telling you which order to read next is now a link on the two steps that change screen, and it
 clears anything you had typed or filtered on the screen it takes you to, so the order it named is
-really there when you arrive. Nothing you have saved is affected.
+really there when you arrive. The path's own name, printed on every step, now links back to the
+first one for the same reason, on the steps that sit on a different screen from where the path
+begins. Neither adds a word to the screen. Nothing you have saved is affected.
 
 For maintainers: measured in Edge at 1280x900 with the cache disabled, the landing grid renders 59
 cards where the cap allowed 12, in three groups, on a page 8,178 pixels tall. The shelf card's cover
@@ -50,8 +52,14 @@ further down the same screen. Following one resets the destination's query and f
 draws, because a screen holding a search from an earlier visit can be showing rows without showing
 the one the link named: `x-men` on the era screen leaves 23 of its 46 rows and drops the first
 crossing's target. A stop now carries the screen it is drawn on, resolved from the whole catalog, and
-three tests hold that every stop is listed on the screen its own link names. Details in BL-189, with
-the deferred pre-modern screens in BL-190 and the path links in BL-191.
+three tests hold that every stop is listed on the screen its own link names. The path name links to
+the head of the path through the same function, which returns nothing when the stop is drawn on the
+screen already being read, so the boundary and the arrival exist once rather than twice: 9 linked
+names against 2 linked "Next"s, none on the landing page or the spotlights because both draw stop 1,
+4 on the era screen and 5 on the line-wide lists. That is more link surface than the backward badge
+that was costed and declined, on 9 rows against 2, and no more text, which is what was being
+optimised. One row carries both, and its accessible name says where it goes without printing it.
+Details in BL-189, with the deferred pre-modern screens in BL-190 and the path links in BL-191.
 
 ### Made the screens quieter and easier to scan
 
