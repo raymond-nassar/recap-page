@@ -12,9 +12,9 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Active marker: P06-T01
-* Completed scope markers: P01 through P05 and P01-T01 through P05-T03
-* All remaining active-plan markers: P06 through P07 and P06-T01 through P07-T03
+* Active marker: P07-T01
+* Completed scope markers: P01 through P06 and P01-T01 through P06-T02
+* All remaining active-plan markers: P07 and P07-T01 through P07-T03
 * Status basis: Planning and the single critique are complete. Implementation begins with mandatory
   current-main and selected-source freshness reconciliation before any product authoring.
 
@@ -260,6 +260,37 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
   1280x900. Final dash scan found 0 added lines with dash punctuation and `git diff --check` passed.
 * Validation: Passed.
 
+### One independent Review routed five implementation defects
+
+* Affected plan area or markers: P06-T01 and P06-T02.
+* What changed: The single Review completed with Defects found: RV-001 and RV-002 High, RV-003 through
+  RV-005 Medium. All route to implementation and require no new planning or research.
+* Why: Partial release modes, unbound inventory and source evidence, relabelable review provenance,
+  missing alternate-universe state, and sequential multi-file writes weaken confirmed release
+  contracts.
+* Triggering evidence: The one independent post-implementation code review of commit `c80a864`.
+* User answer or decision: None; all fixes preserve confirmed intent.
+* Reconciliation performed: Review record is complete; P06-T01 is complete and P06-T02 owns all five
+  in-scope fixes. No second Review will run.
+* Planning and critique state: Current; original critique remains final.
+
+### All five Review findings closed without another Review
+
+* Related phase or task: P06-T02
+* Files: CBRO evidence, preparation, authoring, inventory, mappings, tests, maintenance guidance, and
+  the one review record
+* What changed and why: Made approval and authoring require all five guides in chronology order;
+  cryptographically locked every stable field across all 58 inventory records; matched selected
+  inventory source fields to packets; bound exact CBRO review identity into approvals; marked only
+  Marvel 2099 and MC2 alternate; and replaced sequential writes with staged, journaled,
+  backup-restored transactions.
+* Completion evidence: Full five-guide approval and authoring succeed with 94 comparisons per
+  candidate. Partial and reordered authoring are refused. Fabricated inventory, changed selected
+  source evidence, and relabeled review provenance are refused. Transaction staging failure leaves
+  original files unchanged and successful publication removes its journal and backups.
+* Validation: Two Review-fix mutation runs failed the intended four focused cases and transaction
+  assertions. Restored 14 of 14 focused tests and lint pass. No second Review ran.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Single critique corrections incorporated
@@ -295,15 +326,16 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 | Live contract | P05-T02 | Passed | 33/33 assumptions after one transient retry |
 | Existing Edge harness | P05-T02 | Passed | 158 assertions, 17 scenarios, 0 failed |
 | Actual CBRO cards in Edge | P05-T02 | Passed | 41/41 assertions at 1280x900 |
-| Full local and browser gates | P05 | Pending | Dependent on completed implementation |
+| Review-fix failure proof | P06-T02 | Passed | Four contract cases and transaction assertions failed under reversible mutations; restored 14/14 |
+| Full local and browser gates | P05 and P06-T02 | Passed | Final affected deterministic gates pass after Review fixes |
 | Hosted checks | P07 | Pending | Dependent on pull request |
 
 ## Pre-Review Reconciliation
 
-* Plan markers and phase details: Current; P01 through P05 and all implementation tasks are complete.
-* Completed-work evidence and handoff prose: Current through final current-main reconciliation.
-* Validation, blockers, remaining work, and follow-up items: Current; no implementation blocker.
-* Review readiness: Ready for the one independent post-implementation Review.
+* Plan markers and phase details: Current; P01 through P06 are complete.
+* Completed-work evidence and handoff prose: Current through all routed Review fixes.
+* Validation, blockers, remaining work, and follow-up items: Current; no release blocker.
+* Review readiness: The one Review is complete and will not be repeated.
 
 ## Blockers
 
@@ -325,7 +357,7 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 * Implementation execution status: Complete for implementation phases P01 through P05; full task
   remains Partial through Review and release
-* Declared scope and markers: full plan; P01 through P05 complete; P06-T01 active
+* Declared scope and markers: full plan; P01 through P06 complete; P07-T01 active
 * Validation coverage: All final merged-tree deterministic, live, publication, dash, diff, and browser
   gates passed
 * Blockers: None

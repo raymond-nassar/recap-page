@@ -41,7 +41,8 @@ The historical event program is a separate build-time source family. Its maintai
 the 58 entries that precede Maximum Security on the Comic Book Reading Orders Marvel event timeline.
 Maximum Security and every later entry are excluded. Forty-six entries have dedicated event pages and
 twelve use a visible label on the timeline page; page plus label is the source identity for those
-twelve.
+twelve. The inventory also preserves universe scope: Marvel 2099 and MC2 are the only two entries the
+source marks as alternate universes.
 
 The first release publishes five dedicated pages containing 23 exact issue rows: Muir Island Saga,
 Bloodties, Midnight Massacre, Child's Play, and Eighth Day. Each frozen packet binds the provider,

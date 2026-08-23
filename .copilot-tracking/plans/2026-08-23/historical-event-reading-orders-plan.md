@@ -406,13 +406,13 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P05-T03 in .copilot-tracking/details/2026-08-23/historical-event-reading-orders-phase-details.md
 
 <!-- rpi:phase id=P06 -->
-### [ ] P06: Execute one independent Review
+### [x] P06: Execute one independent Review
 
 * Intent: perform exactly one post-implementation review and route its outcomes without a loop.
 * Dependencies: P05.
 
 <!-- rpi:task id=P06-T01 -->
-#### [ ] P06-T01: Run and persist one independent Review
+#### [x] P06-T01: Run and persist one independent Review
 
 * Requirement and evidence: caller requires one independent Review after implementation.
 * Expected result: one review artifact evaluates the final implementation, source safety, freshness,
@@ -420,7 +420,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P06-T01 in .copilot-tracking/details/2026-08-23/historical-event-reading-orders-phase-details.md
 
 <!-- rpi:task id=P06-T02 -->
-#### [ ] P06-T02: Fix only in-scope release blockers and route the rest
+#### [x] P06-T02: Fix only in-scope release blockers and route the rest
 
 * Requirement and evidence: review findings are routed, not looped.
 * Expected result: material in-scope blockers are fixed and affected gates rerun without another

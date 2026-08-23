@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
@@ -11,6 +11,7 @@ import {
   mappingDigestFor,
   validateCbroHistoricalInventory,
   validateCbroPacket,
+  writeFilesAtomically,
 } from './lib/cbro-evidence.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -19,6 +20,7 @@ const INVENTORY_PATH = path.join(ROOT, 'scripts', 'data', 'cbro-historical-inven
 const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbro-packets');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbro-mappings');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
+const PREPARE_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-prepare-transaction.json');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -133,6 +135,7 @@ export async function prepareCbroMappings(ids = CBRO_SELECTED_IDS, {
   packetsDir = PACKETS_DIR,
   mappingsDir = MAPPINGS_DIR,
   manifestFile = MANIFEST_PATH,
+  journalFile = PREPARE_JOURNAL,
 } = {}) {
   const packets = await loadCbroPackets(ids, { inventoryFile, packetsDir, manifestFile });
   const getIssue = fetchIssue ?? (() => {
@@ -161,14 +164,10 @@ export async function prepareCbroMappings(ids = CBRO_SELECTED_IDS, {
   for (const packet of packets) {
     mappings.push(await buildCbroMapping(packet, metadataById));
   }
-  await mkdir(mappingsDir, { recursive: true });
-  for (const mapping of mappings) {
-    await writeFile(
-      path.join(mappingsDir, `${mapping.id}.json`),
-      `${JSON.stringify(mapping, null, 2)}\n`,
-      'utf8',
-    );
-  }
+  await writeFilesAtomically(mappings.map((mapping) => ({
+    file: path.join(mappingsDir, `${mapping.id}.json`),
+    content: `${JSON.stringify(mapping, null, 2)}\n`,
+  })), { journalFile });
   return mappings;
 }
 

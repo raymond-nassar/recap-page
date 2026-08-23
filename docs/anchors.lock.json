@@ -2454,8 +2454,8 @@
     "fp": "75b47917f04d78ea",
     "head": "| `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter"
   },
-  "PRODUCT_BACKLOG.md|item-details|docs/DATA_PROVENANCE.md:145-151|0": {
-    "anchor": "docs/DATA_PROVENANCE.md:145-151",
+  "PRODUCT_BACKLOG.md|item-details|docs/DATA_PROVENANCE.md:146-152|0": {
+    "anchor": "docs/DATA_PROVENANCE.md:146-152",
     "fp": "b5f44534d4c5c82a",
     "head": "| Origin | Lists | What was compiled here |"
   },
@@ -5509,8 +5509,8 @@
     "fp": "b00b1254dcc2dcbf",
     "head": "if (err?.status === 404) refused.add(id);"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-128|docs/DATA_PROVENANCE.md:117-136|0": {
-    "anchor": "docs/DATA_PROVENANCE.md:117-136",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-128|docs/DATA_PROVENANCE.md:118-137|0": {
+    "anchor": "docs/DATA_PROVENANCE.md:118-137",
     "fp": "96cef3fe36602f85",
     "head": "Ninety-five files under [`src/data/`](../src/data), one per curated list, holding 4,092 issue record"
   },

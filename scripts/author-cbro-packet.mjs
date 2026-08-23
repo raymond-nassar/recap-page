@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -17,10 +17,13 @@ import {
 } from './lib/cbh-inventory.mjs';
 import {
   CBRO_SELECTED_IDS,
+  CBRO_PACKET_REVIEW,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
   validateCbroHistoricalInventory,
   validateCbroPacket,
+  validateCbroReviewIdentity,
+  writeFilesAtomically,
 } from './lib/cbro-evidence.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from './report-order-overlap.mjs';
 import { escapeLinkText } from '../src/js/lib/markdown.js';
@@ -32,6 +35,8 @@ const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbro-mappings');
 const OVERLAPS_DIR = path.join(ROOT, 'scripts', 'data', 'cbro-overlaps');
 const ORDERS_DIR = path.join(ROOT, 'src', 'data', 'orders');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
+const APPROVE_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-approve-transaction.json');
+const AUTHOR_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-author-transaction.json');
 
 export const CBRO_AUTHOR_IDS = Object.freeze([
   'muir-island-saga',
@@ -80,6 +85,11 @@ function parseOnly(args) {
   return ids;
 }
 
+function assertCompleteReleaseIds(ids) {
+  assert(canonicalJson(ids) === canonicalJson(CBRO_AUTHOR_IDS),
+    `CBRO approval and authoring require the complete ${CBRO_AUTHOR_IDS.length}-guide release in chronology order`);
+}
+
 function readJson(filePath) {
   return readFile(filePath, 'utf8').then(JSON.parse);
 }
@@ -118,11 +128,16 @@ export function buildCbroMarkdown(mapping) {
 }
 
 export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
+  inventoryFile = INVENTORY_PATH,
   mappingsDir = MAPPINGS_DIR,
   overlapsDir = OVERLAPS_DIR,
   packetsDir = PACKETS_DIR,
   reviewedAt = new Date().toISOString(),
+  journalFile = APPROVE_JOURNAL,
 } = {}) {
+  assertCompleteReleaseIds(ids);
+  const inventory = await readJson(inventoryFile);
+  validateCbroHistoricalInventory(inventory);
   const mappingPaths = Object.fromEntries(ids.map((id) => (
     [id, path.join(mappingsDir, `${id}.json`)]
   )));
@@ -143,7 +158,10 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
   const approvedMappings = mappings.map((mapping, index) => {
     const packet = packets[index];
     const report = reports[index];
-    validateCbroPacket(packet, { expectedId: mapping.id });
+    validateCbroPacket(packet, {
+      expectedId: mapping.id,
+      inventoryRecord: inventory.find((record) => record.id === mapping.id),
+    });
     assert(mapping.packetDigest === packet.packetDigest,
       `${mapping.id} mapping names a stale packet digest`);
     assert(mapping.sourceProvider === packet.sourceProvider,
@@ -168,6 +186,8 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
       libraryDigest: report.libraryDigest,
       peerDigests: report.peerDigests,
       dispositions,
+      sourceProvider: CBRO_SOURCE_PROVIDER.id,
+      packetReview: CBRO_PACKET_REVIEW,
       authorityType: 'stronger-model',
       authorityIdentity: 'MRT-003 coordinator',
       rationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
@@ -177,7 +197,7 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
     return {
       ...mapping,
       reviewStatus: 'approved',
-      packetReview: 'MRT-003 central CBRO source review',
+      packetReview: CBRO_PACKET_REVIEW,
       approvedManifest: structuredClone(packet.proposedManifest),
       relationshipReview,
     };
@@ -187,6 +207,7 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
     const packet = packets[index];
     const report = reports[index];
     const peerMappings = approvedMappings.filter((candidate) => candidate.id !== mapping.id);
+    validateCbroReviewIdentity(mapping);
     assertApprovedRelationshipReview({
       packet,
       mapping,
@@ -198,19 +219,16 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
     });
   }
 
-  await mkdir(overlapsDir, { recursive: true });
-  for (const [index, mapping] of approvedMappings.entries()) {
-    await writeFile(
-      path.join(mappingsDir, `${mapping.id}.json`),
-      `${JSON.stringify(mapping, null, 2)}\n`,
-      'utf8',
-    );
-    await writeFile(
-      path.join(overlapsDir, `${mapping.id}.json`),
-      `${JSON.stringify(reports[index], null, 2)}\n`,
-      'utf8',
-    );
-  }
+  await writeFilesAtomically(approvedMappings.flatMap((mapping, index) => ([
+    {
+      file: path.join(mappingsDir, `${mapping.id}.json`),
+      content: `${JSON.stringify(mapping, null, 2)}\n`,
+    },
+    {
+      file: path.join(overlapsDir, `${mapping.id}.json`),
+      content: `${JSON.stringify(reports[index], null, 2)}\n`,
+    },
+  ])), { journalFile });
   return { mappings: approvedMappings, packets, reports };
 }
 
@@ -222,7 +240,9 @@ export async function authorCbroPacket(ids = CBRO_AUTHOR_IDS, {
   ordersDir = ORDERS_DIR,
   manifestFile = MANIFEST_PATH,
   payloadDir = path.dirname(MANIFEST_PATH),
+  journalFile = AUTHOR_JOURNAL,
 } = {}) {
+  assertCompleteReleaseIds(ids);
   const inventory = await readJson(inventoryFile);
   validateCbroHistoricalInventory(inventory);
   const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
@@ -240,6 +260,12 @@ export async function authorCbroPacket(ids = CBRO_AUTHOR_IDS, {
   const insertionAnchors = {};
   const aggregateIssueIds = [];
   for (const { id, mapping, report, packet } of mappings) {
+    validateCbroPacket(packet, {
+      expectedId: id,
+      inventoryRecord: inventory.find((record) => record.id === id),
+      catalogEntries: currentLists,
+    });
+    validateCbroReviewIdentity(mapping);
     const peerMappings = ids.filter((peerId) => peerId !== id).map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [
       ...existing.map((entry) => entry.id),
@@ -269,16 +295,20 @@ export async function authorCbroPacket(ids = CBRO_AUTHOR_IDS, {
       : record
   ));
   validateCbroHistoricalInventory(shippedInventory);
-  await mkdir(ordersDir, { recursive: true });
-  for (const { mapping } of mappings) {
-    await writeFile(
-      path.join(ordersDir, mapping.approvedManifest.sourceFile),
-      buildCbroMarkdown(mapping),
-      'utf8',
-    );
-  }
-  await writeFile(manifestFile, `${JSON.stringify({ ...library.manifest, lists: merged }, null, 2)}\n`, 'utf8');
-  await writeFile(inventoryFile, `${JSON.stringify(shippedInventory, null, 2)}\n`, 'utf8');
+  await writeFilesAtomically([
+    ...mappings.map(({ mapping }) => ({
+      file: path.join(ordersDir, mapping.approvedManifest.sourceFile),
+      content: buildCbroMarkdown(mapping),
+    })),
+    {
+      file: manifestFile,
+      content: `${JSON.stringify({ ...library.manifest, lists: merged }, null, 2)}\n`,
+    },
+    {
+      file: inventoryFile,
+      content: `${JSON.stringify(shippedInventory, null, 2)}\n`,
+    },
+  ], { journalFile });
   return { entries, issueCount: aggregateIssueIds.length };
 }
 

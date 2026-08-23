@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import {
+  access,
+  mkdtemp,
+  readFile,
+  writeFile,
+} from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -8,6 +14,8 @@ import {
 } from '../scripts/author-cbh-packet.mjs';
 import {
   CBRO_AUTHOR_IDS,
+  approveCbroMappings,
+  authorCbroPacket,
 } from '../scripts/author-cbro-packet.mjs';
 import {
   CBH_SOURCE_PROVIDER,
@@ -22,10 +30,13 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import {
   CBRO_SELECTED_IDS,
+  CBRO_PACKET_REVIEW,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
   validateCbroHistoricalInventory,
   validateCbroPacket,
+  validateCbroReviewIdentity,
+  writeFilesAtomically,
 } from '../scripts/lib/cbro-evidence.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -350,6 +361,17 @@ test('historical inventory preserves all 58 pre-cutoff identities and terminal s
   assert.equal(inventory.find((record) => record.id === 'countdown').deliveryStatus, 'blocked');
   assert.equal(inventory.find((record) => record.id === 'legion-quest').centralDisposition, 'absorbed');
   assert.equal(inventory.find((record) => record.id === 'marvel-vs-dc').centralDisposition, 'provenance-blocked');
+  assert.deepEqual(
+    inventory.filter((record) => record.universeScope === 'alternate').map((record) => record.id),
+    ['marvel-2099', 'mc2'],
+  );
+  const fabricated = structuredClone(inventory);
+  Object.assign(fabricated[0], {
+    id: 'fabricated-event',
+    title: 'Fabricated Event',
+    sourceUrl: 'https://example.test/fabricated-event',
+  });
+  assert.throws(() => validateCbroHistoricalInventory(fabricated), /identity digest changed/i);
 });
 
 test('five frozen packets preserve provider, source digest, rows, and exclusions', async () => {
@@ -368,6 +390,11 @@ test('five frozen packets preserve provider, source digest, rows, and exclusions
     assert.match(packet.sourceContentSha256, /^[a-f0-9]{64}$/);
     assert.equal(packet.rows.length, packet.expectedCount);
     assert.deepEqual(packet.excludedSourceReferences, ['Trade collections', 'Page commentary and navigation']);
+    assert.throws(() => validateCbroPacket(packet, {
+      expectedId: id,
+      inventoryRecord: { ...inventoryRecord, sourceContentSha256: '0'.repeat(64) },
+      catalogEntries: manifest.lists,
+    }), /source content differs/i);
     rowCount += packet.rows.length;
   }
   assert.equal(rowCount, 23);
@@ -419,6 +446,16 @@ test('five reports bind the complete library, four peers, and central approvals'
     assert.equal(report.comparisonCount, 94);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
+    assert.equal(mapping.packetReview, CBRO_PACKET_REVIEW);
+    assert.equal(mapping.relationshipReview.packetReview, CBRO_PACKET_REVIEW);
+    assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
+    assert.throws(
+      () => validateCbroReviewIdentity({
+        ...mapping,
+        packetReview: 'Comic Book Herald approval',
+      }),
+      /wrong packet review identity/i,
+    );
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
@@ -515,4 +552,41 @@ test('current-library and selected-peer duplicate guards reject exact duplicates
       catalogIds: ['duplicate-historical-event'],
     },
   ], existing), /Duplicate selected issue sequence/i);
+
+  await assert.rejects(
+    () => approveCbroMappings([CBRO_SELECTED_IDS[0]]),
+    /complete 5-guide release/i,
+  );
+  await assert.rejects(
+    () => authorCbroPacket([CBRO_SELECTED_IDS[0]]),
+    /complete 5-guide release/i,
+  );
+  await assert.rejects(
+    () => authorCbroPacket([...CBRO_AUTHOR_IDS].reverse()),
+    /chronology order/i,
+  );
+
+  const transactionDir = await mkdtemp(path.join(tmpdir(), 'cbro-transaction-'));
+  const first = path.join(transactionDir, 'first.txt');
+  const second = path.join(transactionDir, 'second.txt');
+  const journal = path.join(transactionDir, 'transaction.json');
+  await writeFile(first, 'first-original', 'utf8');
+  await writeFile(second, 'second-original', 'utf8');
+  await assert.rejects(
+    () => writeFilesAtomically([
+      { file: first, content: 'first-changed' },
+      { file: second, content: Symbol('invalid-content') },
+    ], { journalFile: journal }),
+    /transaction staging failed/i,
+  );
+  assert.equal(await readFile(first, 'utf8'), 'first-original');
+  assert.equal(await readFile(second, 'utf8'), 'second-original');
+  await assert.rejects(() => access(journal), /ENOENT/);
+  await writeFilesAtomically([
+    { file: first, content: 'first-changed' },
+    { file: second, content: 'second-changed' },
+  ], { journalFile: journal });
+  assert.equal(await readFile(first, 'utf8'), 'first-changed');
+  assert.equal(await readFile(second, 'utf8'), 'second-changed');
+  await assert.rejects(() => access(journal), /ENOENT/);
 });

@@ -332,6 +332,7 @@ timeline entries before Maximum Security; the cutoff itself and every later entr
 dedicated page packet records `sourceProvider`, the exact page URL, raw page SHA-256, visible issue
 panel boundary, exclusions, row order, manifest proposal, chronology anchor, and central source
 review. Timeline-only entries additionally require the visible event label as `sourceSection`.
+Every record carries `universeScope`; only `marvel-2099` and `mc2` may use `alternate`.
 
 The source publishes a five-second crawl delay. Use normal public access, wait between page requests,
 and stop on a changed digest until the source boundary has been read and reviewed again. Copy no page
@@ -341,8 +342,8 @@ Prepare, approve, author, and vendor the selected packet:
 
 ```text
 npm run cbro:prepare -- --only=<id>
-npm run cbro:approve -- --only=<id>[,<id>...]
-npm run cbro:author -- --only=<id>[,<id>...]
+npm run cbro:approve
+npm run cbro:author
 npm run vendor -- --only=<id>[,<id>...]
 ```
 
@@ -350,6 +351,9 @@ Preparation writes one exact mapping per frozen packet. A mapping worker does no
 boundaries, exclusions, manifest fields, aliases, chronology, or relationship dispositions. Approval
 regenerates a factual report against every current shipped order and every selected peer. Exact
 duplicates have no approval path. Subset and partial relationships remain central decisions.
+Approval and authoring require the complete selected release set; `--only` is deliberately refused for
+those two stages so an omitted guide cannot become an ordinary library comparison instead of a bound
+peer.
 
 Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
 manifest, and chronology evidence before writing. Every resulting card must use

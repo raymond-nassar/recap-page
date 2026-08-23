@@ -247,7 +247,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-149 | Read the Marvel Unlimited book id off an address the reader pastes | Story | EP-03 | Leaves alone | 8 | 8 | 3 | 1 | 19.0 | none | Measured | Shipped | src/js/reader.js:50-55 |
 | BL-161 | Redraw the app icon so it stops echoing Marvel's trade dress | Debt | EP-12 | Follows BL-100 | 5 | 5 | 8 | 1 | 18.0 | none | Measured | Shipped | src/index.html:13 |
 | BL-164 | Carry a rename without breaking the download link installed copies use | Enabler | EP-12 | Follows BL-162 | 5 | 5 | 8 | 1 | 18.0 | none | Measured | Shipped | src/js/lib/updateCheck.js:4 |
-| BL-128 | Correct the provenance record's description count and record its placeholder shape | Debt | EP-12 | Extends BL-099 | 5 | 5 | 3 | 1 | 13.0 | none | Measured | Shipped | docs/DATA_PROVENANCE.md:117-136 |
+| BL-128 | Correct the provenance record's description count and record its placeholder shape | Debt | EP-12 | Extends BL-099 | 5 | 5 | 3 | 1 | 13.0 | none | Measured | Shipped | docs/DATA_PROVENANCE.md:118-137 |
 | BL-166 | Move the app's identity off Marvel's red and onto its own purple | Debt | EP-12 | Follows BL-161 | 8 | 8 | 8 | 2 | 12.0 | none | Measured | Shipped | src/styles.css:70 |
 | BL-163 | Say where the metadata came from, instead of borrowing Marvel's API attribution | Debt | EP-12 | Extends BL-099 | 3 | 3 | 5 | 1 | 11.0 | none | Measured | Shipped | src/index.html:286 |
 | BL-140 | Give the tracker a file a non-engineer can double-click to start it | Story | EP-10 | Extends BL-139 | 5 | 2 | 3 | 1 | 10.0 | none | Observed | Shipped | absent: any way to start the app that is not a terminal command, read of the README's step 2 and a listing of the repository root |
@@ -7667,7 +7667,7 @@ project owes it. The wording is the part worth recording, because the first draf
 debt. It said the trade order was compiled from that guide, which is wider than anything committed
 here says: `src/data/orders/new-ultimate-universe-trades.md:3-5` states the sequence and its ids as
 this project's own work and scopes the debt to the division into volumes alone, and
-`docs/DATA_PROVENANCE.md:145-151` files the order under "Compiled for this project". Review found the
+`docs/DATA_PROVENANCE.md:146-152` files the order under "Compiled for this project". Review found the
 same overclaim in the changelog, where it went further and said the committed record already backed
 it. Both now scope the debt the way the record does.
 
