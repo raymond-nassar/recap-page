@@ -12,9 +12,9 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Active marker: P07-T01
-* Completed scope markers: P01 through P06 and P01-T01 through P06-T02
-* All remaining active-plan markers: P07 and P07-T01 through P07-T03
+* Active marker: P07-T02
+* Completed scope markers: P01 through P06, P07-T01, and P01-T01 through P06-T02
+* All remaining active-plan markers: P07, P07-T02, and P07-T03
 * Status basis: Planning and the single critique are complete. Implementation begins with mandatory
   current-main and selected-source freshness reconciliation before any product authoring.
 
@@ -291,6 +291,17 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 * Validation: Two Review-fix mutation runs failed the intended four focused cases and transaction
   assertions. Restored 14 of 14 focused tests and lint pass. No second Review ran.
 
+### Release commits and pull request published
+
+* Related phase or task: P07-T01
+* Files: four scoped commits and pull request release record
+* What changed and why: Committed the five-guide implementation, current-main reconciliation, merged
+  anchor correction, and the five Review fixes with the required co-author trailer. Pushed the
+  branch and opened the release pull request with plain-English framing and exact verification counts.
+* Completion evidence: Pull request 175 is open against current main. The pushed publication surface
+  covers 9 branches and 3,310 blobs with 0 findings.
+* Validation: Passed local branch publication and pushed-surface checks.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Single critique corrections incorporated
@@ -357,7 +368,7 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 * Implementation execution status: Complete for implementation phases P01 through P05; full task
   remains Partial through Review and release
-* Declared scope and markers: full plan; P01 through P06 complete; P07-T01 active
+* Declared scope and markers: full plan; P01 through P06 and P07-T01 complete; P07-T02 active
 * Validation coverage: All final merged-tree deterministic, live, publication, dash, diff, and browser
   gates passed
 * Blockers: None

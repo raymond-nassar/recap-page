@@ -434,7 +434,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Dependencies: P06.
 
 <!-- rpi:task id=P07-T01 -->
-#### [ ] P07-T01: Commit and open the pull request
+#### [x] P07-T01: Commit and open the pull request
 
 * Requirement and evidence: release history and review entry point must follow repository conventions.
 * Expected result: commits carry the co-author trailer; the PR begins with `## In plain English`,
