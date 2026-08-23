@@ -1,0 +1,179 @@
+{
+  "id": "bloodties",
+  "name": "Bloodties",
+  "description": "Five chapters bringing the Avengers and X-Men together during the Genosha crisis.",
+  "source": "https://comicbookreadingorders.com/marvel/events/bloodties-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T21:00:18.306Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 7250,
+      "title": "Avengers (1963) #368",
+      "number": "368",
+      "url": "https://www.marvel.com/comics/issue/7250/avengers_1963_368",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1993-11-10T00:00:00+0000",
+      "mu": "2013-06-03T00:00:00+0000",
+      "digitalId": 25791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/589097872490c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14313,
+      "title": "X-Men (1991) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/14313/x-men_1991_26",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 28293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5b0ff8f5e42aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17788,
+      "title": "West Coast Avengers (1985) #101",
+      "number": "101",
+      "url": "https://www.marvel.com/comics/issue/17788/west_coast_avengers_1985_101",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1993-12-10T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 25793,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/57d30e13ba670",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13848,
+      "title": "Uncanny X-Men (1963) #307",
+      "number": "307",
+      "url": "https://www.marvel.com/comics/issue/13848/uncanny_x-men_1963_307",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "2014-08-08T11:14:01+0000",
+      "digitalId": 25813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/e0/5914921657606",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7251,
+      "title": "Avengers (1963) #369",
+      "number": "369",
+      "url": "https://www.marvel.com/comics/issue/7251/avengers_1963_369",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 25792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5890b06eb2850",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

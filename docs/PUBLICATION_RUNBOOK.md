@@ -21,6 +21,14 @@ remember, and so the person doing it is not also the person who has to find out 
 Nothing here is a legal opinion, and nothing here says the repository should be published. The first
 section is what has to be settled before it is.
 
+## Source-backed orders added after publication
+
+Five historical event guides now use factual issue identities and order from Comic Book Reading
+Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
+Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
+event page. The source licence remains null because that permission does not reach Marvel material.
+No source commentary, branding, images, or layout is copied, and cover art remains a remote URL.
+
 ## Before anything is flipped
 
 Two things have to be settled here. Neither is a setting, and both are one-way.
@@ -108,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7103-7107`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7104-7108`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -134,18 +142,18 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6456-6469`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6457-6470`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6867-6874`, why the private reporting task was left open.
-- `PRODUCT_BACKLOG.md:6933-6935`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6955-6960`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6962-6968`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7029-7035`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7060-7065`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7103-7107`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9207-9212`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2591-2594`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2603-2606`, the released note that the private channel is not switched on.
+- `PRODUCT_BACKLOG.md:6868-6875`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6934-6936`, what the changelog entry beside it was corrected to say.
+- `PRODUCT_BACKLOG.md:6956-6961`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6963-6969`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7030-7036`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7061-7066`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7104-7108`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9208-9213`, the three settings named as refused on this repository today.
+- `CHANGELOG.md:2607-2610`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2619-2622`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:29-41` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met

@@ -1,0 +1,160 @@
+{
+  "id": "childs-play",
+  "name": "Child's Play",
+  "description": "Four chapters crossing X-Force and the New Warriors during the Upstarts confrontation.",
+  "source": "https://comicbookreadingorders.com/marvel/events/childs-play-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T21:00:18.306Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 17997,
+      "title": "X-Force (1991) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/17997/x-force_1991_32",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "1994-03-01T00:00:00+0000",
+      "digitalId": 42022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5ba531614b398",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60145,
+      "title": "New Warriors (1990) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/60145/new_warriors_1990_45",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "1994-03-01T00:00:00+0000",
+      "digitalId": 41999,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ae329dcc0d16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Stegbauer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Mckinney",
+          "role": "penciler"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17998,
+      "title": "X-Force (1991) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/17998/x-force_1991_33",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1994-04-01T00:00:00+0000",
+      "mu": "1994-04-01T00:00:00+0000",
+      "digitalId": 42023,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5ba5319c13ad3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60146,
+      "title": "New Warriors (1990) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/60146/new_warriors_1990_46",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1994-04-01T00:00:00+0000",
+      "mu": "1994-04-01T00:00:00+0000",
+      "digitalId": 42000,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/5ae3300bb2f62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

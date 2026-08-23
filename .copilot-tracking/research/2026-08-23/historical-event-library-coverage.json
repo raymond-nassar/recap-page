@@ -1,0 +1,1725 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-23T20:35:31.266Z",
+  "currentLibrary": {
+    "listCount": 89,
+    "libraryDigest": "30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab"
+  },
+  "method": {
+    "exactPilotPositions": [
+      23,
+      36,
+      38,
+      41,
+      55
+    ],
+    "remainingCandidates": "Bibliographic source-reference scan against every shipped payload",
+    "limitation": "A missing bibliographic match is an explicit resolution blocker, not proof of no overlap."
+  },
+  "coverage": [
+    {
+      "position": 1,
+      "event": "Reed Richards and Sue Storm's Wedding",
+      "year": 1965,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Reed Richards and Sue Storm's Wedding",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 1,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 1,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "1 source references absent from the current library index"
+    },
+    {
+      "position": 2,
+      "event": "Kree-Skrull War",
+      "year": 1971,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Kree-Skrull War",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 9,
+      "resolvedIssueCount": 9,
+      "unresolvedReferenceCount": 0,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "candidate-subset",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "essential-avengers",
+          "relationship": "candidate-subset",
+          "sharedCount": 9,
+          "sharedIds": [
+            "7342",
+            "7344",
+            "7345",
+            "7346",
+            "7347",
+            "7348",
+            "7349",
+            "7350",
+            "7351"
+          ]
+        }
+      ],
+      "coverageStatus": "complete-current-library-reference-report",
+      "blocker": null
+    },
+    {
+      "position": 3,
+      "event": "The Night Gwen Stacy Died",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "The Night Gwen Stacy Died",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 2,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 2,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "2 source references absent from the current library index"
+    },
+    {
+      "position": 4,
+      "event": "Avengers/Defenders War",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 8,
+      "resolvedIssueCount": 1,
+      "unresolvedReferenceCount": 7,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "white-tiger-ava-ayala",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "65511"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "7 source references absent from the current library index"
+    },
+    {
+      "position": 5,
+      "event": "Thanos War",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 12,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 12,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "12 source references absent from the current library index"
+    },
+    {
+      "position": 6,
+      "event": "Original Clone Saga",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Original Clone Saga",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 13,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 13,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "13 source references absent from the current library index"
+    },
+    {
+      "position": 7,
+      "event": "Phoenix Saga",
+      "year": 1976,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Phoenix Saga",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 8,
+      "resolvedIssueCount": 1,
+      "unresolvedReferenceCount": 7,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "maximum-security",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "14290"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "7 source references absent from the current library index"
+    },
+    {
+      "position": 8,
+      "event": "Dark Phoenix Saga",
+      "year": 1980,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Dark Phoenix Saga",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 9,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 9,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "9 source references absent from the current library index"
+    },
+    {
+      "position": 9,
+      "event": "Days of Future Past",
+      "year": 1981,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Days of Future Past",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 2,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 2,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "2 source references absent from the current library index"
+    },
+    {
+      "position": 10,
+      "event": "Contest of Champions",
+      "year": 1982,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Contest of Champions",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 3,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 3,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "3 source references absent from the current library index"
+    },
+    {
+      "position": 11,
+      "event": "Marvel Super Heroes Secret Wars",
+      "year": 1984,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Marvel Super Heroes Secret Wars",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 12,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 12,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "12 source references absent from the current library index"
+    },
+    {
+      "position": 12,
+      "event": "Wraith War",
+      "year": 1984,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 35,
+      "resolvedIssueCount": 4,
+      "unresolvedReferenceCount": 31,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 2,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 87
+      },
+      "relatedOrders": [
+        {
+          "orderId": "xmen-claremont",
+          "relationship": "unresolved",
+          "sharedCount": 4,
+          "sharedIds": [
+            "13726",
+            "13727",
+            "13728",
+            "13729"
+          ],
+          "potentialRelationship": "candidate-subset"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "relationship": "unresolved",
+          "sharedCount": 4,
+          "sharedIds": [
+            "13726",
+            "13727",
+            "13728",
+            "13729"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "31 source references absent from the current library index"
+    },
+    {
+      "position": 13,
+      "event": "Secret Wars II",
+      "year": 1985,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/secret-wars-ii-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 42,
+      "resolvedIssueCount": 8,
+      "unresolvedReferenceCount": 33,
+      "ambiguousReferenceCount": 1,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 4,
+        "none": 85
+      },
+      "relatedOrders": [
+        {
+          "orderId": "xmen-claremont",
+          "relationship": "unresolved",
+          "sharedCount": 5,
+          "sharedIds": [
+            "10367",
+            "13737",
+            "13743",
+            "10374",
+            "13744"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "relationship": "unresolved",
+          "sharedCount": 5,
+          "sharedIds": [
+            "10367",
+            "13737",
+            "13743",
+            "10374",
+            "13744"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "doctor-doom-primer",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "13103"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "essential-avengers",
+          "relationship": "unresolved",
+          "sharedCount": 2,
+          "sharedIds": [
+            "7131",
+            "7132"
+          ],
+          "potentialRelationship": "partial"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "33 source references absent from the current library index; 1 source references match multiple current issue identities"
+    },
+    {
+      "position": 14,
+      "event": "Mutant Massacre",
+      "year": 1986,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 12,
+      "resolvedIssueCount": 11,
+      "unresolvedReferenceCount": 1,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 2,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 87
+      },
+      "relatedOrders": [
+        {
+          "orderId": "xmen-claremont",
+          "relationship": "unresolved",
+          "sharedCount": 11,
+          "sharedIds": [
+            "13751",
+            "12312",
+            "13752",
+            "12175",
+            "10384",
+            "11701",
+            "13753",
+            "11702",
+            "12186",
+            "13754",
+            "8227"
+          ],
+          "potentialRelationship": "candidate-subset"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "relationship": "unresolved",
+          "sharedCount": 11,
+          "sharedIds": [
+            "13751",
+            "12312",
+            "13752",
+            "12175",
+            "10384",
+            "11701",
+            "13753",
+            "11702",
+            "12186",
+            "13754",
+            "8227"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "1 source references absent from the current library index"
+    },
+    {
+      "position": 15,
+      "event": "Kraven's Last Hunt",
+      "year": 1987,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 7,
+      "resolvedIssueCount": 6,
+      "unresolvedReferenceCount": 1,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "spider-man-best-of",
+          "relationship": "unresolved",
+          "sharedCount": 6,
+          "sharedIds": [
+            "12027",
+            "6697",
+            "14578",
+            "12028",
+            "6698",
+            "14579"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "1 source references absent from the current library index"
+    },
+    {
+      "position": 16,
+      "event": "Fall of the Mutants",
+      "year": 1988,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 29,
+      "resolvedIssueCount": 14,
+      "unresolvedReferenceCount": 15,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 4,
+        "none": 85
+      },
+      "relatedOrders": [
+        {
+          "orderId": "xmen-claremont",
+          "relationship": "unresolved",
+          "sharedCount": 11,
+          "sharedIds": [
+            "12233",
+            "12234",
+            "12236",
+            "12237",
+            "12238",
+            "12239",
+            "13761",
+            "13762",
+            "13763",
+            "13764",
+            "13765"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "relationship": "unresolved",
+          "sharedCount": 11,
+          "sharedIds": [
+            "12233",
+            "12234",
+            "12236",
+            "12237",
+            "12238",
+            "12239",
+            "13761",
+            "13762",
+            "13763",
+            "13764",
+            "13765"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "captain-america-best-of",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "7720"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "messiah-complex",
+          "relationship": "unresolved",
+          "sharedCount": 2,
+          "sharedIds": [
+            "17241",
+            "21915"
+          ],
+          "potentialRelationship": "partial"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "15 source references absent from the current library index"
+    },
+    {
+      "position": 17,
+      "event": "The Evolutionary War",
+      "year": 1988,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/evolutionary-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 11,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 11,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "11 source references absent from the current library index"
+    },
+    {
+      "position": 18,
+      "event": "Inferno",
+      "year": 1988,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/inferno-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 39,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 39,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "39 source references absent from the current library index"
+    },
+    {
+      "position": 19,
+      "event": "Atlantis Attacks",
+      "year": 1989,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/atlantis-attacks-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 17,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 17,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "17 source references absent from the current library index"
+    },
+    {
+      "position": 20,
+      "event": "Acts of Vengeance",
+      "year": 1989,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/acts-of-vengeance-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 70,
+      "resolvedIssueCount": 1,
+      "unresolvedReferenceCount": 69,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "x-men-regenesis",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "38839"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "69 source references absent from the current library index"
+    },
+    {
+      "position": 21,
+      "event": "Days of Future Present",
+      "year": 1990,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/days-of-future-present-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 4,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 4,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "4 source references absent from the current library index"
+    },
+    {
+      "position": 22,
+      "event": "X-Tinction Agenda",
+      "year": 1990,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/x-tinction-agenda-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 9,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 9,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "9 source references absent from the current library index"
+    },
+    {
+      "position": 23,
+      "event": "Muir Island Saga",
+      "year": 1991,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/muir-island-saga-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 5,
+      "resolvedIssueCount": 5,
+      "unresolvedReferenceCount": 0,
+      "strongestRelationship": "none",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "exact-metadata-and-complete-library-report",
+      "blocker": null
+    },
+    {
+      "position": 24,
+      "event": "The Infinity Gauntlet",
+      "year": 1991,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/infinity-gauntlet-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 51,
+      "resolvedIssueCount": 6,
+      "unresolvedReferenceCount": 45,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "doctor-doom-primer",
+          "relationship": "unresolved",
+          "sharedCount": 6,
+          "sharedIds": [
+            "9286",
+            "9287",
+            "9288",
+            "9289",
+            "9290",
+            "9291"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "45 source references absent from the current library index"
+    },
+    {
+      "position": 25,
+      "event": "Operation: Galactic Storm",
+      "year": 1992,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/operation-galactic-storm-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 22,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 22,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "22 source references absent from the current library index"
+    },
+    {
+      "position": 26,
+      "event": "Infinity War",
+      "year": 1992,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/infinity-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 52,
+      "resolvedIssueCount": 6,
+      "unresolvedReferenceCount": 46,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "doctor-doom-primer",
+          "relationship": "unresolved",
+          "sharedCount": 6,
+          "sharedIds": [
+            "9292",
+            "9293",
+            "9294",
+            "9295",
+            "9296",
+            "9297"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "46 source references absent from the current library index"
+    },
+    {
+      "position": 27,
+      "event": "Dead Man's Hand",
+      "year": 1992,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/dead-mans-hand-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 9,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 9,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "9 source references absent from the current library index"
+    },
+    {
+      "position": 28,
+      "event": "Rise of the Midnight Sons",
+      "year": 1992,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/rise-of-the-midnight-sons-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 6,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 6,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "6 source references absent from the current library index"
+    },
+    {
+      "position": 29,
+      "event": "X-Cutioner's Song",
+      "year": 1992,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/x-cutioners-song-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 13,
+      "resolvedIssueCount": 3,
+      "unresolvedReferenceCount": 10,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 3,
+        "none": 86
+      },
+      "relatedOrders": [
+        {
+          "orderId": "judgment-day",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "84428"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "x-of-swords",
+          "relationship": "unresolved",
+          "sharedCount": 2,
+          "sharedIds": [
+            "84428",
+            "84429"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "messiah-war",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "27253"
+          ],
+          "potentialRelationship": "partial"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "10 source references absent from the current library index"
+    },
+    {
+      "position": 30,
+      "event": "Mys-Tech Wars",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Mys-Tech Wars",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 4,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 4,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "4 source references absent from the current library index"
+    },
+    {
+      "position": 31,
+      "event": "For Love Nor Money",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/for-love-nor-money-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 6,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 6,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "6 source references absent from the current library index"
+    },
+    {
+      "position": 32,
+      "event": "Maximum Carnage",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/maximum-carnage-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 14,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 14,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "14 source references absent from the current library index"
+    },
+    {
+      "position": 33,
+      "event": "Infinity Crusade",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/infinity-crusade-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 47,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 47,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "47 source references absent from the current library index"
+    },
+    {
+      "position": 34,
+      "event": "Blood and Thunder",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/blood-and-thunder-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 13,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 13,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "13 source references absent from the current library index"
+    },
+    {
+      "position": 35,
+      "event": "Fatal Attractions",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/fatal-attractions-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 6,
+      "resolvedIssueCount": 1,
+      "unresolvedReferenceCount": 5,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "necrosha",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "30671"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "5 source references absent from the current library index"
+    },
+    {
+      "position": 36,
+      "event": "Bloodties",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/bloodties-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 5,
+      "resolvedIssueCount": 5,
+      "unresolvedReferenceCount": 0,
+      "strongestRelationship": "none",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "exact-metadata-and-complete-library-report",
+      "blocker": null
+    },
+    {
+      "position": 37,
+      "event": "Marvel 2099",
+      "year": 1992,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/marvel-2099-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 271,
+      "resolvedIssueCount": 4,
+      "unresolvedReferenceCount": 267,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "spider-verse",
+          "relationship": "unresolved",
+          "sharedCount": 4,
+          "sharedIds": [
+            "50545",
+            "50546",
+            "50547",
+            "50548"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "267 source references absent from the current library index"
+    },
+    {
+      "position": 38,
+      "event": "Midnight Massacre",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/midnight-massacre-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 5,
+      "resolvedIssueCount": 5,
+      "unresolvedReferenceCount": 0,
+      "strongestRelationship": "none",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "exact-metadata-and-complete-library-report",
+      "blocker": null
+    },
+    {
+      "position": 39,
+      "event": "Road to Vengeance: Missing Link",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/road-to-vengeance-missing-link-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 6,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 6,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "6 source references absent from the current library index"
+    },
+    {
+      "position": 40,
+      "event": "Siege of Darkness",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/siege-of-darkness-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 18,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 18,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "18 source references absent from the current library index"
+    },
+    {
+      "position": 41,
+      "event": "Child's Play",
+      "year": 1994,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/childs-play-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 4,
+      "resolvedIssueCount": 4,
+      "unresolvedReferenceCount": 0,
+      "strongestRelationship": "none",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "exact-metadata-and-complete-library-report",
+      "blocker": null
+    },
+    {
+      "position": 42,
+      "event": "Time and Time Again",
+      "year": 1994,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/time-and-time-again-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 8,
+      "resolvedIssueCount": 2,
+      "unresolvedReferenceCount": 6,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "annihilation-conquest",
+          "relationship": "unresolved",
+          "sharedCount": 2,
+          "sharedIds": [
+            "16532",
+            "16533"
+          ],
+          "potentialRelationship": "candidate-subset"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "6 source references absent from the current library index"
+    },
+    {
+      "position": 43,
+      "event": "Phalanx Covenant",
+      "year": 1994,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/phalanx-covenant-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 9,
+      "resolvedIssueCount": 9,
+      "unresolvedReferenceCount": 0,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "candidate-subset",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 1,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 88
+      },
+      "relatedOrders": [
+        {
+          "orderId": "phalanx-reading-order",
+          "relationship": "candidate-subset",
+          "sharedCount": 9,
+          "sharedIds": [
+            "13857",
+            "14324",
+            "13858",
+            "14325",
+            "12182",
+            "18003",
+            "8668",
+            "14209",
+            "7389"
+          ]
+        }
+      ],
+      "coverageStatus": "complete-current-library-reference-report",
+      "blocker": null
+    },
+    {
+      "position": 44,
+      "event": "Countdown",
+      "year": 1995,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/countdown-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 5,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 5,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "5 source references absent from the current library index"
+    },
+    {
+      "position": 45,
+      "event": "Legion Quest",
+      "year": 1995,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Legion Quest",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 0,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 0,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "timeline entry has no issue range"
+    },
+    {
+      "position": 46,
+      "event": "Age of Apocalypse",
+      "year": 1995,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/age-of-apocalypse-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 58,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 58,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "58 source references absent from the current library index"
+    },
+    {
+      "position": 47,
+      "event": "Second Clone Saga",
+      "year": 1994,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/second-clone-saga-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 161,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 161,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "161 source references absent from the current library index"
+    },
+    {
+      "position": 48,
+      "event": "Over the Edge",
+      "year": 1995,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/over-the-edge-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 7,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 7,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "7 source references absent from the current library index"
+    },
+    {
+      "position": 49,
+      "event": "Marvel vs DC",
+      "year": 1996,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Marvel vs DC",
+      "sourceForm": "timeline-text",
+      "sourceReferenceCount": 0,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 0,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "timeline entry has no issue range"
+    },
+    {
+      "position": 50,
+      "event": "Onslaught Saga",
+      "year": 1996,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/onslaught-saga-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 58,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 58,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "58 source references absent from the current library index"
+    },
+    {
+      "position": 51,
+      "event": "Operation: Zero Tolerance",
+      "year": 1997,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/operation-zero-tolerance-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 20,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 20,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "20 source references absent from the current library index"
+    },
+    {
+      "position": 52,
+      "event": "Heroes Reborn",
+      "year": 1996,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/heroes-reborn-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 63,
+      "resolvedIssueCount": 10,
+      "unresolvedReferenceCount": 35,
+      "ambiguousReferenceCount": 18,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 3,
+        "none": 86
+      },
+      "relatedOrders": [
+        {
+          "orderId": "war-of-the-realms",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "68016"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "captain-america-best-of",
+          "relationship": "unresolved",
+          "sharedCount": 8,
+          "sharedIds": [
+            "91",
+            "1492",
+            "1579",
+            "1668",
+            "1764",
+            "1870",
+            "2420",
+            "2421"
+          ],
+          "potentialRelationship": "partial"
+        },
+        {
+          "orderId": "doctor-doom-primer",
+          "relationship": "unresolved",
+          "sharedCount": 1,
+          "sharedIds": [
+            "13255"
+          ],
+          "potentialRelationship": "partial"
+        }
+      ],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "35 source references absent from the current library index; 18 source references match multiple current issue identities"
+    },
+    {
+      "position": 53,
+      "event": "Spider-Man: Identity Crisis",
+      "year": 1998,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/spider-man-identity-crisis-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 8,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 8,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "8 source references absent from the current library index"
+    },
+    {
+      "position": 54,
+      "event": "MC2",
+      "year": 1998,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/mc2-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 224,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 224,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "224 source references absent from the current library index"
+    },
+    {
+      "position": 55,
+      "event": "Eighth Day",
+      "year": 1999,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 4,
+      "resolvedIssueCount": 4,
+      "unresolvedReferenceCount": 0,
+      "strongestRelationship": "none",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "exact-metadata-and-complete-library-report",
+      "blocker": null
+    },
+    {
+      "position": 56,
+      "event": "The Hunt for Xavier",
+      "year": 1998,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/hunt-for-xavier-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 6,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 6,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "6 source references absent from the current library index"
+    },
+    {
+      "position": 57,
+      "event": "Magneto War",
+      "year": 1999,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/magneto-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 8,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 8,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "8 source references absent from the current library index"
+    },
+    {
+      "position": 58,
+      "event": "Apocalypse: The Twelve",
+      "year": 2000,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/apocalypse-the-twelve-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "sourceReferenceCount": 49,
+      "resolvedIssueCount": 0,
+      "unresolvedReferenceCount": 49,
+      "ambiguousReferenceCount": 0,
+      "strongestRelationship": "unresolved",
+      "relationshipCounts": {
+        "exact": 0,
+        "candidate-subset": 0,
+        "existing-subset": 0,
+        "partial": 0,
+        "none": 89
+      },
+      "relatedOrders": [],
+      "coverageStatus": "blocked-incomplete-bibliographic-resolution",
+      "blocker": "49 source references absent from the current library index"
+    }
+  ]
+}

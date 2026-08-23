@@ -51,6 +51,13 @@ function assertRocketSourceBoundary(packet) {
     rocketSourceSequence,
   );
 }
+const laterHistoricalIds = [
+  'muir-island-saga',
+  'bloodties',
+  'midnight-massacre',
+  'childs-play',
+  'eighth-day',
+];
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
@@ -157,7 +164,10 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const markdown = await readFile(path.join(root, 'src/data/orders/white-tiger-ava-ayala.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, characterCandidateIds);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    [...characterCandidateIds, ...laterHistoricalIds],
+  );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
@@ -166,7 +176,8 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      ![...batchCandidateIds, cosmicCandidateId].includes(comparison.orderId)
+      ![...batchCandidateIds, cosmicCandidateId, ...laterHistoricalIds]
+        .includes(comparison.orderId)
     )),
     report.comparisons,
   );
@@ -246,7 +257,10 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   );
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === cosmicCandidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [cosmicCandidateId]);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    [cosmicCandidateId, ...laterHistoricalIds],
+  );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
   );
@@ -260,7 +274,12 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
     'a62c3676b583f8caea1f422e88f9d22147c96e9533a3b0eca165ba94c8a00b6b',
   );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
-  assert.deepEqual(regeneratedReport, report);
+  assert.deepEqual(
+    regeneratedReport.comparisons.filter((comparison) => (
+      !laterHistoricalIds.includes(comparison.orderId)
+    )),
+    report.comparisons,
+  );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: cosmicCandidateId,
     inventoryRecord,
@@ -372,7 +391,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
   const catalog = await readJson('src/data/catalog.json');
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [...batchCandidateIds, cosmicCandidateId],
+    [...batchCandidateIds, cosmicCandidateId, ...laterHistoricalIds],
   );
   const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
     id,
@@ -450,7 +469,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 90);
+  assert.equal(catalog.lists.length, 95);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 12);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 11);
