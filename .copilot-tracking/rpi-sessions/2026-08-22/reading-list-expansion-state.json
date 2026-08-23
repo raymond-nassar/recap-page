@@ -169,6 +169,16 @@
       "decision": "The merged tree passes all final repository gates: lint; 1,363 tests; 174 ranked backlog rows and 179 detail blocks; 1,072 unchanged anchors; size, palette, and publication checks; zero malformed citations, forbidden added dashes, diff errors, or unresolved merge paths.",
       "status": "confirmed",
       "evidence": "Final local validation on 2026-08-22"
+    },
+    {
+      "decision": "After CI passed, main advanced through PR #168. Its Timeline spine remains main-owned; this expansion only supplies the new 2021 to 2024 era and catalog data needed to place the added stories.",
+      "status": "confirmed",
+      "evidence": "Merge of origin/main commit 1d217cd and user clarification on 2026-08-22"
+    },
+    {
+      "decision": "The final second-merge tree passes 1,382 tests, all repository gates, and Edge checks for the cards, credits, row counts, and sampled sequence of every one of the 20 added guides.",
+      "status": "confirmed",
+      "evidence": "Final local validation and browser verification on 2026-08-22"
     }
   ],
   "blockers": [],

@@ -12,14 +12,15 @@ import {
   setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, progressSummary, progressGroups, completionState, orderWord, orderStates, heldCount,
 } from './lib/model.js';
 import { parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl, resolveUniqueExact } from './lib/markdown.js';
-import { LIBRARY_VIEWS } from './lib/library.js';
+import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
 import { compareIssues } from './lib/sort.js';
 import {
-  parseCatalog, typeLabel, depthLabel, depthHint, catalogFacets, filterByFacet, facetLabel,
+  parseCatalog, typeLabel, depthLabel, catalogFacets, filterByFacet, facetLabel,
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
-  pathPlacements, timelineLabel, shelfSections, eraSections, inHomeAge,
+  pathPlacements, shelfSections, eraSections, decadeSections, inHomeAge,
+  firstSentence, storyYear, timelineYears,
   CATALOG_SHELVES, shelfLists, ROUTE_BLURB,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
@@ -1039,31 +1040,25 @@ function hideRailTip() {
 // Extracted so a control created after boot can navigate the same way a rail button does.
 // wireNav only ever runs once, over the markup present at load, so an empty-state button built
 // during a render would carry data-view and do nothing at all.
-function navigateTo(view, open) {
+function navigateTo(view) {
   // A click on the rail is the archetypal navigation, so this is the one that has to leave a
   // history entry for Back to come back to.
   showView(view, { push: true });
-  if (!open) return;
-  const d = $(`#${open}`);
-  if (!d) return;
-  for (const other of document.querySelectorAll('#view-add details.card[open]')) other.open = false;
-  if (d.tagName === 'DETAILS') d.open = true;
-  d.querySelector('input, textarea, button')?.focus();
 }
 
 // The action an empty state offers. A screen with nothing on it is the one place a reader has no
 // context to work from, so it hands over the next step rather than naming a control elsewhere.
-function emptyAction({ label, view, open }) {
+function emptyAction({ label, view }) {
   return el('button', {
     class: 'btn btn-g',
     type: 'button',
-    onclick: () => navigateTo(view, open),
+    onclick: () => navigateTo(view),
   }, label);
 }
 
 function wireNav() {
   for (const btn of document.querySelectorAll('[data-view]')) {
-    btn.addEventListener('click', () => navigateTo(btn.dataset.view, btn.dataset.open));
+    btn.addEventListener('click', () => navigateTo(btn.dataset.view));
   }
 
   $('#btn-new-list').addEventListener('click', newEmptyList);
@@ -1075,9 +1070,9 @@ function wireNav() {
 
 async function newEmptyList() {
   const name = await askText({
-    title: 'New reading list',
+    title: 'New Reading List',
     label: 'Name for the new list',
-    value: 'My reading order',
+    value: DEFAULT_LIST_NAME,
     confirmLabel: 'Create list',
   });
   if (!name) return;
@@ -1219,8 +1214,10 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
 
   view = next;
+  warmNameIndexForView(next);
   for (const name of VIEWS) {
-    $(`#view-${name}`).hidden = name !== next;
+    const panel = $(`#view-${name}`);
+    if (panel) panel.hidden = name !== next;
   }
   for (const btn of document.querySelectorAll('.ri[data-view]')) {
     if (btn.dataset.view === next) btn.setAttribute('aria-current', 'page');
@@ -1341,10 +1338,12 @@ function renderHome() {
   const populated = store.state.listOrder.length > 0;
 
   $('#home-h').textContent = populated ? 'Continue reading' : 'Pick something to read';
-  $('#home-sub').textContent = populated
-    ? 'Everything you are tracking, and where you left off. All of it is stored on this device.'
+  const homeSub = $('#home-sub');
+  homeSub.hidden = populated;
+  homeSub.textContent = populated
+    ? ''
     : 'Every order below ships with the app, so adding one needs no internet connection.';
-  $('#home-cat-h').textContent = populated ? 'Discover more' : 'Reading orders';
+  $('#home-cat-h').textContent = populated ? 'Discover more' : 'Reading Lists';
 
   renderContinue(populated);
   renderYours(populated);
@@ -1504,7 +1503,7 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
   const held = captureFocus(grid);
 
   if (!homeCatalog) {
-    grid.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading reading orders…' }));
+    grid.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading Reading Lists…' }));
     try {
       homeCatalog = await loadCatalog();
     } catch (err) {
@@ -1534,7 +1533,7 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
     $('#form-home-q').hidden = true;
     $('#home-featured').hidden = true;
     $('#feature-h').textContent = FEATURE_NO_PICK;
-    grid.replaceChildren(el('p', { class: 'rail-hint', text: 'No curated reading orders are bundled with this build.' }));
+    grid.replaceChildren(el('p', { class: 'rail-hint', text: 'No curated Reading Lists are bundled with this build.' }));
     return;
   }
 
@@ -1569,8 +1568,8 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
     grid.replaceChildren(el('p', {
       class: 'rail-hint',
       text: homeQuery
-        ? `No reading orders match “${homeQuery}”${where}.`
-        : `No reading orders${where || ''}.`,
+        ? `No Reading Lists match “${homeQuery}”${where}.`
+        : `No Reading Lists${where || ''}.`,
     }));
   } else {
     // Resolved once for the whole grid rather than per card, for the reason the browse screen's
@@ -1582,7 +1581,11 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
       // Asked of the placements the cards are actually drawn from rather than of the rule that
       // produced them, so the sentence naming the badge cannot outlive the badge itself.
       const hasFirstStop = section.stories.some((s) => placements.get(s.key)?.previous === null);
-      groups.push(shelfSectionHead(section, hasFirstStop, 'h3'));
+      groups.push(shelfSectionHead(section, hasFirstStop, {
+        level: 'h3',
+        className: 'shelf-section home-shelf-section',
+        blurb: false,
+      }));
       groups.push(el('ul', { class: 'ogrid' }, section.stories.map((s) => orderCard(s, placements.get(s.key)))));
     }
     grid.replaceChildren(...groups);
@@ -1593,7 +1596,7 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
   // count overwrite the confirmation that an order had just been added, which is the message
   // that actually matters.
   if (announceCount) {
-    announceCatalog(`${matched.length} reading ${matched.length === 1 ? 'order' : 'orders'} shown.`);
+    announceCatalog(`${matched.length} ${matched.length === 1 ? 'Reading List' : 'Reading Lists'} shown.`);
   }
 }
 
@@ -1625,7 +1628,7 @@ function renderHomeChips(all) {
   }
 
   box.replaceChildren(
-    el('legend', { class: 'visually-hidden', text: 'Filter reading orders' }),
+    el('legend', { class: 'visually-hidden', text: 'Filter Reading Lists' }),
     // Native radios in a fieldset already give a radio group with arrow-key navigation and
     // a checked state, so nothing here is re-implemented in ARIA.
     ...options.map(({ key, label, count }) => el('label', { class: 'fp' }, [
@@ -1913,9 +1916,16 @@ function wirePreview() {
     previewStory = null;
     placeNotices();
     // The card behind the dialog names one path, and the dialog is where that choice is now made,
-    // so a choice made here has to reach the card that sent the reader in. Only when a choice was
-    // on offer, and only for the view actually on screen.
+    // so a choice made here has to reach the card that sent the reader in. Capture after the dialog
+    // has returned focus to its opener, then rebuild only the surface behind it and return to the
+    // same preview action rather than the neighbouring Add button.
     if (chose && view === 'home') await renderHomeCatalog();
+    else if (chose && CATALOG_SHELVES.some((shelf) => shelf.key === view)) {
+      const root = $(`#${view}-results`);
+      const held = captureFocus(root);
+      await renderCatalogShelf(view);
+      returnFocus(held);
+    }
   });
 }
 
@@ -2155,7 +2165,7 @@ function wireReading() {
     const note = await askNote({
       title: `Note on "${list.name}"`,
       body: 'Only you see this. It is saved on this device and travels in your backup file.',
-      label: 'Your note about this reading order',
+      label: 'Your note about this Reading List',
       value: list.note || '',
     });
     // null is backing out, "" is deleting the note. askText folds those together; askNote does
@@ -2358,7 +2368,7 @@ function renderReading() {
     // Reaching the reading view with no list means the last one was just deleted. The
     // landing page is the honest place to be, so hand over rather than sit on an empty frame.
     $('#order-name').textContent = 'Recap Page';
-    $('#order-sub').textContent = 'Curated reading orders, tracked locally, linked into the Unlimited reader.';
+    $('#order-sub').textContent = 'Curated Reading Lists, tracked locally, linked into the Unlimited reader.';
     if (view === 'read') showView('home');
     return;
   }
@@ -2991,7 +3001,7 @@ export function synopsisDisclaimer(baseUrl) {
       + `service at ${synopsisServiceName(baseUrl)}, which is not affiliated with Marvel, and the text `
       + 'itself is Marvel\u2019s. Nothing fetched is saved: the synopses are held for this browser tab '
       + 'only, they are not written into your lists, they are not included in a backup, and they are '
-      + 'gone when you reload. Fetching a whole reading order takes a few minutes and uses your '
+      + 'gone when you reload. Fetching a whole Reading List takes a few minutes and uses your '
       + 'request allowance.',
     confirmLabel: 'Fetch synopses',
   };
@@ -3131,17 +3141,9 @@ function wireAdd() {
 
 const NAME_SEARCH_LIMIT = 40;
 
-function wireNameSearch({ section, form, input, results, kind, many, btnClass, search, onAdd }) {
-  // The index is a few hundred kilobytes, so it is never part of the initial page load. Opening
-  // the card is the earliest honest signal that a reader intends to search, and starting the
-  // download there means the first search usually finds it already in hand. A reader who never
-  // opens the card never pays for it. Warming is idempotent and a failed warm is ignored: this
-  // is only a head start, and the search itself reports the failure properly.
-  const card = $(section);
-  card.addEventListener('toggle', () => {
-    if (card.open) api.warmNameIndex(kind);
-  });
-
+function wireNameSearch({
+  section: _section, form, input, results, kind: _kind, many, btnClass, search, onAdd,
+}) {
   $(form).addEventListener('submit', async (e) => {
     e.preventDefault();
     const q = $(input).value.trim();
@@ -3188,6 +3190,13 @@ function wireNameSearch({ section, form, input, results, kind, many, btnClass, s
   });
 }
 
+// Route entry is the reliable signal: direct hashes and browser history can reveal these pages
+// without either a pointer crossing the section or focus entering one of its controls.
+function warmNameIndexForView(name) {
+  const kind = name === 'add-series' ? 'series' : name === 'add-creator' ? 'creators' : null;
+  if (kind) void api.warmNameIndex(kind);
+}
+
 const count = (n) => Number(n ?? 0).toLocaleString();
 
 // Reuses the curated catalog's UTC date formatting, for the same reason: a snapshot taken at
@@ -3201,7 +3210,7 @@ function addDestination() {
   const target = store.state.lists[activeListId()];
   return target
     ? `Adding to “${target.name}”.`
-    : 'Adding will start a new list called “My reading order”.';
+    : `Adding will start a new list called “${DEFAULT_LIST_NAME}”.`;
 }
 
 function renderResults(sel, items, metaFn) {
@@ -3262,7 +3271,7 @@ function ensureList(name) {
 }
 
 function addToActive(issues, message, { sort = false } = {}) {
-  const id = ensureList('My reading order');
+  const id = ensureList(DEFAULT_LIST_NAME);
   if (!id) return { added: 0, skipped: 0, ok: false, listName: null };
   let added = 0, skipped = 0;
   store.update((s) => {
@@ -3322,7 +3331,7 @@ async function addCreator(creator) {
 
 function doImport() {
   const text = $('#import-text').value;
-  if (!text.trim()) return notify('#import-report', 'Paste a reading list first.', 'warn');
+  if (!text.trim()) return notify('#import-report', 'Paste a Reading List first.', 'warn');
 
   const { entries, unresolved, headings } = parseChecklist(text);
   const box = $('#import-report');
@@ -3336,14 +3345,14 @@ function doImport() {
   let listId;
   if (intoNew) {
     const name = headings[0] || `Imported ${new Date().toLocaleDateString()}`;
-    const created = store.update((s) => createList(s, { name, description: 'Imported from a pasted reading order.' }));
+    const created = store.update((s) => createList(s, { name, description: 'Imported from a pasted Reading List.' }));
     if (!store.lastUpdateOk) {
       return notify('#import-report', 'Could not create the list, so nothing was imported.', 'error');
     }
     listId = created.listOrder[created.listOrder.length - 1];
     store.update((s) => setActive(s, listId));
   } else {
-    listId = ensureList('My reading order');
+    listId = ensureList(DEFAULT_LIST_NAME);
     if (!listId) return notify('#import-report', 'Could not create a list, so nothing was imported.', 'error');
   }
 
@@ -3636,7 +3645,7 @@ function doManual() {
   // no account and no request to anyone.
   const digitalId = digitalIdFromUrl(url);
   const detail = manualDetailUrl(url, digitalId);
-  const listId = ensureList('My reading order');
+  const listId = ensureList(DEFAULT_LIST_NAME);
   if (!listId) return notify('#manual-report', 'Could not create a list, so nothing was added.', 'error');
 
   // Report what actually happened rather than assuming success. This previously announced
@@ -3739,6 +3748,7 @@ async function renderCatalogShelf(key) {
   const shelf = CATALOG_SHELVES.find((s) => s.key === key);
   const state = shelfState.get(key);
   const box = $(`#${key}-results`);
+  if (key === 'catalog') $('#catalog-timeline').hidden = true;
   box.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the catalog…' }));
   // Cleared by condition rather than by pane, because the same load failure may have been placed
   // in the shared pane above the views. Emptying only this pane left the reader looking at a
@@ -3782,6 +3792,11 @@ async function renderCatalogShelf(key) {
     return;
   }
 
+  // The spine describes the catalogue, not the current search. Keeping its derived range stable
+  // while a reader types prevents the navigation itself from moving under their pointer. Choosing
+  // a year clears narrowing before it moves, so every enabled year keeps the destination it names.
+  if (key === 'catalog') renderTimelineSpine(groupCatalog(mine));
+
   // The same rule the landing page uses, and for the same reason: scanning works up to about a
   // dozen orders, and below that a search box is a control with nothing to do. Applied per shelf
   // rather than to the catalog as a whole, because a reader on a six-row screen has no use for a
@@ -3809,8 +3824,8 @@ async function renderCatalogShelf(key) {
   if (!shown.length) {
     const where = state.facet === 'all' ? '' : ` in ${facetLabel(mine, state.facet)}`;
     const msg = state.query
-      ? `No reading lists match “${state.query}”${where}.`
-      : `No reading lists${where || ' in that category'}.`;
+      ? `No Reading Lists match “${state.query}”${where}.`
+      : `No Reading Lists${where || ' in that category'}.`;
     box.append(el('p', { class: 'rail-hint', text: msg }));
     announceCatalog(msg);
     return;
@@ -3822,7 +3837,13 @@ async function renderCatalogShelf(key) {
   // against the whole catalog rather than this shelf, because a path runs through orders this
   // screen does not list and a placement computed from a slice of it would number the stops wrong.
   const placements = pathPlacements(catalog.paths, catalog.lists);
-  const sections = shelf.eras ? eraSections(stories) : [{ ...shelf, stories }];
+  const sections = shelf.sections === 'eras'
+    ? eraSections(stories)
+    : shelf.sections === 'decades'
+      ? decadeSections(stories)
+      : [{ ...shelf, stories }];
+  const grouped = Boolean(shelf.sections);
+  const anchoredYears = new Set();
   for (const section of sections) {
     // Whether the badge this section's blurb points at is actually being drawn, asked of the same
     // placements the rows are drawn from rather than of the rule that produced them.
@@ -3830,20 +3851,26 @@ async function renderCatalogShelf(key) {
     // A shelf that is not divided draws no heading over its single group: the screen's own h1 and
     // sub line already say what is on it, and a lone section title repeating them would be a
     // second heading standing over the same thing.
-    if (shelf.eras) box.append(shelfSectionHead(section, hasFirstStop));
+    if (grouped) box.append(shelfSectionHead(section, hasFirstStop));
+    const grid = el('div', { class: 'catalog-grid' });
     for (const story of section.stories) {
-      box.append(catalogRow(story, placements.get(story.key), {
+      const year = storyYear(story);
+      const yearAnchor = key === 'catalog' && year !== null && !anchoredYears.has(year);
+      if (yearAnchor) anchoredYears.add(year);
+      grid.append(catalogCard(story, placements.get(story.key), {
         surface: key,
-        level: shelf.eras ? 'h3' : 'h2',
+        level: grouped ? 'h3' : 'h2',
+        yearAnchor,
       }));
     }
+    box.append(grid);
   }
 
   // The dropped-entry warning already announced itself; a second announcement would replace it.
   if (!catalog.dropped) {
     const where = state.facet === 'all' ? '' : ` in ${facetLabel(mine, state.facet)}`;
     const match = state.query ? ` matching “${state.query}”` : '';
-    announceCatalog(`${shelf.heading} shows ${stories.length} reading ${stories.length === 1 ? 'list' : 'lists'}${match}${where}.`);
+    announceCatalog(`${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.`);
   }
 }
 
@@ -3855,90 +3882,119 @@ async function renderCatalogShelf(key) {
 // heading skip that was there before the sections were. On the landing page it sits inside a
 // section that already has an h2, so it is an h3 and the cards under it are h4. Hard-coding h2
 // would have put two same-level headings in a parent-child relationship on the landing page.
-function shelfSectionHead(section, showRoute, level = 'h2') {
-  const blurb = showRoute ? `${section.blurb} ${ROUTE_BLURB}` : section.blurb;
-  return el('div', { class: 'shelf-section' }, [
-    el(level, { class: 'shelf-section-title', text: section.heading }),
-    el('p', { class: 'shelf-section-blurb', text: blurb }),
-  ]);
+function shelfSectionHead(
+  section,
+  showRoute,
+  { level = 'h2', className = 'shelf-section', blurb = true } = {},
+) {
+  const blurbText = showRoute ? `${section.blurb} ${ROUTE_BLURB}` : section.blurb;
+  const children = [el(level, { class: 'shelf-section-title', text: section.heading })];
+  if (blurb) children.push(el('p', { class: 'shelf-section-blurb', text: blurbText }));
+  return el('div', { class: className }, children);
 }
 
-// One row per story. A story read several ways used to be a heading with a row under it for each
-// path, which read as several things to decide between; it is one thing to decide, with a choice
-// inside it, so the row carries the chooser and describes whichever path is selected.
+// The year navigator is derived from the full events shelf rather than the current query. It keeps
+// empty years inside the range visible as gaps, while the first and last year always contain a card.
+function renderTimelineSpine(stories) {
+  const spine = $('#catalog-timeline');
+  const box = $('#catalog-years');
+  const years = timelineYears(stories);
+  spine.hidden = !years.length;
+  box.replaceChildren(...years.map(({ year, count: yearCount }) => {
+    if (!yearCount) {
+      return el('span', {
+        class: 'timeline-year is-empty',
+      }, [
+        el('span', { 'aria-hidden': 'true', text: `${year}` }),
+        el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
+      ]);
+    }
+    return el('button', {
+      class: 'timeline-year',
+      type: 'button',
+      'aria-label': `${year}, ${yearCount} ${yearCount === 1 ? 'Reading List' : 'Reading Lists'}`,
+      onclick: () => jumpToTimelineYear(year),
+    }, `${year}`);
+  }));
+}
+
+async function jumpToTimelineYear(year) {
+  clearNarrowing('catalog');
+  await renderCatalogShelf('catalog');
+  const card = $(`#catalog-year-${year}`);
+  if (!card) return;
+  const heading = card.querySelector('.catalog-card-title');
+  heading?.setAttribute('tabindex', '-1');
+  card.scrollIntoView({
+    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    block: 'start',
+  });
+  heading?.focus({ preventScroll: true });
+}
+
+// One card per story. The complete description, collection metadata and reading-path choice remain
+// in the preview dialog; this surface carries only what is needed to decide whether to open it.
 //
 // `surface` is the shelf this row is being drawn on. The report pane is derived from it rather
 // than passed alongside it, because the two were separate arguments and a row reporting an import
 // into another screen's pane is a failure with no symptom on the screen the reader is looking at.
-function catalogRow(story, placement, { surface = 'catalog', level = 'h3' } = {}) {
+function catalogCard(story, placement, { surface = 'catalog', level = 'h3', yearAnchor = false } = {}) {
   const report = `#${surface}-report`;
   const title = story.name ?? story.lists[0].name;
-  const meta = el('div', { class: 'result-meta' });
-  const desc = el('div', { class: 'result-meta' });
-  const depth = el('p', { class: 'result-meta' });
+  const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
+  const fallback = el('div', { class: 'of', 'aria-hidden': true }, [
+    el('span', { class: 'ofs', text: shortTitle(title) }),
+  ]);
+  const desc = el('p', { class: 'catalog-card-desc' });
+  const meta = el('p', { class: 'catalog-card-meta' });
   const source = el('div', { class: 'result-source' });
-  const act = el('div', { class: 'result-act' });
+  const actions = el('div', { class: 'catalog-card-actions' });
 
-  // The same single updater the shelf card uses, and for the same reason: the Import button closes
-  // over one path, so the words and the button have to move together or the row will import
-  // something other than what it describes.
+  // One updater for every part that names a reading path. A choice made in Preview repaints the card
+  // on close, so Add, the issue count and the Source disclosure cannot describe different paths.
   const paint = (list) => {
-    // The count is derived from the file the reader will actually import, so it is exact and
-    // does not need hedging.
-    meta.textContent = [
-      typeLabel(list.type),
-      timelineLabel(list),
-      `${list.count} issue${list.count === 1 ? '' : 's'}`,
-      collectionsLabel(list),
-    ].filter(Boolean).join(' · ');
-    desc.textContent = list.description ?? '';
-    desc.hidden = !list.description;
-    // How much reading a list represents is the reason a reader picks between two versions
-    // of the same story, so it is called out rather than buried in the meta line.
-    const label = depthLabel(list.depth);
-    depth.replaceChildren(...(label
-      ? [el('span', { class: 'pill', text: label }), depthHint(list.depth) ? ` ${depthHint(list.depth)}` : '']
-      : []));
-    depth.hidden = !label;
+    paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title));
+    desc.textContent = firstSentence(list.description);
+    desc.hidden = !desc.textContent;
+    meta.textContent = `${list.count} issue${list.count === 1 ? '' : 's'}`;
     source.replaceChildren(...[attributionLine(list)].filter(Boolean));
-    act.replaceChildren(el('button', {
-      class: 'btn',
-      type: 'button',
-      // The same act the home cards offer, so it carries the same words. The rows said "Import"
-      // while the cards said "Add to library" for the one behaviour behind both, which is
-      // addFromCatalog delegating straight to importCurated, and the shared busy state already
-      // said "Adding". The accessible name carries the full list name, so a button read out of
-      // context never says only "Add to library".
-      'aria-label': labelledName(CATALOG_ADD, list.name),
-      dataset: { key: list.id, act: 'import' },
-      onclick: (e) => importCurated(list, e.currentTarget, { report }),
-    }, CATALOG_ADD));
+    const previewText = story.lists.length > 1 ? `${story.lists.length} reading options` : 'Preview';
+    actions.replaceChildren(
+      el('button', {
+        class: 'btn',
+        type: 'button',
+        'aria-label': labelledName(CATALOG_ADD, list.name),
+        dataset: { key: list.id, act: 'import' },
+        onclick: (e) => importCurated(list, e.currentTarget, { report }),
+      }, CATALOG_ADD),
+      el('button', {
+        class: 'btn btn-g',
+        type: 'button',
+        'aria-label': labelledName(previewText, title),
+        dataset: { key: story.key, act: 'preview' },
+        onclick: () => openPreview(list, story),
+      }, previewText),
+    );
   };
   paint(chosenPath(story));
 
-  return el('div', { class: 'result' }, [
-    el('div', { class: 'result-main' }, [
-      // A heading rather than a div. Grouping replaced a heading per grouped story with a plain
-      // title, which took the pane from six headings to none and left heading navigation with no
-      // way through the results at all. Every row carries one now, which is one more than the
-      // ungrouped rows ever had.
-      //
-      // The level is the caller's, because it depends on what the row is nested under. A screen
-      // that groups its rows under era heads puts those at h2 and the rows at h3; a screen with no
-      // grouping has nothing between the h1 and the row, so the row takes h2 and the skip that
-      // would otherwise open up never exists.
-      el(level, { class: 'result-title', text: title }),
-      pathChooser(story, 'catalog', paint),
-      meta,
-      // Above the description on purpose. It is the line that answers "can I start here", which
-      // is the question a reader who does not know where to begin is actually asking, and a
-      // reader who has already decided to read the blurb has stopped asking it.
-      pathLine(placement, surface),
-      desc,
-      depth,
-      source,
+  const year = storyYear(story);
+  return el('article', {
+    class: 'catalog-card',
+    id: yearAnchor ? `catalog-year-${year}` : null,
+    dataset: { story: story.key, year: year ?? '' },
+  }, [
+    el('div', { class: 'catalog-card-main' }, [
+      el('div', { class: 'ocard-art' }, [img, fallback]),
+      el('div', { class: 'catalog-card-text' }, [
+        el(level, { class: 'catalog-card-title', text: title }),
+        desc,
+        meta,
+        pathLine(placement, surface),
+        source,
+      ]),
     ]),
-    act,
+    actions,
   ]);
 }
 
@@ -4338,7 +4394,7 @@ function renderProgress() {
       box.append(el('div', { class: 'empty-state' }, [
         el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '☐' }),
         el('p', { text: 'Nothing tracked yet.' }),
-        emptyAction({ label: 'Browse reading orders', view: 'catalog' }),
+        emptyAction({ label: 'Browse Reading Lists', view: 'catalog' }),
       ]));
       return;
     }
@@ -4945,9 +5001,11 @@ function renderAll() {
   renderLibrary();
   renderQueue();
   const list = store.state.lists[activeListId()];
-  $('#add-target').textContent = list
-    ? `Anything you add goes into “${list.name}”.`
-    : 'Anything you add will start a new list.';
+  for (const target of document.querySelectorAll('.add-target')) {
+    target.textContent = list
+      ? `Anything you add goes into “${list.name}”.`
+      : 'Anything you add will start a new list.';
+  }
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.

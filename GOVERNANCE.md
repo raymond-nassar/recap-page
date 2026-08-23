@@ -41,7 +41,10 @@ guide](CONTRIBUTING.md) lists the constraints in the form a contributor needs.
 
 ## What ships, and when
 
-Work lands as one pull request per item. The gates that have to pass are listed in
+Work ordinarily lands as one pull request per item. The maintainer made one explicit exception on
+2026-08-22 for the remaining UX simplification work, combining BL-194 through BL-198 with the
+owner-directed My Library and Search grouping in one delivery. The exception is recorded in those
+items and does not replace the default. The gates that have to pass are listed in
 [the contributing guide](CONTRIBUTING.md) and enforced by CI, and the maintainer does not merge
 past a red one.
 

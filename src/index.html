@@ -42,11 +42,25 @@
         <nav id="sidebar-nav" aria-label="Main">
           <div class="nav-scroll">
           <div class="nav-group">
-            <h2 id="rail-orders" class="rail-h">Reading orders</h2>
+            <h2 id="rail-orders" class="rail-h">My Library</h2>
             <ul id="list-nav" class="rail-list" aria-labelledby="rail-orders"></ul>
             <p id="no-lists" class="rail-hint">
               Nothing yet. Browse the catalog below to start.
             </p>
+            <ul class="rail-list" aria-labelledby="rail-orders">
+              <li><button type="button" class="ri" data-view="library-read">
+                <span class="gi" aria-hidden="true">&#xE73E;</span>
+                <span class="lbl">Everything read</span>
+              </button></li>
+              <li><button type="button" class="ri" data-view="progress">
+                <span class="gi" aria-hidden="true">&#xE9D2;</span>
+                <span class="lbl">Progress by series</span>
+              </button></li>
+              <li><button type="button" class="ri" data-view="library-manual">
+                <span class="gi" aria-hidden="true">&#xE70F;</span>
+                <span class="lbl">Added by hand</span>
+              </button></li>
+            </ul>
           </div>
 
           <div class="nav-group">
@@ -72,43 +86,25 @@
           </div>
 
           <div class="nav-group">
-            <h2 class="rail-h">Library</h2>
-            <ul class="rail-list">
-              <li><button type="button" class="ri" data-view="library-read">
-                <span class="gi" aria-hidden="true">&#xE73E;</span>
-                <span class="lbl">Everything read</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="progress">
-                <span class="gi" aria-hidden="true">&#xE9D2;</span>
-                <span class="lbl">Progress by series</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="library-manual">
-                <span class="gi" aria-hidden="true">&#xE70F;</span>
-                <span class="lbl">Added by hand</span>
-              </button></li>
-            </ul>
-          </div>
-
-          <div class="nav-group">
             <h2 class="rail-h">Add issues</h2>
             <ul class="rail-list">
-              <li><button type="button" class="ri" data-view="add" data-open="sec-search">
+              <li><button type="button" class="ri" data-view="add-search">
                 <span class="gi" aria-hidden="true">&#xE721;</span>
                 <span class="lbl">Search issues</span>
               </button></li>
-              <li><button type="button" class="ri" data-view="add" data-open="sec-series">
+              <li><button type="button" class="ri" data-view="add-series">
                 <span class="gi" aria-hidden="true">&#xE8F1;</span>
                 <span class="lbl">Find a series</span>
               </button></li>
-              <li><button type="button" class="ri" data-view="add" data-open="sec-creator">
+              <li><button type="button" class="ri" data-view="add-creator">
                 <span class="gi" aria-hidden="true">&#xE77B;</span>
                 <span class="lbl">Browse a creator</span>
               </button></li>
-              <li><button type="button" class="ri" data-view="add" data-open="sec-import">
+              <li><button type="button" class="ri" data-view="add-import">
                 <span class="gi" aria-hidden="true">&#xE77F;</span>
-                <span class="lbl">Paste a reading list</span>
+                <span class="lbl">Paste a Reading List</span>
               </button></li>
-              <li><button type="button" class="ri" data-view="add" data-open="sec-manual">
+              <li><button type="button" class="ri" data-view="add-manual">
                 <span class="gi" aria-hidden="true">&#xE948;</span>
                 <span class="lbl">Add an issue by hand</span>
               </button></li>
@@ -263,22 +259,22 @@
 
             <!-- State B only: everything already in the library, with progress. -->
             <section class="sec" id="home-yours" hidden aria-labelledby="yours-h">
-              <div class="sec-h"><h2 id="yours-h">Your reading orders</h2></div>
+              <div class="sec-h"><h2 id="yours-h">Your Reading Lists</h2></div>
               <ul class="yours" id="home-yours-list"></ul>
             </section>
 
             <section class="sec" id="home-catalog" aria-labelledby="home-cat-h">
               <div class="sec-h">
-                <h2 id="home-cat-h">Reading orders</h2>
+                <h2 id="home-cat-h">Reading Lists</h2>
               </div>
               <div id="home-cat-report" class="report"></div>
 
               <fieldset class="filters" id="home-chips" hidden>
-                <legend class="visually-hidden">Filter reading orders</legend>
+                <legend class="visually-hidden">Filter Reading Lists</legend>
               </fieldset>
 
               <form id="form-home-q" class="stack home-q" role="search" hidden>
-                <label for="home-q">Filter reading orders by title or character</label>
+                <label for="home-q">Filter Reading Lists by title or character</label>
                 <div class="field-row">
                   <input type="search" id="home-q" autocomplete="off" placeholder="e.g. Civil War, Spider-Man" />
                   <button type="button" class="btn btn-g" id="home-q-clear" hidden>Clear</button>
@@ -295,7 +291,7 @@
             <div class="head">
               <div class="head-left">
                 <h1 id="order-name">Recap Page</h1>
-                <div class="sub" id="order-sub">Curated reading orders, tracked locally.</div>
+                <div class="sub" id="order-sub">Curated Reading Lists, tracked locally.</div>
                 <!-- The order's own blurb. It used to be welded onto the end of the subtitle above,
                      which is a line with room for a fact and not for three sentences. -->
                 <details class="setting-more order-desc" id="order-desc" hidden>
@@ -459,6 +455,9 @@
             <div class="head"><div class="head-left"><h1 id="catalog-h">Timeline</h1>
               <div class="sub">Events in the order they were published.</div>
             </div></div>
+            <nav id="catalog-timeline" class="timeline-spine" aria-label="Jump to a year" hidden>
+              <div id="catalog-years" class="timeline-years"></div>
+            </nav>
             <div id="catalog-report" class="report"></div>
             <form id="form-catalog-search" class="stack" role="search">
               <label for="catalog-q">Search the catalog by title or character</label>
@@ -516,14 +515,16 @@
             <div id="spotlights-results" class="results"></div>
           </section>
 
-          <!-- ---------------------------------------- add view -->
-          <section id="view-add" class="view" hidden aria-labelledby="add-h">
-            <div class="head"><div class="head-left"><h1 id="add-h">Add issues</h1>
-              <div class="sub" id="add-target"></div>
+          <!-- ---------------------------------------- add views
+
+               Each rail entry owns a route and a page. The legacy #/add route is still accepted
+               by route.js and canonicalised to the search page by showView. -->
+          <section id="view-add-search" class="view" hidden aria-labelledby="add-search-h">
+            <div class="head"><div class="head-left"><h1 id="add-search-h">Search issues</h1>
+              <div class="sub add-target"></div>
             </div></div>
 
-            <section class="card card-static addpri" id="sec-search">
-              <h2>Search for issues</h2>
+            <section class="card card-static addpri add-page">
               <form id="form-search" class="stack">
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
@@ -539,12 +540,47 @@
               -->
               <div id="search-results" class="results"></div>
             </section>
+            <section class="search-hub" aria-labelledby="search-browse-h">
+              <h2 id="search-browse-h">Browse by</h2>
+              <div class="search-hub-grid">
+                <button type="button" class="search-hub-card" data-view="add-series">
+                  <span class="gi" aria-hidden="true">&#xE8F1;</span>
+                  <span>Series</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="add-creator">
+                  <span class="gi" aria-hidden="true">&#xE77B;</span>
+                  <span>Creators</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="spotlights">
+                  <span class="gi" aria-hidden="true">&#xE716;</span>
+                  <span>Characters</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="catalog">
+                  <span class="gi" aria-hidden="true">&#xE736;</span>
+                  <span>Reading guides</span>
+                </button>
+              </div>
+            </section>
+            <section class="search-hub search-hub-other" aria-labelledby="search-other-h">
+              <h2 id="search-other-h">Other ways to add</h2>
+              <div class="search-hub-grid">
+                <button type="button" class="search-hub-card" data-view="add-import">
+                  <span class="gi" aria-hidden="true">&#xE77F;</span>
+                  <span>Paste a Reading List</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="add-manual">
+                  <span class="gi" aria-hidden="true">&#xE948;</span>
+                  <span>Add an issue by hand</span>
+                </button>
+              </div>
+            </section>
+          </section>
 
-            <section id="add-more" class="add-more">
-              <h2>Other ways to add</h2>
-
-              <details class="card" id="sec-series">
-                <summary><h3>Find a series</h3><span class="card-why">Every issue of one series, oldest first.</span></summary>
+          <section id="view-add-series" class="view" hidden aria-labelledby="add-series-h">
+            <div class="head"><div class="head-left"><h1 id="add-series-h">Find a series</h1>
+              <div class="sub add-target"></div>
+            </div></div>
+            <section class="card card-static addpri add-page" id="sec-series">
                 <form id="form-series" class="stack">
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
@@ -553,10 +589,14 @@
                   </div>
                 </form>
                 <div id="series-results" class="results"></div>
-              </details>
+            </section>
+          </section>
 
-              <details class="card" id="sec-creator">
-                <summary><h3>Browse a creator</h3><span class="card-why">Every issue credited to one writer or artist.</span></summary>
+          <section id="view-add-creator" class="view" hidden aria-labelledby="add-creator-h">
+            <div class="head"><div class="head-left"><h1 id="add-creator-h">Browse a creator</h1>
+              <div class="sub add-target"></div>
+            </div></div>
+            <section class="card card-static addpri add-page" id="sec-creator">
                 <form id="form-creator" class="stack">
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
@@ -565,17 +605,22 @@
                   </div>
                 </form>
                 <div id="creator-results" class="results"></div>
-              </details>
+            </section>
+          </section>
 
-              <details class="card" id="sec-import">
-                <summary><h3>Paste a reading list</h3><span class="card-why">A Markdown checklist or one title per line.</span></summary>
-                <p class="rail-hint">
-                  Accepts Markdown checklists
-                  (<code>- [ ] [Title](https://www.marvel.com/comics/issue/123/slug)</code>)
-                  or one title per line. Lines ticked <code>- [x]</code> import as already read.
-                </p>
+          <section id="view-add-import" class="view" hidden aria-labelledby="add-import-h">
+            <div class="head"><div class="head-left"><h1 id="add-import-h">Paste a Reading List</h1>
+              <div class="sub add-target"></div>
+            </div></div>
+            <section class="card card-static addpri add-page" id="sec-import">
+                <div class="import-guide" aria-labelledby="import-guide-h">
+                  <h2 id="import-guide-h">Markdown checklist</h2>
+                  <pre><code>- [ ] [Secret Wars (2015) #1](https://www.marvel.com/comics/issue/49201/)
+- [x] Secret Wars (2015) #2
+[x] = already read; links are optional</code></pre>
+                </div>
                 <form id="form-import" class="stack">
-                  <label for="import-text">Reading order</label>
+                  <label for="import-text">Reading List</label>
                   <textarea id="import-text" rows="8" spellcheck="false"></textarea>
                   <div class="field-row">
                     <button type="submit" class="btn">Import</button>
@@ -583,10 +628,14 @@
                   </div>
                 </form>
                 <div id="import-report" class="results"></div>
-              </details>
+            </section>
+          </section>
 
-              <details class="card" id="sec-manual">
-                <summary><h3>Add an issue by hand</h3><span class="card-why">Anything the 2025 metadata snapshot does not have.</span></summary>
+          <section id="view-add-manual" class="view" hidden aria-labelledby="add-manual-h">
+            <div class="head"><div class="head-left"><h1 id="add-manual-h">Add an issue by hand</h1>
+              <div class="sub add-target"></div>
+            </div></div>
+            <section class="card card-static addpri add-page" id="sec-manual">
                 <p class="rail-hint">
                   The metadata snapshot ends in 2025, so anything newer will not be found by search.
                   Add it by hand and it still tracks; availability just shows as unknown.
@@ -603,16 +652,20 @@
                     fetched, and nothing is saved until you press Add issue.
                   </p>
                   <div id="manual-candidates" class="results"></div>
-                  <label for="manual-url">marvel.com or Marvel Unlimited address (optional)</label>
-                  <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://read.marvel.com/#/book/…" />
-                  <p class="rail-hint" id="manual-url-hint">
-                    Only needed for issues newer than the 2025 snapshot: paste the address from
-                    Marvel Unlimited and Read can take you straight to the book.
-                  </p>
+                  <details class="field-disclosure">
+                    <summary>Add a reader link (optional)</summary>
+                    <div class="stack">
+                      <label for="manual-url">marvel.com or Marvel Unlimited address</label>
+                      <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://read.marvel.com/#/book/…" />
+                      <p class="rail-hint" id="manual-url-hint">
+                        Only needed for issues newer than the 2025 snapshot: paste the address from
+                        Marvel Unlimited and Read can take you straight to the book.
+                      </p>
+                    </div>
+                  </details>
                   <button type="submit" class="btn">Add issue</button>
                 </form>
                 <div id="manual-report" class="results"></div>
-              </details>
             </section>
           </section>
 
@@ -728,7 +781,7 @@
                 <details class="setting-more">
                   <summary>What the check sends</summary>
                   <p class="rail-hint">
-                    That request sends no reading list, progress, note or identifier. If a newer version
+                    That request sends no Reading List, progress, note or identifier. If a newer version
                     exists, the app shows a link to download it, but it never downloads or installs
                     anything by itself.
                   </p>
@@ -791,9 +844,9 @@
                 Backup &amp; settings.
               </p>
 
-              <h3>Curated reading orders</h3>
+              <h3>Curated Reading Lists</h3>
               <p class="rail-hint">
-                Most bundled reading orders are put together in this project, some by a script from
+                Most bundled Reading Lists are put together in this project, some by a script from
                 Marvel series metadata and some by hand; the rest are fetched from a community
                 source. Each list in the catalog names its own origin and the date it was last
                 updated.
@@ -883,7 +936,7 @@
         <!-- Given text for the same reason #hero-title is: an empty heading fails whether
              or not its dialog has been opened yet. openPreview replaces it with the name of
              the order being previewed. -->
-        <h2 id="preview-h">Reading order</h2>
+        <h2 id="preview-h">Reading List</h2>
         <button type="button" class="quiet" id="preview-close">Close</button>
       </div>
       <p class="result-meta" id="preview-meta"></p>

@@ -5,6 +5,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { LIBRARY_VIEWS, libraryView, isLibraryView, libraryViewProblems } from '../src/js/lib/library.js';
+import { ADD_VIEWS } from '../src/js/lib/route.js';
 import {
   createEmptyState, createList, addIssuesToList, markRead, deleteList, removeFromList,
   readIssues, manualIssues, listsContaining, migrate, SCHEMA_VERSION,
@@ -259,8 +260,13 @@ test('every view main.js switches between has a section in the markup, and the r
   const literal = read('src/js/lib/route.js').match(/export const VIEWS = \[([^\]]*)\]/);
   assert.ok(literal, 'route.js no longer declares a VIEWS list this test can read');
   assert.match(literal[1], /\.\.\.LIBRARY_VIEWS/, 'VIEWS no longer spreads the Library views in');
+  assert.match(literal[1], /\.\.\.ADD_VIEWS/, 'VIEWS no longer spreads the Add views in');
   const named = [...literal[1].matchAll(/'([a-z0-9-]+)'/g)].map((m) => m[1]);
-  const expected = [...named, ...LIBRARY_VIEWS.map((v) => v.value)].sort();
+  const expected = [
+    ...named,
+    ...LIBRARY_VIEWS.map((v) => v.value),
+    ...ADD_VIEWS,
+  ].sort();
 
   assert.deepEqual(sectionIds(read('src/index.html')), expected);
 });

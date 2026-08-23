@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import {
   CATALOG_SHELVES,
   PUBLISHING_AGES,
+  decadeSections,
+  firstSentence,
   groupCatalog,
   inHomeAge,
   parseCatalog,
@@ -15,6 +17,7 @@ import {
   pathPlacements,
   shelfStories,
   storyYear,
+  timelineYears,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
 
@@ -104,6 +107,48 @@ test('every screen carries the words its own empty state and heading need', () =
   }
   const headings = CATALOG_SHELVES.map((shelf) => shelf.heading);
   assert.equal(new Set(headings).size, headings.length, 'two screens share a heading');
+});
+
+test('Timeline uses named eras and Storylines uses decade breaks', () => {
+  assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').sections, 'eras');
+  assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'lines').sections, 'decades');
+  assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'spotlights').sections, null);
+});
+
+test('Storylines decade sections account for every story exactly once', () => {
+  const storylines = shelfStories(stories, 'lines');
+  const sections = decadeSections(storylines);
+  const drawn = sections.flatMap((section) => section.stories);
+  assert.deepEqual(drawn, storylines, 'the decade breaks reordered or dropped a storyline');
+  assert.ok(sections.every((section) => section.heading && section.blurb), 'a decade break has no visible name');
+});
+
+test('an undated storyline has an honest section rather than a guessed decade', () => {
+  const undated = { key: 'wide', lists: [{ id: 'wide', name: 'Wide', type: 'creator-run' }] };
+  const sections = decadeSections([undated]);
+  assert.equal(sections.length, 1);
+  assert.equal(sections[0].heading, 'Across eras');
+  assert.deepEqual(sections[0].stories, [undated]);
+});
+
+test('the timeline spine derives its ends and preserves internal empty years', () => {
+  const events = shelfStories(stories, 'catalog');
+  const years = timelineYears(events);
+  const present = events.map(storyYear);
+  assert.equal(years[0].year, Math.min(...present));
+  assert.equal(years.at(-1).year, Math.max(...present));
+  assert.ok(years[0].count > 0 && years.at(-1).count > 0, 'the derived range has an empty end');
+  assert.deepEqual(
+    years.filter(({ count }) => count === 0).map(({ year }) => year),
+    [2001, 2002, 2003, 2015, 2023],
+  );
+});
+
+test('browse cards take exactly the first authored sentence', () => {
+  assert.equal(firstSentence('First thought. Second thought.'), 'First thought.');
+  assert.equal(firstSentence('One thought without punctuation'), 'One thought without punctuation');
+  assert.equal(firstSentence(''), '');
+  assert.equal(firstSentence(null), '');
 });
 
 // The shelf key doubles as the view id, so a shelf the router does not know is a rail entry leading
