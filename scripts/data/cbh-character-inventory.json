@@ -1,0 +1,3229 @@
+[
+  {
+    "position": 1,
+    "id": "abomination-reading-order",
+    "title": "Abomination",
+    "url": "https://www.comicbookherald.com/abomination-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Abomination"
+    ],
+    "sourcePositions": [
+      1
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "caffa7a1a36d3fd25396be7be4ace07e45f1e8a09bcdc8e447f32117b0f02665",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 2,
+    "id": "adam-warlock-reading-order",
+    "title": "Adam Warlock",
+    "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Adam Warlock"
+    ],
+    "sourcePositions": [
+      2
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ecec1c32719085c216b4f0bd1a599b1b3e58dc3777bdbca92445b7dedf70de36",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 3,
+    "id": "agatha-harkness-reading-order",
+    "title": "Agatha Harkness",
+    "url": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Agatha Harkness"
+    ],
+    "sourcePositions": [
+      3
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "4affd62d844d51a08ab529047a0334cc45d1f8e05008aad19b7ee4f3018ba4bb",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 4,
+    "id": "agents-of-atlas-reading-order",
+    "title": "Agents of Atlas",
+    "url": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Agents of Atlas"
+    ],
+    "sourcePositions": [
+      4
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e58153e982b45d6471de9839f19dcf2c337ddb585a3bec1c19b558497d5454a0",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 5,
+    "id": "amazing-spider-man-reading-order-modern-marvel-era",
+    "title": "Amazing Spider-Man",
+    "url": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Amazing Spider-Man"
+    ],
+    "sourcePositions": [
+      5
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "5a32479a05c51673f42ad1fe5a0249ac7c6bb829a8a26e0b8f2dcfbdc946200e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 6,
+    "id": "ant-man-reading-order",
+    "title": "Ant-Man",
+    "url": "https://www.comicbookherald.com/ant-man-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Ant-Man"
+    ],
+    "sourcePositions": [
+      6
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f849129e51abbf1f69abb9e560dc670ba9777c3f89c5cb7e5f2be0be84b19408",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 7,
+    "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+    "title": "Apocalypse (X-Men) / X-Men: Age of Apocalypse",
+    "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Apocalypse (X-Men)",
+      "X-Men: Age of Apocalypse"
+    ],
+    "sourcePositions": [
+      7,
+      127
+    ],
+    "duplicateFlags": [
+      "**DUPE-A** (same URL as #127)",
+      "**DUPE-A** (same URL as #7)"
+    ],
+    "sourceContentSha256": "b0691ad15d4f0a3fe5c0944fc2e2563ea60fb0e22efd49cc95a30a7908b08566",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 8,
+    "id": "where-do-i-start-with-avengers-trade-collections",
+    "title": "The Avengers",
+    "url": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The exact source URL is already represented in the catalog; issue-set identity still requires a frozen mapping before any variant decision.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [
+      "essential-avengers",
+      "avengers-disassembled",
+      "civil-war-avengers",
+      "dark-reign-avengers",
+      "heroic-age-avengers",
+      "all-new-all-different-avengers",
+      "marvel-fresh-start-avengers"
+    ],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "The Avengers"
+    ],
+    "sourcePositions": [
+      8
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2dac2ec563dc7c93c514b5906f49f6b0edd572e89dca3ee4b0c5a572c9178447",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 9,
+    "id": "baron-zemo-reading-order",
+    "title": "Baron Zemo",
+    "url": "https://www.comicbookherald.com/baron-zemo-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Baron Zemo"
+    ],
+    "sourcePositions": [
+      9
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "4835f450b1814ddb4139c7b887f6f86d01682272a0bb4eef6a0dd85951bc1c54",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 10,
+    "id": "black-cat-reading-order",
+    "title": "Black Cat",
+    "url": "https://www.comicbookherald.com/black-cat-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Black Cat"
+    ],
+    "sourcePositions": [
+      10
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "914181ab30d1960e0ab6cccd451a7dccea33f0a370d401d05c887ea0a92a7b26",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 11,
+    "id": "black-panther-reading-order",
+    "title": "Black Panther",
+    "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Black Panther"
+    ],
+    "sourcePositions": [
+      11
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "9466c5e4e0bddb3290c8e2320e1ca1f10ac06f868216f62afebe2ecce83336f9",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 12,
+    "id": "black-widow-reading-order",
+    "title": "Black Widow",
+    "url": "https://www.comicbookherald.com/black-widow-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Black Widow"
+    ],
+    "sourcePositions": [
+      12
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "d038b80551132f73436c6fe32608d1d7005c4319f9e94d536c9ffb3bd29f193e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 13,
+    "id": "blade-vampire-hunter-reading-order",
+    "title": "Blade",
+    "url": "https://www.comicbookherald.com/blade-vampire-hunter-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Blade"
+    ],
+    "sourcePositions": [
+      13
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "619e17123a9223ba56428bebf54b8bec8ca9a421f2fb68b7130ea3a50bde8e7b",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 14,
+    "id": "brian-michael-bendis-marvel-universe-reading-order-2000-2018",
+    "title": "Brian Michael Bendis Marvel-Verse (2000 to 2018)",
+    "url": "https://www.comicbookherald.com/brian-michael-bendis-marvel-universe-reading-order-2000-2018/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Brian Michael Bendis Marvel-Verse (2000 to 2018)"
+    ],
+    "sourcePositions": [
+      14
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "57239823b2dc6f1f3d2f6dafb3c74eca229e3bff44c4437eb813308b9e2d9706",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 15,
+    "id": "bullseye-reading-order",
+    "title": "Bullseye",
+    "url": "https://www.comicbookherald.com/bullseye-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Bullseye"
+    ],
+    "sourcePositions": [
+      15
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "73e6df1a3e3ea70a972fe3b018a945753e0783ec14b34ac77e37738d51ebc2fd",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 16,
+    "id": "cable-reading-order",
+    "title": "Cable (X-Man)",
+    "url": "https://www.comicbookherald.com/cable-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The exact source URL is already represented in the catalog; issue-set identity still requires a frozen mapping before any variant decision.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [
+      "messiah-war"
+    ],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Cable (X-Man)"
+    ],
+    "sourcePositions": [
+      16
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "b20f3b87e894104fae290a9cdbb5a3f12daab3e99c0de566a746c2ebb6544ec1",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 17,
+    "id": "captain-america-reading-order-modern-marvel-era",
+    "title": "Captain America",
+    "url": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Captain America"
+    ],
+    "sourcePositions": [
+      17
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "565cbceb8f8668ed1fbe93399880329b2c9f653e33219d8a38c18a5aef9932da",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 18,
+    "id": "classic-captain-america-reading-order-1940s-to-2000",
+    "title": "Captain America (Classic)",
+    "url": "https://www.comicbookherald.com/classic-captain-america-reading-order-1940s-to-2000/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Captain America (Classic)"
+    ],
+    "sourcePositions": [
+      18
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "d2d4ead76850a8fc7caa662d408a26630e306fc3ac27156c51bb53a5282dd343",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 19,
+    "id": "captain-marvel-ms-marvel-reading-order",
+    "title": "Captain Marvel / Ms. Marvel (All)",
+    "url": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Captain Marvel",
+      "Ms. Marvel (All)"
+    ],
+    "sourcePositions": [
+      19,
+      77
+    ],
+    "duplicateFlags": [
+      "**DUPE-B** (same URL as #77)",
+      "**DUPE-B** (same URL as #19)"
+    ],
+    "sourceContentSha256": "7997c83ef09d9f503afe933dbc146b5e64b6826d0a7048e9907a68c164303ba1",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 20,
+    "id": "carnage-reading-order",
+    "title": "Carnage",
+    "url": "https://www.comicbookherald.com/carnage-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Carnage"
+    ],
+    "sourcePositions": [
+      20
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "4458492d6ae70aca71daa5e9ad98fa14c592807799e2c90247054ad97c854877",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 21,
+    "id": "clea-reading-order",
+    "title": "Clea",
+    "url": "https://www.comicbookherald.com/clea-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Clea"
+    ],
+    "sourcePositions": [
+      21
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e31dca7b754b61e16303e28cc42ad229fa701af6460c2247ea59a2f8ae1426ec",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 22,
+    "id": "conan-the-barbarian-comics-reading-order",
+    "title": "Conan the Barbarian",
+    "url": "https://www.comicbookherald.com/conan-the-barbarian-comics-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source includes licensed material outside the unqualified Marvel metadata and provenance contract.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Conan the Barbarian"
+    ],
+    "sourcePositions": [
+      22
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6145dd3029c9c09b3b814bda3da3cc35495d8386d133913dff453f60d261748f",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 23,
+    "id": "daredevil-reading-order",
+    "title": "Daredevil",
+    "url": "https://www.comicbookherald.com/daredevil-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Daredevil"
+    ],
+    "sourcePositions": [
+      23
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "10f01432c368de441e6a72fe7617c6d098a834334b65233e011fbb32b70c650b",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 24,
+    "id": "deadpool-reading-order",
+    "title": "Deadpool",
+    "url": "https://www.comicbookherald.com/deadpool-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Deadpool"
+    ],
+    "sourcePositions": [
+      24
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "c00cb7706d865e27e020443d1be72696dd8dd74aee4d75d984e88efeee05603c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 25,
+    "id": "deathlok-reading-order",
+    "title": "Deathlok",
+    "url": "https://www.comicbookherald.com/deathlok-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Deathlok"
+    ],
+    "sourcePositions": [
+      25
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "50986ecb46ef7818989d24d6ceb214fb975e1dcbf8950be18968f4f38dfc6e5e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 26,
+    "id": "the-defenders-reading-order",
+    "title": "The Defenders",
+    "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "The Defenders"
+    ],
+    "sourcePositions": [
+      26
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e32b9e54bf662ea54019536acad18c3d2a4c7128f0fad72f47ce5e2841e6e754",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 27,
+    "id": "doctor-doom-reading-order",
+    "title": "Doctor Doom",
+    "url": "https://www.comicbookherald.com/doctor-doom-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Doctor Doom"
+    ],
+    "sourcePositions": [
+      27
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "3b751d3591f21ee05fc4c4515fcc8baa4a99221458a073578d491a05388ce6ad",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 28,
+    "id": "doctor-strange-reading-order",
+    "title": "Doctor Strange",
+    "url": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Doctor Strange"
+    ],
+    "sourcePositions": [
+      28
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f0d4f1d322af2bd448f2455f79666debba42683248fbbb9732e292b64288e446",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 29,
+    "id": "donny-cates-marvel-universe-reading-order-2017",
+    "title": "Donny Cates' Marvel Universe Reading Order",
+    "url": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Donny Cates' Marvel Universe Reading Order"
+    ],
+    "sourcePositions": [
+      29
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "1da4a9e53453ff9304f90d874ffbf88edd41cb2b61cb7adc4f49311e7f627d00",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 30,
+    "id": "drax-the-destroyer-reading-order",
+    "title": "Drax the Destroyer",
+    "url": "https://www.comicbookherald.com/drax-the-destroyer-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Drax the Destroyer"
+    ],
+    "sourcePositions": [
+      30
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "207109270f11dd50a7ca283c05d74ecf49dd402cbc03b50e047ff5abca6bae01",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 31,
+    "id": "where-to-start-with-an-elektra-reading-order",
+    "title": "Elektra",
+    "url": "https://www.comicbookherald.com/where-to-start-with-an-elektra-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Elektra"
+    ],
+    "sourcePositions": [
+      31
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2a244e43706935d09b4c9754a2139d5b6d47f686b85440a98580bba8ac02cd23",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 32,
+    "id": "emma-frost-reading-order",
+    "title": "Emma Frost",
+    "url": "https://www.comicbookherald.com/emma-frost-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Emma Frost"
+    ],
+    "sourcePositions": [
+      32
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "15728dd62ca153c95978cf5b78301e9a4ea7a7853c0fb94c2c0acbba939e8ba4",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 33,
+    "id": "marvels-eternals-reading-order",
+    "title": "Eternals",
+    "url": "https://www.comicbookherald.com/marvels-eternals-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Eternals"
+    ],
+    "sourcePositions": [
+      33
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "c37355b34c1e36d3f41723ddf991e00a229ffdf4e3369cf5bf723daa36cacd1f",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 34,
+    "id": "falcon-sam-wilson-captain-america-reading-order",
+    "title": "Falcon (Sam Wilson)",
+    "url": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Falcon (Sam Wilson)"
+    ],
+    "sourcePositions": [
+      34
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "b3cf476eb5056dcf19616fcdb5dc4c8f3bd05b6d5bdd32c35b510c8812f248fb",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 35,
+    "id": "fantastic-four-reading-order",
+    "title": "Fantastic Four",
+    "url": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Fantastic Four"
+    ],
+    "sourcePositions": [
+      35
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6bc7640dee0b8a2310dcbd2c10c333475acdb12bebeebdc2caa2133fb0e3ac4d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 36,
+    "id": "the-essential-galactus-reading-order",
+    "title": "Galactus",
+    "url": "https://www.comicbookherald.com/the-essential-galactus-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Galactus"
+    ],
+    "sourcePositions": [
+      36
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ac7b8a29c72e15c02411258502b32ef39cf201e834dd21e452bdb4ecdeb9fbda",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 37,
+    "id": "gambit-reading-order-part-1-uncanny-x-men-266-280",
+    "title": "Gambit - X-Men",
+    "url": "https://www.comicbookherald.com/gambit-reading-order-part-1-uncanny-x-men-266-280/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Gambit - X-Men"
+    ],
+    "sourcePositions": [
+      37
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "b3954228090304928e661c24c7ab0f1e517fe99c3468496d09e00306374c2bb1",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 38,
+    "id": "gamora-reading-order",
+    "title": "Gamora",
+    "url": "https://www.comicbookherald.com/gamora-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Gamora"
+    ],
+    "sourcePositions": [
+      38
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "922c8f37627cd97689f34d3a6bddcf567c4ea8e7c842064b932aedb7f8d2cb25",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 39,
+    "id": "ghost-rider-reading-order",
+    "title": "Ghost Rider",
+    "url": "https://www.comicbookherald.com/ghost-rider-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Ghost Rider"
+    ],
+    "sourcePositions": [
+      39
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f0d945034f65880ddeb827247f0f26c889a7390e53891b9f31eb86ab3695c314",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 40,
+    "id": "great-lakes-avengers-reading-order",
+    "title": "Great Lakes Avengers",
+    "url": "https://www.comicbookherald.com/great-lakes-avengers-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Great Lakes Avengers"
+    ],
+    "sourcePositions": [
+      40
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "11168eaa2193648dbf30719cf31bff4fa3e74bf1b1aedd5a2d1c7f16486a4459",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 41,
+    "id": "groot-reading-order",
+    "title": "Groot",
+    "url": "https://www.comicbookherald.com/groot-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Groot"
+    ],
+    "sourcePositions": [
+      41
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "69b1eed149b35b2b2290c7eff58354bfb0742055b478a418b9699d8102ffa257",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 42,
+    "id": "gwenpool-reading-order",
+    "title": "Gwenpool",
+    "url": "https://www.comicbookherald.com/gwenpool-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Gwenpool"
+    ],
+    "sourcePositions": [
+      42
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "fe6c518e4453c2a8888d339b0d474a5096b85e9cb93b97572e4cceb87664bc18",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 43,
+    "id": "guardians-of-the-galaxy-reading-order",
+    "title": "Guardians of the Galaxy",
+    "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Guardians of the Galaxy"
+    ],
+    "sourcePositions": [
+      43
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "09c1d8ea66560003c04aed00579b1a51060dac18d725aad9a186cf228cb0accb",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 44,
+    "id": "hawkeye-reading-order",
+    "title": "Hawkeye (Clint Barton, Kate Bishop)",
+    "url": "https://www.comicbookherald.com/hawkeye-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Hawkeye (Clint Barton, Kate Bishop)"
+    ],
+    "sourcePositions": [
+      44
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f0def7b65ac67791aecd506c122f0b38f6bfce08869c6167419a3ac22c1291ad",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 45,
+    "id": "hercules-marvel-reading-order",
+    "title": "Hercules",
+    "url": "https://www.comicbookherald.com/hercules-marvel-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Hercules"
+    ],
+    "sourcePositions": [
+      45
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "c682ad41cf49b3ae76aba174e26895948963a68c2e0ca7f6bae5c93dab053820",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 46,
+    "id": "high-evolutionary-reading-order",
+    "title": "High Evolutionary",
+    "url": "https://www.comicbookherald.com/high-evolutionary-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "High Evolutionary"
+    ],
+    "sourcePositions": [
+      46
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "5603bfe8b4c50bcc053cad7f199f61d56476b85044d8ffd687a9458cd1276f58",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 47,
+    "id": "hope-summers-reading-order",
+    "title": "Hope Summers",
+    "url": "https://www.comicbookherald.com/hope-summers-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Hope Summers"
+    ],
+    "sourcePositions": [
+      47
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e0efde4afcfe1d75210fd1895bdd5812035b8ce3499a23fda316f8d83c1724bd",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 48,
+    "id": "howard-the-duck-reading-order",
+    "title": "Howard the Duck",
+    "url": "https://www.comicbookherald.com/howard-the-duck-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Howard the Duck"
+    ],
+    "sourcePositions": [
+      48
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "cd07896e35d04beb291cbb898c709b89b1463dc67ebbd4534ad1cb1768663c1d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 49,
+    "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+    "title": "Hulk (and She-Hulk, Red Hulk)",
+    "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Hulk (and She-Hulk, Red Hulk)"
+    ],
+    "sourcePositions": [
+      49
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f4547e8c02a7d2f077c88cbb8556f7666d08573e84cc44e7c35ddb44bbb7c947",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 50,
+    "id": "hydra-reading-order",
+    "title": "Hydra",
+    "url": "https://www.comicbookherald.com/hydra-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Hydra"
+    ],
+    "sourcePositions": [
+      50
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "3026158a9b96f449b5c5c1490d74fbaf9955d23d750c449904d6200dd867fef5",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 51,
+    "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+    "title": "Infinity Trilogy (Gauntlet, War, Crusade)",
+    "url": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Infinity Trilogy (Gauntlet, War, Crusade)"
+    ],
+    "sourcePositions": [
+      51
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e0a76436da4bc5c596869025c03644ff72532b787c5845168a92a5c333af308e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 52,
+    "id": "inhumans-reading-order",
+    "title": "Inhumans",
+    "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Inhumans"
+    ],
+    "sourcePositions": [
+      52
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6767f154816fffa87ace435c3132e8ebf9842a9a95c402de1fb653ab3bb3341a",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 53,
+    "id": "iron-fist-reading-order",
+    "title": "Iron Fist",
+    "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Iron Fist"
+    ],
+    "sourcePositions": [
+      53
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e7407fcefbbf265ff4df15d352b4428c4cc41f43df0c31ed0c4211ff310b31e9",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 54,
+    "id": "iron-man-reading-order",
+    "title": "Iron Man",
+    "url": "https://www.comicbookherald.com/iron-man-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Iron Man"
+    ],
+    "sourcePositions": [
+      54
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "61b3eb71bffefe629ce6b2c7f96353d5cb50c5ee66bc8e9d03217858092c9bfa",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 55,
+    "id": "jonathan-hickman-marvel-universe-reading-order-2008-to-2016",
+    "title": "Jonathan Hickman's Marvel-Verse (2008 to 2016)",
+    "url": "https://www.comicbookherald.com/jonathan-hickman-marvel-universe-reading-order-2008-to-2016/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Jonathan Hickman's Marvel-Verse (2008 to 2016)"
+    ],
+    "sourcePositions": [
+      55
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "fab2b9de276da61405e11581a924dfc4de600f1b7e0d51cb9b95334b9c174d85",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 56,
+    "id": "jessica-jones-reading-order",
+    "title": "Jessica Jones",
+    "url": "https://www.comicbookherald.com/jessica-jones-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Jessica Jones"
+    ],
+    "sourcePositions": [
+      56
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ec6594e9e1a248b587cdb38b247c125faba6c7d8aceb1ee99fe99d2e8153c16c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 57,
+    "id": "kang-the-conqueror-reading-order",
+    "title": "Kang the Conqueror",
+    "url": "https://www.comicbookherald.com/kang-the-conqueror-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Kang the Conqueror"
+    ],
+    "sourcePositions": [
+      57
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "1e7c0b4ddb28c88705ded5342ab8aff77ecd1a4cb2875ddfb1d74c36af84742e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 58,
+    "id": "kingpin-reading-order",
+    "title": "Kingpin",
+    "url": "https://www.comicbookherald.com/kingpin-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Kingpin"
+    ],
+    "sourcePositions": [
+      58
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "fedb0ea013b259c8c8be0c133adc9fac817e4d30af2f80e9cfe7b3cc4c2191cd",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 59,
+    "id": "the-essential-kitty-pryde-reading-order",
+    "title": "Kitty Pryde",
+    "url": "https://www.comicbookherald.com/the-essential-kitty-pryde-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Kitty Pryde"
+    ],
+    "sourcePositions": [
+      59
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "a36e297f89cb24e51daaba484924e8434ca01a195a2209b670962d31217167e1",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 60,
+    "id": "legion-david-haller-x-men-reading-order-best-legion-comics-guide",
+    "title": "Legion (David Haller)",
+    "url": "https://www.comicbookherald.com/legion-david-haller-x-men-reading-order-best-legion-comics-guide/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Legion (David Haller)"
+    ],
+    "sourcePositions": [
+      60
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "65f0346917b919dea074f1fc8dedb2eb455f1b6f169ff1ad07cd9906afcfca95",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 61,
+    "id": "loki-reading-order",
+    "title": "Loki",
+    "url": "https://www.comicbookherald.com/loki-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Loki"
+    ],
+    "sourcePositions": [
+      61
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "35e7d2c54615855f5c5d49c17885c6502d6e3ab600d5f3ff7a44abc8d25428f7",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 62,
+    "id": "where-to-start-with-luke-cage-comics",
+    "title": "Luke Cage (Power Man)",
+    "url": "https://www.comicbookherald.com/where-to-start-with-luke-cage-comics/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Luke Cage (Power Man)"
+    ],
+    "sourcePositions": [
+      62
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6a3c1496dfef35564f234a003350b7185103e21ea81c5f6de6586232f6733089",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 63,
+    "id": "madelyne-pryor-goblin-queen-reading-order",
+    "title": "Madelyne Pryor (Goblin Queen)",
+    "url": "https://www.comicbookherald.com/madelyne-pryor-goblin-queen-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Madelyne Pryor (Goblin Queen)"
+    ],
+    "sourcePositions": [
+      63
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "13bd2431c1531ba31194410149b2b31c76076f2c5a975b63df58316367ffa103",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 64,
+    "id": "magik-illyana-rasputin-reading-order",
+    "title": "Magik (Illyana Rasputin)",
+    "url": "https://www.comicbookherald.com/magik-illyana-rasputin-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Magik (Illyana Rasputin)"
+    ],
+    "sourcePositions": [
+      64
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "7a5042f2559f577f535139d54c9f8aac38cd9c51e10e11284a6f360fd19ba99d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 65,
+    "id": "magneto-reading-order",
+    "title": "Magneto",
+    "url": "https://www.comicbookherald.com/magneto-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Magneto"
+    ],
+    "sourcePositions": [
+      65
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "9f58433c3fd85a0b5ec5b0dd9a1f57099c7ed8e678ee8a4f3c2249aa2ff344e9",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 66,
+    "id": "the-maker-reading-order",
+    "title": "The Maker",
+    "url": "https://www.comicbookherald.com/the-maker-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "The Maker"
+    ],
+    "sourcePositions": [
+      66
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "9b33c35b6b096565a3eb2746eb6a32a292d06882fc205a0d24159124f8db24ad",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 67,
+    "id": "manifold-reading-order",
+    "title": "Manifold (Eden Fesi)",
+    "url": "https://www.comicbookherald.com/manifold-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Manifold (Eden Fesi)"
+    ],
+    "sourcePositions": [
+      67
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ace508ba045315972fd6bbd6e99bfc1503112862e416c21c27531b9ab3016dd0",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 68,
+    "id": "every-marvel-max-comic-book-series",
+    "title": "Marvel Max",
+    "url": "https://www.comicbookherald.com/every-marvel-max-comic-book-series/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Marvel Max"
+    ],
+    "sourcePositions": [
+      68
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "845ab96b7b15cf6bd29b9854d0f2b304a3fa4e8042d1285dd3ccb8f3102bae7e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 69,
+    "id": "marvel-and-dc-comics-crossovers-reading-order",
+    "title": "Marvel vs. DC",
+    "url": "https://www.comicbookherald.com/marvel-and-dc-comics-crossovers-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path. The source includes licensed material outside the unqualified Marvel metadata and provenance contract.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Marvel vs. DC"
+    ],
+    "sourcePositions": [
+      69
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2766eb7ab128028584fd0b659f4d6dca27de7762b9fe01ff81ebcb24240fd7dd",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 70,
+    "id": "marvel-zombies-reading-order",
+    "title": "Marvel Zombies",
+    "url": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Marvel Zombies"
+    ],
+    "sourcePositions": [
+      70
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "92723cf8148cb5845ebba3412327757f5035d811cb8a2a940591365206fc8a4f",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 71,
+    "id": "mephisto-reading-order",
+    "title": "Mephisto",
+    "url": "https://www.comicbookherald.com/mephisto-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Mephisto"
+    ],
+    "sourcePositions": [
+      71
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "fa0b8060a5fafe101e1fb3f72ba3fdf62dad681b0b71455f5308b8c092a29452",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 72,
+    "id": "midnight-sons-darkhold-reading-order",
+    "title": "Midnight Sons",
+    "url": "https://www.comicbookherald.com/midnight-sons-darkhold-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Midnight Sons"
+    ],
+    "sourcePositions": [
+      72
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "75eb40592cef6a82f1f448b8e59299675c113975742d32235ad3149dd81f31e6",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 73,
+    "id": "mister-sinister-reading-order",
+    "title": "Mister Sinister",
+    "url": "https://www.comicbookherald.com/mister-sinister-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Mister Sinister"
+    ],
+    "sourcePositions": [
+      73
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "347b6c8a409dd28b2823d049e4970ce0586d4b3f1fb341134212bf0c911f946c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 74,
+    "id": "moira-mactaggert-x-men-reading-order",
+    "title": "Moira MacTaggert (X-Men)",
+    "url": "https://www.comicbookherald.com/moira-mactaggert-x-men-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Moira MacTaggert (X-Men)"
+    ],
+    "sourcePositions": [
+      74
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "1aa9167ba6fa97e51b59a60f8451f26ab38fd8875fda9dba9954577e3094d7d4",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 75,
+    "id": "moon-knight-reading-order",
+    "title": "Moon Knight",
+    "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Moon Knight"
+    ],
+    "sourcePositions": [
+      75
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "db641106edefa8524664c9e980fffdd870a60c3fc49f7f7fc841aedff9f7fa20",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 76,
+    "id": "monica-rambeau-reading-order",
+    "title": "Monica Rambeau",
+    "url": "https://www.comicbookherald.com/monica-rambeau-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Monica Rambeau"
+    ],
+    "sourcePositions": [
+      76
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "5314bfb854c2f20aa31d9fe078df1b7a529ea184028ed930543c1088309a8ee6",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 77,
+    "id": "ms-marvel-kamala-khan-reading-order",
+    "title": "Ms. Marvel (Kamala Khan)",
+    "url": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Ms. Marvel (Kamala Khan)"
+    ],
+    "sourcePositions": [
+      78
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "8b0cbe9620fc14079b1429fafc291d523b74a026932d935ee0efae42db4fbfb8",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 78,
+    "id": "mysterio-reading-order",
+    "title": "Mysterio",
+    "url": "https://www.comicbookherald.com/mysterio-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Mysterio"
+    ],
+    "sourcePositions": [
+      79
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ba07251b13274952de5f3734c7de15a152f7b295a7d2c017bac328a4f06bd099",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 79,
+    "id": "mystique-reading-order",
+    "title": "Mystique",
+    "url": "https://www.comicbookherald.com/mystique-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Mystique"
+    ],
+    "sourcePositions": [
+      80
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "8138aec75bbac166cc57d65dc825bb67dfd5759a38d069e2a4301823a51ebd9c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 80,
+    "id": "namor-sub-mariner-reading-order",
+    "title": "Namor (Sub-Mariner)",
+    "url": "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Namor (Sub-Mariner)"
+    ],
+    "sourcePositions": [
+      81
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2443caa21765212ba9add37df0d102b56c78f20585dfd883eb641a3e2dcc8b85",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 81,
+    "id": "nebula-reading-order",
+    "title": "Nebula",
+    "url": "https://www.comicbookherald.com/nebula-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Nebula"
+    ],
+    "sourcePositions": [
+      82
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ab408b77e3d24acce52bc2a3f1c8c39ff77f75eb106153c4941ca69cefcf8d16",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 82,
+    "id": "new-mutants-reading-order",
+    "title": "New Mutants",
+    "url": "https://www.comicbookherald.com/new-mutants-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "New Mutants"
+    ],
+    "sourcePositions": [
+      83
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "07c6f5adc8d527c144b3d78c9efa292b1d7c26f437f49723565b7053cf7c1a00",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 83,
+    "id": "new-warriors-reading-order",
+    "title": "New Warriors",
+    "url": "https://www.comicbookherald.com/new-warriors-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "New Warriors"
+    ],
+    "sourcePositions": [
+      84
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "76fa5e974c84fb5646cf5892748bd284c0585886eca29d7bd7e2f6f14050aa2b",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 84,
+    "id": "omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d",
+    "title": "Nick Fury",
+    "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Nick Fury"
+    ],
+    "sourcePositions": [
+      85
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 85,
+    "id": "nimrod-x-men-reading-order",
+    "title": "Nimrod (X-Men)",
+    "url": "https://www.comicbookherald.com/nimrod-x-men-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Nimrod (X-Men)"
+    ],
+    "sourcePositions": [
+      86
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "012fddd06ebeac1e0d043f9a2be198c561feefc997d33bb3ffad7f4bb2357339",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 86,
+    "id": "nova-reading-order",
+    "title": "Nova",
+    "url": "https://www.comicbookherald.com/nova-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Nova"
+    ],
+    "sourcePositions": [
+      87
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "759352b69ae6151ffeabf1435cf275f1cd53fa908b462e450c326d37181a73ec",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 87,
+    "id": "old-man-logan-reading-order",
+    "title": "Old Man Logan",
+    "url": "https://www.comicbookherald.com/old-man-logan-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Old Man Logan"
+    ],
+    "sourcePositions": [
+      88
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "cb521384dbb568c217880d7355c5e01aeb12dc77ba96eb500693c1ae8784dd58",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 88,
+    "id": "the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever",
+    "title": "Original Graphic Novels (OGNs)",
+    "url": "https://www.comicbookherald.com/the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "excluded",
+    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "excluded",
+    "labels": [
+      "Original Graphic Novels (OGNs)"
+    ],
+    "sourcePositions": [
+      89
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "492f328e8a6d0afeaea35499e16f2782838e1b9c67e3be1987bcfa014173888d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 89,
+    "id": "phalanx-reading-order",
+    "title": "Phalanx",
+    "url": "https://www.comicbookherald.com/phalanx-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Phalanx"
+    ],
+    "sourcePositions": [
+      90
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "3d9f0c8ce6a20179fef369c2c23b83665f49059b2a4fdbdd6b3f4735613ff907",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 90,
+    "id": "marvels-best-phoenix-comics",
+    "title": "Phoenix",
+    "url": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Phoenix"
+    ],
+    "sourcePositions": [
+      91
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "0a18e6ef50af78738221621b494c66a472417ad582a6109133a86b3271806b2c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 91,
+    "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+    "title": "Planet Hulk (Greg Pak Hulk)",
+    "url": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Planet Hulk (Greg Pak Hulk)"
+    ],
+    "sourcePositions": [
+      92
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "678fa16aab92a1d2e22762fe7bb18c5401f023a3f18b5b11a7214e1906dbf094",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 92,
+    "id": "professor-x-reading-order",
+    "title": "Professor X (Charles Xavier)",
+    "url": "https://www.comicbookherald.com/professor-x-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Professor X (Charles Xavier)"
+    ],
+    "sourcePositions": [
+      93
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "02b4c9fba28079e64ecca05043f5dce8495755937f677c3ab8859b7d795bb98b",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 93,
+    "id": "betsy-braddock-psylocke-captain-britain-reading-order",
+    "title": "Psylocke",
+    "url": "https://www.comicbookherald.com/betsy-braddock-psylocke-captain-britain-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Psylocke"
+    ],
+    "sourcePositions": [
+      94
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "784ae2eafc20577500870d383e105cdf4f9acd25963dd7b5cdb956e706a29c40",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 94,
+    "id": "punisher-reading-order",
+    "title": "Punisher",
+    "url": "https://www.comicbookherald.com/punisher-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Punisher"
+    ],
+    "sourcePositions": [
+      95
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e0ed74660dc0527b2b3bf3425483630aefd5e25737512fea17b401860a3491a3",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 95,
+    "id": "rocket-raccoon-reading-order",
+    "title": "Rocket Raccoon",
+    "url": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Rocket Raccoon"
+    ],
+    "sourcePositions": [
+      96
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "3e7853ead471e58569c22dd6ab155c9d5fea04c52598ea0c413ffc417ae8e3ee",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 96,
+    "id": "runaways-reading-order",
+    "title": "Runaways",
+    "url": "https://www.comicbookherald.com/runaways-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Runaways"
+    ],
+    "sourcePositions": [
+      97
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "825db3ad08b3a34cb39ef3e971523afbe225218f409391ac3ad44975856a24d9",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 97,
+    "id": "scarlet-witch-reading-order",
+    "title": "Scarlet Witch",
+    "url": "https://www.comicbookherald.com/scarlet-witch-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Scarlet Witch"
+    ],
+    "sourcePositions": [
+      98
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "8646874167ac4d06dbf74a332542b7ce9015e207eb4852dc590e99459339cf65",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 98,
+    "id": "shadow-king-reading-order",
+    "title": "Shadow King",
+    "url": "https://www.comicbookherald.com/shadow-king-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Shadow King"
+    ],
+    "sourcePositions": [
+      99
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "a7012448ed2142636b0fadab552f627031bdbbd43ccb6b79493549da9ae66dd8",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 99,
+    "id": "shang-chi-master-of-kung-fu-reading-order",
+    "title": "Shang-Chi",
+    "url": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Shang-Chi"
+    ],
+    "sourcePositions": [
+      100
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "c2aa9f456a8080312ab18ec0d268a253bf00f4d1e675256e00a65b549a8f4dfe",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 100,
+    "id": "she-hulk-reading-order",
+    "title": "She-Hulk",
+    "url": "https://www.comicbookherald.com/she-hulk-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "She-Hulk"
+    ],
+    "sourcePositions": [
+      101
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ba76fa3af4e32cec80d29076e57f404b2dfa38e90afe743461e27d6866766ac9",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 101,
+    "id": "silver-surfer-reading-order",
+    "title": "Silver Surfer",
+    "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Silver Surfer"
+    ],
+    "sourcePositions": [
+      102
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "b9fbb29d0a7fbb0ec7ac59cbdfa90f090e16ab940e1571345f8ec1fec1b5cfef",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 102,
+    "id": "skrulls-reading-order-essential-skrull-comics",
+    "title": "Skrulls",
+    "url": "https://www.comicbookherald.com/skrulls-reading-order-essential-skrull-comics/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Skrulls"
+    ],
+    "sourcePositions": [
+      103
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "b7cf075844a83f8763ae88d41b9b313af00ae59b26cfc0534184ba09a633f419",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 103,
+    "id": "son-of-satan-hellstrom-reading-order",
+    "title": "Son of Satan (Hellstorm)",
+    "url": "https://www.comicbookherald.com/son-of-satan-hellstrom-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Son of Satan (Hellstorm)"
+    ],
+    "sourcePositions": [
+      104
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "9ab210537bb1be91e919bd044045fba395b9164886fe9f36a31287c3a4db8415",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 104,
+    "id": "spider-gwen-reading-order",
+    "title": "Spider-Gwen",
+    "url": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Spider-Gwen"
+    ],
+    "sourcePositions": [
+      105
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6eebb8aed91144abc3e7138f40b2046158e6e21377093fc7be37583081498085",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 105,
+    "id": "spider-man-2099-reading-order",
+    "title": "Spider-Man (2099)",
+    "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Spider-Man (2099)"
+    ],
+    "sourcePositions": [
+      106
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "7bae37f162579f9f2e9feafdcb8ac7168d5ef1ea3f99d1c4497b46ae11447ed2",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 106,
+    "id": "spider-woman-reading-order",
+    "title": "Spider-Woman",
+    "url": "https://www.comicbookherald.com/spider-woman-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Spider-Woman"
+    ],
+    "sourcePositions": [
+      107
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "a9435453999055e61bea8c1db9f9f6dc7866e24f14e7fc2432d4655195507479",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 107,
+    "id": "star-lord-reading-order-complete-peter-quill-comics-timeline",
+    "title": "Star-Lord (Peter Quill)",
+    "url": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Star-Lord (Peter Quill)"
+    ],
+    "sourcePositions": [
+      108
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "1870f3039770c875a02a426b18cb83a0ac4653c81605ce1674eedfa5d3c5c7cf",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 108,
+    "id": "storm-x-men-reading-order",
+    "title": "Storm (X-Men)",
+    "url": "https://www.comicbookherald.com/storm-x-men-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Storm (X-Men)"
+    ],
+    "sourcePositions": [
+      109
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "3b6a02db249e7d1425df143d12486d9b6d7bdd8fdffeda47d8b643b0fb8a272d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 109,
+    "id": "the-essential-marvels-s-w-o-r-d-comics-reading-order",
+    "title": "SWORD",
+    "url": "https://www.comicbookherald.com/the-essential-marvels-s-w-o-r-d-comics-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "SWORD"
+    ],
+    "sourcePositions": [
+      110
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "7da58d52705a2835cf3bc1b0568d50904e7f3b14f1e5bc93ecdebc4427345f95",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 110,
+    "id": "squirrel-girl-reading-order",
+    "title": "Squirrel Girl",
+    "url": "https://www.comicbookherald.com/squirrel-girl-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Squirrel Girl"
+    ],
+    "sourcePositions": [
+      111
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "535f0c2efbd984f2640fa2591a155889072845b3f8de103e0f3112f837b13c6a",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 111,
+    "id": "the-complete-thanos-reading-order-guide",
+    "title": "Thanos",
+    "url": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Thanos"
+    ],
+    "sourcePositions": [
+      112
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "661c99bc3ac4adab6a16ed4db911b3edb0df7139af2ea80990d33e1f272f77d7",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 112,
+    "id": "thor-reading-order",
+    "title": "Thor",
+    "url": "https://www.comicbookherald.com/thor-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Thor"
+    ],
+    "sourcePositions": [
+      113
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "fae87087c8271c5f9356764b575fdd07ebc4fabafa7aaf1125d6228faac8b74c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 113,
+    "id": "ultimate-spider-man-reading-order",
+    "title": "Ultimate Spider-Man",
+    "url": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The retained source snapshot explicitly names a 2026 issue, beyond the 2025-10-29 metadata horizon.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "blocked",
+    "centralDisposition": "blocked",
+    "labels": [
+      "Ultimate Spider-Man"
+    ],
+    "sourcePositions": [
+      114
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6e1bb233e2291afa2f561f40af0031e54881d901558ce0154052fcf649b43cf7",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-confirmed-post-horizon"
+  },
+  {
+    "position": 114,
+    "id": "venom-reading-order",
+    "title": "Venom",
+    "url": "https://www.comicbookherald.com/venom-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Venom"
+    ],
+    "sourcePositions": [
+      115
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "1678b4cbf69f9c97f05a6fcc85648bfc9e5ac98391b408cae462aaa23e5551b8",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 115,
+    "id": "the-vision-reading-order",
+    "title": "Vision",
+    "url": "https://www.comicbookherald.com/the-vision-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Vision"
+    ],
+    "sourcePositions": [
+      116
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2673c8bdc093e59aebce3f22f5bcbbc171a94adce119bd95d8faeee11d3bf00d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 116,
+    "id": "the-ultimates-reading-order",
+    "title": "Ultimates",
+    "url": "https://www.comicbookherald.com/the-ultimates-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Ultimates"
+    ],
+    "sourcePositions": [
+      117
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "ab232df8f7c8859a65ae2ea260d3ed92ca8a2e888c443551011d5248c0181d68",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 117,
+    "id": "best-ultron-reading-order",
+    "title": "Ultron",
+    "url": "https://www.comicbookherald.com/best-ultron-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Ultron"
+    ],
+    "sourcePositions": [
+      118
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "846fe372b0f22472f63778b761f07fa84ad8b2e2e3378ab8ff850936674bff8f",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 118,
+    "id": "wasp-reading-order",
+    "title": "Wasp",
+    "url": "https://www.comicbookherald.com/wasp-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Wasp"
+    ],
+    "sourcePositions": [
+      119
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "50521c14249c442d39660fcd641177b860f8a92b3ac43a8feaa36fd762552456",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 119,
+    "id": "war-machine-jim-rhodes-reading-order",
+    "title": "War Machine (Rhodey)",
+    "url": "https://www.comicbookherald.com/war-machine-jim-rhodes-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "War Machine (Rhodey)"
+    ],
+    "sourcePositions": [
+      120
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f705af45d4c02beeac9dfd4bff822209d828988533c025a6ebb140ade7c8c0e2",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 120,
+    "id": "white-tiger-ava-ayala",
+    "title": "White Tiger (Ava Ayala)",
+    "url": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "All 82 source rows resolved exactly inside the metadata horizon and were compared with all 86 current lists.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "axis",
+      "hickman-full",
+      "x-men-regenesis"
+    ],
+    "catalogIds": [
+      "white-tiger-ava-ayala"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "White Tiger (Ava Ayala)"
+    ],
+    "sourcePositions": [
+      121
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "795f9f3dd615fc3d11335b6ad5deaeb88872732b14c841f9aadde0740064c850",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 121,
+    "id": "winter-soldier-bucky-barnes-reading-order",
+    "title": "Winter Soldier (Bucky Barnes)",
+    "url": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Winter Soldier (Bucky Barnes)"
+    ],
+    "sourcePositions": [
+      122
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "5342423fe96abd1dd899adf76f4f220a60b981f53dd452edce4a3823c033dee7",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 122,
+    "id": "wolverine-reading-order",
+    "title": "Wolverine",
+    "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The retained source snapshot explicitly names a 2026 issue, beyond the 2025-10-29 metadata horizon.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "blocked",
+    "centralDisposition": "blocked",
+    "labels": [
+      "Wolverine"
+    ],
+    "sourcePositions": [
+      123
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "268a26c4935b379a37ccf6c857bf905074f5bc6c333d6760433652ef046f411c",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-confirmed-post-horizon"
+  },
+  {
+    "position": 123,
+    "id": "x-23-reading-order",
+    "title": "X-23 (Laura Kinney)",
+    "url": "https://www.comicbookherald.com/x-23-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "X-23 (Laura Kinney)"
+    ],
+    "sourcePositions": [
+      124
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "4012730c2b9cd5cac5775938db734aa47d0ffb63b895c80bc874a52226e5c0d3",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 124,
+    "id": "the-complete-x-men-reading-order-guide-modern-marvel-comics-era",
+    "title": "The X-Men (Modern Era)",
+    "url": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "The X-Men (Modern Era)"
+    ],
+    "sourcePositions": [
+      125
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "550e66d9cdc61e4b0e83d9654d6ab52acc8bd61b5b8b6c1d7986ca5366a7c593",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 125,
+    "id": "chris-claremont-era-x-men-reading-order-guide",
+    "title": "The X-Men (Chris Claremont Era)",
+    "url": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "The X-Men (Chris Claremont Era)"
+    ],
+    "sourcePositions": [
+      126
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "3748583a7621fd9c3e92bf5dd81126669749c0df4357652a6cb92b8f7f3034c5",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 126,
+    "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+    "title": "X-Men: Onslaught",
+    "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "X-Men: Onslaught"
+    ],
+    "sourcePositions": [
+      128
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "33d162bb882f43b5f558ec43e50728f0a5eba1d2fd8d75d63ca4ef7f7fbcec2d",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 127,
+    "id": "x-man-nate-grey-comics-reading-order",
+    "title": "X-Man (Nate Grey)",
+    "url": "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "X-Man (Nate Grey)"
+    ],
+    "sourcePositions": [
+      129
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "e19e22cb57d7aaffcd77ced0d39910b9acdc01041b6ec61b4d31037c96806d5a",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  },
+  {
+    "position": 128,
+    "id": "young-avengers-reading-order",
+    "title": "Young Avengers",
+    "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
+    "labels": [
+      "Young Avengers"
+    ],
+    "sourcePositions": [
+      130
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "0f17795c8d34a156f2cdbbe2432c241f63f97c07fbd747488bce57e04cf6fd1b",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+  }
+]

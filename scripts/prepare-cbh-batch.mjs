@@ -6,13 +6,21 @@ import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { resolveMapping } from './resolve-cbh-order.mjs';
 import { normalizeTitle } from '../src/js/lib/markdown.js';
-import { mappingDigestFor, validateFrozenPacket } from './lib/cbh-inventory.mjs';
+import {
+  mappingDigestFor,
+  validateFrozenPacket,
+  validateInventory,
+  validateInventoryState,
+} from './lib/cbh-inventory.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const OUTPUT_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
 const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
-const INVENTORY_PATH = path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json');
+const INVENTORY_PATHS = Object.freeze([
+  path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json'),
+  path.join(ROOT, 'scripts', 'data', 'cbh-character-inventory.json'),
+]);
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const RETRIEVED_AT = '2026-08-21';
 
@@ -2816,7 +2824,8 @@ async function indexFrozenPackets(packetsDir) {
 
 export async function selectPreparationGuides(onlyIds, {
   packetsDir = PACKETS_DIR,
-  inventoryPath = INVENTORY_PATH,
+  inventoryPath = null,
+  inventoryPaths = INVENTORY_PATHS,
   manifestPath = MANIFEST_PATH,
 } = {}) {
   if (onlyIds == null) return GUIDES;
@@ -2843,7 +2852,26 @@ export async function selectPreparationGuides(onlyIds, {
       continue;
     }
 
-    inventory ??= JSON.parse(await readFile(inventoryPath, 'utf8'));
+    if (inventory == null) {
+      const selectedPaths = inventoryPath == null ? inventoryPaths : [inventoryPath];
+      const inventories = await Promise.all(selectedPaths.map(async (candidatePath) => {
+        const records = JSON.parse(await readFile(candidatePath, 'utf8'));
+        if (path.resolve(candidatePath) === path.resolve(INVENTORY_PATHS[0])) {
+          validateInventory(records);
+        } else {
+          validateInventoryState(records);
+        }
+        return records;
+      }));
+      inventory = inventories.flat();
+      const inventoryIds = new Set();
+      for (const record of inventory) {
+        if (inventoryIds.has(record.id)) {
+          throw new Error(`Inventory id ${record.id} exists in multiple maintained inventories`);
+        }
+        inventoryIds.add(record.id);
+      }
+    }
     const manifest = catalogEntries == null
       ? JSON.parse(await readFile(manifestPath, 'utf8'))
       : null;

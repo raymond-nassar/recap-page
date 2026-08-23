@@ -1,0 +1,1185 @@
+{
+    "taskId":  "MRT-002-C01",
+    "sourceRetrievedAt":  "2026-08-22",
+    "sourceSection":  "Individual Character/Team Guides",
+    "entryCount":  130,
+    "distinctSourceIdentityCount":  128,
+    "entries":  [
+                    {
+                        "position":  1,
+                        "label":  "Abomination",
+                        "url":  "https://www.comicbookherald.com/abomination-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  2,
+                        "label":  "Adam Warlock",
+                        "url":  "https://www.comicbookherald.com/adam-warlock-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  3,
+                        "label":  "Agatha Harkness",
+                        "url":  "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  4,
+                        "label":  "Agents of Atlas",
+                        "url":  "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  5,
+                        "label":  "Amazing Spider-Man",
+                        "url":  "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  6,
+                        "label":  "Ant-Man",
+                        "url":  "https://www.comicbookherald.com/ant-man-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  7,
+                        "label":  "Apocalypse (X-Men)",
+                        "url":  "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+                        "duplicateFlag":  "**DUPE-A** (same URL as #127)",
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  8,
+                        "label":  "The Avengers",
+                        "url":  "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+                                                  "essential-avengers",
+                                                  "avengers-disassembled",
+                                                  "civil-war-avengers",
+                                                  "dark-reign-avengers",
+                                                  "heroic-age-avengers",
+                                                  "all-new-all-different-avengers",
+                                                  "marvel-fresh-start-avengers"
+                                              ]
+                    },
+                    {
+                        "position":  9,
+                        "label":  "Baron Zemo",
+                        "url":  "https://www.comicbookherald.com/baron-zemo-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  10,
+                        "label":  "Black Cat",
+                        "url":  "https://www.comicbookherald.com/black-cat-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  11,
+                        "label":  "Black Panther",
+                        "url":  "https://www.comicbookherald.com/black-panther-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  12,
+                        "label":  "Black Widow",
+                        "url":  "https://www.comicbookherald.com/black-widow-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  13,
+                        "label":  "Blade",
+                        "url":  "https://www.comicbookherald.com/blade-vampire-hunter-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  14,
+                        "label":  "Brian Michael Bendis Marvel-Verse (2000 to 2018)",
+                        "url":  "https://www.comicbookherald.com/brian-michael-bendis-marvel-universe-reading-order-2000-2018/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  15,
+                        "label":  "Bullseye",
+                        "url":  "https://www.comicbookherald.com/bullseye-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  16,
+                        "label":  "Cable (X-Man)",
+                        "url":  "https://www.comicbookherald.com/cable-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+                                                  "messiah-war"
+                                              ]
+                    },
+                    {
+                        "position":  17,
+                        "label":  "Captain America",
+                        "url":  "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  18,
+                        "label":  "Captain America (Classic)",
+                        "url":  "https://www.comicbookherald.com/classic-captain-america-reading-order-1940s-to-2000/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  19,
+                        "label":  "Captain Marvel",
+                        "url":  "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+                        "duplicateFlag":  "**DUPE-B** (same URL as #77)",
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  20,
+                        "label":  "Carnage",
+                        "url":  "https://www.comicbookherald.com/carnage-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  21,
+                        "label":  "Clea",
+                        "url":  "https://www.comicbookherald.com/clea-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  22,
+                        "label":  "Conan the Barbarian",
+                        "url":  "https://www.comicbookherald.com/conan-the-barbarian-comics-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  23,
+                        "label":  "Daredevil",
+                        "url":  "https://www.comicbookherald.com/daredevil-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  24,
+                        "label":  "Deadpool",
+                        "url":  "https://www.comicbookherald.com/deadpool-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  25,
+                        "label":  "Deathlok",
+                        "url":  "https://www.comicbookherald.com/deathlok-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  26,
+                        "label":  "The Defenders",
+                        "url":  "https://www.comicbookherald.com/the-defenders-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  27,
+                        "label":  "Doctor Doom",
+                        "url":  "https://www.comicbookherald.com/doctor-doom-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  28,
+                        "label":  "Doctor Strange",
+                        "url":  "https://www.comicbookherald.com/doctor-strange-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  29,
+                        "label":  "Donny Cates\u0027 Marvel Universe Reading Order",
+                        "url":  "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  30,
+                        "label":  "Drax the Destroyer",
+                        "url":  "https://www.comicbookherald.com/drax-the-destroyer-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  31,
+                        "label":  "Elektra",
+                        "url":  "https://www.comicbookherald.com/where-to-start-with-an-elektra-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  32,
+                        "label":  "Emma Frost",
+                        "url":  "https://www.comicbookherald.com/emma-frost-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  33,
+                        "label":  "Eternals",
+                        "url":  "https://www.comicbookherald.com/marvels-eternals-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  34,
+                        "label":  "Falcon (Sam Wilson)",
+                        "url":  "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  35,
+                        "label":  "Fantastic Four",
+                        "url":  "https://www.comicbookherald.com/fantastic-four-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  36,
+                        "label":  "Galactus",
+                        "url":  "https://www.comicbookherald.com/the-essential-galactus-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  37,
+                        "label":  "Gambit - X-Men",
+                        "url":  "https://www.comicbookherald.com/gambit-reading-order-part-1-uncanny-x-men-266-280/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  38,
+                        "label":  "Gamora",
+                        "url":  "https://www.comicbookherald.com/gamora-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  39,
+                        "label":  "Ghost Rider",
+                        "url":  "https://www.comicbookherald.com/ghost-rider-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  40,
+                        "label":  "Great Lakes Avengers",
+                        "url":  "https://www.comicbookherald.com/great-lakes-avengers-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  41,
+                        "label":  "Groot",
+                        "url":  "https://www.comicbookherald.com/groot-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  42,
+                        "label":  "Gwenpool",
+                        "url":  "https://www.comicbookherald.com/gwenpool-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  43,
+                        "label":  "Guardians of the Galaxy",
+                        "url":  "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  44,
+                        "label":  "Hawkeye (Clint Barton, Kate Bishop)",
+                        "url":  "https://www.comicbookherald.com/hawkeye-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  45,
+                        "label":  "Hercules",
+                        "url":  "https://www.comicbookherald.com/hercules-marvel-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  46,
+                        "label":  "High Evolutionary",
+                        "url":  "https://www.comicbookherald.com/high-evolutionary-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  47,
+                        "label":  "Hope Summers",
+                        "url":  "https://www.comicbookherald.com/hope-summers-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  48,
+                        "label":  "Howard the Duck",
+                        "url":  "https://www.comicbookherald.com/howard-the-duck-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  49,
+                        "label":  "Hulk (and She-Hulk, Red Hulk)",
+                        "url":  "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  50,
+                        "label":  "Hydra",
+                        "url":  "https://www.comicbookherald.com/hydra-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  51,
+                        "label":  "Infinity Trilogy (Gauntlet, War, Crusade)",
+                        "url":  "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  52,
+                        "label":  "Inhumans",
+                        "url":  "https://www.comicbookherald.com/inhumans-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  53,
+                        "label":  "Iron Fist",
+                        "url":  "https://www.comicbookherald.com/iron-fist-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  54,
+                        "label":  "Iron Man",
+                        "url":  "https://www.comicbookherald.com/iron-man-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  55,
+                        "label":  "Jonathan Hickman\u0027s Marvel-Verse (2008 to 2016)",
+                        "url":  "https://www.comicbookherald.com/jonathan-hickman-marvel-universe-reading-order-2008-to-2016/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  56,
+                        "label":  "Jessica Jones",
+                        "url":  "https://www.comicbookherald.com/jessica-jones-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  57,
+                        "label":  "Kang the Conqueror",
+                        "url":  "https://www.comicbookherald.com/kang-the-conqueror-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  58,
+                        "label":  "Kingpin",
+                        "url":  "https://www.comicbookherald.com/kingpin-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  59,
+                        "label":  "Kitty Pryde",
+                        "url":  "https://www.comicbookherald.com/the-essential-kitty-pryde-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  60,
+                        "label":  "Legion (David Haller)",
+                        "url":  "https://www.comicbookherald.com/legion-david-haller-x-men-reading-order-best-legion-comics-guide/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  61,
+                        "label":  "Loki",
+                        "url":  "https://www.comicbookherald.com/loki-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  62,
+                        "label":  "Luke Cage (Power Man)",
+                        "url":  "https://www.comicbookherald.com/where-to-start-with-luke-cage-comics/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  63,
+                        "label":  "Madelyne Pryor (Goblin Queen)",
+                        "url":  "https://www.comicbookherald.com/madelyne-pryor-goblin-queen-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  64,
+                        "label":  "Magik (Illyana Rasputin)",
+                        "url":  "https://www.comicbookherald.com/magik-illyana-rasputin-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  65,
+                        "label":  "Magneto",
+                        "url":  "https://www.comicbookherald.com/magneto-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  66,
+                        "label":  "The Maker",
+                        "url":  "https://www.comicbookherald.com/the-maker-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  67,
+                        "label":  "Manifold (Eden Fesi)",
+                        "url":  "https://www.comicbookherald.com/manifold-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  68,
+                        "label":  "Marvel Max",
+                        "url":  "https://www.comicbookherald.com/every-marvel-max-comic-book-series/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  69,
+                        "label":  "Marvel vs. DC",
+                        "url":  "https://www.comicbookherald.com/marvel-and-dc-comics-crossovers-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  70,
+                        "label":  "Marvel Zombies",
+                        "url":  "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  71,
+                        "label":  "Mephisto",
+                        "url":  "https://www.comicbookherald.com/mephisto-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  72,
+                        "label":  "Midnight Sons",
+                        "url":  "https://www.comicbookherald.com/midnight-sons-darkhold-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  73,
+                        "label":  "Mister Sinister",
+                        "url":  "https://www.comicbookherald.com/mister-sinister-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  74,
+                        "label":  "Moira MacTaggert (X-Men)",
+                        "url":  "https://www.comicbookherald.com/moira-mactaggert-x-men-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  75,
+                        "label":  "Moon Knight",
+                        "url":  "https://www.comicbookherald.com/moon-knight-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  76,
+                        "label":  "Monica Rambeau",
+                        "url":  "https://www.comicbookherald.com/monica-rambeau-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  77,
+                        "label":  "Ms. Marvel (All)",
+                        "url":  "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+                        "duplicateFlag":  "**DUPE-B** (same URL as #19)",
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  78,
+                        "label":  "Ms. Marvel (Kamala Khan)",
+                        "url":  "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  79,
+                        "label":  "Mysterio",
+                        "url":  "https://www.comicbookherald.com/mysterio-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  80,
+                        "label":  "Mystique",
+                        "url":  "https://www.comicbookherald.com/mystique-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  81,
+                        "label":  "Namor (Sub-Mariner)",
+                        "url":  "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  82,
+                        "label":  "Nebula",
+                        "url":  "https://www.comicbookherald.com/nebula-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  83,
+                        "label":  "New Mutants",
+                        "url":  "https://www.comicbookherald.com/new-mutants-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  84,
+                        "label":  "New Warriors",
+                        "url":  "https://www.comicbookherald.com/new-warriors-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  85,
+                        "label":  "Nick Fury",
+                        "url":  "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  86,
+                        "label":  "Nimrod (X-Men)",
+                        "url":  "https://www.comicbookherald.com/nimrod-x-men-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  87,
+                        "label":  "Nova",
+                        "url":  "https://www.comicbookherald.com/nova-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  88,
+                        "label":  "Old Man Logan",
+                        "url":  "https://www.comicbookherald.com/old-man-logan-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  89,
+                        "label":  "Original Graphic Novels (OGNs)",
+                        "url":  "https://www.comicbookherald.com/the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  90,
+                        "label":  "Phalanx",
+                        "url":  "https://www.comicbookherald.com/phalanx-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  91,
+                        "label":  "Phoenix",
+                        "url":  "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  92,
+                        "label":  "Planet Hulk (Greg Pak Hulk)",
+                        "url":  "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  93,
+                        "label":  "Professor X (Charles Xavier)",
+                        "url":  "https://www.comicbookherald.com/professor-x-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  94,
+                        "label":  "Psylocke",
+                        "url":  "https://www.comicbookherald.com/betsy-braddock-psylocke-captain-britain-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  95,
+                        "label":  "Punisher",
+                        "url":  "https://www.comicbookherald.com/punisher-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  96,
+                        "label":  "Rocket Raccoon",
+                        "url":  "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  97,
+                        "label":  "Runaways",
+                        "url":  "https://www.comicbookherald.com/runaways-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  98,
+                        "label":  "Scarlet Witch",
+                        "url":  "https://www.comicbookherald.com/scarlet-witch-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  99,
+                        "label":  "Shadow King",
+                        "url":  "https://www.comicbookherald.com/shadow-king-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  100,
+                        "label":  "Shang-Chi",
+                        "url":  "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  101,
+                        "label":  "She-Hulk",
+                        "url":  "https://www.comicbookherald.com/she-hulk-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  102,
+                        "label":  "Silver Surfer",
+                        "url":  "https://www.comicbookherald.com/silver-surfer-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  103,
+                        "label":  "Skrulls",
+                        "url":  "https://www.comicbookherald.com/skrulls-reading-order-essential-skrull-comics/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  104,
+                        "label":  "Son of Satan (Hellstorm)",
+                        "url":  "https://www.comicbookherald.com/son-of-satan-hellstrom-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  105,
+                        "label":  "Spider-Gwen",
+                        "url":  "https://www.comicbookherald.com/spider-gwen-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  106,
+                        "label":  "Spider-Man (2099)",
+                        "url":  "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  107,
+                        "label":  "Spider-Woman",
+                        "url":  "https://www.comicbookherald.com/spider-woman-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  108,
+                        "label":  "Star-Lord (Peter Quill)",
+                        "url":  "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  109,
+                        "label":  "Storm (X-Men)",
+                        "url":  "https://www.comicbookherald.com/storm-x-men-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  110,
+                        "label":  "SWORD",
+                        "url":  "https://www.comicbookherald.com/the-essential-marvels-s-w-o-r-d-comics-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  111,
+                        "label":  "Squirrel Girl",
+                        "url":  "https://www.comicbookherald.com/squirrel-girl-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  112,
+                        "label":  "Thanos",
+                        "url":  "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  113,
+                        "label":  "Thor",
+                        "url":  "https://www.comicbookherald.com/thor-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  114,
+                        "label":  "Ultimate Spider-Man",
+                        "url":  "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  115,
+                        "label":  "Venom",
+                        "url":  "https://www.comicbookherald.com/venom-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  116,
+                        "label":  "Vision",
+                        "url":  "https://www.comicbookherald.com/the-vision-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  117,
+                        "label":  "Ultimates",
+                        "url":  "https://www.comicbookherald.com/the-ultimates-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  118,
+                        "label":  "Ultron",
+                        "url":  "https://www.comicbookherald.com/best-ultron-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  119,
+                        "label":  "Wasp",
+                        "url":  "https://www.comicbookherald.com/wasp-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  120,
+                        "label":  "War Machine (Rhodey)",
+                        "url":  "https://www.comicbookherald.com/war-machine-jim-rhodes-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  121,
+                        "label":  "White Tiger (Ava Ayala)",
+                        "url":  "https://www.comicbookherald.com/ava-ayala-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  122,
+                        "label":  "Winter Soldier (Bucky Barnes)",
+                        "url":  "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  123,
+                        "label":  "Wolverine",
+                        "url":  "https://www.comicbookherald.com/wolverine-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  124,
+                        "label":  "X-23 (Laura Kinney)",
+                        "url":  "https://www.comicbookherald.com/x-23-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  125,
+                        "label":  "The X-Men (Modern Era)",
+                        "url":  "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  126,
+                        "label":  "The X-Men (Chris Claremont Era)",
+                        "url":  "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  127,
+                        "label":  "X-Men: Age of Apocalypse",
+                        "url":  "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+                        "duplicateFlag":  "**DUPE-A** (same URL as #7)",
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  128,
+                        "label":  "X-Men: Onslaught",
+                        "url":  "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  129,
+                        "label":  "X-Man (Nate Grey)",
+                        "url":  "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    },
+                    {
+                        "position":  130,
+                        "label":  "Young Avengers",
+                        "url":  "https://www.comicbookherald.com/young-avengers-reading-order/",
+                        "duplicateFlag":  null,
+                        "currentCatalogIds":  [
+
+                                              ]
+                    }
+                ]
+}

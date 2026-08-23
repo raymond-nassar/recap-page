@@ -260,8 +260,17 @@ test('preparation selects one frozen packet by inventory id without changing leg
   const packet = frozenPacket({ inventoryId: 'future-inventory' });
   writeFileSync(path.join(packetsDir, 'future-event.json'), JSON.stringify(packet), 'utf8');
   writeFileSync(inventoryPath, JSON.stringify([{
+    position: 1,
     id: 'future-inventory',
+    title: 'Future Inventory',
     url: packet.sourceUrl,
+    guideType: 'event',
+    window: null,
+    disposition: 'new-order',
+    reason: 'Ready for a bounded test packet.',
+    sourceRetrievedAt: '2026-08-22',
+    overlapIds: [],
+    catalogIds: [],
     deliveryStatus: 'pending',
   }]), 'utf8');
   writeFileSync(manifestPath, JSON.stringify({ lists: [] }), 'utf8');
@@ -275,6 +284,17 @@ test('preparation selects one frozen packet by inventory id without changing leg
   assert.equal(selected[0].id, 'future-event');
   assert.equal(selected[0].isFrozenPacket, true);
   assert.equal(selected[0].rows.length, 1);
+
+  const duplicateInventoryPath = path.join(tempDir, 'duplicate-inventory.json');
+  writeFileSync(duplicateInventoryPath, readFileSync(inventoryPath), 'utf8');
+  await assert.rejects(
+    () => selectPreparationGuides(['future-inventory'], {
+      packetsDir,
+      inventoryPaths: [inventoryPath, duplicateInventoryPath],
+      manifestPath,
+    }),
+    /exists in multiple maintained inventories/i,
+  );
 
   const legacy = await selectPreparationGuides(['minimum-carnage'], { packetsDir });
   assert.deepEqual(legacy.map((guide) => guide.id), ['minimum-carnage']);

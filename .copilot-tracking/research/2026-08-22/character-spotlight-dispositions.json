@@ -1,0 +1,4048 @@
+{
+  "taskId": "MRT-002-C01",
+  "generatedOn": "2026-08-23",
+  "authority": "coordinator",
+  "sourceEntryCount": 130,
+  "sourceIdentityCount": 128,
+  "metadataHorizon": "2025-10-29",
+  "selectionGate": "No pilot was selected until every source identity had an exact boundary record and a central disposition, and the selected pilot alone had exact metadata and complete-current-library evidence.",
+  "counts": {
+    "deferred": 118,
+    "excluded": 7,
+    "blocked": 2,
+    "pilot-approved": 1
+  },
+  "records": [
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/abomination-reading-order/",
+      "labels": [
+        "Abomination"
+      ],
+      "positions": [
+        1
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 59845,
+        "canonicalUrl": "https://www.comicbookherald.com/abomination-reading-order/",
+        "contentSha256": "caffa7a1a36d3fd25396be7be4ace07e45f1e8a09bcdc8e447f32117b0f02665",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Bonus Round: Teen Abomination",
+        "issueBearingBlockCount": 38,
+        "issueBearingBlocksSha256": "87f15741c5803582f455382b4f281fe8acddabf4fc4471ba4a995dbc5e3766c5"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2022-03-03T17:51:11",
+        "maximumExplicitIssueBlockYear": 2016
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+      "labels": [
+        "Adam Warlock"
+      ],
+      "positions": [
+        2
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 12181,
+        "canonicalUrl": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+        "contentSha256": "ecec1c32719085c216b4f0bd1a599b1b3e58dc3777bdbca92445b7dedf70de36",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Annihilation to the New Infinity Saga",
+        "issueBearingBlockCount": 26,
+        "issueBearingBlocksSha256": "5d8c659fc108dfc9345c68c7f6ab14f7dcedd7b5e71b78fe7da5c09094ec1a7c"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2017-04-08T11:56:43",
+        "maximumExplicitIssueBlockYear": 2008
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+      "labels": [
+        "Agatha Harkness"
+      ],
+      "positions": [
+        3
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 59236,
+        "canonicalUrl": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+        "contentSha256": "4affd62d844d51a08ab529047a0334cc45d1f8e05008aad19b7ee4f3018ba4bb",
+        "firstHeading": "Related:",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 68,
+        "issueBearingBlocksSha256": "c9306f72a1b302ad320898ef57b2ab480d0543eb6a8312856adda3a1edd3be7c"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T15:03:39",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "labels": [
+        "Agents of Atlas"
+      ],
+      "positions": [
+        4
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 59078,
+        "canonicalUrl": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+        "contentSha256": "e58153e982b45d6471de9839f19dcf2c337ddb585a3bec1c19b558497d5454a0",
+        "firstHeading": "Background Reading",
+        "lastHeading": "The New Agents of Atlas",
+        "issueBearingBlockCount": 31,
+        "issueBearingBlocksSha256": "3a4975961b59808c8a7757da7164558ed55c8962f5221735a5b45f8be0a37d45"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2022-03-02T14:41:30",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "labels": [
+        "Amazing Spider-Man"
+      ],
+      "positions": [
+        5
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 2595,
+        "canonicalUrl": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+        "contentSha256": "5a32479a05c51673f42ad1fe5a0249ac7c6bb829a8a26e0b8f2dcfbdc946200e",
+        "firstHeading": "Quick Caveats & Tips",
+        "lastHeading": "Joe Kelly, I Guess!",
+        "issueBearingBlockCount": 283,
+        "issueBearingBlocksSha256": "65a2ca45b5789ad64a392acdbdb76d836efc1f7e271c20800c1e1274de90ddcc"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-05-20T14:42:55",
+        "maximumExplicitIssueBlockYear": 2025
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "labels": [
+        "Ant-Man"
+      ],
+      "positions": [
+        6
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 7425,
+        "canonicalUrl": "https://www.comicbookherald.com/ant-man-reading-order/",
+        "contentSha256": "f849129e51abbf1f69abb9e560dc670ba9777c3f89c5cb7e5f2be0be84b19408",
+        "firstHeading": "Ant-Man Reading Order",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 54,
+        "issueBearingBlocksSha256": "64df7ec7474b412804b31385e72673ac886dd82ed3fd29e46f173bfa77924262"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T15:14:24",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+      "labels": [
+        "Apocalypse (X-Men)",
+        "X-Men: Age of Apocalypse"
+      ],
+      "positions": [
+        7,
+        127
+      ],
+      "duplicateFlags": [
+        "**DUPE-A** (same URL as #127)",
+        "**DUPE-A** (same URL as #7)"
+      ],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 1617,
+        "canonicalUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+        "contentSha256": "b0691ad15d4f0a3fe5c0944fc2e2563ea60fb0e22efd49cc95a30a7908b08566",
+        "firstHeading": "I) X-Men: Age of Apocalypse Graphic Novels Reading Order",
+        "lastHeading": "Heroically Support Comic Book Herald!",
+        "issueBearingBlockCount": 114,
+        "issueBearingBlocksSha256": "a3ad0e7052a617b94902db2595fa2fd344eaab7aa1b1296bf7d756d2c5d76531"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-05-29T17:15:06",
+        "maximumExplicitIssueBlockYear": 2025
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+      "labels": [
+        "The Avengers"
+      ],
+      "positions": [
+        8
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 2516,
+        "canonicalUrl": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+        "contentSha256": "2dac2ec563dc7c93c514b5906f49f6b0edd572e89dca3ee4b0c5a572c9178447",
+        "firstHeading": "Question of the Week",
+        "lastHeading": "Jed MacKay’s Avengers",
+        "issueBearingBlockCount": 153,
+        "issueBearingBlocksSha256": "0ca3a42140ebca14c96efb64559df41f75f01bfca2bbd9b47b8cf789a2030e77"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-08-20T18:36:12",
+        "maximumExplicitIssueBlockYear": 2024
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": [
+          "essential-avengers",
+          "avengers-disassembled",
+          "civil-war-avengers",
+          "dark-reign-avengers",
+          "heroic-age-avengers",
+          "all-new-all-different-avengers",
+          "marvel-fresh-start-avengers"
+        ]
+      },
+      "centralDisposition": "deferred",
+      "reason": "The exact source URL is already represented in the catalog; issue-set identity still requires a frozen mapping before any variant decision."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/baron-zemo-reading-order/",
+      "labels": [
+        "Baron Zemo"
+      ],
+      "positions": [
+        9
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 43190,
+        "canonicalUrl": "https://www.comicbookherald.com/baron-zemo-reading-order/",
+        "contentSha256": "4835f450b1814ddb4139c7b887f6f86d01682272a0bb4eef6a0dd85951bc1c54",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Zemo’s Secret Empire",
+        "issueBearingBlockCount": 40,
+        "issueBearingBlocksSha256": "e7606f055c484f4adcdfcad7a73cae8767ee01807065bf642a82b45c4e5ee44e"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2019-09-10T09:19:03",
+        "maximumExplicitIssueBlockYear": 2018
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/black-cat-reading-order/",
+      "labels": [
+        "Black Cat"
+      ],
+      "positions": [
+        10
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 26912,
+        "canonicalUrl": "https://www.comicbookherald.com/black-cat-reading-order/",
+        "contentSha256": "914181ab30d1960e0ab6cccd451a7dccea33f0a370d401d05c887ea0a92a7b26",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 39,
+        "issueBearingBlocksSha256": "4652b5acb59c7ebbcc6f9faa23d5390800077b934851a0cbc7e164721138b340"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T15:38:54",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "labels": [
+        "Black Panther"
+      ],
+      "positions": [
+        11
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 9013,
+        "canonicalUrl": "https://www.comicbookherald.com/black-panther-reading-order/",
+        "contentSha256": "9466c5e4e0bddb3290c8e2320e1ca1f10ac06f868216f62afebe2ecce83336f9",
+        "firstHeading": "Black Panther Debuts",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 58,
+        "issueBearingBlocksSha256": "abf1ce17148958e0213436f54219935feb30e840da7b2be1ae9ad4fd457bd332"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T16:10:19",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "labels": [
+        "Black Widow"
+      ],
+      "positions": [
+        12
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 9120,
+        "canonicalUrl": "https://www.comicbookherald.com/black-widow-reading-order/",
+        "contentSha256": "d038b80551132f73436c6fe32608d1d7005c4319f9e94d536c9ffb3bd29f193e",
+        "firstHeading": "Black Widow Origins",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 76,
+        "issueBearingBlocksSha256": "61e9c2bd0929a4b80dfb75e028faeca96505d00907d1af5567d7a27ced1d1de2"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T16:18:48",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/blade-vampire-hunter-reading-order/",
+      "labels": [
+        "Blade"
+      ],
+      "positions": [
+        13
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 25684,
+        "canonicalUrl": "https://www.comicbookherald.com/blade-vampire-hunter-reading-order/",
+        "contentSha256": "619e17123a9223ba56428bebf54b8bec8ca9a421f2fb68b7130ea3a50bde8e7b",
+        "firstHeading": "Blade Comic Book Reading Order",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 39,
+        "issueBearingBlocksSha256": "8f28a580abe73b16cb313d2f1c50832196c57015550981fb9436a5c8df9c08dc"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T16:27:20",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/brian-michael-bendis-marvel-universe-reading-order-2000-2018/",
+      "labels": [
+        "Brian Michael Bendis Marvel-Verse (2000 to 2018)"
+      ],
+      "positions": [
+        14
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 22801,
+        "canonicalUrl": "https://www.comicbookherald.com/brian-michael-bendis-marvel-universe-reading-order-2000-2018/",
+        "contentSha256": "57239823b2dc6f1f3d2f6dafb3c74eca229e3bff44c4437eb813308b9e2d9706",
+        "firstHeading": "The Bendis Marvel Reading Order!",
+        "lastHeading": "Infamous Iron Man, Ironheart, Jessica Jones through Marvel Legacy",
+        "issueBearingBlockCount": 94,
+        "issueBearingBlocksSha256": "08e461a1a3fe933f5dc5b705fe252d5717ab6760dcb2bf29453347dca69a218a"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2018-05-21T17:15:00",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/bullseye-reading-order/",
+      "labels": [
+        "Bullseye"
+      ],
+      "positions": [
+        15
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 29531,
+        "canonicalUrl": "https://www.comicbookherald.com/bullseye-reading-order/",
+        "contentSha256": "73e6df1a3e3ea70a972fe3b018a945753e0783ec14b34ac77e37738d51ebc2fd",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 34,
+        "issueBearingBlocksSha256": "7852e9086ddebcf2b1e5232d14753e378761ecabd117a9d86ad2f7daa6651a06"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T16:29:53",
+        "maximumExplicitIssueBlockYear": 2016
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/cable-reading-order/",
+      "labels": [
+        "Cable (X-Man)"
+      ],
+      "positions": [
+        16
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11855,
+        "canonicalUrl": "https://www.comicbookherald.com/cable-reading-order/",
+        "contentSha256": "b20f3b87e894104fae290a9cdbb5a3f12daab3e99c0de566a746c2ebb6544ec1",
+        "firstHeading": "Enter Cable and X-Force",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 62,
+        "issueBearingBlocksSha256": "80819ddb5840c4ddc3133b539cda6cf600585d8d09fab7d511549783a1c8768d"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T16:38:11",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": [
+          "messiah-war"
+        ]
+      },
+      "centralDisposition": "deferred",
+      "reason": "The exact source URL is already represented in the catalog; issue-set identity still requires a frozen mapping before any variant decision."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+      "labels": [
+        "Captain America"
+      ],
+      "positions": [
+        17
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 2328,
+        "canonicalUrl": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+        "contentSha256": "565cbceb8f8668ed1fbe93399880329b2c9f653e33219d8a38c18a5aef9932da",
+        "firstHeading": "Captain America Trade & Issue Reading Order",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 74,
+        "issueBearingBlocksSha256": "57d26270796cf7557db257f14342451dce49bc5d7934efb26f5bf14278a1bd07"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2025-08-26T15:45:19",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/classic-captain-america-reading-order-1940s-to-2000/",
+      "labels": [
+        "Captain America (Classic)"
+      ],
+      "positions": [
+        18
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 35957,
+        "canonicalUrl": "https://www.comicbookherald.com/classic-captain-america-reading-order-1940s-to-2000/",
+        "contentSha256": "d2d4ead76850a8fc7caa662d408a26630e306fc3ac27156c51bb53a5282dd343",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Captain America in the 1990’s",
+        "issueBearingBlockCount": 27,
+        "issueBearingBlocksSha256": "f1e0fc4d421d81f7832e53db1251b4d2198013d2e0f3976d19c00d676fc4f82c"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2019-05-20T09:55:23",
+        "maximumExplicitIssueBlockYear": 1998
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "labels": [
+        "Captain Marvel",
+        "Ms. Marvel (All)"
+      ],
+      "positions": [
+        19,
+        77
+      ],
+      "duplicateFlags": [
+        "**DUPE-B** (same URL as #77)",
+        "**DUPE-B** (same URL as #19)"
+      ],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 9349,
+        "canonicalUrl": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+        "contentSha256": "7997c83ef09d9f503afe933dbc146b5e64b6826d0a7048e9907a68c164303ba1",
+        "firstHeading": "I) The Captain Marvel / Phil Lawson Years (Origins and Beginnings)",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 77,
+        "issueBearingBlocksSha256": "a2feafca35ca350c57aa64be1b9d6fa8df2e3c2ddbd211c066d6fc36d441bca1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T16:59:09",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/carnage-reading-order/",
+      "labels": [
+        "Carnage"
+      ],
+      "positions": [
+        20
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 37975,
+        "canonicalUrl": "https://www.comicbookherald.com/carnage-reading-order/",
+        "contentSha256": "4458492d6ae70aca71daa5e9ad98fa14c592807799e2c90247054ad97c854877",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Updates",
+        "issueBearingBlockCount": 39,
+        "issueBearingBlocksSha256": "0976970a9224d0d8a076d33922d051f568b0061484e8c88b94682c75d0d97528"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-24T17:08:14",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/clea-reading-order/",
+      "labels": [
+        "Clea"
+      ],
+      "positions": [
+        21
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 58963,
+        "canonicalUrl": "https://www.comicbookherald.com/clea-reading-order/",
+        "contentSha256": "e31dca7b754b61e16303e28cc42ad229fa701af6460c2247ea59a2f8ae1426ec",
+        "firstHeading": "Related:",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 29,
+        "issueBearingBlocksSha256": "f1bef4d4377066b07431b7f077277c8551a7c8db7ab93906c1bca5fbf818dbfb"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T12:26:52",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/conan-the-barbarian-comics-reading-order/",
+      "labels": [
+        "Conan the Barbarian"
+      ],
+      "positions": [
+        22
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 31953,
+        "canonicalUrl": "https://www.comicbookherald.com/conan-the-barbarian-comics-reading-order/",
+        "contentSha256": "6145dd3029c9c09b3b814bda3da3cc35495d8386d133913dff453f60d261748f",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 91,
+        "issueBearingBlocksSha256": "2062a996513c2a795d5dbf99f3ec94d32025ed68e9cce7beae6ca0470f82c1a1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T12:31:37",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source includes licensed material outside the unqualified Marvel metadata and provenance contract."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/daredevil-reading-order/",
+      "labels": [
+        "Daredevil"
+      ],
+      "positions": [
+        23
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 5812,
+        "canonicalUrl": "https://www.comicbookherald.com/daredevil-reading-order/",
+        "contentSha256": "10f01432c368de441e6a72fe7617c6d098a834334b65233e011fbb32b70c650b",
+        "firstHeading": "I) Daredevil’s Origins",
+        "lastHeading": "X) Team-Ups & Guest Spots",
+        "issueBearingBlockCount": 105,
+        "issueBearingBlocksSha256": "763b9bbcbf395c2887b335823c780c27eae6c4f8b9c767bccf5ca7f3f5121823"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-05-05T17:52:14",
+        "maximumExplicitIssueBlockYear": 2025
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/deadpool-reading-order/",
+      "labels": [
+        "Deadpool"
+      ],
+      "positions": [
+        24
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 5548,
+        "canonicalUrl": "https://www.comicbookherald.com/deadpool-reading-order/",
+        "contentSha256": "c00cb7706d865e27e020443d1be72696dd8dd74aee4d75d984e88efeee05603c",
+        "firstHeading": "The Best Deadpool Comics To Start With!",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 97,
+        "issueBearingBlocksSha256": "16199dc249e2c3f9947df2f3d8abfece1d334af4314f13d65be321e9be80656f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:09:11",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/deathlok-reading-order/",
+      "labels": [
+        "Deathlok"
+      ],
+      "positions": [
+        25
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 47387,
+        "canonicalUrl": "https://www.comicbookherald.com/deathlok-reading-order/",
+        "contentSha256": "50986ecb46ef7818989d24d6ceb214fb975e1dcbf8950be18968f4f38dfc6e5e",
+        "firstHeading": "Deathlok in the 70’s and 80’s: Luther Manning’s Odyssey",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 26,
+        "issueBearingBlocksSha256": "a75ffc8ec601429f944f35798569563fcf7c907f2aa6f95ea7aef95904fce3a1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:10:48",
+        "maximumExplicitIssueBlockYear": 2014
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-defenders-reading-order/",
+      "labels": [
+        "The Defenders"
+      ],
+      "positions": [
+        26
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 23473,
+        "canonicalUrl": "https://www.comicbookherald.com/the-defenders-reading-order/",
+        "contentSha256": "e32b9e54bf662ea54019536acad18c3d2a4c7128f0fad72f47ce5e2841e6e754",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 25,
+        "issueBearingBlocksSha256": "d7ff2abdc15dc4fd087229b5843bd3264ed5a8ba4343b09646b31e5eec977b8f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:14:12",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/doctor-doom-reading-order/",
+      "labels": [
+        "Doctor Doom"
+      ],
+      "positions": [
+        27
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11677,
+        "canonicalUrl": "https://www.comicbookherald.com/doctor-doom-reading-order/",
+        "contentSha256": "3b751d3591f21ee05fc4c4515fcc8baa4a99221458a073578d491a05388ce6ad",
+        "firstHeading": "The Book of Doom",
+        "lastHeading": "More Related Reading Orders:",
+        "issueBearingBlockCount": 132,
+        "issueBearingBlocksSha256": "c9648ce1ccbf25798b30c06784b655d68e6052c5c756d1bdfad7b23dbc3aa008"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-07-24T11:26:55",
+        "maximumExplicitIssueBlockYear": 2024
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "labels": [
+        "Doctor Strange"
+      ],
+      "positions": [
+        28
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 8772,
+        "canonicalUrl": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+        "contentSha256": "f0d4f1d322af2bd448f2455f79666debba42683248fbbb9732e292b64288e446",
+        "firstHeading": "I) Dr. Strange Origins and The 1960’s",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 74,
+        "issueBearingBlocksSha256": "2511c50dcc8d4342e328bcd2b3da3e69d866b12e200cfc75eb26651016c44d90"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:33:38",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+      "labels": [
+        "Donny Cates' Marvel Universe Reading Order"
+      ],
+      "positions": [
+        29
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 41204,
+        "canonicalUrl": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+        "contentSha256": "1da4a9e53453ff9304f90d874ffbf88edd41cb2b61cb7adc4f49311e7f627d00",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Cosmic Thor & Venom Island",
+        "issueBearingBlockCount": 34,
+        "issueBearingBlocksSha256": "7ba86eba7fe41f279e479d1f901e302b1bdb0c753d810fd3e6f04f6f380f2340"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2020-01-02T16:03:15",
+        "maximumExplicitIssueBlockYear": 2018
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/drax-the-destroyer-reading-order/",
+      "labels": [
+        "Drax the Destroyer"
+      ],
+      "positions": [
+        30
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10906,
+        "canonicalUrl": "https://www.comicbookherald.com/drax-the-destroyer-reading-order/",
+        "contentSha256": "207109270f11dd50a7ca283c05d74ecf49dd402cbc03b50e047ff5abca6bae01",
+        "firstHeading": "Drax the Destroyer Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 10,
+        "issueBearingBlocksSha256": "db2b7779ab4ef89bd7ad28a0a1b9155b8527214dd791c5f95bb0d28247184f00"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:41:06",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/where-to-start-with-an-elektra-reading-order/",
+      "labels": [
+        "Elektra"
+      ],
+      "positions": [
+        31
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 8988,
+        "canonicalUrl": "https://www.comicbookherald.com/where-to-start-with-an-elektra-reading-order/",
+        "contentSha256": "2a244e43706935d09b4c9754a2139d5b6d47f686b85440a98580bba8ac02cd23",
+        "firstHeading": "Frank Miller’s Elektra (1981 to 1993)",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 37,
+        "issueBearingBlocksSha256": "9b15c564e5dfbca08c5b8ee65633f507f4f2b0117227d8c3b577ba520b714243"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:49:40",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/emma-frost-reading-order/",
+      "labels": [
+        "Emma Frost"
+      ],
+      "positions": [
+        32
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 62663,
+        "canonicalUrl": "https://www.comicbookherald.com/emma-frost-reading-order/",
+        "contentSha256": "15728dd62ca153c95978cf5b78301e9a4ea7a7853c0fb94c2c0acbba939e8ba4",
+        "firstHeading": "Emma as a Villain",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 299,
+        "issueBearingBlocksSha256": "4275e6437828a572c8ad5a1468a0e35536130cf027ba10558c6624646730d96d"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T13:59:27",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/marvels-eternals-reading-order/",
+      "labels": [
+        "Eternals"
+      ],
+      "positions": [
+        33
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 24463,
+        "canonicalUrl": "https://www.comicbookherald.com/marvels-eternals-reading-order/",
+        "contentSha256": "c37355b34c1e36d3f41723ddf991e00a229ffdf4e3369cf5bf723daa36cacd1f",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 35,
+        "issueBearingBlocksSha256": "ed6128703c388c261c3d03ec978389239b063f39be9dcc942941582910c7038f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T14:04:27",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+      "labels": [
+        "Falcon (Sam Wilson)"
+      ],
+      "positions": [
+        34
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11835,
+        "canonicalUrl": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+        "contentSha256": "b3cf476eb5056dcf19616fcdb5dc4c8f3bd05b6d5bdd32c35b510c8812f248fb",
+        "firstHeading": "Sam Wilson, Captain America and Falcon Comics Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 79,
+        "issueBearingBlocksSha256": "30f3e4087e123591f9f1ff4ec8eb7e7ce6f5a19f2f0c7529ea1a162decf7bf7e"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T14:08:33",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+      "labels": [
+        "Fantastic Four"
+      ],
+      "positions": [
+        35
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 5991,
+        "canonicalUrl": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+        "contentSha256": "6bc7640dee0b8a2310dcbd2c10c333475acdb12bebeebdc2caa2133fb0e3ac4d",
+        "firstHeading": "I) Fantastic Four Launch the Marvel Universe - Lee & Kirby in the 60’s",
+        "lastHeading": "Fantastic Four by Ryan North!",
+        "issueBearingBlockCount": 117,
+        "issueBearingBlocksSha256": "14c642f0734f336ffdb6aead6587687fe13d0d46b10bca2faa093e969f75b90b"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2025-02-04T09:42:03",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-essential-galactus-reading-order/",
+      "labels": [
+        "Galactus"
+      ],
+      "positions": [
+        36
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 48230,
+        "canonicalUrl": "https://www.comicbookherald.com/the-essential-galactus-reading-order/",
+        "contentSha256": "ac7b8a29c72e15c02411258502b32ef39cf201e834dd21e452bdb4ecdeb9fbda",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 45,
+        "issueBearingBlocksSha256": "09d140ffcb1b2f0134eb0c99d0d49646a08338e69f3bb6e6d487bdea9f7f76c8"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T14:33:00",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/gambit-reading-order-part-1-uncanny-x-men-266-280/",
+      "labels": [
+        "Gambit - X-Men"
+      ],
+      "positions": [
+        37
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 3034,
+        "canonicalUrl": "https://www.comicbookherald.com/gambit-reading-order-part-1-uncanny-x-men-266-280/",
+        "contentSha256": "b3954228090304928e661c24c7ab0f1e517fe99c3468496d09e00306374c2bb1",
+        "firstHeading": null,
+        "lastHeading": null,
+        "issueBearingBlockCount": 6,
+        "issueBearingBlocksSha256": "e8acf4a3a6fe14451a7679afe980ff8f1fae099b62393bff7068f2e1c2a52697"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2014-09-29T22:38:37",
+        "maximumExplicitIssueBlockYear": null
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/gamora-reading-order/",
+      "labels": [
+        "Gamora"
+      ],
+      "positions": [
+        38
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10908,
+        "canonicalUrl": "https://www.comicbookherald.com/gamora-reading-order/",
+        "contentSha256": "922c8f37627cd97689f34d3a6bddcf567c4ea8e7c842064b932aedb7f8d2cb25",
+        "firstHeading": "Gamora Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 7,
+        "issueBearingBlocksSha256": "24a2906018a900f1bcc25fe91d740369eb2fd268d780fd18a3ec7f137a11be3e"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T14:35:59",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/ghost-rider-reading-order/",
+      "labels": [
+        "Ghost Rider"
+      ],
+      "positions": [
+        39
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10232,
+        "canonicalUrl": "https://www.comicbookherald.com/ghost-rider-reading-order/",
+        "contentSha256": "f0d945034f65880ddeb827247f0f26c889a7390e53891b9f31eb86ab3695c314",
+        "firstHeading": "Ghost Rider Reading Order",
+        "lastHeading": "Bonus: Related Characters",
+        "issueBearingBlockCount": 65,
+        "issueBearingBlocksSha256": "f767975c6c676d55a595b7e2ef0e684133467843aaf2bdb9bdb67deaf017bef3"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-07-29T18:04:50",
+        "maximumExplicitIssueBlockYear": 2024
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/great-lakes-avengers-reading-order/",
+      "labels": [
+        "Great Lakes Avengers"
+      ],
+      "positions": [
+        40
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 23085,
+        "canonicalUrl": "https://www.comicbookherald.com/great-lakes-avengers-reading-order/",
+        "contentSha256": "11168eaa2193648dbf30719cf31bff4fa3e74bf1b1aedd5a2d1c7f16486a4459",
+        "firstHeading": null,
+        "lastHeading": null,
+        "issueBearingBlockCount": 7,
+        "issueBearingBlocksSha256": "f3709dcd31a80f3517698b34840f9ef7b12f4a37eaf4daab08949f132dcdaf94"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2018-05-24T21:02:26",
+        "maximumExplicitIssueBlockYear": 2006
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/groot-reading-order/",
+      "labels": [
+        "Groot"
+      ],
+      "positions": [
+        41
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10910,
+        "canonicalUrl": "https://www.comicbookherald.com/groot-reading-order/",
+        "contentSha256": "69b1eed149b35b2b2290c7eff58354bfb0742055b478a418b9699d8102ffa257",
+        "firstHeading": "Groot Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 9,
+        "issueBearingBlocksSha256": "2f73854ba172a902a511cb2ae45ee4236bf81367166126667370c482c26478e3"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T14:46:03",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/gwenpool-reading-order/",
+      "labels": [
+        "Gwenpool"
+      ],
+      "positions": [
+        42
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 59619,
+        "canonicalUrl": "https://www.comicbookherald.com/gwenpool-reading-order/",
+        "contentSha256": "fe6c518e4453c2a8888d339b0d474a5096b85e9cb93b97572e4cceb87664bc18",
+        "firstHeading": "Welcome To The Comic Book World!",
+        "lastHeading": "Retcons Incoming",
+        "issueBearingBlockCount": 38,
+        "issueBearingBlocksSha256": "f30f4f52c55b008b94680e054ae1e9309fa163c7636b4625f12cf32c3d990b19"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2022-03-01T15:12:52",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+      "labels": [
+        "Guardians of the Galaxy"
+      ],
+      "positions": [
+        43
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10882,
+        "canonicalUrl": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+        "contentSha256": "09c1d8ea66560003c04aed00579b1a51060dac18d725aad9a186cf228cb0accb",
+        "firstHeading": "Guardians of the Galaxy Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 46,
+        "issueBearingBlocksSha256": "dcf0a83bb577d134bc6e95aba25091a57891a1879b0739080142b9e62cfa62bb"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T14:51:50",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "labels": [
+        "Hawkeye (Clint Barton, Kate Bishop)"
+      ],
+      "positions": [
+        44
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11701,
+        "canonicalUrl": "https://www.comicbookherald.com/hawkeye-reading-order/",
+        "contentSha256": "f0def7b65ac67791aecd506c122f0b38f6bfce08869c6167419a3ac22c1291ad",
+        "firstHeading": "Hawkeye Comics Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 91,
+        "issueBearingBlocksSha256": "93dbc84dbfa9cb2d16c1a2ceef32c02c242cfc2574e81fb93339acba7f8e8ab0"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T15:08:27",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/hercules-marvel-reading-order/",
+      "labels": [
+        "Hercules"
+      ],
+      "positions": [
+        45
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 26826,
+        "canonicalUrl": "https://www.comicbookherald.com/hercules-marvel-reading-order/",
+        "contentSha256": "c682ad41cf49b3ae76aba174e26895948963a68c2e0ca7f6bae5c93dab053820",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 37,
+        "issueBearingBlocksSha256": "91a80da41a71f328685b83fc5dac5abd178beb7e6527498fa790ac5e5992b81d"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T15:15:55",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/high-evolutionary-reading-order/",
+      "labels": [
+        "High Evolutionary"
+      ],
+      "positions": [
+        46
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 51814,
+        "canonicalUrl": "https://www.comicbookherald.com/high-evolutionary-reading-order/",
+        "contentSha256": "5603bfe8b4c50bcc053cad7f199f61d56476b85044d8ffd687a9458cd1276f58",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 28,
+        "issueBearingBlocksSha256": "aa2d3c1a63ef5feb2f377c7bb99366be15556c63db7bfb60a24352a3e1016cb5"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T15:17:03",
+        "maximumExplicitIssueBlockYear": 2018
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/hope-summers-reading-order/",
+      "labels": [
+        "Hope Summers"
+      ],
+      "positions": [
+        47
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 58534,
+        "canonicalUrl": "https://www.comicbookherald.com/hope-summers-reading-order/",
+        "contentSha256": "e0efde4afcfe1d75210fd1895bdd5812035b8ce3499a23fda316f8d83c1724bd",
+        "firstHeading": "Related:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 67,
+        "issueBearingBlocksSha256": "1d7f4e8540e3cf6dd5c78992e093ae524bd7fce04f9b0adbf08ae6420f2fb28f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-30T15:25:42",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/howard-the-duck-reading-order/",
+      "labels": [
+        "Howard the Duck"
+      ],
+      "positions": [
+        48
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 12438,
+        "canonicalUrl": "https://www.comicbookherald.com/howard-the-duck-reading-order/",
+        "contentSha256": "cd07896e35d04beb291cbb898c709b89b1463dc67ebbd4534ad1cb1768663c1d",
+        "firstHeading": "Howard the Duck Comic Book Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 15,
+        "issueBearingBlocksSha256": "51fe173c1c313d9e8c88596a3e298abe7d3e84297590dec1e1d2f0d520567fd7"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T13:02:34",
+        "maximumExplicitIssueBlockYear": 2015
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "labels": [
+        "Hulk (and She-Hulk, Red Hulk)"
+      ],
+      "positions": [
+        49
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 7871,
+        "canonicalUrl": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+        "contentSha256": "f4547e8c02a7d2f077c88cbb8556f7666d08573e84cc44e7c35ddb44bbb7c947",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Phillip Kennedy Johnson Hulk Comics!",
+        "issueBearingBlockCount": 140,
+        "issueBearingBlocksSha256": "8694a1dbafc491d17ee954d6e9383239032281f2f582e64e85a41ef6868795a0"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-07-23T09:37:39",
+        "maximumExplicitIssueBlockYear": 2025
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/hydra-reading-order/",
+      "labels": [
+        "Hydra"
+      ],
+      "positions": [
+        50
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 12656,
+        "canonicalUrl": "https://www.comicbookherald.com/hydra-reading-order/",
+        "contentSha256": "3026158a9b96f449b5c5c1490d74fbaf9955d23d750c449904d6200dd867fef5",
+        "firstHeading": "Hydra Comics Reading Order",
+        "lastHeading": "Weird Bonus Round!",
+        "issueBearingBlockCount": 26,
+        "issueBearingBlocksSha256": "dda762206000a43f92d854eae408b4d62e4e51de90ce67728c3794e7a50dcb65"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2017-05-22T15:31:31",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+      "labels": [
+        "Infinity Trilogy (Gauntlet, War, Crusade)"
+      ],
+      "positions": [
+        51
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 21848,
+        "canonicalUrl": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+        "contentSha256": "e0a76436da4bc5c596869025c03644ff72532b787c5845168a92a5c333af308e",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Infinity Gauntlet Continued",
+        "issueBearingBlockCount": 116,
+        "issueBearingBlocksSha256": "52ef7122606c0a710fec677ef1fa1d1541651baf1bc594e90371453685314ca4"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2019-07-24T14:13:55",
+        "maximumExplicitIssueBlockYear": 2015
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/inhumans-reading-order/",
+      "labels": [
+        "Inhumans"
+      ],
+      "positions": [
+        52
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 6055,
+        "canonicalUrl": "https://www.comicbookherald.com/inhumans-reading-order/",
+        "contentSha256": "6767f154816fffa87ace435c3132e8ebf9842a9a95c402de1fb653ab3bb3341a",
+        "firstHeading": "I) The Origins of the Inhumans",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 40,
+        "issueBearingBlocksSha256": "9baef59bcb168ecd69bb17c0a4477ddaed15a475312a2e6afd9444990de33e58"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T13:19:24",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/iron-fist-reading-order/",
+      "labels": [
+        "Iron Fist"
+      ],
+      "positions": [
+        53
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10136,
+        "canonicalUrl": "https://www.comicbookherald.com/iron-fist-reading-order/",
+        "contentSha256": "e7407fcefbbf265ff4df15d352b4428c4cc41f43df0c31ed0c4211ff310b31e9",
+        "firstHeading": "Iron Fist Reading Order",
+        "lastHeading": "Bonus) Related Characters",
+        "issueBearingBlockCount": 51,
+        "issueBearingBlocksSha256": "296d9f5b7aac4ad86eb82213bfb82d270810e5170775f5324b4c23843a445d6d"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T13:35:40",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/iron-man-reading-order/",
+      "labels": [
+        "Iron Man"
+      ],
+      "positions": [
+        54
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 7964,
+        "canonicalUrl": "https://www.comicbookherald.com/iron-man-reading-order/",
+        "contentSha256": "61b3eb71bffefe629ce6b2c7f96353d5cb50c5ee66bc8e9d03217858092c9bfa",
+        "firstHeading": "Iron Man Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 95,
+        "issueBearingBlocksSha256": "66a5cf22e643106376bff35eddd3bbd5cb745b301539a1b186a5c394bdb858df"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T13:53:18",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/jonathan-hickman-marvel-universe-reading-order-2008-to-2016/",
+      "labels": [
+        "Jonathan Hickman's Marvel-Verse (2008 to 2016)"
+      ],
+      "positions": [
+        55
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 19730,
+        "canonicalUrl": "https://www.comicbookherald.com/jonathan-hickman-marvel-universe-reading-order-2008-to-2016/",
+        "contentSha256": "fab2b9de276da61405e11581a924dfc4de600f1b7e0d51cb9b95334b9c174d85",
+        "firstHeading": "Index:",
+        "lastHeading": "Need More? The Image Comics of Jonathan Hickman",
+        "issueBearingBlockCount": 128,
+        "issueBearingBlocksSha256": "862becc2861d96b0fa5815eb20b8f4c778b767bcb068da303b4430cdfd11e796"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-07-28T17:06:24",
+        "maximumExplicitIssueBlockYear": 2015
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/jessica-jones-reading-order/",
+      "labels": [
+        "Jessica Jones"
+      ],
+      "positions": [
+        56
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 8310,
+        "canonicalUrl": "https://www.comicbookherald.com/jessica-jones-reading-order/",
+        "contentSha256": "ec6594e9e1a248b587cdb38b247c125faba6c7d8aceb1ee99fe99d2e8153c16c",
+        "firstHeading": "Jessica Jones Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 43,
+        "issueBearingBlocksSha256": "de704a6d889499ad21112b0549cebb560d16dae06bb11ac043881df8a6c02867"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T14:06:06",
+        "maximumExplicitIssueBlockYear": 2016
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/kang-the-conqueror-reading-order/",
+      "labels": [
+        "Kang the Conqueror"
+      ],
+      "positions": [
+        57
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 50789,
+        "canonicalUrl": "https://www.comicbookherald.com/kang-the-conqueror-reading-order/",
+        "contentSha256": "1e7c0b4ddb28c88705ded5342ab8aff77ecd1a4cb2875ddfb1d74c36af84742e",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 47,
+        "issueBearingBlocksSha256": "9bc1c627fe461ce69b8bf8835af721f7ba600dd640b2acb07c43b7a1eb9c2d11"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T14:15:16",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/kingpin-reading-order/",
+      "labels": [
+        "Kingpin"
+      ],
+      "positions": [
+        58
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 28165,
+        "canonicalUrl": "https://www.comicbookherald.com/kingpin-reading-order/",
+        "contentSha256": "fedb0ea013b259c8c8be0c133adc9fac817e4d30af2f80e9cfe7b3cc4c2191cd",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 57,
+        "issueBearingBlocksSha256": "94106c38191e2251c0c2d9549666f2a533b6ffc9718f39bc8a5622d4987d63f3"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T14:28:58",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-essential-kitty-pryde-reading-order/",
+      "labels": [
+        "Kitty Pryde"
+      ],
+      "positions": [
+        59
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11003,
+        "canonicalUrl": "https://www.comicbookherald.com/the-essential-kitty-pryde-reading-order/",
+        "contentSha256": "a36e297f89cb24e51daaba484924e8434ca01a195a2209b670962d31217167e1",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 18,
+        "issueBearingBlocksSha256": "b15e82c774188daa727f2fffe9dbb687ccf41767f37f5cae5531ba5d29ae0613"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-01-31T14:44:31",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/legion-david-haller-x-men-reading-order-best-legion-comics-guide/",
+      "labels": [
+        "Legion (David Haller)"
+      ],
+      "positions": [
+        60
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10814,
+        "canonicalUrl": "https://www.comicbookherald.com/legion-david-haller-x-men-reading-order-best-legion-comics-guide/",
+        "contentSha256": "65f0346917b919dea074f1fc8dedb2eb455f1b6f169ff1ad07cd9906afcfca95",
+        "firstHeading": "Legion Reading Order",
+        "lastHeading": "Latest Additions",
+        "issueBearingBlockCount": 26,
+        "issueBearingBlocksSha256": "617786abe1e0ec249e11d78a686a4538d79b49eefad2789f454d51cee2a2f4b0"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-01T16:32:05",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/loki-reading-order/",
+      "labels": [
+        "Loki"
+      ],
+      "positions": [
+        61
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11790,
+        "canonicalUrl": "https://www.comicbookherald.com/loki-reading-order/",
+        "contentSha256": "35e7d2c54615855f5c5d49c17885c6502d6e3ab600d5f3ff7a44abc8d25428f7",
+        "firstHeading": "Loki Comics Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 115,
+        "issueBearingBlocksSha256": "74dbcd6b48bd3e38ade12dab5869f224527764759ed3dd10128352565edcf9e9"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-01T16:36:53",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/where-to-start-with-luke-cage-comics/",
+      "labels": [
+        "Luke Cage (Power Man)"
+      ],
+      "positions": [
+        62
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 9297,
+        "canonicalUrl": "https://www.comicbookherald.com/where-to-start-with-luke-cage-comics/",
+        "contentSha256": "6a3c1496dfef35564f234a003350b7185103e21ea81c5f6de6586232f6733089",
+        "firstHeading": "Luke Cage / Power Man Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 64,
+        "issueBearingBlocksSha256": "baab60ff65ebe89103e68b45a2dd9bfb3abf034f2bab5b2e92b3d7cb4531c736"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-01T16:54:12",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/madelyne-pryor-goblin-queen-reading-order/",
+      "labels": [
+        "Madelyne Pryor (Goblin Queen)"
+      ],
+      "positions": [
+        63
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 58669,
+        "canonicalUrl": "https://www.comicbookherald.com/madelyne-pryor-goblin-queen-reading-order/",
+        "contentSha256": "13bd2431c1531ba31194410149b2b31c76076f2c5a975b63df58316367ffa103",
+        "firstHeading": "Madelyne Pryor Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 44,
+        "issueBearingBlocksSha256": "70b8f6b92556a1af8f5668c53fe37b6ab0e4ac083893f309522f0da84ff6ccc1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-01T16:58:49",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/magik-illyana-rasputin-reading-order/",
+      "labels": [
+        "Magik (Illyana Rasputin)"
+      ],
+      "positions": [
+        64
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 47606,
+        "canonicalUrl": "https://www.comicbookherald.com/magik-illyana-rasputin-reading-order/",
+        "contentSha256": "7a5042f2559f577f535139d54c9f8aac38cd9c51e10e11284a6f360fd19ba99d",
+        "firstHeading": "Little Girl Lost: Magik in the 80’s and 90’s",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 54,
+        "issueBearingBlocksSha256": "2eeb9c79da7c4826144cde782d8db7e02f6839b215f038211fe5fdeea4c0b9ea"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-01T17:07:02",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/magneto-reading-order/",
+      "labels": [
+        "Magneto"
+      ],
+      "positions": [
+        65
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11706,
+        "canonicalUrl": "https://www.comicbookherald.com/magneto-reading-order/",
+        "contentSha256": "9f58433c3fd85a0b5ec5b0dd9a1f57099c7ed8e678ee8a4f3c2249aa2ff344e9",
+        "firstHeading": "Magneto Comics Reading Order",
+        "lastHeading": "Related Reading Orders:",
+        "issueBearingBlockCount": 125,
+        "issueBearingBlocksSha256": "d6cea06e6a657beb57a79f8bfc529d480e84ebd965c45d68f266a6bd58b7853c"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-01T17:20:37",
+        "maximumExplicitIssueBlockYear": 2024
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-maker-reading-order/",
+      "labels": [
+        "The Maker"
+      ],
+      "positions": [
+        66
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 67822,
+        "canonicalUrl": "https://www.comicbookherald.com/the-maker-reading-order/",
+        "contentSha256": "9b33c35b6b096565a3eb2746eb6a32a292d06882fc205a0d24159124f8db24ad",
+        "firstHeading": "The Maker Fast Track Reading Order",
+        "lastHeading": "Maker in the New Ultimate Universe Reading Order",
+        "issueBearingBlockCount": 11,
+        "issueBearingBlocksSha256": "95983e67812dc4e40812038642fe2e544b9ab46fa1687a84c6450fcb25d3e1be"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-11-25T17:32:29",
+        "maximumExplicitIssueBlockYear": 2016
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/manifold-reading-order/",
+      "labels": [
+        "Manifold (Eden Fesi)"
+      ],
+      "positions": [
+        67
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 61635,
+        "canonicalUrl": "https://www.comicbookherald.com/manifold-reading-order/",
+        "contentSha256": "ace508ba045315972fd6bbd6e99bfc1503112862e416c21c27531b9ab3016dd0",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 35,
+        "issueBearingBlocksSha256": "e39b4fd33bbb31c899afa6a46534f399fd897a652e6ac97c779d912ef1d2a2f7"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:17:46",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/every-marvel-max-comic-book-series/",
+      "labels": [
+        "Marvel Max"
+      ],
+      "positions": [
+        68
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 26803,
+        "canonicalUrl": "https://www.comicbookherald.com/every-marvel-max-comic-book-series/",
+        "contentSha256": "845ab96b7b15cf6bd29b9854d0f2b304a3fa4e8042d1285dd3ccb8f3102bae7e",
+        "firstHeading": "The Launch of Marvel MAX",
+        "lastHeading": "Deadpool, Wolverine, and Fantomax: The Last Days of Marvel MAX",
+        "issueBearingBlockCount": 50,
+        "issueBearingBlocksSha256": "44e4d633483e89d5e4bfb0a63c0d283c03b5e8ed1bae6918fb7b29bbfbfb5e93"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2018-08-27T16:49:59",
+        "maximumExplicitIssueBlockYear": 2010
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/marvel-and-dc-comics-crossovers-reading-order/",
+      "labels": [
+        "Marvel vs. DC"
+      ],
+      "positions": [
+        69
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 26840,
+        "canonicalUrl": "https://www.comicbookherald.com/marvel-and-dc-comics-crossovers-reading-order/",
+        "contentSha256": "2766eb7ab128028584fd0b659f4d6dca27de7762b9fe01ff81ebcb24240fd7dd",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Related Reading Orders:",
+        "issueBearingBlockCount": 11,
+        "issueBearingBlocksSha256": "c9f070edb1e88f4e5d25a7ec849af1e0f8595ad345dff45d4cad8a1e62d9a8c1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2018-08-28T13:43:42",
+        "maximumExplicitIssueBlockYear": 1997
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path. The source includes licensed material outside the unqualified Marvel metadata and provenance contract."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "labels": [
+        "Marvel Zombies"
+      ],
+      "positions": [
+        70
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11988,
+        "canonicalUrl": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+        "contentSha256": "92723cf8148cb5845ebba3412327757f5035d811cb8a2a940591365206fc8a4f",
+        "firstHeading": "Marvel Zombies Comic Book Reading Order",
+        "lastHeading": "Out of Continuity Additions:",
+        "issueBearingBlockCount": 28,
+        "issueBearingBlocksSha256": "f411eea7e6b941c12f000db972b0f98d10404fc3eff5a8f1a8974aaacea48bd7"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2025-09-12T11:16:40",
+        "maximumExplicitIssueBlockYear": 2025
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/mephisto-reading-order/",
+      "labels": [
+        "Mephisto"
+      ],
+      "positions": [
+        71
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 43459,
+        "canonicalUrl": "https://www.comicbookherald.com/mephisto-reading-order/",
+        "contentSha256": "fa0b8060a5fafe101e1fb3f72ba3fdf62dad681b0b71455f5308b8c092a29452",
+        "firstHeading": "Damnation and Beyond!",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 64,
+        "issueBearingBlocksSha256": "19a925948fd255d78056935d7f4bcbcd8650d7e29be2e79a03156706c46729ee"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:19:24",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/midnight-sons-darkhold-reading-order/",
+      "labels": [
+        "Midnight Sons"
+      ],
+      "positions": [
+        72
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 32402,
+        "canonicalUrl": "https://www.comicbookherald.com/midnight-sons-darkhold-reading-order/",
+        "contentSha256": "75eb40592cef6a82f1f448b8e59299675c113975742d32235ad3149dd81f31e6",
+        "firstHeading": "Road to Midnight Sons",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 41,
+        "issueBearingBlocksSha256": "a586e62884159e8045ef2dc54bcb39767ac16a628a3c7411e1c65d7fa896d7b7"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:21:07",
+        "maximumExplicitIssueBlockYear": 1992
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/mister-sinister-reading-order/",
+      "labels": [
+        "Mister Sinister"
+      ],
+      "positions": [
+        73
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 39014,
+        "canonicalUrl": "https://www.comicbookherald.com/mister-sinister-reading-order/",
+        "contentSha256": "347b6c8a409dd28b2823d049e4970ce0586d4b3f1fb341134212bf0c911f946c",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Addition:",
+        "issueBearingBlockCount": 88,
+        "issueBearingBlocksSha256": "4986ea5d4a46fe120a53b46236cf6f86be888b372379cb027451f7ce944c2ca5"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:29:26",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/moira-mactaggert-x-men-reading-order/",
+      "labels": [
+        "Moira MacTaggert (X-Men)"
+      ],
+      "positions": [
+        74
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 42403,
+        "canonicalUrl": "https://www.comicbookherald.com/moira-mactaggert-x-men-reading-order/",
+        "contentSha256": "1aa9167ba6fa97e51b59a60f8451f26ab38fd8875fda9dba9954577e3094d7d4",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 21,
+        "issueBearingBlocksSha256": "7f5575cf7c968666985a8b478d6890dd8fa306d2064ed188f0c26e8f74b53766"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:33:38",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/moon-knight-reading-order/",
+      "labels": [
+        "Moon Knight"
+      ],
+      "positions": [
+        75
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10784,
+        "canonicalUrl": "https://www.comicbookherald.com/moon-knight-reading-order/",
+        "contentSha256": "db641106edefa8524664c9e980fffdd870a60c3fc49f7f7fc841aedff9f7fa20",
+        "firstHeading": "I) Moon Knight Origins & West Coast Avenger",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 43,
+        "issueBearingBlocksSha256": "c85140bb04c82f909b9f57f8f1be084604802f5b088012bf5cfa5632acd87fb1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:41:24",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/monica-rambeau-reading-order/",
+      "labels": [
+        "Monica Rambeau"
+      ],
+      "positions": [
+        76
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 50895,
+        "canonicalUrl": "https://www.comicbookherald.com/monica-rambeau-reading-order/",
+        "contentSha256": "5314bfb854c2f20aa31d9fe078df1b7a529ea184028ed930543c1088309a8ee6",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 48,
+        "issueBearingBlocksSha256": "61be3b8413a5fd0618b41e6032651e058e2a153d4716e44ddc06083ff037eb78"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:45:10",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+      "labels": [
+        "Ms. Marvel (Kamala Khan)"
+      ],
+      "positions": [
+        78
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 42940,
+        "canonicalUrl": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+        "contentSha256": "8b0cbe9620fc14079b1429fafc291d523b74a026932d935ee0efae42db4fbfb8",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 35,
+        "issueBearingBlocksSha256": "ad34042eaf048da63f3d1c97d0323e93ed410ad3738ef72b50fc8d4f87f5e437"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T12:51:27",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/mysterio-reading-order/",
+      "labels": [
+        "Mysterio"
+      ],
+      "positions": [
+        79
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 39386,
+        "canonicalUrl": "https://www.comicbookherald.com/mysterio-reading-order/",
+        "contentSha256": "ba07251b13274952de5f3734c7de15a152f7b295a7d2c017bac328a4f06bd099",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 33,
+        "issueBearingBlocksSha256": "b3567350d729bee169b1d3a38a7858bb98ba1277fcc4dd8a2c60589b347cd58e"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2025-08-26T15:41:29",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/mystique-reading-order/",
+      "labels": [
+        "Mystique"
+      ],
+      "positions": [
+        80
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 30131,
+        "canonicalUrl": "https://www.comicbookherald.com/mystique-reading-order/",
+        "contentSha256": "8138aec75bbac166cc57d65dc825bb67dfd5759a38d069e2a4301823a51ebd9c",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 47,
+        "issueBearingBlocksSha256": "31c50144eeae7184b33c58f1c4d330d6a15f6880b945193c34c2015807a2b30b"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T13:00:22",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+      "labels": [
+        "Namor (Sub-Mariner)"
+      ],
+      "positions": [
+        81
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 18522,
+        "canonicalUrl": "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+        "contentSha256": "2443caa21765212ba9add37df0d102b56c78f20585dfd883eb641a3e2dcc8b85",
+        "firstHeading": "Namor The Sub-Mariner Comic Books",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 88,
+        "issueBearingBlocksSha256": "0732d57d20c16b973c14b8a926eae43bb2b48810ca49a6e21cb79e9d28017d49"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T13:07:08",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/nebula-reading-order/",
+      "labels": [
+        "Nebula"
+      ],
+      "positions": [
+        82
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 58973,
+        "canonicalUrl": "https://www.comicbookherald.com/nebula-reading-order/",
+        "contentSha256": "ab408b77e3d24acce52bc2a3f1c8c39ff77f75eb106153c4941ca69cefcf8d16",
+        "firstHeading": "Related:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 34,
+        "issueBearingBlocksSha256": "1ba9400037a7677d4ddd393bb939797423afd3d7feeec9ed9d25075c2f689995"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T13:09:25",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/new-mutants-reading-order/",
+      "labels": [
+        "New Mutants"
+      ],
+      "positions": [
+        83
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11888,
+        "canonicalUrl": "https://www.comicbookherald.com/new-mutants-reading-order/",
+        "contentSha256": "07c6f5adc8d527c144b3d78c9efa292b1d7c26f437f49723565b7053cf7c1a00",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 64,
+        "issueBearingBlocksSha256": "48c82869684d5ab87d6110d0454a56226a26f605f964c8a28d458f2ae5bc5262"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T13:27:53",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/new-warriors-reading-order/",
+      "labels": [
+        "New Warriors"
+      ],
+      "positions": [
+        84
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 41118,
+        "canonicalUrl": "https://www.comicbookherald.com/new-warriors-reading-order/",
+        "contentSha256": "76fa5e974c84fb5646cf5892748bd284c0585886eca29d7bd7e2f6f14050aa2b",
+        "firstHeading": "Pre-Warriors Solo Exploits (Related Reading)",
+        "lastHeading": "Marvel Now/ All-New, All-Different Era and Beyond: Heroes For The 2010s",
+        "issueBearingBlockCount": 46,
+        "issueBearingBlocksSha256": "5743ed0757a814ba72accfc8eb7b968de6372116332839ca925b77f5aec3c18e"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2019-07-23T14:05:54",
+        "maximumExplicitIssueBlockYear": 2015
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "labels": [
+        "Nick Fury"
+      ],
+      "positions": [
+        85
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 61095,
+        "canonicalUrl": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+        "contentSha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e",
+        "firstHeading": null,
+        "lastHeading": null,
+        "issueBearingBlockCount": 12,
+        "issueBearingBlocksSha256": "32955a46317603937476d0a34f5f9d8db4ecc3d6e2915237ad499ad2c6c80ef1"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2023-06-13T12:38:14",
+        "maximumExplicitIssueBlockYear": 2018
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/nimrod-x-men-reading-order/",
+      "labels": [
+        "Nimrod (X-Men)"
+      ],
+      "positions": [
+        86
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 42792,
+        "canonicalUrl": "https://www.comicbookherald.com/nimrod-x-men-reading-order/",
+        "contentSha256": "012fddd06ebeac1e0d043f9a2be198c561feefc997d33bb3ffad7f4bb2357339",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "House of X / Powers of X",
+        "issueBearingBlockCount": 6,
+        "issueBearingBlocksSha256": "ac43e33f9fac8413a615b72534dd8d67c3b6b5190b5404225838f82acef85fa2"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2019-08-29T09:56:51",
+        "maximumExplicitIssueBlockYear": null
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/nova-reading-order/",
+      "labels": [
+        "Nova"
+      ],
+      "positions": [
+        87
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 12219,
+        "canonicalUrl": "https://www.comicbookherald.com/nova-reading-order/",
+        "contentSha256": "759352b69ae6151ffeabf1435cf275f1cd53fa908b462e450c326d37181a73ec",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 52,
+        "issueBearingBlocksSha256": "020388b34b22440dd9cd10f9b795254803c08dd900302100add615104d4f5cc3"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T13:58:45",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/old-man-logan-reading-order/",
+      "labels": [
+        "Old Man Logan"
+      ],
+      "positions": [
+        88
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11563,
+        "canonicalUrl": "https://www.comicbookherald.com/old-man-logan-reading-order/",
+        "contentSha256": "cb521384dbb568c217880d7355c5e01aeb12dc77ba96eb500693c1ae8784dd58",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 18,
+        "issueBearingBlocksSha256": "f5fb6a2140a7ec0161c2bada48402eb0ced8ebf9a3d50771d1d7a6afadf3440e"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-05T14:03:36",
+        "maximumExplicitIssueBlockYear": 2016
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever/",
+      "labels": [
+        "Original Graphic Novels (OGNs)"
+      ],
+      "positions": [
+        89
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 31279,
+        "canonicalUrl": "https://www.comicbookherald.com/the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever/",
+        "contentSha256": "492f328e8a6d0afeaea35499e16f2782838e1b9c67e3be1987bcfa014173888d",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Modern Marvel Original Graphic Novels (2013 - Present)",
+        "issueBearingBlockCount": 88,
+        "issueBearingBlocksSha256": "ef9514c9ae986f87b30a38006437983c31e8e825d5e23e9219e2f76ebf47f194"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2022-11-29T15:00:59",
+        "maximumExplicitIssueBlockYear": 1995
+      },
+      "completeLibraryRelationship": {
+        "status": "not-applicable-excluded",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "excluded",
+      "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/phalanx-reading-order/",
+      "labels": [
+        "Phalanx"
+      ],
+      "positions": [
+        90
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 42471,
+        "canonicalUrl": "https://www.comicbookherald.com/phalanx-reading-order/",
+        "contentSha256": "3d9f0c8ce6a20179fef369c2c23b83665f49059b2a4fdbdd6b3f4735613ff907",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 17,
+        "issueBearingBlocksSha256": "dc5786da2eca648ac311b4de36fb58a3505a290ccd680abac0632c62495b47a4"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T14:47:38",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+      "labels": [
+        "Phoenix"
+      ],
+      "positions": [
+        91
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 36165,
+        "canonicalUrl": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+        "contentSha256": "0a18e6ef50af78738221621b494c66a472417ad582a6109133a86b3271806b2c",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 13,
+        "issueBearingBlocksSha256": "c746143d51fc2031b09ad49591942c95298b4a361fe2a55fdb12cbbd780e5e89"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T14:52:37",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+      "labels": [
+        "Planet Hulk (Greg Pak Hulk)"
+      ],
+      "positions": [
+        92
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 12243,
+        "canonicalUrl": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+        "contentSha256": "678fa16aab92a1d2e22762fe7bb18c5401f023a3f18b5b11a7214e1906dbf094",
+        "firstHeading": "Planet Hulk Reading Order",
+        "lastHeading": "Enter The Totally Awesome Hulk!",
+        "issueBearingBlockCount": 40,
+        "issueBearingBlocksSha256": "980636cd0cad314a6386ca0dce07cce7c66a765b28bcdbb5aef22fd5e4352cbe"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2017-04-13T15:59:04",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/professor-x-reading-order/",
+      "labels": [
+        "Professor X (Charles Xavier)"
+      ],
+      "positions": [
+        93
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 41783,
+        "canonicalUrl": "https://www.comicbookherald.com/professor-x-reading-order/",
+        "contentSha256": "02b4c9fba28079e64ecca05043f5dce8495755937f677c3ab8859b7d795bb98b",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 35,
+        "issueBearingBlocksSha256": "205517bdb55a26cf05e9aff4079040cfc0beab96fc2c24d3ad5b31e2ffd2d9f0"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T14:58:10",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/betsy-braddock-psylocke-captain-britain-reading-order/",
+      "labels": [
+        "Psylocke"
+      ],
+      "positions": [
+        94
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 51266,
+        "canonicalUrl": "https://www.comicbookherald.com/betsy-braddock-psylocke-captain-britain-reading-order/",
+        "contentSha256": "784ae2eafc20577500870d383e105cdf4f9acd25963dd7b5cdb956e706a29c40",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 91,
+        "issueBearingBlocksSha256": "23c251b5fcee078c7f676813e4363cabf88deceaff0c080976f6f071db9a2254"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:01:51",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/punisher-reading-order/",
+      "labels": [
+        "Punisher"
+      ],
+      "positions": [
+        95
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 8767,
+        "canonicalUrl": "https://www.comicbookherald.com/punisher-reading-order/",
+        "contentSha256": "e0ed74660dc0527b2b3bf3425483630aefd5e25737512fea17b401860a3491a3",
+        "firstHeading": "0) Before the 2000’s: Solo Punisher Debuts",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 78,
+        "issueBearingBlocksSha256": "2d9eebd25f6fceee9088b3ba37aebada2926cace20117d48072f4dbb36463940"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-05-06T17:59:24",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+      "labels": [
+        "Rocket Raccoon"
+      ],
+      "positions": [
+        96
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10912,
+        "canonicalUrl": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+        "contentSha256": "3e7853ead471e58569c22dd6ab155c9d5fea04c52598ea0c413ffc417ae8e3ee",
+        "firstHeading": "Rocket Raccoon Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 7,
+        "issueBearingBlocksSha256": "601914fca89f63a8c99938a9d95c5ff64c62e307a5cbd0b48d9cf9034bfa9fed"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:16:58",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/runaways-reading-order/",
+      "labels": [
+        "Runaways"
+      ],
+      "positions": [
+        97
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10863,
+        "canonicalUrl": "https://www.comicbookherald.com/runaways-reading-order/",
+        "contentSha256": "825db3ad08b3a34cb39ef3e971523afbe225218f409391ac3ad44975856a24d9",
+        "firstHeading": "Marvel’s Runaways Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 13,
+        "issueBearingBlocksSha256": "c1303b1d759f6936b6ce0ea82979f03f93eec6f2ea4fbeed63000b7e2280ed84"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:21:15",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/scarlet-witch-reading-order/",
+      "labels": [
+        "Scarlet Witch"
+      ],
+      "positions": [
+        98
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 21799,
+        "canonicalUrl": "https://www.comicbookherald.com/scarlet-witch-reading-order/",
+        "contentSha256": "8646874167ac4d06dbf74a332542b7ce9015e207eb4852dc590e99459339cf65",
+        "firstHeading": "Scarlet Witch Comic Book Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 78,
+        "issueBearingBlocksSha256": "04e68b849e5b77b5570f2f68105306dcfe8931f26aabeb9860bbedf2079b7c86"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:26:39",
+        "maximumExplicitIssueBlockYear": 2024
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/shadow-king-reading-order/",
+      "labels": [
+        "Shadow King"
+      ],
+      "positions": [
+        99
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 61320,
+        "canonicalUrl": "https://www.comicbookherald.com/shadow-king-reading-order/",
+        "contentSha256": "a7012448ed2142636b0fadab552f627031bdbbd43ccb6b79493549da9ae66dd8",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Farouk and the Shadow King",
+        "issueBearingBlockCount": 35,
+        "issueBearingBlocksSha256": "d487739012d4a2111856c98ed101901cec2a48745b0ac965243a9bce75f9bcaf"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2022-05-16T10:47:37",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+      "labels": [
+        "Shang-Chi"
+      ],
+      "positions": [
+        100
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 35289,
+        "canonicalUrl": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+        "contentSha256": "c2aa9f456a8080312ab18ec0d268a253bf00f4d1e675256e00a65b549a8f4dfe",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 42,
+        "issueBearingBlocksSha256": "f89b3d0ca1870899d78b3979c75815a9505f4cbdbb8545773fecc1d88c39acc8"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:38:29",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/she-hulk-reading-order/",
+      "labels": [
+        "She-Hulk"
+      ],
+      "positions": [
+        101
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 42937,
+        "canonicalUrl": "https://www.comicbookherald.com/she-hulk-reading-order/",
+        "contentSha256": "ba76fa3af4e32cec80d29076e57f404b2dfa38e90afe743461e27d6866766ac9",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 92,
+        "issueBearingBlocksSha256": "b8d7dc61a5e924641d849c45e2076e998a999d54612c59bd824105bfc1ca5f02"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:43:37",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+      "labels": [
+        "Silver Surfer"
+      ],
+      "positions": [
+        102
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 7835,
+        "canonicalUrl": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+        "contentSha256": "b9fbb29d0a7fbb0ec7ac59cbdfa90f090e16ab940e1571345f8ec1fec1b5cfef",
+        "firstHeading": "Silver Surfer Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 55,
+        "issueBearingBlocksSha256": "ea5c02e6209d5cc3c20e5927e1746e056b5e847875840b6db21e3f866c19308f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-08T15:57:21",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/skrulls-reading-order-essential-skrull-comics/",
+      "labels": [
+        "Skrulls"
+      ],
+      "positions": [
+        103
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 33217,
+        "canonicalUrl": "https://www.comicbookherald.com/skrulls-reading-order-essential-skrull-comics/",
+        "contentSha256": "b7cf075844a83f8763ae88d41b9b313af00ae59b26cfc0534184ba09a633f419",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 37,
+        "issueBearingBlocksSha256": "80b1d341ded4a52be7810b53bd4a00643843ae1ace9ca420e6c0d90cc6bf524d"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T15:05:51",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/son-of-satan-hellstrom-reading-order/",
+      "labels": [
+        "Son of Satan (Hellstorm)"
+      ],
+      "positions": [
+        104
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 39264,
+        "canonicalUrl": "https://www.comicbookherald.com/son-of-satan-hellstrom-reading-order/",
+        "contentSha256": "9ab210537bb1be91e919bd044045fba395b9164886fe9f36a31287c3a4db8415",
+        "firstHeading": "I) Hellstrom’s Beginnings (1970s & 80s)",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 22,
+        "issueBearingBlocksSha256": "b64103b19113bd7358fffe5cbcb56fb0b28702ac121343333099bd0af228feb0"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T15:08:36",
+        "maximumExplicitIssueBlockYear": 2019
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+      "labels": [
+        "Spider-Gwen"
+      ],
+      "positions": [
+        105
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 30637,
+        "canonicalUrl": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+        "contentSha256": "6eebb8aed91144abc3e7138f40b2046158e6e21377093fc7be37583081498085",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 32,
+        "issueBearingBlocksSha256": "ecb8373280bedde838d8b9dc520a9028734a478227ec7e2d5e4b35f4657cc1bf"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T15:11:22",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+      "labels": [
+        "Spider-Man (2099)"
+      ],
+      "positions": [
+        106
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 35727,
+        "canonicalUrl": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+        "contentSha256": "7bae37f162579f9f2e9feafdcb8ac7168d5ef1ea3f99d1c4497b46ae11447ed2",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 30,
+        "issueBearingBlocksSha256": "e1a301fb34fa30aa32054cde63d5c5b6a365439dea3d84b974e7c0da41a8994f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T15:15:19",
+        "maximumExplicitIssueBlockYear": 2024
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/spider-woman-reading-order/",
+      "labels": [
+        "Spider-Woman"
+      ],
+      "positions": [
+        107
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 40035,
+        "canonicalUrl": "https://www.comicbookherald.com/spider-woman-reading-order/",
+        "contentSha256": "a9435453999055e61bea8c1db9f9f6dc7866e24f14e7fc2432d4655195507479",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 48,
+        "issueBearingBlocksSha256": "e222bccee5fdd6eafc9d0850b0a18d779a4ca69f59934eb843ea885c8543c9c3"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T16:08:24",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+      "labels": [
+        "Star-Lord (Peter Quill)"
+      ],
+      "positions": [
+        108
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10902,
+        "canonicalUrl": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+        "contentSha256": "1870f3039770c875a02a426b18cb83a0ac4653c81605ce1674eedfa5d3c5c7cf",
+        "firstHeading": "Star-Lord Origins Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 12,
+        "issueBearingBlocksSha256": "7e6593fccc1b7f2f3d0d937636158f0ded126a2de77f273bea52b89ee5a77ee5"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T16:48:30",
+        "maximumExplicitIssueBlockYear": 2017
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/storm-x-men-reading-order/",
+      "labels": [
+        "Storm (X-Men)"
+      ],
+      "positions": [
+        109
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 19082,
+        "canonicalUrl": "https://www.comicbookherald.com/storm-x-men-reading-order/",
+        "contentSha256": "3b6a02db249e7d1425df143d12486d9b6d7bdd8fdffeda47d8b643b0fb8a272d",
+        "firstHeading": "Storm (Ororo Monroe) Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 101,
+        "issueBearingBlocksSha256": "72761ab53f98a561579c0f7cea91d1318d8bc492df77d6977df693d6595d25cb"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-12T17:07:07",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-essential-marvels-s-w-o-r-d-comics-reading-order/",
+      "labels": [
+        "SWORD"
+      ],
+      "positions": [
+        110
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 49753,
+        "canonicalUrl": "https://www.comicbookherald.com/the-essential-marvels-s-w-o-r-d-comics-reading-order/",
+        "contentSha256": "7da58d52705a2835cf3bc1b0568d50904e7f3b14f1e5bc93ecdebc4427345f95",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 11,
+        "issueBearingBlocksSha256": "3b06cce357d840111fe9fa6edb124e590c24d2674cfdbe192f7abe901fbcf483"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T15:19:20",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/squirrel-girl-reading-order/",
+      "labels": [
+        "Squirrel Girl"
+      ],
+      "positions": [
+        111
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10804,
+        "canonicalUrl": "https://www.comicbookherald.com/squirrel-girl-reading-order/",
+        "contentSha256": "535f0c2efbd984f2640fa2591a155889072845b3f8de103e0f3112f837b13c6a",
+        "firstHeading": "Squirrel Girl Origins Through Great Lakes Avengers Status",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 20,
+        "issueBearingBlocksSha256": "0d7fe204b559b10c59559331a6e75738270906ddc59db955430d14de2d2a97c4"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:16:34",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+      "labels": [
+        "Thanos"
+      ],
+      "positions": [
+        112
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 555,
+        "canonicalUrl": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+        "contentSha256": "661c99bc3ac4adab6a16ed4db911b3edb0df7139af2ea80990d33e1f272f77d7",
+        "firstHeading": "Thanos Reading Order (Jim Starlin’s Cosmic Comics!)",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 57,
+        "issueBearingBlocksSha256": "c58cf93e75bb6e34c59a75fdeee6daac9b50b0833e3bb3ac64148715573ea34f"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:20:35",
+        "maximumExplicitIssueBlockYear": 2022
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/thor-reading-order/",
+      "labels": [
+        "Thor"
+      ],
+      "positions": [
+        113
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 5860,
+        "canonicalUrl": "https://www.comicbookherald.com/thor-reading-order/",
+        "contentSha256": "fae87087c8271c5f9356764b575fdd07ebc4fabafa7aaf1125d6228faac8b74c",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 105,
+        "issueBearingBlocksSha256": "a6aab172a82bf99b066765881badbbd2cad8ee58ef58de606aca49207f458319"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:27:12",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+      "labels": [
+        "Ultimate Spider-Man"
+      ],
+      "positions": [
+        114
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 2563,
+        "canonicalUrl": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+        "contentSha256": "6e1bb233e2291afa2f561f40af0031e54881d901558ce0154052fcf649b43cf7",
+        "firstHeading": "Index:",
+        "lastHeading": "The New Ultimate Spider-Man (2024 - 2026)",
+        "issueBearingBlockCount": 47,
+        "issueBearingBlocksSha256": "d574eeb0ac3d68c71442df5ef23e5339d99350f725f77d50432a90330ca1dd23"
+      },
+      "metadataHorizon": {
+        "status": "blocked-confirmed-post-horizon",
+        "wordpressModified": "2026-08-11T11:50:52",
+        "maximumExplicitIssueBlockYear": 2026
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "blocked",
+      "reason": "The retained source snapshot explicitly names a 2026 issue, beyond the 2025-10-29 metadata horizon."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/venom-reading-order/",
+      "labels": [
+        "Venom"
+      ],
+      "positions": [
+        115
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 5640,
+        "canonicalUrl": "https://www.comicbookherald.com/venom-reading-order/",
+        "contentSha256": "1678b4cbf69f9c97f05a6fcc85648bfc9e5ac98391b408cae462aaa23e5551b8",
+        "firstHeading": "I) The Birth of Venom",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 90,
+        "issueBearingBlocksSha256": "7a2475de69d803f019262411aac04a0c4ca6d173ee0e0beeea623b191dd6c558"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:39:30",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-vision-reading-order/",
+      "labels": [
+        "Vision"
+      ],
+      "positions": [
+        116
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 21929,
+        "canonicalUrl": "https://www.comicbookherald.com/the-vision-reading-order/",
+        "contentSha256": "2673c8bdc093e59aebce3f22f5bcbbc171a94adce119bd95d8faeee11d3bf00d",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 51,
+        "issueBearingBlocksSha256": "da6cbf0c59ee04f432de32895a370f4f6c39c230fcaa6843a6a6b7d612f27a33"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:40:55",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-ultimates-reading-order/",
+      "labels": [
+        "Ultimates"
+      ],
+      "positions": [
+        117
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 34399,
+        "canonicalUrl": "https://www.comicbookherald.com/the-ultimates-reading-order/",
+        "contentSha256": "ab232df8f7c8859a65ae2ea260d3ed92ca8a2e888c443551011d5248c0181d68",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 24,
+        "issueBearingBlocksSha256": "39b525b7d1aa8025ff659e220517ec1a88957980e85b0adfe8f1f553293d0002"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:44:33",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/best-ultron-reading-order/",
+      "labels": [
+        "Ultron"
+      ],
+      "positions": [
+        118
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 1677,
+        "canonicalUrl": "https://www.comicbookherald.com/best-ultron-reading-order/",
+        "contentSha256": "846fe372b0f22472f63778b761f07fa84ad8b2e2e3378ab8ff850936674bff8f",
+        "firstHeading": "The Comic Book History of Ultron",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 16,
+        "issueBearingBlocksSha256": "7af99f18fca38d4a43ffd24e671fbdd1135db5807401741642bf1ad70c8334a8"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-08-17T17:15:47",
+        "maximumExplicitIssueBlockYear": 2018
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/wasp-reading-order/",
+      "labels": [
+        "Wasp"
+      ],
+      "positions": [
+        119
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 24257,
+        "canonicalUrl": "https://www.comicbookherald.com/wasp-reading-order/",
+        "contentSha256": "50521c14249c442d39660fcd641177b860f8a92b3ac43a8feaa36fd762552456",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 39,
+        "issueBearingBlocksSha256": "2a170640a81e7e8f4fb0d6c83bd4858a576408f02cbe71d8511bbdec10fff0df"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-15T16:53:43",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/war-machine-jim-rhodes-reading-order/",
+      "labels": [
+        "War Machine (Rhodey)"
+      ],
+      "positions": [
+        120
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 21235,
+        "canonicalUrl": "https://www.comicbookherald.com/war-machine-jim-rhodes-reading-order/",
+        "contentSha256": "f705af45d4c02beeac9dfd4bff822209d828988533c025a6ebb140ade7c8c0e2",
+        "firstHeading": "War Machine Comics Reading Order",
+        "lastHeading": "Related Reading Orders:",
+        "issueBearingBlockCount": 53,
+        "issueBearingBlocksSha256": "14dab488cc76a7fe0eca5360cccdf2601ecb3acd6958190d40ff3701015d0943"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-19T15:11:34",
+        "maximumExplicitIssueBlockYear": 2020
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+      "labels": [
+        "White Tiger (Ava Ayala)"
+      ],
+      "positions": [
+        121
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 60530,
+        "canonicalUrl": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+        "contentSha256": "795f9f3dd615fc3d11335b6ad5deaeb88872732b14c841f9aadde0740064c850",
+        "firstHeading": "Joining Avengers Academy",
+        "lastHeading": "Daughters of Liberty",
+        "issueBearingBlockCount": 55,
+        "issueBearingBlocksSha256": "ad3bf086730e30f5c7e4e76a9dbfe9fdba04ec11c3130a1179b7af4a4230a28c"
+      },
+      "metadataHorizon": {
+        "status": "approved",
+        "lastResolvedOnSaleDate": "2022-09-28T00:00:00+0000",
+        "resolvedCount": 82
+      },
+      "completeLibraryRelationship": {
+        "status": "approved-with-recorded-overlap",
+        "comparisonCount": 86,
+        "candidateCount": 82,
+        "nonNoneRelationships": [
+          {
+            "orderId": "all-new-all-different-avengers",
+            "sharedCount": 6,
+            "sharedIds": [
+              "57030",
+              "57034",
+              "58371",
+              "57529",
+              "57530",
+              "57611"
+            ],
+            "relationship": "partial"
+          },
+          {
+            "orderId": "axis",
+            "sharedCount": 4,
+            "sharedIds": [
+              "48592",
+              "51049",
+              "51550",
+              "51158"
+            ],
+            "relationship": "partial"
+          },
+          {
+            "orderId": "hickman-full",
+            "sharedCount": 1,
+            "sharedIds": [
+              "47124"
+            ],
+            "relationship": "partial"
+          },
+          {
+            "orderId": "x-men-regenesis",
+            "sharedCount": 1,
+            "sharedIds": [
+              "36485"
+            ],
+            "relationship": "partial"
+          }
+        ]
+      },
+      "centralDisposition": "pilot-approved",
+      "reason": "All 82 source rows resolved exactly inside the metadata horizon and were compared with all 86 current lists."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+      "labels": [
+        "Winter Soldier (Bucky Barnes)"
+      ],
+      "positions": [
+        122
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 11817,
+        "canonicalUrl": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+        "contentSha256": "5342423fe96abd1dd899adf76f4f220a60b981f53dd452edce4a3823c033dee7",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 69,
+        "issueBearingBlocksSha256": "dc067f25b42ccbece7d8e2ffd4ec515c43504d397a9a3f921977818d7db2874c"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-21T12:03:52",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/wolverine-reading-order/",
+      "labels": [
+        "Wolverine"
+      ],
+      "positions": [
+        123
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 8761,
+        "canonicalUrl": "https://www.comicbookherald.com/wolverine-reading-order/",
+        "contentSha256": "268a26c4935b379a37ccf6c857bf905074f5bc6c333d6760433652ef046f411c",
+        "firstHeading": "I) The Chris Claremont Wolverine Comics Era",
+        "lastHeading": "X-Men: From the Ashes Era",
+        "issueBearingBlockCount": 189,
+        "issueBearingBlocksSha256": "5019003e4764c360f3df62d3d09c96fc33c8f4a9bb680b5830e14e31c844e86a"
+      },
+      "metadataHorizon": {
+        "status": "blocked-confirmed-post-horizon",
+        "wordpressModified": "2026-06-04T15:56:28",
+        "maximumExplicitIssueBlockYear": 2026
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "blocked",
+      "reason": "The retained source snapshot explicitly names a 2026 issue, beyond the 2025-10-29 metadata horizon."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/x-23-reading-order/",
+      "labels": [
+        "X-23 (Laura Kinney)"
+      ],
+      "positions": [
+        124
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 10760,
+        "canonicalUrl": "https://www.comicbookherald.com/x-23-reading-order/",
+        "contentSha256": "4012730c2b9cd5cac5775938db734aa47d0ffb63b895c80bc874a52226e5c0d3",
+        "firstHeading": "X-23 Reading Order",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 39,
+        "issueBearingBlocksSha256": "f6ad187d88c824ae0cd40d2626c02e6862ec57075cda5ab4b3537147151da5fc"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-21T12:32:12",
+        "maximumExplicitIssueBlockYear": 2023
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
+      "labels": [
+        "The X-Men (Modern Era)"
+      ],
+      "positions": [
+        125
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 2618,
+        "canonicalUrl": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
+        "contentSha256": "550e66d9cdc61e4b0e83d9654d6ab52acc8bd61b5b8b6c1d7986ca5366a7c593",
+        "firstHeading": "Index:",
+        "lastHeading": "X-Men: Age of Revelation Crossover",
+        "issueBearingBlockCount": 309,
+        "issueBearingBlocksSha256": "711618a8a05f6f7ddd7cd297179ae514eb8e916e77834bd08a49361a829c2eb3"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-06-30T17:20:20",
+        "maximumExplicitIssueBlockYear": 2025
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+      "labels": [
+        "The X-Men (Chris Claremont Era)"
+      ],
+      "positions": [
+        126
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 4975,
+        "canonicalUrl": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+        "contentSha256": "3748583a7621fd9c3e92bf5dd81126669749c0df4357652a6cb92b8f7f3034c5",
+        "firstHeading": "16 Years of Claremont: And so the epic begins….",
+        "lastHeading": "X-Cutioner’s Song Reading Order:",
+        "issueBearingBlockCount": 112,
+        "issueBearingBlocksSha256": "05cf31ff502e414ffde7fe4764ac1e9e96aa794eeb8c916b6ea9bbac464f3807"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2026-06-10T17:39:49",
+        "maximumExplicitIssueBlockYear": 1991
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+      "labels": [
+        "X-Men: Onslaught"
+      ],
+      "positions": [
+        128
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 8885,
+        "canonicalUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+        "contentSha256": "33d162bb882f43b5f558ec43e50728f0a5eba1d2fd8d75d63ca4ef7f7fbcec2d",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Heroically Support Comic Book Herald!",
+        "issueBearingBlockCount": 92,
+        "issueBearingBlocksSha256": "95fa9a2cc1b7707c3722804d9978fa7f60bf5045a1b53bea34ad6a381d5991ca"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2022-05-16T10:24:31",
+        "maximumExplicitIssueBlockYear": null
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
+      "labels": [
+        "X-Man (Nate Grey)"
+      ],
+      "positions": [
+        129
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 32705,
+        "canonicalUrl": "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
+        "contentSha256": "e19e22cb57d7aaffcd77ced0d39910b9acdc01041b6ec61b4d31037c96806d5a",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 17,
+        "issueBearingBlocksSha256": "63fa73de2643753577c6d2cb0645082aac92bc1c30d0431d97fe46d566ded959"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-21T13:37:03",
+        "maximumExplicitIssueBlockYear": 2018
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    },
+    {
+      "sourceIdentity": "https://www.comicbookherald.com/young-avengers-reading-order/",
+      "labels": [
+        "Young Avengers"
+      ],
+      "positions": [
+        130
+      ],
+      "duplicateFlags": [],
+      "sourceBoundary": {
+        "status": "exact-page-snapshot",
+        "wordpressId": 34135,
+        "canonicalUrl": "https://www.comicbookherald.com/young-avengers-reading-order/",
+        "contentSha256": "0f17795c8d34a156f2cdbbe2432c241f63f97c07fbd747488bce57e04cf6fd1b",
+        "firstHeading": "Related Reading Orders:",
+        "lastHeading": "Latest Additions:",
+        "issueBearingBlockCount": 28,
+        "issueBearingBlocksSha256": "565964ec1044d2a91c07003c37c619e49db137436351bdce6339c559fc276992"
+      },
+      "metadataHorizon": {
+        "status": "blocked-exact-resolution-not-run",
+        "wordpressModified": "2024-02-21T13:45:00",
+        "maximumExplicitIssueBlockYear": 2021
+      },
+      "completeLibraryRelationship": {
+        "status": "blocked-exact-resolution-not-run",
+        "currentCatalogIds": []
+      },
+      "centralDisposition": "deferred",
+      "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely."
+    }
+  ]
+}

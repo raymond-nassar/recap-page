@@ -1,0 +1,2187 @@
+{
+  "taskId": "MRT-002-C01",
+  "retrievedAt": "2026-08-22",
+  "sourceIdentityCount": 128,
+  "pages": [
+    {
+      "url": "https://www.comicbookherald.com/abomination-reading-order/",
+      "labels": [
+        "Abomination"
+      ],
+      "positions": [
+        1
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/abomination-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+      "labels": [
+        "Adam Warlock"
+      ],
+      "positions": [
+        2
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+      "labels": [
+        "Agatha Harkness"
+      ],
+      "positions": [
+        3
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "labels": [
+        "Agents of Atlas"
+      ],
+      "positions": [
+        4
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "labels": [
+        "Amazing Spider-Man"
+      ],
+      "positions": [
+        5
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "labels": [
+        "Ant-Man"
+      ],
+      "positions": [
+        6
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+      "labels": [
+        "Apocalypse (X-Men)",
+        "X-Men: Age of Apocalypse"
+      ],
+      "positions": [
+        7,
+        127
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+      "labels": [
+        "The Avengers"
+      ],
+      "positions": [
+        8
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/baron-zemo-reading-order/",
+      "labels": [
+        "Baron Zemo"
+      ],
+      "positions": [
+        9
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/baron-zemo-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/black-cat-reading-order/",
+      "labels": [
+        "Black Cat"
+      ],
+      "positions": [
+        10
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/black-cat-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "labels": [
+        "Black Panther"
+      ],
+      "positions": [
+        11
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "labels": [
+        "Black Widow"
+      ],
+      "positions": [
+        12
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/blade-vampire-hunter-reading-order/",
+      "labels": [
+        "Blade"
+      ],
+      "positions": [
+        13
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/blade-vampire-hunter-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/brian-michael-bendis-marvel-universe-reading-order-2000-2018/",
+      "labels": [
+        "Brian Michael Bendis Marvel-Verse (2000 to 2018)"
+      ],
+      "positions": [
+        14
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/brian-michael-bendis-marvel-universe-reading-order-2000-2018/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/bullseye-reading-order/",
+      "labels": [
+        "Bullseye"
+      ],
+      "positions": [
+        15
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/bullseye-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/cable-reading-order/",
+      "labels": [
+        "Cable (X-Man)"
+      ],
+      "positions": [
+        16
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/cable-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+      "labels": [
+        "Captain America"
+      ],
+      "positions": [
+        17
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/classic-captain-america-reading-order-1940s-to-2000/",
+      "labels": [
+        "Captain America (Classic)"
+      ],
+      "positions": [
+        18
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/classic-captain-america-reading-order-1940s-to-2000/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "labels": [
+        "Captain Marvel",
+        "Ms. Marvel (All)"
+      ],
+      "positions": [
+        19,
+        77
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/carnage-reading-order/",
+      "labels": [
+        "Carnage"
+      ],
+      "positions": [
+        20
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/carnage-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/clea-reading-order/",
+      "labels": [
+        "Clea"
+      ],
+      "positions": [
+        21
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/clea-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/conan-the-barbarian-comics-reading-order/",
+      "labels": [
+        "Conan the Barbarian"
+      ],
+      "positions": [
+        22
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/conan-the-barbarian-comics-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/daredevil-reading-order/",
+      "labels": [
+        "Daredevil"
+      ],
+      "positions": [
+        23
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/daredevil-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/deadpool-reading-order/",
+      "labels": [
+        "Deadpool"
+      ],
+      "positions": [
+        24
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/deadpool-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/deathlok-reading-order/",
+      "labels": [
+        "Deathlok"
+      ],
+      "positions": [
+        25
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/deathlok-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
+      "labels": [
+        "The Defenders"
+      ],
+      "positions": [
+        26
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-defenders-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/doctor-doom-reading-order/",
+      "labels": [
+        "Doctor Doom"
+      ],
+      "positions": [
+        27
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/doctor-doom-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "labels": [
+        "Doctor Strange"
+      ],
+      "positions": [
+        28
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+      "labels": [
+        "Donny Cates' Marvel Universe Reading Order"
+      ],
+      "positions": [
+        29
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/drax-the-destroyer-reading-order/",
+      "labels": [
+        "Drax the Destroyer"
+      ],
+      "positions": [
+        30
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/drax-the-destroyer-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/where-to-start-with-an-elektra-reading-order/",
+      "labels": [
+        "Elektra"
+      ],
+      "positions": [
+        31
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/where-to-start-with-an-elektra-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/emma-frost-reading-order/",
+      "labels": [
+        "Emma Frost"
+      ],
+      "positions": [
+        32
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/emma-frost-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/marvels-eternals-reading-order/",
+      "labels": [
+        "Eternals"
+      ],
+      "positions": [
+        33
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/marvels-eternals-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+      "labels": [
+        "Falcon (Sam Wilson)"
+      ],
+      "positions": [
+        34
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+      "labels": [
+        "Fantastic Four"
+      ],
+      "positions": [
+        35
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-essential-galactus-reading-order/",
+      "labels": [
+        "Galactus"
+      ],
+      "positions": [
+        36
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-essential-galactus-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/gambit-reading-order-part-1-uncanny-x-men-266-280/",
+      "labels": [
+        "Gambit - X-Men"
+      ],
+      "positions": [
+        37
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/gambit-reading-order-part-1-uncanny-x-men-266-280/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/gamora-reading-order/",
+      "labels": [
+        "Gamora"
+      ],
+      "positions": [
+        38
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/gamora-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/ghost-rider-reading-order/",
+      "labels": [
+        "Ghost Rider"
+      ],
+      "positions": [
+        39
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/ghost-rider-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/great-lakes-avengers-reading-order/",
+      "labels": [
+        "Great Lakes Avengers"
+      ],
+      "positions": [
+        40
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/great-lakes-avengers-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/groot-reading-order/",
+      "labels": [
+        "Groot"
+      ],
+      "positions": [
+        41
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/groot-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/gwenpool-reading-order/",
+      "labels": [
+        "Gwenpool"
+      ],
+      "positions": [
+        42
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/gwenpool-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+      "labels": [
+        "Guardians of the Galaxy"
+      ],
+      "positions": [
+        43
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "labels": [
+        "Hawkeye (Clint Barton, Kate Bishop)"
+      ],
+      "positions": [
+        44
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/hercules-marvel-reading-order/",
+      "labels": [
+        "Hercules"
+      ],
+      "positions": [
+        45
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/hercules-marvel-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/high-evolutionary-reading-order/",
+      "labels": [
+        "High Evolutionary"
+      ],
+      "positions": [
+        46
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/high-evolutionary-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/hope-summers-reading-order/",
+      "labels": [
+        "Hope Summers"
+      ],
+      "positions": [
+        47
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/hope-summers-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/howard-the-duck-reading-order/",
+      "labels": [
+        "Howard the Duck"
+      ],
+      "positions": [
+        48
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/howard-the-duck-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "labels": [
+        "Hulk (and She-Hulk, Red Hulk)"
+      ],
+      "positions": [
+        49
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/hydra-reading-order/",
+      "labels": [
+        "Hydra"
+      ],
+      "positions": [
+        50
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/hydra-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+      "labels": [
+        "Infinity Trilogy (Gauntlet, War, Crusade)"
+      ],
+      "positions": [
+        51
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+      "labels": [
+        "Inhumans"
+      ],
+      "positions": [
+        52
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/inhumans-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+      "labels": [
+        "Iron Fist"
+      ],
+      "positions": [
+        53
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/iron-fist-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/iron-man-reading-order/",
+      "labels": [
+        "Iron Man"
+      ],
+      "positions": [
+        54
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/iron-man-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/jonathan-hickman-marvel-universe-reading-order-2008-to-2016/",
+      "labels": [
+        "Jonathan Hickman's Marvel-Verse (2008 to 2016)"
+      ],
+      "positions": [
+        55
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/jonathan-hickman-marvel-universe-reading-order-2008-to-2016/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/jessica-jones-reading-order/",
+      "labels": [
+        "Jessica Jones"
+      ],
+      "positions": [
+        56
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/jessica-jones-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/kang-the-conqueror-reading-order/",
+      "labels": [
+        "Kang the Conqueror"
+      ],
+      "positions": [
+        57
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/kang-the-conqueror-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/kingpin-reading-order/",
+      "labels": [
+        "Kingpin"
+      ],
+      "positions": [
+        58
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/kingpin-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-essential-kitty-pryde-reading-order/",
+      "labels": [
+        "Kitty Pryde"
+      ],
+      "positions": [
+        59
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-essential-kitty-pryde-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/legion-david-haller-x-men-reading-order-best-legion-comics-guide/",
+      "labels": [
+        "Legion (David Haller)"
+      ],
+      "positions": [
+        60
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/legion-david-haller-x-men-reading-order-best-legion-comics-guide/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/loki-reading-order/",
+      "labels": [
+        "Loki"
+      ],
+      "positions": [
+        61
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/loki-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/where-to-start-with-luke-cage-comics/",
+      "labels": [
+        "Luke Cage (Power Man)"
+      ],
+      "positions": [
+        62
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/where-to-start-with-luke-cage-comics/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/madelyne-pryor-goblin-queen-reading-order/",
+      "labels": [
+        "Madelyne Pryor (Goblin Queen)"
+      ],
+      "positions": [
+        63
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/madelyne-pryor-goblin-queen-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/magik-illyana-rasputin-reading-order/",
+      "labels": [
+        "Magik (Illyana Rasputin)"
+      ],
+      "positions": [
+        64
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/magik-illyana-rasputin-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/magneto-reading-order/",
+      "labels": [
+        "Magneto"
+      ],
+      "positions": [
+        65
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/magneto-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-maker-reading-order/",
+      "labels": [
+        "The Maker"
+      ],
+      "positions": [
+        66
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-maker-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/manifold-reading-order/",
+      "labels": [
+        "Manifold (Eden Fesi)"
+      ],
+      "positions": [
+        67
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/manifold-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/every-marvel-max-comic-book-series/",
+      "labels": [
+        "Marvel Max"
+      ],
+      "positions": [
+        68
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/every-marvel-max-comic-book-series/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/marvel-and-dc-comics-crossovers-reading-order/",
+      "labels": [
+        "Marvel vs. DC"
+      ],
+      "positions": [
+        69
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/marvel-and-dc-comics-crossovers-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "labels": [
+        "Marvel Zombies"
+      ],
+      "positions": [
+        70
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/mephisto-reading-order/",
+      "labels": [
+        "Mephisto"
+      ],
+      "positions": [
+        71
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/mephisto-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/midnight-sons-darkhold-reading-order/",
+      "labels": [
+        "Midnight Sons"
+      ],
+      "positions": [
+        72
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/midnight-sons-darkhold-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/mister-sinister-reading-order/",
+      "labels": [
+        "Mister Sinister"
+      ],
+      "positions": [
+        73
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/mister-sinister-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/moira-mactaggert-x-men-reading-order/",
+      "labels": [
+        "Moira MacTaggert (X-Men)"
+      ],
+      "positions": [
+        74
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/moira-mactaggert-x-men-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
+      "labels": [
+        "Moon Knight"
+      ],
+      "positions": [
+        75
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/moon-knight-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/monica-rambeau-reading-order/",
+      "labels": [
+        "Monica Rambeau"
+      ],
+      "positions": [
+        76
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/monica-rambeau-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+      "labels": [
+        "Ms. Marvel (Kamala Khan)"
+      ],
+      "positions": [
+        78
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/mysterio-reading-order/",
+      "labels": [
+        "Mysterio"
+      ],
+      "positions": [
+        79
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/mysterio-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/mystique-reading-order/",
+      "labels": [
+        "Mystique"
+      ],
+      "positions": [
+        80
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/mystique-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+      "labels": [
+        "Namor (Sub-Mariner)"
+      ],
+      "positions": [
+        81
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/nebula-reading-order/",
+      "labels": [
+        "Nebula"
+      ],
+      "positions": [
+        82
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/nebula-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/new-mutants-reading-order/",
+      "labels": [
+        "New Mutants"
+      ],
+      "positions": [
+        83
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/new-mutants-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/new-warriors-reading-order/",
+      "labels": [
+        "New Warriors"
+      ],
+      "positions": [
+        84
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/new-warriors-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "labels": [
+        "Nick Fury"
+      ],
+      "positions": [
+        85
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/nimrod-x-men-reading-order/",
+      "labels": [
+        "Nimrod (X-Men)"
+      ],
+      "positions": [
+        86
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/nimrod-x-men-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/nova-reading-order/",
+      "labels": [
+        "Nova"
+      ],
+      "positions": [
+        87
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/nova-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/old-man-logan-reading-order/",
+      "labels": [
+        "Old Man Logan"
+      ],
+      "positions": [
+        88
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/old-man-logan-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever/",
+      "labels": [
+        "Original Graphic Novels (OGNs)"
+      ],
+      "positions": [
+        89
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-completely-insane-guide-to-every-marvel-original-graphic-novel-ever/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/phalanx-reading-order/",
+      "labels": [
+        "Phalanx"
+      ],
+      "positions": [
+        90
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/phalanx-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+      "labels": [
+        "Phoenix"
+      ],
+      "positions": [
+        91
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+      "labels": [
+        "Planet Hulk (Greg Pak Hulk)"
+      ],
+      "positions": [
+        92
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/professor-x-reading-order/",
+      "labels": [
+        "Professor X (Charles Xavier)"
+      ],
+      "positions": [
+        93
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/professor-x-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/betsy-braddock-psylocke-captain-britain-reading-order/",
+      "labels": [
+        "Psylocke"
+      ],
+      "positions": [
+        94
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/betsy-braddock-psylocke-captain-britain-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/punisher-reading-order/",
+      "labels": [
+        "Punisher"
+      ],
+      "positions": [
+        95
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/punisher-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+      "labels": [
+        "Rocket Raccoon"
+      ],
+      "positions": [
+        96
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/runaways-reading-order/",
+      "labels": [
+        "Runaways"
+      ],
+      "positions": [
+        97
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/runaways-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/scarlet-witch-reading-order/",
+      "labels": [
+        "Scarlet Witch"
+      ],
+      "positions": [
+        98
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/scarlet-witch-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/shadow-king-reading-order/",
+      "labels": [
+        "Shadow King"
+      ],
+      "positions": [
+        99
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/shadow-king-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+      "labels": [
+        "Shang-Chi"
+      ],
+      "positions": [
+        100
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/she-hulk-reading-order/",
+      "labels": [
+        "She-Hulk"
+      ],
+      "positions": [
+        101
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/she-hulk-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+      "labels": [
+        "Silver Surfer"
+      ],
+      "positions": [
+        102
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/skrulls-reading-order-essential-skrull-comics/",
+      "labels": [
+        "Skrulls"
+      ],
+      "positions": [
+        103
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/skrulls-reading-order-essential-skrull-comics/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/son-of-satan-hellstrom-reading-order/",
+      "labels": [
+        "Son of Satan (Hellstorm)"
+      ],
+      "positions": [
+        104
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/son-of-satan-hellstrom-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+      "labels": [
+        "Spider-Gwen"
+      ],
+      "positions": [
+        105
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+      "labels": [
+        "Spider-Man (2099)"
+      ],
+      "positions": [
+        106
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/spider-woman-reading-order/",
+      "labels": [
+        "Spider-Woman"
+      ],
+      "positions": [
+        107
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/spider-woman-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+      "labels": [
+        "Star-Lord (Peter Quill)"
+      ],
+      "positions": [
+        108
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/storm-x-men-reading-order/",
+      "labels": [
+        "Storm (X-Men)"
+      ],
+      "positions": [
+        109
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/storm-x-men-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-essential-marvels-s-w-o-r-d-comics-reading-order/",
+      "labels": [
+        "SWORD"
+      ],
+      "positions": [
+        110
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-essential-marvels-s-w-o-r-d-comics-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/squirrel-girl-reading-order/",
+      "labels": [
+        "Squirrel Girl"
+      ],
+      "positions": [
+        111
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/squirrel-girl-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+      "labels": [
+        "Thanos"
+      ],
+      "positions": [
+        112
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/thor-reading-order/",
+      "labels": [
+        "Thor"
+      ],
+      "positions": [
+        113
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/thor-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+      "labels": [
+        "Ultimate Spider-Man"
+      ],
+      "positions": [
+        114
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/venom-reading-order/",
+      "labels": [
+        "Venom"
+      ],
+      "positions": [
+        115
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/venom-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-vision-reading-order/",
+      "labels": [
+        "Vision"
+      ],
+      "positions": [
+        116
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-vision-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-ultimates-reading-order/",
+      "labels": [
+        "Ultimates"
+      ],
+      "positions": [
+        117
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-ultimates-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/best-ultron-reading-order/",
+      "labels": [
+        "Ultron"
+      ],
+      "positions": [
+        118
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/best-ultron-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/wasp-reading-order/",
+      "labels": [
+        "Wasp"
+      ],
+      "positions": [
+        119
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/wasp-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/war-machine-jim-rhodes-reading-order/",
+      "labels": [
+        "War Machine (Rhodey)"
+      ],
+      "positions": [
+        120
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/war-machine-jim-rhodes-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+      "labels": [
+        "White Tiger (Ava Ayala)"
+      ],
+      "positions": [
+        121
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+      "labels": [
+        "Winter Soldier (Bucky Barnes)"
+      ],
+      "positions": [
+        122
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+      "labels": [
+        "Wolverine"
+      ],
+      "positions": [
+        123
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/wolverine-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/x-23-reading-order/",
+      "labels": [
+        "X-23 (Laura Kinney)"
+      ],
+      "positions": [
+        124
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/x-23-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
+      "labels": [
+        "The X-Men (Modern Era)"
+      ],
+      "positions": [
+        125
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+      "labels": [
+        "The X-Men (Chris Claremont Era)"
+      ],
+      "positions": [
+        126
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+      "labels": [
+        "X-Men: Onslaught"
+      ],
+      "positions": [
+        128
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
+      "labels": [
+        "X-Man (Nate Grey)"
+      ],
+      "positions": [
+        129
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    },
+    {
+      "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+      "labels": [
+        "Young Avengers"
+      ],
+      "positions": [
+        130
+      ],
+      "status": 403,
+      "finalUrl": "https://www.comicbookherald.com/young-avengers-reading-order/",
+      "contentLength": 103,
+      "textLength": 33,
+      "bodySha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd",
+      "updateMarkers": [],
+      "collectsMarkerCount": 0,
+      "issueReferenceCount": 1
+    }
+  ]
+}

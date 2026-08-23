@@ -321,7 +321,7 @@ test('authoring requires one clean overlap row for every expected order identity
   }), /overlap report is incomplete/i);
 });
 
-test('the authored packet has no aggregate identity, sequence, or issue overlap', async () => {
+test('the original authored packet keeps its identities, sequence, and pre-publication overlap evidence', async () => {
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const packetSet = new Set(PACKET_IDS);
   const packetRecords = [];
@@ -348,9 +348,6 @@ test('the authored packet has no aggregate identity, sequence, or issue overlap'
   assert.equal(packetIssueIds.length, 238);
   assert.equal(new Set(packetIssueIds).size, 238);
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
-
-  const existingIssueIds = new Set(existingRecords.flatMap((record) => record.selectedIssueIds));
-  assert.deepEqual(packetIssueIds.filter((id) => existingIssueIds.has(id)), []);
 
   for (const id of PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));

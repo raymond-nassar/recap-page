@@ -8,6 +8,7 @@ export const GUIDE_TYPES = Object.freeze([
   'bridge',
   'fast-track',
   'commerce',
+  'character-run',
 ]);
 
 export const DISPOSITIONS = Object.freeze([
@@ -28,6 +29,20 @@ export const DELIVERY_STATUSES = Object.freeze([
 ]);
 
 export const BASELINE_COUNT = 86;
+export const CHARACTER_INVENTORY_COUNT = 128;
+
+const CHARACTER_DISPOSITIONS = new Set([
+  'deferred',
+  'excluded',
+  'blocked',
+  'pilot-approved',
+]);
+const CHARACTER_BOUNDARY_STATUSES = new Set(['exact-page-snapshot']);
+const CHARACTER_HORIZON_STATUSES = new Set([
+  'blocked-exact-resolution-not-run',
+  'blocked-confirmed-post-horizon',
+  'approved',
+]);
 
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const PACKET_FIELDS = new Set([
@@ -192,6 +207,19 @@ export function approvalDigestFor(relationshipReview) {
 
 export function libraryDigestFor(manifest, orderIssueIds) {
   return digestCanonicalJson({ manifest, orderIssueIds });
+}
+
+export function libraryDigestExcludingOrders(library, excludedOrderIds = []) {
+  const excluded = new Set(excludedOrderIds);
+  const lists = (library?.manifest?.lists ?? [])
+    .filter((entry) => !excluded.has(entry.id));
+  const orderIssueIds = Array.isArray(library?.orderIssueIds)
+    ? library.orderIssueIds.filter((entry) => !excluded.has(entry.id))
+    : Object.fromEntries(
+      Object.entries(library?.orderIssueIds ?? {})
+        .filter(([id]) => !excluded.has(id)),
+    );
+  return libraryDigestFor({ ...library.manifest, lists }, orderIssueIds);
 }
 
 export function validateMappingDigest(mapping) {
@@ -530,7 +558,12 @@ function validateInventoryRecord(record, { baseline = false } = {}) {
   assertField(`Record ${position} title`, record.title, (value) => typeof value === 'string' && value.trim().length > 0, 'must be a non-empty string');
   assertField(`Record ${position} url`, record.url, (value) => typeof value === 'string' && /^https?:\/\//.test(value.trim()), 'must be an absolute URL');
   assertField(`Record ${position} guideType`, record.guideType, (value) => GUIDE_TYPES.includes(value), 'must be a known guide type');
-  assertField(`Record ${position} window`, record.window, (value) => /^Q[1-7]$/.test(value), 'must use Q1 through Q7');
+  assertField(
+    `Record ${position} window`,
+    record.window,
+    (value) => (!baseline && value == null) || /^Q[1-7]$/.test(value),
+    baseline ? 'must use Q1 through Q7' : 'must use Q1 through Q7 or null',
+  );
   assertField(`Record ${position} disposition`, record.disposition, (value) => DISPOSITIONS.includes(value), 'must be a known disposition');
   assertField(`Record ${position} reason`, record.reason, (value) => typeof value === 'string' && value.trim().length > 0, 'must be a non-empty string');
   assertField(`Record ${position} sourceRetrievedAt`, record.sourceRetrievedAt, (value) => /^\d{4}-\d{2}-\d{2}$/.test(String(value)), 'must be a YYYY-MM-DD date string');
@@ -562,15 +595,85 @@ function validateInventoryRecord(record, { baseline = false } = {}) {
   }
 }
 
+function validateCharacterInventoryRecord(record) {
+  const label = `Character inventory ${record.id}`;
+  if (!CHARACTER_DISPOSITIONS.has(record.centralDisposition)) {
+    throw new Error(`${label} has invalid centralDisposition`);
+  }
+  if (!Array.isArray(record.labels) || record.labels.length === 0
+      || record.labels.some((value) => typeof value !== 'string' || !value.trim())
+      || new Set(record.labels).size !== record.labels.length) {
+    throw new Error(`${label} labels must be unique non-empty strings`);
+  }
+  if (!Array.isArray(record.sourcePositions)
+      || record.sourcePositions.length !== record.labels.length
+      || record.sourcePositions.some((value) => !Number.isInteger(value) || value < 1)
+      || new Set(record.sourcePositions).size !== record.sourcePositions.length) {
+    throw new Error(`${label} sourcePositions must uniquely match labels`);
+  }
+  if (!Array.isArray(record.duplicateFlags)
+      || (record.duplicateFlags.length !== 0
+        && record.duplicateFlags.length !== record.sourcePositions.length)
+      || record.duplicateFlags.some((value) => typeof value !== 'string' || !value.trim())) {
+    throw new Error(`${label} duplicateFlags must be empty or match source positions`);
+  }
+  assertSha256(record.sourceContentSha256, `${label} sourceContentSha256`);
+  if (!CHARACTER_BOUNDARY_STATUSES.has(record.sourceBoundaryStatus)) {
+    throw new Error(`${label} has invalid sourceBoundaryStatus`);
+  }
+  if (!CHARACTER_HORIZON_STATUSES.has(record.metadataHorizonStatus)) {
+    throw new Error(`${label} has invalid metadataHorizonStatus`);
+  }
+
+  const expectedState = {
+    deferred: ['deferred', 'not-applicable', 'blocked-exact-resolution-not-run'],
+    excluded: ['excluded', 'not-applicable', 'blocked-exact-resolution-not-run'],
+    blocked: ['deferred', 'blocked', 'blocked-confirmed-post-horizon'],
+    'pilot-approved': ['new-order', 'shipped', 'approved'],
+  }[record.centralDisposition];
+  const actualState = [record.disposition, record.deliveryStatus, record.metadataHorizonStatus];
+  if (actualState.some((value, index) => value !== expectedState[index])) {
+    throw new Error(`${label} state conflicts with centralDisposition`);
+  }
+}
+
 export function validateInventoryState(records) {
   if (!Array.isArray(records)) {
     throw new Error('The inventory must be an array');
   }
+  if (records.length === 0) throw new Error('The inventory must not be empty');
   const counts = {};
-  for (const record of records) {
+  const ids = new Set();
+  const urls = new Set();
+  for (const [index, record] of records.entries()) {
     validateInventoryRecord(record, { baseline: false });
+    if (record.position !== index + 1) {
+      throw new Error(`Record ${record.id} position must be ${index + 1}`);
+    }
+    if (ids.has(record.id)) throw new Error(`Duplicate inventory id: ${record.id}`);
+    if (urls.has(record.url)) throw new Error(`Duplicate inventory url: ${record.url}`);
+    ids.add(record.id);
+    urls.add(record.url);
+    if (new Set(record.overlapIds).size !== record.overlapIds.length) {
+      throw new Error(`Record ${record.id} contains duplicate overlap ids`);
+    }
+    if (new Set(record.catalogIds).size !== record.catalogIds.length) {
+      throw new Error(`Record ${record.id} contains duplicate catalog ids`);
+    }
     const key = record.guideType;
     counts[key] = (counts[key] ?? 0) + 1;
+  }
+  const isCharacterInventory = records.some((record) => (
+    record.guideType === 'character-run'
+    || Object.hasOwn(record, 'centralDisposition')
+    || Object.hasOwn(record, 'sourceBoundaryStatus')
+    || Object.hasOwn(record, 'metadataHorizonStatus')
+  ));
+  if (isCharacterInventory) {
+    if (records.length !== CHARACTER_INVENTORY_COUNT) {
+      throw new Error(`Character inventory must contain exactly ${CHARACTER_INVENTORY_COUNT} records`);
+    }
+    for (const record of records) validateCharacterInventoryRecord(record);
   }
   return counts;
 }

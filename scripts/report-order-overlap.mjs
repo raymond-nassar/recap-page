@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildComparisonReport, issueIdsFromValue } from './lib/cbh-overlap.mjs';
 import {
+  libraryDigestExcludingOrders,
   libraryDigestFor,
   reportDigestFor,
   validateMappingDigest,
@@ -156,6 +157,7 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
   const peers = peerMappings.map((peer) => peer.order);
   const candidateOrderId = String(mapping.id ?? path.basename(mappingPath, path.extname(mappingPath)));
   const peerOrderIds = new Set(peers.map((peer) => String(peer.orderId)));
+  const excludedIds = new Set([candidateOrderId, ...peerOrderIds]);
   const library = await loadLibrarySnapshot(options);
   const orders = library.orders.filter((item) => (
     item.orderId !== candidateOrderId && !peerOrderIds.has(String(item.orderId))
@@ -170,7 +172,7 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
     candidateId: candidateOrderId,
     packetDigest: mapping.packetDigest,
     mappingDigest: mapping.mappingDigest,
-    libraryDigest: library.libraryDigest,
+    libraryDigest: libraryDigestExcludingOrders(library, excludedIds),
     peerDigests,
     ...factualReport,
   };

@@ -1576,6 +1576,41 @@
       "timeline": 2020
     },
     {
+      "id": "white-tiger-ava-ayala",
+      "name": "White Tiger: Ava Ayala",
+      "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
+      "type": "character-run",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "white-tiger-ava-ayala.md",
+      "sourcePage": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "white_tiger_ava_ayala.json",
+      "characters": [
+        "White Tiger",
+        "Ava Ayala",
+        "Avengers Academy",
+        "Mighty Avengers",
+        "New Avengers"
+      ],
+      "keywords": [
+        "White Tiger",
+        "Ava Ayala",
+        "Avengers Academy",
+        "Mighty Avengers",
+        "Contest of Champions",
+        "Daughters of Liberty",
+        "Comic Book Herald"
+      ],
+      "expect": 82,
+      "timeline": null,
+      "coverIssueId": 36489
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
