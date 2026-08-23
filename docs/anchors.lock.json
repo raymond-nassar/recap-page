@@ -1334,10 +1334,10 @@
     "fp": "497988f72a930b2d",
     "head": "// **puppeteer-core is not a dependency of this repository and must not become one.** It is"
   },
-  ".copilot-tracking/reviews/plans/2026-08-23/priority-cosmic-character-guides-plan-critique.md|pc-001-high-no-task-owns-the-exact-research-back|scripts/lib/cbh-inventory.mjs:602-641|0": {
-    "anchor": "scripts/lib/cbh-inventory.mjs:602-641",
-    "fp": "9e97583378d70105",
-    "head": "assertField("
+  ".copilot-tracking/reviews/plans/2026-08-23/priority-cosmic-character-guides-plan-critique.md|pc-001-high-no-task-owns-the-exact-research-back|scripts/lib/cbh-inventory.mjs:639-679|0": {
+    "anchor": "scripts/lib/cbh-inventory.mjs:639-679",
+    "fp": "ed1b0ce85c31c5ce",
+    "head": "function validateCharacterInventoryRecord(record) {"
   },
   ".copilot-tracking/reviews/plans/2026-08-23/priority-cosmic-character-guides-plan-critique.md|pc-002-high-the-named-browser-verification-owner|scripts/browser-check.mjs:1-26|0": {
     "anchor": "scripts/browser-check.mjs:1-26",
