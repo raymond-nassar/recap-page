@@ -129,9 +129,20 @@ active without another Review.
 
 * None.
 
+## Pull request delivery
+
+* P04-T01 is complete.
+* The pre-implementation evidence commit is
+  `57acfba8fbbeecfc866c49118d970ed8c8cb5b3a`.
+* The reviewed feature commit is `0198f8e12a7c32c8a24edbc1333dae0e8ff8cc00`.
+* PR #173 is open against `main` at
+  https://github.com/raymond-nassar/recap-page/pull/173.
+* The PR opens with `## In plain English`, reports the exact local verification counts, records the
+  single Review and RV-001 resolution, and both commits carry the required co-author trailer.
+
 ## Remaining Work
 
-* P04.
+* P04-T02: hosted CI, merge, and merged-result persistence.
 
 ## Follow-Up Items
 
@@ -142,8 +153,9 @@ active without another Review.
 ## Return-to-Caller State
 
 * Implementation execution status: In progress
-* Declared scope and markers: Full plan; P01-P03 complete, RV-001 resolved, P04-T01 active.
-* Validation coverage: Catalog-only rebuild, 128 focused tests, two fail-before-fix proofs,
+* Declared scope and markers: Full plan; P01-P03 and P04-T01 complete, RV-001 resolved, P04-T02
+  active.
+* Validation coverage: Catalog-only rebuild, 133 focused tests, three fail-before-fix proofs,
   1,397 full tests, 13 focused and 158 full Edge assertions, all local gates, anchors, and diff scans.
 * Blockers: None.
 * Current plan and detail updates: Critique corrections reconciled.

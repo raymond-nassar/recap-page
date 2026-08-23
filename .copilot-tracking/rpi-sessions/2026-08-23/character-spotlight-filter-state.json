@@ -79,7 +79,7 @@
     "status": "in_progress",
     "scope": "full-plan",
     "changes": ".copilot-tracking/changes/2026-08-23/character-spotlight-filter-changes.md",
-    "active_marker": "P04-T01",
+    "active_marker": "P04-T02",
     "completed_markers": [
       "P01",
       "P01-T01",
@@ -89,7 +89,8 @@
       "P02-T02",
       "P03",
       "P03-T01",
-      "P03-T02"
+      "P03-T02",
+      "P04-T01"
     ]
   },
   "review": {
@@ -106,6 +107,14 @@
     ]
   },
   "pull_request": {
-    "status": "not_started"
+    "status": "open",
+    "number": 173,
+    "url": "https://github.com/raymond-nassar/recap-page/pull/173",
+    "base": "main",
+    "head": "raymond-nassar-character-spotlight-filter",
+    "commits": [
+      "57acfba8fbbeecfc866c49118d970ed8c8cb5b3a",
+      "0198f8e12a7c32c8a24edbc1333dae0e8ff8cc00"
+    ]
   }
 }

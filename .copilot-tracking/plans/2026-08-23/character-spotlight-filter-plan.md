@@ -345,16 +345,17 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Intent: Publish the reviewed change, read hosted job conclusions honestly, reconcile if required,
   merge, and persist the final result.
 * Dependencies: P03.
-* Implementation status: In progress after RV-001 closure.
+* Implementation status: In progress; PR #173 is open and P04-T02 is active.
 
 <!-- rpi:task id=P04-T01 -->
-#### [ ] P04-T01: Commit and open the pull request
+#### [x] P04-T01: Commit and open the pull request
 
 * Requirement and evidence: The caller requires the co-author trailer, plain-English PR lead, and
   verification counts.
 * Expected result: scoped commits and a PR against current `main` describe exact behavior and evidence.
 * Detail section: P04-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
-* Implementation status: In progress.
+* Implementation status: Complete. Two scoped commits are published in PR #173 with the required
+  trailer, plain-English lead, and exact local verification counts.
 
 <!-- rpi:task id=P04-T02 -->
 #### [ ] P04-T02: Monitor CI, reconcile, merge, and persist
@@ -363,6 +364,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Expected result: all three jobs pass by job conclusion; any main reconciliation is fully revalidated;
   the PR merges; state and changes records carry PR number, merge commit, and final outcomes.
 * Detail section: P04-T02 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
+* Implementation status: In progress.
 
 ## Dependencies
 

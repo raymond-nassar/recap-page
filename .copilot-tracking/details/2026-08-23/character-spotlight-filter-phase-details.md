@@ -582,7 +582,12 @@ Create a reviewable commit and PR with user-facing and technical evidence.
 
 #### Completion Evidence
 
-* Commit SHA and PR number persisted in state and changes.
+* Pre-implementation evidence commit:
+  `57acfba8fbbeecfc866c49118d970ed8c8cb5b3a`.
+* Reviewed feature commit: `0198f8e12a7c32c8a24edbc1333dae0e8ff8cc00`.
+* PR #173: https://github.com/raymond-nassar/recap-page/pull/173.
+* The PR targets `main`, opens with the required plain-English section, records exact verification
+  counts and the single Review disposition, and both commits carry the required co-author trailer.
 
 #### Unresolved Items
 
