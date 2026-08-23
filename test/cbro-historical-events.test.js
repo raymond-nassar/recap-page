@@ -416,7 +416,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       .map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [...existingIds, ...peerMappings.map((peer) => peer.id)];
     assert.equal(report.comparisonCount, expectedOrderIds.length);
-    assert.equal(report.comparisonCount, 93);
+    assert.equal(report.comparisonCount, 94);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({

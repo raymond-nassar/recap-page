@@ -19,16 +19,27 @@ quote in a bug report.
 In plain English: Timeline now reaches back before Maximum Security with five compact event guides:
 Muir Island Saga, Midnight Massacre, Bloodties, Child's Play, and Eighth Day. Together they add 23
 issues from 1991 through 1999. Each card credits Comic Book Reading Orders and opens the exact page
-followed. The catalog now has 94 reading lists, and nothing you have saved is changed.
+followed. The catalog now has 95 reading lists, and nothing you have saved is changed.
 
 Two smaller source pages are not shortened to make the release. Days of Future Present and Countdown
 remain blocked because the metadata snapshot cannot represent every issue they name.
 
 For maintainers: a separate CBRO inventory preserves all 58 timeline entries before Maximum Security,
 including blocked, absorbed, subset, alternate-universe, and deferred states. Five frozen packets bind
-the exact provider, page bytes, 23 source rows, mappings, complete 89-list and four-peer reports, and
-central approvals. All 465 relationships are none. Existing CBH packets retain their original defaults
+the exact provider, page bytes, 23 source rows, mappings, complete 90-list and four-peer reports, and
+central approvals. All 470 relationships are none. Existing CBH packets retain their original defaults
 and data paths.
+
+### Added Rocket Raccoon complete character guide
+
+In plain English: the Character spotlights shelf now includes a complete Rocket Raccoon guide. It
+follows 75 issues from Tales to Astonish #13 through Guardians of the Galaxy Annual #1 in the source's
+order. The catalog now has 90 reading lists. Nothing you have saved is changed.
+
+For maintainers: the frozen 75-row source boundary resolves exactly with no unmatched or ambiguous
+issues. Its report covers all 89 pre-publication readings and centrally approves three partial
+relationships, sharing 10 issues with Marvel Fresh Start Avengers, 10 with Scarlet Witch Best Of, and
+7 with War of Kings. Groot, Star-Lord, and Thanos remain deferred with their accepted boundaries intact.
 
 ### Added Character Spotlight guide filters
 
@@ -37,8 +48,8 @@ All remains the default, and the grouped X-Men readings, Doom primer, and Essent
 there without being given a label that does not fit them. Search, saved progress, and every existing
 card are unchanged.
 
-For maintainers: all eleven character readings now carry one validated editorial classification.
-Five are Best of, two are complete guides, and four remain under All only across three stories.
+For maintainers: all twelve character readings now carry one validated editorial classification.
+Five are Best of, three are complete guides, and four remain under All only across three stories.
 Grouped readings must agree, generated data preserves the value, and unknown runtime values match no
 subset.
 

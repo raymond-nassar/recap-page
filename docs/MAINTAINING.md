@@ -233,6 +233,11 @@ complete manifest proposal, chronology insertion anchor, and source-review ident
 `packetDigest` is SHA-256 over canonical JSON with recursively sorted object keys and preserved
 array order. Changing any frozen field requires a new digest and a new downstream review.
 
+For a `complete-guide`, enumerate every source-defined whole issue in that packet. A prose-only
+recommendation or collected edition may stay outside the row set when the source does not make it an
+issue in the sequence. An unavailable or ambiguous whole issue blocks that candidate instead of
+permitting an inferred replacement or a shorter guide.
+
 The maintained source records are split by program. Modern event and crossover candidates remain in
 `scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and
 team guide identities live in `scripts/data/cbh-character-inventory.json`. Named preparation locates
@@ -350,6 +355,10 @@ Authoring validates provider, source, packet, mapping, report, complete-library,
 manifest, and chronology evidence before writing. Every resulting card must use
 `Compiled for this project from Comic Book Reading Orders`, link to the exact event page, and keep
 `sourceLicense` null.
+
+For a Character Spotlight addition, also check the real catalog at desktop and narrow widths. Record
+the reading and story counts under All, Best of, and Complete guides, and confirm the new card appears
+only in the subsets named by its authored `spotlightKind`.
 
 ## Create reading paths and collected-edition groups
 

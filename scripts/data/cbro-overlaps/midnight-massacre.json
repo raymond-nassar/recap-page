@@ -2,7 +2,7 @@
   "candidateId": "midnight-massacre",
   "packetDigest": "9a2870e6538537a067900c1b7d5dc18d729e9a6ab6364c9b35abb3edbdde7853",
   "mappingDigest": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf",
-  "libraryDigest": "30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab",
+  "libraryDigest": "75d060ace62824377e5a81b48eb25ffedcfb3d346ef25221a0817d8057d11596",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 5,
-  "comparisonCount": 93,
+  "comparisonCount": 94,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -355,6 +355,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "rocket-raccoon-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "scarlet-witch-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -571,5 +577,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "62a8b810f6673b26a36556e2dab8b35bd8b2cb649022922d0e0208fd588ae140"
+  "reportDigest": "9655ea8dc7019659d8e128a2176fcb98f57c76aba0720f44510851c745f4fcba"
 }

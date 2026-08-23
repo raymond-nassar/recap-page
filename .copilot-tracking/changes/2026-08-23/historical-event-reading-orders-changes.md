@@ -12,9 +12,9 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Active marker: P05-T03
-* Completed scope markers: P01 through P04, P05-T01, P05-T02, and P01-T01 through P04-T03
-* All remaining active-plan markers: P05 through P07 and P05-T03 through P07-T03
+* Active marker: P06-T01
+* Completed scope markers: P01 through P05 and P01-T01 through P05-T03
+* All remaining active-plan markers: P06 through P07 and P06-T01 through P07-T03
 * Status basis: Planning and the single critique are complete. Implementation begins with mandatory
   current-main and selected-source freshness reconciliation before any product authoring.
 
@@ -171,7 +171,7 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 * Related phase or task: P04-T01
 * Files: `PRODUCT_BACKLOG.md`, `CHANGELOG.md`
-* What changed and why: Added BL-205 and the Unreleased five-guide outcome, preserved every later
+* What changed and why: Added BL-206 and the Unreleased five-guide outcome, preserved every later
   candidate state, and re-derived the ranked-row, detail-block, shipped, and rank figures affected by
   the new item.
 * Completion evidence: The backlog now has 179 ranked rows and 184 detail blocks: 156 Shipped,
@@ -185,8 +185,8 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 * What changed and why: Documented the separate CBRO inventory and commands, source delay, provider and
   digest boundary, five permission conditions and exclusions, null licence, central approvals, 94-list
   and 4,017-record inventory, and no-source-prose or image rule.
-* Completion evidence: Provenance now accounts for five CBRO lists, 23 rows, 92 Markdown checklists,
-  4,017 records, 3,375 distinct issues, 3,948 cover-bearing records, and 3,879 records with creators.
+* Completion evidence: Provenance now accounts for five CBRO lists, 23 rows, 93 Markdown checklists,
+  4,092 records, 3,433 distinct issues, 4,023 cover-bearing records, and 3,950 records with creators.
 * Validation: Counts and publication-facing source inventory are internally consistent.
 
 ### Anchor evidence re-aimed and read
@@ -230,6 +230,36 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
   source labels and links, Add controls, payload counts, and first, middle, and final sampled issue
   IDs.
 
+### Current main merged and release authority reissued
+
+* Related phase or task: P05-T03
+* Files: merged Rocket Raccoon product and evidence files; five CBRO mappings and reports; catalog,
+  counts, documentation, tests, and anchor evidence
+* What changed and why: Merged current main at `3f03c5322d0463337efd351dbf030fd4ae231fd7`,
+  which added the Rocket Raccoon guide and moved the pre-publication library from 89 to 90 lists.
+  Resolved shared catalog and record changes without dropping either feature. Renamed this feature's
+  backlog record from BL-205 to BL-206 because main assigned BL-205 first.
+* Completion evidence: Re-fetched all five source pages with matching SHA-256. Rebuilt each selected
+  report against complete-library digest
+  `75d060ace62824377e5a81b48eb25ffedcfb3d346ef25221a0817d8057d11596`
+  and four peer digests. Each now contains 94 none relationships, for 470 total, with new report and
+  approval digests. Re-authoring validated the complete current evidence set.
+* Validation: Post-merge focused tests passed 80 of 80 and counts passed at 180 ranked rows, 185 detail
+  blocks, 157 Shipped, 21 Ready, 6 Dropped, and 1 Proposed. Lint passed.
+
+### Final merged-tree gates passed
+
+* Related phase or task: P05-T03
+* Files: final conflict-resolved implementation and merged current-main files
+* What changed and why: Re-ran every deterministic, live, publication, and browser gate after the last
+  conflict resolution, report regeneration, approval regeneration, documentation count update, and
+  anchor re-aim.
+* Completion evidence: Full suite 1,412 passed; lint 0; counts 180 ranked rows and 185 detail blocks;
+  sizes 7 of 7; palette 88 pairs with 5 recorded and 0 new; anchors 1,168 unchanged with 0 drifted,
+  new, or removed; live contract 33 of 33; installed Edge 158 of 158; actual CBRO cards 41 of 41 at
+  1280x900. Final dash scan found 0 added lines with dash punctuation and `git diff --check` passed.
+* Validation: Passed.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Single critique corrections incorporated
@@ -254,10 +284,10 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 | Focused semantic tests | P01 | Passed | 29 provider, resolver, and CBH packet tests, 0 failed |
 | Focused semantic tests | P03 | Passed | Exactly 14 CBRO historical-event tests, 0 failed |
 | Targeted vendoring | P03 | Passed | 5 lists, 23 issues, 0 unresolved, 0 placeholders, 0 missing digital ids or covers |
-| Counts | P04 | Passed | 179 ranked rows, 184 detail blocks, all stated figures agree |
-| Anchors | P04 | Passed | 1,151 unchanged, 0 drifted, 0 new, 0 removed |
+| Counts | P04 and P05-T03 | Passed | 180 ranked rows, 185 detail blocks, all stated figures agree |
+| Anchors | P04 and P05-T03 | Passed | 1,168 unchanged, 0 drifted, 0 new, 0 removed |
 | Failure proof | P05-T01 | Passed | Provider mutation failed cases 1-10; selected-set mutation failed cases 7-14; restored 14/14 pass |
-| Full tests | P05-T02 | Passed | 1,411 passed, 0 failed |
+| Full tests | P05-T02 and P05-T03 | Passed | 1,412 passed, 0 failed on the merged tree |
 | Lint | P05-T02 | Passed | 0 findings |
 | Sizes | P05-T02 | Passed | 7 stated sizes agree |
 | Palette | P05-T02 | Passed | 88 pairs, 5 recorded, 0 new |
@@ -270,10 +300,10 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 ## Pre-Review Reconciliation
 
-* Plan markers and phase details: Current for implementation opening.
-* Completed-work evidence and handoff prose: No completed implementation task yet.
-* Validation, blockers, remaining work, and follow-up items: Current; all implementation work remains.
-* Review readiness: Not ready until P01 through P05 are complete.
+* Plan markers and phase details: Current; P01 through P05 and all implementation tasks are complete.
+* Completed-work evidence and handoff prose: Current through final current-main reconciliation.
+* Validation, blockers, remaining work, and follow-up items: Current; no implementation blocker.
+* Review readiness: Ready for the one independent post-implementation Review.
 
 ## Blockers
 
@@ -282,7 +312,7 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 ## Remaining Work
 
-* P01 through P07 and all 21 tasks remain.
+* P06 and P07 remain. Implementation P01 through P05 is complete.
 
 ## Follow-Up Items
 
@@ -293,13 +323,14 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 ## Return-to-Caller State
 
-* Implementation execution status: Partial
-* Declared scope and markers: full plan; P01 through P04 and P05-T01 through P05-T02 complete;
-  P05-T03 active
-* Validation coverage: All pre-reconciliation local, live, and browser gates passed
+* Implementation execution status: Complete for implementation phases P01 through P05; full task
+  remains Partial through Review and release
+* Declared scope and markers: full plan; P01 through P05 complete; P06-T01 active
+* Validation coverage: All final merged-tree deterministic, live, publication, dash, diff, and browser
+  gates passed
 * Blockers: None
 * Current plan and detail updates: PC-001 through PC-005 resolved before source work
 * Planning and critique state: Ready; one critique complete
 * Follow-up items: Ranked later historical chunks only
-* Review readiness or no-handoff reason: Not ready; implementation and local gates remain
+* Review readiness or no-handoff reason: Ready for exactly one independent Review
 * Continuation owner: confirmed automatic RPI Agent

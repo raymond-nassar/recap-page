@@ -2,7 +2,7 @@
   "candidateId": "eighth-day",
   "packetDigest": "48aff0f1ee442018b266c4bc048de00aba77a906b73b4ce8cc9ebf43484f78fa",
   "mappingDigest": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
-  "libraryDigest": "30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab",
+  "libraryDigest": "75d060ace62824377e5a81b48eb25ffedcfb3d346ef25221a0817d8057d11596",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 4,
-  "comparisonCount": 93,
+  "comparisonCount": 94,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -355,6 +355,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "rocket-raccoon-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "scarlet-witch-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -571,5 +577,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "5a0988627a071522e293e634984c895cb36a761119dd7ce3e0b0fa052b02f5ab"
+  "reportDigest": "c55015827e123a80a1c83c7a21c1745f302cadd2a81c3a077d58b359f5b45221"
 }

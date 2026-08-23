@@ -1,16 +1,11 @@
 {
-  "candidateId": "muir-island-saga",
-  "packetDigest": "dcb274a7d0ebf4213018883fb7d43238d93a037d4fdaf9dddd52e78033d363e8",
-  "mappingDigest": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779",
-  "libraryDigest": "75d060ace62824377e5a81b48eb25ffedcfb3d346ef25221a0817d8057d11596",
-  "peerDigests": {
-    "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
-    "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
-    "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
-    "midnight-massacre": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf"
-  },
-  "candidateCount": 5,
-  "comparisonCount": 94,
+  "candidateId": "rocket-raccoon-reading-order",
+  "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
+  "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
+  "libraryDigest": "30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab",
+  "peerDigests": {},
+  "candidateCount": 75,
+  "comparisonCount": 89,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -67,12 +62,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "bloodties",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "captain-america-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -80,12 +69,6 @@
     },
     {
       "orderId": "chaos-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "childs-play",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -152,12 +135,6 @@
     },
     {
       "orderId": "doomwar",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "eighth-day",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -266,9 +243,20 @@
     },
     {
       "orderId": "marvel-fresh-start-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 10,
+      "sharedIds": [
+        "71433",
+        "71435",
+        "71436",
+        "71437",
+        "71438",
+        "71439",
+        "71440",
+        "71441",
+        "71442",
+        "71987"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "marvels-best-phoenix-comics",
@@ -290,12 +278,6 @@
     },
     {
       "orderId": "messiah-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "midnight-massacre",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -355,16 +337,21 @@
       "relationship": "none"
     },
     {
-      "orderId": "rocket-raccoon-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "scarlet-witch-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 10,
+      "sharedIds": [
+        "71433",
+        "71435",
+        "71436",
+        "71437",
+        "71438",
+        "71439",
+        "71440",
+        "71441",
+        "71442",
+        "71987"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "second-coming",
@@ -458,9 +445,17 @@
     },
     {
       "orderId": "war-of-kings",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 7,
+      "sharedIds": [
+        "23986",
+        "24188",
+        "25303",
+        "25304",
+        "25305",
+        "25306",
+        "25307"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "war-of-the-realms",
@@ -577,5 +572,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "e91c9faa30264a6476aa81de8697f33f18c0ecec225c783dba3c73018fe6f5da"
+  "reportDigest": "fcc1d5607a39e16651ac1b1c05e316a017616c31c4db0d14e1c581f3232f1973"
 }

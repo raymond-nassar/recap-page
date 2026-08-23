@@ -374,7 +374,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T03 in .copilot-tracking/details/2026-08-23/historical-event-reading-orders-phase-details.md
 
 <!-- rpi:phase id=P05 -->
-### [ ] P05: Validate implementation and prepare Review
+### [x] P05: Validate implementation and prepare Review
 
 * Intent: prove the feature, regression safety, source boundary, and real-browser behavior before the
   one independent Review.
@@ -398,7 +398,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P05-T02 in .copilot-tracking/details/2026-08-23/historical-event-reading-orders-phase-details.md
 
 <!-- rpi:task id=P05-T03 -->
-#### [ ] P05-T03: Reconcile main and refresh release evidence
+#### [x] P05-T03: Reconcile main and refresh release evidence
 
 * Requirement and evidence: concurrent work may land after authoring.
 * Expected result: current main and source pages are reconciled again; changed catalog evidence causes
