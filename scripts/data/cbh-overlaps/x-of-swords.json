@@ -2,7 +2,7 @@
   "candidateId": "x-of-swords",
   "packetDigest": "57ee256e63363c7d7309dc27e482566db38153205e3911a5d7816f22045ac0a0",
   "mappingDigest": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3",
-  "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
   "peerDigests": {
     "heroes-reborn-2021": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620"
   },
@@ -523,5 +523,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "a9a023365a4a81bfdc30feb11ed01542680999f1b0d77609debf4a94db11e45e"
+  "reportDigest": "0ab012c2cbb2d064dd7ffd6f14e9fbd010c334a06536bfebcc12344a405fefd7"
 }

@@ -1853,7 +1853,7 @@
       "id": "essential-avengers",
       "name": "Essential Avengers",
       "description": "Ten runs out of the first 285 issues of Avengers, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It takes the team from its assembly and the return of Captain America through the arrival of the Vision, the Kree and Skrull War, the Bride of Ultron, the Korvac Saga, the nights of Wundagore, Heart of Stone, the legacy of Thanos, Under Siege and the assault on Olympus. The gaps between sections are the outline's own: this is a selection rather than a continuous read.",
-      "type": "era",
+      "type": "character-run",
       "depth": "essential",
       "beginner": true,
       "sourceFile": "essential-avengers.md",
@@ -1883,7 +1883,7 @@
         "Assault on Olympus"
       ],
       "expect": 120,
-      "timeline": 1963
+      "timeline": null
     },
     {
       "id": "maximum-security",

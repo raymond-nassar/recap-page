@@ -19,7 +19,8 @@ quote in a bug report.
 In plain English: the catalog now has 86 reading lists. Twenty new guides carry the event sequence
 from Marvel Generations through Sins of Sinister, including Spider-Geddon, War of the Realms,
 Absolute Carnage, Devil's Reign, and Judgment Day. Every card credits Comic Book Herald and opens
-the exact guide followed. Nothing you have saved is changed.
+the exact guide followed. The Timeline gives the 2021 to 2024 stories their own named period instead
+of leaving them unplaced. Nothing you have saved is changed.
 
 One World Under Doom is not shown as a shortened or incomplete list. Its current checklist repeats
 one issue and names at least ten issues the app's metadata source does not yet carry, so it remains
@@ -43,6 +44,139 @@ library, mapped peers, factual relationship report, and central approval. Exact 
 either subset direction needs explicit central approval; partial overlap needs human or
 stronger-model authority. Named preparation and authoring preserve every legacy batch, add no runtime
 dependency, and are covered by nine focused semantic cases in the existing test files.
+
+### Said each thing once, in the words a reader already knows
+
+In plain English: the same button had two names. Pressing it on a picture card on the front page said
+"Add to library" and pressing it on a row on a browse screen said "Import", and both did exactly the
+same thing, which is copy one of the bundled reading orders into your own library. Nothing is
+imported from anywhere and nothing leaves your machine, so it is called "Add to library" in both
+places now. The two browse screens were renamed for what is on them rather than how they were put
+together: "Browse by era" is now "Timeline" and "Line-wide reading lists" is now "Storylines". Two
+of the ways to add issues were renamed for the same reason, so the one that searches now says "Find
+a series" and the one that takes text you paste says "Paste a reading list".
+
+The screens themselves say a great deal less. Every row on every browse screen used to print who
+put the order together, where it came from and when it was copied, in small grey text, forty-six
+times over on one screen. That is now a "Source" line you can open on the one order you are
+curious about, and it is still findable by searching the page. The sentence under each screen's
+title repeated the description the front page already gives, so it is one short line now. The
+three search buttons became a magnifying glass, since the box beside each one already says what it
+searches. The strip at the very bottom of the front page offering a second way to start an empty
+list is gone, because that way is permanently in the navigation strip anyway. The one thing that
+got louder is the period headings on the Timeline screen: they now sit in a band of their own, so
+scrolling past forty-six rows tells you when the period changed.
+
+Two things were deliberately left as they were. The note saying that nothing is sent anywhere until
+you press the button stays word for word, because it is a promise rather than a hint. And the box
+for a Marvel Unlimited address stays, even though it was asked to go, because the form it sits in
+exists for issues published after the built-in data ends, and for those there is no other way to
+give the app a working link.
+
+Nothing you have saved is affected, and no reading order, filter or setting was removed.
+
+For maintainers: measured in Edge at 1280x900 against `main`, on the shipped catalogue. Visible
+words fell on every screen touched: Timeline 2,833 to 2,205 with paragraphs 100 to 54, Storylines
+692 to 611, character spotlights 1,128 to 1,031, the add screen 79 to 67, the landing page 3,566 to
+3,548. Small-font nodes fell from 267 to 207 on Timeline. Controls reading "Import" went from 46, 6
+and 7 on the three browse screens to 0; the one remaining "Import" is the paste form's own submit,
+which parses text rather than adding a bundled order. The two names were one string typed twice and
+are now one binding, so the row handler and the card handler cannot drift again. The three rail
+subtitles were removed from the shelf table as well as from the markup, because no renderer had
+drawn that field since the rail was rebuilt, so it declared copy that reached no screen. Provenance
+is a `<details>` rather than the hover tooltip that was asked for: a tooltip reaches neither the
+keyboard nor a touch screen, and Chromium opens a closed disclosure for find-in-page, so the words
+stay findable. Each summary is named for the order it belongs to, since 46 controls named "Source"
+is a list nobody can navigate. The icon buttons keep a 44px target, a `title` of "Search" and a
+fuller accessible name each. Era bands went from weight 600 and no fill to weight 700 with a fill,
+an outline and a 3px accent edge. Card heights are unchanged and the 125px spread across the 59
+landing cards is filed as BL-194 with both attempted fixes costed and rejected there: clamping the
+path sentence to one line recovered 19px and truncated nine of ten sentences mid-word, and
+reserving two lines each for the title and description made the spread worse, 125px to 145px.
+Details in BL-192 and BL-193, with the remaining requests filed as BL-194 through BL-197. The
+browser harness was run against `origin/main` and against this branch: 109 assertions pass and 10
+fail in both, the same 10 by name, so this change regressed nothing there and the standing failures
+are filed as BL-198.
+
+### Put every reading order on the front page, and gave each kind of reading its own screen
+
+In plain English: the front page used to show twelve reading orders as picture cards and then offer
+a button reading "See all 59 reading orders", which took you to a different-looking screen where the
+same orders were plain rows. Asking for more of what you were looking at gave you something else,
+which was the complaint. The front page now shows all fifty-nine straight away, as cards, and the
+button is gone because there is nothing left behind it. The browse screens keep their list layout on
+purpose: a list is how you read an index, and it is the only place that shows how deep an order goes,
+who put it together, and the choice between reading it in full or in brief. Those screens are also
+now three rather than one, so events, whole-line reading lists and single-character selections are no
+longer shuffled together. One reading order changed shelf: the Essential Avengers selection is a
+best-of the team's whole history rather than a moment in it, so it now sits with the other
+character selections and no longer claims to belong to 1963. One consequence of splitting the
+catalogue is that the ten stops of the bundled reading path no longer sit on one screen, so the note
+telling you which order to read next is now a link on the two steps that change screen, and it
+clears anything you had typed or filtered on the screen it takes you to, so the order it named is
+really there when you arrive. The path's own name, printed on every step, now links back to the
+first one for the same reason, on the steps that sit on a different screen from where the path
+begins. Neither adds a word to the screen. Nothing you have saved is affected.
+
+For maintainers: measured in Edge at 1280x900 with the cache disabled, the landing grid renders 59
+cards where the cap allowed 12, in three groups, on a page 8,178 pixels tall. The shelf card's cover
+image was the one image in the app with no `loading` attribute, so it fetched eagerly; with it added
+the landing page issues 12 cover requests on first paint, against 59 measured with the attribute
+taken back off. The page therefore went from 12 orders to 59 while asking the network for the same
+number of covers. The catalogue is three routed screens holding 46, 6 and 7 stories, a complete
+partition of the 59 held by a test that fails if any story reaches two screens or none. Era grouping,
+screen membership and the modern-era boundary all come from one table, so adding an era is one row.
+Eras declare closed bounds at both ends; a story matching none renders in a fallback section that
+draws only when it has rows and claims no year range, and fails the build naming itself. Each era
+heading prints the span its own rows cover, which is the early warning that a label has gone stale.
+Row headings take their level from the screen, so the two screens without era heads no longer skip
+from h1 to h3. The one bundled reading path crosses a screen at 2 of its 9 hops, so "Next" renders
+as a hash link on those two and as plain text on the other seven, where the next stop is already
+further down the same screen. Following one resets the destination's query and facet before the view
+draws, because a screen holding a search from an earlier visit can be showing rows without showing
+the one the link named: `x-men` on the era screen leaves 23 of its 46 rows and drops the first
+crossing's target. A stop now carries the screen it is drawn on, resolved from the whole catalog, and
+three tests hold that every stop is listed on the screen its own link names. The path name links to
+the head of the path through the same function, which returns nothing when the stop is drawn on the
+screen already being read, so the boundary and the arrival exist once rather than twice: 9 linked
+names against 2 linked "Next"s, none on the landing page or the spotlights because both draw stop 1,
+4 on the era screen and 5 on the line-wide lists. That is more link surface than the backward badge
+that was costed and declined, on 9 rows against 2, and no more text, which is what was being
+optimised. One row carries both, and its accessible name says where it goes without printing it.
+Details in BL-189, with the deferred pre-modern screens in BL-190 and the path links in BL-191.
+
+### Made the screens quieter and easier to scan
+
+In plain English: the screens said too much. The settings page has been rebuilt so each choice is
+one row with its control beside it and a single line of explanation; every longer explanation is
+still there, one click away, and not a sentence was removed. The reading page used to tell you how
+far through an order you were in five different places at once, twice of them the same number
+subtracted from itself, and now says it once. The navigation strip down the left no longer pushes
+settings, about and the connection status off the bottom of the screen. The three pages that can be
+empty now offer the button they used to describe in words. Text sizes across the whole app come
+from one small set rather than being picked one at a time, so headings and body text stop
+disagreeing by a fraction of a pixel. Two smaller repairs came out of reviewing the work: the
+keyboard highlight on the left-hand strip was being cut off at the edges, and the reading page's
+progress circle had stopped saying that the numbers were about issues you had read, which mattered
+to anyone using a screen reader. Nothing you have saved is affected.
+
+For maintainers: 107 of 108 declared font sizes now resolve through a six step scale, taking the
+landing page from 15 distinct computed sizes to 5. The settings view went from 383 words to 227
+with every sentence preserved behind a disclosure. The reading view's header subtitle went from 543
+characters to 19 and the order description moved to its own disclosure. The rail is now a fixed
+column with a scrolling middle and a pinned foot, measured at 900px of content in a 900px viewport
+where it was 991. The catalog's import buttons are outlines, taking the page from 59 filled accent
+buttons to none and matching the rule the card grid already applied. The progress and library empty
+states gained an action; the progress view withholds its counting methodology when it has no
+figures. Structural tests for heading levels, group labels, binding ids and the privacy copy
+extraction all pass unchanged, and two tests were added to hold the new empty-state action: one for
+its shape, one that its destination is a view the rail can reach. Review then found three defects
+and all three are fixed here: the reachability test's hand-written allow-list held three names that
+are not views and omitted two that are, so it now reads the sections out of the markup; the ring's
+accessible text regained the verb, since the circle is `aria-hidden` and those two spans are the
+whole spoken statement; and the rail's focus ring is drawn inside the button, because the pane is a
+scroll container and padding it cannot help a full-width button. That last one is not a regression,
+measured as 13 of 13 controls clipped under the arrangement this replaced. Details in BL-187.
 
 ### Added ten more modern Marvel crossover reading orders
 

@@ -26,6 +26,34 @@
   --canvas: 1360px;
   --column: 876px;
 
+  /* The type ramp. Six steps, and every piece of UI text in the app picks one of them; the only
+     survivor outside it is `code`, which stays em-relative so it tracks whatever it sits inside.
+     Before this existed the stylesheet held 31 distinct font sizes, and because `body` was set in
+     px while everything else was set in rem off the 16px root, the two halves were measured
+     against different bases. That is how a section heading at .95rem came to render 15.2px against
+     15px body text, a difference of a fifth of a pixel doing the work of a heading, and how the
+     page title at 1.25rem ended up smaller than a card heading at 2.2rem. Sizes are px so the
+     ramp has exactly one base. */
+  --t-caption: 12px;
+  --t-body: 14px;
+  --t-body-lg: 18px;
+  --t-subtitle: 20px;
+  --t-title: 28px;
+  --t-title-lg: 40px;
+
+  /* Icons are glyphs from the icon font, sized to the metric the font was drawn for rather than
+     to a text step. */
+  --icon: 16px;
+
+  /* The cover-art fallback tiles are artwork, not UI text: an issue number set large with the
+     series abbreviated above it, drawn only when no cover URL is available. They are deliberately
+     outside the ramp, because sizing them by a text step would either shrink the number below
+     legibility on a small tile or push the abbreviation up into heading territory. */
+  --art-label-sm: 10px;
+  --art-label: 12px;
+  --art-n-md: 24px;
+  --art-n-lg: 38px;
+
   /* Status hues are shared. They are chosen to clear 4.5:1 on both themes, which is
      what `npm run palette` checks; a hue that could only manage it on one has to split
      into per-theme tokens, which `--teal` and now `--accent` both do. */
@@ -96,7 +124,7 @@
   --amber: #eab654;
   --blue: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:697-698`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:699-700`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -181,7 +209,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 15px/1.6 system-ui, "Segoe UI", sans-serif;
+  font: var(--t-body)/1.6 system-ui, "Segoe UI", sans-serif;
 }
 
 h1, h2, h3 { letter-spacing: -.015em; }
@@ -237,9 +265,15 @@ h2[tabindex="-1"]:focus {
   background: var(--rail);
   border-right: 1px solid var(--line);
   padding: .8rem .8rem 1rem;
-  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
   display: flex; flex-direction: column;
 }
+/* The rail used to scroll as one column, so everything past the fold went with it. The reading
+   orders and the task shortcuts scroll; the app group and the status pills are pinned, which is
+   the footer area a navigation pane is supposed to have. */
+#sidebar-nav { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.nav-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+.nav-foot { flex: 0 0 auto; }
 .railed .rail { padding-left: .3rem; padding-right: .3rem; }
 
 /* Fluent's PUA glyphs. They are decorative: every button keeps its label in the DOM as
@@ -247,7 +281,7 @@ h2[tabindex="-1"]:focus {
    with no name. */
 .gi {
   font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", sans-serif;
-  font-size: 16px; line-height: 1; flex: 0 0 auto;
+  font-size: var(--icon); line-height: 1; flex: 0 0 auto;
   width: 1.25rem; text-align: center;
 }
 
@@ -270,11 +304,11 @@ h2[tabindex="-1"]:focus {
   display: block;
   flex: 0 0 auto;
 }
-.brand b { font-size: .94rem; font-weight: 600; }
+.brand b { font-size: var(--t-body); font-weight: 600; }
 .railed .brand { justify-content: center; padding-left: 0; padding-right: 0; }
 
 .rail-h {
-  font-size: .66rem; letter-spacing: .13em; text-transform: uppercase;
+  font-size: var(--t-caption); letter-spacing: .13em; text-transform: uppercase;
   color: var(--muted); margin: 0 .5rem .45rem; font-weight: 600;
 }
 .rail-list { list-style: none; margin: 0; padding: 0; }
@@ -282,7 +316,7 @@ h2[tabindex="-1"]:focus {
 /* Dividers, option C. Two tiers, both CSS borders rather than <hr>, so a screen reader
    is never handed a separator for something that is purely visual rhythm. */
 .rail-list > li:not(:last-child) { border-bottom: 1px solid rgb(var(--tint-base) / 5%); }
-.nav-group + .nav-group {
+.nav-group + .nav-group, .nav-scroll + .nav-foot {
   border-top: 1px solid rgb(var(--tint-base) / 10%);
   margin-top: 12px; padding-top: 12px;
 }
@@ -291,10 +325,19 @@ h2[tabindex="-1"]:focus {
   position: relative;
   display: flex; align-items: center; gap: .6rem;
   width: 100%; text-align: left; background: none; border: 0;
-  color: var(--muted); padding: .5rem .6rem; border-radius: 8px; font-size: .875rem;
+  color: var(--muted); padding: .5rem .6rem; border-radius: 8px; font-size: var(--t-body);
   min-height: 44px;
 }
 .ri:hover { background: rgb(var(--tint-base) / 4%); color: var(--text); }
+
+/* The scrolling half of the rail has no padding of its own, and padding it would not help: .ri is
+   width: 100%, so it stretches to whatever box it is given and stays flush with the edge. An
+   outset ring is therefore clipped, and outlines do not scroll into view, so nothing reveals it.
+   Measured in Edge at 1280x900, 11 of the 14 rail controls lost the left and right bars of the
+   ring. Drawing it inside the button clears all 14. -3px is the shallowest offset that does,
+   because the ring is 3px wide and any less leaves its outer edge past the button. */
+.rail .ri:focus-visible,
+.rail .brand:focus-visible { outline-offset: -3px; }
 
 /* The selected state is a purple accent bar AND a raised surface AND a heavier label, so it
    never depends on colour alone. */
@@ -306,18 +349,17 @@ h2[tabindex="-1"]:focus {
   width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);
 }
 .ri .lbl { display: block; min-width: 0; flex: 1 1 auto; }
-.ri-sub { display: block; font-size: .75rem; color: var(--muted); }
 .ri-action { color: var(--dim); }
 
 .ri .t { display: flex; justify-content: space-between; gap: .5rem; }
-.ri .n { font-variant-numeric: tabular-nums; font-size: .75rem; color: var(--muted); }
+.ri .n { font-variant-numeric: tabular-nums; font-size: var(--t-caption); color: var(--muted); }
 .ri .bar { display: block; height: 3px; background: var(--track); border-radius: 2px; margin-top: .45rem; overflow: hidden; }
 .ri .bar i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
 /* A reading order has no glyph of its own, so its initial stands in for one in rail mode. */
 .ri .init {
   display: none; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px;
-  background: rgb(var(--tint-base) / 7.059%); color: var(--text); font-size: .72rem; font-weight: 700;
+  background: rgb(var(--tint-base) / 7.059%); color: var(--text); font-size: var(--t-caption); font-weight: 700;
   place-items: center; text-transform: uppercase;
 }
 
@@ -329,7 +371,6 @@ h2[tabindex="-1"]:focus {
    clipped at 48px. */
 .railed .rail-h,
 .railed #no-lists,
-.railed .ri-sub,
 .railed .ri .n,
 .railed .ri .bar { display: none; }
 
@@ -343,7 +384,7 @@ h2[tabindex="-1"]:focus {
   position: fixed; z-index: 60; left: 0; top: 0; pointer-events: none;
   max-width: 15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   background: var(--card-2); color: var(--text); border: 1px solid var(--line-2);
-  border-radius: 8px; padding: .3rem .55rem; font-size: .8rem;
+  border-radius: 8px; padding: .3rem .55rem; font-size: var(--t-caption);
   box-shadow: 0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)));
 }
 .rail-tip[hidden] { display: none; }
@@ -366,11 +407,11 @@ h2[tabindex="-1"]:focus {
 .railed .rail-foot .pill-warn { background: var(--amber); border-color: var(--amber); }
 .railed .rail-foot .pill-muted { background: var(--muted); border-color: var(--muted); }
 
-.rail-hint { color: var(--muted); font-size: .8rem; margin: .4rem .6rem; }
+.rail-hint { color: var(--muted); font-size: var(--t-body); margin: .4rem .6rem; }
 .rail-foot { margin-top: auto; padding: 1rem .5rem 0; display: grid; gap: .4rem; }
 
 .pill {
-  font-size: .72rem; border-radius: 999px; padding: .2rem .6rem;
+  font-size: var(--t-caption); border-radius: 999px; padding: .2rem .6rem;
   border: 1px solid var(--line); color: var(--muted); justify-self: start;
 }
 .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); }
@@ -424,11 +465,11 @@ main { min-width: 0; }
   display: flex; justify-content: space-between; align-items: center;
   gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem;
 }
-.head h1 { font-size: 1.25rem; margin: 0; font-weight: 600; }
-.head .sub { color: var(--muted); font-size: .82rem; margin-top: .12rem; max-width: 62ch; }
+.head h1 { font-size: var(--t-title); margin: 0; font-weight: 600; }
+.head .sub { color: var(--muted); font-size: var(--t-body); margin-top: .12rem; max-width: 62ch; }
 .headright { display: flex; align-items: center; gap: 1rem; }
 
-.ring { display: flex; align-items: center; gap: .55rem; color: var(--muted); font-size: .82rem; font-variant-numeric: tabular-nums; }
+.ring { display: flex; align-items: center; gap: .55rem; color: var(--muted); font-size: var(--t-caption); font-variant-numeric: tabular-nums; }
 .ring svg { transform: rotate(-90deg); }
 /* The two strokes were written as attributes on the circles and so were the last colours in the
    app a theme could not reach. The arc's was the retired #e23636 rather than either red that
@@ -439,7 +480,7 @@ main { min-width: 0; }
 #ring-arc { transition: stroke-dashoffset .35s ease; }
 
 .tgl {
-  display: inline-flex; align-items: center; gap: .45rem; font-size: .8rem;
+  display: inline-flex; align-items: center; gap: .45rem; font-size: var(--t-body);
   color: var(--muted); border: 1px solid var(--line-2); background: none;
   border-radius: 999px; padding: .3rem .7rem;
 }
@@ -453,10 +494,15 @@ body.nocovers .tgl .sw { background: var(--track-2); }
 body.nocovers .tgl .sw::after { left: 2px; }
 
 .list-tools { display: flex; align-items: center; gap: .15rem; flex-wrap: wrap; margin-bottom: 1.4rem; border: 1px solid var(--line); border-radius: 12px; padding: .35rem .45rem; }
+/* The rule that keeps the destructive command apart from the reversible ones. */
+.tool-sep { width: 1px; align-self: stretch; margin: .1rem .45rem; background: var(--line); }
+/* The order's blurb sits under the title, so it needs the header's own left edge rather than the
+   inset a settings card gives it. */
+.order-desc { margin-top: .45rem; }
 
 .quiet {
   border: 1px solid var(--line-2); background: none; color: var(--muted);
-  border-radius: 8px; padding: .3rem .7rem; font-size: .8rem; min-height: 24px;
+  border-radius: 8px; padding: .3rem .7rem; font-size: var(--t-body); min-height: 24px;
 }
 .quiet:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .quiet-danger:hover { color: var(--red-fg); border-color: rgb(var(--red-line) / 40%); background: rgb(var(--red-line) / 7.059%); }
@@ -465,8 +511,8 @@ body.nocovers .tgl .sw::after { left: 2px; }
   border: 1px dashed var(--line-2); border-radius: var(--r);
   padding: 2.4rem 2rem; text-align: center; color: var(--muted);
 }
-.empty-state h2 { margin: 0 0 .5rem; font-size: 1.05rem; color: var(--text); font-weight: 600; }
-.empty-state p { margin: 0 auto; max-width: 52ch; font-size: .9rem; }
+.empty-state h2 { margin: 0 0 .5rem; font-size: var(--t-subtitle); color: var(--text); font-weight: 600; }
+.empty-state p { margin: 0 auto; max-width: 52ch; font-size: var(--t-body); }
 
 /* ============================================================ hero */
 
@@ -505,36 +551,42 @@ body.nocovers .art img, .art img[hidden] { display: none; }
   color: var(--fallback-fg);
 }
 body.nocovers .fallback, .fallback.show { display: flex; }
-.fallback .fs { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; opacity: .85; line-height: 1.35; }
-.fallback .fn { font-size: 2.4rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.fallback .fs { font-size: var(--art-label); letter-spacing: .1em; text-transform: uppercase; opacity: .85; line-height: 1.35; }
+.fallback .fn { font-size: var(--art-n-lg); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
 
-.eyebrow { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-text); font-weight: 800; margin: 0; }
-.hero h2 { font-size: 2.2rem; line-height: 1.1; margin: .45rem 0 .35rem; letter-spacing: -.028em; font-weight: 700; text-wrap: balance; }
-.byline { color: var(--dim); margin: 0 0 .9rem; font-size: .95rem; }
-.desc { color: var(--dim); font-size: .92rem; margin: 0 0 1.1rem; max-width: 58ch; }
+.eyebrow { font-size: var(--t-caption); letter-spacing: .16em; text-transform: uppercase; color: var(--accent-text); font-weight: 800; margin: 0; }
+.hero h2 { font-size: var(--t-title-lg); line-height: 1.1; margin: .45rem 0 .35rem; letter-spacing: -.028em; font-weight: 700; text-wrap: balance; }
+.byline { color: var(--dim); margin: 0 0 .9rem; font-size: var(--t-body); }
+.desc { color: var(--dim); font-size: var(--t-body); margin: 0 0 1.1rem; max-width: 58ch; }
 
 .facts { display: flex; gap: 1.6rem; flex-wrap: wrap; margin: 0 0 1.2rem; }
 .facts > div { min-width: 0; }
-.facts dt { font-size: .66rem; letter-spacing: .11em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.facts dd { margin: .12rem 0 0; font-size: .92rem; font-weight: 600; }
+.facts dt { font-size: var(--t-caption); letter-spacing: .11em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.facts dd { margin: .12rem 0 0; font-size: var(--t-body); font-weight: 600; }
 .facts dd.ok { color: var(--teal); }
 .facts dd.warn { color: var(--amber); }
 
 .cta { display: flex; gap: .55rem; flex-wrap: wrap; }
 .btn {
   border: 1px solid transparent; border-radius: 12px; padding: .68rem 1.25rem;
-  background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: .92rem;
+  background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: var(--t-body);
   display: inline-flex; align-items: center; gap: .5rem; text-decoration: none;
 }
 /* display:inline-flex would otherwise defeat the hidden attribute. */
 .btn[hidden] { display: none; }
+/* An icon-only submit beside the field it belongs to. The word it replaced restated the label the
+   field already carries above it, so the row loses a word without losing the action, and the word
+   is still reachable as the tooltip and as the accessible name. Square to the same 44px target the
+   search inputs beside it keep. */
+.btn-icon { padding: 0; min-width: 44px; min-height: 44px; justify-content: center; }
+.btn-icon .gi { width: auto; }
 .btn:hover { filter: brightness(1.1); }
 .btn:disabled { opacity: .5; cursor: default; filter: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
 /* No opacity here. The shortcut hint sits on the primary button, and dimming it to
    75% took it to a measured 3.03:1. It is set apart by its border and its size
    instead, both of which cost nothing in contrast. */
-kbd { font: inherit; font-size: .72rem; border: 1px solid rgb(var(--tint-base) / 30.196%); border-radius: 6px; padding: 0 .28rem; }
+kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%); border-radius: 6px; padding: 0 .28rem; }
 
 /* Version and data-format numbers in About. Monospaced so a digit cannot be misread
    when someone copies the build number into a bug report. No colour change, because
@@ -545,8 +597,8 @@ kbd { font: inherit; font-size: .72rem; border: 1px solid rgb(var(--tint-base) /
 
 .sec { margin-top: 2rem; }
 .sec-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .8rem; gap: 1rem; }
-.sec-h h2 { font-size: .95rem; margin: 0; font-weight: 600; }
-.sec-h span { color: var(--muted); font-size: .8rem; }
+.sec-h h2 { font-size: var(--t-subtitle); margin: 0; font-weight: 600; }
+.sec-h span { color: var(--muted); font-size: var(--t-caption); }
 
 /* A wrapping row rather than a horizontal scroller. Measured at 1280x900 the scroller clipped the
    eighth tile at the right edge, and a shelf whose last item is off screen is a shelf that answers
@@ -568,9 +620,9 @@ body.nocovers .tile img, .tile img[hidden] { display: none; }
   flex-direction: column; justify-content: space-between;
 }
 body.nocovers .tile .tf, .tile .tf.show { display: flex; }
-.tile .tf .s { font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; opacity: .85; line-height: 1.3; }
-.tile .tf .n { font-size: 1.5rem; font-weight: 800; letter-spacing: -.03em; }
-.tile .lab { font-size: .75rem; margin-top: .4rem; color: var(--muted); line-height: 1.35; }
+.tile .tf .s { font-size: var(--art-label-sm); letter-spacing: .06em; text-transform: uppercase; opacity: .85; line-height: 1.3; }
+.tile .tf .n { font-size: var(--art-n-md); font-weight: 800; letter-spacing: -.03em; }
+.tile .lab { font-size: var(--t-caption); margin-top: .4rem; color: var(--muted); line-height: 1.35; }
 .tile .lab b { color: var(--text); font-weight: 600; display: block; }
 .tile button:hover .lab b { color: var(--accent-text); }
 
@@ -579,7 +631,7 @@ body.nocovers .tile .tf, .tile .tf.show { display: flex; }
 details.full { margin-top: 2.1rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
 details.full > summary {
   cursor: pointer; list-style: none; display: flex; justify-content: space-between;
-  align-items: center; color: var(--muted); font-size: .89rem; padding: .3rem 0;
+  align-items: center; color: var(--muted); font-size: var(--t-body); padding: .3rem 0;
 }
 details.full > summary::-webkit-details-marker { display: none; }
 details.full > summary:hover { color: var(--text); }
@@ -593,7 +645,7 @@ details.full[open] > summary .chev { transform: rotate(90deg); }
 .fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .fp span {
   border: 1px solid var(--line-2); color: var(--muted); border-radius: 999px;
-  padding: .26rem .75rem; font-size: .8rem; display: inline-block;
+  padding: .26rem .75rem; font-size: var(--t-body); display: inline-block;
 }
 .fp:hover span { color: var(--text); }
 /* The checked pill carries the brand, because choosing a filter is selection and selection is
@@ -616,9 +668,9 @@ details.full[open] > summary .chev { transform: rotate(90deg); }
    column. The card offers `.ocard-ways` instead and the choice is made here, where the row and the
    dialog are both full width and the labels fit on one line. */
 .paths { border: 0; padding: 0; margin: 0 0 .45rem; }
-.paths legend { padding: 0; color: var(--muted); font-size: .72rem; margin-bottom: .3rem; }
+.paths legend { padding: 0; color: var(--muted); font-size: var(--t-caption); margin-bottom: .3rem; }
 .paths .path { margin: 0 .3rem .3rem 0; }
-.paths .path span { font-size: .75rem; }
+.paths .path span { font-size: var(--t-caption); }
 .result .paths { margin: .35rem 0 .4rem; }
 #preview-paths .paths { margin: .55rem 0 .2rem; }
 
@@ -632,8 +684,8 @@ details.full[open] > summary .chev { transform: rotate(90deg); }
   border-bottom: 1px solid var(--line);
 }
 .row-group:first-child { margin-top: .1rem; }
-.rg-name { margin: 0; font-size: .92rem; font-weight: 600; letter-spacing: .01em; }
-.rg-count { color: var(--muted); font-size: .78rem; }
+.rg-name { margin: 0; font-size: var(--t-body); font-weight: 600; letter-spacing: .01em; }
+.rg-count { color: var(--muted); font-size: var(--t-caption); }
 .row-group progress { width: 90px; }
 .row-group.is-done .rg-name { color: var(--read-fg); }
 .row {
@@ -661,18 +713,18 @@ body.nocovers .row img, .row img[hidden] { display: none; }
 .row .rf {
   display: none; width: 44px; aspect-ratio: 2/3; border-radius: 6px;
   border: 1px solid var(--line-2); align-items: center; justify-content: center;
-  font-size: .66rem; font-weight: 700;
+  font-size: var(--t-caption); font-weight: 700;
 }
 body.nocovers .row .rf, .row .rf.show { display: flex; }
 
 .cb {
   width: 17px; height: 17px; border-radius: 6px; border: 1.5px solid var(--cb-line);
-  background: none; display: grid; place-items: center; color: var(--on-accent); font-size: .65rem; padding: 0;
+  background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-caption); padding: 0;
 }
 .row.is-read .cb { background: var(--teal); border-color: var(--teal); }
 
-.rt { font-size: .94rem; font-weight: 600; letter-spacing: -.005em; }
-.rm { color: var(--muted); font-size: .75rem; display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; margin-top: .05rem; }
+.rt { font-size: var(--t-body); font-weight: 600; letter-spacing: -.005em; }
+.rm { color: var(--muted); font-size: var(--t-caption); display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; margin-top: .05rem; }
 
 /* The note control is a button that reads as text, because it is both the note and the way to
    edit it. Clamped to three lines so a long note cannot push the rest of the list off screen;
@@ -680,7 +732,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    a centred paragraph of prose reads as a label rather than as the reader's own writing. */
 .rnote {
   margin-top: .25rem; padding: .15rem 0; border: 0; background: none;
-  color: var(--muted); font: inherit; font-size: .75rem; text-align: left; cursor: pointer;
+  color: var(--muted); font: inherit; font-size: var(--t-caption); text-align: left; cursor: pointer;
   max-width: 60ch; white-space: pre-wrap;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
 }
@@ -689,7 +741,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 
 .list-note {
   margin: 0 0 1rem; padding: .55rem .75rem; border-left: 2px solid var(--line);
-  color: var(--text); font-size: .85rem; white-space: pre-wrap; max-width: 70ch;
+  color: var(--text); font-size: var(--t-body); white-space: pre-wrap; max-width: 70ch;
 }
 /* These outlines are faint on purpose, and that is a recorded decision rather than an
    oversight. Composited over the backdrop they actually render against, none of the five
@@ -716,7 +768,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    composited against this dark palette, so BL-032's light theme would void all of them and
    the measurement would have to be redone per theme. Measured twice now, for BL-030 and
    BL-049. */
-.badge { font-size: .68rem; border: 1px solid var(--line); border-radius: 999px; padding: .02rem .42rem; white-space: nowrap; }
+.badge { font-size: var(--t-caption); border: 1px solid var(--line); border-radius: 999px; padding: .02rem .42rem; white-space: nowrap; }
 .badge-expected, .badge-override-available { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); }
 .badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
 .badge-unknown, .badge-pending, .badge-norecord { color: var(--muted); }
@@ -726,7 +778,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .row:hover .ract, .row:focus-within .ract { opacity: 1; }
 .mini {
   border: 1px solid var(--line-2); background: none; color: var(--muted);
-  border-radius: 6px; padding: .16rem .45rem; font-size: .75rem; text-decoration: none;
+  border-radius: 6px; padding: .16rem .45rem; font-size: var(--t-caption); text-decoration: none;
 }
 .mini:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .mini-danger:hover { color: var(--red-fg); }
@@ -745,29 +797,125 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   grid-column: 1; grid-row: 1; align-self: center;
 }
 .card[open] > summary::before { transform: rotate(90deg); }
-.card > summary :is(h2, h3) { grid-column: 2; grid-row: 1; font-size: .95rem; margin: 0; font-weight: 600; }
-.card-why { grid-column: 2; grid-row: 2; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+.card > summary :is(h2, h3) { grid-column: 2; grid-row: 1; font-size: var(--t-subtitle); margin: 0; font-weight: 600; }
+.card-why { grid-column: 2; grid-row: 2; color: var(--muted); font-size: var(--t-body); line-height: 1.4; }
 .card > *:not(summary) { padding: 0 1.1rem; }
 .card > *:last-child { padding-bottom: 1.1rem; }
 .card-static { padding: 1.1rem; margin-bottom: 1rem; }
 .card-static > * { padding: 0 !important; }
-.card-static h2 { font-size: .95rem; margin: 0 0 .5rem; font-weight: 600; }
-.card-static h3 { font-size: .85rem; margin: 1.3rem 0 .4rem; font-weight: 600; }
-#view-data .card-static h3 { font-size: .95rem; margin: 0 0 .5rem; font-weight: 600; }
-#view-data .card-static h4 { font-size: .85rem; margin: 1.3rem 0 .4rem; font-weight: 600; }
+.card-static h2 { font-size: var(--t-subtitle); margin: 0 0 .5rem; font-weight: 600; }
+.card-static h3 { font-size: var(--t-body); margin: 1.3rem 0 .4rem; font-weight: 600; }
+#view-data .card-static h3 { font-size: var(--t-subtitle); margin: 0 0 .5rem; font-weight: 600; }
+#view-data .card-static h4 { font-size: var(--t-body); margin: 1.3rem 0 .4rem; font-weight: 600; }
 .setgroup { margin-bottom: 1.4rem; }
 #view-data .setgroup > h2 {
-  font-size: 1rem; font-weight: 600; margin: 1.7rem .1rem .75rem; padding-bottom: .35rem;
+  font-size: var(--t-subtitle); font-weight: 600; margin: 1.7rem .1rem .75rem; padding-bottom: .35rem;
 }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
+
+/* A settings row. The header and its one line description sit in the text column, and the control
+   that changes the setting is pinned to the right of the card rather than stacked underneath it,
+   so a column of settings reads as a column of settings rather than as an article with buttons in
+   it. Positioning rather than a grid column, and deliberately: the privacy copy in the Cover art
+   card is extracted by a test that slices from the heading to the next `</div>`, so a wrapper
+   element around the text would silently cut that extraction in half. This shape needs no wrapper
+   and no change to source order, which keeps the reading order the same as the visual order. */
+.setting { position: relative; padding-right: 15rem; }
+.setting > .setting-ctl {
+  position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%);
+  margin: 0; max-width: 13rem;
+}
+.setting > .setting-desc { margin: 0; max-width: 62ch; }
+
+/* The long form of a setting's explanation. Every word of it is still in the page and still in the
+   accessibility tree; it starts closed because a description that runs to five sentences stops
+   being a description. The Cover art card was 89 words for one switch before this. */
+.setting-more { margin-top: .55rem; }
+.setting-more > summary {
+  cursor: pointer; color: var(--muted); font-size: var(--t-caption);
+  list-style: none; display: inline-flex; align-items: center; gap: .35rem;
+  border-radius: 6px; padding: .1rem .2rem;
+}
+.setting-more > summary::-webkit-details-marker { display: none; }
+.setting-more > summary::before {
+  content: "›"; display: inline-block; transition: transform .15s; font-size: var(--t-body);
+}
+.setting-more[open] > summary::before { transform: rotate(90deg); }
+.setting-more > summary:hover { color: var(--text); }
+.setting-more > p { margin: .4rem 0 0; max-width: 62ch; }
+
+@media (max-width: 720px) {
+  .setting { padding-right: 1.1rem; }
+  .setting > .setting-ctl { position: static; transform: none; margin-top: .7rem; max-width: none; }
+}
+
+/* A settings checkbox, drawn as the same switch the view headers already use. The cover art switch
+   was two different controls saying two different things about one setting: a pill switch reading
+   "Cover art on" in the reading and home headers, and a native tick box reading "Show cover art"
+   here. A reader who met both had no way to know they were the same switch. The input stays a
+   checkbox, so the keyboard, the label association and the change event are all unchanged; only
+   the drawing moves. */
+.setting-ctl.checkbox { border: 1px solid var(--line-2); border-radius: 999px; padding: .3rem .7rem; gap: .45rem; min-height: 24px; }
+.setting-ctl.checkbox:hover { color: var(--text); }
+.setting-ctl.checkbox > input[type="checkbox"] {
+  appearance: none; margin: 0; flex: none; cursor: pointer;
+  width: 26px; height: 15px; border-radius: 999px; background: var(--track-2);
+  position: relative; transition: background .15s;
+}
+.setting-ctl.checkbox > input[type="checkbox"]::after {
+  content: ""; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px;
+  border-radius: 50%; background: var(--on-accent); transition: left .15s;
+}
+.setting-ctl.checkbox > input[type="checkbox"]:checked { background: var(--accent); }
+.setting-ctl.checkbox > input[type="checkbox"]:checked::after { left: 13px; }
+/* In forced colours the drawn switch would be two system-coloured rectangles carrying no state, so
+   the platform control is handed back its own appearance. */
+@media (forced-colors: active) {
+  .setting-ctl.checkbox > input[type="checkbox"] { appearance: auto; width: auto; height: auto; }
+  .setting-ctl.checkbox > input[type="checkbox"]::after { content: none; }
+}
+
+/* A shortcut table. These were a paragraph that spelled out three key combinations in prose, which
+   is the shape that makes a reader parse a sentence to find out which key does what. */
+.keys { border-collapse: collapse; margin: .1rem 0 .6rem; }
+.keys th { text-align: left; font-weight: 400; padding: .22rem 1rem .22rem 0; white-space: nowrap; vertical-align: top; }
+.keys td { padding: .22rem 0; color: var(--muted); font-size: var(--t-body); }
+
+/* A stacked form puts each child on its own grid row, which stretches a submit button to the full
+   width of the card and makes it read as a banner rather than as a button. */
+.stack > button { justify-self: start; }
+
+/* Native controls, given the same shape as the buttons they sit beside. Left alone, a `select` and
+   a file input are drawn by the platform in a style that belongs to no part of this app, and the
+   file input in particular announces itself as "Choose File / No file chosen" in the middle of a
+   surface where every other control is a labelled button. */
+#view-data select, .setting select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%),
+    linear-gradient(135deg, currentcolor 50%, transparent 50%);
+  background-repeat: no-repeat;
+  background-size: 5px 5px, 5px 5px;
+  background-position: right 1rem top 55%, right .75rem top 55%;
+  color: var(--muted); border: 1px solid var(--line-2); border-radius: 8px;
+  padding: .42rem 2rem .42rem .7rem; font: inherit; font-size: var(--t-body); min-height: 34px;
+  cursor: pointer; width: 100%;
+}
+#view-data select:hover, .setting select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+input[type="file"]::file-selector-button {
+  background: none; color: var(--muted); border: 1px solid var(--line-2);
+  border-radius: 8px; padding: .4rem .8rem; font: inherit; font-size: var(--t-body);
+  margin-right: .6rem; cursor: pointer;
+}
+input[type="file"]::file-selector-button:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
+
 .addpri { border-color: rgb(var(--tint-base) / 20%); background: rgb(var(--tint-base) / 3.922%); }
-.addpri h2, #view-data .addpri h3 { font-size: 1.15rem; }
+.addpri h2, #view-data .addpri h3 { font-size: var(--t-subtitle); }
 .addpri .field-row input[type="search"] { flex: 1 1 24rem; min-height: 44px; }
-.add-more > h2 { font-size: 1rem; margin: 1.35rem .1rem 0; }
+.add-more > h2 { font-size: var(--t-subtitle); margin: 1.35rem .1rem 0; }
 .add-more > .rail-hint { margin: .2rem .1rem .75rem; max-width: 64ch; }
 
 .stack { display: grid; gap: .5rem; }
-.stack label { font-size: .8rem; color: var(--muted); }
+.stack label { font-size: var(--t-body); color: var(--muted); }
 /* A form row, which is a different thing from the `.row` a reading list is built from
    above. Both were called `.row`, and the only reason the page rendered correctly was
    that this rule was scoped to `.stack` and `.card` and so out-ran the reading-row grid
@@ -794,55 +942,74 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
 }
 .salvage-what { display: grid; gap: .1rem; }
-.salvage-when { font-size: .86rem; }
-.salvage-size { color: var(--muted); font-size: .78rem; }
+.salvage-when { font-size: var(--t-body); }
+.salvage-size { color: var(--muted); font-size: var(--t-caption); }
 input[type="search"], input[type="text"], input[type="url"], textarea {
   background: var(--card-2); border: 1px solid var(--line-2); color: var(--text);
   border-radius: 8px; padding: .5rem .7rem; min-width: 0; flex: 1 1 16rem;
 }
-textarea { flex: 1 1 auto; width: 100%; resize: vertical; font-family: ui-monospace, "Cascadia Mono", monospace; font-size: .85rem; }
-input[type="file"] { color: var(--muted); font-size: .82rem; min-height: 24px; }
-.checkbox { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--dim); min-height: 24px; }
+textarea { flex: 1 1 auto; width: 100%; resize: vertical; font-family: ui-monospace, "Cascadia Mono", monospace; font-size: var(--t-body); }
+input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 24px; }
+.checkbox { display: inline-flex; align-items: center; gap: .4rem; font-size: var(--t-body); color: var(--dim); min-height: 24px; }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: .05rem .3rem; font-size: .85em; }
 
 .results { display: grid; gap: .4rem; margin-top: .7rem; }
 .res-head {
-  color: var(--muted); font-size: .82rem; padding: .45rem .1rem .55rem;
+  color: var(--muted); font-size: var(--t-caption); padding: .45rem .1rem .55rem;
   border-bottom: 1px solid var(--line);
 }
 
-/* The heading over one half of the shelf. Space above it and almost none below, so the heading
-   binds to the rows it introduces instead of floating equidistant between two sections; the grid's
-   own .4rem gap supplies the rest. The first heading gets no extra, because the list already has
-   margin above it and stacking the two pushed the shelf below the fold on a laptop. */
-.shelf-section { margin: 1rem 0 0; }
+/* The heading over one stretch of the shelf. It used to be a bold line in the same column as the
+   rows, at the same size as a row title, so scrolling a 46-row screen gave no felt boundary between
+   one era and the next. It is now a band: its own fill, its own outline and an accent edge, which
+   is what makes the break visible at a glance rather than only on reading it. Space above it and
+   almost none below, so the band binds to the rows it introduces instead of floating equidistant
+   between two sections; the grid's own .4rem gap supplies the rest. The first band gets no extra,
+   because the list already has margin above it and stacking the two pushed the shelf below the fold
+   on a laptop. */
+.shelf-section {
+  margin: 1.4rem 0 0; padding: .55rem .75rem;
+  background: var(--card-2); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent); border-radius: 10px;
+}
 .shelf-section:first-child { margin-top: 0; }
-.shelf-section-title { font-size: .92rem; font-weight: 600; margin: 0; letter-spacing: .01em; }
-.shelf-section-blurb { color: var(--muted); font-size: .78rem; margin: .2rem 0 0; max-width: 64ch; }
+.shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
+.shelf-section-blurb { color: var(--muted); font-size: var(--t-caption); margin: .2rem 0 0; max-width: 64ch; }
 
 .result {
   display: flex; align-items: center; gap: .8rem; padding: .55rem .7rem;
   border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
 }
 .result-main { flex: 1 1 auto; min-width: 0; }
-.result-title { font-size: .87rem; font-weight: 600; margin: 0; }
-.result-meta { color: var(--muted); font-size: .75rem; }
+.result-title { font-size: var(--t-body); font-weight: 600; margin: 0; }
+.result-meta { color: var(--muted); font-size: var(--t-caption); }
 .result progress { width: 120px; }
 .result-source { margin: .2rem 0 0; }
 .result-source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .result-source a:hover { color: var(--text); }
+/* The provenance disclosure. Its own marker rather than the browser's, because the default one
+   sits outside the text box and pushed the summary out of line with the rest of the row. 24px is
+   the pointer target floor in WCAG 2.5.8, and a caption-sized word does not reach it on its own. */
+.result-src { margin: .2rem 0 0; }
+.result-src > summary {
+  display: inline-flex; align-items: center; min-height: 24px; cursor: pointer;
+  color: var(--muted); font-size: var(--t-caption); list-style: none; width: fit-content;
+}
+.result-src > summary::-webkit-details-marker { display: none; }
+.result-src > summary::before { content: "\25B8"; margin-right: .35rem; }
+.result-src[open] > summary::before { content: "\25BE"; }
 /* The row is a flex line with nothing set to hold its size, so at 640 CSS pixels, which is what
    200 per cent zoom reports, the pill was the part that gave way: the title kept its width and
    "Already in your library" broke across three lines beside a one-line row. Fixing the pill and
    letting the title shrink instead costs the title nothing, because it already truncates. */
 .pill-held {
   color: var(--teal); border: 1px solid rgb(var(--teal-line) / 33.333%);
-  border-radius: 999px; padding: .15rem .55rem; font-size: .72rem; font-weight: 600;
+  border-radius: 999px; padding: .15rem .55rem; font-size: var(--t-caption); font-weight: 600;
   flex: none; white-space: nowrap;
 }
 .pill-held::before { content: "✓ "; }
 
-.notice { border-radius: 8px; padding: .55rem .75rem; font-size: .85rem; margin: 0; border: 1px solid var(--line); }
+.notice { border-radius: 8px; padding: .55rem .75rem; font-size: var(--t-body); margin: 0; border: 1px solid var(--line); }
 .notice-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: rgb(var(--teal-line) / 5.882%); }
 .notice-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: rgb(var(--amber-line) / 5.882%); }
 .notice-error { color: var(--red-fg-2); border-color: rgb(var(--red-line) / 33.333%); background: rgb(var(--red-line) / 7.059%); }
@@ -874,7 +1041,7 @@ progress { accent-color: var(--accent); height: 6px; }
 
 .app-footer {
   border-top: 1px solid var(--line); margin-top: 2.6rem; padding-top: 1rem;
-  color: var(--muted); font-size: .78rem; max-width: 76ch;
+  color: var(--muted); font-size: var(--t-caption); max-width: 76ch;
 }
 
 /* The footer states the bare minimum on every screen; the full disclaimers live in About,
@@ -897,16 +1064,16 @@ progress { accent-color: var(--accent); height: 6px; }
    reader is being asked to decide something. */
 .chero-in { display: grid; grid-template-columns: 132px 1fr; gap: 1.4rem; align-items: start; }
 @media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
-.chero h2 { font-size: 1.35rem; margin: .3rem 0 .7rem; font-weight: 600; letter-spacing: -.02em; }
+.chero h2 { font-size: var(--t-title); margin: .3rem 0 .7rem; font-weight: 600; letter-spacing: -.02em; }
 .chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: block; }
 body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* The shared fallback is sized for the reading view's larger cover, so it is scaled down
    here rather than being duplicated. */
 .chero .art .fallback { padding: .55rem; border-radius: 12px; }
-.chero .art .fallback .fs { font-size: .58rem; letter-spacing: .06em; }
-.chero .art .fallback .fn { font-size: 1.5rem; }
-.chero-count { color: var(--dim); font-size: .85rem; margin: .4rem 0 0; font-variant-numeric: tabular-nums; }
-.chero-next { color: var(--muted); font-size: .88rem; margin: .15rem 0 1rem; }
+.chero .art .fallback .fs { font-size: var(--art-label-sm); letter-spacing: .06em; }
+.chero .art .fallback .fn { font-size: var(--art-n-md); }
+.chero-count { color: var(--dim); font-size: var(--t-body); margin: .4rem 0 0; font-variant-numeric: tabular-nums; }
+.chero-next { color: var(--muted); font-size: var(--t-body); margin: .15rem 0 1rem; }
 .chero-next b { color: var(--text); font-weight: 600; }
 
 /* The fill is a width, and the count beneath it repeats the same numbers as text, so the
@@ -922,7 +1089,12 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .yours button:hover { background: var(--card-2); }
 .yours .yt { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
-.yours .yours-name { color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* The name is the thing being chosen and the thing being clicked, so it carries the weight. It
+   used to be muted while the count beside it was full brightness, which put the emphasis on how
+   far along the order is rather than on which order it is. Measured on a one order shelf: name
+   14px/400 in the muted grey, count 14px/400 in the foreground colour. */
+.yours .yours-name { color: var(--text); font-weight: 600; font-size: var(--t-body); white-space: nowrap; }
+.yours .yours-count { color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* ---------------------------------------------------------- featured journey
 
@@ -940,19 +1112,19 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .feature[hidden] { display: none; }
 .feature-in { display: grid; grid-template-columns: 132px 1fr; gap: 1.6rem; align-items: start; }
 @media (max-width: 620px) { .feature-in { grid-template-columns: 1fr; } .feature-in .art { max-width: 132px; } }
-.feature h2 { font-size: 1.5rem; margin: .3rem 0 .55rem; font-weight: 600; letter-spacing: -.02em; }
+.feature h2 { font-size: var(--t-title); margin: .3rem 0 .55rem; font-weight: 600; letter-spacing: -.02em; }
 .feature .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: block; }
 body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
 .feature .art .fallback { padding: .55rem; border-radius: 12px; }
-.feature .art .fallback .fs { font-size: .58rem; letter-spacing: .06em; }
-.feature .art .fallback .fn { font-size: 1.5rem; }
-.feature-why { color: var(--dim); font-size: .92rem; line-height: 1.55; margin: 0 0 .8rem; max-width: 62ch; }
+.feature .art .fallback .fs { font-size: var(--art-label-sm); letter-spacing: .06em; }
+.feature .art .fallback .fn { font-size: var(--art-n-md); }
+.feature-why { color: var(--dim); font-size: var(--t-body); line-height: 1.55; margin: 0 0 .8rem; max-width: 62ch; }
 /* The commitment, stated rather than implied. Every fact a reader needs before saying yes: how
    many issues, how long, whether it ends, and whether anything has to be read first. */
 .feature-facts { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1rem; padding: 0; }
 .feature-facts li {
   border: 1px solid var(--line-2); color: var(--dim); border-radius: 999px;
-  padding: .26rem .75rem; font-size: .8rem;
+  padding: .26rem .75rem; font-size: var(--t-caption);
 }
 .feature-act { display: flex; flex-wrap: wrap; gap: .6rem; }
 .feature-act .btn { min-height: 44px; }
@@ -962,6 +1134,11 @@ body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
   list-style: none; margin: .9rem 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .9rem;
 }
+/* The landing grid is now one list per group rather than one list for everything, so the spacing
+   between a group's cards and the next group's heading has to come from the container rather than
+   from the grid's own top margin, which only separates a grid from what precedes it. */
+.ogrid-groups { display: flex; flex-direction: column; gap: 1.6rem; margin: .9rem 0 0; }
+.ogrid-groups .ogrid { margin-top: .6rem; }
 .ocard {
   position: relative;
   display: flex; flex-direction: column;
@@ -990,28 +1167,28 @@ body.nocovers .ocard-art img, .ocard-art img[hidden] { display: none; }
 }
 body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ocard-art .of .ofs {
-  font-size: .58rem; font-weight: 700; letter-spacing: .02em; line-height: 1.2;
+  font-size: var(--art-label-sm); font-weight: 700; letter-spacing: .02em; line-height: 1.2;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;
 }
 
 .ocard-text { min-width: 0; }
-.ocard-title { font-size: .92rem; font-weight: 600; margin: 0 0 .2rem; line-height: 1.3; }
+.ocard-title { font-size: var(--t-body); font-weight: 600; margin: 0 0 .2rem; line-height: 1.3; }
 .ocard-desc {
-  color: var(--dim); font-size: .8rem; margin: 0 0 .35rem; line-height: 1.45;
+  color: var(--dim); font-size: var(--t-body); margin: 0 0 .35rem; line-height: 1.45;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
 }
 /* The clamp above is an author declaration, so it beats the user agent's [hidden] rule and the
    description stays laid out and in the accessibility tree after hidden is set. Every bundled
    order has a description today, but the normaliser accepts one without. */
 .ocard-desc[hidden] { display: none; }
-.ocard-meta { color: var(--muted); font-size: .75rem; margin: 0 0 .35rem; }
+.ocard-meta { color: var(--muted); font-size: var(--t-caption); margin: 0 0 .35rem; }
 /* The card's whole account of a story that can be read more than one way: that there is a choice,
    and how many ways there are. Quiet, one line, and no wider than the meta line above it, because
    the choice itself is not made here. It is underlined rather than only coloured so it reads as
    something to press without depending on colour. */
 .ocard-ways { margin: 0 0 .35rem; }
 .ocard-ways .ways {
-  background: none; border: 0; font: inherit; font-size: .75rem;
+  background: none; border: 0; font: inherit; font-size: var(--t-caption);
   color: var(--blue); text-decoration: underline; text-underline-offset: 2px;
   /* Padding rather than a bare inline run, so the target clears the 24px floor that WCAG 2.2
      asks for at AA. Measured at .74rem it lands at 26px. */
@@ -1038,13 +1215,23 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ocard-foot .btn:not(.btn-added):hover {
   border-color: var(--accent-text); background: rgb(var(--accent-line) / 8%);
 }
+/* The catalog rows are the same 59 orders as the grid above, rendered by a different component,
+   and the rule the grid learned never reached them. Measured: the catalog painted 59 filled
+   accent Import buttons down an 11,314px page, against exactly one filled button on the whole
+   home view. The argument is the one three rules up, only more so at 59. */
+.result-act .btn:not(.btn-added) {
+  background: none; color: var(--text); border-color: var(--line-2); font-weight: 600;
+}
+.result-act .btn:not(.btn-added):hover {
+  border-color: var(--accent-text); background: rgb(var(--accent-line) / 8%);
+}
 /* The preview covers the whole card, so the body is a large secondary target without the
    heading and the description being nested inside a button, which is not valid content for
    one and would flatten the card into a single unreadable label. The primary button is
    raised above the overlay so it stays a separate, unambiguous action. */
 .ocard-preview {
   min-height: 44px; background: none; border: 1px solid transparent; color: var(--blue);
-  font: inherit; font-size: .78rem; border-radius: 8px; text-align: center;
+  font: inherit; font-size: var(--t-body); border-radius: 8px; text-align: center;
 }
 .ocard-preview::after { content: ''; position: absolute; inset: 0; border-radius: var(--r); }
 .ocard-preview:hover { color: var(--text); border-color: var(--line-2); }
@@ -1061,12 +1248,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .home-more { display: block; width: 100%; margin: 0 .1rem; }
 .attribution { margin: 1.1rem .1rem 0; }
 
-.escape {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .4rem;
-  margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--line);
-}
-.escape-label { color: var(--muted); font-size: .82rem; margin-right: .2rem; }
-
 /* ---------------------------------------------------------- preview dialog */
 
 .preview {
@@ -1076,19 +1257,19 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 }
 .preview::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
 .preview-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.preview-head h2 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.preview-head h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .preview-desc { max-width: 62ch; }
 #preview-body { max-height: 22rem; overflow-y: auto; margin: .8rem 0; }
 .preview-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; counter-reset: pv; }
 .preview-list li {
   display: flex; gap: .6rem; align-items: baseline; padding: .3rem .1rem;
-  border-bottom: 1px solid rgb(var(--tint-base) / 5%); font-size: .85rem;
+  border-bottom: 1px solid rgb(var(--tint-base) / 5%); font-size: var(--t-body);
 }
 .preview-list li:last-child { border-bottom: 0; }
-.preview-list .pn { color: var(--muted); font-size: .75rem; font-variant-numeric: tabular-nums; min-width: 2.2rem; }
+.preview-list .pn { color: var(--muted); font-size: var(--t-caption); font-variant-numeric: tabular-nums; min-width: 2.2rem; }
 .preview-list .preview-group { border-bottom: 0; padding: .7rem 0 .15rem; }
 .preview-list .preview-group:first-child { padding-top: 0; }
-.preview-list .preview-group h4 { margin: 0; font-size: .82rem; font-weight: 600; }
+.preview-list .preview-group h4 { margin: 0; font-size: var(--t-body); font-weight: 600; }
 .preview-foot { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: .9rem; }
 .preview-foot .btn { min-height: 44px; }
 
@@ -1100,9 +1281,9 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   border-radius: 16px; padding: 1.2rem 1.4rem;
 }
 .ask::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
-.ask h2 { margin: 0 0 .5rem; font-size: 1.05rem; font-weight: 600; }
+.ask h2 { margin: 0 0 .5rem; font-size: var(--t-subtitle); font-weight: 600; }
 .ask p { margin: 0 0 .9rem; max-width: 52ch; }
-.ask label { display: block; font-size: .82rem; color: var(--muted); margin-bottom: .3rem; }
+.ask label { display: block; font-size: var(--t-body); color: var(--muted); margin-bottom: .3rem; }
 /* The shared input rule already carries the colours and the border. Only the box needs
    saying here: inside a dialog the field is the whole width, and it has to clear the 44px
    target minimum that a form row elsewhere gets from its neighbours. */
@@ -1110,7 +1291,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 /* Only the font and the height need saying. The shared textarea rule already carries the
    colours, border and radius, but it also sets monospace, which is right for the paste box it
    was written for and wrong for a note, which is prose. */
-.ask textarea { box-sizing: border-box; font-family: inherit; font-size: 1rem; min-height: 6rem; }
+.ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: .6rem; flex-wrap: wrap; }
 .ask-foot .btn { min-height: 44px; }
 
@@ -1152,7 +1333,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   padding: 20px 22px;
   margin-bottom: 24px;
 }
-.blocked h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.blocked h2 { margin: 0 0 8px; font-size: var(--t-subtitle); }
 .blocked p { margin: 0 0 10px; max-width: 68ch; line-height: 1.5; }
 .blocked-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 
@@ -1191,15 +1372,15 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    neither touch nor keyboard, so the only readable statement of progress was `0 / 8`. It is two
    lines of real text now: the count, and what is left of the order beside the percentage. */
 .ring-text { display: flex; flex-direction: column; line-height: 1.3; }
-.ring-text b { color: var(--text); font-weight: 600; font-size: .85rem; }
-#ring-sub { color: var(--muted); font-size: .75rem; }
+.ring-text b { color: var(--text); font-weight: 600; font-size: var(--t-body); }
+#ring-sub { color: var(--muted); font-size: var(--t-caption); }
 
 /* One dominant action. The three calls to action were a primary button and two ghost buttons of
    the same size, which is three things of nearly equal weight where the screen has exactly one
    job. The Unlimited button grows, `Done, next` stays a ghost because it is an action, and the
    issue page becomes a link because that is what it is: a way out of the app. */
 .hero .cta { gap: .7rem; align-items: center; }
-.btn-lg { padding: .85rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 12px; }
+.btn-lg { padding: .85rem 1.5rem; font-size: var(--t-body-lg); font-weight: 700; border-radius: 12px; }
 .btn-link {
   background: none; color: var(--blue); border-color: transparent; font-weight: 600;
   padding: .68rem .6rem; text-decoration: underline; text-underline-offset: 3px;
@@ -1262,15 +1443,15 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .sumbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .6rem; margin: .2rem 0 1.1rem; }
 @media (max-width: 640px) { .sumbar { grid-template-columns: 1fr; } }
 .sumcell { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: .7rem .85rem; }
-.sumfig { font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--text); line-height: 1.1; }
-.sumlab { color: var(--muted); font-size: .78rem; margin-top: .15rem; }
+.sumfig { font-size: var(--t-title); font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--text); line-height: 1.1; }
+.sumlab { color: var(--muted); font-size: var(--t-caption); margin-top: .15rem; }
 
 /* A group heading is a real h2 under the view's h1, separated from its rows by a hairline rather
    than by weight alone, and its count is quieter and lighter so the label stays a plain heading a
    reader can jump between. The group is a grid so the heading and its rows share the .4rem rhythm. */
 .lgroup { display: grid; gap: .4rem; margin: 0 0 1.3rem; }
-.lgroup-h { margin: 0; padding-bottom: .4rem; border-bottom: 1px solid var(--line); font-size: .95rem; font-weight: 600; color: var(--text); }
-.lgroup-n { color: var(--muted); font-size: .8rem; font-weight: 400; margin-left: .4rem; }
+.lgroup-h { margin: 0; padding-bottom: .4rem; border-bottom: 1px solid var(--line); font-size: var(--t-subtitle); font-weight: 600; color: var(--text); }
+.lgroup-n { color: var(--muted); font-size: var(--t-caption); font-weight: 400; margin-left: .4rem; }
 
 /* A library row with a cover. Its own grid rather than .result's flex line, so a fixed cover column
    leads the existing main column. The cover is the size and shape the reading rows already use, and
@@ -1282,13 +1463,13 @@ body.nocovers .rcov-i, .rcov-i[hidden] { display: none; }
 .rcov-f {
   display: none; width: 44px; aspect-ratio: 2/3; border-radius: 6px;
   border: 1px solid var(--line-2); align-items: center; justify-content: center;
-  font-size: .66rem; font-weight: 700; color: var(--text);
+  font-size: var(--art-label-sm); font-weight: 700; color: var(--text);
 }
 body.nocovers .rcov-f, .rcov-f.show { display: flex; }
 
 /* The empty-state rule is reused as it stands; only the glyph needs a size, scoped to its own class
    so the shared .empty-state on the all-read panel is untouched. */
-.empty-state .empty-glyph { font-size: 2rem; line-height: 1; margin-bottom: .4rem; }
+.empty-state .empty-glyph { font-size: var(--t-title); line-height: 1; margin-bottom: .4rem; }
 
 /* State chips. Shape carries the state as well as colour: a dashed edge for the two absence states
    and a solid teal edge for the complete one, whose tick glyph is supplied in the markup. */
@@ -1315,12 +1496,12 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .order-strip { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; margin: .2rem 0 .1rem; }
 .order-strip[hidden] { display: none; }
 .order-strip .pbar { flex: 1 1 12rem; min-width: 8rem; max-width: 24rem; }
-.order-pct { color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; }
-.order-shown { color: var(--muted); font-size: .78rem; }
+.order-pct { color: var(--muted); font-size: var(--t-caption); font-variant-numeric: tabular-nums; }
+.order-shown { color: var(--muted); font-size: var(--t-caption); }
 
 /* The summary beside the shelf heading. It wraps under the heading on a narrow canvas rather than
    crowding it, which .sec-h's baseline row would otherwise not allow. */
-.sec-note { color: var(--muted); font-size: .8rem; text-align: right; }
+.sec-note { color: var(--muted); font-size: var(--t-caption); text-align: right; }
 
 @media (forced-colors: active) {
   /* The raised surfaces and tinted edges all flatten here, so every bordered element takes a system

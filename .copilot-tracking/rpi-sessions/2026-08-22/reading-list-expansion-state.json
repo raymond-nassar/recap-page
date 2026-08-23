@@ -159,12 +159,22 @@
       "decision": "RV-001 through RV-003 are implemented: Infinite Destinies uses the correct 2020 Black Cat volume, the shelf chronology and start labels are corrected, and failure-proven regressions cover all three defects.",
       "status": "confirmed",
       "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#review-finding-implementation"
+    },
+    {
+      "decision": "PR #169 conflicts with newer main-branch catalog and reader-interface work. Preserve both changes, move the expansion backlog records from colliding BL-187 and BL-188 to BL-199 and BL-200, and regenerate all derived evidence against the merged tree.",
+      "status": "confirmed",
+      "evidence": "Git merge of origin/main on 2026-08-22"
+    },
+    {
+      "decision": "The merged tree passes all final repository gates: lint; 1,363 tests; 174 ranked backlog rows and 179 detail blocks; 1,072 unchanged anchors; size, palette, and publication checks; zero malformed citations, forbidden added dashes, diff errors, or unresolved merge paths.",
+      "status": "confirmed",
+      "evidence": "Final local validation on 2026-08-22"
     }
   ],
   "blockers": [],
   "next_action": {
     "phase": "Follow-up",
-    "action": "Commit and push the completed expansion, open its pull request, inspect CI job conclusions, and merge after required checks pass."
+    "action": "Commit and push the reconciled merge, inspect CI job conclusions, and merge PR #169."
   },
   "prioritized_follow_ups": [
     {

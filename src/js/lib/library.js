@@ -33,7 +33,11 @@ export const LIBRARY_VIEWS = [
     // survives the deletion of the list that introduced it, deliberately, so this is the only
     // place an issue you read inside an order you have since deleted still appears.
     sub: 'Every issue you have marked read, newest first, wherever it came from.',
-    empty: 'Nothing is marked read yet. Open a reading order and tick issues off as you go.',
+    empty: 'Nothing is marked read yet.',
+    // The empty state offers the thing to do rather than describing it. It used to end with
+    // "Open a reading order and tick issues off as you go", which is an instruction a reader has
+    // to carry to a different screen and act on from memory.
+    emptyAction: { label: 'Browse reading orders', view: 'catalog' },
     // A hand-added issue is otherwise indistinguishable from a curated one here, and it is the
     // one row on this page whose details will never arrive from anywhere.
     markHandAdded: true,
@@ -57,7 +61,10 @@ export const LIBRARY_VIEWS = [
     value: 'library-manual',
     label: 'Added by hand',
     sub: 'Every issue you typed in yourself, sorted by title.',
-    empty: 'Nothing has been added by hand yet. Use “Add an issue by hand” in the rail.',
+    empty: 'Nothing has been added by hand yet.',
+    // Named the rail button in prose before, which asked the reader to find a control by its
+    // label rather than handing it to them.
+    emptyAction: { label: 'Add an issue by hand', view: 'add', open: 'sec-manual' },
     // Every row here is hand-added, so the badge would mark nothing out and would repeat itself
     // down the whole page.
     markHandAdded: false,
@@ -109,6 +116,15 @@ export function libraryViewProblems(views) {
     // render its heading and then throw the moment the renderer reached for the missing one.
     if (!v || typeof v.summarise !== 'function') problems.push(`${where} has no summarise function.`);
     if (!v || typeof v.group !== 'function') problems.push(`${where} has no group function.`);
+    // Optional, because an empty state that genuinely has nothing to offer is a real answer. If
+    // one is declared it has to be usable, so a typo in the destination fails here rather than
+    // painting a button that navigates nowhere.
+    if (v && v.emptyAction !== undefined) {
+      const a = v.emptyAction;
+      if (!a || typeof a.label !== 'string' || a.label === '' || typeof a.view !== 'string' || a.view === '') {
+        problems.push(`${where} has an empty-state action with no label or no destination.`);
+      }
+    }
   }
   return problems;
 }

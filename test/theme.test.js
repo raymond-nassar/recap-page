@@ -84,8 +84,13 @@ test('main.js normalises the stored theme on the way in and on the way from the 
 test('the settings control offers exactly the themes the code accepts', () => {
   // A fourth option in the markup would be silently normalised back to system on selection, and a
   // missing one would be unreachable.
+  //
+  // The element is matched by its id rather than by its whole opening tag. Written as an exact tag
+  // this went red the first time the control was given a class, which says nothing about the themes
+  // on offer and is the one thing this test is not about. What still has to hold is that the control
+  // is a select and that its values are the accepted set, and both of those are still asserted.
   const html = read('src/index.html');
-  const select = html.match(/<select id="opt-theme">([\s\S]*?)<\/select>/);
+  const select = html.match(/<select\b[^>]*\bid="opt-theme"[^>]*>([\s\S]*?)<\/select>/);
   assert.ok(select, 'the theme control is no longer a select this test can read');
   const values = [...select[1].matchAll(/value="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(values, THEMES);

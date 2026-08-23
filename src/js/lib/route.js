@@ -11,7 +11,7 @@ import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
 // Every section the rail can reach. This lives here rather than in main.js so that one list backs
 // both what can be shown and what can be routed to. Split across two files, a new view could be
 // routable but not showable, or showable but silently unreachable by URL.
-export const VIEWS = ['home', 'read', 'catalog', 'progress', 'add', 'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value)];
+export const VIEWS = ['home', 'read', 'catalog', 'lines', 'spotlights', 'progress', 'add', 'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value)];
 
 const PREFIX = '#/';
 

@@ -2,7 +2,7 @@
   "candidateId": "heroes-reborn-2021",
   "packetDigest": "5a27486f35415e510a6bffcc034bc1f38288a820ac4429efe4605b29541d37d2",
   "mappingDigest": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620",
-  "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
   "peerDigests": {
     "x-of-swords": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3"
   },
@@ -520,5 +520,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6671032841a4378ebfbe5d28cf901abaa4600c17e9690f42712f87ec4dc655c6"
+  "reportDigest": "cadf4d989dcccabf23f83103f0ca211049f6c4f39f059a956e46a3f022cf7d05"
 }

@@ -40,6 +40,7 @@
         </button>
 
         <nav id="sidebar-nav" aria-label="Main">
+          <div class="nav-scroll">
           <div class="nav-group">
             <h2 id="rail-orders" class="rail-h">Reading orders</h2>
             <ul id="list-nav" class="rail-list" aria-labelledby="rail-orders"></ul>
@@ -53,7 +54,15 @@
             <ul class="rail-list">
               <li><button type="button" class="ri ri-action" data-view="catalog">
                 <span class="gi" aria-hidden="true">&#xE736;</span>
-                <span class="lbl">Browse the catalog <span class="ri-sub">curated reading orders</span></span>
+                <span class="lbl">Timeline</span>
+              </button></li>
+              <li><button type="button" class="ri ri-action" data-view="lines">
+                <span class="gi" aria-hidden="true">&#xE8FD;</span>
+                <span class="lbl">Storylines</span>
+              </button></li>
+              <li><button type="button" class="ri ri-action" data-view="spotlights">
+                <span class="gi" aria-hidden="true">&#xE77B;</span>
+                <span class="lbl">Character spotlights</span>
               </button></li>
               <li><button type="button" class="ri ri-action" id="btn-new-list">
                 <span class="gi" aria-hidden="true">&#xE710;</span>
@@ -89,7 +98,7 @@
               </button></li>
               <li><button type="button" class="ri" data-view="add" data-open="sec-series">
                 <span class="gi" aria-hidden="true">&#xE8F1;</span>
-                <span class="lbl">Add a whole series</span>
+                <span class="lbl">Find a series</span>
               </button></li>
               <li><button type="button" class="ri" data-view="add" data-open="sec-creator">
                 <span class="gi" aria-hidden="true">&#xE77B;</span>
@@ -97,7 +106,7 @@
               </button></li>
               <li><button type="button" class="ri" data-view="add" data-open="sec-import">
                 <span class="gi" aria-hidden="true">&#xE77F;</span>
-                <span class="lbl">Paste a reading order</span>
+                <span class="lbl">Paste a reading list</span>
               </button></li>
               <li><button type="button" class="ri" data-view="add" data-open="sec-manual">
                 <span class="gi" aria-hidden="true">&#xE948;</span>
@@ -106,7 +115,14 @@
             </ul>
           </div>
 
-          <div class="nav-group">
+          </div>
+
+          <!-- Pinned to the bottom of the rail rather than left to the end of a scrolling column.
+               Measured at 1280x900 with one order in the library, the rail's content was 991px in
+               a 900px viewport, so settings, about and both status pills were all below the fold
+               on a first run. They are the two things a reader needs to be able to find without
+               knowing they are there. -->
+          <div class="nav-group nav-foot">
             <h2 class="rail-h">App</h2>
             <ul class="rail-list">
               <li><button type="button" class="ri" data-view="data">
@@ -254,7 +270,6 @@
             <section class="sec" id="home-catalog" aria-labelledby="home-cat-h">
               <div class="sec-h">
                 <h2 id="home-cat-h">Reading orders</h2>
-                <button type="button" class="linkish" id="home-see-all" hidden></button>
               </div>
               <div id="home-cat-report" class="report"></div>
 
@@ -270,22 +285,9 @@
                 </div>
               </form>
 
-              <ul class="ogrid" id="home-grid"></ul>
-              <p class="rail-hint" id="home-overflow" hidden></p>
-              <!-- The same action as the header button, at the place the reader reaches it.
-                   A reader who has scrolled past twelve cards is more than a viewport below the
-                   header, so the header copy is not an escape hatch for them; it is off screen. -->
-              <button type="button" class="btn btn-g home-more" id="home-more" hidden></button>
+              <div class="ogrid-groups" id="home-grid"></div>
               <p class="rail-hint attribution">Marvel metadata via marvel.emreparker.com. <span id="marvel-copyright">© MARVEL</span></p>
             </section>
-
-            <!-- The power-user paths, kept quiet so they never compete with the catalog. -->
-            <div class="escape">
-              <span class="escape-label">Or start from scratch:</span>
-              <button type="button" class="quiet" id="esc-new-list">Create an empty list</button>
-              <button type="button" class="quiet" data-view="add" data-open="sec-search">Search issues</button>
-              <button type="button" class="quiet" data-view="add" data-open="sec-import">Paste a reading order</button>
-            </div>
           </section>
 
           <!-- ---------------------------------------- reading view -->
@@ -294,6 +296,12 @@
               <div class="head-left">
                 <h1 id="order-name">Recap Page</h1>
                 <div class="sub" id="order-sub">Curated reading orders, tracked locally.</div>
+                <!-- The order's own blurb. It used to be welded onto the end of the subtitle above,
+                     which is a line with room for a fact and not for three sentences. -->
+                <details class="setting-more order-desc" id="order-desc" hidden>
+                  <summary>About this order</summary>
+                  <p class="rail-hint" id="order-desc-text"></p>
+                </details>
               </div>
               <div class="headright">
                 <button type="button" class="tgl" id="btn-covers" data-covers-toggle aria-pressed="true">
@@ -317,7 +325,6 @@
                 <button type="button" class="quiet" id="btn-list-note">Note</button>
                 <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
                 <button type="button" class="quiet" id="btn-export-md">Export as Markdown</button>
-                <button type="button" class="quiet quiet-danger" id="btn-delete-list">Delete list</button>
                 <span class="grow"></span>
                 <span id="hydration-status" class="rail-hint" hidden></span>
                 <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
@@ -328,6 +335,12 @@
                 <span id="synopsis-status" class="rail-hint" hidden></span>
                 <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
+                <!-- The one command here that cannot be undone, kept away from the ones that can.
+                     It used to sit flush against "Export as Markdown" in a run of five identical
+                     buttons, so the only thing separating a copy of the list from the loss of it
+                     was reading the label. It is last, past a rule, at the far end of the strip. -->
+                <span class="tool-sep" aria-hidden="true"></span>
+                <button type="button" class="quiet quiet-danger" id="btn-delete-list">Delete list</button>
               </div>
 
               <!-- The reader's own note about this order. Sits above the hero because it is
@@ -419,7 +432,7 @@
               <label class="fp"><input type="radio" name="progress-scope" value="list" checked /><span>This list</span></label>
               <label class="fp"><input type="radio" name="progress-scope" value="all" /><span>All lists</span></label>
             </fieldset>
-            <p class="rail-hint">“Tracked” means what you have added, not the size of the whole series.</p>
+            <p class="rail-hint" id="progress-note">“Tracked” means what you have added, not the size of the whole series.</p>
             <div id="series-progress" class="results"></div>
           </section>
 
@@ -443,8 +456,8 @@
 
           <!-- ---------------------------------------- catalog view -->
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
-            <div class="head"><div class="head-left"><h1 id="catalog-h">Reading list catalog</h1>
-              <div class="sub">Curated orders bundled with the app. Importing one creates a new list; issues you have already read stay read.</div>
+            <div class="head"><div class="head-left"><h1 id="catalog-h">Timeline</h1>
+              <div class="sub">Events in the order they were published.</div>
             </div></div>
             <div id="catalog-report" class="report"></div>
             <form id="form-catalog-search" class="stack" role="search">
@@ -460,6 +473,49 @@
             <div id="catalog-results" class="results"></div>
           </section>
 
+          <!-- ---------------------------------------- line-wide reading lists view
+
+               The three catalog screens are one renderer over one table, so every id here is the
+               shelf key with the same suffix the catalog view uses. Changing a suffix on one screen
+               and not the others is how they would drift apart, and a test asserts all three carry
+               the same set. -->
+          <section id="view-lines" class="view" hidden aria-labelledby="lines-h">
+            <div class="head"><div class="head-left"><h1 id="lines-h">Storylines</h1>
+              <div class="sub">Whole runs rather than single events.</div>
+            </div></div>
+            <div id="lines-report" class="report"></div>
+            <form id="form-lines-search" class="stack" role="search" hidden>
+              <label for="lines-q">Search the catalog by title or character</label>
+              <div class="field-row">
+                <input type="search" id="lines-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
+                <button type="button" class="btn" id="lines-clear" hidden>Clear</button>
+              </div>
+            </form>
+            <fieldset class="filters" id="lines-filters" hidden>
+              <legend class="visually-hidden">Filter the catalog by category</legend>
+            </fieldset>
+            <div id="lines-results" class="results"></div>
+          </section>
+
+          <!-- ---------------------------------------- character spotlights view -->
+          <section id="view-spotlights" class="view" hidden aria-labelledby="spotlights-h">
+            <div class="head"><div class="head-left"><h1 id="spotlights-h">Character spotlights</h1>
+              <div class="sub">One hero or team, gathered in one place.</div>
+            </div></div>
+            <div id="spotlights-report" class="report"></div>
+            <form id="form-spotlights-search" class="stack" role="search" hidden>
+              <label for="spotlights-q">Search the catalog by title or character</label>
+              <div class="field-row">
+                <input type="search" id="spotlights-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
+                <button type="button" class="btn" id="spotlights-clear" hidden>Clear</button>
+              </div>
+            </form>
+            <fieldset class="filters" id="spotlights-filters" hidden>
+              <legend class="visually-hidden">Filter the catalog by category</legend>
+            </fieldset>
+            <div id="spotlights-results" class="results"></div>
+          </section>
+
           <!-- ---------------------------------------- add view -->
           <section id="view-add" class="view" hidden aria-labelledby="add-h">
             <div class="head"><div class="head-left"><h1 id="add-h">Add issues</h1>
@@ -472,7 +528,7 @@
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
                   <input type="search" id="search-q" placeholder="e.g. Secret Wars" autocomplete="off" />
-                  <button type="submit" class="btn">Search</button>
+                  <button type="submit" class="btn btn-icon" title="Search" aria-label="Search issue titles"><span class="gi" aria-hidden="true">&#xE721;</span></button>
                 </div>
               </form>
               <!--
@@ -486,15 +542,14 @@
 
             <section id="add-more" class="add-more">
               <h2>Other ways to add</h2>
-              <p class="rail-hint">Use these for bulk additions and issues that search cannot reach.</p>
 
               <details class="card" id="sec-series">
-                <summary><h3>Add a whole series</h3><span class="card-why">Every issue of one series, oldest first.</span></summary>
+                <summary><h3>Find a series</h3><span class="card-why">Every issue of one series, oldest first.</span></summary>
                 <form id="form-series" class="stack">
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
                     <input type="search" id="series-q" placeholder="e.g. New Avengers (2013)" autocomplete="off" />
-                    <button type="submit" class="btn">Find</button>
+                    <button type="submit" class="btn btn-icon" title="Search" aria-label="Find a series"><span class="gi" aria-hidden="true">&#xE721;</span></button>
                   </div>
                 </form>
                 <div id="series-results" class="results"></div>
@@ -506,14 +561,14 @@
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
                     <input type="search" id="creator-q" placeholder="e.g. Hickman" autocomplete="off" />
-                    <button type="submit" class="btn">Find</button>
+                    <button type="submit" class="btn btn-icon" title="Search" aria-label="Find a creator"><span class="gi" aria-hidden="true">&#xE721;</span></button>
                   </div>
                 </form>
                 <div id="creator-results" class="results"></div>
               </details>
 
               <details class="card" id="sec-import">
-                <summary><h3>Paste a reading order</h3><span class="card-why">A Markdown checklist or one title per line.</span></summary>
+                <summary><h3>Paste a reading list</h3><span class="card-why">A Markdown checklist or one title per line.</span></summary>
                 <p class="rail-hint">
                   Accepts Markdown checklists
                   (<code>- [ ] [Title](https://www.marvel.com/comics/issue/123/slug)</code>)
@@ -551,10 +606,8 @@
                   <label for="manual-url">marvel.com or Marvel Unlimited address (optional)</label>
                   <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://read.marvel.com/#/book/…" />
                   <p class="rail-hint" id="manual-url-hint">
-                    Open the issue in Marvel Unlimited and paste the address from your browser. That
-                    address carries the reader's own id for the book, which is what lets Read take you
-                    straight there. A www.marvel.com issue address works too, but for anything newer
-                    than the snapshot it cannot be turned into a working Read link.
+                    Only needed for issues newer than the 2025 snapshot: paste the address from
+                    Marvel Unlimited and Read can take you straight to the book.
                   </p>
                   <button type="submit" class="btn">Add issue</button>
                 </form>
@@ -588,14 +641,19 @@
                 <div id="restore-report" class="results"></div>
               </div>
 
-              <div class="card card-static">
+              <div class="card card-static setting">
                 <h3>Copies kept after a failed read</h3>
-                <p class="rail-hint">
+                <p class="rail-hint setting-desc">
                   If the app ever cannot read your saved data, it sets a copy of that data aside before
-                  it does anything else, so nothing is lost while you decide what to do. Those copies
-                  are kept until you remove them here, and they sit in the same browser storage as your
-                  lists and progress.
+                  it does anything else, so nothing is lost while you decide what to do.
                 </p>
+                <details class="setting-more">
+                  <summary>Where these copies live</summary>
+                  <p class="rail-hint">
+                    Those copies are kept until you remove them here, and they sit in the same browser
+                    storage as your lists and progress.
+                  </p>
+                </details>
                 <div id="salvage-list"></div>
                 <div id="salvage-report" class="results"></div>
               </div>
@@ -603,32 +661,42 @@
 
             <section class="setgroup">
               <h2>Personalization</h2>
-              <div class="card card-static">
+              <div class="card card-static setting">
                 <h3>Cover art</h3>
-                <p class="rail-hint">
+                <p class="rail-hint setting-desc">
                   Covers are loaded straight from Marvel's own image servers, and from nowhere else.
-                  The metadata service reports each address, but one naming any other host is refused
-                  before a request is made, so a service that had been tampered with cannot have this
-                  browser contact a server of its choosing. This app stores only the address, never the
-                  image itself, and never proxies or re-hosts artwork. Switch covers off and every cover
-                  becomes a plain typographic tile, and no cover is requested at all.
                 </p>
-                <label class="checkbox"><input type="checkbox" id="opt-covers" /> Show cover art</label>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-covers" /> Show cover art</label>
+                <details class="setting-more">
+                  <summary>How covers are requested</summary>
+                  <p class="rail-hint">
+                    The metadata service reports each address, but one naming any other host is refused
+                    before a request is made, so a service that had been tampered with cannot have this
+                    browser contact a server of its choosing. This app stores only the address, never the
+                    image itself, and never proxies or re-hosts artwork. Switch covers off and every cover
+                    becomes a plain typographic tile, and no cover is requested at all.
+                  </p>
+                </details>
               </div>
 
-              <div class="card card-static">
+              <div class="card card-static setting">
                 <h3>Theme</h3>
-                <p class="rail-hint">
-                  Follow your system setting, or pick one and keep it. The choice is stored in this
-                  browser alongside your other settings and is never sent anywhere. High contrast mode
-                  and reduced motion are still honoured whichever you pick.
+                <p class="rail-hint setting-desc">
+                  Follow your system setting, or pick one and keep it.
                 </p>
-                <label for="opt-theme">Colour theme</label>
-                <select id="opt-theme">
-                  <option value="system">Follow my system setting</option>
+                <label class="visually-hidden" for="opt-theme">Colour theme</label>
+                <select id="opt-theme" class="setting-ctl">
+                  <option value="system">Use system setting</option>
                   <option value="dark">Dark</option>
                   <option value="light">Light</option>
                 </select>
+                <details class="setting-more">
+                  <summary>What the choice affects</summary>
+                  <p class="rail-hint">
+                    The choice is stored in this browser alongside your other settings and is never sent
+                    anywhere. High contrast mode and reduced motion are still honoured whichever you pick.
+                  </p>
+                </details>
               </div>
             </section>
 
@@ -639,40 +707,53 @@
                 <form id="form-settings" class="stack">
                   <label for="api-base">Metadata API base URL</label>
                   <input type="url" id="api-base" />
+                  <button type="submit" class="btn btn-g">Save API URL</button>
+                </form>
+                <details class="setting-more">
+                  <summary>Why this can be changed</summary>
                   <p class="rail-hint">
                     The default is the community API this was built against. If it disappears the
                     upstream is self-hostable, so you can point this at your own copy.
                   </p>
-                  <button type="submit" class="btn btn-g">Save API URL</button>
-                </form>
+                </details>
                 <div id="api-report" class="results"></div>
               </div>
 
-              <div class="card card-static">
+              <div class="card card-static setting">
                 <h3>Update checks</h3>
-                <p class="rail-hint">
-                  Once a day, the app can ask GitHub for the latest version number. That request sends
-                  no reading list, progress, note or identifier. If a newer version exists, the app shows
-                  a link to download it, but it never downloads or installs anything by itself.
+                <p class="rail-hint setting-desc">
+                  Once a day, the app can ask GitHub for the latest version number.
                 </p>
-                <label class="checkbox"><input type="checkbox" id="opt-update-checks" /> Check for updates automatically</label>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-update-checks" /> Check automatically</label>
+                <details class="setting-more">
+                  <summary>What the check sends</summary>
+                  <p class="rail-hint">
+                    That request sends no reading list, progress, note or identifier. If a newer version
+                    exists, the app shows a link to download it, but it never downloads or installs
+                    anything by itself.
+                  </p>
+                </details>
               </div>
             </section>
 
             <section class="setgroup">
               <h2>Advanced</h2>
-              <div class="card card-static">
+              <div class="card card-static setting">
                 <h3>Cached metadata</h3>
-                <p id="cache-usage" class="rail-hint">Checking cache size…</p>
-                <button type="button" id="btn-clear-cache" class="quiet">Clear cached metadata</button>
-                <p class="rail-hint">Clearing the cache never touches your lists or reading progress.</p>
+                <p id="cache-usage" class="rail-hint setting-desc">Checking cache size…</p>
+                <button type="button" id="btn-clear-cache" class="quiet setting-ctl">Clear cached metadata</button>
+                <details class="setting-more">
+                  <summary>What clearing removes</summary>
+                  <p class="rail-hint">Clearing the cache never touches your lists or reading progress.</p>
+                </details>
                 <div id="cache-report" class="results"></div>
               </div>
             </section>
 
-            <div class="card card-static card-danger">
+            <div class="card card-static card-danger setting">
               <h2>Danger zone</h2>
-              <button type="button" id="btn-wipe" class="quiet quiet-danger">Erase all local data</button>
+              <p class="rail-hint setting-desc">Erasing removes every list, all progress and every note from this browser.</p>
+              <button type="button" id="btn-wipe" class="quiet quiet-danger setting-ctl">Erase all local data</button>
             </div>
           </section>
 
@@ -719,12 +800,16 @@
               </p>
 
               <h3>Keyboard shortcuts</h3>
+              <table class="keys">
+                <tbody>
+                  <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
+                  <tr><th scope="row"><kbd>D</kbd></th><td>Mark it read and move to the next one</td></tr>
+                  <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the sidebar, anywhere in the app</td></tr>
+                </tbody>
+              </table>
               <p class="rail-hint">
-                In the reading view, <kbd>↵</kbd> opens the current issue in Marvel Unlimited and
-                <kbd>D</kbd> marks it read and moves to the next one. <kbd>Ctrl</kbd> +
-                <kbd>\</kbd> collapses and expands the sidebar, anywhere in the app. The two
-                reading shortcuts pause while you are typing in a box, and <kbd>↵</kbd> leaves the
-                button or link you are on to do its own job.
+                The two reading shortcuts pause while you are typing in a box, and <kbd>↵</kbd> leaves
+                the button or link you are on to do its own job.
               </p>
 
               <h3>Your data</h3>
@@ -734,29 +819,32 @@
                 tracking of any kind. Your progress and your notes are never sent anywhere. Clearing
                 site data for this address erases them, so export a backup regularly.
               </p>
-              <p class="rail-hint">
-                What does leave this machine is the ordinary business of fetching what is on
-                screen. Opening the app asks the metadata API named above whether it is reachable,
-                which is what the status pill reports. Searching for issues sends what you typed,
-                and so does asking an imported line to find its own match; searching the catalog,
-                series or creators is answered from files already on this machine, but adding a
-                whole series or a creator's issues then asks the metadata API for every issue it
-                lists, which is the longest run of requests the app makes. Filling in details sends
-                every issue number still missing them, across every list you keep, starting with
-                the one you are about to read. Cover art is
-                requested from Marvel's image servers as it appears, so those servers see which
-                issues are on screen; switching cover art off stops them being requested at all.
-                Those are the only servers a cover is ever asked of: an address the metadata API
-                reports on any other host is refused before anything is fetched.
-                Opening an issue asks the metadata API for the reader link
-                when this copy does not already have it, then hands that one issue to Marvel's
-                reader, or to marvel.com whenever no reader link can be resolved.
-                Adding an issue by hand sends the words in the title box to the Marvel Fandom
-                wiki, a community site Marvel does not run, and it does that only when you press
-                the lookup button. That wiki then sees the title you searched for; your lists,
-                your progress and your notes are no part of the request, and no picture is
-                fetched from it.
-              </p>
+              <details class="setting-more">
+                <summary>What leaves this machine, request by request</summary>
+                <p class="rail-hint">
+                  What does leave this machine is the ordinary business of fetching what is on
+                  screen. Opening the app asks the metadata API named above whether it is reachable,
+                  which is what the status pill reports. Searching for issues sends what you typed,
+                  and so does asking an imported line to find its own match; searching the catalog,
+                  series or creators is answered from files already on this machine, but adding a
+                  whole series or a creator's issues then asks the metadata API for every issue it
+                  lists, which is the longest run of requests the app makes. Filling in details sends
+                  every issue number still missing them, across every list you keep, starting with
+                  the one you are about to read. Cover art is
+                  requested from Marvel's image servers as it appears, so those servers see which
+                  issues are on screen; switching cover art off stops them being requested at all.
+                  Those are the only servers a cover is ever asked of: an address the metadata API
+                  reports on any other host is refused before anything is fetched.
+                  Opening an issue asks the metadata API for the reader link
+                  when this copy does not already have it, then hands that one issue to Marvel's
+                  reader, or to marvel.com whenever no reader link can be resolved.
+                  Adding an issue by hand sends the words in the title box to the Marvel Fandom
+                  wiki, a community site Marvel does not run, and it does that only when you press
+                  the lookup button. That wiki then sees the title you searched for; your lists,
+                  your progress and your notes are no part of the request, and no picture is
+                  fetched from it.
+                </p>
+              </details>
 
               <h3>This build</h3>
               <p class="rail-hint">
