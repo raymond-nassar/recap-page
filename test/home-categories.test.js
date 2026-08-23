@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import {
   CATALOG_SHELVES,
   HOME_CATEGORIES,
+  PUBLISHING_CATEGORIES,
+  publishingCategoryStories,
   availableHomeCategories,
   groupCatalog,
   parseCatalog,
@@ -21,20 +23,25 @@ const source = read('src/js/main.js');
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = groupCatalog(catalog.lists);
 
-test('the current gateway offers every populated canonical shelf', () => {
+test('the current gateway offers every populated canonical shelf and publishing age', () => {
   const categories = availableHomeCategories(stories);
   assert.deepEqual(
     categories.map(({ key }) => key),
-    ['timeline', 'storylines', 'character-spotlights'],
+    ['timeline', 'storylines', 'character-spotlights', 'modern'],
   );
-  assert.ok(categories.every(({ tier }) => tier === 'primary'));
+  assert.deepEqual(categories.map(({ tier }) => tier), ['primary', 'primary', 'primary', 'secondary']);
 
-  for (const category of categories) {
+  for (const category of categories.filter(({ shelf }) => shelf)) {
     const expected = shelfStories(stories, category.shelf)
       .reduce((total, story) => total + story.lists.length, 0);
     assert.ok(expected > 0, `${category.heading} has no content`);
     assert.equal(category.count, expected, `${category.heading} reports the wrong availability`);
   }
+  const modern = categories.find(({ key }) => key === 'modern');
+  assert.equal(
+    modern.count,
+    publishingCategoryStories(stories, 'modern').reduce((total, story) => total + story.lists.length, 0),
+  );
 });
 
 test('an empty category stays hidden while overlapping categories remain independent', () => {
@@ -85,7 +92,11 @@ test('every declared category has compact UI metadata and its own browse subpage
 
   for (const category of HOME_CATEGORIES) {
     assert.ok(VIEWS.includes(category.route), `${category.key} points to unknown route ${category.route}`);
-    assert.match(markup, new RegExp(`id="view-${category.route}"`), `${category.key} has no browse subpage`);
+    const generated = PUBLISHING_CATEGORIES.some(({ route }) => route === category.route);
+    assert.ok(
+      generated || new RegExp(`id="view-${category.route}"`).test(markup),
+      `${category.key} has no browse subpage`,
+    );
     assert.ok(['primary', 'secondary'].includes(category.tier), `${category.key} has no supported tier`);
     assert.match(category.icon, /^[A-F0-9]{4,6}$/, `${category.key} has no Fluent glyph`);
     for (const field of ['heading', 'label']) {
@@ -94,6 +105,17 @@ test('every declared category has compact UI metadata and its own browse subpage
       assert.doesNotMatch(category[field], /[.!?]$/, `${category.key} ${field} became explanatory copy`);
     }
   }
+  assert.match(source, /function ensurePublishingViews\(\)/, 'publishing subpages are not generated');
+});
+
+test('empty future ages stay declared but hidden from the current gateway', () => {
+  for (const key of ['golden', 'silver', 'bronze', 'copper']) {
+    assert.ok(HOME_CATEGORIES.some((category) => category.key === key), `${key} is not declared`);
+  }
+  const available = availableHomeCategories(stories);
+  assert.ok(['golden', 'silver', 'bronze', 'copper'].every(
+    (key) => !available.some((category) => category.key === key),
+  ));
 });
 
 test('Home is a category gateway rather than another copy of the catalog', () => {

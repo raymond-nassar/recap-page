@@ -14,6 +14,22 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added browsing by Marvel publishing age
+
+In plain English: Home now offers Modern Age as a compact way into six populated periods, from
+Marvel Knights / Heroes Return through the current era. Each period opens its own page with the
+matching Reading Lists, including lists from different kinds of shelf when their dates belong
+together.
+
+Older publishing ages and Early Modern have their own destinations but stay out of Home until the
+catalog has matching dated content. Timeline is now named Modern Timeline, and its existing address
+still works. Nothing you have saved is changed.
+
+For maintainers: one registry defines five publishing ages and seven Modern subperiods. Half-open
+year ranges give every transition year to the later period, dated stories select independently of
+canonical shelves, undated stories are excluded, and empty categories remain directly routable but
+hidden from gateways.
+
 ### Turned Home and navigation into reading hubs
 
 In plain English: Home now asks how you want to read instead of placing every Reading List on one

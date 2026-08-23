@@ -20,8 +20,8 @@ import {
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
   pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
-  firstSentence, storyYear,
-  CATALOG_SHELVES, shelfLists,
+  availablePublishingCategories, publishingCategoryStories, firstSentence, storyYear,
+  CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -363,6 +363,9 @@ function isLive(node) {
 // whichever pane the reader is at. Keying it by the condition rather than by the pane is what lets
 // a later success clear it wherever it was placed.
 const CATALOG_LOAD = 'catalog-load';
+const publishingCategoryByRoute = new Map(
+  PUBLISHING_CATEGORIES.map((category) => [category.route, category]),
+);
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
 // condition that outlives whichever view the reader happens to land on, and it is cleared by
@@ -1225,6 +1228,7 @@ function showView(next, { focus = true, push = false } = {}) {
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
   if (shelf) renderCatalogShelf(shelf.key);
+  if (publishingCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') renderHome();
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') renderHomeCategories();
@@ -1247,7 +1251,8 @@ function showView(next, { focus = true, push = false } = {}) {
 }
 
 function railParentView(next) {
-  if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)) return 'browse';
+  if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)
+    || publishingCategoryByRoute.has(next)) return 'browse';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
   return next;
@@ -1337,6 +1342,50 @@ function renderHome() {
   // current one rather than a string baked into the markup.
   for (const label of document.querySelectorAll('[data-marvel-copyright]')) {
     label.textContent = `© ${new Date().getFullYear()} MARVEL`;
+  }
+}
+
+// Category panels are generated from the same registry the router reads. Repeating twelve hidden
+// sections in the document would create a second list of routes, headings and ids that could drift
+// while still leaving every individual panel looking valid.
+function ensurePublishingViews() {
+  const root = $('#main .wrap');
+  for (const category of PUBLISHING_CATEGORIES) {
+    if ($(`#view-${category.route}`)) continue;
+    root.insertBefore(el('section', {
+      id: `view-${category.route}`,
+      class: 'view view-wide publishing-view',
+      hidden: true,
+      'aria-labelledby': `${category.route}-h`,
+    }, [
+      el('div', { class: 'head' }, [
+        el('div', { class: 'head-left' }, [
+          el('h1', { id: `${category.route}-h`, text: `Browse ${category.heading}` }),
+        ]),
+      ]),
+      el('div', { class: 'publishing-meta' }, [
+        el('span', { class: 'publishing-range', text: category.label }),
+        el('span', { id: `${category.route}-count`, class: 'publishing-count', text: '0 Reading Lists' }),
+      ]),
+      el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
+        category.highlights.map((highlight) => el('li', { text: highlight }))),
+      el('div', { id: `${category.route}-report`, class: 'report' }),
+      el('section', {
+        id: `${category.route}-categories`,
+        class: 'publishing-periods',
+        hidden: true,
+        'aria-labelledby': `${category.route}-categories-h`,
+      }, [
+        el('div', { class: 'sec-h' }, [
+          el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' }),
+        ]),
+        el('ul', {
+          id: `${category.route}-category-list`,
+          class: 'home-paths home-paths-secondary',
+        }),
+      ]),
+      el('div', { id: `${category.route}-results`, class: 'results' }),
+    ]), $('.app-footer'));
   }
 }
 
@@ -1505,6 +1554,70 @@ function homeCategoryTile(category) {
   ]));
 }
 
+async function renderPublishingCategory(route) {
+  const category = publishingCategoryByRoute.get(route);
+  if (!category) return;
+  const box = $(`#${route}-results`);
+  const periods = $(`#${route}-categories`);
+  const periodList = $(`#${route}-category-list`);
+  box.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading Reading Lists…' }));
+  periods.hidden = true;
+  periodList.replaceChildren();
+  clearNotice(CATALOG_LOAD);
+
+  let catalog;
+  try {
+    catalog = await loadCatalog();
+  } catch (err) {
+    box.replaceChildren();
+    notify(
+      `#${route}-report`,
+      `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
+      'error',
+      CATALOG_LOAD,
+    );
+    return;
+  }
+
+  const allStories = groupCatalog(catalog.lists);
+  const stories = publishingCategoryStories(allStories, category.key);
+  const count = stories.reduce((total, story) => total + story.lists.length, 0);
+  $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
+
+  const children = availablePublishingCategories(allStories, category.key);
+  if (children.length) {
+    box.replaceChildren();
+    periodList.replaceChildren(...children.map((child) => homeCategoryTile({
+      ...child,
+      tier: 'secondary',
+    })));
+    periods.hidden = false;
+    return;
+  }
+
+  box.replaceChildren();
+  if (!stories.length) {
+    box.append(el('p', {
+      class: 'rail-hint publishing-empty',
+      text: 'No Reading Lists are published for this period yet.',
+    }));
+    return;
+  }
+
+  const placements = pathPlacements(catalog.paths, catalog.lists);
+  const localStoryKeys = new Set(stories.map((story) => story.key));
+  const grid = el('div', { class: 'catalog-grid publishing-grid' });
+  for (const story of stories) {
+    grid.append(catalogCard(story, placements.get(story.key), {
+      surface: route,
+      report: `#${route}-report`,
+      localStoryKeys,
+      level: 'h2',
+    }));
+  }
+  box.append(grid);
+}
+
 // Which reading path the reader has chosen through a story, keyed by the story rather than by the
 // card, so a choice made in the preview is the one the catalog then shows. Deliberately not
 // persisted: it is a decision about what to add next, not a setting, and it stops meaning anything
@@ -1670,10 +1783,12 @@ function wirePreview() {
     placeNotices();
     // The card behind the dialog names one path, and the dialog is where that choice is now made,
     // so a choice made here has to reach the shelf card that sent the reader in.
-    if (chose && CATALOG_SHELVES.some((shelf) => shelf.key === view)) {
+    if (chose && (CATALOG_SHELVES.some((shelf) => shelf.key === view)
+      || publishingCategoryByRoute.has(view))) {
       const root = $(`#${view}-results`);
       const held = captureFocus(root);
-      await renderCatalogShelf(view);
+      if (publishingCategoryByRoute.has(view)) await renderPublishingCategory(view);
+      else await renderCatalogShelf(view);
       returnFocus(held);
     }
   });
@@ -3719,8 +3834,14 @@ function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
 // `surface` is the shelf this row is being drawn on. The report pane is derived from it rather
 // than passed alongside it, because the two were separate arguments and a row reporting an import
 // into another screen's pane is a failure with no symptom on the screen the reader is looking at.
-function catalogCard(story, placement, { surface = 'catalog', level = 'h3' } = {}) {
-  const report = `#${surface}-report`;
+function catalogCard(
+  story,
+  placement,
+  {
+    surface = 'catalog', report = null, localStoryKeys = null, level = 'h3',
+  } = {},
+) {
+  const reportTarget = report ?? `#${surface}-report`;
   const title = story.name ?? story.lists[0].name;
   const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
   const fallback = el('div', { class: 'of', 'aria-hidden': true }, [
@@ -3729,7 +3850,7 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3' } = {
   const desc = el('p', { class: 'catalog-card-desc' });
   const meta = el('p', { class: 'catalog-card-meta' });
   const source = el('div', { class: 'result-source' });
-  const path = pathDisclosure(placement, surface);
+  const path = pathDisclosure(placement, surface, { localStoryKeys });
   const disclosures = el('div', { class: 'catalog-card-disclosures' }, [path, source].filter(Boolean));
   const actions = el('div', { class: 'catalog-card-actions' });
 
@@ -3748,7 +3869,7 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3' } = {
         type: 'button',
         'aria-label': labelledName(CATALOG_ADD, list.name),
         dataset: { key: list.id, act: 'import' },
-        onclick: (e) => importCurated(list, e.currentTarget, { report }),
+        onclick: (e) => importCurated(list, e.currentTarget, { report: reportTarget }),
       }, CATALOG_ADD),
       el('button', {
         class: 'btn btn-g',
@@ -3779,7 +3900,7 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3' } = {
   ]);
 }
 
-function pathDisclosure(placement, surface) {
+function pathDisclosure(placement, surface, { localStoryKeys = null } = {}) {
   if (!placement) return null;
   const opens = placement.previous === null;
   const summary = opens ? `Start · 1/${placement.total}` : `Step ${placement.position}/${placement.total}`;
@@ -3787,7 +3908,7 @@ function pathDisclosure(placement, surface) {
     el('summary', {
       'aria-label': `${summary}. Show path details for ${placement.pathName}`,
     }, summary),
-    pathLine(placement, surface, { showBadge: false }),
+    pathLine(placement, surface, { showBadge: false, localStoryKeys }),
   ]);
 }
 
@@ -3828,14 +3949,19 @@ function pathDisclosure(placement, surface) {
 // accessibility tree. An <a> is the opposite case, and the path name is the one that needs it,
 // because "The Modern Avengers" alone does not say that pressing it goes to the start. Its name is
 // built out of the visible words rather than beside them, which is what accname.js exists to hold.
-export function pathLine(placement, surface, { showBadge = true } = {}) {
+export function pathLine(
+  placement,
+  surface,
+  { showBadge = true, localStoryKeys = null } = {},
+) {
   if (!placement) return null;
   const opens = placement.previous === null;
   const start = stopLink(placement.first, surface, {
     text: placement.pathName,
     label: labelledName(placement.pathName, `Start at ${placement.first.name}`),
+    localStoryKeys,
   });
-  const link = placement.next ? stopLink(placement.next, surface) : null;
+  const link = placement.next ? stopLink(placement.next, surface, { localStoryKeys }) : null;
   const lead = opens ? ` · Step 1 of ${placement.total} · ` : ' · ';
   const badge = showBadge ? el('span', {
     class: opens ? 'pill pill-start' : 'pill',
@@ -3858,9 +3984,15 @@ export function pathLine(placement, surface, { showBadge = true } = {}) {
 // middle-click opens it, and Back returns to the row that named it without this code owning any of
 // that. Constraint 5 makes the origin load-bearing, so the address it writes is a fragment and
 // nothing else. The click is taken over only to clear the destination's narrowing first.
-function stopLink(stop, surface, { text = stop.name, label = null } = {}) {
+function stopLink(
+  stop,
+  surface,
+  {
+    text = stop.name, label = null, localStoryKeys = null,
+  } = {},
+) {
   const dest = stop.shelf;
-  if (dest === surface) return null;
+  if (dest === surface || localStoryKeys?.has(stop.key)) return null;
   return el('a', {
     href: formatRoute({ view: dest }),
     'aria-label': label,
@@ -4816,6 +4948,7 @@ export function boot() {
   applyCoversSetting();
   applyUpdateCheckSetting();
   applyThemeSetting();
+  ensurePublishingViews();
   wireSidebar();
   wireNav();
   wireReading();

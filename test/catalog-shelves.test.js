@@ -110,7 +110,8 @@ test('every screen carries the words its own empty state and heading need', () =
   assert.equal(new Set(headings).size, headings.length, 'two screens share a heading');
 });
 
-test('Timeline uses named eras and Storylines uses decade breaks', () => {
+test('Modern Timeline uses named eras and Storylines uses decade breaks', () => {
+  assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').heading, 'Modern Timeline');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').sections, 'eras');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'lines').sections, 'decades');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'spotlights').sections, null);

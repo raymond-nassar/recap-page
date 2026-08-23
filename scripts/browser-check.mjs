@@ -36,7 +36,7 @@ import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
 import {
-  decadeSections, eraSections, groupCatalog, shelfSections,
+  availablePublishingCategories, decadeSections, eraSections, groupCatalog, shelfSections,
 } from '../src/js/lib/catalog.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
@@ -216,12 +216,12 @@ const CATALOG = {
     shelfEntry('browser-check-three-short', 'Third Stop: The Short Way', {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Essential', depth: 'essential', timeline: 2006,
     }),
-    shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
+    shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2004 }),
     shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run' }),
     ...Array.from({ length: 10 }, (_, index) => shelfEntry(
       `browser-check-extra-${index + 1}`,
       `Fixture Event ${index + 1}`,
-      { timeline: 2008 },
+      { timeline: index === 0 ? 2012 : 2008 },
     )),
   ],
   paths: [
@@ -234,6 +234,13 @@ const CATALOG = {
       // than resolving it to the story would read "Third Stop: The Short Way" and be caught.
       steps: ['browser-check', 'browser-check-two', 'browser-check-three-short'],
     },
+    {
+      id: 'bc-age-path',
+      name: 'Across Two Periods',
+      description: 'A fixture path crossing two publishing periods.',
+      sourceOrigin: 'Fixture',
+      steps: ['browser-check-line', 'browser-check-extra-1'],
+    },
   ],
 };
 
@@ -242,6 +249,8 @@ const FIXTURE_SHELVES = new Map(
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
 const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
+const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(groupCatalog(CATALOG.lists));
+const FIXTURE_MODERN_PERIODS = availablePublishingCategories(groupCatalog(CATALOG.lists), 'modern');
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
 const ORDER_COUNT = ORDER.items.length;
 const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
@@ -267,6 +276,15 @@ const MUTATIONS = [
         heading.after(sub);
       });
     },
+  },
+  {
+    id: 'publishing-render-dispatch-off',
+    breaks: 'publishing-ages',
+    why: 'an age route opens its panel but never renders the Reading Lists selected for it',
+    rewriteMain: (source) => source.replace(
+      '  if (publishingCategoryByRoute.has(next)) renderPublishingCategory(next);',
+      '',
+    ),
   },
   {
     id: 'browse-subtitle-return',
@@ -813,10 +831,11 @@ const SCENARIOS = [
       // The acceptance criterion, read off the page rather than off the model. A route whose steps
       // straddle a heading is a route the heading is telling the reader not to follow.
       let head = null;
+      const mainPathTitles = new Set(['Browser Check Order', 'Second Stop', 'Third Stop']);
       const under = new Map();
       for (const x of shelf) {
         if (x.kind === 'head') head = x.heading;
-        else if (x.step) under.set(x.title, head);
+        else if (x.step && mainPathTitles.has(x.title)) under.set(x.title, head);
       }
       t.check('every stop of the path is on the shelf', under.size === 3, JSON.stringify([...under]));
       t.check('and every one of them sits under the same era',
@@ -938,11 +957,18 @@ const SCENARIOS = [
       await settleLayout();
       const context = await page.evaluate(() => {
         const paths = [...document.querySelectorAll('#home-primary-paths .home-path')];
+        const secondary = [...document.querySelectorAll('#home-secondary-paths .home-path')];
         const boxes = paths.map((path) => path.getBoundingClientRect());
         return {
           heading: document.querySelector('#home-h')?.textContent.trim() ?? null,
           explanatoryLines: document.querySelectorAll('#view-home > .head .sub').length,
           paths: paths.map((path) => ({
+            key: path.dataset.category,
+            label: path.querySelector('.home-path-label')?.textContent.trim(),
+            title: path.querySelector('.home-path-title')?.textContent.trim(),
+            count: path.querySelector('.home-path-count')?.textContent.trim(),
+          })),
+          secondary: secondary.map((path) => ({
             key: path.dataset.category,
             label: path.querySelector('.home-path-label')?.textContent.trim(),
             title: path.querySelector('.home-path-title')?.textContent.trim(),
@@ -960,18 +986,23 @@ const SCENARIOS = [
         JSON.stringify(context));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
-          { key: 'timeline', label: 'Browse by year', title: 'Timeline', count: '14 Reading Lists' },
+          { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
           { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '1 Reading List' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '1 Reading List' },
         ]),
         JSON.stringify(context.paths));
+      t.check('the populated publishing age appears without empty historical ages',
+        JSON.stringify(context.secondary) === JSON.stringify([
+          { key: 'modern', label: '1991 to present', title: 'Modern Age', count: '15 Reading Lists' },
+        ]),
+        JSON.stringify(context.secondary));
       t.check('the primary paths remain equal choices on one desktop row',
         context.tops.length === 3
         && new Set(context.tops).size === 1
         && Math.max(...context.heights) - Math.min(...context.heights) <= 1,
         JSON.stringify({ tops: context.tops, heights: context.heights }));
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
-        context.paragraphs === 0 && context.retired === 0 && context.moreHidden === true,
+        context.paragraphs === 0 && context.retired === 0 && context.moreHidden === false,
         JSON.stringify(context));
 
       for (const [category, view] of [
@@ -998,6 +1029,129 @@ const SCENARIOS = [
         && new Set(narrow.map(({ top }) => top)).size === 3
         && narrow.every(({ width }) => width > 400 && width < 620),
         JSON.stringify(narrow));
+    },
+  },
+  {
+    id: 'publishing-ages',
+    title: 'publishing ages provide direct compact category pages',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('[data-category="modern"]', { timeout: 15000 });
+      await click(page, '[data-category="modern"]');
+      await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
+
+      const gateway = await page.evaluate(() => ({
+        hash: location.hash,
+        focus: document.activeElement?.id ?? null,
+        rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        periods: [...document.querySelectorAll('#age-modern-category-list .home-path')].map((path) => ({
+          key: path.dataset.category,
+          count: path.querySelector('.home-path-count')?.textContent.trim() ?? '',
+        })),
+      }));
+      t.check('Modern Age has its own route and receives navigation focus',
+        gateway.hash === '#/age-modern' && gateway.focus === 'age-modern-h'
+        && gateway.rail === 'browse', JSON.stringify(gateway));
+      const panelBeforeFooter = await page.$eval('#view-age-modern', (panel) =>
+        Boolean(panel.compareDocumentPosition(document.querySelector('.app-footer'))
+          & Node.DOCUMENT_POSITION_FOLLOWING));
+      t.check('the persistent footer follows the generated age page', panelBeforeFooter);
+      t.check('Modern Age shows only populated fixture periods with derived counts',
+        JSON.stringify(gateway.periods) === JSON.stringify(
+          FIXTURE_MODERN_PERIODS.map(({ key, count }) => ({
+            key,
+            count: `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`,
+          })),
+        ), JSON.stringify(gateway.periods));
+
+      await click(page, '[data-category="event-era"]');
+      await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
+      const leaf = await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('#age-event-era-results .catalog-card')];
+        const byTitle = (title) => cards.find(
+          (card) => card.querySelector('.catalog-card-title')?.textContent.trim() === title,
+        );
+        const local = byTitle('Browser Check Order');
+        const crossing = byTitle('Across the Line');
+        return {
+          hash: location.hash,
+          focus: document.activeElement?.id ?? null,
+          rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+          years: cards.map((card) => Number(card.dataset.year)),
+          titles: cards.map((card) => card.querySelector('.catalog-card-title')?.textContent.trim()),
+          localLinks: local?.querySelectorAll('.path-step a').length ?? -1,
+          crossingHref: crossing?.querySelector('.path-step a')?.getAttribute('href') ?? null,
+        };
+      });
+      t.check('a leaf route draws only stories inside its effective years',
+        leaf.hash === '#/age-event-era'
+        && leaf.focus === 'age-event-era-h'
+        && leaf.rail === 'browse'
+        && leaf.years.length > 0
+        && leaf.years.every((year) => year >= 2004 && year <= 2011),
+        JSON.stringify(leaf));
+      t.check('one age leaf can cross canonical shelves',
+        leaf.titles.includes('Browser Check Order') && leaf.titles.includes('Across the Line'),
+        JSON.stringify(leaf.titles));
+      t.check('path stops already on the age leaf stay local while an outside stop links canonically',
+        leaf.localLinks === 0 && leaf.crossingHref === '#/catalog',
+        JSON.stringify({ localLinks: leaf.localLinks, crossingHref: leaf.crossingHref }));
+
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-short"]');
+      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      const repainted = await page.$eval(
+        '#age-event-era-results [data-story="bc-third"] [data-act="import"]',
+        (button) => button.getAttribute('aria-label'),
+      );
+      t.check('closing Preview repaints the chosen reading option on the age leaf',
+        repainted?.includes('Third Stop: The Short Way'), repainted);
+
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="import"]');
+      await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false);
+      const imported = await page.$eval('#order-name', (heading) => heading.textContent.trim());
+      t.check('Add from an age leaf imports through the existing catalog flow',
+        imported === 'Browser Check Order', imported);
+
+      await open(page, '/#/age-golden');
+      await page.waitForSelector('#age-golden-results .publishing-empty', { timeout: 15000 });
+      const empty = await page.evaluate(() => {
+        const visible = [...document.querySelectorAll('.view')].filter((panel) => !panel.hidden);
+        return {
+          visible: visible.map((panel) => panel.id),
+          heading: document.querySelector('#age-golden-h')?.textContent.trim(),
+          range: document.querySelector('#view-age-golden .publishing-range')?.textContent.trim(),
+          count: document.querySelector('#age-golden-count')?.textContent.trim(),
+          message: document.querySelector('#age-golden-results .publishing-empty')?.textContent.trim(),
+        };
+      });
+      t.check('a hidden empty category remains a complete honest direct page',
+        JSON.stringify(empty) === JSON.stringify({
+          visible: ['view-age-golden'],
+          heading: 'Browse Golden Age',
+          range: '1939 to 1955',
+          count: '0 Reading Lists',
+          message: 'No Reading Lists are published for this period yet.',
+        }), JSON.stringify(empty));
+
+      await page.setViewport({ width: 620, height: 900 });
+      await open(page, '/#/age-modern');
+      await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
+      const narrow = await page.$$eval('#age-modern-category-list .home-path', (paths) => paths.map((path) => {
+        const box = path.getBoundingClientRect();
+        return { top: Math.round(box.top), width: Math.round(box.width) };
+      }));
+      t.check('Modern periods stack without horizontal clipping at the narrow viewport',
+        narrow.length === FIXTURE_MODERN_PERIODS.length
+        && new Set(narrow.map(({ top }) => top)).size === narrow.length
+        && narrow.every(({ width }) => width > 400 && width < 620),
+        JSON.stringify(narrow));
+
+      t.check('the fixture exposes one populated top-level publishing age',
+        FIXTURE_PUBLISHING_AGES.map(({ key }) => key).join('/') === 'modern',
+        JSON.stringify(FIXTURE_PUBLISHING_AGES));
     },
   },
   {
@@ -1429,7 +1583,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:783` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:787` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
