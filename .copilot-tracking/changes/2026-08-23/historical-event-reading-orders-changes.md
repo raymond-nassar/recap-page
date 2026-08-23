@@ -12,9 +12,9 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Active marker: P07-T02
-* Completed scope markers: P01 through P06, P07-T01, and P01-T01 through P06-T02
-* All remaining active-plan markers: P07, P07-T02, and P07-T03
+* Active marker: P07-T03
+* Completed scope markers: P01 through P06, P07-T01, P07-T02, and P01-T01 through P06-T02
+* All remaining active-plan markers: P07 and P07-T03
 * Status basis: Planning and the single critique are complete. Implementation begins with mandatory
   current-main and selected-source freshness reconciliation before any product authoring.
 
@@ -302,6 +302,17 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
   covers 9 branches and 3,310 blobs with 0 findings.
 * Validation: Passed local branch publication and pushed-surface checks.
 
+### Hosted checks passed on the pushed release head
+
+* Related phase or task: P07-T02
+* Files: hosted run 32669868358 at head `4acbc4b28d77b87e3a73e67474aee9072a2fa990`
+* What changed and why: Monitored actual job and step conclusions rather than treating the aggregate
+  run color as sufficient evidence.
+* Completion evidence: Lint job 97268912954 completed success in 23 seconds, including ESLint,
+  anchors, counts, sizes, palette, and publication. Tests on Node 24 job 97268912964 completed success
+  in 19 seconds. Tests on Node 20 job 97268913018 completed success in 25 seconds.
+* Validation: Hosted run conclusion `success`.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Single critique corrections incorporated
@@ -368,7 +379,7 @@ inventory, packet, mapping, report, approval, product, and changes evidence.
 
 * Implementation execution status: Complete for implementation phases P01 through P05; full task
   remains Partial through Review and release
-* Declared scope and markers: full plan; P01 through P06 and P07-T01 complete; P07-T02 active
+* Declared scope and markers: full plan; P01 through P06, P07-T01, and P07-T02 complete; P07-T03 active
 * Validation coverage: All final merged-tree deterministic, live, publication, dash, diff, and browser
   gates passed
 * Blockers: None

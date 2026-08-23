@@ -442,7 +442,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P07-T01 in .copilot-tracking/details/2026-08-23/historical-event-reading-orders-phase-details.md
 
 <!-- rpi:task id=P07-T02 -->
-#### [ ] P07-T02: Monitor hosted checks and reconcile safely
+#### [x] P07-T02: Monitor hosted checks and reconcile safely
 
 * Requirement and evidence: Node 20, Node 24, and lint conclusions are release gates.
 * Expected result: actual job conclusions and logs are read; current-main conflicts are resolved
