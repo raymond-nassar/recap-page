@@ -1027,7 +1027,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "reason": "The exact 76-issue boundary shares 41 source-required issues with the higher-priority Rocket Raccoon guide, so Groot is deferred to a separate later authoring call.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
     "catalogIds": [],
@@ -2383,13 +2383,19 @@
     "url": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "All 75 source rows resolve exactly inside the metadata horizon, and the complete guide remains distinct despite three current-library partial relationships.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "marvel-fresh-start-avengers",
+      "scarlet-witch-best-of",
+      "war-of-kings"
+    ],
+    "catalogIds": [
+      "rocket-raccoon-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Rocket Raccoon"
     ],
@@ -2399,7 +2405,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "3e7853ead471e58569c22dd6ab155c9d5fea04c52598ea0c413ffc417ae8e3ee",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 96,
@@ -2684,7 +2690,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "reason": "The exact 99-issue boundary shares 25 source-required issues with the higher-priority Rocket Raccoon guide, so Star-Lord is deferred to a separate later authoring call.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
     "catalogIds": [],
@@ -2784,7 +2790,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "reason": "The complete source boundary requires Spidey Super Stories #39, which is absent from the metadata snapshot, so Thanos cannot be published without silently shortening the guide.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
     "catalogIds": [],
