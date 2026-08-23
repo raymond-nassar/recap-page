@@ -139,6 +139,13 @@ active without another Review.
   https://github.com/raymond-nassar/recap-page/pull/173.
 * The PR opens with `## In plain English`, reports the exact local verification counts, records the
   single Review and RV-001 resolution, and both commits carry the required co-author trailer.
+* Hosted CI run 32661606865 validated head
+  `8641f15101944a0dffc4db5f7a16065a2fbf23f2`: Tests on Node 20, Tests on Node 24, and Lint each
+  completed with a `success` job conclusion.
+* GitHub reports the PR clean and mergeable against unchanged `main` at
+  `08c0558e94003b34946d51d10b5aaa5272b00bee`, so reconciliation is not needed.
+* This hosted evidence is being committed before merge. The required jobs must pass again on that
+  final evidence head before release.
 
 ## Remaining Work
 

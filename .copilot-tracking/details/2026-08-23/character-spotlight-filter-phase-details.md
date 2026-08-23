@@ -628,7 +628,12 @@ Reach a clean merge against current `main` and leave a durable complete lifecycl
 
 #### Completion Evidence
 
-* Hosted run evidence and merge commit in durable artifacts.
+* Hosted run 32661606865 validated head
+  `8641f15101944a0dffc4db5f7a16065a2fbf23f2`; Tests on Node 20, Tests on Node 24, and Lint each
+  completed with a `success` conclusion.
+* GitHub reports the PR clean and mergeable against unchanged `main` at
+  `08c0558e94003b34946d51d10b5aaa5272b00bee`, so reconciliation is not needed.
+* Final evidence-head run and merge commit remain pending.
 
 #### Unresolved Items
 

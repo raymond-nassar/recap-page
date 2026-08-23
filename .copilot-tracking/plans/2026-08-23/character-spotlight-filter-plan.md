@@ -364,7 +364,9 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Expected result: all three jobs pass by job conclusion; any main reconciliation is fully revalidated;
   the PR merges; state and changes records carry PR number, merge commit, and final outcomes.
 * Detail section: P04-T02 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
-* Implementation status: In progress.
+* Implementation status: In progress. Hosted run 32661606865 passed all three jobs on the published
+  implementation and PR handoff; no `main` reconciliation is needed. The final evidence commit must
+  pass the same jobs before merge.
 
 ## Dependencies
 
