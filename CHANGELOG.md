@@ -33,7 +33,7 @@ hidden from gateways.
 ### Turned Home and navigation into reading hubs
 
 In plain English: Home now asks how you want to read instead of placing every Reading List on one
-long page. Browse offers the same category choices on its own page. Timeline, Storylines and
+long page. Browse offers the same category choices on its own page. Modern Timeline, Storylines and
 Character spotlights are equal choices, and future categories stay hidden until content is ready.
 
 Continue reading and Your Reading Lists still come first when you have saved progress. The featured
@@ -43,6 +43,9 @@ dedicated browse screens.
 The sidebar now stays short as the library grows. It shows one active Continue reading choice plus
 Library, Browse and Add. Saved lists and individual ways to browse or add are grouped on those hub
 pages instead of becoming more sidebar rows. Nothing already saved is changed.
+
+Opening an existing Reading List from Preview now closes Preview instead of leaving it over the
+reading screen. Screen readers also hear when category and publishing results finish loading.
 
 For maintainers: one renderer supplies the Home and Browse gateways, hub children keep direct
 addresses, and each child selects its parent in the rail. The category registry remains independent

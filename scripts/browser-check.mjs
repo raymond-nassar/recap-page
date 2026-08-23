@@ -287,6 +287,39 @@ const MUTATIONS = [
     ),
   },
   {
+    id: 'preview-open-dialog-stays',
+    breaks: 'publishing-ages',
+    why: 'Preview stays modal after its Open action navigates to a saved Reading List',
+    rewriteMain: (source) => source.replace(
+      /        if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\r?\n        showView\('read', \{ push: true \}\);/,
+      "        showView('read', { push: true });",
+    ),
+  },
+  {
+    id: 'gateway-status-silent',
+    breaks: 'home-category-gateway',
+    why: 'asynchronous Home and Browse categories lose their polite completion status',
+    script: () => {
+      addEventListener('load', () => {
+        for (const status of document.querySelectorAll('[data-paths-status]')) {
+          status.removeAttribute('role');
+        }
+      });
+    },
+  },
+  {
+    id: 'publishing-count-silent',
+    breaks: 'publishing-ages',
+    why: 'an asynchronously rendered publishing result count is no longer announced',
+    script: () => {
+      addEventListener('load', () => {
+        for (const count of document.querySelectorAll('.publishing-count')) {
+          count.removeAttribute('role');
+        }
+      });
+    },
+  },
+  {
     id: 'browse-subtitle-return',
     breaks: 'copy-density',
     why: 'an explanatory subtitle returns beneath a browse screen heading',
@@ -979,6 +1012,12 @@ const SCENARIOS = [
           paragraphs: document.querySelectorAll('.home-path p').length,
           retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
           moreHidden: document.querySelector('#home-more-paths')?.hidden,
+          statuses: [...document.querySelectorAll('[data-paths-status]')].map((status) => ({
+            role: status.getAttribute('role'),
+            hidden: status.hidden,
+            visuallyHidden: status.classList.contains('visually-hidden'),
+            text: status.textContent.trim(),
+          })),
         };
       });
       t.check('the first-run heading asks one question without explaining it again',
@@ -1004,6 +1043,12 @@ const SCENARIOS = [
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
         context.paragraphs === 0 && context.retired === 0 && context.moreHidden === false,
         JSON.stringify(context));
+      t.check('dynamic Home and Browse categories publish one concise polite completion status each',
+        context.statuses.length === 2
+        && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
+          role === 'status' && !hidden && visuallyHidden
+          && text === '4 ways to read available.'),
+        JSON.stringify(context.statuses));
 
       for (const [category, view] of [
         ['timeline', 'catalog'],
@@ -1052,6 +1097,14 @@ const SCENARIOS = [
       t.check('Modern Age has its own route and receives navigation focus',
         gateway.hash === '#/age-modern' && gateway.focus === 'age-modern-h'
         && gateway.rail === 'browse', JSON.stringify(gateway));
+      const modernCountStatus = await page.$eval('#age-modern-count', (count) => ({
+        role: count.getAttribute('role'),
+        text: count.textContent.trim(),
+      }));
+      t.check('the publishing result count is a polite live status',
+        modernCountStatus.role === 'status'
+        && modernCountStatus.text === '15 Reading Lists',
+        JSON.stringify(modernCountStatus));
       const panelBeforeFooter = await page.$eval('#view-age-modern', (panel) =>
         Boolean(panel.compareDocumentPosition(document.querySelector('.app-footer'))
           & Node.DOCUMENT_POSITION_FOLLOWING));
@@ -1114,6 +1167,25 @@ const SCENARIOS = [
       const imported = await page.$eval('#order-name', (heading) => heading.textContent.trim());
       t.check('Add from an age leaf imports through the existing catalog flow',
         imported === 'Browser Check Order', imported);
+
+      await open(page, '/#/age-event-era');
+      await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        document.querySelector('#view-read')?.hidden === false
+        && !document.querySelector('#preview')?.open);
+      const openedFromPreview = await page.evaluate(() => ({
+        dialogOpen: document.querySelector('#preview')?.open ?? null,
+        readHidden: document.querySelector('#view-read')?.hidden ?? null,
+        heading: document.querySelector('#order-name')?.textContent.trim() ?? '',
+      }));
+      t.check('Preview Open closes the dialog and leaves the saved Reading List usable',
+        openedFromPreview.dialogOpen === false
+        && openedFromPreview.readHidden === false
+        && openedFromPreview.heading === 'Browser Check Order',
+        JSON.stringify(openedFromPreview));
 
       await open(page, '/#/age-golden');
       await page.waitForSelector('#age-golden-results .publishing-empty', { timeout: 15000 });
@@ -2346,14 +2418,16 @@ async function readUpdateReport(page) {
 async function preparePage(page, origin, mutation) {
   page.__origin = origin;
   if (mutation?.rewriteMain) {
+    const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+    const rewritten = mutation.rewriteMain(source);
+    if (rewritten === source) throw new Error(`Mutation ${mutation.id} did not change main.js`);
     await page.setRequestInterception(true);
     page.on('request', async (request) => {
       if (request.url() === `${origin}/js/main.js`) {
-        const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
         await request.respond({
           status: 200,
           contentType: 'application/javascript; charset=utf-8',
-          body: mutation.rewriteMain(source),
+          body: rewritten,
         });
         return;
       }

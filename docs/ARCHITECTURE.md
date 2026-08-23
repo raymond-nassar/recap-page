@@ -84,7 +84,7 @@ another part constructed. A dotted arrow means calls, and owns nothing.
 
 Four things the picture is making a point of.
 
-**The view layer owns the state, and the library owns none of it.** Nineteen modules sit under
+**The view layer owns the state, and the library owns none of it.** Twenty-three modules sit under
 `src/js/lib/`, and none of them keeps anything at module scope that changes: what is there is
 constants and lookup tables, read and never written. Where state exists it belongs to an instance
 the view layer made, as the rate limiter's queue and its two rolling windows of recent hits do, set
@@ -95,7 +95,7 @@ view layer itself created and can throw away.
 
 **Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
 base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:4583-4585`. The hydrator itself is not rebuilt; only its reference to the client is
+`src/js/main.js:4598-4600`. The hydrator itself is not rebuilt; only its reference to the client is
 swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
 to the reader's connection rather than to whichever base URL is configured. The store is never
 replaced at all.
@@ -105,10 +105,10 @@ back to constructing both when it is handed neither, at `src/js/api.js:68-69`. T
 tests and for any future caller; the running app always passes its own, which is what keeps one
 budget across every request the page makes.
 
-**One of the nineteen library modules is not in this graph at all.** `src/js/lib/curated.js` parses
+**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js` parses
 the curated-list manifest, and its only importer outside the tests is the vendoring script, at
 `scripts/vendor-orders.mjs:28`. It runs in Node when someone adds a reading list, never in the
-browser. So eighteen of the nineteen are reachable from the page, and a graph drawn from the
+browser. So twenty-two of the twenty-three are reachable from the page, and a graph drawn from the
 directory listing rather than from the imports would have been wrong by one.
 
 ## Marking one issue read
@@ -150,7 +150,7 @@ sequenceDiagram
 The parts of that worth saying in words.
 
 **The transform is pure and the store is the only writer.** The button's handler at
-`src/js/main.js:2652-2655` hands the store a function; the function itself, at
+`src/js/main.js:2667-2670` hands the store a function; the function itself, at
 `src/js/lib/model.js:653-655`, returns a new state and touches nothing. Everything that decides
 whether a write happened, whether it stuck, and what the screen shows next lives in one method,
 `src/js/storage.js:365-392`.
@@ -165,13 +165,13 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:4910-4929`, but the reading
+surfaces, the six screens plus the blocked banner, at `src/js/main.js:4925-4944`, but the reading
 order compares each row against a cache key built from the whole item and reuses the node when
 nothing about it changed, and the full order
 is skipped entirely while its container is closed. Focus is captured before a rebuild and restored
-by identity afterwards, at `src/js/main.js:2551`, which is what keeps the keyboard where the reader
+by identity afterwards, at `src/js/main.js:2566`, which is what keeps the keyboard where the reader
 left it. The row list is committed by moving nodes rather than replacing the container, at
-`src/js/main.js:2439-2447`.
+`src/js/main.js:2454-2462`.
 
 **Background work uses the same door.** Hydration writes each fetched issue through the same
 `update` call, at `src/js/hydrate.js:59`, so a metadata fill arriving while the reader is reading
@@ -321,7 +321,7 @@ it.
 
 ## What a per-view split does to these diagrams
 
-BL-042 proposes breaking the 3,732 line view file into per-view modules. A diagram drawn at the
+BL-042 proposes breaking the 5,214 line view file into per-view modules. A diagram drawn at the
 level of function names inside that file would be falsified the day it lands, so each of the three
 above was pitched to survive it. Two do. One survives in shape but has a detail that will need
 rewriting, and it is more useful to say which than to claim all three are safe.

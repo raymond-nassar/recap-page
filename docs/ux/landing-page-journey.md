@@ -15,7 +15,7 @@
 without a wall of individual cards.
 
 ## Stage 2: Orientation
-**Doing**: Chooses Timeline, Storylines or Character spotlights.
+**Doing**: Chooses Modern Timeline, Storylines or Character spotlights.
 
 **Thinking**: "I know whether I want chronology, a complete arc or a character."
 

@@ -1144,18 +1144,18 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2439-2447|0": {
-    "anchor": "src/js/main.js:2439-2447",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2454-2462|0": {
+    "anchor": "src/js/main.js:2454-2462",
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2551|0": {
-    "anchor": "src/js/main.js:2551",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2566|0": {
+    "anchor": "src/js/main.js:2566",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2652-2655|0": {
-    "anchor": "src/js/main.js:2652-2655",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2667-2670|0": {
+    "anchor": "src/js/main.js:2667-2670",
     "fp": "fe152ee33152803c",
     "head": "onclick: () => {"
   },
@@ -1164,8 +1164,8 @@
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:4910-4929|0": {
-    "anchor": "src/js/main.js:4910-4929",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:4925-4944|0": {
+    "anchor": "src/js/main.js:4925-4944",
     "fp": "5e304a179a17a951",
     "head": "function renderAll() {"
   },
@@ -1214,8 +1214,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:4583-4585|0": {
-    "anchor": "src/js/main.js:4583-4585",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:4598-4600|0": {
+    "anchor": "src/js/main.js:4598-4600",
     "fp": "8f226e48e15a5fea",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1319,13 +1319,13 @@
     "fp": "9f4e8a74882b0cdb",
     "head": "const raw = JSON.parse(localStorage.getItem('mrt.settings') || '{}');"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2327|0": {
-    "anchor": "src/js/main.js:2327",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2342|0": {
+    "anchor": "src/js/main.js:2342",
     "fp": "326dd7903e5bfaeb",
     "head": "$('#hero-desc').textContent = synopsisFallback(issue, sessionSynopsis.get(issue.issueId));"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2515-2524|0": {
-    "anchor": "src/js/main.js:2515-2524",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2530-2539|0": {
+    "anchor": "src/js/main.js:2530-2539",
     "fp": "1c9519267c0515d1",
     "head": "export function synopsisFallback(issue, sessionEntry = null) {"
   },
@@ -1394,13 +1394,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2586-2589|0": {
-    "anchor": "CHANGELOG.md:2586-2589",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2589-2592|0": {
+    "anchor": "CHANGELOG.md:2589-2592",
     "fp": "7ad7631c61d32346",
     "head": "files it had been told to skip entirely, anything too large, anything it mistook for a picture, and"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2598-2601|0": {
-    "anchor": "CHANGELOG.md:2598-2601",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2601-2604|0": {
+    "anchor": "CHANGELOG.md:2601-2604",
     "fp": "2d140fd49a12337c",
     "head": "on. Routine updates are collected into one weekly review rather than arriving as a stream of"
   },
@@ -1509,23 +1509,23 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:1797-1830|0": {
-    "anchor": "src/js/main.js:1797-1830",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:1812-1845|0": {
+    "anchor": "src/js/main.js:1812-1845",
     "fp": "f0b8798998bab248",
     "head": "async function openPreview(list, story = null) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:2670-2671|0": {
-    "anchor": "src/js/main.js:2670-2671",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:2685-2686|0": {
+    "anchor": "src/js/main.js:2685-2686",
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:4274-4332|0": {
-    "anchor": "src/js/main.js:4274-4332",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:4289-4347|0": {
+    "anchor": "src/js/main.js:4289-4347",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/main.js:1915-1918|0": {
-    "anchor": "src/js/main.js:1915-1918",
+  "docs/UX_STUDY.md|keyboard|src/js/main.js:1930-1933|0": {
+    "anchor": "src/js/main.js:1930-1933",
     "fp": "d52c5acfb3ad6365",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((f) => el('label', { class: 'fp' }, ["
   },
@@ -1554,8 +1554,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/main.js:2670-2671|0": {
-    "anchor": "src/js/main.js:2670-2671",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/main.js:2685-2686|0": {
+    "anchor": "src/js/main.js:2685-2686",
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
@@ -1564,8 +1564,8 @@
     "fp": "d787ef54028c3004",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/main.js:2726-2731|0": {
-    "anchor": "src/js/main.js:2726-2731",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/main.js:2741-2746|0": {
+    "anchor": "src/js/main.js:2741-2746",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
@@ -1589,8 +1589,8 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4088-4097|0": {
-    "anchor": "src/js/main.js:4088-4097",
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4103-4112|0": {
+    "anchor": "src/js/main.js:4103-4112",
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
@@ -1729,13 +1729,13 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2666-2671|0": {
-    "anchor": "src/js/main.js:2666-2671",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2681-2686|0": {
+    "anchor": "src/js/main.js:2681-2686",
     "fp": "b5ed750de57fac97",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2726-2731|0": {
-    "anchor": "src/js/main.js:2726-2731",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2741-2746|0": {
+    "anchor": "src/js/main.js:2741-2746",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
@@ -1759,13 +1759,13 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/main.js:2757-2780|0": {
-    "anchor": "src/js/main.js:2757-2780",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/main.js:2772-2795|0": {
+    "anchor": "src/js/main.js:2772-2795",
     "fp": "0b4690332af2c11d",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:4910-4929|0": {
-    "anchor": "src/js/main.js:4910-4929",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:4925-4944|0": {
+    "anchor": "src/js/main.js:4925-4944",
     "fp": "5e304a179a17a951",
     "head": "function renderAll() {"
   },
@@ -1779,18 +1779,18 @@
     "fp": "db818e7343a867ed",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2016-2024|0": {
-    "anchor": "src/js/main.js:2016-2024",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2031-2039|0": {
+    "anchor": "src/js/main.js:2031-2039",
     "fp": "23cc17f6a74f0d37",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2043-2059|0": {
-    "anchor": "src/js/main.js:2043-2059",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2058-2074|0": {
+    "anchor": "src/js/main.js:2058-2074",
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4187|0": {
-    "anchor": "src/js/main.js:4187",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4202|0": {
+    "anchor": "src/js/main.js:4202",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -1799,13 +1799,13 @@
     "fp": "f76887d8203d25d8",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null, links = []) {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:2043-2059|0": {
-    "anchor": "src/js/main.js:2043-2059",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:2058-2074|0": {
+    "anchor": "src/js/main.js:2058-2074",
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:4560-4566|0": {
-    "anchor": "src/js/main.js:4560-4566",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:4575-4581|0": {
+    "anchor": "src/js/main.js:4575-4581",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -1819,8 +1819,8 @@
     "fp": "d285f976e18ead5e",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/main.js:2757-2780|0": {
-    "anchor": "src/js/main.js:2757-2780",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/main.js:2772-2795|0": {
+    "anchor": "src/js/main.js:2772-2795",
     "fp": "0b4690332af2c11d",
     "head": "function wireShortcuts() {"
   },
@@ -1849,8 +1849,8 @@
     "fp": "c739d03d04000a3b",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/main.js:2671|0": {
-    "anchor": "src/js/main.js:2671",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/main.js:2686|0": {
+    "anchor": "src/js/main.js:2686",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -1884,13 +1884,13 @@
     "fp": "534bb7a947ed8903",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
   },
-  "PRODUCT_BACKLOG.md|1-functional-suitability|src/js/main.js:1797-1830|0": {
-    "anchor": "src/js/main.js:1797-1830",
+  "PRODUCT_BACKLOG.md|1-functional-suitability|src/js/main.js:1812-1845|0": {
+    "anchor": "src/js/main.js:1812-1845",
     "fp": "f0b8798998bab248",
     "head": "async function openPreview(list, story = null) {"
   },
-  "PRODUCT_BACKLOG.md|1-functional-suitability|src/js/main.js:4274-4332|0": {
-    "anchor": "src/js/main.js:4274-4332",
+  "PRODUCT_BACKLOG.md|1-functional-suitability|src/js/main.js:4289-4347|0": {
+    "anchor": "src/js/main.js:4289-4347",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -1899,13 +1899,13 @@
     "fp": "b5dd33b3dd95fa49",
     "head": "// Series and creators are searched locally against a vendored index, because the API ignores"
   },
-  "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:2546-2724|0": {
-    "anchor": "src/js/main.js:2546-2724",
+  "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:2561-2739|0": {
+    "anchor": "src/js/main.js:2561-2739",
     "fp": "cac2b8a5d8e79cfe",
     "head": "function renderRows() {"
   },
-  "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:4910-4929|0": {
-    "anchor": "src/js/main.js:4910-4929",
+  "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:4925-4944|0": {
+    "anchor": "src/js/main.js:4925-4944",
     "fp": "5e304a179a17a951",
     "head": "function renderAll() {"
   },
@@ -1929,23 +1929,23 @@
     "fp": "1e09601b047cb8d4",
     "head": "<!-- Both, so the browser paints its own scrollbars and form controls to the reader's"
   },
-  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2172-2201|0": {
-    "anchor": "src/js/main.js:2172-2201",
+  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2187-2216|0": {
+    "anchor": "src/js/main.js:2187-2216",
     "fp": "fdc5efd3e796a244",
     "head": "function undoDelete() {"
   },
-  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2666-2671|0": {
-    "anchor": "src/js/main.js:2666-2671",
+  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2681-2686|0": {
+    "anchor": "src/js/main.js:2681-2686",
     "fp": "b5ed750de57fac97",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2726-2731|0": {
-    "anchor": "src/js/main.js:2726-2731",
+  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2741-2746|0": {
+    "anchor": "src/js/main.js:2741-2746",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:4560-4566|0": {
-    "anchor": "src/js/main.js:4560-4566",
+  "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:4575-4581|0": {
+    "anchor": "src/js/main.js:4575-4581",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -2014,8 +2014,8 @@
     "fp": "8d04474c6283f487",
     "head": "function showView(next, { focus = true, push = false } = {}) {"
   },
-  "PRODUCT_BACKLOG.md|7-maintainability|src/js/main.js:4910-4929|0": {
-    "anchor": "src/js/main.js:4910-4929",
+  "PRODUCT_BACKLOG.md|7-maintainability|src/js/main.js:4925-4944|0": {
+    "anchor": "src/js/main.js:4925-4944",
     "fp": "5e304a179a17a951",
     "head": "function renderAll() {"
   },
@@ -2054,8 +2054,8 @@
     "fp": "31193066f7e84653",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
-  "PRODUCT_BACKLOG.md|8-flexibility|src/js/main.js:4568-4601|0": {
-    "anchor": "src/js/main.js:4568-4601",
+  "PRODUCT_BACKLOG.md|8-flexibility|src/js/main.js:4583-4616|0": {
+    "anchor": "src/js/main.js:4583-4616",
     "fp": "148fb23eb9d1aeb8",
     "head": "$('#form-settings').addEventListener('submit', (e) => {"
   },
@@ -2074,8 +2074,8 @@
     "fp": "c546f6073d5d1cb1",
     "head": "export function checkOrdinalHeadings(d) {"
   },
-  "PRODUCT_BACKLOG.md|case-2-bl-007-is-labelled-p1-but-sits-near-the-b|src/js/main.js:1797-1830|0": {
-    "anchor": "src/js/main.js:1797-1830",
+  "PRODUCT_BACKLOG.md|case-2-bl-007-is-labelled-p1-but-sits-near-the-b|src/js/main.js:1812-1845|0": {
+    "anchor": "src/js/main.js:1812-1845",
     "fp": "f0b8798998bab248",
     "head": "async function openPreview(list, story = null) {"
   },
@@ -2164,8 +2164,8 @@
     "fp": "cb635e136016596a",
     "head": ".copilot-tracking/"
   },
-  "PRODUCT_BACKLOG.md|item-details|CHANGELOG.md:3335-3343|0": {
-    "anchor": "CHANGELOG.md:3335-3343",
+  "PRODUCT_BACKLOG.md|item-details|CHANGELOG.md:3338-3346|0": {
+    "anchor": "CHANGELOG.md:3338-3346",
     "fp": "27ec07d3d1ed152f",
     "head": "today, so it went stale itself twice in two shipped items, both times only because a source file"
   },
@@ -2176,8 +2176,8 @@
   },
   "PRODUCT_BACKLOG.md|item-details|docs/ARCHITECTURE.md:108|0": {
     "anchor": "docs/ARCHITECTURE.md:108",
-    "fp": "a93029d63fd7a306",
-    "head": "**One of the nineteen library modules is not in this graph at all.** `src/js/lib/curated.js` parses"
+    "fp": "fc431b86ff326365",
+    "head": "**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js` par"
   },
   "PRODUCT_BACKLOG.md|item-details|docs/ARCHITECTURE.md:239-240|0": {
     "anchor": "docs/ARCHITECTURE.md:239-240",
@@ -2291,12 +2291,12 @@
   },
   "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:1551-1552|0": {
     "anchor": "PRODUCT_BACKLOG.md:1551-1552",
-    "fp": "391e174e4a32efe7",
+    "fp": "2f40b5655b6e9fe8",
     "head": "Erasing everything, restoring a backup and undoing a restore all call `forgetDeleted()`, at"
   },
   "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:207-209|0": {
     "anchor": "PRODUCT_BACKLOG.md:207-209",
-    "fp": "852cc6e5aa028eaa",
+    "fp": "939905dc0ceb3cf0",
     "head": "* `src/js/main.js` is 1,566 lines, not 1,543, by `(Get-Content).Count` and confirmed by the last <!-"
   },
   "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:214-216|0": {
@@ -2359,13 +2359,13 @@
     "fp": "078ffa49c53fcf1c",
     "head": "// Real-browser regression evidence, made reproducible."
   },
-  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2011-2078|0": {
-    "anchor": "scripts/browser-check.mjs:2011-2078",
+  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2083-2150|0": {
+    "anchor": "scripts/browser-check.mjs:2083-2150",
     "fp": "c374ef88aa675d04",
     "head": "id: 'updates',"
   },
-  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2392-2399|0": {
-    "anchor": "scripts/browser-check.mjs:2392-2399",
+  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2464-2471|0": {
+    "anchor": "scripts/browser-check.mjs:2464-2471",
     "fp": "b61d3a34759da763",
     "head": "if (url === updateApiUrl) {"
   },
@@ -2379,8 +2379,8 @@
     "fp": "11f8baf43a25a3cc",
     "head": "// The backlog and the UX study rest on browser verification that was real but unrepeatable: the"
   },
-  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:718-774|0": {
-    "anchor": "scripts/browser-check.mjs:718-774",
+  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:751-807|0": {
+    "anchor": "scripts/browser-check.mjs:751-807",
     "fp": "9f8f69da570c8aee",
     "head": "id: 'update-default-newer',"
   },
@@ -3509,23 +3509,23 @@
     "fp": "5b0ac40c824219eb",
     "head": "function renderBlocked() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1442|0": {
-    "anchor": "src/js/main.js:1442",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1447|0": {
+    "anchor": "src/js/main.js:1447",
     "fp": "f81a6bf94623a84c",
     "head": "function renderYours(populated) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1455-1469|0": {
-    "anchor": "src/js/main.js:1455-1469",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1460-1474|0": {
+    "anchor": "src/js/main.js:1460-1474",
     "fp": "4fc20b9b78ba4b73",
     "head": "function savedListTiles() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1455-1469|1": {
-    "anchor": "src/js/main.js:1455-1469",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1460-1474|1": {
+    "anchor": "src/js/main.js:1460-1474",
     "fp": "4fc20b9b78ba4b73",
     "head": "function savedListTiles() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1467|0": {
-    "anchor": "src/js/main.js:1467",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1472|0": {
+    "anchor": "src/js/main.js:1472",
     "fp": "7d086bc1b5284708",
     "head": "onclick: () => { store.update((s) => setActive(s, id)); showView('read', { push: true }); },"
   },
@@ -3534,73 +3534,58 @@
     "fp": "0d14a474bc6731f0",
     "head": "$('#btn-start-fresh').addEventListener('click', async () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1732-1759|0": {
-    "anchor": "src/js/main.js:1732-1759",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1747-1774|0": {
+    "anchor": "src/js/main.js:1747-1774",
     "fp": "499409c319d594e3",
     "head": "async function addFromCatalog(list, btn) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1898-1952|0": {
-    "anchor": "src/js/main.js:1898-1952",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1913-1967|0": {
+    "anchor": "src/js/main.js:1913-1967",
     "fp": "302f40c5e98364b4",
     "head": "function wireReading() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1910-1914|0": {
-    "anchor": "src/js/main.js:1910-1914",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1925-1929|0": {
+    "anchor": "src/js/main.js:1925-1929",
     "fp": "31cdadc3894e99f3",
     "head": "const stray = [...document.querySelectorAll('input[name=\"filter\"]')];"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1915-1918|0": {
-    "anchor": "src/js/main.js:1915-1918",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1930-1933|0": {
+    "anchor": "src/js/main.js:1930-1933",
     "fp": "d52c5acfb3ad6365",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((f) => el('label', { class: 'fp' }, ["
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1923-1924|0": {
-    "anchor": "src/js/main.js:1923-1924",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1938-1939|0": {
+    "anchor": "src/js/main.js:1938-1939",
     "fp": "01d9d03cbb345ec8",
     "head": "$('#full').addEventListener('toggle', () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2139-2142|0": {
-    "anchor": "src/js/main.js:2139-2142",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2154-2157|0": {
+    "anchor": "src/js/main.js:2154-2157",
     "fp": "0303a546d53cec76",
     "head": "function forgetDeleted() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2139-2142|1": {
-    "anchor": "src/js/main.js:2139-2142",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2154-2157|1": {
+    "anchor": "src/js/main.js:2154-2157",
     "fp": "0303a546d53cec76",
     "head": "function forgetDeleted() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2162-2170|0": {
-    "anchor": "src/js/main.js:2162-2170",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2177-2185|0": {
+    "anchor": "src/js/main.js:2177-2185",
     "fp": "53868c92aee1b507",
     "head": "function forgetDeletedFor(catalogId, orderName) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2162-2170|1": {
-    "anchor": "src/js/main.js:2162-2170",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2177-2185|1": {
+    "anchor": "src/js/main.js:2177-2185",
     "fp": "53868c92aee1b507",
     "head": "function forgetDeletedFor(catalogId, orderName) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2165|0": {
-    "anchor": "src/js/main.js:2165",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2180|0": {
+    "anchor": "src/js/main.js:2180",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2181|0": {
-    "anchor": "src/js/main.js:2181",
-    "fp": "5c0fc3bcf2044a48",
-    "head": "forgetDeleted();"
-  },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2185-2195|0": {
-    "anchor": "src/js/main.js:2185-2195",
-    "fp": "c3a6de74261c8a60",
-    "head": "store.update((s) => restoreList(s, list, { index, active: wasActive }));"
-  },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2185-2195|1": {
-    "anchor": "src/js/main.js:2185-2195",
-    "fp": "c3a6de74261c8a60",
-    "head": "store.update((s) => restoreList(s, list, { index, active: wasActive }));"
-  },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2198|0": {
-    "anchor": "src/js/main.js:2198",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2196|0": {
+    "anchor": "src/js/main.js:2196",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
@@ -3609,48 +3594,63 @@
     "fp": "d373f73dc14174dd",
     "head": "// `primary` is the action to land on when that pair no longer exists anywhere, which happens when"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2308|0": {
-    "anchor": "src/js/main.js:2308",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2200-2210|0": {
+    "anchor": "src/js/main.js:2200-2210",
+    "fp": "c3a6de74261c8a60",
+    "head": "store.update((s) => restoreList(s, list, { index, active: wasActive }));"
+  },
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2200-2210|1": {
+    "anchor": "src/js/main.js:2200-2210",
+    "fp": "c3a6de74261c8a60",
+    "head": "store.update((s) => restoreList(s, list, { index, active: wasActive }));"
+  },
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2213|0": {
+    "anchor": "src/js/main.js:2213",
+    "fp": "5c0fc3bcf2044a48",
+    "head": "forgetDeleted();"
+  },
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2323|0": {
+    "anchor": "src/js/main.js:2323",
     "fp": "68d0767680173eb7",
     "head": "const bgUrl = settings.covers ? coverUrl(issue, 'detail') : null;"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2308|1": {
-    "anchor": "src/js/main.js:2308",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2323|1": {
+    "anchor": "src/js/main.js:2323",
     "fp": "68d0767680173eb7",
     "head": "const bgUrl = settings.covers ? coverUrl(issue, 'detail') : null;"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2327|0": {
-    "anchor": "src/js/main.js:2327",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2342|0": {
+    "anchor": "src/js/main.js:2342",
     "fp": "326dd7903e5bfaeb",
     "head": "$('#hero-desc').textContent = synopsisFallback(issue, sessionSynopsis.get(issue.issueId));"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2414|0": {
-    "anchor": "src/js/main.js:2414",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2429|0": {
+    "anchor": "src/js/main.js:2429",
     "fp": "68438c96755a3a2a",
     "head": "primary: 'open',"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2439-2447|0": {
-    "anchor": "src/js/main.js:2439-2447",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2454-2462|0": {
+    "anchor": "src/js/main.js:2454-2462",
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2449-2464|0": {
-    "anchor": "src/js/main.js:2449-2464",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2464-2479|0": {
+    "anchor": "src/js/main.js:2464-2479",
     "fp": "77a96d3468f3df8f",
     "head": "// The key is the whole item rather than a list of the fields a row happens to read. An"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2463|0": {
-    "anchor": "src/js/main.js:2463",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2478|0": {
+    "anchor": "src/js/main.js:2478",
     "fp": "d592ba0f1982a332",
     "head": "return `${JSON.stringify(item)}|${item.issueId === currentId}|${today}|${covers !== false}`;"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2515-2524|0": {
-    "anchor": "src/js/main.js:2515-2524",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2530-2539|0": {
+    "anchor": "src/js/main.js:2530-2539",
     "fp": "1c9519267c0515d1",
     "head": "export function synopsisFallback(issue, sessionEntry = null) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2574|0": {
-    "anchor": "src/js/main.js:2574",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2589|0": {
+    "anchor": "src/js/main.js:2589",
     "fp": "65dd2b88c0b13a58",
     "head": "const items = all.filter((it) => matchesReadingFilter(filter, it));"
   },
@@ -3659,38 +3659,38 @@
     "fp": "d1af2a9559aeb1bf",
     "head": "function preservingFocus(container, rebuild, opts) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2650|0": {
-    "anchor": "src/js/main.js:2650",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2665|0": {
+    "anchor": "src/js/main.js:2665",
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2666-2671|0": {
-    "anchor": "src/js/main.js:2666-2671",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2681-2686|0": {
+    "anchor": "src/js/main.js:2681-2686",
     "fp": "b5ed750de57fac97",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2666-2671|1": {
-    "anchor": "src/js/main.js:2666-2671",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2681-2686|1": {
+    "anchor": "src/js/main.js:2681-2686",
     "fp": "b5ed750de57fac97",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2717|0": {
-    "anchor": "src/js/main.js:2717",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2732|0": {
+    "anchor": "src/js/main.js:2732",
     "fp": "81dbc455d847ca75",
     "head": "primary: 'read',"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2726-2731|0": {
-    "anchor": "src/js/main.js:2726-2731",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2741-2746|0": {
+    "anchor": "src/js/main.js:2741-2746",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2759|0": {
-    "anchor": "src/js/main.js:2759",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2774|0": {
+    "anchor": "src/js/main.js:2774",
     "fp": "1750fc696b0cd38a",
     "head": "if (view !== 'read' || e.metaKey || e.ctrlKey || e.altKey) return;"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2813-2822|0": {
-    "anchor": "src/js/main.js:2813-2822",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2828-2837|0": {
+    "anchor": "src/js/main.js:2828-2837",
     "fp": "3ed4516f9ec828a3",
     "head": "export function hydrationAnnouncement(status) {"
   },
@@ -3699,53 +3699,53 @@
     "fp": "641304695be79822",
     "head": "export function announceChannel(open, after) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2862|0": {
-    "anchor": "src/js/main.js:2862",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2877|0": {
+    "anchor": "src/js/main.js:2877",
     "fp": "91c3c8709391a229",
     "head": "export function synopsisDisclaimer(baseUrl) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3151|0": {
-    "anchor": "src/js/main.js:3151",
-    "fp": "2450e376de7482c6",
-    "head": "announce(`${message} ${added} added${skipped ? `, ${skipped} already in the list` : ''}.`);"
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3165-3166|0": {
+    "anchor": "src/js/main.js:3165-3166",
+    "fp": "4790ec3eed659417",
+    "head": "const listName = store.state.lists[id]?.name ?? 'your list';"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3158|0": {
-    "anchor": "src/js/main.js:3158",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3173|0": {
+    "anchor": "src/js/main.js:3173",
     "fp": "31475027e7509b8b",
     "head": "if (added > 0) hydrator.start(id);"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3166|0": {
-    "anchor": "src/js/main.js:3166",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3181|0": {
+    "anchor": "src/js/main.js:3181",
     "fp": "7bd1ae0b52d2a935",
     "head": "const issues = await api.seriesIssues(series.id, {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3182|0": {
-    "anchor": "src/js/main.js:3182",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3197|0": {
+    "anchor": "src/js/main.js:3197",
     "fp": "e03477593ebcb719",
     "head": "const issues = await api.creatorIssues(creator.id, {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3212|0": {
-    "anchor": "src/js/main.js:3212",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3227|0": {
+    "anchor": "src/js/main.js:3227",
     "fp": "a33500273e2d9180",
     "head": "const name = headings[0] || `Imported ${new Date().toLocaleDateString()}`;"
-  },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3275|0": {
-    "anchor": "src/js/main.js:3275",
-    "fp": "640bde9ca30a8cc4",
-    "head": "const candidates = await api.searchIssues(entry.title, { limit: 25 });"
   },
   "PRODUCT_BACKLOG.md|item-details|src/js/main.js:328-335|0": {
     "anchor": "src/js/main.js:328-335",
     "fp": "5653c58ac2ec1711",
     "head": "export function stateAnnouncer(speak, seed = []) {"
   },
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3290|0": {
+    "anchor": "src/js/main.js:3290",
+    "fp": "640bde9ca30a8cc4",
+    "head": "const candidates = await api.searchIssues(entry.title, { limit: 25 });"
+  },
   "PRODUCT_BACKLOG.md|item-details|src/js/main.js:341-343|0": {
     "anchor": "src/js/main.js:341-343",
     "fp": "da65ab7e7c48f6f6",
     "head": "export function passiveAnnouncer(speak) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3461|0": {
-    "anchor": "src/js/main.js:3461",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3476|0": {
+    "anchor": "src/js/main.js:3476",
     "fp": "81807e732e7c9cb2",
     "head": "const issueId = issueIdFromUrl(url) ?? wikiId ?? -Date.now();"
   },
@@ -3759,18 +3759,18 @@
     "fp": "3bbc6dc7c75496e2",
     "head": "const CATALOG_LOAD = 'catalog-load';"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3863|0": {
-    "anchor": "src/js/main.js:3863",
-    "fp": "69de03d2413bf4e7",
-    "head": "meta.textContent = `${list.count} issue${list.count === 1 ? '' : 's'}`;"
-  },
   "PRODUCT_BACKLOG.md|item-details|src/js/main.js:387|0": {
     "anchor": "src/js/main.js:387",
     "fp": "77007c4861c2ec00",
     "head": "const notices = new Map();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3893|0": {
-    "anchor": "src/js/main.js:3893",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3878|0": {
+    "anchor": "src/js/main.js:3878",
+    "fp": "69de03d2413bf4e7",
+    "head": "meta.textContent = `${list.count} issue${list.count === 1 ? '' : 's'}`;"
+  },
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3908|0": {
+    "anchor": "src/js/main.js:3908",
     "fp": "9b53afb5cbca5d4d",
     "head": "el(level, { class: 'catalog-card-title', text: title }),"
   },
@@ -3789,118 +3789,118 @@
     "fp": "d63d9c973c5c5e6c",
     "head": "for (const [, note] of notices) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4176|0": {
-    "anchor": "src/js/main.js:4176",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4191|0": {
+    "anchor": "src/js/main.js:4191",
     "fp": "7a6b3e0fd15becfe",
     "head": "btn.disabled = true;"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4193-4199|0": {
-    "anchor": "src/js/main.js:4193-4199",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4208-4214|0": {
+    "anchor": "src/js/main.js:4208-4214",
     "fp": "2f1c0c819d1de153",
     "head": "// No `hydrated: true` here. It was asserted over the whole file, which is right for the 688"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4203-4214|0": {
-    "anchor": "src/js/main.js:4203-4214",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4218-4229|0": {
+    "anchor": "src/js/main.js:4218-4229",
     "fp": "040ed2d540e2a8c3",
     "head": "if (!store.lastUpdateOk) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4203-4214|1": {
-    "anchor": "src/js/main.js:4203-4214",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4218-4229|1": {
+    "anchor": "src/js/main.js:4218-4229",
     "fp": "040ed2d540e2a8c3",
     "head": "if (!store.lastUpdateOk) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4225-4231|0": {
-    "anchor": "src/js/main.js:4225-4231",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4240-4246|0": {
+    "anchor": "src/js/main.js:4240-4246",
     "fp": "e24ba789073145b4",
     "head": "// Some curated orders are short of metadata, in two ways that look nothing alike to a reader"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4234|0": {
-    "anchor": "src/js/main.js:4234",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4249|0": {
+    "anchor": "src/js/main.js:4249",
     "fp": "fdade8739af79cef",
     "head": "const withdrawn = forgetDeletedFor(catalogId, order.name);"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4234|1": {
-    "anchor": "src/js/main.js:4234",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4249|1": {
+    "anchor": "src/js/main.js:4249",
     "fp": "fdade8739af79cef",
     "head": "const withdrawn = forgetDeletedFor(catalogId, order.name);"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4234|2": {
-    "anchor": "src/js/main.js:4234",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4249|2": {
+    "anchor": "src/js/main.js:4249",
     "fp": "fdade8739af79cef",
     "head": "const withdrawn = forgetDeletedFor(catalogId, order.name);"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4240|0": {
-    "anchor": "src/js/main.js:4240",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4255|0": {
+    "anchor": "src/js/main.js:4255",
     "fp": "7b7896b1f0fabe72",
     "head": "announce(parts.join(' '));"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4251|0": {
-    "anchor": "src/js/main.js:4251",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4266|0": {
+    "anchor": "src/js/main.js:4266",
     "fp": "640ca8555353598d",
     "head": "btn.disabled = false;"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4288-4290|0": {
-    "anchor": "src/js/main.js:4288-4290",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4303-4305|0": {
+    "anchor": "src/js/main.js:4303-4305",
     "fp": "a2752258866dde11",
     "head": "$('#progress-method-text').textContent = scoped"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4339-4377|0": {
-    "anchor": "src/js/main.js:4339-4377",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4354-4392|0": {
+    "anchor": "src/js/main.js:4354-4392",
     "fp": "064701f1315f7218",
     "head": "function renderLibrary() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4521-4549|0": {
-    "anchor": "src/js/main.js:4521-4549",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4536-4564|0": {
+    "anchor": "src/js/main.js:4536-4564",
     "fp": "d26b5eec264b921c",
     "head": "$('#restore-file').addEventListener('change', async (e) => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4521-4549|1": {
-    "anchor": "src/js/main.js:4521-4549",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4536-4564|1": {
+    "anchor": "src/js/main.js:4536-4564",
     "fp": "d26b5eec264b921c",
     "head": "$('#restore-file').addEventListener('change', async (e) => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4544|0": {
-    "anchor": "src/js/main.js:4544",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4559|0": {
+    "anchor": "src/js/main.js:4559",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4544|1": {
-    "anchor": "src/js/main.js:4544",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4559|1": {
+    "anchor": "src/js/main.js:4559",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4544|2": {
-    "anchor": "src/js/main.js:4544",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4559|2": {
+    "anchor": "src/js/main.js:4559",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4560-4566|0": {
-    "anchor": "src/js/main.js:4560-4566",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4575-4581|0": {
+    "anchor": "src/js/main.js:4575-4581",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4560-4566|1": {
-    "anchor": "src/js/main.js:4560-4566",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4575-4581|1": {
+    "anchor": "src/js/main.js:4575-4581",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4565|0": {
-    "anchor": "src/js/main.js:4565",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4580|0": {
+    "anchor": "src/js/main.js:4580",
     "fp": "8a9fef9441555e07",
     "head": "if (res.ok) forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4565|1": {
-    "anchor": "src/js/main.js:4565",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4580|1": {
+    "anchor": "src/js/main.js:4580",
     "fp": "8a9fef9441555e07",
     "head": "if (res.ok) forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4571-4572|0": {
-    "anchor": "src/js/main.js:4571-4572",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4586-4587|0": {
+    "anchor": "src/js/main.js:4586-4587",
     "fp": "2924a87434a010b4",
     "head": "if (!isAllowedApiBase(value)) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4583-4585|0": {
-    "anchor": "src/js/main.js:4583-4585",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4598-4600|0": {
+    "anchor": "src/js/main.js:4598-4600",
     "fp": "8f226e48e15a5fea",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -3909,73 +3909,73 @@
     "fp": "9179653f1e66ad0d",
     "head": "const SETTINGS_KEY = 'mrt.settings';"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4609-4646|0": {
-    "anchor": "src/js/main.js:4609-4646",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4624-4661|0": {
+    "anchor": "src/js/main.js:4624-4661",
     "fp": "a78fcf83b20d732b",
     "head": "$('#btn-wipe').addEventListener('click', async () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4609-4646|1": {
-    "anchor": "src/js/main.js:4609-4646",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4624-4661|1": {
+    "anchor": "src/js/main.js:4624-4661",
     "fp": "a78fcf83b20d732b",
     "head": "$('#btn-wipe').addEventListener('click', async () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4609-4646|2": {
-    "anchor": "src/js/main.js:4609-4646",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4624-4661|2": {
+    "anchor": "src/js/main.js:4624-4661",
     "fp": "a78fcf83b20d732b",
     "head": "$('#btn-wipe').addEventListener('click', async () => {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4620|0": {
-    "anchor": "src/js/main.js:4620",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4635|0": {
+    "anchor": "src/js/main.js:4635",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4620|1": {
-    "anchor": "src/js/main.js:4620",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4635|1": {
+    "anchor": "src/js/main.js:4635",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4620|2": {
-    "anchor": "src/js/main.js:4620",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4635|2": {
+    "anchor": "src/js/main.js:4635",
     "fp": "5c0fc3bcf2044a48",
     "head": "forgetDeleted();"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4733-4739|0": {
-    "anchor": "src/js/main.js:4733-4739",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4748-4754|0": {
+    "anchor": "src/js/main.js:4748-4754",
     "fp": "4e96d4938aa42b04",
     "head": "c.live"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4830-4893|0": {
-    "anchor": "src/js/main.js:4830-4893",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4845-4908|0": {
+    "anchor": "src/js/main.js:4845-4908",
     "fp": "ee245f132cd8352f",
     "head": "async function checkHealth() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4865-4879|0": {
-    "anchor": "src/js/main.js:4865-4879",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4880-4894|0": {
+    "anchor": "src/js/main.js:4880-4894",
     "fp": "4809a55ef0ed038d",
     "head": "export function backoffAnnouncer(speak) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4883-4886|0": {
-    "anchor": "src/js/main.js:4883-4886",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4898-4901|0": {
+    "anchor": "src/js/main.js:4898-4901",
     "fp": "3ce058140aeaef21",
     "head": "function onApiStatus(s) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4910|0": {
-    "anchor": "src/js/main.js:4910",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4925|0": {
+    "anchor": "src/js/main.js:4925",
     "fp": "badb42e555d676d1",
     "head": "function renderAll() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4943-4966|0": {
-    "anchor": "src/js/main.js:4943-4966",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4958-4981|0": {
+    "anchor": "src/js/main.js:4958-4981",
     "fp": "b616d0cac038cd49",
     "head": "export function boot() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4943|0": {
-    "anchor": "src/js/main.js:4943",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4958|0": {
+    "anchor": "src/js/main.js:4958",
     "fp": "ae8c800634b48bfe",
     "head": "export function boot() {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4993-4997|0": {
-    "anchor": "src/js/main.js:4993-4997",
+  "PRODUCT_BACKLOG.md|item-details|src/js/main.js:5008-5012|0": {
+    "anchor": "src/js/main.js:5008-5012",
     "fp": "5bf111284df2b094",
     "head": "// Nothing reports store.lastError here. Every writer of it calls onChange in the same step, and"
   },
@@ -4434,8 +4434,8 @@
     "fp": "3ecaccb832a49e38",
     "head": "\"test\": \"node --test\","
   },
-  "PRODUCT_BACKLOG.md|orientation-disagreements|src/js/main.js:4910-4929|0": {
-    "anchor": "src/js/main.js:4910-4929",
+  "PRODUCT_BACKLOG.md|orientation-disagreements|src/js/main.js:4925-4944|0": {
+    "anchor": "src/js/main.js:4925-4944",
     "fp": "5e304a179a17a951",
     "head": "function renderAll() {"
   },
@@ -4444,13 +4444,13 @@
     "fp": "6c6878ef6f032cfe",
     "head": "@media (max-width: 880px) {"
   },
-  "PRODUCT_BACKLOG.md|parked|src/js/main.js:3612|0": {
-    "anchor": "src/js/main.js:3612",
+  "PRODUCT_BACKLOG.md|parked|src/js/main.js:3627|0": {
+    "anchor": "src/js/main.js:3627",
     "fp": "6aad7e8f0558c2fa",
     "head": "async function renderCatalogShelf(key) {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-001|src/js/main.js:3837-3907|0": {
-    "anchor": "src/js/main.js:3837-3907",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-001|src/js/main.js:3852-3922|0": {
+    "anchor": "src/js/main.js:3852-3922",
     "fp": "858e6d1878b38e29",
     "head": "function catalogCard("
   },
@@ -4469,18 +4469,18 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-003|src/js/main.js:4088-4104|0": {
-    "anchor": "src/js/main.js:4088-4104",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-003|src/js/main.js:4103-4119|0": {
+    "anchor": "src/js/main.js:4103-4119",
     "fp": "8ad45f08a52d5681",
     "head": "function wireCatalogShelfSearch(key) {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-004|src/js/main.js:1797-1830|0": {
-    "anchor": "src/js/main.js:1797-1830",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-004|src/js/main.js:1812-1845|0": {
+    "anchor": "src/js/main.js:1812-1845",
     "fp": "f0b8798998bab248",
     "head": "async function openPreview(list, story = null) {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-006|src/js/main.js:4050-4086|0": {
-    "anchor": "src/js/main.js:4050-4086",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-006|src/js/main.js:4065-4101|0": {
+    "anchor": "src/js/main.js:4065-4101",
     "fp": "974ed654ea5cbbf7",
     "head": "function attributionLine(list) {"
   },
@@ -4499,23 +4499,23 @@
     "fp": "cd5219d930a48c51",
     "head": "// Returns { entries, unresolved, headings }"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-009|src/js/main.js:3201-3257|0": {
-    "anchor": "src/js/main.js:3201-3257",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-009|src/js/main.js:3216-3272|0": {
+    "anchor": "src/js/main.js:3216-3272",
     "fp": "38412b6aec929f44",
     "head": "const { entries, unresolved, headings } = parseChecklist(text);"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-010|src/js/main.js:3265-3334|0": {
-    "anchor": "src/js/main.js:3265-3334",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-010|src/js/main.js:3280-3349|0": {
+    "anchor": "src/js/main.js:3280-3349",
     "fp": "28484099f9359635",
     "head": "function unresolvedRow(entry, listId) {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-011|src/js/main.js:3163-3181|0": {
-    "anchor": "src/js/main.js:3163-3181",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-011|src/js/main.js:3178-3196|0": {
+    "anchor": "src/js/main.js:3178-3196",
     "fp": "42d7b151cea5ab04",
     "head": "async function addSeries(series) {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-011|src/js/main.js:3450-3570|0": {
-    "anchor": "src/js/main.js:3450-3570",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-011|src/js/main.js:3465-3585|0": {
+    "anchor": "src/js/main.js:3465-3585",
     "fp": "fc531008536f7117",
     "head": "function doManual() {"
   },
@@ -4524,8 +4524,8 @@
     "fp": "e409e1d7f9185731",
     "head": "// Read progress is deliberately NOT copied. It is global, keyed by issue id (see the note at"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-012|src/js/main.js:2061-2081|0": {
-    "anchor": "src/js/main.js:2061-2081",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-012|src/js/main.js:2076-2096|0": {
+    "anchor": "src/js/main.js:2076-2096",
     "fp": "ba48dba7ca5b5ba0",
     "head": "$('#btn-duplicate-list').addEventListener('click', () => {"
   },
@@ -4539,13 +4539,13 @@
     "fp": "3d856d97acb5205e",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-014|src/js/main.js:4274-4332|0": {
-    "anchor": "src/js/main.js:4274-4332",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-014|src/js/main.js:4289-4347|0": {
+    "anchor": "src/js/main.js:4289-4347",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-014|src/js/main.js:4288-4290|0": {
-    "anchor": "src/js/main.js:4288-4290",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-014|src/js/main.js:4303-4305|0": {
+    "anchor": "src/js/main.js:4303-4305",
     "fp": "a2752258866dde11",
     "head": "$('#progress-method-text').textContent = scoped"
   },
@@ -4554,8 +4554,8 @@
     "fp": "33eb001b939b3f47",
     "head": "export const READING_FILTERS = ["
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-015|src/js/main.js:2574|0": {
-    "anchor": "src/js/main.js:2574",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-015|src/js/main.js:2589|0": {
+    "anchor": "src/js/main.js:2589",
     "fp": "65dd2b88c0b13a58",
     "head": "const items = all.filter((it) => matchesReadingFilter(filter, it));"
   },
@@ -4579,8 +4579,8 @@
     "fp": "97c8384ff4bc6a6c",
     "head": "match: (item) => !item.hydrated && !item.detailsRefused && item.source !== 'manual',"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-018|src/js/main.js:2670-2671|0": {
-    "anchor": "src/js/main.js:2670-2671",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-018|src/js/main.js:2685-2686|0": {
+    "anchor": "src/js/main.js:2685-2686",
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
@@ -4589,13 +4589,13 @@
     "fp": "9ddcd2397f40d9c8",
     "head": "export const STATE = {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-019|src/js/main.js:2726-2731|0": {
-    "anchor": "src/js/main.js:2726-2731",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-019|src/js/main.js:2741-2746|0": {
+    "anchor": "src/js/main.js:2741-2746",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-020|src/js/main.js:3527|0": {
-    "anchor": "src/js/main.js:3527",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-020|src/js/main.js:3542|0": {
+    "anchor": "src/js/main.js:3542",
     "fp": "5435ae20ec2b0bc2",
     "head": "source: 'manual',"
   },
@@ -4614,13 +4614,13 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-023|src/js/main.js:4560-4566|0": {
-    "anchor": "src/js/main.js:4560-4566",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-023|src/js/main.js:4575-4581|0": {
+    "anchor": "src/js/main.js:4575-4581",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
-  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-026|src/js/main.js:2757-2780|0": {
-    "anchor": "src/js/main.js:2757-2780",
+  "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-026|src/js/main.js:2772-2795|0": {
+    "anchor": "src/js/main.js:2772-2795",
     "fp": "0b4690332af2c11d",
     "head": "function wireShortcuts() {"
   },
@@ -4679,8 +4679,8 @@
     "fp": "f792167ff30db7a7",
     "head": "constructor({"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-030|src/js/main.js:4571-4572|0": {
-    "anchor": "src/js/main.js:4571-4572",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-030|src/js/main.js:4586-4587|0": {
+    "anchor": "src/js/main.js:4586-4587",
     "fp": "2924a87434a010b4",
     "head": "if (!isAllowedApiBase(value)) {"
   },
@@ -4694,18 +4694,18 @@
     "fp": "ac305a6aaac3a812",
     "head": "const CATALOG_LOAD = 'catalog-load';"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4187|0": {
-    "anchor": "src/js/main.js:4187",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4202|0": {
+    "anchor": "src/js/main.js:4202",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4211-4213|0": {
-    "anchor": "src/js/main.js:4211-4213",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4226-4228|0": {
+    "anchor": "src/js/main.js:4226-4228",
     "fp": "f7ec63c05cd8928c",
     "head": "notify(report, store.lastUpdateOk"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4243|0": {
-    "anchor": "src/js/main.js:4243",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4258|0": {
+    "anchor": "src/js/main.js:4258",
     "fp": "fc2e7b4023138c1b",
     "head": "notify(report, `Could not load ${list.name}: ${err.message}. Your lists are unchanged.`, 'error', im"
   },
@@ -4739,14 +4739,14 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#data-durability-and-export|src/js/main.js:4560-4566|0": {
-    "anchor": "src/js/main.js:4560-4566",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#data-durability-and-export|src/js/main.js:4575-4581|0": {
+    "anchor": "src/js/main.js:4575-4581",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
   "PRODUCT_BACKLOG.md|table-stakes-categories#empty-states|src/index.html:136-197|0": {
     "anchor": "src/index.html:136-197",
-    "fp": "9024b6bc982daf84",
+    "fp": "3d402d25268c3660",
     "head": "<section id=\"view-home\" class=\"view view-wide\" hidden aria-labelledby=\"home-h\">"
   },
   "PRODUCT_BACKLOG.md|table-stakes-categories#first-run-experience|src/index.html:260-295|0": {
@@ -4754,18 +4754,18 @@
     "fp": "530c3d774c082668",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#licensing|src/js/main.js:4050-4086|0": {
-    "anchor": "src/js/main.js:4050-4086",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#licensing|src/js/main.js:4065-4101|0": {
+    "anchor": "src/js/main.js:4065-4101",
     "fp": "974ed654ea5cbbf7",
     "head": "function attributionLine(list) {"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#observability|src/js/main.js:4883-4886|0": {
-    "anchor": "src/js/main.js:4883-4886",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#observability|src/js/main.js:4898-4901|0": {
+    "anchor": "src/js/main.js:4898-4901",
     "fp": "3ce058140aeaef21",
     "head": "function onApiStatus(s) {"
   },
-  "PRODUCT_BACKLOG.md|table-stakes-categories#offline-behavior|src/js/main.js:2670-2671|0": {
-    "anchor": "src/js/main.js:2670-2671",
+  "PRODUCT_BACKLOG.md|table-stakes-categories#offline-behavior|src/js/main.js:2685-2686|0": {
+    "anchor": "src/js/main.js:2685-2686",
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
@@ -4789,8 +4789,8 @@
     "fp": "6324ae55860da3a9",
     "head": "test('a future schema is refused rather than silently mangled', () => {"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-014|src/js/main.js:4274-4332|0": {
-    "anchor": "src/js/main.js:4274-4332",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-014|src/js/main.js:4289-4347|0": {
+    "anchor": "src/js/main.js:4289-4347",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -4824,8 +4824,8 @@
     "fp": "530c3d774c082668",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-033|src/js/main.js:4910-4923|0": {
-    "anchor": "src/js/main.js:4910-4923",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-033|src/js/main.js:4925-4938|0": {
+    "anchor": "src/js/main.js:4925-4938",
     "fp": "659eb7e168185a4a",
     "head": "function renderAll() {"
   },
@@ -4834,8 +4834,8 @@
     "fp": "1cd5e9c2d85a0cc9",
     "head": "export function wireAsk() {"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-035|src/js/main.js:2172-2201|0": {
-    "anchor": "src/js/main.js:2172-2201",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-035|src/js/main.js:2187-2216|0": {
+    "anchor": "src/js/main.js:2187-2216",
     "fp": "fdc5efd3e796a244",
     "head": "function undoDelete() {"
   },
@@ -4854,8 +4854,8 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-042|src/js/main.js:4910-4923|0": {
-    "anchor": "src/js/main.js:4910-4923",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-042|src/js/main.js:4925-4938|0": {
+    "anchor": "src/js/main.js:4925-4938",
     "fp": "659eb7e168185a4a",
     "head": "function renderAll() {"
   },
@@ -4906,7 +4906,7 @@
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-055|PRODUCT_BACKLOG.md:204-216|0": {
     "anchor": "PRODUCT_BACKLOG.md:204-216",
-    "fp": "4dad2da50530d2fc",
+    "fp": "822ebe9d1057ab84",
     "head": "Three quantities used to brief this pass disagreed with what the repository actually contains. They"
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-061|eslint.config.mjs:56-67|0": {
@@ -5019,8 +5019,8 @@
     "fp": "057492ee45bbd06d",
     "head": "// Compare before writing, because this key is shared with every other tab on this origin and a"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-085|src/js/main.js:4521-4549|0": {
-    "anchor": "src/js/main.js:4521-4549",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-085|src/js/main.js:4536-4564|0": {
+    "anchor": "src/js/main.js:4536-4564",
     "fp": "d26b5eec264b921c",
     "head": "$('#restore-file').addEventListener('change', async (e) => {"
   },
@@ -5044,8 +5044,8 @@
     "fp": "7a07ad85b4a02516",
     "head": "updates:"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-090|src/js/main.js:4830-4893|0": {
-    "anchor": "src/js/main.js:4830-4893",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-090|src/js/main.js:4845-4908|0": {
+    "anchor": "src/js/main.js:4845-4908",
     "fp": "ee245f132cd8352f",
     "head": "async function checkHealth() {"
   },
@@ -5099,8 +5099,8 @@
     "fp": "b40fb8cc4678105d",
     "head": "// Roots whose contents are working evidence for one session rather than product documentation."
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-101|src/js/main.js:4609-4646|0": {
-    "anchor": "src/js/main.js:4609-4646",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-101|src/js/main.js:4624-4661|0": {
+    "anchor": "src/js/main.js:4624-4661",
     "fp": "a78fcf83b20d732b",
     "head": "$('#btn-wipe').addEventListener('click', async () => {"
   },
@@ -5134,8 +5134,8 @@
     "fp": "06e54a56a333a199",
     "head": "detailsRefused: refused || input.detailsRefused === true,"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-110|src/js/main.js:4231|0": {
-    "anchor": "src/js/main.js:4231",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-110|src/js/main.js:4246|0": {
+    "anchor": "src/js/main.js:4246",
     "fp": "8f186a926ed5a738",
     "head": "parts.push(...orderGapSentences(order));"
   },
@@ -5149,8 +5149,8 @@
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-114|src/js/main.js:1455-1469|0": {
-    "anchor": "src/js/main.js:1455-1469",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-114|src/js/main.js:1460-1474|0": {
+    "anchor": "src/js/main.js:1460-1474",
     "fp": "4fc20b9b78ba4b73",
     "head": "function savedListTiles() {"
   },
@@ -5174,8 +5174,8 @@
     "fp": "1cf6a87693afcdd5",
     "head": "// BL-118. The repeat pass over every prose document, each read as its own corpus. A finding"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-119|src/js/main.js:3863|0": {
-    "anchor": "src/js/main.js:3863",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-119|src/js/main.js:3878|0": {
+    "anchor": "src/js/main.js:3878",
     "fp": "69de03d2413bf4e7",
     "head": "meta.textContent = `${list.count} issue${list.count === 1 ? '' : 's'}`;"
   },
@@ -5186,7 +5186,7 @@
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-121|PRODUCT_BACKLOG.md:1551-1552|0": {
     "anchor": "PRODUCT_BACKLOG.md:1551-1552",
-    "fp": "391e174e4a32efe7",
+    "fp": "2f40b5655b6e9fe8",
     "head": "Erasing everything, restoring a backup and undoing a restore all call `forgetDeleted()`, at"
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-122|scripts/check-anchors.mjs:671-704|0": {
@@ -5194,8 +5194,8 @@
     "fp": "1f49cb516abe3fde",
     "head": "export function repeatedCitations(text, syntax = PROSE, known = null) {"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-124|src/js/main.js:4883-4886|0": {
-    "anchor": "src/js/main.js:4883-4886",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-124|src/js/main.js:4898-4901|0": {
+    "anchor": "src/js/main.js:4898-4901",
     "fp": "3ce058140aeaef21",
     "head": "function onApiStatus(s) {"
   },
@@ -5211,16 +5211,16 @@
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-128|docs/DATA_PROVENANCE.md:97-116|0": {
     "anchor": "docs/DATA_PROVENANCE.md:97-116",
-    "fp": "30598040df53011b",
-    "head": "Sixty-six files under [`src/data/`](../src/data), one per curated list, holding 3,395 issue records"
+    "fp": "27f3339df5969de8",
+    "head": "Eighty-nine curated-list files under [`src/data/`](../src/data), one per curated list, hold 3,994 is"
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-129|docs/PUBLICATION_RUNBOOK.md:99-107|0": {
     "anchor": "docs/PUBLICATION_RUNBOOK.md:99-107",
     "fp": "f24eaa1394ace2ff",
     "head": "1. **Secret scanning, and then push protection**, closing BL-089. Push protection depends on secret"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-130|src/js/main.js:2515-2524|0": {
-    "anchor": "src/js/main.js:2515-2524",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-130|src/js/main.js:2530-2539|0": {
+    "anchor": "src/js/main.js:2530-2539",
     "fp": "1c9519267c0515d1",
     "head": "export function synopsisFallback(issue, sessionEntry = null) {"
   },
@@ -5294,8 +5294,8 @@
     "fp": "f74020fd383e677d",
     "head": "const SCALAR_FIELDS = new Map(["
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-150|src/js/main.js:3492-3504|0": {
-    "anchor": "src/js/main.js:3492-3504",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-150|src/js/main.js:3507-3519|0": {
+    "anchor": "src/js/main.js:3507-3519",
     "fp": "a77cfe2b73ba2042",
     "head": "if (manualMatch && store.state.issues?.[issueId]) {"
   },
@@ -5314,8 +5314,8 @@
     "fp": "d4d8cfd88641ffbd",
     "head": "export function shelfKey(story) {"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-155|src/js/main.js:3952-3983|0": {
-    "anchor": "src/js/main.js:3952-3983",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-155|src/js/main.js:3967-3998|0": {
+    "anchor": "src/js/main.js:3967-3998",
     "fp": "19ac1a4de2d55f87",
     "head": "export function pathLine("
   },
@@ -5369,8 +5369,8 @@
     "fp": "6c6878ef6f032cfe",
     "head": "@media (max-width: 880px) {"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-191|src/js/main.js:3987-4010|0": {
-    "anchor": "src/js/main.js:3987-4010",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-191|src/js/main.js:4002-4025|0": {
+    "anchor": "src/js/main.js:4002-4025",
     "fp": "5ea7f3ecf36cb459",
     "head": "function stopLink("
   },
@@ -5419,18 +5419,18 @@
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:2650|0": {
-    "anchor": "src/js/main.js:2650",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:2665|0": {
+    "anchor": "src/js/main.js:2665",
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:2650|1": {
-    "anchor": "src/js/main.js:2650",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:2665|1": {
+    "anchor": "src/js/main.js:2665",
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:5142|0": {
-    "anchor": "src/js/main.js:5142",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:5157|0": {
+    "anchor": "src/js/main.js:5157",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
@@ -5529,8 +5529,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/main.js:3151|0": {
-    "anchor": "src/js/main.js:3151",
+  "test/passive-announce.test.js|preamble|src/js/main.js:3166|0": {
+    "anchor": "src/js/main.js:3166",
     "fp": "2450e376de7482c6",
     "head": "announce(`${message} ${added} added${skipped ? `, ${skipped} already in the list` : ''}.`);"
   },

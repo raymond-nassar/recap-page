@@ -143,11 +143,48 @@ test('Home and Browse use the same category renderer', () => {
   assert.doesNotMatch(source, /function renderBrowseCategories/);
 });
 
+test('asynchronous category results expose concise polite status updates', () => {
+  const gatewayStatuses = [...markup.matchAll(/<p[^>]*data-paths-status[^>]*>/g)];
+  assert.equal(gatewayStatuses.length, 2, 'Home and Browse must each expose a loading status');
+  assert.ok(
+    gatewayStatuses.every(([status]) => /role="status"/.test(status)),
+    'Home and Browse loading results are not polite live statuses',
+  );
+  assert.match(
+    source,
+    /\$\{categories\.length\} ways to read available/,
+    'loaded gateway results do not leave a concise screen-reader status',
+  );
+  assert.match(source, /status\.classList\.toggle\('visually-hidden', categories\.length > 0\)/);
+  assert.match(
+    source,
+    /class:\s*'publishing-count'[\s\S]*role:\s*'status'[\s\S]*text:\s*'Loading Reading Lists'/,
+    'publishing pages do not expose one polite loading and result status',
+  );
+  assert.match(source, /class:\s*'rail-hint'[\s\S]*'aria-hidden':\s*'true'[\s\S]*Loading Reading Lists/);
+});
+
 test('rendered categories navigate explicitly instead of relying on boot-time bindings', () => {
   const start = source.indexOf('function homeCategoryTile');
   assert.notEqual(start, -1, 'the category tile renderer is missing');
   const body = source.slice(start, source.indexOf('\n}', start));
   assert.match(body, /showView\(category\.route,\s*\{\s*push:\s*true\s*\}\)/);
+});
+
+test('Preview Open closes its modal before navigating to an existing Reading List', () => {
+  const start = source.indexOf('function addButton');
+  assert.notEqual(start, -1, 'the catalog action renderer is missing');
+  const body = source.slice(start, source.indexOf('async function addFromCatalog', start));
+  assert.match(
+    body,
+    /if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\s*showView\('read',\s*\{\s*push:\s*true\s*\}\)/,
+    'Preview remains open over the Reading List it navigates to',
+  );
+});
+
+test('successful additions point people to Library rather than the fixed rail', () => {
+  assert.match(source, /It is now in your Library\./);
+  assert.doesNotMatch(source, /It is now in your sidebar\./);
 });
 
 test('every cover the app builds remains lazy after Home stops drawing catalog cards', () => {

@@ -17,7 +17,7 @@ anything new, so I do not have to remember which issue was next.
 
 ## Approved Solution
 - Ask one first-run question: **How do you want to read?**
-- Present Timeline, Storylines and Character spotlights as equal current paths.
+- Present Modern Timeline, Storylines and Character spotlights as equal current paths.
 - Use compact browse labels and counts instead of explanatory paragraphs.
 - Reveal future overlapping categories only when content and a destination both exist.
 - Keep Continue reading and Your Reading Lists ahead of discovery for returning readers.

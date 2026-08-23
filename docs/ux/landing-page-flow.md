@@ -6,7 +6,7 @@ App launch, or selecting the brand lockup in the sidebar.
 ## State A: Empty Library
 1. The page asks **"How do you want to read?"**
 2. Three large path tiles appear when their shelves contain published Reading Lists:
-   - **Timeline** with the compact label **Browse by year**
+   - **Modern Timeline** with the compact label **Browse by year**
    - **Storylines** with the compact label **Browse complete arcs**
    - **Character spotlights** with the compact label **Browse heroes and teams**
 3. Each tile shows its Reading List count and opens the matching browse screen.

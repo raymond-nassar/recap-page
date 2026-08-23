@@ -1365,7 +1365,12 @@ function ensurePublishingViews() {
       ]),
       el('div', { class: 'publishing-meta' }, [
         el('span', { class: 'publishing-range', text: category.label }),
-        el('span', { id: `${category.route}-count`, class: 'publishing-count', text: '0 Reading Lists' }),
+        el('span', {
+          id: `${category.route}-count`,
+          class: 'publishing-count',
+          role: 'status',
+          text: 'Loading Reading Lists',
+        }),
       ]),
       el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
         category.highlights.map((highlight) => el('li', { text: highlight }))),
@@ -1486,6 +1491,7 @@ async function renderHomeCategories() {
   if (!homeCatalog) {
     for (const gateway of gateways) {
       const status = gateway.querySelector('[data-paths-status]');
+      status.classList.remove('visually-hidden');
       status.hidden = false;
       status.textContent = 'Loading ways to read…';
     }
@@ -1525,8 +1531,12 @@ async function renderHomeCategories() {
     secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
     primary.hidden = primaryCategories.length === 0;
     more.hidden = secondaryCategories.length === 0;
-    status.hidden = categories.length > 0;
-    status.textContent = categories.length ? '' : 'No reading paths are bundled with this build.';
+    const statusText = categories.length
+      ? `${categories.length} ways to read available.`
+      : 'No reading paths are bundled with this build.';
+    status.classList.toggle('visually-hidden', categories.length > 0);
+    status.hidden = false;
+    if (status.textContent !== statusText) status.textContent = statusText;
   }
 }
 
@@ -1560,7 +1570,11 @@ async function renderPublishingCategory(route) {
   const box = $(`#${route}-results`);
   const periods = $(`#${route}-categories`);
   const periodList = $(`#${route}-category-list`);
-  box.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading Reading Lists…' }));
+  box.replaceChildren(el('p', {
+    class: 'rail-hint',
+    'aria-hidden': 'true',
+    text: 'Loading Reading Lists…',
+  }));
   periods.hidden = true;
   periodList.replaceChildren();
   clearNotice(CATALOG_LOAD);
@@ -1713,6 +1727,7 @@ function addButton(list, inLibrary) {
       dataset: { key: list.id, act: 'main' },
       onclick: () => {
         store.update((s) => setActive(s, inLibrary.id));
+        if ($('#preview').open) $('#preview').close();
         showView('read', { push: true });
       },
     }, text);
@@ -4156,7 +4171,7 @@ function renderCatalogShelfFilters(key, lists, searchable) {
 let importing = null;
 
 // `navigate` is false in the preview dialog, where adding an order keeps the reader with the
-// order they were inspecting. The sidebar still updates, and the dialog action confirms the save.
+// order they were inspecting. Library still updates, and the dialog action confirms the save.
 //
 // `report` is where a failure is written. This used to be alert(), which was the only path in
 // the app that stopped the page to report a failure, and the one place a reader could not read
@@ -4230,7 +4245,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     const parts = [`${navigate ? 'Imported' : 'Added'} ${order.name}: ${added} issues.`];
     parts.push(...orderGapSentences(order));
     parts.push('Any issues you had already read stay read.');
-    if (!navigate) parts.push('It is now in your sidebar.');
+    if (!navigate) parts.push('It is now in your Library.');
     const withdrawn = forgetDeletedFor(catalogId, order.name);
     if (withdrawn) parts.push(withdrawn);
     // A failure from a previous attempt would otherwise sit under a successful import,
