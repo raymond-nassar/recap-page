@@ -22,8 +22,8 @@
       },
       {
         "source_ordinals": "44-86",
-        "status": "replacement-worker-bounded-recovery-active",
-        "commit": null,
+        "status": "coordinator-validated-deferred",
+        "commit": "76e460e596a5ea263d41da993505d799d96744c7",
         "session": "shard-02-replacement-worker",
         "replacementReason": "The original shard 2 session produced no file changes after two immediate restarts and was archived by the parent.",
         "selection": [
@@ -43,6 +43,26 @@
           "hawkeye",
           "hope-summers",
           "hulk"
+        ],
+        "candidates": [
+          {
+            "id": "hercules-marvel-reading-order",
+            "rows": 242,
+            "status": "deferred-source-boundary-incomplete",
+            "reason": "The exact retained rows omit source-defined whole issues because metadata is unavailable. The proposed complete-guide boundary is therefore not accepted."
+          },
+          {
+            "id": "high-evolutionary-reading-order",
+            "rows": 272,
+            "status": "deferred-source-boundary-incomplete",
+            "reason": "The exact retained rows omit source-defined whole issues and host backups because metadata is unavailable or ambiguous. The proposed complete-guide boundary is therefore not accepted."
+          },
+          {
+            "id": "howard-the-duck-reading-order",
+            "rows": 78,
+            "status": "deferred-source-boundary-incomplete",
+            "reason": "The exact retained rows omit the source-defined Adventures Into Fear #19 debut, the 2002 series, and other whole issues. The proposed complete-guide boundary is therefore not accepted."
+          }
         ]
       },
       {
@@ -99,7 +119,7 @@
     },
     "deeper": {
       "status": "waiting-for-worker-commits",
-      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 has two coordinator-validated provisional candidates. Shard 1 remains active. Replacement shard 2 is recovering only Hercules, High Evolutionary, and Howard the Duck from its persisted selection; Hawkeye, Hope Summers, and Hulk are capacity-deferred."
+      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 has two coordinator-validated provisional candidates. Shard 2 commit 76e460e596a5ea263d41da993505d799d96744c7 is digest-valid, but all three candidates are centrally deferred because metadata-driven omissions prevent a complete source boundary. Shard 1 remains active."
     }
   },
   "plan": {

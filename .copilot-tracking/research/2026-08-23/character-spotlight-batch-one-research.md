@@ -133,8 +133,10 @@
 
 * Parent-prioritized material from Wave 1: Worker commit ancestry and scope; source hash and boundary identity; exact metadata rows and horizon; final 87-list plus selected-peer report regeneration; central dispositions; no-peer-duplicate batch coherence.
 * Plan and independent lanes: Validate worker commits and candidate-specific outputs once supplied, then perform central identity, horizon, relationship, and batch analysis.
-* Worker evidence relationships or inline fallback: Parent-verified shard 3 commit `f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8` supplies provisional packets, exact mappings, and reports for `phalanx-reading-order` and `marvels-best-phoenix-comics`. Shard 1 remains active. Replacement shard 2 persisted a six-candidate selection before stalling and has resumed with a bounded recovery for Hercules, High Evolutionary, and Howard the Duck; Hawkeye, Hope Summers, and Hulk are capacity-deferred.
+* Worker evidence relationships or inline fallback: Parent-verified shard 3 commit `f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8` supplies provisional packets, exact mappings, and reports for `phalanx-reading-order` and `marvels-best-phoenix-comics`. Parent-verified shard 2 commit `76e460e596a5ea263d41da993505d799d96744c7` supplies candidate-specific packets, mappings, reports, a test, and misplaced working evidence for Hercules, High Evolutionary, and Howard the Duck. Shard 1 remains active.
 * Reflection: The shard 3 file boundary and PR #171 ancestry are valid. Central source review independently re-fetched both exact WordPress records. Their full rendered-content hashes differ from the frozen records while their modification timestamps, structural counts, headings, issue-bearing block counts, and issue-bearing block digests remain exact matches. The difference is therefore outside the issue-bearing evidence boundary and does not invalidate the frozen source rows. Phalanx's 28 rows exactly expand the source's nine New Mutants entries, sixteen explicit Phalanx Covenant reading-order entries, two later Uncanny X-Men entries, and Legion of X #10. Phoenix's 53 rows exactly expand the thirteen issue-bearing passages retained by the frozen digest. Both mappings are exact, unique, and end in 2023, inside the 2025-10-29 metadata horizon. The worker's `stronger-model` source reviews are not accepted authority and must be replaced centrally, which will intentionally change packet and mapping digests. Phalanx's manifest copy also claims excluded Annihilation: Conquest and Powers of X material, so it must be corrected before approval. The two eight-issue partials with the existing X-Men variants are acceptable in principle because the Phalanx guide has a distinct product purpose, but final approval waits for regenerated reports with every selected peer. Phoenix has no provisional non-none relationship. Evidence: C13-C14, W1-W2, shard 3 commit.
+
+  Shard 2 also descends from the required baseline and its packet, mapping, and report digests validate. All 592 retained rows are exact and unique, all dates are inside the horizon, and every report contains 87 comparisons. Those deterministic facts do not establish complete source boundaries. Hercules omits whole issues that the source names, including West Coast Avengers Annual #1, Hercules: Twilight of a God #3, Civil War II: Gods of War #1, and Secret Empire #9-10. High Evolutionary omits whole Heroes for Hire issues and annual material, the Endangered Species host backups, an unidentified Amazing Spider-Man #1, and Ultimates 2 #10-12. Howard omits his Adventures Into Fear #19 debut, the 2002 series, and additional whole magazine and issue references. Each proposed manifest nevertheless calls itself `complete`, and the Howard copy claims a Fear debut absent from its 78 rows. These are openly listed worker exclusions rather than hidden omissions, but metadata absence is not a source-defined cut and cannot support a complete guide. Central source-boundary acceptance therefore defers all three shard 2 candidates from this batch. The 30,807-line commit will not be cherry-picked, and its working evidence will not enter the production data tree. Evidence: C15-C18, W3-W5, shard 2 commit.
 
 #### Wave 3: Contrarian
 
@@ -176,6 +178,10 @@ Pending completion of all three waves.
 | C12 | The live manifest and generated catalog each contain 87 lists; nine are `character-run`, representing eight grouped stories. | `src/data/curated-lists.json:1-2900`; `src/data/catalog.json:1-3399` | parsed complete files | high | This is the pre-batch baseline worker outputs must be regenerated against. |
 | C13 | The frozen Phalanx record binds WordPress post 42471, source hash, headings, 17 issue-bearing blocks, their digest, and a maximum explicit block year of 2019. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2301-2324` | read and live digest reproduction | high | The live issue-bearing digest still matches exactly. |
 | C14 | The frozen Phoenix record binds WordPress post 36165, source hash, headings, 13 issue-bearing blocks, and their digest. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2327-2348` | read and live digest reproduction | high | The live issue-bearing digest still matches exactly. |
+| C15 | The frozen Hercules record binds exact WordPress identity, source hash, 37 issue-bearing blocks, their digest, and a maximum explicit block year of 2020. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:1157-1180` | read and live identity check | high | The worker retained 242 exact rows but excluded multiple whole issues named by the source. |
+| C16 | The frozen High Evolutionary record binds exact WordPress identity, source hash, 28 issue-bearing blocks, their digest, and a maximum explicit block year of 2018. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:1183-1206` | read and live identity check | high | The worker retained 272 exact rows but excluded multiple whole issues and host backups named by the source. |
+| C17 | The frozen Howard the Duck record binds exact WordPress identity, source hash, 15 issue-bearing blocks, their digest, and a maximum explicit block year of 2015. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:1235-1258` | read and live identity check | high | The worker retained 78 exact rows but excluded the source's first issue and multiple later whole issues. |
+| C18 | Packet validation proves exclusions are explicit and the packet digest is fresh, but accepts any unique non-empty exclusion strings and does not determine whether the resulting boundary is complete. | `scripts/lib/cbh-inventory.mjs:281-315` | read and digest validation | high | Valid worker digests cannot substitute for central source-boundary acceptance. |
 
 ### External Evidence
 
@@ -183,6 +189,9 @@ Pending completion of all three waves.
 |---|---|---|---|---|---|
 | W1 | The live Phalanx WordPress record retains the same modification timestamp, 48 content blocks, six headings, 17 issue-bearing blocks, first and last headings, and issue-bearing digest as the frozen record. Its issue-bearing passages expand to the worker's exact 28-row sequence. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=phalanx-reading-order | 2026-08-23 | high | The full HTML digest changed outside the issue-bearing evidence boundary. |
 | W2 | The live Phoenix WordPress record retains the same modification timestamp, 58 content blocks, 14 headings, 13 issue-bearing blocks, first and last headings, and issue-bearing digest as the frozen record. Its thirteen passages expand to the worker's exact 53-row sequence. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=marvels-best-phoenix-comics | 2026-08-23 | high | The full HTML digest changed outside the issue-bearing evidence boundary. |
+| W3 | The live Hercules record retains WordPress post 26826 and the frozen modification timestamp. Its issue-bearing passages explicitly name the whole issues the worker excludes for metadata absence. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=hercules-marvel-reading-order | 2026-08-23 | high | Partial-material and duplicate exclusions are distinct from the omitted whole issues. |
+| W4 | The live High Evolutionary record retains WordPress post 51814 and the frozen modification timestamp. Its issue-bearing passages explicitly include Heroes for Hire #15-16 and its annual, the Endangered Species backup sequence, Amazing Spider-Man #1, and Ultimates 2 #7-12. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=high-evolutionary-reading-order | 2026-08-23 | high | The worker's exact rows stop short of the complete source boundary where metadata is absent or ambiguous. |
+| W5 | The live Howard the Duck record retains WordPress post 12438 and the frozen modification timestamp. Its first collection explicitly begins with Adventures Into Fear #19, and later passages name the 2002 series and other whole issues omitted by the worker. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=howard-the-duck-reading-order | 2026-08-23 | high | The proposed complete-guide copy claims the Fear debut while the first retained row is Man-Thing #1. |
 
 ### Contradictions / Conflicts
 
@@ -196,8 +205,8 @@ Pending completion of all three waves.
 | Q2 | The maintained inventory is the 128-identity root, but deferred records carry source hashes and disposition only, not accepted issue rows or relationships. | C1, C9 | high | Worker output must still earn central boundary, horizon, and relationship acceptance. |
 | Q3 | White Tiger proves the machinery, stale-input rejection, and historical-digest test pattern; its exact cut and overlap decisions are candidate-specific. | C10-C11 | high | Reuse the pattern, not its judgments or 86-list baseline. |
 | Q4 | Admit only shard-scoped candidate files from verified commits, then centrally rebind packets, mappings, reports, peers, and approvals against the live baseline. | C1-C8, C12 | high | Worker commits are evidence inputs, not merge-ready product changes. |
-| Q5 | Phalanx and Phoenix are admissible provisional candidates, but selection remains blocked pending shards 1 and 2. | C13-C14, W1-W2, shard 3 commit | medium | Planning cannot select scope yet. |
-| Q6 | The main demonstrated invalidators are stale 86-list evidence, cross-peer overlap, unresolved rows, worker-issued authority, inaccurate manifest copy, and candidate-specific source or horizon assumptions. | C4-C7, C10-C14, W1-W2 | high | Contrarian testing has concrete targets. |
+| Q5 | Phalanx and Phoenix remain admissible provisional candidates. Hercules, High Evolutionary, and Howard the Duck are deferred because their exact mappings omit source-defined whole issues and cannot support their proposed complete-guide boundary. Selection now waits only for shard 1. | C13-C18, W1-W5, shard 2 and 3 commits | high | Planning cannot select scope yet, but shard 2 contributes no candidate to the final comparison. |
+| Q6 | The main demonstrated invalidators are stale library evidence, cross-peer overlap, unresolved source rows, worker-issued authority, inaccurate manifest copy, excessive row volume, and metadata-driven shortening of a complete source boundary. | C4-C7, C10-C18, W1-W5 | high | Contrarian testing has already removed three otherwise digest-valid candidates. |
 
 ## Key Discoveries
 
@@ -206,6 +215,7 @@ Pending completion of all three waves.
 * Central packet review precedes the durable packet digest. Changing worker-issued review evidence invalidates both packet and mapping digests.
 * Worker overlap reports cannot be final because the cross-shard selected peer set does not exist until coordinator selection.
 * Phalanx and Phoenix are the first two admissible provisional candidates. Their source boundaries and metadata horizons survive central challenge, but their worker authority cannot.
+* Digest-valid exact mappings can still be unpublishable when unavailable metadata causes source-defined whole issues to be excluded. Hercules, High Evolutionary, and Howard the Duck demonstrate that boundary acceptance must precede product selection.
 
 ## Alternatives and Decision State
 
@@ -215,10 +225,10 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 
 ## Open Questions, Risks, and Residual Uncertainty
 
-* Blocking: Parent-supplied shard 1 and replacement shard 2 commit SHAs are required before the candidate set can converge. Shard 3 is accepted as provisional evidence only.
+* Blocking: The parent-supplied shard 1 commit SHA is required before the candidate set can converge. Shard 3 is accepted as provisional evidence only; shard 2 has been centrally deferred.
 * Important: Worker outputs may be stale against the post-PR #171 87-list library, omit selected cross-shard peers, share issue ids with one another, or contain protected decisions that must be discarded and reproduced centrally.
 * Follow-up: None outside the active task.
-* Residual uncertainty: Candidate count, identity ambiguity, metadata fit, relationship mix, and coherent batch composition remain unknown until worker outputs arrive.
+* Residual uncertainty: Shard 1 candidate count, identity ambiguity, metadata fit, relationship mix, and coherent batch composition remain unknown until its output arrives.
 
 ## Current Decisions
 
@@ -228,6 +238,7 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 | Keep all protected decisions and release authority central. | confirmed | caller | Deterministic evidence is delegable; judgment and integration authority are not. | Caller direction | Worker prose cannot approve a candidate. |
 | Regenerate complete reports after final batch selection. | confirmed | evidence | The live baseline is 87 and every selected peer digest must be bound. | C5-C7, C11-C12 | Worker reports are preliminary evidence only. |
 | Select four to six guides only after complete central acceptance, with fewer allowed for risk. | confirmed | caller and evidence | Safety, peer compatibility, and coherence control batch size. | C7, caller direction | No quota-driven inclusion. |
+| Defer all three shard 2 candidates from this batch. | confirmed | coordinator | Each worker mapping is exact for retained rows, but each proposed complete guide omits source-defined whole issues because metadata is unavailable or ambiguous. The combined 592 rows and numerous Hercules and High Evolutionary relationships add release risk without curing the boundary gap. | C15-C18, W3-W5 | Do not import the shard 2 commit, test, or misplaced recovery evidence. |
 
 ## Unresolved Decisions
 
@@ -249,8 +260,8 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 * Decision state: No batch selected.
 * Evidence basis: Intake evidence only.
 * Preconditions met: Task identity, parent, baseline, worker boundaries, protected authority, batch bounds, and lifecycle constraints are durable.
-* Blockers: Worker commit SHAs and central candidate acceptance are pending.
-* Smallest action to change readiness: Receive and validate the three parent-supplied worker commit SHAs.
+* Blockers: Shard 1 commit SHA and final central candidate acceptance are pending.
+* Smallest action to change readiness: Receive and validate the parent-supplied shard 1 commit SHA.
 
 ## Closeout Record
 
@@ -261,7 +272,7 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 | Lane evidence or inline fallback | Three parent-owned worker commits pending; coordinator contract inspection inline |
 | Research disposition | executed |
 | Planning Readiness | Not ready |
-| Blockers | Parent-supplied worker commit SHAs |
+| Blockers | Parent-supplied shard 1 commit SHA |
 | Continuation owner and state | Confirmed automatic RPI coordinator; research continues automatically when commits arrive |
 
 ## Advisory Next Step
@@ -278,12 +289,15 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 | Notes for planning or re-entry | Do not enter Plan until the selected batch and its central approval evidence are durable. |
 
 * Advisory only: rpi-research does not invoke a follow-on skill.
-* Completion or limit-blocked basis: Research is active; the only current dependency is worker commit delivery.
+* Completion or limit-blocked basis: Research is active; the only current dependency is shard 1 commit delivery.
 
 ## Sources
 
 * W1 - Comic Book Herald WordPress REST: Phalanx reading order - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=phalanx-reading-order (retrieved 2026-08-23, live record)
 * W2 - Comic Book Herald WordPress REST: Phoenix comics - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=marvels-best-phoenix-comics (retrieved 2026-08-23, live record)
+* W3 - Comic Book Herald WordPress REST: Hercules reading order - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=hercules-marvel-reading-order (retrieved 2026-08-23, live record)
+* W4 - Comic Book Herald WordPress REST: High Evolutionary reading order - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=high-evolutionary-reading-order (retrieved 2026-08-23, live record)
+* W5 - Comic Book Herald WordPress REST: Howard the Duck reading order - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=howard-the-duck-reading-order (retrieved 2026-08-23, live record)
 
 ## Artifact Self-Check
 
