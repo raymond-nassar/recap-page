@@ -79,6 +79,20 @@ independent Review found no material issue, so delivery is active.
   .copilot-tracking/reviews/logs/2026-08-23/character-spotlight-batch-one-review.md.
 * This is the only Review for MRT-002-C02; later delivery work will not trigger another.
 
+## Delivery Progress
+
+### P04-T02: Opened the PR and repaired the hosted publication boundary
+
+* Opened PR 172 after confirming the branch was current with origin/main.
+* The first hosted run passed Node 20 and Node 24 but failed the lint job's publication step.
+* The hosted log showed that early feature-branch state blobs retained a private replacement-worker
+  session identifier even though the release tip had already removed it. The publication gate scans
+  every commit reachable from the tip, so correcting only the final tree was insufficient.
+* Rewrote only the eleven feature-branch commits, replacing the private identifier with the durable
+  role label `shard-02-replacement-worker`. The final product tree was unchanged.
+* The local publication gate at c1728bf scanned 3,072 blobs and 384 commit messages with zero content
+  finding. The sanitized history requires a guarded force-push and hosted-check retry.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Move the exact inventory tuple before named preparation
@@ -112,6 +126,9 @@ independent Review found no material issue, so delivery is active.
 | Added-line dash scan | P03-T02 | Passed | Zero en or em dashes. |
 | Edge acceptance | P03-T02 | Passed | 1280x900; both exclusive spotlight cards, counts, sources, imports, and six sequence checkpoints passed. |
 | Independent Review | P04-T01 | Passed | Complete execution, Conformant outcome, and no material finding. |
+| First hosted Node jobs | P04-T02 | Passed | Node 20 and Node 24 both passed. |
+| First hosted lint job | P04-T02 | Failed and remediated | Publication history contained a private worker identifier in intermediate feature commits. |
+| Publication history after remediation | P04-T02 | Passed | 3,072 blobs and 384 commit messages scanned with zero content finding at c1728bf. |
 
 ## Pre-Review Reconciliation
 

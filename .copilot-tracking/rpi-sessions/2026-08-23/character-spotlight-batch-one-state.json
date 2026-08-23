@@ -178,11 +178,31 @@
     "findings": []
   },
   "pull_request": {
-    "status": "not-started",
+    "status": "open-hosted-retry-required",
+    "number": 172,
     "required_hosted_checks": [
       "test (20)",
       "test (24)",
       "lint"
-    ]
+    ],
+    "base_reconciliation": {
+      "status": "not-needed",
+      "origin_main": "d0e9c89af839e05e83cb7e5e8ad838fb4f44c484"
+    },
+    "first_run": {
+      "run_id": 32653621017,
+      "test_20": "passed",
+      "test_24": "passed",
+      "lint": "failed-publication-history"
+    },
+    "publication_remediation": {
+      "status": "local-pass-awaiting-hosted-retry",
+      "scope": "eleven feature-branch commits only",
+      "replacement": "shard-02-replacement-worker",
+      "validated_revision": "c1728bf926404b4b5b5da26a47679c0a7b9288e1",
+      "blobs_scanned": 3072,
+      "commit_messages_scanned": 384,
+      "content_findings": 0
+    }
   }
 }
