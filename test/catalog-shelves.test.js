@@ -140,7 +140,7 @@ test('the timeline spine derives its ends and preserves internal empty years', (
   assert.ok(years[0].count > 0 && years.at(-1).count > 0, 'the derived range has an empty end');
   assert.deepEqual(
     years.filter(({ count }) => count === 0).map(({ year }) => year),
-    [2001, 2002, 2003, 2015, 2019],
+    [2001, 2002, 2003, 2015, 2023],
   );
 });
 

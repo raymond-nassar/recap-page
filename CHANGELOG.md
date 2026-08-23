@@ -14,6 +14,37 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added twenty more Marvel event and crossover reading orders
+
+In plain English: the catalog now has 86 reading lists. Twenty new guides carry the event sequence
+from Marvel Generations through Sins of Sinister, including Spider-Geddon, War of the Realms,
+Absolute Carnage, Devil's Reign, and Judgment Day. Every card credits Comic Book Herald and opens
+the exact guide followed. The Timeline gives the 2021 to 2024 stories their own named period instead
+of leaving them unplaced. Nothing you have saved is changed.
+
+One World Under Doom is not shown as a shortened or incomplete list. Its current checklist repeats
+one issue and names at least ten issues the app's metadata source does not yet carry, so it remains
+blocked until the full order can be represented truthfully.
+
+For maintainers: 20 exact mappings preserve 436 ordered issue rows and add 422 issue identities not
+already represented by the catalog. Three partial relationships received stronger-model approval:
+Hunt for Wolverine shares one issue with Infinity Countdown and Infinity Wars, War of the Realms
+shares 11 with the broader Thor best-of guide, and Judgment Day shares two with X of Swords. Secret
+Empire, Empyre, and One World Under Doom retain evidence-backed terminal blockers.
+
+### Made future Comic Book Herald additions use one frozen candidate packet
+
+In plain English: adding another source-backed reading order no longer starts with editing the large
+program that prepared every earlier batch. A maintainer can now freeze one candidate, give its issue
+mapping to a bounded worker, and require a central overlap decision before anything is published.
+This changes no reading list in the app, and nothing you have saved is affected.
+
+For maintainers: canonical SHA-256 digests bind the frozen packet, resolved mapping, complete live
+library, mapped peers, factual relationship report, and central approval. Exact duplicates stop;
+either subset direction needs explicit central approval; partial overlap needs human or
+stronger-model authority. Named preparation and authoring preserve every legacy batch, add no runtime
+dependency, and are covered by nine focused semantic cases in the existing test files.
+
 ### Finished the UX simplification across browsing, search and the library
 
 In plain English: the five ways to add issues now open as five separate screens instead of five

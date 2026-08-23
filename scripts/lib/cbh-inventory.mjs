@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 
 export const GUIDE_TYPES = Object.freeze([
@@ -27,6 +28,294 @@ export const DELIVERY_STATUSES = Object.freeze([
 ]);
 
 export const BASELINE_COUNT = 86;
+
+const SHA256_PATTERN = /^[a-f0-9]{64}$/;
+const PACKET_FIELDS = new Set([
+  'schemaVersion',
+  'id',
+  'inventoryId',
+  'sourceUrl',
+  'sourceSection',
+  'sourceRetrievedAt',
+  'sourceBoundary',
+  'excludedSourceReferences',
+  'expectedCount',
+  'proposedManifest',
+  'insertionAnchor',
+  'sourceReview',
+  'rows',
+  'packetDigest',
+]);
+const MAPPING_DIGEST_FIELDS = Object.freeze([
+  'id',
+  'inventoryId',
+  'packetDigest',
+  'sourceUrl',
+  'sourceSection',
+  'sourceRetrievedAt',
+  'sourceRetrievalStatus',
+  'approvedSourceCount',
+  'excludedSourceReferences',
+  'proposedManifest',
+  'candidateMetadata',
+  'rows',
+]);
+const REPORT_DIGEST_FIELDS = Object.freeze([
+  'candidateId',
+  'packetDigest',
+  'mappingDigest',
+  'libraryDigest',
+  'peerDigests',
+  'candidateCount',
+  'comparisonCount',
+  'comparisons',
+]);
+
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function canonicalValue(value) {
+  if (Array.isArray(value)) return value.map((entry) => canonicalValue(entry));
+  if (!isPlainObject(value)) return value;
+  return Object.fromEntries(
+    Object.keys(value)
+      .sort()
+      .map((key) => [key, canonicalValue(value[key])]),
+  );
+}
+
+function selectedFields(value, fields) {
+  return Object.fromEntries(
+    fields
+      .filter((field) => Object.hasOwn(value, field))
+      .map((field) => [field, value[field]]),
+  );
+}
+
+function assertSha256(value, label) {
+  if (!SHA256_PATTERN.test(String(value ?? ''))) {
+    throw new Error(`${label} must be a lowercase SHA-256 digest`);
+  }
+}
+
+function assertNonEmptyString(value, label) {
+  if (typeof value !== 'string' || !value.trim()) {
+    throw new Error(`${label} must be a non-empty string`);
+  }
+}
+
+function assertPacketRow(row, index) {
+  const label = `Packet row ${index + 1}`;
+  if (!isPlainObject(row)) throw new Error(`${label} must be an object`);
+  assertNonEmptyString(row.sourceIssueReference, `${label} sourceIssueReference`);
+  assertNonEmptyString(row.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
+  if (row.sourceRangeReference != null) {
+    assertNonEmptyString(row.sourceRangeReference, `${label} sourceRangeReference`);
+  }
+  if (!Number.isInteger(row.seriesYear)) {
+    throw new Error(`${label} seriesYear must be an integer`);
+  }
+  if (row.issueNumber != null) assertNonEmptyString(String(row.issueNumber), `${label} issueNumber`);
+  if (row.seriesId != null && !Number.isInteger(row.seriesId)) {
+    throw new Error(`${label} seriesId must be an integer or null`);
+  }
+  if (row.candidateIssueId != null && !Number.isInteger(row.candidateIssueId)) {
+    throw new Error(`${label} candidateIssueId must be an integer or null`);
+  }
+  if (typeof row.manualSeriesSelectionApproved !== 'boolean') {
+    throw new Error(`${label} manualSeriesSelectionApproved must be a boolean`);
+  }
+  if (row.selectionNote != null) assertNonEmptyString(row.selectionNote, `${label} selectionNote`);
+  if (row.metadataIssueNumber != null) {
+    assertNonEmptyString(String(row.metadataIssueNumber), `${label} metadataIssueNumber`);
+  }
+}
+
+function assertManifestProposal(packet) {
+  const manifest = packet.proposedManifest;
+  if (!isPlainObject(manifest)) throw new Error(`${packet.id} proposedManifest must be an object`);
+  if (manifest.id !== packet.id) throw new Error(`${packet.id} proposedManifest id does not match the packet`);
+  if (manifest.sourcePage !== packet.sourceUrl) {
+    throw new Error(`${packet.id} proposedManifest sourcePage does not match the packet`);
+  }
+  if ((manifest.sourceSection ?? null) !== (packet.sourceSection ?? null)) {
+    throw new Error(`${packet.id} proposedManifest sourceSection does not match the packet`);
+  }
+  if (manifest.expect !== packet.expectedCount) {
+    throw new Error(`${packet.id} proposedManifest expect does not match expectedCount`);
+  }
+  if (manifest.sourceOrigin !== "Compiled for this project from Comic Book Herald's guide") {
+    throw new Error(`${packet.id} proposedManifest has the wrong source origin`);
+  }
+  if (manifest.sourceLicense !== null) {
+    throw new Error(`${packet.id} proposedManifest must keep sourceLicense null`);
+  }
+  if (manifest.sourceFile !== `${packet.id}.md`) {
+    throw new Error(`${packet.id} proposedManifest sourceFile must be ${packet.id}.md`);
+  }
+  if (manifest.out !== `${packet.id.replaceAll('-', '_')}.json`) {
+    throw new Error(`${packet.id} proposedManifest out does not match its id`);
+  }
+  if (!Number.isInteger(Number(manifest.coverIssueId))) {
+    throw new Error(`${packet.id} proposedManifest must name an exact coverIssueId`);
+  }
+}
+
+export function canonicalJson(value) {
+  return JSON.stringify(canonicalValue(value));
+}
+
+export function digestCanonicalJson(value) {
+  return createHash('sha256').update(canonicalJson(value), 'utf8').digest('hex');
+}
+
+export function packetDigestFor(packet) {
+  const payload = { ...packet };
+  delete payload.packetDigest;
+  return digestCanonicalJson(payload);
+}
+
+export function mappingDigestFor(mapping) {
+  return digestCanonicalJson(selectedFields(mapping, MAPPING_DIGEST_FIELDS));
+}
+
+export function reportDigestFor(report) {
+  return digestCanonicalJson(selectedFields(report, REPORT_DIGEST_FIELDS));
+}
+
+export function approvalDigestFor(relationshipReview) {
+  const payload = { ...relationshipReview };
+  delete payload.approvalDigest;
+  return digestCanonicalJson(payload);
+}
+
+export function libraryDigestFor(manifest, orderIssueIds) {
+  return digestCanonicalJson({ manifest, orderIssueIds });
+}
+
+export function validateMappingDigest(mapping) {
+  assertSha256(mapping?.mappingDigest, `${mapping?.id ?? 'Mapping'} mappingDigest`);
+  const actual = mappingDigestFor(mapping);
+  if (actual !== mapping.mappingDigest) {
+    throw new Error(`${mapping?.id ?? 'Mapping'} mapping digest is stale`);
+  }
+  return true;
+}
+
+export function validateReportDigest(report) {
+  assertSha256(report?.reportDigest, `${report?.candidateId ?? 'Report'} reportDigest`);
+  const actual = reportDigestFor(report);
+  if (actual !== report.reportDigest) {
+    throw new Error(`${report?.candidateId ?? 'Report'} report digest is stale`);
+  }
+  return true;
+}
+
+export function validateApprovalDigest(relationshipReview, candidateId = 'Candidate') {
+  assertSha256(relationshipReview?.approvalDigest, `${candidateId} approvalDigest`);
+  const actual = approvalDigestFor(relationshipReview);
+  if (actual !== relationshipReview.approvalDigest) {
+    throw new Error(`${candidateId} approval digest is stale`);
+  }
+  return true;
+}
+
+export function validateFrozenPacket(packet, {
+  expectedId = null,
+  inventoryRecord = null,
+  catalogEntries = [],
+} = {}) {
+  if (!isPlainObject(packet)) throw new Error('Frozen packet must be an object');
+  const unexpected = Object.keys(packet).filter((field) => !PACKET_FIELDS.has(field));
+  if (unexpected.length > 0) {
+    throw new Error(`Frozen packet has unsupported fields: ${unexpected.join(', ')}`);
+  }
+  if (packet.schemaVersion !== 1) throw new Error('Frozen packet schemaVersion must be 1');
+  assertNonEmptyString(packet.id, 'Frozen packet id');
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(packet.id)) {
+    throw new Error('Frozen packet id must be lower-kebab-case');
+  }
+  if (expectedId != null && packet.id !== expectedId) {
+    throw new Error(`Frozen packet id ${packet.id} does not match requested id ${expectedId}`);
+  }
+  assertNonEmptyString(packet.inventoryId, `${packet.id} inventoryId`);
+  assertNonEmptyString(packet.sourceUrl, `${packet.id} sourceUrl`);
+  if (!/^https:\/\/www\.comicbookherald\.com\//.test(packet.sourceUrl)) {
+    throw new Error(`${packet.id} sourceUrl must be an exact Comic Book Herald page`);
+  }
+  if (packet.sourceSection != null) {
+    assertNonEmptyString(packet.sourceSection, `${packet.id} sourceSection`);
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(packet.sourceRetrievedAt ?? ''))) {
+    throw new Error(`${packet.id} sourceRetrievedAt must be a YYYY-MM-DD date`);
+  }
+  assertNonEmptyString(packet.sourceBoundary, `${packet.id} sourceBoundary`);
+  if (!Array.isArray(packet.excludedSourceReferences)
+    || packet.excludedSourceReferences.some((entry) => typeof entry !== 'string' || !entry.trim())) {
+    throw new Error(`${packet.id} excludedSourceReferences must be an array of non-empty strings`);
+  }
+  if (new Set(packet.excludedSourceReferences).size !== packet.excludedSourceReferences.length) {
+    throw new Error(`${packet.id} excludedSourceReferences contains a duplicate`);
+  }
+  if (!Array.isArray(packet.rows) || packet.rows.length === 0) {
+    throw new Error(`${packet.id} rows must be a non-empty array`);
+  }
+  packet.rows.forEach((row, index) => assertPacketRow(row, index));
+  if (!Number.isInteger(packet.expectedCount) || packet.expectedCount !== packet.rows.length) {
+    throw new Error(`${packet.id} expectedCount must equal its row count`);
+  }
+  assertManifestProposal(packet);
+  if (!isPlainObject(packet.insertionAnchor)
+    || Object.keys(packet.insertionAnchor).length !== 1
+    || typeof packet.insertionAnchor.beforeId !== 'string'
+    || !packet.insertionAnchor.beforeId.trim()
+    || packet.insertionAnchor.beforeId === packet.id) {
+    throw new Error(`${packet.id} insertionAnchor must name one different beforeId`);
+  }
+  const sourceReview = packet.sourceReview;
+  if (!isPlainObject(sourceReview)
+    || !['human', 'stronger-model'].includes(sourceReview.authorityType)) {
+    throw new Error(`${packet.id} sourceReview requires human or stronger-model authority`);
+  }
+  assertNonEmptyString(sourceReview.authorityIdentity, `${packet.id} sourceReview authorityIdentity`);
+  assertNonEmptyString(sourceReview.rationale, `${packet.id} sourceReview rationale`);
+  assertNonEmptyString(sourceReview.reviewedAt, `${packet.id} sourceReview reviewedAt`);
+  assertSha256(packet.packetDigest, `${packet.id} packetDigest`);
+  if (packetDigestFor(packet) !== packet.packetDigest) {
+    throw new Error(`${packet.id} packet digest is stale`);
+  }
+
+  if (inventoryRecord) {
+    if (inventoryRecord.id !== packet.inventoryId) {
+      throw new Error(`${packet.id} inventory identity does not match ${packet.inventoryId}`);
+    }
+    if (inventoryRecord.url !== packet.sourceUrl) {
+      throw new Error(`${packet.id} source URL differs from inventory record ${packet.inventoryId}`);
+    }
+    if (['blocked', 'not-applicable'].includes(inventoryRecord.deliveryStatus)) {
+      throw new Error(`${packet.id} inventory record is not eligible for preparation`);
+    }
+  }
+
+  const existingRecords = catalogEntries.map((entry) => ({
+    id: entry.id,
+    url: entry.sourcePage,
+    sourceSection: entry.sourceSection,
+    catalogIds: [entry.id],
+  }));
+  const alreadyShipped = inventoryRecord?.deliveryStatus === 'shipped'
+    && catalogEntries.some((entry) => entry.id === packet.id);
+  if (!alreadyShipped) {
+    validateBatchNoDuplicates([{
+      id: packet.id,
+      url: packet.sourceUrl,
+      sourceSection: packet.sourceSection,
+      catalogIds: [packet.proposedManifest.id],
+    }], existingRecords);
+  }
+  return true;
+}
 
 export function sourceIdentityForRecord(record) {
   if (!record || typeof record !== 'object') return null;

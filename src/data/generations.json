@@ -1,0 +1,331 @@
+{
+  "id": "generations",
+  "name": "Marvel Generations",
+  "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+  "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T09:16:32.671Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 10,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 63963,
+      "title": "Generations: Banner Hulk & the Totally Awesome Hulk (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63963/generations_banner_hulk_the_totally_awesome_hulk_2017_1",
+      "seriesId": 24796,
+      "seriesName": "Generations: Banner Hulk & the Totally Awesome Hulk (2017 - Present)",
+      "onSale": "2017-08-02T00:00:00+0000",
+      "mu": "2018-02-05T00:00:00+0000",
+      "digitalId": 45427,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/596cf0a0b4872",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jorge Molina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 63961,
+      "title": "Generations: Phoenix & Jean Grey (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63961/generations_phoenix_jean_grey_2017_1",
+      "seriesId": 24803,
+      "seriesName": "Generations: Phoenix & Jean Grey (2017 - Present)",
+      "onSale": "2017-08-09T00:00:00+0000",
+      "mu": "2018-02-12T00:00:00+0000",
+      "digitalId": 45451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/597793e02357c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 63958,
+      "title": "Generations: Wolverine & All-New Wolverine (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63958/generations_wolverine_all-new_wolverine_2017_1",
+      "seriesId": 24823,
+      "seriesName": "Generations: Wolverine & All-New Wolverine (2017)",
+      "onSale": "2017-08-16T00:00:00+0000",
+      "mu": "2018-02-19T00:00:00+0000",
+      "digitalId": 45471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/597bbcadf2a97",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ramon Rosanas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 63967,
+      "title": "Generations: The Unworthy Thor & The Mighty Thor (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63967/generations_the_unworthy_thor_the_mighty_thor_2017_1",
+      "seriesId": 24811,
+      "seriesName": "Generations: The Unworthy Thor & The Mighty Thor (2017)",
+      "onSale": "2017-08-23T00:00:00+0000",
+      "mu": "2018-02-26T00:00:00+0000",
+      "digitalId": 45428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/5988dfcb28d53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 63956,
+      "title": "Generations: Hawkeye & Hawkeye (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63956/generations_hawkeye_hawkeye_2017_1",
+      "seriesId": 24801,
+      "seriesName": "Generations: Hawkeye & Hawkeye (2017)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/59934cfb5f403",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Stefano Raffaele",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64389,
+      "title": "Generations: Iron Man & Ironheart (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64389/generations_iron_man_ironheart_2017_1",
+      "seriesId": 24807,
+      "seriesName": "Generations: Iron Man & Ironheart (2017)",
+      "onSale": "2017-09-06T00:00:00+0000",
+      "mu": "2018-03-12T00:00:00+0000",
+      "digitalId": 45700,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/599afc8329441",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marco Rudy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Szymon Kudranski",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64393,
+      "title": "Generations: Ms. Marvel & Ms. Marvel (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64393/generations_ms_marvel_ms_marvel_2017_1",
+      "seriesId": 23451,
+      "seriesName": "Generations: Ms. Marvel & Ms. Marvel (2017)",
+      "onSale": "2017-09-20T00:00:00+0000",
+      "mu": "2018-03-26T00:00:00+0000",
+      "digitalId": 45699,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/59b93e60d72e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Paolo Villanelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64383,
+      "title": "Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64383/generations_sam_wilson_captain_america_steve_rogers_captain_america_2017_1",
+      "seriesId": 26207,
+      "seriesName": "Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2018-04-02T00:00:00+0000",
+      "digitalId": 45702,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/59c2881e99369",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Paul Renaud",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64396,
+      "title": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64396/generations_miles_morales_spider-man_peter_parker_spider-man_2017_1",
+      "seriesId": 26201,
+      "seriesName": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2018-04-02T00:00:00+0000",
+      "digitalId": 45701,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/59c2893c52c70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ramon Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64386,
+      "title": "Generations: Captain Marvel & Captain Mar-Vell (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64386/generations_captain_marvel_captain_mar-vell_2017_1",
+      "seriesId": 24806,
+      "seriesName": "Generations: Captain Marvel & Captain Mar-Vell (2017)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2018-03-19T00:00:00+0000",
+      "digitalId": 45731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/59b04c26dcef4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Brent Schoonover",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Margaret Stohl",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

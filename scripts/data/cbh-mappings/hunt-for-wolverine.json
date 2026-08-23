@@ -1,0 +1,1745 @@
+{
+  "id": "hunt-for-wolverine",
+  "inventoryId": "hunt-for-wolverine",
+  "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+  "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 24,
+  "excludedSourceReferences": [],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "hunt-for-wolverine",
+    "name": "Hunt for Wolverine",
+    "description": "The search for Logan across four investigations, Dead Ends, and his five-part return.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "hunt-for-wolverine.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+    "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "hunt_for_wolverine.json",
+    "characters": [
+      "Wolverine",
+      "X-Men",
+      "Avengers"
+    ],
+    "keywords": [
+      "Hunt for Wolverine",
+      "Return of Wolverine",
+      "Logan"
+    ],
+    "expect": 24,
+    "timeline": 2018,
+    "coverIssueId": 66912
+  },
+  "candidateMetadata": [
+    {
+      "id": 66416,
+      "title": "Infinity Countdown",
+      "issueTitle": "Infinity Countdown (2018) #1",
+      "seriesTitle": "Infinity Countdown",
+      "apiSeriesName": "Infinity Countdown (2018)",
+      "seriesId": 24050,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66416/infinity_countdown_2018_1",
+      "onSaleDate": "2018-03-07T00:00:00+0000"
+    },
+    {
+      "id": 66912,
+      "title": "Hunt for Wolverine",
+      "issueTitle": "Hunt for Wolverine (2018) #1",
+      "seriesTitle": "Hunt for Wolverine",
+      "apiSeriesName": "Hunt for Wolverine (2018)",
+      "seriesId": 24199,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66912/hunt_for_wolverine_2018_1",
+      "onSaleDate": "2018-04-25T00:00:00+0000"
+    },
+    {
+      "id": 67019,
+      "title": "Hunt for Wolverine: Weapon Lost",
+      "issueTitle": "Hunt for Wolverine: Weapon Lost (2018) #1",
+      "seriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "apiSeriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "seriesId": 24235,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67019/hunt_for_wolverine_weapon_lost_2018_1",
+      "onSaleDate": "2018-05-02T00:00:00+0000"
+    },
+    {
+      "id": 68605,
+      "title": "Hunt for Wolverine: Weapon Lost",
+      "issueTitle": "Hunt for Wolverine: Weapon Lost (2018) #2",
+      "seriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "apiSeriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "seriesId": 24235,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68605/hunt_for_wolverine_weapon_lost_2018_2",
+      "onSaleDate": "2018-06-06T00:00:00+0000"
+    },
+    {
+      "id": 68606,
+      "title": "Hunt for Wolverine: Weapon Lost",
+      "issueTitle": "Hunt for Wolverine: Weapon Lost (2018) #3",
+      "seriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "apiSeriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "seriesId": 24235,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68606/hunt_for_wolverine_weapon_lost_2018_3",
+      "onSaleDate": "2018-07-04T00:00:00+0000"
+    },
+    {
+      "id": 68608,
+      "title": "Hunt for Wolverine: Weapon Lost",
+      "issueTitle": "Hunt for Wolverine: Weapon Lost (2018) #4",
+      "seriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "apiSeriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "seriesId": 24235,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68608/hunt_for_wolverine_weapon_lost_2018_4",
+      "onSaleDate": "2018-08-01T00:00:00+0000"
+    },
+    {
+      "id": 67341,
+      "title": "Hunt for Wolverine: Adamantium Agenda",
+      "issueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #1",
+      "seriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "apiSeriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "seriesId": 24315,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67341/hunt_for_wolverine_adamantium_agenda_2018_1",
+      "onSaleDate": "2018-05-09T00:00:00+0000"
+    },
+    {
+      "id": 68583,
+      "title": "Hunt for Wolverine: Adamantium Agenda",
+      "issueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #2",
+      "seriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "apiSeriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "seriesId": 24315,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68583/hunt_for_wolverine_adamantium_agenda_2018_2",
+      "onSaleDate": "2018-06-13T00:00:00+0000"
+    },
+    {
+      "id": 68584,
+      "title": "Hunt for Wolverine: Adamantium Agenda",
+      "issueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #3",
+      "seriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "apiSeriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "seriesId": 24315,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68584/hunt_for_wolverine_adamantium_agenda_2018_3",
+      "onSaleDate": "2018-07-11T00:00:00+0000"
+    },
+    {
+      "id": 68586,
+      "title": "Hunt for Wolverine: Adamantium Agenda",
+      "issueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #4",
+      "seriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "apiSeriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "seriesId": 24315,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68586/hunt_for_wolverine_adamantium_agenda_2018_4",
+      "onSaleDate": "2018-08-08T00:00:00+0000"
+    },
+    {
+      "id": 67342,
+      "title": "Hunt for Wolverine: Claws of a Killer",
+      "issueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #1",
+      "seriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "apiSeriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "seriesId": 24316,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67342/hunt_for_wolverine_claws_of_a_killer_2018_1",
+      "onSaleDate": "2018-05-16T00:00:00+0000"
+    },
+    {
+      "id": 68591,
+      "title": "Hunt for Wolverine: Claws of a Killer",
+      "issueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #2",
+      "seriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "apiSeriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "seriesId": 24316,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68591/hunt_for_wolverine_claws_of_a_killer_2018_2",
+      "onSaleDate": "2018-06-20T00:00:00+0000"
+    },
+    {
+      "id": 68592,
+      "title": "Hunt for Wolverine: Claws of a Killer",
+      "issueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #3",
+      "seriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "apiSeriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "seriesId": 24316,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68592/hunt_for_wolverine_claws_of_a_killer_2018_3",
+      "onSaleDate": "2018-07-18T00:00:00+0000"
+    },
+    {
+      "id": 68594,
+      "title": "Hunt for Wolverine: Claws of a Killer",
+      "issueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #4",
+      "seriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "apiSeriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "seriesId": 24316,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68594/hunt_for_wolverine_claws_of_a_killer_2018_4",
+      "onSaleDate": "2018-08-15T00:00:00+0000"
+    },
+    {
+      "id": 67343,
+      "title": "Hunt for Wolverine: Mystery in Madripoor",
+      "issueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #1",
+      "seriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "apiSeriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "seriesId": 24317,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67343/hunt_for_wolverine_mystery_in_madripoor_2018_1",
+      "onSaleDate": "2018-05-23T00:00:00+0000"
+    },
+    {
+      "id": 68599,
+      "title": "Hunt for Wolverine: Mystery in Madripoor",
+      "issueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #2",
+      "seriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "apiSeriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "seriesId": 24317,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68599/hunt_for_wolverine_mystery_in_madripoor_2018_2",
+      "onSaleDate": "2018-06-27T00:00:00+0000"
+    },
+    {
+      "id": 68600,
+      "title": "Hunt for Wolverine: Mystery in Madripoor",
+      "issueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #3",
+      "seriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "apiSeriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "seriesId": 24317,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68600/hunt_for_wolverine_mystery_in_madripoor_2018_3",
+      "onSaleDate": "2018-07-25T00:00:00+0000"
+    },
+    {
+      "id": 68602,
+      "title": "Hunt for Wolverine: Mystery in Madripoor",
+      "issueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #4",
+      "seriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "apiSeriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "seriesId": 24317,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68602/hunt_for_wolverine_mystery_in_madripoor_2018_4",
+      "onSaleDate": "2018-08-22T00:00:00+0000"
+    },
+    {
+      "id": 67583,
+      "title": "Hunt for Wolverine: Dead Ends",
+      "issueTitle": "Hunt for Wolverine: Dead Ends (2018) #1",
+      "seriesTitle": "Hunt for Wolverine: Dead Ends",
+      "apiSeriesName": "Hunt for Wolverine: Dead Ends (2018)",
+      "seriesId": 24369,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67583/hunt_for_wolverine_dead_ends_2018_1",
+      "onSaleDate": "2018-08-29T00:00:00+0000"
+    },
+    {
+      "id": 70117,
+      "title": "Return of Wolverine",
+      "issueTitle": "Return of Wolverine (2018) #1",
+      "seriesTitle": "Return of Wolverine",
+      "apiSeriesName": "Return of Wolverine (2018 - 2019)",
+      "seriesId": 25582,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70117/return_of_wolverine_2018_1",
+      "onSaleDate": "2018-09-19T00:00:00+0000"
+    },
+    {
+      "id": 70127,
+      "title": "Return of Wolverine",
+      "issueTitle": "Return of Wolverine (2018) #2",
+      "seriesTitle": "Return of Wolverine",
+      "apiSeriesName": "Return of Wolverine (2018 - 2019)",
+      "seriesId": 25582,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70127/return_of_wolverine_2018_2",
+      "onSaleDate": "2018-10-24T00:00:00+0000"
+    },
+    {
+      "id": 70129,
+      "title": "Return of Wolverine",
+      "issueTitle": "Return of Wolverine (2018) #3",
+      "seriesTitle": "Return of Wolverine",
+      "apiSeriesName": "Return of Wolverine (2018 - 2019)",
+      "seriesId": 25582,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70129/return_of_wolverine_2018_3",
+      "onSaleDate": "2018-11-28T00:00:00+0000"
+    },
+    {
+      "id": 70130,
+      "title": "Return of Wolverine",
+      "issueTitle": "Return of Wolverine (2018) #4",
+      "seriesTitle": "Return of Wolverine",
+      "apiSeriesName": "Return of Wolverine (2018 - 2019)",
+      "seriesId": 25582,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70130/return_of_wolverine_2018_4",
+      "onSaleDate": "2019-01-16T00:00:00+0000"
+    },
+    {
+      "id": 70131,
+      "title": "Return of Wolverine",
+      "issueTitle": "Return of Wolverine (2018) #5",
+      "seriesTitle": "Return of Wolverine",
+      "apiSeriesName": "Return of Wolverine (2018 - 2019)",
+      "seriesId": 25582,
+      "issueNumber": "5",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70131/return_of_wolverine_2018_5",
+      "onSaleDate": "2019-02-20T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Infinity Countdown #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Infinity Countdown",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24050,
+      "candidateIssueId": 66416,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66416"
+      ],
+      "selectedIssueId": 66416,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66416/infinity_countdown_2018_1",
+      "resolvedIssueTitle": "Infinity Countdown (2018) #1",
+      "note": "Marvel series 24050 (Infinity Countdown (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66416
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Hunt for Wolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24199,
+      "candidateIssueId": 66912,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66912"
+      ],
+      "selectedIssueId": 66912,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66912/hunt_for_wolverine_2018_1",
+      "resolvedIssueTitle": "Hunt for Wolverine (2018) #1",
+      "note": "Marvel series 24199 (Hunt for Wolverine (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66912
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24235,
+      "candidateIssueId": 67019,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67019"
+      ],
+      "selectedIssueId": 67019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67019/hunt_for_wolverine_weapon_lost_2018_1",
+      "resolvedIssueTitle": "Hunt for Wolverine: Weapon Lost (2018) #1",
+      "note": "Marvel series 24235 (Hunt for Wolverine: Weapon Lost (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67019
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24235,
+      "candidateIssueId": 68605,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68605"
+      ],
+      "selectedIssueId": 68605,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68605/hunt_for_wolverine_weapon_lost_2018_2",
+      "resolvedIssueTitle": "Hunt for Wolverine: Weapon Lost (2018) #2",
+      "note": "Marvel series 24235 (Hunt for Wolverine: Weapon Lost (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68605
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24235,
+      "candidateIssueId": 68606,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68606"
+      ],
+      "selectedIssueId": 68606,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68606/hunt_for_wolverine_weapon_lost_2018_3",
+      "resolvedIssueTitle": "Hunt for Wolverine: Weapon Lost (2018) #3",
+      "note": "Marvel series 24235 (Hunt for Wolverine: Weapon Lost (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68606
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24235,
+      "candidateIssueId": 68608,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68608"
+      ],
+      "selectedIssueId": 68608,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68608/hunt_for_wolverine_weapon_lost_2018_4",
+      "resolvedIssueTitle": "Hunt for Wolverine: Weapon Lost (2018) #4",
+      "note": "Marvel series 24235 (Hunt for Wolverine: Weapon Lost (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68608
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24315,
+      "candidateIssueId": 67341,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67341"
+      ],
+      "selectedIssueId": 67341,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67341/hunt_for_wolverine_adamantium_agenda_2018_1",
+      "resolvedIssueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #1",
+      "note": "Marvel series 24315 (Hunt for Wolverine: Adamantium Agenda (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67341
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24315,
+      "candidateIssueId": 68583,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68583"
+      ],
+      "selectedIssueId": 68583,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68583/hunt_for_wolverine_adamantium_agenda_2018_2",
+      "resolvedIssueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #2",
+      "note": "Marvel series 24315 (Hunt for Wolverine: Adamantium Agenda (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68583
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24315,
+      "candidateIssueId": 68584,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68584"
+      ],
+      "selectedIssueId": 68584,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68584/hunt_for_wolverine_adamantium_agenda_2018_3",
+      "resolvedIssueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #3",
+      "note": "Marvel series 24315 (Hunt for Wolverine: Adamantium Agenda (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68584
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24315,
+      "candidateIssueId": 68586,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68586"
+      ],
+      "selectedIssueId": 68586,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68586/hunt_for_wolverine_adamantium_agenda_2018_4",
+      "resolvedIssueTitle": "Hunt for Wolverine: Adamantium Agenda (2018) #4",
+      "note": "Marvel series 24315 (Hunt for Wolverine: Adamantium Agenda (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68586
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24316,
+      "candidateIssueId": 67342,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67342"
+      ],
+      "selectedIssueId": 67342,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67342/hunt_for_wolverine_claws_of_a_killer_2018_1",
+      "resolvedIssueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #1",
+      "note": "Marvel series 24316 (Hunt for Wolverine: Claws of a Killer (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67342
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24316,
+      "candidateIssueId": 68591,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68591"
+      ],
+      "selectedIssueId": 68591,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68591/hunt_for_wolverine_claws_of_a_killer_2018_2",
+      "resolvedIssueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #2",
+      "note": "Marvel series 24316 (Hunt for Wolverine: Claws of a Killer (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68591
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24316,
+      "candidateIssueId": 68592,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68592"
+      ],
+      "selectedIssueId": 68592,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68592/hunt_for_wolverine_claws_of_a_killer_2018_3",
+      "resolvedIssueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #3",
+      "note": "Marvel series 24316 (Hunt for Wolverine: Claws of a Killer (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68592
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24316,
+      "candidateIssueId": 68594,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68594"
+      ],
+      "selectedIssueId": 68594,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68594/hunt_for_wolverine_claws_of_a_killer_2018_4",
+      "resolvedIssueTitle": "Hunt for Wolverine: Claws of a Killer (2018) #4",
+      "note": "Marvel series 24316 (Hunt for Wolverine: Claws of a Killer (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68594
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24317,
+      "candidateIssueId": 67343,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67343"
+      ],
+      "selectedIssueId": 67343,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67343/hunt_for_wolverine_mystery_in_madripoor_2018_1",
+      "resolvedIssueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #1",
+      "note": "Marvel series 24317 (Hunt for Wolverine: Mystery in Madripoor (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67343
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24317,
+      "candidateIssueId": 68599,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68599"
+      ],
+      "selectedIssueId": 68599,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68599/hunt_for_wolverine_mystery_in_madripoor_2018_2",
+      "resolvedIssueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #2",
+      "note": "Marvel series 24317 (Hunt for Wolverine: Mystery in Madripoor (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68599
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24317,
+      "candidateIssueId": 68600,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68600"
+      ],
+      "selectedIssueId": 68600,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68600/hunt_for_wolverine_mystery_in_madripoor_2018_3",
+      "resolvedIssueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #3",
+      "note": "Marvel series 24317 (Hunt for Wolverine: Mystery in Madripoor (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68600
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24317,
+      "candidateIssueId": 68602,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68602"
+      ],
+      "selectedIssueId": 68602,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68602/hunt_for_wolverine_mystery_in_madripoor_2018_4",
+      "resolvedIssueTitle": "Hunt for Wolverine: Mystery in Madripoor (2018) #4",
+      "note": "Marvel series 24317 (Hunt for Wolverine: Mystery in Madripoor (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68602
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Hunt For Wolverine: Dead Ends #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt For Wolverine: Dead Ends",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24369,
+      "candidateIssueId": 67583,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67583"
+      ],
+      "selectedIssueId": 67583,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67583/hunt_for_wolverine_dead_ends_2018_1",
+      "resolvedIssueTitle": "Hunt for Wolverine: Dead Ends (2018) #1",
+      "note": "Marvel series 24369 (Hunt for Wolverine: Dead Ends (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67583
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "The Return of Wolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25582,
+      "candidateIssueId": 70117,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70117"
+      ],
+      "selectedIssueId": 70117,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70117/return_of_wolverine_2018_1",
+      "resolvedIssueTitle": "Return of Wolverine (2018) #1",
+      "note": "Marvel series 25582 (Return of Wolverine (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70117
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "The Return of Wolverine #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 25582,
+      "candidateIssueId": 70127,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70127"
+      ],
+      "selectedIssueId": 70127,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70127/return_of_wolverine_2018_2",
+      "resolvedIssueTitle": "Return of Wolverine (2018) #2",
+      "note": "Marvel series 25582 (Return of Wolverine (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70127
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "The Return of Wolverine #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 25582,
+      "candidateIssueId": 70129,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70129"
+      ],
+      "selectedIssueId": 70129,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70129/return_of_wolverine_2018_3",
+      "resolvedIssueTitle": "Return of Wolverine (2018) #3",
+      "note": "Marvel series 25582 (Return of Wolverine (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70129
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "The Return of Wolverine #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 25582,
+      "candidateIssueId": 70130,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70130"
+      ],
+      "selectedIssueId": 70130,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70130/return_of_wolverine_2018_4",
+      "resolvedIssueTitle": "Return of Wolverine (2018) #4",
+      "note": "Marvel series 25582 (Return of Wolverine (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70130
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "The Return of Wolverine #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 25582,
+      "candidateIssueId": 70131,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70131"
+      ],
+      "selectedIssueId": 70131,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70131/return_of_wolverine_2018_5",
+      "resolvedIssueTitle": "Return of Wolverine (2018) #5",
+      "note": "Marvel series 25582 (Return of Wolverine (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70131
+      ]
+    }
+  ],
+  "mappingDigest": "1f4ed5ebc388bfb433ab5b863856eeea2f6eb3536e960e0f0ed65b5f0ee9c1d3",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "hunt-for-wolverine",
+    "name": "Hunt for Wolverine",
+    "description": "The search for Logan across four investigations, Dead Ends, and his five-part return.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "hunt-for-wolverine.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+    "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "hunt_for_wolverine.json",
+    "characters": [
+      "Wolverine",
+      "X-Men",
+      "Avengers"
+    ],
+    "keywords": [
+      "Hunt for Wolverine",
+      "Return of Wolverine",
+      "Logan"
+    ],
+    "expect": 24,
+    "timeline": 2018,
+    "coverIssueId": 66912
+  },
+  "relationshipReview": {
+    "reportDigest": "0aa15dba5a8195e81d9350fe6a11228da0fc0674ef7472fa95236a599f248477",
+    "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4",
+    "mappingDigest": "1f4ed5ebc388bfb433ab5b863856eeea2f6eb3536e960e0f0ed65b5f0ee9c1d3",
+    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared Infinity Countdown #1 is source-authored context inside two otherwise distinct event sequences.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog was reviewed; 1 partial relationship required explicit approval.",
+    "reviewedAt": "2026-08-23T05:47:48.847Z",
+    "approvalDigest": "cda3237baa65ad891a6d6d493e02a42d6f1770d7c2baa0a363e0b35a8d47380d"
+  }
+}

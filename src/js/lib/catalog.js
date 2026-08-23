@@ -766,14 +766,15 @@ export function inHomeAge(story) {
 // directions, so between them the fallback cannot quietly become where everything lands.
 //
 // No year appears in a heading, on purpose. The bounds and the content disagree, because the
-// catalog has no event in 2001, 2002, 2003, 2015 or 2019, so a heading advertising a boundary would
+// catalog has no event in 2001, 2002, 2003, 2015 or 2023, so a heading advertising a boundary would
 // promise a reader years the section cannot show. That is the same defect as a blurb naming a badge
 // that is not on screen, and the fix is the same: say what landed, which is what `eraSections`
 // derives from the stories themselves.
 //
 // Every era is named after orders the catalog actually contains, checked rather than assumed:
 // Avengers Disassembled, Civil War, Secret Invasion, Schism, Battle of the Atom, Spider-Verse,
-// Inhumans vs. X-Men and King in Black are all bundled. Siege is not, so it names nothing here.
+// Inhumans vs. X-Men, King in Black, Heroes Reborn and Fall of the House of X are all bundled.
+// Siege is not, so it names nothing here.
 export const CATALOG_ERAS = [
   {
     key: 'disassembled',
@@ -805,6 +806,13 @@ export const CATALOG_ERAS = [
     blurb: 'The most recent events bundled with the app, and the relaunches that arrived alongside them.',
     from: 2016,
     to: 2020,
+  },
+  {
+    key: 'heroes-doom',
+    heading: 'Heroes Reborn to Fall of the House of X',
+    blurb: 'The latest event cycle, from short line-wide crossovers through the end of the Krakoan age.',
+    from: 2021,
+    to: 2024,
   },
   {
     key: 'undated',

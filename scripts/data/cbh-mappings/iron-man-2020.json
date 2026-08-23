@@ -1,0 +1,1526 @@
+{
+  "id": "iron-man-2020",
+  "inventoryId": "iron-man-2020",
+  "packetDigest": "0712ab5db6936f8a4ed370f86e790ca4861b793d2dc98ce98e8b2e25cbbd2e9c",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+  "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 18,
+  "excludedSourceReferences": [],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "iron-man-2020",
+    "name": "Iron Man 2020",
+    "description": "Tony Stark confronts a machine uprising led by the Arno Stark of 2020.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "iron-man-2020.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+    "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "iron_man_2020.json",
+    "characters": [
+      "Iron Man",
+      "Machine Man",
+      "Ironheart"
+    ],
+    "keywords": [
+      "Iron Man 2020",
+      "Artificial intelligence",
+      "Arno Stark"
+    ],
+    "expect": 18,
+    "timeline": 2020,
+    "coverIssueId": 80459
+  },
+  "candidateMetadata": [
+    {
+      "id": 80459,
+      "title": "Iron Man 2020",
+      "issueTitle": "Iron Man 2020 (2020) #1",
+      "seriesTitle": "Iron Man 2020",
+      "apiSeriesName": "Iron Man 2020 (2020)",
+      "seriesId": 28356,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80459/iron_man_2020_2020_1",
+      "onSaleDate": "2020-01-15T00:00:00+0000"
+    },
+    {
+      "id": 80461,
+      "title": "Iron Man 2020",
+      "issueTitle": "Iron Man 2020 (2020) #2",
+      "seriesTitle": "Iron Man 2020",
+      "apiSeriesName": "Iron Man 2020 (2020)",
+      "seriesId": 28356,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80461/iron_man_2020_2020_2",
+      "onSaleDate": "2020-02-12T00:00:00+0000"
+    },
+    {
+      "id": 84348,
+      "title": "2020 Machine Man",
+      "issueTitle": "2020 Machine Man (2020) #1",
+      "seriesTitle": "2020 Machine Man",
+      "apiSeriesName": "2020 Machine Man (2020)",
+      "seriesId": 29695,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84348/2020_machine_man_2020_1",
+      "onSaleDate": "2020-02-19T00:00:00+0000"
+    },
+    {
+      "id": 84343,
+      "title": "2020 Force Works",
+      "issueTitle": "2020 Force Works (2020) #1",
+      "seriesTitle": "2020 Force Works",
+      "apiSeriesName": "2020 Force Works (2020)",
+      "seriesId": 29693,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84343/2020_force_works_2020_1",
+      "onSaleDate": "2020-02-26T00:00:00+0000"
+    },
+    {
+      "id": 84350,
+      "title": "2020 Rescue",
+      "issueTitle": "2020 Rescue (2020) #1",
+      "seriesTitle": "2020 Rescue",
+      "apiSeriesName": "2020 Rescue (2020)",
+      "seriesId": 29696,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84350/2020_rescue_2020_1",
+      "onSaleDate": "2020-03-04T00:00:00+0000"
+    },
+    {
+      "id": 80462,
+      "title": "Iron Man 2020",
+      "issueTitle": "Iron Man 2020 (2020) #3",
+      "seriesTitle": "Iron Man 2020",
+      "apiSeriesName": "Iron Man 2020 (2020)",
+      "seriesId": 28356,
+      "issueNumber": "3",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80462/iron_man_2020_2020_3",
+      "onSaleDate": "2020-03-04T00:00:00+0000"
+    },
+    {
+      "id": 84341,
+      "title": "2020 Iron Age",
+      "issueTitle": "2020 Iron Age (2020) #1",
+      "seriesTitle": "2020 Iron Age",
+      "apiSeriesName": "2020 Iron Age (2020)",
+      "seriesId": 29692,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84341/2020_iron_age_2020_1",
+      "onSaleDate": "2020-03-18T00:00:00+0000"
+    },
+    {
+      "id": 84349,
+      "title": "2020 Machine Man",
+      "issueTitle": "2020 Machine Man (2020) #2",
+      "seriesTitle": "2020 Machine Man",
+      "apiSeriesName": "2020 Machine Man (2020)",
+      "seriesId": 29695,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84349/2020_machine_man_2020_2",
+      "onSaleDate": "2020-03-18T00:00:00+0000"
+    },
+    {
+      "id": 84344,
+      "title": "2020 Force Works",
+      "issueTitle": "2020 Force Works (2020) #2",
+      "seriesTitle": "2020 Force Works",
+      "apiSeriesName": "2020 Force Works (2020)",
+      "seriesId": 29693,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84344/2020_force_works_2020_2",
+      "onSaleDate": "2020-03-25T00:00:00+0000"
+    },
+    {
+      "id": 84346,
+      "title": "2020 Ironheart",
+      "issueTitle": "2020 Ironheart (2020) #1",
+      "seriesTitle": "2020 Ironheart",
+      "apiSeriesName": "2020 Ironheart (2020)",
+      "seriesId": 29694,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84346/2020_ironheart_2020_1",
+      "onSaleDate": "2020-05-20T00:00:00+0000"
+    },
+    {
+      "id": 84351,
+      "title": "2020 Rescue",
+      "issueTitle": "2020 Rescue (2020) #2",
+      "seriesTitle": "2020 Rescue",
+      "apiSeriesName": "2020 Rescue (2020)",
+      "seriesId": 29696,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84351/2020_rescue_2020_2",
+      "onSaleDate": "2020-06-24T00:00:00+0000"
+    },
+    {
+      "id": 80463,
+      "title": "Iron Man 2020",
+      "issueTitle": "Iron Man 2020 (2020) #4",
+      "seriesTitle": "Iron Man 2020",
+      "apiSeriesName": "Iron Man 2020 (2020)",
+      "seriesId": 28356,
+      "issueNumber": "4",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80463/iron_man_2020_2020_4",
+      "onSaleDate": "2020-06-24T00:00:00+0000"
+    },
+    {
+      "id": 84345,
+      "title": "2020 Force Works",
+      "issueTitle": "2020 Force Works (2020) #3",
+      "seriesTitle": "2020 Force Works",
+      "apiSeriesName": "2020 Force Works (2020)",
+      "seriesId": 29693,
+      "issueNumber": "3",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84345/2020_force_works_2020_3",
+      "onSaleDate": "2020-08-26T00:00:00+0000"
+    },
+    {
+      "id": 84347,
+      "title": "2020 Ironheart",
+      "issueTitle": "2020 Ironheart (2020) #2",
+      "seriesTitle": "2020 Ironheart",
+      "apiSeriesName": "2020 Ironheart (2020)",
+      "seriesId": 29694,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84347/2020_ironheart_2020_2",
+      "onSaleDate": "2020-06-17T00:00:00+0000"
+    },
+    {
+      "id": 84352,
+      "title": "2020 iWolverine",
+      "issueTitle": "2020 iWolverine (2020) #1",
+      "seriesTitle": "2020 iWolverine",
+      "apiSeriesName": "2020 iWolverine (2020)",
+      "seriesId": 29697,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84352/2020_iwolverine_2020_1",
+      "onSaleDate": "2020-07-15T00:00:00+0000"
+    },
+    {
+      "id": 80464,
+      "title": "Iron Man 2020",
+      "issueTitle": "Iron Man 2020 (2020) #5",
+      "seriesTitle": "Iron Man 2020",
+      "apiSeriesName": "Iron Man 2020 (2020)",
+      "seriesId": 28356,
+      "issueNumber": "5",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80464/iron_man_2020_2020_5",
+      "onSaleDate": "2020-07-29T00:00:00+0000"
+    },
+    {
+      "id": 84353,
+      "title": "2020 iWolverine",
+      "issueTitle": "2020 iWolverine (2020) #2",
+      "seriesTitle": "2020 iWolverine",
+      "apiSeriesName": "2020 iWolverine (2020)",
+      "seriesId": 29697,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84353/2020_iwolverine_2020_2",
+      "onSaleDate": "2020-08-26T00:00:00+0000"
+    },
+    {
+      "id": 80465,
+      "title": "Iron Man 2020",
+      "issueTitle": "Iron Man 2020 (2020) #6",
+      "seriesTitle": "Iron Man 2020",
+      "apiSeriesName": "Iron Man 2020 (2020)",
+      "seriesId": 28356,
+      "issueNumber": "6",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80465/iron_man_2020_2020_6",
+      "onSaleDate": "2020-08-26T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Iron Man 2020 #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 28356,
+      "candidateIssueId": 80459,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80459"
+      ],
+      "selectedIssueId": 80459,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80459/iron_man_2020_2020_1",
+      "resolvedIssueTitle": "Iron Man 2020 (2020) #1",
+      "note": "Marvel series 28356 (Iron Man 2020 (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80459
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Iron Man 2020 #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 28356,
+      "candidateIssueId": 80461,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80461"
+      ],
+      "selectedIssueId": 80461,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80461/iron_man_2020_2020_2",
+      "resolvedIssueTitle": "Iron Man 2020 (2020) #2",
+      "note": "Marvel series 28356 (Iron Man 2020 (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80461
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "2020 Machine Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Machine Man",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29695,
+      "candidateIssueId": 84348,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84348"
+      ],
+      "selectedIssueId": 84348,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84348/2020_machine_man_2020_1",
+      "resolvedIssueTitle": "2020 Machine Man (2020) #1",
+      "note": "Marvel series 29695 (2020 Machine Man (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84348
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "2020 Force Works #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Force Works",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29693,
+      "candidateIssueId": 84343,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84343"
+      ],
+      "selectedIssueId": 84343,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84343/2020_force_works_2020_1",
+      "resolvedIssueTitle": "2020 Force Works (2020) #1",
+      "note": "Marvel series 29693 (2020 Force Works (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84343
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "2020 Rescue #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Rescue",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29696,
+      "candidateIssueId": 84350,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84350"
+      ],
+      "selectedIssueId": 84350,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84350/2020_rescue_2020_1",
+      "resolvedIssueTitle": "2020 Rescue (2020) #1",
+      "note": "Marvel series 29696 (2020 Rescue (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84350
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Iron Man 2020 #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 28356,
+      "candidateIssueId": 80462,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80462"
+      ],
+      "selectedIssueId": 80462,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80462/iron_man_2020_2020_3",
+      "resolvedIssueTitle": "Iron Man 2020 (2020) #3",
+      "note": "Marvel series 28356 (Iron Man 2020 (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80462
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "2020 Iron Age #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Iron Age",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29692,
+      "candidateIssueId": 84341,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84341"
+      ],
+      "selectedIssueId": 84341,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84341/2020_iron_age_2020_1",
+      "resolvedIssueTitle": "2020 Iron Age (2020) #1",
+      "note": "Marvel series 29692 (2020 Iron Age (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84341
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "2020 Machine Man #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Machine Man",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29695,
+      "candidateIssueId": 84349,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84349"
+      ],
+      "selectedIssueId": 84349,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84349/2020_machine_man_2020_2",
+      "resolvedIssueTitle": "2020 Machine Man (2020) #2",
+      "note": "Marvel series 29695 (2020 Machine Man (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84349
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "2020 Force Works #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Force Works",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29693,
+      "candidateIssueId": 84344,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84344"
+      ],
+      "selectedIssueId": 84344,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84344/2020_force_works_2020_2",
+      "resolvedIssueTitle": "2020 Force Works (2020) #2",
+      "note": "Marvel series 29693 (2020 Force Works (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84344
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "2020 Ironheart #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Ironheart",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29694,
+      "candidateIssueId": 84346,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84346"
+      ],
+      "selectedIssueId": 84346,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84346/2020_ironheart_2020_1",
+      "resolvedIssueTitle": "2020 Ironheart (2020) #1",
+      "note": "Marvel series 29694 (2020 Ironheart (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84346
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "2020 Rescue #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Rescue",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29696,
+      "candidateIssueId": 84351,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84351"
+      ],
+      "selectedIssueId": 84351,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84351/2020_rescue_2020_2",
+      "resolvedIssueTitle": "2020 Rescue (2020) #2",
+      "note": "Marvel series 29696 (2020 Rescue (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84351
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Iron Man 2020 #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 28356,
+      "candidateIssueId": 80463,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80463"
+      ],
+      "selectedIssueId": 80463,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80463/iron_man_2020_2020_4",
+      "resolvedIssueTitle": "Iron Man 2020 (2020) #4",
+      "note": "Marvel series 28356 (Iron Man 2020 (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80463
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "2020 Force Works #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Force Works",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 29693,
+      "candidateIssueId": 84345,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84345"
+      ],
+      "selectedIssueId": 84345,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84345/2020_force_works_2020_3",
+      "resolvedIssueTitle": "2020 Force Works (2020) #3",
+      "note": "Marvel series 29693 (2020 Force Works (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84345
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "2020 Ironheart #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Ironheart",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29694,
+      "candidateIssueId": 84347,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84347"
+      ],
+      "selectedIssueId": 84347,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84347/2020_ironheart_2020_2",
+      "resolvedIssueTitle": "2020 Ironheart (2020) #2",
+      "note": "Marvel series 29694 (2020 Ironheart (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84347
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "2020 iWolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 iWolverine",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29697,
+      "candidateIssueId": 84352,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84352"
+      ],
+      "selectedIssueId": 84352,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84352/2020_iwolverine_2020_1",
+      "resolvedIssueTitle": "2020 iWolverine (2020) #1",
+      "note": "Marvel series 29697 (2020 iWolverine (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84352
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Iron Man 2020 #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28356,
+      "candidateIssueId": 80464,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80464"
+      ],
+      "selectedIssueId": 80464,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80464/iron_man_2020_2020_5",
+      "resolvedIssueTitle": "Iron Man 2020 (2020) #5",
+      "note": "Marvel series 28356 (Iron Man 2020 (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80464
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "2020 iWolverine #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 iWolverine",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29697,
+      "candidateIssueId": 84353,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84353"
+      ],
+      "selectedIssueId": 84353,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84353/2020_iwolverine_2020_2",
+      "resolvedIssueTitle": "2020 iWolverine (2020) #2",
+      "note": "Marvel series 29697 (2020 iWolverine (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84353
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Iron Man 2020 #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28356,
+      "candidateIssueId": 80465,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80465"
+      ],
+      "selectedIssueId": 80465,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80465/iron_man_2020_2020_6",
+      "resolvedIssueTitle": "Iron Man 2020 (2020) #6",
+      "note": "Marvel series 28356 (Iron Man 2020 (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80465
+      ]
+    }
+  ],
+  "mappingDigest": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "iron-man-2020",
+    "name": "Iron Man 2020",
+    "description": "Tony Stark confronts a machine uprising led by the Arno Stark of 2020.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "iron-man-2020.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+    "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "iron_man_2020.json",
+    "characters": [
+      "Iron Man",
+      "Machine Man",
+      "Ironheart"
+    ],
+    "keywords": [
+      "Iron Man 2020",
+      "Artificial intelligence",
+      "Arno Stark"
+    ],
+    "expect": 18,
+    "timeline": 2020,
+    "coverIssueId": 80459
+  },
+  "relationshipReview": {
+    "reportDigest": "bcdef44c2a940ddea17d38ba4b203303834359ebf65e398f1ca03ef91dc89524",
+    "packetDigest": "0712ab5db6936f8a4ed370f86e790ca4861b793d2dc98ce98e8b2e25cbbd2e9c",
+    "mappingDigest": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6",
+    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "peerDigests": {
+      "age-of-x-man": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
+      "spider-geddon": "71d7c0accbab5764114f223d92959dd2e9490cd4ceaa2a4ddd617db6542d78b3"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:47:48.847Z",
+    "approvalDigest": "a90d817c31b205c8fa9def588a875844159953544419b510291d148d33ca8065"
+  }
+}

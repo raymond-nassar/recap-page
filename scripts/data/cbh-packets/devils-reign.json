@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "id": "devils-reign",
+  "inventoryId": "devils-reign",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/devils-reign-2022/",
+  "sourceSection": "Devil's Reign Comic Book Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 24 issue entries under Devil's Reign Comic Book Checklist, from Devils Reign #1 through Devil's Reign: Omega.",
+  "excludedSourceReferences": [
+    "Previously: King in Black",
+    "The Road to Devil's Reign",
+    "Collected Devil's Reign Comics",
+    "Important tie in alert",
+    "Spider-Woman #19 recommendation",
+    "Tie-in and spoiler commentary"
+  ],
+  "expectedCount": 24,
+  "proposedManifest": {
+    "id": "devils-reign",
+    "name": "Devil's Reign",
+    "description": "Wilson Fisk outlaws New York's heroes and turns the city's institutions against them.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "devils-reign.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/devils-reign-2022/",
+    "sourceSection": "Devil's Reign Comic Book Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "devils_reign.json",
+    "characters": [
+      "Daredevil",
+      "Kingpin",
+      "Spider-Man",
+      "Moon Knight",
+      "Spider-Woman",
+      "X-Men"
+    ],
+    "keywords": [
+      "Devil's Reign",
+      "Wilson Fisk",
+      "Mayor Fisk"
+    ],
+    "expect": 24,
+    "timeline": 2021,
+    "coverIssueId": 96212
+  },
+  "insertionAnchor": {
+    "beforeId": "new-ultimate-universe"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible 24-issue checklist, source identities, exclusions, one-shot normalization, and current-library comparison were reviewed against the source and catalog.",
+    "reviewedAt": "2026-08-22T17:25:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Devils Reign #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32952,
+      "candidateIssueId": 96212,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devils Reign #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 32952,
+      "candidateIssueId": 96213,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil: Woman Without Fear #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil: Woman Without Fear",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34025,
+      "candidateIssueId": 98676,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil: Woman Without Fear #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil: Woman Without Fear",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 34025,
+      "candidateIssueId": 98677,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Moon Knight #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Moon Knight",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34152,
+      "candidateIssueId": 99042,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Woman #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2020,
+      "issueNumber": "18",
+      "seriesId": 28048,
+      "candidateIssueId": 98464,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Villains for Hire #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Villains for Hire",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34155,
+      "candidateIssueId": 99047,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Villains For Hire #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Villains for Hire",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 34155,
+      "candidateIssueId": 99048,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 33917,
+      "candidateIssueId": 98329,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: X-Men #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 33917,
+      "candidateIssueId": 98330,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: X-Men #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 33917,
+      "candidateIssueId": 98331,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Superior Four #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Superior Four",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34154,
+      "candidateIssueId": 99044,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Superior Four #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Superior Four",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 34154,
+      "candidateIssueId": 99045,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Superior Four #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Superior Four",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 34154,
+      "candidateIssueId": 99046,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Winter Soldier #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Winter Soldier",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34156,
+      "candidateIssueId": 99050,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devils Reign #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 32952,
+      "candidateIssueId": 96214,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Knight #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Moon Knight",
+      "seriesYear": 2021,
+      "issueNumber": "8",
+      "seriesId": 32071,
+      "candidateIssueId": 93855,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34153,
+      "candidateIssueId": 99043,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devils Reign #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 32952,
+      "candidateIssueId": 96215,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Villains For Hire #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Villains for Hire",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 34155,
+      "candidateIssueId": 99049,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devils Reign #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 32952,
+      "candidateIssueId": 96216,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil: Woman Without Fear #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil: Woman Without Fear",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 34025,
+      "candidateIssueId": 98678,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devils Reign #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign",
+      "seriesYear": 2021,
+      "issueNumber": "6",
+      "seriesId": 32952,
+      "candidateIssueId": 98681,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Devil's Reign: Omega",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Devil's Reign: Omega",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35342,
+      "candidateIssueId": 102241,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the title resolves to the one-shot #1."
+    }
+  ],
+  "packetDigest": "74ffebd7603d8e3778e8a82b8d5a7774d34bab442f2d5690a47f5dc200cd0ecf"
+}

@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "id": "last-annihilation",
+  "inventoryId": "last-annihilation",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+  "sourceSection": "The Last Annihilation Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The nine issue entries under The Last Annihilation Comics Checklist, from Guardians of the Galaxy #15 through Guardians of the Galaxy #18.",
+  "excludedSourceReferences": [
+    "Opening background before the checklist",
+    "The note after SWORD #6",
+    "Previously: King in Black",
+    "Non-checklist image block"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "last-annihilation",
+    "name": "The Last Annihilation",
+    "description": "Dormammu's cosmic invasion draws the Guardians, S.W.O.R.D., Cable, and Wakanda into one final stand.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "last-annihilation.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+    "sourceSection": "The Last Annihilation Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "last_annihilation.json",
+    "characters": [
+      "Guardians of the Galaxy",
+      "S.W.O.R.D.",
+      "Cable",
+      "Wiccan",
+      "Hulkling",
+      "Black Panther"
+    ],
+    "keywords": [
+      "The Last Annihilation",
+      "Dormammu",
+      "Wakanda"
+    ],
+    "expect": 9,
+    "timeline": 2021,
+    "coverIssueId": 92236
+  },
+  "insertionAnchor": {
+    "beforeId": "death-of-doctor-strange"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible nine-issue checklist, source identities, exclusions, and current-library comparison were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T14:15:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "15",
+      "seriesId": 28042,
+      "candidateIssueId": 92236,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "SWORD #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 31083,
+      "candidateIssueId": 90345,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits punctuation from the exact S.W.O.R.D. series title."
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "16",
+      "seriesId": 28042,
+      "candidateIssueId": 92237,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "S.W.O.R.D. #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "7",
+      "seriesId": 31083,
+      "candidateIssueId": 94676,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "17",
+      "seriesId": 28042,
+      "candidateIssueId": 92238,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable: Reloaded #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable: Reloaded",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32868,
+      "candidateIssueId": 95781,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Last Annihilation: Wiccan and Hulkling #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32833,
+      "candidateIssueId": 95675,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source spells out and where the exact series title uses an ampersand."
+    },
+    {
+      "sourceIssueReference": "The Last Annihilation: Wakanda #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Last Annihilation: Wakanda",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32834,
+      "candidateIssueId": 95676,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "18",
+      "seriesId": 28042,
+      "candidateIssueId": 92239,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "ac08895871774ef5883efe978d1381ee4327f51525da4dbb262f5f67d9929a61"
+}

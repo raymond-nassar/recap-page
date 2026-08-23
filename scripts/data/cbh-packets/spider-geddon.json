@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "sourceRetrievedAt": "2026-08-22",
+  "excludedSourceReferences": [],
+  "insertionAnchor": {
+    "beforeId": "heroes-reborn-2021"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "The specified Comic Book Herald section boundary, printed issue order, range expansion, metadata-series normalization, and insertion point were reviewed against the live Marvel metadata catalog.",
+    "reviewedAt": "2026-08-22T21:03:49-07:00"
+  },
+  "id": "spider-geddon",
+  "inventoryId": "spider-geddon",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spidergeddon/",
+  "sourceSection": "Spider-Geddon Comics Reading Order",
+  "sourceBoundary": "The 25 issue rows under Spider-Geddon Comics Reading Order, from Edge of Spider-Geddon #1-4 through Spider-Geddon #5, with the printed opening range expanded in displayed order.",
+  "expectedCount": 25,
+  "proposedManifest": {
+    "id": "spider-geddon",
+    "name": "Spider-Geddon",
+    "description": "A multiversal Spider-Man crossover that reunites the web warriors against the Inheritors.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-geddon.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spidergeddon/",
+    "sourceSection": "Spider-Geddon Comics Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "spider_geddon.json",
+    "characters": [
+      "Spider-Man",
+      "Spider-Gwen",
+      "Miles Morales"
+    ],
+    "keywords": [
+      "Spider-Geddon",
+      "Spider-Verse",
+      "Inheritors"
+    ],
+    "expect": 25,
+    "timeline": 2018,
+    "coverIssueId": 71314
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Edge of Spider-Geddon #1",
+      "sourceRangeReference": "Edge of Spider-Geddon #1-4",
+      "normalizedSeriesTitle": "Edge of Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25998,
+      "candidateIssueId": 71314,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Edge of Spider-Geddon #2",
+      "sourceRangeReference": "Edge of Spider-Geddon #1-4",
+      "normalizedSeriesTitle": "Edge of Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 25998,
+      "candidateIssueId": 71315,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Edge of Spider-Geddon #3",
+      "sourceRangeReference": "Edge of Spider-Geddon #1-4",
+      "normalizedSeriesTitle": "Edge of Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 25998,
+      "candidateIssueId": 71316,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Edge of Spider-Geddon #4",
+      "sourceRangeReference": "Edge of Spider-Geddon #1-4",
+      "normalizedSeriesTitle": "Edge of Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 25998,
+      "candidateIssueId": 71317,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Geddon #0",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "0",
+      "seriesId": 26001,
+      "candidateIssueId": 71335,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Superior Octopus #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "SUPERIOR OCTOPUS 1",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26004,
+      "candidateIssueId": 71354,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Geddon #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26001,
+      "candidateIssueId": 71336,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Geddon #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 26001,
+      "candidateIssueId": 71337,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Peter Parker: The Spectacular Spider-Man #311",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker: The Spectacular Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "311",
+      "seriesId": 23101,
+      "candidateIssueId": 71142,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Peter Parker: The Spectacular Spider-Man #312",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker: The Spectacular Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "312",
+      "seriesId": 23101,
+      "candidateIssueId": 71143,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Gwen: Ghost Spider #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26003,
+      "candidateIssueId": 71342,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider Girls #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Girls",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26177,
+      "candidateIssueId": 71847,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Force #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Force",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26087,
+      "candidateIssueId": 71578,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Vault of Spiders #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vault of Spiders",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26176,
+      "candidateIssueId": 71341,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Geddon #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 26001,
+      "candidateIssueId": 71338,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Vault of Spiders #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vault of Spiders",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 26176,
+      "candidateIssueId": 71846,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Force #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Force",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 26087,
+      "candidateIssueId": 71580,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Geddon #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 26001,
+      "candidateIssueId": 71339,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Gwen: Ghost Spider #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 26003,
+      "candidateIssueId": 71343,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Girls #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Girls",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 26177,
+      "candidateIssueId": 71849,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Force #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Force",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 26087,
+      "candidateIssueId": 71581,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Gwen: Ghost Spider #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 26003,
+      "candidateIssueId": 71344,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Girls #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Girls",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 26177,
+      "candidateIssueId": 71850,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Peter Parker: The Spectacular Spider-Man #313",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker: The Spectacular Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "313",
+      "seriesId": 23101,
+      "candidateIssueId": 71144,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Geddon #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 26001,
+      "candidateIssueId": 71340,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "26378833c6cefcf5fe3648c09fd68d9fb544a94b4a51c880ab4aad35e4014813"
+}

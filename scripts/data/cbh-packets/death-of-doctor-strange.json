@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "death-of-doctor-strange",
+  "inventoryId": "death-of-doctor-strange",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+  "sourceSection": "The Death of Doctor Strange Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 12 issue entries under The Death of Doctor Strange Checklist, from Death of Doctor Strange #1 through Death of Doctor Strange #5.",
+  "excludedSourceReferences": [
+    "The Collected Death of Doctor Strange",
+    "Introductory background commentary above the checklist",
+    "Featured image",
+    "Navigation and adjacent links"
+  ],
+  "expectedCount": 12,
+  "proposedManifest": {
+    "id": "death-of-doctor-strange",
+    "name": "The Death of Doctor Strange",
+    "description": "Doctor Strange dies, and the fallout reaches his allies across the Marvel Universe.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "death-of-doctor-strange.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+    "sourceSection": "The Death of Doctor Strange Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "death_of_doctor_strange.json",
+    "characters": [
+      "Doctor Strange",
+      "Avengers",
+      "Strange Academy",
+      "Spider-Man",
+      "Blade",
+      "X-Men"
+    ],
+    "keywords": [
+      "Death of Doctor Strange",
+      "Sorcerer Supreme",
+      "Black Knight"
+    ],
+    "expect": 12,
+    "timeline": 2021,
+    "coverIssueId": 93315
+  },
+  "insertionAnchor": {
+    "beforeId": "x-men-inferno"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible 12-issue checklist, source identities, exclusions, normalization, and current-library comparison were reviewed against the source and catalog.",
+    "reviewedAt": "2026-08-22T17:20:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Death of Doctor Strange #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31898,
+      "candidateIssueId": 93315,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 31898,
+      "candidateIssueId": 93316,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange: Avengers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death Of Doctor Strange: Avengers",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32871,
+      "candidateIssueId": 95900,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Strange Academy Presents: The Death of Doctor Strange #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Strange Academy Presents: The Death Of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32872,
+      "candidateIssueId": 95901,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 31898,
+      "candidateIssueId": 93317,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange: Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: Spider-Man",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32873,
+      "candidateIssueId": 95902,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange: White Fox #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: White Fox",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32874,
+      "candidateIssueId": 95903,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange: Blade #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: Blade",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32875,
+      "candidateIssueId": 95904,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange: X-Men/Black Knight #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: X-Men/Black Knight",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 32876,
+      "candidateIssueId": 95905,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 31898,
+      "candidateIssueId": 93318,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange; Bloodstone #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: Bloodstone",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34026,
+      "candidateIssueId": 98679,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source semicolon is normalized to the exact series title's colon."
+    },
+    {
+      "sourceIssueReference": "Death of Doctor Strange #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 31898,
+      "candidateIssueId": 93319,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6"
+}

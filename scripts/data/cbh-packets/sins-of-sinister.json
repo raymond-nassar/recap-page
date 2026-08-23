@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "id": "sins-of-sinister",
+  "inventoryId": "sins-of-sinister",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+  "sourceSection": "Sins of Sinister Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 13 issue entries under Sins of Sinister Comics Checklist, from Immortal X-Men #9 through Sins of Sinister: Dominion #1.",
+  "excludedSourceReferences": [
+    "Previously: Judgment Day",
+    "The Road to Sins of Sinister",
+    "Sins of Sinister",
+    "Next: Fall of X"
+  ],
+  "expectedCount": 13,
+  "proposedManifest": {
+    "id": "sins-of-sinister",
+    "name": "Sins of Sinister",
+    "description": "Mister Sinister remakes mutant history across a century of impossible futures.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "sins-of-sinister.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+    "sourceSection": "Sins of Sinister Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "sins_of_sinister.json",
+    "characters": [
+      "X-Men",
+      "Mister Sinister",
+      "Storm",
+      "Nightcrawler"
+    ],
+    "keywords": [
+      "Sins of Sinister",
+      "Krakoa",
+      "Mister Sinister"
+    ],
+    "expect": 13,
+    "timeline": 2022,
+    "coverIssueId": 102461
+  },
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "The source page's displayed checklist was reviewed against its section boundary: it contains these 13 issue references in order, while the Road to Sins of Sinister and the collected-edition link are outside the checklist.",
+    "reviewedAt": "2026-08-23T04:22:09Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Immortal X-Men #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "9",
+      "seriesId": 31375,
+      "candidateIssueId": 91740,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Immortal X-Men #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 31375,
+      "candidateIssueId": 91741,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Sins of Sinister #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "SINS OF SINISTER 1",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 35395,
+      "candidateIssueId": 102461,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel includes the one-shot issue number in the series title."
+    },
+    {
+      "sourceIssueReference": "Immoral X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immoral X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36787,
+      "candidateIssueId": 106552,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Storm and the Brotherhood of Mutants #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Storm & the Brotherhood of Mutants",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36594,
+      "candidateIssueId": 105870,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Marvel uses an ampersand where the source spells out and."
+    },
+    {
+      "sourceIssueReference": "Nightcrawlers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightcrawlers",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36547,
+      "candidateIssueId": 105598,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nightcrawlers #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightcrawlers",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 36547,
+      "candidateIssueId": 105599,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Storm and the Brotherhood of Mutants #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Storm & the Brotherhood of Mutants",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 36594,
+      "candidateIssueId": 105871,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Marvel uses an ampersand where the source spells out and."
+    },
+    {
+      "sourceIssueReference": "Immoral X-Men #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immoral X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 36787,
+      "candidateIssueId": 106553,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Immoral X-Men #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immoral X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 36787,
+      "candidateIssueId": 106554,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Storm and the Brotherhood of Mutants #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Storm & the Brotherhood of Mutants",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 36594,
+      "candidateIssueId": 105872,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Marvel uses an ampersand where the source spells out and."
+    },
+    {
+      "sourceIssueReference": "Nightcrawlers #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightcrawlers",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 36547,
+      "candidateIssueId": 105600,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Sins of Sinister: Dominion #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "SINS OF SINISTER DOMINION 1",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36548,
+      "candidateIssueId": 105603,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel includes the one-shot issue number in the series title and omits the source colon."
+    }
+  ],
+  "packetDigest": "5f2a96f6d3e55882fe8d04ec81cfb1f9a8d3c56ba7b21fc69a9d7c003949349e"
+}

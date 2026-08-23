@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "id": "infinite-destinies",
+  "inventoryId": "infinite-destinies",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/infinite-destinies/",
+  "sourceSection": "Infinite Destines Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The ten issue entries under Infinite Destines Comics Checklist, from Iron Man Annual (2021) #1 through Black Cat #9.",
+  "excludedSourceReferences": [
+    "Road to Infinite Destinies",
+    "Collected Infinite Destinies Comics",
+    "Previously: Heroes Reborn"
+  ],
+  "expectedCount": 10,
+  "proposedManifest": {
+    "id": "infinite-destinies",
+    "name": "Infinite Destinies",
+    "description": "The Infinity Stones pass through eight annuals and two Black Cat chapters.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "infinite-destinies.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/infinite-destinies/",
+    "sourceSection": "Infinite Destines Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "infinite_destinies.json",
+    "characters": [
+      "Iron Man",
+      "Captain America",
+      "Black Cat",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Infinite Destinies",
+      "Infinity Stones",
+      "Annuals"
+    ],
+    "expect": 10,
+    "timeline": 2021,
+    "coverIssueId": 90339
+  },
+  "insertionAnchor": {
+    "beforeId": "death-of-doctor-strange"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible checklist, its ten issue boundary, exclusions, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T14:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Iron Man Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31082,
+      "candidateIssueId": 90339,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain America Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31076,
+      "candidateIssueId": 90333,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Black Cat Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Black Cat Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32384,
+      "candidateIssueId": 95100,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man Annual (2021) #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 31086,
+      "candidateIssueId": 90358,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31105,
+      "candidateIssueId": 90388,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Black Cat #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Black Cat",
+      "seriesYear": 2020,
+      "issueNumber": "8",
+      "seriesId": 31322,
+      "candidateIssueId": 91374,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Miles Morales: Spider-Man Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31103,
+      "candidateIssueId": 90386,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians Of The Galaxy Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31090,
+      "candidateIssueId": 90367,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers Annual (2021) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers Annual",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31102,
+      "candidateIssueId": 90385,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Black Cat #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Black Cat",
+      "seriesYear": 2020,
+      "issueNumber": "9",
+      "seriesId": 31322,
+      "candidateIssueId": 91375,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "5600c0c2e1a0f0c1802933ba59684fff176620eacb11efde634c4b9dc7968d32"
+}

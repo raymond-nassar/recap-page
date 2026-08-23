@@ -30,7 +30,9 @@ const productCopy = [
   main.replace(/^\s*\/\/.*$/gm, ''),
   read('src/js/lib/catalog.js').replace(/^\s*\/\/.*$/gm, ''),
   library.replace(/^\s*\/\/.*$/gm, ''),
-  ...filesUnder('src/data', '.json').map(read),
+  ...filesUnder('src/data', '.json').map((path) => (
+    JSON.stringify(JSON.parse(read(path)), (key, value) => key === 'sourceSection' ? undefined : value)
+  )),
   ...filesUnder(join('src', 'data', 'orders'), '.md').map(read),
 ].join('\n');
 

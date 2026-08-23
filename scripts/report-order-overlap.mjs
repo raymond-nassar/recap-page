@@ -2,8 +2,15 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildComparisonReport, issueIdsFromValue } from './lib/cbh-overlap.mjs';
+import {
+  libraryDigestFor,
+  reportDigestFor,
+  validateMappingDigest,
+} from './lib/cbh-inventory.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const manifestPath = path.join(rootDir, 'src', 'data', 'curated-lists.json');
+const dataDir = path.join(rootDir, 'src', 'data');
 
 function normalizeIssueId(value) {
   if (value == null) return null;
@@ -63,10 +70,50 @@ export async function loadManifest(manifestPath) {
   return lists;
 }
 
-export async function buildReportForMapping(mappingPath, peerPaths = []) {
+export async function loadLibrarySnapshot({
+  manifestFile = manifestPath,
+  payloadDir = dataDir,
+} = {}) {
+  const manifest = JSON.parse(await readFile(manifestFile, 'utf8'));
+  const lists = Array.isArray(manifest.lists) ? manifest.lists : [];
+  const orders = await Promise.all(lists.map(async (item) => {
+    const filePath = path.join(payloadDir, item.out || `${item.id}.json`);
+    let payload;
+    try {
+      payload = JSON.parse(await readFile(filePath, 'utf8'));
+    } catch (error) {
+      throw new Error(`Missing generated payload for ${item.id}: ${error.message}`, { cause: error });
+    }
+    const issueIds = issueIdsFromValue(payload);
+    return { orderId: item.id, issueIds };
+  }));
+  const orderIssueIds = orders.map((order) => ({
+    id: String(order.orderId),
+    issueIds: order.issueIds.map(String),
+  }));
+  return {
+    manifest,
+    lists,
+    orders,
+    orderIssueIds,
+    libraryDigest: libraryDigestFor(manifest, orderIssueIds),
+  };
+}
+
+export async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) {
   const mapping = JSON.parse(await readFile(mappingPath, 'utf8'));
   const rows = Array.isArray(mapping.rows) ? mapping.rows : [];
   validateMappingRows(rows, 'candidate mapping');
+  const usesFreshnessContract = mapping.packetDigest != null || mapping.mappingDigest != null;
+  if (usesFreshnessContract) {
+    if (typeof mapping.id !== 'string' || !mapping.id.trim()) {
+      throw new Error('Fresh candidate mapping must name an id');
+    }
+    if (mapping.packetDigest == null || mapping.mappingDigest == null) {
+      throw new Error(`${mapping.id ?? 'Candidate mapping'} has incomplete packet or mapping digest evidence`);
+    }
+    validateMappingDigest(mapping);
+  }
 
   const candidateIds = rows
     .map((row) => normalizeIssueId(row.selectedIssueId ?? row.issueId ?? null))
@@ -80,7 +127,7 @@ export async function buildReportForMapping(mappingPath, peerPaths = []) {
     throw new Error('Duplicate candidate issue ids in the mapping');
   }
 
-  const peers = await Promise.all(peerPaths.map(async (peerPath) => {
+  const peerMappings = await Promise.all(peerPaths.map(async (peerPath) => {
     const peer = JSON.parse(await readFile(peerPath, 'utf8'));
     const peerRows = Array.isArray(peer.rows) ? peer.rows : [];
     validateMappingRows(peerRows, `peer mapping ${path.basename(peerPath)}`);
@@ -93,27 +140,41 @@ export async function buildReportForMapping(mappingPath, peerPaths = []) {
     if (new Set(ids).size !== ids.length) {
       throw new Error(`Duplicate comparison ids in peer mapping ${path.basename(peerPath)}`);
     }
-    return { orderId: peer.id ?? path.basename(peerPath, path.extname(peerPath)), issueIds: ids };
+    if (usesFreshnessContract) validateMappingDigest(peer);
+    if (usesFreshnessContract && (typeof peer.id !== 'string' || !peer.id.trim())) {
+      throw new Error(`Peer mapping ${path.basename(peerPath)} must name an id`);
+    }
+    return {
+      mapping: peer,
+      order: {
+        orderId: peer.id ?? path.basename(peerPath, path.extname(peerPath)),
+        issueIds: ids,
+      },
+    };
   }));
 
+  const peers = peerMappings.map((peer) => peer.order);
   const candidateOrderId = String(mapping.id ?? path.basename(mappingPath, path.extname(mappingPath)));
   const peerOrderIds = new Set(peers.map((peer) => String(peer.orderId)));
-  const manifest = await loadManifest(path.join(rootDir, 'src', 'data', 'curated-lists.json'));
-  const orders = await Promise.all(manifest
-    .filter((item) => item.id !== candidateOrderId && !peerOrderIds.has(String(item.id)))
-    .map(async (item) => {
-      const filePath = path.join(rootDir, 'src', 'data', item.out || `${item.id}.json`);
-      let payload;
-      try {
-        payload = JSON.parse(await readFile(filePath, 'utf8'));
-      } catch (error) {
-        throw new Error(`Missing generated payload for ${item.id}: ${error.message}`, { cause: error });
-      }
-      const issueIds = issueIdsFromValue(payload);
-      return { orderId: item.id, issueIds };
-    }));
+  const library = await loadLibrarySnapshot(options);
+  const orders = library.orders.filter((item) => (
+    item.orderId !== candidateOrderId && !peerOrderIds.has(String(item.orderId))
+  ));
+  const factualReport = buildComparisonReport({ candidateIds, orders, peerOrders: peers });
+  if (!usesFreshnessContract) return factualReport;
 
-  return buildComparisonReport({ candidateIds, orders, peerOrders: peers });
+  const peerDigests = Object.fromEntries(peerMappings
+    .map(({ mapping: peer }) => [String(peer.id), peer.mappingDigest])
+    .sort(([left], [right]) => left.localeCompare(right)));
+  const report = {
+    candidateId: candidateOrderId,
+    packetDigest: mapping.packetDigest,
+    mappingDigest: mapping.mappingDigest,
+    libraryDigest: library.libraryDigest,
+    peerDigests,
+    ...factualReport,
+  };
+  return { ...report, reportDigest: reportDigestFor(report) };
 }
 
 async function main() {

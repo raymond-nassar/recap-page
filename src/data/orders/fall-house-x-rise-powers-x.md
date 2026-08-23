@@ -1,0 +1,41 @@
+# Fall of the House of X & Rise of the Powers of X: Issue-by-Issue Reading Checklist
+
+Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen fall-house-x-rise-powers-x issue mapping.
+The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
+No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata after the packet resolution and overlap gates passed.
+See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
+
+- [ ] [Fall of the House of X (2024) #1](https://www.marvel.com/comics/issue/111661/fall_of_the_house_of_x_2024_1)
+- [ ] [Rise of the Powers of X (2024) #1](https://www.marvel.com/comics/issue/111682/rise_of_the_powers_of_x_2024_1)
+- [ ] [Dead X-Men (2024) #1](https://www.marvel.com/comics/issue/112856/dead_x-men_2024_1)
+- [ ] [X-Men (2021) #30](https://www.marvel.com/comics/issue/112184/x-men_2021_30)
+- [ ] [Invincible Iron Man (2022) #14](https://www.marvel.com/comics/issue/112141/invincible_iron_man_2022_14)
+- [ ] [Invincible Iron Man (2022) #15](https://www.marvel.com/comics/issue/112142/invincible_iron_man_2022_15)
+- [ ] [Resurrection of Magneto (2024) #1](https://www.marvel.com/comics/issue/112164/resurrection_of_magneto_2024_1)
+- [ ] [Resurrection of Magneto (2024) #2](https://www.marvel.com/comics/issue/112165/resurrection_of_magneto_2024_2)
+- [ ] [Resurrection of Magneto (2024) #3](https://www.marvel.com/comics/issue/112166/resurrection_of_magneto_2024_3)
+- [ ] [X-Men (2021) #31](https://www.marvel.com/comics/issue/112185/x-men_2021_31)
+- [ ] [Fall of the House of X (2024) #2](https://www.marvel.com/comics/issue/111662/fall_of_the_house_of_x_2024_2)
+- [ ] [Rise of the Powers of X (2024) #2](https://www.marvel.com/comics/issue/111683/rise_of_the_powers_of_x_2024_2)
+- [ ] [X-Men: Forever (2024) #1](https://www.marvel.com/comics/issue/113490/x-men_forever_2024_1)
+- [ ] [Dead X-Men (2024) #2](https://www.marvel.com/comics/issue/112858/dead_x-men_2024_2)
+- [ ] [Invincible Iron Man (2022) #16](https://www.marvel.com/comics/issue/112143/invincible_iron_man_2022_16)
+- [ ] [Invincible Iron Man (2022) #17](https://www.marvel.com/comics/issue/112144/invincible_iron_man_2022_17)
+- [ ] [Avengers (2023) #12](https://www.marvel.com/comics/issue/101524/avengers_2023_12)
+- [ ] [Dead X-Men (2024) #3](https://www.marvel.com/comics/issue/112859/dead_x-men_2024_3)
+- [ ] [Dead X-Men (2024) #4](https://www.marvel.com/comics/issue/112860/dead_x-men_2024_4)
+- [ ] [X-Men (2021) #32](https://www.marvel.com/comics/issue/112186/x-men_2021_32)
+- [ ] [Fall of the House of X (2024) #3](https://www.marvel.com/comics/issue/111663/fall_of_the_house_of_x_2024_3)
+- [ ] [Rise of the Powers of X (2024) #3](https://www.marvel.com/comics/issue/111684/rise_of_the_powers_of_x_2024_3)
+- [ ] [X-Men: Forever (2024) #2](https://www.marvel.com/comics/issue/113491/x-men_forever_2024_2)
+- [ ] [X-Men (2021) #33](https://www.marvel.com/comics/issue/112187/x-men_2021_33)
+- [ ] [Resurrection of Magneto (2024) #4](https://www.marvel.com/comics/issue/112167/resurrection_of_magneto_2024_4)
+- [ ] [Fall of the House of X (2024) #4](https://www.marvel.com/comics/issue/111664/fall_of_the_house_of_x_2024_4)
+- [ ] [X-Men (2021) #34](https://www.marvel.com/comics/issue/112188/x-men_2021_34)
+- [ ] [Rise of the Powers of X (2024) #4](https://www.marvel.com/comics/issue/111685/rise_of_the_powers_of_x_2024_4)
+- [ ] [X-Men: Forever (2024) #3](https://www.marvel.com/comics/issue/113492/x-men_forever_2024_3)
+- [ ] [X-Men: Forever (2024) #4](https://www.marvel.com/comics/issue/113493/x-men_forever_2024_4)
+- [ ] [Invincible Iron Man (2022) #18](https://www.marvel.com/comics/issue/112145/invincible_iron_man_2022_18)
+- [ ] [Fall of the House of X (2024) #5](https://www.marvel.com/comics/issue/111665/fall_of_the_house_of_x_2024_5)
+- [ ] [Rise of the Powers of X (2024) #5](https://www.marvel.com/comics/issue/111686/rise_of_the_powers_of_x_2024_5)
+- [ ] [X-Men (2021) #35](https://www.marvel.com/comics/issue/112189/x-men_2021_35)

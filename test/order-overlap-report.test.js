@@ -1,10 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { buildComparisonReport, compareIssueSets, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
+import {
+  mappingDigestFor,
+  validateReportDigest,
+} from '../scripts/lib/cbh-inventory.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -73,12 +77,15 @@ test('generated payload roots do not overwrite real item issue ids', () => {
   assert.deepEqual(report.comparisons[0].sharedIds, []);
 });
 
-test('buildComparisonReport rejects duplicate selected issue sequences across candidate and peer orders', () => {
-  assert.throws(() => buildComparisonReport({
+test('buildComparisonReport classifies exact sequences instead of rejecting the factual report', () => {
+  const report = buildComparisonReport({
     candidateIds: ['10', '11'],
     orders: [{ orderId: 'existing', issueIds: ['10', '11'] }],
     peerOrders: [{ orderId: 'peer', issueIds: ['10', '11'] }],
-  }), /Duplicate selected issue sequence/i);
+  });
+
+  assert.equal(report.comparisonCount, 2);
+  assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'exact'));
 });
 
 test('buildReportForMapping rejects unresolved mappings before writing a report', async () => {
@@ -119,11 +126,78 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
     path.join(mappingsDir, 'secret-war.json'),
     [path.join(mappingsDir, 'spider-man-the-other.json')],
   );
+  const manifest = JSON.parse(readFileSync(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, 65);
-  assert.equal(new Set(comparedIds).size, 65);
+  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+  assert.equal(new Set(comparedIds).size, manifest.lists.length - 1);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
+});
+
+test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {
+  const tempDir = mkdtempSync(path.join(os.tmpdir(), 'cbh-overlap-digests-'));
+  const payloadDir = path.join(tempDir, 'payloads');
+  mkdirSync(payloadDir);
+  const manifestFile = path.join(tempDir, 'manifest.json');
+  const mappingPath = path.join(tempDir, 'candidate.json');
+  const peerPath = path.join(tempDir, 'peer.json');
+  writeFileSync(manifestFile, JSON.stringify({
+    lists: [{ id: 'existing', out: 'existing.json' }],
+  }), 'utf8');
+  writeFileSync(path.join(payloadDir, 'existing.json'), JSON.stringify({
+    items: [{ issueId: 90 }, { issueId: 91 }],
+  }), 'utf8');
+
+  const mapping = {
+    id: 'candidate',
+    inventoryId: 'candidate',
+    packetDigest: 'a'.repeat(64),
+    sourceUrl: 'https://example.test/candidate',
+    sourceRetrievedAt: '2026-08-22',
+    sourceRetrievalStatus: 'retrieved',
+    approvedSourceCount: 2,
+    excludedSourceReferences: [],
+    proposedManifest: { id: 'candidate' },
+    candidateMetadata: [],
+    rows: [
+      { selectedIssueId: 10, resolutionStatus: 'exact' },
+      { selectedIssueId: 11, resolutionStatus: 'exact' },
+    ],
+  };
+  mapping.mappingDigest = mappingDigestFor(mapping);
+  const peer = {
+    ...mapping,
+    id: 'peer',
+    inventoryId: 'peer',
+    packetDigest: 'b'.repeat(64),
+    proposedManifest: { id: 'peer' },
+    rows: [
+      { selectedIssueId: 11, resolutionStatus: 'exact' },
+      { selectedIssueId: 12, resolutionStatus: 'exact' },
+    ],
+  };
+  peer.mappingDigest = mappingDigestFor(peer);
+  writeFileSync(mappingPath, JSON.stringify(mapping), 'utf8');
+  writeFileSync(peerPath, JSON.stringify(peer), 'utf8');
+
+  const report = await buildReportForMapping(mappingPath, [peerPath], {
+    manifestFile,
+    payloadDir,
+  });
+  assert.equal(report.candidateId, 'candidate');
+  assert.equal(report.comparisonCount, 2);
+  assert.deepEqual(report.comparisons.map((entry) => entry.orderId), ['existing', 'peer']);
+  assert.deepEqual(report.peerDigests, { peer: peer.mappingDigest });
+  assert.doesNotThrow(() => validateReportDigest(report));
+
+  writeFileSync(mappingPath, JSON.stringify({
+    ...mapping,
+    rows: [{ selectedIssueId: 10, resolutionStatus: 'exact' }],
+  }), 'utf8');
+  await assert.rejects(
+    () => buildReportForMapping(mappingPath, [peerPath], { manifestFile, payloadDir }),
+    /mapping digest is stale/i,
+  );
 });

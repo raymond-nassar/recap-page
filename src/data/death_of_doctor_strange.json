@@ -1,0 +1,417 @@
+{
+  "id": "death-of-doctor-strange",
+  "name": "The Death of Doctor Strange",
+  "description": "Doctor Strange dies, and the fallout reaches his allies across the Marvel Universe.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+  "sourceSection": "The Death of Doctor Strange Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T17:20:43.006Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 93315,
+      "title": "Death of Doctor Strange (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93315/death_of_doctor_strange_2021_1",
+      "seriesId": 31898,
+      "seriesName": "Death of Doctor Strange (2021 - 2022)",
+      "onSale": "2021-09-22T00:00:00+0000",
+      "mu": "2021-12-27T00:00:00+0000",
+      "digitalId": 57654,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/6142604d8a947",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93316,
+      "title": "Death of Doctor Strange (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/93316/death_of_doctor_strange_2021_2",
+      "seriesId": 31898,
+      "seriesName": "Death of Doctor Strange (2021 - 2022)",
+      "onSale": "2021-10-20T00:00:00+0000",
+      "mu": "2022-01-24T00:00:00+0000",
+      "digitalId": 57778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/6169ef434f2b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95900,
+      "title": "Death Of Doctor Strange: Avengers (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95900/death_of_doctor_strange_avengers_2021_1",
+      "seriesId": 32871,
+      "seriesName": "Death Of Doctor Strange: Avengers (2021)",
+      "onSale": "2021-11-03T00:00:00+0000",
+      "mu": "2022-02-07T00:00:00+0000",
+      "digitalId": 57779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/6169eeeb0aecd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ryan Bodenheim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Skroce",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Paknadel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95901,
+      "title": "Strange Academy Presents: The Death Of Doctor Strange (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95901/strange_academy_presents_the_death_of_doctor_strange_2021_1",
+      "seriesId": 32872,
+      "seriesName": "Strange Academy Presents: The Death Of Doctor Strange (2021)",
+      "onSale": "2021-11-03T00:00:00+0000",
+      "mu": "2022-02-07T00:00:00+0000",
+      "digitalId": 57812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/6169eedba168d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "C.F. Villa",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93317,
+      "title": "Death of Doctor Strange (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/93317/death_of_doctor_strange_2021_3",
+      "seriesId": 31898,
+      "seriesName": "Death of Doctor Strange (2021 - 2022)",
+      "onSale": "2021-11-24T00:00:00+0000",
+      "mu": "2022-02-28T00:00:00+0000",
+      "digitalId": 57895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/619e63954bda3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95902,
+      "title": "Death of Doctor Strange: Spider-Man (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95902/death_of_doctor_strange_spider-man_2021_1",
+      "seriesId": 32873,
+      "seriesName": "Death of Doctor Strange: Spider-Man (2021)",
+      "onSale": "2021-12-01T00:00:00+0000",
+      "mu": "2022-03-07T00:00:00+0000",
+      "digitalId": 57896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/619e6384a672e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95903,
+      "title": "Death of Doctor Strange: White Fox (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95903/death_of_doctor_strange_white_fox_2021_1",
+      "seriesId": 32874,
+      "seriesName": "Death of Doctor Strange: White Fox (2021)",
+      "onSale": "2021-12-01T00:00:00+0000",
+      "mu": "2022-03-07T00:00:00+0000",
+      "digitalId": 57897,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/619e632ca944e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andie Tong",
+          "role": "penciler"
+        },
+        {
+          "name": "R1c0",
+          "role": "penciler"
+        },
+        {
+          "name": "Alyssa Wong",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95904,
+      "title": "Death of Doctor Strange: Blade (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95904/death_of_doctor_strange_blade_2021_1",
+      "seriesId": 32875,
+      "seriesName": "Death of Doctor Strange: Blade (2021)",
+      "onSale": "2021-12-08T00:00:00+0000",
+      "mu": "2022-03-14T00:00:00+0000",
+      "digitalId": 58168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/618ea50c81257",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "B BossLogic",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95905,
+      "title": "Death of Doctor Strange: X-Men/Black Knight (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95905/death_of_doctor_strange_x-menblack_knight_2022_1",
+      "seriesId": 32876,
+      "seriesName": "Death of Doctor Strange: X-Men/Black Knight (2022)",
+      "onSale": "2022-01-19T00:00:00+0000",
+      "mu": "2022-04-25T00:00:00+0000",
+      "digitalId": 58169,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/61cf403ab5e26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93318,
+      "title": "Death of Doctor Strange (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/93318/death_of_doctor_strange_2021_4",
+      "seriesId": 31898,
+      "seriesName": "Death of Doctor Strange (2021 - 2022)",
+      "onSale": "2021-12-29T00:00:00+0000",
+      "mu": "2022-04-04T00:00:00+0000",
+      "digitalId": 58167,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/61d4c4fa1faf5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98679,
+      "title": "Death of Doctor Strange: Bloodstone (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98679/death_of_doctor_strange_bloodstone_2022_1",
+      "seriesId": 34026,
+      "seriesName": "Death of Doctor Strange: Bloodstone (2022)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 58512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/61cf409020d4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93319,
+      "title": "Death of Doctor Strange (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/93319/death_of_doctor_strange_2021_5",
+      "seriesId": 31898,
+      "seriesName": "Death of Doctor Strange (2021 - 2022)",
+      "onSale": "2022-01-26T00:00:00+0000",
+      "mu": "2022-05-02T00:00:00+0000",
+      "digitalId": 58511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/61cf40567ca00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

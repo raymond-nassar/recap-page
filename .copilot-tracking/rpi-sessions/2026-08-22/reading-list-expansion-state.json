@@ -1,0 +1,203 @@
+{
+  "task_id": "MRT-002",
+  "task_slug": "reading-list-expansion",
+  "parent_task": null,
+  "mode": "automatic",
+  "active_phase": "Follow-up",
+  "status": "completed",
+  "session_status": "running",
+  "artifact_paths": {
+    "research": ".copilot-tracking/research/2026-08-22/one-world-under-doom-expansion-research.md",
+    "plan": ".copilot-tracking/plans/2026-08-22/reading-list-expansion-plan.md",
+    "details": ".copilot-tracking/details/2026-08-22/reading-list-expansion-phase-details.md",
+    "critique": ".copilot-tracking/reviews/plans/2026-08-22/reading-list-expansion-plan-critique.md",
+    "changes": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md",
+    "review": ".copilot-tracking/reviews/logs/2026-08-22/reading-list-expansion-review.md"
+  },
+  "confirmed_decisions": [
+    {
+      "decision": "Use the current app catalog as the mandatory duplication baseline before creating implementation chunks.",
+      "status": "confirmed",
+      "evidence": "User direction on 2026-08-22"
+    },
+    {
+      "decision": "Research disposition is executed because the current catalog, source hierarchy, and worker chunk contract require fresh evidence.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md"
+    },
+    {
+      "decision": "Research completed with Planning Readiness Ready. Use one frozen list packet per lower-cost worker and two or three passing lists per integration chunk.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md"
+    },
+    {
+      "decision": "The current-library gate rejects exact duplicates and unapproved subsets, reports partial overlap for explicit adjudication, and never lets a lower-cost worker choose the disposition.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md"
+    },
+    {
+      "decision": "Final-candidate critique execution was Complete with verdict Revise and eight findings: two High and six Medium.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/reviews/plans/2026-08-22/reading-list-expansion-plan-critique.md"
+    },
+    {
+      "decision": "PC-001 through PC-008 were resolved by direct planner corrections without a second critique or user decision.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/plans/2026-08-22/reading-list-expansion-plan.md#critique-disposition"
+    },
+    {
+      "decision": "Planning is implementation-ready. P01 owns the generic packet and current-library gate; one exact mapping task is dispatched per candidate; P03 through P11 require one fully integrated and validated P02 pilot list.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/details/2026-08-22/reading-list-expansion-phase-details.md"
+    },
+    {
+      "decision": "Run the complete approved plan in automatic mode through implementation, review, pull-request creation, and merge.",
+      "status": "confirmed",
+      "evidence": "User direction on 2026-08-22"
+    },
+    {
+      "decision": "P01 completed the generic packet, preparation, relationship, authoring, and stale-evidence workflow with nine failure-proven semantic cases and all repository gates passing.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#generic-candidate-workflow"
+    },
+    {
+      "decision": "P02 completed both pilot lists: 19 exact rows, 134 zero-overlap comparisons, clean vendoring, and browser-verified catalog and sequence behavior.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#pilot-delivery-chunk"
+    },
+    {
+      "decision": "P09 blocked Secret Empire because its page interleaves three defensible source boundaries; downstream mapping and relationship tasks are not applicable.",
+      "status": "confirmed",
+      "evidence": "scripts/data/cbh-modern-inventory.json"
+    },
+    {
+      "decision": "P10 preserved Hunt for Wolverine's full 24-row source sequence and approved its one-issue partial overlap as distinct source-authored context.",
+      "status": "confirmed",
+      "evidence": "scripts/data/cbh-overlaps/hunt-for-wolverine.json"
+    },
+    {
+      "decision": "P11 shipped all 34 exact Fall and Rise of X issues within the metadata horizon with no overlap.",
+      "status": "confirmed",
+      "evidence": "scripts/data/cbh-overlaps/fall-house-x-rise-powers-x.json"
+    },
+    {
+      "decision": "P05 shipped X-Men: X of Swords with 25 exact issues and Heroes Reborn with 18 exact issues; all current-library and peer relationships were none.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#2020-to-2021-event-chunk"
+    },
+    {
+      "decision": "P05 blocked Empyre because its 36-row source includes Marvel issue 88682, which the configured metadata API cannot supply for vendoring.",
+      "status": "confirmed",
+      "evidence": "scripts/data/cbh-mappings/empyre.json"
+    },
+    {
+      "decision": "P06 shipped Infinite Destinies, The Last Annihilation, and X-Men: Inferno with 23 exact issues and 222 zero-overlap current-library and peer comparisons.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#2021-event-chunk"
+    },
+    {
+      "decision": "P07 shipped The Death of Doctor Strange, Devil's Reign, and Reckoning War with 42 exact issues and 231 zero-overlap current-library and peer comparisons.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#late-2021-to-2022-event-chunk"
+    },
+    {
+      "decision": "The requested continuation path contains nine absent event or crossover guides: the eight entries already owned by P03, P04, and P08 plus One World Under Doom.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/research/2026-08-22/one-world-under-doom-expansion-research.md"
+    },
+    {
+      "decision": "One World Under Doom must be processed to a complete list or terminal blocker without weakening source or metadata gates; current evidence shows one duplicated source identity and at least ten API-missing checklist issues.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/research/2026-08-22/one-world-under-doom-expansion-research.md"
+    },
+    {
+      "decision": "The approved plan was amended without a second critique: One World Under Doom is P12, aggregate reconciliation is P13, and the named candidate cap is 23.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/plans/2026-08-22/reading-list-expansion-plan.md and .copilot-tracking/details/2026-08-22/reading-list-expansion-phase-details.md"
+    },
+    {
+      "decision": "P03 shipped Spider-Geddon, Age of X-Man, and Iron Man 2020 with 75 exact issues and 240 zero-overlap current-library and peer comparisons.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#2018-to-2020-routine-chunk"
+    },
+    {
+      "decision": "P04 shipped The War of the Realms and Absolute Carnage with 97 exact issues; 163 relationships were none and the 11-issue partial with the broader Thor best-of guide received stronger-model approval.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#2019-event-chunk"
+    },
+    {
+      "decision": "P08 shipped Judgment Day, Dark Web, and Sins of Sinister with 79 exact issues; 254 relationships were none and the two-issue partial between Judgment Day and X of Swords received stronger-model approval.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#2022-to-2023-event-chunk"
+    },
+    {
+      "decision": "P12 blocked One World Under Doom at source admission because its 86-row checklist repeats one issue identity and at least ten listed issues are absent from the configured metadata API; downstream tasks are not applicable.",
+      "status": "confirmed",
+      "evidence": "scripts/data/cbh-modern-inventory.json"
+    },
+    {
+      "decision": "P13-T01 and P13-T02 reconciled all 23 selected candidates to 20 shipped and three blocked, and the failure-proven aggregate assertion reports zero pending.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#queue-reconciliation"
+    },
+    {
+      "decision": "Implementation completed P01 through P13 with 20 shipped guides, three evidence-backed blockers, and every repository, live-contract, anchor, and browser gate passing.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md"
+    },
+    {
+      "decision": "The one post-implementation Review executed completely across the full MRT-002 boundary.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/reviews/logs/2026-08-22/reading-list-expansion-review.md"
+    },
+    {
+      "decision": "Review outcome is Not accepted: RV-001 and RV-002 are release-blocking implementation defects, and RV-003 routes focused regression coverage with their correction.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/reviews/logs/2026-08-22/reading-list-expansion-review.md"
+    },
+    {
+      "decision": "RV-001 through RV-003 are implemented: Infinite Destinies uses the correct 2020 Black Cat volume, the shelf chronology and start labels are corrected, and failure-proven regressions cover all three defects.",
+      "status": "confirmed",
+      "evidence": ".copilot-tracking/changes/2026-08-22/reading-list-expansion-changes.md#review-finding-implementation"
+    },
+    {
+      "decision": "PR #169 conflicts with newer main-branch catalog and reader-interface work. Preserve both changes, move the expansion backlog records from colliding BL-187 and BL-188 to BL-199 and BL-200, and regenerate all derived evidence against the merged tree.",
+      "status": "confirmed",
+      "evidence": "Git merge of origin/main on 2026-08-22"
+    },
+    {
+      "decision": "The merged tree passes all final repository gates: lint; 1,363 tests; 174 ranked backlog rows and 179 detail blocks; 1,072 unchanged anchors; size, palette, and publication checks; zero malformed citations, forbidden added dashes, diff errors, or unresolved merge paths.",
+      "status": "confirmed",
+      "evidence": "Final local validation on 2026-08-22"
+    },
+    {
+      "decision": "After CI passed, main advanced through PR #168. Its Timeline spine remains main-owned; this expansion only supplies the new 2021 to 2024 era and catalog data needed to place the added stories.",
+      "status": "confirmed",
+      "evidence": "Merge of origin/main commit 1d217cd and user clarification on 2026-08-22"
+    },
+    {
+      "decision": "The final second-merge tree passes 1,382 tests, all repository gates, and Edge checks for the cards, credits, row counts, and sampled sequence of every one of the 20 added guides.",
+      "status": "confirmed",
+      "evidence": "Final local validation and browser verification on 2026-08-22"
+    }
+  ],
+  "blockers": [],
+  "next_action": {
+    "phase": "Follow-up",
+    "action": "Commit and push the reconciled merge, inspect CI job conclusions, and merge PR #169."
+  },
+  "prioritized_follow_ups": [
+    {
+      "rank": 1,
+      "task": "Revisit the 12 blocked modern candidates with stronger editorial and overlap adjudication.",
+      "rationale": "They already have inventory evidence but require decisions intentionally excluded from lower-cost worker tasks.",
+      "evidence": ".copilot-tracking/plans/2026-08-22/reading-list-expansion-plan.md#follow-up-items"
+    },
+    {
+      "rank": 2,
+      "task": "Build a maintained character and team guide inventory after the modern queue is complete or paused.",
+      "rationale": "The existing 22-candidate queue provides a cheaper, already-inventoried path to catalog expansion.",
+      "evidence": ".copilot-tracking/research/2026-08-22/reading-list-expansion-research.md"
+    }
+  ]
+}

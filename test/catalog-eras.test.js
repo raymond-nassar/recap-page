@@ -122,7 +122,7 @@ test('an era with nothing in it is not drawn', () => {
 
 // The defect this guards is the one the section blurbs were already written to avoid: a heading or a
 // blurb that advertises something the section cannot show. The catalog has no event in 2001, 2002,
-// 2003, 2015 or 2019, so a span taken from the bucket bounds would name years with nothing under
+// 2003, 2015 or 2023, so a span taken from the bucket bounds would name years with nothing under
 // them.
 test('the span a section prints is the span of what landed in it', () => {
   for (const section of sections) {

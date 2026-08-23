@@ -5,11 +5,20 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { escapeLinkText } from '../src/js/lib/markdown.js';
-import { validateSourceIdentities } from './lib/cbh-inventory.mjs';
+import {
+  canonicalJson,
+  validateApprovalDigest,
+  validateFrozenPacket,
+  validateMappingDigest,
+  validateReportDigest,
+  validateSourceIdentities,
+} from './lib/cbh-inventory.mjs';
+import { loadLibrarySnapshot } from './report-order-overlap.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
 const OVERLAPS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-overlaps');
+const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const ORDERS_DIR = path.join(ROOT, 'src', 'data', 'orders');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 
@@ -233,7 +242,7 @@ function assertNoDuplicates(values, label) {
   }
 }
 
-export function assertCompleteOverlapReport(report, {
+export function assertComparisonCoverage(report, {
   candidateId,
   candidateCount,
   expectedOrderIds,
@@ -257,7 +266,12 @@ export function assertCompleteOverlapReport(report, {
     && unexpected.length === 0;
   assert(complete,
     `${candidateId} overlap report is incomplete; missing ${missing.join(', ') || 'none'}, unexpected ${unexpected.join(', ') || 'none'}`);
+  return comparisons;
+}
 
+export function assertCompleteOverlapReport(report, options) {
+  const comparisons = assertComparisonCoverage(report, options);
+  const candidateId = options.candidateId;
   for (const comparison of comparisons) {
     assert(comparison.relationship === 'none', `${candidateId} has an unapproved overlap with ${comparison.orderId}`);
     assert(comparison.sharedCount === 0, `${candidateId} overlap count is nonzero for ${comparison.orderId}`);
@@ -266,15 +280,107 @@ export function assertCompleteOverlapReport(report, {
   }
 }
 
+function assertReviewIdentity(review, label, allowedAuthorityTypes) {
+  assert(review && typeof review === 'object', `${label} is missing`);
+  assert(allowedAuthorityTypes.includes(review.authorityType), `${label} has an unauthorized authority type`);
+  assert(typeof review.authorityIdentity === 'string' && review.authorityIdentity.trim(),
+    `${label} has no authority identity`);
+  assert(typeof review.rationale === 'string' && review.rationale.trim(), `${label} has no rationale`);
+  assert(typeof review.reviewedAt === 'string' && review.reviewedAt.trim(), `${label} has no review timestamp`);
+}
+
+function assertMatchingDigestMap(actual, expected, label) {
+  assert(canonicalJson(actual) === canonicalJson(expected), `${label} changed since relationship review`);
+}
+
+export function assertApprovedRelationshipReview({
+  packet,
+  mapping,
+  report,
+  currentLibraryDigest,
+  peerMappings = [],
+  expectedOrderIds,
+}) {
+  const candidateId = mapping?.id ?? packet?.id ?? 'candidate';
+  validateFrozenPacket(packet, { expectedId: candidateId });
+  assert(mapping.packetDigest === packet.packetDigest, `${candidateId} mapping names a stale packet digest`);
+  assert(canonicalJson(mapping.proposedManifest) === canonicalJson(packet.proposedManifest),
+    `${candidateId} mapping manifest proposal differs from its frozen packet`);
+  validateMappingDigest(mapping);
+  validateReportDigest(report);
+  assert(report.candidateId === candidateId, `${candidateId} report names a different candidate`);
+  assert(report.packetDigest === packet.packetDigest, `${candidateId} report packet digest is stale`);
+  assert(report.mappingDigest === mapping.mappingDigest, `${candidateId} report mapping digest is stale`);
+  assert(report.libraryDigest === currentLibraryDigest, `${candidateId} library changed since relationship review`);
+
+  const expectedPeerDigests = Object.fromEntries(peerMappings
+    .map((peer) => {
+      validateMappingDigest(peer);
+      return [String(peer.id), peer.mappingDigest];
+    })
+    .sort(([left], [right]) => left.localeCompare(right)));
+  assertMatchingDigestMap(report.peerDigests, expectedPeerDigests, `${candidateId} peer mapping set`);
+  const comparisons = assertComparisonCoverage(report, {
+    candidateId,
+    candidateCount: selectedIssueIds(mapping).length,
+    expectedOrderIds,
+  });
+
+  assert(mapping.reviewStatus === 'approved', `${candidateId} is not approved`);
+  assert(typeof mapping.packetReview === 'string' && mapping.packetReview.trim(),
+    `${candidateId} has no packet review evidence`);
+  assert(canonicalJson(mapping.approvedManifest) === canonicalJson(packet.proposedManifest),
+    `${candidateId} approved manifest differs from its frozen proposal`);
+
+  const review = mapping.relationshipReview;
+  assertReviewIdentity(review, `${candidateId} relationship review`, ['human', 'stronger-model']);
+  assert(review.reportDigest === report.reportDigest, `${candidateId} approval names a stale report`);
+  assert(review.packetDigest === packet.packetDigest, `${candidateId} approval names a stale packet`);
+  assert(review.mappingDigest === mapping.mappingDigest, `${candidateId} approval names a stale mapping`);
+  assert(review.libraryDigest === currentLibraryDigest, `${candidateId} approval names a stale library`);
+  assertMatchingDigestMap(review.peerDigests, expectedPeerDigests, `${candidateId} approved peer mapping set`);
+  validateApprovalDigest(review, candidateId);
+
+  const dispositions = Array.isArray(review.dispositions) ? review.dispositions : [];
+  const byOrderId = new Map();
+  for (const disposition of dispositions) {
+    const orderId = String(disposition?.orderId ?? '').trim();
+    assert(orderId, `${candidateId} relationship disposition has no order id`);
+    assert(!byOrderId.has(orderId), `${candidateId} has duplicate dispositions for ${orderId}`);
+    byOrderId.set(orderId, disposition);
+  }
+  assert(byOrderId.size === comparisons.length, `${candidateId} relationship dispositions are incomplete`);
+
+  for (const comparison of comparisons) {
+    const disposition = byOrderId.get(comparison.orderId);
+    assert(disposition, `${candidateId} has no disposition for ${comparison.orderId}`);
+    assert(disposition.relationship === comparison.relationship,
+      `${candidateId} disposition changed the observed relationship for ${comparison.orderId}`);
+    if (comparison.relationship === 'exact') {
+      throw new Error(`${candidateId} exactly duplicates ${comparison.orderId} and has no approval path`);
+    }
+    assert(disposition.decision === 'approved',
+      `${candidateId} relationship with ${comparison.orderId} is not approved`);
+    const allowedAuthorities = comparison.relationship === 'none'
+      ? ['policy', 'human', 'stronger-model']
+      : ['human', 'stronger-model'];
+    assertReviewIdentity(disposition, `${candidateId} disposition for ${comparison.orderId}`, allowedAuthorities);
+    assert(disposition.reviewedAt === review.reviewedAt,
+      `${candidateId} disposition timestamp differs from the relationship review`);
+  }
+
+  return true;
+}
+
 export function existingEntriesForPacket(lists, packetIds = PACKET_IDS) {
   const packetIdsSet = new Set(packetIds);
   return (Array.isArray(lists) ? lists : []).filter((entry) => !packetIdsSet.has(entry.id));
 }
 
-export function mergePacketEntries(existing, entries) {
+export function mergePacketEntries(existing, entries, insertionAnchors = {}) {
   const merged = [...existing];
   for (const entry of entries) {
-    const anchorId = INSERT_BEFORE[entry.id];
+    const anchorId = insertionAnchors[entry.id]?.beforeId ?? INSERT_BEFORE[entry.id];
     const anchor = merged.findIndex((candidate) => candidate.id === anchorId);
     assert(anchor >= 0, `${entry.id} catalog chronology anchor ${anchorId} is missing`);
     merged.splice(anchor, 0, entry);
@@ -282,29 +388,59 @@ export function mergePacketEntries(existing, entries) {
   return merged;
 }
 
-export async function authorPacket(packetIds = FOURTH_PACKET_IDS) {
-  const current = JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
+export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
+  mappingsDir = MAPPINGS_DIR,
+  overlapsDir = OVERLAPS_DIR,
+  packetsDir = PACKETS_DIR,
+  ordersDir = ORDERS_DIR,
+  manifestFile = MANIFEST_PATH,
+  payloadDir = path.dirname(MANIFEST_PATH),
+} = {}) {
+  const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
+  const current = library.manifest;
   const currentLists = Array.isArray(current.lists) ? current.lists : [];
   const existing = existingEntriesForPacket(currentLists, packetIds);
-  const mappings = [];
+  const mappings = await Promise.all(packetIds.map(async (id) => {
+    const mapping = JSON.parse(await readFile(path.join(mappingsDir, `${id}.json`), 'utf8'));
+    const report = JSON.parse(await readFile(path.join(overlapsDir, `${id}.json`), 'utf8'));
+    const packet = mapping.packetDigest
+      ? JSON.parse(await readFile(path.join(packetsDir, `${id}.json`), 'utf8'))
+      : null;
+    return { id, mapping, report, packet };
+  }));
+  const mappingById = new Map(mappings.map(({ id, mapping }) => [id, mapping]));
   const entries = [];
   const issueIds = [];
+  const insertionAnchors = {};
 
-  for (const id of packetIds) {
-    const mapping = JSON.parse(await readFile(path.join(MAPPINGS_DIR, `${id}.json`), 'utf8'));
-    const report = JSON.parse(await readFile(path.join(OVERLAPS_DIR, `${id}.json`), 'utf8'));
+  for (const { id, mapping, report, packet } of mappings) {
     assert(mapping.id === id, `${id} mapping id changed`);
     const ids = selectedIssueIds(mapping);
     assert(new Set(ids).size === ids.length, `${id} contains a duplicate selected issue id`);
-    assertCompleteOverlapReport(report, {
-      candidateId: id,
-      candidateCount: ids.length,
-      expectedOrderIds: [
-        ...existing.map((entry) => entry.id),
-        ...packetIds.filter((peerId) => peerId !== id),
-      ],
-    });
-    mappings.push(mapping);
+    const expectedOrderIds = [
+      ...existing.map((entry) => entry.id),
+      ...packetIds.filter((peerId) => peerId !== id),
+    ];
+    if (packet) {
+      const peerMappings = packetIds
+        .filter((peerId) => peerId !== id)
+        .map((peerId) => mappingById.get(peerId));
+      assertApprovedRelationshipReview({
+        packet,
+        mapping,
+        report,
+        currentLibraryDigest: library.libraryDigest,
+        peerMappings,
+        expectedOrderIds,
+      });
+      insertionAnchors[id] = packet.insertionAnchor;
+    } else {
+      assertCompleteOverlapReport(report, {
+        candidateId: id,
+        candidateCount: ids.length,
+        expectedOrderIds,
+      });
+    }
     entries.push(manifestEntryForMapping(mapping));
     issueIds.push(...ids);
   }
@@ -324,17 +460,20 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS) {
     assert(!existingSourceFiles.has(entry.sourceFile), `${entry.id} duplicates a shipped source file`);
   }
 
-  const nextManifest = { ...current, lists: mergePacketEntries(existing, entries) };
+  const nextManifest = {
+    ...current,
+    lists: mergePacketEntries(existing, entries, insertionAnchors),
+  };
   const parsed = parseManifest(nextManifest);
   assert(parsed.errors.length === 0, `Authored manifest is invalid:\n${parsed.errors.join('\n')}`);
   assert(parsed.entries.length === existing.length + packetIds.length, 'Authored manifest lost an order');
 
-  await mkdir(ORDERS_DIR, { recursive: true });
-  for (const mapping of mappings) {
+  await mkdir(ordersDir, { recursive: true });
+  for (const { mapping } of mappings) {
     const entry = entries.find((candidate) => candidate.id === mapping.id);
-    await writeFile(path.join(ORDERS_DIR, entry.sourceFile), buildMarkdown(mapping), 'utf8');
+    await writeFile(path.join(ordersDir, entry.sourceFile), buildMarkdown(mapping), 'utf8');
   }
-  await writeFile(MANIFEST_PATH, `${JSON.stringify(nextManifest, null, 2)}\n`, 'utf8');
+  await writeFile(manifestFile, `${JSON.stringify(nextManifest, null, 2)}\n`, 'utf8');
   return {
     guides: mappings.length,
     rows: issueIds.length,
@@ -342,9 +481,22 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS) {
   };
 }
 
+export function authorIdsFromArgs(args) {
+  const onlyArgs = args.filter((arg) => arg.startsWith('--only='));
+  if (onlyArgs.length === 0) return FOURTH_PACKET_IDS;
+  if (onlyArgs.length > 1) throw new Error('Use --only once with a comma-separated guide id list');
+  const ids = onlyArgs[0].slice('--only='.length).split(',').map((id) => id.trim()).filter(Boolean);
+  if (ids.length === 0) throw new Error('--only must name at least one guide id');
+  if (new Set(ids).size !== ids.length) throw new Error('--only contains a duplicate guide id');
+  if (ids.some((id) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id))) {
+    throw new Error('--only must use lower-kebab-case guide ids');
+  }
+  return ids;
+}
+
 const thisFile = fileURLToPath(import.meta.url);
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile)) {
-  authorPacket().then((summary) => {
+  authorPacket(authorIdsFromArgs(process.argv.slice(2))).then((summary) => {
     console.log(`Authored ${summary.guides} guides with ${summary.rows} rows; manifest now has ${summary.manifestEntries} entries.`);
   }).catch((error) => {
     console.error(error.message);

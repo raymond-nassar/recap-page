@@ -1,0 +1,2044 @@
+{
+  "id": "age-of-x-man",
+  "inventoryId": "age-of-x-man",
+  "packetDigest": "e57def2e5f8cfcfc972f310fa34f498e038ec0005f29bc576a9f3577579905fb",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/age-of-x-man/",
+  "sourceSection": "Age of X-Man Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 32,
+  "excludedSourceReferences": [],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "age-of-x-man",
+    "name": "Age of X-Man",
+    "description": "An alternate X-Men world where the X-Men confront a society without love.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "age-of-x-man.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/age-of-x-man/",
+    "sourceSection": "Age of X-Man Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "age_of_x_man.json",
+    "characters": [
+      "X-Men",
+      "Nate Grey",
+      "Apocalypse"
+    ],
+    "keywords": [
+      "Age of X-Man",
+      "X-Men",
+      "Nate Grey"
+    ],
+    "expect": 32,
+    "timeline": 2019,
+    "coverIssueId": 72932
+  },
+  "candidateMetadata": [
+    {
+      "id": 72932,
+      "title": "Age of X-Man Alpha",
+      "issueTitle": "Age of X-Man Alpha (2019) #1",
+      "seriesTitle": "Age of X-Man Alpha",
+      "apiSeriesName": "Age of X-Man Alpha (2019)",
+      "seriesId": 26328,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72932/age_of_x-man_alpha_2019_1",
+      "onSaleDate": "2019-01-30T00:00:00+0000"
+    },
+    {
+      "id": 72934,
+      "title": "Age of X-Man: The Marvelous X-Men",
+      "issueTitle": "Age of X-Man: The Marvelous X-Men (2019) #1",
+      "seriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "apiSeriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "seriesId": 26330,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72934/age_of_x-man_the_marvelous_x-men_2019_1",
+      "onSaleDate": "2019-02-06T00:00:00+0000"
+    },
+    {
+      "id": 72935,
+      "title": "Age of X-Man: The Marvelous X-Men",
+      "issueTitle": "Age of X-Man: The Marvelous X-Men (2019) #2",
+      "seriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "apiSeriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "seriesId": 26330,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72935/age_of_x-man_the_marvelous_x-men_2019_2",
+      "onSaleDate": "2019-03-13T00:00:00+0000"
+    },
+    {
+      "id": 72936,
+      "title": "Age of X-Man: The Marvelous X-Men",
+      "issueTitle": "Age of X-Man: The Marvelous X-Men (2019) #3",
+      "seriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "apiSeriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "seriesId": 26330,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72936/age_of_x-man_the_marvelous_x-men_2019_3",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 72937,
+      "title": "Age of X-Man: The Marvelous X-Men",
+      "issueTitle": "Age of X-Man: The Marvelous X-Men (2019) #4",
+      "seriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "apiSeriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "seriesId": 26330,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72937/age_of_x-man_the_marvelous_x-men_2019_4",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 72938,
+      "title": "Age of X-Man: The Marvelous X-Men",
+      "issueTitle": "Age of X-Man: The Marvelous X-Men (2019) #5",
+      "seriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "apiSeriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "seriesId": 26330,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72938/age_of_x-man_the_marvelous_x-men_2019_5",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 72939,
+      "title": "Age of X-Man: Nextgen",
+      "issueTitle": "Age of X-Man: Nextgen (2019) #1",
+      "seriesTitle": "Age of X-Man: Nextgen",
+      "apiSeriesName": "Age of X-Man: Nextgen (2019)",
+      "seriesId": 26331,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72939/age_of_x-man_nextgen_2019_1",
+      "onSaleDate": "2019-02-13T00:00:00+0000"
+    },
+    {
+      "id": 72940,
+      "title": "Age of X-Man: Nextgen",
+      "issueTitle": "Age of X-Man: Nextgen (2019) #2",
+      "seriesTitle": "Age of X-Man: Nextgen",
+      "apiSeriesName": "Age of X-Man: Nextgen (2019)",
+      "seriesId": 26331,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72940/age_of_x-man_nextgen_2019_2",
+      "onSaleDate": "2019-03-20T00:00:00+0000"
+    },
+    {
+      "id": 72941,
+      "title": "Age of X-Man: Nextgen",
+      "issueTitle": "Age of X-Man: Nextgen (2019) #3",
+      "seriesTitle": "Age of X-Man: Nextgen",
+      "apiSeriesName": "Age of X-Man: Nextgen (2019)",
+      "seriesId": 26331,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72941/age_of_x-man_nextgen_2019_3",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 72942,
+      "title": "Age of X-Man: Nextgen",
+      "issueTitle": "Age of X-Man: Nextgen (2019) #4",
+      "seriesTitle": "Age of X-Man: Nextgen",
+      "apiSeriesName": "Age of X-Man: Nextgen (2019)",
+      "seriesId": 26331,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72942/age_of_x-man_nextgen_2019_4",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 72943,
+      "title": "Age of X-Man: Nextgen",
+      "issueTitle": "Age of X-Man: Nextgen (2019) #5",
+      "seriesTitle": "Age of X-Man: Nextgen",
+      "apiSeriesName": "Age of X-Man: Nextgen (2019)",
+      "seriesId": 26331,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72943/age_of_x-man_nextgen_2019_5",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 72944,
+      "title": "Age of X-Man: The Amazing Nightcrawler",
+      "issueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #1",
+      "seriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "apiSeriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "seriesId": 26332,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72944/age_of_x-man_the_amazing_nightcrawler_2019_1",
+      "onSaleDate": "2019-02-20T00:00:00+0000"
+    },
+    {
+      "id": 72945,
+      "title": "Age of X-Man: The Amazing Nightcrawler",
+      "issueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #2",
+      "seriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "apiSeriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "seriesId": 26332,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72945/age_of_x-man_the_amazing_nightcrawler_2019_2",
+      "onSaleDate": "2019-03-20T00:00:00+0000"
+    },
+    {
+      "id": 72946,
+      "title": "Age of X-Man: The Amazing Nightcrawler",
+      "issueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #3",
+      "seriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "apiSeriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "seriesId": 26332,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72946/age_of_x-man_the_amazing_nightcrawler_2019_3",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 72947,
+      "title": "Age of X-Man: The Amazing Nightcrawler",
+      "issueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #4",
+      "seriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "apiSeriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "seriesId": 26332,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72947/age_of_x-man_the_amazing_nightcrawler_2019_4",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 72948,
+      "title": "Age of X-Man: The Amazing Nightcrawler",
+      "issueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #5",
+      "seriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "apiSeriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "seriesId": 26332,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72948/age_of_x-man_the_amazing_nightcrawler_2019_5",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 72949,
+      "title": "Age of X-Man: X-Tremists",
+      "issueTitle": "Age of X-Man: X-Tremists (2019) #1",
+      "seriesTitle": "Age of X-Man: X-Tremists",
+      "apiSeriesName": "Age of X-Man: X-Tremists (2019)",
+      "seriesId": 26333,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72949/age_of_x-man_x-tremists_2019_1",
+      "onSaleDate": "2019-02-27T00:00:00+0000"
+    },
+    {
+      "id": 72950,
+      "title": "Age of X-Man: X-Tremists",
+      "issueTitle": "Age of X-Man: X-Tremists (2019) #2",
+      "seriesTitle": "Age of X-Man: X-Tremists",
+      "apiSeriesName": "Age of X-Man: X-Tremists (2019)",
+      "seriesId": 26333,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72950/age_of_x-man_x-tremists_2019_2",
+      "onSaleDate": "2019-03-27T00:00:00+0000"
+    },
+    {
+      "id": 72951,
+      "title": "Age of X-Man: X-Tremists",
+      "issueTitle": "Age of X-Man: X-Tremists (2019) #3",
+      "seriesTitle": "Age of X-Man: X-Tremists",
+      "apiSeriesName": "Age of X-Man: X-Tremists (2019)",
+      "seriesId": 26333,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72951/age_of_x-man_x-tremists_2019_3",
+      "onSaleDate": "2019-04-24T00:00:00+0000"
+    },
+    {
+      "id": 72952,
+      "title": "Age of X-Man: X-Tremists",
+      "issueTitle": "Age of X-Man: X-Tremists (2019) #4",
+      "seriesTitle": "Age of X-Man: X-Tremists",
+      "apiSeriesName": "Age of X-Man: X-Tremists (2019)",
+      "seriesId": 26333,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72952/age_of_x-man_x-tremists_2019_4",
+      "onSaleDate": "2019-05-29T00:00:00+0000"
+    },
+    {
+      "id": 72953,
+      "title": "Age of X-Man: X-Tremists",
+      "issueTitle": "Age of X-Man: X-Tremists (2019) #5",
+      "seriesTitle": "Age of X-Man: X-Tremists",
+      "apiSeriesName": "Age of X-Man: X-Tremists (2019)",
+      "seriesId": 26333,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72953/age_of_x-man_x-tremists_2019_5",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 72954,
+      "title": "Age of X-Man: Prisoner X",
+      "issueTitle": "Age of X-Man: Prisoner X (2019) #1",
+      "seriesTitle": "Age of X-Man: Prisoner X",
+      "apiSeriesName": "Age of X-Man: Prisoner X (2019)",
+      "seriesId": 26334,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72954/age_of_x-man_prisoner_x_2019_1",
+      "onSaleDate": "2019-03-06T00:00:00+0000"
+    },
+    {
+      "id": 72955,
+      "title": "Age of X-Man: Prisoner X",
+      "issueTitle": "Age of X-Man: Prisoner X (2019) #2",
+      "seriesTitle": "Age of X-Man: Prisoner X",
+      "apiSeriesName": "Age of X-Man: Prisoner X (2019)",
+      "seriesId": 26334,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72955/age_of_x-man_prisoner_x_2019_2",
+      "onSaleDate": "2019-04-03T00:00:00+0000"
+    },
+    {
+      "id": 72956,
+      "title": "Age of X-Man: Prisoner X",
+      "issueTitle": "Age of X-Man: Prisoner X (2019) #3",
+      "seriesTitle": "Age of X-Man: Prisoner X",
+      "apiSeriesName": "Age of X-Man: Prisoner X (2019)",
+      "seriesId": 26334,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72956/age_of_x-man_prisoner_x_2019_3",
+      "onSaleDate": "2019-05-01T00:00:00+0000"
+    },
+    {
+      "id": 72957,
+      "title": "Age of X-Man: Prisoner X",
+      "issueTitle": "Age of X-Man: Prisoner X (2019) #4",
+      "seriesTitle": "Age of X-Man: Prisoner X",
+      "apiSeriesName": "Age of X-Man: Prisoner X (2019)",
+      "seriesId": 26334,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72957/age_of_x-man_prisoner_x_2019_4",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 72958,
+      "title": "Age of X-Man: Prisoner X",
+      "issueTitle": "Age of X-Man: Prisoner X (2019) #5",
+      "seriesTitle": "Age of X-Man: Prisoner X",
+      "apiSeriesName": "Age of X-Man: Prisoner X (2019)",
+      "seriesId": 26334,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72958/age_of_x-man_prisoner_x_2019_5",
+      "onSaleDate": "2019-07-03T00:00:00+0000"
+    },
+    {
+      "id": 72959,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts",
+      "issueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #1",
+      "seriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "apiSeriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "seriesId": 26335,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72959/age_of_x-man_apocalypse_the_x-tracts_2019_1",
+      "onSaleDate": "2019-03-13T00:00:00+0000"
+    },
+    {
+      "id": 72960,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts",
+      "issueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #2",
+      "seriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "apiSeriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "seriesId": 26335,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72960/age_of_x-man_apocalypse_the_x-tracts_2019_2",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 72961,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts",
+      "issueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #3",
+      "seriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "apiSeriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "seriesId": 26335,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72961/age_of_x-man_apocalypse_the_x-tracts_2019_3",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
+    },
+    {
+      "id": 72962,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts",
+      "issueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #4",
+      "seriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "apiSeriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "seriesId": 26335,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72962/age_of_x-man_apocalypse_the_x-tracts_2019_4",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 72963,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts",
+      "issueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #5",
+      "seriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "apiSeriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "seriesId": 26335,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72963/age_of_x-man_apocalypse_the_x-tracts_2019_5",
+      "onSaleDate": "2019-07-10T00:00:00+0000"
+    },
+    {
+      "id": 72933,
+      "title": "Age Of X-Man Omega",
+      "issueTitle": "Age Of X-Man Omega (2019) #1",
+      "seriesTitle": "Age Of X-Man Omega",
+      "apiSeriesName": "Age Of X-Man Omega (2019)",
+      "seriesId": 26329,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72933/age_of_x-man_omega_2019_1",
+      "onSaleDate": "2019-07-17T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Age of X-Man Alpha #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Age Of X-Man Alpha",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26328,
+      "candidateIssueId": 72932,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72932"
+      ],
+      "selectedIssueId": 72932,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72932/age_of_x-man_alpha_2019_1",
+      "resolvedIssueTitle": "Age of X-Man Alpha (2019) #1",
+      "note": "Marvel series 26328 (Age of X-Man Alpha (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72932
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Age of X-Man: The Marvelous X-Men #1",
+      "sourceRangeReference": "Age of X-Man: The Marvelous X-Men #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26330,
+      "candidateIssueId": 72934,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72934"
+      ],
+      "selectedIssueId": 72934,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72934/age_of_x-man_the_marvelous_x-men_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: The Marvelous X-Men (2019) #1",
+      "note": "Marvel series 26330 (Age of X-Man: The Marvelous X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72934
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Age of X-Man: The Marvelous X-Men #2",
+      "sourceRangeReference": "Age of X-Man: The Marvelous X-Men #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26330,
+      "candidateIssueId": 72935,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72935"
+      ],
+      "selectedIssueId": 72935,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72935/age_of_x-man_the_marvelous_x-men_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: The Marvelous X-Men (2019) #2",
+      "note": "Marvel series 26330 (Age of X-Man: The Marvelous X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72935
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Age of X-Man: The Marvelous X-Men #3",
+      "sourceRangeReference": "Age of X-Man: The Marvelous X-Men #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26330,
+      "candidateIssueId": 72936,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72936"
+      ],
+      "selectedIssueId": 72936,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72936/age_of_x-man_the_marvelous_x-men_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: The Marvelous X-Men (2019) #3",
+      "note": "Marvel series 26330 (Age of X-Man: The Marvelous X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72936
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Age of X-Man: The Marvelous X-Men #4",
+      "sourceRangeReference": "Age of X-Man: The Marvelous X-Men #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26330,
+      "candidateIssueId": 72937,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72937"
+      ],
+      "selectedIssueId": 72937,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72937/age_of_x-man_the_marvelous_x-men_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: The Marvelous X-Men (2019) #4",
+      "note": "Marvel series 26330 (Age of X-Man: The Marvelous X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72937
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Age of X-Man: The Marvelous X-Men #5",
+      "sourceRangeReference": "Age of X-Man: The Marvelous X-Men #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Marvelous X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26330,
+      "candidateIssueId": 72938,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72938"
+      ],
+      "selectedIssueId": 72938,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72938/age_of_x-man_the_marvelous_x-men_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: The Marvelous X-Men (2019) #5",
+      "note": "Marvel series 26330 (Age of X-Man: The Marvelous X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72938
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Age of X-Man: NextGen #1",
+      "sourceRangeReference": "Age of X-Man: NextGen #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Nextgen",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26331,
+      "candidateIssueId": 72939,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72939"
+      ],
+      "selectedIssueId": 72939,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72939/age_of_x-man_nextgen_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: Nextgen (2019) #1",
+      "note": "Marvel series 26331 (Age of X-Man: Nextgen (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72939
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Age of X-Man: NextGen #2",
+      "sourceRangeReference": "Age of X-Man: NextGen #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Nextgen",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26331,
+      "candidateIssueId": 72940,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72940"
+      ],
+      "selectedIssueId": 72940,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72940/age_of_x-man_nextgen_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: Nextgen (2019) #2",
+      "note": "Marvel series 26331 (Age of X-Man: Nextgen (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72940
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Age of X-Man: NextGen #3",
+      "sourceRangeReference": "Age of X-Man: NextGen #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Nextgen",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26331,
+      "candidateIssueId": 72941,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72941"
+      ],
+      "selectedIssueId": 72941,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72941/age_of_x-man_nextgen_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: Nextgen (2019) #3",
+      "note": "Marvel series 26331 (Age of X-Man: Nextgen (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72941
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Age of X-Man: NextGen #4",
+      "sourceRangeReference": "Age of X-Man: NextGen #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Nextgen",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26331,
+      "candidateIssueId": 72942,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72942"
+      ],
+      "selectedIssueId": 72942,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72942/age_of_x-man_nextgen_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: Nextgen (2019) #4",
+      "note": "Marvel series 26331 (Age of X-Man: Nextgen (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72942
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Age of X-Man: NextGen #5",
+      "sourceRangeReference": "Age of X-Man: NextGen #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Nextgen",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26331,
+      "candidateIssueId": 72943,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72943"
+      ],
+      "selectedIssueId": 72943,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72943/age_of_x-man_nextgen_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: Nextgen (2019) #5",
+      "note": "Marvel series 26331 (Age of X-Man: Nextgen (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72943
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Age of X-Man: The Amazing Nightcrawler #1",
+      "sourceRangeReference": "Age of X-Man: The Amazing Nightcrawler #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26332,
+      "candidateIssueId": 72944,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72944"
+      ],
+      "selectedIssueId": 72944,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72944/age_of_x-man_the_amazing_nightcrawler_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #1",
+      "note": "Marvel series 26332 (Age of X-Man: The Amazing Nightcrawler (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72944
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Age of X-Man: The Amazing Nightcrawler #2",
+      "sourceRangeReference": "Age of X-Man: The Amazing Nightcrawler #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26332,
+      "candidateIssueId": 72945,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72945"
+      ],
+      "selectedIssueId": 72945,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72945/age_of_x-man_the_amazing_nightcrawler_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #2",
+      "note": "Marvel series 26332 (Age of X-Man: The Amazing Nightcrawler (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72945
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Age of X-Man: The Amazing Nightcrawler #3",
+      "sourceRangeReference": "Age of X-Man: The Amazing Nightcrawler #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26332,
+      "candidateIssueId": 72946,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72946"
+      ],
+      "selectedIssueId": 72946,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72946/age_of_x-man_the_amazing_nightcrawler_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #3",
+      "note": "Marvel series 26332 (Age of X-Man: The Amazing Nightcrawler (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72946
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Age of X-Man: The Amazing Nightcrawler #4",
+      "sourceRangeReference": "Age of X-Man: The Amazing Nightcrawler #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26332,
+      "candidateIssueId": 72947,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72947"
+      ],
+      "selectedIssueId": 72947,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72947/age_of_x-man_the_amazing_nightcrawler_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #4",
+      "note": "Marvel series 26332 (Age of X-Man: The Amazing Nightcrawler (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72947
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Age of X-Man: The Amazing Nightcrawler #5",
+      "sourceRangeReference": "Age of X-Man: The Amazing Nightcrawler #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: The Amazing Nightcrawler",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26332,
+      "candidateIssueId": 72948,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72948"
+      ],
+      "selectedIssueId": 72948,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72948/age_of_x-man_the_amazing_nightcrawler_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: The Amazing Nightcrawler (2019) #5",
+      "note": "Marvel series 26332 (Age of X-Man: The Amazing Nightcrawler (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72948
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Age of X-Man: The X-Tremists #1",
+      "sourceRangeReference": "Age of X-Man: The X-Tremists #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: X-Tremists",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26333,
+      "candidateIssueId": 72949,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72949"
+      ],
+      "selectedIssueId": 72949,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72949/age_of_x-man_x-tremists_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: X-Tremists (2019) #1",
+      "note": "Marvel series 26333 (Age of X-Man: X-Tremists (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72949
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Age of X-Man: The X-Tremists #2",
+      "sourceRangeReference": "Age of X-Man: The X-Tremists #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: X-Tremists",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26333,
+      "candidateIssueId": 72950,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72950"
+      ],
+      "selectedIssueId": 72950,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72950/age_of_x-man_x-tremists_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: X-Tremists (2019) #2",
+      "note": "Marvel series 26333 (Age of X-Man: X-Tremists (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72950
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Age of X-Man: The X-Tremists #3",
+      "sourceRangeReference": "Age of X-Man: The X-Tremists #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: X-Tremists",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26333,
+      "candidateIssueId": 72951,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72951"
+      ],
+      "selectedIssueId": 72951,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72951/age_of_x-man_x-tremists_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: X-Tremists (2019) #3",
+      "note": "Marvel series 26333 (Age of X-Man: X-Tremists (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72951
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Age of X-Man: The X-Tremists #4",
+      "sourceRangeReference": "Age of X-Man: The X-Tremists #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: X-Tremists",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26333,
+      "candidateIssueId": 72952,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72952"
+      ],
+      "selectedIssueId": 72952,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72952/age_of_x-man_x-tremists_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: X-Tremists (2019) #4",
+      "note": "Marvel series 26333 (Age of X-Man: X-Tremists (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72952
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Age of X-Man: The X-Tremists #5",
+      "sourceRangeReference": "Age of X-Man: The X-Tremists #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: X-Tremists",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26333,
+      "candidateIssueId": 72953,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72953"
+      ],
+      "selectedIssueId": 72953,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72953/age_of_x-man_x-tremists_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: X-Tremists (2019) #5",
+      "note": "Marvel series 26333 (Age of X-Man: X-Tremists (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72953
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Age of X-Man: Prisoner X #1",
+      "sourceRangeReference": "Age of X-Man: Prisoner X #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26334,
+      "candidateIssueId": 72954,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72954"
+      ],
+      "selectedIssueId": 72954,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72954/age_of_x-man_prisoner_x_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #1",
+      "note": "Marvel series 26334 (Age of X-Man: Prisoner X (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72954
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Age of X-Man: Prisoner X #2",
+      "sourceRangeReference": "Age of X-Man: Prisoner X #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26334,
+      "candidateIssueId": 72955,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72955"
+      ],
+      "selectedIssueId": 72955,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72955/age_of_x-man_prisoner_x_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #2",
+      "note": "Marvel series 26334 (Age of X-Man: Prisoner X (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72955
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Age of X-Man: Prisoner X #3",
+      "sourceRangeReference": "Age of X-Man: Prisoner X #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26334,
+      "candidateIssueId": 72956,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72956"
+      ],
+      "selectedIssueId": 72956,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72956/age_of_x-man_prisoner_x_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #3",
+      "note": "Marvel series 26334 (Age of X-Man: Prisoner X (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72956
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Age of X-Man: Prisoner X #4",
+      "sourceRangeReference": "Age of X-Man: Prisoner X #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26334,
+      "candidateIssueId": 72957,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72957"
+      ],
+      "selectedIssueId": 72957,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72957/age_of_x-man_prisoner_x_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #4",
+      "note": "Marvel series 26334 (Age of X-Man: Prisoner X (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72957
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Age of X-Man: Prisoner X #5",
+      "sourceRangeReference": "Age of X-Man: Prisoner X #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26334,
+      "candidateIssueId": 72958,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72958"
+      ],
+      "selectedIssueId": 72958,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72958/age_of_x-man_prisoner_x_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #5",
+      "note": "Marvel series 26334 (Age of X-Man: Prisoner X (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72958
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Age of X-Man: Apocalypse & the X-Tracts #1",
+      "sourceRangeReference": "Age of X-Man: Apocalypse & the X-Tracts #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26335,
+      "candidateIssueId": 72959,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72959"
+      ],
+      "selectedIssueId": 72959,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72959/age_of_x-man_apocalypse_the_x-tracts_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #1",
+      "note": "Marvel series 26335 (Age of X-Man: Apocalypse & the X-Tracts (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72959
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Age of X-Man: Apocalypse & the X-Tracts #2",
+      "sourceRangeReference": "Age of X-Man: Apocalypse & the X-Tracts #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26335,
+      "candidateIssueId": 72960,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72960"
+      ],
+      "selectedIssueId": 72960,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72960/age_of_x-man_apocalypse_the_x-tracts_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #2",
+      "note": "Marvel series 26335 (Age of X-Man: Apocalypse & the X-Tracts (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72960
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Age of X-Man: Apocalypse & the X-Tracts #3",
+      "sourceRangeReference": "Age of X-Man: Apocalypse & the X-Tracts #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26335,
+      "candidateIssueId": 72961,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72961"
+      ],
+      "selectedIssueId": 72961,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72961/age_of_x-man_apocalypse_the_x-tracts_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #3",
+      "note": "Marvel series 26335 (Age of X-Man: Apocalypse & the X-Tracts (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72961
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Age of X-Man: Apocalypse & the X-Tracts #4",
+      "sourceRangeReference": "Age of X-Man: Apocalypse & the X-Tracts #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26335,
+      "candidateIssueId": 72962,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72962"
+      ],
+      "selectedIssueId": 72962,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72962/age_of_x-man_apocalypse_the_x-tracts_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #4",
+      "note": "Marvel series 26335 (Age of X-Man: Apocalypse & the X-Tracts (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72962
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Age of X-Man: Apocalypse & the X-Tracts #5",
+      "sourceRangeReference": "Age of X-Man: Apocalypse & the X-Tracts #1-5",
+      "normalizedSeriesTitle": "Age of X-Man: Apocalypse & the X-Tracts",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26335,
+      "candidateIssueId": 72963,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72963"
+      ],
+      "selectedIssueId": 72963,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72963/age_of_x-man_apocalypse_the_x-tracts_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: Apocalypse & the X-Tracts (2019) #5",
+      "note": "Marvel series 26335 (Age of X-Man: Apocalypse & the X-Tracts (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72963
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Age of X-Man Omega #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Age Of X-Man Omega",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26329,
+      "candidateIssueId": 72933,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72933"
+      ],
+      "selectedIssueId": 72933,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72933/age_of_x-man_omega_2019_1",
+      "resolvedIssueTitle": "Age Of X-Man Omega (2019) #1",
+      "note": "Marvel series 26329 (Age Of X-Man Omega (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72933
+      ]
+    }
+  ],
+  "mappingDigest": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "age-of-x-man",
+    "name": "Age of X-Man",
+    "description": "An alternate X-Men world where the X-Men confront a society without love.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "age-of-x-man.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/age-of-x-man/",
+    "sourceSection": "Age of X-Man Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "age_of_x_man.json",
+    "characters": [
+      "X-Men",
+      "Nate Grey",
+      "Apocalypse"
+    ],
+    "keywords": [
+      "Age of X-Man",
+      "X-Men",
+      "Nate Grey"
+    ],
+    "expect": 32,
+    "timeline": 2019,
+    "coverIssueId": 72932
+  },
+  "relationshipReview": {
+    "reportDigest": "0535a3f488a8701ead497652c7f11badca2b79262eba4507f8c6a41353b61fed",
+    "packetDigest": "e57def2e5f8cfcfc972f310fa34f498e038ec0005f29bc576a9f3577579905fb",
+    "mappingDigest": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
+    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "peerDigests": {
+      "iron-man-2020": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6",
+      "spider-geddon": "71d7c0accbab5764114f223d92959dd2e9490cd4ceaa2a4ddd617db6542d78b3"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:47:48.847Z",
+    "approvalDigest": "6d726cff5452e4869f49ec01c08b54c89ae3b51e852c1644251b846ca0b0b8b6"
+  }
+}

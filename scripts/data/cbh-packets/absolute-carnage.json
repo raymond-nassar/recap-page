@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "id": "absolute-carnage",
+  "inventoryId": "absolute-carnage",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+  "sourceSection": "Absolute Carnage Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 31 printed issue entries under Absolute Carnage Comics Checklist, from Absolute Carnage: Symbiote Spider-Man #1 through Scream: Curse of Carnage, in displayed order.",
+  "excludedSourceReferences": [
+    "Road to Absolute Carnage and trade sections before the checklist",
+    "Recommended Tie-In labels and explanatory prose",
+    "Month headings"
+  ],
+  "expectedCount": 31,
+  "proposedManifest": {
+    "id": "absolute-carnage",
+    "name": "Absolute Carnage",
+    "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "absolute-carnage.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+    "sourceSection": "Absolute Carnage Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "absolute_carnage.json",
+    "characters": [
+      "Carnage",
+      "Venom",
+      "Spider-Man",
+      "Miles Morales"
+    ],
+    "keywords": [
+      "Absolute Carnage",
+      "Carnage",
+      "Venom",
+      "symbiotes"
+    ],
+    "expect": 31,
+    "timeline": 2019,
+    "coverIssueId": 76012
+  },
+  "insertionAnchor": {
+    "beforeId": "iron-man-2020"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "The complete named Comic Book Herald checklist was reviewed in bounded page segments through its final post-event rows; only printed issue entries were frozen in displayed order and matched to live Marvel metadata.",
+    "reviewedAt": "2026-08-22T21:12:57-07:00"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Absolute Carnage: Symbiote Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Symbiote Spider-Man",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27637,
+      "candidateIssueId": 77071,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Ghost Rider - Symbiote of Vengeance #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Symbiote Of Vengeance",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27730,
+      "candidateIssueId": 77434,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Weapon Plus #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Weapon Plus",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 29150,
+      "candidateIssueId": 82171,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27272,
+      "candidateIssueId": 76012,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Scream #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Scream",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27635,
+      "candidateIssueId": 77067,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Scream #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Scream",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27635,
+      "candidateIssueId": 77068,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Scream #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Scream",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27635,
+      "candidateIssueId": 77069,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Separation Anxiety #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Separation Anxiety",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27636,
+      "candidateIssueId": 77070,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage vs. Deadpool #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage Vs. Deadpool",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27720,
+      "candidateIssueId": 77396,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27272,
+      "candidateIssueId": 76014,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage Miles Morales #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Miles Morales",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27634,
+      "candidateIssueId": 77064,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage Miles Morales #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Miles Morales",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27634,
+      "candidateIssueId": 77065,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Venom #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "17",
+      "seriesId": 24310,
+      "candidateIssueId": 74069,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage Lethal Protectors #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Lethal Protectors",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27633,
+      "candidateIssueId": 77061,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage Lethal Protectors #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Lethal Protectors",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27633,
+      "candidateIssueId": 77062,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage vs. Deadpool #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage Vs. Deadpool",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27720,
+      "candidateIssueId": 77397,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage vs. Deadpool #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage Vs. Deadpool",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27720,
+      "candidateIssueId": 77398,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Venom #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "18",
+      "seriesId": 24310,
+      "candidateIssueId": 74070,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Avengers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Avengers",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27631,
+      "candidateIssueId": 77059,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27272,
+      "candidateIssueId": 76015,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Immortal Hulk #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Immortal Hulk",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27632,
+      "candidateIssueId": 77060,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Venom #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "19",
+      "seriesId": 24310,
+      "candidateIssueId": 77172,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage Miles Morales #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Miles Morales",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27634,
+      "candidateIssueId": 77066,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27272,
+      "candidateIssueId": 76016,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "30",
+      "seriesId": 24396,
+      "candidateIssueId": 70726,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "31",
+      "seriesId": 24396,
+      "candidateIssueId": 77099,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage Lethal Protectors #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Lethal Protectors",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27633,
+      "candidateIssueId": 77063,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage: Captain Marvel #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27665,
+      "candidateIssueId": 77217,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Absolute Carnage #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27272,
+      "candidateIssueId": 78960,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Venom #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "20",
+      "seriesId": 24310,
+      "candidateIssueId": 77173,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Scream: Curse of Carnage",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scream: Curse of Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 28207,
+      "candidateIssueId": 79917,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "dccd00e9e36a622ecee8081f7b0b551ee6c3677fde1d7310e046e906f6785695"
+}

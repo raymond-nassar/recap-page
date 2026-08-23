@@ -1,0 +1,627 @@
+{
+  "id": "iron-man-2020",
+  "name": "Iron Man 2020",
+  "description": "Tony Stark confronts a machine uprising led by the Arno Stark of 2020.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+  "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:08:40.068Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 18,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 80459,
+      "title": "Iron Man 2020 (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/80459/iron_man_2020_2020_1",
+      "seriesId": 28356,
+      "seriesName": "Iron Man 2020 (2020)",
+      "onSale": "2020-01-15T00:00:00+0000",
+      "mu": "2020-07-20T00:00:00+0000",
+      "digitalId": 53562,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5e149e3260640",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter M. Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80461,
+      "title": "Iron Man 2020 (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/80461/iron_man_2020_2020_2",
+      "seriesId": 28356,
+      "seriesName": "Iron Man 2020 (2020)",
+      "onSale": "2020-02-12T00:00:00+0000",
+      "mu": "2020-08-17T00:00:00+0000",
+      "digitalId": 53981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5e3b35e85f623",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter M. Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84348,
+      "title": "2020 Machine Man (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84348/2020_machine_man_2020_1",
+      "seriesId": 29695,
+      "seriesName": "2020 Machine Man (2020)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53923,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5e28a4c97286d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Macdonald",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Roche",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84343,
+      "title": "2020 Force Works (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84343/2020_force_works_2020_1",
+      "seriesId": 29693,
+      "seriesName": "2020 Force Works (2020)",
+      "onSale": "2020-02-26T00:00:00+0000",
+      "mu": "2020-08-31T00:00:00+0000",
+      "digitalId": 53922,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5e4c36620e12d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Gomez",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84350,
+      "title": "2020 Rescue (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84350/2020_rescue_2020_1",
+      "seriesId": 29696,
+      "seriesName": "2020 Rescue (2020)",
+      "onSale": "2020-03-04T00:00:00+0000",
+      "mu": "2020-09-07T00:00:00+0000",
+      "digitalId": 54232,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5e53eb33cb1fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jacen Burrows",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Dana Schwartz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80462,
+      "title": "Iron Man 2020 (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/80462/iron_man_2020_2020_3",
+      "seriesId": 28356,
+      "seriesName": "Iron Man 2020 (2020)",
+      "onSale": "2020-03-04T00:00:00+0000",
+      "mu": "2020-09-07T00:00:00+0000",
+      "digitalId": 54272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5e53eb58dccbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter M. Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84341,
+      "title": "2020 Iron Age (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84341/2020_iron_age_2020_1",
+      "seriesId": 29692,
+      "seriesName": "2020 Iron Age (2020)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54230,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/5e67b468d9d9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nick Roche",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Damian Couceiro",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Horak",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        },
+        {
+          "name": "Fonda Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84349,
+      "title": "2020 Machine Man (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84349/2020_machine_man_2020_2",
+      "seriesId": 29695,
+      "seriesName": "2020 Machine Man (2020)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54231,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/04/5e67b574cebff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Macdonald",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Roche",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84344,
+      "title": "2020 Force Works (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84344/2020_force_works_2020_2",
+      "seriesId": 29693,
+      "seriesName": "2020 Force Works (2020)",
+      "onSale": "2020-03-25T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54229,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5e62ac7e98df3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juanan Ramirez",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84346,
+      "title": "2020 Ironheart (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84346/2020_ironheart_2020_1",
+      "seriesId": 29694,
+      "seriesName": "2020 Ironheart (2020)",
+      "onSale": "2020-05-20T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54571,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5e99c32ae9b12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Messina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Skan Srisuwan",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84351,
+      "title": "2020 Rescue (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84351/2020_rescue_2020_2",
+      "seriesId": 29696,
+      "seriesName": "2020 Rescue (2020)",
+      "onSale": "2020-06-24T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54572,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5e8653e3cb7c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jacen Burrows",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Dana Schwartz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80463,
+      "title": "Iron Man 2020 (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/80463/iron_man_2020_2020_4",
+      "seriesId": 28356,
+      "seriesName": "Iron Man 2020 (2020)",
+      "onSale": "2020-06-24T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5e8653dceb60e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter M. Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84345,
+      "title": "2020 Force Works (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/84345/2020_force_works_2020_3",
+      "seriesId": 29693,
+      "seriesName": "2020 Force Works (2020)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54570,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/5e8b6d2d5e8f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84347,
+      "title": "2020 Ironheart (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84347/2020_ironheart_2020_2",
+      "seriesId": 29694,
+      "seriesName": "2020 Ironheart (2020)",
+      "onSale": "2020-06-17T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54843,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/5f0cbcefa582a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Messina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Chul Lee",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84352,
+      "title": "2020 iWolverine (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84352/2020_iwolverine_2020_1",
+      "seriesId": 29697,
+      "seriesName": "2020 iWolverine (2020)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5f0cbd26146f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roland Boschi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Jose Ryp",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80464,
+      "title": "Iron Man 2020 (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/80464/iron_man_2020_2020_5",
+      "seriesId": 28356,
+      "seriesName": "Iron Man 2020 (2020)",
+      "onSale": "2020-07-29T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5f282a676a7b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter M. Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84353,
+      "title": "2020 iWolverine (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84353/2020_iwolverine_2020_2",
+      "seriesId": 29697,
+      "seriesName": "2020 iWolverine (2020)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 55049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5f3d36dd2c1b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roland Boschi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Jose Ryp",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80465,
+      "title": "Iron Man 2020 (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/80465/iron_man_2020_2020_6",
+      "seriesId": 28356,
+      "seriesName": "Iron Man 2020 (2020)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 55095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5f3d36bdcd489",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter M. Woods",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "id": "last-annihilation",
+  "name": "The Last Annihilation",
+  "description": "Dormammu's cosmic invasion draws the Guardians, S.W.O.R.D., Cable, and Wakanda into one final stand.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+  "sourceSection": "The Last Annihilation Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T17:10:25.753Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 92236,
+      "title": "Guardians of the Galaxy (2020) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/92236/guardians_of_the_galaxy_2020_15",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-06-23T00:00:00+0000",
+      "mu": "2021-09-27T00:00:00+0000",
+      "digitalId": 56886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/60cd0f44b862d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90345,
+      "title": "S.W.O.R.D. (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/90345/sword_2020_6",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-06-23T00:00:00+0000",
+      "mu": "2021-09-27T00:00:00+0000",
+      "digitalId": 56908,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/60d5eb388ca05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92237,
+      "title": "Guardians of the Galaxy (2020) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/92237/guardians_of_the_galaxy_2020_16",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-07-21T00:00:00+0000",
+      "mu": "2021-10-25T00:00:00+0000",
+      "digitalId": 57050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/60fad3864b875",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 94676,
+      "title": "S.W.O.R.D. (2020) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/94676/sword_2020_7",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-07-28T00:00:00+0000",
+      "mu": "2021-11-01T00:00:00+0000",
+      "digitalId": 57061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/60fad30f41a14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92238,
+      "title": "Guardians of the Galaxy (2020) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/92238/guardians_of_the_galaxy_2020_17",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-08-18T00:00:00+0000",
+      "mu": "2021-11-22T00:00:00+0000",
+      "digitalId": 57175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/60e5e1a39a5c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95781,
+      "title": "Cable: Reloaded (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95781/cable_reloaded_2021_1",
+      "seriesId": 32868,
+      "seriesName": "Cable: Reloaded (2021)",
+      "onSale": "2021-08-25T00:00:00+0000",
+      "mu": "2021-11-29T00:00:00+0000",
+      "digitalId": 57163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/60e5e16d3a382",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95675,
+      "title": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "seriesId": 32833,
+      "seriesName": "The Last Annihilation: Wiccan & Hulkling (2021)",
+      "onSale": "2021-09-01T00:00:00+0000",
+      "mu": "2021-12-06T00:00:00+0000",
+      "digitalId": 57691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/612e8de15783b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luciano Vecchio",
+          "role": "penciler"
+        },
+        {
+          "name": "Anthony Oliveira",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95676,
+      "title": "The Last Annihilation: Wakanda (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95676/the_last_annihilation_wakanda_2021_1",
+      "seriesId": 32834,
+      "seriesName": "The Last Annihilation: Wakanda (2021)",
+      "onSale": "2021-09-15T00:00:00+0000",
+      "mu": "2021-12-20T00:00:00+0000",
+      "digitalId": 57690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/61426088ebb66",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Narcisse",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92239,
+      "title": "Guardians of the Galaxy (2020) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/92239/guardians_of_the_galaxy_2020_18",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-09-22T00:00:00+0000",
+      "mu": "2021-12-27T00:00:00+0000",
+      "digitalId": 57665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/6142604c0c808",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

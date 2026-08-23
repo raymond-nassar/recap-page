@@ -1,0 +1,2117 @@
+{
+  "id": "fall-house-x-rise-powers-x",
+  "inventoryId": "fall-house-x-rise-powers-x",
+  "packetDigest": "2038dbbaef9ad1d42b0bc0f0efea44de7d527e459fe9c34649dd25495fb0ecea",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/fall-of-the-house-of-x/",
+  "sourceSection": "Fall of the House of X and Rise of the Powers of X Reading Order",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 34,
+  "excludedSourceReferences": [],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "fall-house-x-rise-powers-x",
+    "name": "Fall of the House of X & Rise of the Powers of X",
+    "description": "The final Krakoan-era conflict across Fall of the House of X, Rise of the Powers of X, and their linked series.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "fall-house-x-rise-powers-x.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/fall-of-the-house-of-x/",
+    "sourceSection": "Fall of the House of X and Rise of the Powers of X Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "fall_house_x_rise_powers_x.json",
+    "characters": [
+      "X-Men",
+      "Iron Man",
+      "Magneto",
+      "Avengers"
+    ],
+    "keywords": [
+      "Fall of the House of X",
+      "Rise of the Powers of X",
+      "Krakoa"
+    ],
+    "expect": 34,
+    "timeline": 2024,
+    "coverIssueId": 111661
+  },
+  "candidateMetadata": [
+    {
+      "id": 111661,
+      "title": "Fall of the House of X",
+      "issueTitle": "Fall of the House of X (2024) #1",
+      "seriesTitle": "Fall of the House of X",
+      "apiSeriesName": "Fall of the House of X (2024 - Present)",
+      "seriesId": 38458,
+      "issueNumber": "1",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111661/fall_of_the_house_of_x_2024_1",
+      "onSaleDate": "2024-01-03T00:00:00+0000"
+    },
+    {
+      "id": 111682,
+      "title": "Rise of the Powers of X",
+      "issueTitle": "Rise of the Powers of X (2024) #1",
+      "seriesTitle": "Rise of the Powers of X",
+      "apiSeriesName": "Rise of the Powers of X (2024 - Present)",
+      "seriesId": 38472,
+      "issueNumber": "1",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111682/rise_of_the_powers_of_x_2024_1",
+      "onSaleDate": "2024-01-10T00:00:00+0000"
+    },
+    {
+      "id": 112856,
+      "title": "Dead X-Men",
+      "issueTitle": "Dead X-Men (2024) #1",
+      "seriesTitle": "Dead X-Men",
+      "apiSeriesName": "Dead X-Men (2024 - Present)",
+      "seriesId": 38790,
+      "issueNumber": "1",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112856/dead_x-men_2024_1",
+      "onSaleDate": "2024-01-31T00:00:00+0000"
+    },
+    {
+      "id": 112184,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #30",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "30",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112184/x-men_2021_30",
+      "onSaleDate": "2024-01-17T00:00:00+0000"
+    },
+    {
+      "id": 112141,
+      "title": "Invincible Iron Man",
+      "issueTitle": "Invincible Iron Man (2022) #14",
+      "seriesTitle": "Invincible Iron Man",
+      "apiSeriesName": "Invincible Iron Man (2022 - Present)",
+      "seriesId": 34717,
+      "issueNumber": "14",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112141/invincible_iron_man_2022_14",
+      "onSaleDate": "2024-01-17T00:00:00+0000"
+    },
+    {
+      "id": 112142,
+      "title": "Invincible Iron Man",
+      "issueTitle": "Invincible Iron Man (2022) #15",
+      "seriesTitle": "Invincible Iron Man",
+      "apiSeriesName": "Invincible Iron Man (2022 - Present)",
+      "seriesId": 34717,
+      "issueNumber": "15",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112142/invincible_iron_man_2022_15",
+      "onSaleDate": "2024-02-28T00:00:00+0000"
+    },
+    {
+      "id": 112164,
+      "title": "Resurrection of Magneto",
+      "issueTitle": "Resurrection of Magneto (2024) #1",
+      "seriesTitle": "Resurrection of Magneto",
+      "apiSeriesName": "Resurrection of Magneto (2024 - Present)",
+      "seriesId": 38654,
+      "issueNumber": "1",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112164/resurrection_of_magneto_2024_1",
+      "onSaleDate": "2024-01-24T00:00:00+0000"
+    },
+    {
+      "id": 112165,
+      "title": "Resurrection of Magneto",
+      "issueTitle": "Resurrection of Magneto (2024) #2",
+      "seriesTitle": "Resurrection of Magneto",
+      "apiSeriesName": "Resurrection of Magneto (2024 - Present)",
+      "seriesId": 38654,
+      "issueNumber": "2",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112165/resurrection_of_magneto_2024_2",
+      "onSaleDate": "2024-02-28T00:00:00+0000"
+    },
+    {
+      "id": 112166,
+      "title": "Resurrection of Magneto",
+      "issueTitle": "Resurrection of Magneto (2024) #3",
+      "seriesTitle": "Resurrection of Magneto",
+      "apiSeriesName": "Resurrection of Magneto (2024 - Present)",
+      "seriesId": 38654,
+      "issueNumber": "3",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112166/resurrection_of_magneto_2024_3",
+      "onSaleDate": "2024-03-20T00:00:00+0000"
+    },
+    {
+      "id": 112185,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #31",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "31",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112185/x-men_2021_31",
+      "onSaleDate": "2024-02-07T00:00:00+0000"
+    },
+    {
+      "id": 111662,
+      "title": "Fall of the House of X",
+      "issueTitle": "Fall of the House of X (2024) #2",
+      "seriesTitle": "Fall of the House of X",
+      "apiSeriesName": "Fall of the House of X (2024 - Present)",
+      "seriesId": 38458,
+      "issueNumber": "2",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111662/fall_of_the_house_of_x_2024_2",
+      "onSaleDate": "2024-02-14T00:00:00+0000"
+    },
+    {
+      "id": 111683,
+      "title": "Rise of the Powers of X",
+      "issueTitle": "Rise of the Powers of X (2024) #2",
+      "seriesTitle": "Rise of the Powers of X",
+      "apiSeriesName": "Rise of the Powers of X (2024 - Present)",
+      "seriesId": 38472,
+      "issueNumber": "2",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111683/rise_of_the_powers_of_x_2024_2",
+      "onSaleDate": "2024-02-21T00:00:00+0000"
+    },
+    {
+      "id": 113490,
+      "title": "X-Men: Forever",
+      "issueTitle": "X-Men: Forever (2024) #1",
+      "seriesTitle": "X-Men: Forever",
+      "apiSeriesName": "X-Men: Forever (2024 - Present)",
+      "seriesId": 38947,
+      "issueNumber": "1",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/113490/x-men_forever_2024_1",
+      "onSaleDate": "2024-03-20T00:00:00+0000"
+    },
+    {
+      "id": 112858,
+      "title": "Dead X-Men",
+      "issueTitle": "Dead X-Men (2024) #2",
+      "seriesTitle": "Dead X-Men",
+      "apiSeriesName": "Dead X-Men (2024 - Present)",
+      "seriesId": 38790,
+      "issueNumber": "2",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112858/dead_x-men_2024_2",
+      "onSaleDate": "2024-02-28T00:00:00+0000"
+    },
+    {
+      "id": 112143,
+      "title": "Invincible Iron Man",
+      "issueTitle": "Invincible Iron Man (2022) #16",
+      "seriesTitle": "Invincible Iron Man",
+      "apiSeriesName": "Invincible Iron Man (2022 - Present)",
+      "seriesId": 34717,
+      "issueNumber": "16",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112143/invincible_iron_man_2022_16",
+      "onSaleDate": "2024-03-20T00:00:00+0000"
+    },
+    {
+      "id": 112144,
+      "title": "Invincible Iron Man",
+      "issueTitle": "Invincible Iron Man (2022) #17",
+      "seriesTitle": "Invincible Iron Man",
+      "apiSeriesName": "Invincible Iron Man (2022 - Present)",
+      "seriesId": 34717,
+      "issueNumber": "17",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112144/invincible_iron_man_2022_17",
+      "onSaleDate": "2024-04-10T00:00:00+0000"
+    },
+    {
+      "id": 101524,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2023) #12",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2023 - Present)",
+      "seriesId": 34716,
+      "issueNumber": "12",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/101524/avengers_2023_12",
+      "onSaleDate": "2024-04-03T00:00:00+0000"
+    },
+    {
+      "id": 112859,
+      "title": "Dead X-Men",
+      "issueTitle": "Dead X-Men (2024) #3",
+      "seriesTitle": "Dead X-Men",
+      "apiSeriesName": "Dead X-Men (2024 - Present)",
+      "seriesId": 38790,
+      "issueNumber": "3",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112859/dead_x-men_2024_3",
+      "onSaleDate": "2024-03-13T00:00:00+0000"
+    },
+    {
+      "id": 112860,
+      "title": "Dead X-Men",
+      "issueTitle": "Dead X-Men (2024) #4",
+      "seriesTitle": "Dead X-Men",
+      "apiSeriesName": "Dead X-Men (2024 - Present)",
+      "seriesId": 38790,
+      "issueNumber": "4",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112860/dead_x-men_2024_4",
+      "onSaleDate": "2024-04-17T00:00:00+0000"
+    },
+    {
+      "id": 112186,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #32",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "32",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112186/x-men_2021_32",
+      "onSaleDate": "2024-03-06T00:00:00+0000"
+    },
+    {
+      "id": 111663,
+      "title": "Fall of the House of X",
+      "issueTitle": "Fall of the House of X (2024) #3",
+      "seriesTitle": "Fall of the House of X",
+      "apiSeriesName": "Fall of the House of X (2024 - Present)",
+      "seriesId": 38458,
+      "issueNumber": "3",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111663/fall_of_the_house_of_x_2024_3",
+      "onSaleDate": "2024-03-13T00:00:00+0000"
+    },
+    {
+      "id": 111684,
+      "title": "Rise of the Powers of X",
+      "issueTitle": "Rise of the Powers of X (2024) #3",
+      "seriesTitle": "Rise of the Powers of X",
+      "apiSeriesName": "Rise of the Powers of X (2024 - Present)",
+      "seriesId": 38472,
+      "issueNumber": "3",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111684/rise_of_the_powers_of_x_2024_3",
+      "onSaleDate": "2024-03-27T00:00:00+0000"
+    },
+    {
+      "id": 113491,
+      "title": "X-Men: Forever",
+      "issueTitle": "X-Men: Forever (2024) #2",
+      "seriesTitle": "X-Men: Forever",
+      "apiSeriesName": "X-Men: Forever (2024 - Present)",
+      "seriesId": 38947,
+      "issueNumber": "2",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/113491/x-men_forever_2024_2",
+      "onSaleDate": "2024-04-24T00:00:00+0000"
+    },
+    {
+      "id": 112187,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #33",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "33",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112187/x-men_2021_33",
+      "onSaleDate": "2024-04-03T00:00:00+0000"
+    },
+    {
+      "id": 112167,
+      "title": "Resurrection of Magneto",
+      "issueTitle": "Resurrection of Magneto (2024) #4",
+      "seriesTitle": "Resurrection of Magneto",
+      "apiSeriesName": "Resurrection of Magneto (2024 - Present)",
+      "seriesId": 38654,
+      "issueNumber": "4",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112167/resurrection_of_magneto_2024_4",
+      "onSaleDate": "2024-04-10T00:00:00+0000"
+    },
+    {
+      "id": 111664,
+      "title": "Fall of the House of X",
+      "issueTitle": "Fall of the House of X (2024) #4",
+      "seriesTitle": "Fall of the House of X",
+      "apiSeriesName": "Fall of the House of X (2024 - Present)",
+      "seriesId": 38458,
+      "issueNumber": "4",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111664/fall_of_the_house_of_x_2024_4",
+      "onSaleDate": "2024-04-17T00:00:00+0000"
+    },
+    {
+      "id": 112188,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #34",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "34",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112188/x-men_2021_34",
+      "onSaleDate": "2024-05-01T00:00:00+0000"
+    },
+    {
+      "id": 111685,
+      "title": "Rise of the Powers of X",
+      "issueTitle": "Rise of the Powers of X (2024) #4",
+      "seriesTitle": "Rise of the Powers of X",
+      "apiSeriesName": "Rise of the Powers of X (2024 - Present)",
+      "seriesId": 38472,
+      "issueNumber": "4",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111685/rise_of_the_powers_of_x_2024_4",
+      "onSaleDate": "2024-04-24T00:00:00+0000"
+    },
+    {
+      "id": 113492,
+      "title": "X-Men: Forever",
+      "issueTitle": "X-Men: Forever (2024) #3",
+      "seriesTitle": "X-Men: Forever",
+      "apiSeriesName": "X-Men: Forever (2024 - Present)",
+      "seriesId": 38947,
+      "issueNumber": "3",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/113492/x-men_forever_2024_3",
+      "onSaleDate": "2024-05-08T00:00:00+0000"
+    },
+    {
+      "id": 113493,
+      "title": "X-Men: Forever",
+      "issueTitle": "X-Men: Forever (2024) #4",
+      "seriesTitle": "X-Men: Forever",
+      "apiSeriesName": "X-Men: Forever (2024 - Present)",
+      "seriesId": 38947,
+      "issueNumber": "4",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/113493/x-men_forever_2024_4",
+      "onSaleDate": "2024-05-15T00:00:00+0000"
+    },
+    {
+      "id": 112145,
+      "title": "Invincible Iron Man",
+      "issueTitle": "Invincible Iron Man (2022) #18",
+      "seriesTitle": "Invincible Iron Man",
+      "apiSeriesName": "Invincible Iron Man (2022 - Present)",
+      "seriesId": 34717,
+      "issueNumber": "18",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112145/invincible_iron_man_2022_18",
+      "onSaleDate": "2024-05-01T00:00:00+0000"
+    },
+    {
+      "id": 111665,
+      "title": "Fall of the House of X",
+      "issueTitle": "Fall of the House of X (2024) #5",
+      "seriesTitle": "Fall of the House of X",
+      "apiSeriesName": "Fall of the House of X (2024 - Present)",
+      "seriesId": 38458,
+      "issueNumber": "5",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111665/fall_of_the_house_of_x_2024_5",
+      "onSaleDate": "2024-05-22T00:00:00+0000"
+    },
+    {
+      "id": 111686,
+      "title": "Rise of the Powers of X",
+      "issueTitle": "Rise of the Powers of X (2024) #5",
+      "seriesTitle": "Rise of the Powers of X",
+      "apiSeriesName": "Rise of the Powers of X (2024 - Present)",
+      "seriesId": 38472,
+      "issueNumber": "5",
+      "seriesYear": 2024,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/111686/rise_of_the_powers_of_x_2024_5",
+      "onSaleDate": "2024-05-29T00:00:00+0000"
+    },
+    {
+      "id": 112189,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #35",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "35",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/112189/x-men_2021_35",
+      "onSaleDate": "2024-06-05T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Fall of the House of X #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fall of the House of X",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "seriesId": 38458,
+      "candidateIssueId": 111661,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111661"
+      ],
+      "selectedIssueId": 111661,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111661/fall_of_the_house_of_x_2024_1",
+      "resolvedIssueTitle": "Fall of the House of X (2024) #1",
+      "note": "Marvel series 38458 (Fall of the House of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111661
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Rise of the Powers of X #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Rise of the Powers of X",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "seriesId": 38472,
+      "candidateIssueId": 111682,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111682"
+      ],
+      "selectedIssueId": 111682,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111682/rise_of_the_powers_of_x_2024_1",
+      "resolvedIssueTitle": "Rise of the Powers of X (2024) #1",
+      "note": "Marvel series 38472 (Rise of the Powers of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111682
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Dead X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dead X-Men",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "seriesId": 38790,
+      "candidateIssueId": 112856,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112856"
+      ],
+      "selectedIssueId": 112856,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112856/dead_x-men_2024_1",
+      "resolvedIssueTitle": "Dead X-Men (2024) #1",
+      "note": "Marvel series 38790 (Dead X-Men (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112856
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "X-Men #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "30",
+      "seriesId": 31324,
+      "candidateIssueId": 112184,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112184"
+      ],
+      "selectedIssueId": 112184,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112184/x-men_2021_30",
+      "resolvedIssueTitle": "X-Men (2021) #30",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112184
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "The Invincible Iron Man #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Invincible Iron Man",
+      "seriesYear": 2022,
+      "issueNumber": "14",
+      "seriesId": 34717,
+      "candidateIssueId": 112141,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112141"
+      ],
+      "selectedIssueId": 112141,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112141/invincible_iron_man_2022_14",
+      "resolvedIssueTitle": "Invincible Iron Man (2022) #14",
+      "note": "Marvel series 34717 (Invincible Iron Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112141
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Invincible Iron Man #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Invincible Iron Man",
+      "seriesYear": 2022,
+      "issueNumber": "15",
+      "seriesId": 34717,
+      "candidateIssueId": 112142,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112142"
+      ],
+      "selectedIssueId": 112142,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112142/invincible_iron_man_2022_15",
+      "resolvedIssueTitle": "Invincible Iron Man (2022) #15",
+      "note": "Marvel series 34717 (Invincible Iron Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112142
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Resurrection of Magneto #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Resurrection of Magneto",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "seriesId": 38654,
+      "candidateIssueId": 112164,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112164"
+      ],
+      "selectedIssueId": 112164,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112164/resurrection_of_magneto_2024_1",
+      "resolvedIssueTitle": "Resurrection of Magneto (2024) #1",
+      "note": "Marvel series 38654 (Resurrection of Magneto (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112164
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Resurrection of Magneto #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Resurrection of Magneto",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "seriesId": 38654,
+      "candidateIssueId": 112165,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112165"
+      ],
+      "selectedIssueId": 112165,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112165/resurrection_of_magneto_2024_2",
+      "resolvedIssueTitle": "Resurrection of Magneto (2024) #2",
+      "note": "Marvel series 38654 (Resurrection of Magneto (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112165
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Resurrection of Magneto #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Resurrection of Magneto",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "seriesId": 38654,
+      "candidateIssueId": 112166,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112166"
+      ],
+      "selectedIssueId": 112166,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112166/resurrection_of_magneto_2024_3",
+      "resolvedIssueTitle": "Resurrection of Magneto (2024) #3",
+      "note": "Marvel series 38654 (Resurrection of Magneto (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112166
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "X-Men #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "31",
+      "seriesId": 31324,
+      "candidateIssueId": 112185,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112185"
+      ],
+      "selectedIssueId": 112185,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112185/x-men_2021_31",
+      "resolvedIssueTitle": "X-Men (2021) #31",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112185
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Fall of the House of X #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fall of the House of X",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "seriesId": 38458,
+      "candidateIssueId": 111662,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111662"
+      ],
+      "selectedIssueId": 111662,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111662/fall_of_the_house_of_x_2024_2",
+      "resolvedIssueTitle": "Fall of the House of X (2024) #2",
+      "note": "Marvel series 38458 (Fall of the House of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111662
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Rise of the Powers of X #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Rise of the Powers of X",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "seriesId": 38472,
+      "candidateIssueId": 111683,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111683"
+      ],
+      "selectedIssueId": 111683,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111683/rise_of_the_powers_of_x_2024_2",
+      "resolvedIssueTitle": "Rise of the Powers of X (2024) #2",
+      "note": "Marvel series 38472 (Rise of the Powers of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111683
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "X-Men Forever #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: Forever",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "seriesId": 38947,
+      "candidateIssueId": 113490,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "113490"
+      ],
+      "selectedIssueId": 113490,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/113490/x-men_forever_2024_1",
+      "resolvedIssueTitle": "X-Men: Forever (2024) #1",
+      "note": "Marvel series 38947 (X-Men: Forever (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        113490
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Dead X-Men #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dead X-Men",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "seriesId": 38790,
+      "candidateIssueId": 112858,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112858"
+      ],
+      "selectedIssueId": 112858,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112858/dead_x-men_2024_2",
+      "resolvedIssueTitle": "Dead X-Men (2024) #2",
+      "note": "Marvel series 38790 (Dead X-Men (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112858
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Invincible Iron Man #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Invincible Iron Man",
+      "seriesYear": 2022,
+      "issueNumber": "16",
+      "seriesId": 34717,
+      "candidateIssueId": 112143,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112143"
+      ],
+      "selectedIssueId": 112143,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112143/invincible_iron_man_2022_16",
+      "resolvedIssueTitle": "Invincible Iron Man (2022) #16",
+      "note": "Marvel series 34717 (Invincible Iron Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112143
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Invincible Iron Man #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Invincible Iron Man",
+      "seriesYear": 2022,
+      "issueNumber": "17",
+      "seriesId": 34717,
+      "candidateIssueId": 112144,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112144"
+      ],
+      "selectedIssueId": 112144,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112144/invincible_iron_man_2022_17",
+      "resolvedIssueTitle": "Invincible Iron Man (2022) #17",
+      "note": "Marvel series 34717 (Invincible Iron Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112144
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Avengers #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2023,
+      "issueNumber": "12",
+      "seriesId": 34716,
+      "candidateIssueId": 101524,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "101524"
+      ],
+      "selectedIssueId": 101524,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/101524/avengers_2023_12",
+      "resolvedIssueTitle": "Avengers (2023) #12",
+      "note": "Marvel series 34716 (Avengers (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        101524
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Dead X-Men #3",
+      "sourceRangeReference": "Dead X-Men #3 - #4",
+      "normalizedSeriesTitle": "Dead X-Men",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "seriesId": 38790,
+      "candidateIssueId": 112859,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112859"
+      ],
+      "selectedIssueId": 112859,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112859/dead_x-men_2024_3",
+      "resolvedIssueTitle": "Dead X-Men (2024) #3",
+      "note": "Marvel series 38790 (Dead X-Men (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112859
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Dead X-Men #4",
+      "sourceRangeReference": "Dead X-Men #3 - #4",
+      "normalizedSeriesTitle": "Dead X-Men",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "seriesId": 38790,
+      "candidateIssueId": 112860,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112860"
+      ],
+      "selectedIssueId": 112860,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112860/dead_x-men_2024_4",
+      "resolvedIssueTitle": "Dead X-Men (2024) #4",
+      "note": "Marvel series 38790 (Dead X-Men (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112860
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "X-Men #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "32",
+      "seriesId": 31324,
+      "candidateIssueId": 112186,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112186"
+      ],
+      "selectedIssueId": 112186,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112186/x-men_2021_32",
+      "resolvedIssueTitle": "X-Men (2021) #32",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112186
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Fall of the House of X #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fall of the House of X",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "seriesId": 38458,
+      "candidateIssueId": 111663,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111663"
+      ],
+      "selectedIssueId": 111663,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111663/fall_of_the_house_of_x_2024_3",
+      "resolvedIssueTitle": "Fall of the House of X (2024) #3",
+      "note": "Marvel series 38458 (Fall of the House of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111663
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Rise of the Powers of X #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Rise of the Powers of X",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "seriesId": 38472,
+      "candidateIssueId": 111684,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111684"
+      ],
+      "selectedIssueId": 111684,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111684/rise_of_the_powers_of_x_2024_3",
+      "resolvedIssueTitle": "Rise of the Powers of X (2024) #3",
+      "note": "Marvel series 38472 (Rise of the Powers of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111684
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "X-Men Forever #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: Forever",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "seriesId": 38947,
+      "candidateIssueId": 113491,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "113491"
+      ],
+      "selectedIssueId": 113491,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/113491/x-men_forever_2024_2",
+      "resolvedIssueTitle": "X-Men: Forever (2024) #2",
+      "note": "Marvel series 38947 (X-Men: Forever (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        113491
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "X-Men #33",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "33",
+      "seriesId": 31324,
+      "candidateIssueId": 112187,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112187"
+      ],
+      "selectedIssueId": 112187,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112187/x-men_2021_33",
+      "resolvedIssueTitle": "X-Men (2021) #33",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112187
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Resurrection of Magneto #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Resurrection of Magneto",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "seriesId": 38654,
+      "candidateIssueId": 112167,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112167"
+      ],
+      "selectedIssueId": 112167,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112167/resurrection_of_magneto_2024_4",
+      "resolvedIssueTitle": "Resurrection of Magneto (2024) #4",
+      "note": "Marvel series 38654 (Resurrection of Magneto (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112167
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Fall of the House of X #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fall of the House of X",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "seriesId": 38458,
+      "candidateIssueId": 111664,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111664"
+      ],
+      "selectedIssueId": 111664,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111664/fall_of_the_house_of_x_2024_4",
+      "resolvedIssueTitle": "Fall of the House of X (2024) #4",
+      "note": "Marvel series 38458 (Fall of the House of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111664
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "X-Men #34",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "34",
+      "seriesId": 31324,
+      "candidateIssueId": 112188,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112188"
+      ],
+      "selectedIssueId": 112188,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112188/x-men_2021_34",
+      "resolvedIssueTitle": "X-Men (2021) #34",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112188
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Rise of the Powers of X #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Rise of the Powers of X",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "seriesId": 38472,
+      "candidateIssueId": 111685,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111685"
+      ],
+      "selectedIssueId": 111685,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111685/rise_of_the_powers_of_x_2024_4",
+      "resolvedIssueTitle": "Rise of the Powers of X (2024) #4",
+      "note": "Marvel series 38472 (Rise of the Powers of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111685
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "X-Men Forever #3",
+      "sourceRangeReference": "X-Men Forever #3 to #4",
+      "normalizedSeriesTitle": "X-Men: Forever",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "seriesId": 38947,
+      "candidateIssueId": 113492,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "113492"
+      ],
+      "selectedIssueId": 113492,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/113492/x-men_forever_2024_3",
+      "resolvedIssueTitle": "X-Men: Forever (2024) #3",
+      "note": "Marvel series 38947 (X-Men: Forever (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        113492
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "X-Men Forever #4",
+      "sourceRangeReference": "X-Men Forever #3 to #4",
+      "normalizedSeriesTitle": "X-Men: Forever",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "seriesId": 38947,
+      "candidateIssueId": 113493,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "113493"
+      ],
+      "selectedIssueId": 113493,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/113493/x-men_forever_2024_4",
+      "resolvedIssueTitle": "X-Men: Forever (2024) #4",
+      "note": "Marvel series 38947 (X-Men: Forever (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        113493
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Invincible Iron Man #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Invincible Iron Man",
+      "seriesYear": 2022,
+      "issueNumber": "18",
+      "seriesId": 34717,
+      "candidateIssueId": 112145,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112145"
+      ],
+      "selectedIssueId": 112145,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112145/invincible_iron_man_2022_18",
+      "resolvedIssueTitle": "Invincible Iron Man (2022) #18",
+      "note": "Marvel series 34717 (Invincible Iron Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112145
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Fall of the House of X #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fall of the House of X",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "seriesId": 38458,
+      "candidateIssueId": 111665,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111665"
+      ],
+      "selectedIssueId": 111665,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111665/fall_of_the_house_of_x_2024_5",
+      "resolvedIssueTitle": "Fall of the House of X (2024) #5",
+      "note": "Marvel series 38458 (Fall of the House of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111665
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Rise of the Powers of X #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Rise of the Powers of X",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "seriesId": 38472,
+      "candidateIssueId": 111686,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "111686"
+      ],
+      "selectedIssueId": 111686,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111686/rise_of_the_powers_of_x_2024_5",
+      "resolvedIssueTitle": "Rise of the Powers of X (2024) #5",
+      "note": "Marvel series 38472 (Rise of the Powers of X (2024 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        111686
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "X-Men #35",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "35",
+      "seriesId": 31324,
+      "candidateIssueId": 112189,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "112189"
+      ],
+      "selectedIssueId": 112189,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112189/x-men_2021_35",
+      "resolvedIssueTitle": "X-Men (2021) #35",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        112189
+      ]
+    }
+  ],
+  "mappingDigest": "9aaca36b8a823c50d8ff26cf7ba267319e716deb0dc8dac041c65597724b2326",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "fall-house-x-rise-powers-x",
+    "name": "Fall of the House of X & Rise of the Powers of X",
+    "description": "The final Krakoan-era conflict across Fall of the House of X, Rise of the Powers of X, and their linked series.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "fall-house-x-rise-powers-x.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/fall-of-the-house-of-x/",
+    "sourceSection": "Fall of the House of X and Rise of the Powers of X Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "fall_house_x_rise_powers_x.json",
+    "characters": [
+      "X-Men",
+      "Iron Man",
+      "Magneto",
+      "Avengers"
+    ],
+    "keywords": [
+      "Fall of the House of X",
+      "Rise of the Powers of X",
+      "Krakoa"
+    ],
+    "expect": 34,
+    "timeline": 2024,
+    "coverIssueId": 111661
+  },
+  "relationshipReview": {
+    "reportDigest": "d4b585a6fc63dc831d85597eaad804044313fac73e290ec2222158af1509c67c",
+    "packetDigest": "2038dbbaef9ad1d42b0bc0f0efea44de7d527e459fe9c34649dd25495fb0ecea",
+    "mappingDigest": "9aaca36b8a823c50d8ff26cf7ba267319e716deb0dc8dac041c65597724b2326",
+    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:47:48.847Z",
+    "approvalDigest": "ea891ddbbdfaa9bac5bfd3eab40af09cc66aef6bb25f6b6312a14b499c5ba8ea"
+  }
+}

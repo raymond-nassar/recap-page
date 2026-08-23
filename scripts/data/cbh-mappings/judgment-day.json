@@ -1,0 +1,2493 @@
+{
+  "id": "judgment-day",
+  "inventoryId": "judgment-day",
+  "packetDigest": "0c70ff6e72733a68c6b52507154c5810b6b21c0c997083b830231df44f7c48b1",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/judgment-day-reading-order/",
+  "sourceSection": "Judgment Day Issue by Issue Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 44,
+  "excludedSourceReferences": [
+    "Road to Judgment Day",
+    "Collected A.X.E. Judgment Day Comics",
+    "Previously: Inferno",
+    "Next: Dark Web"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "judgment-day",
+    "name": "A.X.E.: Judgment Day",
+    "description": "The Avengers, Eternals, and X-Men collide as the Progenitor judges Earth.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "judgment-day.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/judgment-day-reading-order/",
+    "sourceSection": "Judgment Day Issue by Issue Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "judgment_day.json",
+    "characters": [
+      "Avengers",
+      "Eternals",
+      "X-Men"
+    ],
+    "keywords": [
+      "A.X.E.",
+      "Judgment Day",
+      "Progenitor"
+    ],
+    "expect": 44,
+    "timeline": 2022,
+    "coverIssueId": 100366
+  },
+  "candidateMetadata": [
+    {
+      "id": 85569,
+      "title": "Eternals",
+      "issueTitle": "Eternals (2021) #10",
+      "seriesTitle": "Eternals",
+      "apiSeriesName": "Eternals (2021 - Present)",
+      "seriesId": 30146,
+      "issueNumber": "10",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85569/eternals_2021_10",
+      "onSaleDate": "2022-03-09T00:00:00+0000"
+    },
+    {
+      "id": 85570,
+      "title": "Eternals",
+      "issueTitle": "Eternals (2021) #11",
+      "seriesTitle": "Eternals",
+      "apiSeriesName": "Eternals (2021 - Present)",
+      "seriesId": 30146,
+      "issueNumber": "11",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85570/eternals_2021_11",
+      "onSaleDate": "2022-04-13T00:00:00+0000"
+    },
+    {
+      "id": 85571,
+      "title": "Eternals",
+      "issueTitle": "Eternals (2021) #12",
+      "seriesTitle": "Eternals",
+      "apiSeriesName": "Eternals (2021 - Present)",
+      "seriesId": 30146,
+      "issueNumber": "12",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85571/eternals_2021_12",
+      "onSaleDate": "2022-05-18T00:00:00+0000"
+    },
+    {
+      "id": 100671,
+      "title": "Free Comic Book Day 2022: Avengers/X-Men",
+      "issueTitle": "Free Comic Book Day 2022: Avengers/X-Men (2022) #1",
+      "seriesTitle": "Free Comic Book Day 2022: Avengers/X-Men",
+      "apiSeriesName": "Free Comic Book Day 2022: Avengers/X-Men (2022)",
+      "seriesId": 34538,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100671/free_comic_book_day_2022_avengersx-men_2022_1",
+      "onSaleDate": "2022-04-06T00:00:00+0000"
+    },
+    {
+      "id": 91734,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #3",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "3",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91734/immortal_x-men_2022_3",
+      "onSaleDate": "2022-06-22T00:00:00+0000"
+    },
+    {
+      "id": 100352,
+      "title": "X-Men: Hellfire Gala",
+      "issueTitle": "X-Men: Hellfire Gala (2022) #1",
+      "seriesTitle": "X-Men: Hellfire Gala",
+      "apiSeriesName": "X-Men: Hellfire Gala (2022)",
+      "seriesId": 34446,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100352/x-men_hellfire_gala_2022_1",
+      "onSaleDate": "2022-07-13T00:00:00+0000"
+    },
+    {
+      "id": 91735,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #4",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "4",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91735/immortal_x-men_2022_4",
+      "onSaleDate": "2022-07-13T00:00:00+0000"
+    },
+    {
+      "id": 102808,
+      "title": "A.X.E.: Eve Of Judgment",
+      "issueTitle": "A.X.E.: Eve Of Judgment (2022) #1",
+      "seriesTitle": "A.X.E.: Eve Of Judgment",
+      "apiSeriesName": "A.X.E.: Eve Of Judgment (2022)",
+      "seriesId": 35456,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102808/axe_eve_of_judgment_2022_1",
+      "onSaleDate": "2022-07-13T00:00:00+0000"
+    },
+    {
+      "id": 100366,
+      "title": "A.X.E.: Judgment Day",
+      "issueTitle": "A.X.E.: Judgment Day (2022) #1",
+      "seriesTitle": "A.X.E.: Judgment Day",
+      "apiSeriesName": "A.X.E.: Judgment Day (2022)",
+      "seriesId": 34459,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100366/axe_judgment_day_2022_1",
+      "onSaleDate": "2022-07-20T00:00:00+0000"
+    },
+    {
+      "id": 91736,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #5",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "5",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91736/immortal_x-men_2022_5",
+      "onSaleDate": "2022-08-03T00:00:00+0000"
+    },
+    {
+      "id": 96269,
+      "title": "X-Men Red",
+      "issueTitle": "X-Men Red (2022) #5",
+      "seriesTitle": "X-Men Red",
+      "apiSeriesName": "X-Men Red (2022 - Present)",
+      "seriesId": 32962,
+      "issueNumber": "5",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/96269/x-men_red_2022_5",
+      "onSaleDate": "2022-08-03T00:00:00+0000"
+    },
+    {
+      "id": 98430,
+      "title": "Legion of X",
+      "issueTitle": "Legion of X (2022) #5",
+      "seriesTitle": "Legion of X",
+      "apiSeriesName": "Legion of X (2022 - 2023)",
+      "seriesId": 33959,
+      "issueNumber": "5",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/98430/legion_of_x_2022_5",
+      "onSaleDate": "2022-09-21T00:00:00+0000"
+    },
+    {
+      "id": 100367,
+      "title": "A.X.E.: Judgment Day",
+      "issueTitle": "A.X.E.: Judgment Day (2022) #2",
+      "seriesTitle": "A.X.E.: Judgment Day",
+      "apiSeriesName": "A.X.E.: Judgment Day (2022)",
+      "seriesId": 34459,
+      "issueNumber": "2",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100367/axe_judgment_day_2022_2",
+      "onSaleDate": "2022-08-10T00:00:00+0000"
+    },
+    {
+      "id": 102804,
+      "title": "A.X.E.: Death to the Mutants",
+      "issueTitle": "A.X.E.: Death to the Mutants (2022) #1",
+      "seriesTitle": "A.X.E.: Death to the Mutants",
+      "apiSeriesName": "A.X.E.: Death to the Mutants (2022)",
+      "seriesId": 35455,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102804/axe_death_to_the_mutants_2022_1",
+      "onSaleDate": "2022-08-17T00:00:00+0000"
+    },
+    {
+      "id": 84427,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #13",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "13",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "onSaleDate": "2020-10-21T00:00:00+0000"
+    },
+    {
+      "id": 100368,
+      "title": "A.X.E.: Judgment Day",
+      "issueTitle": "A.X.E.: Judgment Day (2022) #3",
+      "seriesTitle": "A.X.E.: Judgment Day",
+      "apiSeriesName": "A.X.E.: Judgment Day (2022)",
+      "seriesId": 34459,
+      "issueNumber": "3",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100368/axe_judgment_day_2022_3",
+      "onSaleDate": "2022-08-24T00:00:00+0000"
+    },
+    {
+      "id": 102805,
+      "title": "A.X.E.: Death to the Mutants",
+      "issueTitle": "A.X.E.: Death to the Mutants (2022) #2",
+      "seriesTitle": "A.X.E.: Death to the Mutants",
+      "apiSeriesName": "A.X.E.: Death to the Mutants (2022)",
+      "seriesId": 35455,
+      "issueNumber": "2",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102805/axe_death_to_the_mutants_2022_2",
+      "onSaleDate": "2022-09-07T00:00:00+0000"
+    },
+    {
+      "id": 91737,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #6",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "6",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91737/immortal_x-men_2022_6",
+      "onSaleDate": "2022-09-07T00:00:00+0000"
+    },
+    {
+      "id": 84428,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #14",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "14",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "onSaleDate": "2020-11-04T00:00:00+0000"
+    },
+    {
+      "id": 98688,
+      "title": "Marauders",
+      "issueTitle": "Marauders (2022) #6",
+      "seriesTitle": "Marauders",
+      "apiSeriesName": "Marauders (2022 - Present)",
+      "seriesId": 34029,
+      "issueNumber": "6",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/98688/marauders_2022_6",
+      "onSaleDate": "2022-09-07T00:00:00+0000"
+    },
+    {
+      "id": 96889,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (2020) #24",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (2020 - Present)",
+      "seriesId": 28051,
+      "issueNumber": "24",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/96889/wolverine_2020_24",
+      "onSaleDate": "2022-09-07T00:00:00+0000"
+    },
+    {
+      "id": 96890,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (2020) #25",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (2020 - Present)",
+      "seriesId": 28051,
+      "issueNumber": "25",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/96890/wolverine_2020_25",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 95765,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2018) #60",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2018 - 2023)",
+      "seriesId": 24229,
+      "issueNumber": "60",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95765/avengers_2018_60",
+      "onSaleDate": "2022-09-21T00:00:00+0000"
+    },
+    {
+      "id": 95806,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (2018) #47",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (2018 - Present)",
+      "seriesId": 24554,
+      "issueNumber": "47",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95806/fantastic_four_2018_47",
+      "onSaleDate": "2022-09-21T00:00:00+0000"
+    },
+    {
+      "id": 95807,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (2018) #48",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (2018 - Present)",
+      "seriesId": 24554,
+      "issueNumber": "48",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95807/fantastic_four_2018_48",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 95746,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2022) #10",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2022 - Present)",
+      "seriesId": 32866,
+      "issueNumber": "10",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95746/the_amazing_spider-man_2022_10",
+      "onSaleDate": "2022-09-28T00:00:00+0000"
+    },
+    {
+      "id": 95892,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #31",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "31",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95892/x-force_2019_31",
+      "onSaleDate": "2022-08-31T00:00:00+0000"
+    },
+    {
+      "id": 95893,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #32",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "32",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95893/x-force_2019_32",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 95894,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #33",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "33",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95894/x-force_2019_33",
+      "onSaleDate": "2022-10-19T00:00:00+0000"
+    },
+    {
+      "id": 104819,
+      "title": "A.X.E.: Iron Fist",
+      "issueTitle": "A.X.E.: Iron Fist (2022) #1",
+      "seriesTitle": "A.X.E.: Iron Fist",
+      "apiSeriesName": "A.X.E.: Iron Fist (2022)",
+      "seriesId": 36247,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104819/axe_iron_fist_2022_1",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 95788,
+      "title": "Captain Marvel",
+      "issueTitle": "Captain Marvel (2019) #42",
+      "seriesTitle": "Captain Marvel",
+      "apiSeriesName": "Captain Marvel (2019 - 2023)",
+      "seriesId": 26673,
+      "issueNumber": "42",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95788/captain_marvel_2019_42",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 102552,
+      "title": "X-Men Red",
+      "issueTitle": "X-Men Red (2022) #6",
+      "seriesTitle": "X-Men Red",
+      "apiSeriesName": "X-Men Red (2022 - Present)",
+      "seriesId": 32962,
+      "issueNumber": "6",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102552/x-men_red_2022_6",
+      "onSaleDate": "2022-09-14T00:00:00+0000"
+    },
+    {
+      "id": 100369,
+      "title": "A.X.E.: Judgment Day",
+      "issueTitle": "A.X.E.: Judgment Day (2022) #4",
+      "seriesTitle": "A.X.E.: Judgment Day",
+      "apiSeriesName": "A.X.E.: Judgment Day (2022)",
+      "seriesId": 34459,
+      "issueNumber": "4",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100369/axe_judgment_day_2022_4",
+      "onSaleDate": "2022-09-14T00:00:00+0000"
+    },
+    {
+      "id": 100370,
+      "title": "A.X.E.: Judgment Day",
+      "issueTitle": "A.X.E.: Judgment Day (2022) #5",
+      "seriesTitle": "A.X.E.: Judgment Day",
+      "apiSeriesName": "A.X.E.: Judgment Day (2022)",
+      "seriesId": 34459,
+      "issueNumber": "5",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100370/axe_judgment_day_2022_5",
+      "onSaleDate": "2022-09-21T00:00:00+0000"
+    },
+    {
+      "id": 102553,
+      "title": "X-Men Red",
+      "issueTitle": "X-Men Red (2022) #7",
+      "seriesTitle": "X-Men Red",
+      "apiSeriesName": "X-Men Red (2022 - Present)",
+      "seriesId": 32962,
+      "issueNumber": "7",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102553/x-men_red_2022_7",
+      "onSaleDate": "2022-10-05T00:00:00+0000"
+    },
+    {
+      "id": 102523,
+      "title": "Legion of X",
+      "issueTitle": "Legion of X (2022) #6",
+      "seriesTitle": "Legion of X",
+      "apiSeriesName": "Legion of X (2022 - 2023)",
+      "seriesId": 33959,
+      "issueNumber": "6",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102523/legion_of_x_2022_6",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 91738,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #7",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "7",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91738/immortal_x-men_2022_7",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 102806,
+      "title": "A.X.E.: Death to the Mutants",
+      "issueTitle": "A.X.E.: Death to the Mutants (2022) #3",
+      "seriesTitle": "A.X.E.: Death to the Mutants",
+      "apiSeriesName": "A.X.E.: Death to the Mutants (2022)",
+      "seriesId": 35455,
+      "issueNumber": "3",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102806/axe_death_to_the_mutants_2022_3",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 102809,
+      "title": "A.X.E.: Starfox",
+      "issueTitle": "A.X.E.: Starfox (2022) #1",
+      "seriesTitle": "A.X.E.: Starfox",
+      "apiSeriesName": "A.X.E.: Starfox (2022)",
+      "seriesId": 35457,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102809/axe_starfox_2022_1",
+      "onSaleDate": "2022-10-05T00:00:00+0000"
+    },
+    {
+      "id": 102802,
+      "title": "A.X.E.: Avengers",
+      "issueTitle": "A.X.E.: Avengers (2022) #1",
+      "seriesTitle": "A.X.E.: Avengers",
+      "apiSeriesName": "A.X.E.: Avengers (2022)",
+      "seriesId": 35453,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102802/axe_avengers_2022_1",
+      "onSaleDate": "2022-09-28T00:00:00+0000"
+    },
+    {
+      "id": 102810,
+      "title": "A.X.E.: X-Men",
+      "issueTitle": "A.X.E.: X-Men (2022) #1",
+      "seriesTitle": "A.X.E.: X-Men",
+      "apiSeriesName": "A.X.E.: X-Men (2022)",
+      "seriesId": 35458,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102810/axe_x-men_2022_1",
+      "onSaleDate": "2022-10-05T00:00:00+0000"
+    },
+    {
+      "id": 102803,
+      "title": "A.X.E.: Eternals",
+      "issueTitle": "A.X.E.: Eternals (2022) #1",
+      "seriesTitle": "A.X.E.: Eternals",
+      "apiSeriesName": "A.X.E.: Eternals (2022)",
+      "seriesId": 35454,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102803/axe_eternals_2022_1",
+      "onSaleDate": "2022-10-12T00:00:00+0000"
+    },
+    {
+      "id": 102807,
+      "title": "A.X.E.: Judgment Day",
+      "issueTitle": "A.X.E.: Judgment Day (2022) #6",
+      "seriesTitle": "A.X.E.: Judgment Day",
+      "apiSeriesName": "A.X.E.: Judgment Day (2022)",
+      "seriesId": 34459,
+      "issueNumber": "6",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102807/axe_judgment_day_2022_6",
+      "onSaleDate": "2022-10-26T00:00:00+0000"
+    },
+    {
+      "id": 104869,
+      "title": "A.X.E.: Judgment Day Omega",
+      "issueTitle": "A.X.E.: Judgment Day Omega (2022) #1",
+      "seriesTitle": "A.X.E.: Judgment Day Omega",
+      "apiSeriesName": "A.X.E.: Judgment Day Omega (2022)",
+      "seriesId": 36268,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104869/axe_judgment_day_omega_2022_1",
+      "onSaleDate": "2022-11-09T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Eternals #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "10",
+      "seriesId": 30146,
+      "candidateIssueId": 85569,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85569"
+      ],
+      "selectedIssueId": 85569,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85569/eternals_2021_10",
+      "resolvedIssueTitle": "Eternals (2021) #10",
+      "note": "Marvel series 30146 (Eternals (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85569
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Eternals #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "11",
+      "seriesId": 30146,
+      "candidateIssueId": 85570,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85570"
+      ],
+      "selectedIssueId": 85570,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85570/eternals_2021_11",
+      "resolvedIssueTitle": "Eternals (2021) #11",
+      "note": "Marvel series 30146 (Eternals (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85570
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Eternals #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "12",
+      "seriesId": 30146,
+      "candidateIssueId": 85571,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85571"
+      ],
+      "selectedIssueId": 85571,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85571/eternals_2021_12",
+      "resolvedIssueTitle": "Eternals (2021) #12",
+      "note": "Marvel series 30146 (Eternals (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85571
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Free Comic Book Day (2022): Avengers / X-Men",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Free Comic Book Day 2022: Avengers/X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34538,
+      "candidateIssueId": 100671,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100671"
+      ],
+      "selectedIssueId": 100671,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100671/free_comic_book_day_2022_avengersx-men_2022_1",
+      "resolvedIssueTitle": "Free Comic Book Day 2022: Avengers/X-Men (2022) #1",
+      "note": "Marvel series 34538 (Free Comic Book Day 2022: Avengers/X-Men (2022)) is the reviewed metadata series for this source reference. The source year and slash spacing are normalized to the exact series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100671
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Immortal X-Men #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 31375,
+      "candidateIssueId": 91734,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91734"
+      ],
+      "selectedIssueId": 91734,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91734/immortal_x-men_2022_3",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #3",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91734
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Hellfire Gala (2022) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: Hellfire Gala",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34446,
+      "candidateIssueId": 100352,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100352"
+      ],
+      "selectedIssueId": 100352,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100352/x-men_hellfire_gala_2022_1",
+      "resolvedIssueTitle": "X-Men: Hellfire Gala (2022) #1",
+      "note": "Marvel series 34446 (X-Men: Hellfire Gala (2022)) is the reviewed metadata series for this source reference. The exact series title adds the X-Men prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100352
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Immortal X-Men #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 31375,
+      "candidateIssueId": 91735,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91735"
+      ],
+      "selectedIssueId": 91735,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91735/immortal_x-men_2022_4",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #4",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91735
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Eve of Judgment #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Eve Of Judgment",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35456,
+      "candidateIssueId": 102808,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102808"
+      ],
+      "selectedIssueId": 102808,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102808/axe_eve_of_judgment_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Eve Of Judgment (2022) #1",
+      "note": "Marvel series 35456 (A.X.E.: Eve Of Judgment (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102808
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Judgment Day #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34459,
+      "candidateIssueId": 100366,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100366"
+      ],
+      "selectedIssueId": 100366,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100366/axe_judgment_day_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day (2022) #1",
+      "note": "Marvel series 34459 (A.X.E.: Judgment Day (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100366
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Immortal X-Men #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 31375,
+      "candidateIssueId": 91736,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91736"
+      ],
+      "selectedIssueId": 91736,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91736/immortal_x-men_2022_5",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #5",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91736
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "X-Men Red #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 32962,
+      "candidateIssueId": 96269,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "96269"
+      ],
+      "selectedIssueId": 96269,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/96269/x-men_red_2022_5",
+      "resolvedIssueTitle": "X-Men Red (2022) #5",
+      "note": "Marvel series 32962 (X-Men Red (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        96269
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Legion of X #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Legion of X",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 33959,
+      "candidateIssueId": 98430,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "98430"
+      ],
+      "selectedIssueId": 98430,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/98430/legion_of_x_2022_5",
+      "resolvedIssueTitle": "Legion of X (2022) #5",
+      "note": "Marvel series 33959 (Legion of X (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        98430
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Judgment Day #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 34459,
+      "candidateIssueId": 100367,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100367"
+      ],
+      "selectedIssueId": 100367,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100367/axe_judgment_day_2022_2",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day (2022) #2",
+      "note": "Marvel series 34459 (A.X.E.: Judgment Day (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100367
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "A.X.E.: Death to the Mutants #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Death to the Mutants",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35455,
+      "candidateIssueId": 102804,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102804"
+      ],
+      "selectedIssueId": 102804,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102804/axe_death_to_the_mutants_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Death to the Mutants (2022) #1",
+      "note": "Marvel series 35455 (A.X.E.: Death to the Mutants (2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102804
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "X-Men #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27567,
+      "candidateIssueId": 84427,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84427"
+      ],
+      "selectedIssueId": 84427,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "resolvedIssueTitle": "X-Men (2019) #13",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84427
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Judgment Day #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 34459,
+      "candidateIssueId": 100368,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100368"
+      ],
+      "selectedIssueId": 100368,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100368/axe_judgment_day_2022_3",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day (2022) #3",
+      "note": "Marvel series 34459 (A.X.E.: Judgment Day (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100368
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "A.X.E.: Death to the Mutants #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Death to the Mutants",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 35455,
+      "candidateIssueId": 102805,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102805"
+      ],
+      "selectedIssueId": 102805,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102805/axe_death_to_the_mutants_2022_2",
+      "resolvedIssueTitle": "A.X.E.: Death to the Mutants (2022) #2",
+      "note": "Marvel series 35455 (A.X.E.: Death to the Mutants (2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102805
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Immortal X-Men #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "seriesId": 31375,
+      "candidateIssueId": 91737,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91737"
+      ],
+      "selectedIssueId": 91737,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91737/immortal_x-men_2022_6",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #6",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91737
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "X-Men #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27567,
+      "candidateIssueId": 84428,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84428"
+      ],
+      "selectedIssueId": 84428,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "resolvedIssueTitle": "X-Men (2019) #14",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84428
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Marauders #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "seriesId": 34029,
+      "candidateIssueId": 98688,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "98688"
+      ],
+      "selectedIssueId": 98688,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/98688/marauders_2022_6",
+      "resolvedIssueTitle": "Marauders (2022) #6",
+      "note": "Marvel series 34029 (Marauders (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        98688
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Wolverine #24",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2020,
+      "issueNumber": "24",
+      "seriesId": 28051,
+      "candidateIssueId": 96889,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "96889"
+      ],
+      "selectedIssueId": 96889,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/96889/wolverine_2020_24",
+      "resolvedIssueTitle": "Wolverine (2020) #24",
+      "note": "Marvel series 28051 (Wolverine (2020 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        96889
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Wolverine #25",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2020,
+      "issueNumber": "25",
+      "seriesId": 28051,
+      "candidateIssueId": 96890,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "96890"
+      ],
+      "selectedIssueId": 96890,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/96890/wolverine_2020_25",
+      "resolvedIssueTitle": "Wolverine (2020) #25",
+      "note": "Marvel series 28051 (Wolverine (2020 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        96890
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Avengers #60",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "60",
+      "seriesId": 24229,
+      "candidateIssueId": 95765,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95765"
+      ],
+      "selectedIssueId": 95765,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95765/avengers_2018_60",
+      "resolvedIssueTitle": "Avengers (2018) #60",
+      "note": "Marvel series 24229 (Avengers (2018 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95765
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Fantastic Four #47",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "47",
+      "seriesId": 24554,
+      "candidateIssueId": 95806,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95806"
+      ],
+      "selectedIssueId": 95806,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95806/fantastic_four_2018_47",
+      "resolvedIssueTitle": "Fantastic Four (2018) #47",
+      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95806
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Fantastic Four #48",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "48",
+      "seriesId": 24554,
+      "candidateIssueId": 95807,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95807"
+      ],
+      "selectedIssueId": 95807,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95807/fantastic_four_2018_48",
+      "resolvedIssueTitle": "Fantastic Four (2018) #48",
+      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95807
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Amazing Spider-Man #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 32866,
+      "candidateIssueId": 95746,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95746"
+      ],
+      "selectedIssueId": 95746,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95746/the_amazing_spider-man_2022_10",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2022) #10",
+      "note": "Marvel series 32866 (The Amazing Spider-Man (2022 - Present)) is the reviewed metadata series for this source reference. The exact series title adds The.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95746
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "X-Force #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "31",
+      "seriesId": 27564,
+      "candidateIssueId": 95892,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95892"
+      ],
+      "selectedIssueId": 95892,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95892/x-force_2019_31",
+      "resolvedIssueTitle": "X-Force (2019) #31",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95892
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "X-Force #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "32",
+      "seriesId": 27564,
+      "candidateIssueId": 95893,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95893"
+      ],
+      "selectedIssueId": 95893,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95893/x-force_2019_32",
+      "resolvedIssueTitle": "X-Force (2019) #32",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95893
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "X-Force #33",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "33",
+      "seriesId": 27564,
+      "candidateIssueId": 95894,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95894"
+      ],
+      "selectedIssueId": 95894,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95894/x-force_2019_33",
+      "resolvedIssueTitle": "X-Force (2019) #33",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95894
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "A.X.E. Iron Fist #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Iron Fist",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 36247,
+      "candidateIssueId": 104819,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104819"
+      ],
+      "selectedIssueId": 104819,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104819/axe_iron_fist_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Iron Fist (2022) #1",
+      "note": "Marvel series 36247 (A.X.E.: Iron Fist (2022)) is the reviewed metadata series for this source reference. The exact series title adds a colon.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104819
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Captain Marvel #42",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "42",
+      "seriesId": 26673,
+      "candidateIssueId": 95788,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95788"
+      ],
+      "selectedIssueId": 95788,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95788/captain_marvel_2019_42",
+      "resolvedIssueTitle": "Captain Marvel (2019) #42",
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95788
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "X-Men Red #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "seriesId": 32962,
+      "candidateIssueId": 102552,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102552"
+      ],
+      "selectedIssueId": 102552,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102552/x-men_red_2022_6",
+      "resolvedIssueTitle": "X-Men Red (2022) #6",
+      "note": "Marvel series 32962 (X-Men Red (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102552
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Judgment Day #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 34459,
+      "candidateIssueId": 100369,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100369"
+      ],
+      "selectedIssueId": 100369,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100369/axe_judgment_day_2022_4",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day (2022) #4",
+      "note": "Marvel series 34459 (A.X.E.: Judgment Day (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100369
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Judgment Day #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 34459,
+      "candidateIssueId": 100370,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100370"
+      ],
+      "selectedIssueId": 100370,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100370/axe_judgment_day_2022_5",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day (2022) #5",
+      "note": "Marvel series 34459 (A.X.E.: Judgment Day (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100370
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "X-Men Red #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "7",
+      "seriesId": 32962,
+      "candidateIssueId": 102553,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102553"
+      ],
+      "selectedIssueId": 102553,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102553/x-men_red_2022_7",
+      "resolvedIssueTitle": "X-Men Red (2022) #7",
+      "note": "Marvel series 32962 (X-Men Red (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102553
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Legion of X #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Legion of X",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "seriesId": 33959,
+      "candidateIssueId": 102523,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102523"
+      ],
+      "selectedIssueId": 102523,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102523/legion_of_x_2022_6",
+      "resolvedIssueTitle": "Legion of X (2022) #6",
+      "note": "Marvel series 33959 (Legion of X (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102523
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Immortal X-Men #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "7",
+      "seriesId": 31375,
+      "candidateIssueId": 91738,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91738"
+      ],
+      "selectedIssueId": 91738,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91738/immortal_x-men_2022_7",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #7",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91738
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "A.X.E.: Death to the Mutants #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Death to the Mutants",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 35455,
+      "candidateIssueId": 102806,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102806"
+      ],
+      "selectedIssueId": 102806,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102806/axe_death_to_the_mutants_2022_3",
+      "resolvedIssueTitle": "A.X.E.: Death to the Mutants (2022) #3",
+      "note": "Marvel series 35455 (A.X.E.: Death to the Mutants (2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102806
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "A.X.E. Starfox #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Starfox",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35457,
+      "candidateIssueId": 102809,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102809"
+      ],
+      "selectedIssueId": 102809,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102809/axe_starfox_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Starfox (2022) #1",
+      "note": "Marvel series 35457 (A.X.E.: Starfox (2022)) is the reviewed metadata series for this source reference. The exact series title adds a colon.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102809
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "A.X.E. Avengers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Avengers",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35453,
+      "candidateIssueId": 102802,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102802"
+      ],
+      "selectedIssueId": 102802,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102802/axe_avengers_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Avengers (2022) #1",
+      "note": "Marvel series 35453 (A.X.E.: Avengers (2022)) is the reviewed metadata series for this source reference. The exact series title adds a colon.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102802
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "A.X.E.: X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35458,
+      "candidateIssueId": 102810,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102810"
+      ],
+      "selectedIssueId": 102810,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102810/axe_x-men_2022_1",
+      "resolvedIssueTitle": "A.X.E.: X-Men (2022) #1",
+      "note": "Marvel series 35458 (A.X.E.: X-Men (2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102810
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "A.X.E.: Eternals #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Eternals",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35454,
+      "candidateIssueId": 102803,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102803"
+      ],
+      "selectedIssueId": 102803,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102803/axe_eternals_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Eternals (2022) #1",
+      "note": "Marvel series 35454 (A.X.E.: Eternals (2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102803
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Judgment Day #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "seriesId": 34459,
+      "candidateIssueId": 102807,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102807"
+      ],
+      "selectedIssueId": 102807,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102807/axe_judgment_day_2022_6",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day (2022) #6",
+      "note": "Marvel series 34459 (A.X.E.: Judgment Day (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102807
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Judgment Day Omega #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "A.X.E.: Judgment Day Omega",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 36268,
+      "candidateIssueId": 104869,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104869"
+      ],
+      "selectedIssueId": 104869,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104869/axe_judgment_day_omega_2022_1",
+      "resolvedIssueTitle": "A.X.E.: Judgment Day Omega (2022) #1",
+      "note": "Marvel series 36268 (A.X.E.: Judgment Day Omega (2022)) is the reviewed metadata series for this source reference. The exact series title adds the A.X.E. prefix.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104869
+      ]
+    }
+  ],
+  "mappingDigest": "45bb86755c51897b1bdfd3bb43b2cdd445e50e769a6d35b8b281a5af01fc55c1",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "judgment-day",
+    "name": "A.X.E.: Judgment Day",
+    "description": "The Avengers, Eternals, and X-Men collide as the Progenitor judges Earth.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "judgment-day.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/judgment-day-reading-order/",
+    "sourceSection": "Judgment Day Issue by Issue Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "judgment_day.json",
+    "characters": [
+      "Avengers",
+      "Eternals",
+      "X-Men"
+    ],
+    "keywords": [
+      "A.X.E.",
+      "Judgment Day",
+      "Progenitor"
+    ],
+    "expect": 44,
+    "timeline": 2022,
+    "coverIssueId": 100366
+  },
+  "relationshipReview": {
+    "reportDigest": "87529e193f75ca03d5effc58f9b2ccd7414d16d44f4bcd2b707bc6b0ed35c4b6",
+    "packetDigest": "0c70ff6e72733a68c6b52507154c5810b6b21c0c997083b830231df44f7c48b1",
+    "mappingDigest": "45bb86755c51897b1bdfd3bb43b2cdd445e50e769a6d35b8b281a5af01fc55c1",
+    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "peerDigests": {
+      "dark-web": "e82dbaa204cc50c6da6044023a4808f80071473751bb6a70545ca9bc9c65382f",
+      "sins-of-sinister": "8fe36184b0887ead545859dffe393814c9c33ca2738d2a5fb100004b66b891e1"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared X-Men #13 and #14 issues preserve their source-authored place in two distinct event sequences.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
+    "reviewedAt": "2026-08-23T05:47:48.847Z",
+    "approvalDigest": "79c7e885de78650d5d6209b0af451e5653d71567b72a9453a00215d5c1dd73a0"
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "id": "x-men-extermination",
+  "name": "X-Men: Extermination",
+  "description": "Nine chapters closing the original five X-Men time-travel story and carrying its immediate epilogue forward.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/x-men-extermination/",
+  "sourceSection": "Extermination Issues Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T09:16:32.673Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 70222,
+      "title": "X-Men: Blue (2017) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/70222/x-men_blue_2017_35",
+      "seriesId": 23018,
+      "seriesName": "X-Men: Blue (2017 - 2018)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49161,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/5b901410dcd2c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68367,
+      "title": "Extermination (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/68367/extermination_2018_1",
+      "seriesId": 24781,
+      "seriesName": "Extermination (2018)",
+      "onSale": "2018-08-15T00:00:00+0000",
+      "mu": "2019-02-18T00:00:00+0000",
+      "digitalId": 48870,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5b6c801988fe1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68368,
+      "title": "Extermination (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68368/extermination_2018_2",
+      "seriesId": 24781,
+      "seriesName": "Extermination (2018)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2019-03-04T00:00:00+0000",
+      "digitalId": 48871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b7ed7202ca52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68369,
+      "title": "Extermination (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/68369/extermination_2018_3",
+      "seriesId": 24781,
+      "seriesName": "Extermination (2018)",
+      "onSale": "2018-09-26T00:00:00+0000",
+      "mu": "2019-04-01T00:00:00+0000",
+      "digitalId": 49203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5b9ff48ae81c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68370,
+      "title": "Extermination (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68370/extermination_2018_4",
+      "seriesId": 24781,
+      "seriesName": "Extermination (2018)",
+      "onSale": "2018-10-31T00:00:00+0000",
+      "mu": "2019-05-06T00:00:00+0000",
+      "digitalId": 49563,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5bd2068a034ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ario Anindito",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68371,
+      "title": "Extermination (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/68371/extermination_2018_5",
+      "seriesId": 24781,
+      "seriesName": "Extermination (2018)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 49793,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/5c12b3deb2af7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74637,
+      "title": "X-Men: The Exterminated (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/74637/x-men_the_exterminated_2018_1",
+      "seriesId": 26835,
+      "seriesName": "X-Men: The Exterminated (2018)",
+      "onSale": "2018-12-05T00:00:00+0000",
+      "mu": "2019-06-10T00:00:00+0000",
+      "digitalId": 50021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5bff09afef56e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73943,
+      "title": "Uncanny X-Men Annual (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73943/uncanny_x-men_annual_2019_1",
+      "seriesId": 26646,
+      "seriesName": "Uncanny X-Men Annual (2019)",
+      "onSale": "2019-01-23T00:00:00+0000",
+      "mu": "2019-07-29T00:00:00+0000",
+      "digitalId": 50424,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/5c3f939cebfd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Gomez",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73051,
+      "title": "X-Force (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73051/x-force_2018_1",
+      "seriesId": 26370,
+      "seriesName": "X-Force (2018 - 2019)",
+      "onSale": "2018-12-26T00:00:00+0000",
+      "mu": "2019-07-01T00:00:00+0000",
+      "digitalId": 50105,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5c1aa38824cd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

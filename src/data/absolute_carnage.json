@@ -1,0 +1,1030 @@
+{
+  "id": "absolute-carnage",
+  "name": "Absolute Carnage",
+  "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+  "sourceSection": "Absolute Carnage Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:19:47.637Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 31,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 77071,
+      "title": "Absolute Carnage: Symbiote Spider-Man (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77071/absolute_carnage_symbiote_spider-man_2019_1",
+      "seriesId": 27637,
+      "seriesName": "Absolute Carnage: Symbiote Spider-Man (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 51858,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5d63e4123bf33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Francesco Mobili",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77434,
+      "title": "Absolute Carnage: Symbiote Of Vengeance (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77434/absolute_carnage_symbiote_of_vengeance_2019_1",
+      "seriesId": 27730,
+      "seriesName": "Absolute Carnage: Symbiote Of Vengeance (2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5d700f39c904d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82171,
+      "title": "Absolute Carnage: Weapon Plus (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82171/absolute_carnage_weapon_plus_2019_1",
+      "seriesId": 29150,
+      "seriesName": "Absolute Carnage: Weapon Plus (2019)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 52963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5db8425c72e33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Skan Srisuwan",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Raffaele",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76012,
+      "title": "Absolute Carnage (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76012/absolute_carnage_2019_1",
+      "seriesId": 27272,
+      "seriesName": "Absolute Carnage (2019)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52303,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5d4050d57ee1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 72,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77067,
+      "title": "Absolute Carnage: Scream (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77067/absolute_carnage_scream_2019_1",
+      "seriesId": 27635,
+      "seriesName": "Absolute Carnage: Scream (2019)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 52338,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5d4c2b91a1d5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Nava",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77068,
+      "title": "Absolute Carnage: Scream (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77068/absolute_carnage_scream_2019_2",
+      "seriesId": 27635,
+      "seriesName": "Absolute Carnage: Scream (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52476,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5d63e420aa672",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Nava",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Arizmendi",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77069,
+      "title": "Absolute Carnage: Scream (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77069/absolute_carnage_scream_2019_3",
+      "seriesId": 27635,
+      "seriesName": "Absolute Carnage: Scream (2019)",
+      "onSale": "2019-10-16T00:00:00+0000",
+      "mu": "2020-04-20T00:00:00+0000",
+      "digitalId": 52713,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5d97b1120b7f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77070,
+      "title": "Absolute Carnage: Separation Anxiety (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77070/absolute_carnage_separation_anxiety_2019_1",
+      "seriesId": 27636,
+      "seriesName": "Absolute Carnage: Separation Anxiety (2019)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 52339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5d4c2b7f3c0e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Brian Level",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77396,
+      "title": "Absolute Carnage Vs. Deadpool (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77396/absolute_carnage_vs_deadpool_2019_1",
+      "seriesId": 27720,
+      "seriesName": "Absolute Carnage Vs. Deadpool (2019)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": 52368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5d54225db2e6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Tyler Kirkham",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76014,
+      "title": "Absolute Carnage (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76014/absolute_carnage_2019_2",
+      "seriesId": 27272,
+      "seriesName": "Absolute Carnage (2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5d5d4d0c5091a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77064,
+      "title": "Absolute Carnage: Miles Morales (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77064/absolute_carnage_miles_morales_2019_1",
+      "seriesId": 27634,
+      "seriesName": "Absolute Carnage: Miles Morales (2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5d5d4ceb33fa8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Crain",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77065,
+      "title": "Absolute Carnage: Miles Morales (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77065/absolute_carnage_miles_morales_2019_2",
+      "seriesId": 27634,
+      "seriesName": "Absolute Carnage: Miles Morales (2019)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-30T00:00:00+0000",
+      "digitalId": 52580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5d1636e60ee22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Crain",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74069,
+      "title": "Venom (2018) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/74069/venom_2018_17",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5d5d4c8c6e22f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77061,
+      "title": "Absolute Carnage: Lethal Protectors (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77061/absolute_carnage_lethal_protectors_2019_1",
+      "seriesId": 27633,
+      "seriesName": "Absolute Carnage: Lethal Protectors (2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52397,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5d5d4d043f968",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77062,
+      "title": "Absolute Carnage: Lethal Protectors (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77062/absolute_carnage_lethal_protectors_2019_2",
+      "seriesId": 27633,
+      "seriesName": "Absolute Carnage: Lethal Protectors (2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2020-03-23T00:00:00+0000",
+      "digitalId": 52562,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5d7671f2e661f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Iban Coello",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77397,
+      "title": "Absolute Carnage Vs. Deadpool (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77397/absolute_carnage_vs_deadpool_2019_2",
+      "seriesId": 27720,
+      "seriesName": "Absolute Carnage Vs. Deadpool (2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5d700f65ecaf6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Tyler Kirkham",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77398,
+      "title": "Absolute Carnage Vs. Deadpool (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77398/absolute_carnage_vs_deadpool_2019_3",
+      "seriesId": 27720,
+      "seriesName": "Absolute Carnage Vs. Deadpool (2019)",
+      "onSale": "2019-10-16T00:00:00+0000",
+      "mu": "2019-10-16T00:00:00+0000",
+      "digitalId": 52624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5d97b12f7e2b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jadson Jose Oliveira Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Tyler Kirkham",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74070,
+      "title": "Venom (2018) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/74070/venom_2018_18",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5d700e9b7f01c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77059,
+      "title": "Absolute Carnage: Avengers (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77059/absolute_carnage_avengers_2019_1",
+      "seriesId": 27631,
+      "seriesName": "Absolute Carnage: Avengers (2019)",
+      "onSale": "2019-10-16T00:00:00+0000",
+      "mu": "2020-04-20T00:00:00+0000",
+      "digitalId": 52579,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5d97b11c39db4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alberto Alburquerque",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Crain",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76015,
+      "title": "Absolute Carnage (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/76015/absolute_carnage_2019_3",
+      "seriesId": 27272,
+      "seriesName": "Absolute Carnage (2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2020-03-23T00:00:00+0000",
+      "digitalId": 52561,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5d7671d1734f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77060,
+      "title": "Absolute Carnage: Immortal Hulk (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77060/absolute_carnage_immortal_hulk_2019_1",
+      "seriesId": 27632,
+      "seriesName": "Absolute Carnage: Immortal Hulk (2019)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5d8a2b2a943b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Filipe Andrade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77172,
+      "title": "Venom (2018) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/77172/venom_2018_19",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-10-30T00:00:00+0000",
+      "mu": "2020-05-04T00:00:00+0000",
+      "digitalId": 52817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5daf6973069e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77066,
+      "title": "Absolute Carnage: Miles Morales (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77066/absolute_carnage_miles_morales_2019_3",
+      "seriesId": 27634,
+      "seriesName": "Absolute Carnage: Miles Morales (2019)",
+      "onSale": "2019-10-09T00:00:00+0000",
+      "mu": "2020-04-13T00:00:00+0000",
+      "digitalId": 52712,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5d924d1333fae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Crain",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76016,
+      "title": "Absolute Carnage (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76016/absolute_carnage_2019_4",
+      "seriesId": 27272,
+      "seriesName": "Absolute Carnage (2019)",
+      "onSale": "2019-10-16T00:00:00+0000",
+      "mu": "2020-04-20T00:00:00+0000",
+      "digitalId": 52709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5d97b14423818",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70726,
+      "title": "The Amazing Spider-Man (2018) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/70726/the_amazing_spider-man_2018_30",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-30T00:00:00+0000",
+      "digitalId": 52543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5d7f937900e0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77099,
+      "title": "The Amazing Spider-Man (2018) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/77099/the_amazing_spider-man_2018_31",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-10-09T00:00:00+0000",
+      "mu": "2020-04-13T00:00:00+0000",
+      "digitalId": 52718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5d924caf287a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77063,
+      "title": "Absolute Carnage: Lethal Protectors (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77063/absolute_carnage_lethal_protectors_2019_3",
+      "seriesId": 27633,
+      "seriesName": "Absolute Carnage: Lethal Protectors (2019)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 52625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5da4ca2cbea99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Iban Coello",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77217,
+      "title": "Absolute Carnage: Captain Marvel (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77217/absolute_carnage_captain_marvel_2019_1",
+      "seriesId": 27665,
+      "seriesName": "Absolute Carnage: Captain Marvel (2019)",
+      "onSale": "2019-11-20T00:00:00+0000",
+      "mu": "2020-05-25T00:00:00+0000",
+      "digitalId": 52962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5dc98b162563e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "penciler"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Emily Lerner",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78960,
+      "title": "Absolute Carnage (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/78960/absolute_carnage_2019_5",
+      "seriesId": 27272,
+      "seriesName": "Absolute Carnage (2019)",
+      "onSale": "2019-11-20T00:00:00+0000",
+      "mu": "2020-05-25T00:00:00+0000",
+      "digitalId": 52961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5dc98b39e30c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77173,
+      "title": "Venom (2018) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/77173/venom_2018_20",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-11-27T00:00:00+0000",
+      "mu": "2020-06-01T00:00:00+0000",
+      "digitalId": 53036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5dc9db5fb7d42",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ze Carlos",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79917,
+      "title": "Scream: Curse of Carnage (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/79917/scream_curse_of_carnage_2019_1",
+      "seriesId": 28207,
+      "seriesName": "Scream: Curse of Carnage (2019)",
+      "onSale": "2019-11-27T00:00:00+0000",
+      "mu": "2020-06-01T12:22:00+0000",
+      "digitalId": 53037,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/5dc9db688c359",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Christopher Mooneyham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

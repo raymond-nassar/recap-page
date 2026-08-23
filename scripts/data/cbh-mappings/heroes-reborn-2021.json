@@ -1,0 +1,1529 @@
+{
+  "id": "heroes-reborn-2021",
+  "inventoryId": "heroes-reborn-2021",
+  "packetDigest": "5a27486f35415e510a6bffcc034bc1f38288a820ac4429efe4605b29541d37d2",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+  "sourceSection": "Heroes Reborn Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 18,
+  "excludedSourceReferences": [
+    "Road to Heroes Reborn",
+    "Avengers by Jason Aaron",
+    "Squadron Supreme",
+    "Heroes Reborn",
+    "Previously: King in Black"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "heroes-reborn-2021",
+    "name": "Heroes Reborn",
+    "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "heroes-reborn-2021.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+    "sourceSection": "Heroes Reborn Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "heroes_reborn_2021.json",
+    "characters": [
+      "Avengers",
+      "Squadron Supreme"
+    ],
+    "keywords": [
+      "Heroes Reborn",
+      "Squadron Supreme",
+      "Alternate reality"
+    ],
+    "expect": 18,
+    "timeline": 2021,
+    "coverIssueId": 92793
+  },
+  "candidateMetadata": [
+    {
+      "id": 92793,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #1",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/92793/heroes_reborn_2021_1",
+      "onSaleDate": "2021-05-05T00:00:00+0000"
+    },
+    {
+      "id": 93048,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #2",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "2",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93048/heroes_reborn_2021_2",
+      "onSaleDate": "2021-05-12T00:00:00+0000"
+    },
+    {
+      "id": 93631,
+      "title": "Heroes Reborn: Hyperion & the Imperial Guard",
+      "issueTitle": "Heroes Reborn: Hyperion & the Imperial Guard (2021) #1",
+      "seriesTitle": "Heroes Reborn: Hyperion & the Imperial Guard",
+      "apiSeriesName": "Heroes Reborn: Hyperion & the Imperial Guard (2021)",
+      "seriesId": 31984,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93631/heroes_reborn_hyperion_the_imperial_guard_2021_1",
+      "onSaleDate": "2021-05-12T00:00:00+0000"
+    },
+    {
+      "id": 93637,
+      "title": "Heroes Reborn: Peter Parker, The Amazing Shutterbug",
+      "issueTitle": "Heroes Reborn: Peter Parker, The Amazing Shutterbug (2021) #1",
+      "seriesTitle": "Heroes Reborn: Peter Parker, The Amazing Shutterbug",
+      "apiSeriesName": "Heroes Reborn: Peter Parker, The Amazing Shutterbug (2021)",
+      "seriesId": 31990,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93637/heroes_reborn_peter_parker_the_amazing_shutterbug_2021_1",
+      "onSaleDate": "2021-05-12T00:00:00+0000"
+    },
+    {
+      "id": 93049,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #3",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "3",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93049/heroes_reborn_2021_3",
+      "onSaleDate": "2021-05-19T00:00:00+0000"
+    },
+    {
+      "id": 93635,
+      "title": "Heroes Reborn: Magneto & The Mutant Force",
+      "issueTitle": "Heroes Reborn: Magneto & The Mutant Force (2021) #1",
+      "seriesTitle": "Heroes Reborn: Magneto & The Mutant Force",
+      "apiSeriesName": "Heroes Reborn: Magneto & The Mutant Force (2021)",
+      "seriesId": 31988,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93635/heroes_reborn_magneto_the_mutant_force_2021_1",
+      "onSaleDate": "2021-05-26T00:00:00+0000"
+    },
+    {
+      "id": 93050,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #4",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "4",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93050/heroes_reborn_2021_4",
+      "onSaleDate": "2021-05-26T00:00:00+0000"
+    },
+    {
+      "id": 93639,
+      "title": "Heroes Reborn: Young Squadron",
+      "issueTitle": "Heroes Reborn: Young Squadron (2021) #1",
+      "seriesTitle": "Heroes Reborn: Young Squadron",
+      "apiSeriesName": "Heroes Reborn: Young Squadron (2021)",
+      "seriesId": 31992,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93639/heroes_reborn_young_squadron_2021_1",
+      "onSaleDate": "2021-05-26T00:00:00+0000"
+    },
+    {
+      "id": 93638,
+      "title": "Heroes Reborn: Siege Society",
+      "issueTitle": "Heroes Reborn: Siege Society (2021) #1",
+      "seriesTitle": "Heroes Reborn: Siege Society",
+      "apiSeriesName": "Heroes Reborn: Siege Society (2021)",
+      "seriesId": 31991,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93638/heroes_reborn_siege_society_2021_1",
+      "onSaleDate": "2021-05-26T00:00:00+0000"
+    },
+    {
+      "id": 93051,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #5",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "5",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93051/heroes_reborn_2021_5",
+      "onSaleDate": "2021-06-02T00:00:00+0000"
+    },
+    {
+      "id": 93644,
+      "title": "Heroes Reborn: American Knights",
+      "issueTitle": "Heroes Reborn: American Knights (2021) #1",
+      "seriesTitle": "Heroes Reborn: American Knights",
+      "apiSeriesName": "Heroes Reborn: American Knights (2021)",
+      "seriesId": 31995,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93644/heroes_reborn_american_knights_2021_1",
+      "onSaleDate": "2021-06-02T00:00:00+0000"
+    },
+    {
+      "id": 93636,
+      "title": "Heroes Reborn: Marvel Double Action",
+      "issueTitle": "Heroes Reborn: Marvel Double Action (2021) #1",
+      "seriesTitle": "Heroes Reborn: Marvel Double Action",
+      "apiSeriesName": "Heroes Reborn: Marvel Double Action (2021)",
+      "seriesId": 31989,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93636/heroes_reborn_marvel_double_action_2021_1",
+      "onSaleDate": "2021-06-02T00:00:00+0000"
+    },
+    {
+      "id": 93641,
+      "title": "Heroes Reborn: Squadron Savage",
+      "issueTitle": "Heroes Reborn: Squadron Savage (2021) #1",
+      "seriesTitle": "Heroes Reborn: Squadron Savage",
+      "apiSeriesName": "Heroes Reborn: Squadron Savage (2021)",
+      "seriesId": 31993,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93641/heroes_reborn_squadron_savage_2021_1",
+      "onSaleDate": "2021-06-09T00:00:00+0000"
+    },
+    {
+      "id": 93630,
+      "title": "Heroes Reborn: Night-Gwen",
+      "issueTitle": "Heroes Reborn: Night-Gwen (2021) #1",
+      "seriesTitle": "Heroes Reborn: Night-Gwen",
+      "apiSeriesName": "Heroes Reborn: Night-Gwen (2021)",
+      "seriesId": 31983,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93630/heroes_reborn_night-gwen_2021_1",
+      "onSaleDate": "2021-06-09T00:00:00+0000"
+    },
+    {
+      "id": 93052,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #6",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "6",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93052/heroes_reborn_2021_6",
+      "onSaleDate": "2021-06-09T00:00:00+0000"
+    },
+    {
+      "id": 93053,
+      "title": "Heroes Reborn",
+      "issueTitle": "Heroes Reborn (2021) #7",
+      "seriesTitle": "Heroes Reborn",
+      "apiSeriesName": "Heroes Reborn (2021)",
+      "seriesId": 31815,
+      "issueNumber": "7",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93053/heroes_reborn_2021_7",
+      "onSaleDate": "2021-06-16T00:00:00+0000"
+    },
+    {
+      "id": 93645,
+      "title": "Heroes Reborn: Weapon X & Final Flight",
+      "issueTitle": "Heroes Reborn: Weapon X & Final Flight (2021) #1",
+      "seriesTitle": "Heroes Reborn: Weapon X & Final Flight",
+      "apiSeriesName": "Heroes Reborn: Weapon X & Final Flight (2021)",
+      "seriesId": 31996,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93645/heroes_reborn_weapon_x_final_flight_2021_1",
+      "onSaleDate": "2021-06-16T00:00:00+0000"
+    },
+    {
+      "id": 92794,
+      "title": "Heroes Return",
+      "issueTitle": "Heroes Return (2021) #1",
+      "seriesTitle": "Heroes Return",
+      "apiSeriesName": "Heroes Return (2021)",
+      "seriesId": 31709,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/92794/heroes_return_2021_1",
+      "onSaleDate": "2021-06-23T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Heroes Reborn #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31815,
+      "candidateIssueId": 92793,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "92793"
+      ],
+      "selectedIssueId": 92793,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92793/heroes_reborn_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #1",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        92793
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Heroes Reborn #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 31815,
+      "candidateIssueId": 93048,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93048"
+      ],
+      "selectedIssueId": 93048,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93048/heroes_reborn_2021_2",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #2",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93048
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Heroes Reborn: Hyperion & The Imperial Guard #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Hyperion & the Imperial Guard",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31984,
+      "candidateIssueId": 93631,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93631"
+      ],
+      "selectedIssueId": 93631,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93631/heroes_reborn_hyperion_the_imperial_guard_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Hyperion & the Imperial Guard (2021) #1",
+      "note": "Marvel series 31984 (Heroes Reborn: Hyperion & the Imperial Guard (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93631
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Heroes Reborn: Peter Parker, The Amazing Shutterbug #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Peter Parker, The Amazing Shutterbug",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31990,
+      "candidateIssueId": 93637,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93637"
+      ],
+      "selectedIssueId": 93637,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93637/heroes_reborn_peter_parker_the_amazing_shutterbug_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Peter Parker, The Amazing Shutterbug (2021) #1",
+      "note": "Marvel series 31990 (Heroes Reborn: Peter Parker, The Amazing Shutterbug (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93637
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Heroes Reborn #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 31815,
+      "candidateIssueId": 93049,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93049"
+      ],
+      "selectedIssueId": 93049,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93049/heroes_reborn_2021_3",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #3",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93049
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Heroes Reborn: Magneto and the Mutant Force #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Magneto & The Mutant Force",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31988,
+      "candidateIssueId": 93635,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93635"
+      ],
+      "selectedIssueId": 93635,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93635/heroes_reborn_magneto_the_mutant_force_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Magneto & The Mutant Force (2021) #1",
+      "note": "Marvel series 31988 (Heroes Reborn: Magneto & The Mutant Force (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93635
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Heroes Reborn #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 31815,
+      "candidateIssueId": 93050,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93050"
+      ],
+      "selectedIssueId": 93050,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93050/heroes_reborn_2021_4",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #4",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93050
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Heroes Reborn: Young Squadron",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Young Squadron",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31992,
+      "candidateIssueId": 93639,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93639"
+      ],
+      "selectedIssueId": 93639,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93639/heroes_reborn_young_squadron_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Young Squadron (2021) #1",
+      "note": "Marvel series 31992 (Heroes Reborn: Young Squadron (2021)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93639
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Heroes Reborn: Siege Society",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Siege Society",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31991,
+      "candidateIssueId": 93638,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93638"
+      ],
+      "selectedIssueId": 93638,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93638/heroes_reborn_siege_society_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Siege Society (2021) #1",
+      "note": "Marvel series 31991 (Heroes Reborn: Siege Society (2021)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93638
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Heroes Reborn #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 31815,
+      "candidateIssueId": 93051,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93051"
+      ],
+      "selectedIssueId": 93051,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93051/heroes_reborn_2021_5",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #5",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93051
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Heroes Reborn: American Knights",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: American Knights",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31995,
+      "candidateIssueId": 93644,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93644"
+      ],
+      "selectedIssueId": 93644,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93644/heroes_reborn_american_knights_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: American Knights (2021) #1",
+      "note": "Marvel series 31995 (Heroes Reborn: American Knights (2021)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93644
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Heroes Reborn: Double Action",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Marvel Double Action",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31989,
+      "candidateIssueId": 93636,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93636"
+      ],
+      "selectedIssueId": 93636,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93636/heroes_reborn_marvel_double_action_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Marvel Double Action (2021) #1",
+      "note": "Marvel series 31989 (Heroes Reborn: Marvel Double Action (2021)) is the reviewed metadata series for this source reference. Marvel names the one-shot series Heroes Reborn: Marvel Double Action.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93636
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Heroes Reborn: Squadron Savage",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Squadron Savage",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31993,
+      "candidateIssueId": 93641,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93641"
+      ],
+      "selectedIssueId": 93641,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93641/heroes_reborn_squadron_savage_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Squadron Savage (2021) #1",
+      "note": "Marvel series 31993 (Heroes Reborn: Squadron Savage (2021)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93641
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Heroes Reborn: Night-Gwen",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Night-Gwen",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31983,
+      "candidateIssueId": 93630,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93630"
+      ],
+      "selectedIssueId": 93630,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93630/heroes_reborn_night-gwen_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Night-Gwen (2021) #1",
+      "note": "Marvel series 31983 (Heroes Reborn: Night-Gwen (2021)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93630
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Heroes Reborn #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "6",
+      "seriesId": 31815,
+      "candidateIssueId": 93052,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93052"
+      ],
+      "selectedIssueId": 93052,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93052/heroes_reborn_2021_6",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #6",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93052
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Heroes Reborn#7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "7",
+      "seriesId": 31815,
+      "candidateIssueId": 93053,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93053"
+      ],
+      "selectedIssueId": 93053,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93053/heroes_reborn_2021_7",
+      "resolvedIssueTitle": "Heroes Reborn (2021) #7",
+      "note": "Marvel series 31815 (Heroes Reborn (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93053
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Heroes Reborn: Weapon X & Final Flight",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Weapon X & Final Flight",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31996,
+      "candidateIssueId": 93645,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93645"
+      ],
+      "selectedIssueId": 93645,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93645/heroes_reborn_weapon_x_final_flight_2021_1",
+      "resolvedIssueTitle": "Heroes Reborn: Weapon X & Final Flight (2021) #1",
+      "note": "Marvel series 31996 (Heroes Reborn: Weapon X & Final Flight (2021)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93645
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Heroes Return #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Return",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31709,
+      "candidateIssueId": 92794,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "92794"
+      ],
+      "selectedIssueId": 92794,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92794/heroes_return_2021_1",
+      "resolvedIssueTitle": "Heroes Return (2021) #1",
+      "note": "Marvel series 31709 (Heroes Return (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        92794
+      ]
+    }
+  ],
+  "mappingDigest": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "heroes-reborn-2021",
+    "name": "Heroes Reborn",
+    "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "heroes-reborn-2021.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+    "sourceSection": "Heroes Reborn Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "heroes_reborn_2021.json",
+    "characters": [
+      "Avengers",
+      "Squadron Supreme"
+    ],
+    "keywords": [
+      "Heroes Reborn",
+      "Squadron Supreme",
+      "Alternate reality"
+    ],
+    "expect": 18,
+    "timeline": 2021,
+    "coverIssueId": 92793
+  },
+  "relationshipReview": {
+    "reportDigest": "cadf4d989dcccabf23f83103f0ca211049f6c4f39f059a956e46a3f022cf7d05",
+    "packetDigest": "5a27486f35415e510a6bffcc034bc1f38288a820ac4429efe4605b29541d37d2",
+    "mappingDigest": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620",
+    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "peerDigests": {
+      "x-of-swords": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:47:48.847Z",
+    "approvalDigest": "d57045f7f441981f4969e6b22fee83fd87272933a74eb236fdcd17475cf883a7"
+  }
+}

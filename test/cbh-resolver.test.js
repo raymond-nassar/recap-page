@@ -1,15 +1,79 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, readFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, writeFileSync, readFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveRow, validateResolvedMapping } from '../scripts/lib/cbh-resolution.mjs';
-import { shouldPreserveApprovedMapping } from '../scripts/prepare-cbh-batch.mjs';
+import {
+  selectPreparationGuides,
+  shouldPreserveApprovedMapping,
+} from '../scripts/prepare-cbh-batch.mjs';
+import {
+  packetDigestFor,
+  validateFrozenPacket,
+} from '../scripts/lib/cbh-inventory.mjs';
 import { resolveMapping } from '../scripts/resolve-cbh-order.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+function frozenPacket(overrides = {}) {
+  const id = overrides.id ?? 'future-event';
+  const sourceUrl = overrides.sourceUrl ?? 'https://www.comicbookherald.com/future-event/';
+  const packet = {
+    schemaVersion: 1,
+    id,
+    inventoryId: overrides.inventoryId ?? id,
+    sourceUrl,
+    sourceRetrievedAt: '2026-08-22',
+    sourceBoundary: 'The explicit issue-by-issue reading-order section.',
+    excludedSourceReferences: [],
+    expectedCount: 1,
+    proposedManifest: {
+      id,
+      name: 'Future Event',
+      description: 'A frozen test event.',
+      type: 'event',
+      depth: 'complete',
+      beginner: false,
+      group: null,
+      groupName: null,
+      variant: null,
+      sourceFile: `${id}.md`,
+      sourcePage: sourceUrl,
+      sourceOrigin: "Compiled for this project from Comic Book Herald's guide",
+      sourceLicense: null,
+      out: `${id.replaceAll('-', '_')}.json`,
+      characters: ['Tester'],
+      keywords: ['Future Event'],
+      expect: 1,
+      timeline: 2026,
+      coverIssueId: 9001,
+    },
+    insertionAnchor: { beforeId: 'new-ultimate-universe' },
+    sourceReview: {
+      authorityType: 'human',
+      authorityIdentity: 'source-owner',
+      rationale: 'The visible source boundary and chronology were reviewed.',
+      reviewedAt: '2026-08-22T12:00:00Z',
+    },
+    rows: [{
+      sourceIssueReference: 'Future Event #1',
+      sourceRangeReference: null,
+      normalizedSeriesTitle: 'Future Event',
+      seriesYear: 2026,
+      issueNumber: '1',
+      seriesId: 900,
+      candidateIssueId: 9001,
+      manualSeriesSelectionApproved: false,
+      selectionNote: null,
+    }],
+    ...overrides,
+  };
+  packet.packetDigest = packetDigestFor(packet);
+  return packet;
+}
 
 test('a single exact normalized candidate is selected', () => {
   const row = { normalizedSeriesTitle: 'Civil War', issueNumber: '2', seriesYear: '2006' };
@@ -157,6 +221,64 @@ test('preparation preserves approved mappings unless an explicit refresh mode is
   assert.equal(shouldPreserveApprovedMapping(approved, { forceApproved: true }), false);
   assert.equal(shouldPreserveApprovedMapping(approved, { refreshApproved: true }), false);
   assert.equal(shouldPreserveApprovedMapping({ reviewStatus: 'pending-independent-review' }), false);
+});
+
+test('frozen packets bind source identity, rows, manifest, chronology, review, and digest', () => {
+  const packet = frozenPacket();
+  const inventoryRecord = {
+    id: 'future-event',
+    url: packet.sourceUrl,
+    deliveryStatus: 'pending',
+  };
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: 'future-event',
+    inventoryRecord,
+    catalogEntries: [],
+  }));
+  assert.throws(
+    () => validateFrozenPacket({ ...packet, sourceBoundary: 'A changed boundary.' }),
+    /packet digest is stale/i,
+  );
+  assert.throws(
+    () => validateFrozenPacket(packet, { expectedId: 'different-event' }),
+    /does not match requested id/i,
+  );
+  assert.throws(
+    () => validateFrozenPacket(packet, {
+      inventoryRecord: { ...inventoryRecord, url: 'https://www.comicbookherald.com/other/' },
+    }),
+    /differs from inventory/i,
+  );
+});
+
+test('preparation selects one frozen packet by inventory id without changing legacy guides', async () => {
+  const tempDir = mkdtempSync(path.join(os.tmpdir(), 'cbh-packet-select-'));
+  const packetsDir = path.join(tempDir, 'packets');
+  const inventoryPath = path.join(tempDir, 'inventory.json');
+  const manifestPath = path.join(tempDir, 'manifest.json');
+  mkdirSync(packetsDir);
+  const packet = frozenPacket({ inventoryId: 'future-inventory' });
+  writeFileSync(path.join(packetsDir, 'future-event.json'), JSON.stringify(packet), 'utf8');
+  writeFileSync(inventoryPath, JSON.stringify([{
+    id: 'future-inventory',
+    url: packet.sourceUrl,
+    deliveryStatus: 'pending',
+  }]), 'utf8');
+  writeFileSync(manifestPath, JSON.stringify({ lists: [] }), 'utf8');
+
+  const selected = await selectPreparationGuides(['future-inventory'], {
+    packetsDir,
+    inventoryPath,
+    manifestPath,
+  });
+  assert.equal(selected.length, 1);
+  assert.equal(selected[0].id, 'future-event');
+  assert.equal(selected[0].isFrozenPacket, true);
+  assert.equal(selected[0].rows.length, 1);
+
+  const legacy = await selectPreparationGuides(['minimum-carnage'], { packetsDir });
+  assert.deepEqual(legacy.map((guide) => guide.id), ['minimum-carnage']);
+  assert.equal(legacy[0].isFrozenPacket, undefined);
 });
 
 test('resolveMapping requires real metadata and rejects unresolved rows', async () => {
