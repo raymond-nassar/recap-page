@@ -442,6 +442,42 @@
       "coverIssueId": 64450
     },
     {
+      "id": "generations",
+      "name": "Marvel Generations",
+      "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "generations.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+      "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "generations.json",
+      "characters": [
+        "Hulk",
+        "Jean Grey",
+        "Wolverine",
+        "Thor",
+        "Hawkeye",
+        "Iron Man",
+        "Captain Marvel",
+        "Captain America",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Generations",
+        "Legacy heroes",
+        "One-shots"
+      ],
+      "expect": 10,
+      "timeline": 2017,
+      "coverIssueId": 63963
+    },
+    {
       "id": "infinity-countdown-wars",
       "name": "Infinity Countdown and Infinity Wars",
       "description": "Forty-six chapters covering the explicit Countdown and Wars issue-by-issue flow and its tie-ins.",
@@ -503,6 +539,409 @@
       "expect": 15,
       "timeline": 2018,
       "coverIssueId": 66279
+    },
+    {
+      "id": "hunt-for-wolverine",
+      "name": "Hunt for Wolverine",
+      "description": "The search for Logan across four investigations, Dead Ends, and his five-part return.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "hunt-for-wolverine.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+      "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "hunt_for_wolverine.json",
+      "characters": [
+        "Wolverine",
+        "X-Men",
+        "Avengers"
+      ],
+      "keywords": [
+        "Hunt for Wolverine",
+        "Return of Wolverine",
+        "Logan"
+      ],
+      "expect": 24,
+      "timeline": 2018,
+      "coverIssueId": 66912
+    },
+    {
+      "id": "spider-geddon",
+      "name": "Spider-Geddon",
+      "description": "A multiversal Spider-Man crossover that reunites the web warriors against the Inheritors.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-geddon.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spidergeddon/",
+      "sourceSection": "Spider-Geddon Comics Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "spider_geddon.json",
+      "characters": [
+        "Spider-Man",
+        "Spider-Gwen",
+        "Miles Morales"
+      ],
+      "keywords": [
+        "Spider-Geddon",
+        "Spider-Verse",
+        "Inheritors"
+      ],
+      "expect": 25,
+      "timeline": 2018,
+      "coverIssueId": 71314
+    },
+    {
+      "id": "x-men-extermination",
+      "name": "X-Men: Extermination",
+      "description": "Nine chapters closing the original five X-Men time-travel story and carrying its immediate epilogue forward.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-men-extermination.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/x-men-extermination/",
+      "sourceSection": "Extermination Issues Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "x_men_extermination.json",
+      "characters": [
+        "X-Men",
+        "Cable",
+        "X-Force"
+      ],
+      "keywords": [
+        "Extermination",
+        "Original X-Men",
+        "Time travel"
+      ],
+      "expect": 9,
+      "timeline": 2018,
+      "coverIssueId": 68367
+    },
+    {
+      "id": "age-of-x-man",
+      "name": "Age of X-Man",
+      "description": "An alternate X-Men world where the X-Men confront a society without love.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "age-of-x-man.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/age-of-x-man/",
+      "sourceSection": "Age of X-Man Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "age_of_x_man.json",
+      "characters": [
+        "X-Men",
+        "Nate Grey",
+        "Apocalypse"
+      ],
+      "keywords": [
+        "Age of X-Man",
+        "X-Men",
+        "Nate Grey"
+      ],
+      "expect": 32,
+      "timeline": 2019,
+      "coverIssueId": 72932
+    },
+    {
+      "id": "war-of-the-realms",
+      "name": "The War of the Realms",
+      "description": "Malekith invades Earth, drawing Thor and Marvel heroes into a war across the ten realms.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "war-of-the-realms.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/war-of-the-realms-reading-order/",
+      "sourceSection": "The War of the Realms Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "war_of_the_realms.json",
+      "characters": [
+        "Thor",
+        "Malekith",
+        "Avengers",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "War of the Realms",
+        "Thor",
+        "Malekith",
+        "ten realms"
+      ],
+      "expect": 66,
+      "timeline": 2019,
+      "coverIssueId": 71271
+    },
+    {
+      "id": "absolute-carnage",
+      "name": "Absolute Carnage",
+      "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "absolute-carnage.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+      "sourceSection": "Absolute Carnage Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "absolute_carnage.json",
+      "characters": [
+        "Carnage",
+        "Venom",
+        "Spider-Man",
+        "Miles Morales"
+      ],
+      "keywords": [
+        "Absolute Carnage",
+        "Carnage",
+        "Venom",
+        "symbiotes"
+      ],
+      "expect": 31,
+      "timeline": 2019,
+      "coverIssueId": 76012
+    },
+    {
+      "id": "iron-man-2020",
+      "name": "Iron Man 2020",
+      "description": "Tony Stark confronts a machine uprising led by the Arno Stark of 2020.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "iron-man-2020.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+      "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "iron_man_2020.json",
+      "characters": [
+        "Iron Man",
+        "Machine Man",
+        "Ironheart"
+      ],
+      "keywords": [
+        "Iron Man 2020",
+        "Artificial intelligence",
+        "Arno Stark"
+      ],
+      "expect": 18,
+      "timeline": 2020,
+      "coverIssueId": 80459
+    },
+    {
+      "id": "heroes-reborn-2021",
+      "name": "Heroes Reborn",
+      "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "heroes-reborn-2021.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+      "sourceSection": "Heroes Reborn Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "heroes_reborn_2021.json",
+      "characters": [
+        "Avengers",
+        "Squadron Supreme"
+      ],
+      "keywords": [
+        "Heroes Reborn",
+        "Squadron Supreme",
+        "Alternate reality"
+      ],
+      "expect": 18,
+      "timeline": 2021,
+      "coverIssueId": 92793
+    },
+    {
+      "id": "infinite-destinies",
+      "name": "Infinite Destinies",
+      "description": "The Infinity Stones pass through eight annuals and two Black Cat chapters.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "infinite-destinies.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/infinite-destinies/",
+      "sourceSection": "Infinite Destines Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "infinite_destinies.json",
+      "characters": [
+        "Iron Man",
+        "Captain America",
+        "Black Cat",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Infinite Destinies",
+        "Infinity Stones",
+        "Annuals"
+      ],
+      "expect": 10,
+      "timeline": 2021,
+      "coverIssueId": 90339
+    },
+    {
+      "id": "last-annihilation",
+      "name": "The Last Annihilation",
+      "description": "Dormammu's cosmic invasion draws the Guardians, S.W.O.R.D., Cable, and Wakanda into one final stand.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "last-annihilation.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+      "sourceSection": "The Last Annihilation Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "last_annihilation.json",
+      "characters": [
+        "Guardians of the Galaxy",
+        "S.W.O.R.D.",
+        "Cable",
+        "Wiccan",
+        "Hulkling",
+        "Black Panther"
+      ],
+      "keywords": [
+        "The Last Annihilation",
+        "Dormammu",
+        "Wakanda"
+      ],
+      "expect": 9,
+      "timeline": 2021,
+      "coverIssueId": 92236
+    },
+    {
+      "id": "death-of-doctor-strange",
+      "name": "The Death of Doctor Strange",
+      "description": "Doctor Strange dies, and the fallout reaches his allies across the Marvel Universe.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "death-of-doctor-strange.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+      "sourceSection": "The Death of Doctor Strange Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "death_of_doctor_strange.json",
+      "characters": [
+        "Doctor Strange",
+        "Avengers",
+        "Strange Academy",
+        "Spider-Man",
+        "Blade",
+        "X-Men"
+      ],
+      "keywords": [
+        "Death of Doctor Strange",
+        "Sorcerer Supreme",
+        "Black Knight"
+      ],
+      "expect": 12,
+      "timeline": 2021,
+      "coverIssueId": 93315
+    },
+    {
+      "id": "x-men-inferno",
+      "name": "X-Men: Inferno",
+      "description": "Mystique and Destiny force Krakoa's founders to answer for their hidden bargain.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-men-inferno.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/hickmans-x-men-inferno-reading-order/",
+      "sourceSection": "Inferno Comics Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "x_men_inferno.json",
+      "characters": [
+        "X-Men",
+        "Mystique",
+        "Destiny"
+      ],
+      "keywords": [
+        "Inferno",
+        "Krakoa",
+        "Moira X"
+      ],
+      "expect": 4,
+      "timeline": 2021,
+      "coverIssueId": 96222
+    },
+    {
+      "id": "devils-reign",
+      "name": "Devil's Reign",
+      "description": "Wilson Fisk outlaws New York's heroes and turns the city's institutions against them.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "devils-reign.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/devils-reign-2022/",
+      "sourceSection": "Devil's Reign Comic Book Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "devils_reign.json",
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Spider-Man",
+        "Moon Knight",
+        "Spider-Woman",
+        "X-Men"
+      ],
+      "keywords": [
+        "Devil's Reign",
+        "Wilson Fisk",
+        "Mayor Fisk"
+      ],
+      "expect": 24,
+      "timeline": 2021,
+      "coverIssueId": 96212
     },
     {
       "id": "new-ultimate-universe",
@@ -574,6 +1013,159 @@
       "variant": "By collected edition",
       "expect": 132,
       "timeline": 2023
+    },
+    {
+      "id": "reckoning-war",
+      "name": "Reckoning War",
+      "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "reckoning-war.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/reckoning-war/",
+      "sourceSection": "Reckoning War Reading Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "reckoning_war.json",
+      "characters": [
+        "Fantastic Four",
+        "Watcher"
+      ],
+      "keywords": [
+        "Reckoning War",
+        "Fantastic Four",
+        "Watcher"
+      ],
+      "expect": 6,
+      "timeline": 2022,
+      "coverIssueId": 95798
+    },
+    {
+      "id": "judgment-day",
+      "name": "A.X.E.: Judgment Day",
+      "description": "The Avengers, Eternals, and X-Men collide as the Progenitor judges Earth.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "judgment-day.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/judgment-day-reading-order/",
+      "sourceSection": "Judgment Day Issue by Issue Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "judgment_day.json",
+      "characters": [
+        "Avengers",
+        "Eternals",
+        "X-Men"
+      ],
+      "keywords": [
+        "A.X.E.",
+        "Judgment Day",
+        "Progenitor"
+      ],
+      "expect": 44,
+      "timeline": 2022,
+      "coverIssueId": 100366
+    },
+    {
+      "id": "dark-web",
+      "name": "Dark Web",
+      "description": "Spider-Man, the X-Men, and Venom collide as Chasm and the Goblin Queen remake New York.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "dark-web.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spider-man-dark-web/",
+      "sourceSection": "Dark Web Checklist Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "dark_web.json",
+      "characters": [
+        "Spider-Man",
+        "X-Men",
+        "Venom",
+        "Chasm",
+        "Goblin Queen"
+      ],
+      "keywords": [
+        "Dark Web",
+        "Chasm",
+        "Goblin Queen"
+      ],
+      "expect": 22,
+      "timeline": 2022,
+      "coverIssueId": 100672
+    },
+    {
+      "id": "sins-of-sinister",
+      "name": "Sins of Sinister",
+      "description": "Mister Sinister remakes mutant history across a century of impossible futures.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "sins-of-sinister.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+      "sourceSection": "Sins of Sinister Comics Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "sins_of_sinister.json",
+      "characters": [
+        "X-Men",
+        "Mister Sinister",
+        "Storm",
+        "Nightcrawler"
+      ],
+      "keywords": [
+        "Sins of Sinister",
+        "Krakoa",
+        "Mister Sinister"
+      ],
+      "expect": 13,
+      "timeline": 2022,
+      "coverIssueId": 102461
+    },
+    {
+      "id": "fall-house-x-rise-powers-x",
+      "name": "Fall of the House of X & Rise of the Powers of X",
+      "description": "The final Krakoan-era conflict across Fall of the House of X, Rise of the Powers of X, and their linked series.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "fall-house-x-rise-powers-x.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/fall-of-the-house-of-x/",
+      "sourceSection": "Fall of the House of X and Rise of the Powers of X Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "fall_house_x_rise_powers_x.json",
+      "characters": [
+        "X-Men",
+        "Iron Man",
+        "Magneto",
+        "Avengers"
+      ],
+      "keywords": [
+        "Fall of the House of X",
+        "Rise of the Powers of X",
+        "Krakoa"
+      ],
+      "expect": 34,
+      "timeline": 2024,
+      "coverIssueId": 111661
     },
     {
       "id": "house-of-m",
@@ -913,6 +1505,36 @@
       ],
       "expect": 8,
       "timeline": 2008
+    },
+    {
+      "id": "x-of-swords",
+      "name": "X-Men: X of Swords",
+      "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-of-swords.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+      "sourceSection": "X of Swords Reading Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "x_of_swords.json",
+      "characters": [
+        "X-Men",
+        "Excalibur",
+        "Wolverine"
+      ],
+      "keywords": [
+        "X of Swords",
+        "Krakoa",
+        "Arakko"
+      ],
+      "expect": 25,
+      "timeline": 2020,
+      "coverIssueId": 85662
     },
     {
       "id": "king-in-black",

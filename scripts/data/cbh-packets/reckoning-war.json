@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "reckoning-war",
+  "inventoryId": "reckoning-war",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/reckoning-war/",
+  "sourceSection": "Reckoning War Reading Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The six issue entries under Reckoning War Reading Checklist, from Fantastic Four #39 through Fantastic Four #42.",
+  "excludedSourceReferences": [
+    "Road to Reckoning War",
+    "Dan Slott's Fantastic Four",
+    "Original Sin",
+    "Collected Reckoning War Comics",
+    "Heroically Support Comic Book Herald",
+    "Site navigation and sidebar"
+  ],
+  "expectedCount": 6,
+  "proposedManifest": {
+    "id": "reckoning-war",
+    "name": "Reckoning War",
+    "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "reckoning-war.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/reckoning-war/",
+    "sourceSection": "Reckoning War Reading Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "reckoning_war.json",
+    "characters": [
+      "Fantastic Four",
+      "Watcher"
+    ],
+    "keywords": [
+      "Reckoning War",
+      "Fantastic Four",
+      "Watcher"
+    ],
+    "expect": 6,
+    "timeline": 2022,
+    "coverIssueId": 95798
+  },
+  "insertionAnchor": {
+    "beforeId": "judgment-day"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible six-issue checklist, source identities, exclusions, and current-library comparison were reviewed against the source and catalog.",
+    "reviewedAt": "2026-08-22T17:35:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four #39",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "39",
+      "seriesId": 24554,
+      "candidateIssueId": 95798,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four: Reckoning War Alpha #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four: Reckoning War Alpha",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34157,
+      "candidateIssueId": 99051,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #40",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "40",
+      "seriesId": 24554,
+      "candidateIssueId": 95799,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Reckoning War: Trial of the Watcher #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Reckoning War: Trial Of The Watcher",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34158,
+      "candidateIssueId": 99052,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #41",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "41",
+      "seriesId": 24554,
+      "candidateIssueId": 95800,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #42",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "42",
+      "seriesId": 24554,
+      "candidateIssueId": 95801,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "b0b68b28211a271f6e8ea4491718f5b8fbeb881ea52cbee0607d24892ade4584"
+}

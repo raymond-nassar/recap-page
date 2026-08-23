@@ -94,9 +94,12 @@ test('batch four preserves source order and independently verified shelf chronol
 
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(existingEntriesForPacket(manifest.lists, FOURTH_PACKET_IDS).length, 56);
-  assert.equal(manifest.lists.length, 66);
-  assert.equal(catalog.lists.length, 66);
+  assert.equal(
+    existingEntriesForPacket(manifest.lists, FOURTH_PACKET_IDS).length,
+    manifest.lists.length - FOURTH_PACKET_IDS.length,
+  );
+  assert.ok(manifest.lists.length >= 66);
+  assert.equal(catalog.lists.length, manifest.lists.length);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(
@@ -225,6 +228,7 @@ test('six shared-page guides use visible section identities without invented fra
 
 test('batch four has no aggregate identity, source, sequence, or issue overlap', async () => {
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbh-modern-inventory.json'));
   const packetSet = new Set(FOURTH_PACKET_IDS);
   const packetRecords = [];
   const existingRecords = [];
@@ -243,12 +247,21 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
   }
 
   assert.equal(packetRecords.length, 10);
-  assert.equal(existingRecords.length, 56);
+  assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length);
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);
   const existingIssueIds = new Set(existingRecords.flatMap((record) => record.selectedIssueIds));
-  assert.deepEqual(packetIssueIds.filter((id) => existingIssueIds.has(id)), []);
+  const declaredOverlapCatalogIds = new Set(inventory.flatMap((record) => (
+    record.overlapIds?.some((id) => packetSet.has(id)) ? record.catalogIds : []
+  )));
+  const declaredOverlapIssueIds = new Set(existingRecords
+    .filter((record) => declaredOverlapCatalogIds.has(record.id))
+    .flatMap((record) => record.selectedIssueIds));
+  assert.deepEqual(
+    packetIssueIds.filter((id) => existingIssueIds.has(id)),
+    packetIssueIds.filter((id) => declaredOverlapIssueIds.has(id)),
+  );
 
   for (const id of FOURTH_PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));

@@ -1,0 +1,792 @@
+{
+  "id": "x-of-swords",
+  "name": "X-Men: X of Swords",
+  "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+  "sourceSection": "X of Swords Reading Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T11:58:34.737Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 25,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 85662,
+      "title": "Free Comic Book Day: X-Men (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/85662/free_comic_book_day_x-men_2020_1",
+      "seriesId": 30155,
+      "seriesName": "Free Comic Book Day: X-Men (2020)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-08-05T00:00:00+0000",
+      "digitalId": 54261,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5f2c345fc3e56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84380,
+      "title": "Excalibur (2019) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/84380/excalibur_2019_12",
+      "seriesId": 27547,
+      "seriesName": "Excalibur (2019 - Present)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5f594325f18a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79950,
+      "title": "X-Men (2019) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/79950/x-men_2019_12",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55142,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5f5942f03d023",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84337,
+      "title": "X of Swords: Creation (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84337/x_of_swords_creation_2020_1",
+      "seriesId": 29688,
+      "seriesName": "X of Swords: Creation (2020)",
+      "onSale": "2020-09-23T00:00:00+0000",
+      "mu": "2020-12-28T00:00:00+0000",
+      "digitalId": 55417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5f651095f1537",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 72,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78749,
+      "title": "X-Factor (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/78749/x-factor_2020_4",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2020-09-30T00:00:00+0000",
+      "mu": "2021-01-04T00:00:00+0000",
+      "digitalId": 55438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5f735c5e9f731",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Carlos Gomez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78729,
+      "title": "Wolverine (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/78729/wolverine_2020_6",
+      "seriesId": 28051,
+      "seriesName": "Wolverine (2020 - Present)",
+      "onSale": "2020-10-07T00:00:00+0000",
+      "mu": "2021-01-11T00:00:00+0000",
+      "digitalId": 55573,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5f735c276f2da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Viktor Bogdanovic",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90131,
+      "title": "X-Force (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/90131/x-force_2019_13",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2020-10-07T00:00:00+0000",
+      "mu": "2021-01-11T00:00:00+0000",
+      "digitalId": 55575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5f735c276d8ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Viktor Bogdanovic",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90081,
+      "title": "Marauders (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/90081/marauders_2019_13",
+      "seriesId": 27555,
+      "seriesName": "Marauders (2019 - 2022)",
+      "onSale": "2020-10-07T00:00:00+0000",
+      "mu": "2021-01-11T00:00:00+0000",
+      "digitalId": 55559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5f735c41d6e91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 85944,
+      "title": "Hellions (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/85944/hellions_2020_5",
+      "seriesId": 30175,
+      "seriesName": "Hellions (2020 - Present)",
+      "onSale": "2020-10-14T00:00:00+0000",
+      "mu": "2021-01-18T00:00:00+0000",
+      "digitalId": 55554,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5f3ee08a6857f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carmen Carnero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90449,
+      "title": "New Mutants (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/90449/new_mutants_2019_13",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2020-10-14T00:00:00+0000",
+      "mu": "2021-01-18T00:00:00+0000",
+      "digitalId": 55560,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5f3ee0c3d48f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78657,
+      "title": "Cable (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/78657/cable_2020_5",
+      "seriesId": 28038,
+      "seriesName": "Cable (2020 - 2021)",
+      "onSale": "2020-10-14T00:00:00+0000",
+      "mu": "2021-01-18T00:00:00+0000",
+      "digitalId": 55546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5fc40babbc329",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84381,
+      "title": "Excalibur (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/84381/excalibur_2019_13",
+      "seriesId": 27547,
+      "seriesName": "Excalibur (2019 - Present)",
+      "onSale": "2020-10-21T00:00:00+0000",
+      "mu": "2021-01-25T00:00:00+0000",
+      "digitalId": 55550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5f2da4b682d95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84427,
+      "title": "X-Men (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-10-21T00:00:00+0000",
+      "mu": "2021-01-25T00:00:00+0000",
+      "digitalId": 55576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5f3ee08a6a1a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84338,
+      "title": "X of Swords: Stasis (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84338/x_of_swords_stasis_2020_1",
+      "seriesId": 29689,
+      "seriesName": "X of Swords: Stasis (2020)",
+      "onSale": "2020-10-28T00:00:00+0000",
+      "mu": "2021-02-01T00:00:00+0000",
+      "digitalId": 55574,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/60196808e5b52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84428,
+      "title": "X-Men (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-11-04T00:00:00+0000",
+      "mu": "2021-02-08T00:00:00+0000",
+      "digitalId": 55717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/601af75ea4c52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90082,
+      "title": "Marauders (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/90082/marauders_2019_14",
+      "seriesId": 27555,
+      "seriesName": "Marauders (2019 - 2022)",
+      "onSale": "2020-11-04T00:00:00+0000",
+      "mu": "2021-02-08T00:00:00+0000",
+      "digitalId": 55695,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/601af77d58d1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90083,
+      "title": "Marauders (2019) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/90083/marauders_2019_15",
+      "seriesId": 27555,
+      "seriesName": "Marauders (2019 - 2022)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 55696,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/601af7422da5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84382,
+      "title": "Excalibur (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/84382/excalibur_2019_14",
+      "seriesId": 27547,
+      "seriesName": "Excalibur (2019 - Present)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 55685,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/601af74626394",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78730,
+      "title": "Wolverine (2020) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/78730/wolverine_2020_7",
+      "seriesId": 28051,
+      "seriesName": "Wolverine (2020 - Present)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 55713,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/601af7264d119",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90132,
+      "title": "X-Force (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/90132/x-force_2019_14",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2020-11-18T00:00:00+0000",
+      "mu": "2021-02-22T00:00:00+0000",
+      "digitalId": 55716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/601af6d16c0d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 85945,
+      "title": "Hellions (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/85945/hellions_2020_6",
+      "seriesId": 30175,
+      "seriesName": "Hellions (2020 - Present)",
+      "onSale": "2020-11-18T00:00:00+0000",
+      "mu": "2021-02-22T00:00:00+0000",
+      "digitalId": 55690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/601af70972163",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carmen Carnero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78658,
+      "title": "Cable (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/78658/cable_2020_6",
+      "seriesId": 28038,
+      "seriesName": "Cable (2020 - 2021)",
+      "onSale": "2020-11-18T00:00:00+0000",
+      "mu": "2021-02-22T00:00:00+0000",
+      "digitalId": 55680,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/601af70b37d07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84429,
+      "title": "X-Men (2019) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/84429/x-men_2019_15",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/50/601afd40307ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84383,
+      "title": "Excalibur (2019) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/84383/excalibur_2019_15",
+      "seriesId": 27547,
+      "seriesName": "Excalibur (2019 - Present)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55686,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/601afd6fb089e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84339,
+      "title": "X Of Swords: Destruction (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84339/x_of_swords_destruction_2020_1",
+      "seriesId": 29690,
+      "seriesName": "X Of Swords: Destruction (2020)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/601afd400bb22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "id": "x-of-swords",
+  "inventoryId": "x-of-swords",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+  "sourceSection": "X of Swords Reading Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 25 issue entries under X of Swords Reading Checklist, from Free Comic Book Day 2020: X-Men through X of Swords: Destruction #1.",
+  "excludedSourceReferences": [
+    "The Road to X of Swords",
+    "X of Swords Collected Editions",
+    "Krakin' Krakoa issue coverage note",
+    "Next: Reign of X"
+  ],
+  "expectedCount": 25,
+  "proposedManifest": {
+    "id": "x-of-swords",
+    "name": "X-Men: X of Swords",
+    "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-of-swords.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+    "sourceSection": "X of Swords Reading Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_of_swords.json",
+    "characters": [
+      "X-Men",
+      "Excalibur",
+      "Wolverine"
+    ],
+    "keywords": [
+      "X of Swords",
+      "Krakoa",
+      "Arakko"
+    ],
+    "expect": 25,
+    "timeline": 2020,
+    "coverIssueId": 85662
+  },
+  "insertionAnchor": {
+    "beforeId": "king-in-black"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible checklist, its 25 issue boundary including the opening Free Comic Book Day issue, exclusions, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T13:15:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Free Comic Book Day 2020: X-Men",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Free Comic Book Day: X-Men",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 30155,
+      "candidateIssueId": 85662,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Excalibur #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "seriesId": 27547,
+      "candidateIssueId": 84380,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "seriesId": 27567,
+      "candidateIssueId": 79950,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X of Swords: Creation #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X of Swords: Creation",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29688,
+      "candidateIssueId": 84337,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 28053,
+      "candidateIssueId": 78749,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28051,
+      "candidateIssueId": 78729,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27564,
+      "candidateIssueId": 90131,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marauders #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27555,
+      "candidateIssueId": 90081,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hellions #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hellions",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 30175,
+      "candidateIssueId": 85944,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27557,
+      "candidateIssueId": 90449,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28038,
+      "candidateIssueId": 78657,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27547,
+      "candidateIssueId": 84381,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27567,
+      "candidateIssueId": 84427,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X of Swords: Stasis #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X of Swords: Stasis",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29689,
+      "candidateIssueId": 84338,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27567,
+      "candidateIssueId": 84428,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marauders #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27555,
+      "candidateIssueId": 90082,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marauders #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27555,
+      "candidateIssueId": 90083,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27547,
+      "candidateIssueId": 84382,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2020,
+      "issueNumber": "7",
+      "seriesId": 28051,
+      "candidateIssueId": 78730,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27564,
+      "candidateIssueId": 90132,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hellions #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hellions",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 30175,
+      "candidateIssueId": 85945,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28038,
+      "candidateIssueId": 78658,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27567,
+      "candidateIssueId": 84429,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27547,
+      "candidateIssueId": 84383,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X of Swords: Destruction #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X of Swords: Destruction",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29690,
+      "candidateIssueId": 84339,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "57ee256e63363c7d7309dc27e482566db38153205e3911a5d7816f22045ac0a0"
+}

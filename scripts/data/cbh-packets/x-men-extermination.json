@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "x-men-extermination",
+  "inventoryId": "x-men-extermination",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/x-men-extermination/",
+  "sourceSection": "Extermination Issues Reading Order",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The nine entries under Extermination Issues Reading Order, including the three epilogue entries and ending before Post-Credits Scenes.",
+  "excludedSourceReferences": [
+    "Post-Credits Scenes",
+    "Extermination Collected Trades"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "x-men-extermination",
+    "name": "X-Men: Extermination",
+    "description": "Nine chapters closing the original five X-Men time-travel story and carrying its immediate epilogue forward.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-men-extermination.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/x-men-extermination/",
+    "sourceSection": "Extermination Issues Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_men_extermination.json",
+    "characters": [
+      "X-Men",
+      "Cable",
+      "X-Force"
+    ],
+    "keywords": [
+      "Extermination",
+      "Original X-Men",
+      "Time travel"
+    ],
+    "expect": 9,
+    "timeline": 2018,
+    "coverIssueId": 68367
+  },
+  "insertionAnchor": {
+    "beforeId": "new-ultimate-universe"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible issue-by-issue heading, nine-row boundary, epilogue inclusion, exclusions, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T09:30:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "X-Men Blue #35",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: Blue",
+      "seriesYear": 2017,
+      "issueNumber": "35",
+      "seriesId": 23018,
+      "candidateIssueId": 70222,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Extermination #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Extermination",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24781,
+      "candidateIssueId": 68367,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Extermination #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Extermination",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24781,
+      "candidateIssueId": 68368,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Extermination #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Extermination",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24781,
+      "candidateIssueId": 68369,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Extermination #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Extermination",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24781,
+      "candidateIssueId": 68370,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Extermination #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Extermination",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 24781,
+      "candidateIssueId": 68371,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men: The Exterminated #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: The Exterminated",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26835,
+      "candidateIssueId": 74637,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men Annual #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men Annual",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26646,
+      "candidateIssueId": 73943,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26370,
+      "candidateIssueId": 73051,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "c55cf0d5ea0fafbceab23a081a2a36cad3a9e8ef947d39845d4f450df66b8610"
+}

@@ -6,7 +6,8 @@
 * Task ID: MRT-002
 * Task slug: reading-list-expansion
 * Related plan: .copilot-tracking/plans/2026-08-22/reading-list-expansion-plan.md
-* Evidence sources: .copilot-tracking/research/2026-08-22/reading-list-expansion-research.md
+* Evidence sources: .copilot-tracking/research/2026-08-22/reading-list-expansion-research.md and
+  .copilot-tracking/research/2026-08-22/one-world-under-doom-expansion-research.md
 
 ## Phase Index
 
@@ -23,7 +24,8 @@
 | P09 | Secret Empire | P09-T01 to P09-T04 | At least one integrated and fully validated P02 list |
 | P10 | Hunt for Wolverine | P10-T01 to P10-T04 | At least one integrated and fully validated P02 list |
 | P11 | Fall of the House of X and Rise of the Powers of X | P11-T01 to P11-T04 | At least one integrated and fully validated P02 list |
-| P12 | Queue reconciliation | P12-T01 to P12-T03 | P02 through P11 |
+| P12 | One World Under Doom | P12-T01 to P12-T04 | P01 and recorded P08 outcomes |
+| P13 | Queue reconciliation | P13-T01 to P13-T03 | P02 through P12 |
 
 ## Task-Level Context
 
@@ -31,21 +33,22 @@
 
 The existing source program has a maintained 86-record modern Earth-616 inventory,
 deterministic issue resolution, all-library overlap reporting, source identity checks, authoring,
-vendoring, and four shipped production packets. The immediate gap is not application capability.
+vendoring, and multiple shipped production packets. The immediate gap is not application capability.
 Future packet ids, chronology anchors, and source rows remain hard-coded in large shared scripts,
 which makes low-cost worker delegation expensive and conflict-prone.
 
 ### Intent
 
 Define an implementation sequence that creates a bounded one-list worker packet, a staged
-current-library gate, and small central integration chunks for all 22 pending candidates.
+current-library gate, and small central integration chunks for the original 22 candidates plus One
+World Under Doom.
 
 ### Boundaries
 
 * Included: build-time data and tools, one-list worker artifacts, no more than three-list integration
   chunks, current-library comparisons, generated list data, and directly required records.
-* Excluded: browser changes, runtime dependencies, blocked-candidate adjudication, character/team
-  inventory, Marvel scraping, and editorial decisions by lower-cost workers.
+* Excluded: browser changes, runtime dependencies, historical blocked-candidate adjudication,
+  character/team inventory, Marvel scraping, and editorial decisions by lower-cost workers.
 
 ### Likely Targets
 
@@ -196,7 +199,7 @@ resolver, mapping, overlap, authoring, and vendoring entry points.
 * P01-T03 owns full comparison coverage and relationship-policy tests.
 * P01-T04 owns stale-evidence and sequence-fidelity tests.
 * P01-T05 owns the combined gate run and failure-proof record.
-* P12-T02 separately owns exactly one terminal-queue assertion in the existing inventory test file.
+* P13-T02 separately owns exactly one terminal-queue assertion in the existing inventory test file.
 
 ## P02 to P08: Routine delivery chunks
 
@@ -244,6 +247,7 @@ may write only the listed mapping path.
 | P09-T02 | `secret-empire` | `scripts/data/cbh-packets/secret-empire.json` | `scripts/data/cbh-mappings/secret-empire.json` | `npm run cbh:prepare -- --only=secret-empire`; `npm run cbh:resolve -- scripts/data/cbh-mappings/secret-empire.json` |
 | P10-T02 | `hunt-for-wolverine` | `scripts/data/cbh-packets/hunt-for-wolverine.json` | `scripts/data/cbh-mappings/hunt-for-wolverine.json` | `npm run cbh:prepare -- --only=hunt-for-wolverine`; `npm run cbh:resolve -- scripts/data/cbh-mappings/hunt-for-wolverine.json` |
 | P11-T02 | `fall-house-x-rise-powers-x` | `scripts/data/cbh-packets/fall-house-x-rise-powers-x.json` | `scripts/data/cbh-mappings/fall-house-x-rise-powers-x.json` | `npm run cbh:prepare -- --only=fall-house-x-rise-powers-x`; `npm run cbh:resolve -- scripts/data/cbh-mappings/fall-house-x-rise-powers-x.json` |
+| P12-T02 | `one-world-under-doom` | `scripts/data/cbh-packets/one-world-under-doom.json` | `scripts/data/cbh-mappings/one-world-under-doom.json` | `npm run cbh:prepare -- --only=one-world-under-doom`; `npm run cbh:resolve -- scripts/data/cbh-mappings/one-world-under-doom.json` |
 
 ### Phase and Task Matrix
 
@@ -299,17 +303,17 @@ may write only the listed mapping path.
   contract when issue ids are added, and browser checks of each card and first, middle, and final issue.
 * No later candidate creates a new test file or candidate-specific code branch.
 * P02 exits successfully only when P02-T05 integrates and fully validates at least one pilot list.
-  If both candidates stop, P03 through P11 remain blocked and the planning parent must amend the
+  If both candidates stop, P03 through P12 remain blocked and the planning parent must amend the
   pilot or P01/P02 from the recorded failure evidence.
 
-## P09 to P11: Isolated strong-review chunks
+## P09 to P12: Isolated strong-review chunks
 
 ### Context
 
 Secret Empire and Hunt for Wolverine have source-boundary complexity that must be resolved before a
-lower-cost worker receives rows. Fall and Rise of X is closest to the finished metadata horizon and
-must not invent missing issue identities. Isolation keeps these decisions out of routine chunks and
-prevents one failed candidate from delaying passing peers.
+lower-cost worker receives rows. Fall and Rise of X and One World Under Doom reach the finished
+metadata horizon and must not invent missing issue identities. Isolation keeps these decisions out
+of routine chunks and prevents one failed candidate from delaying passing peers.
 
 ### Task Details
 
@@ -327,13 +331,17 @@ prevents one failed candidate from delaying passing peers.
 | P11-T02 | Lower-cost worker; Fall and Rise of X mapping only, or recorded not applicable | Recorded P11-T01 outcome | Exact mapping and expected count, or not applicable after source stop | Any shared worker stop condition |
 | P11-T03 | Central reviewer; complete report, `blocked` relationship outcome, or recorded not applicable | Recorded P11-T01 and P11-T02 outcomes | Every current order compared and disposed, or not applicable after earlier stop | Any shared reviewer stop condition |
 | P11-T04 | Central integrator; shipped or `blocked` terminal record | Recorded P11-T01 through P11-T03 outcomes, including stops | Full delivery evidence or `blocked` reason, evidence, and route owner; skipped work is not applicable | A task outcome is missing rather than explicitly stopped or not applicable |
+| P12-T01 | Strong central reviewer; One World Under Doom packet or immediate `blocked` record | P01 and recorded P08 outcomes | The live 86-row source boundary, repeated Fantastic Four (2025) #1 row, and every API-missing issue are preserved in a valid exact packet or evidence-backed terminal blocker | Any row must be removed, duplicated identity accepted, or unavailable metadata invented to admit the packet |
+| P12-T02 | Lower-cost worker; One World Under Doom mapping only, or recorded not applicable | Recorded P12-T01 outcome | Exact mapping and expected count, or not applicable after source stop | Any shared worker stop condition |
+| P12-T03 | Central reviewer; complete report, `blocked` relationship outcome, or recorded not applicable | Recorded P12-T01 and P12-T02 outcomes | Every current order and available peer mapping compared and disposed, or not applicable after earlier stop | Any shared reviewer stop condition |
+| P12-T04 | Central integrator; shipped or `blocked` terminal record | Recorded P12-T01 through P12-T03 outcomes, including stops | Full delivery evidence or `blocked` reason, evidence, and route owner; skipped work is not applicable | A task outcome is missing rather than explicitly stopped or not applicable |
 
-## P12: Queue reconciliation
+## P13: Queue reconciliation
 
 ### Context
 
-The maintained inventory, not a conversational checklist, owns the final status of the original 22
-pending candidates. P12 does not force every list to ship. It proves that each candidate is shipped
+The maintained inventory, not a conversational checklist, owns the final status of the 23 selected
+candidates. P13 does not force every list to ship. It proves that each candidate is shipped
 or `blocked` with a specific reason, evidence pointer, and route owner, and that no stale `pending`
 state remains.
 
@@ -341,9 +349,18 @@ state remains.
 
 | Task | Owner and likely targets | Dependencies | Completion evidence | Stop condition |
 |------|--------------------------|--------------|---------------------|----------------|
-| P12-T01 | Central integrator; `scripts/data/cbh-modern-inventory.json` and all phase evidence | P02 through P11 | Every original pending id is `shipped` or `blocked`; every blocked record has a specific reason, evidence pointer, and route owner | Any candidate outcome exists only in conversation or temporary output |
-| P12-T02 | Central tester; existing `test/cbh-modern-inventory.test.js` | P12-T01 | Exactly one new assertion, proven to fail against the pre-reconciliation inventory, reports zero of the original 22 ids as `pending` and preserves unrelated records | The test silently changes the queue, accepts an unknown state, or was not seen to fail before reconciliation |
-| P12-T03 | Central integrator; `docs/MAINTAINING.md`, `docs/DATA_PROVENANCE.md`, `PRODUCT_BACKLOG.md`, `CHANGELOG.md`, and final gates | P12-T02 | Documents match final behavior and counts; lint, tests, anchors, and applicable live and browser checks pass | Any record claims a list shipped without matching catalog evidence |
+| P13-T01 | Central integrator; `scripts/data/cbh-modern-inventory.json` and all phase evidence | P02 through P12 | Every selected id is `shipped` or `blocked`; every blocked record has a specific reason, evidence pointer, and route owner | Any candidate outcome exists only in conversation or temporary output |
+| P13-T02 | Central tester; existing `test/cbh-modern-inventory.test.js` | P13-T01 | Exactly one new assertion, proven to fail against the pre-reconciliation inventory, reports zero of the 23 selected ids as `pending` and preserves unrelated records | The test silently changes the queue, accepts an unknown state, or was not seen to fail before reconciliation |
+| P13-T03 | Central integrator; `docs/MAINTAINING.md`, `docs/DATA_PROVENANCE.md`, `PRODUCT_BACKLOG.md`, `CHANGELOG.md`, and final gates | P13-T02 | Documents match final behavior and counts; lint, tests, anchors, and applicable live and browser checks pass | Any record claims a list shipped without matching catalog evidence |
+
+### Implementation Evidence
+
+P13-T01 through P13-T03 are complete. All 23 selected inventory records are terminal: 20 shipped
+and three blocked. The single aggregate assertion was observed failing with 22 pending candidates
+against the pre-reconciliation inventory and passes with zero pending after restoration. Final
+reports bind all 20 admitted mappings to one stable 86-list catalog snapshot, cover 1,700
+relationships, and retain four directional partial results for explicit approval. The final
+repository, live-contract, anchor, and consolidated browser gates all pass.
 
 ## Change Limits
 
@@ -354,8 +371,8 @@ state remains.
 | New runtime dependencies | 0 |
 | New logical data schemas | At most 1 frozen candidate-packet schema |
 | New test files | 0 |
-| New semantic test cases | At most 12: at most 11 owned by P01 and exactly 1 owned by P12-T02 |
-| Maximum catalog additions | 22, restricted to the original pending ids in the worker dispatch table |
+| New semantic test cases | At most 12: at most 11 owned by P01 and exactly 1 owned by P13-T02 |
+| Maximum catalog additions | 23, restricted to the original pending ids plus `one-world-under-doom` in the worker dispatch table |
 | Per-candidate code branches | 0 after P01 |
 | Lists integrated in one chunk | At most 3 |
 
@@ -371,7 +388,7 @@ state remains.
 
 ## Assumptions and Escalation Rules
 
-* Queue completion means every original pending record becomes shipped or `blocked` with a specific
+* Queue completion means every selected record becomes shipped or `blocked` with a specific
   reason, evidence pointer, and route owner. It does not mean forcing every candidate into the catalog.
 * Approved subsets require central authority. Exact duplicates have no approval path.
 * Chronology insertion anchors are source-owner decisions frozen before worker dispatch.
@@ -405,6 +422,7 @@ state remains.
 | H | Secret Empire | Isolated source-complex review |
 | I | Hunt for Wolverine | Isolated source-complex review |
 | J | Fall of the House of X and Rise of the Powers of X | Isolated metadata-horizon review |
+| K | One World Under Doom | Isolated source-identity and metadata-horizon review after P08 |
 
 Chunk admission remains conditional until each candidate has a frozen source boundary, exact mapping,
 metadata coverage, and current-library relationship. A candidate may move to `blocked` with evidence

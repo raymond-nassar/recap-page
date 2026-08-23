@@ -1,0 +1,1315 @@
+{
+  "id": "death-of-doctor-strange",
+  "inventoryId": "death-of-doctor-strange",
+  "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+  "sourceSection": "The Death of Doctor Strange Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 12,
+  "excludedSourceReferences": [
+    "The Collected Death of Doctor Strange",
+    "Introductory background commentary above the checklist",
+    "Featured image",
+    "Navigation and adjacent links"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "death-of-doctor-strange",
+    "name": "The Death of Doctor Strange",
+    "description": "Doctor Strange dies, and the fallout reaches his allies across the Marvel Universe.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "death-of-doctor-strange.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+    "sourceSection": "The Death of Doctor Strange Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "death_of_doctor_strange.json",
+    "characters": [
+      "Doctor Strange",
+      "Avengers",
+      "Strange Academy",
+      "Spider-Man",
+      "Blade",
+      "X-Men"
+    ],
+    "keywords": [
+      "Death of Doctor Strange",
+      "Sorcerer Supreme",
+      "Black Knight"
+    ],
+    "expect": 12,
+    "timeline": 2021,
+    "coverIssueId": 93315
+  },
+  "candidateMetadata": [
+    {
+      "id": 93315,
+      "title": "Death of Doctor Strange",
+      "issueTitle": "Death of Doctor Strange (2021) #1",
+      "seriesTitle": "Death of Doctor Strange",
+      "apiSeriesName": "Death of Doctor Strange (2021 - 2022)",
+      "seriesId": 31898,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93315/death_of_doctor_strange_2021_1",
+      "onSaleDate": "2021-09-22T00:00:00+0000"
+    },
+    {
+      "id": 93316,
+      "title": "Death of Doctor Strange",
+      "issueTitle": "Death of Doctor Strange (2021) #2",
+      "seriesTitle": "Death of Doctor Strange",
+      "apiSeriesName": "Death of Doctor Strange (2021 - 2022)",
+      "seriesId": 31898,
+      "issueNumber": "2",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93316/death_of_doctor_strange_2021_2",
+      "onSaleDate": "2021-10-20T00:00:00+0000"
+    },
+    {
+      "id": 95900,
+      "title": "Death Of Doctor Strange: Avengers",
+      "issueTitle": "Death Of Doctor Strange: Avengers (2021) #1",
+      "seriesTitle": "Death Of Doctor Strange: Avengers",
+      "apiSeriesName": "Death Of Doctor Strange: Avengers (2021)",
+      "seriesId": 32871,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95900/death_of_doctor_strange_avengers_2021_1",
+      "onSaleDate": "2021-11-03T00:00:00+0000"
+    },
+    {
+      "id": 95901,
+      "title": "Strange Academy Presents: The Death Of Doctor Strange",
+      "issueTitle": "Strange Academy Presents: The Death Of Doctor Strange (2021) #1",
+      "seriesTitle": "Strange Academy Presents: The Death Of Doctor Strange",
+      "apiSeriesName": "Strange Academy Presents: The Death Of Doctor Strange (2021)",
+      "seriesId": 32872,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95901/strange_academy_presents_the_death_of_doctor_strange_2021_1",
+      "onSaleDate": "2021-11-03T00:00:00+0000"
+    },
+    {
+      "id": 93317,
+      "title": "Death of Doctor Strange",
+      "issueTitle": "Death of Doctor Strange (2021) #3",
+      "seriesTitle": "Death of Doctor Strange",
+      "apiSeriesName": "Death of Doctor Strange (2021 - 2022)",
+      "seriesId": 31898,
+      "issueNumber": "3",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93317/death_of_doctor_strange_2021_3",
+      "onSaleDate": "2021-11-24T00:00:00+0000"
+    },
+    {
+      "id": 95902,
+      "title": "Death of Doctor Strange: Spider-Man",
+      "issueTitle": "Death of Doctor Strange: Spider-Man (2021) #1",
+      "seriesTitle": "Death of Doctor Strange: Spider-Man",
+      "apiSeriesName": "Death of Doctor Strange: Spider-Man (2021)",
+      "seriesId": 32873,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95902/death_of_doctor_strange_spider-man_2021_1",
+      "onSaleDate": "2021-12-01T00:00:00+0000"
+    },
+    {
+      "id": 95903,
+      "title": "Death of Doctor Strange: White Fox",
+      "issueTitle": "Death of Doctor Strange: White Fox (2021) #1",
+      "seriesTitle": "Death of Doctor Strange: White Fox",
+      "apiSeriesName": "Death of Doctor Strange: White Fox (2021)",
+      "seriesId": 32874,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95903/death_of_doctor_strange_white_fox_2021_1",
+      "onSaleDate": "2021-12-01T00:00:00+0000"
+    },
+    {
+      "id": 95904,
+      "title": "Death of Doctor Strange: Blade",
+      "issueTitle": "Death of Doctor Strange: Blade (2021) #1",
+      "seriesTitle": "Death of Doctor Strange: Blade",
+      "apiSeriesName": "Death of Doctor Strange: Blade (2021)",
+      "seriesId": 32875,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95904/death_of_doctor_strange_blade_2021_1",
+      "onSaleDate": "2021-12-08T00:00:00+0000"
+    },
+    {
+      "id": 95905,
+      "title": "Death of Doctor Strange: X-Men/Black Knight",
+      "issueTitle": "Death of Doctor Strange: X-Men/Black Knight (2022) #1",
+      "seriesTitle": "Death of Doctor Strange: X-Men/Black Knight",
+      "apiSeriesName": "Death of Doctor Strange: X-Men/Black Knight (2022)",
+      "seriesId": 32876,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95905/death_of_doctor_strange_x-menblack_knight_2022_1",
+      "onSaleDate": "2022-01-19T00:00:00+0000"
+    },
+    {
+      "id": 93318,
+      "title": "Death of Doctor Strange",
+      "issueTitle": "Death of Doctor Strange (2021) #4",
+      "seriesTitle": "Death of Doctor Strange",
+      "apiSeriesName": "Death of Doctor Strange (2021 - 2022)",
+      "seriesId": 31898,
+      "issueNumber": "4",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93318/death_of_doctor_strange_2021_4",
+      "onSaleDate": "2021-12-29T00:00:00+0000"
+    },
+    {
+      "id": 98679,
+      "title": "Death of Doctor Strange: Bloodstone",
+      "issueTitle": "Death of Doctor Strange: Bloodstone (2022) #1",
+      "seriesTitle": "Death of Doctor Strange: Bloodstone",
+      "apiSeriesName": "Death of Doctor Strange: Bloodstone (2022)",
+      "seriesId": 34026,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/98679/death_of_doctor_strange_bloodstone_2022_1",
+      "onSaleDate": "2022-01-12T00:00:00+0000"
+    },
+    {
+      "id": 93319,
+      "title": "Death of Doctor Strange",
+      "issueTitle": "Death of Doctor Strange (2021) #5",
+      "seriesTitle": "Death of Doctor Strange",
+      "apiSeriesName": "Death of Doctor Strange (2021 - 2022)",
+      "seriesId": 31898,
+      "issueNumber": "5",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/93319/death_of_doctor_strange_2021_5",
+      "onSaleDate": "2022-01-26T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Death of Doctor Strange #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31898,
+      "candidateIssueId": 93315,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93315"
+      ],
+      "selectedIssueId": 93315,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93315/death_of_doctor_strange_2021_1",
+      "resolvedIssueTitle": "Death of Doctor Strange (2021) #1",
+      "note": "Marvel series 31898 (Death of Doctor Strange (2021 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93315
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Death of Doctor Strange #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 31898,
+      "candidateIssueId": 93316,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93316"
+      ],
+      "selectedIssueId": 93316,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93316/death_of_doctor_strange_2021_2",
+      "resolvedIssueTitle": "Death of Doctor Strange (2021) #2",
+      "note": "Marvel series 31898 (Death of Doctor Strange (2021 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93316
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Death of Doctor Strange: Avengers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death Of Doctor Strange: Avengers",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32871,
+      "candidateIssueId": 95900,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95900"
+      ],
+      "selectedIssueId": 95900,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95900/death_of_doctor_strange_avengers_2021_1",
+      "resolvedIssueTitle": "Death Of Doctor Strange: Avengers (2021) #1",
+      "note": "Marvel series 32871 (Death Of Doctor Strange: Avengers (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95900
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Strange Academy Presents: The Death of Doctor Strange #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Strange Academy Presents: The Death Of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32872,
+      "candidateIssueId": 95901,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95901"
+      ],
+      "selectedIssueId": 95901,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95901/strange_academy_presents_the_death_of_doctor_strange_2021_1",
+      "resolvedIssueTitle": "Strange Academy Presents: The Death Of Doctor Strange (2021) #1",
+      "note": "Marvel series 32872 (Strange Academy Presents: The Death Of Doctor Strange (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95901
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Death of Doctor Strange #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 31898,
+      "candidateIssueId": 93317,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93317"
+      ],
+      "selectedIssueId": 93317,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93317/death_of_doctor_strange_2021_3",
+      "resolvedIssueTitle": "Death of Doctor Strange (2021) #3",
+      "note": "Marvel series 31898 (Death of Doctor Strange (2021 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93317
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Death of Doctor Strange: Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: Spider-Man",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32873,
+      "candidateIssueId": 95902,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95902"
+      ],
+      "selectedIssueId": 95902,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95902/death_of_doctor_strange_spider-man_2021_1",
+      "resolvedIssueTitle": "Death of Doctor Strange: Spider-Man (2021) #1",
+      "note": "Marvel series 32873 (Death of Doctor Strange: Spider-Man (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95902
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Death of Doctor Strange: White Fox #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: White Fox",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32874,
+      "candidateIssueId": 95903,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95903"
+      ],
+      "selectedIssueId": 95903,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95903/death_of_doctor_strange_white_fox_2021_1",
+      "resolvedIssueTitle": "Death of Doctor Strange: White Fox (2021) #1",
+      "note": "Marvel series 32874 (Death of Doctor Strange: White Fox (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95903
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Death of Doctor Strange: Blade #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: Blade",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32875,
+      "candidateIssueId": 95904,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95904"
+      ],
+      "selectedIssueId": 95904,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95904/death_of_doctor_strange_blade_2021_1",
+      "resolvedIssueTitle": "Death of Doctor Strange: Blade (2021) #1",
+      "note": "Marvel series 32875 (Death of Doctor Strange: Blade (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95904
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Death of Doctor Strange: X-Men/Black Knight #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: X-Men/Black Knight",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 32876,
+      "candidateIssueId": 95905,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95905"
+      ],
+      "selectedIssueId": 95905,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95905/death_of_doctor_strange_x-menblack_knight_2022_1",
+      "resolvedIssueTitle": "Death of Doctor Strange: X-Men/Black Knight (2022) #1",
+      "note": "Marvel series 32876 (Death of Doctor Strange: X-Men/Black Knight (2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95905
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Death of Doctor Strange #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 31898,
+      "candidateIssueId": 93318,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93318"
+      ],
+      "selectedIssueId": 93318,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93318/death_of_doctor_strange_2021_4",
+      "resolvedIssueTitle": "Death of Doctor Strange (2021) #4",
+      "note": "Marvel series 31898 (Death of Doctor Strange (2021 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93318
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Death of Doctor Strange; Bloodstone #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange: Bloodstone",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34026,
+      "candidateIssueId": 98679,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "98679"
+      ],
+      "selectedIssueId": 98679,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/98679/death_of_doctor_strange_bloodstone_2022_1",
+      "resolvedIssueTitle": "Death of Doctor Strange: Bloodstone (2022) #1",
+      "note": "Marvel series 34026 (Death of Doctor Strange: Bloodstone (2022)) is the reviewed metadata series for this source reference. The source semicolon is normalized to the exact series title's colon.",
+      "status": "exact",
+      "selectedIssueIds": [
+        98679
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Death of Doctor Strange #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Doctor Strange",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 31898,
+      "candidateIssueId": 93319,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "93319"
+      ],
+      "selectedIssueId": 93319,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93319/death_of_doctor_strange_2021_5",
+      "resolvedIssueTitle": "Death of Doctor Strange (2021) #5",
+      "note": "Marvel series 31898 (Death of Doctor Strange (2021 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        93319
+      ]
+    }
+  ],
+  "mappingDigest": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "death-of-doctor-strange",
+    "name": "The Death of Doctor Strange",
+    "description": "Doctor Strange dies, and the fallout reaches his allies across the Marvel Universe.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "death-of-doctor-strange.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/death-of-doctor-strange/",
+    "sourceSection": "The Death of Doctor Strange Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "death_of_doctor_strange.json",
+    "characters": [
+      "Doctor Strange",
+      "Avengers",
+      "Strange Academy",
+      "Spider-Man",
+      "Blade",
+      "X-Men"
+    ],
+    "keywords": [
+      "Death of Doctor Strange",
+      "Sorcerer Supreme",
+      "Black Knight"
+    ],
+    "expect": 12,
+    "timeline": 2021,
+    "coverIssueId": 93315
+  },
+  "relationshipReview": {
+    "reportDigest": "9918c84ead806d235258b8d898cf3976465c4fae73b005a1add16b23166a110d",
+    "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6",
+    "mappingDigest": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7",
+      "reckoning-war": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "9a3c7756a4f6e4870f3caed8a50c8a47419d43e055baf5b0d8cfab4de1052b86"
+  }
+}

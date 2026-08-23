@@ -1,0 +1,1441 @@
+{
+  "id": "judgment-day",
+  "name": "A.X.E.: Judgment Day",
+  "description": "The Avengers, Eternals, and X-Men collide as the Progenitor judges Earth.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/judgment-day-reading-order/",
+  "sourceSection": "Judgment Day Issue by Issue Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:26:42.018Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 44,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 85569,
+      "title": "Eternals (2021) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/85569/eternals_2021_10",
+      "seriesId": 30146,
+      "seriesName": "Eternals (2021 - Present)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-13T00:00:00+0000",
+      "digitalId": 58807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/6227805094412",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 85570,
+      "title": "Eternals (2021) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/85570/eternals_2021_11",
+      "seriesId": 30146,
+      "seriesName": "Eternals (2021 - Present)",
+      "onSale": "2022-04-13T00:00:00+0000",
+      "mu": "2022-07-18T00:00:00+0000",
+      "digitalId": 59134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/6241c68a6a49c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 85571,
+      "title": "Eternals (2021) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/85571/eternals_2021_12",
+      "seriesId": 30146,
+      "seriesName": "Eternals (2021 - Present)",
+      "onSale": "2022-05-18T00:00:00+0000",
+      "mu": "2022-08-22T00:00:00+0000",
+      "digitalId": 59343,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/627bf7a5759b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100671,
+      "title": "Free Comic Book Day 2022: Avengers/X-Men (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/100671/free_comic_book_day_2022_avengersx-men_2022_1",
+      "seriesId": 34538,
+      "seriesName": "Free Comic Book Day 2022: Avengers/X-Men (2022)",
+      "onSale": "2022-04-06T00:00:00+0000",
+      "mu": "2022-05-11T00:00:00+0000",
+      "digitalId": 59136,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/62432e8c34c2e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karen Darboe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91734,
+      "title": "Immortal X-Men (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/91734/immortal_x-men_2022_3",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2022-06-22T00:00:00+0000",
+      "mu": "2022-09-26T00:00:00+0000",
+      "digitalId": 59348,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/62b9e11fb0e6f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100352,
+      "title": "X-Men: Hellfire Gala (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/100352/x-men_hellfire_gala_2022_1",
+      "seriesId": 34446,
+      "seriesName": "X-Men: Hellfire Gala (2022)",
+      "onSale": "2022-07-13T00:00:00+0000",
+      "mu": "2022-08-29T00:00:00+0000",
+      "digitalId": 59664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/62d04562a5b65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 72,
+      "creators": [
+        {
+          "name": "C.F. Villa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Gomez",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 91735,
+      "title": "Immortal X-Men (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/91735/immortal_x-men_2022_4",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2022-07-13T00:00:00+0000",
+      "mu": "2022-10-17T00:00:00+0000",
+      "digitalId": 59606,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/62d0458220a8d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michele Bandini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102808,
+      "title": "A.X.E.: Eve Of Judgment (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102808/axe_eve_of_judgment_2022_1",
+      "seriesId": 35456,
+      "seriesName": "A.X.E.: Eve Of Judgment (2022)",
+      "onSale": "2022-07-13T00:00:00+0000",
+      "mu": "2022-10-17T00:00:00+0000",
+      "digitalId": 59583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/62d045b6de414",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100366,
+      "title": "A.X.E.: Judgment Day (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/100366/axe_judgment_day_2022_1",
+      "seriesId": 34459,
+      "seriesName": "A.X.E.: Judgment Day (2022)",
+      "onSale": "2022-07-20T00:00:00+0000",
+      "mu": "2022-10-24T00:00:00+0000",
+      "digitalId": 59975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/62d04560838d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91736,
+      "title": "Immortal X-Men (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/91736/immortal_x-men_2022_5",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2022-08-03T00:00:00+0000",
+      "mu": "2022-11-07T00:00:00+0000",
+      "digitalId": 59999,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/62dab28194f50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michele Bandini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96269,
+      "title": "X-Men Red (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/96269/x-men_red_2022_5",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-08-03T00:00:00+0000",
+      "mu": "2022-11-07T00:00:00+0000",
+      "digitalId": 60038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/40/62dab23aad018",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98430,
+      "title": "Legion of X (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/98430/legion_of_x_2022_5",
+      "seriesId": 33959,
+      "seriesName": "Legion of X (2022 - 2023)",
+      "onSale": "2022-09-21T00:00:00+0000",
+      "mu": "2022-12-26T00:00:00+0000",
+      "digitalId": 60194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/631b359576fe7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100367,
+      "title": "A.X.E.: Judgment Day (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/100367/axe_judgment_day_2022_2",
+      "seriesId": 34459,
+      "seriesName": "A.X.E.: Judgment Day (2022)",
+      "onSale": "2022-08-10T00:00:00+0000",
+      "mu": "2022-11-14T00:00:00+0000",
+      "digitalId": 59976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/62ed839dc66c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102804,
+      "title": "A.X.E.: Death to the Mutants (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102804/axe_death_to_the_mutants_2022_1",
+      "seriesId": 35455,
+      "seriesName": "A.X.E.: Death to the Mutants (2022)",
+      "onSale": "2022-08-17T00:00:00+0000",
+      "mu": "2022-11-21T00:00:00+0000",
+      "digitalId": 59974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/62f3c6a48a4cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84427,
+      "title": "X-Men (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-10-21T00:00:00+0000",
+      "mu": "2021-01-25T00:00:00+0000",
+      "digitalId": 55576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5f3ee08a6a1a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100368,
+      "title": "A.X.E.: Judgment Day (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/100368/axe_judgment_day_2022_3",
+      "seriesId": 34459,
+      "seriesName": "A.X.E.: Judgment Day (2022)",
+      "onSale": "2022-08-24T00:00:00+0000",
+      "mu": "2022-11-28T00:00:00+0000",
+      "digitalId": 60158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6305078fe1b86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102805,
+      "title": "A.X.E.: Death to the Mutants (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/102805/axe_death_to_the_mutants_2022_2",
+      "seriesId": 35455,
+      "seriesName": "A.X.E.: Death to the Mutants (2022)",
+      "onSale": "2022-09-07T00:00:00+0000",
+      "mu": "2022-12-12T00:00:00+0000",
+      "digitalId": 60157,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/6317af3125368",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91737,
+      "title": "Immortal X-Men (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/91737/immortal_x-men_2022_6",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2022-09-07T00:00:00+0000",
+      "mu": "2022-12-12T00:00:00+0000",
+      "digitalId": 60189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/630506bbb27a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84428,
+      "title": "X-Men (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-11-04T00:00:00+0000",
+      "mu": "2021-02-08T00:00:00+0000",
+      "digitalId": 55717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/601af75ea4c52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98688,
+      "title": "Marauders (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/98688/marauders_2022_6",
+      "seriesId": 34029,
+      "seriesName": "Marauders (2022 - Present)",
+      "onSale": "2022-09-07T00:00:00+0000",
+      "mu": "2022-12-12T00:00:00+0000",
+      "digitalId": 60195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/630506bb9e6fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kael Ngu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96889,
+      "title": "Wolverine (2020) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/96889/wolverine_2020_24",
+      "seriesId": 28051,
+      "seriesName": "Wolverine (2020 - Present)",
+      "onSale": "2022-09-07T00:00:00+0000",
+      "mu": "2022-12-12T00:00:00+0000",
+      "digitalId": 60221,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/6305069973638",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96890,
+      "title": "Wolverine (2020) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/96890/wolverine_2020_25",
+      "seriesId": 28051,
+      "seriesName": "Wolverine (2020 - Present)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/634f65f14af07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Guillermo Ortego",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Emma Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Charles",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95765,
+      "title": "Avengers (2018) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/95765/avengers_2018_60",
+      "seriesId": 24229,
+      "seriesName": "Avengers (2018 - 2023)",
+      "onSale": "2022-09-21T00:00:00+0000",
+      "mu": "2022-12-26T00:00:00+0000",
+      "digitalId": 60166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/631b39c245d7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Russell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95806,
+      "title": "Fantastic Four (2018) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/95806/fantastic_four_2018_47",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2022-09-21T00:00:00+0000",
+      "mu": "2022-12-26T00:00:00+0000",
+      "digitalId": 60180,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/631b35b564fb8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "David Pepose",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95807,
+      "title": "Fantastic Four (2018) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/95807/fantastic_four_2018_48",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60563,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/634f663d64929",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "David Pepose",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95746,
+      "title": "The Amazing Spider-Man (2022) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/95746/the_amazing_spider-man_2022_10",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2022-09-28T00:00:00+0000",
+      "mu": "2023-01-02T00:00:00+0000",
+      "digitalId": 60163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/631b354e2206e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Dragotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95892,
+      "title": "X-Force (2019) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/95892/x-force_2019_31",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2022-08-31T00:00:00+0000",
+      "mu": "2022-12-05T00:00:00+0000",
+      "digitalId": 60222,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/630506ff0ea93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95893,
+      "title": "X-Force (2019) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/95893/x-force_2019_32",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/634f65f14f038",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95894,
+      "title": "X-Force (2019) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/95894/x-force_2019_33",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2022-10-19T00:00:00+0000",
+      "mu": "2023-01-23T00:00:00+0000",
+      "digitalId": 60598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/634f648596d3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104819,
+      "title": "A.X.E.: Iron Fist (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104819/axe_iron_fist_2022_1",
+      "seriesId": 36247,
+      "seriesName": "A.X.E.: Iron Fist (2022)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/634f6661c081a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Michael Yg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Alyssa Wong",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95788,
+      "title": "Captain Marvel (2019) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/95788/captain_marvel_2019_42",
+      "seriesId": 26673,
+      "seriesName": "Captain Marvel (2019 - 2023)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60557,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/634f66606c8a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102552,
+      "title": "X-Men Red (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/102552/x-men_red_2022_6",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-09-14T00:00:00+0000",
+      "mu": "2022-12-19T00:00:00+0000",
+      "digitalId": 60227,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/631b39c241d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100369,
+      "title": "A.X.E.: Judgment Day (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/100369/axe_judgment_day_2022_4",
+      "seriesId": 34459,
+      "seriesName": "A.X.E.: Judgment Day (2022)",
+      "onSale": "2022-09-14T00:00:00+0000",
+      "mu": "2022-12-19T00:00:00+0000",
+      "digitalId": 60159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/631b3a2c90f86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100370,
+      "title": "A.X.E.: Judgment Day (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/100370/axe_judgment_day_2022_5",
+      "seriesId": 34459,
+      "seriesName": "A.X.E.: Judgment Day (2022)",
+      "onSale": "2022-09-21T00:00:00+0000",
+      "mu": "2022-12-26T00:00:00+0000",
+      "digitalId": 60334,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/631b39c23f882",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102553,
+      "title": "X-Men Red (2022) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/102553/x-men_red_2022_7",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-10-05T00:00:00+0000",
+      "mu": "2023-01-09T00:00:00+0000",
+      "digitalId": 60600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/633cefa05cbd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Madibek Musabekov",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102523,
+      "title": "Legion of X (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/102523/legion_of_x_2022_6",
+      "seriesId": 33959,
+      "seriesName": "Legion of X (2022 - 2023)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60569,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/634f663b7623f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rafael Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91738,
+      "title": "Immortal X-Men (2022) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/91738/immortal_x-men_2022_7",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/634f663b5659d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102806,
+      "title": "A.X.E.: Death to the Mutants (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/102806/axe_death_to_the_mutants_2022_3",
+      "seriesId": 35455,
+      "seriesName": "A.X.E.: Death to the Mutants (2022)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/634f666387aed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102809,
+      "title": "A.X.E.: Starfox (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102809/axe_starfox_2022_1",
+      "seriesId": 35457,
+      "seriesName": "A.X.E.: Starfox (2022)",
+      "onSale": "2022-10-05T00:00:00+0000",
+      "mu": "2023-01-09T00:00:00+0000",
+      "digitalId": 60545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/633cefe929d6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniele DI Nicuolo",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102802,
+      "title": "A.X.E.: Avengers (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102802/axe_avengers_2022_1",
+      "seriesId": 35453,
+      "seriesName": "A.X.E.: Avengers (2022)",
+      "onSale": "2022-09-28T00:00:00+0000",
+      "mu": "2023-01-02T00:00:00+0000",
+      "digitalId": 60333,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/631b354da733c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102810,
+      "title": "A.X.E.: X-Men (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102810/axe_x-men_2022_1",
+      "seriesId": 35458,
+      "seriesName": "A.X.E.: X-Men (2022)",
+      "onSale": "2022-10-05T00:00:00+0000",
+      "mu": "2023-01-09T00:00:00+0000",
+      "digitalId": 60546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/633cefe8127dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mobili",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102803,
+      "title": "A.X.E.: Eternals (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102803/axe_eternals_2022_1",
+      "seriesId": 35454,
+      "seriesName": "A.X.E.: Eternals (2022)",
+      "onSale": "2022-10-12T00:00:00+0000",
+      "mu": "2023-01-16T00:00:00+0000",
+      "digitalId": 60542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/634f66636b7c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102807,
+      "title": "A.X.E.: Judgment Day (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/102807/axe_judgment_day_2022_6",
+      "seriesId": 34459,
+      "seriesName": "A.X.E.: Judgment Day (2022)",
+      "onSale": "2022-10-26T00:00:00+0000",
+      "mu": "2023-01-30T00:00:00+0000",
+      "digitalId": 60544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/6352e5c4463b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104869,
+      "title": "A.X.E.: Judgment Day Omega (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104869/axe_judgment_day_omega_2022_1",
+      "seriesId": 36268,
+      "seriesName": "A.X.E.: Judgment Day Omega (2022)",
+      "onSale": "2022-11-09T00:00:00+0000",
+      "mu": "2023-02-13T00:00:00+0000",
+      "digitalId": 60716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/63658cf8efef2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

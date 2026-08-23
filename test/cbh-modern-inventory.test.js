@@ -8,6 +8,31 @@ import { validateBatchNoDuplicates, validateInventory, validateLiveInventory } f
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-modern-inventory.json');
 const inventory = JSON.parse(fs.readFileSync(inventoryPath, 'utf8'));
+const selectedExpansionIds = new Set([
+  'generations',
+  'x-men-extermination',
+  'spider-geddon',
+  'age-of-x-man',
+  'iron-man-2020',
+  'war-of-the-realms',
+  'absolute-carnage',
+  'empyre',
+  'x-of-swords',
+  'heroes-reborn-2021',
+  'infinite-destinies',
+  'last-annihilation',
+  'x-men-inferno',
+  'death-of-doctor-strange',
+  'devils-reign',
+  'reckoning-war',
+  'judgment-day',
+  'dark-web',
+  'sins-of-sinister',
+  'secret-empire',
+  'hunt-for-wolverine',
+  'fall-house-x-rise-powers-x',
+  'one-world-under-doom',
+]);
 
 test('the maintained inventory matches the current lifecycle contract', () => {
   const counts = validateInventory(inventory);
@@ -52,6 +77,9 @@ test('the maintained inventory matches the current lifecycle contract', () => {
   assert.ok(inventory.filter((record) => record.disposition !== 'new-order').every((record) => (
     ['not-applicable', 'ready', 'shipped', 'blocked'].includes(record.deliveryStatus)
   )));
+  assert.equal(inventory.filter((record) => (
+    selectedExpansionIds.has(record.id) && record.deliveryStatus === 'pending'
+  )).length, 0);
 });
 
 test('batch duplicate guard rejects repeated ids, URLs, issue sequences, and catalog ids', () => {

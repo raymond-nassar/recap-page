@@ -1,0 +1,1348 @@
+{
+  "id": "sins-of-sinister",
+  "inventoryId": "sins-of-sinister",
+  "packetDigest": "5f2a96f6d3e55882fe8d04ec81cfb1f9a8d3c56ba7b21fc69a9d7c003949349e",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+  "sourceSection": "Sins of Sinister Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 13,
+  "excludedSourceReferences": [
+    "Previously: Judgment Day",
+    "The Road to Sins of Sinister",
+    "Sins of Sinister",
+    "Next: Fall of X"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "sins-of-sinister",
+    "name": "Sins of Sinister",
+    "description": "Mister Sinister remakes mutant history across a century of impossible futures.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "sins-of-sinister.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+    "sourceSection": "Sins of Sinister Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "sins_of_sinister.json",
+    "characters": [
+      "X-Men",
+      "Mister Sinister",
+      "Storm",
+      "Nightcrawler"
+    ],
+    "keywords": [
+      "Sins of Sinister",
+      "Krakoa",
+      "Mister Sinister"
+    ],
+    "expect": 13,
+    "timeline": 2022,
+    "coverIssueId": 102461
+  },
+  "candidateMetadata": [
+    {
+      "id": 91740,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #9",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "9",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91740/immortal_x-men_2022_9",
+      "onSaleDate": "2022-12-07T00:00:00+0000"
+    },
+    {
+      "id": 91741,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #10",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "10",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91741/immortal_x-men_2022_10",
+      "onSaleDate": "2023-01-18T00:00:00+0000"
+    },
+    {
+      "id": 102461,
+      "title": "SINS OF SINISTER 1",
+      "issueTitle": "SINS OF SINISTER 1 (2023) #1",
+      "seriesTitle": "SINS OF SINISTER 1",
+      "apiSeriesName": "SINS OF SINISTER 1 (2023)",
+      "seriesId": 35395,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102461/sins_of_sinister_1_2023_1",
+      "onSaleDate": "2023-01-25T00:00:00+0000"
+    },
+    {
+      "id": 106552,
+      "title": "Immoral X-Men",
+      "issueTitle": "Immoral X-Men (2023) #1",
+      "seriesTitle": "Immoral X-Men",
+      "apiSeriesName": "Immoral X-Men (2023 - Present)",
+      "seriesId": 36787,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/106552/immoral_x-men_2023_1",
+      "onSaleDate": "2023-02-22T00:00:00+0000"
+    },
+    {
+      "id": 105870,
+      "title": "Storm & the Brotherhood of Mutants",
+      "issueTitle": "Storm & the Brotherhood of Mutants (2023) #1",
+      "seriesTitle": "Storm & the Brotherhood of Mutants",
+      "apiSeriesName": "Storm & the Brotherhood of Mutants (2023)",
+      "seriesId": 36594,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105870/storm_the_brotherhood_of_mutants_2023_1",
+      "onSaleDate": "2023-02-08T00:00:00+0000"
+    },
+    {
+      "id": 105598,
+      "title": "Nightcrawlers",
+      "issueTitle": "Nightcrawlers (2023) #1",
+      "seriesTitle": "Nightcrawlers",
+      "apiSeriesName": "Nightcrawlers (2023)",
+      "seriesId": 36547,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105598/nightcrawlers_2023_1",
+      "onSaleDate": "2023-02-15T00:00:00+0000"
+    },
+    {
+      "id": 105599,
+      "title": "Nightcrawlers",
+      "issueTitle": "Nightcrawlers (2023) #2",
+      "seriesTitle": "Nightcrawlers",
+      "apiSeriesName": "Nightcrawlers (2023)",
+      "seriesId": 36547,
+      "issueNumber": "2",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105599/nightcrawlers_2023_2",
+      "onSaleDate": "2023-03-08T00:00:00+0000"
+    },
+    {
+      "id": 105871,
+      "title": "Storm & the Brotherhood of Mutants",
+      "issueTitle": "Storm & the Brotherhood of Mutants (2023) #2",
+      "seriesTitle": "Storm & the Brotherhood of Mutants",
+      "apiSeriesName": "Storm & the Brotherhood of Mutants (2023)",
+      "seriesId": 36594,
+      "issueNumber": "2",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105871/storm_the_brotherhood_of_mutants_2023_2",
+      "onSaleDate": "2023-03-22T00:00:00+0000"
+    },
+    {
+      "id": 106553,
+      "title": "Immoral X-Men",
+      "issueTitle": "Immoral X-Men (2023) #2",
+      "seriesTitle": "Immoral X-Men",
+      "apiSeriesName": "Immoral X-Men (2023 - Present)",
+      "seriesId": 36787,
+      "issueNumber": "2",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/106553/immoral_x-men_2023_2",
+      "onSaleDate": "2023-03-15T00:00:00+0000"
+    },
+    {
+      "id": 106554,
+      "title": "Immoral X-Men",
+      "issueTitle": "Immoral X-Men (2023) #3",
+      "seriesTitle": "Immoral X-Men",
+      "apiSeriesName": "Immoral X-Men (2023 - Present)",
+      "seriesId": 36787,
+      "issueNumber": "3",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/106554/immoral_x-men_2023_3",
+      "onSaleDate": "2023-04-05T00:00:00+0000"
+    },
+    {
+      "id": 105872,
+      "title": "Storm & the Brotherhood of Mutants",
+      "issueTitle": "Storm & the Brotherhood of Mutants (2023) #3",
+      "seriesTitle": "Storm & the Brotherhood of Mutants",
+      "apiSeriesName": "Storm & the Brotherhood of Mutants (2023)",
+      "seriesId": 36594,
+      "issueNumber": "3",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105872/storm_the_brotherhood_of_mutants_2023_3",
+      "onSaleDate": "2023-04-12T00:00:00+0000"
+    },
+    {
+      "id": 105600,
+      "title": "Nightcrawlers",
+      "issueTitle": "Nightcrawlers (2023) #3",
+      "seriesTitle": "Nightcrawlers",
+      "apiSeriesName": "Nightcrawlers (2023)",
+      "seriesId": 36547,
+      "issueNumber": "3",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105600/nightcrawlers_2023_3",
+      "onSaleDate": "2023-04-19T00:00:00+0000"
+    },
+    {
+      "id": 105603,
+      "title": "SINS OF SINISTER DOMINION 1",
+      "issueTitle": "SINS OF SINISTER DOMINION 1 (2023) #1",
+      "seriesTitle": "SINS OF SINISTER DOMINION 1",
+      "apiSeriesName": "SINS OF SINISTER DOMINION 1 (2023)",
+      "seriesId": 36548,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/105603/sins_of_sinister_dominion_1_2023_1",
+      "onSaleDate": "2023-04-26T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Immortal X-Men #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "9",
+      "seriesId": 31375,
+      "candidateIssueId": 91740,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91740"
+      ],
+      "selectedIssueId": 91740,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91740/immortal_x-men_2022_9",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #9",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91740
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Immortal X-Men #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 31375,
+      "candidateIssueId": 91741,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91741"
+      ],
+      "selectedIssueId": 91741,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91741/immortal_x-men_2022_10",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #10",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91741
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Sins of Sinister #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "SINS OF SINISTER 1",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 35395,
+      "candidateIssueId": 102461,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102461"
+      ],
+      "selectedIssueId": 102461,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102461/sins_of_sinister_1_2023_1",
+      "resolvedIssueTitle": "SINS OF SINISTER 1 (2023) #1",
+      "note": "Marvel series 35395 (SINS OF SINISTER 1 (2023)) is the reviewed metadata series for this source reference. Marvel includes the one-shot issue number in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102461
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Immoral X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immoral X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36787,
+      "candidateIssueId": 106552,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "106552"
+      ],
+      "selectedIssueId": 106552,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/106552/immoral_x-men_2023_1",
+      "resolvedIssueTitle": "Immoral X-Men (2023) #1",
+      "note": "Marvel series 36787 (Immoral X-Men (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        106552
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Storm and the Brotherhood of Mutants #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Storm & the Brotherhood of Mutants",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36594,
+      "candidateIssueId": 105870,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105870"
+      ],
+      "selectedIssueId": 105870,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105870/storm_the_brotherhood_of_mutants_2023_1",
+      "resolvedIssueTitle": "Storm & the Brotherhood of Mutants (2023) #1",
+      "note": "Marvel series 36594 (Storm & the Brotherhood of Mutants (2023)) is the reviewed metadata series for this source reference. Marvel uses an ampersand where the source spells out and.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105870
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Nightcrawlers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightcrawlers",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36547,
+      "candidateIssueId": 105598,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105598"
+      ],
+      "selectedIssueId": 105598,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105598/nightcrawlers_2023_1",
+      "resolvedIssueTitle": "Nightcrawlers (2023) #1",
+      "note": "Marvel series 36547 (Nightcrawlers (2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105598
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Nightcrawlers #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightcrawlers",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 36547,
+      "candidateIssueId": 105599,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105599"
+      ],
+      "selectedIssueId": 105599,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105599/nightcrawlers_2023_2",
+      "resolvedIssueTitle": "Nightcrawlers (2023) #2",
+      "note": "Marvel series 36547 (Nightcrawlers (2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105599
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Storm and the Brotherhood of Mutants #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Storm & the Brotherhood of Mutants",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 36594,
+      "candidateIssueId": 105871,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105871"
+      ],
+      "selectedIssueId": 105871,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105871/storm_the_brotherhood_of_mutants_2023_2",
+      "resolvedIssueTitle": "Storm & the Brotherhood of Mutants (2023) #2",
+      "note": "Marvel series 36594 (Storm & the Brotherhood of Mutants (2023)) is the reviewed metadata series for this source reference. Marvel uses an ampersand where the source spells out and.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105871
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Immoral X-Men #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immoral X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 36787,
+      "candidateIssueId": 106553,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "106553"
+      ],
+      "selectedIssueId": 106553,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/106553/immoral_x-men_2023_2",
+      "resolvedIssueTitle": "Immoral X-Men (2023) #2",
+      "note": "Marvel series 36787 (Immoral X-Men (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        106553
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Immoral X-Men #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Immoral X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 36787,
+      "candidateIssueId": 106554,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "106554"
+      ],
+      "selectedIssueId": 106554,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/106554/immoral_x-men_2023_3",
+      "resolvedIssueTitle": "Immoral X-Men (2023) #3",
+      "note": "Marvel series 36787 (Immoral X-Men (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        106554
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Storm and the Brotherhood of Mutants #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Storm & the Brotherhood of Mutants",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 36594,
+      "candidateIssueId": 105872,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105872"
+      ],
+      "selectedIssueId": 105872,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105872/storm_the_brotherhood_of_mutants_2023_3",
+      "resolvedIssueTitle": "Storm & the Brotherhood of Mutants (2023) #3",
+      "note": "Marvel series 36594 (Storm & the Brotherhood of Mutants (2023)) is the reviewed metadata series for this source reference. Marvel uses an ampersand where the source spells out and.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105872
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Nightcrawlers #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightcrawlers",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 36547,
+      "candidateIssueId": 105600,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105600"
+      ],
+      "selectedIssueId": 105600,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105600/nightcrawlers_2023_3",
+      "resolvedIssueTitle": "Nightcrawlers (2023) #3",
+      "note": "Marvel series 36547 (Nightcrawlers (2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105600
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Sins of Sinister: Dominion #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "SINS OF SINISTER DOMINION 1",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36548,
+      "candidateIssueId": 105603,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "105603"
+      ],
+      "selectedIssueId": 105603,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/105603/sins_of_sinister_dominion_1_2023_1",
+      "resolvedIssueTitle": "SINS OF SINISTER DOMINION 1 (2023) #1",
+      "note": "Marvel series 36548 (SINS OF SINISTER DOMINION 1 (2023)) is the reviewed metadata series for this source reference. Marvel includes the one-shot issue number in the series title and omits the source colon.",
+      "status": "exact",
+      "selectedIssueIds": [
+        105603
+      ]
+    }
+  ],
+  "mappingDigest": "8fe36184b0887ead545859dffe393814c9c33ca2738d2a5fb100004b66b891e1",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "sins-of-sinister",
+    "name": "Sins of Sinister",
+    "description": "Mister Sinister remakes mutant history across a century of impossible futures.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "sins-of-sinister.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+    "sourceSection": "Sins of Sinister Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "sins_of_sinister.json",
+    "characters": [
+      "X-Men",
+      "Mister Sinister",
+      "Storm",
+      "Nightcrawler"
+    ],
+    "keywords": [
+      "Sins of Sinister",
+      "Krakoa",
+      "Mister Sinister"
+    ],
+    "expect": 13,
+    "timeline": 2022,
+    "coverIssueId": 102461
+  },
+  "relationshipReview": {
+    "reportDigest": "db19fbfd013a96b74bab32db41cf9d9224977b581a6f5977062f2e9167c263e6",
+    "packetDigest": "5f2a96f6d3e55882fe8d04ec81cfb1f9a8d3c56ba7b21fc69a9d7c003949349e",
+    "mappingDigest": "8fe36184b0887ead545859dffe393814c9c33ca2738d2a5fb100004b66b891e1",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "dark-web": "e82dbaa204cc50c6da6044023a4808f80071473751bb6a70545ca9bc9c65382f",
+      "judgment-day": "45bb86755c51897b1bdfd3bb43b2cdd445e50e769a6d35b8b281a5af01fc55c1"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "c873c82a14c49393f4fcb71efea73a56daf2e3134ea476a754d6e2f1a257cfee"
+  }
+}

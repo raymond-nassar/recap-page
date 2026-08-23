@@ -1,0 +1,375 @@
+{
+  "id": "infinite-destinies",
+  "name": "Infinite Destinies",
+  "description": "The Infinity Stones pass through eight annuals and two Black Cat chapters.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/infinite-destinies/",
+  "sourceSection": "Infinite Destines Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T05:26:16.419Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 10,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 90339,
+      "title": "Iron Man Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90339/iron_man_annual_2021_1",
+      "seriesId": 31082,
+      "seriesName": "Iron Man Annual (2021)",
+      "onSale": "2021-06-02T00:00:00+0000",
+      "mu": "2021-09-06T00:00:00+0000",
+      "digitalId": 55096,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/60afe2ec8a982",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90333,
+      "title": "Captain America Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90333/captain_america_annual_2021_1",
+      "seriesId": 31076,
+      "seriesName": "Captain America Annual (2021)",
+      "onSale": "2021-06-16T00:00:00+0000",
+      "mu": "2021-09-20T00:00:00+0000",
+      "digitalId": 55061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/609ed04b9e58c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marco Castiello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95100,
+      "title": "Black Cat Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95100/black_cat_annual_2021_1",
+      "seriesId": 32384,
+      "seriesName": "Black Cat Annual (2021)",
+      "onSale": "2021-06-30T00:00:00+0000",
+      "mu": "2021-10-04T00:00:00+0000",
+      "digitalId": 56982,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/609ece289b399",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "C.F. Villa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joey Vazquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90358,
+      "title": "Amazing Spider-Man Annual (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/90358/amazing_spider-man_annual_2021_2",
+      "seriesId": 31086,
+      "seriesName": "Amazing Spider-Man Annual (2021)",
+      "onSale": "2021-07-07T00:00:00+0000",
+      "mu": "2021-10-11T00:00:00+0000",
+      "digitalId": 57027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/60d5e76996b5e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Eleonora Carlini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sergio Davila",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Karla Pacheco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90388,
+      "title": "Thor Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90388/thor_annual_2021_1",
+      "seriesId": 31105,
+      "seriesName": "Thor Annual (2021)",
+      "onSale": "2021-07-21T00:00:00+0000",
+      "mu": "2021-10-25T00:00:00+0000",
+      "digitalId": 57078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/60fad35ec2778",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91374,
+      "title": "Black Cat (2020) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/91374/black_cat_2020_8",
+      "seriesId": 31322,
+      "seriesName": "Black Cat (2020 - 2021)",
+      "onSale": "2021-07-28T00:00:00+0000",
+      "mu": "2021-11-01T00:00:00+0000",
+      "digitalId": 57034,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/60fad34459a9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "C.F. Villa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90386,
+      "title": "Miles Morales: Spider-Man Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90386/miles_morales_spider-man_annual_2021_1",
+      "seriesId": 31103,
+      "seriesName": "Miles Morales: Spider-Man Annual (2021)",
+      "onSale": "2021-08-18T00:00:00+0000",
+      "mu": "2021-11-22T00:00:00+0000",
+      "digitalId": 57185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/60e5e1d1b5fde",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90367,
+      "title": "Guardians Of The Galaxy Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90367/guardians_of_the_galaxy_annual_2021_1",
+      "seriesId": 31090,
+      "seriesName": "Guardians Of The Galaxy Annual (2021)",
+      "onSale": "2021-08-04T00:00:00+0000",
+      "mu": "2021-11-08T00:00:00+0000",
+      "digitalId": 57176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/610411ed31046",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90385,
+      "title": "Avengers Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90385/avengers_annual_2021_1",
+      "seriesId": 31102,
+      "seriesName": "Avengers Annual (2021)",
+      "onSale": "2021-08-25T00:00:00+0000",
+      "mu": "2021-11-29T00:00:00+0000",
+      "digitalId": 57158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/60e5e16b478a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91375,
+      "title": "Black Cat (2020) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/91375/black_cat_2020_9",
+      "seriesId": 31322,
+      "seriesName": "Black Cat (2020 - 2021)",
+      "onSale": "2021-08-18T00:00:00+0000",
+      "mu": "2021-11-22T00:00:00+0000",
+      "digitalId": 57160,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/60e5e16ccc6e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "C.F. Villa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -770,11 +770,11 @@
     "guideType": "event",
     "window": "Q5",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Blocked: the exact source page interleaves trade, Road to Secret Empire, and issue-by-issue boundaries, so no single canonical row set can be frozen; evidence: source URL above; route owner: central source owner",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "pending"
+    "deliveryStatus": "blocked"
   },
   {
     "position": 51,
@@ -814,11 +814,13 @@
     "guideType": "event",
     "window": "Q5",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 10-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "generations"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 54,
@@ -874,11 +876,15 @@
     "guideType": "sub-guide",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical crossover candidate",
-    "sourceRetrievedAt": "2026-08-20",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "reason": "Shipped: exact 24-row mapping, centrally approved one-issue partial overlap, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
+    "overlapIds": [
+      "infinity-countdown-wars"
+    ],
+    "catalogIds": [
+      "hunt-for-wolverine"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 58,
@@ -916,11 +922,13 @@
     "guideType": "sub-guide",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Recommended second guide after section-flattening approval",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 9-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "x-men-extermination"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 61,
@@ -930,11 +938,13 @@
     "guideType": "sub-guide",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical crossover candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 25-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "spider-geddon"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 62,
@@ -944,11 +954,13 @@
     "guideType": "sub-guide",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical crossover candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 32-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "age-of-x-man"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 63,
@@ -958,11 +970,15 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "reason": "Shipped: exact 66-row mapping, centrally approved partial overlap with thor-best-of, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
+    "overlapIds": [
+      "thor-best-of"
+    ],
+    "catalogIds": [
+      "war-of-the-realms"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 64,
@@ -986,11 +1002,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 31-row mapping, final zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "absolute-carnage"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 66,
@@ -1000,11 +1018,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 18-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "iron-man-2020"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 67,
@@ -1014,11 +1034,11 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Blocked: the exact 36-row source includes Lords of Empyre: Swordsman #1, Marvel issue 88682, which is absent from the configured metadata API; route to the central metadata owner",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "pending"
+    "deliveryStatus": "blocked"
   },
   {
     "position": 68,
@@ -1028,11 +1048,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event inside the deferred X-Men era",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 25-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "x-of-swords"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 69,
@@ -1070,11 +1092,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 18-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "heroes-reborn-2021"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 72,
@@ -1084,11 +1108,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 10-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "infinite-destinies"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 73,
@@ -1098,11 +1124,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 9-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "last-annihilation"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 74,
@@ -1112,11 +1140,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event inside the deferred X-Men era",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 4-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "x-men-inferno"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 75,
@@ -1126,11 +1156,13 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 12-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "death-of-doctor-strange"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 76,
@@ -1154,11 +1186,13 @@
     "guideType": "event",
     "window": "Q7",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 24-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "devils-reign"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 78,
@@ -1168,11 +1202,13 @@
     "guideType": "event",
     "window": "Q7",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 6-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "reckoning-war"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 79,
@@ -1182,11 +1218,15 @@
     "guideType": "event",
     "window": "Q7",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "reason": "Shipped: approved 44-row mapping, approved 2-issue partial overlap with x-of-swords, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
+    "overlapIds": [
+      "x-of-swords"
+    ],
+    "catalogIds": [
+      "judgment-day"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 80,
@@ -1196,11 +1236,13 @@
     "guideType": "event",
     "window": "Q7",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: approved 22-row mapping, final zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "dark-web"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 81,
@@ -1210,11 +1252,13 @@
     "guideType": "event",
     "window": "Q7",
     "disposition": "new-order",
-    "reason": "Discrete historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: approved 13-row mapping, final zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "sins-of-sinister"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 82,
@@ -1238,11 +1282,13 @@
     "guideType": "event",
     "window": "Q7",
     "disposition": "new-order",
-    "reason": "Closed historical event candidate",
-    "sourceRetrievedAt": "2026-08-20",
+    "reason": "Shipped: exact 34-row mapping, complete zero-overlap report, and catalog entry",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "pending"
+    "catalogIds": [
+      "fall-house-x-rise-powers-x"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 84,
@@ -1265,12 +1311,12 @@
     "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/one-world-under-doom/",
     "guideType": "event",
     "window": "Q7",
-    "disposition": "deferred",
-    "reason": "Evolving source at the metadata horizon",
-    "sourceRetrievedAt": "2026-08-20",
+    "disposition": "new-order",
+    "reason": "Blocked: the live 86-row checklist repeats Fantastic Four (2025) #1 and includes at least ten issues absent from the configured metadata API; source URL above; route to the central source and metadata owner",
+    "sourceRetrievedAt": "2026-08-22",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable"
+    "deliveryStatus": "blocked"
   },
   {
     "position": 86,

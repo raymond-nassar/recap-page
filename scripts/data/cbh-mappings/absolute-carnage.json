@@ -1,0 +1,2014 @@
+{
+  "id": "absolute-carnage",
+  "inventoryId": "absolute-carnage",
+  "packetDigest": "dccd00e9e36a622ecee8081f7b0b551ee6c3677fde1d7310e046e906f6785695",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+  "sourceSection": "Absolute Carnage Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 31,
+  "excludedSourceReferences": [
+    "Road to Absolute Carnage and trade sections before the checklist",
+    "Recommended Tie-In labels and explanatory prose",
+    "Month headings"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "absolute-carnage",
+    "name": "Absolute Carnage",
+    "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "absolute-carnage.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+    "sourceSection": "Absolute Carnage Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "absolute_carnage.json",
+    "characters": [
+      "Carnage",
+      "Venom",
+      "Spider-Man",
+      "Miles Morales"
+    ],
+    "keywords": [
+      "Absolute Carnage",
+      "Carnage",
+      "Venom",
+      "symbiotes"
+    ],
+    "expect": 31,
+    "timeline": 2019,
+    "coverIssueId": 76012
+  },
+  "candidateMetadata": [
+    {
+      "id": 77071,
+      "title": "Absolute Carnage: Symbiote Spider-Man",
+      "issueTitle": "Absolute Carnage: Symbiote Spider-Man (2019) #1",
+      "seriesTitle": "Absolute Carnage: Symbiote Spider-Man",
+      "apiSeriesName": "Absolute Carnage: Symbiote Spider-Man (2019)",
+      "seriesId": 27637,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77071/absolute_carnage_symbiote_spider-man_2019_1",
+      "onSaleDate": "2019-09-04T00:00:00+0000"
+    },
+    {
+      "id": 77434,
+      "title": "Absolute Carnage: Symbiote Of Vengeance",
+      "issueTitle": "Absolute Carnage: Symbiote Of Vengeance (2019) #1",
+      "seriesTitle": "Absolute Carnage: Symbiote Of Vengeance",
+      "apiSeriesName": "Absolute Carnage: Symbiote Of Vengeance (2019)",
+      "seriesId": 27730,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77434/absolute_carnage_symbiote_of_vengeance_2019_1",
+      "onSaleDate": "2019-09-11T00:00:00+0000"
+    },
+    {
+      "id": 82171,
+      "title": "Absolute Carnage: Weapon Plus",
+      "issueTitle": "Absolute Carnage: Weapon Plus (2019) #1",
+      "seriesTitle": "Absolute Carnage: Weapon Plus",
+      "apiSeriesName": "Absolute Carnage: Weapon Plus (2019)",
+      "seriesId": 29150,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/82171/absolute_carnage_weapon_plus_2019_1",
+      "onSaleDate": "2019-11-06T00:00:00+0000"
+    },
+    {
+      "id": 76012,
+      "title": "Absolute Carnage",
+      "issueTitle": "Absolute Carnage (2019) #1",
+      "seriesTitle": "Absolute Carnage",
+      "apiSeriesName": "Absolute Carnage (2019)",
+      "seriesId": 27272,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76012/absolute_carnage_2019_1",
+      "onSaleDate": "2019-08-07T00:00:00+0000"
+    },
+    {
+      "id": 77067,
+      "title": "Absolute Carnage: Scream",
+      "issueTitle": "Absolute Carnage: Scream (2019) #1",
+      "seriesTitle": "Absolute Carnage: Scream",
+      "apiSeriesName": "Absolute Carnage: Scream (2019)",
+      "seriesId": 27635,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77067/absolute_carnage_scream_2019_1",
+      "onSaleDate": "2019-08-14T00:00:00+0000"
+    },
+    {
+      "id": 77068,
+      "title": "Absolute Carnage: Scream",
+      "issueTitle": "Absolute Carnage: Scream (2019) #2",
+      "seriesTitle": "Absolute Carnage: Scream",
+      "apiSeriesName": "Absolute Carnage: Scream (2019)",
+      "seriesId": 27635,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77068/absolute_carnage_scream_2019_2",
+      "onSaleDate": "2019-09-04T00:00:00+0000"
+    },
+    {
+      "id": 77069,
+      "title": "Absolute Carnage: Scream",
+      "issueTitle": "Absolute Carnage: Scream (2019) #3",
+      "seriesTitle": "Absolute Carnage: Scream",
+      "apiSeriesName": "Absolute Carnage: Scream (2019)",
+      "seriesId": 27635,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77069/absolute_carnage_scream_2019_3",
+      "onSaleDate": "2019-10-16T00:00:00+0000"
+    },
+    {
+      "id": 77070,
+      "title": "Absolute Carnage: Separation Anxiety",
+      "issueTitle": "Absolute Carnage: Separation Anxiety (2019) #1",
+      "seriesTitle": "Absolute Carnage: Separation Anxiety",
+      "apiSeriesName": "Absolute Carnage: Separation Anxiety (2019)",
+      "seriesId": 27636,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77070/absolute_carnage_separation_anxiety_2019_1",
+      "onSaleDate": "2019-08-14T00:00:00+0000"
+    },
+    {
+      "id": 77396,
+      "title": "Absolute Carnage Vs. Deadpool",
+      "issueTitle": "Absolute Carnage Vs. Deadpool (2019) #1",
+      "seriesTitle": "Absolute Carnage Vs. Deadpool",
+      "apiSeriesName": "Absolute Carnage Vs. Deadpool (2019)",
+      "seriesId": 27720,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77396/absolute_carnage_vs_deadpool_2019_1",
+      "onSaleDate": "2019-08-21T00:00:00+0000"
+    },
+    {
+      "id": 76014,
+      "title": "Absolute Carnage",
+      "issueTitle": "Absolute Carnage (2019) #2",
+      "seriesTitle": "Absolute Carnage",
+      "apiSeriesName": "Absolute Carnage (2019)",
+      "seriesId": 27272,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76014/absolute_carnage_2019_2",
+      "onSaleDate": "2019-08-28T00:00:00+0000"
+    },
+    {
+      "id": 77064,
+      "title": "Absolute Carnage: Miles Morales",
+      "issueTitle": "Absolute Carnage: Miles Morales (2019) #1",
+      "seriesTitle": "Absolute Carnage: Miles Morales",
+      "apiSeriesName": "Absolute Carnage: Miles Morales (2019)",
+      "seriesId": 27634,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77064/absolute_carnage_miles_morales_2019_1",
+      "onSaleDate": "2019-08-28T00:00:00+0000"
+    },
+    {
+      "id": 77065,
+      "title": "Absolute Carnage: Miles Morales",
+      "issueTitle": "Absolute Carnage: Miles Morales (2019) #2",
+      "seriesTitle": "Absolute Carnage: Miles Morales",
+      "apiSeriesName": "Absolute Carnage: Miles Morales (2019)",
+      "seriesId": 27634,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77065/absolute_carnage_miles_morales_2019_2",
+      "onSaleDate": "2019-09-25T00:00:00+0000"
+    },
+    {
+      "id": 74069,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #17",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "17",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74069/venom_2018_17",
+      "onSaleDate": "2019-08-28T00:00:00+0000"
+    },
+    {
+      "id": 77061,
+      "title": "Absolute Carnage: Lethal Protectors",
+      "issueTitle": "Absolute Carnage: Lethal Protectors (2019) #1",
+      "seriesTitle": "Absolute Carnage: Lethal Protectors",
+      "apiSeriesName": "Absolute Carnage: Lethal Protectors (2019)",
+      "seriesId": 27633,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77061/absolute_carnage_lethal_protectors_2019_1",
+      "onSaleDate": "2019-08-28T00:00:00+0000"
+    },
+    {
+      "id": 77062,
+      "title": "Absolute Carnage: Lethal Protectors",
+      "issueTitle": "Absolute Carnage: Lethal Protectors (2019) #2",
+      "seriesTitle": "Absolute Carnage: Lethal Protectors",
+      "apiSeriesName": "Absolute Carnage: Lethal Protectors (2019)",
+      "seriesId": 27633,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77062/absolute_carnage_lethal_protectors_2019_2",
+      "onSaleDate": "2019-09-18T00:00:00+0000"
+    },
+    {
+      "id": 77397,
+      "title": "Absolute Carnage Vs. Deadpool",
+      "issueTitle": "Absolute Carnage Vs. Deadpool (2019) #2",
+      "seriesTitle": "Absolute Carnage Vs. Deadpool",
+      "apiSeriesName": "Absolute Carnage Vs. Deadpool (2019)",
+      "seriesId": 27720,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77397/absolute_carnage_vs_deadpool_2019_2",
+      "onSaleDate": "2019-09-11T00:00:00+0000"
+    },
+    {
+      "id": 77398,
+      "title": "Absolute Carnage Vs. Deadpool",
+      "issueTitle": "Absolute Carnage Vs. Deadpool (2019) #3",
+      "seriesTitle": "Absolute Carnage Vs. Deadpool",
+      "apiSeriesName": "Absolute Carnage Vs. Deadpool (2019)",
+      "seriesId": 27720,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77398/absolute_carnage_vs_deadpool_2019_3",
+      "onSaleDate": "2019-10-16T00:00:00+0000"
+    },
+    {
+      "id": 74070,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #18",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "18",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74070/venom_2018_18",
+      "onSaleDate": "2019-09-11T00:00:00+0000"
+    },
+    {
+      "id": 77059,
+      "title": "Absolute Carnage: Avengers",
+      "issueTitle": "Absolute Carnage: Avengers (2019) #1",
+      "seriesTitle": "Absolute Carnage: Avengers",
+      "apiSeriesName": "Absolute Carnage: Avengers (2019)",
+      "seriesId": 27631,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77059/absolute_carnage_avengers_2019_1",
+      "onSaleDate": "2019-10-16T00:00:00+0000"
+    },
+    {
+      "id": 76015,
+      "title": "Absolute Carnage",
+      "issueTitle": "Absolute Carnage (2019) #3",
+      "seriesTitle": "Absolute Carnage",
+      "apiSeriesName": "Absolute Carnage (2019)",
+      "seriesId": 27272,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76015/absolute_carnage_2019_3",
+      "onSaleDate": "2019-09-18T00:00:00+0000"
+    },
+    {
+      "id": 77060,
+      "title": "Absolute Carnage: Immortal Hulk",
+      "issueTitle": "Absolute Carnage: Immortal Hulk (2019) #1",
+      "seriesTitle": "Absolute Carnage: Immortal Hulk",
+      "apiSeriesName": "Absolute Carnage: Immortal Hulk (2019)",
+      "seriesId": 27632,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77060/absolute_carnage_immortal_hulk_2019_1",
+      "onSaleDate": "2019-10-02T00:00:00+0000"
+    },
+    {
+      "id": 77172,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #19",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "19",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77172/venom_2018_19",
+      "onSaleDate": "2019-10-30T00:00:00+0000"
+    },
+    {
+      "id": 77066,
+      "title": "Absolute Carnage: Miles Morales",
+      "issueTitle": "Absolute Carnage: Miles Morales (2019) #3",
+      "seriesTitle": "Absolute Carnage: Miles Morales",
+      "apiSeriesName": "Absolute Carnage: Miles Morales (2019)",
+      "seriesId": 27634,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77066/absolute_carnage_miles_morales_2019_3",
+      "onSaleDate": "2019-10-09T00:00:00+0000"
+    },
+    {
+      "id": 76016,
+      "title": "Absolute Carnage",
+      "issueTitle": "Absolute Carnage (2019) #4",
+      "seriesTitle": "Absolute Carnage",
+      "apiSeriesName": "Absolute Carnage (2019)",
+      "seriesId": 27272,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76016/absolute_carnage_2019_4",
+      "onSaleDate": "2019-10-16T00:00:00+0000"
+    },
+    {
+      "id": 70726,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #30",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "30",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70726/the_amazing_spider-man_2018_30",
+      "onSaleDate": "2019-09-25T00:00:00+0000"
+    },
+    {
+      "id": 77099,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #31",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "31",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77099/the_amazing_spider-man_2018_31",
+      "onSaleDate": "2019-10-09T00:00:00+0000"
+    },
+    {
+      "id": 77063,
+      "title": "Absolute Carnage: Lethal Protectors",
+      "issueTitle": "Absolute Carnage: Lethal Protectors (2019) #3",
+      "seriesTitle": "Absolute Carnage: Lethal Protectors",
+      "apiSeriesName": "Absolute Carnage: Lethal Protectors (2019)",
+      "seriesId": 27633,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77063/absolute_carnage_lethal_protectors_2019_3",
+      "onSaleDate": "2019-10-23T00:00:00+0000"
+    },
+    {
+      "id": 77217,
+      "title": "Absolute Carnage: Captain Marvel",
+      "issueTitle": "Absolute Carnage: Captain Marvel (2019) #1",
+      "seriesTitle": "Absolute Carnage: Captain Marvel",
+      "apiSeriesName": "Absolute Carnage: Captain Marvel (2019)",
+      "seriesId": 27665,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77217/absolute_carnage_captain_marvel_2019_1",
+      "onSaleDate": "2019-11-20T00:00:00+0000"
+    },
+    {
+      "id": 78960,
+      "title": "Absolute Carnage",
+      "issueTitle": "Absolute Carnage (2019) #5",
+      "seriesTitle": "Absolute Carnage",
+      "apiSeriesName": "Absolute Carnage (2019)",
+      "seriesId": 27272,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78960/absolute_carnage_2019_5",
+      "onSaleDate": "2019-11-20T00:00:00+0000"
+    },
+    {
+      "id": 77173,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #20",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "20",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77173/venom_2018_20",
+      "onSaleDate": "2019-11-27T00:00:00+0000"
+    },
+    {
+      "id": 79917,
+      "title": "Scream: Curse of Carnage",
+      "issueTitle": "Scream: Curse of Carnage (2019) #1",
+      "seriesTitle": "Scream: Curse of Carnage",
+      "apiSeriesName": "Scream: Curse of Carnage (2019)",
+      "seriesId": 28207,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79917/scream_curse_of_carnage_2019_1",
+      "onSaleDate": "2019-11-27T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Absolute Carnage: Symbiote Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Symbiote Spider-Man",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27637,
+      "candidateIssueId": 77071,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77071"
+      ],
+      "selectedIssueId": 77071,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77071/absolute_carnage_symbiote_spider-man_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Symbiote Spider-Man (2019) #1",
+      "note": "Marvel series 27637 (Absolute Carnage: Symbiote Spider-Man (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77071
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Absolute Carnage: Ghost Rider - Symbiote of Vengeance #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Symbiote Of Vengeance",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27730,
+      "candidateIssueId": 77434,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77434"
+      ],
+      "selectedIssueId": 77434,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77434/absolute_carnage_symbiote_of_vengeance_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Symbiote Of Vengeance (2019) #1",
+      "note": "Marvel series 27730 (Absolute Carnage: Symbiote Of Vengeance (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77434
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Absolute Carnage: Weapon Plus #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Weapon Plus",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 29150,
+      "candidateIssueId": 82171,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "82171"
+      ],
+      "selectedIssueId": 82171,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82171/absolute_carnage_weapon_plus_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Weapon Plus (2019) #1",
+      "note": "Marvel series 29150 (Absolute Carnage: Weapon Plus (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82171
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Absolute Carnage #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27272,
+      "candidateIssueId": 76012,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76012"
+      ],
+      "selectedIssueId": 76012,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76012/absolute_carnage_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage (2019) #1",
+      "note": "Marvel series 27272 (Absolute Carnage (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76012
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Absolute Carnage: Scream #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Scream",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27635,
+      "candidateIssueId": 77067,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77067"
+      ],
+      "selectedIssueId": 77067,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77067/absolute_carnage_scream_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Scream (2019) #1",
+      "note": "Marvel series 27635 (Absolute Carnage: Scream (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77067
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Absolute Carnage: Scream #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Scream",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27635,
+      "candidateIssueId": 77068,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77068"
+      ],
+      "selectedIssueId": 77068,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77068/absolute_carnage_scream_2019_2",
+      "resolvedIssueTitle": "Absolute Carnage: Scream (2019) #2",
+      "note": "Marvel series 27635 (Absolute Carnage: Scream (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77068
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Absolute Carnage: Scream #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Scream",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27635,
+      "candidateIssueId": 77069,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77069"
+      ],
+      "selectedIssueId": 77069,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77069/absolute_carnage_scream_2019_3",
+      "resolvedIssueTitle": "Absolute Carnage: Scream (2019) #3",
+      "note": "Marvel series 27635 (Absolute Carnage: Scream (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77069
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Absolute Carnage: Separation Anxiety #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Separation Anxiety",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27636,
+      "candidateIssueId": 77070,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77070"
+      ],
+      "selectedIssueId": 77070,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77070/absolute_carnage_separation_anxiety_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Separation Anxiety (2019) #1",
+      "note": "Marvel series 27636 (Absolute Carnage: Separation Anxiety (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77070
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Absolute Carnage vs. Deadpool #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage Vs. Deadpool",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27720,
+      "candidateIssueId": 77396,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77396"
+      ],
+      "selectedIssueId": 77396,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77396/absolute_carnage_vs_deadpool_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage Vs. Deadpool (2019) #1",
+      "note": "Marvel series 27720 (Absolute Carnage Vs. Deadpool (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77396
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Absolute Carnage #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27272,
+      "candidateIssueId": 76014,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76014"
+      ],
+      "selectedIssueId": 76014,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76014/absolute_carnage_2019_2",
+      "resolvedIssueTitle": "Absolute Carnage (2019) #2",
+      "note": "Marvel series 27272 (Absolute Carnage (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76014
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Absolute Carnage Miles Morales #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Miles Morales",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27634,
+      "candidateIssueId": 77064,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77064"
+      ],
+      "selectedIssueId": 77064,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77064/absolute_carnage_miles_morales_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Miles Morales (2019) #1",
+      "note": "Marvel series 27634 (Absolute Carnage: Miles Morales (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77064
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Absolute Carnage Miles Morales #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Miles Morales",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27634,
+      "candidateIssueId": 77065,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77065"
+      ],
+      "selectedIssueId": 77065,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77065/absolute_carnage_miles_morales_2019_2",
+      "resolvedIssueTitle": "Absolute Carnage: Miles Morales (2019) #2",
+      "note": "Marvel series 27634 (Absolute Carnage: Miles Morales (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77065
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Venom #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "17",
+      "seriesId": 24310,
+      "candidateIssueId": 74069,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74069"
+      ],
+      "selectedIssueId": 74069,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74069/venom_2018_17",
+      "resolvedIssueTitle": "Venom (2018) #17",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74069
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Absolute Carnage Lethal Protectors #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Lethal Protectors",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27633,
+      "candidateIssueId": 77061,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77061"
+      ],
+      "selectedIssueId": 77061,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77061/absolute_carnage_lethal_protectors_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Lethal Protectors (2019) #1",
+      "note": "Marvel series 27633 (Absolute Carnage: Lethal Protectors (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77061
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Absolute Carnage Lethal Protectors #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Lethal Protectors",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27633,
+      "candidateIssueId": 77062,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77062"
+      ],
+      "selectedIssueId": 77062,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77062/absolute_carnage_lethal_protectors_2019_2",
+      "resolvedIssueTitle": "Absolute Carnage: Lethal Protectors (2019) #2",
+      "note": "Marvel series 27633 (Absolute Carnage: Lethal Protectors (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77062
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Absolute Carnage vs. Deadpool #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage Vs. Deadpool",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27720,
+      "candidateIssueId": 77397,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77397"
+      ],
+      "selectedIssueId": 77397,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77397/absolute_carnage_vs_deadpool_2019_2",
+      "resolvedIssueTitle": "Absolute Carnage Vs. Deadpool (2019) #2",
+      "note": "Marvel series 27720 (Absolute Carnage Vs. Deadpool (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77397
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Absolute Carnage vs. Deadpool #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage Vs. Deadpool",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27720,
+      "candidateIssueId": 77398,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77398"
+      ],
+      "selectedIssueId": 77398,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77398/absolute_carnage_vs_deadpool_2019_3",
+      "resolvedIssueTitle": "Absolute Carnage Vs. Deadpool (2019) #3",
+      "note": "Marvel series 27720 (Absolute Carnage Vs. Deadpool (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77398
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Venom #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "18",
+      "seriesId": 24310,
+      "candidateIssueId": 74070,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74070"
+      ],
+      "selectedIssueId": 74070,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74070/venom_2018_18",
+      "resolvedIssueTitle": "Venom (2018) #18",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74070
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Absolute Carnage: Avengers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Avengers",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27631,
+      "candidateIssueId": 77059,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77059"
+      ],
+      "selectedIssueId": 77059,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77059/absolute_carnage_avengers_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Avengers (2019) #1",
+      "note": "Marvel series 27631 (Absolute Carnage: Avengers (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77059
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Absolute Carnage #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27272,
+      "candidateIssueId": 76015,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76015"
+      ],
+      "selectedIssueId": 76015,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76015/absolute_carnage_2019_3",
+      "resolvedIssueTitle": "Absolute Carnage (2019) #3",
+      "note": "Marvel series 27272 (Absolute Carnage (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76015
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Absolute Carnage: Immortal Hulk #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Immortal Hulk",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27632,
+      "candidateIssueId": 77060,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77060"
+      ],
+      "selectedIssueId": 77060,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77060/absolute_carnage_immortal_hulk_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Immortal Hulk (2019) #1",
+      "note": "Marvel series 27632 (Absolute Carnage: Immortal Hulk (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77060
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Venom #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "19",
+      "seriesId": 24310,
+      "candidateIssueId": 77172,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77172"
+      ],
+      "selectedIssueId": 77172,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77172/venom_2018_19",
+      "resolvedIssueTitle": "Venom (2018) #19",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77172
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Absolute Carnage Miles Morales #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Miles Morales",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27634,
+      "candidateIssueId": 77066,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77066"
+      ],
+      "selectedIssueId": 77066,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77066/absolute_carnage_miles_morales_2019_3",
+      "resolvedIssueTitle": "Absolute Carnage: Miles Morales (2019) #3",
+      "note": "Marvel series 27634 (Absolute Carnage: Miles Morales (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77066
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Absolute Carnage #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27272,
+      "candidateIssueId": 76016,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76016"
+      ],
+      "selectedIssueId": 76016,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76016/absolute_carnage_2019_4",
+      "resolvedIssueTitle": "Absolute Carnage (2019) #4",
+      "note": "Marvel series 27272 (Absolute Carnage (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76016
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Amazing Spider-Man #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "30",
+      "seriesId": 24396,
+      "candidateIssueId": 70726,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70726"
+      ],
+      "selectedIssueId": 70726,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70726/the_amazing_spider-man_2018_30",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #30",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70726
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Amazing Spider-Man #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "31",
+      "seriesId": 24396,
+      "candidateIssueId": 77099,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77099"
+      ],
+      "selectedIssueId": 77099,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77099/the_amazing_spider-man_2018_31",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #31",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77099
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Absolute Carnage Lethal Protectors #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Lethal Protectors",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27633,
+      "candidateIssueId": 77063,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77063"
+      ],
+      "selectedIssueId": 77063,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77063/absolute_carnage_lethal_protectors_2019_3",
+      "resolvedIssueTitle": "Absolute Carnage: Lethal Protectors (2019) #3",
+      "note": "Marvel series 27633 (Absolute Carnage: Lethal Protectors (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77063
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Absolute Carnage: Captain Marvel #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage: Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27665,
+      "candidateIssueId": 77217,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77217"
+      ],
+      "selectedIssueId": 77217,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77217/absolute_carnage_captain_marvel_2019_1",
+      "resolvedIssueTitle": "Absolute Carnage: Captain Marvel (2019) #1",
+      "note": "Marvel series 27665 (Absolute Carnage: Captain Marvel (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77217
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Absolute Carnage #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Absolute Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27272,
+      "candidateIssueId": 78960,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78960"
+      ],
+      "selectedIssueId": 78960,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78960/absolute_carnage_2019_5",
+      "resolvedIssueTitle": "Absolute Carnage (2019) #5",
+      "note": "Marvel series 27272 (Absolute Carnage (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78960
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Venom #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "20",
+      "seriesId": 24310,
+      "candidateIssueId": 77173,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77173"
+      ],
+      "selectedIssueId": 77173,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77173/venom_2018_20",
+      "resolvedIssueTitle": "Venom (2018) #20",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77173
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Scream: Curse of Carnage",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scream: Curse of Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 28207,
+      "candidateIssueId": 79917,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79917"
+      ],
+      "selectedIssueId": 79917,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79917/scream_curse_of_carnage_2019_1",
+      "resolvedIssueTitle": "Scream: Curse of Carnage (2019) #1",
+      "note": "Marvel series 28207 (Scream: Curse of Carnage (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79917
+      ]
+    }
+  ],
+  "mappingDigest": "87bbad853038ab891fcf0d48545b5a3e9010da3e784af28f4e06f629ed43165b",
+  "approvedManifest": {
+    "id": "absolute-carnage",
+    "name": "Absolute Carnage",
+    "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "absolute-carnage.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+    "sourceSection": "Absolute Carnage Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "absolute_carnage.json",
+    "characters": [
+      "Carnage",
+      "Venom",
+      "Spider-Man",
+      "Miles Morales"
+    ],
+    "keywords": [
+      "Absolute Carnage",
+      "Carnage",
+      "Venom",
+      "symbiotes"
+    ],
+    "expect": 31,
+    "timeline": 2019,
+    "coverIssueId": 76012
+  },
+  "packetReview": "MRT-002 final central source review",
+  "relationshipReview": {
+    "reportDigest": "588c97f17e27cd88be04007e505a38e6afa97f2b018b91b1d007b2255bfef078",
+    "packetDigest": "dccd00e9e36a622ecee8081f7b0b551ee6c3677fde1d7310e046e906f6785695",
+    "mappingDigest": "87bbad853038ab891fcf0d48545b5a3e9010da3e784af28f4e06f629ed43165b",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "war-of-the-realms": "6a7cee46ef9ae023c87deb5aebdecd4dc5011f35e9a98e9a4b1c9e450f22c287"
+    },
+    "dispositions": [
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "753a878ea33dbda8af451296016b142282b8fb6471488780fe0fddbdfc1f47d0"
+  }
+}

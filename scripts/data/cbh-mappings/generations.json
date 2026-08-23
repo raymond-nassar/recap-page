@@ -1,0 +1,1245 @@
+{
+  "id": "generations",
+  "inventoryId": "generations",
+  "packetDigest": "e11ec57846dd73238f07511b32000799e5d35415e941421cf3b576e49781d981",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+  "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 10,
+  "excludedSourceReferences": [
+    "Marvel Generations Trade Reading Order (Collected Editions)",
+    "Previously: Secret Empire",
+    "Next: Marvel Legacy"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "generations",
+    "name": "Marvel Generations",
+    "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "generations.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+    "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "generations.json",
+    "characters": [
+      "Hulk",
+      "Jean Grey",
+      "Wolverine",
+      "Thor",
+      "Hawkeye",
+      "Iron Man",
+      "Captain Marvel",
+      "Captain America",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Generations",
+      "Legacy heroes",
+      "One-shots"
+    ],
+    "expect": 10,
+    "timeline": 2017,
+    "coverIssueId": 63963
+  },
+  "candidateMetadata": [
+    {
+      "id": 63963,
+      "title": "Generations: Banner Hulk & the Totally Awesome Hulk",
+      "issueTitle": "Generations: Banner Hulk & the Totally Awesome Hulk (2017) #1",
+      "seriesTitle": "Generations: Banner Hulk & the Totally Awesome Hulk",
+      "apiSeriesName": "Generations: Banner Hulk & the Totally Awesome Hulk (2017 - Present)",
+      "seriesId": 24796,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/63963/generations_banner_hulk_the_totally_awesome_hulk_2017_1",
+      "onSaleDate": "2017-08-02T00:00:00+0000"
+    },
+    {
+      "id": 63961,
+      "title": "Generations: Phoenix & Jean Grey",
+      "issueTitle": "Generations: Phoenix & Jean Grey (2017) #1",
+      "seriesTitle": "Generations: Phoenix & Jean Grey",
+      "apiSeriesName": "Generations: Phoenix & Jean Grey (2017 - Present)",
+      "seriesId": 24803,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/63961/generations_phoenix_jean_grey_2017_1",
+      "onSaleDate": "2017-08-09T00:00:00+0000"
+    },
+    {
+      "id": 63958,
+      "title": "Generations: Wolverine & All-New Wolverine",
+      "issueTitle": "Generations: Wolverine & All-New Wolverine (2017) #1",
+      "seriesTitle": "Generations: Wolverine & All-New Wolverine",
+      "apiSeriesName": "Generations: Wolverine & All-New Wolverine (2017)",
+      "seriesId": 24823,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/63958/generations_wolverine_all-new_wolverine_2017_1",
+      "onSaleDate": "2017-08-16T00:00:00+0000"
+    },
+    {
+      "id": 63967,
+      "title": "Generations: The Unworthy Thor & The Mighty Thor",
+      "issueTitle": "Generations: The Unworthy Thor & The Mighty Thor (2017) #1",
+      "seriesTitle": "Generations: The Unworthy Thor & The Mighty Thor",
+      "apiSeriesName": "Generations: The Unworthy Thor & The Mighty Thor (2017)",
+      "seriesId": 24811,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/63967/generations_the_unworthy_thor_the_mighty_thor_2017_1",
+      "onSaleDate": "2017-08-23T00:00:00+0000"
+    },
+    {
+      "id": 63956,
+      "title": "Generations: Hawkeye & Hawkeye",
+      "issueTitle": "Generations: Hawkeye & Hawkeye (2017) #1",
+      "seriesTitle": "Generations: Hawkeye & Hawkeye",
+      "apiSeriesName": "Generations: Hawkeye & Hawkeye (2017)",
+      "seriesId": 24801,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/63956/generations_hawkeye_hawkeye_2017_1",
+      "onSaleDate": "2017-08-30T00:00:00+0000"
+    },
+    {
+      "id": 64389,
+      "title": "Generations: Iron Man & Ironheart",
+      "issueTitle": "Generations: Iron Man & Ironheart (2017) #1",
+      "seriesTitle": "Generations: Iron Man & Ironheart",
+      "apiSeriesName": "Generations: Iron Man & Ironheart (2017)",
+      "seriesId": 24807,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64389/generations_iron_man_ironheart_2017_1",
+      "onSaleDate": "2017-09-06T00:00:00+0000"
+    },
+    {
+      "id": 64393,
+      "title": "Generations: Ms. Marvel & Ms. Marvel",
+      "issueTitle": "Generations: Ms. Marvel & Ms. Marvel (2017) #1",
+      "seriesTitle": "Generations: Ms. Marvel & Ms. Marvel",
+      "apiSeriesName": "Generations: Ms. Marvel & Ms. Marvel (2017)",
+      "seriesId": 23451,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64393/generations_ms_marvel_ms_marvel_2017_1",
+      "onSaleDate": "2017-09-20T00:00:00+0000"
+    },
+    {
+      "id": 64383,
+      "title": "Generations: Sam Wilson Captain America & Steve Rogers Captain America",
+      "issueTitle": "Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017) #1",
+      "seriesTitle": "Generations: Sam Wilson Captain America & Steve Rogers Captain America",
+      "apiSeriesName": "Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017)",
+      "seriesId": 26207,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64383/generations_sam_wilson_captain_america_steve_rogers_captain_america_2017_1",
+      "onSaleDate": "2017-09-27T00:00:00+0000"
+    },
+    {
+      "id": 64396,
+      "title": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man",
+      "issueTitle": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017) #1",
+      "seriesTitle": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man",
+      "apiSeriesName": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017)",
+      "seriesId": 26201,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64396/generations_miles_morales_spider-man_peter_parker_spider-man_2017_1",
+      "onSaleDate": "2017-09-27T00:00:00+0000"
+    },
+    {
+      "id": 64386,
+      "title": "Generations: Captain Marvel & Captain Mar-Vell",
+      "issueTitle": "Generations: Captain Marvel & Captain Mar-Vell (2017) #1",
+      "seriesTitle": "Generations: Captain Marvel & Captain Mar-Vell",
+      "apiSeriesName": "Generations: Captain Marvel & Captain Mar-Vell (2017)",
+      "seriesId": 24806,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64386/generations_captain_marvel_captain_mar-vell_2017_1",
+      "onSaleDate": "2017-09-13T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Generations: The Strongest - Banner Hulk & Totally Awesome Hulk #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Banner Hulk & the Totally Awesome Hulk",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24796,
+      "candidateIssueId": 63963,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "63963"
+      ],
+      "selectedIssueId": 63963,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/63963/generations_banner_hulk_the_totally_awesome_hulk_2017_1",
+      "resolvedIssueTitle": "Generations: Banner Hulk & the Totally Awesome Hulk (2017) #1",
+      "note": "Marvel series 24796 (Generations: Banner Hulk & the Totally Awesome Hulk (2017 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        63963
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Generations: The Phoenix - Phoenix & Jean Grey #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Phoenix & Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24803,
+      "candidateIssueId": 63961,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "63961"
+      ],
+      "selectedIssueId": 63961,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/63961/generations_phoenix_jean_grey_2017_1",
+      "resolvedIssueTitle": "Generations: Phoenix & Jean Grey (2017) #1",
+      "note": "Marvel series 24803 (Generations: Phoenix & Jean Grey (2017 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        63961
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Generations: The Best - Wolverine & All-new Wolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Wolverine & All-New Wolverine",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24823,
+      "candidateIssueId": 63958,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "63958"
+      ],
+      "selectedIssueId": 63958,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/63958/generations_wolverine_all-new_wolverine_2017_1",
+      "resolvedIssueTitle": "Generations: Wolverine & All-New Wolverine (2017) #1",
+      "note": "Marvel series 24823 (Generations: Wolverine & All-New Wolverine (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        63958
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Generations: The Thunder - Unworthy Thor & The Mighty Thor #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: The Unworthy Thor & The Mighty Thor",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24811,
+      "candidateIssueId": 63967,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "63967"
+      ],
+      "selectedIssueId": 63967,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/63967/generations_the_unworthy_thor_the_mighty_thor_2017_1",
+      "resolvedIssueTitle": "Generations: The Unworthy Thor & The Mighty Thor (2017) #1",
+      "note": "Marvel series 24811 (Generations: The Unworthy Thor & The Mighty Thor (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        63967
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Generations: The Archers - Hawkeye & Hawkeye #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Hawkeye & Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24801,
+      "candidateIssueId": 63956,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "63956"
+      ],
+      "selectedIssueId": 63956,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/63956/generations_hawkeye_hawkeye_2017_1",
+      "resolvedIssueTitle": "Generations: Hawkeye & Hawkeye (2017) #1",
+      "note": "Marvel series 24801 (Generations: Hawkeye & Hawkeye (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        63956
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Generations: The Iron - Iron Man & Ironheart #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Iron Man & Ironheart",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24807,
+      "candidateIssueId": 64389,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64389"
+      ],
+      "selectedIssueId": 64389,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64389/generations_iron_man_ironheart_2017_1",
+      "resolvedIssueTitle": "Generations: Iron Man & Ironheart (2017) #1",
+      "note": "Marvel series 24807 (Generations: Iron Man & Ironheart (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64389
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Generations: The Marvels - Capt Marvel & Ms. Marvel #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Ms. Marvel & Ms. Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23451,
+      "candidateIssueId": 64393,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64393"
+      ],
+      "selectedIssueId": 64393,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64393/generations_ms_marvel_ms_marvel_2017_1",
+      "resolvedIssueTitle": "Generations: Ms. Marvel & Ms. Marvel (2017) #1",
+      "note": "Marvel series 23451 (Generations: Ms. Marvel & Ms. Marvel (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64393
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Generations: The Americas - Captain Americas #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Sam Wilson Captain America & Steve Rogers Captain America",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 26207,
+      "candidateIssueId": 64383,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64383"
+      ],
+      "selectedIssueId": 64383,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64383/generations_sam_wilson_captain_america_steve_rogers_captain_america_2017_1",
+      "resolvedIssueTitle": "Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017) #1",
+      "note": "Marvel series 26207 (Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64383
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Generations: The Spiders - Morales & Parker Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 26201,
+      "candidateIssueId": 64396,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64396"
+      ],
+      "selectedIssueId": 64396,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64396/generations_miles_morales_spider-man_peter_parker_spider-man_2017_1",
+      "resolvedIssueTitle": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017) #1",
+      "note": "Marvel series 26201 (Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64396
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Generations: The Bravest - Capt Marvel & Capt Mar-vell #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Captain Marvel & Captain Mar-Vell",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24806,
+      "candidateIssueId": 64386,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64386"
+      ],
+      "selectedIssueId": 64386,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64386/generations_captain_marvel_captain_mar-vell_2017_1",
+      "resolvedIssueTitle": "Generations: Captain Marvel & Captain Mar-Vell (2017) #1",
+      "note": "Marvel series 24806 (Generations: Captain Marvel & Captain Mar-Vell (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64386
+      ]
+    }
+  ],
+  "mappingDigest": "9bb719ce2cafc3edb63bde42f5cbf19aabed942bb4231a246a49a036a91523fa",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "generations",
+    "name": "Marvel Generations",
+    "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "generations.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+    "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "generations.json",
+    "characters": [
+      "Hulk",
+      "Jean Grey",
+      "Wolverine",
+      "Thor",
+      "Hawkeye",
+      "Iron Man",
+      "Captain Marvel",
+      "Captain America",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Generations",
+      "Legacy heroes",
+      "One-shots"
+    ],
+    "expect": 10,
+    "timeline": 2017,
+    "coverIssueId": 63963
+  },
+  "relationshipReview": {
+    "reportDigest": "f5318a967c70c011296dd35b3d283f27a1c19d85408b3f66346ace76eaf2e542",
+    "packetDigest": "e11ec57846dd73238f07511b32000799e5d35415e941421cf3b576e49781d981",
+    "mappingDigest": "9bb719ce2cafc3edb63bde42f5cbf19aabed942bb4231a246a49a036a91523fa",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "x-men-extermination": "398031e9ec8c6bc6d992f346747d175890852d103a162435b16e6420bc8f3a5a"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "3cefb690927702ed2cff330b414532d930264f95d7a3b9bf426135ca7ea49f19"
+  }
+}

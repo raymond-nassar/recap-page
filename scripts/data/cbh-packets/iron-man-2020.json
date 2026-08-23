@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "sourceRetrievedAt": "2026-08-22",
+  "excludedSourceReferences": [],
+  "insertionAnchor": {
+    "beforeId": "heroes-reborn-2021"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "The specified Comic Book Herald section boundary, printed issue order, range expansion, metadata-series normalization, and insertion point were reviewed against the live Marvel metadata catalog.",
+    "reviewedAt": "2026-08-22T21:03:49-07:00"
+  },
+  "id": "iron-man-2020",
+  "inventoryId": "iron-man-2020",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+  "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+  "sourceBoundary": "The 18 issue rows under Iron Man 2020 Reading Order Checklist!, from Iron Man 2020 #1 through Iron Man 2020 #6, in printed order.",
+  "expectedCount": 18,
+  "proposedManifest": {
+    "id": "iron-man-2020",
+    "name": "Iron Man 2020",
+    "description": "Tony Stark confronts a machine uprising led by the Arno Stark of 2020.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "iron-man-2020.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/iron-man-2020-reading-order/",
+    "sourceSection": "Iron Man 2020 Reading Order Checklist!",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "iron_man_2020.json",
+    "characters": [
+      "Iron Man",
+      "Machine Man",
+      "Ironheart"
+    ],
+    "keywords": [
+      "Iron Man 2020",
+      "Artificial intelligence",
+      "Arno Stark"
+    ],
+    "expect": 18,
+    "timeline": 2020,
+    "coverIssueId": 80459
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Iron Man 2020 #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 28356,
+      "candidateIssueId": 80459,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man 2020 #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 28356,
+      "candidateIssueId": 80461,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Machine Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Machine Man",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29695,
+      "candidateIssueId": 84348,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Force Works #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Force Works",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29693,
+      "candidateIssueId": 84343,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Rescue #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Rescue",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29696,
+      "candidateIssueId": 84350,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man 2020 #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 28356,
+      "candidateIssueId": 80462,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Iron Age #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Iron Age",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29692,
+      "candidateIssueId": 84341,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Machine Man #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Machine Man",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29695,
+      "candidateIssueId": 84349,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Force Works #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Force Works",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29693,
+      "candidateIssueId": 84344,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Ironheart #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Ironheart",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29694,
+      "candidateIssueId": 84346,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Rescue #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Rescue",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29696,
+      "candidateIssueId": 84351,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man 2020 #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 28356,
+      "candidateIssueId": 80463,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Force Works #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Force Works",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 29693,
+      "candidateIssueId": 84345,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 Ironheart #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 Ironheart",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29694,
+      "candidateIssueId": 84347,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 iWolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 iWolverine",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29697,
+      "candidateIssueId": 84352,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man 2020 #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28356,
+      "candidateIssueId": 80464,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "2020 iWolverine #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "2020 iWolverine",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 29697,
+      "candidateIssueId": 84353,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man 2020 #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man 2020",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28356,
+      "candidateIssueId": 80465,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "0712ab5db6936f8a4ed370f86e790ca4861b793d2dc98ce98e8b2e25cbbd2e9c"
+}

@@ -1,0 +1,1204 @@
+{
+  "id": "last-annihilation",
+  "inventoryId": "last-annihilation",
+  "packetDigest": "ac08895871774ef5883efe978d1381ee4327f51525da4dbb262f5f67d9929a61",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+  "sourceSection": "The Last Annihilation Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 9,
+  "excludedSourceReferences": [
+    "Opening background before the checklist",
+    "The note after SWORD #6",
+    "Previously: King in Black",
+    "Non-checklist image block"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "last-annihilation",
+    "name": "The Last Annihilation",
+    "description": "Dormammu's cosmic invasion draws the Guardians, S.W.O.R.D., Cable, and Wakanda into one final stand.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "last-annihilation.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+    "sourceSection": "The Last Annihilation Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "last_annihilation.json",
+    "characters": [
+      "Guardians of the Galaxy",
+      "S.W.O.R.D.",
+      "Cable",
+      "Wiccan",
+      "Hulkling",
+      "Black Panther"
+    ],
+    "keywords": [
+      "The Last Annihilation",
+      "Dormammu",
+      "Wakanda"
+    ],
+    "expect": 9,
+    "timeline": 2021,
+    "coverIssueId": 92236
+  },
+  "candidateMetadata": [
+    {
+      "id": 92236,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2020) #15",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "seriesId": 28042,
+      "issueNumber": "15",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/92236/guardians_of_the_galaxy_2020_15",
+      "onSaleDate": "2021-06-23T00:00:00+0000"
+    },
+    {
+      "id": 90345,
+      "title": "S.W.O.R.D.",
+      "issueTitle": "S.W.O.R.D. (2020) #6",
+      "seriesTitle": "S.W.O.R.D.",
+      "apiSeriesName": "S.W.O.R.D. (2020 - 2021)",
+      "seriesId": 31083,
+      "issueNumber": "6",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90345/sword_2020_6",
+      "onSaleDate": "2021-06-23T00:00:00+0000"
+    },
+    {
+      "id": 92237,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2020) #16",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "seriesId": 28042,
+      "issueNumber": "16",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/92237/guardians_of_the_galaxy_2020_16",
+      "onSaleDate": "2021-07-21T00:00:00+0000"
+    },
+    {
+      "id": 94676,
+      "title": "S.W.O.R.D.",
+      "issueTitle": "S.W.O.R.D. (2020) #7",
+      "seriesTitle": "S.W.O.R.D.",
+      "apiSeriesName": "S.W.O.R.D. (2020 - 2021)",
+      "seriesId": 31083,
+      "issueNumber": "7",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/94676/sword_2020_7",
+      "onSaleDate": "2021-07-28T00:00:00+0000"
+    },
+    {
+      "id": 92238,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2020) #17",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "seriesId": 28042,
+      "issueNumber": "17",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/92238/guardians_of_the_galaxy_2020_17",
+      "onSaleDate": "2021-08-18T00:00:00+0000"
+    },
+    {
+      "id": 95781,
+      "title": "Cable: Reloaded",
+      "issueTitle": "Cable: Reloaded (2021) #1",
+      "seriesTitle": "Cable: Reloaded",
+      "apiSeriesName": "Cable: Reloaded (2021)",
+      "seriesId": 32868,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95781/cable_reloaded_2021_1",
+      "onSaleDate": "2021-08-25T00:00:00+0000"
+    },
+    {
+      "id": 95675,
+      "title": "The Last Annihilation: Wiccan & Hulkling",
+      "issueTitle": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
+      "seriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "apiSeriesName": "The Last Annihilation: Wiccan & Hulkling (2021)",
+      "seriesId": 32833,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "onSaleDate": "2021-09-01T00:00:00+0000"
+    },
+    {
+      "id": 95676,
+      "title": "The Last Annihilation: Wakanda",
+      "issueTitle": "The Last Annihilation: Wakanda (2021) #1",
+      "seriesTitle": "The Last Annihilation: Wakanda",
+      "apiSeriesName": "The Last Annihilation: Wakanda (2021)",
+      "seriesId": 32834,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95676/the_last_annihilation_wakanda_2021_1",
+      "onSaleDate": "2021-09-15T00:00:00+0000"
+    },
+    {
+      "id": 92239,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2020) #18",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "seriesId": 28042,
+      "issueNumber": "18",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/92239/guardians_of_the_galaxy_2020_18",
+      "onSaleDate": "2021-09-22T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Guardians of the Galaxy #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "15",
+      "seriesId": 28042,
+      "candidateIssueId": 92236,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "92236"
+      ],
+      "selectedIssueId": 92236,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92236/guardians_of_the_galaxy_2020_15",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2020) #15",
+      "note": "Marvel series 28042 (Guardians of the Galaxy (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        92236
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "SWORD #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 31083,
+      "candidateIssueId": 90345,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90345"
+      ],
+      "selectedIssueId": 90345,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90345/sword_2020_6",
+      "resolvedIssueTitle": "S.W.O.R.D. (2020) #6",
+      "note": "Marvel series 31083 (S.W.O.R.D. (2020 - 2021)) is the reviewed metadata series for this source reference. The source omits punctuation from the exact S.W.O.R.D. series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90345
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Guardians of the Galaxy #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "16",
+      "seriesId": 28042,
+      "candidateIssueId": 92237,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "92237"
+      ],
+      "selectedIssueId": 92237,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92237/guardians_of_the_galaxy_2020_16",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2020) #16",
+      "note": "Marvel series 28042 (Guardians of the Galaxy (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        92237
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "S.W.O.R.D. #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "7",
+      "seriesId": 31083,
+      "candidateIssueId": 94676,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "94676"
+      ],
+      "selectedIssueId": 94676,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94676/sword_2020_7",
+      "resolvedIssueTitle": "S.W.O.R.D. (2020) #7",
+      "note": "Marvel series 31083 (S.W.O.R.D. (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        94676
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Guardians of the Galaxy #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "17",
+      "seriesId": 28042,
+      "candidateIssueId": 92238,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "92238"
+      ],
+      "selectedIssueId": 92238,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92238/guardians_of_the_galaxy_2020_17",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2020) #17",
+      "note": "Marvel series 28042 (Guardians of the Galaxy (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        92238
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Cable: Reloaded #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable: Reloaded",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32868,
+      "candidateIssueId": 95781,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95781"
+      ],
+      "selectedIssueId": 95781,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95781/cable_reloaded_2021_1",
+      "resolvedIssueTitle": "Cable: Reloaded (2021) #1",
+      "note": "Marvel series 32868 (Cable: Reloaded (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95781
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "The Last Annihilation: Wiccan and Hulkling #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32833,
+      "candidateIssueId": 95675,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95675"
+      ],
+      "selectedIssueId": 95675,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "resolvedIssueTitle": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
+      "note": "Marvel series 32833 (The Last Annihilation: Wiccan & Hulkling (2021)) is the reviewed metadata series for this source reference. The source spells out and where the exact series title uses an ampersand.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95675
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "The Last Annihilation: Wakanda #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Last Annihilation: Wakanda",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32834,
+      "candidateIssueId": 95676,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95676"
+      ],
+      "selectedIssueId": 95676,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95676/the_last_annihilation_wakanda_2021_1",
+      "resolvedIssueTitle": "The Last Annihilation: Wakanda (2021) #1",
+      "note": "Marvel series 32834 (The Last Annihilation: Wakanda (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        95676
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Guardians of the Galaxy #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "18",
+      "seriesId": 28042,
+      "candidateIssueId": 92239,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "92239"
+      ],
+      "selectedIssueId": 92239,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92239/guardians_of_the_galaxy_2020_18",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2020) #18",
+      "note": "Marvel series 28042 (Guardians of the Galaxy (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        92239
+      ]
+    }
+  ],
+  "mappingDigest": "34c04ca17f5ad3bdcbed6832875f6e8906fe4fdf678110637bd53b5299d9c4c3",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "last-annihilation",
+    "name": "The Last Annihilation",
+    "description": "Dormammu's cosmic invasion draws the Guardians, S.W.O.R.D., Cable, and Wakanda into one final stand.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "last-annihilation.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/the-last-annihilation/",
+    "sourceSection": "The Last Annihilation Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "last_annihilation.json",
+    "characters": [
+      "Guardians of the Galaxy",
+      "S.W.O.R.D.",
+      "Cable",
+      "Wiccan",
+      "Hulkling",
+      "Black Panther"
+    ],
+    "keywords": [
+      "The Last Annihilation",
+      "Dormammu",
+      "Wakanda"
+    ],
+    "expect": 9,
+    "timeline": 2021,
+    "coverIssueId": 92236
+  },
+  "relationshipReview": {
+    "reportDigest": "b42cc3ca56ad525a8aa613d30410e7c7ef8f6ef4d852425d0d9dc7679606b2c8",
+    "packetDigest": "ac08895871774ef5883efe978d1381ee4327f51525da4dbb262f5f67d9929a61",
+    "mappingDigest": "34c04ca17f5ad3bdcbed6832875f6e8906fe4fdf678110637bd53b5299d9c4c3",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "infinite-destinies": "15a8ad3f53eed905c7ed336668cfa03e88524fc760906552232027aeedbe6d6b",
+      "x-men-inferno": "24fe2f0aaebd9439d3a7b608f095fb0201c04e4c234514c0ecd40b16d802687f"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "8f796b1c2785006f9c1b15b11bbd8db1c05306a9308b7e62d0f3834c53c80e35"
+  }
+}

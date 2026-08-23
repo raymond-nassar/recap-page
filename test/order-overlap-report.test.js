@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -126,11 +126,12 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
     path.join(mappingsDir, 'secret-war.json'),
     [path.join(mappingsDir, 'spider-man-the-other.json')],
   );
+  const manifest = JSON.parse(readFileSync(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, 65);
-  assert.equal(new Set(comparedIds).size, 65);
+  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+  assert.equal(new Set(comparedIds).size, manifest.lists.length - 1);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
 });

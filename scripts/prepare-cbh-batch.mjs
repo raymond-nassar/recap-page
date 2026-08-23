@@ -2758,7 +2758,7 @@ function reviewedSeriesNote(series, apiSeriesName) {
 }
 
 function resolvedIssueTitle(item, sourceRow) {
-  const title = String(item?.title ?? '').trim();
+  const title = String(item?.title ?? '').trim().replace(/\s+/g, ' ');
   const metadataNumber = sourceRow.metadataIssueNumber;
   if (metadataNumber == null || String(metadataNumber) === String(sourceRow.issueNumber)) return title;
   const escaped = String(metadataNumber).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

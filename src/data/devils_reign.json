@@ -1,0 +1,769 @@
+{
+  "id": "devils-reign",
+  "name": "Devil's Reign",
+  "description": "Wilson Fisk outlaws New York's heroes and turns the city's institutions against them.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/devils-reign-2022/",
+  "sourceSection": "Devil's Reign Comic Book Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T17:20:43.009Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 24,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 96212,
+      "title": "Devil's Reign (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/96212/devils_reign_2021_1",
+      "seriesId": 32952,
+      "seriesName": "Devil's Reign (2021 - 2022)",
+      "onSale": "2021-12-08T00:00:00+0000",
+      "mu": "2022-03-14T00:00:00+0000",
+      "digitalId": 58172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/61ae1edb8ab89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96213,
+      "title": "Devil's Reign (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/96213/devils_reign_2021_2",
+      "seriesId": 32952,
+      "seriesName": "Devil's Reign (2021 - 2022)",
+      "onSale": "2021-12-29T00:00:00+0000",
+      "mu": "2022-04-04T00:00:00+0000",
+      "digitalId": 58173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/61a92d22b964c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98676,
+      "title": "Daredevil: Woman Without Fear (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98676/daredevil_woman_without_fear_2022_1",
+      "seriesId": 34025,
+      "seriesName": "Daredevil: Woman Without Fear (2022)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 58509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/61d4c3e2f0d76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Rafael De Latorre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98677,
+      "title": "Daredevil: Woman Without Fear (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/98677/daredevil_woman_without_fear_2022_2",
+      "seriesId": 34025,
+      "seriesName": "Daredevil: Woman Without Fear (2022)",
+      "onSale": "2022-02-02T00:00:00+0000",
+      "mu": "2022-05-09T00:00:00+0000",
+      "digitalId": 58619,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/61f98e88a237e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rafael De Latorre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99042,
+      "title": "Devil's Reign: Moon Knight (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99042/devils_reign_moon_knight_2022_1",
+      "seriesId": 34152,
+      "seriesName": "Devil's Reign: Moon Knight (2022)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-06T00:00:00+0000",
+      "digitalId": 58802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/6217ed8c8c9cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Federico Sabbatini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98464,
+      "title": "Spider-Woman (2020) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/98464/spider-woman_2020_18",
+      "seriesId": 28048,
+      "seriesName": "Spider-Woman (2020 - 2022)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 58194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/61d4c3fcbc928",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pere Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Karla Pacheco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99047,
+      "title": "Devil's Reign: Villains for Hire (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99047/devils_reign_villains_for_hire_2022_1",
+      "seriesId": 34155,
+      "seriesName": "Devil's Reign: Villains for Hire (2022)",
+      "onSale": "2022-01-19T00:00:00+0000",
+      "mu": "2022-04-25T00:00:00+0000",
+      "digitalId": 58516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/61cf40926d35f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lorenzo Ruggiero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Nava",
+          "role": "cover artist"
+        },
+        {
+          "name": "Manuel Garcia",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99048,
+      "title": "Devil's Reign: Villains for Hire (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/99048/devils_reign_villains_for_hire_2022_2",
+      "seriesId": 34155,
+      "seriesName": "Devil's Reign: Villains for Hire (2022)",
+      "onSale": "2022-02-23T00:00:00+0000",
+      "mu": "2022-05-30T00:00:00+0000",
+      "digitalId": 58624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/6201554a2c0ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lorenzo Ruggiero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Manuel Garcia",
+          "role": "penciler"
+        },
+        {
+          "name": "Skan Srisuwan",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98329,
+      "title": "Devil's Reign: X-Men (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98329/devils_reign_x-men_2022_1",
+      "seriesId": 33917,
+      "seriesName": "Devil's Reign: X-Men (2022 - Present)",
+      "onSale": "2022-01-19T00:00:00+0000",
+      "mu": "2022-04-25T00:00:00+0000",
+      "digitalId": 58518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/61cf405563112",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98330,
+      "title": "Devil's Reign: X-Men (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/98330/devils_reign_x-men_2022_2",
+      "seriesId": 33917,
+      "seriesName": "Devil's Reign: X-Men (2022 - Present)",
+      "onSale": "2022-03-02T00:00:00+0000",
+      "mu": "2022-05-30T00:00:00+0000",
+      "digitalId": 58625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/62017965a2cd0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98331,
+      "title": "Devil's Reign: X-Men (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/98331/devils_reign_x-men_2022_3",
+      "seriesId": 33917,
+      "seriesName": "Devil's Reign: X-Men (2022 - Present)",
+      "onSale": "2022-03-23T00:00:00+0000",
+      "mu": "2022-06-27T00:00:00+0000",
+      "digitalId": 58805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6227c9d74b42f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99044,
+      "title": "Devil's Reign: Superior Four (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99044/devils_reign_superior_four_2022_1",
+      "seriesId": 34154,
+      "seriesName": "Devil's Reign: Superior Four (2022)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 58515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/61d4c3e2f060b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Davide Tinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99045,
+      "title": "Devil's Reign: Superior Four (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/99045/devils_reign_superior_four_2022_2",
+      "seriesId": 34154,
+      "seriesName": "Devil's Reign: Superior Four (2022)",
+      "onSale": "2022-02-16T00:00:00+0000",
+      "mu": "2022-05-23T00:00:00+0000",
+      "digitalId": 58623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/6201554a3290b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Davide Tinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99046,
+      "title": "Devil's Reign: Superior Four (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/99046/devils_reign_superior_four_2022_3",
+      "seriesId": 34154,
+      "seriesName": "Devil's Reign: Superior Four (2022)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-06T00:00:00+0000",
+      "digitalId": 58803,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/6217ed8cb130f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Davide Tinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99050,
+      "title": "Devil's Reign: Winter Soldier (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99050/devils_reign_winter_soldier_2022_1",
+      "seriesId": 34156,
+      "seriesName": "Devil's Reign: Winter Soldier (2022)",
+      "onSale": "2022-01-26T00:00:00+0000",
+      "mu": "2022-05-02T00:00:00+0000",
+      "digitalId": 58517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/61cf3ffb85263",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Felipe Massafera",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96214,
+      "title": "Devil's Reign (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/96214/devils_reign_2021_3",
+      "seriesId": 32952,
+      "seriesName": "Devil's Reign (2021 - 2022)",
+      "onSale": "2022-01-26T00:00:00+0000",
+      "mu": "2022-05-02T00:00:00+0000",
+      "digitalId": 58514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/61cf3ffb9ccf4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93855,
+      "title": "Moon Knight (2021) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/93855/moon_knight_2021_8",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2022-02-09T00:00:00+0000",
+      "mu": "2022-02-09T00:00:00+0000",
+      "digitalId": 58638,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/620155884c727",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99043,
+      "title": "Devil's Reign: Spider-Man (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99043/devils_reign_spider-man_2022_1",
+      "seriesId": 34153,
+      "seriesName": "Devil's Reign: Spider-Man (2022)",
+      "onSale": "2022-03-02T00:00:00+0000",
+      "mu": "2022-05-30T00:00:00+0000",
+      "digitalId": 58622,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/6201796671372",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ze Carlos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Gomez",
+          "role": "penciler"
+        },
+        {
+          "name": "Anthony Piper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96215,
+      "title": "Devil's Reign (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/96215/devils_reign_2021_4",
+      "seriesId": 32952,
+      "seriesName": "Devil's Reign (2021 - 2022)",
+      "onSale": "2022-02-09T00:00:00+0000",
+      "mu": "2022-05-16T00:00:00+0000",
+      "digitalId": 58621,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/620155a44b835",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99049,
+      "title": "Devil's Reign: Villains for Hire (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/99049/devils_reign_villains_for_hire_2022_3",
+      "seriesId": 34155,
+      "seriesName": "Devil's Reign: Villains for Hire (2022)",
+      "onSale": "2022-03-23T00:00:00+0000",
+      "mu": "2022-06-27T00:00:00+0000",
+      "digitalId": 58804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/61f0187e644b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lorenzo Ruggiero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Manuel Garcia",
+          "role": "penciler"
+        },
+        {
+          "name": "Skan Srisuwan",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96216,
+      "title": "Devil's Reign (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/96216/devils_reign_2021_5",
+      "seriesId": 32952,
+      "seriesName": "Devil's Reign (2021 - 2022)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-13T00:00:00+0000",
+      "digitalId": 58800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/6227c6afd6058",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98678,
+      "title": "Daredevil: Woman Without Fear (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/98678/daredevil_woman_without_fear_2022_3",
+      "seriesId": 34025,
+      "seriesName": "Daredevil: Woman Without Fear (2022)",
+      "onSale": "2022-03-02T00:00:00+0000",
+      "mu": "2022-06-06T00:00:00+0000",
+      "digitalId": 58797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6217ed8e07039",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rafael De Latorre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 98681,
+      "title": "Devil's Reign (2021) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/98681/devils_reign_2021_6",
+      "seriesId": 32952,
+      "seriesName": "Devil's Reign (2021 - 2022)",
+      "onSale": "2022-04-06T00:00:00+0000",
+      "mu": "2022-07-11T00:00:00+0000",
+      "digitalId": 58801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/62432e8cef8bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102241,
+      "title": "Devil's Reign: Omega (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102241/devils_reign_omega_2022_1",
+      "seriesId": 35342,
+      "seriesName": "Devil's Reign: Omega (2022)",
+      "onSale": "2022-05-25T00:00:00+0000",
+      "mu": "2022-08-29T00:00:00+0000",
+      "digitalId": 59342,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/62b9e1eee0232",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Guillermo Sanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael De Latorre",
+          "role": "cover artist"
+        },
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Rodney Barnes",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

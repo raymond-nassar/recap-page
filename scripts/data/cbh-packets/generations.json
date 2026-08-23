@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "id": "generations",
+  "inventoryId": "generations",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+  "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The ten entries under Marvel Generations Issue by Issue Reading Order, ending before the collected-edition section.",
+  "excludedSourceReferences": [
+    "Marvel Generations Trade Reading Order (Collected Editions)",
+    "Previously: Secret Empire",
+    "Next: Marvel Legacy"
+  ],
+  "expectedCount": 10,
+  "proposedManifest": {
+    "id": "generations",
+    "name": "Marvel Generations",
+    "description": "Ten one-shots pairing Marvel legacy heroes with the predecessors who inspired them.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "generations.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-generations/",
+    "sourceSection": "Marvel Generations Issue by Issue Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "generations.json",
+    "characters": [
+      "Hulk",
+      "Jean Grey",
+      "Wolverine",
+      "Thor",
+      "Hawkeye",
+      "Iron Man",
+      "Captain Marvel",
+      "Captain America",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Generations",
+      "Legacy heroes",
+      "One-shots"
+    ],
+    "expect": 10,
+    "timeline": 2017,
+    "coverIssueId": 63963
+  },
+  "insertionAnchor": {
+    "beforeId": "infinity-countdown-wars"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible issue-by-issue heading, ten-row boundary, exclusions, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T09:30:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Generations: The Strongest - Banner Hulk & Totally Awesome Hulk #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Banner Hulk & the Totally Awesome Hulk",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24796,
+      "candidateIssueId": 63963,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Phoenix - Phoenix & Jean Grey #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Phoenix & Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24803,
+      "candidateIssueId": 63961,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Best - Wolverine & All-new Wolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Wolverine & All-New Wolverine",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24823,
+      "candidateIssueId": 63958,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Thunder - Unworthy Thor & The Mighty Thor #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: The Unworthy Thor & The Mighty Thor",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24811,
+      "candidateIssueId": 63967,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Archers - Hawkeye & Hawkeye #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Hawkeye & Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24801,
+      "candidateIssueId": 63956,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Iron - Iron Man & Ironheart #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Iron Man & Ironheart",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24807,
+      "candidateIssueId": 64389,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Marvels - Capt Marvel & Ms. Marvel #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Ms. Marvel & Ms. Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23451,
+      "candidateIssueId": 64393,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Americas - Captain Americas #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Sam Wilson Captain America & Steve Rogers Captain America",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 26207,
+      "candidateIssueId": 64383,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Spiders - Morales & Parker Spider-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Miles Morales Spider-Man & Peter Parker Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 26201,
+      "candidateIssueId": 64396,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generations: The Bravest - Capt Marvel & Capt Mar-vell #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generations: Captain Marvel & Captain Mar-Vell",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24806,
+      "candidateIssueId": 64386,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "e11ec57846dd73238f07511b32000799e5d35415e941421cf3b576e49781d981"
+}

@@ -225,7 +225,10 @@ test('the approved Comic Book Herald packet stays exact through every generated 
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbh-modern-inventory.json'));
-  assert.equal(existingEntriesForPacket(manifest.lists, PACKET_IDS).length, 56);
+  assert.equal(
+    existingEntriesForPacket(manifest.lists, PACKET_IDS).length,
+    manifest.lists.length - PACKET_IDS.length,
+  );
 
   for (const id of PACKET_IDS) {
     const mapping = await readJson(path.join(mappingsDir, `${id}.json`));

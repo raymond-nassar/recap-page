@@ -1,0 +1,865 @@
+{
+  "id": "hunt-for-wolverine",
+  "name": "Hunt for Wolverine",
+  "description": "The search for Logan across four investigations, Dead Ends, and his five-part return.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+  "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T09:26:45.414Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 24,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 66416,
+      "title": "Infinity Countdown (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66416/infinity_countdown_2018_1",
+      "seriesId": 24050,
+      "seriesName": "Infinity Countdown (2018)",
+      "onSale": "2018-03-07T00:00:00+0000",
+      "mu": "2018-09-10T00:00:00+0000",
+      "digitalId": 47478,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5a972b4f00db6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66912,
+      "title": "Hunt for Wolverine (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66912/hunt_for_wolverine_2018_1",
+      "seriesId": 24199,
+      "seriesName": "Hunt for Wolverine (2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5ad7b0a089c79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67019,
+      "title": "Hunt for Wolverine: Weapon Lost (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67019/hunt_for_wolverine_weapon_lost_2018_1",
+      "seriesId": 24235,
+      "seriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "onSale": "2018-05-02T00:00:00+0000",
+      "mu": "2018-11-05T00:00:00+0000",
+      "digitalId": 47929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5ae0cfdfd7729",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68605,
+      "title": "Hunt for Wolverine: Weapon Lost (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68605/hunt_for_wolverine_weapon_lost_2018_2",
+      "seriesId": 24235,
+      "seriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "onSale": "2018-06-06T00:00:00+0000",
+      "mu": "2018-12-10T00:00:00+0000",
+      "digitalId": 48245,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/65a0497029576",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68606,
+      "title": "Hunt for Wolverine: Weapon Lost (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/68606/hunt_for_wolverine_weapon_lost_2018_3",
+      "seriesId": 24235,
+      "seriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "onSale": "2018-07-04T00:00:00+0000",
+      "mu": "2019-01-07T00:00:00+0000",
+      "digitalId": 48543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5b35522211dbf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68608,
+      "title": "Hunt for Wolverine: Weapon Lost (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68608/hunt_for_wolverine_weapon_lost_2018_4",
+      "seriesId": 24235,
+      "seriesName": "Hunt for Wolverine: Weapon Lost (2018)",
+      "onSale": "2018-08-01T00:00:00+0000",
+      "mu": "2019-02-04T00:00:00+0000",
+      "digitalId": 48939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5b58cf73754e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67341,
+      "title": "Hunt for Wolverine: Adamantium Agenda (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67341/hunt_for_wolverine_adamantium_agenda_2018_1",
+      "seriesId": 24315,
+      "seriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5aea30d90ef12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68583,
+      "title": "Hunt for Wolverine: Adamantium Agenda (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68583/hunt_for_wolverine_adamantium_agenda_2018_2",
+      "seriesId": 24315,
+      "seriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 48273,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/5b17061b94626",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68584,
+      "title": "Hunt for Wolverine: Adamantium Agenda (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/68584/hunt_for_wolverine_adamantium_agenda_2018_3",
+      "seriesId": 24315,
+      "seriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5b3fea3218d47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68586,
+      "title": "Hunt for Wolverine: Adamantium Agenda (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68586/hunt_for_wolverine_adamantium_agenda_2018_4",
+      "seriesId": 24315,
+      "seriesName": "Hunt for Wolverine: Adamantium Agenda (2018)",
+      "onSale": "2018-08-08T00:00:00+0000",
+      "mu": "2019-02-11T00:00:00+0000",
+      "digitalId": 48842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b620cb98d11b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67342,
+      "title": "Hunt for Wolverine: Claws of a Killer (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67342/hunt_for_wolverine_claws_of_a_killer_2018_1",
+      "seriesId": 24316,
+      "seriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "onSale": "2018-05-16T00:00:00+0000",
+      "mu": "2018-11-19T00:00:00+0000",
+      "digitalId": 47979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5af36b6893187",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mariko Tamaki",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68591,
+      "title": "Hunt for Wolverine: Claws of a Killer (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68591/hunt_for_wolverine_claws_of_a_killer_2018_2",
+      "seriesId": 24316,
+      "seriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "onSale": "2018-06-20T00:00:00+0000",
+      "mu": "2018-12-24T00:00:00+0000",
+      "digitalId": 48301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5b2187d961b0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mack Chater",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mariko Tamaki",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68592,
+      "title": "Hunt for Wolverine: Claws of a Killer (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/68592/hunt_for_wolverine_claws_of_a_killer_2018_3",
+      "seriesId": 24316,
+      "seriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "onSale": "2018-07-18T00:00:00+0000",
+      "mu": "2019-01-21T00:00:00+0000",
+      "digitalId": 48594,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5b46732dd79fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mack Chater",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Mariko Tamaki",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68594,
+      "title": "Hunt for Wolverine: Claws of a Killer (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68594/hunt_for_wolverine_claws_of_a_killer_2018_4",
+      "seriesId": 24316,
+      "seriesName": "Hunt for Wolverine: Claws of a Killer (2018)",
+      "onSale": "2018-08-15T00:00:00+0000",
+      "mu": "2019-02-18T00:00:00+0000",
+      "digitalId": 48872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5b6c7d2006e91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Mack Chater",
+          "role": "penciler"
+        },
+        {
+          "name": "Mariko Tamaki",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67343,
+      "title": "Hunt for Wolverine: Mystery in Madripoor (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67343/hunt_for_wolverine_mystery_in_madripoor_2018_1",
+      "seriesId": 24317,
+      "seriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "onSale": "2018-05-23T00:00:00+0000",
+      "mu": "2018-11-26T00:00:00+0000",
+      "digitalId": 47990,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5afc80d59a8d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Thony Silas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68599,
+      "title": "Hunt for Wolverine: Mystery in Madripoor (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68599/hunt_for_wolverine_mystery_in_madripoor_2018_2",
+      "seriesId": 24317,
+      "seriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "onSale": "2018-06-27T00:00:00+0000",
+      "mu": "2018-12-31T00:00:00+0000",
+      "digitalId": 48318,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5b2c10f5ece26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Thony Silas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68600,
+      "title": "Hunt for Wolverine: Mystery in Madripoor (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/68600/hunt_for_wolverine_mystery_in_madripoor_2018_3",
+      "seriesId": 24317,
+      "seriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48614,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5b50b794d28c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Thony Silas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68602,
+      "title": "Hunt for Wolverine: Mystery in Madripoor (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68602/hunt_for_wolverine_mystery_in_madripoor_2018_4",
+      "seriesId": 24317,
+      "seriesName": "Hunt for Wolverine: Mystery in Madripoor (2018)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2019-02-25T00:00:00+0000",
+      "digitalId": 48892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/5b748f62dcf8d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Thony Silas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67583,
+      "title": "Hunt for Wolverine: Dead Ends (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67583/hunt_for_wolverine_dead_ends_2018_1",
+      "seriesId": 24369,
+      "seriesName": "Hunt for Wolverine: Dead Ends (2018)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2019-03-04T00:00:00+0000",
+      "digitalId": 48918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5b7ed4819a360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ramon Rosanas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70117,
+      "title": "Return of Wolverine (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/70117/return_of_wolverine_2018_1",
+      "seriesId": 25582,
+      "seriesName": "Return of Wolverine (2018 - 2019)",
+      "onSale": "2018-09-19T00:00:00+0000",
+      "mu": "2019-03-25T00:00:00+0000",
+      "digitalId": 49185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5b999675c7214",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70127,
+      "title": "Return of Wolverine (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/70127/return_of_wolverine_2018_2",
+      "seriesId": 25582,
+      "seriesName": "Return of Wolverine (2018 - 2019)",
+      "onSale": "2018-10-24T00:00:00+0000",
+      "mu": "2019-04-29T00:00:00+0000",
+      "digitalId": 49548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5bc8ff9146ae7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70129,
+      "title": "Return of Wolverine (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/70129/return_of_wolverine_2018_3",
+      "seriesId": 25582,
+      "seriesName": "Return of Wolverine (2018 - 2019)",
+      "onSale": "2018-11-28T00:00:00+0000",
+      "mu": "2019-06-03T00:00:00+0000",
+      "digitalId": 49778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5bf4790627416",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70130,
+      "title": "Return of Wolverine (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/70130/return_of_wolverine_2018_4",
+      "seriesId": 25582,
+      "seriesName": "Return of Wolverine (2018 - 2019)",
+      "onSale": "2019-01-16T00:00:00+0000",
+      "mu": "2019-07-22T00:00:00+0000",
+      "digitalId": 50088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5c37961ac4d51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70131,
+      "title": "Return of Wolverine (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/70131/return_of_wolverine_2018_5",
+      "seriesId": 25582,
+      "seriesName": "Return of Wolverine (2018 - 2019)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50440,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/5c64925491316",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -76,9 +76,12 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
 
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(existingEntriesForPacket(manifest.lists).length, 56);
-  assert.equal(manifest.lists.length, 66);
-  assert.equal(catalog.lists.length, 66);
+  assert.equal(
+    existingEntriesForPacket(manifest.lists).length,
+    manifest.lists.length - PACKET_IDS.length,
+  );
+  assert.ok(manifest.lists.length >= 66);
+  assert.equal(catalog.lists.length, manifest.lists.length);
 
   const manifestPacket = manifest.lists.filter((entry) => PACKET_IDS.includes(entry.id));
   const catalogPacket = catalog.lists.filter((entry) => PACKET_IDS.includes(entry.id));
@@ -225,7 +228,7 @@ test('batch two has no aggregate identity, source, sequence, or issue overlap', 
   }
 
   assert.equal(packetRecords.length, 10);
-  assert.equal(existingRecords.length, 56);
+  assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length);
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);

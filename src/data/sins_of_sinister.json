@@ -1,0 +1,476 @@
+{
+  "id": "sins-of-sinister",
+  "name": "Sins of Sinister",
+  "description": "Mister Sinister remakes mutant history across a century of impossible futures.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-sins-of-sinister/",
+  "sourceSection": "Sins of Sinister Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:26:42.027Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 13,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 91740,
+      "title": "Immortal X-Men (2022) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/91740/immortal_x-men_2022_9",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2022-12-07T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/63863d158ba21",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91741,
+      "title": "Immortal X-Men (2022) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/91741/immortal_x-men_2022_10",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2023-01-18T00:00:00+0000",
+      "mu": "2023-01-18T00:00:00+0000",
+      "digitalId": 61217,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/63b4767b8f5a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102461,
+      "title": "SINS OF SINISTER 1 (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102461/sins_of_sinister_1_2023_1",
+      "seriesId": 35395,
+      "seriesName": "SINS OF SINISTER 1 (2023)",
+      "onSale": "2023-01-25T00:00:00+0000",
+      "mu": "2023-01-25T00:00:00+0000",
+      "digitalId": 61243,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/63d28f9748ff2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Carlos Gomez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Jose Ryp",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 106552,
+      "title": "Immoral X-Men (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/106552/immoral_x-men_2023_1",
+      "seriesId": 36787,
+      "seriesName": "Immoral X-Men (2023 - Present)",
+      "onSale": "2023-02-22T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/63f4ea07d070e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105870,
+      "title": "Storm & the Brotherhood of Mutants (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/105870/storm_the_brotherhood_of_mutants_2023_1",
+      "seriesId": 36594,
+      "seriesName": "Storm & the Brotherhood of Mutants (2023)",
+      "onSale": "2023-02-08T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61883,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/63d28ea0bf307",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105598,
+      "title": "Nightcrawlers (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/105598/nightcrawlers_2023_1",
+      "seriesId": 36547,
+      "seriesName": "Nightcrawlers (2023)",
+      "onSale": "2023-02-15T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/63ed38d310bbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105599,
+      "title": "Nightcrawlers (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/105599/nightcrawlers_2023_2",
+      "seriesId": 36547,
+      "seriesName": "Nightcrawlers (2023)",
+      "onSale": "2023-03-08T00:00:00+0000",
+      "mu": "2023-03-08T00:00:00+0000",
+      "digitalId": 61991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/63f4e91dd32c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105871,
+      "title": "Storm & the Brotherhood of Mutants (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/105871/storm_the_brotherhood_of_mutants_2023_2",
+      "seriesId": 36594,
+      "seriesName": "Storm & the Brotherhood of Mutants (2023)",
+      "onSale": "2023-03-22T00:00:00+0000",
+      "mu": "2023-02-14T10:22:00+0000",
+      "digitalId": 62018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/640905ae91f95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 106553,
+      "title": "Immoral X-Men (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/106553/immoral_x-men_2023_2",
+      "seriesId": 36787,
+      "seriesName": "Immoral X-Men (2023 - Present)",
+      "onSale": "2023-03-15T00:00:00+0000",
+      "mu": "2023-02-23T13:46:00+0000",
+      "digitalId": 61978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/6409063157b11",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 106554,
+      "title": "Immoral X-Men (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/106554/immoral_x-men_2023_3",
+      "seriesId": 36787,
+      "seriesName": "Immoral X-Men (2023 - Present)",
+      "onSale": "2023-04-05T00:00:00+0000",
+      "mu": "2023-04-05T00:00:00+0000",
+      "digitalId": 62206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/641e086732554",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Vitti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105872,
+      "title": "Storm & the Brotherhood of Mutants (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/105872/storm_the_brotherhood_of_mutants_2023_3",
+      "seriesId": 36594,
+      "seriesName": "Storm & the Brotherhood of Mutants (2023)",
+      "onSale": "2023-04-12T00:00:00+0000",
+      "mu": "2023-03-30T17:29:00+0000",
+      "digitalId": 62240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/64346aac229d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Vitti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105600,
+      "title": "Nightcrawlers (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/105600/nightcrawlers_2023_3",
+      "seriesId": 36547,
+      "seriesName": "Nightcrawlers (2023)",
+      "onSale": "2023-04-19T00:00:00+0000",
+      "mu": "2023-03-31T17:09:00+0000",
+      "digitalId": 62217,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/64346b2240710",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lorenzo Tammetta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phillip Sevy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 105603,
+      "title": "SINS OF SINISTER DOMINION 1 (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/105603/sins_of_sinister_dominion_1_2023_1",
+      "seriesId": 36548,
+      "seriesName": "SINS OF SINISTER DOMINION 1 (2023)",
+      "onSale": "2023-04-26T00:00:00+0000",
+      "mu": "2023-03-23T13:15:00+0000",
+      "digitalId": 62227,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/64511190b2883",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "x-men-inferno",
+  "inventoryId": "x-men-inferno",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/hickmans-x-men-inferno-reading-order/",
+  "sourceSection": "Inferno Comics Reading Order",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The four issue entries under Inferno Comics Reading Order, from Inferno #1 through Inferno #4.",
+  "excludedSourceReferences": [
+    "The Road to X-Men Inferno (2021)",
+    "What About The Original Inferno Event?"
+  ],
+  "expectedCount": 4,
+  "proposedManifest": {
+    "id": "x-men-inferno",
+    "name": "X-Men: Inferno",
+    "description": "Mystique and Destiny force Krakoa's founders to answer for their hidden bargain.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-men-inferno.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/hickmans-x-men-inferno-reading-order/",
+    "sourceSection": "Inferno Comics Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_men_inferno.json",
+    "characters": [
+      "X-Men",
+      "Mystique",
+      "Destiny"
+    ],
+    "keywords": [
+      "Inferno",
+      "Krakoa",
+      "Moira X"
+    ],
+    "expect": 4,
+    "timeline": 2021,
+    "coverIssueId": 96222
+  },
+  "insertionAnchor": {
+    "beforeId": "devils-reign"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible four-issue checklist, exclusions, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T14:05:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Inferno #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Inferno",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32954,
+      "candidateIssueId": 96222,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Inferno #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Inferno",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 32954,
+      "candidateIssueId": 96223,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Inferno #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Inferno",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 32954,
+      "candidateIssueId": 96224,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Inferno #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Inferno",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 32954,
+      "candidateIssueId": 96225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "24bf5b7f4afe11755760cedef64255f285ea3c7d6c1e82c5a05c9d8f50337ede"
+}

@@ -1,0 +1,215 @@
+{
+  "id": "reckoning-war",
+  "name": "Reckoning War",
+  "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/reckoning-war/",
+  "sourceSection": "Reckoning War Reading Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T17:20:43.010Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 95798,
+      "title": "Fantastic Four (2018) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/95798/fantastic_four_2018_39",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 58177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/61cf40752cbd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Manna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99051,
+      "title": "Fantastic Four: Reckoning War Alpha (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99051/fantastic_four_reckoning_war_alpha_2022_1",
+      "seriesId": 34157,
+      "seriesName": "Fantastic Four: Reckoning War Alpha (2022)",
+      "onSale": "2022-02-02T00:00:00+0000",
+      "mu": "2022-05-09T00:00:00+0000",
+      "digitalId": 58523,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/61f98e79eea56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95799,
+      "title": "Fantastic Four (2018) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/95799/fantastic_four_2018_40",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2022-02-16T00:00:00+0000",
+      "mu": "2022-05-23T00:00:00+0000",
+      "digitalId": 58521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/6201554a26813",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachael Stott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 99052,
+      "title": "Reckoning War: Trial Of The Watcher (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99052/reckoning_war_trial_of_the_watcher_2022_1",
+      "seriesId": 34158,
+      "seriesName": "Reckoning War: Trial Of The Watcher (2022)",
+      "onSale": "2022-03-16T00:00:00+0000",
+      "mu": "2022-06-20T00:00:00+0000",
+      "digitalId": 58824,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/6227c9eb23670",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95800,
+      "title": "Fantastic Four (2018) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/95800/fantastic_four_2018_41",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2022-03-02T00:00:00+0000",
+      "mu": "2022-03-02T00:00:00+0000",
+      "digitalId": 58808,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/6217ed8bcb1cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachael Stott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95801,
+      "title": "Fantastic Four (2018) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/95801/fantastic_four_2018_42",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2022-04-06T00:00:00+0000",
+      "mu": "2022-04-06T00:00:00+0000",
+      "digitalId": 58809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/62432e71139d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachael Stott",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

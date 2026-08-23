@@ -1,0 +1,787 @@
+{
+  "id": "dark-web",
+  "name": "Dark Web",
+  "description": "Spider-Man, the X-Men, and Venom collide as Chasm and the Goblin Queen remake New York.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spider-man-dark-web/",
+  "sourceSection": "Dark Web Checklist Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:26:42.020Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 22,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 100672,
+      "title": "Free Comic Book Day 2022: Spider-Man/Venom (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/100672/free_comic_book_day_2022_spider-manvenom_2022_1",
+      "seriesId": 34539,
+      "seriesName": "Free Comic Book Day 2022: Spider-Man/Venom (2022)",
+      "onSale": "2022-04-06T00:00:00+0000",
+      "mu": "2022-05-11T00:00:00+0000",
+      "digitalId": 59138,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/62432e7ede203",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Raffaele",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Derek Landy",
+          "role": "writer"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103642,
+      "title": "Venom (2021) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/103642/venom_2021_13",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-11-09T00:00:00+0000",
+      "mu": "2023-02-13T00:00:00+0000",
+      "digitalId": 60783,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/63658b25121b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102182,
+      "title": "The Amazing Spider-Man (2022) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/102182/the_amazing_spider-man_2022_14",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2022-11-23T00:00:00+0000",
+      "mu": "2023-02-27T00:00:00+0000",
+      "digitalId": 60720,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/63755fa5a1821",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Dowling",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103002,
+      "title": "Gold Goblin (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103002/gold_goblin_2022_1",
+      "seriesId": 35519,
+      "seriesName": "Gold Goblin (2022 - 2023)",
+      "onSale": "2022-11-16T00:00:00+0000",
+      "mu": "2023-02-20T00:00:00+0000",
+      "digitalId": 60745,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/637255c27a42f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lan Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Taurin Clarke",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103236,
+      "title": "Dark Web (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103236/dark_web_2022_1",
+      "seriesId": 35566,
+      "seriesName": "Dark Web (2022)",
+      "onSale": "2022-12-07T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/63863d3a41bf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102183,
+      "title": "The Amazing Spider-Man (2022) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/102183/the_amazing_spider-man_2022_15",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2022-12-14T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/639a7b0d2fa78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103017,
+      "title": "Mary Jane & Black Cat (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103017/mary_jane_black_cat_2022_1",
+      "seriesId": 35521,
+      "seriesName": "Mary Jane & Black Cat (2022 - 2023)",
+      "onSale": "2022-12-21T00:00:00+0000",
+      "mu": "2022-12-21T00:00:00+0000",
+      "digitalId": 61054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/639a7ab552082",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincenzo Carratu",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. Scott Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Dowling",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103018,
+      "title": "Mary Jane & Black Cat (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/103018/mary_jane_black_cat_2022_2",
+      "seriesId": 35521,
+      "seriesName": "Mary Jane & Black Cat (2022 - 2023)",
+      "onSale": "2023-01-11T00:00:00+0000",
+      "mu": "2023-01-11T00:00:00+0000",
+      "digitalId": 61224,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/63b476f322093",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vincenzo Carratu",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. Scott Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104563,
+      "title": "Dark Web: X-Men (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104563/dark_web_x-men_2022_1",
+      "seriesId": 36208,
+      "seriesName": "Dark Web: X-Men (2022 - 2023)",
+      "onSale": "2022-12-14T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/639a7b06768a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103003,
+      "title": "Gold Goblin (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/103003/gold_goblin_2022_2",
+      "seriesId": 35519,
+      "seriesName": "Gold Goblin (2022 - 2023)",
+      "onSale": "2022-12-21T00:00:00+0000",
+      "mu": "2022-12-21T00:00:00+0000",
+      "digitalId": 61049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/639a7ab593c6c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lan Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Taurin Clarke",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104561,
+      "title": "Dark Web: Ms. Marvel (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104561/dark_web_ms_marvel_2022_1",
+      "seriesId": 36207,
+      "seriesName": "Dark Web: Ms. Marvel (2022 - 2023)",
+      "onSale": "2022-12-21T00:00:00+0000",
+      "mu": "2022-12-21T00:00:00+0000",
+      "digitalId": 61042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/639a7ab7b9ce3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Sabir Pirzada",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104562,
+      "title": "Dark Web: Ms. Marvel (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/104562/dark_web_ms_marvel_2022_2",
+      "seriesId": 36207,
+      "seriesName": "Dark Web: Ms. Marvel (2022 - 2023)",
+      "onSale": "2023-01-11T00:00:00+0000",
+      "mu": "2023-01-11T00:00:00+0000",
+      "digitalId": 61307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/63b476f63e9d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Sabir Pirzada",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102184,
+      "title": "The Amazing Spider-Man (2022) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/102184/the_amazing_spider-man_2022_16",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61031,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/639a7a8bc2b09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103643,
+      "title": "Venom (2021) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/103643/venom_2021_14",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/639a79ea0a975",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104564,
+      "title": "Dark Web: X-Men (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/104564/dark_web_x-men_2022_2",
+      "seriesId": 36208,
+      "seriesName": "Dark Web: X-Men (2022 - 2023)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/639a7a6710f07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103004,
+      "title": "Gold Goblin (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/103004/gold_goblin_2022_3",
+      "seriesId": 35519,
+      "seriesName": "Gold Goblin (2022 - 2023)",
+      "onSale": "2023-01-04T00:00:00+0000",
+      "mu": "2023-01-04T00:00:00+0000",
+      "digitalId": 61215,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/63b4782944ed9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lan Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Taurin Clarke",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102185,
+      "title": "The Amazing Spider-Man (2022) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/102185/the_amazing_spider-man_2022_17",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-01-11T00:00:00+0000",
+      "mu": "2023-01-11T00:00:00+0000",
+      "digitalId": 61295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/63b4771f098c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103644,
+      "title": "Venom (2021) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/103644/venom_2021_15",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2023-01-18T00:00:00+0000",
+      "mu": "2023-01-18T00:00:00+0000",
+      "digitalId": 61260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/63c7fa82a29fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104565,
+      "title": "Dark Web: X-Men (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/104565/dark_web_x-men_2022_3",
+      "seriesId": 36208,
+      "seriesName": "Dark Web: X-Men (2022 - 2023)",
+      "onSale": "2023-01-18T00:00:00+0000",
+      "mu": "2023-01-18T00:00:00+0000",
+      "digitalId": 61209,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/63b4767e5bb82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102186,
+      "title": "The Amazing Spider-Man (2022) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/102186/the_amazing_spider-man_2022_18",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-01-25T00:00:00+0000",
+      "mu": "2023-01-25T00:00:00+0000",
+      "digitalId": 61296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/63c7fa7795f47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 103645,
+      "title": "Venom (2021) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/103645/venom_2021_16",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2023-02-01T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/63d28f1eb7fc6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 104546,
+      "title": "Dark Web Finale (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104546/dark_web_finale_2023_1",
+      "seriesId": 36206,
+      "seriesName": "Dark Web Finale (2023)",
+      "onSale": "2023-02-01T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/63d28f615d43b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

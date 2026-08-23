@@ -1,0 +1,157 @@
+{
+  "id": "x-men-inferno",
+  "name": "X-Men: Inferno",
+  "description": "Mystique and Destiny force Krakoa's founders to answer for their hidden bargain.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/hickmans-x-men-inferno-reading-order/",
+  "sourceSection": "Inferno Comics Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T17:10:25.751Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 96222,
+      "title": "Inferno (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/96222/inferno_2021_1",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2021-09-29T00:00:00+0000",
+      "mu": "2022-01-03T00:00:00+0000",
+      "digitalId": 57667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/614b401028eca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96223,
+      "title": "Inferno (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/96223/inferno_2021_2",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2021-10-27T00:00:00+0000",
+      "mu": "2022-01-31T00:00:00+0000",
+      "digitalId": 57787,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/6169eee772019",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96224,
+      "title": "Inferno (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/96224/inferno_2021_3",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2021-12-08T00:00:00+0000",
+      "mu": "2022-03-14T00:00:00+0000",
+      "digitalId": 57909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/618ea53502e89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96225,
+      "title": "Inferno (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/96225/inferno_2021_4",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2022-01-05T00:00:00+0000",
+      "mu": "2022-04-11T00:00:00+0000",
+      "digitalId": 58181,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/61d4c4fa3053f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

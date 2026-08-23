@@ -1,0 +1,1686 @@
+{
+  "id": "dark-web",
+  "inventoryId": "dark-web",
+  "packetDigest": "80c84503b85a21e29fd6e97349b3a607ce29637d587a660ef0ac9004ee0d68c9",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spider-man-dark-web/",
+  "sourceSection": "Dark Web Checklist Reading Order",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 22,
+  "excludedSourceReferences": [
+    "Previously: Judgment Day",
+    "The Road to Dark Web",
+    "Spider-Man: Beyond",
+    "Hellions",
+    "Amazing Spider-Man",
+    "Hellfire Gala (2022)",
+    "New Mutants"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "dark-web",
+    "name": "Dark Web",
+    "description": "Spider-Man, the X-Men, and Venom collide as Chasm and the Goblin Queen remake New York.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "dark-web.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spider-man-dark-web/",
+    "sourceSection": "Dark Web Checklist Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "dark_web.json",
+    "characters": [
+      "Spider-Man",
+      "X-Men",
+      "Venom",
+      "Chasm",
+      "Goblin Queen"
+    ],
+    "keywords": [
+      "Dark Web",
+      "Chasm",
+      "Goblin Queen"
+    ],
+    "expect": 22,
+    "timeline": 2022,
+    "coverIssueId": 100672
+  },
+  "candidateMetadata": [
+    {
+      "id": 100672,
+      "title": "Free Comic Book Day 2022: Spider-Man/Venom",
+      "issueTitle": "Free Comic Book Day 2022: Spider-Man/Venom (2022) #1",
+      "seriesTitle": "Free Comic Book Day 2022: Spider-Man/Venom",
+      "apiSeriesName": "Free Comic Book Day 2022: Spider-Man/Venom (2022)",
+      "seriesId": 34539,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/100672/free_comic_book_day_2022_spider-manvenom_2022_1",
+      "onSaleDate": "2022-04-06T00:00:00+0000"
+    },
+    {
+      "id": 103642,
+      "title": "Venom",
+      "issueTitle": "Venom (2021) #13",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2021 - Present)",
+      "seriesId": 32870,
+      "issueNumber": "13",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103642/venom_2021_13",
+      "onSaleDate": "2022-11-09T00:00:00+0000"
+    },
+    {
+      "id": 102182,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2022) #14",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2022 - Present)",
+      "seriesId": 32866,
+      "issueNumber": "14",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102182/the_amazing_spider-man_2022_14",
+      "onSaleDate": "2022-11-23T00:00:00+0000"
+    },
+    {
+      "id": 103002,
+      "title": "Gold Goblin",
+      "issueTitle": "Gold Goblin (2022) #1",
+      "seriesTitle": "Gold Goblin",
+      "apiSeriesName": "Gold Goblin (2022 - 2023)",
+      "seriesId": 35519,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103002/gold_goblin_2022_1",
+      "onSaleDate": "2022-11-16T00:00:00+0000"
+    },
+    {
+      "id": 103236,
+      "title": "Dark Web",
+      "issueTitle": "Dark Web (2022) #1",
+      "seriesTitle": "Dark Web",
+      "apiSeriesName": "Dark Web (2022)",
+      "seriesId": 35566,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103236/dark_web_2022_1",
+      "onSaleDate": "2022-12-07T00:00:00+0000"
+    },
+    {
+      "id": 102183,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2022) #15",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2022 - Present)",
+      "seriesId": 32866,
+      "issueNumber": "15",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102183/the_amazing_spider-man_2022_15",
+      "onSaleDate": "2022-12-14T00:00:00+0000"
+    },
+    {
+      "id": 103017,
+      "title": "Mary Jane & Black Cat",
+      "issueTitle": "Mary Jane & Black Cat (2022) #1",
+      "seriesTitle": "Mary Jane & Black Cat",
+      "apiSeriesName": "Mary Jane & Black Cat (2022 - 2023)",
+      "seriesId": 35521,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103017/mary_jane_black_cat_2022_1",
+      "onSaleDate": "2022-12-21T00:00:00+0000"
+    },
+    {
+      "id": 103018,
+      "title": "Mary Jane & Black Cat",
+      "issueTitle": "Mary Jane & Black Cat (2022) #2",
+      "seriesTitle": "Mary Jane & Black Cat",
+      "apiSeriesName": "Mary Jane & Black Cat (2022 - 2023)",
+      "seriesId": 35521,
+      "issueNumber": "2",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103018/mary_jane_black_cat_2022_2",
+      "onSaleDate": "2023-01-11T00:00:00+0000"
+    },
+    {
+      "id": 104563,
+      "title": "Dark Web: X-Men",
+      "issueTitle": "Dark Web: X-Men (2022) #1",
+      "seriesTitle": "Dark Web: X-Men",
+      "apiSeriesName": "Dark Web: X-Men (2022 - 2023)",
+      "seriesId": 36208,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104563/dark_web_x-men_2022_1",
+      "onSaleDate": "2022-12-14T00:00:00+0000"
+    },
+    {
+      "id": 103003,
+      "title": "Gold Goblin",
+      "issueTitle": "Gold Goblin (2022) #2",
+      "seriesTitle": "Gold Goblin",
+      "apiSeriesName": "Gold Goblin (2022 - 2023)",
+      "seriesId": 35519,
+      "issueNumber": "2",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103003/gold_goblin_2022_2",
+      "onSaleDate": "2022-12-21T00:00:00+0000"
+    },
+    {
+      "id": 104561,
+      "title": "Dark Web: Ms. Marvel",
+      "issueTitle": "Dark Web: Ms. Marvel (2022) #1",
+      "seriesTitle": "Dark Web: Ms. Marvel",
+      "apiSeriesName": "Dark Web: Ms. Marvel (2022 - 2023)",
+      "seriesId": 36207,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104561/dark_web_ms_marvel_2022_1",
+      "onSaleDate": "2022-12-21T00:00:00+0000"
+    },
+    {
+      "id": 104562,
+      "title": "Dark Web: Ms. Marvel",
+      "issueTitle": "Dark Web: Ms. Marvel (2022) #2",
+      "seriesTitle": "Dark Web: Ms. Marvel",
+      "apiSeriesName": "Dark Web: Ms. Marvel (2022 - 2023)",
+      "seriesId": 36207,
+      "issueNumber": "2",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104562/dark_web_ms_marvel_2022_2",
+      "onSaleDate": "2023-01-11T00:00:00+0000"
+    },
+    {
+      "id": 102184,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2022) #16",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2022 - Present)",
+      "seriesId": 32866,
+      "issueNumber": "16",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102184/the_amazing_spider-man_2022_16",
+      "onSaleDate": "2022-12-28T00:00:00+0000"
+    },
+    {
+      "id": 103643,
+      "title": "Venom",
+      "issueTitle": "Venom (2021) #14",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2021 - Present)",
+      "seriesId": 32870,
+      "issueNumber": "14",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103643/venom_2021_14",
+      "onSaleDate": "2022-12-28T00:00:00+0000"
+    },
+    {
+      "id": 104564,
+      "title": "Dark Web: X-Men",
+      "issueTitle": "Dark Web: X-Men (2022) #2",
+      "seriesTitle": "Dark Web: X-Men",
+      "apiSeriesName": "Dark Web: X-Men (2022 - 2023)",
+      "seriesId": 36208,
+      "issueNumber": "2",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104564/dark_web_x-men_2022_2",
+      "onSaleDate": "2022-12-28T00:00:00+0000"
+    },
+    {
+      "id": 103004,
+      "title": "Gold Goblin",
+      "issueTitle": "Gold Goblin (2022) #3",
+      "seriesTitle": "Gold Goblin",
+      "apiSeriesName": "Gold Goblin (2022 - 2023)",
+      "seriesId": 35519,
+      "issueNumber": "3",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103004/gold_goblin_2022_3",
+      "onSaleDate": "2023-01-04T00:00:00+0000"
+    },
+    {
+      "id": 102185,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2022) #17",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2022 - Present)",
+      "seriesId": 32866,
+      "issueNumber": "17",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102185/the_amazing_spider-man_2022_17",
+      "onSaleDate": "2023-01-11T00:00:00+0000"
+    },
+    {
+      "id": 103644,
+      "title": "Venom",
+      "issueTitle": "Venom (2021) #15",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2021 - Present)",
+      "seriesId": 32870,
+      "issueNumber": "15",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103644/venom_2021_15",
+      "onSaleDate": "2023-01-18T00:00:00+0000"
+    },
+    {
+      "id": 104565,
+      "title": "Dark Web: X-Men",
+      "issueTitle": "Dark Web: X-Men (2022) #3",
+      "seriesTitle": "Dark Web: X-Men",
+      "apiSeriesName": "Dark Web: X-Men (2022 - 2023)",
+      "seriesId": 36208,
+      "issueNumber": "3",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104565/dark_web_x-men_2022_3",
+      "onSaleDate": "2023-01-18T00:00:00+0000"
+    },
+    {
+      "id": 102186,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2022) #18",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2022 - Present)",
+      "seriesId": 32866,
+      "issueNumber": "18",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102186/the_amazing_spider-man_2022_18",
+      "onSaleDate": "2023-01-25T00:00:00+0000"
+    },
+    {
+      "id": 103645,
+      "title": "Venom",
+      "issueTitle": "Venom (2021) #16",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2021 - Present)",
+      "seriesId": 32870,
+      "issueNumber": "16",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103645/venom_2021_16",
+      "onSaleDate": "2023-02-01T00:00:00+0000"
+    },
+    {
+      "id": 104546,
+      "title": "Dark Web Finale",
+      "issueTitle": "Dark Web Finale (2023) #1",
+      "seriesTitle": "Dark Web Finale",
+      "apiSeriesName": "Dark Web Finale (2023)",
+      "seriesId": 36206,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/104546/dark_web_finale_2023_1",
+      "onSaleDate": "2023-02-01T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "FCBD '22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Free Comic Book Day 2022: Spider-Man/Venom",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34539,
+      "candidateIssueId": 100672,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "100672"
+      ],
+      "selectedIssueId": 100672,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/100672/free_comic_book_day_2022_spider-manvenom_2022_1",
+      "resolvedIssueTitle": "Free Comic Book Day 2022: Spider-Man/Venom (2022) #1",
+      "note": "Marvel series 34539 (Free Comic Book Day 2022: Spider-Man/Venom (2022)) is the reviewed metadata series for this source reference. The source shorthand resolves to Free Comic Book Day 2022: Spider-Man/Venom #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        100672
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Venom #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2021,
+      "issueNumber": "13",
+      "seriesId": 32870,
+      "candidateIssueId": 103642,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103642"
+      ],
+      "selectedIssueId": 103642,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103642/venom_2021_13",
+      "resolvedIssueTitle": "Venom (2021) #13",
+      "note": "Marvel series 32870 (Venom (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103642
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "14",
+      "seriesId": 32866,
+      "candidateIssueId": 102182,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102182"
+      ],
+      "selectedIssueId": 102182,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102182/the_amazing_spider-man_2022_14",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2022) #14",
+      "note": "Marvel series 32866 (The Amazing Spider-Man (2022 - Present)) is the reviewed metadata series for this source reference. The exact series title adds The.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102182
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Gold Goblin #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Gold Goblin",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35519,
+      "candidateIssueId": 103002,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103002"
+      ],
+      "selectedIssueId": 103002,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103002/gold_goblin_2022_1",
+      "resolvedIssueTitle": "Gold Goblin (2022) #1",
+      "note": "Marvel series 35519 (Gold Goblin (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103002
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Dark Web Alpha",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35566,
+      "candidateIssueId": 103236,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103236"
+      ],
+      "selectedIssueId": 103236,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103236/dark_web_2022_1",
+      "resolvedIssueTitle": "Dark Web (2022) #1",
+      "note": "Marvel series 35566 (Dark Web (2022)) is the reviewed metadata series for this source reference. The source label Alpha resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103236
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "15",
+      "seriesId": 32866,
+      "candidateIssueId": 102183,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102183"
+      ],
+      "selectedIssueId": 102183,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102183/the_amazing_spider-man_2022_15",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2022) #15",
+      "note": "Marvel series 32866 (The Amazing Spider-Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102183
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Mary Jane & Black Cat #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Mary Jane & Black Cat",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35521,
+      "candidateIssueId": 103017,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103017"
+      ],
+      "selectedIssueId": 103017,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103017/mary_jane_black_cat_2022_1",
+      "resolvedIssueTitle": "Mary Jane & Black Cat (2022) #1",
+      "note": "Marvel series 35521 (Mary Jane & Black Cat (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103017
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Mary Jane and Black Cat #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Mary Jane & Black Cat",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 35521,
+      "candidateIssueId": 103018,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103018"
+      ],
+      "selectedIssueId": 103018,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103018/mary_jane_black_cat_2022_2",
+      "resolvedIssueTitle": "Mary Jane & Black Cat (2022) #2",
+      "note": "Marvel series 35521 (Mary Jane & Black Cat (2022 - 2023)) is the reviewed metadata series for this source reference. The source uses and where the exact series title uses an ampersand.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103018
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Dark Web: X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 36208,
+      "candidateIssueId": 104563,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104563"
+      ],
+      "selectedIssueId": 104563,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104563/dark_web_x-men_2022_1",
+      "resolvedIssueTitle": "Dark Web: X-Men (2022) #1",
+      "note": "Marvel series 36208 (Dark Web: X-Men (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104563
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Gold Goblin #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Gold Goblin",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 35519,
+      "candidateIssueId": 103003,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103003"
+      ],
+      "selectedIssueId": 103003,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103003/gold_goblin_2022_2",
+      "resolvedIssueTitle": "Gold Goblin (2022) #2",
+      "note": "Marvel series 35519 (Gold Goblin (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103003
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Dark Web: Ms. Marvel #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web: Ms. Marvel",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 36207,
+      "candidateIssueId": 104561,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104561"
+      ],
+      "selectedIssueId": 104561,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104561/dark_web_ms_marvel_2022_1",
+      "resolvedIssueTitle": "Dark Web: Ms. Marvel (2022) #1",
+      "note": "Marvel series 36207 (Dark Web: Ms. Marvel (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104561
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Dark Web: Ms. Marvel #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web: Ms. Marvel",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 36207,
+      "candidateIssueId": 104562,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104562"
+      ],
+      "selectedIssueId": 104562,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104562/dark_web_ms_marvel_2022_2",
+      "resolvedIssueTitle": "Dark Web: Ms. Marvel (2022) #2",
+      "note": "Marvel series 36207 (Dark Web: Ms. Marvel (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104562
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Amazing Spider-Man #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "16",
+      "seriesId": 32866,
+      "candidateIssueId": 102184,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102184"
+      ],
+      "selectedIssueId": 102184,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102184/the_amazing_spider-man_2022_16",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2022) #16",
+      "note": "Marvel series 32866 (The Amazing Spider-Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102184
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Venom #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2021,
+      "issueNumber": "14",
+      "seriesId": 32870,
+      "candidateIssueId": 103643,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103643"
+      ],
+      "selectedIssueId": 103643,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103643/venom_2021_14",
+      "resolvedIssueTitle": "Venom (2021) #14",
+      "note": "Marvel series 32870 (Venom (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103643
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Dark Web: X-Men #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 36208,
+      "candidateIssueId": 104564,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104564"
+      ],
+      "selectedIssueId": 104564,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104564/dark_web_x-men_2022_2",
+      "resolvedIssueTitle": "Dark Web: X-Men (2022) #2",
+      "note": "Marvel series 36208 (Dark Web: X-Men (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104564
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Gold Goblin #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Gold Goblin",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 35519,
+      "candidateIssueId": 103004,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103004"
+      ],
+      "selectedIssueId": 103004,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103004/gold_goblin_2022_3",
+      "resolvedIssueTitle": "Gold Goblin (2022) #3",
+      "note": "Marvel series 35519 (Gold Goblin (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103004
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Amazing Spider-Man #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "17",
+      "seriesId": 32866,
+      "candidateIssueId": 102185,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102185"
+      ],
+      "selectedIssueId": 102185,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102185/the_amazing_spider-man_2022_17",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2022) #17",
+      "note": "Marvel series 32866 (The Amazing Spider-Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102185
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Venom #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2021,
+      "issueNumber": "15",
+      "seriesId": 32870,
+      "candidateIssueId": 103644,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103644"
+      ],
+      "selectedIssueId": 103644,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103644/venom_2021_15",
+      "resolvedIssueTitle": "Venom (2021) #15",
+      "note": "Marvel series 32870 (Venom (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103644
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Dark Web: X-Men #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web: X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 36208,
+      "candidateIssueId": 104565,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104565"
+      ],
+      "selectedIssueId": 104565,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104565/dark_web_x-men_2022_3",
+      "resolvedIssueTitle": "Dark Web: X-Men (2022) #3",
+      "note": "Marvel series 36208 (Dark Web: X-Men (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104565
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Amazing Spider-Man #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "18",
+      "seriesId": 32866,
+      "candidateIssueId": 102186,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102186"
+      ],
+      "selectedIssueId": 102186,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102186/the_amazing_spider-man_2022_18",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2022) #18",
+      "note": "Marvel series 32866 (The Amazing Spider-Man (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102186
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Venom #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2021,
+      "issueNumber": "16",
+      "seriesId": 32870,
+      "candidateIssueId": 103645,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103645"
+      ],
+      "selectedIssueId": 103645,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103645/venom_2021_16",
+      "resolvedIssueTitle": "Venom (2021) #16",
+      "note": "Marvel series 32870 (Venom (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103645
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Dark Web Finale",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Web Finale",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36206,
+      "candidateIssueId": 104546,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "104546"
+      ],
+      "selectedIssueId": 104546,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/104546/dark_web_finale_2023_1",
+      "resolvedIssueTitle": "Dark Web Finale (2023) #1",
+      "note": "Marvel series 36206 (Dark Web Finale (2023)) is the reviewed metadata series for this source reference. The source label omits #1; it resolves to the one-shot.",
+      "status": "exact",
+      "selectedIssueIds": [
+        104546
+      ]
+    }
+  ],
+  "mappingDigest": "e82dbaa204cc50c6da6044023a4808f80071473751bb6a70545ca9bc9c65382f",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "dark-web",
+    "name": "Dark Web",
+    "description": "Spider-Man, the X-Men, and Venom collide as Chasm and the Goblin Queen remake New York.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "dark-web.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/spider-man-dark-web/",
+    "sourceSection": "Dark Web Checklist Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "dark_web.json",
+    "characters": [
+      "Spider-Man",
+      "X-Men",
+      "Venom",
+      "Chasm",
+      "Goblin Queen"
+    ],
+    "keywords": [
+      "Dark Web",
+      "Chasm",
+      "Goblin Queen"
+    ],
+    "expect": 22,
+    "timeline": 2022,
+    "coverIssueId": 100672
+  },
+  "relationshipReview": {
+    "reportDigest": "e6f6e238fb3ba9e177c59a8941f3f1b139de0d952a083ef98e4d1431a03e49f1",
+    "packetDigest": "80c84503b85a21e29fd6e97349b3a607ce29637d587a660ef0ac9004ee0d68c9",
+    "mappingDigest": "e82dbaa204cc50c6da6044023a4808f80071473751bb6a70545ca9bc9c65382f",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "judgment-day": "45bb86755c51897b1bdfd3bb43b2cdd445e50e769a6d35b8b281a5af01fc55c1",
+      "sins-of-sinister": "8fe36184b0887ead545859dffe393814c9c33ca2738d2a5fb100004b66b891e1"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "89d53da834373ec04b42c53765dcc84e6c3e169f11ed5b5d91995a5f0357dad4"
+  }
+}

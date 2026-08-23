@@ -1,0 +1,2211 @@
+{
+  "id": "war-of-the-realms",
+  "name": "The War of the Realms",
+  "description": "Malekith invades Earth, drawing Thor and Marvel heroes into a war across the ten realms.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/war-of-the-realms-reading-order/",
+  "sourceSection": "The War of the Realms Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:19:47.632Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 66,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 69970,
+      "title": "Tony Stark: Iron Man (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/69970/tony_stark_iron_man_2018_12",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51435,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5ced98ffc3eda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paolo Villanelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alexander Lozano",
+          "role": "penciler"
+        },
+        {
+          "name": "Gail Simone",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70797,
+      "title": "Tony Stark: Iron Man (2018) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/70797/tony_stark_iron_man_2018_13",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51757,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5d01310a9bc92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paolo Villanelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alexander Lozano",
+          "role": "penciler"
+        },
+        {
+          "name": "Gail Simone",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71271,
+      "title": "War of the Realms (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71271/war_of_the_realms_2019_1",
+      "seriesId": 25991,
+      "seriesName": "War of the Realms (2019)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51104,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5c9bfb02a9cb4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71217,
+      "title": "The Unbeatable Squirrel Girl (2015) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/71217/the_unbeatable_squirrel_girl_2015_43",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-04-10T00:00:00+0000",
+      "digitalId": 51135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5ca3be5632d7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76331,
+      "title": "War of the Realms: Journey Into Mystery (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76331/war_of_the_realms_journey_into_mystery_2019_1",
+      "seriesId": 27320,
+      "seriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-10-14T00:00:00+0000",
+      "digitalId": 51203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/5ca3bb1cafe77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73996,
+      "title": "Asgardians of the Galaxy (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/73996/asgardians_of_the_galaxy_2018_8",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-10-14T00:00:00+0000",
+      "digitalId": 51122,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5ca3bc5f952d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76615,
+      "title": "War of the Realms: New Agents of Atlas (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-05-08T00:00:00+0000",
+      "digitalId": 51487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5ccb3f294f4bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76616,
+      "title": "War of the Realms: New Agents of Atlas (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/5d08f3bfedab8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77259,
+      "title": "War of the Realms: New Agents of Atlas (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5cf18cbd2f0ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70769,
+      "title": "Moon Girl and Devil Dinosaur (2015) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/70769/moon_girl_and_devil_dinosaur_2015_43",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5cd9c9755b372",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gustavo Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ray-Anthony Height",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69934,
+      "title": "Thor (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/69934/thor_2018_12",
+      "seriesId": 24308,
+      "seriesName": "Thor (2018 - 2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/5cacf425bade7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71273,
+      "title": "War of the Realms (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71273/war_of_the_realms_2019_2",
+      "seriesId": 25991,
+      "seriesName": "War of the Realms (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51105,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5cacf763291b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73997,
+      "title": "Asgardians of the Galaxy (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/73997/asgardians_of_the_galaxy_2018_9",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51444,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5cd9cb4b936ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paolo Villanelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75886,
+      "title": "War of the Realms: The Punisher (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75886/war_of_the_realms_the_punisher_2019_1",
+      "seriesId": 27244,
+      "seriesName": "War of the Realms: The Punisher (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51106,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5cacf78db4ffc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75887,
+      "title": "War of the Realms: The Punisher (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/75887/war_of_the_realms_the_punisher_2019_2",
+      "seriesId": 27244,
+      "seriesName": "War of the Realms: The Punisher (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5cd9ce222152e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75888,
+      "title": "War of the Realms: The Punisher (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/75888/war_of_the_realms_the_punisher_2019_3",
+      "seriesId": 27244,
+      "seriesName": "War of the Realms: The Punisher (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51699,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5d08f3d0be8f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcelo Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68016,
+      "title": "Fantastic Four (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/68016/fantastic_four_2018_10",
+      "seriesId": 24554,
+      "seriesName": "Fantastic Four (2018 - Present)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ce40afe062f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Libranda",
+          "role": "penciler"
+        },
+        {
+          "name": "Matteo Scalera",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71051,
+      "title": "Avengers (2018) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/71051/avengers_2018_18",
+      "seriesId": 24229,
+      "seriesName": "Avengers (2018 - 2023)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51167,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5cb89e117d65c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71052,
+      "title": "Avengers (2018) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/71052/avengers_2018_19",
+      "seriesId": 24229,
+      "seriesName": "Avengers (2018 - 2023)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51445,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5cd9cc05ce11b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74065,
+      "title": "Venom (2018) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/74065/venom_2018_13",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51136,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5cb89be01b360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74066,
+      "title": "Venom (2018) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/74066/venom_2018_14",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5cd9cc2cd388f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74067,
+      "title": "Venom (2018) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/74067/venom_2018_15",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51735,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5cf7e066e7dbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mobili",
+          "role": "cover artist"
+        },
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alberto Alburquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76332,
+      "title": "War of the Realms: Uncanny X-Men (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76332/war_of_the_realms_uncanny_x-men_2019_1",
+      "seriesId": 27319,
+      "seriesName": "War of the Realms: Uncanny X-Men (2019)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5cb89c164d87c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pere Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71361,
+      "title": "Superior Spider-Man (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/71361/superior_spider-man_2018_7",
+      "seriesId": 26005,
+      "seriesName": "Superior Spider-Man (2018 - 2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5cf188d861973",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lan Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75448,
+      "title": "Giant-Man (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75448/giant-man_2019_1",
+      "seriesId": 27128,
+      "seriesName": "Giant-Man (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51422,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5cd446733219d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Castiello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Chul Lee",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75450,
+      "title": "Giant-Man (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/75450/giant-man_2019_2",
+      "seriesId": 27128,
+      "seriesName": "Giant-Man (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5ce4038e48a4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Castiello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Chul Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75451,
+      "title": "Giant-Man (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/75451/giant-man_2019_3",
+      "seriesId": 27128,
+      "seriesName": "Giant-Man (2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51721,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5cf7dc44c3e8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Castiello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Chul Lee",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71274,
+      "title": "War of the Realms (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71274/war_of_the_realms_2019_3",
+      "seriesId": 25991,
+      "seriesName": "War of the Realms (2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5cc2096883e3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76333,
+      "title": "War of the Realms: War Scrolls (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76333/war_of_the_realms_war_scrolls_2019_1",
+      "seriesId": 27382,
+      "seriesName": "War of the Realms: War Scrolls (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5cacf748f1213",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Andrea Sorrentino",
+          "role": "penciler"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "Ricardo Lopez-Ortiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        },
+        {
+          "name": "Josh Trujillo",
+          "role": "writer"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76618,
+      "title": "War of the Realms: War Scrolls (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76618/war_of_the_realms_war_scrolls_2019_2",
+      "seriesId": 27382,
+      "seriesName": "War of the Realms: War Scrolls (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51490,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5ce406a9220af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andrea Sorrentino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Robles",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Davidson",
+          "role": "penciler"
+        },
+        {
+          "name": "Anthony Oliveira",
+          "role": "writer"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75484,
+      "title": "War Of The Realms Strikeforce: The War Avengers (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75484/war_of_the_realms_strikeforce_the_war_avengers_2019_1",
+      "seriesId": 27139,
+      "seriesName": "War Of The Realms Strikeforce: The War Avengers (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5cd449a988130",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75482,
+      "title": "War of the Realms Strikeforce: The Land of Giants (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75482/war_of_the_realms_strikeforce_the_land_of_giants_2019_1",
+      "seriesId": 27137,
+      "seriesName": "War of the Realms Strikeforce: The Land of Giants (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5cd9cc5df14d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71362,
+      "title": "Superior Spider-Man (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/71362/superior_spider-man_2018_8",
+      "seriesId": 26005,
+      "seriesName": "Superior Spider-Man (2018 - 2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5d08f37b605c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lan Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73808,
+      "title": "Champions (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73808/champions_2019_5",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5cc0cc3c57b79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73809,
+      "title": "Champions (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73809/champions_2019_6",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5cf826bbd866a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75483,
+      "title": "War of the Realms Strikeforce: The Dark Elf Realm (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75483/war_of_the_realms_strikeforce_the_dark_elf_realm_2019_1",
+      "seriesId": 27138,
+      "seriesName": "War of the Realms Strikeforce: The Dark Elf Realm (2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51381,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5cc201c5e830c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Edward Hill",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70791,
+      "title": "Thor (2018) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/70791/thor_2018_13",
+      "seriesId": 24308,
+      "seriesName": "Thor (2018 - 2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51434,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5ce403265e78e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76613,
+      "title": "War of the Realms: Journey Into Mystery (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76613/war_of_the_realms_journey_into_mystery_2019_2",
+      "seriesId": 27320,
+      "seriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-11-11T00:00:00+0000",
+      "digitalId": 51485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5ccb5c5f9ea7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76614,
+      "title": "War of the Realms: Journey Into Mystery (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/76614/war_of_the_realms_journey_into_mystery_2019_3",
+      "seriesId": 27320,
+      "seriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51486,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5cd9cc827a73e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76910,
+      "title": "War of the Realms: Journey Into Mystery (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76910/war_of_the_realms_journey_into_mystery_2019_4",
+      "seriesId": 27320,
+      "seriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5ced974f20488",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71218,
+      "title": "The Unbeatable Squirrel Girl (2015) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/71218/the_unbeatable_squirrel_girl_2015_44",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-05-08T00:00:00+0000",
+      "digitalId": 51408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5ccb3b6b3a479",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71219,
+      "title": "The Unbeatable Squirrel Girl (2015) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/71219/the_unbeatable_squirrel_girl_2015_45",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51734,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5cf7db7f52d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71275,
+      "title": "War of the Realms (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/71275/war_of_the_realms_2019_4",
+      "seriesId": 25991,
+      "seriesName": "War of the Realms (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51380,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5cd470cabf760",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76442,
+      "title": "Spider-Man & the League of Realms (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76442/spider-man_the_league_of_realms_2019_1",
+      "seriesId": 27419,
+      "seriesName": "Spider-Man & the League of Realms (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5cd448da6277e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Ryan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76443,
+      "title": "Spider-Man & the League of Realms (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76443/spider-man_the_league_of_realms_2019_2",
+      "seriesId": 27419,
+      "seriesName": "Spider-Man & the League of Realms (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5ce403c8b7396",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Ryan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77262,
+      "title": "War of the Realms: War Scrolls (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77262/war_of_the_realms_war_scrolls_2019_3",
+      "seriesId": 27382,
+      "seriesName": "War of the Realms: War Scrolls (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5d0131027c298",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andrea Sorrentino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cian Tormey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simone D'ARMINI",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Charlie Jane Anders",
+          "role": "writer"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77255,
+      "title": "Spider-Man & the League of Realms (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77255/spider-man_the_league_of_realms_2019_3",
+      "seriesId": 27419,
+      "seriesName": "Spider-Man & the League of Realms (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5d0130c7aaf8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cully Hamner",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Failla",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Ryan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76617,
+      "title": "War of the Realms: Uncanny X-Men (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76617/war_of_the_realms_uncanny_x-men_2019_2",
+      "seriesId": 27319,
+      "seriesName": "War of the Realms: Uncanny X-Men (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/5cd9cdc0bd79d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pere Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77261,
+      "title": "War of the Realms: Uncanny X-Men (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77261/war_of_the_realms_uncanny_x-men_2019_3",
+      "seriesId": 27319,
+      "seriesName": "War of the Realms: Uncanny X-Men (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5d0bd219c1bf6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pere Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70755,
+      "title": "Deadpool (2018) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/70755/deadpool_2018_13",
+      "seriesId": 24294,
+      "seriesName": "Deadpool (2018 - 2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5ced980515476",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nic Klein",
+          "role": "penciler"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70756,
+      "title": "Deadpool (2018) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/70756/deadpool_2018_14",
+      "seriesId": 24294,
+      "seriesName": "Deadpool (2018 - 2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51672,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5d01308758112",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Alburquerque",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74006,
+      "title": "Captain Marvel (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/74006/captain_marvel_2019_6",
+      "seriesId": 26673,
+      "seriesName": "Captain Marvel (2019 - 2023)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51666,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/04/5ced5d779fec4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amanda Conner",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74007,
+      "title": "Captain Marvel (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/74007/captain_marvel_2019_7",
+      "seriesId": 26673,
+      "seriesName": "Captain Marvel (2019 - 2023)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-06-19T00:00:00+0000",
+      "digitalId": 51667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5d0130984ff02",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amanda Conner",
+          "role": "penciler"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71053,
+      "title": "Avengers (2018) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/71053/avengers_2018_20",
+      "seriesId": 24229,
+      "seriesName": "Avengers (2018 - 2023)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51766,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5d08f258d7307",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73998,
+      "title": "Asgardians of the Galaxy (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/73998/asgardians_of_the_galaxy_2018_10",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-06-12T00:00:00+0000",
+      "digitalId": 51715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5cf826abc72ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71276,
+      "title": "War of the Realms (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/71276/war_of_the_realms_2019_5",
+      "seriesId": 25991,
+      "seriesName": "War of the Realms (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51695,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5cf18c1a3992f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76911,
+      "title": "War of the Realms: Journey Into Mystery (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/76911/war_of_the_realms_journey_into_mystery_2019_5",
+      "seriesId": 27320,
+      "seriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51698,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5d0130bf8e39a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71277,
+      "title": "War of the Realms (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/71277/war_of_the_realms_2019_6",
+      "seriesId": 25991,
+      "seriesName": "War of the Realms (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51696,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5d08f3fc31186",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70792,
+      "title": "Thor (2018) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/70792/thor_2018_14",
+      "seriesId": 24308,
+      "seriesName": "Thor (2018 - 2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51756,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5d08f373e179b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Hepburn",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77260,
+      "title": "War of the Realms: New Agents of Atlas (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5d08f3c831b31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Moy Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Pop Mhan",
+          "role": "penciler"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74814,
+      "title": "War Of The Realms Omega (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/74814/war_of_the_realms_omega_2019_1",
+      "seriesId": 26914,
+      "seriesName": "War Of The Realms Omega (2019)",
+      "onSale": "2019-07-10T00:00:00+0000",
+      "mu": "2020-01-13T00:00:00+0000",
+      "digitalId": 51910,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5d1bc2f118f51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "C Cafu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Daniel Kibblesmith",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77667,
+      "title": "Valkyrie: Jane Foster (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77667/valkyrie_jane_foster_2019_1",
+      "seriesId": 27826,
+      "seriesName": "Valkyrie: Jane Foster (2019 - 2020)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 52065,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5d2c9222c3078",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "C Cafu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77480,
+      "title": "Loki (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77480/loki_2019_1",
+      "seriesId": 27739,
+      "seriesName": "Loki (2019)",
+      "onSale": "2019-07-17T00:00:00+0000",
+      "mu": "2020-01-20T00:00:00+0000",
+      "digitalId": 51958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5d25ef3b46b7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ozgur Yildirim",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Kibblesmith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75872,
+      "title": "Punisher Kill Krew (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75872/punisher_kill_krew_2019_1",
+      "seriesId": 27242,
+      "seriesName": "Punisher Kill Krew (2019)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 51892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5d4c2c2a46e4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tony Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70793,
+      "title": "Thor (2018) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/70793/thor_2018_15",
+      "seriesId": 24308,
+      "seriesName": "Thor (2018 - 2019)",
+      "onSale": "2019-07-10T00:00:00+0000",
+      "mu": "2020-01-13T00:00:00+0000",
+      "digitalId": 51962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5d1bc2e968168",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78577,
+      "title": "King Thor (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/78577/king_thor_2019_1",
+      "seriesId": 27997,
+      "seriesName": "King Thor (2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5d72a28867a68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

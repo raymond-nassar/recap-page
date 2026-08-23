@@ -1,0 +1,1135 @@
+{
+  "id": "fall-house-x-rise-powers-x",
+  "name": "Fall of the House of X & Rise of the Powers of X",
+  "description": "The final Krakoan-era conflict across Fall of the House of X, Rise of the Powers of X, and their linked series.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/fall-of-the-house-of-x/",
+  "sourceSection": "Fall of the House of X and Rise of the Powers of X Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T09:26:45.416Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 34,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 111661,
+      "title": "Fall of the House of X (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/111661/fall_of_the_house_of_x_2024_1",
+      "seriesId": 38458,
+      "seriesName": "Fall of the House of X (2024 - Present)",
+      "onSale": "2024-01-03T00:00:00+0000",
+      "mu": "2023-12-08T00:00:00+0000",
+      "digitalId": 64505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/6596e15532aa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111682,
+      "title": "Rise of the Powers of X (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/111682/rise_of_the_powers_of_x_2024_1",
+      "seriesId": 38472,
+      "seriesName": "Rise of the Powers of X (2024 - Present)",
+      "onSale": "2024-01-10T00:00:00+0000",
+      "mu": "2024-01-04T00:00:00+0000",
+      "digitalId": 64531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/6596e115b1313",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112856,
+      "title": "Dead X-Men (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112856/dead_x-men_2024_1",
+      "seriesId": 38790,
+      "seriesName": "Dead X-Men (2024 - Present)",
+      "onSale": "2024-01-31T00:00:00+0000",
+      "mu": "2024-01-31T00:00:00+0000",
+      "digitalId": 64502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/65ca4dca1dbaf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonas Scharf",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pere Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincenzo Carratu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112184,
+      "title": "X-Men (2021) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/112184/x-men_2021_30",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2024-01-17T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/65a00c4ea190c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112141,
+      "title": "Invincible Iron Man (2022) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/112141/invincible_iron_man_2022_14",
+      "seriesId": 34717,
+      "seriesName": "Invincible Iron Man (2022 - Present)",
+      "onSale": "2024-01-17T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/65a00c69eace6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kael Ngu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112142,
+      "title": "Invincible Iron Man (2022) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/112142/invincible_iron_man_2022_15",
+      "seriesId": 34717,
+      "seriesName": "Invincible Iron Man (2022 - Present)",
+      "onSale": "2024-02-28T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64796,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/65ca4d4db8144",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "penciler"
+        },
+        {
+          "name": "Kael Ngu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112164,
+      "title": "Resurrection of Magneto (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112164/resurrection_of_magneto_2024_1",
+      "seriesId": 38654,
+      "seriesName": "Resurrection of Magneto (2024 - Present)",
+      "onSale": "2024-01-24T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/65a93b12e38f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112165,
+      "title": "Resurrection of Magneto (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/112165/resurrection_of_magneto_2024_2",
+      "seriesId": 38654,
+      "seriesName": "Resurrection of Magneto (2024 - Present)",
+      "onSale": "2024-02-28T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/65ca4d2f5eaa2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112166,
+      "title": "Resurrection of Magneto (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/112166/resurrection_of_magneto_2024_3",
+      "seriesId": 38654,
+      "seriesName": "Resurrection of Magneto (2024 - Present)",
+      "onSale": "2024-03-20T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 65687,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/65f0747c6c0bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112185,
+      "title": "X-Men (2021) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/112185/x-men_2021_31",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2024-02-07T00:00:00+0000",
+      "mu": "2024-01-25T00:00:00+0000",
+      "digitalId": 64836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/65b7d77c370b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111662,
+      "title": "Fall of the House of X (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/111662/fall_of_the_house_of_x_2024_2",
+      "seriesId": 38458,
+      "seriesName": "Fall of the House of X (2024 - Present)",
+      "onSale": "2024-02-14T00:00:00+0000",
+      "mu": "2024-02-02T00:00:00+0000",
+      "digitalId": 64789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/65b7df6b5082d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111683,
+      "title": "Rise of the Powers of X (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/111683/rise_of_the_powers_of_x_2024_2",
+      "seriesId": 38472,
+      "seriesName": "Rise of the Powers of X (2024 - Present)",
+      "onSale": "2024-02-21T00:00:00+0000",
+      "mu": "2024-02-21T00:00:00+0000",
+      "digitalId": 64807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/65cccf7d07be7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 113490,
+      "title": "X-Men: Forever (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/113490/x-men_forever_2024_1",
+      "seriesId": 38947,
+      "seriesName": "X-Men: Forever (2024 - Present)",
+      "onSale": "2024-03-20T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 65722,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/65f0745e80bd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112858,
+      "title": "Dead X-Men (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/112858/dead_x-men_2024_2",
+      "seriesId": 38790,
+      "seriesName": "Dead X-Men (2024 - Present)",
+      "onSale": "2024-02-28T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64785,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/65ca4d50440b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Guillermo Sanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter Nguyen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112143,
+      "title": "Invincible Iron Man (2022) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/112143/invincible_iron_man_2022_16",
+      "seriesId": 34717,
+      "seriesName": "Invincible Iron Man (2022 - Present)",
+      "onSale": "2024-03-20T00:00:00+0000",
+      "mu": "2024-03-01T00:00:00+0000",
+      "digitalId": 65679,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/65f0747aa8666",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Kael Ngu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112144,
+      "title": "Invincible Iron Man (2022) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/112144/invincible_iron_man_2022_17",
+      "seriesId": 34717,
+      "seriesName": "Invincible Iron Man (2022 - Present)",
+      "onSale": "2024-04-10T00:00:00+0000",
+      "mu": "2024-03-27T00:00:00+0000",
+      "digitalId": 66089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/66154192d7df1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Patch Zircher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kael Ngu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 101524,
+      "title": "Avengers (2023) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/101524/avengers_2023_12",
+      "seriesId": 34716,
+      "seriesName": "Avengers (2023 - Present)",
+      "onSale": "2024-04-03T00:00:00+0000",
+      "mu": "2024-03-20T00:00:00+0000",
+      "digitalId": 66078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/6601d35840e23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112859,
+      "title": "Dead X-Men (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/112859/dead_x-men_2024_3",
+      "seriesId": 38790,
+      "seriesName": "Dead X-Men (2024 - Present)",
+      "onSale": "2024-03-13T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 65669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/65e7391a3b0fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Pina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lynne Yoshii",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112860,
+      "title": "Dead X-Men (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/112860/dead_x-men_2024_4",
+      "seriesId": 38790,
+      "seriesName": "Dead X-Men (2024 - Present)",
+      "onSale": "2024-04-17T00:00:00+0000",
+      "mu": "2024-04-03T00:00:00+0000",
+      "digitalId": 66084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/66154152640c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincenzo Carratu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112186,
+      "title": "X-Men (2021) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/112186/x-men_2021_32",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2024-03-06T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 65720,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/00/65e8858c9b77f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111663,
+      "title": "Fall of the House of X (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/111663/fall_of_the_house_of_x_2024_3",
+      "seriesId": 38458,
+      "seriesName": "Fall of the House of X (2024 - Present)",
+      "onSale": "2024-03-13T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 65672,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/65e7391a480da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jethro Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111684,
+      "title": "Rise of the Powers of X (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/111684/rise_of_the_powers_of_x_2024_3",
+      "seriesId": 38472,
+      "seriesName": "Rise of the Powers of X (2024 - Present)",
+      "onSale": "2024-03-27T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 65688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/65f9a3a5061e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 113491,
+      "title": "X-Men: Forever (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/113491/x-men_forever_2024_2",
+      "seriesId": 38947,
+      "seriesName": "X-Men: Forever (2024 - Present)",
+      "onSale": "2024-04-24T00:00:00+0000",
+      "mu": "2024-04-12T00:00:00+0000",
+      "digitalId": 66109,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/661540c76d5f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112187,
+      "title": "X-Men (2021) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/112187/x-men_2021_33",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2024-04-03T00:00:00+0000",
+      "mu": "2024-03-20T00:00:00+0000",
+      "digitalId": 66107,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/661541afac301",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112167,
+      "title": "Resurrection of Magneto (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/112167/resurrection_of_magneto_2024_4",
+      "seriesId": 38654,
+      "seriesName": "Resurrection of Magneto (2024 - Present)",
+      "onSale": "2024-04-10T00:00:00+0000",
+      "mu": "2024-03-27T00:00:00+0000",
+      "digitalId": 66124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/6615419048410",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111664,
+      "title": "Fall of the House of X (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/111664/fall_of_the_house_of_x_2024_4",
+      "seriesId": 38458,
+      "seriesName": "Fall of the House of X (2024 - Present)",
+      "onSale": "2024-04-17T00:00:00+0000",
+      "mu": "2024-04-03T00:00:00+0000",
+      "digitalId": 66118,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/6615414c565f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jethro Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112188,
+      "title": "X-Men (2021) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/112188/x-men_2021_34",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2024-05-01T00:00:00+0000",
+      "mu": "2024-04-17T00:00:00+0000",
+      "digitalId": 66662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/65fb17da22fee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111685,
+      "title": "Rise of the Powers of X (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/111685/rise_of_the_powers_of_x_2024_4",
+      "seriesId": 38472,
+      "seriesName": "Rise of the Powers of X (2024 - Present)",
+      "onSale": "2024-04-24T00:00:00+0000",
+      "mu": "2024-04-12T00:00:00+0000",
+      "digitalId": 66125,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/661540e33914d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 113492,
+      "title": "X-Men: Forever (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/113492/x-men_forever_2024_3",
+      "seriesId": 38947,
+      "seriesName": "X-Men: Forever (2024 - Present)",
+      "onSale": "2024-05-08T00:00:00+0000",
+      "mu": "2024-04-24T00:00:00+0000",
+      "digitalId": 66664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/6630061fec388",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 113493,
+      "title": "X-Men: Forever (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/113493/x-men_forever_2024_4",
+      "seriesId": 38947,
+      "seriesName": "X-Men: Forever (2024 - Present)",
+      "onSale": "2024-05-15T00:00:00+0000",
+      "mu": "2024-05-01T00:00:00+0000",
+      "digitalId": 66665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/663e5c5bd8049",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112145,
+      "title": "Invincible Iron Man (2022) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/112145/invincible_iron_man_2022_18",
+      "seriesId": 34717,
+      "seriesName": "Invincible Iron Man (2022 - Present)",
+      "onSale": "2024-05-01T00:00:00+0000",
+      "mu": "2024-04-17T00:00:00+0000",
+      "digitalId": 66617,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/65d739964d4c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Kael Ngu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111665,
+      "title": "Fall of the House of X (2024) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/111665/fall_of_the_house_of_x_2024_5",
+      "seriesId": 38458,
+      "seriesName": "Fall of the House of X (2024 - Present)",
+      "onSale": "2024-05-22T00:00:00+0000",
+      "mu": "2024-05-09T00:00:00+0000",
+      "digitalId": 66607,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/663e5c3f0510d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 111686,
+      "title": "Rise of the Powers of X (2024) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/111686/rise_of_the_powers_of_x_2024_5",
+      "seriesId": 38472,
+      "seriesName": "Rise of the Powers of X (2024 - Present)",
+      "onSale": "2024-05-29T00:00:00+0000",
+      "mu": "2024-05-09T00:00:00+0000",
+      "digitalId": 66628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/664b9dcc6c946",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 112189,
+      "title": "X-Men (2021) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/112189/x-men_2021_35",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2024-06-05T00:00:00+0000",
+      "mu": "2024-05-21T00:00:00+0000",
+      "digitalId": 67059,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/66634df1c5b28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 88,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

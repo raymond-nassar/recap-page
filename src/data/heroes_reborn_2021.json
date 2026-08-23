@@ -1,0 +1,659 @@
+{
+  "id": "heroes-reborn-2021",
+  "name": "Heroes Reborn",
+  "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+  "sourceSection": "Heroes Reborn Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-22T11:58:34.736Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 18,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 92793,
+      "title": "Heroes Reborn (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/92793/heroes_reborn_2021_1",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-05-05T00:00:00+0000",
+      "mu": "2021-08-09T00:00:00+0000",
+      "digitalId": 56797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/608990caed681",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93048,
+      "title": "Heroes Reborn (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/93048/heroes_reborn_2021_2",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-05-12T00:00:00+0000",
+      "mu": "2021-08-16T00:00:00+0000",
+      "digitalId": 56798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/6087319c52146",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93631,
+      "title": "Heroes Reborn: Hyperion & the Imperial Guard (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93631/heroes_reborn_hyperion_the_imperial_guard_2021_1",
+      "seriesId": 31984,
+      "seriesName": "Heroes Reborn: Hyperion & the Imperial Guard (2021)",
+      "onSale": "2021-05-12T00:00:00+0000",
+      "mu": "2021-08-16T00:00:00+0000",
+      "digitalId": 56801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6087319bb8b63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Elisabetta D'AMICO",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Byrne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Michele Bandini",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Cady",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93637,
+      "title": "Heroes Reborn: Peter Parker, The Amazing Shutterbug (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93637/heroes_reborn_peter_parker_the_amazing_shutterbug_2021_1",
+      "seriesId": 31990,
+      "seriesName": "Heroes Reborn: Peter Parker, The Amazing Shutterbug (2021)",
+      "onSale": "2021-05-12T00:00:00+0000",
+      "mu": "2021-08-16T00:00:00+0000",
+      "digitalId": 56803,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/6087319bbfc4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Rafael De Latorre",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Bernadin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93049,
+      "title": "Heroes Reborn (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/93049/heroes_reborn_2021_3",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-05-19T00:00:00+0000",
+      "mu": "2021-08-23T00:00:00+0000",
+      "digitalId": 56799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/60afe32ef051b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93635,
+      "title": "Heroes Reborn: Magneto & The Mutant Force (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93635/heroes_reborn_magneto_the_mutant_force_2021_1",
+      "seriesId": 31988,
+      "seriesName": "Heroes Reborn: Magneto & The Mutant Force (2021)",
+      "onSale": "2021-05-26T00:00:00+0000",
+      "mu": "2021-08-30T00:00:00+0000",
+      "digitalId": 56802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/60afe2f1a9831",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93050,
+      "title": "Heroes Reborn (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/93050/heroes_reborn_2021_4",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-05-26T00:00:00+0000",
+      "mu": "2021-08-30T00:00:00+0000",
+      "digitalId": 56800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/60afe2f4eb1da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "James Stokoe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93639,
+      "title": "Heroes Reborn: Young Squadron (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93639/heroes_reborn_young_squadron_2021_1",
+      "seriesId": 31992,
+      "seriesName": "Heroes Reborn: Young Squadron (2021)",
+      "onSale": "2021-05-26T00:00:00+0000",
+      "mu": "2021-08-30T00:00:00+0000",
+      "digitalId": 56805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/60afe2db445fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Karl Kerschl",
+          "role": "penciler"
+        },
+        {
+          "name": "Steven Cummings",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93638,
+      "title": "Heroes Reborn: Siege Society (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93638/heroes_reborn_siege_society_2021_1",
+      "seriesId": 31991,
+      "seriesName": "Heroes Reborn: Siege Society (2021)",
+      "onSale": "2021-05-26T00:00:00+0000",
+      "mu": "2021-08-30T00:00:00+0000",
+      "digitalId": 56804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/60afe2e0108ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 93051,
+      "title": "Heroes Reborn (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/93051/heroes_reborn_2021_5",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-06-02T00:00:00+0000",
+      "mu": "2021-09-06T00:00:00+0000",
+      "digitalId": 56888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/60afe2a595293",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.M. Guera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93644,
+      "title": "Heroes Reborn: American Knights (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93644/heroes_reborn_american_knights_2021_1",
+      "seriesId": 31995,
+      "seriesName": "Heroes Reborn: American Knights (2021)",
+      "onSale": "2021-06-02T00:00:00+0000",
+      "mu": "2021-09-06T00:00:00+0000",
+      "digitalId": 56891,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/60afe2b070485",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Christopher Allen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Grist",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93636,
+      "title": "Heroes Reborn: Marvel Double Action (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93636/heroes_reborn_marvel_double_action_2021_1",
+      "seriesId": 31989,
+      "seriesName": "Heroes Reborn: Marvel Double Action (2021)",
+      "onSale": "2021-06-02T00:00:00+0000",
+      "mu": "2021-09-13T00:00:00+0000",
+      "digitalId": 56892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/60afe2a489027",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93641,
+      "title": "Heroes Reborn: Squadron Savage (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93641/heroes_reborn_squadron_savage_2021_1",
+      "seriesId": 31993,
+      "seriesName": "Heroes Reborn: Squadron Savage (2021)",
+      "onSale": "2021-06-09T00:00:00+0000",
+      "mu": "2021-09-13T00:00:00+0000",
+      "digitalId": 56894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/60afe2696cae1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Luca Pizzari",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93630,
+      "title": "Heroes Reborn: Night-Gwen (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93630/heroes_reborn_night-gwen_2021_1",
+      "seriesId": 31983,
+      "seriesName": "Heroes Reborn: Night-Gwen (2021)",
+      "onSale": "2021-06-09T00:00:00+0000",
+      "mu": "2021-09-13T00:00:00+0000",
+      "digitalId": 56893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/60afe2696eb5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93052,
+      "title": "Heroes Reborn (2021) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/93052/heroes_reborn_2021_6",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-06-09T00:00:00+0000",
+      "mu": "2021-09-13T00:00:00+0000",
+      "digitalId": 56889,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/60afe25141409",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Erica D'URSO",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93053,
+      "title": "Heroes Reborn (2021) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/93053/heroes_reborn_2021_7",
+      "seriesId": 31815,
+      "seriesName": "Heroes Reborn (2021)",
+      "onSale": "2021-06-16T00:00:00+0000",
+      "mu": "2021-09-20T00:00:00+0000",
+      "digitalId": 56890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/609ed7c8765cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93645,
+      "title": "Heroes Reborn: Weapon X & Final Flight (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93645/heroes_reborn_weapon_x_final_flight_2021_1",
+      "seriesId": 31996,
+      "seriesName": "Heroes Reborn: Weapon X & Final Flight (2021)",
+      "onSale": "2021-06-16T00:00:00+0000",
+      "mu": "2021-09-20T00:00:00+0000",
+      "digitalId": 56895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/60cd0f7ab0190",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Roland Boschi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92794,
+      "title": "Heroes Return (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/92794/heroes_return_2021_1",
+      "seriesId": 31709,
+      "seriesName": "Heroes Return (2021)",
+      "onSale": "2021-06-23T00:00:00+0000",
+      "mu": "2021-09-27T00:00:00+0000",
+      "digitalId": 56896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/60cd0f3d91707",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

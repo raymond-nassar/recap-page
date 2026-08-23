@@ -1,0 +1,3309 @@
+{
+  "id": "war-of-the-realms",
+  "inventoryId": "war-of-the-realms",
+  "packetDigest": "1a14ff7aeef925329a961b323c7c03fdf8817378f6cb3073441ff7d99ad44b2d",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/war-of-the-realms-reading-order/",
+  "sourceSection": "The War of the Realms Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 66,
+  "excludedSourceReferences": [
+    "Pre-checklist road material",
+    "Recommended Tie-In labels and explanatory prose",
+    "Collected editions"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "war-of-the-realms",
+    "name": "The War of the Realms",
+    "description": "Malekith invades Earth, drawing Thor and Marvel heroes into a war across the ten realms.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "war-of-the-realms.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/war-of-the-realms-reading-order/",
+    "sourceSection": "The War of the Realms Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "war_of_the_realms.json",
+    "characters": [
+      "Thor",
+      "Malekith",
+      "Avengers",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "War of the Realms",
+      "Thor",
+      "Malekith",
+      "ten realms"
+    ],
+    "expect": 66,
+    "timeline": 2019,
+    "coverIssueId": 71271
+  },
+  "candidateMetadata": [
+    {
+      "id": 69970,
+      "title": "Tony Stark: Iron Man",
+      "issueTitle": "Tony Stark: Iron Man (2018) #12",
+      "seriesTitle": "Tony Stark: Iron Man",
+      "apiSeriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "seriesId": 24309,
+      "issueNumber": "12",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/69970/tony_stark_iron_man_2018_12",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 70797,
+      "title": "Tony Stark: Iron Man",
+      "issueTitle": "Tony Stark: Iron Man (2018) #13",
+      "seriesTitle": "Tony Stark: Iron Man",
+      "apiSeriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "seriesId": 24309,
+      "issueNumber": "13",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70797/tony_stark_iron_man_2018_13",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 71271,
+      "title": "War of the Realms",
+      "issueTitle": "War of the Realms (2019) #1",
+      "seriesTitle": "War of the Realms",
+      "apiSeriesName": "War of the Realms (2019)",
+      "seriesId": 25991,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71271/war_of_the_realms_2019_1",
+      "onSaleDate": "2019-04-03T00:00:00+0000"
+    },
+    {
+      "id": 71217,
+      "title": "The Unbeatable Squirrel Girl",
+      "issueTitle": "The Unbeatable Squirrel Girl (2015) #43",
+      "seriesTitle": "The Unbeatable Squirrel Girl",
+      "apiSeriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "seriesId": 20620,
+      "issueNumber": "43",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71217/the_unbeatable_squirrel_girl_2015_43",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 76331,
+      "title": "War of the Realms: Journey Into Mystery",
+      "issueTitle": "War of the Realms: Journey Into Mystery (2019) #1",
+      "seriesTitle": "War of the Realms: Journey Into Mystery",
+      "apiSeriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "seriesId": 27320,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76331/war_of_the_realms_journey_into_mystery_2019_1",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 73996,
+      "title": "Asgardians of the Galaxy",
+      "issueTitle": "Asgardians of the Galaxy (2018) #8",
+      "seriesTitle": "Asgardians of the Galaxy",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "8",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73996/asgardians_of_the_galaxy_2018_8",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 76615,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #1",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
+    },
+    {
+      "id": 76616,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #2",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 77259,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #3",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 70769,
+      "title": "Moon Girl and Devil Dinosaur",
+      "issueTitle": "Moon Girl and Devil Dinosaur (2015) #43",
+      "seriesTitle": "Moon Girl and Devil Dinosaur",
+      "apiSeriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "seriesId": 20839,
+      "issueNumber": "43",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70769/moon_girl_and_devil_dinosaur_2015_43",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 69934,
+      "title": "Thor",
+      "issueTitle": "Thor (2018) #12",
+      "seriesTitle": "Thor",
+      "apiSeriesName": "Thor (2018 - 2019)",
+      "seriesId": 24308,
+      "issueNumber": "12",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/69934/thor_2018_12",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 71273,
+      "title": "War of the Realms",
+      "issueTitle": "War of the Realms (2019) #2",
+      "seriesTitle": "War of the Realms",
+      "apiSeriesName": "War of the Realms (2019)",
+      "seriesId": 25991,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71273/war_of_the_realms_2019_2",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 73997,
+      "title": "Asgardians of the Galaxy",
+      "issueTitle": "Asgardians of the Galaxy (2018) #9",
+      "seriesTitle": "Asgardians of the Galaxy",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "9",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73997/asgardians_of_the_galaxy_2018_9",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 75886,
+      "title": "War of the Realms: The Punisher",
+      "issueTitle": "War of the Realms: The Punisher (2019) #1",
+      "seriesTitle": "War of the Realms: The Punisher",
+      "apiSeriesName": "War of the Realms: The Punisher (2019)",
+      "seriesId": 27244,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75886/war_of_the_realms_the_punisher_2019_1",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 75887,
+      "title": "War of the Realms: The Punisher",
+      "issueTitle": "War of the Realms: The Punisher (2019) #2",
+      "seriesTitle": "War of the Realms: The Punisher",
+      "apiSeriesName": "War of the Realms: The Punisher (2019)",
+      "seriesId": 27244,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75887/war_of_the_realms_the_punisher_2019_2",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 75888,
+      "title": "War of the Realms: The Punisher",
+      "issueTitle": "War of the Realms: The Punisher (2019) #3",
+      "seriesTitle": "War of the Realms: The Punisher",
+      "apiSeriesName": "War of the Realms: The Punisher (2019)",
+      "seriesId": 27244,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75888/war_of_the_realms_the_punisher_2019_3",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 68016,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (2018) #10",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (2018 - Present)",
+      "seriesId": 24554,
+      "issueNumber": "10",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/68016/fantastic_four_2018_10",
+      "onSaleDate": "2019-05-29T00:00:00+0000"
+    },
+    {
+      "id": 71051,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2018) #18",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2018 - 2023)",
+      "seriesId": 24229,
+      "issueNumber": "18",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71051/avengers_2018_18",
+      "onSaleDate": "2019-04-24T00:00:00+0000"
+    },
+    {
+      "id": 71052,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2018) #19",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2018 - 2023)",
+      "seriesId": 24229,
+      "issueNumber": "19",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71052/avengers_2018_19",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 74065,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #13",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "13",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74065/venom_2018_13",
+      "onSaleDate": "2019-04-24T00:00:00+0000"
+    },
+    {
+      "id": 74066,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #14",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "14",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74066/venom_2018_14",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 74067,
+      "title": "Venom",
+      "issueTitle": "Venom (2018) #15",
+      "seriesTitle": "Venom",
+      "apiSeriesName": "Venom (2018 - 2021)",
+      "seriesId": 24310,
+      "issueNumber": "15",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74067/venom_2018_15",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 76332,
+      "title": "War of the Realms: Uncanny X-Men",
+      "issueTitle": "War of the Realms: Uncanny X-Men (2019) #1",
+      "seriesTitle": "War of the Realms: Uncanny X-Men",
+      "apiSeriesName": "War of the Realms: Uncanny X-Men (2019)",
+      "seriesId": 27319,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76332/war_of_the_realms_uncanny_x-men_2019_1",
+      "onSaleDate": "2019-04-24T00:00:00+0000"
+    },
+    {
+      "id": 71361,
+      "title": "Superior Spider-Man",
+      "issueTitle": "Superior Spider-Man (2018) #7",
+      "seriesTitle": "Superior Spider-Man",
+      "apiSeriesName": "Superior Spider-Man (2018 - 2019)",
+      "seriesId": 26005,
+      "issueNumber": "7",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71361/superior_spider-man_2018_7",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 75448,
+      "title": "Giant-Man",
+      "issueTitle": "Giant-Man (2019) #1",
+      "seriesTitle": "Giant-Man",
+      "apiSeriesName": "Giant-Man (2019)",
+      "seriesId": 27128,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75448/giant-man_2019_1",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 75450,
+      "title": "Giant-Man",
+      "issueTitle": "Giant-Man (2019) #2",
+      "seriesTitle": "Giant-Man",
+      "apiSeriesName": "Giant-Man (2019)",
+      "seriesId": 27128,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75450/giant-man_2019_2",
+      "onSaleDate": "2019-05-29T00:00:00+0000"
+    },
+    {
+      "id": 75451,
+      "title": "Giant-Man",
+      "issueTitle": "Giant-Man (2019) #3",
+      "seriesTitle": "Giant-Man",
+      "apiSeriesName": "Giant-Man (2019)",
+      "seriesId": 27128,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75451/giant-man_2019_3",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 71274,
+      "title": "War of the Realms",
+      "issueTitle": "War of the Realms (2019) #3",
+      "seriesTitle": "War of the Realms",
+      "apiSeriesName": "War of the Realms (2019)",
+      "seriesId": 25991,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71274/war_of_the_realms_2019_3",
+      "onSaleDate": "2019-05-01T00:00:00+0000"
+    },
+    {
+      "id": 76333,
+      "title": "War of the Realms: War Scrolls",
+      "issueTitle": "War of the Realms: War Scrolls (2019) #1",
+      "seriesTitle": "War of the Realms: War Scrolls",
+      "apiSeriesName": "War of the Realms: War Scrolls (2019)",
+      "seriesId": 27382,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76333/war_of_the_realms_war_scrolls_2019_1",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 76618,
+      "title": "War of the Realms: War Scrolls",
+      "issueTitle": "War of the Realms: War Scrolls (2019) #2",
+      "seriesTitle": "War of the Realms: War Scrolls",
+      "apiSeriesName": "War of the Realms: War Scrolls (2019)",
+      "seriesId": 27382,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76618/war_of_the_realms_war_scrolls_2019_2",
+      "onSaleDate": "2019-05-29T00:00:00+0000"
+    },
+    {
+      "id": 75484,
+      "title": "War Of The Realms Strikeforce: The War Avengers",
+      "issueTitle": "War Of The Realms Strikeforce: The War Avengers (2019) #1",
+      "seriesTitle": "War Of The Realms Strikeforce: The War Avengers",
+      "apiSeriesName": "War Of The Realms Strikeforce: The War Avengers (2019)",
+      "seriesId": 27139,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75484/war_of_the_realms_strikeforce_the_war_avengers_2019_1",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 75482,
+      "title": "War of the Realms Strikeforce: The Land of Giants",
+      "issueTitle": "War of the Realms Strikeforce: The Land of Giants (2019) #1",
+      "seriesTitle": "War of the Realms Strikeforce: The Land of Giants",
+      "apiSeriesName": "War of the Realms Strikeforce: The Land of Giants (2019)",
+      "seriesId": 27137,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75482/war_of_the_realms_strikeforce_the_land_of_giants_2019_1",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 71362,
+      "title": "Superior Spider-Man",
+      "issueTitle": "Superior Spider-Man (2018) #8",
+      "seriesTitle": "Superior Spider-Man",
+      "apiSeriesName": "Superior Spider-Man (2018 - 2019)",
+      "seriesId": 26005,
+      "issueNumber": "8",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71362/superior_spider-man_2018_8",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 73808,
+      "title": "Champions",
+      "issueTitle": "Champions (2019) #5",
+      "seriesTitle": "Champions",
+      "apiSeriesName": "Champions (2019)",
+      "seriesId": 26592,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73808/champions_2019_5",
+      "onSaleDate": "2019-05-01T00:00:00+0000"
+    },
+    {
+      "id": 73809,
+      "title": "Champions",
+      "issueTitle": "Champions (2019) #6",
+      "seriesTitle": "Champions",
+      "apiSeriesName": "Champions (2019)",
+      "seriesId": 26592,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73809/champions_2019_6",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 75483,
+      "title": "War of the Realms Strikeforce: The Dark Elf Realm",
+      "issueTitle": "War of the Realms Strikeforce: The Dark Elf Realm (2019) #1",
+      "seriesTitle": "War of the Realms Strikeforce: The Dark Elf Realm",
+      "apiSeriesName": "War of the Realms Strikeforce: The Dark Elf Realm (2019)",
+      "seriesId": 27138,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75483/war_of_the_realms_strikeforce_the_dark_elf_realm_2019_1",
+      "onSaleDate": "2019-05-01T00:00:00+0000"
+    },
+    {
+      "id": 70791,
+      "title": "Thor",
+      "issueTitle": "Thor (2018) #13",
+      "seriesTitle": "Thor",
+      "apiSeriesName": "Thor (2018 - 2019)",
+      "seriesId": 24308,
+      "issueNumber": "13",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70791/thor_2018_13",
+      "onSaleDate": "2019-05-29T00:00:00+0000"
+    },
+    {
+      "id": 76613,
+      "title": "War of the Realms: Journey Into Mystery",
+      "issueTitle": "War of the Realms: Journey Into Mystery (2019) #2",
+      "seriesTitle": "War of the Realms: Journey Into Mystery",
+      "apiSeriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "seriesId": 27320,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76613/war_of_the_realms_journey_into_mystery_2019_2",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
+    },
+    {
+      "id": 76614,
+      "title": "War of the Realms: Journey Into Mystery",
+      "issueTitle": "War of the Realms: Journey Into Mystery (2019) #3",
+      "seriesTitle": "War of the Realms: Journey Into Mystery",
+      "apiSeriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "seriesId": 27320,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76614/war_of_the_realms_journey_into_mystery_2019_3",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 76910,
+      "title": "War of the Realms: Journey Into Mystery",
+      "issueTitle": "War of the Realms: Journey Into Mystery (2019) #4",
+      "seriesTitle": "War of the Realms: Journey Into Mystery",
+      "apiSeriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "seriesId": 27320,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76910/war_of_the_realms_journey_into_mystery_2019_4",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 71218,
+      "title": "The Unbeatable Squirrel Girl",
+      "issueTitle": "The Unbeatable Squirrel Girl (2015) #44",
+      "seriesTitle": "The Unbeatable Squirrel Girl",
+      "apiSeriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "seriesId": 20620,
+      "issueNumber": "44",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71218/the_unbeatable_squirrel_girl_2015_44",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
+    },
+    {
+      "id": 71219,
+      "title": "The Unbeatable Squirrel Girl",
+      "issueTitle": "The Unbeatable Squirrel Girl (2015) #45",
+      "seriesTitle": "The Unbeatable Squirrel Girl",
+      "apiSeriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "seriesId": 20620,
+      "issueNumber": "45",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71219/the_unbeatable_squirrel_girl_2015_45",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 71275,
+      "title": "War of the Realms",
+      "issueTitle": "War of the Realms (2019) #4",
+      "seriesTitle": "War of the Realms",
+      "apiSeriesName": "War of the Realms (2019)",
+      "seriesId": 25991,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71275/war_of_the_realms_2019_4",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 76442,
+      "title": "Spider-Man & the League of Realms",
+      "issueTitle": "Spider-Man & the League of Realms (2019) #1",
+      "seriesTitle": "Spider-Man & the League of Realms",
+      "apiSeriesName": "Spider-Man & the League of Realms (2019)",
+      "seriesId": 27419,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76442/spider-man_the_league_of_realms_2019_1",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 76443,
+      "title": "Spider-Man & the League of Realms",
+      "issueTitle": "Spider-Man & the League of Realms (2019) #2",
+      "seriesTitle": "Spider-Man & the League of Realms",
+      "apiSeriesName": "Spider-Man & the League of Realms (2019)",
+      "seriesId": 27419,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76443/spider-man_the_league_of_realms_2019_2",
+      "onSaleDate": "2019-05-29T00:00:00+0000"
+    },
+    {
+      "id": 77262,
+      "title": "War of the Realms: War Scrolls",
+      "issueTitle": "War of the Realms: War Scrolls (2019) #3",
+      "seriesTitle": "War of the Realms: War Scrolls",
+      "apiSeriesName": "War of the Realms: War Scrolls (2019)",
+      "seriesId": 27382,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77262/war_of_the_realms_war_scrolls_2019_3",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 77255,
+      "title": "Spider-Man & the League of Realms",
+      "issueTitle": "Spider-Man & the League of Realms (2019) #3",
+      "seriesTitle": "Spider-Man & the League of Realms",
+      "apiSeriesName": "Spider-Man & the League of Realms (2019)",
+      "seriesId": 27419,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77255/spider-man_the_league_of_realms_2019_3",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 76617,
+      "title": "War of the Realms: Uncanny X-Men",
+      "issueTitle": "War of the Realms: Uncanny X-Men (2019) #2",
+      "seriesTitle": "War of the Realms: Uncanny X-Men",
+      "apiSeriesName": "War of the Realms: Uncanny X-Men (2019)",
+      "seriesId": 27319,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76617/war_of_the_realms_uncanny_x-men_2019_2",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 77261,
+      "title": "War of the Realms: Uncanny X-Men",
+      "issueTitle": "War of the Realms: Uncanny X-Men (2019) #3",
+      "seriesTitle": "War of the Realms: Uncanny X-Men",
+      "apiSeriesName": "War of the Realms: Uncanny X-Men (2019)",
+      "seriesId": 27319,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77261/war_of_the_realms_uncanny_x-men_2019_3",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 70755,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2018) #13",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2018 - 2019)",
+      "seriesId": 24294,
+      "issueNumber": "13",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70755/deadpool_2018_13",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 70756,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2018) #14",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2018 - 2019)",
+      "seriesId": 24294,
+      "issueNumber": "14",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70756/deadpool_2018_14",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 74006,
+      "title": "Captain Marvel",
+      "issueTitle": "Captain Marvel (2019) #6",
+      "seriesTitle": "Captain Marvel",
+      "apiSeriesName": "Captain Marvel (2019 - 2023)",
+      "seriesId": 26673,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74006/captain_marvel_2019_6",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 74007,
+      "title": "Captain Marvel",
+      "issueTitle": "Captain Marvel (2019) #7",
+      "seriesTitle": "Captain Marvel",
+      "apiSeriesName": "Captain Marvel (2019 - 2023)",
+      "seriesId": 26673,
+      "issueNumber": "7",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74007/captain_marvel_2019_7",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 71053,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2018) #20",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2018 - 2023)",
+      "seriesId": 24229,
+      "issueNumber": "20",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71053/avengers_2018_20",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 73998,
+      "title": "Asgardians of the Galaxy",
+      "issueTitle": "Asgardians of the Galaxy (2018) #10",
+      "seriesTitle": "Asgardians of the Galaxy",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "10",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73998/asgardians_of_the_galaxy_2018_10",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    },
+    {
+      "id": 71276,
+      "title": "War of the Realms",
+      "issueTitle": "War of the Realms (2019) #5",
+      "seriesTitle": "War of the Realms",
+      "apiSeriesName": "War of the Realms (2019)",
+      "seriesId": 25991,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71276/war_of_the_realms_2019_5",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 76911,
+      "title": "War of the Realms: Journey Into Mystery",
+      "issueTitle": "War of the Realms: Journey Into Mystery (2019) #5",
+      "seriesTitle": "War of the Realms: Journey Into Mystery",
+      "apiSeriesName": "War of the Realms: Journey Into Mystery (2019)",
+      "seriesId": 27320,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76911/war_of_the_realms_journey_into_mystery_2019_5",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 71277,
+      "title": "War of the Realms",
+      "issueTitle": "War of the Realms (2019) #6",
+      "seriesTitle": "War of the Realms",
+      "apiSeriesName": "War of the Realms (2019)",
+      "seriesId": 25991,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/71277/war_of_the_realms_2019_6",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 70792,
+      "title": "Thor",
+      "issueTitle": "Thor (2018) #14",
+      "seriesTitle": "Thor",
+      "apiSeriesName": "Thor (2018 - 2019)",
+      "seriesId": 24308,
+      "issueNumber": "14",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70792/thor_2018_14",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 77260,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #4",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 74814,
+      "title": "War Of The Realms Omega",
+      "issueTitle": "War Of The Realms Omega (2019) #1",
+      "seriesTitle": "War Of The Realms Omega",
+      "apiSeriesName": "War Of The Realms Omega (2019)",
+      "seriesId": 26914,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74814/war_of_the_realms_omega_2019_1",
+      "onSaleDate": "2019-07-10T00:00:00+0000"
+    },
+    {
+      "id": 77667,
+      "title": "Valkyrie: Jane Foster",
+      "issueTitle": "Valkyrie: Jane Foster (2019) #1",
+      "seriesTitle": "Valkyrie: Jane Foster",
+      "apiSeriesName": "Valkyrie: Jane Foster (2019 - 2020)",
+      "seriesId": 27826,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77667/valkyrie_jane_foster_2019_1",
+      "onSaleDate": "2019-07-24T00:00:00+0000"
+    },
+    {
+      "id": 77480,
+      "title": "Loki",
+      "issueTitle": "Loki (2019) #1",
+      "seriesTitle": "Loki",
+      "apiSeriesName": "Loki (2019)",
+      "seriesId": 27739,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77480/loki_2019_1",
+      "onSaleDate": "2019-07-17T00:00:00+0000"
+    },
+    {
+      "id": 75872,
+      "title": "Punisher Kill Krew",
+      "issueTitle": "Punisher Kill Krew (2019) #1",
+      "seriesTitle": "Punisher Kill Krew",
+      "apiSeriesName": "Punisher Kill Krew (2019)",
+      "seriesId": 27242,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75872/punisher_kill_krew_2019_1",
+      "onSaleDate": "2019-08-14T00:00:00+0000"
+    },
+    {
+      "id": 70793,
+      "title": "Thor",
+      "issueTitle": "Thor (2018) #15",
+      "seriesTitle": "Thor",
+      "apiSeriesName": "Thor (2018 - 2019)",
+      "seriesId": 24308,
+      "issueNumber": "15",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70793/thor_2018_15",
+      "onSaleDate": "2019-07-10T00:00:00+0000"
+    },
+    {
+      "id": 78577,
+      "title": "King Thor",
+      "issueTitle": "King Thor (2019) #1",
+      "seriesTitle": "King Thor",
+      "apiSeriesName": "King Thor (2019)",
+      "seriesId": 27997,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78577/king_thor_2019_1",
+      "onSaleDate": "2019-09-11T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Tony Stark, Iron Man #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Tony Stark: Iron Man",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "seriesId": 24309,
+      "candidateIssueId": 69970,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "69970"
+      ],
+      "selectedIssueId": 69970,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69970/tony_stark_iron_man_2018_12",
+      "resolvedIssueTitle": "Tony Stark: Iron Man (2018) #12",
+      "note": "Marvel series 24309 (Tony Stark: Iron Man (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        69970
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Tony Stark, Iron Man #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Tony Stark: Iron Man",
+      "seriesYear": 2018,
+      "issueNumber": "13",
+      "seriesId": 24309,
+      "candidateIssueId": 70797,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70797"
+      ],
+      "selectedIssueId": 70797,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70797/tony_stark_iron_man_2018_13",
+      "resolvedIssueTitle": "Tony Stark: Iron Man (2018) #13",
+      "note": "Marvel series 24309 (Tony Stark: Iron Man (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70797
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "War of the Realms #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 25991,
+      "candidateIssueId": 71271,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71271"
+      ],
+      "selectedIssueId": 71271,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71271/war_of_the_realms_2019_1",
+      "resolvedIssueTitle": "War of the Realms (2019) #1",
+      "note": "Marvel series 25991 (War of the Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71271
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Unbeatable Squirrel Girl #43",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Unbeatable Squirrel Girl",
+      "seriesYear": 2015,
+      "issueNumber": "43",
+      "seriesId": 20620,
+      "candidateIssueId": 71217,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71217"
+      ],
+      "selectedIssueId": 71217,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71217/the_unbeatable_squirrel_girl_2015_43",
+      "resolvedIssueTitle": "The Unbeatable Squirrel Girl (2015) #43",
+      "note": "Marvel series 20620 (The Unbeatable Squirrel Girl (2015 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71217
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "War of the Realms: Journey Into Mystery #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Journey Into Mystery",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27320,
+      "candidateIssueId": 76331,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76331"
+      ],
+      "selectedIssueId": 76331,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76331/war_of_the_realms_journey_into_mystery_2019_1",
+      "resolvedIssueTitle": "War of the Realms: Journey Into Mystery (2019) #1",
+      "note": "Marvel series 27320 (War of the Realms: Journey Into Mystery (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76331
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Asgardians of the Galaxy #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 25996,
+      "candidateIssueId": 73996,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73996"
+      ],
+      "selectedIssueId": 73996,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73996/asgardians_of_the_galaxy_2018_8",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #8",
+      "note": "Marvel series 25996 (Asgardians of the Galaxy (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73996
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27505,
+      "candidateIssueId": 76615,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76615"
+      ],
+      "selectedIssueId": 76615,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #1",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76615
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27505,
+      "candidateIssueId": 76616,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76616"
+      ],
+      "selectedIssueId": 76616,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #2",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76616
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27505,
+      "candidateIssueId": 77259,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77259"
+      ],
+      "selectedIssueId": 77259,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #3",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77259
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #43",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "43",
+      "seriesId": 20839,
+      "candidateIssueId": 70769,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70769"
+      ],
+      "selectedIssueId": 70769,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70769/moon_girl_and_devil_dinosaur_2015_43",
+      "resolvedIssueTitle": "Moon Girl and Devil Dinosaur (2015) #43",
+      "note": "Marvel series 20839 (Moon Girl and Devil Dinosaur (2015 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70769
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Thor #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "seriesId": 24308,
+      "candidateIssueId": 69934,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "69934"
+      ],
+      "selectedIssueId": 69934,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/69934/thor_2018_12",
+      "resolvedIssueTitle": "Thor (2018) #12",
+      "note": "Marvel series 24308 (Thor (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        69934
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "War of the Realms #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 25991,
+      "candidateIssueId": 71273,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71273"
+      ],
+      "selectedIssueId": 71273,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71273/war_of_the_realms_2019_2",
+      "resolvedIssueTitle": "War of the Realms (2019) #2",
+      "note": "Marvel series 25991 (War of the Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71273
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Asgardians of the Galaxy #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 25996,
+      "candidateIssueId": 73997,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73997"
+      ],
+      "selectedIssueId": 73997,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73997/asgardians_of_the_galaxy_2018_9",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #9",
+      "note": "Marvel series 25996 (Asgardians of the Galaxy (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73997
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "War of the Realms: Punisher #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: The Punisher",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27244,
+      "candidateIssueId": 75886,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75886"
+      ],
+      "selectedIssueId": 75886,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75886/war_of_the_realms_the_punisher_2019_1",
+      "resolvedIssueTitle": "War of the Realms: The Punisher (2019) #1",
+      "note": "Marvel series 27244 (War of the Realms: The Punisher (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75886
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "War of the Realms: Punisher #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: The Punisher",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27244,
+      "candidateIssueId": 75887,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75887"
+      ],
+      "selectedIssueId": 75887,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75887/war_of_the_realms_the_punisher_2019_2",
+      "resolvedIssueTitle": "War of the Realms: The Punisher (2019) #2",
+      "note": "Marvel series 27244 (War of the Realms: The Punisher (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75887
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "War of the Realms: Punisher #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: The Punisher",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27244,
+      "candidateIssueId": 75888,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75888"
+      ],
+      "selectedIssueId": 75888,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75888/war_of_the_realms_the_punisher_2019_3",
+      "resolvedIssueTitle": "War of the Realms: The Punisher (2019) #3",
+      "note": "Marvel series 27244 (War of the Realms: The Punisher (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75888
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Fantastic Four #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 24554,
+      "candidateIssueId": 68016,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "68016"
+      ],
+      "selectedIssueId": 68016,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/68016/fantastic_four_2018_10",
+      "resolvedIssueTitle": "Fantastic Four (2018) #10",
+      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        68016
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Avengers #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "18",
+      "seriesId": 24229,
+      "candidateIssueId": 71051,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71051"
+      ],
+      "selectedIssueId": 71051,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71051/avengers_2018_18",
+      "resolvedIssueTitle": "Avengers (2018) #18",
+      "note": "Marvel series 24229 (Avengers (2018 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71051
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Avengers #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "19",
+      "seriesId": 24229,
+      "candidateIssueId": 71052,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71052"
+      ],
+      "selectedIssueId": 71052,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71052/avengers_2018_19",
+      "resolvedIssueTitle": "Avengers (2018) #19",
+      "note": "Marvel series 24229 (Avengers (2018 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71052
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Venom #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "13",
+      "seriesId": 24310,
+      "candidateIssueId": 74065,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74065"
+      ],
+      "selectedIssueId": 74065,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74065/venom_2018_13",
+      "resolvedIssueTitle": "Venom (2018) #13",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74065
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Venom #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "14",
+      "seriesId": 24310,
+      "candidateIssueId": 74066,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74066"
+      ],
+      "selectedIssueId": 74066,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74066/venom_2018_14",
+      "resolvedIssueTitle": "Venom (2018) #14",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74066
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Venom #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "15",
+      "seriesId": 24310,
+      "candidateIssueId": 74067,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74067"
+      ],
+      "selectedIssueId": 74067,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74067/venom_2018_15",
+      "resolvedIssueTitle": "Venom (2018) #15",
+      "note": "Marvel series 24310 (Venom (2018 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74067
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "War of the Realms: Uncanny X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Uncanny X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27319,
+      "candidateIssueId": 76332,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76332"
+      ],
+      "selectedIssueId": 76332,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76332/war_of_the_realms_uncanny_x-men_2019_1",
+      "resolvedIssueTitle": "War of the Realms: Uncanny X-Men (2019) #1",
+      "note": "Marvel series 27319 (War of the Realms: Uncanny X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76332
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Superior Spider-Man #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 26005,
+      "candidateIssueId": 71361,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71361"
+      ],
+      "selectedIssueId": 71361,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71361/superior_spider-man_2018_7",
+      "resolvedIssueTitle": "Superior Spider-Man (2018) #7",
+      "note": "Marvel series 26005 (Superior Spider-Man (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71361
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Giant-Man #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Giant-Man",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27128,
+      "candidateIssueId": 75448,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75448"
+      ],
+      "selectedIssueId": 75448,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75448/giant-man_2019_1",
+      "resolvedIssueTitle": "Giant-Man (2019) #1",
+      "note": "Marvel series 27128 (Giant-Man (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75448
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Giant-Man #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Giant-Man",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27128,
+      "candidateIssueId": 75450,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75450"
+      ],
+      "selectedIssueId": 75450,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75450/giant-man_2019_2",
+      "resolvedIssueTitle": "Giant-Man (2019) #2",
+      "note": "Marvel series 27128 (Giant-Man (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75450
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Giant-Man #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Giant-Man",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27128,
+      "candidateIssueId": 75451,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75451"
+      ],
+      "selectedIssueId": 75451,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75451/giant-man_2019_3",
+      "resolvedIssueTitle": "Giant-Man (2019) #3",
+      "note": "Marvel series 27128 (Giant-Man (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75451
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "War of the Realms #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 25991,
+      "candidateIssueId": 71274,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71274"
+      ],
+      "selectedIssueId": 71274,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71274/war_of_the_realms_2019_3",
+      "resolvedIssueTitle": "War of the Realms (2019) #3",
+      "note": "Marvel series 25991 (War of the Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71274
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "War of the Realms: War Scrolls #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: War Scrolls",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27382,
+      "candidateIssueId": 76333,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76333"
+      ],
+      "selectedIssueId": 76333,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76333/war_of_the_realms_war_scrolls_2019_1",
+      "resolvedIssueTitle": "War of the Realms: War Scrolls (2019) #1",
+      "note": "Marvel series 27382 (War of the Realms: War Scrolls (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76333
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "War of the Realms: War Scrolls #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: War Scrolls",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27382,
+      "candidateIssueId": 76618,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76618"
+      ],
+      "selectedIssueId": 76618,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76618/war_of_the_realms_war_scrolls_2019_2",
+      "resolvedIssueTitle": "War of the Realms: War Scrolls (2019) #2",
+      "note": "Marvel series 27382 (War of the Realms: War Scrolls (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76618
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "War of the Realms Strikeforce: The War Avengers #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War Of The Realms Strikeforce: The War Avengers",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27139,
+      "candidateIssueId": 75484,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75484"
+      ],
+      "selectedIssueId": 75484,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75484/war_of_the_realms_strikeforce_the_war_avengers_2019_1",
+      "resolvedIssueTitle": "War Of The Realms Strikeforce: The War Avengers (2019) #1",
+      "note": "Marvel series 27139 (War Of The Realms Strikeforce: The War Avengers (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75484
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "War of the Realms Strikeforce: The Land of Giants #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms Strikeforce: The Land of Giants",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27137,
+      "candidateIssueId": 75482,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75482"
+      ],
+      "selectedIssueId": 75482,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75482/war_of_the_realms_strikeforce_the_land_of_giants_2019_1",
+      "resolvedIssueTitle": "War of the Realms Strikeforce: The Land of Giants (2019) #1",
+      "note": "Marvel series 27137 (War of the Realms Strikeforce: The Land of Giants (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75482
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Superior Spider-Man #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 26005,
+      "candidateIssueId": 71362,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71362"
+      ],
+      "selectedIssueId": 71362,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71362/superior_spider-man_2018_8",
+      "resolvedIssueTitle": "Superior Spider-Man (2018) #8",
+      "note": "Marvel series 26005 (Superior Spider-Man (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71362
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Champions #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Champions",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26592,
+      "candidateIssueId": 73808,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73808"
+      ],
+      "selectedIssueId": 73808,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73808/champions_2019_5",
+      "resolvedIssueTitle": "Champions (2019) #5",
+      "note": "Marvel series 26592 (Champions (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73808
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Champions #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Champions",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26592,
+      "candidateIssueId": 73809,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73809"
+      ],
+      "selectedIssueId": 73809,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73809/champions_2019_6",
+      "resolvedIssueTitle": "Champions (2019) #6",
+      "note": "Marvel series 26592 (Champions (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73809
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "War of the Realms Strikeforce: The Dark Elf Realm #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms Strikeforce: The Dark Elf Realm",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27138,
+      "candidateIssueId": 75483,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75483"
+      ],
+      "selectedIssueId": 75483,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75483/war_of_the_realms_strikeforce_the_dark_elf_realm_2019_1",
+      "resolvedIssueTitle": "War of the Realms Strikeforce: The Dark Elf Realm (2019) #1",
+      "note": "Marvel series 27138 (War of the Realms Strikeforce: The Dark Elf Realm (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75483
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Thor #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2018,
+      "issueNumber": "13",
+      "seriesId": 24308,
+      "candidateIssueId": 70791,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70791"
+      ],
+      "selectedIssueId": 70791,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70791/thor_2018_13",
+      "resolvedIssueTitle": "Thor (2018) #13",
+      "note": "Marvel series 24308 (Thor (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70791
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "War of the Realms: Journey Into Mystery #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Journey Into Mystery",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27320,
+      "candidateIssueId": 76613,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76613"
+      ],
+      "selectedIssueId": 76613,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76613/war_of_the_realms_journey_into_mystery_2019_2",
+      "resolvedIssueTitle": "War of the Realms: Journey Into Mystery (2019) #2",
+      "note": "Marvel series 27320 (War of the Realms: Journey Into Mystery (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76613
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "War of the Realms: Journey Into Mystery #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Journey Into Mystery",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27320,
+      "candidateIssueId": 76614,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76614"
+      ],
+      "selectedIssueId": 76614,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76614/war_of_the_realms_journey_into_mystery_2019_3",
+      "resolvedIssueTitle": "War of the Realms: Journey Into Mystery (2019) #3",
+      "note": "Marvel series 27320 (War of the Realms: Journey Into Mystery (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76614
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "War of the Realms: Journey Into Mystery #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Journey Into Mystery",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27320,
+      "candidateIssueId": 76910,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76910"
+      ],
+      "selectedIssueId": 76910,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76910/war_of_the_realms_journey_into_mystery_2019_4",
+      "resolvedIssueTitle": "War of the Realms: Journey Into Mystery (2019) #4",
+      "note": "Marvel series 27320 (War of the Realms: Journey Into Mystery (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76910
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Unbeatable Squirrel Girl #44",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Unbeatable Squirrel Girl",
+      "seriesYear": 2015,
+      "issueNumber": "44",
+      "seriesId": 20620,
+      "candidateIssueId": 71218,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71218"
+      ],
+      "selectedIssueId": 71218,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71218/the_unbeatable_squirrel_girl_2015_44",
+      "resolvedIssueTitle": "The Unbeatable Squirrel Girl (2015) #44",
+      "note": "Marvel series 20620 (The Unbeatable Squirrel Girl (2015 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71218
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Unbeatable Squirrel Girl #45",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Unbeatable Squirrel Girl",
+      "seriesYear": 2015,
+      "issueNumber": "45",
+      "seriesId": 20620,
+      "candidateIssueId": 71219,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71219"
+      ],
+      "selectedIssueId": 71219,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71219/the_unbeatable_squirrel_girl_2015_45",
+      "resolvedIssueTitle": "The Unbeatable Squirrel Girl (2015) #45",
+      "note": "Marvel series 20620 (The Unbeatable Squirrel Girl (2015 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71219
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "War of the Realms #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 25991,
+      "candidateIssueId": 71275,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71275"
+      ],
+      "selectedIssueId": 71275,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71275/war_of_the_realms_2019_4",
+      "resolvedIssueTitle": "War of the Realms (2019) #4",
+      "note": "Marvel series 25991 (War of the Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71275
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Spider-Man and the League of Realms #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Man & the League of Realms",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27419,
+      "candidateIssueId": 76442,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76442"
+      ],
+      "selectedIssueId": 76442,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76442/spider-man_the_league_of_realms_2019_1",
+      "resolvedIssueTitle": "Spider-Man & the League of Realms (2019) #1",
+      "note": "Marvel series 27419 (Spider-Man & the League of Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76442
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Spider-Man and the League of Realms #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Man & the League of Realms",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27419,
+      "candidateIssueId": 76443,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76443"
+      ],
+      "selectedIssueId": 76443,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76443/spider-man_the_league_of_realms_2019_2",
+      "resolvedIssueTitle": "Spider-Man & the League of Realms (2019) #2",
+      "note": "Marvel series 27419 (Spider-Man & the League of Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76443
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "War of the Realms: War Scrolls #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: War Scrolls",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27382,
+      "candidateIssueId": 77262,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77262"
+      ],
+      "selectedIssueId": 77262,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77262/war_of_the_realms_war_scrolls_2019_3",
+      "resolvedIssueTitle": "War of the Realms: War Scrolls (2019) #3",
+      "note": "Marvel series 27382 (War of the Realms: War Scrolls (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77262
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Spider-Man & The League of Realms #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Man & the League of Realms",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27419,
+      "candidateIssueId": 77255,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77255"
+      ],
+      "selectedIssueId": 77255,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77255/spider-man_the_league_of_realms_2019_3",
+      "resolvedIssueTitle": "Spider-Man & the League of Realms (2019) #3",
+      "note": "Marvel series 27419 (Spider-Man & the League of Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77255
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "War of the Realms: Uncanny X-Men #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Uncanny X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27319,
+      "candidateIssueId": 76617,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76617"
+      ],
+      "selectedIssueId": 76617,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76617/war_of_the_realms_uncanny_x-men_2019_2",
+      "resolvedIssueTitle": "War of the Realms: Uncanny X-Men (2019) #2",
+      "note": "Marvel series 27319 (War of the Realms: Uncanny X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76617
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "War of the Realms: Uncanny X-Men #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Uncanny X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27319,
+      "candidateIssueId": 77261,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77261"
+      ],
+      "selectedIssueId": 77261,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77261/war_of_the_realms_uncanny_x-men_2019_3",
+      "resolvedIssueTitle": "War of the Realms: Uncanny X-Men (2019) #3",
+      "note": "Marvel series 27319 (War of the Realms: Uncanny X-Men (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77261
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Deadpool #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2018,
+      "issueNumber": "13",
+      "seriesId": 24294,
+      "candidateIssueId": 70755,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70755"
+      ],
+      "selectedIssueId": 70755,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70755/deadpool_2018_13",
+      "resolvedIssueTitle": "Deadpool (2018) #13",
+      "note": "Marvel series 24294 (Deadpool (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70755
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Deadpool #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2018,
+      "issueNumber": "14",
+      "seriesId": 24294,
+      "candidateIssueId": 70756,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70756"
+      ],
+      "selectedIssueId": 70756,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70756/deadpool_2018_14",
+      "resolvedIssueTitle": "Deadpool (2018) #14",
+      "note": "Marvel series 24294 (Deadpool (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70756
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Captain Marvel #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26673,
+      "candidateIssueId": 74006,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74006"
+      ],
+      "selectedIssueId": 74006,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74006/captain_marvel_2019_6",
+      "resolvedIssueTitle": "Captain Marvel (2019) #6",
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74006
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Captain Marvel #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "seriesId": 26673,
+      "candidateIssueId": 74007,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74007"
+      ],
+      "selectedIssueId": 74007,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74007/captain_marvel_2019_7",
+      "resolvedIssueTitle": "Captain Marvel (2019) #7",
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74007
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Avengers #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "20",
+      "seriesId": 24229,
+      "candidateIssueId": 71053,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71053"
+      ],
+      "selectedIssueId": 71053,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71053/avengers_2018_20",
+      "resolvedIssueTitle": "Avengers (2018) #20",
+      "note": "Marvel series 24229 (Avengers (2018 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71053
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Asgardians of the Galaxy #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 25996,
+      "candidateIssueId": 73998,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73998"
+      ],
+      "selectedIssueId": 73998,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73998/asgardians_of_the_galaxy_2018_10",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #10",
+      "note": "Marvel series 25996 (Asgardians of the Galaxy (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73998
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "War of the Realms #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 25991,
+      "candidateIssueId": 71276,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71276"
+      ],
+      "selectedIssueId": 71276,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71276/war_of_the_realms_2019_5",
+      "resolvedIssueTitle": "War of the Realms (2019) #5",
+      "note": "Marvel series 25991 (War of the Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71276
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "War of the Realms: Journey Into Mystery #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: Journey Into Mystery",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27320,
+      "candidateIssueId": 76911,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76911"
+      ],
+      "selectedIssueId": 76911,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76911/war_of_the_realms_journey_into_mystery_2019_5",
+      "resolvedIssueTitle": "War of the Realms: Journey Into Mystery (2019) #5",
+      "note": "Marvel series 27320 (War of the Realms: Journey Into Mystery (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76911
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "War of the Realms #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 25991,
+      "candidateIssueId": 71277,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71277"
+      ],
+      "selectedIssueId": 71277,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71277/war_of_the_realms_2019_6",
+      "resolvedIssueTitle": "War of the Realms (2019) #6",
+      "note": "Marvel series 25991 (War of the Realms (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71277
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Thor #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2018,
+      "issueNumber": "14",
+      "seriesId": 24308,
+      "candidateIssueId": 70792,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70792"
+      ],
+      "selectedIssueId": 70792,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70792/thor_2018_14",
+      "resolvedIssueTitle": "Thor (2018) #14",
+      "note": "Marvel series 24308 (Thor (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70792
+      ]
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27505,
+      "candidateIssueId": 77260,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77260"
+      ],
+      "selectedIssueId": 77260,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #4",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77260
+      ]
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "War of the Realms: Omega",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "War Of The Realms Omega",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26914,
+      "candidateIssueId": 74814,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "74814"
+      ],
+      "selectedIssueId": 74814,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74814/war_of_the_realms_omega_2019_1",
+      "resolvedIssueTitle": "War Of The Realms Omega (2019) #1",
+      "note": "Marvel series 26914 (War Of The Realms Omega (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74814
+      ]
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Valkyrie #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Valkyrie: Jane Foster",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27826,
+      "candidateIssueId": 77667,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77667"
+      ],
+      "selectedIssueId": 77667,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77667/valkyrie_jane_foster_2019_1",
+      "resolvedIssueTitle": "Valkyrie: Jane Foster (2019) #1",
+      "note": "Marvel series 27826 (Valkyrie: Jane Foster (2019 - 2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77667
+      ]
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Loki #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Loki",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27739,
+      "candidateIssueId": 77480,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77480"
+      ],
+      "selectedIssueId": 77480,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77480/loki_2019_1",
+      "resolvedIssueTitle": "Loki (2019) #1",
+      "note": "Marvel series 27739 (Loki (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77480
+      ]
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "Punisher Kill Krew",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Punisher Kill Krew",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27242,
+      "candidateIssueId": 75872,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75872"
+      ],
+      "selectedIssueId": 75872,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75872/punisher_kill_krew_2019_1",
+      "resolvedIssueTitle": "Punisher Kill Krew (2019) #1",
+      "note": "Marvel series 27242 (Punisher Kill Krew (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75872
+      ]
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Thor #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2018,
+      "issueNumber": "15",
+      "seriesId": 24308,
+      "candidateIssueId": 70793,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70793"
+      ],
+      "selectedIssueId": 70793,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70793/thor_2018_15",
+      "resolvedIssueTitle": "Thor (2018) #15",
+      "note": "Marvel series 24308 (Thor (2018 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70793
+      ]
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "King Thor",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "King Thor",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27997,
+      "candidateIssueId": 78577,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78577"
+      ],
+      "selectedIssueId": 78577,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78577/king_thor_2019_1",
+      "resolvedIssueTitle": "King Thor (2019) #1",
+      "note": "Marvel series 27997 (King Thor (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78577
+      ]
+    }
+  ],
+  "mappingDigest": "6a7cee46ef9ae023c87deb5aebdecd4dc5011f35e9a98e9a4b1c9e450f22c287",
+  "approvedManifest": {
+    "id": "war-of-the-realms",
+    "name": "The War of the Realms",
+    "description": "Malekith invades Earth, drawing Thor and Marvel heroes into a war across the ten realms.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "war-of-the-realms.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/war-of-the-realms-reading-order/",
+    "sourceSection": "The War of the Realms Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "war_of_the_realms.json",
+    "characters": [
+      "Thor",
+      "Malekith",
+      "Avengers",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "War of the Realms",
+      "Thor",
+      "Malekith",
+      "ten realms"
+    ],
+    "expect": 66,
+    "timeline": 2019,
+    "coverIssueId": 71271
+  },
+  "packetReview": "MRT-002 final central source review",
+  "relationshipReview": {
+    "reportDigest": "e016a7af29fe78305d959ed6c146ca6aed4fc8549570543e71cae799f18251e3",
+    "packetDigest": "1a14ff7aeef925329a961b323c7c03fdf8817378f6cb3073441ff7d99ad44b2d",
+    "mappingDigest": "6a7cee46ef9ae023c87deb5aebdecd4dc5011f35e9a98e9a4b1c9e450f22c287",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "absolute-carnage": "87bbad853038ab891fcf0d48545b5a3e9010da3e784af28f4e06f629ed43165b"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 11 shared issues preserve the complete event checklist inside a broader career-spanning Thor guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "2532aedd5652e328f982d78679622cb7a8a641a6f91d2c70cc77ce817c0e2ea7"
+  }
+}

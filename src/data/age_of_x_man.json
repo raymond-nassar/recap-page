@@ -1,0 +1,1097 @@
+{
+  "id": "age-of-x-man",
+  "name": "Age of X-Man",
+  "description": "An alternate X-Men world where the X-Men confront a society without love.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/age-of-x-man/",
+  "sourceSection": "Age of X-Man Comics Checklist",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T04:08:40.061Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 32,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 72932,
+      "title": "Age of X-Man Alpha (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72932/age_of_x-man_alpha_2019_1",
+      "seriesId": 26328,
+      "seriesName": "Age of X-Man Alpha (2019)",
+      "onSale": "2019-01-30T00:00:00+0000",
+      "mu": "2019-08-05T00:00:00+0000",
+      "digitalId": 50433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/5c48f98271746",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ramon Rosanas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72934,
+      "title": "Age of X-Man: The Marvelous X-Men (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72934/age_of_x-man_the_marvelous_x-men_2019_1",
+      "seriesId": 26330,
+      "seriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "onSale": "2019-02-06T00:00:00+0000",
+      "mu": "2019-08-12T00:00:00+0000",
+      "digitalId": 50566,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5c523bbfc14e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72935,
+      "title": "Age of X-Man: The Marvelous X-Men (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72935/age_of_x-man_the_marvelous_x-men_2019_2",
+      "seriesId": 26330,
+      "seriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50915,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5c802cbe8e522",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72936,
+      "title": "Age of X-Man: The Marvelous X-Men (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72936/age_of_x-man_the_marvelous_x-men_2019_3",
+      "seriesId": 26330,
+      "seriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-10-14T00:00:00+0000",
+      "digitalId": 51121,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5ca3bd58c44cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72937,
+      "title": "Age of X-Man: The Marvelous X-Men (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72937/age_of_x-man_the_marvelous_x-men_2019_4",
+      "seriesId": 26330,
+      "seriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51418,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5cd44db17803c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72938,
+      "title": "Age of X-Man: The Marvelous X-Men (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72938/age_of_x-man_the_marvelous_x-men_2019_5",
+      "seriesId": 26330,
+      "seriesName": "Age of X-Man: The Marvelous X-Men (2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51714,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5cf7e75d6a332",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72939,
+      "title": "Age of X-Man: Nextgen (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72939/age_of_x-man_nextgen_2019_1",
+      "seriesId": 26331,
+      "seriesName": "Age of X-Man: Nextgen (2019)",
+      "onSale": "2019-02-13T00:00:00+0000",
+      "mu": "2019-08-19T00:00:00+0000",
+      "digitalId": 50602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5c5c543847e37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72940,
+      "title": "Age of X-Man: Nextgen (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72940/age_of_x-man_nextgen_2019_2",
+      "seriesId": 26331,
+      "seriesName": "Age of X-Man: Nextgen (2019)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50948,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5c88134b3d1dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72941,
+      "title": "Age of X-Man: Nextgen (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72941/age_of_x-man_nextgen_2019_3",
+      "seriesId": 26331,
+      "seriesName": "Age of X-Man: Nextgen (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/5cacf443d0faa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72942,
+      "title": "Age of X-Man: Nextgen (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72942/age_of_x-man_nextgen_2019_4",
+      "seriesId": 26331,
+      "seriesName": "Age of X-Man: Nextgen (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5cd44c85755b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72943,
+      "title": "Age of X-Man: Nextgen (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72943/age_of_x-man_nextgen_2019_5",
+      "seriesId": 26331,
+      "seriesName": "Age of X-Man: Nextgen (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51747,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5d013071070db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72944,
+      "title": "Age of X-Man: The Amazing Nightcrawler (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72944/age_of_x-man_the_amazing_nightcrawler_2019_1",
+      "seriesId": 26332,
+      "seriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50636,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5c64944f8c48f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michelle Delecki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72945,
+      "title": "Age of X-Man: The Amazing Nightcrawler (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72945/age_of_x-man_the_amazing_nightcrawler_2019_2",
+      "seriesId": 26332,
+      "seriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50949,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5c8814268bff4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michelle Delecki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72946,
+      "title": "Age of X-Man: The Amazing Nightcrawler (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72946/age_of_x-man_the_amazing_nightcrawler_2019_3",
+      "seriesId": 26332,
+      "seriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51147,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5cacf4a06a3d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michelle Delecki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72947,
+      "title": "Age of X-Man: The Amazing Nightcrawler (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72947/age_of_x-man_the_amazing_nightcrawler_2019_4",
+      "seriesId": 26332,
+      "seriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51442,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5cd9caf467f43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michelle Delecki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72948,
+      "title": "Age of X-Man: The Amazing Nightcrawler (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72948/age_of_x-man_the_amazing_nightcrawler_2019_5",
+      "seriesId": 26332,
+      "seriesName": "Age of X-Man: The Amazing Nightcrawler (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51748,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5d01308fef83e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michelle Delecki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72949,
+      "title": "Age of X-Man: X-Tremists (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72949/age_of_x-man_x-tremists_2019_1",
+      "seriesId": 26333,
+      "seriesName": "Age of X-Man: X-Tremists (2019)",
+      "onSale": "2019-02-27T00:00:00+0000",
+      "mu": "2019-09-02T00:00:00+0000",
+      "digitalId": 50659,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5c6ddb5ce85c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Georges Jeanty",
+          "role": "penciler"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72950,
+      "title": "Age of X-Man: X-Tremists (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72950/age_of_x-man_x-tremists_2019_2",
+      "seriesId": 26333,
+      "seriesName": "Age of X-Man: X-Tremists (2019)",
+      "onSale": "2019-03-27T00:00:00+0000",
+      "mu": "2019-09-30T00:00:00+0000",
+      "digitalId": 50969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5c93f522f150a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Georges Jeanty",
+          "role": "penciler"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72951,
+      "title": "Age of X-Man: X-Tremists (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72951/age_of_x-man_x-tremists_2019_3",
+      "seriesId": 26333,
+      "seriesName": "Age of X-Man: X-Tremists (2019)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/5cb8979b554f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Georges Jeanty",
+          "role": "penciler"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72952,
+      "title": "Age of X-Man: X-Tremists (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72952/age_of_x-man_x-tremists_2019_4",
+      "seriesId": 26333,
+      "seriesName": "Age of X-Man: X-Tremists (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5ce4005306009",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Georges Jeanty",
+          "role": "penciler"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72953,
+      "title": "Age of X-Man: X-Tremists (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72953/age_of_x-man_x-tremists_2019_5",
+      "seriesId": 26333,
+      "seriesName": "Age of X-Man: X-Tremists (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5d08f2096d078",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Georges Jeanty",
+          "role": "penciler"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72954,
+      "title": "Age of X-Man: Prisoner X (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72954/age_of_x-man_prisoner_x_2019_1",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-03-06T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 50866,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/5c76f833ee9e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72955,
+      "title": "Age of X-Man: Prisoner X (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72955/age_of_x-man_prisoner_x_2019_2",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5c9bfa359539a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72956,
+      "title": "Age of X-Man: Prisoner X (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72956/age_of_x-man_prisoner_x_2019_3",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5cc0cb8cea413",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72957,
+      "title": "Age of X-Man: Prisoner X (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72957/age_of_x-man_prisoner_x_2019_4",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5ced5c9c7090d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72958,
+      "title": "Age of X-Man: Prisoner X (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72958/age_of_x-man_prisoner_x_2019_5",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-07-03T00:00:00+0000",
+      "mu": "2020-01-06T00:00:00+0000",
+      "digitalId": 51881,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5d126d76652c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Horak",
+          "role": "penciler"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72959,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72959/age_of_x-man_apocalypse_the_x-tracts_2019_1",
+      "seriesId": 26335,
+      "seriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50914,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5c802ce4cd2df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salva Espin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72960,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72960/age_of_x-man_apocalypse_the_x-tracts_2019_2",
+      "seriesId": 26335,
+      "seriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-04-10T00:00:00+0000",
+      "digitalId": 51120,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/5ca3b9e576f87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salva Espin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72961,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72961/age_of_x-man_apocalypse_the_x-tracts_2019_3",
+      "seriesId": 26335,
+      "seriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-05-08T00:00:00+0000",
+      "digitalId": 51397,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5ccb39a75236d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salva Espin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72962,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72962/age_of_x-man_apocalypse_the_x-tracts_2019_4",
+      "seriesId": 26335,
+      "seriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-06-12T00:00:00+0000",
+      "digitalId": 51713,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5cf6d4c86494d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salva Espin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72963,
+      "title": "Age of X-Man: Apocalypse & the X-Tracts (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72963/age_of_x-man_apocalypse_the_x-tracts_2019_5",
+      "seriesId": 26335,
+      "seriesName": "Age of X-Man: Apocalypse & the X-Tracts (2019)",
+      "onSale": "2019-07-10T00:00:00+0000",
+      "mu": "2020-01-13T00:00:00+0000",
+      "digitalId": 51921,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5d1bc2f9d9f48",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salva Espin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72933,
+      "title": "Age Of X-Man Omega (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72933/age_of_x-man_omega_2019_1",
+      "seriesId": 26329,
+      "seriesName": "Age Of X-Man Omega (2019)",
+      "onSale": "2019-07-17T00:00:00+0000",
+      "mu": "2020-01-20T00:00:00+0000",
+      "digitalId": 51950,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5d25ef1a2c235",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Simone Buonfantino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

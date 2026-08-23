@@ -1,0 +1,1789 @@
+{
+  "id": "x-of-swords",
+  "inventoryId": "x-of-swords",
+  "packetDigest": "57ee256e63363c7d7309dc27e482566db38153205e3911a5d7816f22045ac0a0",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+  "sourceSection": "X of Swords Reading Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 25,
+  "excludedSourceReferences": [
+    "The Road to X of Swords",
+    "X of Swords Collected Editions",
+    "Krakin' Krakoa issue coverage note",
+    "Next: Reign of X"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "x-of-swords",
+    "name": "X-Men: X of Swords",
+    "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-of-swords.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+    "sourceSection": "X of Swords Reading Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_of_swords.json",
+    "characters": [
+      "X-Men",
+      "Excalibur",
+      "Wolverine"
+    ],
+    "keywords": [
+      "X of Swords",
+      "Krakoa",
+      "Arakko"
+    ],
+    "expect": 25,
+    "timeline": 2020,
+    "coverIssueId": 85662
+  },
+  "candidateMetadata": [
+    {
+      "id": 85662,
+      "title": "Free Comic Book Day: X-Men",
+      "issueTitle": "Free Comic Book Day: X-Men (2020) #1",
+      "seriesTitle": "Free Comic Book Day: X-Men",
+      "apiSeriesName": "Free Comic Book Day: X-Men (2020)",
+      "seriesId": 30155,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85662/free_comic_book_day_x-men_2020_1",
+      "onSaleDate": "2020-07-15T00:00:00+0000"
+    },
+    {
+      "id": 84380,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (2019) #12",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (2019 - Present)",
+      "seriesId": 27547,
+      "issueNumber": "12",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84380/excalibur_2019_12",
+      "onSaleDate": "2020-09-16T00:00:00+0000"
+    },
+    {
+      "id": 79950,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #12",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "12",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79950/x-men_2019_12",
+      "onSaleDate": "2020-09-16T00:00:00+0000"
+    },
+    {
+      "id": 84337,
+      "title": "X of Swords: Creation",
+      "issueTitle": "X of Swords: Creation (2020) #1",
+      "seriesTitle": "X of Swords: Creation",
+      "apiSeriesName": "X of Swords: Creation (2020)",
+      "seriesId": 29688,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84337/x_of_swords_creation_2020_1",
+      "onSaleDate": "2020-09-23T00:00:00+0000"
+    },
+    {
+      "id": 78749,
+      "title": "X-Factor",
+      "issueTitle": "X-Factor (2020) #4",
+      "seriesTitle": "X-Factor",
+      "apiSeriesName": "X-Factor (2020 - 2021)",
+      "seriesId": 28053,
+      "issueNumber": "4",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78749/x-factor_2020_4",
+      "onSaleDate": "2020-09-30T00:00:00+0000"
+    },
+    {
+      "id": 78729,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (2020) #6",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (2020 - Present)",
+      "seriesId": 28051,
+      "issueNumber": "6",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78729/wolverine_2020_6",
+      "onSaleDate": "2020-10-07T00:00:00+0000"
+    },
+    {
+      "id": 90131,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #13",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "13",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90131/x-force_2019_13",
+      "onSaleDate": "2020-10-07T00:00:00+0000"
+    },
+    {
+      "id": 90081,
+      "title": "Marauders",
+      "issueTitle": "Marauders (2019) #13",
+      "seriesTitle": "Marauders",
+      "apiSeriesName": "Marauders (2019 - 2022)",
+      "seriesId": 27555,
+      "issueNumber": "13",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90081/marauders_2019_13",
+      "onSaleDate": "2020-10-07T00:00:00+0000"
+    },
+    {
+      "id": 85944,
+      "title": "Hellions",
+      "issueTitle": "Hellions (2020) #5",
+      "seriesTitle": "Hellions",
+      "apiSeriesName": "Hellions (2020 - Present)",
+      "seriesId": 30175,
+      "issueNumber": "5",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85944/hellions_2020_5",
+      "onSaleDate": "2020-10-14T00:00:00+0000"
+    },
+    {
+      "id": 90449,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (2019) #13",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (2019 - 2022)",
+      "seriesId": 27557,
+      "issueNumber": "13",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90449/new_mutants_2019_13",
+      "onSaleDate": "2020-10-14T00:00:00+0000"
+    },
+    {
+      "id": 78657,
+      "title": "Cable",
+      "issueTitle": "Cable (2020) #5",
+      "seriesTitle": "Cable",
+      "apiSeriesName": "Cable (2020 - 2021)",
+      "seriesId": 28038,
+      "issueNumber": "5",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78657/cable_2020_5",
+      "onSaleDate": "2020-10-14T00:00:00+0000"
+    },
+    {
+      "id": 84381,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (2019) #13",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (2019 - Present)",
+      "seriesId": 27547,
+      "issueNumber": "13",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84381/excalibur_2019_13",
+      "onSaleDate": "2020-10-21T00:00:00+0000"
+    },
+    {
+      "id": 84427,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #13",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "13",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "onSaleDate": "2020-10-21T00:00:00+0000"
+    },
+    {
+      "id": 84338,
+      "title": "X of Swords: Stasis",
+      "issueTitle": "X of Swords: Stasis (2020) #1",
+      "seriesTitle": "X of Swords: Stasis",
+      "apiSeriesName": "X of Swords: Stasis (2020)",
+      "seriesId": 29689,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84338/x_of_swords_stasis_2020_1",
+      "onSaleDate": "2020-10-28T00:00:00+0000"
+    },
+    {
+      "id": 84428,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #14",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "14",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "onSaleDate": "2020-11-04T00:00:00+0000"
+    },
+    {
+      "id": 90082,
+      "title": "Marauders",
+      "issueTitle": "Marauders (2019) #14",
+      "seriesTitle": "Marauders",
+      "apiSeriesName": "Marauders (2019 - 2022)",
+      "seriesId": 27555,
+      "issueNumber": "14",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90082/marauders_2019_14",
+      "onSaleDate": "2020-11-04T00:00:00+0000"
+    },
+    {
+      "id": 90083,
+      "title": "Marauders",
+      "issueTitle": "Marauders (2019) #15",
+      "seriesTitle": "Marauders",
+      "apiSeriesName": "Marauders (2019 - 2022)",
+      "seriesId": 27555,
+      "issueNumber": "15",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90083/marauders_2019_15",
+      "onSaleDate": "2020-11-11T00:00:00+0000"
+    },
+    {
+      "id": 84382,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (2019) #14",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (2019 - Present)",
+      "seriesId": 27547,
+      "issueNumber": "14",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84382/excalibur_2019_14",
+      "onSaleDate": "2020-11-11T00:00:00+0000"
+    },
+    {
+      "id": 78730,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (2020) #7",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (2020 - Present)",
+      "seriesId": 28051,
+      "issueNumber": "7",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78730/wolverine_2020_7",
+      "onSaleDate": "2020-11-11T00:00:00+0000"
+    },
+    {
+      "id": 90132,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #14",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "14",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90132/x-force_2019_14",
+      "onSaleDate": "2020-11-18T00:00:00+0000"
+    },
+    {
+      "id": 85945,
+      "title": "Hellions",
+      "issueTitle": "Hellions (2020) #6",
+      "seriesTitle": "Hellions",
+      "apiSeriesName": "Hellions (2020 - Present)",
+      "seriesId": 30175,
+      "issueNumber": "6",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85945/hellions_2020_6",
+      "onSaleDate": "2020-11-18T00:00:00+0000"
+    },
+    {
+      "id": 78658,
+      "title": "Cable",
+      "issueTitle": "Cable (2020) #6",
+      "seriesTitle": "Cable",
+      "apiSeriesName": "Cable (2020 - 2021)",
+      "seriesId": 28038,
+      "issueNumber": "6",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/78658/cable_2020_6",
+      "onSaleDate": "2020-11-18T00:00:00+0000"
+    },
+    {
+      "id": 84429,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #15",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "15",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84429/x-men_2019_15",
+      "onSaleDate": "2020-11-25T00:00:00+0000"
+    },
+    {
+      "id": 84383,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (2019) #15",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (2019 - Present)",
+      "seriesId": 27547,
+      "issueNumber": "15",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84383/excalibur_2019_15",
+      "onSaleDate": "2020-11-25T00:00:00+0000"
+    },
+    {
+      "id": 84339,
+      "title": "X Of Swords: Destruction",
+      "issueTitle": "X Of Swords: Destruction (2020) #1",
+      "seriesTitle": "X Of Swords: Destruction",
+      "apiSeriesName": "X Of Swords: Destruction (2020)",
+      "seriesId": 29690,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/84339/x_of_swords_destruction_2020_1",
+      "onSaleDate": "2020-11-25T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Free Comic Book Day 2020: X-Men",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Free Comic Book Day: X-Men",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 30155,
+      "candidateIssueId": 85662,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85662"
+      ],
+      "selectedIssueId": 85662,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85662/free_comic_book_day_x-men_2020_1",
+      "resolvedIssueTitle": "Free Comic Book Day: X-Men (2020) #1",
+      "note": "Marvel series 30155 (Free Comic Book Day: X-Men (2020)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85662
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Excalibur #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "seriesId": 27547,
+      "candidateIssueId": 84380,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84380"
+      ],
+      "selectedIssueId": 84380,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84380/excalibur_2019_12",
+      "resolvedIssueTitle": "Excalibur (2019) #12",
+      "note": "Marvel series 27547 (Excalibur (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84380
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "X-Men #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "seriesId": 27567,
+      "candidateIssueId": 79950,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79950"
+      ],
+      "selectedIssueId": 79950,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79950/x-men_2019_12",
+      "resolvedIssueTitle": "X-Men (2019) #12",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79950
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "X of Swords: Creation #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X of Swords: Creation",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29688,
+      "candidateIssueId": 84337,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84337"
+      ],
+      "selectedIssueId": 84337,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84337/x_of_swords_creation_2020_1",
+      "resolvedIssueTitle": "X of Swords: Creation (2020) #1",
+      "note": "Marvel series 29688 (X of Swords: Creation (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84337
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "X-Factor #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 28053,
+      "candidateIssueId": 78749,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78749"
+      ],
+      "selectedIssueId": 78749,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78749/x-factor_2020_4",
+      "resolvedIssueTitle": "X-Factor (2020) #4",
+      "note": "Marvel series 28053 (X-Factor (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78749
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Wolverine #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28051,
+      "candidateIssueId": 78729,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78729"
+      ],
+      "selectedIssueId": 78729,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78729/wolverine_2020_6",
+      "resolvedIssueTitle": "Wolverine (2020) #6",
+      "note": "Marvel series 28051 (Wolverine (2020 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78729
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "X-Force #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27564,
+      "candidateIssueId": 90131,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90131"
+      ],
+      "selectedIssueId": 90131,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90131/x-force_2019_13",
+      "resolvedIssueTitle": "X-Force (2019) #13",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90131
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Marauders #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27555,
+      "candidateIssueId": 90081,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90081"
+      ],
+      "selectedIssueId": 90081,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90081/marauders_2019_13",
+      "resolvedIssueTitle": "Marauders (2019) #13",
+      "note": "Marvel series 27555 (Marauders (2019 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90081
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Hellions #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hellions",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 30175,
+      "candidateIssueId": 85944,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85944"
+      ],
+      "selectedIssueId": 85944,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85944/hellions_2020_5",
+      "resolvedIssueTitle": "Hellions (2020) #5",
+      "note": "Marvel series 30175 (Hellions (2020 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85944
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "New Mutants #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27557,
+      "candidateIssueId": 90449,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90449"
+      ],
+      "selectedIssueId": 90449,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90449/new_mutants_2019_13",
+      "resolvedIssueTitle": "New Mutants (2019) #13",
+      "note": "Marvel series 27557 (New Mutants (2019 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90449
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Cable #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28038,
+      "candidateIssueId": 78657,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78657"
+      ],
+      "selectedIssueId": 78657,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78657/cable_2020_5",
+      "resolvedIssueTitle": "Cable (2020) #5",
+      "note": "Marvel series 28038 (Cable (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78657
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Excalibur #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27547,
+      "candidateIssueId": 84381,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84381"
+      ],
+      "selectedIssueId": 84381,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84381/excalibur_2019_13",
+      "resolvedIssueTitle": "Excalibur (2019) #13",
+      "note": "Marvel series 27547 (Excalibur (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84381
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "X-Men #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "13",
+      "seriesId": 27567,
+      "candidateIssueId": 84427,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84427"
+      ],
+      "selectedIssueId": 84427,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "resolvedIssueTitle": "X-Men (2019) #13",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84427
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "X of Swords: Stasis #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X of Swords: Stasis",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29689,
+      "candidateIssueId": 84338,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84338"
+      ],
+      "selectedIssueId": 84338,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84338/x_of_swords_stasis_2020_1",
+      "resolvedIssueTitle": "X of Swords: Stasis (2020) #1",
+      "note": "Marvel series 29689 (X of Swords: Stasis (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84338
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "X-Men #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27567,
+      "candidateIssueId": 84428,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84428"
+      ],
+      "selectedIssueId": 84428,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "resolvedIssueTitle": "X-Men (2019) #14",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84428
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Marauders #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27555,
+      "candidateIssueId": 90082,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90082"
+      ],
+      "selectedIssueId": 90082,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90082/marauders_2019_14",
+      "resolvedIssueTitle": "Marauders (2019) #14",
+      "note": "Marvel series 27555 (Marauders (2019 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90082
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Marauders #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27555,
+      "candidateIssueId": 90083,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90083"
+      ],
+      "selectedIssueId": 90083,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90083/marauders_2019_15",
+      "resolvedIssueTitle": "Marauders (2019) #15",
+      "note": "Marvel series 27555 (Marauders (2019 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90083
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Excalibur #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27547,
+      "candidateIssueId": 84382,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84382"
+      ],
+      "selectedIssueId": 84382,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84382/excalibur_2019_14",
+      "resolvedIssueTitle": "Excalibur (2019) #14",
+      "note": "Marvel series 27547 (Excalibur (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84382
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Wolverine #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2020,
+      "issueNumber": "7",
+      "seriesId": 28051,
+      "candidateIssueId": 78730,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78730"
+      ],
+      "selectedIssueId": 78730,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78730/wolverine_2020_7",
+      "resolvedIssueTitle": "Wolverine (2020) #7",
+      "note": "Marvel series 28051 (Wolverine (2020 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78730
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "X-Force #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27564,
+      "candidateIssueId": 90132,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90132"
+      ],
+      "selectedIssueId": 90132,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90132/x-force_2019_14",
+      "resolvedIssueTitle": "X-Force (2019) #14",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90132
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Hellions #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hellions",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 30175,
+      "candidateIssueId": 85945,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85945"
+      ],
+      "selectedIssueId": 85945,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85945/hellions_2020_6",
+      "resolvedIssueTitle": "Hellions (2020) #6",
+      "note": "Marvel series 30175 (Hellions (2020 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85945
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Cable #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28038,
+      "candidateIssueId": 78658,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "78658"
+      ],
+      "selectedIssueId": 78658,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78658/cable_2020_6",
+      "resolvedIssueTitle": "Cable (2020) #6",
+      "note": "Marvel series 28038 (Cable (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78658
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "X-Men #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27567,
+      "candidateIssueId": 84429,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84429"
+      ],
+      "selectedIssueId": 84429,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84429/x-men_2019_15",
+      "resolvedIssueTitle": "X-Men (2019) #15",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84429
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Excalibur #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27547,
+      "candidateIssueId": 84383,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84383"
+      ],
+      "selectedIssueId": 84383,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84383/excalibur_2019_15",
+      "resolvedIssueTitle": "Excalibur (2019) #15",
+      "note": "Marvel series 27547 (Excalibur (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84383
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "X of Swords: Destruction #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X of Swords: Destruction",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29690,
+      "candidateIssueId": 84339,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "84339"
+      ],
+      "selectedIssueId": 84339,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84339/x_of_swords_destruction_2020_1",
+      "resolvedIssueTitle": "X Of Swords: Destruction (2020) #1",
+      "note": "Marvel series 29690 (X Of Swords: Destruction (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        84339
+      ]
+    }
+  ],
+  "mappingDigest": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3",
+  "packetReview": "MRT-002 final central source review",
+  "approvedManifest": {
+    "id": "x-of-swords",
+    "name": "X-Men: X of Swords",
+    "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-of-swords.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/x-men-ten-of-swords/",
+    "sourceSection": "X of Swords Reading Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_of_swords.json",
+    "characters": [
+      "X-Men",
+      "Excalibur",
+      "Wolverine"
+    ],
+    "keywords": [
+      "X of Swords",
+      "Krakoa",
+      "Arakko"
+    ],
+    "expect": 25,
+    "timeline": 2020,
+    "coverIssueId": 85662
+  },
+  "relationshipReview": {
+    "reportDigest": "a9a023365a4a81bfdc30feb11ed01542680999f1b0d77609debf4a94db11e45e",
+    "packetDigest": "57ee256e63363c7d7309dc27e482566db38153205e3911a5d7816f22045ac0a0",
+    "mappingDigest": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3",
+    "libraryDigest": "49dc066c0b2a48e3d8337d6f9bf3c0d9b8501a7437d7fff40f85df95516b956f",
+    "peerDigests": {
+      "heroes-reborn-2021": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared X-Men #13 and #14 issues preserve their source-authored place in two distinct event sequences.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:27:17.964Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
+    "reviewedAt": "2026-08-23T05:27:17.964Z",
+    "approvalDigest": "87136df8f2c9a3951ac848e4d81ff5be9db52e70858b6a5cd5d364aefc4809c6"
+  }
+}

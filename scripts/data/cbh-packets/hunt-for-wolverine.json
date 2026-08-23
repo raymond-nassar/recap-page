@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "id": "hunt-for-wolverine",
+  "inventoryId": "hunt-for-wolverine",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+  "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 24 issue entries under THE HUNT FOR WOLVERINE COMICS, from Infinity Countdown #1 through Return of Wolverine #5.",
+  "excludedSourceReferences": [],
+  "expectedCount": 24,
+  "proposedManifest": {
+    "id": "hunt-for-wolverine",
+    "name": "Hunt for Wolverine",
+    "description": "The search for Logan across four investigations, Dead Ends, and his five-part return.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "hunt-for-wolverine.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/the-hunt-for-wolverine/",
+    "sourceSection": "THE HUNT FOR WOLVERINE COMICS",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "hunt_for_wolverine.json",
+    "characters": [
+      "Wolverine",
+      "X-Men",
+      "Avengers"
+    ],
+    "keywords": [
+      "Hunt for Wolverine",
+      "Return of Wolverine",
+      "Logan"
+    ],
+    "expect": 24,
+    "timeline": 2018,
+    "coverIssueId": 66912
+  },
+  "insertionAnchor": {
+    "beforeId": "spider-geddon"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "All 24 visible source rows are preserved, including Infinity Countdown #1; its known overlap is a relationship decision rather than a source exclusion.",
+    "reviewedAt": "2026-08-22T10:15:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Infinity Countdown #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Infinity Countdown",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24050,
+      "candidateIssueId": 66416,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Hunt for Wolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24199,
+      "candidateIssueId": 66912,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24235,
+      "candidateIssueId": 67019,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24235,
+      "candidateIssueId": 68605,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24235,
+      "candidateIssueId": 68606,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Weapon Lost #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Weapon Lost",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24235,
+      "candidateIssueId": 68608,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24315,
+      "candidateIssueId": 67341,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24315,
+      "candidateIssueId": 68583,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24315,
+      "candidateIssueId": 68584,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: The Adamantium Agenda #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Adamantium Agenda",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24315,
+      "candidateIssueId": 68586,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24316,
+      "candidateIssueId": 67342,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24316,
+      "candidateIssueId": 68591,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24316,
+      "candidateIssueId": 68592,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Claws of a Killer #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Claws of a Killer",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24316,
+      "candidateIssueId": 68594,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24317,
+      "candidateIssueId": 67343,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24317,
+      "candidateIssueId": 68599,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24317,
+      "candidateIssueId": 68600,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt for Wolverine: Mystery in Madripoor #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt for Wolverine: Mystery in Madripoor",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24317,
+      "candidateIssueId": 68602,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hunt For Wolverine: Dead Ends #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Hunt For Wolverine: Dead Ends",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24369,
+      "candidateIssueId": 67583,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Return of Wolverine #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25582,
+      "candidateIssueId": 70117,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Return of Wolverine #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 25582,
+      "candidateIssueId": 70127,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Return of Wolverine #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 25582,
+      "candidateIssueId": 70129,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Return of Wolverine #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 25582,
+      "candidateIssueId": 70130,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "The Return of Wolverine #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Return of Wolverine",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 25582,
+      "candidateIssueId": 70131,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4"
+}

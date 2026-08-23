@@ -14,6 +14,23 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added twenty more Marvel event and crossover reading orders
+
+In plain English: the catalog now has 86 reading lists. Twenty new guides carry the event sequence
+from Marvel Generations through Sins of Sinister, including Spider-Geddon, War of the Realms,
+Absolute Carnage, Devil's Reign, and Judgment Day. Every card credits Comic Book Herald and opens
+the exact guide followed. Nothing you have saved is changed.
+
+One World Under Doom is not shown as a shortened or incomplete list. Its current checklist repeats
+one issue and names at least ten issues the app's metadata source does not yet carry, so it remains
+blocked until the full order can be represented truthfully.
+
+For maintainers: 20 exact mappings preserve 436 ordered issue rows and add 422 issue identities not
+already represented by the catalog. Three partial relationships received stronger-model approval:
+Hunt for Wolverine shares one issue with Infinity Countdown and Infinity Wars, War of the Realms
+shares 11 with the broader Thor best-of guide, and Judgment Day shares two with X of Swords. Secret
+Empire, Empyre, and One World Under Doom retain evidence-backed terminal blockers.
+
 ### Made future Comic Book Herald additions use one frozen candidate packet
 
 In plain English: adding another source-backed reading order no longer starts with editing the large

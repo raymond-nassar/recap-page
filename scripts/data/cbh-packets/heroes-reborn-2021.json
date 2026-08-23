@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "id": "heroes-reborn-2021",
+  "inventoryId": "heroes-reborn-2021",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+  "sourceSection": "Heroes Reborn Comics Checklist",
+  "sourceRetrievedAt": "2026-08-22",
+  "sourceBoundary": "The 18 issue entries under Heroes Reborn Comics Checklist, ending with Heroes Return #1.",
+  "excludedSourceReferences": [
+    "Road to Heroes Reborn",
+    "Avengers by Jason Aaron",
+    "Squadron Supreme",
+    "Heroes Reborn",
+    "Previously: King in Black"
+  ],
+  "expectedCount": 18,
+  "proposedManifest": {
+    "id": "heroes-reborn-2021",
+    "name": "Heroes Reborn",
+    "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "heroes-reborn-2021.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-fresh-start-reading-order/heroes-reborn-2021/",
+    "sourceSection": "Heroes Reborn Comics Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "heroes_reborn_2021.json",
+    "characters": [
+      "Avengers",
+      "Squadron Supreme"
+    ],
+    "keywords": [
+      "Heroes Reborn",
+      "Squadron Supreme",
+      "Alternate reality"
+    ],
+    "expect": 18,
+    "timeline": 2021,
+    "coverIssueId": 92793
+  },
+  "insertionAnchor": {
+    "beforeId": "new-ultimate-universe"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The visible checklist, its 18 issue boundary, excluded lead-in material, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
+    "reviewedAt": "2026-08-22T13:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Heroes Reborn #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31815,
+      "candidateIssueId": 92793,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 31815,
+      "candidateIssueId": 93048,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Hyperion & The Imperial Guard #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Hyperion & the Imperial Guard",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31984,
+      "candidateIssueId": 93631,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Peter Parker, The Amazing Shutterbug #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Peter Parker, The Amazing Shutterbug",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31990,
+      "candidateIssueId": 93637,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 31815,
+      "candidateIssueId": 93049,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Magneto and the Mutant Force #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Magneto & The Mutant Force",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31988,
+      "candidateIssueId": 93635,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 31815,
+      "candidateIssueId": 93050,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Young Squadron",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Young Squadron",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31992,
+      "candidateIssueId": 93639,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Siege Society",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Siege Society",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31991,
+      "candidateIssueId": 93638,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 31815,
+      "candidateIssueId": 93051,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: American Knights",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: American Knights",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31995,
+      "candidateIssueId": 93644,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Double Action",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Marvel Double Action",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31989,
+      "candidateIssueId": 93636,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel names the one-shot series Heroes Reborn: Marvel Double Action."
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Squadron Savage",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Squadron Savage",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31993,
+      "candidateIssueId": 93641,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Night-Gwen",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Night-Gwen",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31983,
+      "candidateIssueId": 93630,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "6",
+      "seriesId": 31815,
+      "candidateIssueId": 93052,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn#7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn",
+      "seriesYear": 2021,
+      "issueNumber": "7",
+      "seriesId": 31815,
+      "candidateIssueId": 93053,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Heroes Reborn: Weapon X & Final Flight",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Reborn: Weapon X & Final Flight",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31996,
+      "candidateIssueId": 93645,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+    },
+    {
+      "sourceIssueReference": "Heroes Return #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Heroes Return",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31709,
+      "candidateIssueId": 92794,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "5a27486f35415e510a6bffcc034bc1f38288a820ac4429efe4605b29541d37d2"
+}
