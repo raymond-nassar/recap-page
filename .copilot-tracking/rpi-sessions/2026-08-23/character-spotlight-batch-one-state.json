@@ -9,7 +9,7 @@
   },
   "date": "2026-08-23",
   "mode": "automatic",
-  "stage": "implementation",
+  "stage": "review",
   "status": "in_progress",
   "direction": {
     "summary": "Continue Character Spotlight guides using lower-cost deterministic workers for candidate mapping while retaining every protected decision and release action centrally.",
@@ -151,10 +151,10 @@
     ]
   },
   "implementation": {
-    "status": "in-progress",
+    "status": "complete",
     "scope": "full-plan",
     "changes": ".copilot-tracking/changes/2026-08-23/character-spotlight-batch-one-changes.md",
-    "active_marker": "P03-T02",
+    "active_marker": null,
     "completed_markers": [
       "P01",
       "P01-T01",
@@ -162,11 +162,13 @@
       "P02",
       "P02-T01",
       "P02-T02",
-      "P03-T01"
+      "P03",
+      "P03-T01",
+      "P03-T02"
     ]
   },
   "review": {
-    "status": "not-started",
+    "status": "ready",
     "maximum_runs": 1
   },
   "pull_request": {

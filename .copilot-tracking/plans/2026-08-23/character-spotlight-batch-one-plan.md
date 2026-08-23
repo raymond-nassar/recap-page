@@ -252,12 +252,12 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P02-T02 in .copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md
 
 <!-- rpi:phase id=P03 -->
-### [ ] P03: Prove and release the batch
+### [x] P03: Prove and release the batch
 
 * Intent: Lock semantic behavior, reconcile product records, verify the real browser surface, and prepare
   one review-ready implementation.
 * Dependencies: P02.
-* Implementation status: P03-T01 complete; P03-T02 in progress.
+* Implementation status: Complete.
 
 <!-- rpi:task id=P03-T01 -->
 #### [x] P03-T01: Extend semantic and regression coverage
@@ -269,7 +269,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P03-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md
 
 <!-- rpi:task id=P03-T02 -->
-#### [ ] P03-T02: Reconcile records and run release gates
+#### [x] P03-T02: Reconcile records and run release gates
 
 * Requirement and evidence: Documentation, backlog, changelog, changes record, repository gates, live
   contract, and Edge behavior must agree before the one independent Review.

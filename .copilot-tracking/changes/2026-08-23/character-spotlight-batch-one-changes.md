@@ -10,19 +10,19 @@
 
 ## Execution Status
 
-* Status: In progress
+* Status: Review ready
 * Declared invocation scope: full plan
-* Completed scope markers: P01, P01-T01, P01-T02, P02, P02-T01, P02-T02, P03-T01
-* All remaining active-plan markers: P03, P03-T02, P04, P04-T01, P04-T02
-* Status basis: Both guides are authored and vendored, focused coverage passes, and P03-T02 owns the
-  remaining local release gates and browser evidence.
+* Completed scope markers: P01, P01-T01, P01-T02, P02, P02-T01, P02-T02, P03, P03-T01, P03-T02
+* All remaining active-plan markers: P04, P04-T01, P04-T02
+* Status basis: Both guides are published in the release diff, every local gate passes, and the real
+  Edge surface satisfies the two-guide acceptance checks.
 
 ## Execution Summary
 
 The approved two-guide scope is implemented through generated data and product records. Central packets,
 exact mappings, complete reports, 176 dispositions, guarded authoring, vendoring, focused regression
-coverage, and the failure proof are complete. Local release gates and browser evidence remain before the
-one independent Review.
+coverage, the failure proof, all local release gates, and real Edge acceptance are complete. The one
+independent Review is next.
 
 ## Completed Work
 
@@ -55,6 +55,20 @@ one independent Review.
 * A path-limited stash of the two inventory lifecycle updates made the new batch test fail on the
   preparation-eligibility contract; restoring the file returned the focused suite to green.
 
+### P03-T02: Reconciled records and completed release gates
+
+* Re-derived the affected backlog, governance, provenance, catalogue, and licence-boundary counts for
+  the 89-reading library.
+* Re-aimed the documentation citations affected by the product-record changes, read all 30 blessing
+  pairings against their claims, and left 1,113 anchors unchanged with no drift, addition, or loss.
+* The live metadata contract passed all 33 assertions, and the added-line dash scan found no en or em
+  dash.
+* Edge at 1280x900 showed Phalanx and Phoenix only on Character spotlights with the expected 28 and 53
+  issue counts and source links. Importing each guide rendered every row in order and matched the
+  first, middle, and final issue checkpoints.
+* After the release snapshot was committed, the full suite passed 1,389 tests with zero failure, lint
+  passed, and the committed-byte publication gate accepted the release.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Move the exact inventory tuple before named preparation
@@ -81,14 +95,20 @@ one independent Review.
 | Vendoring | P02-T02 | Passed | 81 hydrated issues; zero unresolved, placeholders, missing digital ids, or missing covers. |
 | Focused semantic and licence tests | P03-T01 | Passed | 7 passed, 0 failed. |
 | New-test failure proof | P03-T01 | Passed | Removing only the selected inventory lifecycle changes caused the new batch test to fail; the fix was restored. |
+| Full test suite | P03-T02 | Passed | 1,389 passed, 0 failed against committed release data. |
+| Lint | P03-T02 | Passed | Zero errors. |
+| Evidence anchors | P03-T02 | Passed | 1,113 unchanged; 0 drifted, new, or removed after reading all 30 changed claim pairings. |
+| Live metadata contract | P03-T02 | Passed | 33 passed, 0 failed. |
+| Added-line dash scan | P03-T02 | Passed | Zero en or em dashes. |
+| Edge acceptance | P03-T02 | Passed | 1280x900; both exclusive spotlight cards, counts, sources, imports, and six sequence checkpoints passed. |
 
 ## Pre-Review Reconciliation
 
-* Plan markers and phase details: P01, P02, and P03-T01 complete; P03-T02 active.
-* Completed-work evidence and handoff prose: current through focused regression and failure proof.
-* Validation, blockers, remaining work, and follow-up items: no blocker or follow-up; release gates and
-  browser verification remain.
-* Review readiness: not ready until P03-T02 completes.
+* Plan markers and phase details: P01, P02, and P03 complete; P04 is ready.
+* Completed-work evidence and handoff prose: current through all local release and browser gates.
+* Validation, blockers, remaining work, and follow-up items: no blocker or follow-up; one Review and
+  delivery remain.
+* Review readiness: ready for the one permitted independent Review.
 
 ## Blockers
 
@@ -96,7 +116,7 @@ one independent Review.
 
 ## Remaining Work
 
-* Complete P03-T02, then P04-T01 and P04-T02.
+* Complete P04-T01 and P04-T02.
 
 ## Follow-Up Items
 
@@ -106,13 +126,13 @@ one independent Review.
 
 ## Return-to-Caller State
 
-* Implementation execution status: In progress
-* Declared scope and markers: full plan; P01, P02, and P03-T01 complete; P03-T02 active
+* Implementation execution status: Complete and review ready
+* Declared scope and markers: full plan; P01, P02, and P03 complete; P04 remains
 * Validation coverage: central digest, exact mapping, complete relationship, guarded authoring,
-  vendoring, focused regression, and failure-proof gates
+  vendoring, focused regression, failure proof, local release gates, contract, anchors, and Edge
 * Blockers: none
 * Current plan and detail updates: inventory preparation ordering and completion state reconciled
 * Planning and critique state: Ready after one critique; PC-001 and PC-002 resolved
 * Follow-up items: none
-* Review readiness or no-handoff reason: not ready until P03-T02 release gates complete
+* Review readiness or no-handoff reason: ready for the one permitted independent Review
 * Continuation owner: confirmed automatic RPI coordinator
