@@ -1,0 +1,100 @@
+{
+  "task_id": "MRT-002-C04",
+  "task_slug": "character-spotlight-filter",
+  "date": "2026-08-23",
+  "mode": "automatic",
+  "stage": "implementation",
+  "status": "in_progress",
+  "baseline": {
+    "branch": "main",
+    "merged_pull_request": 172,
+    "merge_commit": "08c0558"
+  },
+  "exact_user_direction": "Implement the user's new product requirement as MRT-002-C04, task slug character-spotlight-filter, from current project default main after merged PR #172: because separate Character Spotlight \"Best of\" cards will remain alongside complete reading guides, add a clear filter at the top of the Character Spotlight shelf. Use automatic RPI Research, Plan, one critique, Implement, one independent Review, PR, CI, and merge. Persist the exact user direction immediately in the dated state and Research artifacts before source edits. Research the current shelf/header/filter architecture and all current character-run records. Default UX intent: visible choices `All`, `Best of`, and `Complete guides` in the Character Spotlight header; default `All`; filter only that shelf; preserve existing search/navigation/card grouping; use accessible native controls with an explicit selected/pressed state, full keyboard operation, clear focus, high-contrast behavior, and no layout break at narrow viewports. Do not infer Best of versus Complete from row count or vague prose. Prefer an explicit, validated taxonomy on Character Spotlight manifest records, but account honestly for current cards such as grouped X-Men variants, the Doom primer, and Essential Avengers. If those cards do not fit the two requested subsets, retain them under All rather than mislabeling them, unless Research finds an existing accurate category contract. Do not replace or merge existing Best of cards. Update directly related schema validation, counts, maintenance/provenance docs, backlog, changelog, tests, and evidence anchors. Add browser verification in installed Edge using the repository's external puppeteer-core pattern, covering default All, Best of-only, Complete-only, return to All, keyboard/focus semantics, and narrow viewport. Prove new tests fail without the behavior. Run lint, full tests, counts, anchors with careful re-aim/bless workflow, dash scan, diff check, publication/release checks, and live contract only if relevant. Run exactly one Review and route unrelated work. Open a PR with `## In plain English`, required verification counts, and required co-author trailer; monitor Node 20/24/lint jobs by job conclusion, reconcile main if needed, merge, and persist the merged result. Continue autonomously; stop only for a genuine evidence or safety blocker.",
+  "direction": {
+    "default_choices": [
+      "All",
+      "Best of",
+      "Complete guides"
+    ],
+    "default_selection": "All",
+    "scope": "Character Spotlight shelf only",
+    "taxonomy_rule": "Use explicit validated manifest taxonomy; do not infer from row count or vague prose.",
+    "unclassified_rule": "Keep cards visible under All rather than mislabeling them.",
+    "review_limit": 1
+  },
+  "research": {
+    "artifact": ".copilot-tracking/research/2026-08-23/character-spotlight-filter-research.md",
+    "posture": "focused",
+    "cycle": 1,
+    "wave": "complete",
+    "status": "complete",
+    "planning_readiness": "ready",
+    "classification": {
+      "best-of": [
+        "marvels-best-phoenix-comics",
+        "captain-america-best-of",
+        "spider-man-best-of",
+        "thor-best-of",
+        "scarlet-witch-best-of"
+      ],
+      "complete-guide": [
+        "white-tiger-ava-ayala",
+        "phalanx-reading-order"
+      ],
+      "other": [
+        "xmen-claremont",
+        "xmen-claremont-complete",
+        "doctor-doom-primer",
+        "essential-avengers"
+      ]
+    },
+    "counts": {
+      "allReadings": 11,
+      "allStories": 10,
+      "bestOfReadings": 5,
+      "bestOfStories": 5,
+      "completeGuideReadings": 2,
+      "completeGuideStories": 2,
+      "otherReadings": 4,
+      "otherStories": 3
+    }
+  },
+  "plan": {
+    "status": "complete-ready",
+    "artifact": ".copilot-tracking/plans/2026-08-23/character-spotlight-filter-plan.md",
+    "details": ".copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md",
+    "critique": ".copilot-tracking/reviews/plans/2026-08-23/character-spotlight-filter-plan-critique.md",
+    "maximum_critiques": 1,
+    "critique_runs": 1,
+    "critique_verdict": "revise-resolved",
+    "critique_findings": [
+      "PC-001",
+      "PC-002",
+      "PC-003",
+      "PC-004"
+    ]
+  },
+  "implementation": {
+    "status": "in_progress",
+    "scope": "full-plan",
+    "changes": ".copilot-tracking/changes/2026-08-23/character-spotlight-filter-changes.md",
+    "active_marker": "P03-T01",
+    "completed_markers": [
+      "P01",
+      "P01-T01",
+      "P01-T02",
+      "P02",
+      "P02-T01",
+      "P02-T02"
+    ]
+  },
+  "review": {
+    "status": "not_started",
+    "maximum_runs": 1,
+    "runs": 0
+  },
+  "pull_request": {
+    "status": "not_started"
+  }
+}
