@@ -206,6 +206,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Intent: Reproduce only the accepted Phalanx and Phoenix packet and mapping evidence under central
   source authority.
 * Dependencies: Completed Research and verified shard 3 commit.
+* Implementation status: P01-T01 in progress.
 
 <!-- rpi:task id=P01-T01 -->
 #### [ ] P01-T01: Import and correct the selected packets
@@ -215,6 +216,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Expected result: two centrally reviewed packets preserve 28 and 53 rows with corrected copy and fresh
   packet digests.
 * Detail section: P01-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md
+* Implementation status: in progress.
 
 <!-- rpi:task id=P01-T02 -->
 #### [ ] P01-T02: Regenerate exact mappings

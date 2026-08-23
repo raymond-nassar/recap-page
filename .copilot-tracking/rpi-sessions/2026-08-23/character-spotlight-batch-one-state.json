@@ -9,7 +9,7 @@
   },
   "date": "2026-08-23",
   "mode": "automatic",
-  "stage": "plan",
+  "stage": "implementation",
   "status": "in_progress",
   "direction": {
     "summary": "Continue Character Spotlight guides using lower-cost deterministic workers for candidate mapping while retaining every protected decision and release action centrally.",
@@ -152,7 +152,10 @@
     ]
   },
   "implementation": {
-    "status": "not-started"
+    "status": "in-progress",
+    "scope": "full-plan",
+    "changes": ".copilot-tracking/changes/2026-08-23/character-spotlight-batch-one-changes.md",
+    "active_marker": "P01-T01"
   },
   "review": {
     "status": "not-started",

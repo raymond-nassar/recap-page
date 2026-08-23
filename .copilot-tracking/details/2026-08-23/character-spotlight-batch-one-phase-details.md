@@ -14,7 +14,7 @@
 
 | Phase ID | Name | Status | Detail sections |
 |---|---|---|---|
-| P01 | Centralize selected evidence | ready after critique | P01, P01-T01, P01-T02 |
+| P01 | Centralize selected evidence | in progress | P01, P01-T01, P01-T02 |
 | P02 | Approve and publish both readings | ready after P01 | P02, P02-T01, P02-T02 |
 | P03 | Prove and release the batch | ready after P02 | P03, P03-T01, P03-T02 |
 | P04 | Review and deliver the release | ready after P03 | P04, P04-T01, P04-T02 |
