@@ -19,6 +19,13 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const candidateId = 'white-tiger-ava-ayala';
 const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics'];
 const characterCandidateIds = [...batchCandidateIds, candidateId];
+const laterHistoricalIds = [
+  'muir-island-saga',
+  'bloodties',
+  'midnight-massacre',
+  'childs-play',
+  'eighth-day',
+];
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
@@ -119,7 +126,10 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const markdown = await readFile(path.join(root, 'src/data/orders/white-tiger-ava-ayala.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, characterCandidateIds);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    [...characterCandidateIds, ...laterHistoricalIds],
+  );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
@@ -127,7 +137,10 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   assert.equal(reviewedLibraryDigest, '587aa7f5980b16cbaae187fda5fa0296ef82ca6c26cfc4e0ad89e84094ecdb03');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
-    regeneratedReport.comparisons.filter((comparison) => !batchCandidateIds.includes(comparison.orderId)),
+    regeneratedReport.comparisons.filter((comparison) => (
+      !batchCandidateIds.includes(comparison.orderId)
+      && !laterHistoricalIds.includes(comparison.orderId)
+    )),
     report.comparisons,
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -191,7 +204,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, batchCandidateIds);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    [...batchCandidateIds, ...laterHistoricalIds],
+  );
   const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
     id,
     packet: await readJson(`scripts/data/cbh-packets/${id}.json`),
@@ -268,7 +284,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 89);
+  assert.equal(catalog.lists.length, 94);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 11);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 10);

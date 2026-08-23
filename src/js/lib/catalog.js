@@ -772,7 +772,7 @@ export function inHomeAge(story) {
 // `from` and `to` are inclusive, and every named era is closed at both ends. Leaving the first open
 // at the start and the last open at the end would make the partition total for free, and it is the
 // wrong trade: a 1975 event would land, silently and correctly by the code's own rule, under a
-// heading naming events from 2004. The catalog is being grown, and content earlier than 2000 is
+// heading naming events from 1990. The catalog is being grown, and content earlier than 1990 is
 // expected rather than hypothetical, so the shape that fails loudly is worth more than the shape
 // that cannot fail. New content outside these years gets a new row, which is why this table exists.
 //
@@ -799,6 +799,13 @@ export function inHomeAge(story) {
 // Inhumans vs. X-Men, King in Black, Heroes Reborn and Fall of the House of X are all bundled.
 // Siege is not, so it names nothing here.
 export const CATALOG_ERAS = [
+  {
+    key: 'historical',
+    heading: 'Muir Island Saga to Eighth Day',
+    blurb: 'The historical event shelf, from the mutant crossovers of the early 1990s through the line-wide stories at the decade close.',
+    from: 1990,
+    to: 1999,
+  },
   {
     key: 'disassembled',
     heading: 'Disassembled to Civil War',

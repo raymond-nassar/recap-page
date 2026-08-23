@@ -1,0 +1,179 @@
+{
+  "id": "midnight-massacre",
+  "name": "Midnight Massacre",
+  "description": "Five supernatural chapters linking Nightstalkers, Ghost Rider, Darkhold, Morbius, and the Spirits of Vengeance.",
+  "source": "https://comicbookreadingorders.com/marvel/events/midnight-massacre-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T21:00:18.305Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 80296,
+      "title": "Nightstalkers (1992) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/80296/nightstalkers_1992_10",
+      "seriesId": 22919,
+      "seriesName": "Nightstalkers (1992 - 1994)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 77841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/68cb1f04d5e9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Badger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kirk Van Wormer",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22675,
+      "title": "Ghost Rider (1990) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/22675/ghost_rider_1990_40",
+      "seriesId": 6255,
+      "seriesName": "Ghost Rider (1990 - 1998)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 77831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/68cb1f44a2cc6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73583,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/73583/darkhold_pages_from_the_book_of_sins_1992_11",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 49884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/30/5bae43efdcafe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Downs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rurik Tyler",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78135,
+      "title": "Morbius: The Living Vampire (1992) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/78135/morbius_the_living_vampire_1992_12",
+      "seriesId": 22918,
+      "seriesName": "Morbius: The Living Vampire (1992 - 1995)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 77840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/68cb1f0350bfa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Witherby",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wagner",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 68431,
+      "title": "Ghost Rider/Blaze: Spirits of Vengeance (1992) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/68431/ghost_riderblaze_spirits_of_vengeance_1992_13",
+      "seriesId": 22916,
+      "seriesName": "Ghost Rider/Blaze: Spirits of Vengeance (1992 - 1994)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 77835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/68cb1fe5877cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Spinks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

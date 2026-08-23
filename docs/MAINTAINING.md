@@ -316,6 +316,41 @@ npm run anchors
 Open the finished order in a real browser and check the catalog name, description, group labels,
 first issue, last issue, and reading sequence.
 
+## Build a Comic Book Reading Orders historical event packet
+
+Historical CBRO events use the same five evidence layers and central relationship policy as the CBH
+workflow, but provider identity, source paths, attribution, and authoring remain separate. Do not put
+CBRO evidence under a `cbh-` data path or use Comic Book Herald attribution for it.
+
+The maintained inventory is `scripts/data/cbro-historical-inventory.json`. It contains the 58 event
+timeline entries before Maximum Security; the cutoff itself and every later entry are absent. A
+dedicated page packet records `sourceProvider`, the exact page URL, raw page SHA-256, visible issue
+panel boundary, exclusions, row order, manifest proposal, chronology anchor, and central source
+review. Timeline-only entries additionally require the visible event label as `sourceSection`.
+
+The source publishes a five-second crawl delay. Use normal public access, wait between page requests,
+and stop on a changed digest until the source boundary has been read and reviewed again. Copy no page
+commentary, branding, images, or layout. Retain factual issue identities and order only.
+
+Prepare, approve, author, and vendor the selected packet:
+
+```text
+npm run cbro:prepare -- --only=<id>
+npm run cbro:approve -- --only=<id>[,<id>...]
+npm run cbro:author -- --only=<id>[,<id>...]
+npm run vendor -- --only=<id>[,<id>...]
+```
+
+Preparation writes one exact mapping per frozen packet. A mapping worker does not choose source
+boundaries, exclusions, manifest fields, aliases, chronology, or relationship dispositions. Approval
+regenerates a factual report against every current shipped order and every selected peer. Exact
+duplicates have no approval path. Subset and partial relationships remain central decisions.
+
+Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
+manifest, and chronology evidence before writing. Every resulting card must use
+`Compiled for this project from Comic Book Reading Orders`, link to the exact event page, and keep
+`sourceLicense` null.
+
 ## Create reading paths and collected-edition groups
 
 A reading path is a named sequence of existing order IDs. Define it in the `paths` array beside the

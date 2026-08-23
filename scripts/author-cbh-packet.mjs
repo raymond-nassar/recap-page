@@ -302,9 +302,10 @@ export function assertApprovedRelationshipReview({
   currentLibraryDigest,
   peerMappings = [],
   expectedOrderIds,
+  packetValidation = {},
 }) {
   const candidateId = mapping?.id ?? packet?.id ?? 'candidate';
-  validateFrozenPacket(packet, { expectedId: candidateId });
+  validateFrozenPacket(packet, { expectedId: candidateId, ...packetValidation });
   assert(mapping.packetDigest === packet.packetDigest, `${candidateId} mapping names a stale packet digest`);
   assert(canonicalJson(mapping.proposedManifest) === canonicalJson(packet.proposedManifest),
     `${candidateId} mapping manifest proposal differs from its frozen packet`);

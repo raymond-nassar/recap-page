@@ -1998,6 +1998,162 @@
       "timeline": null
     },
     {
+      "id": "muir-island-saga",
+      "name": "Muir Island Saga",
+      "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "muir-island-saga.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/muir-island-saga-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "muir_island_saga.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "Professor X",
+        "Shadow King"
+      ],
+      "keywords": [
+        "Muir Island Saga",
+        "Uncanny X-Men",
+        "X-Factor",
+        "Shadow King"
+      ],
+      "expect": 5,
+      "timeline": 1991,
+      "coverIssueId": 13819
+    },
+    {
+      "id": "midnight-massacre",
+      "name": "Midnight Massacre",
+      "description": "Five supernatural chapters linking Nightstalkers, Ghost Rider, Darkhold, Morbius, and the Spirits of Vengeance.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "midnight-massacre.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/midnight-massacre-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "midnight_massacre.json",
+      "characters": [
+        "Nightstalkers",
+        "Ghost Rider",
+        "Morbius",
+        "Blade"
+      ],
+      "keywords": [
+        "Midnight Massacre",
+        "Nightstalkers",
+        "Ghost Rider",
+        "Darkhold",
+        "Morbius"
+      ],
+      "expect": 5,
+      "timeline": 1993,
+      "coverIssueId": 80296
+    },
+    {
+      "id": "bloodties",
+      "name": "Bloodties",
+      "description": "Five chapters bringing the Avengers and X-Men together during the Genosha crisis.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "bloodties.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/bloodties-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "bloodties.json",
+      "characters": [
+        "Avengers",
+        "X-Men",
+        "Magneto",
+        "Quicksilver"
+      ],
+      "keywords": [
+        "Bloodties",
+        "Avengers",
+        "X-Men",
+        "Genosha",
+        "Magneto"
+      ],
+      "expect": 5,
+      "timeline": 1993,
+      "coverIssueId": 7250
+    },
+    {
+      "id": "childs-play",
+      "name": "Child's Play",
+      "description": "Four chapters crossing X-Force and the New Warriors during the Upstarts confrontation.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "childs-play.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/childs-play-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "childs_play.json",
+      "characters": [
+        "X-Force",
+        "New Warriors",
+        "Upstarts"
+      ],
+      "keywords": [
+        "Child's Play",
+        "X-Force",
+        "New Warriors",
+        "Upstarts"
+      ],
+      "expect": 4,
+      "timeline": 1994,
+      "coverIssueId": 17997
+    },
+    {
+      "id": "eighth-day",
+      "name": "Eighth Day",
+      "description": "Four chapters uniting Iron Man, Spider-Man, and Juggernaut against the Exemplars.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "eighth-day.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "eighth_day.json",
+      "characters": [
+        "Iron Man",
+        "Spider-Man",
+        "Juggernaut"
+      ],
+      "keywords": [
+        "Eighth Day",
+        "Iron Man",
+        "Spider-Man",
+        "Juggernaut",
+        "Exemplars"
+      ],
+      "expect": 4,
+      "timeline": 1999,
+      "coverIssueId": 19893
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

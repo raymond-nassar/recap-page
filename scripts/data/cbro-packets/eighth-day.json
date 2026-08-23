@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "eighth-day",
+  "inventoryId": "eighth-day",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "a96518afd069ad5d4ec8ec01336d8e7b2e68c45a5227c7bedbdc5c0142dbfea7",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 4,
+  "proposedManifest": {
+    "id": "eighth-day",
+    "name": "Eighth Day",
+    "description": "Four chapters uniting Iron Man, Spider-Man, and Juggernaut against the Exemplars.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "eighth-day.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "eighth_day.json",
+    "characters": [
+      "Iron Man",
+      "Spider-Man",
+      "Juggernaut"
+    ],
+    "keywords": [
+      "Eighth Day",
+      "Iron Man",
+      "Spider-Man",
+      "Juggernaut",
+      "Exemplars"
+    ],
+    "expect": 4,
+    "timeline": 1999,
+    "coverIssueId": 19893
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, exclusions, provider identity, source digest, row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-23T20:52:33Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Iron Man Vol. 3 #21",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1998,
+      "issueNumber": "21",
+      "seriesId": 2572,
+      "candidateIssueId": 19893,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man Vol. 3 #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1998,
+      "issueNumber": "22",
+      "seriesId": 2572,
+      "candidateIssueId": 19894,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Peter Parker: Spider-Man Vol. 2 #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker: Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "11",
+      "seriesId": 2060,
+      "candidateIssueId": 10519,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Juggernaut Vol. 2 #1 (1999)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Juggernaut",
+      "seriesYear": 1999,
+      "issueNumber": "1",
+      "seriesId": 16363,
+      "candidateIssueId": 43033,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The metadata names the one-issue 1999 series JUGGERNAUT 1."
+    }
+  ],
+  "packetDigest": "48aff0f1ee442018b266c4bc048de00aba77a906b73b4ce8cc9ebf43484f78fa"
+}

@@ -14,6 +14,22 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added five historical Marvel event reading guides
+
+In plain English: Timeline now reaches back before Maximum Security with five compact event guides:
+Muir Island Saga, Midnight Massacre, Bloodties, Child's Play, and Eighth Day. Together they add 23
+issues from 1991 through 1999. Each card credits Comic Book Reading Orders and opens the exact page
+followed. The catalog now has 94 reading lists, and nothing you have saved is changed.
+
+Two smaller source pages are not shortened to make the release. Days of Future Present and Countdown
+remain blocked because the metadata snapshot cannot represent every issue they name.
+
+For maintainers: a separate CBRO inventory preserves all 58 timeline entries before Maximum Security,
+including blocked, absorbed, subset, alternate-universe, and deferred states. Five frozen packets bind
+the exact provider, page bytes, 23 source rows, mappings, complete 89-list and four-peer reports, and
+central approvals. All 465 relationships are none. Existing CBH packets retain their original defaults
+and data paths.
+
 ### Added Character Spotlight guide filters
 
 In plain English: Character spotlights can now be narrowed to Best of selections or complete guides.

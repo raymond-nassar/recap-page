@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T19:28:23.852Z",
+  "generatedAt": "2026-08-23T21:00:18.334Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2334,6 +2334,187 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T04:10:56.795Z"
+    },
+    {
+      "id": "muir-island-saga",
+      "file": "muir_island_saga.json",
+      "name": "Muir Island Saga",
+      "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "Professor X",
+        "Shadow King"
+      ],
+      "keywords": [
+        "Muir Island Saga",
+        "Uncanny X-Men",
+        "X-Factor",
+        "Shadow King"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1991,
+      "coverIssueId": 13819,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/51141fcd94042",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/muir-island-saga-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T21:00:18.302Z"
+    },
+    {
+      "id": "midnight-massacre",
+      "file": "midnight_massacre.json",
+      "name": "Midnight Massacre",
+      "description": "Five supernatural chapters linking Nightstalkers, Ghost Rider, Darkhold, Morbius, and the Spirits of Vengeance.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Nightstalkers",
+        "Ghost Rider",
+        "Morbius",
+        "Blade"
+      ],
+      "keywords": [
+        "Midnight Massacre",
+        "Nightstalkers",
+        "Ghost Rider",
+        "Darkhold",
+        "Morbius"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1993,
+      "coverIssueId": 80296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/68cb1f04d5e9b",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/midnight-massacre-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T21:00:18.305Z"
+    },
+    {
+      "id": "bloodties",
+      "file": "bloodties.json",
+      "name": "Bloodties",
+      "description": "Five chapters bringing the Avengers and X-Men together during the Genosha crisis.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "X-Men",
+        "Magneto",
+        "Quicksilver"
+      ],
+      "keywords": [
+        "Bloodties",
+        "Avengers",
+        "X-Men",
+        "Genosha",
+        "Magneto"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1993,
+      "coverIssueId": 7250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/589097872490c",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/bloodties-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T21:00:18.306Z"
+    },
+    {
+      "id": "childs-play",
+      "file": "childs_play.json",
+      "name": "Child's Play",
+      "description": "Four chapters crossing X-Force and the New Warriors during the Upstarts confrontation.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "X-Force",
+        "New Warriors",
+        "Upstarts"
+      ],
+      "keywords": [
+        "Child's Play",
+        "X-Force",
+        "New Warriors",
+        "Upstarts"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1994,
+      "coverIssueId": 17997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5ba531614b398",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/childs-play-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T21:00:18.306Z"
+    },
+    {
+      "id": "eighth-day",
+      "file": "eighth_day.json",
+      "name": "Eighth Day",
+      "description": "Four chapters uniting Iron Man, Spider-Man, and Juggernaut against the Exemplars.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Iron Man",
+        "Spider-Man",
+        "Juggernaut"
+      ],
+      "keywords": [
+        "Eighth Day",
+        "Iron Man",
+        "Spider-Man",
+        "Juggernaut",
+        "Exemplars"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1999,
+      "coverIssueId": 19893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5a5e7646e0ba3",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T21:00:18.307Z"
     },
     {
       "id": "maximum-security",
