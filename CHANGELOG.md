@@ -14,6 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Character Spotlight guide filters
+
+In plain English: Character spotlights can now be narrowed to Best of selections or complete guides.
+All remains the default, and the grouped X-Men readings, Doom primer, and Essential Avengers remain
+there without being given a label that does not fit them. Search, saved progress, and every existing
+card are unchanged.
+
+For maintainers: all eleven character readings now carry one validated editorial classification.
+Five are Best of, two are complete guides, and four remain under All only across three stories.
+Grouped readings must agree, generated data preserves the value, and unknown runtime values match no
+subset.
+
 ### Added Phalanx and Phoenix character spotlight reading guides
 
 In plain English: the Character spotlights shelf now includes complete guides for the Phalanx and

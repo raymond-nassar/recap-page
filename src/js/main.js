@@ -17,6 +17,7 @@ import { availability, describe, localDayString, SHORT, STATE } from './lib/avai
 import { compareIssues } from './lib/sort.js';
 import {
   parseCatalog, typeLabel, depthLabel, catalogFacets, filterByFacet, facetLabel,
+  filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing,
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
   pathPlacements, shelfSections, eraSections, decadeSections, inHomeAge,
@@ -3693,7 +3694,10 @@ let catalogLoad = null;
 // hold different kinds of reading, so a query typed to find an event says nothing about which
 // character spotlight is wanted, and carrying it across would empty the screen a reader had just
 // arrived at. Keyed by the table so a new shelf needs no state added here.
-const shelfState = new Map(CATALOG_SHELVES.map((shelf) => [shelf.key, { facet: 'all', query: '' }]));
+const shelfState = new Map(CATALOG_SHELVES.map((shelf) => [
+  shelf.key,
+  { facet: 'all', query: '', spotlight: 'all' },
+]));
 let catalogAnnounceTimer = null;
 
 // Typing in the search box re-renders on every keystroke, so a slow first load could otherwise
@@ -3791,14 +3795,21 @@ async function renderCatalogShelf(key) {
   // makes a filter vanish from under the reader's cursor.
   renderCatalogShelfFilters(key, mine, searchable);
 
+  // Character Spotlight's editorial subset is applied before every generic narrowing step. It is
+  // separate from the generic facets because it is always available on this one shelf, including
+  // while the shelf remains below the size threshold that reveals search and category controls.
+  const inSpotlight = key === 'spotlights'
+    ? filterBySpotlightKind(mine, state.spotlight)
+    : mine;
+
   // Filtering narrows which lists are shown; every list that is shown keeps the full detail a
   // reader needs to choose, so searching or switching filters never hides a description,
   // reading depth, or issue count.
-  const inFacet = filterByFacet(mine, state.facet);
+  const inFacet = filterByFacet(inSpotlight, state.facet);
   const shown = searchCatalog(inFacet, state.query);
 
   if (!shown.length) {
-    const where = state.facet === 'all' ? '' : ` in ${facetLabel(mine, state.facet)}`;
+    const where = catalogNarrowingLabel(key, mine, state);
     const msg = state.query
       ? `No Reading Lists match “${state.query}”${where}.`
       : `No Reading Lists${where || ' in that category'}.`;
@@ -3842,7 +3853,7 @@ async function renderCatalogShelf(key) {
 
   // The dropped-entry warning already announced itself; a second announcement would replace it.
   if (!catalog.dropped) {
-    const where = state.facet === 'all' ? '' : ` in ${facetLabel(mine, state.facet)}`;
+    const where = catalogNarrowingLabel(key, mine, state);
     const match = state.query ? ` matching “${state.query}”` : '';
     announceCatalog(`${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.`);
   }
@@ -4146,10 +4157,21 @@ function goToStop(stop, surface) {
 function clearNarrowing(dest) {
   const state = shelfState.get(dest);
   if (!state) return;
-  state.query = '';
-  state.facet = 'all';
+  resetCatalogNarrowing(state);
   $(`#${dest}-q`).value = '';
   $(`#${dest}-clear`).hidden = true;
+  for (const radio of document.querySelectorAll(`input[name="${dest}-kind"]`)) {
+    radio.checked = radio.value === state.spotlight;
+  }
+}
+
+function catalogNarrowingLabel(key, lists, state) {
+  const labels = [];
+  if (key === 'spotlights' && state.spotlight !== 'all') {
+    labels.push(spotlightKindLabel(state.spotlight));
+  }
+  if (state.facet !== 'all') labels.push(facetLabel(lists, state.facet));
+  return labels.length ? ` in ${labels.join(' and ')}` : '';
 }
 
 // Where an order came from and when it was pinned. A reader deciding whether to trust a curated
@@ -4210,6 +4232,14 @@ function wireCatalogShelfSearch(key) {
     input.focus();
     renderCatalogShelf(key);
   });
+  if (key === 'spotlights') {
+    for (const radio of document.querySelectorAll('input[name="spotlights-kind"]')) {
+      radio.addEventListener('change', () => {
+        state.spotlight = radio.value;
+        renderCatalogShelf(key);
+      });
+    }
+  }
 }
 
 // `searchable` rather than a second look at the count: the search box and the chips are both

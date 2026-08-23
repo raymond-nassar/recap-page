@@ -9,9 +9,11 @@ import {
   PUBLISHING_AGES,
   decadeSections,
   firstSentence,
+  filterBySpotlightKind,
   groupCatalog,
   inHomeAge,
   parseCatalog,
+  resetCatalogNarrowing,
   shelfLists,
   shelfSections,
   pathPlacements,
@@ -31,6 +33,38 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
 const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
+
+test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
+  const spotlights = shelfLists(catalog.lists, 'spotlights');
+  assert.equal(spotlights.length, 11);
+  assert.equal(groupCatalog(spotlights).length, 10);
+
+  const expected = [
+    ['best-of', 5, 5],
+    ['complete-guide', 2, 2],
+    ['other', 4, 3],
+  ];
+  for (const [kind, readingCount, storyCount] of expected) {
+    const filtered = filterBySpotlightKind(spotlights, kind);
+    assert.equal(filtered.length, readingCount, `${kind} reading count drifted`);
+    assert.equal(groupCatalog(filtered).length, storyCount, `${kind} story count drifted`);
+  }
+
+  const xMen = groupCatalog(filterBySpotlightKind(spotlights, 'other'))
+    .find((story) => story.key === 'xmen-claremont');
+  assert.equal(xMen.lists.length, 2, 'the grouped X-Men readings were split');
+});
+
+test('a path arrival clears the subset that would hide Essential Avengers', () => {
+  const spotlights = shelfLists(catalog.lists, 'spotlights');
+  const essential = spotlights.find((list) => list.id === 'essential-avengers');
+  assert.equal(essential.spotlightKind, 'other');
+  assert.equal(filterBySpotlightKind(spotlights, 'complete-guide').includes(essential), false);
+
+  const state = { query: 'phalanx', facet: 'beginner', spotlight: 'complete-guide' };
+  resetCatalogNarrowing(state);
+  assert.equal(filterBySpotlightKind(spotlights, state.spotlight).includes(essential), true);
+});
 
 test('every story reaches exactly one screen', () => {
   const reached = new Map();

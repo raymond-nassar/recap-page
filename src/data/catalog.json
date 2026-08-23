@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T16:37:33.146Z",
+  "generatedAt": "2026-08-23T19:28:23.852Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1839,6 +1839,7 @@
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
       "type": "character-run",
       "depth": "complete",
+      "spotlightKind": "complete-guide",
       "count": 82,
       "collections": 0,
       "characters": [
@@ -1879,6 +1880,7 @@
       "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
       "type": "character-run",
       "depth": "complete",
+      "spotlightKind": "complete-guide",
       "count": 28,
       "collections": 0,
       "characters": [
@@ -1918,6 +1920,7 @@
       "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
       "type": "character-run",
       "depth": "complete",
+      "spotlightKind": "best-of",
       "count": 53,
       "collections": 0,
       "characters": [
@@ -1955,6 +1958,7 @@
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "other",
       "count": 318,
       "collections": 0,
       "characters": [
@@ -2005,6 +2009,7 @@
       "description": "The same order as the spine beside it, plus the two sections the outline marked optional. Compiled by hand from the same reader's outline of Comic Book Herald's guides. The Silver Age add-ons are the guest appearances that carried the X-Men through the years their own title was running reprints, scattered across Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The modern retellings revisit the same years from the outside: The Hidden Years, Grand Design, Season One and the whole of First Class. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
       "type": "character-run",
       "depth": "complete",
+      "spotlightKind": "other",
       "count": 404,
       "collections": 0,
       "characters": [
@@ -2055,6 +2060,7 @@
       "description": "A best-of path through Captain America on Marvel Unlimited, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. Ed Brubaker's run comes first and whole, from the Winter Soldier's return through the death of Steve Rogers, Reborn, Rebirth and the restored numbering, followed by Man Out of Time and the Life of Bucky Barnes. It then goes back for the Silver and Bronze Age chapters the guide picks out: the Red Skull and the Cosmic Cube in Tales of Suspense, the Life and Times of the Red Skull, Mark Gruenwald's The Captain, and issue #250 as a bonus. The sections are the guide's and are kept in its order rather than sorted by publication date.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "best-of",
       "count": 114,
       "collections": 10,
       "characters": [
@@ -2102,6 +2108,7 @@
       "description": "A primer on Doctor Doom, compiled by hand from a reader's outline of Comic Book Herald's guide to the best Doom comics. It opens with the origin, in Fantastic Four #5, the second Fantastic Four annual and the Ultimate retelling, then Books of Doom and the story of Werner von Doom. From there it follows Doom as monarch, rival and thief of power: the long Fantastic Four sieges, Doomquest in Iron Man, the Silver Surfer and the Power Cosmic, Secret Wars in 1984 and again in 2015, the Infinity Gauntlet, and his turn as a hero in Infamous Iron Man. The sections are the guide's and are kept in its order.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "other",
       "count": 104,
       "collections": 16,
       "characters": [
@@ -2146,6 +2153,7 @@
       "description": "A best-of path through Peter Parker's Spider-Man, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It runs from Amazing Fantasy #15 and the Lee and Ditko years through the Lee and Romita chapters, Roger Stern's Hobgoblin mystery, the death of Jean DeWolff, Kraven's Last Hunt read across all three titles in publication order, the decline of Harry Osborn, Straczynski's Coming Home, the Gauntlet and Grim Hunt, Dying Wish into Superior Spider-Man, and Life Story. The sections are the guide's and are kept in its order rather than sorted by publication date.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "best-of",
       "count": 230,
       "collections": 10,
       "characters": [
@@ -2193,6 +2201,7 @@
       "description": "A best-of path through Thor, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It starts in Journey into Mystery with the Absorbing Man and the issue where the title becomes Thor, then Kirby's cosmic run with Ego, the High Evolutionary and Mangog, Firelord, the Celestial Saga, and Walt Simonson's Surtur Saga with Beta Ray Bill and Skurge's last stand. It then covers the final Ragnarok, Asgard over Nebraska, Jason Aaron's God Butcher and Malekith stories, Jane Foster's run as Thor, and the War of the Realms. The sections are the guide's and are kept in its order.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "best-of",
       "count": 131,
       "collections": 11,
       "characters": [
@@ -2241,6 +2250,7 @@
       "description": "A best-of path through Wanda Maximoff, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It opens with her origin one-shot and the issue where she meets Agatha Harkness, then the Chthon possession on Wundagore Mountain, both Vision and the Scarlet Witch limited series, and her inner world in Avengers. It carries on through the Children's Crusade, Wanda under the Apocalypse Twins in Ragnarok Now, her 2015 solo series, her break with Wonder Man, Quicksilver's side of their bond, and No Road Home. The sections are the guide's and are kept in its order.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "best-of",
       "count": 73,
       "collections": 12,
       "characters": [
@@ -2286,6 +2296,7 @@
       "description": "Ten runs out of the first 285 issues of Avengers, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It takes the team from its assembly and the return of Captain America through the arrival of the Vision, the Kree and Skrull War, the Bride of Ultron, the Korvac Saga, the nights of Wundagore, Heart of Stone, the legacy of Thanos, Under Siege and the assault on Olympus. The gaps between sections are the outline's own: this is a selection rather than a continuous read.",
       "type": "character-run",
       "depth": "essential",
+      "spotlightKind": "other",
       "count": 120,
       "collections": 10,
       "characters": [

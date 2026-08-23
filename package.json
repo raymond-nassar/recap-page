@@ -1,6 +1,6 @@
 {
   "name": "recap-page",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "description": "Local, private reading-order tracker that deep-links into the Marvel Unlimited web reader.",

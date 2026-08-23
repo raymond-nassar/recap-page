@@ -14,8 +14,8 @@
 |---|---|---|---|
 | P01 | Establish the explicit taxonomy | complete | P01, P01-T01, P01-T02 |
 | P02 | Add the shelf-local accessible filter | complete | P02, P02-T01, P02-T02 |
-| P03 | Prove, record, and independently review | in progress | P03, P03-T01, P03-T02 |
-| P04 | Deliver through PR, CI, and merge | not started | P04, P04-T01, P04-T02 |
+| P03 | Prove, record, and independently review | complete | P03, P03-T01, P03-T02 |
+| P04 | Deliver through PR, CI, and merge | in progress | P04, P04-T01, P04-T02 |
 
 ## Task-Level Context
 
@@ -45,7 +45,8 @@ and merge.
 * Selected taxonomy: `best-of`, `complete-guide`, `other`.
 * Selected control: native radio group in the Character Spotlight header.
 * Selected renderer point: after shelf slice, before search and grouping.
-* Planning blockers: none; the single critique is complete and all four findings are resolved.
+* Planning blockers: none; the single critique is complete, all four findings are resolved, and
+  P03-T01 has closed every pre-Review gate.
 
 ### Locked Test and Change Boundary
 
@@ -66,6 +67,14 @@ and merge.
 ### Unresolved Items
 
 * None.
+
+### Current Status
+
+* P03-T01 is complete with full local, Edge, anchor, publication, and diff evidence.
+* P03-T02 is complete after exactly one independent Review.
+* RV-001 is resolved against P01-T01 and P01-T02 after its tightened assertions failed before the
+  fix and the complete validation boundary passed after it.
+* P04-T01 is active. Review remains closed at one run.
 
 <!-- rpi:phase id=P01 -->
 ## P01: Establish the explicit taxonomy

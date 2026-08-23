@@ -184,6 +184,13 @@ Provide the reader-facing name and description, the order type and depth, discov
 credit, source license, and an expected issue count when one is known. Story groups and variants are
 optional.
 
+Every `character-run` also requires `spotlightKind`. Use `best-of` only for a deliberately selected
+set of recommended stories, `complete-guide` only for a guide that follows its declared character or
+group scope completely, and `other` when neither claim is accurate. The value is editorial: never
+derive it from the number of issues, reading depth, title, description, or source address. Every
+reading in one story group must use the same value. `other` keeps the card under All without adding a
+visible fourth filter.
+
 Rebuild only the order being added:
 
 ```text

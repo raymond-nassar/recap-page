@@ -310,15 +310,15 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P02-T02 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
 
 <!-- rpi:phase id=P03 -->
-### [ ] P03: Prove, record, and independently review the feature
+### [x] P03: Prove, record, and independently review the feature
 
 * Intent: Demonstrate the behavior in tests and Edge, update direct records, close anchors, and run
   exactly one independent Review on the final implementation.
 * Dependencies: P02.
-* Implementation status: In progress.
+* Implementation status: Complete; RV-001 is routed to implementation before P04.
 
 <!-- rpi:task id=P03-T01 -->
-#### [ ] P03-T01: Add proof, records, version, and release validation
+#### [x] P03-T01: Add proof, records, version, and release validation
 
 * Requirement and evidence: The caller requires fail-without-fix proof, Edge coverage, counts,
   documentation, anchors, diff and dash checks, and publication checks.
@@ -327,15 +327,17 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
   version 1.4.0 are current; live contract is skipped unless API assumptions changed; anchors use
   derive twice and apply once.
 * Detail section: P03-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
-* Implementation status: In progress.
+* Implementation status: Complete.
 
 <!-- rpi:task id=P03-T02 -->
-#### [ ] P03-T02: Run the single independent Review and route outcomes
+#### [x] P03-T02: Run the single independent Review and route outcomes
 
 * Requirement and evidence: The lifecycle permits one Review only.
 * Expected result: one review artifact covers the final diff; every material in-scope finding is fixed
   before release without rerunning Review; unrelated work is routed to the backlog.
 * Detail section: P03-T02 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
+* Implementation status: Complete. The one Review found RV-001 and routed it to implementation
+  without another Review.
 
 <!-- rpi:phase id=P04 -->
 ### [ ] P04: Deliver through PR, hosted CI, and merge
@@ -343,6 +345,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Intent: Publish the reviewed change, read hosted job conclusions honestly, reconcile if required,
   merge, and persist the final result.
 * Dependencies: P03.
+* Implementation status: In progress after RV-001 closure.
 
 <!-- rpi:task id=P04-T01 -->
 #### [ ] P04-T01: Commit and open the pull request
@@ -351,6 +354,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
   verification counts.
 * Expected result: scoped commits and a PR against current `main` describe exact behavior and evidence.
 * Detail section: P04-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-filter-phase-details.md
+* Implementation status: In progress.
 
 <!-- rpi:task id=P04-T02 -->
 #### [ ] P04-T02: Monitor CI, reconcile, merge, and persist

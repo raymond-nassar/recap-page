@@ -16,4 +16,4 @@
 // that raising SCHEMA_VERSION requires raising MAJOR in the same release.
 //
 // test/version.test.js asserts this matches package.json, so the two cannot drift.
-export const APP_VERSION = '1.3.0';
+export const APP_VERSION = '1.4.0';
