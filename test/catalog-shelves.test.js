@@ -36,12 +36,12 @@ const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 12);
-  assert.equal(groupCatalog(spotlights).length, 11);
+  assert.equal(spotlights.length, 13);
+  assert.equal(groupCatalog(spotlights).length, 12);
 
   const expected = [
     ['best-of', 5, 5],
-    ['complete-guide', 3, 3],
+    ['complete-guide', 4, 4],
     ['other', 4, 3],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
@@ -57,6 +57,11 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const rocket = spotlights.find((list) => list.id === 'rocket-raccoon-reading-order');
   assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(rocket));
   assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(rocket), false);
+
+  const groot = spotlights.find((list) => list.id === 'groot-reading-order');
+  assert.ok(groot, 'Groot is missing from Character Spotlight All');
+  assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(groot));
+  assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(groot), false);
 });
 
 test('a path arrival clears the subset that would hide Essential Avengers', () => {

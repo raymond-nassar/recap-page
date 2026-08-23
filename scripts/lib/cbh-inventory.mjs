@@ -61,6 +61,7 @@ const PACKET_FIELDS = new Set([
   'sourceRetrievedAt',
   'sourceProvider',
   'sourceContentSha256',
+  'sourceIssueBearingBlocksSha256',
   'sourceBoundary',
   'excludedSourceReferences',
   'expectedCount',
@@ -317,6 +318,12 @@ export function validateFrozenPacket(packet, {
   }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(packet.sourceRetrievedAt ?? ''))) {
     throw new Error(`${packet.id} sourceRetrievedAt must be a YYYY-MM-DD date`);
+  }
+  if (packet.sourceIssueBearingBlocksSha256 != null) {
+    assertSha256(
+      packet.sourceIssueBearingBlocksSha256,
+      `${packet.id} sourceIssueBearingBlocksSha256`,
+    );
   }
   assertNonEmptyString(packet.sourceBoundary, `${packet.id} sourceBoundary`);
   if (!Array.isArray(packet.excludedSourceReferences)

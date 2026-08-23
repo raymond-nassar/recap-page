@@ -1,19 +1,29 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import {
+  mkdir,
+  mkdtemp,
+  readFile,
+  rm,
+  writeFile,
+} from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   FIRST_PACKET_IDS,
   assertApprovedRelationshipReview,
   assertCompleteOverlapReport,
+  authorPacket,
   authorIdsFromArgs,
   existingEntriesForPacket,
   manifestEntryForMapping,
   mergePacketEntries,
+  peerIdsFromArgs,
 } from '../scripts/author-cbh-packet.mjs';
 import {
   approvalDigestFor,
+  libraryDigestFor,
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
@@ -366,6 +376,7 @@ test('approved generic evidence stays current through named chronology insertion
   const evidence = genericEvidence();
   assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
   assert.deepEqual(authorIdsFromArgs(['--only=future-event']), ['future-event']);
+  assert.deepEqual(peerIdsFromArgs(['--peer=peer-event']), ['peer-event']);
   const entry = manifestEntryForMapping(evidence.mapping);
   const merged = mergePacketEntries(
     [{ id: 'before' }, { id: 'chronology-anchor' }, { id: 'after' }],
@@ -378,6 +389,165 @@ test('approved generic evidence stays current through named chronology insertion
     'chronology-anchor',
     'after',
   ]);
+});
+
+test('one-guide authoring keeps a shipped external peer outside the reviewed library', async () => {
+  const tempDir = await mkdtemp(path.join(tmpdir(), 'mrt-author-peer-'));
+  const mappingsDir = path.join(tempDir, 'mappings');
+  const overlapsDir = path.join(tempDir, 'overlaps');
+  const packetsDir = path.join(tempDir, 'packets');
+  const ordersDir = path.join(tempDir, 'orders');
+  const payloadDir = path.join(tempDir, 'payloads');
+  const manifestFile = path.join(tempDir, 'curated-lists.json');
+
+  try {
+    await Promise.all([
+      mkdir(mappingsDir),
+      mkdir(overlapsDir),
+      mkdir(packetsDir),
+      mkdir(ordersDir),
+      mkdir(payloadDir),
+    ]);
+    const evidence = genericEvidence({ withPeer: true });
+    const peerMapping = evidence.peerMappings[0];
+    const manifestEntry = (id, out, sourcePage) => ({
+      id,
+      name: id,
+      description: `The ${id} fixture.`,
+      type: 'event',
+      depth: 'complete',
+      beginner: false,
+      group: null,
+      groupName: null,
+      variant: null,
+      sourceFile: `${id}.md`,
+      sourcePage,
+      sourceOrigin: "Compiled for this project from Comic Book Herald's guide",
+      sourceLicense: null,
+      out,
+      characters: ['Tester'],
+      keywords: [id],
+      expect: 1,
+      timeline: 2025,
+      coverIssueId: 1,
+    });
+    const existingEntry = manifestEntry(
+      'existing',
+      'existing.json',
+      'https://www.comicbookherald.com/existing/',
+    );
+    const peerEntry = manifestEntry(
+      'peer-event',
+      'peer_event.json',
+      'https://www.comicbookherald.com/peer-event/',
+    );
+    const manifest = { version: 1, lists: [existingEntry, peerEntry], paths: [] };
+    const libraryDigest = libraryDigestFor(
+      { ...manifest, lists: [existingEntry] },
+      [{ id: 'existing', issueIds: ['7001'] }],
+    );
+
+    evidence.packet.insertionAnchor = { beforeId: 'existing' };
+    evidence.packet.packetDigest = packetDigestFor(evidence.packet);
+    Object.assign(evidence.mapping, {
+      packetDigest: evidence.packet.packetDigest,
+      proposedManifest: structuredClone(evidence.packet.proposedManifest),
+      approvedManifest: structuredClone(evidence.packet.proposedManifest),
+    });
+    evidence.mapping.mappingDigest = mappingDigestFor(evidence.mapping);
+    Object.assign(evidence.report, {
+      packetDigest: evidence.packet.packetDigest,
+      mappingDigest: evidence.mapping.mappingDigest,
+      libraryDigest,
+    });
+    evidence.report.reportDigest = reportDigestFor(evidence.report);
+    Object.assign(evidence.mapping.relationshipReview, {
+      reportDigest: evidence.report.reportDigest,
+      packetDigest: evidence.packet.packetDigest,
+      mappingDigest: evidence.mapping.mappingDigest,
+      libraryDigest,
+    });
+    evidence.mapping.relationshipReview.approvalDigest = approvalDigestFor(
+      evidence.mapping.relationshipReview,
+    );
+
+    await Promise.all([
+      writeFile(
+        path.join(packetsDir, 'future-event.json'),
+        JSON.stringify(evidence.packet),
+        'utf8',
+      ),
+      writeFile(
+        path.join(mappingsDir, 'future-event.json'),
+        JSON.stringify(evidence.mapping),
+        'utf8',
+      ),
+      writeFile(
+        path.join(mappingsDir, 'peer-event.json'),
+        JSON.stringify(peerMapping),
+        'utf8',
+      ),
+      writeFile(
+        path.join(overlapsDir, 'future-event.json'),
+        JSON.stringify(evidence.report),
+        'utf8',
+      ),
+      writeFile(manifestFile, JSON.stringify(manifest), 'utf8'),
+      writeFile(
+        path.join(payloadDir, 'existing.json'),
+        JSON.stringify({ items: [{ issueId: 7001 }] }),
+        'utf8',
+      ),
+      writeFile(
+        path.join(payloadDir, 'peer_event.json'),
+        JSON.stringify({ items: [{ issueId: 9001 }, { issueId: 9002 }] }),
+        'utf8',
+      ),
+    ]);
+
+    const summary = await authorPacket(['future-event'], {
+      mappingsDir,
+      overlapsDir,
+      packetsDir,
+      ordersDir,
+      manifestFile,
+      payloadDir,
+      peerIds: ['peer-event'],
+    });
+    assert.deepEqual(summary, { guides: 1, rows: 2, manifestEntries: 3 });
+    const authoredManifest = JSON.parse(await readFile(manifestFile, 'utf8'));
+    assert.deepEqual(
+      authoredManifest.lists.find((entry) => entry.id === 'peer-event'),
+      peerEntry,
+    );
+    await writeFile(
+      path.join(payloadDir, 'future_event.json'),
+      JSON.stringify({ items: [{ issueId: 9001 }, { issueId: 9002 }] }),
+      'utf8',
+    );
+
+    const stalePeer = structuredClone(peerMapping);
+    stalePeer.rows[0].selectedIssueId = 9999;
+    await writeFile(
+      path.join(mappingsDir, 'peer-event.json'),
+      JSON.stringify(stalePeer),
+      'utf8',
+    );
+    await assert.rejects(
+      () => authorPacket(['future-event'], {
+        mappingsDir,
+        overlapsDir,
+        packetsDir,
+        ordersDir,
+        manifestFile,
+        payloadDir,
+        peerIds: ['peer-event'],
+      }),
+      /mapping digest is stale/i,
+    );
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
 });
 
 test('exact relationships have no approval path', () => {

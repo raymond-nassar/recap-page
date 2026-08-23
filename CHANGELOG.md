@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the complete Groot character guide
+
+In plain English: the Character spotlights shelf now includes a complete Groot guide. It follows all
+76 source-defined issues from Tales to Astonish #13 through Groot #4, including every issue it shares
+with the separate Rocket Raccoon guide. The catalog now has 96 reading lists. Nothing you have saved
+is changed.
+
+For maintainers: this is the separately prioritized rank 9 release, not an extension or reduction of
+Rocket. A fresh 95-comparison report records no exact or subset duplicate and three approved partial
+relationships: 4 issues with Annihilation: Conquest, 41 with Rocket Raccoon, and 7 with War of Kings.
+All 76 rows resolve exactly in source order and are bound to current source, packet, mapping, library,
+peer, report, approval, and authoring evidence.
+
 ### Added five historical Marvel event reading guides
 
 In plain English: Timeline now reaches back before Maximum Security with five compact event guides:

@@ -38,12 +38,12 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 95, `the catalog lists ${orders.length} orders, not 95, so this test's coverage has changed`);
+  assert.equal(orders.length, 96, `the catalog lists ${orders.length} orders, not 96, so this test's coverage has changed`);
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
 });
 
-// The test above reads the catalog, so it sees exactly the ninety-five files the catalog names and
+// The test above reads the catalog, so it sees exactly the ninety-six files the catalog names and
 // nothing else. That is the shape of the miss it was written to prevent: the first strip left 41
 // descriptions in design/mockups/mock-data.js, a generated projection of a reading order that no
 // catalog lists and no gate walked. A boundary defined by an enumeration is a boundary someone has
@@ -53,8 +53,8 @@ test('no shipped reading order carries Marvel description prose', async () => {
 // the files walked are code and cannot parse, so a file that stops parsing has to be skipped
 // silently or the test would fail on every script in the repository. That skip is a hole aimed
 // straight at the one file this test exists for: reformat the mockup bundle, or move it, and it
-// leaves the population with nothing said. A floor of ninety-five still passes at that point, because
-// the catalog's own files alone clear it. An exact ninety-eight does not.
+// leaves the population with nothing said. A floor of ninety-six still passes at that point, because
+// the catalog's own files alone clear it. An exact ninety-nine does not.
 //
 // A review suggested pre-filtering on the literal "items" key so that package-lock.json is not
 // parsed. Avoiding one small parse is not the point. The cost is a second boundary to keep correct,
@@ -100,7 +100,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 98, `${scanned} item-bearing files were found, not 98, so this test's coverage has changed`);
+  assert.equal(scanned, 99, `${scanned} item-bearing files were found, not 99, so this test's coverage has changed`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });
 

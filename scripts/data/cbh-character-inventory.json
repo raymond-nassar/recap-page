@@ -1026,13 +1026,19 @@
     "url": "https://www.comicbookherald.com/groot-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The exact 76-issue boundary shares 41 source-required issues with the higher-priority Rocket Raccoon guide, so Groot is deferred to a separate later authoring call.",
+    "disposition": "new-order",
+    "reason": "All 76 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite three approved partial relationships.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "annihilation-conquest",
+      "rocket-raccoon-reading-order",
+      "war-of-kings"
+    ],
+    "catalogIds": [
+      "groot-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Groot"
     ],
@@ -1042,7 +1048,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "69b1eed149b35b2b2290c7eff58354bfb0742055b478a418b9699d8102ffa257",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 42,
