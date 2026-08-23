@@ -7,6 +7,7 @@ import { parseManifest } from '../src/js/lib/curated.js';
 import { escapeLinkText } from '../src/js/lib/markdown.js';
 import {
   canonicalJson,
+  libraryDigestExcludingOrders,
   validateApprovalDigest,
   validateFrozenPacket,
   validateMappingDigest,
@@ -397,6 +398,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   payloadDir = path.dirname(MANIFEST_PATH),
 } = {}) {
   const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, packetIds);
   const current = library.manifest;
   const currentLists = Array.isArray(current.lists) ? current.lists : [];
   const existing = existingEntriesForPacket(currentLists, packetIds);
@@ -429,7 +431,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
         packet,
         mapping,
         report,
-        currentLibraryDigest: library.libraryDigest,
+        currentLibraryDigest: reviewedLibraryDigest,
         peerMappings,
         expectedOrderIds,
       });

@@ -209,9 +209,10 @@ At minimum, record:
 
 Never scrape `marvel.com` or `read.marvel.com`. Do not commit comic images.
 
-## Build a Comic Book Herald continuity packet
+## Build a Comic Book Herald packet
 
-For a modern continuity order, preserve five evidence layers before editing product data:
+For a modern continuity or character spotlight order, preserve five evidence layers before editing
+product data:
 
 1. A centrally frozen candidate packet containing the exact source boundary and ordered rows.
 2. A worker-owned mapping that resolves every frozen row to one issue ID.
@@ -224,6 +225,13 @@ identity, exact page and visible section, source boundary, exclusions, row order
 complete manifest proposal, chronology insertion anchor, and source-review identity. Its
 `packetDigest` is SHA-256 over canonical JSON with recursively sorted object keys and preserved
 array order. Changing any frozen field requires a new digest and a new downstream review.
+
+The maintained source records are split by program. Modern event and crossover candidates remain in
+`scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and
+team guide identities live in `scripts/data/cbh-character-inventory.json`. Named preparation locates
+the packet's stable id in exactly one maintained inventory, then applies the same packet, mapping,
+relationship, approval, authoring, and freshness checks. Do not merge their queue counts or treat a
+character disposition as a modern continuity result.
 
 Prepare exactly one packet by its stable id:
 

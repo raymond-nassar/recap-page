@@ -215,7 +215,7 @@ test('the shared source uses exact page and section identities without invented 
   ))).size, 8);
 });
 
-test('batch three has no aggregate identity, source, sequence, or issue overlap', async () => {
+test('batch three keeps its original identities, sequence, and no-overlap reports', async () => {
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const packetSet = new Set(THIRD_PACKET_IDS);
   const packetRecords = [];
@@ -237,10 +237,6 @@ test('batch three has no aggregate identity, source, sequence, or issue overlap'
   assert.equal(packetRecords.length, 10);
   assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length);
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
-
-  const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);
-  const existingIssueIds = new Set(existingRecords.flatMap((record) => record.selectedIssueIds));
-  assert.deepEqual(packetIssueIds.filter((id) => existingIssueIds.has(id)), []);
 
   for (const id of THIRD_PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));

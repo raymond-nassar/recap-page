@@ -1,0 +1,3913 @@
+{
+  "id": "white-tiger-ava-ayala",
+  "inventoryId": "white-tiger-ava-ayala",
+  "packetDigest": "959310f882b67d5b83e8f8ba9ff6136adcd3c61523d05bdef3d9113d9767b740",
+  "sourceUrl": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 82,
+  "excludedSourceReferences": [
+    "Related reading-order links",
+    "Collection issues replaced by an explicit Ava Ayala Cut",
+    "Editorial commentary and non-issue prose"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "white-tiger-ava-ayala",
+    "name": "White Tiger: Ava Ayala",
+    "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "white-tiger-ava-ayala.md",
+    "sourcePage": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "white_tiger_ava_ayala.json",
+    "characters": [
+      "White Tiger",
+      "Ava Ayala",
+      "Avengers Academy",
+      "Mighty Avengers",
+      "New Avengers"
+    ],
+    "keywords": [
+      "White Tiger",
+      "Ava Ayala",
+      "Avengers Academy",
+      "Mighty Avengers",
+      "Contest of Champions",
+      "Daughters of Liberty",
+      "Comic Book Herald"
+    ],
+    "expect": 82,
+    "timeline": null,
+    "coverIssueId": 36489
+  },
+  "candidateMetadata": [
+    {
+      "id": 36489,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #21",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "21",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/36489/avengers_academy_2010_21",
+      "onSaleDate": "2011-11-02T00:00:00+0000"
+    },
+    {
+      "id": 36485,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #22",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "22",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/36485/avengers_academy_2010_22",
+      "onSaleDate": "2011-11-16T00:00:00+0000"
+    },
+    {
+      "id": 36488,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #23",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "23",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/36488/avengers_academy_2010_23",
+      "onSaleDate": "2011-12-14T00:00:00+0000"
+    },
+    {
+      "id": 36486,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #24",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "24",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/36486/avengers_academy_2010_24",
+      "onSaleDate": "2012-01-04T00:00:00+0000"
+    },
+    {
+      "id": 40255,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #25",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "25",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40255/avengers_academy_2010_25",
+      "onSaleDate": "2012-02-01T00:00:00+0000"
+    },
+    {
+      "id": 40249,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #26",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "26",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40249/avengers_academy_2010_26",
+      "onSaleDate": "2012-02-22T00:00:00+0000"
+    },
+    {
+      "id": 40248,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #27",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "27",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40248/avengers_academy_2010_27",
+      "onSaleDate": "2012-03-07T00:00:00+0000"
+    },
+    {
+      "id": 40252,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #28",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "28",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40252/avengers_academy_2010_28",
+      "onSaleDate": "2012-04-04T00:00:00+0000"
+    },
+    {
+      "id": 40251,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #29",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "29",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40251/avengers_academy_2010_29",
+      "onSaleDate": "2012-05-02T00:00:00+0000"
+    },
+    {
+      "id": 40250,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #30",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "30",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40250/avengers_academy_2010_30",
+      "onSaleDate": "2012-05-16T00:00:00+0000"
+    },
+    {
+      "id": 40253,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #31",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "31",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40253/avengers_academy_2010_31",
+      "onSaleDate": "2012-06-06T00:00:00+0000"
+    },
+    {
+      "id": 40254,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #32",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "32",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40254/avengers_academy_2010_32",
+      "onSaleDate": "2012-06-20T00:00:00+0000"
+    },
+    {
+      "id": 40264,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #33",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "33",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40264/avengers_academy_2010_33",
+      "onSaleDate": "2012-07-18T00:00:00+0000"
+    },
+    {
+      "id": 40258,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #34",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "34",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40258/avengers_academy_2010_34",
+      "onSaleDate": "2012-08-01T00:00:00+0000"
+    },
+    {
+      "id": 40257,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #35",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "35",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40257/avengers_academy_2010_35",
+      "onSaleDate": "2012-08-15T00:00:00+0000"
+    },
+    {
+      "id": 40262,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #36",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "36",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40262/avengers_academy_2010_36",
+      "onSaleDate": "2012-09-05T00:00:00+0000"
+    },
+    {
+      "id": 40261,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #37",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "37",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40261/avengers_academy_2010_37",
+      "onSaleDate": "2012-09-19T00:00:00+0000"
+    },
+    {
+      "id": 40263,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #38",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "38",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40263/avengers_academy_2010_38",
+      "onSaleDate": "2012-10-03T00:00:00+0000"
+    },
+    {
+      "id": 40256,
+      "title": "Avengers Academy",
+      "issueTitle": "Avengers Academy (2010) #39",
+      "seriesTitle": "Avengers Academy",
+      "apiSeriesName": "Avengers Academy (2010 - 2012)",
+      "seriesId": 9086,
+      "issueNumber": "39",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/40256/avengers_academy_2010_39",
+      "onSaleDate": "2012-11-07T00:00:00+0000"
+    },
+    {
+      "id": 46844,
+      "title": "Young Avengers",
+      "issueTitle": "Young Avengers (2013) #12",
+      "seriesTitle": "Young Avengers",
+      "apiSeriesName": "Young Avengers (2013)",
+      "seriesId": 17647,
+      "issueNumber": "12",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/46844/young_avengers_2013_12",
+      "onSaleDate": "2013-11-20T00:00:00+0000"
+    },
+    {
+      "id": 46845,
+      "title": "Young Avengers",
+      "issueTitle": "Young Avengers (2013) #13",
+      "seriesTitle": "Young Avengers",
+      "apiSeriesName": "Young Avengers (2013)",
+      "seriesId": 17647,
+      "issueNumber": "13",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/46845/young_avengers_2013_13",
+      "onSaleDate": "2013-12-04T00:00:00+0000"
+    },
+    {
+      "id": 45871,
+      "title": "Avengers Arena",
+      "issueTitle": "Avengers Arena (2012) #13",
+      "seriesTitle": "Avengers Arena",
+      "apiSeriesName": "Avengers Arena (2012 - 2013)",
+      "seriesId": 16875,
+      "issueNumber": "13",
+      "seriesYear": 2012,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45871/avengers_arena_2012_13",
+      "onSaleDate": "2013-08-14T00:00:00+0000"
+    },
+    {
+      "id": 48316,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #1",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "1",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48316/mighty_avengers_2013_1",
+      "onSaleDate": "2013-09-11T00:00:00+0000"
+    },
+    {
+      "id": 48318,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #3",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "3",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48318/mighty_avengers_2013_3",
+      "onSaleDate": "2013-11-06T00:00:00+0000"
+    },
+    {
+      "id": 48319,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #4",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "4",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48319/mighty_avengers_2013_4",
+      "onSaleDate": "2013-12-11T00:00:00+0000"
+    },
+    {
+      "id": 48320,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #5",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "5",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48320/mighty_avengers_2013_5",
+      "onSaleDate": "2014-01-22T00:00:00+0000"
+    },
+    {
+      "id": 47124,
+      "title": "Infinity",
+      "issueTitle": "Infinity (2013) #3",
+      "seriesTitle": "Infinity",
+      "apiSeriesName": "Infinity (2013)",
+      "seriesId": 17735,
+      "issueNumber": "3",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/47124/infinity_2013_3",
+      "onSaleDate": "2013-09-18T00:00:00+0000"
+    },
+    {
+      "id": 48321,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #6",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "6",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48321/mighty_avengers_2013_6",
+      "onSaleDate": "2014-02-05T00:00:00+0000"
+    },
+    {
+      "id": 48322,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #7",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "7",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48322/mighty_avengers_2013_7",
+      "onSaleDate": "2014-02-26T00:00:00+0000"
+    },
+    {
+      "id": 48323,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #8",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "8",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48323/mighty_avengers_2013_8",
+      "onSaleDate": "2014-03-12T00:00:00+0000"
+    },
+    {
+      "id": 48327,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #12",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "12",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48327/mighty_avengers_2013_12",
+      "onSaleDate": "2014-07-23T00:00:00+0000"
+    },
+    {
+      "id": 49854,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #13",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "13",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/49854/mighty_avengers_2013_13",
+      "onSaleDate": "2014-08-20T00:00:00+0000"
+    },
+    {
+      "id": 49855,
+      "title": "Mighty Avengers",
+      "issueTitle": "Mighty Avengers (2013) #14",
+      "seriesTitle": "Mighty Avengers",
+      "apiSeriesName": "Mighty Avengers (2013 - 2014)",
+      "seriesId": 18309,
+      "issueNumber": "14",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/49855/mighty_avengers_2013_14",
+      "onSaleDate": "2014-09-24T00:00:00+0000"
+    },
+    {
+      "id": 48592,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2012) #25",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2012 - 2014)",
+      "seriesId": 16516,
+      "issueNumber": "25",
+      "seriesYear": 2012,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48592/captain_america_2012_25",
+      "onSaleDate": "2014-10-01T00:00:00+0000"
+    },
+    {
+      "id": 51049,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #1",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "1",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51049/captain_america_the_mighty_avengers_2014_1",
+      "onSaleDate": "2014-11-12T00:00:00+0000"
+    },
+    {
+      "id": 51550,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #2",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "2",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51550/captain_america_the_mighty_avengers_2014_2",
+      "onSaleDate": "2014-11-26T00:00:00+0000"
+    },
+    {
+      "id": 51158,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #3",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "3",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51158/captain_america_the_mighty_avengers_2014_3",
+      "onSaleDate": "2014-12-24T00:00:00+0000"
+    },
+    {
+      "id": 51554,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #4",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "4",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51554/captain_america_the_mighty_avengers_2014_4",
+      "onSaleDate": "2015-01-21T00:00:00+0000"
+    },
+    {
+      "id": 51555,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #5",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "5",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51555/captain_america_the_mighty_avengers_2014_5",
+      "onSaleDate": "2015-02-18T00:00:00+0000"
+    },
+    {
+      "id": 51556,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #6",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "6",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51556/captain_america_the_mighty_avengers_2014_6",
+      "onSaleDate": "2015-03-18T00:00:00+0000"
+    },
+    {
+      "id": 51557,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #7",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "7",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51557/captain_america_the_mighty_avengers_2014_7",
+      "onSaleDate": "2015-04-15T00:00:00+0000"
+    },
+    {
+      "id": 51113,
+      "title": "S.H.I.E.L.D.",
+      "issueTitle": "S.H.I.E.L.D. (2014) #1",
+      "seriesTitle": "S.H.I.E.L.D.",
+      "apiSeriesName": "S.H.I.E.L.D. (2014 - 2015)",
+      "seriesId": 19639,
+      "issueNumber": "1",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51113/shield_2014_1",
+      "onSaleDate": "2014-12-31T00:00:00+0000"
+    },
+    {
+      "id": 51558,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #8",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "8",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51558/captain_america_the_mighty_avengers_2014_8",
+      "onSaleDate": "2015-05-13T00:00:00+0000"
+    },
+    {
+      "id": 51559,
+      "title": "Captain America & the Mighty Avengers",
+      "issueTitle": "Captain America & the Mighty Avengers (2014) #9",
+      "seriesTitle": "Captain America & the Mighty Avengers",
+      "apiSeriesName": "Captain America & the Mighty Avengers (2014 - 2015)",
+      "seriesId": 19160,
+      "issueNumber": "9",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51559/captain_america_the_mighty_avengers_2014_9",
+      "onSaleDate": "2015-06-10T00:00:00+0000"
+    },
+    {
+      "id": 57030,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #1",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57030/new_avengers_2015_1",
+      "onSaleDate": "2015-10-14T00:00:00+0000"
+    },
+    {
+      "id": 57034,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #2",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57034/new_avengers_2015_2",
+      "onSaleDate": "2015-10-28T00:00:00+0000"
+    },
+    {
+      "id": 58371,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #3",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/58371/new_avengers_2015_3",
+      "onSaleDate": "2015-11-18T00:00:00+0000"
+    },
+    {
+      "id": 57529,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #4",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "4",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57529/new_avengers_2015_4",
+      "onSaleDate": "2015-12-23T00:00:00+0000"
+    },
+    {
+      "id": 57530,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #5",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "5",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57530/new_avengers_2015_5",
+      "onSaleDate": "2016-01-20T00:00:00+0000"
+    },
+    {
+      "id": 57611,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #6",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "6",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57611/new_avengers_2015_6",
+      "onSaleDate": "2016-02-10T00:00:00+0000"
+    },
+    {
+      "id": 51260,
+      "title": "All-New Hawkeye",
+      "issueTitle": "All-New Hawkeye (2015) #2",
+      "seriesTitle": "All-New Hawkeye",
+      "apiSeriesName": "All-New Hawkeye (2015)",
+      "seriesId": 19255,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51260/all-new_hawkeye_2015_2",
+      "onSaleDate": "2015-04-08T00:00:00+0000"
+    },
+    {
+      "id": 56031,
+      "title": "Agents of S.H.I.E.L.D.",
+      "issueTitle": "Agents of S.H.I.E.L.D. (2016) #3",
+      "seriesTitle": "Agents of S.H.I.E.L.D.",
+      "apiSeriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "seriesId": 20607,
+      "issueNumber": "3",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56031/agents_of_shield_2016_3",
+      "onSaleDate": "2016-03-09T00:00:00+0000"
+    },
+    {
+      "id": 56032,
+      "title": "Agents of S.H.I.E.L.D.",
+      "issueTitle": "Agents of S.H.I.E.L.D. (2016) #4",
+      "seriesTitle": "Agents of S.H.I.E.L.D.",
+      "apiSeriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "seriesId": 20607,
+      "issueNumber": "4",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56032/agents_of_shield_2016_4",
+      "onSaleDate": "2016-04-13T00:00:00+0000"
+    },
+    {
+      "id": 57612,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #7",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57612/new_avengers_2015_7",
+      "onSaleDate": "2016-02-24T00:00:00+0000"
+    },
+    {
+      "id": 58372,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #8",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "8",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/58372/new_avengers_2015_8",
+      "onSaleDate": "2016-03-23T00:00:00+0000"
+    },
+    {
+      "id": 58373,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #9",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "9",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/58373/new_avengers_2015_9",
+      "onSaleDate": "2016-04-06T00:00:00+0000"
+    },
+    {
+      "id": 58374,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #10",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "10",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/58374/new_avengers_2015_10",
+      "onSaleDate": "2016-04-20T00:00:00+0000"
+    },
+    {
+      "id": 52793,
+      "title": "The Unbeatable Squirrel Girl",
+      "issueTitle": "The Unbeatable Squirrel Girl (2015) #8",
+      "seriesTitle": "The Unbeatable Squirrel Girl",
+      "apiSeriesName": "The Unbeatable Squirrel Girl (2015)",
+      "seriesId": 19750,
+      "issueNumber": "8",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52793/the_unbeatable_squirrel_girl_2015_8",
+      "onSaleDate": "2015-08-12T00:00:00+0000"
+    },
+    {
+      "id": 57955,
+      "title": "Power Man and Iron Fist",
+      "issueTitle": "Power Man and Iron Fist (2016) #6",
+      "seriesTitle": "Power Man and Iron Fist",
+      "apiSeriesName": "Power Man and Iron Fist (2016 - 2017)",
+      "seriesId": 21122,
+      "issueNumber": "6",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57955/power_man_and_iron_fist_2016_6",
+      "onSaleDate": "2016-07-13T00:00:00+0000"
+    },
+    {
+      "id": 60135,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #14",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "14",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60135/new_avengers_2015_14",
+      "onSaleDate": "2016-07-27T00:00:00+0000"
+    },
+    {
+      "id": 60136,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #15",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "15",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60136/new_avengers_2015_15",
+      "onSaleDate": "2016-08-24T00:00:00+0000"
+    },
+    {
+      "id": 60137,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #16",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "16",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60137/new_avengers_2015_16",
+      "onSaleDate": "2016-09-28T00:00:00+0000"
+    },
+    {
+      "id": 61035,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #17",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "17",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61035/new_avengers_2015_17",
+      "onSaleDate": "2016-10-26T00:00:00+0000"
+    },
+    {
+      "id": 61036,
+      "title": "New Avengers",
+      "issueTitle": "New Avengers (2015) #18",
+      "seriesTitle": "New Avengers",
+      "apiSeriesName": "New Avengers (2015 - 2016)",
+      "seriesId": 20841,
+      "issueNumber": "18",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61036/new_avengers_2015_18",
+      "onSaleDate": "2016-11-30T00:00:00+0000"
+    },
+    {
+      "id": 65511,
+      "title": "Defenders",
+      "issueTitle": "Defenders (2017) #9",
+      "seriesTitle": "Defenders",
+      "apiSeriesName": "Defenders (2017 - 2018)",
+      "seriesId": 23074,
+      "issueNumber": "9",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65511/defenders_2017_9",
+      "onSaleDate": "2018-01-31T00:00:00+0000"
+    },
+    {
+      "id": 61093,
+      "title": "The Unbeatable Squirrel Girl",
+      "issueTitle": "The Unbeatable Squirrel Girl (2015) #27",
+      "seriesTitle": "The Unbeatable Squirrel Girl",
+      "apiSeriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "seriesId": 20620,
+      "issueNumber": "27",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61093/the_unbeatable_squirrel_girl_2015_27",
+      "onSaleDate": "2017-12-13T00:00:00+0000"
+    },
+    {
+      "id": 67925,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #7",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "7",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67925/captain_america_2018_7",
+      "onSaleDate": "2019-01-30T00:00:00+0000"
+    },
+    {
+      "id": 67926,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #8",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "8",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67926/captain_america_2018_8",
+      "onSaleDate": "2019-02-27T00:00:00+0000"
+    },
+    {
+      "id": 67927,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #9",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "9",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67927/captain_america_2018_9",
+      "onSaleDate": "2019-04-03T00:00:00+0000"
+    },
+    {
+      "id": 67930,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #12",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "12",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67930/captain_america_2018_12",
+      "onSaleDate": "2019-07-31T00:00:00+0000"
+    },
+    {
+      "id": 75125,
+      "title": "Marvel Comics",
+      "issueTitle": "Marvel Comics (2019) #1000",
+      "seriesTitle": "Marvel Comics",
+      "apiSeriesName": "Marvel Comics (2019)",
+      "seriesId": 27020,
+      "issueNumber": "1000",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/75125/marvel_comics_2019_1000",
+      "onSaleDate": "2019-08-28T00:00:00+0000"
+    },
+    {
+      "id": 70744,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #13",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "13",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70744/captain_america_2018_13",
+      "onSaleDate": "2019-08-28T00:00:00+0000"
+    },
+    {
+      "id": 70745,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #14",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "14",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70745/captain_america_2018_14",
+      "onSaleDate": "2019-09-25T00:00:00+0000"
+    },
+    {
+      "id": 77232,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #16",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "16",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77232/captain_america_2018_16",
+      "onSaleDate": "2019-11-20T00:00:00+0000"
+    },
+    {
+      "id": 80608,
+      "title": "Valkyrie: Jane Foster",
+      "issueTitle": "Valkyrie: Jane Foster (2019) #6",
+      "seriesTitle": "Valkyrie: Jane Foster",
+      "apiSeriesName": "Valkyrie: Jane Foster (2019 - 2020)",
+      "seriesId": 27826,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80608/valkyrie_jane_foster_2019_6",
+      "onSaleDate": "2019-12-11T00:00:00+0000"
+    },
+    {
+      "id": 81098,
+      "title": "Contagion",
+      "issueTitle": "Contagion (2019) #3",
+      "seriesTitle": "Contagion",
+      "apiSeriesName": "Contagion (2019 - 2020)",
+      "seriesId": 28968,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/81098/contagion_2019_3",
+      "onSaleDate": "2019-10-16T00:00:00+0000"
+    },
+    {
+      "id": 81100,
+      "title": "Contagion",
+      "issueTitle": "Contagion (2019) #4",
+      "seriesTitle": "Contagion",
+      "apiSeriesName": "Contagion (2019 - 2020)",
+      "seriesId": 28968,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/81100/contagion_2019_4",
+      "onSaleDate": "2019-10-23T00:00:00+0000"
+    },
+    {
+      "id": 81102,
+      "title": "Contagion",
+      "issueTitle": "Contagion (2019) #5",
+      "seriesTitle": "Contagion",
+      "apiSeriesName": "Contagion (2019 - 2020)",
+      "seriesId": 28968,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/81102/contagion_2019_5",
+      "onSaleDate": "2019-10-30T00:00:00+0000"
+    },
+    {
+      "id": 82354,
+      "title": "Empyre: Aftermath Avengers",
+      "issueTitle": "Empyre: Aftermath Avengers (2020) #1",
+      "seriesTitle": "Empyre: Aftermath Avengers",
+      "apiSeriesName": "Empyre: Aftermath Avengers (2020)",
+      "seriesId": 29276,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/82354/empyre_aftermath_avengers_2020_1",
+      "onSaleDate": "2020-09-09T00:00:00+0000"
+    },
+    {
+      "id": 94061,
+      "title": "Women of Marvel",
+      "issueTitle": "Women of Marvel (2021) #1",
+      "seriesTitle": "Women of Marvel",
+      "apiSeriesName": "Women of Marvel (2021)",
+      "seriesId": 32095,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/94061/women_of_marvel_2021_1",
+      "onSaleDate": "2021-04-21T00:00:00+0000"
+    },
+    {
+      "id": 89544,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #29",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "29",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/89544/captain_america_2018_29",
+      "onSaleDate": "2021-05-19T00:00:00+0000"
+    },
+    {
+      "id": 103954,
+      "title": "Marvel's Voices: Community",
+      "issueTitle": "Marvel's Voices: Community (2022) #1",
+      "seriesTitle": "Marvel's Voices: Community",
+      "apiSeriesName": "Marvel's Voices: Community (2022)",
+      "seriesId": 35716,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/103954/marvels_voices_community_2022_1",
+      "onSaleDate": "2022-09-28T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Avengers Academy #21",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "21",
+      "seriesId": 9086,
+      "candidateIssueId": 36489,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "36489"
+      ],
+      "selectedIssueId": 36489,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36489/avengers_academy_2010_21",
+      "resolvedIssueTitle": "Avengers Academy (2010) #21",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        36489
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Avengers Academy #22",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "22",
+      "seriesId": 9086,
+      "candidateIssueId": 36485,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "36485"
+      ],
+      "selectedIssueId": 36485,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36485/avengers_academy_2010_22",
+      "resolvedIssueTitle": "Avengers Academy (2010) #22",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        36485
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Avengers Academy #23",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "23",
+      "seriesId": 9086,
+      "candidateIssueId": 36488,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "36488"
+      ],
+      "selectedIssueId": 36488,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36488/avengers_academy_2010_23",
+      "resolvedIssueTitle": "Avengers Academy (2010) #23",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        36488
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Avengers Academy #24",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "24",
+      "seriesId": 9086,
+      "candidateIssueId": 36486,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "36486"
+      ],
+      "selectedIssueId": 36486,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/36486/avengers_academy_2010_24",
+      "resolvedIssueTitle": "Avengers Academy (2010) #24",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        36486
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Avengers Academy #25",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "25",
+      "seriesId": 9086,
+      "candidateIssueId": 40255,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40255"
+      ],
+      "selectedIssueId": 40255,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40255/avengers_academy_2010_25",
+      "resolvedIssueTitle": "Avengers Academy (2010) #25",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40255
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Avengers Academy #26",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "26",
+      "seriesId": 9086,
+      "candidateIssueId": 40249,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40249"
+      ],
+      "selectedIssueId": 40249,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40249/avengers_academy_2010_26",
+      "resolvedIssueTitle": "Avengers Academy (2010) #26",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40249
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Avengers Academy #27",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "27",
+      "seriesId": 9086,
+      "candidateIssueId": 40248,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40248"
+      ],
+      "selectedIssueId": 40248,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40248/avengers_academy_2010_27",
+      "resolvedIssueTitle": "Avengers Academy (2010) #27",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40248
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Avengers Academy #28",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "28",
+      "seriesId": 9086,
+      "candidateIssueId": 40252,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40252"
+      ],
+      "selectedIssueId": 40252,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40252/avengers_academy_2010_28",
+      "resolvedIssueTitle": "Avengers Academy (2010) #28",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40252
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Avengers Academy #29",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "29",
+      "seriesId": 9086,
+      "candidateIssueId": 40251,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40251"
+      ],
+      "selectedIssueId": 40251,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40251/avengers_academy_2010_29",
+      "resolvedIssueTitle": "Avengers Academy (2010) #29",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40251
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Avengers Academy #30",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "30",
+      "seriesId": 9086,
+      "candidateIssueId": 40250,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40250"
+      ],
+      "selectedIssueId": 40250,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40250/avengers_academy_2010_30",
+      "resolvedIssueTitle": "Avengers Academy (2010) #30",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40250
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Avengers Academy #31",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "31",
+      "seriesId": 9086,
+      "candidateIssueId": 40253,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40253"
+      ],
+      "selectedIssueId": 40253,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40253/avengers_academy_2010_31",
+      "resolvedIssueTitle": "Avengers Academy (2010) #31",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40253
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Avengers Academy #32",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "32",
+      "seriesId": 9086,
+      "candidateIssueId": 40254,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40254"
+      ],
+      "selectedIssueId": 40254,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40254/avengers_academy_2010_32",
+      "resolvedIssueTitle": "Avengers Academy (2010) #32",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40254
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Avengers Academy #33",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "33",
+      "seriesId": 9086,
+      "candidateIssueId": 40264,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40264"
+      ],
+      "selectedIssueId": 40264,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40264/avengers_academy_2010_33",
+      "resolvedIssueTitle": "Avengers Academy (2010) #33",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40264
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Avengers Academy #34",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "34",
+      "seriesId": 9086,
+      "candidateIssueId": 40258,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40258"
+      ],
+      "selectedIssueId": 40258,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40258/avengers_academy_2010_34",
+      "resolvedIssueTitle": "Avengers Academy (2010) #34",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40258
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Avengers Academy #35",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "35",
+      "seriesId": 9086,
+      "candidateIssueId": 40257,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40257"
+      ],
+      "selectedIssueId": 40257,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40257/avengers_academy_2010_35",
+      "resolvedIssueTitle": "Avengers Academy (2010) #35",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40257
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Avengers Academy #36",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "36",
+      "seriesId": 9086,
+      "candidateIssueId": 40262,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40262"
+      ],
+      "selectedIssueId": 40262,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40262/avengers_academy_2010_36",
+      "resolvedIssueTitle": "Avengers Academy (2010) #36",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40262
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Avengers Academy #37",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "37",
+      "seriesId": 9086,
+      "candidateIssueId": 40261,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40261"
+      ],
+      "selectedIssueId": 40261,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40261/avengers_academy_2010_37",
+      "resolvedIssueTitle": "Avengers Academy (2010) #37",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40261
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Avengers Academy #38",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "38",
+      "seriesId": 9086,
+      "candidateIssueId": 40263,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40263"
+      ],
+      "selectedIssueId": 40263,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40263/avengers_academy_2010_38",
+      "resolvedIssueTitle": "Avengers Academy (2010) #38",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40263
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Avengers Academy #39",
+      "sourceRangeReference": "Avengers Academy (2010) #21-39",
+      "normalizedSeriesTitle": "Avengers Academy",
+      "seriesYear": 2010,
+      "issueNumber": "39",
+      "seriesId": 9086,
+      "candidateIssueId": 40256,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "40256"
+      ],
+      "selectedIssueId": 40256,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40256/avengers_academy_2010_39",
+      "resolvedIssueTitle": "Avengers Academy (2010) #39",
+      "note": "Marvel series 9086 (Avengers Academy (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        40256
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Young Avengers #12",
+      "sourceRangeReference": "The Ava Ayala Cut: Young Avengers (2013) #12-13",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "12",
+      "seriesId": 17647,
+      "candidateIssueId": 46844,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "46844"
+      ],
+      "selectedIssueId": 46844,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46844/young_avengers_2013_12",
+      "resolvedIssueTitle": "Young Avengers (2013) #12",
+      "note": "Marvel series 17647 (Young Avengers (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        46844
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Young Avengers #13",
+      "sourceRangeReference": "The Ava Ayala Cut: Young Avengers (2013) #12-13",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "13",
+      "seriesId": 17647,
+      "candidateIssueId": 46845,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "46845"
+      ],
+      "selectedIssueId": 46845,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46845/young_avengers_2013_13",
+      "resolvedIssueTitle": "Young Avengers (2013) #13",
+      "note": "Marvel series 17647 (Young Avengers (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        46845
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Avengers Arena #13",
+      "sourceRangeReference": "The Ava Ayala Cut: Avengers Arena #13",
+      "normalizedSeriesTitle": "Avengers Arena",
+      "seriesYear": 2012,
+      "issueNumber": "13",
+      "seriesId": 16875,
+      "candidateIssueId": 45871,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45871"
+      ],
+      "selectedIssueId": 45871,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45871/avengers_arena_2012_13",
+      "resolvedIssueTitle": "Avengers Arena (2012) #13",
+      "note": "Marvel series 16875 (Avengers Arena (2012 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45871
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Mighty Avengers #1",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #1, 3-5",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 18309,
+      "candidateIssueId": 48316,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48316"
+      ],
+      "selectedIssueId": 48316,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48316/mighty_avengers_2013_1",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #1",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48316
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Mighty Avengers #3",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #1, 3-5",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 18309,
+      "candidateIssueId": 48318,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48318"
+      ],
+      "selectedIssueId": 48318,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48318/mighty_avengers_2013_3",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #3",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48318
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Mighty Avengers #4",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #1, 3-5",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 18309,
+      "candidateIssueId": 48319,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48319"
+      ],
+      "selectedIssueId": 48319,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48319/mighty_avengers_2013_4",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #4",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48319
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Mighty Avengers #5",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #1, 3-5",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "5",
+      "seriesId": 18309,
+      "candidateIssueId": 48320,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48320"
+      ],
+      "selectedIssueId": 48320,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48320/mighty_avengers_2013_5",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #5",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48320
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Infinity #3",
+      "sourceRangeReference": "The Ava Ayala Cut: Infinity #3",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17735,
+      "candidateIssueId": 47124,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "47124"
+      ],
+      "selectedIssueId": 47124,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/47124/infinity_2013_3",
+      "resolvedIssueTitle": "Infinity (2013) #3",
+      "note": "Marvel series 17735 (Infinity (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        47124
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Mighty Avengers #6",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #6-8",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "6",
+      "seriesId": 18309,
+      "candidateIssueId": 48321,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48321"
+      ],
+      "selectedIssueId": 48321,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48321/mighty_avengers_2013_6",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #6",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48321
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Mighty Avengers #7",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #6-8",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "7",
+      "seriesId": 18309,
+      "candidateIssueId": 48322,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48322"
+      ],
+      "selectedIssueId": 48322,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48322/mighty_avengers_2013_7",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #7",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48322
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Mighty Avengers #8",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #6-8",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "8",
+      "seriesId": 18309,
+      "candidateIssueId": 48323,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48323"
+      ],
+      "selectedIssueId": 48323,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48323/mighty_avengers_2013_8",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #8",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48323
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Mighty Avengers #12",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #12-14",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "12",
+      "seriesId": 18309,
+      "candidateIssueId": 48327,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48327"
+      ],
+      "selectedIssueId": 48327,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48327/mighty_avengers_2013_12",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #12",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48327
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Mighty Avengers #13",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #12-14",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "13",
+      "seriesId": 18309,
+      "candidateIssueId": 49854,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "49854"
+      ],
+      "selectedIssueId": 49854,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49854/mighty_avengers_2013_13",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #13",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        49854
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Mighty Avengers #14",
+      "sourceRangeReference": "The Ava Ayala Cut: Mighty Avengers #12-14",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "14",
+      "seriesId": 18309,
+      "candidateIssueId": 49855,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "49855"
+      ],
+      "selectedIssueId": 49855,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49855/mighty_avengers_2013_14",
+      "resolvedIssueTitle": "Mighty Avengers (2013) #14",
+      "note": "Marvel series 18309 (Mighty Avengers (2013 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        49855
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Captain America #25",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America #25",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2012,
+      "issueNumber": "25",
+      "seriesId": 16516,
+      "candidateIssueId": 48592,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48592"
+      ],
+      "selectedIssueId": 48592,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48592/captain_america_2012_25",
+      "resolvedIssueTitle": "Captain America (2012) #25",
+      "note": "Marvel series 16516 (Captain America (2012 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48592
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #1",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19160,
+      "candidateIssueId": 51049,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51049"
+      ],
+      "selectedIssueId": 51049,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51049/captain_america_the_mighty_avengers_2014_1",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #1",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51049
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #2",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 19160,
+      "candidateIssueId": 51550,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51550"
+      ],
+      "selectedIssueId": 51550,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51550/captain_america_the_mighty_avengers_2014_2",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #2",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51550
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #3",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 19160,
+      "candidateIssueId": 51158,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51158"
+      ],
+      "selectedIssueId": 51158,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51158/captain_america_the_mighty_avengers_2014_3",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #3",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51158
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #4",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 19160,
+      "candidateIssueId": 51554,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51554"
+      ],
+      "selectedIssueId": 51554,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51554/captain_america_the_mighty_avengers_2014_4",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #4",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51554
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #5",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 19160,
+      "candidateIssueId": 51555,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51555"
+      ],
+      "selectedIssueId": 51555,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51555/captain_america_the_mighty_avengers_2014_5",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #5",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51555
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #6",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 19160,
+      "candidateIssueId": 51556,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51556"
+      ],
+      "selectedIssueId": 51556,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51556/captain_america_the_mighty_avengers_2014_6",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #6",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51556
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #7",
+      "sourceRangeReference": "Captain America & The Mighty Avengers #1-7",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 19160,
+      "candidateIssueId": 51557,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51557"
+      ],
+      "selectedIssueId": 51557,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51557/captain_america_the_mighty_avengers_2014_7",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #7",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51557
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "S.H.I.E.L.D. #1",
+      "sourceRangeReference": "The Ava Ayala Cut: S.H.I.E.L.D. #1",
+      "normalizedSeriesTitle": "S.H.I.E.L.D.",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19639,
+      "candidateIssueId": 51113,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51113"
+      ],
+      "selectedIssueId": 51113,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51113/shield_2014_1",
+      "resolvedIssueTitle": "S.H.I.E.L.D. (2014) #1",
+      "note": "Marvel series 19639 (S.H.I.E.L.D. (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51113
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #8",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America & The Mighty Avengers #8-9",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 19160,
+      "candidateIssueId": 51558,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51558"
+      ],
+      "selectedIssueId": 51558,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51558/captain_america_the_mighty_avengers_2014_8",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #8",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51558
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Captain America & the Mighty Avengers #9",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America & The Mighty Avengers #8-9",
+      "normalizedSeriesTitle": "Captain America & the Mighty Avengers",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 19160,
+      "candidateIssueId": 51559,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51559"
+      ],
+      "selectedIssueId": 51559,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51559/captain_america_the_mighty_avengers_2014_9",
+      "resolvedIssueTitle": "Captain America & the Mighty Avengers (2014) #9",
+      "note": "Marvel series 19160 (Captain America & the Mighty Avengers (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51559
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "New Avengers #1",
+      "sourceRangeReference": "New Avengers #1-6",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20841,
+      "candidateIssueId": 57030,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57030"
+      ],
+      "selectedIssueId": 57030,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57030/new_avengers_2015_1",
+      "resolvedIssueTitle": "New Avengers (2015) #1",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57030
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "New Avengers #2",
+      "sourceRangeReference": "New Avengers #1-6",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20841,
+      "candidateIssueId": 57034,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57034"
+      ],
+      "selectedIssueId": 57034,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57034/new_avengers_2015_2",
+      "resolvedIssueTitle": "New Avengers (2015) #2",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57034
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "New Avengers #3",
+      "sourceRangeReference": "New Avengers #1-6",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20841,
+      "candidateIssueId": 58371,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "58371"
+      ],
+      "selectedIssueId": 58371,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58371/new_avengers_2015_3",
+      "resolvedIssueTitle": "New Avengers (2015) #3",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        58371
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "New Avengers #4",
+      "sourceRangeReference": "New Avengers #1-6",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20841,
+      "candidateIssueId": 57529,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57529"
+      ],
+      "selectedIssueId": 57529,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57529/new_avengers_2015_4",
+      "resolvedIssueTitle": "New Avengers (2015) #4",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57529
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "New Avengers #5",
+      "sourceRangeReference": "New Avengers #1-6",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20841,
+      "candidateIssueId": 57530,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57530"
+      ],
+      "selectedIssueId": 57530,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57530/new_avengers_2015_5",
+      "resolvedIssueTitle": "New Avengers (2015) #5",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57530
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "New Avengers #6",
+      "sourceRangeReference": "New Avengers #1-6",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20841,
+      "candidateIssueId": 57611,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57611"
+      ],
+      "selectedIssueId": 57611,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57611/new_avengers_2015_6",
+      "resolvedIssueTitle": "New Avengers (2015) #6",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57611
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "All-New Hawkeye #2",
+      "sourceRangeReference": "The Ava Ayala Cut: All-New Hawkeye #2",
+      "normalizedSeriesTitle": "All-New Hawkeye",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19255,
+      "candidateIssueId": 51260,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51260"
+      ],
+      "selectedIssueId": 51260,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51260/all-new_hawkeye_2015_2",
+      "resolvedIssueTitle": "All-New Hawkeye (2015) #2",
+      "note": "Marvel series 19255 (All-New Hawkeye (2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51260
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Agents of S.H.I.E.L.D. #3",
+      "sourceRangeReference": "The Ava Ayala Cut: Agents of S.H.I.E.L.D. #3-4",
+      "normalizedSeriesTitle": "Agents of S.H.I.E.L.D.",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "seriesId": 20607,
+      "candidateIssueId": 56031,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56031"
+      ],
+      "selectedIssueId": 56031,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56031/agents_of_shield_2016_3",
+      "resolvedIssueTitle": "Agents of S.H.I.E.L.D. (2016) #3",
+      "note": "Marvel series 20607 (Agents of S.H.I.E.L.D. (2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56031
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Agents of S.H.I.E.L.D. #4",
+      "sourceRangeReference": "The Ava Ayala Cut: Agents of S.H.I.E.L.D. #3-4",
+      "normalizedSeriesTitle": "Agents of S.H.I.E.L.D.",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 20607,
+      "candidateIssueId": 56032,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56032"
+      ],
+      "selectedIssueId": 56032,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56032/agents_of_shield_2016_4",
+      "resolvedIssueTitle": "Agents of S.H.I.E.L.D. (2016) #4",
+      "note": "Marvel series 20607 (Agents of S.H.I.E.L.D. (2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56032
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "New Avengers #7",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #7-10",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20841,
+      "candidateIssueId": 57612,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57612"
+      ],
+      "selectedIssueId": 57612,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57612/new_avengers_2015_7",
+      "resolvedIssueTitle": "New Avengers (2015) #7",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57612
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "New Avengers #8",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #7-10",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20841,
+      "candidateIssueId": 58372,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "58372"
+      ],
+      "selectedIssueId": 58372,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58372/new_avengers_2015_8",
+      "resolvedIssueTitle": "New Avengers (2015) #8",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        58372
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "New Avengers #9",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #7-10",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20841,
+      "candidateIssueId": 58373,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "58373"
+      ],
+      "selectedIssueId": 58373,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58373/new_avengers_2015_9",
+      "resolvedIssueTitle": "New Avengers (2015) #9",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        58373
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "New Avengers #10",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #7-10",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20841,
+      "candidateIssueId": 58374,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "58374"
+      ],
+      "selectedIssueId": 58374,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58374/new_avengers_2015_10",
+      "resolvedIssueTitle": "New Avengers (2015) #10",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        58374
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "The Unbeatable Squirrel Girl #8",
+      "sourceRangeReference": "The Ava Ayala Cut: The Unbeatable Squirrel Girl #8",
+      "normalizedSeriesTitle": "The Unbeatable Squirrel Girl",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 19750,
+      "candidateIssueId": 52793,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52793"
+      ],
+      "selectedIssueId": 52793,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52793/the_unbeatable_squirrel_girl_2015_8",
+      "resolvedIssueTitle": "The Unbeatable Squirrel Girl (2015) #8",
+      "note": "Marvel series 19750 (The Unbeatable Squirrel Girl (2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52793
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Power Man and Iron Fist #6",
+      "sourceRangeReference": "The Ava Ayala Cut: Power Man and Iron Fist #6",
+      "normalizedSeriesTitle": "Power Man and Iron Fist",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 21122,
+      "candidateIssueId": 57955,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57955"
+      ],
+      "selectedIssueId": 57955,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57955/power_man_and_iron_fist_2016_6",
+      "resolvedIssueTitle": "Power Man and Iron Fist (2016) #6",
+      "note": "Marvel series 21122 (Power Man and Iron Fist (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57955
+      ]
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "New Avengers #14",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #14-18",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20841,
+      "candidateIssueId": 60135,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60135"
+      ],
+      "selectedIssueId": 60135,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60135/new_avengers_2015_14",
+      "resolvedIssueTitle": "New Avengers (2015) #14",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        60135
+      ]
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "New Avengers #15",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #14-18",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20841,
+      "candidateIssueId": 60136,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60136"
+      ],
+      "selectedIssueId": 60136,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60136/new_avengers_2015_15",
+      "resolvedIssueTitle": "New Avengers (2015) #15",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        60136
+      ]
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "New Avengers #16",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #14-18",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20841,
+      "candidateIssueId": 60137,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60137"
+      ],
+      "selectedIssueId": 60137,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60137/new_avengers_2015_16",
+      "resolvedIssueTitle": "New Avengers (2015) #16",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        60137
+      ]
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "New Avengers #17",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #14-18",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20841,
+      "candidateIssueId": 61035,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61035"
+      ],
+      "selectedIssueId": 61035,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61035/new_avengers_2015_17",
+      "resolvedIssueTitle": "New Avengers (2015) #17",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61035
+      ]
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "New Avengers #18",
+      "sourceRangeReference": "The Ava Ayala Cut: New Avengers (2015) #14-18",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20841,
+      "candidateIssueId": 61036,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61036"
+      ],
+      "selectedIssueId": 61036,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61036/new_avengers_2015_18",
+      "resolvedIssueTitle": "New Avengers (2015) #18",
+      "note": "Marvel series 20841 (New Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61036
+      ]
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Defenders #9",
+      "sourceRangeReference": "The Ava Ayala Cut: Defenders (2017) #9",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23074,
+      "candidateIssueId": 65511,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65511"
+      ],
+      "selectedIssueId": 65511,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65511/defenders_2017_9",
+      "resolvedIssueTitle": "Defenders (2017) #9",
+      "note": "Marvel series 23074 (Defenders (2017 - 2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65511
+      ]
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "The Unbeatable Squirrel Girl #27",
+      "sourceRangeReference": "The Ava Ayala Cut: The Unbeatable Squirrel Girl (2015) #27",
+      "normalizedSeriesTitle": "The Unbeatable Squirrel Girl",
+      "seriesYear": 2015,
+      "issueNumber": "27",
+      "seriesId": 20620,
+      "candidateIssueId": 61093,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61093"
+      ],
+      "selectedIssueId": 61093,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61093/the_unbeatable_squirrel_girl_2015_27",
+      "resolvedIssueTitle": "The Unbeatable Squirrel Girl (2015) #27",
+      "note": "Marvel series 20620 (The Unbeatable Squirrel Girl (2015 - 2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61093
+      ]
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Captain America #7",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #7-9, #12",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 24503,
+      "candidateIssueId": 67925,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67925"
+      ],
+      "selectedIssueId": 67925,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67925/captain_america_2018_7",
+      "resolvedIssueTitle": "Captain America (2018) #7",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67925
+      ]
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Captain America #8",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #7-9, #12",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 24503,
+      "candidateIssueId": 67926,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67926"
+      ],
+      "selectedIssueId": 67926,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67926/captain_america_2018_8",
+      "resolvedIssueTitle": "Captain America (2018) #8",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67926
+      ]
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Captain America #9",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #7-9, #12",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 24503,
+      "candidateIssueId": 67927,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67927"
+      ],
+      "selectedIssueId": 67927,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67927/captain_america_2018_9",
+      "resolvedIssueTitle": "Captain America (2018) #9",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67927
+      ]
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Captain America #12",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #7-9, #12",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "seriesId": 24503,
+      "candidateIssueId": 67930,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67930"
+      ],
+      "selectedIssueId": 67930,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67930/captain_america_2018_12",
+      "resolvedIssueTitle": "Captain America (2018) #12",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67930
+      ]
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Marvel Comics #1000",
+      "sourceRangeReference": "Marvel Comics #1000",
+      "normalizedSeriesTitle": "Marvel Comics",
+      "seriesYear": 2019,
+      "issueNumber": "1000",
+      "seriesId": 27020,
+      "candidateIssueId": 75125,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "75125"
+      ],
+      "selectedIssueId": 75125,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75125/marvel_comics_2019_1000",
+      "resolvedIssueTitle": "Marvel Comics (2019) #1000",
+      "note": "Marvel series 27020 (Marvel Comics (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        75125
+      ]
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Captain America #13",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #13-14, #16",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "13",
+      "seriesId": 24503,
+      "candidateIssueId": 70744,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70744"
+      ],
+      "selectedIssueId": 70744,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70744/captain_america_2018_13",
+      "resolvedIssueTitle": "Captain America (2018) #13",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70744
+      ]
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Captain America #14",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #13-14, #16",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "14",
+      "seriesId": 24503,
+      "candidateIssueId": 70745,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70745"
+      ],
+      "selectedIssueId": 70745,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70745/captain_america_2018_14",
+      "resolvedIssueTitle": "Captain America (2018) #14",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70745
+      ]
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Captain America #16",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #13-14, #16",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "16",
+      "seriesId": 24503,
+      "candidateIssueId": 77232,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77232"
+      ],
+      "selectedIssueId": 77232,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77232/captain_america_2018_16",
+      "resolvedIssueTitle": "Captain America (2018) #16",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77232
+      ]
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Valkyrie: Jane Foster #6",
+      "sourceRangeReference": "The Ava Ayala Cut: Valkyrie: Jane Foster (2019) #6",
+      "normalizedSeriesTitle": "Valkyrie: Jane Foster",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 27826,
+      "candidateIssueId": 80608,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80608"
+      ],
+      "selectedIssueId": 80608,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80608/valkyrie_jane_foster_2019_6",
+      "resolvedIssueTitle": "Valkyrie: Jane Foster (2019) #6",
+      "note": "Marvel series 27826 (Valkyrie: Jane Foster (2019 - 2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        80608
+      ]
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Contagion #3",
+      "sourceRangeReference": "The Ava Ayala Cut: Contagion (2019) #3-5",
+      "normalizedSeriesTitle": "Contagion",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 28968,
+      "candidateIssueId": 81098,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "81098"
+      ],
+      "selectedIssueId": 81098,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/81098/contagion_2019_3",
+      "resolvedIssueTitle": "Contagion (2019) #3",
+      "note": "Marvel series 28968 (Contagion (2019 - 2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        81098
+      ]
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Contagion #4",
+      "sourceRangeReference": "The Ava Ayala Cut: Contagion (2019) #3-5",
+      "normalizedSeriesTitle": "Contagion",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 28968,
+      "candidateIssueId": 81100,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "81100"
+      ],
+      "selectedIssueId": 81100,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/81100/contagion_2019_4",
+      "resolvedIssueTitle": "Contagion (2019) #4",
+      "note": "Marvel series 28968 (Contagion (2019 - 2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        81100
+      ]
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Contagion #5",
+      "sourceRangeReference": "The Ava Ayala Cut: Contagion (2019) #3-5",
+      "normalizedSeriesTitle": "Contagion",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 28968,
+      "candidateIssueId": 81102,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "81102"
+      ],
+      "selectedIssueId": 81102,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/81102/contagion_2019_5",
+      "resolvedIssueTitle": "Contagion (2019) #5",
+      "note": "Marvel series 28968 (Contagion (2019 - 2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        81102
+      ]
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Empyre: Aftermath Avengers #1",
+      "sourceRangeReference": "Empyre: Aftermath Avengers (2020) #1",
+      "normalizedSeriesTitle": "Empyre: Aftermath Avengers",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 29276,
+      "candidateIssueId": 82354,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "82354"
+      ],
+      "selectedIssueId": 82354,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82354/empyre_aftermath_avengers_2020_1",
+      "resolvedIssueTitle": "Empyre: Aftermath Avengers (2020) #1",
+      "note": "Marvel series 29276 (Empyre: Aftermath Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82354
+      ]
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Women of Marvel #1",
+      "sourceRangeReference": "The Ava Ayala Cut: Women of Marvel (2021) #1",
+      "normalizedSeriesTitle": "Women of Marvel",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32095,
+      "candidateIssueId": 94061,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "94061"
+      ],
+      "selectedIssueId": 94061,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94061/women_of_marvel_2021_1",
+      "resolvedIssueTitle": "Women of Marvel (2021) #1",
+      "note": "Marvel series 32095 (Women of Marvel (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        94061
+      ]
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Captain America #29",
+      "sourceRangeReference": "The Ava Ayala Cut: Captain America (2018) #29",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "29",
+      "seriesId": 24503,
+      "candidateIssueId": 89544,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "89544"
+      ],
+      "selectedIssueId": 89544,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/89544/captain_america_2018_29",
+      "resolvedIssueTitle": "Captain America (2018) #29",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        89544
+      ]
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Marvel's Voices: Community (2021) #1",
+      "sourceRangeReference": "Marvel's Voices: Community (2021) #1",
+      "normalizedSeriesTitle": "Marvel's Voices: Community",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35716,
+      "candidateIssueId": 103954,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "103954"
+      ],
+      "selectedIssueId": 103954,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103954/marvels_voices_community_2022_1",
+      "resolvedIssueTitle": "Marvel's Voices: Community (2022) #1",
+      "note": "Marvel series 35716 (Marvel's Voices: Community (2022)) is the reviewed metadata series for this source reference. The source labels the one-shot 2021; Marvel's metadata groups the issue under its 2022 collection year.",
+      "status": "exact",
+      "selectedIssueIds": [
+        103954
+      ]
+    }
+  ],
+  "mappingDigest": "0d4465c495c15bf7b405964a6d50975ba3023bc10be03ba6923a19eb3954060c",
+  "packetReview": "MRT-002-C01 final central source review",
+  "approvedManifest": {
+    "id": "white-tiger-ava-ayala",
+    "name": "White Tiger: Ava Ayala",
+    "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "white-tiger-ava-ayala.md",
+    "sourcePage": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "white_tiger_ava_ayala.json",
+    "characters": [
+      "White Tiger",
+      "Ava Ayala",
+      "Avengers Academy",
+      "Mighty Avengers",
+      "New Avengers"
+    ],
+    "keywords": [
+      "White Tiger",
+      "Ava Ayala",
+      "Avengers Academy",
+      "Mighty Avengers",
+      "Contest of Champions",
+      "Daughters of Liberty",
+      "Comic Book Herald"
+    ],
+    "expect": 82,
+    "timeline": null,
+    "coverIssueId": 36489
+  },
+  "relationshipReview": {
+    "reportDigest": "78f69d6b247714512d87ac61da298c3390ca476a3a0e54845202908e7081e7a1",
+    "packetDigest": "959310f882b67d5b83e8f8ba9ff6136adcd3c61523d05bdef3d9113d9767b740",
+    "mappingDigest": "0d4465c495c15bf7b405964a6d50975ba3023bc10be03ba6923a19eb3954060c",
+    "libraryDigest": "587aa7f5980b16cbaae187fda5fa0296ef82ca6c26cfc4e0ad89e84094ecdb03",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The broad Ava Ayala character path intentionally includes these shared issues; the relationship is partial and neither order contains the other.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C01 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The broad Ava Ayala character path intentionally includes these shared issues; the relationship is partial and neither order contains the other.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C01 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The broad Ava Ayala character path intentionally includes these shared issues; the relationship is partial and neither order contains the other.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C01 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The broad Ava Ayala character path intentionally includes these shared issues; the relationship is partial and neither order contains the other.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C01 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-002-C01 coordinator",
+    "rationale": "All 86 current-library relationships were reviewed. The four partial relationships match the central Research disposition and are approved for this broad character path.",
+    "reviewedAt": "2026-08-23",
+    "approvalDigest": "8a810efd753bd06f1f5f21d33a7db47c952ce5a6cb11cb2d27c4ccdfb8db40c7"
+  }
+}

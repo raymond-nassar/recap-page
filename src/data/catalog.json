@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T05:26:16.457Z",
+  "generatedAt": "2026-08-23T09:04:07.148Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1831,6 +1831,46 @@
       "sourceOrigin": "Assembled from Marvel series metadata (publication order)",
       "sourceLicense": null,
       "updatedAt": "2026-08-05T06:45:31.621Z"
+    },
+    {
+      "id": "white-tiger-ava-ayala",
+      "file": "white_tiger_ava_ayala.json",
+      "name": "White Tiger: Ava Ayala",
+      "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
+      "type": "character-run",
+      "depth": "complete",
+      "count": 82,
+      "collections": 0,
+      "characters": [
+        "White Tiger",
+        "Ava Ayala",
+        "Avengers Academy",
+        "Mighty Avengers",
+        "New Avengers"
+      ],
+      "keywords": [
+        "White Tiger",
+        "Ava Ayala",
+        "Avengers Academy",
+        "Mighty Avengers",
+        "Contest of Champions",
+        "Daughters of Liberty",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 36489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/58d27e71339e7",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/ava-ayala-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T09:04:07.076Z"
     },
     {
       "id": "xmen-claremont",

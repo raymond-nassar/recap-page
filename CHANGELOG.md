@@ -14,6 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the White Tiger character spotlight reading guide
+
+In plain English: the Character spotlights shelf now includes Ava Ayala's complete White Tiger
+reading guide. It follows 82 issues from Avengers Academy #21 through Marvel's Voices: Community #1,
+credits the exact Comic Book Herald guide used, and keeps the source's 2021 label beside Marvel's 2022
+publication record. The catalog now has 87 reading lists. Nothing you have saved is changed.
+
+For maintainers: one frozen 82-row packet resolves with no unmatched or ambiguous issues. A complete
+comparison with the 86-list pre-publication catalog records four approved partial relationships and
+no exact or subset duplicate. The maintained 128-identity character inventory leaves every other
+candidate deferred, excluded, or blocked.
+
 ### Added twenty more Marvel event and crossover reading orders
 
 In plain English: the catalog now has 86 reading lists. Twenty new guides carry the event sequence

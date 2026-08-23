@@ -1,0 +1,130 @@
+{
+  "taskId": "MRT-002-C01",
+  "baseCommit": "ee51d5e",
+  "generatedOn": "2026-08-22",
+  "method": "Parsed every entry in src/data/curated-lists.json, loaded every named generated payload, compared unique issue-id sets with scripts/lib/cbh-overlap.mjs semantics, and retained every non-none relationship for the eight current character-run entries.",
+  "library": {
+    "listCount": 86,
+    "distinctIssueCount": 3209,
+    "characterRunCount": 8,
+    "characterRunGroupedStoryCount": 7,
+    "characterRunSourcePageCount": 6
+  },
+  "characterRuns": [
+    {
+      "id": "xmen-claremont",
+      "issueCount": 318,
+      "sourcePage": null,
+      "nonNoneRelationships": [
+        {
+          "orderId": "xmen-claremont-complete",
+          "relationship": "partial",
+          "sharedCount": 316
+        }
+      ]
+    },
+    {
+      "id": "xmen-claremont-complete",
+      "issueCount": 404,
+      "sourcePage": null,
+      "nonNoneRelationships": [
+        {
+          "orderId": "xmen-claremont",
+          "relationship": "partial",
+          "sharedCount": 316
+        },
+        {
+          "orderId": "spider-man-best-of",
+          "relationship": "partial",
+          "sharedCount": 1
+        }
+      ]
+    },
+    {
+      "id": "captain-america-best-of",
+      "issueCount": 114,
+      "sourcePage": "https://www.comicbookherald.com/the-best-of-captain-america-comics-in-marvel-unlimited/",
+      "nonNoneRelationships": []
+    },
+    {
+      "id": "doctor-doom-primer",
+      "issueCount": 104,
+      "sourcePage": "https://www.comicbookherald.com/the-best-of-doctor-doom-comics/",
+      "nonNoneRelationships": [
+        {
+          "orderId": "hickman-full",
+          "relationship": "partial",
+          "sharedCount": 9
+        },
+        {
+          "orderId": "hickman-minimal",
+          "relationship": "partial",
+          "sharedCount": 9
+        }
+      ]
+    },
+    {
+      "id": "spider-man-best-of",
+      "issueCount": 230,
+      "sourcePage": "https://www.comicbookherald.com/the-best-spider-man-peter-parker-comics-of-all-time/",
+      "nonNoneRelationships": [
+        {
+          "orderId": "xmen-claremont-complete",
+          "relationship": "partial",
+          "sharedCount": 1
+        }
+      ]
+    },
+    {
+      "id": "thor-best-of",
+      "issueCount": 131,
+      "sourcePage": "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+      "nonNoneRelationships": [
+        {
+          "orderId": "war-of-the-realms",
+          "relationship": "partial",
+          "sharedCount": 11
+        }
+      ]
+    },
+    {
+      "id": "scarlet-witch-best-of",
+      "issueCount": 73,
+      "sourcePage": "https://www.comicbookherald.com/the-best-of-the-scarlet-witch/",
+      "nonNoneRelationships": [
+        {
+          "orderId": "marvel-fresh-start-avengers",
+          "relationship": "partial",
+          "sharedCount": 10
+        },
+        {
+          "orderId": "dark-reign-avengers",
+          "relationship": "partial",
+          "sharedCount": 9
+        },
+        {
+          "orderId": "all-new-all-different-avengers",
+          "relationship": "partial",
+          "sharedCount": 5
+        },
+        {
+          "orderId": "essential-avengers",
+          "relationship": "partial",
+          "sharedCount": 3
+        }
+      ]
+    },
+    {
+      "id": "essential-avengers",
+      "issueCount": 120,
+      "sourcePage": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
+      "nonNoneRelationships": [
+        {
+          "orderId": "scarlet-witch-best-of",
+          "relationship": "partial",
+          "sharedCount": 3
+        }
+      ]
+    }
+  ]
+}

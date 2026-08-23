@@ -1,0 +1,118 @@
+{
+  "task_id": "MRT-002-C01",
+  "task_slug": "character-spotlight-guides",
+  "parent": {
+    "task_id": "MRT-002",
+    "task_slug": "reading-list-expansion"
+  },
+  "date": "2026-08-22",
+  "mode": "automatic",
+  "stage": "release",
+  "status": "in_progress",
+  "recovery": {
+    "checkpointCommit": "1391405",
+    "stalledSession": "original coordinated session",
+    "replacementSession": "sole replacement coordinated session",
+    "recoveredAt": "2026-08-23",
+    "resumePoint": "research-cycle-1-wave-2-deeper",
+    "provenance": "Creator designated this project session as the sole replacement after the prior coordinated session became unresponsive. The committed checkpoint remains canonical; completed Wider and inventory work are not repeated."
+  },
+  "research": {
+    "artifact": ".copilot-tracking/research/2026-08-22/character-spotlight-guides-research.md",
+    "posture": "balanced",
+    "cycle": 1,
+    "wave": "deeper",
+    "planning_readiness": "ready",
+    "deeperProgress": {
+      "sourceIdentityCount": 128,
+      "boundaryEvidenceCompleted": 128,
+      "completedBatches": [
+        "D1: identities 1-16",
+        "D2: identities 17-32",
+        "D3: identities 33-48",
+        "D4: identities 49-64",
+        "D5: identities 65-80",
+        "D6: identities 81-96",
+        "D7: identities 97-112",
+        "D8: identities 113-128"
+      ],
+      "lastCheckpointAt": "2026-08-23",
+      "nextSourceIdentity": null
+    },
+    "selectedPilot": {
+      "id": "white-tiger-ava-ayala",
+      "sourceIssueCount": 82,
+      "metadataStatus": "82 exact; latest on-sale 2022-09-28",
+      "libraryComparisonCount": 86,
+      "relationshipDisposition": "four partial relationships centrally approved"
+    },
+    "status": "complete",
+    "active_controls": [
+      "Do not reconstruct or block on the absent inherited MRT-002 review log.",
+      "Distinguish Character Spotlight readings from grouped stories.",
+      "Select no pilot before exhaustive source inventory, complete-current-library overlap, and central approval evidence.",
+      "Produce an evidence-grounded task-by-task delegation-readiness matrix and carry its exact nested-session handoff contract into Plan.",
+      "Do not delegate subset or partial relationship disposition or weaken central approval.",
+      "Use any pilot as a bounded conformance test only when it fits product scope; do not widen scope merely to build orchestration."
+    ]
+  },
+  "plan": {
+    "status": "complete",
+    "artifact": ".copilot-tracking/plans/2026-08-23/character-spotlight-guides-plan.md",
+    "details": ".copilot-tracking/details/2026-08-23/character-spotlight-guides-phase-details.md",
+    "critique": ".copilot-tracking/reviews/plans/2026-08-23/character-spotlight-guides-plan-critique.md",
+    "critiqueVerdict": "Revise",
+    "critiqueDisposition": {
+      "PC-001": "Applied directly: P03 owns test/licence-boundary.test.js and its exact shipped-order assertion moves from 86 to 87."
+    },
+    "selectedScope": [
+      "white-tiger-ava-ayala"
+    ]
+  },
+  "implementation": {
+    "status": "complete",
+    "scope": "full plan",
+    "activeMarker": null,
+    "changes": ".copilot-tracking/changes/2026-08-23/character-spotlight-guides-changes.md",
+    "parentFoundationCommit": "fa58ffa3b60ad2e74218b208ef3db22de1386002",
+    "completedMarkers": [
+      "P01",
+      "P01-T01",
+      "P01-T02",
+      "P02",
+      "P02-T01",
+      "P02-T02",
+      "P03",
+      "P03-T01",
+      "P03-T02"
+    ],
+    "reviewFindingResolution": {
+      "RV-001": "resolved",
+      "RV-002": "resolved",
+      "RV-003": "resolved",
+      "RV-004": "resolved",
+      "RV-005": "resolved"
+    }
+  },
+  "review": {
+    "status": "complete",
+    "outcome": "defects-found",
+    "artifact": ".copilot-tracking/reviews/logs/2026-08-23/character-spotlight-guides-review.md",
+    "findingCount": 5,
+    "resolvedFindingCount": 5,
+    "repeatRequired": false
+  },
+  "pull_request": {
+    "status": "release-ready",
+    "localValidation": {
+      "focusedTests": 21,
+      "fullTests": 1385,
+      "browserAssertions": 126,
+      "browserScenarios": 14,
+      "contractAssumptions": 33,
+      "contractRequests": 17,
+      "anchors": 1086,
+      "dashFindings": 0
+    }
+  }
+}
