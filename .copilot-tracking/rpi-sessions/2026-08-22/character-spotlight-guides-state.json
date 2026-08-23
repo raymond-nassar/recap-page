@@ -103,7 +103,14 @@
     "repeatRequired": false
   },
   "pull_request": {
-    "status": "release-ready",
+    "status": "open",
+    "number": 171,
+    "url": "https://github.com/raymond-nassar/recap-page/pull/171",
+    "initialReleaseCommit": "68d26a3d92cbd1db2c524ba441eb4c2491fcfa93",
+    "requiredHostedChecks": [
+      "test (20)",
+      "test (24)"
+    ],
     "localValidation": {
       "focusedTests": 21,
       "fullTests": 1385,
