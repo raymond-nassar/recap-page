@@ -22,10 +22,28 @@
       },
       {
         "source_ordinals": "44-86",
-        "status": "replacement-worker-active",
+        "status": "replacement-worker-bounded-recovery-active",
         "commit": null,
         "session": "shard-02-replacement-worker",
-        "replacementReason": "The original shard 2 session produced no file changes after two immediate restarts and was archived by the parent."
+        "replacementReason": "The original shard 2 session produced no file changes after two immediate restarts and was archived by the parent.",
+        "selection": [
+          "hawkeye",
+          "hercules",
+          "high-evolutionary",
+          "hope-summers",
+          "howard-the-duck",
+          "hulk"
+        ],
+        "recoveryScope": [
+          "hercules",
+          "high-evolutionary",
+          "howard-the-duck"
+        ],
+        "capacityDeferred": [
+          "hawkeye",
+          "hope-summers",
+          "hulk"
+        ]
       },
       {
         "source_ordinals": "87-128",
@@ -81,7 +99,7 @@
     },
     "deeper": {
       "status": "waiting-for-worker-commits",
-      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 has two coordinator-validated provisional candidates. Shard 1 and replacement shard 2 remain pending."
+      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 has two coordinator-validated provisional candidates. Shard 1 remains active. Replacement shard 2 is recovering only Hercules, High Evolutionary, and Howard the Duck from its persisted selection; Hawkeye, Hope Summers, and Hulk are capacity-deferred."
     }
   },
   "plan": {
