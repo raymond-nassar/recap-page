@@ -14,7 +14,14 @@
 // reason rather than dropped: silently vendoring a shorter catalog is how a list goes missing
 // without anyone noticing.
 
-import { LIST_TYPES, READING_DEPTHS, safeFile, safeOrderFile, storyKey } from './catalog.js';
+import {
+  LIST_TYPES,
+  READING_DEPTHS,
+  SPOTLIGHT_KINDS,
+  safeFile,
+  safeOrderFile,
+  storyKey,
+} from './catalog.js';
 
 const str = (v) => (typeof v === 'string' && v.trim() ? v.trim() : null);
 
@@ -84,6 +91,11 @@ function checkEntry(raw, index, seen) {
   }
   if (!LIST_TYPES.includes(raw.type)) at(`type must be one of ${LIST_TYPES.join(', ')}`);
   if (!READING_DEPTHS.includes(raw.depth)) at(`depth must be one of ${READING_DEPTHS.join(', ')}`);
+  if (raw.type === 'character-run' && !SPOTLIGHT_KINDS.includes(raw.spotlightKind)) {
+    at(`spotlightKind must be one of ${SPOTLIGHT_KINDS.join(', ')} for a character-run`);
+  } else if (raw.type !== 'character-run' && Object.hasOwn(raw, 'spotlightKind')) {
+    at('spotlightKind is only valid on a character-run');
+  }
   if (raw.expect != null && !(Number.isInteger(raw.expect) && raw.expect > 0)) {
     at('expect must be a positive whole number of issues when present');
   }
@@ -127,6 +139,7 @@ function checkEntry(raw, index, seen) {
       description: str(raw.description),
       type: raw.type,
       depth: raw.depth,
+      ...(raw.type === 'character-run' ? { spotlightKind: raw.spotlightKind } : {}),
       characters: strings(raw.characters),
       keywords: strings(raw.keywords),
       // Optional: ties this order to a story that has more than one reading path.
@@ -227,6 +240,17 @@ export function parseManifest(raw) {
       errors.push(...bad);
     }
   });
+
+  const groups = new Map();
+  for (const entry of entries.filter((item) => item.group)) {
+    const members = groups.get(entry.group) ?? [];
+    members.push(entry);
+    groups.set(entry.group, members);
+  }
+  for (const [group, members] of groups) {
+    const values = new Set(members.map((entry) => entry.spotlightKind));
+    if (values.size > 1) errors.push(`group "${group}" has conflicting spotlightKind values`);
+  }
 
   // Paths are checked in a second pass because a step names another entry, and an entry cannot
   // be validated against ids that have not been read yet.

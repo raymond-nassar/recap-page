@@ -184,6 +184,13 @@ Provide the reader-facing name and description, the order type and depth, discov
 credit, source license, and an expected issue count when one is known. Story groups and variants are
 optional.
 
+Every `character-run` also requires `spotlightKind`. Use `best-of` only for a deliberately selected
+set of recommended stories, `complete-guide` only for a guide that follows its declared character or
+group scope completely, and `other` when neither claim is accurate. The value is editorial: never
+derive it from the number of issues, reading depth, title, description, or source address. Every
+reading in one story group must use the same value. `other` keeps the card under All without adding a
+visible fourth filter.
+
 Rebuild only the order being added:
 
 ```text
@@ -225,6 +232,11 @@ identity, exact page and visible section, source boundary, exclusions, row order
 complete manifest proposal, chronology insertion anchor, and source-review identity. Its
 `packetDigest` is SHA-256 over canonical JSON with recursively sorted object keys and preserved
 array order. Changing any frozen field requires a new digest and a new downstream review.
+
+For a `complete-guide`, enumerate every source-defined whole issue in that packet. A prose-only
+recommendation or collected edition may stay outside the row set when the source does not make it an
+issue in the sequence. An unavailable or ambiguous whole issue blocks that candidate instead of
+permitting an inferred replacement or a shorter guide.
 
 The maintained source records are split by program. Modern event and crossover candidates remain in
 `scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and
@@ -285,7 +297,7 @@ approval cannot invalidate its own mapping evidence.
 Only an approved, current mapping can be authored and vendored:
 
 ```text
-node scripts/author-cbh-packet.mjs --only=<id>[,<id>...]
+node scripts/author-cbh-packet.mjs --only=<id>[,<id>...] [--peer=<shipped-peer-id>]
 npm run vendor -- --only=<id>
 ```
 
@@ -294,6 +306,11 @@ when the packet, mapping sequence, report, live catalog, peer mapping, dispositi
 manifest differs from the reviewed evidence. Omitting `--only` retains the existing legacy batch
 behavior. Every resulting catalog card must credit Comic Book Herald and link to the exact guide
 section followed.
+
+Use `--peer` when a separately authored candidate was reviewed against a shipped guide's mapping.
+The peer remains in the manifest unchanged, is counted exactly once in the relationship report, and
+is excluded from the ordinary reviewed-library digest. A partial relationship does not permit
+either source sequence to lose shared issues.
 
 ### Validate the packet
 
@@ -308,6 +325,49 @@ npm run anchors
 
 Open the finished order in a real browser and check the catalog name, description, group labels,
 first issue, last issue, and reading sequence.
+
+## Build a Comic Book Reading Orders historical event packet
+
+Historical CBRO events use the same five evidence layers and central relationship policy as the CBH
+workflow, but provider identity, source paths, attribution, and authoring remain separate. Do not put
+CBRO evidence under a `cbh-` data path or use Comic Book Herald attribution for it.
+
+The maintained inventory is `scripts/data/cbro-historical-inventory.json`. It contains the 58 event
+timeline entries before Maximum Security; the cutoff itself and every later entry are absent. A
+dedicated page packet records `sourceProvider`, the exact page URL, raw page SHA-256, visible issue
+panel boundary, exclusions, row order, manifest proposal, chronology anchor, and central source
+review. Timeline-only entries additionally require the visible event label as `sourceSection`.
+Every record carries `universeScope`; only `marvel-2099` and `mc2` may use `alternate`.
+
+The source publishes a five-second crawl delay. Use normal public access, wait between page requests,
+and stop on a changed digest until the source boundary has been read and reviewed again. Copy no page
+commentary, branding, images, or layout. Retain factual issue identities and order only.
+
+Prepare, approve, author, and vendor the selected packet:
+
+```text
+npm run cbro:prepare -- --only=<id>
+npm run cbro:approve
+npm run cbro:author
+npm run vendor -- --only=<id>[,<id>...]
+```
+
+Preparation writes one exact mapping per frozen packet. A mapping worker does not choose source
+boundaries, exclusions, manifest fields, aliases, chronology, or relationship dispositions. Approval
+regenerates a factual report against every current shipped order and every selected peer. Exact
+duplicates have no approval path. Subset and partial relationships remain central decisions.
+Approval and authoring require the complete selected release set; `--only` is deliberately refused for
+those two stages so an omitted guide cannot become an ordinary library comparison instead of a bound
+peer.
+
+Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
+manifest, and chronology evidence before writing. Every resulting card must use
+`Compiled for this project from Comic Book Reading Orders`, link to the exact event page, and keep
+`sourceLicense` null.
+
+For a Character Spotlight addition, also check the real catalog at desktop and narrow widths. Record
+the reading and story counts under All, Best of, and Complete guides, and confirm the new card appears
+only in the subsets named by its authored `spotlightKind`.
 
 ## Create reading paths and collected-edition groups
 

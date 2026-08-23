@@ -61,7 +61,9 @@ test('the rail stays fixed while Library, Browse, and Add own their child pages'
 });
 
 test('product copy uses Reading List everywhere and capitalizes both words', () => {
-  const terms = productCopy.match(/\breading (?:orders?|lists?)\b/gi) ?? [];
+  const terms = productCopy
+    .replace(/Comic Book Reading Orders/g, '')
+    .match(/\breading (?:orders?|lists?)\b/gi) ?? [];
   assert.ok(terms.length > 0, 'the product no longer contains any Reading List labels to check');
   assert.deepEqual([...new Set(terms)].sort(), ['Reading List', 'Reading Lists']);
   assert.doesNotMatch(productCopy, /\breading\s+\$\{/i, 'a dynamic label can bypass the capitalization contract');

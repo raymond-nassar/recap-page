@@ -16,13 +16,13 @@ quote in a bug report.
 
 ### Added browsing by Marvel publishing age
 
-In plain English: Home now offers Modern Age as a compact way into six populated periods, from
-Marvel Knights / Heroes Return through the current era. Each period opens its own page with the
+In plain English: Home now offers Modern Age as a compact way into seven populated periods, from
+Early Modern through the current era. Each period opens its own page with the
 matching Reading Lists, including lists from different kinds of shelf when their dates belong
 together.
 
-Older publishing ages and Early Modern have their own destinations but stay out of Home until the
-catalog has matching dated content. Timeline is now named Modern Timeline, and its existing address
+Golden, Silver, Bronze and Copper have their own destinations but stay out of Home until the catalog
+has matching dated content. Timeline is now named Modern Timeline, and its existing address
 still works. Nothing you have saved is changed.
 
 For maintainers: one registry defines five publishing ages and seven Modern subperiods. Half-open
@@ -50,6 +50,57 @@ reading screen. Screen readers also hear when category and publishing results fi
 For maintainers: one renderer supplies the Home and Browse gateways, hub children keep direct
 addresses, and each child selects its parent in the rail. The category registry remains independent
 from the canonical three-shelf partition.
+### Added the complete Groot character guide
+
+In plain English: the Character spotlights shelf now includes a complete Groot guide. It follows all
+76 source-defined issues from Tales to Astonish #13 through Groot #4, including every issue it shares
+with the separate Rocket Raccoon guide. The catalog now has 96 reading lists. Nothing you have saved
+is changed.
+
+For maintainers: this is the separately prioritized rank 9 release, not an extension or reduction of
+Rocket. A fresh 95-comparison report records no exact or subset duplicate and three approved partial
+relationships: 4 issues with Annihilation: Conquest, 41 with Rocket Raccoon, and 7 with War of Kings.
+All 76 rows resolve exactly in source order and are bound to current source, packet, mapping, library,
+peer, report, approval, and authoring evidence.
+
+### Added five historical Marvel event reading guides
+
+In plain English: Timeline now reaches back before Maximum Security with five compact event guides:
+Muir Island Saga, Midnight Massacre, Bloodties, Child's Play, and Eighth Day. Together they add 23
+issues from 1991 through 1999. Each card credits Comic Book Reading Orders and opens the exact page
+followed. The catalog now has 95 reading lists, and nothing you have saved is changed.
+
+Two smaller source pages are not shortened to make the release. Days of Future Present and Countdown
+remain blocked because the metadata snapshot cannot represent every issue they name.
+
+For maintainers: a separate CBRO inventory preserves all 58 timeline entries before Maximum Security,
+including blocked, absorbed, subset, alternate-universe, and deferred states. Five frozen packets bind
+the exact provider, page bytes, 23 source rows, mappings, complete 90-list and four-peer reports, and
+central approvals. All 470 relationships are none. Existing CBH packets retain their original defaults
+and data paths.
+
+### Added Rocket Raccoon complete character guide
+
+In plain English: the Character spotlights shelf now includes a complete Rocket Raccoon guide. It
+follows 75 issues from Tales to Astonish #13 through Guardians of the Galaxy Annual #1 in the source's
+order. The catalog now has 90 reading lists. Nothing you have saved is changed.
+
+For maintainers: the frozen 75-row source boundary resolves exactly with no unmatched or ambiguous
+issues. Its report covers all 89 pre-publication readings and centrally approves three partial
+relationships, sharing 10 issues with Marvel Fresh Start Avengers, 10 with Scarlet Witch Best Of, and
+7 with War of Kings. Groot, Star-Lord, and Thanos remain deferred with their accepted boundaries intact.
+
+### Added Character Spotlight guide filters
+
+In plain English: Character spotlights can now be narrowed to Best of selections or complete guides.
+All remains the default, and the grouped X-Men readings, Doom primer, and Essential Avengers remain
+there without being given a label that does not fit them. Search, saved progress, and every existing
+card are unchanged.
+
+For maintainers: all twelve character readings now carry one validated editorial classification.
+Five are Best of, three are complete guides, and four remain under All only across three stories.
+Grouped readings must agree, generated data preserves the value, and unknown runtime values match no
+subset.
 
 ### Added Phalanx and Phoenix character spotlight reading guides
 

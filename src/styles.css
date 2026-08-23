@@ -669,6 +669,11 @@ details.full[open] > summary .chev { transform: rotate(90deg); }
   border-color: var(--accent-text);
 }
 .fp input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+.spotlight-filters { margin: 0; min-width: 0; justify-content: flex-end; }
+
+@media (max-width: 620px) {
+  .spotlight-filters { width: 100%; justify-content: flex-start; }
+}
 
 /* The choice between reading paths through one story, in the catalog list and in the preview
    dialog. The pills are the filter pills above, because they are the same act, picking one of a

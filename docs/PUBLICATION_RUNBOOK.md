@@ -21,6 +21,14 @@ remember, and so the person doing it is not also the person who has to find out 
 Nothing here is a legal opinion, and nothing here says the repository should be published. The first
 section is what has to be settled before it is.
 
+## Source-backed orders added after publication
+
+Five historical event guides now use factual issue identities and order from Comic Book Reading
+Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
+Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
+event page. The source licence remains null because that permission does not reach Marvel material.
+No source commentary, branding, images, or layout is copied, and cover art remains a remote URL.
+
 ## Before anything is flipped
 
 Two things have to be settled here. Neither is a setting, and both are one-way.
@@ -108,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7100-7104`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7105-7109`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -134,18 +142,18 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6450-6463`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6458-6471`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6862-6869`, why the private reporting task was left open.
-- `PRODUCT_BACKLOG.md:6928-6930`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6950-6955`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6957-6963`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7024-7030`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7055-7060`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7100-7104`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9202-9207`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2589-2592`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2601-2604`, the released note that the private channel is not switched on.
+- `PRODUCT_BACKLOG.md:6869-6876`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6935-6937`, what the changelog entry beside it was corrected to say.
+- `PRODUCT_BACKLOG.md:6957-6962`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6964-6970`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7031-7037`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7062-7067`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7105-7109`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9209-9214`, the three settings named as refused on this repository today.
+- `CHANGELOG.md:2620-2623`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2633-2635`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:29-41` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
@@ -256,3 +264,11 @@ gate reads all ten.
 
 The honest summary of this section: nothing in this runbook is enforced. The checklist is the
 enforcement, which is the argument for writing it down before the day rather than during it.
+
+## Post-publication content releases
+
+The dated publication decision above stays historical, but its two gates remain release checks.
+Source-linked catalog additions run both after the working tree is complete so a new card cannot
+quietly advertise a private, stale, or unreachable source surface. The separate Groot release adds
+one public source-linked card, bringing the catalog to 96, without changing the accepted publication
+boundary or any saved reader data.

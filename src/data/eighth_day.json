@@ -1,0 +1,168 @@
+{
+  "id": "eighth-day",
+  "name": "Eighth Day",
+  "description": "Four chapters uniting Iron Man, Spider-Man, and Juggernaut against the Exemplars.",
+  "source": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T21:00:18.307Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 19893,
+      "title": "Iron Man (1998) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/19893/iron_man_1998_21",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "1999-10-10T00:00:00+0000",
+      "mu": "2015-06-30T14:01:14+0000",
+      "digitalId": 18131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5a5e7646e0ba3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19894,
+      "title": "Iron Man (1998) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/19894/iron_man_1998_22",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "1999-11-10T00:00:00+0000",
+      "mu": "2015-06-30T14:02:21+0000",
+      "digitalId": 18132,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5a5f627c5fcd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 46,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Case",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregg Schigiel",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Glenn Herdling",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10519,
+      "title": "Peter Parker: Spider-Man (1999) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/10519/peter_parker_spider-man_1999_11",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "1999-11-01T00:00:00+0000",
+      "mu": "1999-11-01T00:00:00+0000",
+      "digitalId": 18142,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/58239464b1ebe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43033,
+      "title": "JUGGERNAUT 1 (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43033/juggernaut_1_1999_1",
+      "seriesId": 16363,
+      "seriesName": "JUGGERNAUT 1 (1999)",
+      "onSale": "1999-11-01T00:00:00+0000",
+      "mu": "1999-11-01T00:00:00+0000",
+      "digitalId": 26230,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/55dcd54e197ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Shoemaker",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

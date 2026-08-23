@@ -1,6 +1,6 @@
 {
   "name": "recap-page",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "description": "Local, private reading-order tracker that deep-links into the Marvel Unlimited web reader.",
@@ -13,6 +13,9 @@
     "contract": "node scripts/check-contract.mjs",
     "cbh:prepare": "node scripts/prepare-cbh-batch.mjs",
     "cbh:resolve": "node scripts/resolve-cbh-order.mjs",
+    "cbro:prepare": "node scripts/prepare-cbro-event.mjs",
+    "cbro:approve": "node scripts/author-cbro-packet.mjs --approve",
+    "cbro:author": "node scripts/author-cbro-packet.mjs --author",
     "orders:overlap": "node scripts/report-order-overlap.mjs",
     "anchors": "node scripts/check-anchors.mjs",
     "anchors:bless": "node scripts/check-anchors.mjs --bless",

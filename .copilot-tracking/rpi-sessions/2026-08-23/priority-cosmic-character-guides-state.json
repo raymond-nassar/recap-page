@@ -1,0 +1,162 @@
+{
+  "task_id": "MRT-002-C05",
+  "task_slug": "priority-cosmic-character-guides",
+  "date": "2026-08-23",
+  "mode": "automatic",
+  "stage": "implementation",
+  "status": "in_progress",
+  "baseline": {
+    "branch": "main",
+    "merged_pull_request": 173,
+    "merge_commit": "086cc5b"
+  },
+  "exact_user_direction": "Implement the next prioritized Character Spotlight batch as MRT-002-C05, task slug priority-cosmic-character-guides, from current project default main after merged PR #173. The user's durable popularity priority list places Rocket Raccoon at rank 7, Groot at 9, Star-Lord / Peter Quill at 15, and Thanos at 17; higher-ranked large guides are reserved for later dedicated lanes. Persist this exact direction and ordered candidate set immediately in dated RPI state and Research artifacts. Continue automatically through Research, Plan, one critique, Implement, one independent Review, PR, hosted CI, and merge.",
+  "direction": {
+    "priority_source": "User's durable popularity priority list",
+    "reserved_scope": "Higher-ranked large guides are reserved for later dedicated lanes.",
+    "ordered_candidates": [
+      {
+        "rank": 7,
+        "name": "Rocket Raccoon",
+        "id": "rocket-raccoon-reading-order",
+        "gate": "standard"
+      },
+      {
+        "rank": 9,
+        "name": "Groot",
+        "id": "groot-reading-order",
+        "gate": "standard"
+      },
+      {
+        "rank": 15,
+        "name": "Star-Lord / Peter Quill",
+        "id": "star-lord-reading-order-complete-peter-quill-comics-timeline",
+        "gate": "standard"
+      },
+      {
+        "rank": 17,
+        "name": "Thanos",
+        "id": "the-complete-thanos-reading-order-guide",
+        "gate": "explicit-fourth-candidate-release-readiness"
+      }
+    ],
+    "acceptance": "Research and centrally accept each committed frozen source boundary before mapping. Resolve every source-defined whole issue exactly against the metadata snapshot. Defer any candidate with an unavailable or ambiguous whole issue that prevents its claimed complete boundary, and continue with the others.",
+    "workflow": "Use only the existing guarded packet, mapping, complete-library overlap, approval, and authoring workflow. Do not create heuristic page parsers, choose ambiguous series by score, infer missing issues, or silently shorten a source guide.",
+    "taxonomy": {
+      "group": "character-run",
+      "spotlightKind": "complete-guide"
+    },
+    "review_limit": 1
+  },
+  "research": {
+    "artifact": ".copilot-tracking/research/2026-08-23/priority-cosmic-character-guides-research.md",
+    "posture": "focused",
+    "cycle": 1,
+    "wave": "complete",
+    "status": "complete",
+    "planning_readiness": "ready",
+    "source_boundary_acceptance": [
+      {
+        "id": "rocket-raccoon-reading-order",
+        "status": "accepted",
+        "uniqueIssueCount": 75,
+        "releaseStatus": "selected"
+      },
+      {
+        "id": "groot-reading-order",
+        "status": "accepted",
+        "rawIssueMentions": 84,
+        "uniqueIssueCount": 76,
+        "releaseStatus": "deferred-selected-peer-overlap",
+        "sharedWithRocket": 41
+      },
+      {
+        "id": "star-lord-reading-order-complete-peter-quill-comics-timeline",
+        "status": "accepted",
+        "uniqueIssueCount": 99,
+        "releaseStatus": "deferred-selected-peer-overlap",
+        "sharedWithRocket": 25
+      },
+      {
+        "id": "the-complete-thanos-reading-order-guide",
+        "status": "accepted",
+        "releaseStatus": "deferred-incomplete-metadata",
+        "blocker": "Spidey Super Stories #39 is source-required and absent from the metadata snapshot."
+      }
+    ],
+    "selected_batch": [
+      "rocket-raccoon-reading-order"
+    ],
+    "selection_rationale": "Rocket is the highest-ranked complete candidate. Groot and Star-Lord have exact accepted boundaries but share source-required issue ids with Rocket, and the unchanged guarded authorer rejects duplicate issue ids across one packet. Thanos cannot meet its complete boundary because a required issue is unavailable."
+  },
+  "plan": {
+    "status": "complete",
+    "artifact": ".copilot-tracking/plans/2026-08-23/priority-cosmic-character-guides-plan.md",
+    "details": ".copilot-tracking/details/2026-08-23/priority-cosmic-character-guides-phase-details.md",
+    "critique": ".copilot-tracking/reviews/plans/2026-08-23/priority-cosmic-character-guides-plan-critique.md",
+    "maximum_critiques": 1,
+    "critique_runs": 1,
+    "critique_verdict": "revise-resolved",
+    "critique_findings": 3,
+    "readiness": "implementation-ready"
+  },
+  "implementation": {
+    "status": "complete",
+    "active_marker": "P04-T02",
+    "completed_markers": [
+      "P01",
+      "P01-T01",
+      "P01-T02",
+      "P02",
+      "P02-T01",
+      "P02-T02",
+      "P03-T01",
+      "P03-T02",
+      "P03",
+      "P04-T01"
+    ]
+  },
+  "review": {
+    "status": "complete",
+    "maximum_runs": 1,
+    "runs": 1,
+    "artifact": ".copilot-tracking/reviews/logs/2026-08-23/priority-cosmic-character-guides-review.md",
+    "outcome": "defects-found",
+    "findings": [
+      {
+        "id": "RV-001",
+        "severity": "Medium",
+        "route": "rpi-implement",
+        "status": "resolved-after-review"
+      }
+    ]
+  },
+  "pull_request": {
+    "status": "open-final-evidence-checks-required",
+    "number": 174,
+    "url": "https://github.com/raymond-nassar/recap-page/pull/174",
+    "base": "main",
+    "head": "raymond-nassar-priority-cosmic-character-guides",
+    "commits": [
+      "082c28ba8eeed7fbd9bad6b605f00fb90941b943"
+    ],
+    "required_hosted_checks": [
+      "Tests on Node 20",
+      "Tests on Node 24",
+      "Lint"
+    ],
+    "base_reconciliation": {
+      "status": "not_needed",
+      "origin_main": "086cc5bbbbfa61cae95983e0acede47aeffa2dc8"
+    },
+    "hosted_ci_runs": [
+      {
+        "run_id": 32666642248,
+        "head_commit": "082c28ba8eeed7fbd9bad6b605f00fb90941b943",
+        "test_node_20": "success",
+        "test_node_24": "success",
+        "lint": "success"
+      }
+    ]
+  }
+}

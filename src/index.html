@@ -435,7 +435,24 @@
 
           <!-- ---------------------------------------- character spotlights view -->
           <section id="view-spotlights" class="view" hidden aria-labelledby="spotlights-h">
-            <div class="head"><div class="head-left"><h1 id="spotlights-h">Character spotlights</h1></div></div>
+            <div class="head">
+              <div class="head-left"><h1 id="spotlights-h">Character spotlights</h1></div>
+              <fieldset class="filters spotlight-filters">
+                <legend class="visually-hidden">Filter Character Spotlight guides</legend>
+                <label class="fp">
+                  <input type="radio" name="spotlights-kind" value="all" checked />
+                  <span>All</span>
+                </label>
+                <label class="fp">
+                  <input type="radio" name="spotlights-kind" value="best-of" />
+                  <span>Best of</span>
+                </label>
+                <label class="fp">
+                  <input type="radio" name="spotlights-kind" value="complete-guide" />
+                  <span>Complete guides</span>
+                </label>
+              </fieldset>
+            </div>
             <div id="spotlights-report" class="report"></div>
             <form id="form-spotlights-search" class="stack" role="search" hidden>
               <label for="spotlights-q">Search the catalog by title or character</label>

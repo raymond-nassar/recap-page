@@ -30,6 +30,13 @@ export const DELIVERY_STATUSES = Object.freeze([
 
 export const BASELINE_COUNT = 86;
 export const CHARACTER_INVENTORY_COUNT = 128;
+export const CBH_SOURCE_PROVIDER = Object.freeze({
+  id: 'comic-book-herald',
+  hosts: Object.freeze(['www.comicbookherald.com']),
+  sourceOrigin: "Compiled for this project from Comic Book Herald's guide",
+  requireSourceProvider: false,
+  requireSourceContentSha256: false,
+});
 
 const CHARACTER_DISPOSITIONS = new Set([
   'deferred',
@@ -52,6 +59,9 @@ const PACKET_FIELDS = new Set([
   'sourceUrl',
   'sourceSection',
   'sourceRetrievedAt',
+  'sourceProvider',
+  'sourceContentSha256',
+  'sourceIssueBearingBlocksSha256',
   'sourceBoundary',
   'excludedSourceReferences',
   'expectedCount',
@@ -68,6 +78,8 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'sourceUrl',
   'sourceSection',
   'sourceRetrievedAt',
+  'sourceProvider',
+  'sourceContentSha256',
   'sourceRetrievalStatus',
   'approvedSourceCount',
   'excludedSourceReferences',
@@ -147,7 +159,7 @@ function assertPacketRow(row, index) {
   }
 }
 
-function assertManifestProposal(packet) {
+function assertManifestProposal(packet, provider) {
   const manifest = packet.proposedManifest;
   if (!isPlainObject(manifest)) throw new Error(`${packet.id} proposedManifest must be an object`);
   if (manifest.id !== packet.id) throw new Error(`${packet.id} proposedManifest id does not match the packet`);
@@ -160,7 +172,7 @@ function assertManifestProposal(packet) {
   if (manifest.expect !== packet.expectedCount) {
     throw new Error(`${packet.id} proposedManifest expect does not match expectedCount`);
   }
-  if (manifest.sourceOrigin !== "Compiled for this project from Comic Book Herald's guide") {
+  if (manifest.sourceOrigin !== provider.sourceOrigin) {
     throw new Error(`${packet.id} proposedManifest has the wrong source origin`);
   }
   if (manifest.sourceLicense !== null) {
@@ -206,7 +218,11 @@ export function approvalDigestFor(relationshipReview) {
 }
 
 export function libraryDigestFor(manifest, orderIssueIds) {
-  return digestCanonicalJson({ manifest, orderIssueIds });
+  const reviewedManifest = {
+    ...manifest,
+    lists: manifest.lists.map(({ spotlightKind: _spotlightKind, ...entry }) => entry),
+  };
+  return digestCanonicalJson({ manifest: reviewedManifest, orderIssueIds });
 }
 
 export function libraryDigestExcludingOrders(library, excludedOrderIds = []) {
@@ -253,6 +269,7 @@ export function validateFrozenPacket(packet, {
   expectedId = null,
   inventoryRecord = null,
   catalogEntries = [],
+  provider = CBH_SOURCE_PROVIDER,
 } = {}) {
   if (!isPlainObject(packet)) throw new Error('Frozen packet must be an object');
   const unexpected = Object.keys(packet).filter((field) => !PACKET_FIELDS.has(field));
@@ -269,14 +286,44 @@ export function validateFrozenPacket(packet, {
   }
   assertNonEmptyString(packet.inventoryId, `${packet.id} inventoryId`);
   assertNonEmptyString(packet.sourceUrl, `${packet.id} sourceUrl`);
-  if (!/^https:\/\/www\.comicbookherald\.com\//.test(packet.sourceUrl)) {
-    throw new Error(`${packet.id} sourceUrl must be an exact Comic Book Herald page`);
+  if (!isPlainObject(provider)
+    || typeof provider.id !== 'string'
+    || !Array.isArray(provider.hosts)
+    || provider.hosts.length === 0
+    || typeof provider.sourceOrigin !== 'string') {
+    throw new Error(`${packet.id} source provider configuration is invalid`);
+  }
+  if (provider.requireSourceProvider && packet.sourceProvider !== provider.id) {
+    throw new Error(`${packet.id} sourceProvider must be ${provider.id}`);
+  }
+  if (packet.sourceProvider != null && packet.sourceProvider !== provider.id) {
+    throw new Error(`${packet.id} sourceProvider does not match ${provider.id}`);
+  }
+  let sourceUrl;
+  try {
+    sourceUrl = new URL(packet.sourceUrl);
+  } catch {
+    throw new Error(`${packet.id} sourceUrl must be an exact ${provider.id} page`);
+  }
+  if (sourceUrl.protocol !== 'https:' || !provider.hosts.includes(sourceUrl.hostname)) {
+    throw new Error(`${packet.id} sourceUrl must be an exact ${provider.id} page`);
+  }
+  if (provider.requireSourceContentSha256) {
+    assertSha256(packet.sourceContentSha256, `${packet.id} sourceContentSha256`);
+  } else if (packet.sourceContentSha256 != null) {
+    assertSha256(packet.sourceContentSha256, `${packet.id} sourceContentSha256`);
   }
   if (packet.sourceSection != null) {
     assertNonEmptyString(packet.sourceSection, `${packet.id} sourceSection`);
   }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(packet.sourceRetrievedAt ?? ''))) {
     throw new Error(`${packet.id} sourceRetrievedAt must be a YYYY-MM-DD date`);
+  }
+  if (packet.sourceIssueBearingBlocksSha256 != null) {
+    assertSha256(
+      packet.sourceIssueBearingBlocksSha256,
+      `${packet.id} sourceIssueBearingBlocksSha256`,
+    );
   }
   assertNonEmptyString(packet.sourceBoundary, `${packet.id} sourceBoundary`);
   if (!Array.isArray(packet.excludedSourceReferences)
@@ -293,7 +340,7 @@ export function validateFrozenPacket(packet, {
   if (!Number.isInteger(packet.expectedCount) || packet.expectedCount !== packet.rows.length) {
     throw new Error(`${packet.id} expectedCount must equal its row count`);
   }
-  assertManifestProposal(packet);
+  assertManifestProposal(packet, provider);
   if (!isPlainObject(packet.insertionAnchor)
     || Object.keys(packet.insertionAnchor).length !== 1
     || typeof packet.insertionAnchor.beforeId !== 'string'
@@ -318,7 +365,8 @@ export function validateFrozenPacket(packet, {
     if (inventoryRecord.id !== packet.inventoryId) {
       throw new Error(`${packet.id} inventory identity does not match ${packet.inventoryId}`);
     }
-    if (inventoryRecord.url !== packet.sourceUrl) {
+    const inventorySourceUrl = inventoryRecord.url ?? inventoryRecord.sourceUrl;
+    if (inventorySourceUrl !== packet.sourceUrl) {
       throw new Error(`${packet.id} source URL differs from inventory record ${packet.inventoryId}`);
     }
     if (['blocked', 'not-applicable'].includes(inventoryRecord.deliveryStatus)) {

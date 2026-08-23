@@ -141,6 +141,7 @@ function catalogEntry(order, payload) {
     description: order.description,
     type: order.type,
     depth: order.depth,
+    ...(order.type === 'character-run' ? { spotlightKind: order.spotlightKind } : {}),
     count: payload.count,
     // Derived from the payload for the same reason the issue count is: a number the reader
     // sees before importing must come from the file they will actually import. Orders that are

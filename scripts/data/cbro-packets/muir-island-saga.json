@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "muir-island-saga",
+  "inventoryId": "muir-island-saga",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/muir-island-saga-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "9dcc3af359b810f770d879dd4ded40b648fe37995b693e846eaa583bf1f1472e",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 5,
+  "proposedManifest": {
+    "id": "muir-island-saga",
+    "name": "Muir Island Saga",
+    "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "muir-island-saga.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/muir-island-saga-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "muir_island_saga.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "Professor X",
+      "Shadow King"
+    ],
+    "keywords": [
+      "Muir Island Saga",
+      "Uncanny X-Men",
+      "X-Factor",
+      "Shadow King"
+    ],
+    "expect": 5,
+    "timeline": 1991,
+    "coverIssueId": 13819
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, exclusions, provider identity, source digest, row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-23T20:52:33Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men #278",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "278",
+      "seriesId": 2258,
+      "candidateIssueId": 13819,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #279",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "279",
+      "seriesId": 2258,
+      "candidateIssueId": 13820,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #69",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "69",
+      "seriesId": 2098,
+      "candidateIssueId": 12289,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #280",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "280",
+      "seriesId": 2258,
+      "candidateIssueId": 13821,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #70",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "70",
+      "seriesId": 2098,
+      "candidateIssueId": 12291,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "dcb274a7d0ebf4213018883fb7d43238d93a037d4fdaf9dddd52e78033d363e8"
+}

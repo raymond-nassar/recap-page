@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-23T20:31:42.758Z",
+  "api": "https://marvel.emreparker.com/v1/search/issues",
+  "events": [
+    {
+      "position": 23,
+      "event": "Muir Island Saga",
+      "year": 1991,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/muir-island-saga-reading-order/",
+      "sourceContentSha256": "9dcc3af359b810f770d879dd4ded40b648fe37995b693e846eaa583bf1f1472e",
+      "rows": [
+        {
+          "sourceIssueReference": "Uncanny X-Men #278",
+          "query": "Uncanny X-Men 278",
+          "retrievedAt": "2026-08-23T20:30:56.490Z",
+          "candidates": [
+            {
+              "id": 13819,
+              "title": "Uncanny X-Men (1963) #278",
+              "issueNumber": "278",
+              "detailUrl": "https://www.marvel.com/comics/issue/13819/uncanny_x-men_1963_278",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1991-07-01T00:00:00+0000",
+              "yearPage": 1991
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Uncanny X-Men #279",
+          "query": "Uncanny X-Men 279",
+          "retrievedAt": "2026-08-23T20:30:58.310Z",
+          "candidates": [
+            {
+              "id": 13820,
+              "title": "Uncanny X-Men (1963) #279",
+              "issueNumber": "279",
+              "detailUrl": "https://www.marvel.com/comics/issue/13820/uncanny_x-men_1963_279",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1991-08-01T00:00:00+0000",
+              "yearPage": 1991
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "X-Factor #69",
+          "query": "X-Factor 69",
+          "retrievedAt": "2026-08-23T20:30:59.996Z",
+          "candidates": [
+            {
+              "id": 12289,
+              "title": "X-Factor (1986) #69",
+              "issueNumber": "69",
+              "detailUrl": "https://www.marvel.com/comics/issue/12289/x-factor_1986_69",
+              "seriesId": 2098,
+              "seriesName": "X-Factor (1986 - 1998)",
+              "onSaleDate": "1991-08-01T00:00:00+0000",
+              "yearPage": 1991
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Uncanny X-Men #280",
+          "query": "Uncanny X-Men 280",
+          "retrievedAt": "2026-08-23T20:31:01.834Z",
+          "candidates": [
+            {
+              "id": 13821,
+              "title": "Uncanny X-Men (1963) #280",
+              "issueNumber": "280",
+              "detailUrl": "https://www.marvel.com/comics/issue/13821/uncanny_x-men_1963_280",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1991-09-01T00:00:00+0000",
+              "yearPage": 1991
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "X-Factor #70",
+          "query": "X-Factor 70",
+          "retrievedAt": "2026-08-23T20:31:03.528Z",
+          "candidates": [
+            {
+              "id": 12291,
+              "title": "X-Factor (1986) #70",
+              "issueNumber": "70",
+              "detailUrl": "https://www.marvel.com/comics/issue/12291/x-factor_1986_70",
+              "seriesId": 2098,
+              "seriesName": "X-Factor (1986 - 1998)",
+              "onSaleDate": "1991-09-01T00:00:00+0000",
+              "yearPage": 1991
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "position": 36,
+      "event": "Bloodties",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/bloodties-reading-order/",
+      "sourceContentSha256": "d673e14f466643569e2fac6b9744f317d3642ea2db29e1aa10149b6fe90e2c10",
+      "rows": [
+        {
+          "sourceIssueReference": "Avengers #368",
+          "query": "Avengers 368",
+          "retrievedAt": "2026-08-23T20:31:05.205Z",
+          "candidates": [
+            {
+              "id": 7250,
+              "title": "Avengers (1963) #368",
+              "issueNumber": "368",
+              "detailUrl": "https://www.marvel.com/comics/issue/7250/avengers_1963_368",
+              "seriesId": 1991,
+              "seriesName": "Avengers (1963 - 1996)",
+              "onSaleDate": "1993-11-10T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "X-Men Vol. 2 #26",
+          "query": "X-Men 26",
+          "retrievedAt": "2026-08-23T20:31:06.889Z",
+          "candidates": [
+            {
+              "id": 17136,
+              "title": "Young Men (1950) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/17136/young_men_1950_26",
+              "seriesId": 2980,
+              "seriesName": "Young Men (1950 - 1953)",
+              "onSaleDate": "1954-03-01T00:00:00+0000",
+              "yearPage": 1954
+            },
+            {
+              "id": 12473,
+              "title": "Uncanny X-Men (1963) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/12473/uncanny_x-men_1963_26",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1966-11-01T00:00:00+0000",
+              "yearPage": 1966
+            },
+            {
+              "id": 20581,
+              "title": "Classic X-Men (1986) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/20581/classic_x-men_1986_26",
+              "seriesId": 3751,
+              "seriesName": "Classic X-Men (1986 - 1990)",
+              "onSaleDate": "1988-10-01T00:00:00+0000",
+              "yearPage": 1988
+            },
+            {
+              "id": 13801,
+              "title": "Uncanny X-Men (1963) #260",
+              "issueNumber": "260",
+              "detailUrl": "https://www.marvel.com/comics/issue/13801/uncanny_x-men_1963_260",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-04-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13802,
+              "title": "Uncanny X-Men (1963) #261",
+              "issueNumber": "261",
+              "detailUrl": "https://www.marvel.com/comics/issue/13802/uncanny_x-men_1963_261",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-05-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13803,
+              "title": "Uncanny X-Men (1963) #262",
+              "issueNumber": "262",
+              "detailUrl": "https://www.marvel.com/comics/issue/13803/uncanny_x-men_1963_262",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-06-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13804,
+              "title": "Uncanny X-Men (1963) #263",
+              "issueNumber": "263",
+              "detailUrl": "https://www.marvel.com/comics/issue/13804/uncanny_x-men_1963_263",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-07-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13805,
+              "title": "Uncanny X-Men (1963) #264",
+              "issueNumber": "264",
+              "detailUrl": "https://www.marvel.com/comics/issue/13805/uncanny_x-men_1963_264",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-07-04T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13806,
+              "title": "Uncanny X-Men (1963) #265",
+              "issueNumber": "265",
+              "detailUrl": "https://www.marvel.com/comics/issue/13806/uncanny_x-men_1963_265",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-08-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13807,
+              "title": "Uncanny X-Men (1963) #266",
+              "issueNumber": "266",
+              "detailUrl": "https://www.marvel.com/comics/issue/13807/uncanny_x-men_1963_266",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-08-08T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13808,
+              "title": "Uncanny X-Men (1963) #267",
+              "issueNumber": "267",
+              "detailUrl": "https://www.marvel.com/comics/issue/13808/uncanny_x-men_1963_267",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-09-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13809,
+              "title": "Uncanny X-Men (1963) #268",
+              "issueNumber": "268",
+              "detailUrl": "https://www.marvel.com/comics/issue/13809/uncanny_x-men_1963_268",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-09-30T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 13810,
+              "title": "Uncanny X-Men (1963) #269",
+              "issueNumber": "269",
+              "detailUrl": "https://www.marvel.com/comics/issue/13810/uncanny_x-men_1963_269",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1990-10-01T00:00:00+0000",
+              "yearPage": 1990
+            },
+            {
+              "id": 14313,
+              "title": "X-Men (1991) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/14313/x-men_1991_26",
+              "seriesId": 2265,
+              "seriesName": "X-Men (1991 - 2001)",
+              "onSaleDate": "1993-11-01T00:00:00+0000",
+              "yearPage": 1993
+            },
+            {
+              "id": 70184,
+              "title": "X-Men 2099 (1993) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/70184/x-men_2099_1993_26",
+              "seriesId": 16423,
+              "seriesName": "X-Men 2099 (1993 - 1996)",
+              "onSaleDate": "1995-11-01T00:00:00+0000",
+              "yearPage": 1995
+            },
+            {
+              "id": 18128,
+              "title": "X-Men Unlimited (1993) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/18128/x-men_unlimited_1993_26",
+              "seriesId": 3637,
+              "seriesName": "X-Men Unlimited (1993 - 2003)",
+              "onSaleDate": "2000-03-01T00:00:00+0000",
+              "yearPage": 2000
+            },
+            {
+              "id": 15717,
+              "title": "Ultimate X-Men (2001) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/15717/ultimate_x-men_2001_26",
+              "seriesId": 474,
+              "seriesName": "Ultimate X-Men (2001 - 2009)",
+              "onSaleDate": "2002-12-18T00:00:00+0000",
+              "yearPage": 2002
+            },
+            {
+              "id": 15029,
+              "title": "X-Treme X-Men (2001) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/15029/x-treme_x-men_2001_26",
+              "seriesId": 646,
+              "seriesName": "X-Treme X-Men (2001 - 2004)",
+              "onSaleDate": "2003-07-01T00:00:00+0000",
+              "yearPage": 2003
+            },
+            {
+              "id": 4184,
+              "title": "New X-Men (2004) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/4184/new_x-men_2004_26",
+              "seriesId": 749,
+              "seriesName": "New X-Men (2004 - 2008)",
+              "onSaleDate": "2006-05-10T00:00:00+0000",
+              "yearPage": 2006
+            },
+            {
+              "id": 21714,
+              "title": "Astonishing X-Men (2004) #26",
+              "issueNumber": "26",
+              "detailUrl": "https://www.marvel.com/comics/issue/21714/astonishing_x-men_2004_26",
+              "seriesId": 744,
+              "seriesName": "Astonishing X-Men (2004 - 2013)",
+              "onSaleDate": "2008-08-13T00:00:00+0000",
+              "yearPage": 2008
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Avengers West Coast #101",
+          "query": "Avengers West Coast 101",
+          "retrievedAt": "2026-08-23T20:31:08.570Z",
+          "candidates": [
+            {
+              "id": 17788,
+              "title": "West Coast Avengers (1985) #101",
+              "issueNumber": "101",
+              "detailUrl": "https://www.marvel.com/comics/issue/17788/west_coast_avengers_1985_101",
+              "seriesId": 3630,
+              "seriesName": "West Coast Avengers (1985 - 1994)",
+              "onSaleDate": "1993-12-10T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Uncanny X-Men #307",
+          "query": "Uncanny X-Men 307",
+          "retrievedAt": "2026-08-23T20:31:10.261Z",
+          "candidates": [
+            {
+              "id": 13848,
+              "title": "Uncanny X-Men (1963) #307",
+              "issueNumber": "307",
+              "detailUrl": "https://www.marvel.com/comics/issue/13848/uncanny_x-men_1963_307",
+              "seriesId": 2258,
+              "seriesName": "Uncanny X-Men (1963 - 2011)",
+              "onSaleDate": "1993-12-01T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Avengers #369",
+          "query": "Avengers 369",
+          "retrievedAt": "2026-08-23T20:31:11.966Z",
+          "candidates": [
+            {
+              "id": 7251,
+              "title": "Avengers (1963) #369",
+              "issueNumber": "369",
+              "detailUrl": "https://www.marvel.com/comics/issue/7251/avengers_1963_369",
+              "seriesId": 1991,
+              "seriesName": "Avengers (1963 - 1996)",
+              "onSaleDate": "1993-12-01T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "position": 38,
+      "event": "Midnight Massacre",
+      "year": 1993,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/midnight-massacre-reading-order/",
+      "sourceContentSha256": "150eac97ccffc80a6673764773022bf8833d3752a817931fabef1896b220ed66",
+      "rows": [
+        {
+          "sourceIssueReference": "Nightstalkers #10",
+          "query": "Nightstalkers 10",
+          "retrievedAt": "2026-08-23T20:31:13.661Z",
+          "candidates": [
+            {
+              "id": 80296,
+              "title": "Nightstalkers (1992) #10",
+              "issueNumber": "10",
+              "detailUrl": "https://www.marvel.com/comics/issue/80296/nightstalkers_1992_10",
+              "seriesId": 22919,
+              "seriesName": "Nightstalkers (1992 - 1994)",
+              "onSaleDate": "1993-08-01T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Ghost Rider Vol. 3 #40",
+          "query": "Ghost Rider 40",
+          "retrievedAt": "2026-08-23T20:31:15.378Z",
+          "candidates": [
+            {
+              "id": 8748,
+              "title": "Ghost Rider (1973) #40",
+              "issueNumber": "40",
+              "detailUrl": "https://www.marvel.com/comics/issue/8748/ghost_rider_1973_40",
+              "seriesId": 2013,
+              "seriesName": "Ghost Rider (1973 - 1983)",
+              "onSaleDate": "1980-01-01T00:00:00+0000",
+              "yearPage": 1980
+            },
+            {
+              "id": 22675,
+              "title": "Ghost Rider (1990) #40",
+              "issueNumber": "40",
+              "detailUrl": "https://www.marvel.com/comics/issue/22675/ghost_rider_1990_40",
+              "seriesId": 6255,
+              "seriesName": "Ghost Rider (1990 - 1998)",
+              "onSaleDate": "1993-08-01T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Darkhold #11",
+          "query": "Darkhold 11",
+          "retrievedAt": "2026-08-23T20:31:17.054Z",
+          "candidates": [
+            {
+              "id": 73583,
+              "title": "Darkhold: Pages from the Book of Sins (1992) #11",
+              "issueNumber": "11",
+              "detailUrl": "https://www.marvel.com/comics/issue/73583/darkhold_pages_from_the_book_of_sins_1992_11",
+              "seriesId": 21932,
+              "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+              "onSaleDate": "1993-08-01T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Morbius: The Living Vampire #12",
+          "query": "Morbius: The Living Vampire 12",
+          "retrievedAt": "2026-08-23T20:31:18.752Z",
+          "blocker": "500 https://marvel.emreparker.com/v1/search/issues?q=Morbius%3A+The+Living+Vampire+12&limit=20",
+          "candidates": []
+        },
+        {
+          "sourceIssueReference": "Spirits of Vengeance #13",
+          "query": "Spirits of Vengeance 13",
+          "retrievedAt": "2026-08-23T20:31:20.466Z",
+          "candidates": [
+            {
+              "id": 68431,
+              "title": "Ghost Rider/Blaze: Spirits of Vengeance (1992) #13",
+              "issueNumber": "13",
+              "detailUrl": "https://www.marvel.com/comics/issue/68431/ghost_riderblaze_spirits_of_vengeance_1992_13",
+              "seriesId": 22916,
+              "seriesName": "Ghost Rider/Blaze: Spirits of Vengeance (1992 - 1994)",
+              "onSaleDate": "1993-08-01T00:00:00+0000",
+              "yearPage": 1993
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "position": 41,
+      "event": "Child's Play",
+      "year": 1994,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/childs-play-reading-order/",
+      "sourceContentSha256": "a002f16fa5768661ebfa68cfee5ae6270f13e663239556d55df98dc92d5dcc67",
+      "rows": [
+        {
+          "sourceIssueReference": "X-Force #32",
+          "query": "X-Force 32",
+          "retrievedAt": "2026-08-23T20:31:22.156Z",
+          "candidates": [
+            {
+              "id": 17997,
+              "title": "X-Force (1991) #32",
+              "issueNumber": "32",
+              "detailUrl": "https://www.marvel.com/comics/issue/17997/x-force_1991_32",
+              "seriesId": 3633,
+              "seriesName": "X-Force (1991 - 2004)",
+              "onSaleDate": "1994-03-01T00:00:00+0000",
+              "yearPage": 1994
+            },
+            {
+              "id": 40438,
+              "title": "Uncanny X-Force (2010) #32",
+              "issueNumber": "32",
+              "detailUrl": "https://www.marvel.com/comics/issue/40438/uncanny_x-force_2010_32",
+              "seriesId": 9976,
+              "seriesName": "Uncanny X-Force (2010 - 2012)",
+              "onSaleDate": "2012-10-03T00:00:00+0000",
+              "yearPage": 2012
+            },
+            {
+              "id": 95893,
+              "title": "X-Force (2019) #32",
+              "issueNumber": "32",
+              "detailUrl": "https://www.marvel.com/comics/issue/95893/x-force_2019_32",
+              "seriesId": 27564,
+              "seriesName": "X-Force (2019 - Present)",
+              "onSaleDate": "2022-10-12T00:00:00+0000",
+              "yearPage": 2022
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "New Warriors #45",
+          "query": "New Warriors 45",
+          "retrievedAt": "2026-08-23T20:31:23.839Z",
+          "candidates": [
+            {
+              "id": 60145,
+              "title": "New Warriors (1990) #45",
+              "issueNumber": "45",
+              "detailUrl": "https://www.marvel.com/comics/issue/60145/new_warriors_1990_45",
+              "seriesId": 16341,
+              "seriesName": "New Warriors (1990 - 1996)",
+              "onSaleDate": "1994-03-01T00:00:00+0000",
+              "yearPage": 1994
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "X-Force #33",
+          "query": "X-Force 33",
+          "retrievedAt": "2026-08-23T20:31:25.552Z",
+          "candidates": [
+            {
+              "id": 17998,
+              "title": "X-Force (1991) #33",
+              "issueNumber": "33",
+              "detailUrl": "https://www.marvel.com/comics/issue/17998/x-force_1991_33",
+              "seriesId": 3633,
+              "seriesName": "X-Force (1991 - 2004)",
+              "onSaleDate": "1994-04-01T00:00:00+0000",
+              "yearPage": 1994
+            },
+            {
+              "id": 40439,
+              "title": "Uncanny X-Force (2010) #33",
+              "issueNumber": "33",
+              "detailUrl": "https://www.marvel.com/comics/issue/40439/uncanny_x-force_2010_33",
+              "seriesId": 9976,
+              "seriesName": "Uncanny X-Force (2010 - 2012)",
+              "onSaleDate": "2012-11-07T00:00:00+0000",
+              "yearPage": 2012
+            },
+            {
+              "id": 95894,
+              "title": "X-Force (2019) #33",
+              "issueNumber": "33",
+              "detailUrl": "https://www.marvel.com/comics/issue/95894/x-force_2019_33",
+              "seriesId": 27564,
+              "seriesName": "X-Force (2019 - Present)",
+              "onSaleDate": "2022-10-19T00:00:00+0000",
+              "yearPage": 2022
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "New Warriors #46",
+          "query": "New Warriors 46",
+          "retrievedAt": "2026-08-23T20:31:27.259Z",
+          "candidates": [
+            {
+              "id": 60146,
+              "title": "New Warriors (1990) #46",
+              "issueNumber": "46",
+              "detailUrl": "https://www.marvel.com/comics/issue/60146/new_warriors_1990_46",
+              "seriesId": 16341,
+              "seriesName": "New Warriors (1990 - 1996)",
+              "onSaleDate": "1994-04-01T00:00:00+0000",
+              "yearPage": 1994
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "position": 44,
+      "event": "Countdown",
+      "year": 1995,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/countdown-reading-order/",
+      "sourceContentSha256": "b576f7fb1380337edb2e84e5c842623bbf6092fdeebf961d867216360fd9caa5",
+      "rows": [
+        {
+          "sourceIssueReference": "Punisher Vol. 2 #103",
+          "query": "Punisher 103",
+          "retrievedAt": "2026-08-23T20:31:28.999Z",
+          "candidates": []
+        },
+        {
+          "sourceIssueReference": "Punisher War Journal #79",
+          "query": "Punisher War Journal 79",
+          "retrievedAt": "2026-08-23T20:31:30.671Z",
+          "candidates": []
+        },
+        {
+          "sourceIssueReference": "Punisher War Zone #41",
+          "query": "Punisher War Zone 41",
+          "retrievedAt": "2026-08-23T20:31:32.360Z",
+          "candidates": []
+        },
+        {
+          "sourceIssueReference": "Punisher Vol. 2 #104",
+          "query": "Punisher 104",
+          "retrievedAt": "2026-08-23T20:31:34.069Z",
+          "candidates": []
+        },
+        {
+          "sourceIssueReference": "Punisher War Journal #80",
+          "query": "Punisher War Journal 80",
+          "retrievedAt": "2026-08-23T20:31:35.764Z",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "position": 55,
+      "event": "Eighth Day",
+      "year": 1999,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/eighth-day-reading-order/",
+      "sourceContentSha256": "a96518afd069ad5d4ec8ec01336d8e7b2e68c45a5227c7bedbdc5c0142dbfea7",
+      "rows": [
+        {
+          "sourceIssueReference": "Iron Man Vol. 3 #21",
+          "query": "Iron Man 21",
+          "retrievedAt": "2026-08-23T20:31:37.454Z",
+          "candidates": [
+            {
+              "id": 9450,
+              "title": "Iron Man (1968) #21",
+              "issueNumber": "21",
+              "detailUrl": "https://www.marvel.com/comics/issue/9450/iron_man_1968_21",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1970-01-01T00:00:00+0000",
+              "yearPage": 1970
+            },
+            {
+              "id": 9451,
+              "title": "Iron Man (1968) #210",
+              "issueNumber": "210",
+              "detailUrl": "https://www.marvel.com/comics/issue/9451/iron_man_1968_210",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1986-09-01T00:00:00+0000",
+              "yearPage": 1986
+            },
+            {
+              "id": 9452,
+              "title": "Iron Man (1968) #211",
+              "issueNumber": "211",
+              "detailUrl": "https://www.marvel.com/comics/issue/9452/iron_man_1968_211",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1986-10-01T00:00:00+0000",
+              "yearPage": 1986
+            },
+            {
+              "id": 9453,
+              "title": "Iron Man (1968) #212",
+              "issueNumber": "212",
+              "detailUrl": "https://www.marvel.com/comics/issue/9453/iron_man_1968_212",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1986-11-01T00:00:00+0000",
+              "yearPage": 1986
+            },
+            {
+              "id": 9454,
+              "title": "Iron Man (1968) #213",
+              "issueNumber": "213",
+              "detailUrl": "https://www.marvel.com/comics/issue/9454/iron_man_1968_213",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1986-12-01T00:00:00+0000",
+              "yearPage": 1986
+            },
+            {
+              "id": 9455,
+              "title": "Iron Man (1968) #214",
+              "issueNumber": "214",
+              "detailUrl": "https://www.marvel.com/comics/issue/9455/iron_man_1968_214",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-01-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9456,
+              "title": "Iron Man (1968) #215",
+              "issueNumber": "215",
+              "detailUrl": "https://www.marvel.com/comics/issue/9456/iron_man_1968_215",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-02-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9457,
+              "title": "Iron Man (1968) #216",
+              "issueNumber": "216",
+              "detailUrl": "https://www.marvel.com/comics/issue/9457/iron_man_1968_216",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-03-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9458,
+              "title": "Iron Man (1968) #217",
+              "issueNumber": "217",
+              "detailUrl": "https://www.marvel.com/comics/issue/9458/iron_man_1968_217",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-04-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9459,
+              "title": "Iron Man (1968) #218",
+              "issueNumber": "218",
+              "detailUrl": "https://www.marvel.com/comics/issue/9459/iron_man_1968_218",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-05-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9460,
+              "title": "Iron Man (1968) #219",
+              "issueNumber": "219",
+              "detailUrl": "https://www.marvel.com/comics/issue/9460/iron_man_1968_219",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-06-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 19893,
+              "title": "Iron Man (1998) #21",
+              "issueNumber": "21",
+              "detailUrl": "https://www.marvel.com/comics/issue/19893/iron_man_1998_21",
+              "seriesId": 2572,
+              "seriesName": "Iron Man (1998 - 2004)",
+              "onSaleDate": "1999-10-10T00:00:00+0000",
+              "yearPage": 1999
+            },
+            {
+              "id": 16126,
+              "title": "The Invincible Iron Man (2004) #21",
+              "issueNumber": "21",
+              "detailUrl": "https://www.marvel.com/comics/issue/16126/the_invincible_iron_man_2004_21",
+              "seriesId": 835,
+              "seriesName": "The Invincible Iron Man (2004 - 2007)",
+              "onSaleDate": "2007-08-22T00:00:00+0000",
+              "yearPage": 2007
+            },
+            {
+              "id": 28333,
+              "title": "Invincible Iron Man (2008) #21",
+              "issueNumber": "21",
+              "detailUrl": "https://www.marvel.com/comics/issue/28333/invincible_iron_man_2008_21",
+              "seriesId": 4889,
+              "seriesName": "Invincible Iron Man (2008 - 2012)",
+              "onSaleDate": "2009-12-09T00:00:00+0000",
+              "yearPage": 2009
+            },
+            {
+              "id": 48764,
+              "title": "Iron Man (2012) #21",
+              "issueNumber": "21",
+              "detailUrl": "https://www.marvel.com/comics/issue/48764/iron_man_2012_21",
+              "seriesId": 16593,
+              "seriesName": "Iron Man (2012 - 2014)",
+              "onSaleDate": "2014-02-05T00:00:00+0000",
+              "yearPage": 2014
+            },
+            {
+              "id": 95812,
+              "title": "Iron Man (2020) #21",
+              "issueNumber": "21",
+              "detailUrl": "https://www.marvel.com/comics/issue/95812/iron_man_2020_21",
+              "seriesId": 30148,
+              "seriesName": "Iron Man (2020 - Present)",
+              "onSaleDate": "2022-07-20T00:00:00+0000",
+              "yearPage": 2022
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Iron Man Vol. 3 #22",
+          "query": "Iron Man 22",
+          "retrievedAt": "2026-08-23T20:31:39.168Z",
+          "candidates": [
+            {
+              "id": 9461,
+              "title": "Iron Man (1968) #22",
+              "issueNumber": "22",
+              "detailUrl": "https://www.marvel.com/comics/issue/9461/iron_man_1968_22",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1970-02-01T00:00:00+0000",
+              "yearPage": 1970
+            },
+            {
+              "id": 9462,
+              "title": "Iron Man (1968) #220",
+              "issueNumber": "220",
+              "detailUrl": "https://www.marvel.com/comics/issue/9462/iron_man_1968_220",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-07-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9463,
+              "title": "Iron Man (1968) #221",
+              "issueNumber": "221",
+              "detailUrl": "https://www.marvel.com/comics/issue/9463/iron_man_1968_221",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-08-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9464,
+              "title": "Iron Man (1968) #222",
+              "issueNumber": "222",
+              "detailUrl": "https://www.marvel.com/comics/issue/9464/iron_man_1968_222",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-09-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9465,
+              "title": "Iron Man (1968) #223",
+              "issueNumber": "223",
+              "detailUrl": "https://www.marvel.com/comics/issue/9465/iron_man_1968_223",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-10-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9466,
+              "title": "Iron Man (1968) #224",
+              "issueNumber": "224",
+              "detailUrl": "https://www.marvel.com/comics/issue/9466/iron_man_1968_224",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-11-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9467,
+              "title": "Iron Man (1968) #225",
+              "issueNumber": "225",
+              "detailUrl": "https://www.marvel.com/comics/issue/9467/iron_man_1968_225",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1987-12-01T00:00:00+0000",
+              "yearPage": 1987
+            },
+            {
+              "id": 9468,
+              "title": "Iron Man (1968) #226",
+              "issueNumber": "226",
+              "detailUrl": "https://www.marvel.com/comics/issue/9468/iron_man_1968_226",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1988-01-01T00:00:00+0000",
+              "yearPage": 1988
+            },
+            {
+              "id": 9469,
+              "title": "Iron Man (1968) #227",
+              "issueNumber": "227",
+              "detailUrl": "https://www.marvel.com/comics/issue/9469/iron_man_1968_227",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1988-02-01T00:00:00+0000",
+              "yearPage": 1988
+            },
+            {
+              "id": 9470,
+              "title": "Iron Man (1968) #228",
+              "issueNumber": "228",
+              "detailUrl": "https://www.marvel.com/comics/issue/9470/iron_man_1968_228",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1988-03-01T00:00:00+0000",
+              "yearPage": 1988
+            },
+            {
+              "id": 9471,
+              "title": "Iron Man (1968) #229",
+              "issueNumber": "229",
+              "detailUrl": "https://www.marvel.com/comics/issue/9471/iron_man_1968_229",
+              "seriesId": 2029,
+              "seriesName": "Iron Man (1968 - 1996)",
+              "onSaleDate": "1988-04-01T00:00:00+0000",
+              "yearPage": 1988
+            },
+            {
+              "id": 19894,
+              "title": "Iron Man (1998) #22",
+              "issueNumber": "22",
+              "detailUrl": "https://www.marvel.com/comics/issue/19894/iron_man_1998_22",
+              "seriesId": 2572,
+              "seriesName": "Iron Man (1998 - 2004)",
+              "onSaleDate": "1999-11-10T00:00:00+0000",
+              "yearPage": 1999
+            },
+            {
+              "id": 16477,
+              "title": "The Invincible Iron Man (2004) #22",
+              "issueNumber": "22",
+              "detailUrl": "https://www.marvel.com/comics/issue/16477/the_invincible_iron_man_2004_22",
+              "seriesId": 835,
+              "seriesName": "The Invincible Iron Man (2004 - 2007)",
+              "onSaleDate": "2007-09-26T00:00:00+0000",
+              "yearPage": 2007
+            },
+            {
+              "id": 28334,
+              "title": "Invincible Iron Man (2008) #22",
+              "issueNumber": "22",
+              "detailUrl": "https://www.marvel.com/comics/issue/28334/invincible_iron_man_2008_22",
+              "seriesId": 4889,
+              "seriesName": "Invincible Iron Man (2008 - 2012)",
+              "onSaleDate": "2010-01-13T00:00:00+0000",
+              "yearPage": 2010
+            },
+            {
+              "id": 48765,
+              "title": "Iron Man (2012) #22",
+              "issueNumber": "22",
+              "detailUrl": "https://www.marvel.com/comics/issue/48765/iron_man_2012_22",
+              "seriesId": 16593,
+              "seriesName": "Iron Man (2012 - 2014)",
+              "onSaleDate": "2014-03-05T00:00:00+0000",
+              "yearPage": 2014
+            },
+            {
+              "id": 95813,
+              "title": "Iron Man (2020) #22",
+              "issueNumber": "22",
+              "detailUrl": "https://www.marvel.com/comics/issue/95813/iron_man_2020_22",
+              "seriesId": 30148,
+              "seriesName": "Iron Man (2020 - Present)",
+              "onSaleDate": "2022-08-03T00:00:00+0000",
+              "yearPage": 2022
+            }
+          ]
+        },
+        {
+          "sourceIssueReference": "Peter Parker: Spider-Man Vol. 2 #11",
+          "query": "Peter Parker: Spider-Man 11",
+          "retrievedAt": "2026-08-23T20:31:40.859Z",
+          "blocker": "500 https://marvel.emreparker.com/v1/search/issues?q=Peter+Parker%3A+Spider-Man+11&limit=20",
+          "candidates": []
+        },
+        {
+          "sourceIssueReference": "Juggernaut Vol. 2 #1 (1999)",
+          "query": "Juggernaut 1",
+          "retrievedAt": "2026-08-23T20:31:42.758Z",
+          "candidates": [
+            {
+              "id": 43033,
+              "title": "JUGGERNAUT 1 (1999) #1",
+              "issueNumber": "1",
+              "detailUrl": "https://www.marvel.com/comics/issue/43033/juggernaut_1_1999_1",
+              "seriesId": 16363,
+              "seriesName": "JUGGERNAUT 1 (1999)",
+              "onSaleDate": "1999-11-01T00:00:00+0000",
+              "yearPage": 1999
+            },
+            {
+              "id": 3963,
+              "title": "SPIDER-GIRL PRESENTS JUGGERNAUT JR. VOL. 1: SECRETS & LIES (Digest)",
+              "issueNumber": "1",
+              "detailUrl": "https://www.marvel.com/comics/collection/3963/spider-girl_presents_juggernaut_jr_vol_1_secrets_lies_digest",
+              "seriesId": 1681,
+              "seriesName": "SPIDER-GIRL PRESENTS JUGGERNAUT JR. VOL. 1: SECRETS & LIES (2006)",
+              "onSaleDate": "2006-03-08T00:00:00+0000",
+              "yearPage": 2006
+            },
+            {
+              "id": 72708,
+              "title": "X-Men: Black - Juggernaut (2018) #1",
+              "issueNumber": "1",
+              "detailUrl": "https://www.marvel.com/comics/issue/72708/x-men_black_-_juggernaut_2018_1",
+              "seriesId": 26277,
+              "seriesName": "X-Men: Black - Juggernaut (2018)",
+              "onSaleDate": "2018-10-24T00:00:00+0000",
+              "yearPage": 2018
+            },
+            {
+              "id": 83413,
+              "title": "Juggernaut (2020) #1",
+              "issueNumber": "1",
+              "detailUrl": "https://www.marvel.com/comics/issue/83413/juggernaut_2020_1",
+              "seriesId": 29499,
+              "seriesName": "Juggernaut (2020 - 2021)",
+              "onSaleDate": "2020-09-23T00:00:00+0000",
+              "yearPage": 2020
+            },
+            {
+              "id": 83415,
+              "title": "Juggernaut (2020) #2",
+              "issueNumber": "2",
+              "detailUrl": "https://www.marvel.com/comics/issue/83415/juggernaut_2020_2",
+              "seriesId": 29499,
+              "seriesName": "Juggernaut (2020 - 2021)",
+              "onSaleDate": "2020-10-21T00:00:00+0000",
+              "yearPage": 2020
+            },
+            {
+              "id": 83416,
+              "title": "Juggernaut (2020) #3",
+              "issueNumber": "3",
+              "detailUrl": "https://www.marvel.com/comics/issue/83416/juggernaut_2020_3",
+              "seriesId": 29499,
+              "seriesName": "Juggernaut (2020 - 2021)",
+              "onSaleDate": "2020-11-18T00:00:00+0000",
+              "yearPage": 2020
+            },
+            {
+              "id": 83417,
+              "title": "Juggernaut (2020) #4",
+              "issueNumber": "4",
+              "detailUrl": "https://www.marvel.com/comics/issue/83417/juggernaut_2020_4",
+              "seriesId": 29499,
+              "seriesName": "Juggernaut (2020 - 2021)",
+              "onSaleDate": "2020-12-09T00:00:00+0000",
+              "yearPage": 2020
+            },
+            {
+              "id": 83418,
+              "title": "Juggernaut (2020) #5",
+              "issueNumber": "5",
+              "detailUrl": "https://www.marvel.com/comics/issue/83418/juggernaut_2020_5",
+              "seriesId": 29499,
+              "seriesName": "Juggernaut (2020 - 2021)",
+              "onSaleDate": "2021-01-06T00:00:00+0000",
+              "yearPage": 2021
+            },
+            {
+              "id": 125575,
+              "title": "KID JUGGERNAUT (2025) #1",
+              "issueNumber": "1",
+              "detailUrl": "https://www.marvel.com/comics/issue/125575/kid_juggernaut_2025_1",
+              "seriesId": 43391,
+              "seriesName": "KID JUGGERNAUT (2025)",
+              "onSaleDate": "2025-04-30T00:00:00+0000",
+              "yearPage": 2025
+            },
+            {
+              "id": 29454,
+              "title": "Spider-Man: The Gauntlet Vol. 4 - Juggernaut (Trade Paperback)",
+              "issueNumber": "4",
+              "detailUrl": "https://www.marvel.com/comics/collection/29454/spider-man_the_gauntlet_vol_4_-_juggernaut_trade_paperback",
+              "seriesId": 9595,
+              "seriesName": "Spider-Man: The Gauntlet Vol. 4 - Juggernaut (2010)",
+              "onSaleDate": "2011-01-26T00:00:00-0500",
+              "yearPage": 2011
+            },
+            {
+              "id": 51349,
+              "title": "Amazing X-Men Vol. 3: Once and Future Juggernaut (Trade Paperback)",
+              "issueNumber": "0",
+              "detailUrl": "https://www.marvel.com/comics/collection/51349/amazing_x-men_vol_3_once_and_future_juggernaut_trade_paperback",
+              "seriesId": 19268,
+              "seriesName": "Amazing X-Men Vol. 3: Once and Future Juggernaut (2015)",
+              "onSaleDate": "2015-06-17T00:00:00+0000",
+              "yearPage": 2015
+            },
+            {
+              "id": 77923,
+              "title": "X-Men: Trial Of The Juggernaut (Trade Paperback)",
+              "issueNumber": "0",
+              "detailUrl": "https://www.marvel.com/comics/collection/77923/x-men_trial_of_the_juggernaut_trade_paperback",
+              "seriesId": 27874,
+              "seriesName": "X-Men: Trial Of The Juggernaut (2019)",
+              "onSaleDate": "2019-10-30T00:00:00-0400",
+              "yearPage": 2019
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
