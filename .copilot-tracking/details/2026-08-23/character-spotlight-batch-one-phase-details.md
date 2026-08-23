@@ -17,7 +17,7 @@
 | P01 | Centralize selected evidence | complete | P01, P01-T01, P01-T02 |
 | P02 | Approve and publish both readings | complete | P02, P02-T01, P02-T02 |
 | P03 | Prove and release the batch | complete | P03, P03-T01, P03-T02 |
-| P04 | Review and deliver the release | ready | P04, P04-T01, P04-T02 |
+| P04 | Review and deliver the release | in progress | P04, P04-T01, P04-T02 |
 
 ## Task-Level Context
 

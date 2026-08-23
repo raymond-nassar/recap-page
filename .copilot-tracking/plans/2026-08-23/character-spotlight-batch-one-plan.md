@@ -282,9 +282,10 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Intent: Run the one independent Review, resolve its material findings without a second Review, and
   carry the validated change through PR, hosted CI, reconciliation if needed, and merge.
 * Dependencies: P03.
+* Implementation status: P04-T01 complete; P04-T02 in progress.
 
 <!-- rpi:task id=P04-T01 -->
-#### [ ] P04-T01: Run and resolve the one independent Review
+#### [x] P04-T01: Run and resolve the one independent Review
 
 * Requirement and evidence: The caller permits exactly one Review and requires material findings to be
   routed rather than looped.

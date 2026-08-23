@@ -10,19 +10,19 @@
 
 ## Execution Status
 
-* Status: Review ready
+* Status: Delivery in progress
 * Declared invocation scope: full plan
-* Completed scope markers: P01, P01-T01, P01-T02, P02, P02-T01, P02-T02, P03, P03-T01, P03-T02
-* All remaining active-plan markers: P04, P04-T01, P04-T02
-* Status basis: Both guides are published in the release diff, every local gate passes, and the real
-  Edge surface satisfies the two-guide acceptance checks.
+* Completed scope markers: P01, P01-T01, P01-T02, P02, P02-T01, P02-T02, P03, P03-T01, P03-T02, P04-T01
+* All remaining active-plan markers: P04, P04-T02
+* Status basis: The single independent Review is complete with no material finding and a Conformant
+  outcome. PR, hosted CI, reconciliation if needed, and merge remain.
 
 ## Execution Summary
 
 The approved two-guide scope is implemented through generated data and product records. Central packets,
 exact mappings, complete reports, 176 dispositions, guarded authoring, vendoring, focused regression
 coverage, the failure proof, all local release gates, and real Edge acceptance are complete. The one
-independent Review is next.
+independent Review found no material issue, so delivery is active.
 
 ## Completed Work
 
@@ -69,6 +69,16 @@ independent Review is next.
 * After the release snapshot was committed, the full suite passed 1,389 tests with zero failure, lint
   passed, and the committed-byte publication gate accepted the release.
 
+### P04-T01: Completed the one independent Review
+
+* One independent read-only comparison assessed the complete committed task diff and the reconciled
+  Research, plan, details, critique, changes, validation, and follow-up evidence.
+* Review execution status is Complete and its outcome is Conformant.
+* No material finding, defect, decision gap, evidence gap, or residual follow-up was identified.
+* The canonical review record is
+  .copilot-tracking/reviews/logs/2026-08-23/character-spotlight-batch-one-review.md.
+* This is the only Review for MRT-002-C02; later delivery work will not trigger another.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Move the exact inventory tuple before named preparation
@@ -101,14 +111,15 @@ independent Review is next.
 | Live metadata contract | P03-T02 | Passed | 33 passed, 0 failed. |
 | Added-line dash scan | P03-T02 | Passed | Zero en or em dashes. |
 | Edge acceptance | P03-T02 | Passed | 1280x900; both exclusive spotlight cards, counts, sources, imports, and six sequence checkpoints passed. |
+| Independent Review | P04-T01 | Passed | Complete execution, Conformant outcome, and no material finding. |
 
 ## Pre-Review Reconciliation
 
-* Plan markers and phase details: P01, P02, and P03 complete; P04 is ready.
+* Plan markers and phase details: P01, P02, and P03 complete; P04-T01 complete and P04-T02 active.
 * Completed-work evidence and handoff prose: current through all local release and browser gates.
 * Validation, blockers, remaining work, and follow-up items: no blocker or follow-up; one Review and
   delivery remain.
-* Review readiness: ready for the one permitted independent Review.
+* Review readiness: the one permitted Review is complete and will not be repeated.
 
 ## Blockers
 
@@ -116,7 +127,7 @@ independent Review is next.
 
 ## Remaining Work
 
-* Complete P04-T01 and P04-T02.
+* Complete P04-T02.
 
 ## Follow-Up Items
 
@@ -126,13 +137,13 @@ independent Review is next.
 
 ## Return-to-Caller State
 
-* Implementation execution status: Complete and review ready
-* Declared scope and markers: full plan; P01, P02, and P03 complete; P04 remains
+* Implementation execution status: Complete; delivery in progress
+* Declared scope and markers: full plan; P01, P02, P03, and P04-T01 complete; P04-T02 active
 * Validation coverage: central digest, exact mapping, complete relationship, guarded authoring,
   vendoring, focused regression, failure proof, local release gates, contract, anchors, and Edge
 * Blockers: none
 * Current plan and detail updates: inventory preparation ordering and completion state reconciled
 * Planning and critique state: Ready after one critique; PC-001 and PC-002 resolved
 * Follow-up items: none
-* Review readiness or no-handoff reason: ready for the one permitted independent Review
+* Review readiness or no-handoff reason: Review complete with a Conformant outcome and no finding
 * Continuation owner: confirmed automatic RPI coordinator
