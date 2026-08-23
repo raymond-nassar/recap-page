@@ -164,7 +164,7 @@ central approval dispositions all 86 `none` and three expected partial relations
 | Lint | P03-T02 | Passed | 0 errors and 0 warnings after temporary browser-script cleanup. |
 | Counts, sizes, palette | P03-T02 | Passed | 179 rows / 184 blocks; 7 size claims; 88 pairs with 0 new failures. |
 | Anchors | P03-T02 | Passed | 1,152 unchanged; 0 drifted, 0 new, 0 removed after read and bless. |
-| Publication | P03-T02 | Passed | 0 content findings on the current committed-history population; rerun after commit is still required. |
+| Publication | P03-T02 | Passed | Feature head `082c28ba8eeed7fbd9bad6b605f00fb90941b943`: 3,155 blobs and 393 commit messages scanned; 0 content findings. |
 | Fixture Edge | P03-T02 | Passed | 158 assertions across 17 scenarios at the maintained viewport. |
 | Real-catalog Edge | P03-T02 | Passed | Required 1280x900 and 390x844 counts, Rocket visibility, and overflow checks. |
 | Live metadata contract | P03-T02 | Passed | 33 of 33 assumptions across 17 requests. |
@@ -177,6 +177,15 @@ central approval dispositions all 86 `none` and three expected partial relations
 * Completed-work evidence and handoff prose: Current for P01 through P04-T01.
 * Validation, blockers, remaining work, and follow-up items: Current.
 * Review state: Exactly one Review completed; RV-001 is resolved; no second Review is permitted or needed.
+* PR #174 is open against unchanged `main` at
+  https://github.com/raymond-nassar/recap-page/pull/174.
+* Hosted CI run 32666642248 validated feature head
+  `082c28ba8eeed7fbd9bad6b605f00fb90941b943`: Tests on Node 20, Tests on Node 24, and Lint each
+  completed with a `success` job conclusion.
+* GitHub reports the PR clean and mergeable against `main` at
+  `086cc5bbbbfa61cae95983e0acede47aeffa2dc8`, so reconciliation is not needed.
+* This hosted evidence is being committed before merge. The three required jobs must pass again on
+  the final evidence head before release.
 
 ## Blockers
 

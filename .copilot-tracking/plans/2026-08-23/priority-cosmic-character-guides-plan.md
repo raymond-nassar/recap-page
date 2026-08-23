@@ -352,6 +352,9 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Expected result: a plain-English-first PR passes all required hosted jobs, any reconciliation is
   revalidated, the PR merges, and MRT-002-C05 records the merged commit and result.
 * Detail section: P04-T02 in .copilot-tracking/details/2026-08-23/priority-cosmic-character-guides-phase-details.md
+* Implementation status: In progress. Hosted run 32666642248 passed all three required jobs on
+  feature head `082c28ba8eeed7fbd9bad6b605f00fb90941b943`; no `main` reconciliation is needed. The final
+  evidence commit must pass the same jobs before merge.
 
 ## Dependencies
 

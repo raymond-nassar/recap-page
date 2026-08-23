@@ -607,7 +607,13 @@ Deliver the reviewed Rocket guide and persist its merged result.
 
 #### Completion Evidence
 
-* Merged PR URL, merge commit, hosted job conclusions, and durable final state.
+* PR #174 is open at https://github.com/raymond-nassar/recap-page/pull/174.
+* Hosted run 32666642248 validated head
+  `082c28ba8eeed7fbd9bad6b605f00fb90941b943`; Tests on Node 20, Tests on Node 24, and Lint each
+  completed with a `success` conclusion.
+* GitHub reports the PR clean and mergeable against unchanged `main` at
+  `086cc5bbbbfa61cae95983e0acede47aeffa2dc8`, so reconciliation is not needed.
+* Final evidence-head CI, merge, and merged-result persistence remain pending.
 
 #### Unresolved Items
 

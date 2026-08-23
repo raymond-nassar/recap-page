@@ -132,11 +132,31 @@
     ]
   },
   "pull_request": {
-    "status": "not_started",
+    "status": "open-final-evidence-checks-required",
+    "number": 174,
+    "url": "https://github.com/raymond-nassar/recap-page/pull/174",
+    "base": "main",
+    "head": "raymond-nassar-priority-cosmic-character-guides",
+    "commits": [
+      "082c28ba8eeed7fbd9bad6b605f00fb90941b943"
+    ],
     "required_hosted_checks": [
-      "test (20)",
-      "test (24)",
-      "lint"
+      "Tests on Node 20",
+      "Tests on Node 24",
+      "Lint"
+    ],
+    "base_reconciliation": {
+      "status": "not_needed",
+      "origin_main": "086cc5bbbbfa61cae95983e0acede47aeffa2dc8"
+    },
+    "hosted_ci_runs": [
+      {
+        "run_id": 32666642248,
+        "head_commit": "082c28ba8eeed7fbd9bad6b605f00fb90941b943",
+        "test_node_20": "success",
+        "test_node_24": "success",
+        "lint": "success"
+      }
     ]
   }
 }
