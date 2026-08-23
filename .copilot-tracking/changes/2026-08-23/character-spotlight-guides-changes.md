@@ -105,6 +105,8 @@ the result through the existing Character spotlights surface.
 | Final live contract | release | Passed | All 33 assumptions held across 17 requests. |
 | Unpublished surface scan | release | Passed | After pruning stale refs, the five branches advertised by the remote contained zero publication findings across 2,977 blobs and 370 commit messages. |
 | Added-line dash scan | release | Passed | Zero en dashes or em dashes remain in added lines. |
+| First hosted Node 20 job | release | Failed | The new inventory-count test used `Object.groupBy`, which is unavailable on the declared Node 20 floor. The product code and the other 1,384 tests passed. |
+| Hosted Node 20 compatibility correction | release | Implemented | The test now derives the four counts with `Array.prototype.reduce`, which is supported on every declared engine. Node 24 and the hosted lint job had already passed. |
 
 ## Pre-Review Reconciliation
 

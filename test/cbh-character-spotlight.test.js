@@ -41,11 +41,14 @@ test('the character inventory preserves every central disposition and only ships
   assert.equal(new Set(inventory.map((record) => record.id)).size, 128);
   assert.equal(new Set(inventory.map((record) => record.url)).size, 128);
 
-  const dispositionCounts = Object.groupBy(inventory, (record) => record.centralDisposition);
-  assert.equal(dispositionCounts.deferred.length, 118);
-  assert.equal(dispositionCounts.excluded.length, 7);
-  assert.equal(dispositionCounts.blocked.length, 2);
-  assert.equal(dispositionCounts['pilot-approved'].length, 1);
+  const dispositionCounts = inventory.reduce((counts, record) => {
+    counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
+    return counts;
+  }, {});
+  assert.equal(dispositionCounts.deferred, 118);
+  assert.equal(dispositionCounts.excluded, 7);
+  assert.equal(dispositionCounts.blocked, 2);
+  assert.equal(dispositionCounts['pilot-approved'], 1);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [candidateId]);

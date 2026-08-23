@@ -103,13 +103,22 @@
     "repeatRequired": false
   },
   "pull_request": {
-    "status": "open",
+    "status": "ci-correction",
     "number": 171,
     "url": "https://github.com/raymond-nassar/recap-page/pull/171",
     "initialReleaseCommit": "68d26a3d92cbd1db2c524ba441eb4c2491fcfa93",
     "requiredHostedChecks": [
       "test (20)",
       "test (24)"
+    ],
+    "hostedRuns": [
+      {
+        "id": 32632325951,
+        "head": "a377013d05b0f18c5baa703fe2a082779aafbfc3",
+        "node20": "failed-unsupported-object-group-by-in-test",
+        "node24": "passed",
+        "lint": "passed"
+      }
     ],
     "localValidation": {
       "focusedTests": 21,
