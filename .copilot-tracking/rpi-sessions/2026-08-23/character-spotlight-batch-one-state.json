@@ -9,8 +9,8 @@
   },
   "date": "2026-08-23",
   "mode": "automatic",
-  "stage": "research",
-  "status": "research_complete",
+  "stage": "plan",
+  "status": "in_progress",
   "direction": {
     "summary": "Continue Character Spotlight guides using lower-cost deterministic workers for candidate mapping while retaining every protected decision and release action centrally.",
     "batch_target": "Select the smallest coherent publishable chunk of four to six guides, reducing the count when data or review risk requires it.",
@@ -139,7 +139,17 @@
     }
   },
   "plan": {
-    "status": "not-started"
+    "status": "complete-ready",
+    "artifact": ".copilot-tracking/plans/2026-08-23/character-spotlight-batch-one-plan.md",
+    "details": ".copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md",
+    "critique": ".copilot-tracking/reviews/plans/2026-08-23/character-spotlight-batch-one-plan-critique.md",
+    "maximum_critiques": 1,
+    "critique_runs": 1,
+    "critique_verdict": "revise-resolved",
+    "critique_findings": [
+      "PC-001",
+      "PC-002"
+    ]
   },
   "implementation": {
     "status": "not-started"
