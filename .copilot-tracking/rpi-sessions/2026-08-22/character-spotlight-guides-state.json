@@ -103,7 +103,7 @@
     "repeatRequired": false
   },
   "pull_request": {
-    "status": "ci-correction",
+    "status": "merge-ready",
     "number": 171,
     "url": "https://github.com/raymond-nassar/recap-page/pull/171",
     "initialReleaseCommit": "68d26a3d92cbd1db2c524ba441eb4c2491fcfa93",
@@ -116,6 +116,13 @@
         "id": 32632325951,
         "head": "a377013d05b0f18c5baa703fe2a082779aafbfc3",
         "node20": "failed-unsupported-object-group-by-in-test",
+        "node24": "passed",
+        "lint": "passed"
+      },
+      {
+        "id": 32632416482,
+        "head": "2b63c1791410f4a36ce15b1021e001d7e8deb8fa",
+        "node20": "passed",
         "node24": "passed",
         "lint": "passed"
       }

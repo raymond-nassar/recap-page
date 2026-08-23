@@ -160,4 +160,6 @@ second Review.
 * Pull request: #171
 * Initial release commit: 68d26a3d92cbd1db2c524ba441eb4c2491fcfa93
 * Required hosted checks: Node 20 and Node 24
-* Release status: open and awaiting required hosted checks
+* Corrected hosted run: 32632416482
+* Hosted result: Node 20, Node 24, and lint passed
+* Release status: merge-ready
