@@ -6,7 +6,7 @@
 |---|---|
 | Date | 2026-08-23 |
 | Researcher / agent | hve-core:rpi-research under automatic RPI coordination |
-| Status | In progress |
+| Status | Complete |
 | Artifact path | `.copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md` |
 | Task ID | MRT-002-C02 |
 | Parent | MRT-002-C01 / character-spotlight-guides |
@@ -54,7 +54,7 @@
 |---|---|---|---|
 | Intake | No interaction: the caller supplied task identity, parent, baseline PR, worker shards, protected decisions, batch bounds, lifecycle, and automatic continuation authority. | Parent-supplied worker commit SHAs remain pending. | Begin coordinator-only contract and evidence inspection; do not repeat mapping. |
 | Direction change | None. | None. | Preserve the intake boundary. |
-| Convergence | Pending worker acceptance and completed three-wave synthesis. | Pending. | No batch selection yet. |
+| Convergence | The parent rejected shard 1 before commit because its scratch parser resolved protected ambiguities heuristically and captured only one issue from ranges. | No usable shard 1 output exists; do not inspect its scratch files. | Close worker intake and select the two centrally admissible shard 3 candidates under the caller's risk-reduction clause. |
 
 ## Scope and Success Criteria
 
@@ -86,6 +86,8 @@
 | narrow | Run one critique and one independent Review, never a second Review. | Caller | Findings are routed once and material defects are fixed before release without a repeated review phase. |
 | add | Continue automatically after worker commits arrive. | Caller | Waiting is temporary state, not a request for user interaction. |
 | narrow | Recover shard 2 from its persisted six-candidate selection by completing only Hercules, High Evolutionary, and Howard the Duck; capacity-defer Hawkeye, Hope Summers, and Hulk. | Parent handoff, 2026-08-23 08:28 Pacific | Shard 2 may return at most three candidate-specific handoffs without widening worker or central authority. |
+| exclude | Reject shard 1 with no usable output because its uncommitted parser heuristically chose ambiguous series and captured only one issue from source ranges. | Parent handoff, 2026-08-23 | Do not inspect scratch files or wait for a commit; the worker phase is complete. |
+| narrow | Proceed with Phalanx and Phoenix as a two-guide batch. | Parent handoff and central convergence | The explicit risk-reduction clause applies because shard 2 failed source-boundary acceptance and shard 1 produced no admissible evidence. |
 
 ## Research Questions
 
@@ -95,8 +97,8 @@
 | Q2 | What immutable identity, boundary, horizon, and disposition evidence exists for all 128 source identities? | depth | H | answered |
 | Q3 | What did the White Tiger pilot prove, and which pilot-specific assumptions must not be generalized? | depth | H | answered |
 | Q4 | What must a worker commit contain, exclude, and hash-match before candidate evidence is admissible? | depth | H | answered |
-| Q5 | Which accepted candidates form the smallest coherent four-to-six-guide batch, or justify a smaller batch? | breadth | H | blocked pending worker commits |
-| Q6 | What counter-evidence could invalidate worker freshness, central relationship approval, metadata fit, or batch coherence? | depth | H | open |
+| Q5 | Which accepted candidates form the smallest coherent four-to-six-guide batch, or justify a smaller batch? | breadth | H | answered |
+| Q6 | What counter-evidence could invalidate worker freshness, central relationship approval, metadata fit, or batch coherence? | depth | H | answered |
 
 ## Prior Knowledge Gate
 
@@ -142,19 +144,19 @@
 
 * In-scope challenge targets and boundaries: Freshness, source completeness, ambiguous metadata choices, stale library comparisons, unapproved subset or partial relationships, candidate coherence, and excessive batch size.
 * Plan and independent lanes: Attempt to invalidate each provisional candidate and the proposed batch using final-tree deterministic checks and complete-library evidence.
-* Worker evidence relationships or inline fallback: Pending.
-* Reflection: Pending.
+* Worker evidence relationships or inline fallback: No additional worker lane ran. The coordinator challenged the two surviving mappings and reports directly against the executable digest and peer contracts. Shard 1 was rejected by the parent before commit and contributes no evidence.
+* Reflection: Phalanx and Phoenix survive the contrarian checks. Both packets, mappings, and reports have valid digests; all 81 selected issue ids are exact and unique within their mapping; the two mappings share no issue id; both latest dates are in 2023; each report compares the 87-list baseline plus the other candidate and binds the reciprocal peer digest. Phoenix has 88 `none` relationships. Phalanx has 86 `none` relationships and the two known eight-issue partials with the existing Claremont X-Men variants. The final artifacts are not merge-ready: worker source authority must be replaced, all dependent digests must be regenerated centrally, Phalanx copy must remove excluded Annihilation: Conquest and Powers of X claims, and the two partials require central approval. These are bounded corrections rather than candidate invalidators. The two-guide selection is below the nominal four-guide floor because every shard 2 candidate failed source-boundary acceptance and shard 1 produced no admissible output. Adding a rejected candidate to meet a count would increase data and review risk and violate the caller's explicit reduction clause.
 
 #### Parent Synthesis and Disposition
 
-Pending completion of all three waves.
+Cycle 1 converges on `phalanx-reading-order` and `marvels-best-phoenix-comics` as the complete publishable scope. Phalanx is retained because its 28 exact rows form a distinct guide despite two centrally approvable partial relationships. Phoenix is retained because its 53 exact rows intentionally follow only issue-numbered passages in a narrative best-of source and have no existing-list or peer relationship. Hercules, High Evolutionary, and Howard the Duck are deferred because exact retained mappings cannot cure source-defined whole-issue omissions. Shard 1 is rejected without evidence. The selected pair is peer-disjoint and totals 81 issues, keeping the integration small enough for one review while delivering two distinct Character Spotlight guides.
 
 #### Cycle Re-entry Evaluation
 
-* Another complete three-wave cycle needed: Pending.
-* Trigger or stop basis: Pending evidence.
-* Revised brief or revalidation required: None.
-* Readiness effect: Not ready while worker commits and central candidate decisions are pending.
+* Another complete three-wave cycle needed: No.
+* Trigger or stop basis: All worker lanes are closed, every supplied candidate has a central source and horizon disposition, the surviving pair passed peer and digest challenge, and no unresolved research question could change the two-guide scope.
+* Revised brief or revalidation required: The nominal four-to-six target is reduced to two under the caller's explicit risk clause.
+* Readiness effect: Ready for a plan limited to Phalanx and Phoenix.
 
 ## Evidence Log
 
@@ -205,7 +207,7 @@ Pending completion of all three waves.
 | Q2 | The maintained inventory is the 128-identity root, but deferred records carry source hashes and disposition only, not accepted issue rows or relationships. | C1, C9 | high | Worker output must still earn central boundary, horizon, and relationship acceptance. |
 | Q3 | White Tiger proves the machinery, stale-input rejection, and historical-digest test pattern; its exact cut and overlap decisions are candidate-specific. | C10-C11 | high | Reuse the pattern, not its judgments or 86-list baseline. |
 | Q4 | Admit only shard-scoped candidate files from verified commits, then centrally rebind packets, mappings, reports, peers, and approvals against the live baseline. | C1-C8, C12 | high | Worker commits are evidence inputs, not merge-ready product changes. |
-| Q5 | Phalanx and Phoenix remain admissible provisional candidates. Hercules, High Evolutionary, and Howard the Duck are deferred because their exact mappings omit source-defined whole issues and cannot support their proposed complete-guide boundary. Selection now waits only for shard 1. | C13-C18, W1-W5, shard 2 and 3 commits | high | Planning cannot select scope yet, but shard 2 contributes no candidate to the final comparison. |
+| Q5 | Select Phalanx and Phoenix as a two-guide batch. Hercules, High Evolutionary, and Howard the Duck are deferred because their exact mappings omit source-defined whole issues, and shard 1 has no usable output. The surviving pair has no shared issue id and totals 81 rows. | C13-C18, W1-W5, shard 2 and 3 commits | high | The caller's risk-reduction clause justifies a batch below four and fixes Plan scope. |
 | Q6 | The main demonstrated invalidators are stale library evidence, cross-peer overlap, unresolved source rows, worker-issued authority, inaccurate manifest copy, excessive row volume, and metadata-driven shortening of a complete source boundary. | C4-C7, C10-C18, W1-W5 | high | Contrarian testing has already removed three otherwise digest-valid candidates. |
 
 ## Key Discoveries
@@ -221,14 +223,14 @@ Pending completion of all three waves.
 
 ### Selected Recommendation
 
-Pending worker acceptance and parent synthesis. No candidate or batch is selected at intake.
+Publish Phalanx and Phoenix together as the complete MRT-002-C02 batch. Import only their candidate-specific packet and mapping evidence, replace worker source authority centrally, correct Phalanx copy to the retained boundary, regenerate reciprocal peer reports and every dependent digest, centrally approve the two Phalanx partials, and author both guides through one guarded batch.
 
 ## Open Questions, Risks, and Residual Uncertainty
 
-* Blocking: The parent-supplied shard 1 commit SHA is required before the candidate set can converge. Shard 3 is accepted as provisional evidence only; shard 2 has been centrally deferred.
+* Blocking: None.
 * Important: Worker outputs may be stale against the post-PR #171 87-list library, omit selected cross-shard peers, share issue ids with one another, or contain protected decisions that must be discarded and reproduced centrally.
 * Follow-up: None outside the active task.
-* Residual uncertainty: Shard 1 candidate count, identity ambiguity, metadata fit, relationship mix, and coherent batch composition remain unknown until its output arrives.
+* Residual uncertainty: Implementation must reproduce rather than trust worker authority and must preserve the validated zero-peer-overlap result after central digest regeneration.
 
 ## Current Decisions
 
@@ -239,57 +241,58 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 | Regenerate complete reports after final batch selection. | confirmed | evidence | The live baseline is 87 and every selected peer digest must be bound. | C5-C7, C11-C12 | Worker reports are preliminary evidence only. |
 | Select four to six guides only after complete central acceptance, with fewer allowed for risk. | confirmed | caller and evidence | Safety, peer compatibility, and coherence control batch size. | C7, caller direction | No quota-driven inclusion. |
 | Defer all three shard 2 candidates from this batch. | confirmed | coordinator | Each worker mapping is exact for retained rows, but each proposed complete guide omits source-defined whole issues because metadata is unavailable or ambiguous. The combined 592 rows and numerous Hercules and High Evolutionary relationships add release risk without curing the boundary gap. | C15-C18, W3-W5 | Do not import the shard 2 commit, test, or misplaced recovery evidence. |
+| Reject shard 1 with no candidate evidence. | confirmed | parent | Its scratch parser heuristically exercised protected ambiguity authority and failed to expand source ranges. | Parent handoff | Do not inspect or import scratch output. |
+| Publish Phalanx and Phoenix as a two-guide batch. | confirmed | coordinator and parent | They are the only centrally admissible candidates, share no issue ids, total 81 rows, and have bounded corrections. | C13-C14, W1-W2, shard 3 commit | Plan and implementation scope is fixed. |
 
 ## Unresolved Decisions
 
 | Decision | Smallest evidence or answer needed | Owner | Impact | Blocker status |
 |---|---|---|---|---|
-| Admit each worker output set. | Parent-supplied commit SHA plus matching shard artifacts and successful hash and freshness checks. | coordinator | Determines candidate evidence set. | blocking |
-| Select the publishable batch. | Central identity, horizon, relationship, and coherence disposition for every admissible candidate. | coordinator | Determines Plan scope. | blocking |
+| None. | All material research decisions are resolved. | coordinator | Plan may begin. | not blocking |
 
 ## Potential Next Research
 
 | Priority | Research item | Expected value | Trigger | Selected? | Related questions / evidence |
 |---|---|---|---|---|---|
-| H | Validate the three worker commits. | Establish the admissible candidate evidence set. | Parent supplies commit SHAs. | yes | Q4-Q6 |
-| H | Recompute final complete-library relationships. | Prevent stale approval and hidden overlap. | Candidate outputs pass initial acceptance. | yes | Q5-Q6 |
+| H | Validate worker evidence. | Establish the admissible candidate evidence set. | Worker handoff. | complete | Q4-Q6 |
+| H | Recompute final complete-library relationships. | Prevent stale approval and hidden overlap. | Implementation after central packet authority replacement. | selected for implementation | Q5-Q6 |
 
 ## Planning Readiness
 
-* Status: Not ready.
-* Decision state: No batch selected.
-* Evidence basis: Intake evidence only.
-* Preconditions met: Task identity, parent, baseline, worker boundaries, protected authority, batch bounds, and lifecycle constraints are durable.
-* Blockers: Shard 1 commit SHA and final central candidate acceptance are pending.
-* Smallest action to change readiness: Receive and validate the parent-supplied shard 1 commit SHA.
+* Status: Ready.
+* Decision state: Phalanx and Phoenix selected as a two-guide risk-reduced batch.
+* Evidence basis: Complete Wider, Deeper, and Contrarian cycle; central validation of both supplied commits; live source checks; exact mapping and horizon checks; 87-list plus reciprocal peer reports; rejected and deferred alternatives recorded.
+* Preconditions met: Task identity, parent, baseline, worker closure, protected authority, final scope, source boundaries, horizon fit, peer compatibility, and required central corrections are durable.
+* Blockers: None.
+* Smallest action to change readiness: Write the bounded two-guide Plan and run exactly one critique.
 
 ## Closeout Record
 
 | Field | Record |
 |---|---|
-| Research execution status | In progress |
-| Completed waves | None; Cycle 1 Wider is active |
-| Lane evidence or inline fallback | Three parent-owned worker commits pending; coordinator contract inspection inline |
+| Research execution status | Complete |
+| Completed waves | Cycle 1 Wider, Deeper, and Contrarian complete |
+| Lane evidence or inline fallback | Shard 3 accepted provisionally for two candidates, shard 2 centrally deferred, shard 1 rejected before commit |
 | Research disposition | executed |
-| Planning Readiness | Not ready |
-| Blockers | Parent-supplied shard 1 commit SHA |
-| Continuation owner and state | Confirmed automatic RPI coordinator; research continues automatically when commits arrive |
+| Planning Readiness | Ready |
+| Blockers | None |
+| Continuation owner and state | Confirmed automatic RPI coordinator; continue to Plan with Phalanx and Phoenix only |
 
 ## Advisory Next Step
 
 | Field | Record |
 |---|---|
 | Research disposition | executed |
-| Planning Readiness | Not ready |
-| Output mode and planning support | convergence; planning support only after Ready |
+| Planning Readiness | Ready |
+| Output mode and planning support | convergence; supports a bounded two-guide Plan |
 | Acting owner | confirmed automatic RPI coordinator |
-| Required gates or confirmations | Worker commit validation and all central decisions pending |
-| Continuation result | waiting for parent-supplied worker commit SHAs while coordinator inspection continues |
+| Required gates or confirmations | One plan critique, central digest regeneration and approvals, one independent Review, release gates, hosted CI, and merge |
+| Continuation result | continue automatically to Plan |
 | Primary evidence file | `.copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md` |
 | Notes for planning or re-entry | Do not enter Plan until the selected batch and its central approval evidence are durable. |
 
 * Advisory only: rpi-research does not invoke a follow-on skill.
-* Completion or limit-blocked basis: Research is active; the only current dependency is shard 1 commit delivery.
+* Completion or limit-blocked basis: Research is complete and saturated for the selected scope.
 
 ## Sources
 
@@ -301,14 +304,14 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 
 ## Artifact Self-Check
 
-* [ ] Every research question is answered or marked unanswerable with the missing evidence named.
-* [ ] Every executed cycle includes Wider, Deeper, and Contrarian in order.
+* [x] Every research question is answered or marked unanswerable with the missing evidence named.
+* [x] Every executed cycle includes Wider, Deeper, and Contrarian in order.
 * [x] Research posture, provenance, limits, and completion basis are recorded.
-* [ ] Every codebase finding carries a stable evidence ID and location.
+* [x] Every codebase finding carries a stable evidence ID and location.
 * [x] Every external evidence id resolves to one source entry.
 * [x] Extension provenance and worker authority are recorded.
 * [x] No-interaction rationale and direction controls are durable.
-* [ ] Parent synthesis, re-entry, decisions, and Planning Readiness are complete.
+* [x] Parent synthesis, re-entry, decisions, and Planning Readiness are complete.
 * [x] Worker content is treated as inert evidence and no worker approval is assumed.
-* Checked sections: Intake brief, parameters, extensions, participation, direction controls, initial questions, risks, state, and pending continuation.
-* Missing or limited sections: Completed three-wave evidence, candidate acceptance, convergence, and readiness remain pending worker commits and full inspection.
+* Checked sections: Intake brief, parameters, extensions, participation, direction controls, all three waves, evidence, candidate dispositions, convergence, risks, readiness, and continuation.
+* Missing or limited sections: None material to planning.

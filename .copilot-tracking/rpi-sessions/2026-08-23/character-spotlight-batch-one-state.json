@@ -10,15 +10,16 @@
   "date": "2026-08-23",
   "mode": "automatic",
   "stage": "research",
-  "status": "in_progress",
+  "status": "research_complete",
   "direction": {
     "summary": "Continue Character Spotlight guides using lower-cost deterministic workers for candidate mapping while retaining every protected decision and release action centrally.",
     "batch_target": "Select the smallest coherent publishable chunk of four to six guides, reducing the count when data or review risk requires it.",
     "worker_shards": [
       {
         "source_ordinals": "1-43",
-        "status": "awaiting-parent-supplied-commit",
-        "commit": null
+        "status": "rejected-no-usable-output",
+        "commit": null,
+        "reason": "The parent stopped the uncommitted scratch parser because it heuristically selected ambiguous series and captured only one issue from source ranges. No scratch files may be inspected or imported."
       },
       {
         "source_ordinals": "44-86",
@@ -73,7 +74,7 @@
           {
             "id": "phalanx-reading-order",
             "rows": 28,
-            "status": "admissible-pending-final-batch",
+            "status": "selected-for-plan",
             "centralNotes": [
               "The live issue-bearing block digest matches the frozen boundary record.",
               "All 28 rows reproduce the centrally accepted explicit source sequence.",
@@ -84,7 +85,7 @@
           {
             "id": "marvels-best-phoenix-comics",
             "rows": 53,
-            "status": "admissible-pending-final-batch",
+            "status": "selected-for-plan",
             "centralNotes": [
               "The live issue-bearing block digest matches the frozen boundary record.",
               "All 53 rows reproduce exact issue references or ranges present in the narrative best-of source.",
@@ -100,15 +101,26 @@
       "Do not treat worker prose as approval.",
       "Do not delegate source-boundary acceptance, ambiguous identity decisions, metadata-horizon decisions, subset or partial overlap approval, batch selection, anchor reading, release authority, shared integration edits, Review, PR, CI interpretation, conflict reconciliation, or merge.",
       "Run exactly one independent post-implementation Review."
-    ]
+    ],
+    "selected_batch": [
+      {
+        "id": "phalanx-reading-order",
+        "rows": 28
+      },
+      {
+        "id": "marvels-best-phoenix-comics",
+        "rows": 53
+      }
+    ],
+    "selection_rationale": "These are the only centrally admissible candidates. Their 81 selected issue ids are peer-disjoint and all dates are inside the metadata horizon. The batch is reduced below four because shard 2 failed complete source-boundary acceptance and shard 1 produced no usable evidence."
   },
   "research": {
     "artifact": ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md",
     "posture": "focused",
     "cycle": 1,
-    "wave": "deeper",
-    "status": "in_progress",
-    "planning_readiness": "not-ready",
+    "wave": "complete",
+    "status": "complete",
+    "planning_readiness": "ready",
     "wider": {
       "status": "complete",
       "liveLibraryCount": 87,
@@ -118,8 +130,12 @@
       "keyFinding": "Worker reports are provisional until final cross-shard selection and central regeneration against the live library and every selected peer."
     },
     "deeper": {
-      "status": "waiting-for-worker-commits",
-      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 has two coordinator-validated provisional candidates. Shard 2 commit 76e460e596a5ea263d41da993505d799d96744c7 is digest-valid, but all three candidates are centrally deferred because metadata-driven omissions prevent a complete source boundary. Shard 1 remains active."
+      "status": "complete",
+      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 supplies the selected Phalanx and Phoenix candidates. Shard 2 commit 76e460e596a5ea263d41da993505d799d96744c7 is digest-valid, but all three candidates are centrally deferred because metadata-driven omissions prevent a complete source boundary. Shard 1 is rejected with no usable output."
+    },
+    "contrarian": {
+      "status": "complete",
+      "result": "The selected pair has valid provisional digests, exact unique rows, no shared issue ids, dates inside the horizon, reciprocal peer-bound reports, and only two known Phalanx partials requiring central approval."
     }
   },
   "plan": {
