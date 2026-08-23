@@ -4,21 +4,14 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import {
+  ADD_VIEWS, LEGACY_VIEW_ALIASES, VIEWS, formatRoute, parseRoute,
+} from '../src/js/lib/route.js';
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
-
-// These guards need the Add view, not a sentence that happens to match somewhere else in the page.
-// Slicing between the view roots is what keeps a future copy edit in another screen from satisfying
-// an Add view rule by accident.
-function between(text, startsWith, endsWith) {
-  const from = text.indexOf(startsWith);
-  assert.notEqual(from, -1, `the source must still carry ${startsWith}`);
-  const to = text.indexOf(endsWith, from + startsWith.length);
-  assert.notEqual(to, -1, `${startsWith} must still be followed by ${endsWith}`);
-  return text.slice(from, to);
-}
 
 function prose(text) {
   return text
@@ -29,33 +22,55 @@ function prose(text) {
     .trim();
 }
 
-function escapeRegExp(text) {
-  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function page(view) {
+  const start = html.indexOf(`<section id="view-${view}" class="view" hidden`);
+  assert.notEqual(start, -1, `the source must still carry #view-${view}`);
+  const next = html.indexOf('\n          <section id="view-', start + 1);
+  assert.notEqual(next, -1, `#view-${view} must still be followed by another view`);
+  return html.slice(start, next);
 }
 
-const addView = between(
-  html,
-  '<section id="view-add" class="view" hidden aria-labelledby="add-h">',
-  '<section id="view-data" class="view" hidden aria-labelledby="data-h">',
-);
+const pages = new Map(ADD_VIEWS.map((view) => [view, page(view)]));
+const allPages = [...pages.values()].join('\n');
 
-function addSectionTag(id) {
-  const rx = new RegExp(`<([a-z]+)\\b[^>]*id="${escapeRegExp(id)}"[^>]*>`, 'i');
-  const match = addView.match(rx);
-  assert.ok(match, `the Add view no longer contains #${id}`);
-  return match[1].toLowerCase();
-}
+test('the five Add choices are five routes and five pages', () => {
+  assert.deepEqual(ADD_VIEWS, ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']);
+  for (const view of ADD_VIEWS) {
+    assert.ok(VIEWS.includes(view), `${view} is showable but not routable`);
+    assert.match(pages.get(view), new RegExp(`<h1 id="${view}-h">`), `${view} has no page heading`);
+    assert.match(html, new RegExp(`data-view="${view}"`), `${view} has no rail entry`);
+  }
+  assert.doesNotMatch(html, /data-view="add" data-open=/, 'a rail entry still opens part of the combined screen');
+  assert.doesNotMatch(html, /id="view-add"/, 'the combined Add screen still exists');
+});
 
-function disclosureBlock(id) {
-  return between(addView, `<details class="card" id="${id}">`, '</details>');
-}
+test('the old Add address is accepted and canonicalised to Search issues', () => {
+  assert.equal(VIEWS.includes('add'), false, 'the compatibility alias is still treated as a panel');
+  assert.equal(LEGACY_VIEW_ALIASES.add, 'add-search');
+  assert.deepEqual(parseRoute('#/add'), { view: 'add-search', listId: null, filter: null });
+  assert.equal(formatRoute({ view: 'add' }), '#/add-search');
+});
 
-function summaryBlock(id) {
-  return between(disclosureBlock(id), '<summary>', '</summary>');
-}
+test('series and creator indexes warm when their pages open by any route', () => {
+  assert.match(
+    main,
+    /view = next;\s*warmNameIndexForView\(next\);/,
+    'view entry no longer starts the relevant name index',
+  );
+  assert.match(
+    main,
+    /function warmNameIndexForView\(name\)[\s\S]*name === 'add-series' \? 'series' : name === 'add-creator' \? 'creators'/,
+    'the two name-search pages no longer map to their indexes',
+  );
+  assert.doesNotMatch(
+    main,
+    /addEventListener\('(pointerenter|focusin)', warm/,
+    'index warming still depends on pointer or focus entry',
+  );
+});
 
-test('the Add view still says the metadata snapshot ends in 2025 and search cannot find newer issues', () => {
-  const manual = prose(disclosureBlock('sec-manual'));
+test('the manual page still says the metadata snapshot ends in 2025 and search cannot find newer issues', () => {
+  const manual = prose(pages.get('add-manual'));
   assert.match(manual, /\b2025\b/i, 'the hand-entry card no longer names the 2025 boundary');
   assert.match(
     manual,
@@ -71,7 +86,7 @@ test('the Add view still says the metadata snapshot ends in 2025 and search cann
 });
 
 test('the manual lookup control still says the title goes to the wiki and your progress does not', () => {
-  const hintMatch = addView.match(
+  const hintMatch = pages.get('add-manual').match(
     /<button[^>]*id="btn-manual-lookup"[^>]*>Look up details<\/button>\s*<p class="rail-hint">([\s\S]*?)<\/p>\s*<div id="manual-candidates" class="results"><\/div>/,
   );
   assert.ok(hintMatch, 'the manual lookup hint is no longer beside the Look up details control');
@@ -94,21 +109,15 @@ test('the manual lookup control still says the title goes to the wiki and your p
   );
 });
 
-test('the Add view keeps exactly five primary buttons in its own markup', () => {
-  // The primary rule is about buttons whose whole class attribute is exactly `btn`, or exactly
-  // `btn btn-icon` for the three that submit a search field. A word-boundary search would count
-  // `class="btn btn-g"` as well, which is how a guard on this very rule would have reported six
-  // buttons while the intended count was five.
-  const worded = addView.match(/class="btn"/g) ?? [];
-  const iconOnly = addView.match(/class="btn btn-icon"/g) ?? [];
+test('the five Add pages keep exactly five primary buttons between them', () => {
+  const worded = allPages.match(/class="btn"/g) ?? [];
+  const iconOnly = allPages.match(/class="btn btn-icon"/g) ?? [];
   assert.equal(worded.length + iconOnly.length, 5);
   assert.equal(iconOnly.length, 3, 'the three search submits are the icon-only ones');
 });
 
 test('every icon-only primary button carries a name and a tooltip', () => {
-  // An icon-only control has no visible text to fall back on, so the glyph is hidden from the
-  // accessibility tree and the name has to be stated. The tooltip is what the sighted user gets.
-  const buttons = addView.match(/<button[^>]*class="btn btn-icon"[^>]*>/g) ?? [];
+  const buttons = allPages.match(/<button[^>]*class="btn btn-icon"[^>]*>/g) ?? [];
   assert.equal(buttons.length, 3);
   for (const button of buttons) {
     assert.match(button, /title="Search"/, `no tooltip on ${button}`);
@@ -116,33 +125,31 @@ test('every icon-only primary button carries a name and a tooltip', () => {
   }
 });
 
-test('the Add view heading levels stay 1, 2, 2, 3, 3, 3, 3 with no skipped level', () => {
-  const levels = [...addView.matchAll(/<h([1-6])\b/g)].map((m) => Number(m[1]));
-  assert.deepEqual(levels, [1, 2, 2, 3, 3, 3, 3], 'the Add view heading order changed');
-  const skipped = [];
-  for (let i = 1; i < levels.length; i += 1) {
-    if (levels[i] > levels[i - 1] + 1) skipped.push(`${levels[i - 1]} to ${levels[i]}`);
-  }
-  assert.deepEqual(skipped, [], `the Add view skips heading levels: ${skipped.join(', ')}`);
-});
-
-test('the Add view keeps search open and the four other add paths collapsible', () => {
-  assert.equal(addSectionTag('sec-search'), 'section', 'the search path became a disclosure again');
-  for (const id of ['sec-series', 'sec-creator', 'sec-import', 'sec-manual']) {
-    assert.equal(addSectionTag(id), 'details', `${id} is no longer a collapsible disclosure`);
+test('each Add page starts at h1 and skips no heading level', () => {
+  for (const [view, source] of pages) {
+    const levels = [...source.matchAll(/<h([1-6])\b/g)].map((m) => Number(m[1]));
+    assert.equal(levels[0], 1, `${view} does not start at h1`);
+    for (let i = 1; i < levels.length; i += 1) {
+      assert.ok(levels[i] <= levels[i - 1] + 1, `${view} skips from h${levels[i - 1]} to h${levels[i]}`);
+    }
   }
 });
 
-test('each secondary disclosure says why it exists inside its summary', () => {
-  // The purpose line belongs in the summary because a closed details hides the rest of the card. In
-  // that position it joins the accessible name, so a reader using a screen reader hears the same
-  // reason a sighted reader sees before opening the card.
-  for (const id of ['sec-series', 'sec-creator', 'sec-import', 'sec-manual']) {
-    const summary = summaryBlock(id);
-    const why = summary.match(/<span class="card-why">([\s\S]*?)<\/span>/);
-    assert.ok(why, `${id} no longer carries a card-why line inside its summary`);
-    assert.ok(prose(why[1]).length > 0, `${id} carries an empty card-why line`);
-  }
+test('the paste page shows both Markdown states and explains them in the example', () => {
+  const source = prose(pages.get('add-import'));
+  assert.match(source, /- \[ \]/, 'the example has no unread checklist line');
+  assert.match(source, /- \[x\]/i, 'the example has no already-read checklist line');
+  assert.match(source, /\[x\] = already read/i, 'the ticked state is not explained');
+  assert.match(source, /links are optional/i, 'the example makes links look required');
+});
+
+test('the optional reader address is behind a disclosure on the manual page', () => {
+  const source = pages.get('add-manual');
+  assert.match(
+    source,
+    /<details class="field-disclosure">[\s\S]*?<summary>Add a reader link \(optional\)<\/summary>[\s\S]*?id="manual-url"/,
+    'the address field is standing open or its disclosure lost its label',
+  );
 });
 
 test('every repeated Add view row action keeps the paired grey secondary classes', () => {

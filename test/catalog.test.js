@@ -81,7 +81,7 @@ test('unknown type and depth values become null instead of being displayed', () 
   });
   assert.equal(lists[0].type, null);
   assert.equal(lists[0].depth, null);
-  assert.equal(typeLabel(null), 'Reading list');
+  assert.equal(typeLabel(null), 'Reading List');
   assert.equal(depthLabel(null), null);
   assert.equal(typeLabel('event'), 'Event');
   assert.equal(depthLabel('essential'), 'Essential reading');

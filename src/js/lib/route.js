@@ -11,7 +11,22 @@ import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
 // Every section the rail can reach. This lives here rather than in main.js so that one list backs
 // both what can be shown and what can be routed to. Split across two files, a new view could be
 // routable but not showable, or showable but silently unreachable by URL.
-export const VIEWS = ['home', 'read', 'catalog', 'lines', 'spotlights', 'progress', 'add', 'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value)];
+export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
+export const VIEWS = [
+  'home', 'read', 'catalog', 'lines', 'spotlights', 'progress',
+  ...ADD_VIEWS,
+  'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value),
+];
+
+// Addresses written before a screen was replaced. They are accepted on input but never treated as
+// renderable views, so every member of VIEWS still names a real panel.
+export const LEGACY_VIEW_ALIASES = {
+  add: 'add-search',
+};
+
+function canonicalView(view) {
+  return LEGACY_VIEW_ALIASES[view] ?? view;
+}
 
 const PREFIX = '#/';
 
@@ -33,13 +48,14 @@ const FILTER_KEY = 'filter';
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({ view, listId, filter } = {}) {
-  if (!VIEWS.includes(view)) return '';
+  const canonical = canonicalView(view);
+  if (!VIEWS.includes(canonical)) return '';
   const tail = listId ? `/${encodeURIComponent(listId)}` : '';
   // An unknown filter is dropped rather than written through, so a value that could not have come
   // from a radio cannot be put into an address by this app and then read back as if it had.
   const known = READING_FILTERS.some((f) => f.value === filter);
   const query = known && filter !== DEFAULT_FILTER ? `?${FILTER_KEY}=${encodeURIComponent(filter)}` : '';
-  return `${PREFIX}${encodeURIComponent(view)}${tail}${query}`;
+  return `${PREFIX}${encodeURIComponent(canonical)}${tail}${query}`;
 }
 
 // Returns null for anything that is not one of our routes, which the caller must treat as "not
@@ -71,6 +87,7 @@ export function parseRoute(hash) {
     return null;
   }
 
+  view = canonicalView(view);
   if (!VIEWS.includes(view)) return null;
 
   // Null means the address says nothing about the filter, which is what absent, unknown and the

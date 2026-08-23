@@ -124,7 +124,7 @@
   --amber: #eab654;
   --blue: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:699-700`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:700-701`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -223,12 +223,12 @@ a { color: var(--blue); }
   border-radius: 6px;
 }
 
-/* Headings are focused programmatically when a view changes, purely so screen readers
-   announce the new context. That is not a keyboard landing spot, so it should not draw a
-   focus ring, so the ring would appear without the user having pressed anything. */
-h1[tabindex="-1"]:focus,
-h2[tabindex="-1"]:focus {
-  outline: none;
+/* A view change deliberately moves keyboard focus to its heading. Keep that landing point visible
+   so the spoken context change and the visual context change identify the same place. */
+.view h1[tabindex="-1"]:focus,
+.catalog-card-title[tabindex="-1"]:focus {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
 }
 
 .visually-hidden {
@@ -952,6 +952,34 @@ textarea { flex: 1 1 auto; width: 100%; resize: vertical; font-family: ui-monosp
 input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 24px; }
 .checkbox { display: inline-flex; align-items: center; gap: .4rem; font-size: var(--t-body); color: var(--dim); min-height: 24px; }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: .05rem .3rem; font-size: .85em; }
+.add-page { max-width: 48rem; }
+.import-guide { margin-bottom: 1rem; }
+.import-guide h2 { font-size: var(--t-body); margin: 0 0 .4rem; }
+.import-guide pre {
+  margin: 0; padding: .7rem; overflow-x: auto; white-space: pre-wrap;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--card-2);
+}
+.import-guide pre code { padding: 0; background: none; }
+.field-disclosure { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.field-disclosure > summary {
+  min-height: 44px; display: flex; align-items: center; cursor: pointer;
+  color: var(--dim); font-size: var(--t-body); font-weight: 600;
+}
+.field-disclosure > .stack { padding: .2rem 0 .8rem; }
+.search-hub { max-width: 48rem; margin-top: 1.5rem; }
+.search-hub h2 { margin: 0 0 .65rem; font-size: var(--t-subtitle); }
+.search-hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.search-hub-card {
+  min-height: 72px; display: flex; align-items: center; gap: .75rem; padding: .85rem 1rem;
+  border: 1px solid var(--line-2); border-radius: 12px; background: var(--card);
+  color: var(--text); font: inherit; font-weight: 600; text-align: left; cursor: pointer;
+}
+.search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
+.search-hub-card:hover { border-color: var(--accent-text); background: var(--card-2); }
+.search-hub-other { margin-top: 1.25rem; }
+@media (max-width: 560px) {
+  .search-hub-grid { grid-template-columns: 1fr; }
+}
 
 .results { display: grid; gap: .4rem; margin-top: .7rem; }
 .res-head {
@@ -975,6 +1003,45 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .shelf-section:first-child { margin-top: 0; }
 .shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
 .shelf-section-blurb { color: var(--muted); font-size: var(--t-caption); margin: .2rem 0 0; max-width: 64ch; }
+
+.timeline-spine {
+  margin: 0 0 1rem; padding: .65rem .7rem;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--card);
+  overflow-x: auto; scrollbar-width: thin;
+}
+.timeline-years { display: flex; align-items: center; min-width: max-content; gap: .2rem; }
+.timeline-year {
+  min-width: 48px; min-height: 44px; padding: .35rem .25rem;
+  border: 0; border-radius: 8px; background: none; color: var(--dim);
+  font: inherit; font-size: var(--t-caption); font-weight: 600; cursor: pointer;
+}
+button.timeline-year:hover, button.timeline-year:focus-visible {
+  background: var(--card-2); color: var(--text);
+}
+.timeline-year.is-empty {
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--muted); cursor: default;
+}
+
+.catalog-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: .7rem; align-items: start;
+}
+.catalog-card {
+  scroll-margin-top: 1rem; display: flex; flex-direction: column; min-width: 0;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--card);
+}
+.catalog-card-main { display: flex; align-items: flex-start; gap: .8rem; padding: .85rem; }
+.catalog-card-text { min-width: 0; }
+.catalog-card-title { margin: 0 0 .3rem; font-size: var(--t-body); line-height: 1.3; }
+.catalog-card-desc { margin: 0 0 .4rem; color: var(--dim); font-size: var(--t-body); line-height: 1.45; }
+.catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
+.catalog-card .path-step { margin: .45rem 0 0; }
+.catalog-card-actions {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem;
+  padding: 0 .85rem .85rem;
+}
+.catalog-card-actions .btn { justify-content: center; min-height: 44px; }
 
 .result {
   display: flex; align-items: center; gap: .8rem; padding: .55rem .7rem;
@@ -1058,7 +1125,7 @@ progress { accent-color: var(--accent); height: 6px; }
    question ("which issue was I on?") and then gets out of the way. */
 .chero {
   border: 1px solid var(--line); border-radius: 20px; background: var(--card);
-  padding: 1.4rem 1.6rem; margin-bottom: 1.8rem;
+  padding: 1.4rem 1.6rem; margin-bottom: 1.8rem; max-width: 72rem;
 }
 /* 132 rather than 106, for the same reason the catalog cover grew: this is the other place a
    reader is being asked to decide something. */
@@ -1081,7 +1148,12 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .pbar { height: 8px; border-radius: 999px; background: var(--track); overflow: hidden; max-width: 32rem; }
 .pbar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
 
-.yours { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.yours {
+  list-style: none; margin: 0; padding: 0; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 24rem));
+  gap: .8rem; align-items: start;
+}
+.yours li { min-width: 0; }
 .yours button {
   width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line-2);
   border-radius: 12px; padding: .6rem .8rem; color: var(--text); min-height: 44px;
@@ -1093,7 +1165,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
    used to be muted while the count beside it was full brightness, which put the emphasis on how
    far along the order is rather than on which order it is. Measured on a one order shelf: name
    14px/400 in the muted grey, count 14px/400 in the foreground colour. */
-.yours .yours-name { color: var(--text); font-weight: 600; font-size: var(--t-body); white-space: nowrap; }
+.yours .yours-name { color: var(--text); font-weight: 600; font-size: var(--t-body); overflow-wrap: anywhere; }
 .yours .yours-count { color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* ---------------------------------------------------------- featured journey
@@ -1107,7 +1179,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .feature {
   border: 1px solid var(--line); border-left: 4px solid var(--amber);
   border-radius: 20px; background: var(--card);
-  padding: 1.4rem 1.6rem; margin-bottom: 1.6rem;
+  padding: 1.4rem 1.6rem; margin-bottom: 1.6rem; max-width: 72rem;
 }
 .feature[hidden] { display: none; }
 .feature-in { display: grid; grid-template-columns: 132px 1fr; gap: 1.6rem; align-items: start; }
@@ -1133,12 +1205,16 @@ body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
 .ogrid {
   list-style: none; margin: .9rem 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .9rem;
+  align-items: start;
 }
 /* The landing grid is now one list per group rather than one list for everything, so the spacing
    between a group's cards and the next group's heading has to come from the container rather than
    from the grid's own top margin, which only separates a grid from what precedes it. */
-.ogrid-groups { display: flex; flex-direction: column; gap: 1.6rem; margin: .9rem 0 0; }
-.ogrid-groups .ogrid { margin-top: .6rem; }
+.ogrid-groups { display: flex; flex-direction: column; gap: 0; margin: .9rem 0 0; }
+.home-shelf-section { padding: 0; background: none; border: 0; border-radius: 0; }
+.ogrid-groups .home-shelf-section { margin: 1.6rem 0 0; }
+.ogrid-groups .home-shelf-section:first-child { margin-top: 0; }
+.ogrid-groups .ogrid { margin: .6rem 0 0; }
 .ocard {
   position: relative;
   display: flex; flex-direction: column;

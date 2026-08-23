@@ -1,4 +1,4 @@
-# New Ultimate Universe: Collected Editions Reading Order
+# New Ultimate Universe: Collected Editions Reading List
 
 Compiled by hand for this project. The issues and their ids are the same ones as the
 issue-by-issue order beside this file, derived the same way; what is added here is the division

@@ -150,5 +150,5 @@ test('an empty catalog says so rather than showing a blank grid', () => {
   const start = source.indexOf('if (!all.length) {');
   const branch = source.slice(start, source.indexOf('\n  }', start));
   assert.match(branch, /grid\.replaceChildren\(/, 'the empty branch leaves whatever was there before');
-  assert.match(branch, /No curated reading orders/, 'the empty branch draws nothing a reader can read');
+  assert.match(branch, /No curated Reading Lists/, 'the empty branch draws nothing a reader can read');
 });
