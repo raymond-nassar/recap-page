@@ -9,7 +9,7 @@ built as well as what has not. Of the 28 stories originally written here, 24 shi
 in part, 1 was never started, 1 is ruled out by a product constraint, and 1 is dropped by a product
 decision. The new items come from that same pass and from the UX study in `docs/UX_STUDY.md`.
 
-A hundred and fifty-two items have since been delivered and are marked `Shipped` in the table below: BL-007,
+A hundred and fifty-three items have since been delivered and are marked `Shipped` in the table below: BL-007,
 BL-014, BL-017, BL-026, BL-027, BL-029, BL-030, BL-031, BL-032, BL-033, BL-034, BL-035, BL-036,
 BL-037, BL-038, BL-039, BL-040, BL-041, BL-043, BL-044, BL-045, BL-046, BL-047, BL-048, BL-049,
 BL-050, BL-051, BL-052, BL-053, BL-054, BL-055, BL-056, BL-057, BL-058, BL-059, BL-061, BL-062,
@@ -22,7 +22,7 @@ BL-129, BL-130, BL-131, BL-132, BL-133, BL-134, BL-139, BL-140, BL-141, BL-142, 
 BL-145, BL-146, BL-147, BL-149, BL-150, BL-152, BL-153, BL-154, BL-157, BL-158, BL-160, BL-161, BL-163,
 BL-164, BL-165, BL-166, BL-167, BL-169, BL-170, BL-171, BL-174, BL-175, BL-176, BL-181, BL-182,
 BL-183, BL-184, BL-185, BL-186, BL-187, BL-189, BL-191, BL-192, BL-193, BL-194, BL-195,
-BL-196, BL-197, BL-198, BL-199, BL-200 and BL-201.
+BL-196, BL-197, BL-198, BL-199, BL-200, BL-201 and BL-202.
 Their detail blocks record what changed, what was measured, and which tasks were deliberately left
 open. BL-049 and BL-103 are the two whose delivery changed no code at all: the first was a decision,
 measured in full and closed without touching the colours, and the second was three operations on the
@@ -340,7 +340,8 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-103 | Retire the branches publication would put on display | Chore | EP-12 | Follows BL-100 | 1 | 1 | 2 | 1 | 4.0 | none | Measured | Shipped | 9 of the 22 heads git ls-remote advertised when this was filed were the head branches of already-merged pull requests |
 | BL-113 | Decide whether erasing everything reaches the salvage copies | Defect | EP-06 | Follows BL-101 | 3 | 2 | 3 | 2 | 4.0 | none | Measured | Shipped | src/js/storage.js:329-332 |
 | BL-110 | Count the issues an order imported empty, and say so | Defect | EP-05 | Extends BL-009 | 3 | 2 | 3 | 2 | 4.0 | none | Measured | Shipped | src/js/main.js:4315 |
-| BL-194 | Stop one card's extra line from inflating the two cards beside it | Defect | EP-07 | Follows BL-189 | 5 | 2 | 5 | 3 | 4.0 | none | Measured | Shipped | measured in Edge at 1280x900 across the 59 landing cards as a 125px spread, 273px shortest to 398px tallest, and 1,152px of blank space across the grid |
+| BL-194 | Stop one card's extra line from inflating the two cards beside it | Defect | EP-07 | Follows BL-189 | 5 | 2 | 5 | 3 | 4.0 | none | Measured | Shipped | measured in Edge after the owner recheck as 59 cards at one 273px height at both 1280x900 and 2048x900 |
+| BL-202 | Turn the Timeline year strip into a vertical chronology | Story | EP-07 | Follows BL-195 | 5 | 2 | 5 | 3 | 4.0 | none | Measured | Shipped | measured in Edge as 4 era milestones, 16 populated year groups, 5 empty-year ticks and 0px card-height spread inside every year |
 | BL-026 | Make every action reachable and repeatable from the keyboard | Story | EP-07 | Leaves alone | 5 | 3 | 3 | 3 | 3.67 | P0 | Measured | Shipped | src/js/lib/shortcuts.js:26-60 |
 | BL-097 | Publish contribution, conduct, support and maintainer governance | Chore | EP-12 | Extends BL-052 | 3 | 3 | 5 | 3 | 3.67 | none | Observed | Shipped | CONTRIBUTING.md:1-224 |
 | BL-027 | Announce each change once, in a way a screen reader can use | Story | EP-07 | Leaves alone | 5 | 3 | 3 | 3 | 3.67 | P1 | Measured | Shipped | src/js/main.js:500-521 |
@@ -12862,6 +12863,36 @@ Continue reading is enough context for a returning reader, and Timeline, Storyli
 spotlights are enough context for the three Home groups. Their explanatory blurbs remain on their
 dedicated screens, where the reader has chosen that subject and the explanation orients the shelf.
 
+A third owner review rejected the ragged-card decision after the difference remained conspicuous in
+both the 2000s Timeline group and the Storylines group. The variable detail rows were the cause, not
+the grid itself. Home now moves path position and beginner suitability onto compact cover labels and
+moves the number of reading options into the preview action that already opens those options. Full
+path identity and next-stop links remain on the dedicated browse screens rather than being repeated
+on every Home card.
+
+With those rows out of the card flow, equal tracks no longer create large empty interiors. Repeating
+the production-catalog measurement in Edge puts all 59 cards at 273px at 1280x900 and again at
+2048x900. The earlier 125px spread is now 0, and the blank-space measure is 118px, exactly the
+two one-pixel card edges counted for each of 59 cards. The browser harness checks equal heights at
+both widths, the compact visible labels, the complete assistive path wording and the option action.
+
+The dedicated browse cards now follow the same spatial rule without dropping their path context.
+Their full path name and next-stop wording sit behind a compact position disclosure beside Source.
+Before that change, multi-card Timeline years carried spreads up to 81px; afterwards every card
+within each year measures to the same height, and opening the disclosure restores the full wording
+and links.
+
+A fourth owner review returned to the first-run Home state. The sentence beneath its main heading
+repeats context the featured choice and Reading Lists already provide, so it must be removed and
+the heading shortened. The featured card also still leaves a broad unused area to the right of its
+bounded description. The final composition will keep the readable line length while either using
+that area for the decision controls or withdrawing the card edge from space its content does not
+need.
+
+The owner selected "Start Here" and a decision column. The feature keeps its cover and readable
+summary on the left, while the commitment facts and both actions occupy the formerly empty right
+side. Below 1,100px the decision column returns beneath the summary so neither part is squeezed.
+
 **BL-195: Give each way of adding issues its own screen**
 
 - [x] Declare a route for each of the five ways to add issues
@@ -12969,6 +13000,41 @@ The harness now reads the cover-led card markup, follows the direct hand-entry r
 catalog Add button so a hidden landing-page button cannot answer in its place, and waits for the
 reading view before measuring it. The result is 119 passing assertions and 0 failing across all 14
 browser scenarios.
+
+
+**BL-202: Turn the Timeline year strip into a vertical chronology**
+
+- [x] Put era milestones, year markers and their cards on one continuous vertical axis
+- [x] Keep one muted marker for every empty year without giving it an empty card row
+- [x] Pin a populated year beside its cards and reflow it above the cards at narrow widths
+- [x] Remove the separate year-jump control rather than duplicating the chronology
+- [x] Keep year labels clear of their nodes and compact-sidebar icons visible while the list scrolls
+
+Constraint gate: checked 1 to 11, none breached.
+
+The owner intended the year spine to run vertically, with each group of cards occupying the space
+beside its year. The horizontal strip consumed a full-width band, required a scrollbar on the wide
+review viewport and stood apart from the content it described. Three concepts were compared before
+implementation: literal equal-sized year slots, a sticky year navigation rail, and a continuous
+spine whose populated years expand to fit their cards. The continuous spine was selected because it
+keeps the chronology visible without manufacturing large empty intervals.
+
+The selected design keeps the existing era headings as major milestones. Populated years own card
+grids, every empty year remains as one muted tick, and the active populated year stays pinned until
+the next year pushes it away. The scale is chronological rather than proportional: a year with many
+cards grows to fit them. At 700px and below, the year moves above a one-column card list while the
+line continues down the left edge. The owner explicitly removed fast year jumping rather than
+replacing it with another picker.
+
+Owner inspection found the year labels touching the circles beside them and the Windows scrollbar
+covering navigation glyphs when the sidebar was collapsed. The labels now reserve the full node
+width plus a visible gap. The compact rail keeps wheel, touch and keyboard scrolling but hides its
+scrollbar chrome, while the expanded pane continues to show it.
+
+Measured in Edge against the production catalogue at 2048x1500, the result draws 4 era milestones,
+16 populated year groups and 5 empty-year ticks. The marker is sticky at desktop width and moves
+above its card group at 620px. Compact path disclosures reduced the largest within-year card spread
+from 81px to 0 while preserving the full path name, position and next-stop wording on expansion.
 
 
 ## Suggested delivery order
@@ -13306,10 +13372,10 @@ again, because a swap can lift a row above a third one it also outscores. Nothin
 itself, so it would drift again with the next item filed. And the paragraph above leaves no decision
 resting on the order, so the exercise buys a tidier table and no better choice of what to build next.
 
-### Case 1: BL-026 is labelled P0 but ranks ninety-eighth
+### Case 1: BL-026 is labelled P0 but ranks ninety-ninth
 
 - Stated: P0 Foundation, the first keyboard story in the original Epic 7.
-- Calculated: WSJF 3.67, rank 98 of 175.
+- Calculated: WSJF 3.67, rank 99 of 176.
 - Driver: job size, not value. Its Cost of Delay of 11 is the thirteenth-highest distinct figure in
   the   backlog. It is outranked by eighty-eight items, eighty-one of them sized 1, 2 or 3 whose Cost of Delay
   is lower but whose size is smaller still. WSJF is explicitly a throughput heuristic, so a P0 that
@@ -13331,7 +13397,7 @@ resting on the order, so the exercise buys a tidier table and no better choice o
 ### Case 2: BL-007 is labelled P1 but sits near the bottom
 
 - Stated: P1 Core product value, event order variants.
-- Calculated: WSJF 1.4, rank 169 of 175, below a hundred and sixty-five unlabelled items and five places above the
+- Calculated: WSJF 1.4, rank 170 of 176, below a hundred and sixty-five unlabelled items and five places above the
   single P2 story.
 - Driver: both sides. Job size is 5, because the work is editorial rather than technical, and value
   is only 3, because the rendering that would display variants already ships and works. Evidence:
@@ -13389,9 +13455,9 @@ resting on the order, so the exercise buys a tidier table and no better choice o
 
 ### Where the label and the score agree
 
-- BL-014, P1, rank 124 of 175. Mid-table, which is where a P1 belongs.
-- BL-027, P1, rank 100 of 175. Mid-table.
-- BL-017, P2, rank 174 of 175. The lowest-ranked scored story other than the one that cannot be
+- BL-014, P1, rank 125 of 176. Mid-table, which is where a P1 belongs.
+- BL-027, P1, rank 101 of 176. Mid-table.
+- BL-017, P2, rank 175 of 176. The lowest-ranked scored story other than the one that cannot be
   sized, which matches its P2 label exactly.
 - BL-025, P2, parked. The label is moot, because the item was removed by the constraint gate before
   it could be scored.

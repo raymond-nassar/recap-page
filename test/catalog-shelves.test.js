@@ -100,10 +100,11 @@ test('a screen with nothing on it is not drawn', () => {
 
 test('every screen carries the words its own empty state and heading need', () => {
   for (const shelf of CATALOG_SHELVES) {
-    for (const field of ['key', 'heading', 'sub', 'blurb', 'empty']) {
+    for (const field of ['key', 'heading', 'blurb', 'empty']) {
       assert.equal(typeof shelf[field], 'string', `the ${shelf.key} shelf has no ${field}`);
       assert.ok(shelf[field].trim().length, `the ${shelf.key} shelf has an empty ${field}`);
     }
+    assert.equal('sub' in shelf, false, `the ${shelf.key} shelf still carries a redundant subtitle`);
   }
   const headings = CATALOG_SHELVES.map((shelf) => shelf.heading);
   assert.equal(new Set(headings).size, headings.length, 'two screens share a heading');

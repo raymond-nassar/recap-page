@@ -274,7 +274,13 @@ a { color: var(--blue); }
 #sidebar-nav { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .nav-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 .nav-foot { flex: 0 0 auto; }
-.railed .rail { padding-left: .3rem; padding-right: .3rem; }
+.railed .rail { padding-left: 1px; padding-right: 1px; }
+.railed .nav-scroll {
+  /* Keep wheel, touch and keyboard scrolling without spending nearly half of the compact rail on
+     Windows scrollbar chrome. The full pane still shows its scrollbar. */
+  scrollbar-width: none;
+}
+.railed .nav-scroll::-webkit-scrollbar { display: none; }
 
 /* Fluent's PUA glyphs. They are decorative: every button keeps its label in the DOM as
    the accessible name, so a machine without the font shows a blank box, never a control
@@ -953,6 +959,11 @@ input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 
 .checkbox { display: inline-flex; align-items: center; gap: .4rem; font-size: var(--t-body); color: var(--dim); min-height: 24px; }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: .05rem .3rem; font-size: .85em; }
 .add-page { max-width: 48rem; }
+.add-destination {
+  display: inline-flex; margin: 0 0 .8rem; padding: .22rem .55rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  color: var(--dim); background: var(--card-2); font-size: var(--t-caption); font-weight: 600;
+}
 .import-guide { margin-bottom: 1rem; }
 .import-guide h2 { font-size: var(--t-body); margin: 0 0 .4rem; }
 .import-guide pre {
@@ -966,6 +977,11 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
   color: var(--dim); font-size: var(--t-body); font-weight: 600;
 }
 .field-disclosure > .stack { padding: .2rem 0 .8rem; }
+.field-disclosure > .rail-hint { margin: 0; padding: 0 0 .8rem; max-width: 62ch; }
+.progress-method { margin: 0 0 1rem; }
+.library-sort {
+  margin: 0 0 .65rem; color: var(--muted); font-size: var(--t-caption); font-weight: 600;
+}
 .search-hub { max-width: 48rem; margin-top: 1.5rem; }
 .search-hub h2 { margin: 0 0 .65rem; font-size: var(--t-subtitle); }
 .search-hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
@@ -1004,28 +1020,85 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
 .shelf-section-blurb { color: var(--muted); font-size: var(--t-caption); margin: .2rem 0 0; max-width: 64ch; }
 
-.timeline-spine {
-  margin: 0 0 1rem; padding: .65rem .7rem;
-  border: 1px solid var(--line); border-radius: 12px; background: var(--card);
-  overflow-x: auto; scrollbar-width: thin;
+.timeline-flow {
+  --timeline-rail: 5rem;
+  --timeline-axis: 4rem;
+  position: relative; display: grid; gap: 1.8rem; margin-top: .9rem;
 }
-.timeline-years { display: flex; align-items: center; min-width: max-content; gap: .2rem; }
-.timeline-year {
-  min-width: 48px; min-height: 44px; padding: .35rem .25rem;
-  border: 0; border-radius: 8px; background: none; color: var(--dim);
-  font: inherit; font-size: var(--t-caption); font-weight: 600; cursor: pointer;
+.timeline-flow::before {
+  content: ""; position: absolute; z-index: 0;
+  top: 1rem; bottom: 1rem; left: var(--timeline-axis); width: 2px;
+  background: var(--line-2);
 }
-button.timeline-year:hover, button.timeline-year:focus-visible {
-  background: var(--card-2); color: var(--text);
+.timeline-era {
+  position: relative; display: grid;
+  grid-template-columns: var(--timeline-rail) minmax(0, 1fr); column-gap: 1rem;
 }
-.timeline-year.is-empty {
-  display: inline-flex; align-items: center; justify-content: center;
-  color: var(--muted); cursor: default;
+.timeline-era-node { position: relative; z-index: 1; }
+.timeline-era-node::after {
+  content: ""; position: absolute;
+  top: .85rem; right: .35rem; width: 20px; height: 20px;
+  border: 4px solid var(--accent-text); border-radius: 50%;
+  background: var(--card-2); box-shadow: 0 0 0 5px var(--bg);
+}
+.timeline-era-head { margin: 0 0 .8rem; }
+.timeline-year-list { grid-column: 1 / -1; display: grid; gap: .85rem; }
+.timeline-year-row {
+  position: relative; display: grid;
+  grid-template-columns: var(--timeline-rail) minmax(0, 1fr); column-gap: 1rem;
+}
+.timeline-year-marker {
+  position: sticky; top: .75rem; align-self: start; z-index: 1;
+  min-height: 2rem; padding: .2rem 2rem .2rem 0;
+  color: var(--text); text-align: right;
+}
+.timeline-year-marker::before {
+  content: ""; position: absolute;
+  top: .82rem; right: -.65rem; width: 1.25rem; height: 2px; background: var(--line-2);
+}
+.timeline-year-marker::after {
+  content: ""; position: absolute;
+  top: .55rem; right: .55rem; width: 12px; height: 12px;
+  border: 3px solid var(--accent-text); border-radius: 50%; background: var(--bg);
+}
+.timeline-year-label { margin: 0; font-size: var(--t-body); line-height: 1.35; }
+.timeline-year-row.is-empty { min-height: 2rem; }
+.timeline-year-marker.is-empty {
+  position: relative; top: auto; color: var(--muted);
+  font-size: var(--t-caption); font-weight: 600;
+}
+.timeline-year-marker.is-empty::before { display: none; }
+.timeline-year-marker.is-empty::after {
+  top: .65rem; right: .7rem; width: 8px; height: 8px;
+  border: 2px solid var(--line-2);
+}
+.timeline-year-cards { min-width: 0; }
+
+@media (max-width: 700px) {
+  .timeline-flow { --timeline-axis: .75rem; }
+  .timeline-era, .timeline-year-row {
+    grid-template-columns: minmax(0, 1fr); padding-left: 2.25rem;
+  }
+  .timeline-era-node {
+    position: absolute; left: -.05rem; top: 0; width: 1.6rem; height: 2.5rem;
+  }
+  .timeline-era-node::after { top: .85rem; right: 0; }
+  .timeline-year-marker {
+    position: relative; top: auto; padding: .15rem 0 .4rem; text-align: left;
+  }
+  .timeline-year-marker::before {
+    top: .85rem; left: -1.4rem; right: auto; width: 1rem;
+  }
+  .timeline-year-marker::after {
+    top: .58rem; left: -2rem; right: auto;
+  }
+  .timeline-year-marker.is-empty::after { top: .65rem; left: -1.9rem; }
+  .timeline-year-list { gap: .65rem; }
 }
 
 .catalog-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
-  gap: .7rem; align-items: start;
+  gap: .7rem; grid-auto-rows: 1fr;
 }
 .catalog-card {
   scroll-margin-top: 1rem; display: flex; flex-direction: column; min-width: 0;
@@ -1037,6 +1110,22 @@ button.timeline-year:hover, button.timeline-year:focus-visible {
 .catalog-card-desc { margin: 0 0 .4rem; color: var(--dim); font-size: var(--t-body); line-height: 1.45; }
 .catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
 .catalog-card .path-step { margin: .45rem 0 0; }
+.catalog-card-disclosures {
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 .8rem; margin-top: .2rem;
+}
+.catalog-card-disclosures > .result-source { margin: 0; }
+.result-path { margin: 0; }
+.result-path > summary {
+  display: inline-flex; align-items: center; min-height: 24px; cursor: pointer;
+  color: var(--muted); font-size: var(--t-caption); list-style: none;
+}
+.result-path > summary::-webkit-details-marker { display: none; }
+.result-path > summary::before { content: "\25B8"; margin-right: .35rem; }
+.result-path[open] { flex-basis: 100%; }
+.result-path[open] > summary::before { content: "\25BE"; }
+.result-path > .path-step {
+  margin: .35rem 0 .15rem; padding-left: .7rem; border-left: 2px solid var(--line-2);
+}
 .catalog-card-actions {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem;
   padding: 0 .85rem .85rem;
@@ -1183,29 +1272,49 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .feature[hidden] { display: none; }
 .feature-in { display: grid; grid-template-columns: 132px 1fr; gap: 1.6rem; align-items: start; }
-@media (max-width: 620px) { .feature-in { grid-template-columns: 1fr; } .feature-in .art { max-width: 132px; } }
+.feature-body {
+  min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: 1.5rem; align-items: start;
+}
+.feature-copy { min-width: 0; }
+.feature-decision {
+  min-width: 0; align-self: stretch; display: grid; align-content: center; gap: 1rem;
+  padding-left: 1.25rem; border-left: 1px solid var(--line);
+}
 .feature h2 { font-size: var(--t-title); margin: .3rem 0 .55rem; font-weight: 600; letter-spacing: -.02em; }
 .feature .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: block; }
 body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
 .feature .art .fallback { padding: .55rem; border-radius: 12px; }
 .feature .art .fallback .fs { font-size: var(--art-label-sm); letter-spacing: .06em; }
 .feature .art .fallback .fn { font-size: var(--art-n-md); }
-.feature-why { color: var(--dim); font-size: var(--t-body); line-height: 1.55; margin: 0 0 .8rem; max-width: 62ch; }
+.feature-why { color: var(--dim); font-size: var(--t-body); line-height: 1.55; margin: 0; max-width: 62ch; }
 /* The commitment, stated rather than implied. Every fact a reader needs before saying yes: how
    many issues, how long, whether it ends, and whether anything has to be read first. */
-.feature-facts { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1rem; padding: 0; }
+.feature-facts { list-style: none; display: grid; justify-items: start; gap: .4rem; margin: 0; padding: 0; }
 .feature-facts li {
   border: 1px solid var(--line-2); color: var(--dim); border-radius: 999px;
   padding: .26rem .75rem; font-size: var(--t-caption);
 }
-.feature-act { display: flex; flex-wrap: wrap; gap: .6rem; }
-.feature-act .btn { min-height: 44px; }
+.feature-act { display: grid; gap: .6rem; }
+.feature-act .btn { min-height: 44px; width: 100%; }
+
+@media (max-width: 1100px) {
+  .feature-body { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .feature-decision { padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .feature-facts { display: flex; flex-wrap: wrap; }
+  .feature-act { display: flex; flex-wrap: wrap; }
+  .feature-act .btn { width: auto; }
+}
+@media (max-width: 620px) {
+  .feature-in { grid-template-columns: 1fr; }
+  .feature-in .art { max-width: 132px; }
+}
 
 
 .ogrid {
   list-style: none; margin: .9rem 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .9rem;
-  align-items: start;
+  grid-auto-rows: 1fr;
 }
 /* The landing grid is now one list per group rather than one list for everything, so the spacing
    between a group's cards and the next group's heading has to come from the container rather than
@@ -1227,7 +1336,7 @@ body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
    narrowest case rather than the widest: the track is 312 at a 1280 viewport and 313 on the full
    canvas, leaving a 180 text column, but at the narrowest two-column band the track falls to 275
    and the text column to 143, which is what stops this going further. */
-.ocard-art { flex: 0 0 92px; }
+.ocard-art { position: relative; flex: 0 0 92px; }
 .ocard-art img {
   width: 92px; aspect-ratio: 2/3; object-fit: cover; border-radius: 6px;
   border: 1px solid var(--line); display: block;
@@ -1246,9 +1355,24 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   font-size: var(--art-label-sm); font-weight: 700; letter-spacing: .02em; line-height: 1.2;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;
 }
+.ocard-badges {
+  position: absolute; inset: .35rem auto auto .35rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: .3rem;
+  max-width: calc(100% - .7rem); pointer-events: none;
+}
+.ocard-badges .pill {
+  max-width: 100%; padding: .12rem .4rem; overflow: hidden; text-overflow: ellipsis;
+  border-color: var(--line-2); background: var(--card); color: var(--text);
+  font-size: var(--art-label-sm); font-weight: 700; line-height: 1.35; white-space: nowrap;
+  box-shadow: 0 1px 3px rgb(var(--shadow-rgb) / calc(22% * var(--shadow-alpha)));
+}
+.ocard-badges .pill-beginner { color: var(--teal); }
 
 .ocard-text { min-width: 0; }
-.ocard-title { font-size: var(--t-body); font-weight: 600; margin: 0 0 .2rem; line-height: 1.3; }
+.ocard-title {
+  font-size: var(--t-body); font-weight: 600; margin: 0 0 .2rem; line-height: 1.3;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
 .ocard-desc {
   color: var(--dim); font-size: var(--t-body); margin: 0 0 .35rem; line-height: 1.45;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
@@ -1258,24 +1382,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    order has a description today, but the normaliser accepts one without. */
 .ocard-desc[hidden] { display: none; }
 .ocard-meta { color: var(--muted); font-size: var(--t-caption); margin: 0 0 .35rem; }
-/* The card's whole account of a story that can be read more than one way: that there is a choice,
-   and how many ways there are. Quiet, one line, and no wider than the meta line above it, because
-   the choice itself is not made here. It is underlined rather than only coloured so it reads as
-   something to press without depending on colour. */
-.ocard-ways { margin: 0 0 .35rem; }
-.ocard-ways .ways {
-  background: none; border: 0; font: inherit; font-size: var(--t-caption);
-  color: var(--blue); text-decoration: underline; text-underline-offset: 2px;
-  /* Padding rather than a bare inline run, so the target clears the 24px floor that WCAG 2.2
-     asks for at AA. Measured at .74rem it lands at 26px. */
-  display: inline-block; padding: .3rem 0; min-height: 24px;
-  /* Raised above the card-wide preview overlay so pressing it is unambiguous even though it opens
-     the same dialog. On the paragraph instead of the button this lifted the whole line, and the
-     empty run beside the button, which has no handler, put an 85px dead strip through the card's
-     own preview target. Raising the button is what .ocard-foot .btn already does below. */
-  position: relative; z-index: 1;
-}
-.ocard-ways .ways:hover { color: var(--text); }
 .ocard-foot {
   display: flex; flex-direction: column; gap: .4rem;
   padding: 0 .85rem .85rem; margin-top: auto;

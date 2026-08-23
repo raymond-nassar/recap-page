@@ -8,7 +8,7 @@ import {
   safeOrderFile, LIST_TYPES, READING_DEPTHS, UNCATEGORIZED,
   catalogFacets, filterByFacet, facetLabel, isShortOrder, catalogCoverUrl,
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
-  countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements, ROUTE_BLURB,
+  countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
 } from '../src/js/lib/catalog.js';
 
 test('safeOrderFile accepts a plain markdown name and nothing that escapes the orders folder', () => {
@@ -823,28 +823,19 @@ test('shelfSections drops a section with no rows and keeps the one that has them
   assert.equal(shelfSections(null).length, 0);
 });
 
-test('every section carries a heading and a blurb a new reader can act on', () => {
+test('every section carries a heading and Timeline context without a page subtitle', () => {
   for (const section of CATALOG_SHELVES) {
     assert.ok(section.heading.length, `${section.key} has a heading`);
     assert.ok(section.blurb.length > 40, `${section.key} explains itself`);
-    const copy = section.heading + section.blurb + section.sub;
+    assert.equal('sub' in section, false, `${section.key} still carries a redundant page subtitle`);
+    const copy = section.heading + section.blurb;
     assert.ok(!/[\u2013\u2014]/.test(copy), `${section.key} copy has no long dashes`);
   }
-  assert.ok(!/[\u2013\u2014]/.test(ROUTE_BLURB), 'the conditional sentence has no long dashes');
 });
 
-// The blurb a section always shows must not name something the page only sometimes draws. The
-// "Start here" badge is drawn on one story, and filtering can leave the section full of rows with
-// that story gone, so the sentence naming the badge is held apart from the one that is always true.
-//
-// It is one sentence rather than one per screen. Which screen holds the first stop is a fact about
-// the data rather than about the arrangement, and it has already moved once, so a copy of this
-// sentence sitting on a named screen would be a claim that screen could stop being able to make.
-test('only the conditional half of the blurb names the Start here badge', () => {
-  assert.ok(/start here/i.test(ROUTE_BLURB), 'the conditional sentence names the badge');
+test('era context does not repeat the Start Here badge already drawn on a card', () => {
   for (const section of CATALOG_SHELVES) {
     assert.ok(!/start here/i.test(section.blurb), `${section.key}'s unconditional blurb promises no badge`);
-    assert.ok(!/start here/i.test(section.sub), `${section.key}'s sub line promises no badge`);
   }
 });
 

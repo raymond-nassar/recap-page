@@ -613,7 +613,6 @@ export const CATALOG_SHELVES = [
     types: ['event'],
     sections: 'eras',
     heading: 'Timeline',
-    sub: 'Events in the order they were published.',
     blurb: 'Events in the order they happened. These build on each other, so reading them front to back is the surest way through.',
     empty: 'No events are bundled with this build.',
   },
@@ -622,7 +621,6 @@ export const CATALOG_SHELVES = [
     types: null,
     sections: 'decades',
     heading: 'Storylines',
-    sub: 'Whole runs rather than single events.',
     blurb: 'Whole runs rather than single events. Each one stands on its own, and several of them thread through the same years the events do.',
     empty: 'No storylines are bundled with this build.',
   },
@@ -631,7 +629,6 @@ export const CATALOG_SHELVES = [
     types: ['character-run'],
     sections: null,
     heading: 'Character spotlights',
-    sub: 'One hero or team, gathered in one place.',
     blurb: 'Everything worth reading about one hero or team, in one place. These stand on their own, so you can begin with whichever character you already like.',
     empty: 'No character spotlights are bundled with this build.',
   },
@@ -691,7 +688,6 @@ export function shelfLists(lists, key) {
 // moved once: retyping one order took the badge from the events shelf to the character spotlights.
 // A sentence attached to a named screen was silently wrong the moment that happened, so the caller
 // asks the placements it is drawing from instead.
-export const ROUTE_BLURB = 'One of them below is marked Start here, and each stop names the one to read next.';
 
 
 export function shelfSections(stories) {
