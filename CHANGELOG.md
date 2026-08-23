@@ -14,6 +14,42 @@ quote in a bug report.
 
 ## Unreleased
 
+### Finished the UX simplification across browsing, search and the library
+
+In plain English: the five ways to add issues now open as five separate screens instead of five
+parts of one long page. Search issues remains the first stop and now groups the same choices the
+navigation offers: browse by series, creator, character or reading guide, then paste a list or add
+an issue by hand. The paste screen shows a real two-line checklist, and the optional Marvel
+Unlimited address on hand entry stays out of the way until it is needed.
+
+The navigation now treats named Reading Lists and the three views of saved progress as one My
+Library group. Reading List is the product-facing name throughout headings, controls, empty states
+and previews. On the front page, saved lists form compact tiles rather than page-wide bands, and
+the single suggested starting point stops growing once its content has enough room. At the width
+shown in the owner review, three saved orders sit in three columns instead of three full-width rows.
+Continue reading now stands on its own without a sentence restating what it means, and its panel
+uses the same bounded width. The three discovery groups also stand on their names without borrowing
+the boxed era-break treatment or its explanatory paragraph from the dedicated browse screens.
+
+Timeline, Storylines and Character spotlights now use cover-led cards with one sentence, an issue
+count and the actions needed to choose. Timeline has a scrollable year spine derived from the
+events actually bundled, and Storylines groups its cards by decade. Full descriptions, reading
+choices and source details remain available in Preview or the Source disclosure.
+
+Nothing already saved is changed, and the previous combined Add address still opens Search issues.
+
+For maintainers: the five Add routes keep independent history and selected-navigation state, with
+the legacy route canonicalised to issue search. The Timeline spine derives 21 years from the 46
+event stories, keeps 5 empty internal years visible, and clears narrowing before it focuses the
+first card in a chosen year. The three browse screens render 46, 6 and 7 safe cover-led cards; full
+descriptions and variant selection remain in the existing preview dialog. Storylines derives the
+2000s, 2010s and 2020s bands from its current data. At 1280x900 the landing cards retain their
+273px to 397px intrinsic range but the measured blank space falls from 1,152px to 113px, the border
+floor of the same measurement. Saved-order tiles are bounded at 384px, producing two columns at
+1280px and three at 2048px, while the first-run feature caps at 1,152px on the wide view and still
+fills the available 964px at 1280px. The repaired Edge harness passes 119 assertions across 14
+scenarios.
+
 ### Said each thing once, in the words a reader already knows
 
 In plain English: the same button had two names. Pressing it on a picture card on the front page said

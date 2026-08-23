@@ -45,7 +45,7 @@ const DEPTH_HINTS = {
 };
 
 export function typeLabel(type) {
-  return TYPE_LABELS[type] ?? 'Reading list';
+  return TYPE_LABELS[type] ?? 'Reading List';
 }
 
 export function depthLabel(depth) {
@@ -571,6 +571,16 @@ export function timelineLabel(list) {
   return Number.isInteger(year) ? `Starts ${year}` : null;
 }
 
+// The browse cards are an overview, while the preview dialog carries the complete authored account.
+// Keeping one sentence here reduces the decision surface without truncating or rewriting the source
+// text: the full description remains available one action away.
+export function firstSentence(value) {
+  const text = typeof value === 'string' ? value.trim() : '';
+  if (!text) return '';
+  const end = text.search(/[.!?](?=\s|$)/);
+  return end < 0 ? text : text.slice(0, end + 1);
+}
+
 // ------------------------------------------------------------------ shelf sections
 
 // The three shelves the catalog is split across, and the only place any story's screen is decided.
@@ -601,7 +611,7 @@ export const CATALOG_SHELVES = [
   {
     key: 'catalog',
     types: ['event'],
-    eras: true,
+    sections: 'eras',
     heading: 'Timeline',
     sub: 'Events in the order they were published.',
     blurb: 'Events in the order they happened. These build on each other, so reading them front to back is the surest way through.',
@@ -610,7 +620,7 @@ export const CATALOG_SHELVES = [
   {
     key: 'lines',
     types: null,
-    eras: false,
+    sections: 'decades',
     heading: 'Storylines',
     sub: 'Whole runs rather than single events.',
     blurb: 'Whole runs rather than single events. Each one stands on its own, and several of them thread through the same years the events do.',
@@ -619,7 +629,7 @@ export const CATALOG_SHELVES = [
   {
     key: 'spotlights',
     types: ['character-run'],
-    eras: false,
+    sections: null,
     heading: 'Character spotlights',
     sub: 'One hero or team, gathered in one place.',
     blurb: 'Everything worth reading about one hero or team, in one place. These stand on their own, so you can begin with whichever character you already like.',
@@ -821,6 +831,25 @@ export function storyYear(story) {
   return years.length ? Math.min(...years) : null;
 }
 
+// Every year from the first dated story to the last, not only the years that happen to contain one.
+// An internal gap is information about the catalogue and stays visible; an empty run at either end
+// would be a declared promise of coverage, so the bounds come from the stories instead.
+export function timelineYears(stories) {
+  const counts = new Map();
+  for (const story of Array.isArray(stories) ? stories : []) {
+    const year = storyYear(story);
+    if (year !== null) counts.set(year, (counts.get(year) ?? 0) + 1);
+  }
+  if (!counts.size) return [];
+  const present = [...counts.keys()];
+  const from = Math.min(...present);
+  const to = Math.max(...present);
+  return Array.from({ length: to - from + 1 }, (_, offset) => {
+    const year = from + offset;
+    return { year, count: counts.get(year) ?? 0 };
+  });
+}
+
 // Which era claims a story, or null if none does. One rule, asked once per story, so the assignment
 // cannot differ between the section that draws it and the test that checks nothing was lost.
 function inEra(era, year) {
@@ -876,4 +905,49 @@ export function eraSections(stories) {
       };
     })
     .filter((section) => section.stories.length);
+}
+
+// Storylines cross the same publishing history as events but are not named by the events at either
+// end of the named-era table. Decade bands give them honest, stable breaks without filing a 2023
+// run under an era whose own name ends at King in Black in 2020.
+export function decadeSections(stories) {
+  const dated = new Map();
+  const undated = [];
+  for (const story of Array.isArray(stories) ? stories : []) {
+    const year = storyYear(story);
+    if (year === null) {
+      undated.push(story);
+      continue;
+    }
+    const decade = Math.floor(year / 10) * 10;
+    if (!dated.has(decade)) dated.set(decade, []);
+    dated.get(decade).push(story);
+  }
+
+  const sections = [...dated.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([decade, inSection]) => {
+      const years = inSection.map(storyYear);
+      const span = { from: Math.min(...years), to: Math.max(...years) };
+      const label = spanLabel(span);
+      return {
+        key: `decade-${decade}`,
+        heading: `${decade}s`,
+        blurb: span.from === span.to ? `Stories beginning in ${label}.` : `Stories beginning ${label}.`,
+        span,
+        stories: inSection,
+      };
+    });
+
+  if (undated.length) {
+    sections.push({
+      key: 'across-eras',
+      heading: 'Across eras',
+      blurb: 'Storylines that range across publishing history rather than beginning at one point.',
+      span: null,
+      stories: undated,
+      undated: true,
+    });
+  }
+  return sections;
 }

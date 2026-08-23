@@ -65,9 +65,11 @@ adding a curated reading list and cutting a release.
 
 Three rules do most of the work.
 
-**One thing per pull request.** If you find something else worth doing while you are in there, it
-becomes an entry in the backlog rather than another commit on the branch. This is not tidiness: a
-pull request that does two things cannot be reverted for one of them.
+**One thing per pull request, unless the maintainer explicitly combines a delivery.** If you find
+something else worth doing while you are in there, it ordinarily becomes an entry in the backlog
+rather than another commit on the branch. This is not tidiness: a pull request that does two things
+cannot be reverted for one of them. The combined UX delivery on 2026-08-22 is the recorded exception,
+made by the maintainer after reviewing the work in progress rather than inferred by a contributor.
 
 **Claims carry evidence.** A statement about this codebase carries the file and the line it is true
 at, written the way the existing documents write them. A statement about anything outside carries a
@@ -132,6 +134,15 @@ npm run contract
 
 Deliberately outside CI, because it calls a live third-party API and would fail builds for reasons
 that have nothing to do with the change under test. Run it by hand before trusting a release.
+
+```
+npm run browser
+```
+
+Also outside CI. It drives the installed Edge browser through the application and must finish with
+zero failed assertions before a change that touches routes, rendering or interaction is trusted.
+Its browser driver is deliberately installed in a scratch directory outside this repository, so a
+missing driver is a prerequisite failure rather than a reason to add a dependency here.
 
 ## Tests
 

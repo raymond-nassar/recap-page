@@ -37,7 +37,7 @@ export const LIBRARY_VIEWS = [
     // The empty state offers the thing to do rather than describing it. It used to end with
     // "Open a reading order and tick issues off as you go", which is an instruction a reader has
     // to carry to a different screen and act on from memory.
-    emptyAction: { label: 'Browse reading orders', view: 'catalog' },
+    emptyAction: { label: 'Browse Reading Lists', view: 'catalog' },
     // A hand-added issue is otherwise indistinguishable from a curated one here, and it is the
     // one row on this page whose details will never arrive from anywhere.
     markHandAdded: true,
@@ -64,7 +64,7 @@ export const LIBRARY_VIEWS = [
     empty: 'Nothing has been added by hand yet.',
     // Named the rail button in prose before, which asked the reader to find a control by its
     // label rather than handing it to them.
-    emptyAction: { label: 'Add an issue by hand', view: 'add', open: 'sec-manual' },
+    emptyAction: { label: 'Add an issue by hand', view: 'add-manual' },
     // Every row here is hand-added, so the badge would mark nothing out and would repeat itself
     // down the whole page.
     markHandAdded: false,

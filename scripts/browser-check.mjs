@@ -190,26 +190,27 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Five entries make four stories, three of them on a path and one off it. The third stop is a
+// Six entries make five stories, three of them on a path and two off it. The third stop is a
 // story read two ways, which is the case the shelf and the path disagree about most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
 // named the way the row is or it points at something not on screen.
 //
-// The off-path entry is the one character run, which makes it the only row on the spotlight side of
-// the shelf. That is deliberate: a fixture in which every entry lands in one section would paint a
-// single heading and let a broken division pass.
+// The two off-path entries exercise the other browse screens: one whole-line run in a dated decade
+// and one undated character run. A fixture containing only events would let the dedicated routes
+// render empty forever while every assertion about the Timeline stayed green.
 const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {
-      timeline: 1963, source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
+      timeline: 2004, source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
     }),
-    shelfEntry('browser-check-two', 'Second Stop', { timeline: 2004 }),
+    shelfEntry('browser-check-two', 'Second Stop', { timeline: 2005 }),
     shelfEntry('browser-check-three-main', 'Third Stop: The Long Way', {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Complete', timeline: 2006,
     }),
     shelfEntry('browser-check-three-short', 'Third Stop: The Short Way', {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Essential', depth: 'essential', timeline: 2006,
     }),
+    shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
     shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run' }),
   ],
   paths: [
@@ -225,7 +226,7 @@ const CATALOG = {
   ],
 };
 
-const IMPORT_BUTTON = `button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
+const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
 const ORDER_COUNT = ORDER.items.length;
 const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 
@@ -603,15 +604,15 @@ const MUTATIONS = [
 const SCENARIOS = [
   {
     id: 'shelf-sections',
-    title: 'the shelf says which half of it a reader is looking at',
+    title: 'each reading kind has its own browse screen and grouping',
     async run(page, t) {
       await open(page, '/');
       await click(page, '[data-view="catalog"]');
-      await page.waitForSelector('#catalog-results .result', { timeout: 15000 });
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
-      // Read headings and rows in one pass, in document order, so "which heading is this row under"
+      // Read headings and cards in one pass, in document order, so "which heading is this card under"
       // is answered by the page as painted rather than by re-deriving the rule that painted it.
-      const readShelf = () => page.$$eval('#catalog-results > *', (els) => els.map((e) => (
+      const readShelf = (selector) => page.$$eval(`${selector} .shelf-section, ${selector} .catalog-card`, (els) => els.map((e) => (
         e.classList.contains('shelf-section')
           ? {
             kind: 'head',
@@ -621,22 +622,23 @@ const SCENARIOS = [
           }
           : {
             kind: 'row',
-            title: e.querySelector('.result-title')?.textContent.trim() ?? '',
+            level: e.querySelector('.catalog-card-title')?.tagName ?? null,
+            title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
             step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
           }
       )));
 
-      const shelf = await readShelf();
+      const shelf = await readShelf('#catalog-results');
       const heads = shelf.filter((x) => x.kind === 'head');
 
-      t.check('the shelf is divided in two', heads.length === 2, heads.map((h) => h.heading).join(' / '));
-      t.check('the shared story is named first', heads[0]?.heading === 'The shared story', JSON.stringify(heads[0]?.heading));
-      t.check('and the character spotlights second', heads[1]?.heading === 'Character spotlights', JSON.stringify(heads[1]?.heading));
-      t.check('each heading says what its half is for', heads.every((h) => h.blurb.length > 40), JSON.stringify(heads.map((h) => h.blurb.length)));
+      t.check('the Timeline draws the era containing the fixture events',
+        heads.length === 1 && heads[0]?.heading === 'Disassembled to Civil War', heads.map((h) => h.heading).join(' / '));
+      t.check('the era says what its part of the timeline is for', heads[0]?.blurb.length > 40, JSON.stringify(heads[0]?.blurb));
 
-      // The view titles itself with an h1 and every row titles itself with an h3, so h2 is the level
-      // that makes the shelf navigable by heading instead of a skip a screen reader has to guess at.
-      t.check('the headings are real headings at the level between the two', heads.every((h) => h.level === 'H2'), JSON.stringify(heads.map((h) => h.level)));
+      // The view titles itself with an h1 and every card titles itself with an h3, so h2 is the level
+      // that makes the era navigable by heading instead of a skip a screen reader has to guess at.
+      t.check('the era is a real heading at the level between the view and its cards',
+        heads[0]?.level === 'H2', JSON.stringify(heads[0]?.level));
 
       // The acceptance criterion, read off the page rather than off the model. A route whose steps
       // straddle a heading is a route the heading is telling the reader not to follow.
@@ -647,24 +649,26 @@ const SCENARIOS = [
         else if (x.step) under.set(x.title, head);
       }
       t.check('every stop of the path is on the shelf', under.size === 3, JSON.stringify([...under]));
-      t.check('and every one of them sits under the shared story', [...under.values()].every((h) => h === 'The shared story'), JSON.stringify([...under]));
+      t.check('and every one of them sits under the same era',
+        [...under.values()].every((h) => h === 'Disassembled to Civil War'), JSON.stringify([...under]));
 
-      // Named rather than dereferenced, because findIndex returns -1 when the heading is absent and
-      // slice(-1) is the last row rather than no rows. That is the type-flatten state exactly, so
-      // the assertion below read the one row it happened to land on and passed while the section it
-      // names was not drawn at all.
-      const spotlightAt = shelf.findIndex((x) => x.heading === 'Character spotlights');
-      const spotlight = spotlightAt < 0 ? [] : shelf.slice(spotlightAt).filter((x) => x.kind === 'row');
-      t.check('the character reading is the one under the spotlights', spotlight.map((r) => r.title).join('/') === 'Off The Path', spotlight.map((r) => r.title).join('/'));
+      await click(page, '[data-view="lines"]');
+      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
+      const lines = await readShelf('#lines-results');
+      t.check('Storylines holds the whole-line reading under its derived decade',
+        lines.filter((x) => x.kind === 'head').map((x) => x.heading).join('/') === '2010s'
+        && lines.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Across the Line',
+        JSON.stringify(lines));
 
-      // A heading over nothing tells a reader a kind of reading exists and then withholds it, so a
-      // search that reaches only one half has to drop the other rather than head an empty list.
-      await page.type('#catalog-q', 'Off The Path');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .result').length === 1, { timeout: 15000 });
-      const narrowed = await readShelf();
-      const narrowedHeads = narrowed.filter((x) => x.kind === 'head');
-      t.check('a search that reaches one half heads only that half', narrowedHeads.length === 1, narrowedHeads.map((h) => h.heading).join(' / '));
-      t.check('and still names the kind of reading it is showing', narrowedHeads[0]?.heading === 'Character spotlights', JSON.stringify(narrowedHeads[0]?.heading));
+      await click(page, '[data-view="spotlights"]');
+      await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
+      const spotlights = await readShelf('#spotlights-results');
+      t.check('Character spotlights holds the character reading without a redundant group heading',
+        spotlights.filter((x) => x.kind === 'head').length === 0
+        && spotlights.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Off The Path',
+        JSON.stringify(spotlights));
+      t.check('an ungrouped spotlight card sits directly under the view heading',
+        spotlights.find((x) => x.kind === 'row')?.level === 'H2', JSON.stringify(spotlights));
     },
   },
   {
@@ -673,22 +677,22 @@ const SCENARIOS = [
     async run(page, t) {
       await open(page, '/');
       await click(page, '[data-view="catalog"]');
-      await page.waitForSelector('#catalog-results .result', { timeout: 15000 });
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
-      const rows = await page.$$eval('#catalog-results .result', (els) => els.map((e) => ({
-        title: e.querySelector('.result-title')?.textContent.trim() ?? '',
-        meta: e.querySelector('.result-meta')?.textContent.trim() ?? '',
+      const rows = await page.$$eval('#catalog-results .catalog-card', (els) => els.map((e) => ({
+        title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+        meta: e.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
         source: e.querySelector('.result-source')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
         step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
+        year: e.dataset.year ?? '',
       })));
 
       const row = (name) => rows.find((r) => r.title === name);
       const first = row('Browser Check Order');
       const middle = row('Second Stop');
       const last = row('Third Stop');
-      const off = row('Off The Path');
 
-      t.check('the shelf draws one row per story, not one per reading', rows.length === 4, `${rows.length} rows: ${rows.map((r) => r.title).join(' / ')}`);
+      t.check('the shelf draws one card per event story, not one per reading', rows.length === 3, `${rows.length} cards: ${rows.map((r) => r.title).join(' / ')}`);
       t.check('a story read two ways is on the shelf under its own name', Boolean(last), rows.map((r) => r.title).join(' / '));
 
       t.check('the first stop is badged so a reader can find it at a glance', first?.step?.startsWith('Start here') === true, JSON.stringify(first?.step));
@@ -708,12 +712,18 @@ const SCENARIOS = [
       t.check('and is numbered last', last?.step?.includes('Step 3 of 3') === true, JSON.stringify(last?.step));
       t.check('and offers no next stop to go to', last?.step?.includes('Next:') === false, JSON.stringify(last?.step));
 
-      t.check('a story on no path says nothing about one', off !== undefined && off.step === null, JSON.stringify(off?.step));
+      t.check('the compact card keeps the issue count', first?.meta === '3 issues', JSON.stringify(first?.meta));
+      t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
-      // The start year is the other half of the same question, and it is the half that reaches
-      // every row rather than only the ten on a path.
-      t.check('a dated order says when its reading starts', first?.meta?.includes('Starts 1963') === true, JSON.stringify(first?.meta));
-      t.check('and an undated one claims no year at all', off?.meta?.includes('Starts') === false, JSON.stringify(off?.meta));
+      await click(page, '[data-view="spotlights"]');
+      await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
+      const off = await page.$eval('#spotlights-results .catalog-card', (e) => ({
+        title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+        step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
+        year: e.dataset.year ?? '',
+      }));
+      t.check('a story on no path says nothing about one', off.title === 'Off The Path' && off.step === null, JSON.stringify(off));
+      t.check('and an undated spotlight claims no Timeline destination', off.year === '', JSON.stringify(off.year));
     },
   },
   {
@@ -761,7 +771,7 @@ const SCENARIOS = [
       t.check('the catalog offers the order', true);
 
       await click(page, IMPORT_BUTTON);
-      await page.waitForSelector('#full', { timeout: 15000 });
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
       await openFullOrder(page);
 
       const rows = await page.$$eval('#rows .row', (els) => els.length);
@@ -1019,7 +1029,7 @@ const SCENARIOS = [
       // Set before the first navigation, so the stub is in place before any code reads it.
       await page.evaluateOnNewDocument(() => { window.__mrtWiki = 'ok'; });
       await open(page, '/');
-      await click(page, '[data-view="add"][data-open="sec-manual"]');
+      await click(page, '[data-view="add-manual"]');
       await page.waitForSelector('#btn-manual-lookup', { visible: true, timeout: 15000 });
 
       await page.evaluate(() => { document.querySelector('#manual-title').value = 'Fixture Vol 7 26'; });
@@ -1161,9 +1171,9 @@ const SCENARIOS = [
     title: 'a pasted reader address becomes a working Read button, and a marvel.com address says so',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="add"][data-open="sec-manual"]');
+      await click(page, '[data-view="add-manual"]');
       await page.evaluate(() => {
-        const d = document.querySelector('#sec-manual');
+        const d = document.querySelector('#manual-url')?.closest('details');
         if (d && !d.open) d.open = true;
       });
       await page.waitForSelector('#manual-url', { timeout: 15000 });
@@ -1239,7 +1249,7 @@ const SCENARIOS = [
       // The behaviour the reader complained about, pinned rather than removed: the offer outlives
       // the screen it was made on, because that is the only thing keeping the undo reachable.
       await click(page, '[data-view="catalog"]');
-      await page.waitForSelector('#catalog-results .result', { timeout: 15000 });
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
       const elsewhere = await readNotice();
       t.check('it is still there after the reader changes screen', elsewhere?.buttons.join('/') === 'Undo delete/Dismiss', JSON.stringify(elsewhere));
 
@@ -1395,8 +1405,8 @@ const SCENARIOS = [
       t.check('the reading view is wider than the prose measure', narrow.view > 876, `${narrow.view}px`);
       t.check('the hero cover is the largest thing on the screen', narrow.art >= 200, `${narrow.art}px`);
       t.check('no upcoming issue is clipped off the shelf', narrow.shelfOverflow <= 1, `${narrow.shelfOverflow}px of overflow`);
-      t.check('the progress count is readable text', /^\d+ of \d+ read$/.test(narrow.label), JSON.stringify(narrow.label));
-      t.check('and what is left of the order is said beside it', /to go|All read|Nothing in this list/.test(narrow.sub), JSON.stringify(narrow.sub));
+      t.check('the progress percentage is readable text', /^\d+%$/.test(narrow.label), JSON.stringify(narrow.label));
+      t.check('and the issue count is said beside it', /^\d+ of \d+ read$|All read|Nothing in this list/.test(narrow.sub), JSON.stringify(narrow.sub));
       t.check('the percentage is no longer hidden in a tooltip', narrow.ringTitle === null, JSON.stringify(narrow.ringTitle));
       t.check('one call to action is larger than the rest', narrow.primary > narrow.secondary, `${narrow.primary} vs ${narrow.secondary}`);
       t.check('the way out of the app is drawn as a link, not a button', /, 0\)$/.test(narrow.linkFill), narrow.linkFill);
@@ -1492,7 +1502,7 @@ async function importOrder(page) {
   await open(page, '/');
   await click(page, '[data-view="catalog"]');
   await click(page, IMPORT_BUTTON);
-  await page.waitForSelector('#full', { timeout: 15000 });
+  await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
   await openFullOrder(page);
 }
 
