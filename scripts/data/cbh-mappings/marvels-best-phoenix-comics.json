@@ -1,0 +1,2855 @@
+{
+  "id": "marvels-best-phoenix-comics",
+  "inventoryId": "marvels-best-phoenix-comics",
+  "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
+  "sourceUrl": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 53,
+  "excludedSourceReferences": [
+    "Related reading-order links",
+    "The Dark Phoenix Saga, Phoenix vs. Galactus wedding-era prose, New X-Men (2001) run overview, Phoenix Endsong, Avengers vs. X-Men, Secret Wars (2015), Phoenix Resurrection, and Jason Aaron B.C./future Phoenix prose that recommend a collection or run without stating a specific issue number on this page",
+    "Giant-Size X-Men: Jean Grey & Emma Frost and Hellfire Gala 2023 Latest Additions entries with no stated issue number or Collects line",
+    "Editorial commentary and non-issue prose"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "marvels-best-phoenix-comics",
+    "name": "Phoenix",
+    "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvels-best-phoenix-comics.md",
+    "sourcePage": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvels_best_phoenix_comics.json",
+    "characters": [
+      "Phoenix",
+      "Jean Grey",
+      "Rachel Summers",
+      "X-Men"
+    ],
+    "keywords": [
+      "Phoenix",
+      "Jean Grey",
+      "Dark Phoenix",
+      "Rachel Summers",
+      "Comic Book Herald"
+    ],
+    "expect": 53,
+    "timeline": null,
+    "coverIssueId": 8605
+  },
+  "candidateMetadata": [
+    {
+      "id": 8605,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (1988) #25",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (1988 - 1998)",
+      "seriesId": 2011,
+      "issueNumber": "25",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8605/excalibur_1988_25",
+      "onSaleDate": "1990-08-01T00:00:00+0000"
+    },
+    {
+      "id": 14965,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #146",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "146",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/14965/new_x-men_2001_146",
+      "onSaleDate": "2003-09-10T00:00:00+0000"
+    },
+    {
+      "id": 125,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #147",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "147",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/125/new_x-men_2001_147",
+      "onSaleDate": "2003-10-01T00:00:00+0000"
+    },
+    {
+      "id": 136,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #148",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "148",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/136/new_x-men_2001_148",
+      "onSaleDate": "2003-10-15T00:00:00+0000"
+    },
+    {
+      "id": 124,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #149",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "149",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/124/new_x-men_2001_149",
+      "onSaleDate": "2003-11-26T00:00:00+0000"
+    },
+    {
+      "id": 123,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #150",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "150",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/123/new_x-men_2001_150",
+      "onSaleDate": "2003-12-17T00:00:00+0000"
+    },
+    {
+      "id": 122,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #151",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "151",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/122/new_x-men_2001_151",
+      "onSaleDate": "2004-01-07T00:00:00+0000"
+    },
+    {
+      "id": 121,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #152",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "152",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/121/new_x-men_2001_152",
+      "onSaleDate": "2004-01-21T00:00:00+0000"
+    },
+    {
+      "id": 120,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #153",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "153",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/120/new_x-men_2001_153",
+      "onSaleDate": "2004-02-18T00:00:00+0000"
+    },
+    {
+      "id": 420,
+      "title": "New X-Men",
+      "issueTitle": "New X-Men (2001) #154",
+      "seriesTitle": "New X-Men",
+      "apiSeriesName": "New X-Men (2001 - 2004)",
+      "seriesId": 2281,
+      "issueNumber": "154",
+      "seriesYear": 2001,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/420/new_x-men_2001_154",
+      "onSaleDate": "2004-03-17T00:00:00+0000"
+    },
+    {
+      "id": 3001,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #466",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "466",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3001/uncanny_x-men_1963_466",
+      "onSaleDate": "2005-11-23T00:00:00+0000"
+    },
+    {
+      "id": 3120,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #467",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "467",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3120/uncanny_x-men_1963_467",
+      "onSaleDate": "2005-12-14T00:00:00+0000"
+    },
+    {
+      "id": 3143,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #468",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "468",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3143/uncanny_x-men_1963_468",
+      "onSaleDate": "2006-01-18T00:00:00+0000"
+    },
+    {
+      "id": 3479,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #469",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "469",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3479/uncanny_x-men_1963_469",
+      "onSaleDate": "2006-02-01T00:00:00+0000"
+    },
+    {
+      "id": 3892,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #470",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "470",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3892/uncanny_x-men_1963_470",
+      "onSaleDate": "2006-03-01T00:00:00+0000"
+    },
+    {
+      "id": 3893,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #471",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "471",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3893/uncanny_x-men_1963_471",
+      "onSaleDate": "2006-03-29T00:00:00+0000"
+    },
+    {
+      "id": 61702,
+      "title": "Thanos",
+      "issueTitle": "Thanos (2016) #6",
+      "seriesTitle": "Thanos",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "6",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61702/thanos_2016_6",
+      "onSaleDate": "2017-04-26T00:00:00+0000"
+    },
+    {
+      "id": 48912,
+      "title": "Wolverine & the X-Men",
+      "issueTitle": "Wolverine & the X-Men (2011) #42",
+      "seriesTitle": "Wolverine & the X-Men",
+      "apiSeriesName": "Wolverine & the X-Men (2011 - 2014)",
+      "seriesId": 13910,
+      "issueNumber": "42",
+      "seriesYear": 2011,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/48912/wolverine_the_x-men_2011_42",
+      "onSaleDate": "2014-02-26T00:00:00+0000"
+    },
+    {
+      "id": 64417,
+      "title": "Marvel Legacy",
+      "issueTitle": "Marvel Legacy (2017) #1",
+      "seriesTitle": "Marvel Legacy",
+      "apiSeriesName": "Marvel Legacy (2017)",
+      "seriesId": 23456,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64417/marvel_legacy_2017_1",
+      "onSaleDate": "2017-09-27T00:00:00+0000"
+    },
+    {
+      "id": 66131,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #1",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66131/x-men_red_2018_1",
+      "onSaleDate": "2018-02-07T00:00:00+0000"
+    },
+    {
+      "id": 66465,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #2",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66465/x-men_red_2018_2",
+      "onSaleDate": "2018-03-07T00:00:00+0000"
+    },
+    {
+      "id": 66717,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #3",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66717/x-men_red_2018_3",
+      "onSaleDate": "2018-04-11T00:00:00+0000"
+    },
+    {
+      "id": 67589,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #4",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67589/x-men_red_2018_4",
+      "onSaleDate": "2018-05-16T00:00:00+0000"
+    },
+    {
+      "id": 70246,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #5",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "5",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70246/x-men_red_2018_5",
+      "onSaleDate": "2018-06-06T00:00:00+0000"
+    },
+    {
+      "id": 67590,
+      "title": "X-Men: Red Annual",
+      "issueTitle": "X-Men: Red Annual (2018) #1",
+      "seriesTitle": "X-Men: Red Annual",
+      "apiSeriesName": "X-Men: Red Annual (2018)",
+      "seriesId": 24372,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67590/x-men_red_annual_2018_1",
+      "onSaleDate": "2018-05-30T00:00:00+0000"
+    },
+    {
+      "id": 70248,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #6",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "6",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70248/x-men_red_2018_6",
+      "onSaleDate": "2018-07-18T00:00:00+0000"
+    },
+    {
+      "id": 70250,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #7",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "7",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70250/x-men_red_2018_7",
+      "onSaleDate": "2018-08-22T00:00:00+0000"
+    },
+    {
+      "id": 70252,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #8",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "8",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70252/x-men_red_2018_8",
+      "onSaleDate": "2018-09-26T00:00:00+0000"
+    },
+    {
+      "id": 70254,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #9",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "9",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70254/x-men_red_2018_9",
+      "onSaleDate": "2018-10-24T00:00:00+0000"
+    },
+    {
+      "id": 70255,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #10",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "10",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70255/x-men_red_2018_10",
+      "onSaleDate": "2018-11-07T00:00:00+0000"
+    },
+    {
+      "id": 70256,
+      "title": "X-Men: Red",
+      "issueTitle": "X-Men: Red (2018) #11",
+      "seriesTitle": "X-Men: Red",
+      "apiSeriesName": "X-Men: Red (2018)",
+      "seriesId": 23974,
+      "issueNumber": "11",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/70256/x-men_red_2018_11",
+      "onSaleDate": "2018-12-12T00:00:00+0000"
+    },
+    {
+      "id": 76789,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #1",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76789/x-force_2019_1",
+      "onSaleDate": "2019-11-06T00:00:00+0000"
+    },
+    {
+      "id": 76790,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #2",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76790/x-force_2019_2",
+      "onSaleDate": "2019-11-27T00:00:00+0000"
+    },
+    {
+      "id": 76791,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #3",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76791/x-force_2019_3",
+      "onSaleDate": "2019-12-11T00:00:00+0000"
+    },
+    {
+      "id": 76792,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #4",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76792/x-force_2019_4",
+      "onSaleDate": "2019-12-18T00:00:00+0000"
+    },
+    {
+      "id": 76793,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #5",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76793/x-force_2019_5",
+      "onSaleDate": "2020-01-08T00:00:00+0000"
+    },
+    {
+      "id": 76794,
+      "title": "X-Force",
+      "issueTitle": "X-Force (2019) #6",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (2019 - Present)",
+      "seriesId": 27564,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76794/x-force_2019_6",
+      "onSaleDate": "2020-01-29T00:00:00+0000"
+    },
+    {
+      "id": 79945,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #7",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "7",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79945/x-men_2019_7",
+      "onSaleDate": "2020-02-26T00:00:00+0000"
+    },
+    {
+      "id": 79946,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #8",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "8",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79946/x-men_2019_8",
+      "onSaleDate": "2020-03-11T00:00:00+0000"
+    },
+    {
+      "id": 79947,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #9",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "9",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79947/x-men_2019_9",
+      "onSaleDate": "2020-03-25T00:00:00+0000"
+    },
+    {
+      "id": 79948,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #10",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "10",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79948/x-men_2019_10",
+      "onSaleDate": "2020-07-29T00:00:00+0000"
+    },
+    {
+      "id": 79949,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2019) #11",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2019 - 2021)",
+      "seriesId": 27567,
+      "issueNumber": "11",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79949/x-men_2019_11",
+      "onSaleDate": "2020-08-26T00:00:00+0000"
+    },
+    {
+      "id": 91395,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #7",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "7",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91395/x-men_2021_7",
+      "onSaleDate": "2022-01-26T00:00:00+0000"
+    },
+    {
+      "id": 91396,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #8",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "8",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91396/x-men_2021_8",
+      "onSaleDate": "2022-02-16T00:00:00+0000"
+    },
+    {
+      "id": 91397,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #9",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "9",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91397/x-men_2021_9",
+      "onSaleDate": "2022-03-02T00:00:00+0000"
+    },
+    {
+      "id": 91398,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #10",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "10",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91398/x-men_2021_10",
+      "onSaleDate": "2022-04-13T00:00:00+0000"
+    },
+    {
+      "id": 91399,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #11",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "11",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91399/x-men_2021_11",
+      "onSaleDate": "2022-05-11T00:00:00+0000"
+    },
+    {
+      "id": 91400,
+      "title": "X-Men",
+      "issueTitle": "X-Men (2021) #12",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (2021 - Present)",
+      "seriesId": 31324,
+      "issueNumber": "12",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/91400/x-men_2021_12",
+      "onSaleDate": "2022-06-22T00:00:00+0000"
+    },
+    {
+      "id": 107281,
+      "title": "Jean Grey",
+      "issueTitle": "Jean Grey (2023) #1",
+      "seriesTitle": "Jean Grey",
+      "apiSeriesName": "Jean Grey (2023 - Present)",
+      "seriesId": 37025,
+      "issueNumber": "1",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/107281/jean_grey_2023_1",
+      "onSaleDate": "2023-08-23T00:00:00+0000"
+    },
+    {
+      "id": 107283,
+      "title": "Jean Grey",
+      "issueTitle": "Jean Grey (2023) #2",
+      "seriesTitle": "Jean Grey",
+      "apiSeriesName": "Jean Grey (2023 - Present)",
+      "seriesId": 37025,
+      "issueNumber": "2",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/107283/jean_grey_2023_2",
+      "onSaleDate": "2023-09-27T00:00:00+0000"
+    },
+    {
+      "id": 107284,
+      "title": "Jean Grey",
+      "issueTitle": "Jean Grey (2023) #3",
+      "seriesTitle": "Jean Grey",
+      "apiSeriesName": "Jean Grey (2023 - Present)",
+      "seriesId": 37025,
+      "issueNumber": "3",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/107284/jean_grey_2023_3",
+      "onSaleDate": "2023-10-25T00:00:00+0000"
+    },
+    {
+      "id": 107285,
+      "title": "Jean Grey",
+      "issueTitle": "Jean Grey (2023) #4",
+      "seriesTitle": "Jean Grey",
+      "apiSeriesName": "Jean Grey (2023 - Present)",
+      "seriesId": 37025,
+      "issueNumber": "4",
+      "seriesYear": 2023,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/107285/jean_grey_2023_4",
+      "onSaleDate": "2023-11-15T00:00:00+0000"
+    },
+    {
+      "id": 109787,
+      "title": "Immortal X-Men",
+      "issueTitle": "Immortal X-Men (2022) #17",
+      "seriesTitle": "Immortal X-Men",
+      "apiSeriesName": "Immortal X-Men (2022 - Present)",
+      "seriesId": 31375,
+      "issueNumber": "17",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/109787/immortal_x-men_2022_17",
+      "onSaleDate": "2023-11-22T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Excalibur #25",
+      "sourceRangeReference": "Excalibur #25",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "25",
+      "seriesId": 2011,
+      "candidateIssueId": 8605,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8605"
+      ],
+      "selectedIssueId": 8605,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8605/excalibur_1988_25",
+      "resolvedIssueTitle": "Excalibur (1988) #25",
+      "note": "Marvel series 2011 (Excalibur (1988 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8605
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "New X-Men #146",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "146",
+      "seriesId": 2281,
+      "candidateIssueId": 14965,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "14965"
+      ],
+      "selectedIssueId": 14965,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14965/new_x-men_2001_146",
+      "resolvedIssueTitle": "New X-Men (2001) #146",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        14965
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "New X-Men #147",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "147",
+      "seriesId": 2281,
+      "candidateIssueId": 125,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "125"
+      ],
+      "selectedIssueId": 125,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/125/new_x-men_2001_147",
+      "resolvedIssueTitle": "New X-Men (2001) #147",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        125
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "New X-Men #148",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "148",
+      "seriesId": 2281,
+      "candidateIssueId": 136,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "136"
+      ],
+      "selectedIssueId": 136,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/136/new_x-men_2001_148",
+      "resolvedIssueTitle": "New X-Men (2001) #148",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        136
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "New X-Men #149",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "149",
+      "seriesId": 2281,
+      "candidateIssueId": 124,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "124"
+      ],
+      "selectedIssueId": 124,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/124/new_x-men_2001_149",
+      "resolvedIssueTitle": "New X-Men (2001) #149",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        124
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "New X-Men #150",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "150",
+      "seriesId": 2281,
+      "candidateIssueId": 123,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "123"
+      ],
+      "selectedIssueId": 123,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/123/new_x-men_2001_150",
+      "resolvedIssueTitle": "New X-Men (2001) #150",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        123
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "New X-Men #151",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "151",
+      "seriesId": 2281,
+      "candidateIssueId": 122,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "122"
+      ],
+      "selectedIssueId": 122,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/122/new_x-men_2001_151",
+      "resolvedIssueTitle": "New X-Men (2001) #151",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        122
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "New X-Men #152",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "152",
+      "seriesId": 2281,
+      "candidateIssueId": 121,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "121"
+      ],
+      "selectedIssueId": 121,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/121/new_x-men_2001_152",
+      "resolvedIssueTitle": "New X-Men (2001) #152",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        121
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "New X-Men #153",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "153",
+      "seriesId": 2281,
+      "candidateIssueId": 120,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "120"
+      ],
+      "selectedIssueId": 120,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/120/new_x-men_2001_153",
+      "resolvedIssueTitle": "New X-Men (2001) #153",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        120
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "New X-Men #154",
+      "sourceRangeReference": "New X-Men #146 to #154",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "154",
+      "seriesId": 2281,
+      "candidateIssueId": 420,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "420"
+      ],
+      "selectedIssueId": 420,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/420/new_x-men_2001_154",
+      "resolvedIssueTitle": "New X-Men (2001) #154",
+      "note": "Marvel series 2281 (New X-Men (2001 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        420
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Uncanny X-Men #466",
+      "sourceRangeReference": "Uncanny X-Men #466 to #471",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "466",
+      "seriesId": 2258,
+      "candidateIssueId": 3001,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3001"
+      ],
+      "selectedIssueId": 3001,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3001/uncanny_x-men_1963_466",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #466",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3001
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Uncanny X-Men #467",
+      "sourceRangeReference": "Uncanny X-Men #466 to #471",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "467",
+      "seriesId": 2258,
+      "candidateIssueId": 3120,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3120"
+      ],
+      "selectedIssueId": 3120,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3120/uncanny_x-men_1963_467",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #467",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3120
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Uncanny X-Men #468",
+      "sourceRangeReference": "Uncanny X-Men #466 to #471",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "468",
+      "seriesId": 2258,
+      "candidateIssueId": 3143,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3143"
+      ],
+      "selectedIssueId": 3143,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3143/uncanny_x-men_1963_468",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #468",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3143
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Uncanny X-Men #469",
+      "sourceRangeReference": "Uncanny X-Men #466 to #471",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "469",
+      "seriesId": 2258,
+      "candidateIssueId": 3479,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3479"
+      ],
+      "selectedIssueId": 3479,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3479/uncanny_x-men_1963_469",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #469",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3479
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Uncanny X-Men #470",
+      "sourceRangeReference": "Uncanny X-Men #466 to #471",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "470",
+      "seriesId": 2258,
+      "candidateIssueId": 3892,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3892"
+      ],
+      "selectedIssueId": 3892,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3892/uncanny_x-men_1963_470",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #470",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3892
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Uncanny X-Men #471",
+      "sourceRangeReference": "Uncanny X-Men #466 to #471",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "471",
+      "seriesId": 2258,
+      "candidateIssueId": 3893,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3893"
+      ],
+      "selectedIssueId": 3893,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3893/uncanny_x-men_1963_471",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #471",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3893
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Thanos #6",
+      "sourceRangeReference": "Thanos #6",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 22653,
+      "candidateIssueId": 61702,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61702"
+      ],
+      "selectedIssueId": 61702,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61702/thanos_2016_6",
+      "resolvedIssueTitle": "Thanos (2016) #6",
+      "note": "Marvel series 22653 (Thanos (2016 - 2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61702
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Wolverine & the X-Men #42",
+      "sourceRangeReference": "Wolverine & The X-Men #42",
+      "normalizedSeriesTitle": "Wolverine & the X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "42",
+      "seriesId": 13910,
+      "candidateIssueId": 48912,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "48912"
+      ],
+      "selectedIssueId": 48912,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48912/wolverine_the_x-men_2011_42",
+      "resolvedIssueTitle": "Wolverine & the X-Men (2011) #42",
+      "note": "Marvel series 13910 (Wolverine & the X-Men (2011 - 2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        48912
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Marvel Legacy #1",
+      "sourceRangeReference": "Marvel Legacy #1",
+      "normalizedSeriesTitle": "Marvel Legacy",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23456,
+      "candidateIssueId": 64417,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64417"
+      ],
+      "selectedIssueId": 64417,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64417/marvel_legacy_2017_1",
+      "resolvedIssueTitle": "Marvel Legacy (2017) #1",
+      "note": "Marvel series 23456 (Marvel Legacy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64417
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "X-Men: Red #1",
+      "sourceRangeReference": "X-Men: Red #1 to #5, Annual #1",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 23974,
+      "candidateIssueId": 66131,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66131"
+      ],
+      "selectedIssueId": 66131,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66131/x-men_red_2018_1",
+      "resolvedIssueTitle": "X-Men: Red (2018) #1",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66131
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "X-Men: Red #2",
+      "sourceRangeReference": "X-Men: Red #1 to #5, Annual #1",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 23974,
+      "candidateIssueId": 66465,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66465"
+      ],
+      "selectedIssueId": 66465,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66465/x-men_red_2018_2",
+      "resolvedIssueTitle": "X-Men: Red (2018) #2",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66465
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "X-Men: Red #3",
+      "sourceRangeReference": "X-Men: Red #1 to #5, Annual #1",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 23974,
+      "candidateIssueId": 66717,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66717"
+      ],
+      "selectedIssueId": 66717,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66717/x-men_red_2018_3",
+      "resolvedIssueTitle": "X-Men: Red (2018) #3",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66717
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "X-Men: Red #4",
+      "sourceRangeReference": "X-Men: Red #1 to #5, Annual #1",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 23974,
+      "candidateIssueId": 67589,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67589"
+      ],
+      "selectedIssueId": 67589,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67589/x-men_red_2018_4",
+      "resolvedIssueTitle": "X-Men: Red (2018) #4",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67589
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "X-Men: Red #5",
+      "sourceRangeReference": "X-Men: Red #1 to #5, Annual #1",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 23974,
+      "candidateIssueId": 70246,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70246"
+      ],
+      "selectedIssueId": 70246,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70246/x-men_red_2018_5",
+      "resolvedIssueTitle": "X-Men: Red (2018) #5",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70246
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "X-Men: Red Annual #1",
+      "sourceRangeReference": "X-Men: Red #1 to #5, Annual #1",
+      "normalizedSeriesTitle": "X-Men: Red Annual",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24372,
+      "candidateIssueId": 67590,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67590"
+      ],
+      "selectedIssueId": 67590,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67590/x-men_red_annual_2018_1",
+      "resolvedIssueTitle": "X-Men: Red Annual (2018) #1",
+      "note": "Marvel series 24372 (X-Men: Red Annual (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67590
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "X-Men: Red #6",
+      "sourceRangeReference": "X-Men: Red #6 to #11",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "seriesId": 23974,
+      "candidateIssueId": 70248,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70248"
+      ],
+      "selectedIssueId": 70248,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70248/x-men_red_2018_6",
+      "resolvedIssueTitle": "X-Men: Red (2018) #6",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70248
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "X-Men: Red #7",
+      "sourceRangeReference": "X-Men: Red #6 to #11",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 23974,
+      "candidateIssueId": 70250,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70250"
+      ],
+      "selectedIssueId": 70250,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70250/x-men_red_2018_7",
+      "resolvedIssueTitle": "X-Men: Red (2018) #7",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70250
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "X-Men: Red #8",
+      "sourceRangeReference": "X-Men: Red #6 to #11",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 23974,
+      "candidateIssueId": 70252,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70252"
+      ],
+      "selectedIssueId": 70252,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70252/x-men_red_2018_8",
+      "resolvedIssueTitle": "X-Men: Red (2018) #8",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70252
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "X-Men: Red #9",
+      "sourceRangeReference": "X-Men: Red #6 to #11",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 23974,
+      "candidateIssueId": 70254,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70254"
+      ],
+      "selectedIssueId": 70254,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70254/x-men_red_2018_9",
+      "resolvedIssueTitle": "X-Men: Red (2018) #9",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70254
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "X-Men: Red #10",
+      "sourceRangeReference": "X-Men: Red #6 to #11",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 23974,
+      "candidateIssueId": 70255,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70255"
+      ],
+      "selectedIssueId": 70255,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70255/x-men_red_2018_10",
+      "resolvedIssueTitle": "X-Men: Red (2018) #10",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70255
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "X-Men: Red #11",
+      "sourceRangeReference": "X-Men: Red #6 to #11",
+      "normalizedSeriesTitle": "X-Men: Red",
+      "seriesYear": 2018,
+      "issueNumber": "11",
+      "seriesId": 23974,
+      "candidateIssueId": 70256,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "70256"
+      ],
+      "selectedIssueId": 70256,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/70256/x-men_red_2018_11",
+      "resolvedIssueTitle": "X-Men: Red (2018) #11",
+      "note": "Marvel series 23974 (X-Men: Red (2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        70256
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "X-Force #1",
+      "sourceRangeReference": "X-Force (2019) #1 to #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27564,
+      "candidateIssueId": 76789,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76789"
+      ],
+      "selectedIssueId": 76789,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76789/x-force_2019_1",
+      "resolvedIssueTitle": "X-Force (2019) #1",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76789
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "X-Force #2",
+      "sourceRangeReference": "X-Force (2019) #1 to #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27564,
+      "candidateIssueId": 76790,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76790"
+      ],
+      "selectedIssueId": 76790,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76790/x-force_2019_2",
+      "resolvedIssueTitle": "X-Force (2019) #2",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76790
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "X-Force #3",
+      "sourceRangeReference": "X-Force (2019) #1 to #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27564,
+      "candidateIssueId": 76791,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76791"
+      ],
+      "selectedIssueId": 76791,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76791/x-force_2019_3",
+      "resolvedIssueTitle": "X-Force (2019) #3",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76791
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "X-Force #4",
+      "sourceRangeReference": "X-Force (2019) #1 to #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27564,
+      "candidateIssueId": 76792,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76792"
+      ],
+      "selectedIssueId": 76792,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76792/x-force_2019_4",
+      "resolvedIssueTitle": "X-Force (2019) #4",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76792
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "X-Force #5",
+      "sourceRangeReference": "X-Force (2019) #1 to #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27564,
+      "candidateIssueId": 76793,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76793"
+      ],
+      "selectedIssueId": 76793,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76793/x-force_2019_5",
+      "resolvedIssueTitle": "X-Force (2019) #5",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76793
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "X-Force #6",
+      "sourceRangeReference": "X-Force (2019) #1 to #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 27564,
+      "candidateIssueId": 76794,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76794"
+      ],
+      "selectedIssueId": 76794,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76794/x-force_2019_6",
+      "resolvedIssueTitle": "X-Force (2019) #6",
+      "note": "Marvel series 27564 (X-Force (2019 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76794
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "X-Men #7",
+      "sourceRangeReference": "X-Men (2019) #7 to #11",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "seriesId": 27567,
+      "candidateIssueId": 79945,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79945"
+      ],
+      "selectedIssueId": 79945,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79945/x-men_2019_7",
+      "resolvedIssueTitle": "X-Men (2019) #7",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79945
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "X-Men #8",
+      "sourceRangeReference": "X-Men (2019) #7 to #11",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "8",
+      "seriesId": 27567,
+      "candidateIssueId": 79946,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79946"
+      ],
+      "selectedIssueId": 79946,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79946/x-men_2019_8",
+      "resolvedIssueTitle": "X-Men (2019) #8",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79946
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "X-Men #9",
+      "sourceRangeReference": "X-Men (2019) #7 to #11",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "9",
+      "seriesId": 27567,
+      "candidateIssueId": 79947,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79947"
+      ],
+      "selectedIssueId": 79947,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79947/x-men_2019_9",
+      "resolvedIssueTitle": "X-Men (2019) #9",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79947
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "X-Men #10",
+      "sourceRangeReference": "X-Men (2019) #7 to #11",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "10",
+      "seriesId": 27567,
+      "candidateIssueId": 79948,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79948"
+      ],
+      "selectedIssueId": 79948,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79948/x-men_2019_10",
+      "resolvedIssueTitle": "X-Men (2019) #10",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79948
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "X-Men #11",
+      "sourceRangeReference": "X-Men (2019) #7 to #11",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "11",
+      "seriesId": 27567,
+      "candidateIssueId": 79949,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79949"
+      ],
+      "selectedIssueId": 79949,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79949/x-men_2019_11",
+      "resolvedIssueTitle": "X-Men (2019) #11",
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79949
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "X-Men #7",
+      "sourceRangeReference": "X-Men (2021) #7 to #12",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "7",
+      "seriesId": 31324,
+      "candidateIssueId": 91395,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91395"
+      ],
+      "selectedIssueId": 91395,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91395/x-men_2021_7",
+      "resolvedIssueTitle": "X-Men (2021) #7",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91395
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "X-Men #8",
+      "sourceRangeReference": "X-Men (2021) #7 to #12",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "8",
+      "seriesId": 31324,
+      "candidateIssueId": 91396,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91396"
+      ],
+      "selectedIssueId": 91396,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91396/x-men_2021_8",
+      "resolvedIssueTitle": "X-Men (2021) #8",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91396
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "X-Men #9",
+      "sourceRangeReference": "X-Men (2021) #7 to #12",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "9",
+      "seriesId": 31324,
+      "candidateIssueId": 91397,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91397"
+      ],
+      "selectedIssueId": 91397,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91397/x-men_2021_9",
+      "resolvedIssueTitle": "X-Men (2021) #9",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91397
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "X-Men #10",
+      "sourceRangeReference": "X-Men (2021) #7 to #12",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "10",
+      "seriesId": 31324,
+      "candidateIssueId": 91398,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91398"
+      ],
+      "selectedIssueId": 91398,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91398/x-men_2021_10",
+      "resolvedIssueTitle": "X-Men (2021) #10",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91398
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "X-Men #11",
+      "sourceRangeReference": "X-Men (2021) #7 to #12",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "11",
+      "seriesId": 31324,
+      "candidateIssueId": 91399,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91399"
+      ],
+      "selectedIssueId": 91399,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91399/x-men_2021_11",
+      "resolvedIssueTitle": "X-Men (2021) #11",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91399
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "X-Men #12",
+      "sourceRangeReference": "X-Men (2021) #7 to #12",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "12",
+      "seriesId": 31324,
+      "candidateIssueId": 91400,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "91400"
+      ],
+      "selectedIssueId": 91400,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91400/x-men_2021_12",
+      "resolvedIssueTitle": "X-Men (2021) #12",
+      "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        91400
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Jean Grey #1",
+      "sourceRangeReference": "Jean Grey (2023) #1 to #4",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 37025,
+      "candidateIssueId": 107281,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "107281"
+      ],
+      "selectedIssueId": 107281,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107281/jean_grey_2023_1",
+      "resolvedIssueTitle": "Jean Grey (2023) #1",
+      "note": "Marvel series 37025 (Jean Grey (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        107281
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Jean Grey #2",
+      "sourceRangeReference": "Jean Grey (2023) #1 to #4",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 37025,
+      "candidateIssueId": 107283,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "107283"
+      ],
+      "selectedIssueId": 107283,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107283/jean_grey_2023_2",
+      "resolvedIssueTitle": "Jean Grey (2023) #2",
+      "note": "Marvel series 37025 (Jean Grey (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        107283
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Jean Grey #3",
+      "sourceRangeReference": "Jean Grey (2023) #1 to #4",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 37025,
+      "candidateIssueId": 107284,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "107284"
+      ],
+      "selectedIssueId": 107284,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107284/jean_grey_2023_3",
+      "resolvedIssueTitle": "Jean Grey (2023) #3",
+      "note": "Marvel series 37025 (Jean Grey (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        107284
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Jean Grey #4",
+      "sourceRangeReference": "Jean Grey (2023) #1 to #4",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "seriesId": 37025,
+      "candidateIssueId": 107285,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "107285"
+      ],
+      "selectedIssueId": 107285,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107285/jean_grey_2023_4",
+      "resolvedIssueTitle": "Jean Grey (2023) #4",
+      "note": "Marvel series 37025 (Jean Grey (2023 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        107285
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Immortal X-Men #17",
+      "sourceRangeReference": "Immortal X-Men #17",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "17",
+      "seriesId": 31375,
+      "candidateIssueId": 109787,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "109787"
+      ],
+      "selectedIssueId": 109787,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/109787/immortal_x-men_2022_17",
+      "resolvedIssueTitle": "Immortal X-Men (2022) #17",
+      "note": "Marvel series 31375 (Immortal X-Men (2022 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        109787
+      ]
+    }
+  ],
+  "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
+  "packetReview": "MRT-002-C02 final central source review",
+  "approvedManifest": {
+    "id": "marvels-best-phoenix-comics",
+    "name": "Phoenix",
+    "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvels-best-phoenix-comics.md",
+    "sourcePage": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvels_best_phoenix_comics.json",
+    "characters": [
+      "Phoenix",
+      "Jean Grey",
+      "Rachel Summers",
+      "X-Men"
+    ],
+    "keywords": [
+      "Phoenix",
+      "Jean Grey",
+      "Dark Phoenix",
+      "Rachel Summers",
+      "Comic Book Herald"
+    ],
+    "expect": 53,
+    "timeline": null,
+    "coverIssueId": 8605
+  },
+  "relationshipReview": {
+    "reportDigest": "7587a3dbbb8813683faa5a45edcb449fdce3d30c06de1a9a4358b4c662a3b740",
+    "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
+    "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
+    "libraryDigest": "5aac85d8ff7e085eb038bb021ccc106b240070648a8fc152f4a60acecee2bdc0",
+    "peerDigests": {
+      "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 0 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T16:36:05.313Z",
+    "approvalDigest": "da49108a4f15b58f255a2ad8fa931f4e9374e47c5ca5351b54a65f03e0ed12b8"
+  }
+}

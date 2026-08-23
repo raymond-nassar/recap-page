@@ -1,0 +1,1627 @@
+{
+  "id": "marvels-best-phoenix-comics",
+  "name": "Phoenix",
+  "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
+  "source": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T16:37:33.121Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 53,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 8605,
+      "title": "Excalibur (1988) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/8605/excalibur_1988_25",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "1990-08-01T00:00:00+0000",
+      "digitalId": 8141,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5d0902bef2efe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Wozniak",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14965,
+      "title": "New X-Men (2001) #146",
+      "number": "146",
+      "url": "https://www.marvel.com/comics/issue/14965/new_x-men_2001_146",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-09-10T00:00:00+0000",
+      "mu": "2003-09-10T00:00:00+0000",
+      "digitalId": 3054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bc46b1e313f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 125,
+      "title": "New X-Men (2001) #147",
+      "number": "147",
+      "url": "https://www.marvel.com/comics/issue/125/new_x-men_2001_147",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 13875,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/577d6c820980b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 136,
+      "title": "New X-Men (2001) #148",
+      "number": "148",
+      "url": "https://www.marvel.com/comics/issue/136/new_x-men_2001_148",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-10-15T00:00:00+0000",
+      "mu": "2003-10-15T00:00:00+0000",
+      "digitalId": 6593,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/577e61629d0c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 124,
+      "title": "New X-Men (2001) #149",
+      "number": "149",
+      "url": "https://www.marvel.com/comics/issue/124/new_x-men_2001_149",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2003-11-26T00:00:00+0000",
+      "digitalId": 6594,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/577e6760e25cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 123,
+      "title": "New X-Men (2001) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/123/new_x-men_2001_150",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2003-12-17T00:00:00+0000",
+      "digitalId": 6595,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/577e6cfba4e76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simon Coleby",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 122,
+      "title": "New X-Men (2001) #151",
+      "number": "151",
+      "url": "https://www.marvel.com/comics/issue/122/new_x-men_2001_151",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-01-07T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 2294,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5e56a3c63c3b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 121,
+      "title": "New X-Men (2001) #152",
+      "number": "152",
+      "url": "https://www.marvel.com/comics/issue/121/new_x-men_2001_152",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2009-12-02T00:00:00+0000",
+      "digitalId": 6596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5e56a3be4278f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 120,
+      "title": "New X-Men (2001) #153",
+      "number": "153",
+      "url": "https://www.marvel.com/comics/issue/120/new_x-men_2001_153",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2009-12-09T00:00:00+0000",
+      "digitalId": 6597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5e56a3c25330d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 420,
+      "title": "New X-Men (2001) #154",
+      "number": "154",
+      "url": "https://www.marvel.com/comics/issue/420/new_x-men_2001_154",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-03-17T00:00:00+0000",
+      "mu": "2010-01-20T00:00:00+0000",
+      "digitalId": 6598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5e56a3b9b9759",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 3001,
+      "title": "Uncanny X-Men (1963) #466",
+      "number": "466",
+      "url": "https://www.marvel.com/comics/issue/3001/uncanny_x-men_1963_466",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2005-11-23T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 337,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/59035553c6705",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3120,
+      "title": "Uncanny X-Men (1963) #467",
+      "number": "467",
+      "url": "https://www.marvel.com/comics/issue/3120/uncanny_x-men_1963_467",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2005-12-14T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 2733,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/592334b9debe7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3143,
+      "title": "Uncanny X-Men (1963) #468",
+      "number": "468",
+      "url": "https://www.marvel.com/comics/issue/3143/uncanny_x-men_1963_468",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-01-18T00:00:00+0000",
+      "mu": "2008-11-05T00:00:00+0000",
+      "digitalId": 7450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/59233724d1d96",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3479,
+      "title": "Uncanny X-Men (1963) #469",
+      "number": "469",
+      "url": "https://www.marvel.com/comics/issue/3479/uncanny_x-men_1963_469",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-02-01T00:00:00+0000",
+      "mu": "2008-11-12T00:00:00+0000",
+      "digitalId": 7451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/592338ca2cb41",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3892,
+      "title": "Uncanny X-Men (1963) #470",
+      "number": "470",
+      "url": "https://www.marvel.com/comics/issue/3892/uncanny_x-men_1963_470",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-03-01T00:00:00+0000",
+      "mu": "2008-11-19T00:00:00+0000",
+      "digitalId": 7452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/59233a6aa6319",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 3893,
+      "title": "Uncanny X-Men (1963) #471",
+      "number": "471",
+      "url": "https://www.marvel.com/comics/issue/3893/uncanny_x-men_1963_471",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2006-03-29T00:00:00+0000",
+      "mu": "2008-11-26T00:00:00+0000",
+      "digitalId": 7453,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/591df27dc43f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 61702,
+      "title": "Thanos (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61702/thanos_2016_6",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-04-26T00:00:00+0000",
+      "mu": "2017-10-30T00:00:00+0000",
+      "digitalId": 44565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/58f7a425c9e81",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48912,
+      "title": "Wolverine & the X-Men (2011) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/48912/wolverine_the_x-men_2011_42",
+      "seriesId": 13910,
+      "seriesName": "Wolverine & the X-Men (2011 - 2014)",
+      "onSale": "2014-02-26T00:00:00+0000",
+      "mu": "2014-08-25T00:00:00+0000",
+      "digitalId": 33035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/594000ca4caec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64417,
+      "title": "Marvel Legacy (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64417/marvel_legacy_2017_1",
+      "seriesId": 23456,
+      "seriesName": "Marvel Legacy (2017)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2018-04-02T00:00:00+0000",
+      "digitalId": 45709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/59c281f4d6414",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Alex Maleev",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Nowlan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66131,
+      "title": "X-Men: Red (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66131/x-men_red_2018_1",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-02-07T00:00:00+0000",
+      "mu": "2018-08-13T00:00:00+0000",
+      "digitalId": 47275,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5a7245cba5279",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66465,
+      "title": "X-Men: Red (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/66465/x-men_red_2018_2",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-03-07T00:00:00+0000",
+      "mu": "2018-09-10T00:00:00+0000",
+      "digitalId": 47489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5a972b641d0d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66717,
+      "title": "X-Men: Red (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/66717/x-men_red_2018_3",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47737,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5ac52588adabd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67589,
+      "title": "X-Men: Red (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/67589/x-men_red_2018_4",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-05-16T00:00:00+0000",
+      "mu": "2018-11-19T00:00:00+0000",
+      "digitalId": 47986,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5af36b3e34923",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70246,
+      "title": "X-Men: Red (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/70246/x-men_red_2018_5",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-06-06T00:00:00+0000",
+      "mu": "2018-12-10T00:00:00+0000",
+      "digitalId": 48254,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5b0f161509b56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67590,
+      "title": "X-Men: Red Annual (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67590/x-men_red_annual_2018_1",
+      "seriesId": 24372,
+      "seriesName": "X-Men: Red Annual (2018)",
+      "onSale": "2018-05-30T00:00:00+0000",
+      "mu": "2018-12-03T00:00:00+0000",
+      "digitalId": 48012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5b05c333a5a59",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Travis Charest",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pascal Alixe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70248,
+      "title": "X-Men: Red (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/70248/x-men_red_2018_6",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-07-18T00:00:00+0000",
+      "mu": "2019-01-21T00:00:00+0000",
+      "digitalId": 48605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5b467305d0699",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carmen Carnero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70250,
+      "title": "X-Men: Red (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/70250/x-men_red_2018_7",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2019-02-25T00:00:00+0000",
+      "digitalId": 48908,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5b748f138417d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carmen Carnero",
+          "role": "penciler"
+        },
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70252,
+      "title": "X-Men: Red (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/70252/x-men_red_2018_8",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-09-26T00:00:00+0000",
+      "mu": "2019-04-01T00:00:00+0000",
+      "digitalId": 49213,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/5ba005db0f903",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carmen Carnero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70254,
+      "title": "X-Men: Red (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/70254/x-men_red_2018_9",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-10-24T00:00:00+0000",
+      "mu": "2019-04-29T00:00:00+0000",
+      "digitalId": 49556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5bc8ff63a1e93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roge Antonio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70255,
+      "title": "X-Men: Red (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/70255/x-men_red_2018_10",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5bdb682507c5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roge Antonio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70256,
+      "title": "X-Men: Red (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/70256/x-men_red_2018_11",
+      "seriesId": 23974,
+      "seriesName": "X-Men: Red (2018)",
+      "onSale": "2018-12-12T00:00:00+0000",
+      "mu": "2019-06-17T00:00:00+0000",
+      "digitalId": 50064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5c083b2785a22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roge Antonio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76789,
+      "title": "X-Force (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76789/x-force_2019_1",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 53038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5db841ad08779",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76790,
+      "title": "X-Force (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76790/x-force_2019_2",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2019-11-27T00:00:00+0000",
+      "mu": "2020-06-01T00:00:00+0000",
+      "digitalId": 53039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/5dc9db848c56d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76791,
+      "title": "X-Force (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/76791/x-force_2019_3",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2019-12-11T00:00:00+0000",
+      "mu": "2020-06-15T00:00:00+0000",
+      "digitalId": 53307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5de549eb267bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76792,
+      "title": "X-Force (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76792/x-force_2019_4",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53308,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/5defb1f7ef4e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76793,
+      "title": "X-Force (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/76793/x-force_2019_5",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2020-01-08T00:00:00+0000",
+      "mu": "2020-07-13T00:00:00+0000",
+      "digitalId": 52710,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5e0a65e760747",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76794,
+      "title": "X-Force (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/76794/x-force_2019_6",
+      "seriesId": 27564,
+      "seriesName": "X-Force (2019 - Present)",
+      "onSale": "2020-01-29T00:00:00+0000",
+      "mu": "2020-08-03T00:00:00+0000",
+      "digitalId": 53608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5e2890822ef3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stephen Segovia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79945,
+      "title": "X-Men (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/79945/x-men_2019_7",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-02-26T00:00:00+0000",
+      "mu": "2020-08-31T00:00:00+0000",
+      "digitalId": 54084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5e28a1ff7befe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79946,
+      "title": "X-Men (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/79946/x-men_2019_8",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-03-11T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5e5835541c3ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79947,
+      "title": "X-Men (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/79947/x-men_2019_9",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-03-25T00:00:00+0000",
+      "mu": "2020-09-28T00:00:00+0000",
+      "digitalId": 54358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5e62ac9e4f616",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79948,
+      "title": "X-Men (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/79948/x-men_2019_10",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-07-29T00:00:00+0000",
+      "mu": "2020-11-02T00:00:00+0000",
+      "digitalId": 54670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5f282a6193e81",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79949,
+      "title": "X-Men (2019) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/79949/x-men_2019_11",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-11-30T00:00:00+0000",
+      "digitalId": 54946,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5f3d36a469d4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91395,
+      "title": "X-Men (2021) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/91395/x-men_2021_7",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2022-01-26T00:00:00+0000",
+      "mu": "2022-05-02T00:00:00+0000",
+      "digitalId": 58560,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/61f98ea2e6bd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91396,
+      "title": "X-Men (2021) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/91396/x-men_2021_8",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2022-02-16T00:00:00+0000",
+      "mu": "2022-05-23T00:00:00+0000",
+      "digitalId": 58665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/6201552f5bb0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Pina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91397,
+      "title": "X-Men (2021) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/91397/x-men_2021_9",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2022-03-02T00:00:00+0000",
+      "mu": "2022-06-06T00:00:00+0000",
+      "digitalId": 58853,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/622780719d422",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "C.F. Villa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91398,
+      "title": "X-Men (2021) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/91398/x-men_2021_10",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2022-04-13T00:00:00+0000",
+      "mu": "2022-07-18T00:00:00+0000",
+      "digitalId": 59183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/6259cb887f8fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Pina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91399,
+      "title": "X-Men (2021) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/91399/x-men_2021_11",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2022-05-11T00:00:00+0000",
+      "mu": "2022-08-15T00:00:00+0000",
+      "digitalId": 59398,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/627534f8ab1be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91400,
+      "title": "X-Men (2021) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/91400/x-men_2021_12",
+      "seriesId": 31324,
+      "seriesName": "X-Men (2021 - Present)",
+      "onSale": "2022-06-22T00:00:00+0000",
+      "mu": "2022-08-29T00:00:00+0000",
+      "digitalId": 59659,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/62b9e0e58506e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107281,
+      "title": "Jean Grey (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/107281/jean_grey_2023_1",
+      "seriesId": 37025,
+      "seriesName": "Jean Grey (2023 - Present)",
+      "onSale": "2023-08-23T00:00:00+0000",
+      "mu": "2023-08-14T08:31:00+0000",
+      "digitalId": 63164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/64ecae0f154b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107283,
+      "title": "Jean Grey (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/107283/jean_grey_2023_2",
+      "seriesId": 37025,
+      "seriesName": "Jean Grey (2023 - Present)",
+      "onSale": "2023-09-27T00:00:00+0000",
+      "mu": "2023-09-14T13:13:00+0000",
+      "digitalId": 63667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/6529904390307",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107284,
+      "title": "Jean Grey (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/107284/jean_grey_2023_3",
+      "seriesId": 37025,
+      "seriesName": "Jean Grey (2023 - Present)",
+      "onSale": "2023-10-25T00:00:00+0000",
+      "mu": "2023-10-05T09:49:00+0000",
+      "digitalId": 63834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/654bb150c0477",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107285,
+      "title": "Jean Grey (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/107285/jean_grey_2023_4",
+      "seriesId": 37025,
+      "seriesName": "Jean Grey (2023 - Present)",
+      "onSale": "2023-11-15T00:00:00+0000",
+      "mu": "2023-11-02T00:00:00+0000",
+      "digitalId": 64102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/654bb067ab86f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109787,
+      "title": "Immortal X-Men (2022) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/109787/immortal_x-men_2022_17",
+      "seriesId": 31375,
+      "seriesName": "Immortal X-Men (2022 - Present)",
+      "onSale": "2023-11-22T00:00:00+0000",
+      "mu": "2023-11-08T00:00:00+0000",
+      "digitalId": 64098,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/654bb013ed873",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Jose Ryp",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

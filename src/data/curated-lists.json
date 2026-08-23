@@ -1611,6 +1611,72 @@
       "coverIssueId": 36489
     },
     {
+      "id": "phalanx-reading-order",
+      "name": "Phalanx",
+      "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+      "type": "character-run",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "phalanx-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/phalanx-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "phalanx_reading_order.json",
+      "characters": [
+        "Phalanx",
+        "Warlock",
+        "Technarchy",
+        "New Mutants",
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Phalanx",
+        "Warlock",
+        "Technarch",
+        "Phalanx Covenant",
+        "Legion of X",
+        "Comic Book Herald"
+      ],
+      "expect": 28,
+      "timeline": null,
+      "coverIssueId": 10353
+    },
+    {
+      "id": "marvels-best-phoenix-comics",
+      "name": "Phoenix",
+      "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
+      "type": "character-run",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvels-best-phoenix-comics.md",
+      "sourcePage": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvels_best_phoenix_comics.json",
+      "characters": [
+        "Phoenix",
+        "Jean Grey",
+        "Rachel Summers",
+        "X-Men"
+      ],
+      "keywords": [
+        "Phoenix",
+        "Jean Grey",
+        "Dark Phoenix",
+        "Rachel Summers",
+        "Comic Book Herald"
+      ],
+      "expect": 53,
+      "timeline": null,
+      "coverIssueId": 8605
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",

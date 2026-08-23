@@ -1,0 +1,214 @@
+{
+  "task_id": "MRT-002-C02",
+  "task_slug": "character-spotlight-batch-one",
+  "parent": {
+    "task_id": "MRT-002-C01",
+    "task_slug": "character-spotlight-guides",
+    "merged_pull_request": 171,
+    "merge_commit": "4151fa448229654023d4e2b11b505e3c04803c34"
+  },
+  "date": "2026-08-23",
+  "mode": "automatic",
+  "stage": "delivery",
+  "status": "in_progress",
+  "direction": {
+    "summary": "Continue Character Spotlight guides using lower-cost deterministic workers for candidate mapping while retaining every protected decision and release action centrally.",
+    "batch_target": "Select the smallest coherent publishable chunk of four to six guides, reducing the count when data or review risk requires it.",
+    "worker_shards": [
+      {
+        "source_ordinals": "1-43",
+        "status": "rejected-no-usable-output",
+        "commit": null,
+        "reason": "The parent stopped the uncommitted scratch parser because it heuristically selected ambiguous series and captured only one issue from source ranges. No scratch files may be inspected or imported."
+      },
+      {
+        "source_ordinals": "44-86",
+        "status": "coordinator-validated-deferred",
+        "commit": "76e460e596a5ea263d41da993505d799d96744c7",
+        "replacementReason": "The original shard 2 session produced no file changes after two immediate restarts and was archived by the parent.",
+        "selection": [
+          "hawkeye",
+          "hercules",
+          "high-evolutionary",
+          "hope-summers",
+          "howard-the-duck",
+          "hulk"
+        ],
+        "recoveryScope": [
+          "hercules",
+          "high-evolutionary",
+          "howard-the-duck"
+        ],
+        "capacityDeferred": [
+          "hawkeye",
+          "hope-summers",
+          "hulk"
+        ],
+        "candidates": [
+          {
+            "id": "hercules-marvel-reading-order",
+            "rows": 242,
+            "status": "deferred-source-boundary-incomplete",
+            "reason": "The exact retained rows omit source-defined whole issues because metadata is unavailable. The proposed complete-guide boundary is therefore not accepted."
+          },
+          {
+            "id": "high-evolutionary-reading-order",
+            "rows": 272,
+            "status": "deferred-source-boundary-incomplete",
+            "reason": "The exact retained rows omit source-defined whole issues and host backups because metadata is unavailable or ambiguous. The proposed complete-guide boundary is therefore not accepted."
+          },
+          {
+            "id": "howard-the-duck-reading-order",
+            "rows": 78,
+            "status": "deferred-source-boundary-incomplete",
+            "reason": "The exact retained rows omit the source-defined Adventures Into Fear #19 debut, the 2002 series, and other whole issues. The proposed complete-guide boundary is therefore not accepted."
+          }
+        ]
+      },
+      {
+        "source_ordinals": "87-128",
+        "status": "coordinator-validated-provisional-candidates",
+        "commit": "f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8",
+        "candidates": [
+          {
+            "id": "phalanx-reading-order",
+            "rows": 28,
+            "status": "selected-for-plan",
+            "centralNotes": [
+              "The live issue-bearing block digest matches the frozen boundary record.",
+              "All 28 rows reproduce the centrally accepted explicit source sequence.",
+              "The two eight-issue partial relationships with the existing X-Men variants are acceptable in principle for a distinct Phalanx guide, but require a final regenerated report and central approval.",
+              "Replace worker source authority and correct the manifest copy before final packet approval."
+            ]
+          },
+          {
+            "id": "marvels-best-phoenix-comics",
+            "rows": 53,
+            "status": "selected-for-plan",
+            "centralNotes": [
+              "The live issue-bearing block digest matches the frozen boundary record.",
+              "All 53 rows reproduce exact issue references or ranges present in the narrative best-of source.",
+              "No provisional relationship exists against the 87-list baseline or Phalanx peer.",
+              "Replace worker source authority before final packet approval."
+            ]
+          }
+        ]
+      }
+    ],
+    "excluded_work": [
+      "Do not duplicate worker mapping work.",
+      "Do not treat worker prose as approval.",
+      "Do not delegate source-boundary acceptance, ambiguous identity decisions, metadata-horizon decisions, subset or partial overlap approval, batch selection, anchor reading, release authority, shared integration edits, Review, PR, CI interpretation, conflict reconciliation, or merge.",
+      "Run exactly one independent post-implementation Review."
+    ],
+    "selected_batch": [
+      {
+        "id": "phalanx-reading-order",
+        "rows": 28
+      },
+      {
+        "id": "marvels-best-phoenix-comics",
+        "rows": 53
+      }
+    ],
+    "selection_rationale": "These are the only centrally admissible candidates. Their 81 selected issue ids are peer-disjoint and all dates are inside the metadata horizon. The batch is reduced below four because shard 2 failed complete source-boundary acceptance and shard 1 produced no usable evidence."
+  },
+  "research": {
+    "artifact": ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md",
+    "posture": "focused",
+    "cycle": 1,
+    "wave": "complete",
+    "status": "complete",
+    "planning_readiness": "ready",
+    "wider": {
+      "status": "complete",
+      "liveLibraryCount": 87,
+      "characterRunCount": 9,
+      "characterStoryCount": 8,
+      "workerAcceptanceContract": "documented",
+      "keyFinding": "Worker reports are provisional until final cross-shard selection and central regeneration against the live library and every selected peer."
+    },
+    "deeper": {
+      "status": "complete",
+      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 supplies the selected Phalanx and Phoenix candidates. Shard 2 commit 76e460e596a5ea263d41da993505d799d96744c7 is digest-valid, but all three candidates are centrally deferred because metadata-driven omissions prevent a complete source boundary. Shard 1 is rejected with no usable output."
+    },
+    "contrarian": {
+      "status": "complete",
+      "result": "The selected pair has valid provisional digests, exact unique rows, no shared issue ids, dates inside the horizon, reciprocal peer-bound reports, and only two known Phalanx partials requiring central approval."
+    }
+  },
+  "plan": {
+    "status": "complete-ready",
+    "artifact": ".copilot-tracking/plans/2026-08-23/character-spotlight-batch-one-plan.md",
+    "details": ".copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md",
+    "critique": ".copilot-tracking/reviews/plans/2026-08-23/character-spotlight-batch-one-plan-critique.md",
+    "maximum_critiques": 1,
+    "critique_runs": 1,
+    "critique_verdict": "revise-resolved",
+    "critique_findings": [
+      "PC-001",
+      "PC-002"
+    ]
+  },
+  "implementation": {
+    "status": "complete",
+    "scope": "full-plan",
+    "changes": ".copilot-tracking/changes/2026-08-23/character-spotlight-batch-one-changes.md",
+    "active_marker": "P04-T02",
+    "completed_markers": [
+      "P01",
+      "P01-T01",
+      "P01-T02",
+      "P02",
+      "P02-T01",
+      "P02-T02",
+      "P03",
+      "P03-T01",
+      "P03-T02",
+      "P04-T01"
+    ]
+  },
+  "review": {
+    "status": "complete",
+    "maximum_runs": 1,
+    "runs": 1,
+    "artifact": ".copilot-tracking/reviews/logs/2026-08-23/character-spotlight-batch-one-review.md",
+    "execution_status": "Complete",
+    "outcome": "Conformant",
+    "findings": []
+  },
+  "pull_request": {
+    "status": "open-final-evidence-checks-required",
+    "number": 172,
+    "required_hosted_checks": [
+      "test (20)",
+      "test (24)",
+      "lint"
+    ],
+    "base_reconciliation": {
+      "status": "not-needed",
+      "origin_main": "d0e9c89af839e05e83cb7e5e8ad838fb4f44c484"
+    },
+    "first_run": {
+      "run_id": 32653621017,
+      "test_20": "passed",
+      "test_24": "passed",
+      "lint": "failed-publication-history"
+    },
+    "publication_remediation": {
+      "status": "hosted-pass",
+      "scope": "eleven feature-branch commits only",
+      "replacement": "shard-02-replacement-worker",
+      "validated_revision": "a5ed0eb170044d76a8f4c4ab3dd3d4b52cdc87bd",
+      "blobs_scanned": 3074,
+      "commit_messages_scanned": 385,
+      "content_findings": 0
+    },
+    "sanitized_retry": {
+      "run_id": 32653898808,
+      "test_20": "passed",
+      "test_24": "passed",
+      "lint": "passed"
+    }
+  }
+}

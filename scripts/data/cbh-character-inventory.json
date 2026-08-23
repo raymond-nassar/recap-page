@@ -2226,13 +2226,18 @@
     "url": "https://www.comicbookherald.com/phalanx-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "All 28 retained source rows resolve exactly inside the metadata horizon; the two partial X-Men relationships are approved because the guide remains a distinct Phalanx path.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "phalanx-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Phalanx"
     ],
@@ -2242,7 +2247,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "3d9f0c8ce6a20179fef369c2c23b83665f49059b2a4fdbdd6b3f4735613ff907",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 90,
@@ -2251,13 +2256,15 @@
     "url": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "All 53 retained source rows resolve exactly inside the metadata horizon and share no issues with the other selected guide.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "marvels-best-phoenix-comics"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Phoenix"
     ],
@@ -2267,7 +2274,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "0a18e6ef50af78738221621b494c66a472417ad582a6109133a86b3271806b2c",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 91,
