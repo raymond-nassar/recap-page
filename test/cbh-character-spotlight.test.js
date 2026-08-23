@@ -17,13 +17,16 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const candidateId = 'white-tiger-ava-ayala';
+const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics'];
+const characterCandidateIds = [...batchCandidateIds, candidateId];
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
 }
 
-async function prePublicationLibraryDigest(manifest) {
-  const lists = manifest.lists.filter((entry) => entry.id !== candidateId);
+async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]) {
+  const excluded = new Set(excludedIds);
+  const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const orderIssueIds = await Promise.all(lists.map(async (entry) => {
     const payload = await readJson(path.join('src', 'data', entry.out || `${entry.id}.json`));
     return {
@@ -34,7 +37,7 @@ async function prePublicationLibraryDigest(manifest) {
   return libraryDigestFor({ ...manifest, lists }, orderIssueIds);
 }
 
-test('the character inventory preserves every central disposition and only ships White Tiger', async () => {
+test('the character inventory preserves every central disposition and ships three spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -45,15 +48,19 @@ test('the character inventory preserves every central disposition and only ships
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 118);
+  assert.equal(dispositionCounts.deferred, 116);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 2);
-  assert.equal(dispositionCounts['pilot-approved'], 1);
+  assert.equal(dispositionCounts['pilot-approved'], 3);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
-  assert.deepEqual(shipped.map((record) => record.id), [candidateId]);
-  assert.deepEqual(shipped[0].catalogIds, [candidateId]);
-  assert.deepEqual(shipped[0].overlapIds, [
+  assert.deepEqual(shipped.map((record) => record.id), characterCandidateIds);
+  assert.deepEqual(shipped[0].catalogIds, ['phalanx-reading-order']);
+  assert.deepEqual(shipped[0].overlapIds, ['xmen-claremont', 'xmen-claremont-complete']);
+  assert.deepEqual(shipped[1].catalogIds, ['marvels-best-phoenix-comics']);
+  assert.deepEqual(shipped[1].overlapIds, []);
+  assert.deepEqual(shipped[2].catalogIds, [candidateId]);
+  assert.deepEqual(shipped[2].overlapIds, [
     'all-new-all-different-avengers',
     'axis',
     'hickman-full',
@@ -87,14 +94,17 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const markdown = await readFile(path.join(root, 'src/data/orders/white-tiger-ava-ayala.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, characterCandidateIds);
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
 
   assert.equal(reviewedLibraryDigest, '587aa7f5980b16cbaae187fda5fa0296ef82ca6c26cfc4e0ad89e84094ecdb03');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
-  assert.equal(regeneratedReport.libraryDigest, reviewedLibraryDigest);
+  assert.deepEqual(
+    regeneratedReport.comparisons.filter((comparison) => !batchCandidateIds.includes(comparison.orderId)),
+    report.comparisons,
+  );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: candidateId,
     inventoryRecord,
@@ -135,7 +145,10 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
 
   const manifestIndex = manifest.lists.findIndex((entry) => entry.id === candidateId);
   assert.ok(manifestIndex >= 0);
-  assert.equal(manifest.lists[manifestIndex + 1].id, 'xmen-claremont');
+  assert.deepEqual(
+    manifest.lists.slice(manifestIndex + 1, manifestIndex + 4).map((entry) => entry.id),
+    ['phalanx-reading-order', 'marvels-best-phoenix-comics', 'xmen-claremont'],
+  );
   assert.equal(manifest.lists[manifestIndex].type, 'character-run');
   assert.equal(manifest.lists[manifestIndex].group, null);
   assert.equal(catalog.lists.find((entry) => entry.id === candidateId).count, 82);
@@ -147,4 +160,91 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
+});
+
+test('the first character batch stays exact through evidence, catalog, and generated data', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, batchCandidateIds);
+  const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
+    id,
+    packet: await readJson(`scripts/data/cbh-packets/${id}.json`),
+    mapping: await readJson(`scripts/data/cbh-mappings/${id}.json`),
+    report: await readJson(`scripts/data/cbh-overlaps/${id}.json`),
+    generated: await readJson(`src/data/${id.replaceAll('-', '_')}.json`),
+    markdown: await readFile(path.join(root, 'src', 'data', 'orders', `${id}.md`), 'utf8'),
+  })));
+  const expected = {
+    'phalanx-reading-order': {
+      count: 28,
+      checkpoints: [10353, 8664, 102527],
+      partials: [
+        { orderId: 'xmen-claremont', relationship: 'partial', sharedCount: 8 },
+        { orderId: 'xmen-claremont-complete', relationship: 'partial', sharedCount: 8 },
+      ],
+    },
+    'marvels-best-phoenix-comics': {
+      count: 53,
+      checkpoints: [8605, 70250, 109787],
+      partials: [],
+    },
+  };
+
+  assert.equal(reviewedLibraryDigest, '5aac85d8ff7e085eb038bb021ccc106b240070648a8fc152f4a60acecee2bdc0');
+  for (const item of evidence) {
+    const peer = evidence.find((candidate) => candidate.id !== item.id);
+    const inventoryRecord = inventory.find((record) => record.id === item.id);
+    const parsed = parseChecklist(item.markdown);
+    const config = expected[item.id];
+    assert.doesNotThrow(() => validateFrozenPacket(item.packet, {
+      expectedId: item.id,
+      inventoryRecord,
+      catalogEntries: manifest.lists,
+    }));
+    assert.doesNotThrow(() => validateMappingDigest(item.mapping));
+    assert.doesNotThrow(() => validateReportDigest(item.report));
+    assert.doesNotThrow(() => assertApprovedRelationshipReview({
+      packet: item.packet,
+      mapping: item.mapping,
+      report: item.report,
+      currentLibraryDigest: reviewedLibraryDigest,
+      peerMappings: [peer.mapping],
+      expectedOrderIds: item.report.comparisons.map((comparison) => comparison.orderId),
+    }));
+
+    assert.equal(item.mapping.rows.length, config.count);
+    assert.equal(item.report.candidateCount, config.count);
+    assert.equal(item.report.comparisonCount, 88);
+    assert.ok(item.mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+    assert.equal(new Set(item.mapping.rows.map((row) => String(row.selectedIssueId))).size, config.count);
+    assert.deepEqual(
+      [item.mapping.rows[0], item.mapping.rows[Math.floor(config.count / 2)], item.mapping.rows.at(-1)]
+        .map((row) => row.selectedIssueId),
+      config.checkpoints,
+    );
+    assert.deepEqual(
+      item.report.comparisons
+        .filter((comparison) => comparison.relationship !== 'none')
+        .map(({ orderId, relationship, sharedCount }) => ({ orderId, relationship, sharedCount })),
+      config.partials,
+    );
+    assert.equal(manifest.lists.find((entry) => entry.id === item.id).group, null);
+    assert.equal(catalog.lists.find((entry) => entry.id === item.id).count, config.count);
+    assert.deepEqual(
+      parsed.entries.map((entry) => String(entry.issueId)),
+      item.mapping.rows.map((row) => String(row.selectedIssueId)),
+    );
+    assert.deepEqual(
+      item.generated.items.map((row) => String(row.issueId)),
+      item.mapping.rows.map((row) => String(row.selectedIssueId)),
+    );
+  }
+
+  const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
+  assert.equal(new Set(allBatchIds).size, 81);
+  assert.equal(catalog.lists.length, 89);
+  const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
+  assert.equal(characterRuns.length, 11);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 10);
 });

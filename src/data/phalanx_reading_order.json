@@ -1,0 +1,980 @@
+{
+  "id": "phalanx-reading-order",
+  "name": "Phalanx",
+  "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+  "source": "https://www.comicbookherald.com/phalanx-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-23T16:37:33.118Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 28,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 10353,
+      "title": "New Mutants (1983) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/10353/new_mutants_1983_18",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1984-08-01T00:00:00+0000",
+      "mu": "1984-08-01T00:00:00+0000",
+      "digitalId": 11357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb5b5b67ee32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10354,
+      "title": "New Mutants (1983) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/10354/new_mutants_1983_19",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1984-09-01T00:00:00+0000",
+      "mu": "1984-09-01T00:00:00+0000",
+      "digitalId": 11358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bb5b5b119c4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10356,
+      "title": "New Mutants (1983) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/10356/new_mutants_1983_20",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1984-10-01T00:00:00+0000",
+      "mu": "1984-10-01T00:00:00+0000",
+      "digitalId": 11359,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/4bb5b5ac0153d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10357,
+      "title": "New Mutants (1983) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/10357/new_mutants_1983_21",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1984-11-01T00:00:00+0000",
+      "mu": "1984-11-01T00:00:00+0000",
+      "digitalId": 6551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/4bae2ef3a2ec8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10358,
+      "title": "New Mutants (1983) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/10358/new_mutants_1983_22",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1984-12-01T00:00:00+0000",
+      "mu": "1984-12-01T00:00:00+0000",
+      "digitalId": 11360,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bb53136cea26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10359,
+      "title": "New Mutants (1983) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/10359/new_mutants_1983_23",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-01-01T00:00:00+0000",
+      "mu": "1985-01-01T00:00:00+0000",
+      "digitalId": 11361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/4bb531308bb05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10360,
+      "title": "New Mutants (1983) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/10360/new_mutants_1983_24",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-02-01T00:00:00+0000",
+      "mu": "1985-02-01T00:00:00+0000",
+      "digitalId": 11362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/4bb5312b2847a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10361,
+      "title": "New Mutants (1983) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/10361/new_mutants_1983_25",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-03-01T00:00:00+0000",
+      "mu": "1985-03-01T00:00:00+0000",
+      "digitalId": 11363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/4bb5b5a6c1a78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10335,
+      "title": "New Mutants Annual (1984) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10335/new_mutants_annual_1984_1",
+      "seriesId": 2053,
+      "seriesName": "New Mutants Annual (1984 - 1991)",
+      "onSale": "1984-01-01T00:00:00+0000",
+      "mu": "1984-01-01T00:00:00+0000",
+      "digitalId": 11364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5bfc671f9112d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13846,
+      "title": "Uncanny X-Men (1963) #305",
+      "number": "305",
+      "url": "https://www.marvel.com/comics/issue/13846/uncanny_x-men_1963_305",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "2013-08-12T10:39:56+0000",
+      "digitalId": 28859,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/59148fb4ef761",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13847,
+      "title": "Uncanny X-Men (1963) #306",
+      "number": "306",
+      "url": "https://www.marvel.com/comics/issue/13847/uncanny_x-men_1963_306",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31261,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/591491112ea65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13853,
+      "title": "Uncanny X-Men (1963) #312",
+      "number": "312",
+      "url": "https://www.marvel.com/comics/issue/13853/uncanny_x-men_1963_312",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1994-05-01T00:00:00+0000",
+      "mu": "2014-05-19T15:36:55+0000",
+      "digitalId": 31263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/537a5ef978177",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13854,
+      "title": "Uncanny X-Men (1963) #313",
+      "number": "313",
+      "url": "https://www.marvel.com/comics/issue/13854/uncanny_x-men_1963_313",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "2014-05-19T15:37:35+0000",
+      "digitalId": 31264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/537a5ec7dc431",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Champagne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8663,
+      "title": "Excalibur (1988) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/8663/excalibur_1988_78",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "1994-06-01T00:00:00+0000",
+      "digitalId": 53354,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5defc4740bafc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Champagne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bernie Wrightson",
+          "role": "penciler"
+        },
+        {
+          "name": "John Royle",
+          "role": "penciler"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8664,
+      "title": "Excalibur (1988) #79",
+      "number": "79",
+      "url": "https://www.marvel.com/comics/issue/8664/excalibur_1988_79",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "1994-07-01T00:00:00+0000",
+      "digitalId": 53355,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5defc4996a211",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Elliott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8666,
+      "title": "Excalibur (1988) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/8666/excalibur_1988_80",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "1994-08-01T00:00:00+0000",
+      "digitalId": 53356,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5defc4a387d09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Champagne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Elliott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amanda Conner",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13857,
+      "title": "Uncanny X-Men (1963) #316",
+      "number": "316",
+      "url": "https://www.marvel.com/comics/issue/13857/uncanny_x-men_1963_316",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2012-09-25T00:00:00+0000",
+      "digitalId": 23501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/591227cf80337",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14324,
+      "title": "X-Men (1991) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/14324/x-men_1991_36",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 23499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/664b514a530dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13858,
+      "title": "Uncanny X-Men (1963) #317",
+      "number": "317",
+      "url": "https://www.marvel.com/comics/issue/13858/uncanny_x-men_1963_317",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2012-09-25T00:00:00+0000",
+      "digitalId": 23502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/5913157c211d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14325,
+      "title": "X-Men (1991) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/14325/x-men_1991_37",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2015-05-26T13:02:24+0000",
+      "digitalId": 23500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5b980992a98ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Sellers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12182,
+      "title": "X-Factor (1986) #106",
+      "number": "106",
+      "url": "https://www.marvel.com/comics/issue/12182/x-factor_1986_106",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 42020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5ab3f7b3b647d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Conrad",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        },
+        {
+          "name": "Kerry Gammill",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18003,
+      "title": "X-Force (1991) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/18003/x-force_1991_38",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 42028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5bae418525af1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Conrad",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8668,
+      "title": "Excalibur (1988) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/8668/excalibur_1988_82",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 42008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5caf57bac407a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Floyd",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Moy",
+          "role": "cover artist"
+        },
+        {
+          "name": "W.C. Carani",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14209,
+      "title": "Wolverine (1988) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/14209/wolverine_1988_85",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 43102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/59a4854a99b8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7389,
+      "title": "Cable (1993) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/7389/cable_1993_16",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 34950,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5b1e8abdb6d6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Sellers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Skroce",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13884,
+      "title": "Uncanny X-Men (1963) #343",
+      "number": "343",
+      "url": "https://www.marvel.com/comics/issue/13884/uncanny_x-men_1963_343",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1997-04-01T00:00:00+0000",
+      "mu": "2013-07-31T00:00:00+0000",
+      "digitalId": 30264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/51a8be96bc22d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13885,
+      "title": "Uncanny X-Men (1963) #344",
+      "number": "344",
+      "url": "https://www.marvel.com/comics/issue/13885/uncanny_x-men_1963_344",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1997-05-01T00:00:00+0000",
+      "mu": "2013-07-31T00:00:00+0000",
+      "digitalId": 30265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/51a8c46d2a773",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Weems",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marlo Alquiza",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Melvin Borillo Rubi",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102527,
+      "title": "Legion of X (2022) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/102527/legion_of_x_2022_10",
+      "seriesId": 33959,
+      "seriesName": "Legion of X (2022 - 2023)",
+      "onSale": "2023-02-01T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/63d28f4b75a03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Netho Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Si Spurrier",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

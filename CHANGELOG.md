@@ -14,6 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Phalanx and Phoenix character spotlight reading guides
+
+In plain English: the Character spotlights shelf now includes complete guides for the Phalanx and
+Phoenix. The Phalanx guide follows 28 issues from the New Mutants through Legion of X, while the
+Phoenix guide collects 53 issue-specific picks through Immortal X-Men. The catalog now has 89
+reading lists. Nothing you have saved is changed.
+
+For maintainers: two frozen packets resolve 81 exact, peer-disjoint rows with no unmatched or
+ambiguous issues. Each guide was compared with all 87 pre-publication lists and the other selected
+guide. Phoenix has no overlap. Phalanx has two approved partial relationships, each sharing the
+same eight Phalanx Covenant issues with a broader X-Men reading.
+
 ### Added the White Tiger character spotlight reading guide
 
 In plain English: the Character spotlights shelf now includes Ava Ayala's complete White Tiger

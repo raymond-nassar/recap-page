@@ -14,9 +14,9 @@
 
 | Phase ID | Name | Status | Detail sections |
 |---|---|---|---|
-| P01 | Centralize selected evidence | in progress | P01, P01-T01, P01-T02 |
-| P02 | Approve and publish both readings | ready after P01 | P02, P02-T01, P02-T02 |
-| P03 | Prove and release the batch | ready after P02 | P03, P03-T01, P03-T02 |
+| P01 | Centralize selected evidence | complete | P01, P01-T01, P01-T02 |
+| P02 | Approve and publish both readings | complete | P02, P02-T01, P02-T02 |
+| P03 | Prove and release the batch | in progress | P03, P03-T01, P03-T02 |
 | P04 | Review and deliver the release | ready after P03 | P04, P04-T01, P04-T02 |
 
 ## Task-Level Context
@@ -100,6 +100,7 @@ and regenerate exact mappings from immutable final packets.
 * `scripts/data/cbh-packets/marvels-best-phoenix-comics.json`
 * `scripts/data/cbh-mappings/phalanx-reading-order.json`
 * `scripts/data/cbh-mappings/marvels-best-phoenix-comics.json`
+* `scripts/data/cbh-character-inventory.json`
 * `scripts/prepare-cbh-batch.mjs`
 
 ### Dependencies
@@ -169,6 +170,8 @@ Create two central frozen packets without changing accepted row sequences.
 #### Context
 
 Changing either packet review or manifest proposal invalidates its mapping digest even when rows stay fixed.
+The named preparation path rejects deferred character records, so the two selected records must receive
+their exact validator-backed terminal tuple before preparation and remain consistent through authoring.
 
 #### Intent
 
@@ -176,13 +179,15 @@ Reproduce both mappings through the named preparation path from final packets.
 
 #### Boundaries
 
-* Included: exact metadata, selected issue ids, source notes, packet binding, and mapping digest.
+* Included: exact inventory terminal state, exact metadata, selected issue ids, source notes, packet
+  binding, and mapping digest.
 * Excluded: manual row substitutions, approved exceptions, ambiguous selections, or peer decisions.
 
 #### Likely Targets
 
 * `scripts/data/cbh-mappings/phalanx-reading-order.json`
 * `scripts/data/cbh-mappings/marvels-best-phoenix-comics.json`
+* `scripts/data/cbh-character-inventory.json`
 * `scripts/prepare-cbh-batch.mjs`
 
 #### Dependencies
@@ -192,6 +197,7 @@ Reproduce both mappings through the named preparation path from final packets.
 #### Validation Expectations
 
 * 81 exact rows, zero unmatched or ambiguous rows, no duplicates within or across mappings.
+* Only inventory positions 89 and 90 change to the exact shipped tuple required by the validator.
 * Mapping digests bind the final packet digests.
 
 #### Completion Evidence
@@ -314,7 +320,7 @@ Publish both selected guides atomically through existing authoring and vendoring
 #### Boundaries
 
 * Included: two source orders, two ungrouped complete manifest entries, two generated payloads,
-  regenerated catalog, and two inventory lifecycle updates.
+  regenerated catalog, and verification of the two inventory lifecycle updates established in P01.
 * Excluded: group variants, another guide, UI code, manual payload editing, and any shard 2 artifact.
 
 #### Likely Targets

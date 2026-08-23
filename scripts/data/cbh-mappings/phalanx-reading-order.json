@@ -1,0 +1,1934 @@
+{
+  "id": "phalanx-reading-order",
+  "inventoryId": "phalanx-reading-order",
+  "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb",
+  "sourceUrl": "https://www.comicbookherald.com/phalanx-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 28,
+  "excludedSourceReferences": [
+    "Related reading-order links",
+    "Wolverine: New Mutants: Dead Souls, Uncanny X-Men: Wolverine & Cyclops, and House of X / Powers of X narrative mentions with no issue numbers stated on this page",
+    "Annihilation Conquest, linked out to a separate Comic Book Herald guide with no issues enumerated on this page",
+    "Editorial commentary and non-issue prose"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "phalanx-reading-order",
+    "name": "Phalanx",
+    "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "phalanx-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/phalanx-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "phalanx_reading_order.json",
+    "characters": [
+      "Phalanx",
+      "Warlock",
+      "Technarchy",
+      "New Mutants",
+      "Uncanny X-Men"
+    ],
+    "keywords": [
+      "Phalanx",
+      "Warlock",
+      "Technarch",
+      "Phalanx Covenant",
+      "Legion of X",
+      "Comic Book Herald"
+    ],
+    "expect": 28,
+    "timeline": null,
+    "coverIssueId": 10353
+  },
+  "candidateMetadata": [
+    {
+      "id": 10353,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #18",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "18",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10353/new_mutants_1983_18",
+      "onSaleDate": "1984-08-01T00:00:00+0000"
+    },
+    {
+      "id": 10354,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #19",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "19",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10354/new_mutants_1983_19",
+      "onSaleDate": "1984-09-01T00:00:00+0000"
+    },
+    {
+      "id": 10356,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #20",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "20",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10356/new_mutants_1983_20",
+      "onSaleDate": "1984-10-01T00:00:00+0000"
+    },
+    {
+      "id": 10357,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #21",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "21",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10357/new_mutants_1983_21",
+      "onSaleDate": "1984-11-01T00:00:00+0000"
+    },
+    {
+      "id": 10358,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #22",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "22",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10358/new_mutants_1983_22",
+      "onSaleDate": "1984-12-01T00:00:00+0000"
+    },
+    {
+      "id": 10359,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #23",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "23",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10359/new_mutants_1983_23",
+      "onSaleDate": "1985-01-01T00:00:00+0000"
+    },
+    {
+      "id": 10360,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #24",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "24",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10360/new_mutants_1983_24",
+      "onSaleDate": "1985-02-01T00:00:00+0000"
+    },
+    {
+      "id": 10361,
+      "title": "New Mutants",
+      "issueTitle": "New Mutants (1983) #25",
+      "seriesTitle": "New Mutants",
+      "apiSeriesName": "New Mutants (1983 - 1991)",
+      "seriesId": 2055,
+      "issueNumber": "25",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10361/new_mutants_1983_25",
+      "onSaleDate": "1985-03-01T00:00:00+0000"
+    },
+    {
+      "id": 10335,
+      "title": "New Mutants Annual",
+      "issueTitle": "New Mutants Annual (1984) #1",
+      "seriesTitle": "New Mutants Annual",
+      "apiSeriesName": "New Mutants Annual (1984 - 1991)",
+      "seriesId": 2053,
+      "issueNumber": "1",
+      "seriesYear": 1984,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10335/new_mutants_annual_1984_1",
+      "onSaleDate": "1984-01-01T00:00:00+0000"
+    },
+    {
+      "id": 13846,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #305",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "305",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13846/uncanny_x-men_1963_305",
+      "onSaleDate": "1993-10-01T00:00:00+0000"
+    },
+    {
+      "id": 13847,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #306",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "306",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13847/uncanny_x-men_1963_306",
+      "onSaleDate": "1993-11-01T00:00:00+0000"
+    },
+    {
+      "id": 13853,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #312",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "312",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13853/uncanny_x-men_1963_312",
+      "onSaleDate": "1994-05-01T00:00:00+0000"
+    },
+    {
+      "id": 13854,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #313",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "313",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13854/uncanny_x-men_1963_313",
+      "onSaleDate": "1994-06-01T00:00:00+0000"
+    },
+    {
+      "id": 8663,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (1988) #78",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (1988 - 1998)",
+      "seriesId": 2011,
+      "issueNumber": "78",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8663/excalibur_1988_78",
+      "onSaleDate": "1994-06-01T00:00:00+0000"
+    },
+    {
+      "id": 8664,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (1988) #79",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (1988 - 1998)",
+      "seriesId": 2011,
+      "issueNumber": "79",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8664/excalibur_1988_79",
+      "onSaleDate": "1994-07-01T00:00:00+0000"
+    },
+    {
+      "id": 8666,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (1988) #80",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (1988 - 1998)",
+      "seriesId": 2011,
+      "issueNumber": "80",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8666/excalibur_1988_80",
+      "onSaleDate": "1994-08-01T00:00:00+0000"
+    },
+    {
+      "id": 13857,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #316",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "316",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13857/uncanny_x-men_1963_316",
+      "onSaleDate": "1994-09-01T00:00:00+0000"
+    },
+    {
+      "id": 14324,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #36",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "36",
+      "seriesYear": 1991,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/14324/x-men_1991_36",
+      "onSaleDate": "1994-09-01T00:00:00+0000"
+    },
+    {
+      "id": 13858,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #317",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "317",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13858/uncanny_x-men_1963_317",
+      "onSaleDate": "1994-10-01T00:00:00+0000"
+    },
+    {
+      "id": 14325,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #37",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "37",
+      "seriesYear": 1991,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/14325/x-men_1991_37",
+      "onSaleDate": "1994-10-01T00:00:00+0000"
+    },
+    {
+      "id": 12182,
+      "title": "X-Factor",
+      "issueTitle": "X-Factor (1986) #106",
+      "seriesTitle": "X-Factor",
+      "apiSeriesName": "X-Factor (1986 - 1998)",
+      "seriesId": 2098,
+      "issueNumber": "106",
+      "seriesYear": 1986,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12182/x-factor_1986_106",
+      "onSaleDate": "1994-09-01T00:00:00+0000"
+    },
+    {
+      "id": 18003,
+      "title": "X-Force",
+      "issueTitle": "X-Force (1991) #38",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (1991 - 2004)",
+      "seriesId": 3633,
+      "issueNumber": "38",
+      "seriesYear": 1991,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/18003/x-force_1991_38",
+      "onSaleDate": "1994-09-01T00:00:00+0000"
+    },
+    {
+      "id": 8668,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (1988) #82",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (1988 - 1998)",
+      "seriesId": 2011,
+      "issueNumber": "82",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8668/excalibur_1988_82",
+      "onSaleDate": "1994-10-01T00:00:00+0000"
+    },
+    {
+      "id": 14209,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (1988) #85",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (1988 - 2003)",
+      "seriesId": 2262,
+      "issueNumber": "85",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/14209/wolverine_1988_85",
+      "onSaleDate": "1994-09-01T00:00:00+0000"
+    },
+    {
+      "id": 7389,
+      "title": "Cable",
+      "issueTitle": "Cable (1993) #16",
+      "seriesTitle": "Cable",
+      "apiSeriesName": "Cable (1993 - 2002)",
+      "seriesId": 1995,
+      "issueNumber": "16",
+      "seriesYear": 1993,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7389/cable_1993_16",
+      "onSaleDate": "1994-10-01T00:00:00+0000"
+    },
+    {
+      "id": 13884,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #343",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "343",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13884/uncanny_x-men_1963_343",
+      "onSaleDate": "1997-04-01T00:00:00+0000"
+    },
+    {
+      "id": 13885,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #344",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "344",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13885/uncanny_x-men_1963_344",
+      "onSaleDate": "1997-05-01T00:00:00+0000"
+    },
+    {
+      "id": 102527,
+      "title": "Legion of X",
+      "issueTitle": "Legion of X (2022) #10",
+      "seriesTitle": "Legion of X",
+      "apiSeriesName": "Legion of X (2022 - 2023)",
+      "seriesId": 33959,
+      "issueNumber": "10",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102527/legion_of_x_2022_10",
+      "onSaleDate": "2023-02-01T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "New Mutants #18",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "18",
+      "seriesId": 2055,
+      "candidateIssueId": 10353,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10353"
+      ],
+      "selectedIssueId": 10353,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10353/new_mutants_1983_18",
+      "resolvedIssueTitle": "New Mutants (1983) #18",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10353
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "New Mutants #19",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "19",
+      "seriesId": 2055,
+      "candidateIssueId": 10354,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10354"
+      ],
+      "selectedIssueId": 10354,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10354/new_mutants_1983_19",
+      "resolvedIssueTitle": "New Mutants (1983) #19",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10354
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "New Mutants #20",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "20",
+      "seriesId": 2055,
+      "candidateIssueId": 10356,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10356"
+      ],
+      "selectedIssueId": 10356,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10356/new_mutants_1983_20",
+      "resolvedIssueTitle": "New Mutants (1983) #20",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10356
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "New Mutants #21",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "21",
+      "seriesId": 2055,
+      "candidateIssueId": 10357,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10357"
+      ],
+      "selectedIssueId": 10357,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10357/new_mutants_1983_21",
+      "resolvedIssueTitle": "New Mutants (1983) #21",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10357
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "New Mutants #22",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "22",
+      "seriesId": 2055,
+      "candidateIssueId": 10358,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10358"
+      ],
+      "selectedIssueId": 10358,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10358/new_mutants_1983_22",
+      "resolvedIssueTitle": "New Mutants (1983) #22",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10358
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "New Mutants #23",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "23",
+      "seriesId": 2055,
+      "candidateIssueId": 10359,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10359"
+      ],
+      "selectedIssueId": 10359,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10359/new_mutants_1983_23",
+      "resolvedIssueTitle": "New Mutants (1983) #23",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10359
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "New Mutants #24",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "24",
+      "seriesId": 2055,
+      "candidateIssueId": 10360,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10360"
+      ],
+      "selectedIssueId": 10360,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10360/new_mutants_1983_24",
+      "resolvedIssueTitle": "New Mutants (1983) #24",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10360
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "New Mutants #25",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "25",
+      "seriesId": 2055,
+      "candidateIssueId": 10361,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10361"
+      ],
+      "selectedIssueId": 10361,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10361/new_mutants_1983_25",
+      "resolvedIssueTitle": "New Mutants (1983) #25",
+      "note": "Marvel series 2055 (New Mutants (1983 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10361
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "New Mutants Annual #1",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants Annual",
+      "seriesYear": 1984,
+      "issueNumber": "1",
+      "seriesId": 2053,
+      "candidateIssueId": 10335,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10335"
+      ],
+      "selectedIssueId": 10335,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10335/new_mutants_annual_1984_1",
+      "resolvedIssueTitle": "New Mutants Annual (1984) #1",
+      "note": "Marvel series 2053 (New Mutants Annual (1984 - 1991)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10335
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Uncanny X-Men #305",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "305",
+      "seriesId": 2258,
+      "candidateIssueId": 13846,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13846"
+      ],
+      "selectedIssueId": 13846,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13846/uncanny_x-men_1963_305",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #305",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference. The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963).",
+      "status": "exact",
+      "selectedIssueIds": [
+        13846
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Uncanny X-Men #306",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "306",
+      "seriesId": 2258,
+      "candidateIssueId": 13847,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13847"
+      ],
+      "selectedIssueId": 13847,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13847/uncanny_x-men_1963_306",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #306",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference. The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963).",
+      "status": "exact",
+      "selectedIssueIds": [
+        13847
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Uncanny X-Men #312",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "312",
+      "seriesId": 2258,
+      "candidateIssueId": 13853,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13853"
+      ],
+      "selectedIssueId": 13853,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13853/uncanny_x-men_1963_312",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #312",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference. The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963).",
+      "status": "exact",
+      "selectedIssueIds": [
+        13853
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Uncanny X-Men #313",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "313",
+      "seriesId": 2258,
+      "candidateIssueId": 13854,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13854"
+      ],
+      "selectedIssueId": 13854,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13854/uncanny_x-men_1963_313",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #313",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference. The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963).",
+      "status": "exact",
+      "selectedIssueIds": [
+        13854
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Excalibur #78",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "78",
+      "seriesId": 2011,
+      "candidateIssueId": 8663,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8663"
+      ],
+      "selectedIssueId": 8663,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8663/excalibur_1988_78",
+      "resolvedIssueTitle": "Excalibur (1988) #78",
+      "note": "Marvel series 2011 (Excalibur (1988 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8663
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Excalibur #79",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "79",
+      "seriesId": 2011,
+      "candidateIssueId": 8664,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8664"
+      ],
+      "selectedIssueId": 8664,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8664/excalibur_1988_79",
+      "resolvedIssueTitle": "Excalibur (1988) #79",
+      "note": "Marvel series 2011 (Excalibur (1988 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8664
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Excalibur #80",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "80",
+      "seriesId": 2011,
+      "candidateIssueId": 8666,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8666"
+      ],
+      "selectedIssueId": 8666,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8666/excalibur_1988_80",
+      "resolvedIssueTitle": "Excalibur (1988) #80",
+      "note": "Marvel series 2011 (Excalibur (1988 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8666
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Uncanny X-Men #316",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "316",
+      "seriesId": 2258,
+      "candidateIssueId": 13857,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13857"
+      ],
+      "selectedIssueId": 13857,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13857/uncanny_x-men_1963_316",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #316",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference. The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963).",
+      "status": "exact",
+      "selectedIssueIds": [
+        13857
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "X-Men #36",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "36",
+      "seriesId": 2265,
+      "candidateIssueId": 14324,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "14324"
+      ],
+      "selectedIssueId": 14324,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14324/x-men_1991_36",
+      "resolvedIssueTitle": "X-Men (1991) #36",
+      "note": "Marvel series 2265 (X-Men (1991 - 2001)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        14324
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Uncanny X-Men #317",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "317",
+      "seriesId": 2258,
+      "candidateIssueId": 13858,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13858"
+      ],
+      "selectedIssueId": 13858,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13858/uncanny_x-men_1963_317",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #317",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference. The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963).",
+      "status": "exact",
+      "selectedIssueIds": [
+        13858
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "X-Men #37",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "37",
+      "seriesId": 2265,
+      "candidateIssueId": 14325,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "14325"
+      ],
+      "selectedIssueId": 14325,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14325/x-men_1991_37",
+      "resolvedIssueTitle": "X-Men (1991) #37",
+      "note": "Marvel series 2265 (X-Men (1991 - 2001)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        14325
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "X-Factor #106",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "106",
+      "seriesId": 2098,
+      "candidateIssueId": 12182,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12182"
+      ],
+      "selectedIssueId": 12182,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12182/x-factor_1986_106",
+      "resolvedIssueTitle": "X-Factor (1986) #106",
+      "note": "Marvel series 2098 (X-Factor (1986 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        12182
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "X-Force #38",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "38",
+      "seriesId": 3633,
+      "candidateIssueId": 18003,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18003"
+      ],
+      "selectedIssueId": 18003,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18003/x-force_1991_38",
+      "resolvedIssueTitle": "X-Force (1991) #38",
+      "note": "Marvel series 3633 (X-Force (1991 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        18003
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Excalibur #82",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "82",
+      "seriesId": 2011,
+      "candidateIssueId": 8668,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8668"
+      ],
+      "selectedIssueId": 8668,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8668/excalibur_1988_82",
+      "resolvedIssueTitle": "Excalibur (1988) #82",
+      "note": "Marvel series 2011 (Excalibur (1988 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8668
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Wolverine #85",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "issueNumber": "85",
+      "seriesId": 2262,
+      "candidateIssueId": 14209,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "14209"
+      ],
+      "selectedIssueId": 14209,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14209/wolverine_1988_85",
+      "resolvedIssueTitle": "Wolverine (1988) #85",
+      "note": "Marvel series 2262 (Wolverine (1988 - 2003)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        14209
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Cable #16",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "16",
+      "seriesId": 1995,
+      "candidateIssueId": 7389,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7389"
+      ],
+      "selectedIssueId": 7389,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7389/cable_1993_16",
+      "resolvedIssueTitle": "Cable (1993) #16",
+      "note": "Marvel series 1995 (Cable (1993 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        7389
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Uncanny X-Men #343",
+      "sourceRangeReference": "Uncanny X-Men #343 to #344",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "343",
+      "seriesId": 2258,
+      "candidateIssueId": 13884,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13884"
+      ],
+      "selectedIssueId": 13884,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13884/uncanny_x-men_1963_343",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #343",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        13884
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Uncanny X-Men #344",
+      "sourceRangeReference": "Uncanny X-Men #343 to #344",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "344",
+      "seriesId": 2258,
+      "candidateIssueId": 13885,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13885"
+      ],
+      "selectedIssueId": 13885,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13885/uncanny_x-men_1963_344",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #344",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        13885
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Legion of X #10",
+      "sourceRangeReference": "Legion of X #10",
+      "normalizedSeriesTitle": "Legion of X",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 33959,
+      "candidateIssueId": 102527,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102527"
+      ],
+      "selectedIssueId": 102527,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102527/legion_of_x_2022_10",
+      "resolvedIssueTitle": "Legion of X (2022) #10",
+      "note": "Marvel series 33959 (Legion of X (2022 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        102527
+      ]
+    }
+  ],
+  "mappingDigest": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495",
+  "packetReview": "MRT-002-C02 final central source review",
+  "approvedManifest": {
+    "id": "phalanx-reading-order",
+    "name": "Phalanx",
+    "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "phalanx-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/phalanx-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "phalanx_reading_order.json",
+    "characters": [
+      "Phalanx",
+      "Warlock",
+      "Technarchy",
+      "New Mutants",
+      "Uncanny X-Men"
+    ],
+    "keywords": [
+      "Phalanx",
+      "Warlock",
+      "Technarch",
+      "Phalanx Covenant",
+      "Legion of X",
+      "Comic Book Herald"
+    ],
+    "expect": 28,
+    "timeline": null,
+    "coverIssueId": 10353
+  },
+  "relationshipReview": {
+    "reportDigest": "6ed2f90708a0bbb1c22ae311850202371768ec4d6f6ce738af611658aad3a22c",
+    "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb",
+    "mappingDigest": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495",
+    "libraryDigest": "5aac85d8ff7e085eb038bb021ccc106b240070648a8fc152f4a60acecee2bdc0",
+    "peerDigests": {
+      "marvels-best-phoenix-comics": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-002-C02 coordinator",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "Eight shared Phalanx Covenant issues are a bounded excerpt inside the broader X-Men reading; this guide adds 20 nonshared issues and remains a distinct Phalanx path.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "Eight shared Phalanx Covenant issues are a bounded excerpt inside the broader X-Men reading; this guide adds 20 nonshared issues and remains a distinct Phalanx path.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 2 partial relationships required explicit approval.",
+    "reviewedAt": "2026-08-23T16:36:05.313Z",
+    "approvalDigest": "912f3bd49a4a25ec7d48a6c05f0471181a0d532a36bfe62fac5637846d0745be"
+  }
+}

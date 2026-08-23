@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "id": "phalanx-reading-order",
+  "inventoryId": "phalanx-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/phalanx-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceBoundary": "Begins with New Mutants (1983) #18 and ends with Legion of X #10. Only sections with an explicit issue-numbered Collects, Issues, or bracketed single-issue heading are included; sections that merely name a collection, one-shot, or another Comic Book Herald guide without stating specific issue numbers on this page are excluded.",
+  "excludedSourceReferences": [
+    "Related reading-order links",
+    "Wolverine: New Mutants: Dead Souls, Uncanny X-Men: Wolverine & Cyclops, and House of X / Powers of X narrative mentions with no issue numbers stated on this page",
+    "Annihilation Conquest, linked out to a separate Comic Book Herald guide with no issues enumerated on this page",
+    "Editorial commentary and non-issue prose"
+  ],
+  "expectedCount": 28,
+  "proposedManifest": {
+    "id": "phalanx-reading-order",
+    "name": "Phalanx",
+    "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+    "type": "character-run",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "phalanx-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/phalanx-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "phalanx_reading_order.json",
+    "characters": [
+      "Phalanx",
+      "Warlock",
+      "Technarchy",
+      "New Mutants",
+      "Uncanny X-Men"
+    ],
+    "keywords": [
+      "Phalanx",
+      "Warlock",
+      "Technarch",
+      "Phalanx Covenant",
+      "Legion of X",
+      "Comic Book Herald"
+    ],
+    "expect": 28,
+    "timeline": null,
+    "coverIssueId": 10353
+  },
+  "insertionAnchor": {
+    "beforeId": "xmen-claremont"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-002-C02 coordinator",
+    "rationale": "Central review revalidated the frozen issue-bearing digest against live WordPress post 42471 and accepted only explicit issue-numbered passages; prose-only Annihilation: Conquest and House of X / Powers of X references remain excluded.",
+    "reviewedAt": "2026-08-23"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "New Mutants #18",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "18",
+      "seriesId": 2055,
+      "candidateIssueId": 10353,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #19",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "19",
+      "seriesId": 2055,
+      "candidateIssueId": 10354,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #20",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "20",
+      "seriesId": 2055,
+      "candidateIssueId": 10356,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #21",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "21",
+      "seriesId": 2055,
+      "candidateIssueId": 10357,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #22",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "22",
+      "seriesId": 2055,
+      "candidateIssueId": 10358,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #23",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "23",
+      "seriesId": 2055,
+      "candidateIssueId": 10359,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #24",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "24",
+      "seriesId": 2055,
+      "candidateIssueId": 10360,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #25",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "25",
+      "seriesId": 2055,
+      "candidateIssueId": 10361,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants Annual #1",
+      "sourceRangeReference": "New Mutants (1983) #18-25 and Annual #1",
+      "normalizedSeriesTitle": "New Mutants Annual",
+      "seriesYear": 1984,
+      "issueNumber": "1",
+      "seriesId": 2053,
+      "candidateIssueId": 10335,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #305",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "305",
+      "seriesId": 2258,
+      "candidateIssueId": 13846,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963)."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #306",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "306",
+      "seriesId": 2258,
+      "candidateIssueId": 13847,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963)."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #312",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "312",
+      "seriesId": 2258,
+      "candidateIssueId": 13853,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963)."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #313",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "313",
+      "seriesId": 2258,
+      "candidateIssueId": 13854,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963)."
+    },
+    {
+      "sourceIssueReference": "Excalibur #78",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "78",
+      "seriesId": 2011,
+      "candidateIssueId": 8663,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #79",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "79",
+      "seriesId": 2011,
+      "candidateIssueId": 8664,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #80",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "80",
+      "seriesId": 2011,
+      "candidateIssueId": 8666,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #316",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "316",
+      "seriesId": 2258,
+      "candidateIssueId": 13857,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963)."
+    },
+    {
+      "sourceIssueReference": "X-Men #36",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "36",
+      "seriesId": 2265,
+      "candidateIssueId": 14324,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #317",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "317",
+      "seriesId": 2258,
+      "candidateIssueId": 13858,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source labels Uncanny X-Men as (1981); Marvel's metadata groups this run as (1963)."
+    },
+    {
+      "sourceIssueReference": "X-Men #37",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "37",
+      "seriesId": 2265,
+      "candidateIssueId": 14325,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #106",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "106",
+      "seriesId": 2098,
+      "candidateIssueId": 12182,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #38",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "38",
+      "seriesId": 3633,
+      "candidateIssueId": 18003,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #82",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "82",
+      "seriesId": 2011,
+      "candidateIssueId": 8668,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine #85",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "issueNumber": "85",
+      "seriesId": 2262,
+      "candidateIssueId": 14209,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable #16",
+      "sourceRangeReference": "Phalanx Covenant: Uncanny X-Men (1981) 305-306, 312-313, 316-317; Excalibur (1988) 78-80, 82; X-Men (1991) 36-37; X-Factor (1986) 106; X-Force (1991) 38; Wolverine (1988) 85; Cable (1993) 16",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "16",
+      "seriesId": 1995,
+      "candidateIssueId": 7389,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #343",
+      "sourceRangeReference": "Uncanny X-Men #343 to #344",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "343",
+      "seriesId": 2258,
+      "candidateIssueId": 13884,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #344",
+      "sourceRangeReference": "Uncanny X-Men #343 to #344",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "344",
+      "seriesId": 2258,
+      "candidateIssueId": 13885,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Legion of X #10",
+      "sourceRangeReference": "Legion of X #10",
+      "normalizedSeriesTitle": "Legion of X",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 33959,
+      "candidateIssueId": 102527,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb"
+}

@@ -201,40 +201,41 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 ## Phase Checklist
 
 <!-- rpi:phase id=P01 -->
-### [ ] P01: Centralize selected evidence
+### [x] P01: Centralize selected evidence
 
 * Intent: Reproduce only the accepted Phalanx and Phoenix packet and mapping evidence under central
   source authority.
 * Dependencies: Completed Research and verified shard 3 commit.
-* Implementation status: P01-T01 in progress.
+* Implementation status: Complete.
 
 <!-- rpi:task id=P01-T01 -->
-#### [ ] P01-T01: Import and correct the selected packets
+#### [x] P01-T01: Import and correct the selected packets
 
 * Requirement and evidence: Research accepts both row boundaries but rejects worker authority and the
   Phalanx manifest claims for excluded narrative sections.
 * Expected result: two centrally reviewed packets preserve 28 and 53 rows with corrected copy and fresh
   packet digests.
 * Detail section: P01-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md
-* Implementation status: in progress.
+* Implementation status: Complete.
 
 <!-- rpi:task id=P01-T02 -->
-#### [ ] P01-T02: Regenerate exact mappings
+#### [x] P01-T02: Regenerate exact mappings
 
 * Requirement and evidence: Central packet changes invalidate both worker mapping digests.
-* Expected result: two exact, unique, peer-disjoint mappings reproduce all 81 accepted rows and remain
+* Expected result: the two inventory records first receive their exact validator-backed terminal tuple,
+  then named preparation reproduces two exact, unique, peer-disjoint mappings for all 81 accepted rows
   inside the metadata horizon.
 * Detail section: P01-T02 in .copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md
 
 <!-- rpi:phase id=P02 -->
-### [ ] P02: Approve and publish both readings
+### [x] P02: Approve and publish both readings
 
 * Intent: Bind the final packets and mappings to fresh live-library, peer, and central approval evidence,
   then publish through one guarded batch.
 * Dependencies: P01.
 
 <!-- rpi:task id=P02-T01 -->
-#### [ ] P02-T01: Regenerate and approve all relationships
+#### [x] P02-T01: Regenerate and approve all relationships
 
 * Requirement and evidence: Reports must compare 87 live readings plus the reciprocal peer, and the two
   Phalanx partials require central authority.
@@ -242,7 +243,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P02-T01 in .copilot-tracking/details/2026-08-23/character-spotlight-batch-one-phase-details.md
 
 <!-- rpi:task id=P02-T02 -->
-#### [ ] P02-T02: Author and vendor the two-guide batch
+#### [x] P02-T02: Author and vendor the two-guide batch
 
 * Requirement and evidence: Guarded multi-guide authoring must validate the complete peer set before any
   shared write.
@@ -256,9 +257,10 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Intent: Lock semantic behavior, reconcile product records, verify the real browser surface, and prepare
   one review-ready implementation.
 * Dependencies: P02.
+* Implementation status: P03-T01 complete; P03-T02 in progress.
 
 <!-- rpi:task id=P03-T01 -->
-#### [ ] P03-T01: Extend semantic and regression coverage
+#### [x] P03-T01: Extend semantic and regression coverage
 
 * Requirement and evidence: Existing Character Spotlight tests own inventory, evidence, catalog, shelf,
   and sequence semantics and must move from one shipped pilot to three shipped guides.
@@ -333,7 +335,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 | Exact mappings and approvals | `scripts/data/cbh-mappings/phalanx-reading-order.json`; `scripts/data/cbh-mappings/marvels-best-phoenix-comics.json` | Add two centrally regenerated files with final approval evidence |
 | Relationship reports | `scripts/data/cbh-overlaps/phalanx-reading-order.json`; `scripts/data/cbh-overlaps/marvels-best-phoenix-comics.json` | Add two 88-comparison reports with reciprocal peer digests |
 | Canonical source orders | `src/data/orders/phalanx-reading-order.md`; `src/data/orders/marvels-best-phoenix-comics.md` | Add two generated-from-approved-mapping source orders |
-| Canonical inventory | `scripts/data/cbh-character-inventory.json` | Mutate only positions 89 and 90 to `new-order` / `shipped` / `pilot-approved` / horizon `approved`; assign self catalog ids; assign Phalanx the two approved X-Men overlap ids and Phoenix none |
+| Canonical inventory | `scripts/data/cbh-character-inventory.json` | In P01, mutate only positions 89 and 90 to `new-order` / `shipped` / `pilot-approved` / horizon `approved` so named preparation accepts them; assign self catalog ids; assign Phalanx the two approved X-Men overlap ids and Phoenix none; P02 verifies the tuple against authored output |
 | Canonical manifest | `src/data/curated-lists.json` | Insert two ungrouped complete `character-run` entries before `xmen-claremont`; remove, retype, or move none |
 | Generated payloads | `src/data/phalanx_reading_order.json`; `src/data/marvels_best_phoenix_comics.json` | Add two exact ordered payloads |
 | Generated catalog | `src/data/catalog.json` | Regenerate from the two manifest insertions |

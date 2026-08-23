@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T09:04:07.148Z",
+  "generatedAt": "2026-08-23T16:37:33.146Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1871,6 +1871,82 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T09:04:07.076Z"
+    },
+    {
+      "id": "phalanx-reading-order",
+      "file": "phalanx_reading_order.json",
+      "name": "Phalanx",
+      "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",
+      "type": "character-run",
+      "depth": "complete",
+      "count": 28,
+      "collections": 0,
+      "characters": [
+        "Phalanx",
+        "Warlock",
+        "Technarchy",
+        "New Mutants",
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Phalanx",
+        "Warlock",
+        "Technarch",
+        "Phalanx Covenant",
+        "Legion of X",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 10353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb5b5b67ee32",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/phalanx-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T16:37:33.118Z"
+    },
+    {
+      "id": "marvels-best-phoenix-comics",
+      "file": "marvels_best_phoenix_comics.json",
+      "name": "Phoenix",
+      "description": "The Phoenix Force across Marvel Comics as told through Jean Grey, Rachel Summers, and other hosts, limited to the passages of this best-of guide that name an exact issue or issue range.",
+      "type": "character-run",
+      "depth": "complete",
+      "count": 53,
+      "collections": 0,
+      "characters": [
+        "Phoenix",
+        "Jean Grey",
+        "Rachel Summers",
+        "X-Men"
+      ],
+      "keywords": [
+        "Phoenix",
+        "Jean Grey",
+        "Dark Phoenix",
+        "Rachel Summers",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 8605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5d0902bef2efe",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T16:37:33.121Z"
     },
     {
       "id": "xmen-claremont",
