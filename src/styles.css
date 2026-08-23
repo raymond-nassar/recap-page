@@ -223,12 +223,12 @@ a { color: var(--blue); }
   border-radius: 6px;
 }
 
-/* Headings are focused programmatically when a view changes, purely so screen readers
-   announce the new context. That is not a keyboard landing spot, so it should not draw a
-   focus ring, so the ring would appear without the user having pressed anything. */
-h1[tabindex="-1"]:focus,
-h2[tabindex="-1"]:focus {
-  outline: none;
+/* A view change deliberately moves keyboard focus to its heading. Keep that landing point visible
+   so the spoken context change and the visual context change identify the same place. */
+.view h1[tabindex="-1"]:focus,
+.catalog-card-title[tabindex="-1"]:focus {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
 }
 
 .visually-hidden {
@@ -1020,7 +1020,7 @@ button.timeline-year:hover, button.timeline-year:focus-visible {
 }
 .timeline-year.is-empty {
   display: inline-flex; align-items: center; justify-content: center;
-  color: var(--muted); opacity: .58; cursor: default;
+  color: var(--muted); cursor: default;
 }
 
 .catalog-grid {

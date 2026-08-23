@@ -12,7 +12,7 @@ import {
   setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, progressSummary, progressGroups, completionState, orderWord, orderStates, heldCount,
 } from './lib/model.js';
 import { parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl, resolveUniqueExact } from './lib/markdown.js';
-import { LIBRARY_VIEWS } from './lib/library.js';
+import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
 import { compareIssues } from './lib/sort.js';
 import {
@@ -1072,7 +1072,7 @@ async function newEmptyList() {
   const name = await askText({
     title: 'New Reading List',
     label: 'Name for the new list',
-    value: 'My Reading List',
+    value: DEFAULT_LIST_NAME,
     confirmLabel: 'Create list',
   });
   if (!name) return;
@@ -1207,9 +1207,6 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
 function showView(next, { focus = true, push = false } = {}) {
-  // `#/add` was the one address for all five workflows before they became pages. Keep accepting it,
-  // but show and write the search page so Back, reload and the rail all agree on one canonical route.
-  if (next === 'add') next = 'add-search';
   // There is nothing to read without an active list, so the reading view hands over to the
   // landing page rather than showing an empty frame with a heading over it. `Object.hasOwn` for
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a
@@ -1217,6 +1214,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
 
   view = next;
+  warmNameIndexForView(next);
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
     if (panel) panel.hidden = name !== next;
@@ -3143,16 +3141,9 @@ function wireAdd() {
 
 const NAME_SEARCH_LIMIT = 40;
 
-function wireNameSearch({ section, form, input, results, kind, many, btnClass, search, onAdd }) {
-  // The index is a few hundred kilobytes, so it is never part of the initial page load. The old
-  // combined screen warmed it when its disclosure opened. Its replacement is a page, so entering
-  // the page by pointer or keyboard is the equivalent signal. Warming is idempotent and a failed
-  // warm is ignored: this is only a head start, and the search itself reports the failure properly.
-  const page = $(section);
-  const warm = () => api.warmNameIndex(kind);
-  page.addEventListener('pointerenter', warm, { once: true });
-  page.addEventListener('focusin', warm, { once: true });
-
+function wireNameSearch({
+  section: _section, form, input, results, kind: _kind, many, btnClass, search, onAdd,
+}) {
   $(form).addEventListener('submit', async (e) => {
     e.preventDefault();
     const q = $(input).value.trim();
@@ -3199,6 +3190,13 @@ function wireNameSearch({ section, form, input, results, kind, many, btnClass, s
   });
 }
 
+// Route entry is the reliable signal: direct hashes and browser history can reveal these pages
+// without either a pointer crossing the section or focus entering one of its controls.
+function warmNameIndexForView(name) {
+  const kind = name === 'add-series' ? 'series' : name === 'add-creator' ? 'creators' : null;
+  if (kind) void api.warmNameIndex(kind);
+}
+
 const count = (n) => Number(n ?? 0).toLocaleString();
 
 // Reuses the curated catalog's UTC date formatting, for the same reason: a snapshot taken at
@@ -3212,7 +3210,7 @@ function addDestination() {
   const target = store.state.lists[activeListId()];
   return target
     ? `Adding to “${target.name}”.`
-    : 'Adding will start a new list called “My Reading List”.';
+    : `Adding will start a new list called “${DEFAULT_LIST_NAME}”.`;
 }
 
 function renderResults(sel, items, metaFn) {
@@ -3273,7 +3271,7 @@ function ensureList(name) {
 }
 
 function addToActive(issues, message, { sort = false } = {}) {
-  const id = ensureList('My Reading List');
+  const id = ensureList(DEFAULT_LIST_NAME);
   if (!id) return { added: 0, skipped: 0, ok: false, listName: null };
   let added = 0, skipped = 0;
   store.update((s) => {
@@ -3354,7 +3352,7 @@ function doImport() {
     listId = created.listOrder[created.listOrder.length - 1];
     store.update((s) => setActive(s, listId));
   } else {
-    listId = ensureList('My Reading List');
+    listId = ensureList(DEFAULT_LIST_NAME);
     if (!listId) return notify('#import-report', 'Could not create a list, so nothing was imported.', 'error');
   }
 
@@ -3647,7 +3645,7 @@ function doManual() {
   // no account and no request to anyone.
   const digitalId = digitalIdFromUrl(url);
   const detail = manualDetailUrl(url, digitalId);
-  const listId = ensureList('My Reading List');
+  const listId = ensureList(DEFAULT_LIST_NAME);
   if (!listId) return notify('#manual-report', 'Could not create a list, so nothing was added.', 'error');
 
   // Report what actually happened rather than assuming success. This previously announced
@@ -3906,9 +3904,10 @@ function renderTimelineSpine(stories) {
     if (!yearCount) {
       return el('span', {
         class: 'timeline-year is-empty',
-        'aria-label': `${year}, no Reading Lists`,
-        text: `${year}`,
-      });
+      }, [
+        el('span', { 'aria-hidden': 'true', text: `${year}` }),
+        el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
+      ]);
     }
     return el('button', {
       class: 'timeline-year',

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,14 +10,28 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
+const library = read('src/js/lib/library.js');
 const styles = read('src/styles.css');
+function filesUnder(relativeDir, extension) {
+  const out = [];
+  const visit = (relativeDirPath) => {
+    for (const entry of readdirSync(join(ROOT, relativeDirPath), { withFileTypes: true })) {
+      const relativePath = join(relativeDirPath, entry.name);
+      if (entry.isDirectory()) visit(relativePath);
+      else if (entry.isFile() && entry.name.endsWith(extension)) out.push(relativePath);
+    }
+  };
+  visit(relativeDir);
+  return out;
+}
+
 const productCopy = [
   html.replace(/<!--[\s\S]*?-->/g, ''),
   main.replace(/^\s*\/\/.*$/gm, ''),
   read('src/js/lib/catalog.js').replace(/^\s*\/\/.*$/gm, ''),
-  read('src/js/lib/library.js').replace(/^\s*\/\/.*$/gm, ''),
-  read('src/data/catalog.json'),
-  read('src/data/curated-lists.json'),
+  library.replace(/^\s*\/\/.*$/gm, ''),
+  ...filesUnder('src/data', '.json').map(read),
+  ...filesUnder(join('src', 'data', 'orders'), '.md').map(read),
 ].join('\n');
 
 function between(source, startText, endText) {
@@ -45,6 +59,13 @@ test('product copy uses Reading List everywhere and capitalizes both words', () 
   assert.ok(terms.length > 0, 'the product no longer contains any Reading List labels to check');
   assert.deepEqual([...new Set(terms)].sort(), ['Reading List', 'Reading Lists']);
   assert.doesNotMatch(productCopy, /\breading\s+\$\{/i, 'a dynamic label can bypass the capitalization contract');
+  assert.equal(
+    [...library.matchAll(/['"]My Reading List['"]/g)].length,
+    1,
+    'the default list name must have one source rather than repeated literals',
+  );
+  assert.doesNotMatch(main, /['"]My Reading List['"]/);
+  assert.match(main, /ensureList\(DEFAULT_LIST_NAME\)/);
 });
 
 test('Search issues groups the destinations the app can actually open', () => {

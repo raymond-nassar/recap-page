@@ -4,7 +4,9 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { ADD_VIEWS, VIEWS } from '../src/js/lib/route.js';
+import {
+  ADD_VIEWS, LEGACY_VIEW_ALIASES, VIEWS, formatRoute, parseRoute,
+} from '../src/js/lib/route.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -43,11 +45,27 @@ test('the five Add choices are five routes and five pages', () => {
 });
 
 test('the old Add address is accepted and canonicalised to Search issues', () => {
-  assert.ok(VIEWS.includes('add'), 'the legacy route is no longer parseable');
+  assert.equal(VIEWS.includes('add'), false, 'the compatibility alias is still treated as a panel');
+  assert.equal(LEGACY_VIEW_ALIASES.add, 'add-search');
+  assert.deepEqual(parseRoute('#/add'), { view: 'add-search', listId: null, filter: null });
+  assert.equal(formatRoute({ view: 'add' }), '#/add-search');
+});
+
+test('series and creator indexes warm when their pages open by any route', () => {
   assert.match(
     main,
-    /function showView\(next[\s\S]*?if \(next === 'add'\) next = 'add-search';/,
-    'showView no longer canonicalises the legacy route',
+    /view = next;\s*warmNameIndexForView\(next\);/,
+    'view entry no longer starts the relevant name index',
+  );
+  assert.match(
+    main,
+    /function warmNameIndexForView\(name\)[\s\S]*name === 'add-series' \? 'series' : name === 'add-creator' \? 'creators'/,
+    'the two name-search pages no longer map to their indexes',
+  );
+  assert.doesNotMatch(
+    main,
+    /addEventListener\('(pointerenter|focusin)', warm/,
+    'index warming still depends on pointer or focus entry',
   );
 });
 
@@ -132,13 +150,6 @@ test('the optional reader address is behind a disclosure on the manual page', ()
     /<details class="field-disclosure">[\s\S]*?<summary>Add a reader link \(optional\)<\/summary>[\s\S]*?id="manual-url"/,
     'the address field is standing open or its disclosure lost its label',
   );
-});
-
-test('series and creator indexes warm when their pages are entered', () => {
-  const start = main.indexOf('function wireNameSearch');
-  const body = main.slice(start, main.indexOf('function snapshot', start));
-  assert.match(body, /page\.addEventListener\('pointerenter', warm, \{ once: true \}\);/);
-  assert.match(body, /page\.addEventListener\('focusin', warm, \{ once: true \}\);/);
 });
 
 test('every repeated Add view row action keeps the paired grey secondary classes', () => {

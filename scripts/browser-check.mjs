@@ -35,6 +35,9 @@ import { APP_VERSION } from '../src/js/lib/version.js';
 import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
+import {
+  decadeSections, eraSections, groupCatalog, shelfSections,
+} from '../src/js/lib/catalog.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -190,8 +193,10 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Six entries make five stories, three of them on a path and two off it. The third stop is a
-// story read two ways, which is the case the shelf and the path disagree about most easily: the
+// Sixteen entries make fifteen stories, three of them on a path and two off it. The ten extra
+// events put the Timeline over its search threshold, so the year-jump scenario can begin narrowed.
+// The third stop is a story read two ways, which is the case the shelf and the path disagree about
+// most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
 // named the way the row is or it points at something not on screen.
 //
@@ -212,6 +217,11 @@ const CATALOG = {
     }),
     shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
     shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run' }),
+    ...Array.from({ length: 10 }, (_, index) => shelfEntry(
+      `browser-check-extra-${index + 1}`,
+      `Fixture Event ${index + 1}`,
+      { timeline: 2008 },
+    )),
   ],
   paths: [
     {
@@ -226,6 +236,13 @@ const CATALOG = {
   ],
 };
 
+const FIXTURE_SHELVES = new Map(
+  shelfSections(groupCatalog(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
+);
+const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
+const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
+const TIMELINE_JUMP_YEAR = CATALOG.lists[0].timeline;
+
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
 const ORDER_COUNT = ORDER.items.length;
 const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
@@ -237,6 +254,15 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // are injected into the page rather than edited into a source file, so a killed run cannot leave
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
+  {
+    id: 'timeline-reset',
+    breaks: 'shelf-sections',
+    why: 'choosing a year leaves the active search in place, so the destination story never returns',
+    rewriteMain: (source) => source.replace(
+      / {2}clearNarrowing\('catalog'\);\r?\n {2}await renderCatalogShelf\('catalog'\);/,
+      "  await renderCatalogShelf('catalog');",
+    ),
+  },
   {
     id: 'rail-bleed',
     breaks: 'rail-collapse',
@@ -630,9 +656,12 @@ const SCENARIOS = [
 
       const shelf = await readShelf('#catalog-results');
       const heads = shelf.filter((x) => x.kind === 'head');
+      const expectedTimelineHeadings = FIXTURE_TIMELINE_SECTIONS.map((section) => section.heading);
+      const expectedTimelineHeading = FIXTURE_TIMELINE_SECTIONS[0]?.heading;
 
-      t.check('the Timeline draws the era containing the fixture events',
-        heads.length === 1 && heads[0]?.heading === 'Disassembled to Civil War', heads.map((h) => h.heading).join(' / '));
+      t.check('the Timeline draws the derived eras containing the fixture events',
+        heads.map((head) => head.heading).join('/') === expectedTimelineHeadings.join('/'),
+        heads.map((h) => h.heading).join(' / '));
       t.check('the era says what its part of the timeline is for', heads[0]?.blurb.length > 40, JSON.stringify(heads[0]?.blurb));
 
       // The view titles itself with an h1 and every card titles itself with an h3, so h2 is the level
@@ -650,13 +679,75 @@ const SCENARIOS = [
       }
       t.check('every stop of the path is on the shelf', under.size === 3, JSON.stringify([...under]));
       t.check('and every one of them sits under the same era',
-        [...under.values()].every((h) => h === 'Disassembled to Civil War'), JSON.stringify([...under]));
+        [...under.values()].every((h) => h === expectedTimelineHeading), JSON.stringify([...under]));
+
+      const emptyYear = await page.$eval('.timeline-year.is-empty', (el) => {
+        const channel = (text) => (text.match(/[\d.]+/g) ?? []).slice(0, 3).map(Number);
+        const luminance = (text) => {
+          const linear = channel(text).map((value) => {
+            const srgb = value / 255;
+            return srgb <= 0.04045 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+          });
+          return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+        };
+        const style = getComputedStyle(el);
+        const surface = getComputedStyle(el.closest('.timeline-spine'));
+        const foreground = luminance(style.color);
+        const background = luminance(surface.backgroundColor);
+        return {
+          ariaLabel: el.getAttribute('aria-label'),
+          hiddenText: el.querySelector('.visually-hidden')?.textContent ?? null,
+          opacity: style.opacity,
+          contrast: (Math.max(foreground, background) + 0.05)
+            / (Math.min(foreground, background) + 0.05),
+        };
+      });
+      t.check('an empty Timeline year carries its meaning as real assistive text',
+        emptyYear.ariaLabel === null && emptyYear.hiddenText === '2007, no Reading Lists',
+        JSON.stringify(emptyYear));
+      t.check('and its small text keeps normal-text contrast at full opacity',
+        emptyYear.opacity === '1' && emptyYear.contrast >= 4.5, JSON.stringify(emptyYear));
+
+      await page.type('#catalog-q', 'Second Stop');
+      await page.waitForFunction(
+        () => document.querySelectorAll('#catalog-results .catalog-card').length === 1,
+      );
+      await page.evaluate(() => {
+        const scroll = Element.prototype.scrollIntoView;
+        Element.prototype.scrollIntoView = function (...args) {
+          window.__timelineScrollTarget = this.id;
+          return scroll.apply(this, args);
+        };
+      });
+      await click(page, `#catalog-years button[aria-label^="${TIMELINE_JUMP_YEAR},"]`);
+      await page.waitForFunction(
+        (count) => document.querySelectorAll('#catalog-results .catalog-card').length === count,
+        {},
+        FIXTURE_SHELVES.get('catalog').length,
+      );
+      const jump = await page.evaluate(() => ({
+        query: document.querySelector('#catalog-q')?.value ?? null,
+        cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+        scrollTarget: window.__timelineScrollTarget ?? null,
+        focusText: document.activeElement?.textContent?.trim() ?? null,
+        focusOutline: getComputedStyle(document.activeElement).outline,
+      }));
+      t.check('choosing a populated Timeline year clears a prior search', jump.query === '', JSON.stringify(jump));
+      t.check('and restores the complete event shelf',
+        jump.cards === FIXTURE_SHELVES.get('catalog').length, JSON.stringify(jump));
+      t.check('and scrolls to the first story in that year',
+        jump.scrollTarget === `catalog-year-${TIMELINE_JUMP_YEAR}`, JSON.stringify(jump));
+      t.check('and moves focus to that story heading',
+        jump.focusText === CATALOG.lists[0].name, JSON.stringify(jump));
+      t.check('and leaves a visible ring at the focus destination',
+        jump.focusOutline.includes('solid') && !jump.focusOutline.startsWith('0px'), JSON.stringify(jump));
 
       await click(page, '[data-view="lines"]');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
       const lines = await readShelf('#lines-results');
+      const expectedStorylineHeading = FIXTURE_STORYLINE_SECTIONS[0]?.heading;
       t.check('Storylines holds the whole-line reading under its derived decade',
-        lines.filter((x) => x.kind === 'head').map((x) => x.heading).join('/') === '2010s'
+        lines.filter((x) => x.kind === 'head').map((x) => x.heading).join('/') === expectedStorylineHeading
         && lines.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Across the Line',
         JSON.stringify(lines));
 
@@ -692,7 +783,9 @@ const SCENARIOS = [
       const middle = row('Second Stop');
       const last = row('Third Stop');
 
-      t.check('the shelf draws one card per event story, not one per reading', rows.length === 3, `${rows.length} cards: ${rows.map((r) => r.title).join(' / ')}`);
+      t.check('the shelf draws one card per event story, not one per reading',
+        rows.length === FIXTURE_SHELVES.get('catalog').length,
+        `${rows.length} cards: ${rows.map((r) => r.title).join(' / ')}`);
       t.check('a story read two ways is on the shelf under its own name', Boolean(last), rows.map((r) => r.title).join(' / '));
 
       t.check('the first stop is badged so a reader can find it at a glance', first?.step?.startsWith('Start here') === true, JSON.stringify(first?.step));
@@ -1262,8 +1355,12 @@ const SCENARIOS = [
       const landed = await page.evaluate(() => ({
         tag: document.activeElement?.tagName ?? null,
         id: document.activeElement?.id ?? null,
+        outline: getComputedStyle(document.activeElement).outline,
       }));
-      t.check('focus lands on the heading of the screen being read, not on the body', landed.tag !== 'BODY' && landed.id === 'catalog-h', JSON.stringify(landed));
+      t.check('focus lands visibly on the heading of the screen being read, not on the body',
+        landed.tag !== 'BODY' && landed.id === 'catalog-h'
+        && landed.outline.includes('solid') && !landed.outline.startsWith('0px'),
+        JSON.stringify(landed));
 
       const afterDismiss = await readState(page);
       t.check('dismissing does not put the list back', Object.keys(afterDismiss?.lists ?? {}).length === 0, JSON.stringify(Object.keys(afterDismiss?.lists ?? {})));

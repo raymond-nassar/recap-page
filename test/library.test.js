@@ -263,7 +263,7 @@ test('every view main.js switches between has a section in the markup, and the r
   assert.match(literal[1], /\.\.\.ADD_VIEWS/, 'VIEWS no longer spreads the Add views in');
   const named = [...literal[1].matchAll(/'([a-z0-9-]+)'/g)].map((m) => m[1]);
   const expected = [
-    ...named.filter((view) => view !== 'add'),
+    ...named,
     ...LIBRARY_VIEWS.map((v) => v.value),
     ...ADD_VIEWS,
   ].sort();

@@ -47,8 +47,14 @@ descriptions and variant selection remain in the existing preview dialog. Storyl
 273px to 397px intrinsic range but the measured blank space falls from 1,152px to 113px, the border
 floor of the same measurement. Saved-order tiles are bounded at 384px, producing two columns at
 1280px and three at 2048px, while the first-run feature caps at 1,152px on the wide view and still
-fills the available 964px at 1280px. The repaired Edge harness passes 119 assertions across 14
+fills the available 964px at 1280px. The repaired Edge harness passes 126 assertions across 14
 scenarios.
+
+Review follow-up restored a visible focus ring when navigation moves keyboard focus to a screen or
+Timeline card, brought empty-year labels back above the text contrast threshold, and made their
+screen-reader wording real text rather than a label on a generic element. Legacy Add links now
+resolve before rendering, series and creator indexes warm on every route into those screens, and
+the browser harness holds the Timeline reset, scroll and focus behavior.
 
 ### Said each thing once, in the words a reader already knows
 

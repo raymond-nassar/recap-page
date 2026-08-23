@@ -23,6 +23,8 @@
 import { readIssues, manualIssues } from './model.js';
 import { readSummary, manualSummary, readGroups, titleGroups } from './librarySummary.js';
 
+export const DEFAULT_LIST_NAME = 'My Reading List';
+
 // Display order is the order the adopted direction lists them in, with the existing Progress by
 // series between them, which is why the two are not adjacent in the rail.
 export const LIBRARY_VIEWS = [
