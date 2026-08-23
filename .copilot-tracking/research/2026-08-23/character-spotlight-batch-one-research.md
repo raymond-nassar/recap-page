@@ -208,7 +208,7 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 
 ## Open Questions, Risks, and Residual Uncertainty
 
-* Blocking: Parent-supplied worker commit SHAs are required before candidate evidence can be accepted.
+* Blocking: Parent-supplied worker commit SHAs are required before candidate evidence can be accepted. After the parent corrected and restarted all three lanes, their branch tips and recorded diffs remained unchanged for more than ten minutes; the parent is checking whether execution stalled again.
 * Important: Worker outputs may be stale against the post-PR #171 87-list library, omit selected cross-shard peers, share issue ids with one another, or contain protected decisions that must be discarded and reproduced centrally.
 * Follow-up: None outside the active task.
 * Residual uncertainty: Candidate count, identity ambiguity, metadata fit, relationship mix, and coherent batch composition remain unknown until worker outputs arrive.

@@ -54,7 +54,8 @@
       "keyFinding": "Worker reports are provisional until final cross-shard selection and central regeneration against the live library and every selected peer."
     },
     "deeper": {
-      "status": "waiting-for-worker-commits"
+      "status": "blocked-waiting-for-worker-commits",
+      "blocker": "All three worker branches remain at their launch tips with zero recorded diff after restart. The parent is inspecting whether they are actively processing or stalled."
     }
   },
   "plan": {
