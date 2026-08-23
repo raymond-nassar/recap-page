@@ -209,9 +209,10 @@ test('batch two stays exact through mapping, Markdown, generated data, catalog, 
   assert.equal(new Set(allIds).size, 178);
 });
 
-test('batch two has no aggregate identity, source, sequence, or issue overlap', async () => {
+test('batch two has no aggregate identity, source, sequence, or pre-publication issue overlap', async () => {
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const packetSet = new Set(PACKET_IDS);
+  const laterReviewedIds = new Set(['rocket-raccoon-reading-order']);
   const packetRecords = [];
   const existingRecords = [];
 
@@ -224,11 +225,14 @@ test('batch two has no aggregate identity, source, sequence, or issue overlap', 
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) packetRecords.push(record);
-    else existingRecords.push(record);
+    else if (!laterReviewedIds.has(entry.id)) existingRecords.push(record);
   }
 
   assert.equal(packetRecords.length, 10);
-  assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length);
+  assert.equal(
+    existingRecords.length,
+    manifest.lists.length - packetRecords.length - laterReviewedIds.size,
+  );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);

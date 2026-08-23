@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Rocket Raccoon complete character guide
+
+In plain English: the Character spotlights shelf now includes a complete Rocket Raccoon guide. It
+follows 75 issues from Tales to Astonish #13 through Guardians of the Galaxy Annual #1 in the source's
+order. The catalog now has 90 reading lists. Nothing you have saved is changed.
+
+For maintainers: the frozen 75-row source boundary resolves exactly with no unmatched or ambiguous
+issues. Its report covers all 89 pre-publication readings and centrally approves three partial
+relationships, sharing 10 issues with Marvel Fresh Start Avengers, 10 with Scarlet Witch Best Of, and
+7 with War of Kings. Groot, Star-Lord, and Thanos remain deferred with their accepted boundaries intact.
+
 ### Added Character Spotlight guide filters
 
 In plain English: Character spotlights can now be narrowed to Best of selections or complete guides.
@@ -21,8 +32,8 @@ All remains the default, and the grouped X-Men readings, Doom primer, and Essent
 there without being given a label that does not fit them. Search, saved progress, and every existing
 card are unchanged.
 
-For maintainers: all eleven character readings now carry one validated editorial classification.
-Five are Best of, two are complete guides, and four remain under All only across three stories.
+For maintainers: all twelve character readings now carry one validated editorial classification.
+Five are Best of, three are complete guides, and four remain under All only across three stories.
 Grouped readings must agree, generated data preserves the value, and unknown runtime values match no
 subset.
 

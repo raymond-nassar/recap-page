@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T19:28:23.852Z",
+  "generatedAt": "2026-08-23T20:43:34.217Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1950,6 +1950,45 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T16:37:33.121Z"
+    },
+    {
+      "id": "rocket-raccoon-reading-order",
+      "file": "rocket_raccoon_reading_order.json",
+      "name": "Rocket Raccoon",
+      "description": "Rocket Raccoon from his Half-World debut through the modern Guardians, his solo adventures, and Avengers: No Road Home.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 75,
+      "collections": 0,
+      "characters": [
+        "Rocket Raccoon",
+        "Groot",
+        "Guardians of the Galaxy",
+        "Star-Lord"
+      ],
+      "keywords": [
+        "Rocket Raccoon",
+        "Groot",
+        "Half-World",
+        "Guardians of the Galaxy",
+        "Avengers: No Road Home",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/536bc58247fee",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/rocket-raccoon-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T20:43:34.162Z"
     },
     {
       "id": "xmen-claremont",

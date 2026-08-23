@@ -202,9 +202,10 @@ const shelfEntry = (id, name, extra = {}) => ({
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
 // named the way the row is or it points at something not on screen.
 //
-// The character fixture keeps the shipped five Best of and two complete-guide counts. Its remaining
-// records stay available only under All, including a grouped pair, Essential Avengers, and three
-// additional records that keep search available while either visible subset is selected.
+// The character fixture freezes the five Best of and two complete-guide baseline that introduced the
+// filter behavior. Current catalog totals are checked separately against the real bundled data. The
+// remaining records stay available only under All, including a grouped pair, Essential Avengers, and
+// three additional records that keep search available while either visible subset is selected.
 const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {

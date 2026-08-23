@@ -173,7 +173,7 @@ authored work, which is why they are named separately rather than left to this s
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all eighty-nine shipped lists today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all ninety shipped lists today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -184,8 +184,8 @@ refuses all ten of the old prose values by construction rather than by anyone re
 check. The shape test is the point. An enumeration of permitted identifiers would be one more
 list somebody has to keep complete.
 
-The current Character Spotlight shelf has eleven readings across ten stories. Five readings are
-explicit Best of selections, two are complete guides, and four are `other`. The two X-Men readings
+The current Character Spotlight shelf has twelve readings across eleven stories. Five readings are
+explicit Best of selections, three are complete guides, and four are `other`. The two X-Men readings
 share one story and one classification. The Doom primer and Essential Avengers remain under All
 rather than acquiring a claim their source boundaries do not support.
 
@@ -309,7 +309,7 @@ own removal work was aimed at.
 ### What was asked of the guide writers, and the one answer received
 
 The fourth question has a half that nothing in this repository can settle: whose a reading order is
-when the selection was not made here. Seventy-five of the eighty-nine shipped lists name Comic Book Herald
+when the selection was not made here. Seventy-six of the ninety shipped lists name Comic Book Herald
 on the card and link back to the guide they follow, and the only other lists whose selection was
 made elsewhere are the two vendored checklists in the table above. Two guide writers have now been
 written to, and both have answered.
