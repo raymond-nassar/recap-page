@@ -91,7 +91,9 @@ independent Review found no material issue, so delivery is active.
 * Rewrote only the eleven feature-branch commits, replacing the private identifier with the durable
   role label `shard-02-replacement-worker`. The final product tree was unchanged.
 * The local publication gate at c1728bf scanned 3,072 blobs and 384 commit messages with zero content
-  finding. The sanitized history requires a guarded force-push and hosted-check retry.
+  finding. A guarded force-push then triggered hosted run 32653898808, where Node 20, Node 24, and
+  lint all passed.
+* The final evidence commit requires the same three hosted jobs before merge.
 
 ## Implementation-Time Plan and Detail Updates
 
@@ -129,6 +131,7 @@ independent Review found no material issue, so delivery is active.
 | First hosted Node jobs | P04-T02 | Passed | Node 20 and Node 24 both passed. |
 | First hosted lint job | P04-T02 | Failed and remediated | Publication history contained a private worker identifier in intermediate feature commits. |
 | Publication history after remediation | P04-T02 | Passed | 3,072 blobs and 384 commit messages scanned with zero content finding at c1728bf. |
+| Sanitized hosted retry | P04-T02 | Passed | Run 32653898808 passed Node 20, Node 24, and lint. |
 
 ## Pre-Review Reconciliation
 

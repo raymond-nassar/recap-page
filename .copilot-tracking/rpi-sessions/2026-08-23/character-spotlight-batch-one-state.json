@@ -178,7 +178,7 @@
     "findings": []
   },
   "pull_request": {
-    "status": "open-hosted-retry-required",
+    "status": "open-final-evidence-checks-required",
     "number": 172,
     "required_hosted_checks": [
       "test (20)",
@@ -196,13 +196,19 @@
       "lint": "failed-publication-history"
     },
     "publication_remediation": {
-      "status": "local-pass-awaiting-hosted-retry",
+      "status": "hosted-pass",
       "scope": "eleven feature-branch commits only",
       "replacement": "shard-02-replacement-worker",
-      "validated_revision": "c1728bf926404b4b5b5da26a47679c0a7b9288e1",
-      "blobs_scanned": 3072,
-      "commit_messages_scanned": 384,
+      "validated_revision": "a5ed0eb170044d76a8f4c4ab3dd3d4b52cdc87bd",
+      "blobs_scanned": 3074,
+      "commit_messages_scanned": 385,
       "content_findings": 0
+    },
+    "sanitized_retry": {
+      "run_id": 32653898808,
+      "test_20": "passed",
+      "test_24": "passed",
+      "lint": "passed"
     }
   }
 }
