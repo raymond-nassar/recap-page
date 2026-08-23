@@ -519,6 +519,111 @@
     "fp": "18fc220d66a38ef3",
     "head": "> Hi Raymond,"
   },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c1|scripts/lib/cbh-inventory.mjs:598-676|0": {
+    "anchor": "scripts/lib/cbh-inventory.mjs:598-676",
+    "fp": "663b13e94634b0e9",
+    "head": "function validateCharacterInventoryRecord(record) {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c10|scripts/data/cbh-packets/white-tiger-ava-ayala.json:1-18|0": {
+    "anchor": "scripts/data/cbh-packets/white-tiger-ava-ayala.json:1-18",
+    "fp": "333a5696443b47b9",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c10|scripts/data/cbh-packets/white-tiger-ava-ayala.json:50-56|0": {
+    "anchor": "scripts/data/cbh-packets/white-tiger-ava-ayala.json:50-56",
+    "fp": "39faa04dd5c3f9bc",
+    "head": "\"beforeId\": \"xmen-claremont\""
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c10|scripts/data/cbh-packets/white-tiger-ava-ayala.json:959-963|0": {
+    "anchor": "scripts/data/cbh-packets/white-tiger-ava-ayala.json:959-963",
+    "fp": "78d0cd5a7db0704a",
+    "head": "\"selectionNote\": \"The source labels the one-shot 2021; Marvel's metadata groups the issue under its "
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c11|scripts/data/cbh-mappings/white-tiger-ava-ayala.json:3907-3911|0": {
+    "anchor": "scripts/data/cbh-mappings/white-tiger-ava-ayala.json:3907-3911",
+    "fp": "6ee2bad16cc6efe9",
+    "head": "\"authorityType\": \"stronger-model\","
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c11|scripts/data/cbh-overlaps/white-tiger-ava-ayala.json:1-8|0": {
+    "anchor": "scripts/data/cbh-overlaps/white-tiger-ava-ayala.json:1-8",
+    "fp": "d11486b74960fb69",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c11|scripts/data/cbh-overlaps/white-tiger-ava-ayala.json:540-544|0": {
+    "anchor": "scripts/data/cbh-overlaps/white-tiger-ava-ayala.json:540-544",
+    "fp": "37d7adeb486ada8e",
+    "head": "\"relationship\": \"none\""
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c11|test/cbh-character-spotlight.test.js:79-128|0": {
+    "anchor": "test/cbh-character-spotlight.test.js:79-128",
+    "fp": "483076f9560a917a",
+    "head": "test('the frozen White Tiger evidence stays exact through every generated surface', async () => {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c12|src/data/catalog.json:1-3399|0": {
+    "anchor": "src/data/catalog.json:1-3399",
+    "fp": "7ebae90e067d13eb",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c12|src/data/curated-lists.json:1-2900|0": {
+    "anchor": "src/data/curated-lists.json:1-2900",
+    "fp": "323d3c6dc00545c4",
+    "head": "{"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c2|scripts/lib/cbh-inventory.mjs:252-345|0": {
+    "anchor": "scripts/lib/cbh-inventory.mjs:252-345",
+    "fp": "fb88eaaf56e1c555",
+    "head": "export function validateFrozenPacket(packet, {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c3|scripts/prepare-cbh-batch.mjs:20-24|0": {
+    "anchor": "scripts/prepare-cbh-batch.mjs:20-24",
+    "fp": "abfc2e52b2d429aa",
+    "head": "const INVENTORY_PATHS = Object.freeze(["
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c3|scripts/prepare-cbh-batch.mjs:2825-2896|0": {
+    "anchor": "scripts/prepare-cbh-batch.mjs:2825-2896",
+    "fp": "59008243e1ccc272",
+    "head": "export async function selectPreparationGuides(onlyIds, {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c4|scripts/prepare-cbh-batch.mjs:2955-3124|0": {
+    "anchor": "scripts/prepare-cbh-batch.mjs:2955-3124",
+    "fp": "e800c5769e9ebf5a",
+    "head": "for (const guide of guides) {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c5|scripts/report-order-overlap.mjs:22-66|0": {
+    "anchor": "scripts/report-order-overlap.mjs:22-66",
+    "fp": "a465edd949f03471",
+    "head": "function validateMappingRows(rows, label) {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c5|scripts/report-order-overlap.mjs:74-179|0": {
+    "anchor": "scripts/report-order-overlap.mjs:74-179",
+    "fp": "50b8626ab3e3fa28",
+    "head": "export async function loadLibrarySnapshot({"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c6|scripts/author-cbh-packet.mjs:297-373|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:297-373",
+    "fp": "606a783e3d443b47",
+    "head": "export function assertApprovedRelationshipReview({"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c7|scripts/author-cbh-packet.mjs:392-483|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:392-483",
+    "fp": "fbdb6588e46aa904",
+    "head": "export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c8|docs/MAINTAINING.md:212-233|0": {
+    "anchor": "docs/MAINTAINING.md:212-233",
+    "fp": "8f94e3d758b51ce4",
+    "head": "## Build a Comic Book Herald packet"
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c8|docs/MAINTAINING.md:262-295|0": {
+    "anchor": "docs/MAINTAINING.md:262-295",
+    "fp": "7c14833695caeb7a",
+    "head": "* Every source entry has a resolution or a documented exclusion."
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c9|test/cbh-character-spotlight.test.js:37-61|0": {
+    "anchor": "test/cbh-character-spotlight.test.js:37-61",
+    "fp": "2a545dcada2deff1",
+    "head": "test('the character inventory preserves every central disposition and only ships White Tiger', async"
+  },
   ".copilot-tracking/research/subagents/2026-08-20/modern-marvel-continuity-guides-deeper.md|lower-model-normalization-contract|scripts/vendor-orders.mjs:270-323|0": {
     "anchor": "scripts/vendor-orders.mjs:270-323",
     "fp": "442d0840b0e45b52",

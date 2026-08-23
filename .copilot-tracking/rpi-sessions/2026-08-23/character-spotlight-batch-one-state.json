@@ -1,0 +1,78 @@
+{
+  "task_id": "MRT-002-C02",
+  "task_slug": "character-spotlight-batch-one",
+  "parent": {
+    "task_id": "MRT-002-C01",
+    "task_slug": "character-spotlight-guides",
+    "merged_pull_request": 171,
+    "merge_commit": "4151fa448229654023d4e2b11b505e3c04803c34"
+  },
+  "date": "2026-08-23",
+  "mode": "automatic",
+  "stage": "research",
+  "status": "in_progress",
+  "direction": {
+    "summary": "Continue Character Spotlight guides using lower-cost deterministic workers for candidate mapping while retaining every protected decision and release action centrally.",
+    "batch_target": "Select the smallest coherent publishable chunk of four to six guides, reducing the count when data or review risk requires it.",
+    "worker_shards": [
+      {
+        "source_ordinals": "1-43",
+        "status": "awaiting-parent-supplied-commit",
+        "commit": null
+      },
+      {
+        "source_ordinals": "44-86",
+        "status": "awaiting-parent-supplied-commit",
+        "commit": null
+      },
+      {
+        "source_ordinals": "87-128",
+        "status": "awaiting-parent-supplied-commit",
+        "commit": null
+      }
+    ],
+    "excluded_work": [
+      "Do not duplicate worker mapping work.",
+      "Do not treat worker prose as approval.",
+      "Do not delegate source-boundary acceptance, ambiguous identity decisions, metadata-horizon decisions, subset or partial overlap approval, batch selection, anchor reading, release authority, shared integration edits, Review, PR, CI interpretation, conflict reconciliation, or merge.",
+      "Run exactly one independent post-implementation Review."
+    ]
+  },
+  "research": {
+    "artifact": ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md",
+    "posture": "focused",
+    "cycle": 1,
+    "wave": "deeper",
+    "status": "in_progress",
+    "planning_readiness": "not-ready",
+    "wider": {
+      "status": "complete",
+      "liveLibraryCount": 87,
+      "characterRunCount": 9,
+      "characterStoryCount": 8,
+      "workerAcceptanceContract": "documented",
+      "keyFinding": "Worker reports are provisional until final cross-shard selection and central regeneration against the live library and every selected peer."
+    },
+    "deeper": {
+      "status": "waiting-for-worker-commits"
+    }
+  },
+  "plan": {
+    "status": "not-started"
+  },
+  "implementation": {
+    "status": "not-started"
+  },
+  "review": {
+    "status": "not-started",
+    "maximum_runs": 1
+  },
+  "pull_request": {
+    "status": "not-started",
+    "required_hosted_checks": [
+      "test (20)",
+      "test (24)",
+      "lint"
+    ]
+  }
+}
