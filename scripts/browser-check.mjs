@@ -193,16 +193,18 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Sixteen entries make fifteen stories, three of them on a path and two off it. The ten extra
-// events put the Timeline over its search threshold, so the year-jump scenario can begin narrowed.
+// Twenty-nine entries make twenty-seven stories. Three event stories sit on one path, while a
+// storyline and Essential Avengers form a second path across browse screens. The thirteen
+// Character Spotlight stories put that shelf over its search threshold, and the ten extra events
+// do the same for Timeline.
 // The third stop is a story read two ways, which is the case the shelf and the path disagree about
 // most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
 // named the way the row is or it points at something not on screen.
 //
-// The two off-path entries exercise the other browse screens: one whole-line run in a dated decade
-// and one undated character run. A fixture containing only events would let the dedicated routes
-// render empty forever while every assertion about the Timeline stayed green.
+// The character fixture keeps the shipped five Best of and two complete-guide counts. Its remaining
+// records stay available only under All, including a grouped pair, Essential Avengers, and three
+// additional records that keep search available while either visible subset is selected.
 const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {
@@ -217,7 +219,32 @@ const CATALOG = {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Essential', depth: 'essential', timeline: 2006,
     }),
     shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
-    shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run' }),
+    shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run', spotlightKind: 'other' }),
+    shelfEntry('essential-avengers', 'Essential Avengers', { type: 'character-run', spotlightKind: 'other' }),
+    shelfEntry('x-men-spine', 'X-Men Spine', {
+      type: 'character-run', spotlightKind: 'other',
+      group: 'x-men', groupName: 'X-Men', variant: 'Spine',
+    }),
+    shelfEntry('x-men-complete', 'X-Men Complete', {
+      type: 'character-run', spotlightKind: 'other',
+      group: 'x-men', groupName: 'X-Men', variant: 'Complete',
+    }),
+    ...['Phoenix', 'Captain America', 'Spider-Man', 'Thor', 'Scarlet Witch'].map((name, index) => shelfEntry(
+      `spotlight-best-${index + 1}`,
+      name,
+      { type: 'character-run', spotlightKind: 'best-of' },
+    )),
+    shelfEntry('spotlight-complete-1', 'White Tiger', {
+      type: 'character-run', spotlightKind: 'complete-guide',
+    }),
+    shelfEntry('spotlight-complete-2', 'Phalanx', {
+      type: 'character-run', spotlightKind: 'complete-guide',
+    }),
+    ...Array.from({ length: 3 }, (_, index) => shelfEntry(
+      `spotlight-other-${index + 1}`,
+      `Other Spotlight ${index + 1}`,
+      { type: 'character-run', spotlightKind: 'other' },
+    )),
     ...Array.from({ length: 10 }, (_, index) => shelfEntry(
       `browser-check-extra-${index + 1}`,
       `Fixture Event ${index + 1}`,
@@ -233,6 +260,13 @@ const CATALOG = {
       // The last step names the *short* reading on purpose, so a row that echoed the step rather
       // than resolving it to the story would read "Third Stop: The Short Way" and be caught.
       steps: ['browser-check', 'browser-check-two', 'browser-check-three-short'],
+    },
+    {
+      id: 'spotlight-arrival',
+      name: 'The Spotlight Path',
+      description: 'A fixture path that arrives at a card hidden by either visible subset.',
+      sourceOrigin: 'Fixture',
+      steps: ['browser-check-line', 'essential-avengers'],
     },
   ],
 };
@@ -443,6 +477,15 @@ const MUTATIONS = [
     script: () => {
       window.__mrtMutation = 'type-flatten';
     },
+  },
+  {
+    id: 'spotlight-filter-noop',
+    breaks: 'spotlight-filter',
+    why: 'the selected Character Spotlight subset is ignored before search and grouping',
+    rewriteMain: (source) => source.replace(
+      '? filterBySpotlightKind(mine, state.spotlight)',
+      '? mine',
+    ),
   },
   {
     id: 'import-fail',
@@ -906,12 +949,182 @@ const SCENARIOS = [
       await click(page, '[data-view="spotlights"]');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
       const spotlights = await readShelf('#spotlights-results');
-      t.check('Character spotlights holds the character reading without a redundant group heading',
+      t.check('Character spotlights holds every character story without a redundant group heading',
         spotlights.filter((x) => x.kind === 'head').length === 0
-        && spotlights.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Off The Path',
+        && spotlights.filter((x) => x.kind === 'row').length === 13
+        && spotlights.some((x) => x.kind === 'row' && x.title === 'Off The Path'),
         JSON.stringify(spotlights));
-      t.check('an ungrouped spotlight card sits directly under the view heading',
-        spotlights.find((x) => x.kind === 'row')?.level === 'H2', JSON.stringify(spotlights));
+      t.check('spotlight cards sit directly under the view heading',
+        spotlights.filter((x) => x.kind === 'row').every((x) => x.level === 'H2'),
+        JSON.stringify(spotlights));
+    },
+  },
+  {
+    id: 'spotlight-filter',
+    title: 'Character Spotlight subsets stay explicit, local, accessible, and responsive',
+    async run(page, t) {
+      await open(page, '/');
+      await click(page, '[data-view="spotlights"]');
+      await page.waitForFunction(() => document.querySelectorAll('#spotlights-results .catalog-card').length === 13);
+
+      const cardTitles = () => page.$$eval(
+        '#spotlights-results .catalog-card-title',
+        (nodes) => nodes.map((node) => node.textContent.trim()),
+      );
+      const choose = async (value) => {
+        await click(page, `input[name="spotlights-kind"][value="${value}"]`);
+        await page.waitForFunction(
+          (expected) => (
+            document.querySelector('input[name="spotlights-kind"]:checked')?.value === expected
+            && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+          ),
+          {},
+          value,
+        );
+      };
+
+      const initial = await page.evaluate(() => ({
+        labels: [...document.querySelectorAll('input[name="spotlights-kind"]')]
+          .map((input) => input.nextElementSibling.textContent.trim()),
+        checked: document.querySelector('input[name="spotlights-kind"]:checked')?.value ?? null,
+        legend: document.querySelector('.spotlight-filters legend')?.textContent.trim() ?? null,
+      }));
+      t.check('the header exposes the three requested choices with All selected',
+        initial.labels.join('/') === 'All/Best of/Complete guides'
+        && initial.checked === 'all'
+        && initial.legend === 'Filter Character Spotlight guides',
+        JSON.stringify(initial));
+      t.check('All keeps every fixture story, including the grouped X-Men card',
+        (await cardTitles()).length === 13 && (await cardTitles()).filter((title) => title === 'X-Men').length === 1,
+        JSON.stringify(await cardTitles()));
+
+      await choose('best-of');
+      const best = await cardTitles();
+      t.check('Best of shows only the five explicitly classified stories',
+        best.join('/') === 'Phoenix/Captain America/Spider-Man/Thor/Scarlet Witch',
+        JSON.stringify(best));
+
+      await choose('complete-guide');
+      const complete = await cardTitles();
+      t.check('Complete guides shows only the two explicitly classified stories',
+        complete.join('/') === 'White Tiger/Phalanx',
+        JSON.stringify(complete));
+
+      await choose('all');
+      t.check('returning to All restores every story', (await cardTitles()).length === 13);
+
+      await choose('best-of');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Phoenix';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#spotlights-results .catalog-card').length === 1);
+      t.check('search composes with the selected subset',
+        (await cardTitles()).join('/') === 'Phoenix'
+        && await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'best-of',
+        JSON.stringify(await cardTitles()));
+      await click(page, '#spotlights-clear');
+      await page.waitForFunction(() => (
+        !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+      ));
+      t.check('clearing search restores the selected Best of subset',
+        (await cardTitles()).length === 5, JSON.stringify(await cardTitles()));
+
+      await choose('all');
+      await page.focus('input[name="spotlights-kind"][value="all"]');
+      await page.keyboard.press('ArrowRight');
+      await page.waitForFunction(() => (
+        document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'best-of'
+        && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+      ));
+      const keyboard = await page.evaluate(() => ({
+        checked: document.querySelector('input[name="spotlights-kind"]:checked')?.value ?? null,
+        focused: document.activeElement?.value ?? null,
+        cards: document.querySelectorAll('#spotlights-results .catalog-card').length,
+      }));
+      t.check('native arrow-key selection renders Best of and keeps focus on the selected radio',
+        keyboard.checked === 'best-of' && keyboard.focused === 'best-of' && keyboard.cards === 5,
+        JSON.stringify(keyboard));
+
+      await choose('complete-guide');
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setEmulatedMedia', {
+        features: [{ name: 'forced-colors', value: 'active' }],
+      });
+      const forced = await page.$eval('input[name="spotlights-kind"]:checked + span', (span) => {
+        const sample = document.createElement('span');
+        sample.style.color = 'Highlight';
+        document.body.append(sample);
+        const style = getComputedStyle(span);
+        const highlight = getComputedStyle(sample).color;
+        sample.remove();
+        return {
+          active: matchMedia('(forced-colors: active)').matches,
+          borderWidth: style.borderLeftWidth,
+          borderColor: style.borderLeftColor,
+          highlight,
+        };
+      });
+      t.check('forced colors keeps the checked radio marked by a Highlight border',
+        forced.active && forced.borderWidth === '2px' && forced.borderColor === forced.highlight,
+        JSON.stringify(forced));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      const restored = await page.$eval('input[name="spotlights-kind"]:checked + span', (span) => ({
+        active: matchMedia('(forced-colors: active)').matches,
+        borderWidth: getComputedStyle(span).borderLeftWidth,
+      }));
+      t.check('normal media styling returns after forced colors is restored',
+        !restored.active && restored.borderWidth === '1px',
+        JSON.stringify(restored));
+
+      await click(page, '[data-view="lines"]');
+      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
+      await click(page, '[data-view="spotlights"]');
+      await page.waitForFunction(() => (
+        document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'complete-guide'
+        && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+      ));
+      t.check('ordinary shelf navigation preserves Complete guides',
+        await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'complete-guide'
+        && (await cardTitles()).length === 2);
+
+      await click(page, '[data-view="lines"]');
+      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
+      await page.evaluate(() => {
+        const card = [...document.querySelectorAll('#lines-results .catalog-card')]
+          .find((node) => node.querySelector('.catalog-card-title')?.textContent.trim() === 'Across the Line');
+        const link = [...card.querySelectorAll('.path-step a')]
+          .find((node) => node.textContent.trim() === 'Essential Avengers');
+        link.click();
+      });
+      await page.waitForFunction(() => (
+        !document.querySelector('#view-spotlights').hidden
+        && document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'all'
+        && [...document.querySelectorAll('#spotlights-results .catalog-card-title')]
+          .some((node) => node.textContent.trim() === 'Essential Avengers')
+      ));
+      t.check('path arrival resets All so Essential Avengers cannot stay hidden', true);
+
+      await page.setViewport({ width: 360, height: 800 });
+      await page.waitForFunction(() => matchMedia('(max-width: 620px)').matches);
+      const narrow = await page.evaluate(() => {
+        const heading = document.querySelector('#spotlights-h').getBoundingClientRect();
+        const filters = document.querySelector('.spotlight-filters').getBoundingClientRect();
+        const labels = [...document.querySelectorAll('.spotlight-filters label')]
+          .map((label) => label.getBoundingClientRect());
+        return {
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          filtersTop: Math.round(filters.top),
+          headingBottom: Math.round(heading.bottom),
+          labelsVisible: labels.every((rect) => rect.left >= 0 && rect.right <= innerWidth),
+        };
+      });
+      t.check('the three controls wrap below the heading at 360 by 800 without horizontal overflow',
+        narrow.scrollWidth <= narrow.viewport
+        && narrow.filtersTop >= narrow.headingBottom
+        && narrow.labelsVisible,
+        JSON.stringify(narrow));
     },
   },
   {
@@ -1322,7 +1535,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:783` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:788` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -2371,9 +2584,12 @@ async function main() {
     // a bare scenario id.
     console.log('\nproving each scenario can fail:');
     let unproved = 0;
-    for (const mutation of MUTATIONS) {
+    const mutations = only
+      ? MUTATIONS.filter((mutation) => scenarios.some((scenario) => scenario.id === mutation.breaks))
+      : MUTATIONS;
+    for (const mutation of mutations) {
       const runs = [];
-      for (const scenario of SCENARIOS) runs.push(await runScenario(browser, origin, scenario, mutation));
+      for (const scenario of scenarios) runs.push(await runScenario(browser, origin, scenario, mutation));
       report(runs, { quiet: true });
       const red = runs.filter((r) => r.rows.some((row) => !row.ok)).map((r) => r.id);
       const aimed = runs.find((r) => r.id === mutation.breaks);
@@ -2389,7 +2605,7 @@ async function main() {
       console.log(`         aimed at ${mutation.breaks}, where it breaks: ${broke.join('; ') || 'nothing'}`);
       console.log(`         also turns red: ${red.filter((id) => id !== mutation.breaks).join(', ') || 'nothing else'}`);
     }
-    console.log(`\n${MUTATIONS.length - unproved}/${MUTATIONS.length} mutation(s) caught by the scenario they were aimed at`);
+    console.log(`\n${mutations.length - unproved}/${mutations.length} mutation(s) caught by the scenario they were aimed at`);
     return unproved === 0 ? 0 : 1;
   });
 

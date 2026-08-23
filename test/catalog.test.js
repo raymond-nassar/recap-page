@@ -9,6 +9,7 @@ import {
   catalogFacets, filterByFacet, facetLabel, isShortOrder, catalogCoverUrl,
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
   countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
+  filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing, SPOTLIGHT_KINDS,
 } from '../src/js/lib/catalog.js';
 
 test('safeOrderFile accepts a plain markdown name and nothing that escapes the orders folder', () => {
@@ -207,6 +208,35 @@ test('a stale facet matches nothing rather than quietly widening to everything',
   assert.deepEqual(filterByFacet(lists, 'type:motion-comic'), []);
   assert.deepEqual(filterByFacet(lists, 'nonsense'), []);
   assert.equal(facetLabel(lists, 'nonsense'), 'that filter');
+});
+
+test('spotlight taxonomy is explicit, conservative, and filterable', () => {
+  const { lists } = parseCatalog({
+    lists: [
+      { id: 'best', file: 'best.json', name: 'Best', count: 1, spotlightKind: 'best-of' },
+      { id: 'complete', file: 'complete.json', name: 'Complete', count: 2, spotlightKind: 'complete-guide' },
+      { id: 'other', file: 'other.json', name: 'Other', count: 3, spotlightKind: 'other' },
+      { id: 'stale', file: 'stale.json', name: 'Stale', count: 4, spotlightKind: 'unknown' },
+    ],
+  });
+  assert.deepEqual(SPOTLIGHT_KINDS, ['best-of', 'complete-guide', 'other']);
+  assert.deepEqual(lists.map((list) => list.spotlightKind), ['best-of', 'complete-guide', 'other', null]);
+  assert.deepEqual(filterBySpotlightKind(lists, 'all').map((list) => list.id), ['best', 'complete', 'other', 'stale']);
+  assert.deepEqual(filterBySpotlightKind(lists, 'best-of').map((list) => list.id), ['best']);
+  assert.deepEqual(filterBySpotlightKind(lists, 'complete-guide').map((list) => list.id), ['complete']);
+  assert.deepEqual(filterBySpotlightKind(lists, 'other').map((list) => list.id), ['other']);
+  assert.deepEqual(filterBySpotlightKind(lists, 'unknown'), []);
+  assert.equal(spotlightKindLabel('all'), 'All');
+  assert.equal(spotlightKindLabel('best-of'), 'Best of');
+  assert.equal(spotlightKindLabel('complete-guide'), 'Complete guides');
+  assert.equal(spotlightKindLabel('other'), null);
+});
+
+test('catalog narrowing resets every shelf-local filter together', () => {
+  const state = { query: 'avengers', facet: 'beginner', spotlight: 'complete-guide' };
+  assert.equal(resetCatalogNarrowing(state), state);
+  assert.deepEqual(state, { query: '', facet: 'all', spotlight: 'all' });
+  assert.equal(resetCatalogNarrowing(null), null);
 });
 
 test('an order under twenty issues is short; exactly twenty is not, as the label says', () => {

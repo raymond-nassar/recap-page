@@ -37,6 +37,31 @@ async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]
   return libraryDigestFor({ ...manifest, lists }, orderIssueIds);
 }
 
+test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => {
+  const manifest = {
+    version: 1,
+    lists: [{
+      id: 'example-character',
+      type: 'character-run',
+      title: 'Example Character',
+    }],
+  };
+  const classified = {
+    ...manifest,
+    lists: manifest.lists.map((entry) => ({ ...entry, spotlightKind: 'best-of' })),
+  };
+  const issueIds = [{ id: 'example-character', issueIds: ['1', '2'] }];
+
+  assert.equal(libraryDigestFor(classified, issueIds), libraryDigestFor(manifest, issueIds));
+  assert.notEqual(
+    libraryDigestFor({
+      ...manifest,
+      lists: manifest.lists.map((entry) => ({ ...entry, title: 'Changed Character' })),
+    }, issueIds),
+    libraryDigestFor(manifest, issueIds),
+  );
+});
+
 test('the character inventory preserves every central disposition and ships three spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));

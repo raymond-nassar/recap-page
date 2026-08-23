@@ -157,6 +157,7 @@ const MANIFEST_FIELDS = new Set([
   'description',
   'type',
   'depth',
+  'spotlightKind',
   'beginner',
   'coverIssueId',
   'group',

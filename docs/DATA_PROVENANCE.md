@@ -176,12 +176,18 @@ authored work, which is why they are named separately rather than left to this s
 | `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all eighty-nine shipped lists today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
+| `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) enforces the shape rather
 than a list of known identifiers: a licence is an SPDX expression and a sentence is not, which
 refuses all ten of the old prose values by construction rather than by anyone remembering to
 check. The shape test is the point. An enumeration of permitted identifiers would be one more
 list somebody has to keep complete.
+
+The current Character Spotlight shelf has eleven readings across ten stories. Five readings are
+explicit Best of selections, two are complete guides, and four are `other`. The two X-Men readings
+share one story and one classification. The Doom primer and Essential Avengers remain under All
+rather than acquiring a claim their source boundaries do not support.
 
 ## Where the chain stops, and why no other chain replaces it
 
@@ -449,8 +455,8 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The field reaches the
-interface in exactly one place, at `src/js/main.js:2444`, and the function behind it already
-answers for the absence at `src/js/main.js:2632-2641`, with a test asserting the sentence it
+interface in exactly one place, at `src/js/main.js:2445`, and the function behind it already
+answers for the absence at `src/js/main.js:2633-2642`, with a test asserting the sentence it
 returns. It is also reversible: the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.

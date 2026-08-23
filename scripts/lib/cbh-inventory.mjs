@@ -206,7 +206,11 @@ export function approvalDigestFor(relationshipReview) {
 }
 
 export function libraryDigestFor(manifest, orderIssueIds) {
-  return digestCanonicalJson({ manifest, orderIssueIds });
+  const reviewedManifest = {
+    ...manifest,
+    lists: manifest.lists.map(({ spotlightKind: _spotlightKind, ...entry }) => entry),
+  };
+  return digestCanonicalJson({ manifest: reviewedManifest, orderIssueIds });
 }
 
 export function libraryDigestExcludingOrders(library, excludedOrderIds = []) {

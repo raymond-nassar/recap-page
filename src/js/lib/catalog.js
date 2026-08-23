@@ -10,6 +10,13 @@ import { normalizeCover } from './model.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era'];
 export const READING_DEPTHS = ['essential', 'complete', 'tie-ins'];
+export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
+
+const SPOTLIGHT_KIND_LABELS = {
+  all: 'All',
+  'best-of': 'Best of',
+  'complete-guide': 'Complete guides',
+};
 
 // What "short" means on a filter chip. Twenty issues is roughly a weekend, and it is the
 // boundary that separates the self-contained events in the bundled catalog from the runs.
@@ -143,6 +150,7 @@ function normalizeEntry(raw) {
     description: str(raw.description),
     type: LIST_TYPES.includes(raw.type) ? raw.type : null,
     depth: READING_DEPTHS.includes(raw.depth) ? raw.depth : null,
+    spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
     source: str(raw.source),
@@ -319,6 +327,25 @@ export function filterByFacet(lists, key) {
   // An unknown facet matches nothing rather than everything, so a stale saved filter can
   // never quietly widen into the whole catalog.
   return [];
+}
+
+export function filterBySpotlightKind(lists, kind) {
+  if (!Array.isArray(lists)) return [];
+  if (kind === 'all') return lists;
+  if (!SPOTLIGHT_KINDS.includes(kind)) return [];
+  return lists.filter((list) => list.spotlightKind === kind);
+}
+
+export function spotlightKindLabel(kind) {
+  return SPOTLIGHT_KIND_LABELS[kind] ?? null;
+}
+
+export function resetCatalogNarrowing(state) {
+  if (!state || typeof state !== 'object') return null;
+  state.query = '';
+  state.facet = 'all';
+  state.spotlight = 'all';
+  return state;
 }
 
 export function facetLabel(lists, key) {

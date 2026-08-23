@@ -130,6 +130,49 @@ test('an order can declare the event variant it belongs to', () => {
   assert.equal(entries[0].variant, 'Essential reading');
 });
 
+test('a character run requires one explicit spotlight taxonomy value', () => {
+  const character = { ...valid, type: 'character-run', spotlightKind: 'best-of' };
+  const { entries, errors } = parseManifest({ lists: [character] });
+  assert.deepEqual(errors, []);
+  assert.equal(entries[0].spotlightKind, 'best-of');
+
+  for (const spotlightKind of [undefined, null, 'complete', true]) {
+    const parsed = parseManifest({ lists: [{ ...character, spotlightKind }] });
+    assert.equal(parsed.entries.length, 0, `accepted ${JSON.stringify(spotlightKind)}`);
+    assert.match(parsed.errors.join('\n'), /spotlightKind must be one of/);
+  }
+});
+
+test('spotlight taxonomy is forbidden on non-character orders', () => {
+  const plain = parseManifest({ lists: [valid] });
+  assert.deepEqual(plain.errors, []);
+  assert.equal(Object.hasOwn(plain.entries[0], 'spotlightKind'), false);
+
+  const { entries, errors } = parseManifest({
+    lists: [{ ...valid, spotlightKind: 'best-of' }],
+  });
+  assert.equal(entries.length, 0);
+  assert.match(errors.join('\n'), /only valid on a character-run/);
+});
+
+test('readings grouped into one story agree on spotlight taxonomy', () => {
+  const base = {
+    ...valid,
+    type: 'character-run',
+    group: 'x-men',
+    groupName: 'X-Men',
+    variant: 'Spine',
+    spotlightKind: 'other',
+  };
+  const { errors } = parseManifest({
+    lists: [
+      base,
+      { ...base, id: 'x-men-complete', out: 'x_men_complete.json', variant: 'Complete', spotlightKind: 'complete-guide' },
+    ],
+  });
+  assert.match(errors.join('\n'), /group "x-men" has conflicting spotlightKind values/);
+});
+
 test('a duplicate id is rejected rather than vendored twice', () => {
   const { entries, errors } = parseManifest({ lists: [valid, { ...valid, name: 'Civil War again' }] });
   assert.equal(entries.length, 1);
@@ -153,10 +196,19 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
   assert.deepEqual(entries.map((e) => e.id).sort(), lists.map((l) => l.id).sort());
   for (const entry of entries) {
     const list = lists.find((l) => l.id === entry.id);
+    const rawList = catalogRaw.lists.find((l) => l.id === entry.id);
     assert.equal(list.file, entry.out, `${entry.id} file drifted from the manifest`);
     assert.equal(list.name, entry.name);
     assert.equal(list.type, entry.type);
     assert.equal(list.depth, entry.depth);
+    if (entry.type === 'character-run') {
+      assert.equal(list.spotlightKind, entry.spotlightKind);
+      assert.equal(rawList.spotlightKind, entry.spotlightKind);
+    } else {
+      assert.equal(Object.hasOwn(entry, 'spotlightKind'), false, `${entry.id} normalized a forbidden taxonomy field`);
+      assert.equal(Object.hasOwn(rawList, 'spotlightKind'), false, `${entry.id} generated a forbidden taxonomy field`);
+      assert.equal(list.spotlightKind, null);
+    }
     assert.equal(list.source, entry.sourcePage);
     assert.equal(list.sourceSection, entry.sourceSection);
     assert.equal(list.sourceOrigin, entry.sourceOrigin, `${entry.id} origin drifted from the manifest`);
