@@ -1020,7 +1020,7 @@ button.timeline-year:hover, button.timeline-year:focus-visible {
 }
 .timeline-year.is-empty {
   display: inline-flex; align-items: center; justify-content: center;
-  color: var(--muted); cursor: default;
+  color: var(--muted); opacity: .58; cursor: default;
 }
 
 .catalog-grid {

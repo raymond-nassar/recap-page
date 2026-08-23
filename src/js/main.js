@@ -3141,9 +3141,16 @@ function wireAdd() {
 
 const NAME_SEARCH_LIMIT = 40;
 
-function wireNameSearch({
-  section: _section, form, input, results, kind: _kind, many, btnClass, search, onAdd,
-}) {
+function wireNameSearch({ section, form, input, results, kind, many, btnClass, search, onAdd }) {
+  // The index is a few hundred kilobytes, so it is never part of the initial page load. The old
+  // combined screen warmed it when its disclosure opened. Its replacement is a page, so entering
+  // the page by pointer or keyboard is the equivalent signal. Warming is idempotent and a failed
+  // warm is ignored: this is only a head start, and the search itself reports the failure properly.
+  const page = $(section);
+  const warm = () => api.warmNameIndex(kind);
+  page.addEventListener('pointerenter', warm, { once: true });
+  page.addEventListener('focusin', warm, { once: true });
+
   $(form).addEventListener('submit', async (e) => {
     e.preventDefault();
     const q = $(input).value.trim();

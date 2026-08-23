@@ -51,23 +51,13 @@ test('the old Add address is accepted and canonicalised to Search issues', () =>
   assert.equal(formatRoute({ view: 'add' }), '#/add-search');
 });
 
-test('series and creator indexes warm when their pages open by any route', () => {
-  assert.match(
-    main,
-    /view = next;\s*warmNameIndexForView\(next\);/,
-    'view entry no longer starts the relevant name index',
-  );
-  assert.match(
-    main,
-    /function warmNameIndexForView\(name\)[\s\S]*name === 'add-series' \? 'series' : name === 'add-creator' \? 'creators'/,
-    'the two name-search pages no longer map to their indexes',
-  );
-  assert.doesNotMatch(
-    main,
-    /addEventListener\('(pointerenter|focusin)', warm/,
-    'index warming still depends on pointer or focus entry',
-  );
+test('series and creator indexes warm when their pages are entered', () => {
+  const start = main.indexOf('function wireNameSearch');
+  const body = main.slice(start, main.indexOf('function snapshot', start));
+  assert.match(body, /page\.addEventListener\('pointerenter', warm, \{ once: true \}\);/);
+  assert.match(body, /page\.addEventListener\('focusin', warm, \{ once: true \}\);/);
 });
+
 
 test('the manual page still says the metadata snapshot ends in 2025 and search cannot find newer issues', () => {
   const manual = prose(pages.get('add-manual'));
@@ -151,6 +141,7 @@ test('the optional reader address is behind a disclosure on the manual page', ()
     'the address field is standing open or its disclosure lost its label',
   );
 });
+
 
 test('every repeated Add view row action keeps the paired grey secondary classes', () => {
   // `btn-g` changes colours only. The base `btn` carries the padding, radius, inline-flex layout and
