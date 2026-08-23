@@ -83,6 +83,14 @@ test('the featured panel is a labelled region with real controls', () => {
   assert.match(html, /id="feature-facts"/, 'the featured panel does not say what the commitment is');
 });
 
+test('the first-run heading stands alone and the feature uses its decision column', () => {
+  assert.match(markup, /<h1 id="home-h">Start Here<\/h1>/);
+  assert.doesNotMatch(markup, /id="home-sub"/);
+  assert.match(markup, /class="feature-copy"/);
+  assert.match(markup, /class="feature-decision"/);
+  assert.match(script, /populated \? 'Continue reading' : 'Start Here'/);
+});
+
 test('the featured panel is above the returning reader s own progress', () => {
   // Order matters on the landing page: a reader who already has a list wants Continue Reading
   // first, and the featured panel is hidden for them, so it can sit above it without cost. A reader

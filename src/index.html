@@ -183,10 +183,7 @@
           <section id="view-home" class="view view-wide" hidden aria-labelledby="home-h">
             <div class="head">
               <div class="head-left">
-                <h1 id="home-h">Pick something to read</h1>
-                <div class="sub" id="home-sub">
-                  Every order below ships with the app, so adding one needs no internet connection.
-                </div>
+                <h1 id="home-h">Start Here</h1>
               </div>
               <div class="headright">
                 <button type="button" class="tgl" data-covers-toggle aria-pressed="true">
@@ -210,17 +207,21 @@
                   </div>
                 </div>
                 <div class="feature-body">
-                  <p class="eyebrow">Featured journey</p>
-                  <!-- Given text for the same reason #chero-h is: this heading names its own
-                       section, so an empty one would leave the section unnamed too. -->
-                  <h2 id="feature-h">A place to start</h2>
-                  <p class="feature-why" id="feature-why"></p>
-                  <ul class="feature-facts" id="feature-facts"></ul>
-                  <div class="feature-act">
-                    <!-- The one filled primary on the page. Its accessible name carries the order,
-                         so it is not the eighth identical "Start reading" a screen reader hears. -->
-                    <button type="button" class="btn" id="btn-feature-start">Start reading</button>
-                    <button type="button" class="btn btn-g" id="btn-feature-preview">See the issues</button>
+                  <div class="feature-copy">
+                    <p class="eyebrow">Featured journey</p>
+                    <!-- Given text for the same reason #chero-h is: this heading names its own
+                         section, so an empty one would leave the section unnamed too. -->
+                    <h2 id="feature-h">A place to start</h2>
+                    <p class="feature-why" id="feature-why"></p>
+                  </div>
+                  <div class="feature-decision">
+                    <ul class="feature-facts" id="feature-facts"></ul>
+                    <div class="feature-act">
+                      <!-- The one filled primary on the page. Its accessible name carries the order,
+                           so it is not the eighth identical "Start reading" a screen reader hears. -->
+                      <button type="button" class="btn" id="btn-feature-start">Start reading</button>
+                      <button type="button" class="btn btn-g" id="btn-feature-preview">See the issues</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -393,7 +394,7 @@
               <section class="sec" id="shelf-sec" aria-labelledby="shelf-h">
                 <div class="sec-h">
                   <h2 id="shelf-h">Coming up</h2>
-                  <span id="shelf-note">next 8, in order</span>
+                  <span id="shelf-note">8 issues</span>
                 </div>
                 <ol class="shelf" id="shelf"></ol>
               </section>
@@ -420,44 +421,36 @@
 
           <!-- ---------------------------------------- progress view -->
           <section id="view-progress" class="view view-wide" hidden aria-labelledby="progress-h">
-            <div class="head"><div class="head-left"><h1 id="progress-h">Progress by series</h1>
-              <div class="sub" id="progress-sub">Counted over unique issues across every list, so an issue in two lists counts once.</div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="progress-h">Progress by series</h1></div></div>
             <fieldset class="filters" id="progress-scope">
               <legend class="visually-hidden">Choose what to count</legend>
               <label class="fp"><input type="radio" name="progress-scope" value="list" checked /><span>This list</span></label>
               <label class="fp"><input type="radio" name="progress-scope" value="all" /><span>All lists</span></label>
             </fieldset>
-            <p class="rail-hint" id="progress-note">“Tracked” means what you have added, not the size of the whole series.</p>
+            <details class="setting-more progress-method" id="progress-method">
+              <summary>How counts work</summary>
+              <p class="rail-hint" id="progress-method-text"></p>
+            </details>
             <div id="series-progress" class="results"></div>
           </section>
 
           <!-- ---------------------------------------- library sub-views -->
-          <!-- Headings, subtitles and empty text are all rendered from LIBRARY_VIEWS in
+          <!-- Headings, compact sort labels and empty text are rendered from LIBRARY_VIEWS in
                src/js/lib/library.js. They are left out of the markup rather than duplicated
                here, so there is nothing to keep in step. -->
           <section id="view-library-read" class="view view-wide" hidden aria-labelledby="library-read-h">
-            <div class="head"><div class="head-left"><h1 id="library-read-h"></h1>
-              <div class="sub"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="library-read-h"></h1></div></div>
             <div class="results"></div>
           </section>
 
           <section id="view-library-manual" class="view view-wide" hidden aria-labelledby="library-manual-h">
-            <div class="head"><div class="head-left"><h1 id="library-manual-h"></h1>
-              <div class="sub"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="library-manual-h"></h1></div></div>
             <div class="results"></div>
           </section>
 
           <!-- ---------------------------------------- catalog view -->
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
-            <div class="head"><div class="head-left"><h1 id="catalog-h">Timeline</h1>
-              <div class="sub">Events in the order they were published.</div>
-            </div></div>
-            <nav id="catalog-timeline" class="timeline-spine" aria-label="Jump to a year" hidden>
-              <div id="catalog-years" class="timeline-years"></div>
-            </nav>
+            <div class="head"><div class="head-left"><h1 id="catalog-h">Timeline</h1></div></div>
             <div id="catalog-report" class="report"></div>
             <form id="form-catalog-search" class="stack" role="search">
               <label for="catalog-q">Search the catalog by title or character</label>
@@ -479,9 +472,7 @@
                and not the others is how they would drift apart, and a test asserts all three carry
                the same set. -->
           <section id="view-lines" class="view" hidden aria-labelledby="lines-h">
-            <div class="head"><div class="head-left"><h1 id="lines-h">Storylines</h1>
-              <div class="sub">Whole runs rather than single events.</div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="lines-h">Storylines</h1></div></div>
             <div id="lines-report" class="report"></div>
             <form id="form-lines-search" class="stack" role="search" hidden>
               <label for="lines-q">Search the catalog by title or character</label>
@@ -498,9 +489,7 @@
 
           <!-- ---------------------------------------- character spotlights view -->
           <section id="view-spotlights" class="view" hidden aria-labelledby="spotlights-h">
-            <div class="head"><div class="head-left"><h1 id="spotlights-h">Character spotlights</h1>
-              <div class="sub">One hero or team, gathered in one place.</div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="spotlights-h">Character spotlights</h1></div></div>
             <div id="spotlights-report" class="report"></div>
             <form id="form-spotlights-search" class="stack" role="search" hidden>
               <label for="spotlights-q">Search the catalog by title or character</label>
@@ -520,11 +509,10 @@
                Each rail entry owns a route and a page. The legacy #/add route is still accepted
                by route.js and canonicalised to the search page by showView. -->
           <section id="view-add-search" class="view" hidden aria-labelledby="add-search-h">
-            <div class="head"><div class="head-left"><h1 id="add-search-h">Search issues</h1>
-              <div class="sub add-target"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="add-search-h">Search issues</h1></div></div>
 
             <section class="card card-static addpri add-page">
+              <p class="add-destination add-target"></p>
               <form id="form-search" class="stack">
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
@@ -577,10 +565,9 @@
           </section>
 
           <section id="view-add-series" class="view" hidden aria-labelledby="add-series-h">
-            <div class="head"><div class="head-left"><h1 id="add-series-h">Find a series</h1>
-              <div class="sub add-target"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="add-series-h">Find a series</h1></div></div>
             <section class="card card-static addpri add-page" id="sec-series">
+                <p class="add-destination add-target"></p>
                 <form id="form-series" class="stack">
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
@@ -593,10 +580,9 @@
           </section>
 
           <section id="view-add-creator" class="view" hidden aria-labelledby="add-creator-h">
-            <div class="head"><div class="head-left"><h1 id="add-creator-h">Browse a creator</h1>
-              <div class="sub add-target"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="add-creator-h">Browse a creator</h1></div></div>
             <section class="card card-static addpri add-page" id="sec-creator">
+                <p class="add-destination add-target"></p>
                 <form id="form-creator" class="stack">
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
@@ -609,10 +595,9 @@
           </section>
 
           <section id="view-add-import" class="view" hidden aria-labelledby="add-import-h">
-            <div class="head"><div class="head-left"><h1 id="add-import-h">Paste a Reading List</h1>
-              <div class="sub add-target"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="add-import-h">Paste a Reading List</h1></div></div>
             <section class="card card-static addpri add-page" id="sec-import">
+                <p class="add-destination add-target"></p>
                 <div class="import-guide" aria-labelledby="import-guide-h">
                   <h2 id="import-guide-h">Markdown checklist</h2>
                   <pre><code>- [ ] [Secret Wars (2015) #1](https://www.marvel.com/comics/issue/49201/)
@@ -632,25 +617,25 @@
           </section>
 
           <section id="view-add-manual" class="view" hidden aria-labelledby="add-manual-h">
-            <div class="head"><div class="head-left"><h1 id="add-manual-h">Add an issue by hand</h1>
-              <div class="sub add-target"></div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="add-manual-h">Add an issue by hand</h1></div></div>
             <section class="card card-static addpri add-page" id="sec-manual">
+                <p class="add-destination add-target"></p>
                 <p class="rail-hint">
-                  The metadata snapshot ends in 2025, so anything newer will not be found by search.
-                  Add it by hand and it still tracks; availability just shows as unknown.
+                  For issues missing from search, including post-2025 releases; hand entries still
+                  track, with availability left unknown.
                 </p>
                 <form id="form-manual" class="stack">
                   <label for="manual-title">Title</label>
                   <input type="text" id="manual-title" required placeholder="e.g. The Amazing Spider-Man (2025) #12" />
-                  <button type="button" class="btn btn-g" id="btn-manual-lookup">Look up details</button>
-                  <p class="rail-hint">
-                    Optional, and nothing happens until you press it. It sends the words in the Title
-                    box to the Marvel Fandom wiki, a community site Marvel does not run, and offers
-                    you the release date, page count and credits the snapshot cannot supply. Nothing
-                    about your lists or your reading progress goes with it, no cover image is
-                    fetched, and nothing is saved until you press Add issue.
-                  </p>
+                  <button type="button" class="btn btn-g" id="btn-manual-lookup">Look up on Marvel Fandom</button>
+                  <details class="field-disclosure">
+                    <summary>What lookup sends</summary>
+                    <p class="rail-hint">
+                      Only the title above is sent to Marvel Fandom, a community site Marvel does
+                      not run. Your lists, progress and notes stay here; no cover is fetched, and
+                      nothing is saved until you press Add issue.
+                    </p>
+                  </details>
                   <div id="manual-candidates" class="results"></div>
                   <details class="field-disclosure">
                     <summary>Add a reader link (optional)</summary>
@@ -658,8 +643,7 @@
                       <label for="manual-url">marvel.com or Marvel Unlimited address</label>
                       <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://read.marvel.com/#/book/…" />
                       <p class="rail-hint" id="manual-url-hint">
-                        Only needed for issues newer than the 2025 snapshot: paste the address from
-                        Marvel Unlimited and Read can take you straight to the book.
+                        Paste its Marvel Unlimited address to make Read open the book directly.
                       </p>
                     </div>
                   </details>
@@ -697,8 +681,7 @@
               <div class="card card-static setting">
                 <h3>Copies kept after a failed read</h3>
                 <p class="rail-hint setting-desc">
-                  If the app ever cannot read your saved data, it sets a copy of that data aside before
-                  it does anything else, so nothing is lost while you decide what to do.
+                  Recovery copies appear here only when saved data cannot be read.
                 </p>
                 <details class="setting-more">
                   <summary>Where these copies live</summary>
@@ -716,27 +699,21 @@
               <h2>Personalization</h2>
               <div class="card card-static setting">
                 <h3>Cover art</h3>
-                <p class="rail-hint setting-desc">
-                  Covers are loaded straight from Marvel's own image servers, and from nowhere else.
-                </p>
                 <label class="checkbox setting-ctl"><input type="checkbox" id="opt-covers" /> Show cover art</label>
                 <details class="setting-more">
                   <summary>How covers are requested</summary>
                   <p class="rail-hint">
-                    The metadata service reports each address, but one naming any other host is refused
-                    before a request is made, so a service that had been tampered with cannot have this
-                    browser contact a server of its choosing. This app stores only the address, never the
-                    image itself, and never proxies or re-hosts artwork. Switch covers off and every cover
-                    becomes a plain typographic tile, and no cover is requested at all.
+                    Covers load straight from Marvel's image servers. The metadata service reports each
+                    address, but one naming any other host is refused before a request is made. This app
+                    stores only the address, never the image itself, and never proxies or re-hosts
+                    artwork. Switch covers off and every cover becomes a plain typographic tile, and no
+                    cover is requested at all.
                   </p>
                 </details>
               </div>
 
               <div class="card card-static setting">
                 <h3>Theme</h3>
-                <p class="rail-hint setting-desc">
-                  Follow your system setting, or pick one and keep it.
-                </p>
                 <label class="visually-hidden" for="opt-theme">Colour theme</label>
                 <select id="opt-theme" class="setting-ctl">
                   <option value="system">Use system setting</option>
@@ -774,10 +751,7 @@
 
               <div class="card card-static setting">
                 <h3>Update checks</h3>
-                <p class="rail-hint setting-desc">
-                  Once a day, the app can ask GitHub for the latest version number.
-                </p>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-update-checks" /> Check automatically</label>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-update-checks" /> Check once a day</label>
                 <details class="setting-more">
                   <summary>What the check sends</summary>
                   <p class="rail-hint">
@@ -812,16 +786,14 @@
 
           <!-- ---------------------------------------- about view -->
           <section id="view-about" class="view" hidden aria-labelledby="about-h">
-            <div class="head"><div class="head-left"><h1 id="about-h">About this app</h1>
-              <div class="sub">What this is, where the data comes from, and what it does not do.</div>
-            </div></div>
+            <div class="head"><div class="head-left"><h1 id="about-h">About this app</h1></div></div>
 
             <div class="card card-static">
               <h2>An unofficial fan project</h2>
               <p class="rail-hint">
-                This is an unofficial fan project. It is not made by, endorsed by, or affiliated with
-                Marvel or The Walt Disney Company. Marvel, Marvel Unlimited, and all related names,
-                characters, and logos are trademarks of Marvel Characters, Inc.
+                Not made by, endorsed by, or affiliated with Marvel or The Walt Disney Company.
+                Marvel, Marvel Unlimited, and all related names, characters, and logos are trademarks
+                of Marvel Characters, Inc.
               </p>
 
               <h3>Metadata and links only</h3>

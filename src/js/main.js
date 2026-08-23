@@ -20,8 +20,8 @@ import {
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
   pathPlacements, shelfSections, eraSections, decadeSections, inHomeAge,
-  firstSentence, storyYear, timelineYears,
-  CATALOG_SHELVES, shelfLists, ROUTE_BLURB,
+  firstSentence, storyYear,
+  CATALOG_SHELVES, shelfLists,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -1337,12 +1337,7 @@ function renderHome() {
   if ($('#view-home').hidden) return;
   const populated = store.state.listOrder.length > 0;
 
-  $('#home-h').textContent = populated ? 'Continue reading' : 'Pick something to read';
-  const homeSub = $('#home-sub');
-  homeSub.hidden = populated;
-  homeSub.textContent = populated
-    ? ''
-    : 'Every order below ships with the app, so adding one needs no internet connection.';
+  $('#home-h').textContent = populated ? 'Continue reading' : 'Start Here';
   $('#home-cat-h').textContent = populated ? 'Discover more' : 'Reading Lists';
 
   renderContinue(populated);
@@ -1578,10 +1573,7 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
     const placements = pathPlacements(homeCatalog.paths, all);
     const groups = [];
     for (const section of shelfSections(matched)) {
-      // Asked of the placements the cards are actually drawn from rather than of the rule that
-      // produced them, so the sentence naming the badge cannot outlive the badge itself.
-      const hasFirstStop = section.stories.some((s) => placements.get(s.key)?.previous === null);
-      groups.push(shelfSectionHead(section, hasFirstStop, {
+      groups.push(shelfSectionHead(section, {
         level: 'h3',
         className: 'shelf-section home-shelf-section',
         blurb: false,
@@ -1739,8 +1731,7 @@ function orderCard(story, placement = null) {
   ]);
   const desc = el('p', { class: 'ocard-desc' });
   const meta = el('p', { class: 'ocard-meta' });
-  const ways = el('p', { class: 'ocard-ways' });
-  const marks = el('p', {});
+  const badges = el('div', { class: 'ocard-badges' });
   const foot = el('div', { class: 'ocard-foot' });
 
   // One updater for everything that names a single path, so the words and the two buttons cannot
@@ -1760,17 +1751,15 @@ function orderCard(story, placement = null) {
       readingTimeLabel(list.count),
       typeLabel(list.type),
     ].filter(Boolean).join(' · ');
-    ways.replaceChildren(...(story.lists.length > 1 ? [waysButton(story, list)] : []));
-    ways.hidden = story.lists.length < 2;
-    // Beginner-friendliness is why many readers pick an order, so it is a visible mark rather
-    // than only a filter you have to know to apply, and it carries the same weight as the badge
-    // on the first stop of a path, because it answers the same question.
-    marks.replaceChildren(...(list.beginner ? [el('span', { class: 'pill pill-beginner', text: 'Beginner-friendly' })] : []));
-    marks.hidden = !list.beginner;
+    // Path position and beginner suitability remain glanceable without adding variable text rows
+    // below the description. The dedicated browse screens keep the path name and next-stop links.
+    badges.replaceChildren(...[
+      homePathBadge(placement),
+      list.beginner ? el('span', { class: 'pill pill-beginner', text: 'Beginner' }) : null,
+    ].filter(Boolean));
+    badges.hidden = badges.childElementCount === 0;
     foot.replaceChildren(
       addButton(list, listForCatalogId(store.state, list.id)),
-      // The count is already on the card, in the meta line above, so repeating it on the button
-      // only needed the dash it was joined with. "See the full list" says what the button does.
       previewButton(list, story),
     );
   };
@@ -1778,7 +1767,7 @@ function orderCard(story, placement = null) {
 
   return el('li', { class: 'ocard' }, [
     el('div', { class: 'ocard-body' }, [
-      el('div', { class: 'ocard-art' }, [img, fb]),
+      el('div', { class: 'ocard-art' }, [img, fb, badges]),
       el('div', { class: 'ocard-text' }, [
         // An h4 under the group heading the grid now draws, which is an h3 under the section's h2.
         // The level follows the nesting rather than the styling: the card looks exactly as it did,
@@ -1786,40 +1775,33 @@ function orderCard(story, placement = null) {
         el('h4', { class: 'ocard-title', text: title }),
         desc,
         meta,
-        // Built outside `paint` and keyed on the story, for the reason the row's copy of it gives:
-        // a story's position on a reading path is the same whichever of its readings is selected,
-        // so repainting the card must not be able to recompute it into a different answer.
-        pathLine(placement, 'home'),
-        ways,
-        marks,
       ]),
     ]),
     foot,
   ]);
 }
 
-// The card's whole account of the choice: that it exists, and how many ways there are. It opens the
-// same dialog the card's own preview button does, so a reader who presses either arrives where the
-// paths are listed with the issues beside them.
-function waysButton(story, list) {
-  const text = `${story.lists.length} ways to read this`;
-  return el('button', {
-    type: 'button',
-    class: 'ways',
-    'aria-label': labelledName(text, story.name),
-    dataset: { key: story.key, act: 'ways' },
-    onclick: () => openPreview(list, story),
-  }, text);
+function homePathBadge(placement) {
+  if (!placement) return null;
+  const opens = placement.previous === null;
+  const visible = opens ? `Start · 1/${placement.total}` : `${placement.position}/${placement.total}`;
+  const detail = [
+    opens ? 'Start here.' : null,
+    `Step ${placement.position} of ${placement.total} in ${placement.pathName}.`,
+    placement.next ? `Next: ${placement.next.name}.` : 'Last stop.',
+  ].filter(Boolean).join(' ');
+  return el('span', { class: `pill ocard-path${opens ? ' pill-start' : ''}` }, [
+    el('span', { 'aria-hidden': 'true', text: visible }),
+    el('span', { class: 'visually-hidden', text: detail }),
+  ]);
 }
 
-// One binding for the words, used as the visible text and as the base of the accessible name,
-// so the two cannot be edited apart.
 function previewButton(list, story = null) {
-  const text = 'See the full list';
+  const text = story?.lists.length > 1 ? `See ${story.lists.length} options` : 'See the full list';
   return el('button', {
     type: 'button',
     class: 'ocard-preview',
-    'aria-label': labelledName(text, list.name),
+    'aria-label': labelledName(text, story?.name ?? list.name),
     // Keyed by the story rather than by the path it currently shows. Choosing a different path in
     // the dialog rebuilds this card around a different list, so a key of list.id no longer matches
     // what focus restoration captured, and the miss falls through to the card's primary action,
@@ -2498,7 +2480,7 @@ function renderShelf() {
 
   const upcoming = listItems(store.state, id).filter((it) => !it.read).slice(1, SHELF_SIZE + 1);
   $('#shelf-sec').hidden = upcoming.length === 0;
-  $('#shelf-note').textContent = `next ${upcoming.length}, in order`;
+  $('#shelf-note').textContent = `${upcoming.length} ${upcoming.length === 1 ? 'issue' : 'issues'}`;
 
   preservingFocus(shelf, () => {
     shelf.replaceChildren();
@@ -3164,11 +3146,14 @@ function wireNameSearch({
       const summary = matched > items.length
         ? `Showing the ${items.length} closest matches of ${count(matched)}. Narrow your search to see the rest.`
         : `${count(matched)} ${matched === 1 ? 'match' : 'matches'}.`;
-      box.append(el('p', {
-        class: 'rail-hint',
-        text: `${summary} Filtered here from an index of ${count(total)} ${many}${snapshot(generatedAt)}.`,
-      }));
-      box.append(el('p', { class: 'rail-hint', text: addDestination() }));
+      box.append(el('p', { class: 'rail-hint', text: summary }));
+      box.append(el('details', { class: 'setting-more search-index-note' }, [
+        el('summary', { text: 'About these results' }),
+        el('p', {
+          class: 'rail-hint',
+          text: `Filtered on this device from an index of ${count(total)} ${many}${snapshot(generatedAt)}.`,
+        }),
+      ]));
       announce(summary);
 
       for (const item of items) {
@@ -3209,8 +3194,8 @@ function snapshot(generatedAt) {
 function addDestination() {
   const target = store.state.lists[activeListId()];
   return target
-    ? `Adding to “${target.name}”.`
-    : `Adding will start a new list called “${DEFAULT_LIST_NAME}”.`;
+    ? `Adding to: ${target.name}`
+    : `Adding to: new ${DEFAULT_LIST_NAME}`;
 }
 
 function renderResults(sel, items, metaFn) {
@@ -3218,11 +3203,8 @@ function renderResults(sel, items, metaFn) {
   box.replaceChildren();
   if (!items.length) return notify(sel, 'Nothing matched that search.', 'warn');
 
-  // Name the destination at the point of decision. The same hint sits in the view header, but
-  // the results are far enough down the page that it is easy to miss entirely.
-  const destination = addDestination();
   const held = heldCount(store.state, items);
-  const summary = `${count(items.length)} ${items.length === 1 ? 'result' : 'results'}, ${count(held)} already in your library. ${destination}`;
+  const summary = `${count(items.length)} ${items.length === 1 ? 'result' : 'results'}, ${count(held)} already in your library.`;
   box.append(el('div', { class: 'res-head', text: summary }));
 
   // This pane stopped being a live region, so the outcome has to be said here. The empty case
@@ -3748,7 +3730,6 @@ async function renderCatalogShelf(key) {
   const shelf = CATALOG_SHELVES.find((s) => s.key === key);
   const state = shelfState.get(key);
   const box = $(`#${key}-results`);
-  if (key === 'catalog') $('#catalog-timeline').hidden = true;
   box.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the catalog…' }));
   // Cleared by condition rather than by pane, because the same load failure may have been placed
   // in the shared pane above the views. Emptying only this pane left the reader looking at a
@@ -3791,11 +3772,6 @@ async function renderCatalogShelf(key) {
     box.append(el('p', { class: 'rail-hint', text: shelf.empty }));
     return;
   }
-
-  // The spine describes the catalogue, not the current search. Keeping its derived range stable
-  // while a reader types prevents the navigation itself from moving under their pointer. Choosing
-  // a year clears narrowing before it moves, so every enabled year keeps the destination it names.
-  if (key === 'catalog') renderTimelineSpine(groupCatalog(mine));
 
   // The same rule the landing page uses, and for the same reason: scanning works up to about a
   // dozen orders, and below that a search box is a control with nothing to do. Applied per shelf
@@ -3843,24 +3819,22 @@ async function renderCatalogShelf(key) {
       ? decadeSections(stories)
       : [{ ...shelf, stories }];
   const grouped = Boolean(shelf.sections);
-  const anchoredYears = new Set();
+  if (key === 'catalog') {
+    renderTimelineSections(box, sections, placements, {
+      showEmptyYears: state.facet === 'all' && !state.query,
+    });
+  }
   for (const section of sections) {
-    // Whether the badge this section's blurb points at is actually being drawn, asked of the same
-    // placements the rows are drawn from rather than of the rule that produced them.
-    const hasFirstStop = section.stories.some((s) => placements.get(s.key)?.previous === null);
+    if (key === 'catalog') break;
     // A shelf that is not divided draws no heading over its single group: the screen's own h1 and
-    // sub line already say what is on it, and a lone section title repeating them would be a
-    // second heading standing over the same thing.
-    if (grouped) box.append(shelfSectionHead(section, hasFirstStop));
+    // cards already say what is on it, and a lone section title repeating them would be a second
+    // heading standing over the same thing. Decade headings need no sentence restating the decade.
+    if (grouped) box.append(shelfSectionHead(section, { blurb: false }));
     const grid = el('div', { class: 'catalog-grid' });
     for (const story of section.stories) {
-      const year = storyYear(story);
-      const yearAnchor = key === 'catalog' && year !== null && !anchoredYears.has(year);
-      if (yearAnchor) anchoredYears.add(year);
       grid.append(catalogCard(story, placements.get(story.key), {
         surface: key,
         level: grouped ? 'h3' : 'h2',
-        yearAnchor,
       }));
     }
     box.append(grid);
@@ -3884,52 +3858,91 @@ async function renderCatalogShelf(key) {
 // would have put two same-level headings in a parent-child relationship on the landing page.
 function shelfSectionHead(
   section,
-  showRoute,
-  { level = 'h2', className = 'shelf-section', blurb = true } = {},
+  {
+    level = 'h2', className = 'shelf-section', blurb = true, headingId = null,
+  } = {},
 ) {
-  const blurbText = showRoute ? `${section.blurb} ${ROUTE_BLURB}` : section.blurb;
-  const children = [el(level, { class: 'shelf-section-title', text: section.heading })];
-  if (blurb) children.push(el('p', { class: 'shelf-section-blurb', text: blurbText }));
+  const children = [el(level, {
+    id: headingId, class: 'shelf-section-title', text: section.heading,
+  })];
+  if (blurb) children.push(el('p', { class: 'shelf-section-blurb', text: section.blurb }));
   return el('div', { class: className }, children);
 }
 
-// The year navigator is derived from the full events shelf rather than the current query. It keeps
-// empty years inside the range visible as gaps, while the first and last year always contain a card.
-function renderTimelineSpine(stories) {
-  const spine = $('#catalog-timeline');
-  const box = $('#catalog-years');
-  const years = timelineYears(stories);
-  spine.hidden = !years.length;
-  box.replaceChildren(...years.map(({ year, count: yearCount }) => {
-    if (!yearCount) {
-      return el('span', {
-        class: 'timeline-year is-empty',
-      }, [
-        el('span', { 'aria-hidden': 'true', text: `${year}` }),
-        el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
-      ]);
-    }
-    return el('button', {
-      class: 'timeline-year',
-      type: 'button',
-      'aria-label': `${year}, ${yearCount} ${yearCount === 1 ? 'Reading List' : 'Reading Lists'}`,
-      onclick: () => jumpToTimelineYear(year),
-    }, `${year}`);
-  }));
-}
+// The Timeline is content now, not a separate strip of links. Era milestones, year markers and
+// cards share one vertical axis, so the chronology stays beside the stories it describes.
+function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
+  const flow = el('div', { class: 'timeline-flow' });
+  for (const section of sections) {
+    const sectionId = `timeline-era-${section.key}`;
+    const era = el('section', {
+      class: 'timeline-era',
+      'aria-labelledby': sectionId,
+    }, [
+      el('div', { class: 'timeline-era-node', 'aria-hidden': 'true' }),
+      shelfSectionHead(section, {
+        className: 'shelf-section timeline-era-head',
+        headingId: sectionId,
+      }),
+    ]);
 
-async function jumpToTimelineYear(year) {
-  clearNarrowing('catalog');
-  await renderCatalogShelf('catalog');
-  const card = $(`#catalog-year-${year}`);
-  if (!card) return;
-  const heading = card.querySelector('.catalog-card-title');
-  heading?.setAttribute('tabindex', '-1');
-  card.scrollIntoView({
-    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-    block: 'start',
-  });
-  heading?.focus({ preventScroll: true });
+    const byYear = new Map();
+    for (const story of section.stories) {
+      const year = storyYear(story);
+      if (year === null) continue;
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(story);
+    }
+
+    const years = showEmptyYears && Number.isInteger(section.from) && Number.isInteger(section.to)
+      ? Array.from({ length: section.to - section.from + 1 }, (_, offset) => section.from + offset)
+      : [...byYear.keys()].sort((a, b) => a - b);
+    const yearList = el('div', { class: 'timeline-year-list' });
+    for (const year of years) {
+      const yearStories = byYear.get(year) ?? [];
+      if (!yearStories.length) {
+        yearList.append(el('div', { class: 'timeline-year-row is-empty' }, [
+          el('div', { class: 'timeline-year-marker is-empty' }, [
+            el('span', { 'aria-hidden': 'true', text: `${year}` }),
+            el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
+          ]),
+        ]));
+        continue;
+      }
+
+      const yearId = `timeline-year-${year}`;
+      const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
+      for (const story of yearStories) {
+        grid.append(catalogCard(story, placements.get(story.key), {
+          surface: 'catalog',
+          level: 'h4',
+        }));
+      }
+      yearList.append(el('section', {
+        class: 'timeline-year-row',
+        'aria-labelledby': yearId,
+      }, [
+        el('div', { class: 'timeline-year-marker' }, [
+          el('h3', { id: yearId, class: 'timeline-year-label', text: `${year}` }),
+        ]),
+        grid,
+      ]));
+    }
+
+    if (!years.length) {
+      const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
+      for (const story of section.stories) {
+        grid.append(catalogCard(story, placements.get(story.key), {
+          surface: 'catalog',
+          level: 'h3',
+        }));
+      }
+      yearList.append(grid);
+    }
+    era.append(yearList);
+    flow.append(era);
+  }
+  box.append(flow);
 }
 
 // One card per story. The complete description, collection metadata and reading-path choice remain
@@ -3938,7 +3951,7 @@ async function jumpToTimelineYear(year) {
 // `surface` is the shelf this row is being drawn on. The report pane is derived from it rather
 // than passed alongside it, because the two were separate arguments and a row reporting an import
 // into another screen's pane is a failure with no symptom on the screen the reader is looking at.
-function catalogCard(story, placement, { surface = 'catalog', level = 'h3', yearAnchor = false } = {}) {
+function catalogCard(story, placement, { surface = 'catalog', level = 'h3' } = {}) {
   const report = `#${surface}-report`;
   const title = story.name ?? story.lists[0].name;
   const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
@@ -3948,6 +3961,8 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3', year
   const desc = el('p', { class: 'catalog-card-desc' });
   const meta = el('p', { class: 'catalog-card-meta' });
   const source = el('div', { class: 'result-source' });
+  const path = pathDisclosure(placement, surface);
+  const disclosures = el('div', { class: 'catalog-card-disclosures' }, [path, source].filter(Boolean));
   const actions = el('div', { class: 'catalog-card-actions' });
 
   // One updater for every part that names a reading path. A choice made in Preview repaints the card
@@ -3981,7 +3996,6 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3', year
   const year = storyYear(story);
   return el('article', {
     class: 'catalog-card',
-    id: yearAnchor ? `catalog-year-${year}` : null,
     dataset: { story: story.key, year: year ?? '' },
   }, [
     el('div', { class: 'catalog-card-main' }, [
@@ -3990,11 +4004,22 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3', year
         el(level, { class: 'catalog-card-title', text: title }),
         desc,
         meta,
-        pathLine(placement, surface),
-        source,
+        disclosures,
       ]),
     ]),
     actions,
+  ]);
+}
+
+function pathDisclosure(placement, surface) {
+  if (!placement) return null;
+  const opens = placement.previous === null;
+  const summary = opens ? `Start · 1/${placement.total}` : `Step ${placement.position}/${placement.total}`;
+  return el('details', { class: 'result-path' }, [
+    el('summary', {
+      'aria-label': `${summary}. Show path details for ${placement.pathName}`,
+    }, summary),
+    pathLine(placement, surface, { showBadge: false }),
   ]);
 }
 
@@ -4035,7 +4060,7 @@ function catalogCard(story, placement, { surface = 'catalog', level = 'h3', year
 // accessibility tree. An <a> is the opposite case, and the path name is the one that needs it,
 // because "The Modern Avengers" alone does not say that pressing it goes to the start. Its name is
 // built out of the visible words rather than beside them, which is what accname.js exists to hold.
-export function pathLine(placement, surface) {
+export function pathLine(placement, surface, { showBadge = true } = {}) {
   if (!placement) return null;
   const opens = placement.previous === null;
   const start = stopLink(placement.first, surface, {
@@ -4044,17 +4069,18 @@ export function pathLine(placement, surface) {
   });
   const link = placement.next ? stopLink(placement.next, surface) : null;
   const lead = opens ? ` · Step 1 of ${placement.total} · ` : ' · ';
+  const badge = showBadge ? el('span', {
+    class: opens ? 'pill pill-start' : 'pill',
+    text: opens ? 'Start here' : `Step ${placement.position} of ${placement.total}`,
+  }) : null;
   return el('p', { class: 'result-meta path-step' }, [
-    el('span', {
-      class: opens ? 'pill pill-start' : 'pill',
-      text: opens ? 'Start here' : `Step ${placement.position} of ${placement.total}`,
-    }),
+    badge,
     el('span', {}, [
       start ?? placement.pathName,
       lead,
       ...(placement.next ? ['Next: ', link ?? placement.next.name] : ['Last stop']),
     ]),
-  ]);
+  ].filter(Boolean));
 }
 
 // Which screen a stop is drawn on, asked from where the reader is standing. The landing page draws
@@ -4369,16 +4395,14 @@ function renderProgress() {
   for (const radio of document.querySelectorAll('input[name="progress-scope"]')) {
     radio.checked = radio.value === (scoped ? 'list' : 'all');
   }
-  $('#progress-sub').textContent = scoped
-    ? `Counted over the issues in “${list.name}”. Choose All lists for everything you track.`
-    : 'Counted over unique issues across every list, so an issue in two lists counts once.';
+  $('#progress-method-text').textContent = scoped
+    ? `This list counts the issues in “${list.name}”. Tracked means issues you added, not the size of each complete series.`
+    : 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.';
 
   const rows = scoped ? seriesProgress(store.state, activeListId()) : seriesProgress(store.state);
-  // How a figure is counted is worth explaining beside the figures and nowhere else. With no rows
-  // the subtitle described the arithmetic of an empty table, which is two sentences a reader has
-  // to get past to reach the one that tells them there is nothing here.
-  $('#progress-sub').hidden = rows.length === 0;
-  $('#progress-note').hidden = rows.length === 0;
+  // Methodology is available on demand beside the scope control, and absent when there is no table
+  // for it to explain.
+  $('#progress-method').hidden = rows.length === 0;
   // Both the scope and the active list are in the key. One number would let expanding All lists
   // carry into This list, and one list's expansion onto the next list opened under the same scope,
   // so switching either restarts at the cap, which is what a reader expects when the list changes.
@@ -4426,7 +4450,6 @@ function renderLibrary() {
   for (const v of LIBRARY_VIEWS) {
     const section = $(`#view-${v.value}`);
     section.querySelector('h1').textContent = v.label;
-    section.querySelector('.sub').textContent = v.sub;
 
     const box = section.querySelector('.results');
     const rows = v.select(store.state);
@@ -4448,6 +4471,7 @@ function renderLibrary() {
       }
       const shown = Math.min(listShown.get(v.value) ?? LIBRARY_CAP, rows.length);
       const slice = rows.slice(0, shown);
+      box.append(el('p', { class: 'library-sort', text: v.sort }));
       box.append(summaryBand(v.summarise(rows)));
       if (rows.length > LIBRARY_CAP) countLine = box.appendChild(shownLine(shown, rows.length));
       if (rows.length < GROUP_MIN) {
@@ -5000,11 +5024,8 @@ function renderAll() {
   renderProgress();
   renderLibrary();
   renderQueue();
-  const list = store.state.lists[activeListId()];
   for (const target of document.querySelectorAll('.add-target')) {
-    target.textContent = list
-      ? `Anything you add goes into “${list.name}”.`
-      : 'Anything you add will start a new list.';
+    target.textContent = addDestination();
   }
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",

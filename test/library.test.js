@@ -48,7 +48,7 @@ test('every view declares how to summarise and group its own rows', () => {
 });
 
 test('a Library view that cannot produce a section id or a page is reported, not accepted', () => {
-  const ok = { value: 'library-read', label: 'L', sub: 'S', empty: 'E', markHandAdded: true, select: () => [], summarise: () => [], group: () => [] };
+  const ok = { value: 'library-read', label: 'L', sort: 'S', empty: 'E', markHandAdded: true, select: () => [], summarise: () => [], group: () => [] };
   assert.deepEqual(libraryViewProblems([]), ['The Library view list is empty.']);
   assert.deepEqual(
     libraryViewProblems([ok, { ...ok, value: 'library read' }]),
@@ -56,8 +56,8 @@ test('a Library view that cannot produce a section id or a page is reported, not
   );
   assert.deepEqual(libraryViewProblems([ok, ok]), ['Library view 1 repeats the value "library-read".']);
   assert.deepEqual(
-    libraryViewProblems([{ ...ok, sub: '' }]),
-    ['Library view 0 has no sub.'],
+    libraryViewProblems([{ ...ok, sort: '' }]),
+    ['Library view 0 has no sort.'],
   );
   assert.deepEqual(
     libraryViewProblems([{ ...ok, select: null }]),
@@ -85,7 +85,7 @@ test('an empty-state action is optional, but a declared one has to lead somewher
   // Omitting it is a real answer: an empty screen with nothing useful to offer should offer
   // nothing. A declared one is checked because the button is painted from these two strings and a
   // typo in the destination would render a control that navigates nowhere and reports no error.
-  const ok = { value: 'library-read', label: 'L', sub: 'S', empty: 'E', markHandAdded: true, select: () => [], summarise: () => [], group: () => [] };
+  const ok = { value: 'library-read', label: 'L', sort: 'S', empty: 'E', markHandAdded: true, select: () => [], summarise: () => [], group: () => [] };
   assert.deepEqual(libraryViewProblems([ok]), []);
   const bad = 'Library view 0 has an empty-state action with no label or no destination.';
   assert.deepEqual(libraryViewProblems([{ ...ok, emptyAction: { label: 'Go', view: 'catalog' } }]), []);

@@ -1,7 +1,7 @@
 // The two Library sub-views the adopted design specified, defined once.
 //
 // Each entry carries the value the rail button and the section id are both built from, the label
-// they both show, the subtitle under the heading, what to say when there is nothing, and the
+// they both show, the compact sort label above the rows, what to say when there is nothing, and the
 // selector that produces the rows. One entry is therefore one view, and a view that exists in the
 // markup but not here cannot be rendered, because the renderer reads this list and nothing else.
 //
@@ -11,7 +11,7 @@
 // with no section blanks the page and throws, and a section with no route is simply unreachable.
 // The difference is that the sections stay in `src/index.html` beside every other view rather than
 // being built from this list at boot, because a view is a page of content and belongs where the
-// rest of the pages are. They are empty shells: heading, subtitle and empty text are rendered from
+// rest of the pages are. They are empty shells: heading and empty text are rendered from
 // here, so the only copy that exists twice is the rail button's label, which the markup has to
 // carry to be a button at all. `test/library.test.js` reads both files off disk and fails on any
 // disagreement between them, so READING_FILTERS makes its drift impossible to express and this
@@ -34,7 +34,7 @@ export const LIBRARY_VIEWS = [
     // Says "wherever it came from" because that is the part no other view can show. Read state
     // survives the deletion of the list that introduced it, deliberately, so this is the only
     // place an issue you read inside an order you have since deleted still appears.
-    sub: 'Every issue you have marked read, newest first, wherever it came from.',
+    sort: 'Newest first',
     empty: 'Nothing is marked read yet.',
     // The empty state offers the thing to do rather than describing it. It used to end with
     // "Open a reading order and tick issues off as you go", which is an instruction a reader has
@@ -62,7 +62,7 @@ export const LIBRARY_VIEWS = [
   {
     value: 'library-manual',
     label: 'Added by hand',
-    sub: 'Every issue you typed in yourself, sorted by title.',
+    sort: 'Title order',
     empty: 'Nothing has been added by hand yet.',
     // Named the rail button in prose before, which asked the reader to find a control by its
     // label rather than handing it to them.
@@ -107,7 +107,7 @@ export function libraryViewProblems(views) {
       problems.push(`${where} has no value usable as a section id.`);
     } else if (seen.has(v.value)) problems.push(`${where} repeats the value ${JSON.stringify(v.value)}.`);
     else seen.add(v.value);
-    for (const field of ['label', 'sub', 'empty']) {
+    for (const field of ['label', 'sort', 'empty']) {
       if (!v || typeof v[field] !== 'string' || v[field] === '') problems.push(`${where} has no ${field}.`);
     }
     // Checked for presence rather than truth, because false is a meaningful answer and an entry

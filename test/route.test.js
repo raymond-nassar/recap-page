@@ -289,9 +289,11 @@ test('a list id naming a prototype member cannot be adopted from an address', ()
   lacks(main, /store\.state\.lists\[route\.listId\]/, 'a bare lookup of a list id from an address');
   // The bare lookups that remain read an id already in storage, which no address can now put there.
   // They are reachable only from a hand-edited state file, through coerce, and that is BL-068. The
-  // count is asserted so one added on the address path cannot hide among them.
+  // count is asserted so one added on the address path cannot hide among them. The destination-copy
+  // simplification removed one redundant lookup from renderAll and left the shared formatter's
+  // lookup in place, reducing this count from seven without changing which ids can reach storage.
   const bare = [...main.matchAll(/store\.state\.lists\[activeListId\(\)\]/g)];
-  assert.equal(bare.length, 7, 'a bare list lookup was added or removed without deciding about BL-068');
+  assert.equal(bare.length, 6, 'a bare list lookup was added or removed without deciding about BL-068');
 });
 
 // Assigning location.hash fires hashchange, which re-runs applyRoute and moves focus to the view

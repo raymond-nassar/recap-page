@@ -206,7 +206,8 @@ const shelfEntry = (id, name, extra = {}) => ({
 const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {
-      timeline: 2004, source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
+      timeline: 2004, beginner: true,
+      source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
     }),
     shelfEntry('browser-check-two', 'Second Stop', { timeline: 2005 }),
     shelfEntry('browser-check-three-main', 'Third Stop: The Long Way', {
@@ -241,8 +242,6 @@ const FIXTURE_SHELVES = new Map(
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
 const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
-const TIMELINE_JUMP_YEAR = CATALOG.lists[0].timeline;
-
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
 const ORDER_COUNT = ORDER.items.length;
 const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
@@ -255,13 +254,145 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
-    id: 'timeline-reset',
+    id: 'home-copy-return',
+    breaks: 'home-card-layout',
+    why: 'the longer first-run heading and its explanatory sentence return',
+    script: () => {
+      addEventListener('load', () => {
+        const heading = document.querySelector('#home-h');
+        heading.textContent = 'Pick something to read';
+        const sub = document.createElement('p');
+        sub.className = 'sub';
+        sub.textContent = 'Every order below ships with the app.';
+        heading.after(sub);
+      });
+    },
+  },
+  {
+    id: 'browse-subtitle-return',
+    breaks: 'copy-density',
+    why: 'an explanatory subtitle returns beneath a browse screen heading',
+    script: () => {
+      addEventListener('load', () => {
+        const heading = document.querySelector('#catalog-h');
+        const sub = document.createElement('p');
+        sub.className = 'sub';
+        sub.textContent = 'Events in the order they were published.';
+        heading.after(sub);
+      });
+    },
+  },
+  {
+    id: 'add-header-copy-return',
+    breaks: 'copy-density',
+    why: 'the Add destination is repeated in the page header as well as the working card',
+    script: () => {
+      addEventListener('load', () => {
+        const sub = document.createElement('p');
+        sub.className = 'sub add-target';
+        sub.textContent = 'Anything you add goes into this list.';
+        document.querySelector('#add-search-h').after(sub);
+      });
+    },
+  },
+  {
+    id: 'progress-copy-return',
+    breaks: 'copy-density',
+    why: 'Progress methodology returns as standing text above the results',
+    script: () => {
+      addEventListener('load', () => {
+        const note = document.createElement('p');
+        note.className = 'rail-hint';
+        note.id = 'progress-note';
+        note.textContent = 'Tracked means what you have added, not the size of the whole series.';
+        document.querySelector('#progress-method').before(note);
+      });
+    },
+  },
+  {
+    id: 'settings-copy-return',
+    breaks: 'copy-density',
+    why: 'a Settings card repeats what its control already says',
+    script: () => {
+      addEventListener('load', () => {
+        const card = [...document.querySelectorAll('#view-data .setting')]
+          .find((candidate) => candidate.querySelector('h3')?.textContent === 'Theme');
+        const desc = document.createElement('p');
+        desc.className = 'rail-hint setting-desc';
+        desc.textContent = 'Follow your system setting, or pick one and keep it.';
+        card.querySelector('h3').after(desc);
+      });
+    },
+  },
+  {
+    id: 'feature-decision-stack',
+    breaks: 'home-card-layout',
+    why: 'the feature facts and actions fall below the summary and leave the right side empty again',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('.feature-body { grid-template-columns: minmax(0, 1fr) !important; }', sheet.cssRules.length);
+        sheet.insertRule('.feature-decision { max-width: 15rem; }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
+    id: 'home-card-height',
+    breaks: 'home-card-layout',
+    why: 'one Home card grows taller than its neighbours, recreating the uneven grid this scenario measures',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('#home-grid .ogrid { grid-auto-rows: auto; align-items: start; }', sheet.cssRules.length);
+        sheet.insertRule('#home-grid .ocard:nth-child(2) { min-height: 390px; }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
+    id: 'timeline-sticky-off',
     breaks: 'shelf-sections',
-    why: 'choosing a year leaves the active search in place, so the destination story never returns',
-    rewriteMain: (source) => source.replace(
-      / {2}clearNarrowing\('catalog'\);\r?\n {2}await renderCatalogShelf\('catalog'\);/,
-      "  await renderCatalogShelf('catalog');",
-    ),
+    why: 'year labels scroll away from their own card groups instead of staying beside them',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('.timeline-year-marker { position: static !important; }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
+    id: 'timeline-node-overlap',
+    breaks: 'shelf-sections',
+    why: 'year labels are allowed back under their Timeline nodes',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('.timeline-year-marker { padding-right: .75rem !important; }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
+    id: 'catalog-card-height',
+    breaks: 'shelf-sections',
+    why: 'one Timeline card grows taller than the other cards in its year group',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('#catalog-results .timeline-year-cards { grid-auto-rows: auto; align-items: start; }', sheet.cssRules.length);
+        sheet.insertRule('#catalog-results .timeline-year-cards .catalog-card:first-child { min-height: 390px; }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
+    id: 'rail-scrollbar-visible',
+    breaks: 'rail-collapse',
+    why: 'Windows scrollbar chrome takes the space reserved for compact navigation icons',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('.railed .nav-scroll { scrollbar-width: auto !important; }', sheet.cssRules.length);
+        sheet.insertRule('.railed .nav-scroll::-webkit-scrollbar { display: block !important; }', sheet.cssRules.length);
+      });
+    },
   },
   {
     id: 'rail-bleed',
@@ -274,7 +405,7 @@ const MUTATIONS = [
         // dropped that way: --prove reported it breaking nothing, which reads as a scenario that
         // cannot fail rather than as a mutation that never ran.
         const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('.railed .pill { width: 10px; height: 10px; padding: 0; color: transparent; }', sheet.cssRules.length);
+        sheet.insertRule('.railed .result-path > summary { width: 10px; height: 10px; padding: 0; color: transparent; overflow: hidden; }', sheet.cssRules.length);
       });
     },
   },
@@ -681,7 +812,8 @@ const SCENARIOS = [
       t.check('and every one of them sits under the same era',
         [...under.values()].every((h) => h === expectedTimelineHeading), JSON.stringify([...under]));
 
-      const emptyYear = await page.$eval('.timeline-year.is-empty', (el) => {
+      const emptyYear = await page.$$eval('.timeline-year-marker.is-empty', (els) => {
+        const el = els.find((candidate) => candidate.textContent.includes('2007'));
         const channel = (text) => (text.match(/[\d.]+/g) ?? []).slice(0, 3).map(Number);
         const luminance = (text) => {
           const linear = channel(text).map((value) => {
@@ -691,7 +823,7 @@ const SCENARIOS = [
           return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
         };
         const style = getComputedStyle(el);
-        const surface = getComputedStyle(el.closest('.timeline-spine'));
+        const surface = getComputedStyle(document.body);
         const foreground = luminance(style.color);
         const background = luminance(surface.backgroundColor);
         return {
@@ -708,39 +840,59 @@ const SCENARIOS = [
       t.check('and its small text keeps normal-text contrast at full opacity',
         emptyYear.opacity === '1' && emptyYear.contrast >= 4.5, JSON.stringify(emptyYear));
 
-      await page.type('#catalog-q', 'Second Stop');
-      await page.waitForFunction(
-        () => document.querySelectorAll('#catalog-results .catalog-card').length === 1,
-      );
-      await page.evaluate(() => {
-        const scroll = Element.prototype.scrollIntoView;
-        Element.prototype.scrollIntoView = function (...args) {
-          window.__timelineScrollTarget = this.id;
-          return scroll.apply(this, args);
+      const vertical = await page.evaluate(() => {
+        const rows = [...document.querySelectorAll('.timeline-year-row:not(.is-empty)')];
+        const clearance = (row) => {
+          const marker = row.querySelector('.timeline-year-marker');
+          const label = row.querySelector('.timeline-year-label');
+          const node = getComputedStyle(marker, '::after');
+          const border = parseFloat(node.borderLeftWidth) + parseFloat(node.borderRightWidth);
+          const width = parseFloat(node.width) + (node.boxSizing === 'border-box' ? 0 : border);
+          const nodeLeft = marker.getBoundingClientRect().right - parseFloat(node.right) - width;
+          return Math.round((nodeLeft - label.getBoundingClientRect().right) * 10) / 10;
+        };
+        return {
+          flow: Boolean(document.querySelector('.timeline-flow')),
+          oldNavigator: Boolean(document.querySelector('#catalog-timeline')),
+          sticky: rows.map((row) => getComputedStyle(row.querySelector('.timeline-year-marker')).position),
+          clearances: rows.map(clearance),
+          groups: rows.map((row) => ({
+            year: row.querySelector('.timeline-year-label')?.textContent.trim() ?? '',
+            cards: [...row.querySelectorAll('.catalog-card')].map((card) => card.dataset.year),
+            heights: [...row.querySelectorAll('.catalog-card')].map((card) => Math.round(card.getBoundingClientRect().height)),
+          })),
         };
       });
-      await click(page, `#catalog-years button[aria-label^="${TIMELINE_JUMP_YEAR},"]`);
-      await page.waitForFunction(
-        (count) => document.querySelectorAll('#catalog-results .catalog-card').length === count,
-        {},
-        FIXTURE_SHELVES.get('catalog').length,
-      );
-      const jump = await page.evaluate(() => ({
-        query: document.querySelector('#catalog-q')?.value ?? null,
-        cards: document.querySelectorAll('#catalog-results .catalog-card').length,
-        scrollTarget: window.__timelineScrollTarget ?? null,
-        focusText: document.activeElement?.textContent?.trim() ?? null,
-        focusOutline: getComputedStyle(document.activeElement).outline,
-      }));
-      t.check('choosing a populated Timeline year clears a prior search', jump.query === '', JSON.stringify(jump));
-      t.check('and restores the complete event shelf',
-        jump.cards === FIXTURE_SHELVES.get('catalog').length, JSON.stringify(jump));
-      t.check('and scrolls to the first story in that year',
-        jump.scrollTarget === `catalog-year-${TIMELINE_JUMP_YEAR}`, JSON.stringify(jump));
-      t.check('and moves focus to that story heading',
-        jump.focusText === CATALOG.lists[0].name, JSON.stringify(jump));
-      t.check('and leaves a visible ring at the focus destination',
-        jump.focusOutline.includes('solid') && !jump.focusOutline.startsWith('0px'), JSON.stringify(jump));
+      t.check('the year spine is part of the result flow rather than a separate navigator',
+        vertical.flow && !vertical.oldNavigator, JSON.stringify(vertical));
+      t.check('each populated year owns only cards from that year',
+        vertical.groups.length > 0
+        && vertical.groups.every((group) => group.cards.length > 0 && group.cards.every((year) => year === group.year)),
+        JSON.stringify(vertical.groups));
+      t.check('cards within each year use one height',
+        vertical.groups.every((group) => Math.max(...group.heights) - Math.min(...group.heights) <= 1),
+        JSON.stringify(vertical.groups));
+      t.check('each year label clears the circle beside it',
+        vertical.clearances.every((gap) => gap >= 4), JSON.stringify(vertical.clearances));
+      t.check('each populated year stays pinned beside its card group',
+        vertical.sticky.every((position) => position === 'sticky'), JSON.stringify(vertical.sticky));
+
+      await page.setViewport({ width: 620, height: 900 });
+      await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
+      const narrowTimeline = await page.$eval('.timeline-year-row:not(.is-empty)', (row) => {
+        const marker = row.querySelector('.timeline-year-marker').getBoundingClientRect();
+        const cards = row.querySelector('.timeline-year-cards').getBoundingClientRect();
+        return {
+          markerPosition: getComputedStyle(row.querySelector('.timeline-year-marker')).position,
+          markerBottom: Math.round(marker.bottom),
+          cardsTop: Math.round(cards.top),
+        };
+      });
+      t.check('a narrow window moves the year above its one-column cards',
+        narrowTimeline.markerPosition === 'relative'
+        && narrowTimeline.markerBottom <= narrowTimeline.cardsTop,
+        JSON.stringify(narrowTimeline));
+      await page.setViewport({ width: 1280, height: 900 });
 
       await click(page, '[data-view="lines"]');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
@@ -763,6 +915,173 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'home-card-layout',
+    title: 'Home discovery stays concise and Reading List cards stay equal',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('#home-grid .ocard', { timeout: 15000 });
+
+      const measure = () => page.$$eval('#home-grid .ogrid', (grids) => grids.map((grid) => {
+        const heights = [...grid.querySelectorAll('.ocard')].map((card) => card.getBoundingClientRect().height);
+        return {
+          cards: heights.length,
+          min: Math.round(Math.min(...heights)),
+          max: Math.round(Math.max(...heights)),
+          spread: Math.round(Math.max(...heights) - Math.min(...heights)),
+        };
+      }));
+      const settleLayout = () => page.evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      await settleLayout();
+      const standard = await measure();
+      t.check('every Home group uses one card height at 1280px',
+        standard.length > 0 && standard.every((group) => group.cards > 0 && group.spread <= 1),
+        JSON.stringify(standard));
+
+      await page.setViewport({ width: 2048, height: 1080 });
+      await settleLayout();
+      const wide = await measure();
+      t.check('and keeps one card height on the wide display from the owner review',
+        wide.length === standard.length && wide.every((group) => group.cards > 0 && group.spread <= 1),
+        JSON.stringify(wide));
+
+      const context = await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('#home-grid .ocard')];
+        const named = (title) => cards.find((card) => card.querySelector('.ocard-title')?.textContent.trim() === title);
+        const first = named('Browser Check Order');
+        const variant = named('Third Stop');
+        const badge = first?.querySelector('.ocard-path');
+        const feature = document.querySelector('#home-featured').getBoundingClientRect();
+        const copy = document.querySelector('.feature-copy').getBoundingClientRect();
+        const decision = document.querySelector('.feature-decision').getBoundingClientRect();
+        return {
+          heading: document.querySelector('#home-h')?.textContent.trim() ?? null,
+          explanatoryLines: document.querySelectorAll('#view-home > .head .sub').length,
+          feature: {
+            horizontal: decision.left > copy.right,
+            gap: Math.round(decision.left - copy.right),
+            rightInset: Math.round(feature.right - decision.right),
+            facts: document.querySelectorAll('#feature-facts li').length,
+            actions: document.querySelectorAll('.feature-act .btn').length,
+          },
+          visibleBadge: badge?.querySelector('[aria-hidden="true"]')?.textContent.trim() ?? null,
+          badgeDetail: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
+          beginner: first?.querySelector('.pill-beginner')?.textContent.trim() ?? null,
+          optionAction: variant?.querySelector('.ocard-preview')?.textContent.trim() ?? null,
+          variableRows: document.querySelectorAll('#home-grid .ocard .path-step, #home-grid .ocard .ocard-ways').length,
+        };
+      });
+      t.check('the first-run heading says Start Here without explaining the choices again',
+        context.heading === 'Start Here' && context.explanatoryLines === 0, JSON.stringify(context));
+      t.check('the featured journey uses its right side for facts and actions',
+        context.feature.horizontal
+        && context.feature.gap >= 16
+        && context.feature.rightInset <= 32
+        && context.feature.facts >= 4
+        && context.feature.actions === 2,
+        JSON.stringify(context.feature));
+      t.check('the compact path badge keeps position, path name and next-stop context',
+        context.visibleBadge === 'Start · 1/3'
+        && context.badgeDetail === 'Start here. Step 1 of 3 in The Fixture Path. Next: Second Stop.',
+        JSON.stringify(context));
+      t.check('beginner suitability remains visible on the cover',
+        context.beginner === 'Beginner', JSON.stringify(context));
+      t.check('a story with variants moves its option count into the existing preview action',
+        context.optionAction === 'See 2 options', JSON.stringify(context));
+      t.check('and no variable path or options row can make one card taller',
+        context.variableRows === 0, JSON.stringify(context));
+    },
+  },
+  {
+    id: 'copy-density',
+    title: 'standing explanations yield to compact labels and disclosures',
+    async run(page, t) {
+      await open(page, '/');
+
+      const browse = [];
+      for (const view of ['catalog', 'lines', 'spotlights']) {
+        await click(page, `[data-view="${view}"]`);
+        await page.waitForSelector(`#${view}-results .catalog-card`, { timeout: 15000 });
+        browse.push(await page.$eval(`#view-${view}`, (section) => ({
+          view: section.id,
+          subtitle: section.querySelector('.head .sub')?.textContent.trim() ?? null,
+          blurbs: [...section.querySelectorAll('.shelf-section-blurb')]
+            .map((node) => node.textContent.trim()),
+        })));
+      }
+      t.check('browse headings carry no sentence that repeats the screen structure',
+        browse.every((screen) => screen.subtitle === null), JSON.stringify(browse));
+      t.check('Timeline keeps era context while Storylines drops decade explanations',
+        browse[0].blurbs.length > 0 && browse[0].blurbs.every((text) => text.length > 40)
+        && browse[1].blurbs.length === 0,
+        JSON.stringify(browse));
+
+      const destinations = [];
+      for (const view of ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']) {
+        await click(page, `[data-view="${view}"]`);
+        destinations.push(await page.$eval(`#view-${view}`, (section) => ({
+          view: section.id,
+          header: section.querySelector('.head .add-target')?.textContent.trim() ?? null,
+          card: section.querySelector('.add-page > .add-destination')?.textContent.trim() ?? null,
+        })));
+      }
+      t.check('each Add page names its destination once inside the working card',
+        destinations.every((entry) => entry.header === null && entry.card?.startsWith('Adding to:')),
+        JSON.stringify(destinations));
+      const manual = await page.$eval('#view-add-manual', (section) => ({
+        action: section.querySelector('#btn-manual-lookup')?.textContent.trim(),
+        summaries: [...section.querySelectorAll('details > summary')].map((summary) => summary.textContent.trim()),
+        open: [...section.querySelectorAll('details')]
+          .find((details) => details.querySelector(':scope > summary')?.textContent.trim() === 'What lookup sends')?.open,
+      }));
+      t.check('manual lookup names its destination and starts with privacy detail collapsed',
+        manual.action === 'Look up on Marvel Fandom'
+        && manual.summaries.includes('What lookup sends') && manual.open === false,
+        JSON.stringify(manual));
+
+      await click(page, '[data-view="catalog"]');
+      await click(page, IMPORT_BUTTON);
+      await page.waitForFunction(() => document.querySelector('#shelf-note')?.textContent.trim() === '2 issues');
+      const shelfNote = await page.$eval('#shelf-note', (node) => node.textContent.trim());
+      t.check('the reading shelf reports only its issue count', shelfNote === '2 issues', shelfNote);
+
+      await click(page, '[data-view="progress"]');
+      await page.waitForFunction(() => !document.querySelector('#progress-method')?.hidden);
+      const progress = await page.$eval('#view-progress', (section) => ({
+        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).length,
+        oldNote: Boolean(section.querySelector('#progress-note, #progress-sub')),
+        methodOpen: section.querySelector('#progress-method')?.open,
+        methodLabel: section.querySelector('#progress-method > summary')?.textContent.trim(),
+      }));
+      t.check('Progress keeps methodology in one collapsed disclosure',
+        progress.directNotes === 0 && !progress.oldNote
+        && progress.methodOpen === false && progress.methodLabel === 'How counts work',
+        JSON.stringify(progress));
+
+      await click(page, '[data-view="data"]');
+      const settings = await page.$$eval('#view-data .setting', (cards) => cards.map((card) => ({
+        heading: card.querySelector('h3')?.textContent.trim(),
+        standing: card.querySelector('.setting-desc')?.textContent.trim() ?? null,
+        control: card.querySelector('.setting-ctl')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
+      })));
+      const theme = settings.find((card) => card.heading === 'Theme');
+      const updates = settings.find((card) => card.heading === 'Update checks');
+      t.check('Settings controls no longer repeat themselves in adjacent descriptions',
+        theme?.standing === null && updates?.standing === null && updates?.control === 'Check once a day',
+        JSON.stringify({ theme, updates }));
+
+      const libraryHeads = await page.$$eval(
+        '#view-library-read .head, #view-library-manual .head',
+        (heads) => heads.map((head) => Boolean(head.querySelector('.sub'))),
+      );
+      t.check('Library headings leave sorting to compact labels beside populated results',
+        libraryHeads.every((hasSub) => !hasSub), JSON.stringify(libraryHeads));
+    },
+  },
+  {
     id: 'reading-path',
     title: 'the shelf says where a story sits in a reading order',
     async run(page, t) {
@@ -775,6 +1094,7 @@ const SCENARIOS = [
         meta: e.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
         source: e.querySelector('.result-source')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
         step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
+        pathSummary: e.querySelector('.result-path summary')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
         year: e.dataset.year ?? '',
       })));
 
@@ -788,12 +1108,12 @@ const SCENARIOS = [
         `${rows.length} cards: ${rows.map((r) => r.title).join(' / ')}`);
       t.check('a story read two ways is on the shelf under its own name', Boolean(last), rows.map((r) => r.title).join(' / '));
 
-      t.check('the first stop is badged so a reader can find it at a glance', first?.step?.startsWith('Start here') === true, JSON.stringify(first?.step));
-      t.check('and still says how long the path is', first?.step?.includes('Step 1 of 3') === true, JSON.stringify(first?.step));
+      t.check('the first stop is badged so a reader can find it at a glance', first?.pathSummary === 'Start · 1/3', JSON.stringify(first));
+      t.check('and still says how long the path is', first?.step?.includes('Step 1 of 3') === true, JSON.stringify(first));
       t.check('and names the path it belongs to', first?.step?.includes('The Fixture Path') === true, JSON.stringify(first?.step));
       t.check('and names the exact source section without changing its link', first?.source?.includes('Section: Fixture section') === true, JSON.stringify(first?.source));
 
-      t.check('a middle stop is numbered', middle?.step?.startsWith('Step 2 of 3') === true, JSON.stringify(middle?.step));
+      t.check('a middle stop is numbered', middle?.pathSummary === 'Step 2/3', JSON.stringify(middle));
       // Deliberately absent. The shelf is sorted by year, so the previous stop is the row above,
       // and printing it made the longest thing on the line a copy of the line before it.
       t.check('and does not restate the stop above it', middle?.step?.includes('Browser Check Order') === false, JSON.stringify(middle?.step));
@@ -802,8 +1122,26 @@ const SCENARIOS = [
       t.check('and names the next stop by its story, not by one reading of it', middle?.step?.includes('Next: Third Stop') === true && !middle.step.includes('Short Way'), JSON.stringify(middle?.step));
 
       t.check('the last stop says the path ends there', last?.step?.includes('Last stop') === true, JSON.stringify(last?.step));
-      t.check('and is numbered last', last?.step?.includes('Step 3 of 3') === true, JSON.stringify(last?.step));
+      t.check('and is numbered last', last?.pathSummary === 'Step 3/3', JSON.stringify(last));
       t.check('and offers no next stop to go to', last?.step?.includes('Next:') === false, JSON.stringify(last?.step));
+
+      await page.$$eval('#catalog-results .catalog-card', (cards) => {
+        const card = cards.find((row) => row.querySelector('.catalog-card-title')?.textContent.trim() === 'Second Stop');
+        card?.querySelector('.result-path summary')?.click();
+      });
+      const expandedPath = await page.$$eval('#catalog-results .catalog-card', (cards) => {
+        const card = cards.find((row) => row.querySelector('.catalog-card-title')?.textContent.trim() === 'Second Stop');
+        const details = card?.querySelector('.result-path');
+        return {
+          open: details?.open ?? false,
+          text: details?.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        };
+      });
+      t.check('opening the compact marker reveals the full path and next-stop wording',
+        expandedPath.open
+        && expandedPath.text.includes('The Fixture Path')
+        && expandedPath.text.includes('Next: Third Stop'),
+        JSON.stringify(expandedPath));
 
       t.check('the compact card keeps the issue count', first?.meta === '3 issues', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
@@ -825,17 +1163,33 @@ const SCENARIOS = [
     async run(page, t) {
       await open(page, '/');
       await click(page, '[data-view="catalog"]');
-      await page.waitForSelector('#catalog-results .path-step .pill', { timeout: 15000 });
+      await page.waitForSelector('#catalog-results .result-path > summary', { timeout: 15000 });
 
       const read = () => page.evaluate(() => {
         const box = (e) => {
           if (!e) return null;
           const r = e.getBoundingClientRect();
-          return { w: Math.round(r.width), colour: getComputedStyle(e).color };
+          return { w: Math.round(r.width), h: Math.round(r.height), colour: getComputedStyle(e).color };
         };
         return {
-          badge: box(document.querySelector('#catalog-results .path-step .pill')),
+          badge: box(document.querySelector('#catalog-results .result-path > summary')),
           status: box(document.querySelector('#api-status')),
+          nav: (() => {
+            const rail = document.querySelector('#sidebar').getBoundingClientRect();
+            const scroll = document.querySelector('.nav-scroll');
+            const icon = document.querySelector('.ri[data-view="catalog"] .gi').getBoundingClientRect();
+            const button = document.querySelector('.ri[data-view="catalog"]').getBoundingClientRect();
+            const style = getComputedStyle(scroll);
+            return {
+              railLeft: Math.round(rail.left),
+              railRight: Math.round(rail.right),
+              iconLeft: Math.round(icon.left),
+              iconRight: Math.round(icon.right),
+              buttonWidth: Math.round(button.width),
+              overflowY: style.overflowY,
+              scrollbarWidth: style.scrollbarWidth,
+            };
+          })(),
         };
       });
 
@@ -843,12 +1197,22 @@ const SCENARIOS = [
       // Set directly rather than through the toggle: what is under test is the stylesheet, and
       // the toggle also persists a preference this check has no business writing.
       await page.evaluate(() => document.querySelector('#shell').classList.add('railed'));
+      await page.waitForFunction(() => document.querySelector('#sidebar').getBoundingClientRect().width <= 50);
       const after = await read();
 
       const invisible = (c) => /rgba\(\d+, \d+, \d+, 0\)/.test(c ?? '');
-      t.check('the start badge is a badge to begin with', (before.badge?.w ?? 0) > 20, JSON.stringify(before.badge));
+      t.check('the path marker has a usable target to begin with',
+        (before.badge?.w ?? 0) > 50 && (before.badge?.h ?? 0) >= 24,
+        JSON.stringify(before.badge));
       t.check('and is still that size once the sidebar is collapsed', after.badge?.w === before.badge?.w, `${before.badge?.w} then ${after.badge?.w}`);
       t.check('and its text is still painted', !invisible(after.badge?.colour), JSON.stringify(after.badge?.colour));
+      t.check('and compact navigation keeps its icons visible while remaining scrollable',
+        after.nav.scrollbarWidth === 'none'
+        && after.nav.overflowY === 'auto'
+        && after.nav.buttonWidth >= 44
+        && after.nav.iconLeft >= after.nav.railLeft
+        && after.nav.iconRight <= after.nav.railRight,
+        JSON.stringify(after.nav));
       // The other half of the same claim. A fix that scoped the rule away entirely would pass the
       // three above and quietly cost the rail the dot it is supposed to collapse to.
       t.check('while the rail status pill still collapses to a dot', (after.status?.w ?? 99) <= 12, JSON.stringify(after.status));
@@ -958,7 +1322,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:777` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:783` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -1282,7 +1646,7 @@ const SCENARIOS = [
       });
       t.check('the address field names its own explanation', hint.id === 'manual-url-hint', JSON.stringify(hint.id));
       t.check('and that explanation says where to get the address',
-        hint.text.includes('paste the address'), hint.text.slice(0, 100));
+        /paste.*Marvel Unlimited.*Read/i.test(hint.text), hint.text.slice(0, 100));
 
       await addByHand(page, 'All-New Spider-Gwen: The Ghost-Spider (2026) #9', 'https://read.marvel.com/#/book/129648');
       const readerSaid = await manualReport(page);

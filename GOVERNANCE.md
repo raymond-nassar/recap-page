@@ -33,8 +33,8 @@ Three things follow from ranking this way, and all three are deliberate:
   deleted, so the argument survives and does not have to be had again from scratch.
 
 Each item also records a constraint check against the standing product constraints, which are the
-things this project will not trade away. Measured on 2026-08-23: of the 180 items with a detail
-block, 174 carry that check, and the only six without one are the six that were dropped. They were
+things this project will not trade away. Measured on 2026-08-23: of the 181 items with a detail
+block, 175 carry that check, and the only six without one are the six that were dropped. They were
 dropped for different reasons, one for breaching a constraint before it was ever scored, and none of
 them is missing a check that somebody forgot to run. [The contributing
 guide](CONTRIBUTING.md) lists the constraints in the form a contributor needs.
@@ -42,7 +42,7 @@ guide](CONTRIBUTING.md) lists the constraints in the form a contributor needs.
 ## What ships, and when
 
 Work ordinarily lands as one pull request per item. The maintainer made one explicit exception on
-2026-08-22 for the remaining UX simplification work, combining BL-194 through BL-198 with the
+2026-08-22 for the remaining UX simplification work, combining BL-193 through BL-198 and BL-202 with the
 owner-directed My Library and Search grouping in one delivery. The exception is recorded in those
 items and does not replace the default. The gates that have to pass are listed in
 [the contributing guide](CONTRIBUTING.md) and enforced by CI, and the maintainer does not merge

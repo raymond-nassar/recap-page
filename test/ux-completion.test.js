@@ -90,19 +90,28 @@ test('browse screens render safe cover-led cards with one-sentence summaries', (
   assert.doesNotMatch(body, /pathChooser\(/, 'variant radios are still standing on every card');
 });
 
-test('the timeline spine is derived and has a focusable destination', () => {
-  assert.match(html, /id="catalog-timeline"[^>]*aria-label="Jump to a year"/);
-  assert.match(main, /const years = timelineYears\(stories\)/);
-  assert.match(main, /await renderCatalogShelf\('catalog'\)/);
-  assert.match(main, /heading\?\.focus\(\{ preventScroll: true \}\)/);
+test('the timeline is a vertical chronology rather than a separate year navigator', () => {
+  assert.doesNotMatch(html, /id="catalog-timeline"/);
+  assert.match(main, /class: 'timeline-flow'/);
+  assert.match(main, /class: 'timeline-year-marker is-empty'/);
+  assert.match(main, /level: 'h4'/);
+  assert.match(styles, /\.timeline-flow::before\s*\{[^}]*left:\s*var\(--timeline-axis\)/s);
+  assert.match(styles, /\.timeline-year-marker\s*\{[^}]*position:\s*sticky;[^}]*padding:\s*\.2rem 2rem \.2rem 0;/s);
+  assert.match(styles, /\.railed \.nav-scroll\s*\{[^}]*scrollbar-width:\s*none;/s);
 });
 
-test('home cards size to their own content instead of stretching to their row', () => {
+test('home cards use equal tracks after moving variable details out of the card flow', () => {
   assert.match(
     styles,
-    /\.ogrid\s*\{[^}]*align-items:\s*start;/s,
-    'the landing grid still stretches short cards to the tallest card in their row',
+    /\.ogrid\s*\{[^}]*grid-auto-rows:\s*1fr;/s,
+    'the landing grid does not give its cards equal tracks',
   );
+  const start = main.indexOf('function orderCard');
+  const body = main.slice(start, main.indexOf('function addButton', start));
+  assert.match(body, /class: 'ocard-badges'/);
+  assert.match(body, /homePathBadge\(placement\)/);
+  assert.doesNotMatch(body, /pathLine\(placement,\s*'home'\)/);
+  assert.doesNotMatch(body, /class: 'ocard-ways'/);
 });
 
 test('saved Reading Lists use bounded responsive tiles instead of full-width rows', () => {
@@ -130,7 +139,7 @@ test('the continue-reading panel uses the same bounded measure', () => {
 });
 
 test('home group headings do not masquerade as Timeline era breaks', () => {
-  assert.match(main, /shelfSectionHead\(section,\s*hasFirstStop,\s*\{[^}]*level:\s*'h3'[^}]*className:\s*'shelf-section home-shelf-section'[^}]*blurb:\s*false/s);
+  assert.match(main, /shelfSectionHead\(section,\s*\{[^}]*level:\s*'h3'[^}]*className:\s*'shelf-section home-shelf-section'[^}]*blurb:\s*false/s);
   assert.match(
     styles,
     /\.home-shelf-section\s*\{[^}]*background:\s*none;[^}]*border:\s*0;/s,
@@ -138,8 +147,28 @@ test('home group headings do not masquerade as Timeline era breaks', () => {
   );
 });
 
-test('returning readers and Home group headings are not explained twice', () => {
-  assert.match(main, /homeSub\.hidden = populated;/);
-  assert.match(main, /homeSub\.textContent = populated\s*\?\s*''/);
+test('Home headings are not explained twice', () => {
+  assert.doesNotMatch(html, /id="home-sub"/);
+  assert.match(main, /populated \? 'Continue reading' : 'Start Here'/);
   assert.match(main, /if \(blurb\) children\.push\(/);
+});
+
+test('standing explanations move behind disclosures or become compact labels', () => {
+  for (const view of ['catalog', 'lines', 'spotlights']) {
+    const page = between(html, `id="view-${view}"`, '\n          <section id="view-');
+    assert.doesNotMatch(page, /<div class="sub">/, `${view} still has an explanatory page subtitle`);
+  }
+  assert.doesNotMatch(
+    between(html, 'id="view-about"', '</main>'),
+    /<div class="sub">/,
+    'about still has an explanatory page subtitle',
+  );
+  assert.match(html, /<summary>How counts work<\/summary>/);
+  assert.doesNotMatch(html, /id="progress-sub"|id="progress-note"/);
+  assert.match(html, /<summary>What lookup sends<\/summary>/);
+  assert.doesNotMatch(html, /Follow your system setting, or pick one and keep it/);
+  assert.doesNotMatch(html, /Once a day, the app can ask GitHub/);
+  assert.match(html, /id="opt-update-checks" \/> Check once a day/);
+  assert.match(main, /class: 'library-sort', text: v\.sort/);
+  assert.match(main, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
 });

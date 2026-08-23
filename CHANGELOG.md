@@ -65,6 +65,10 @@ navigation offers: browse by series, creator, character or reading guide, then p
 an issue by hand. The paste screen shows a real two-line checklist, and the optional Marvel
 Unlimited address on hand entry stays out of the way until it is needed.
 
+The first-run Home screen now opens with the shorter "Start Here" heading and no sentence explaining
+the choices underneath it. The featured journey uses its right side for commitment facts and
+actions instead of leaving that part of the card empty.
+
 The navigation now treats named Reading Lists and the three views of saved progress as one My
 Library group. Reading List is the product-facing name throughout headings, controls, empty states
 and previews. On the front page, saved lists form compact tiles rather than page-wide bands, and
@@ -74,27 +78,42 @@ Continue reading now stands on its own without a sentence restating what it mean
 uses the same bounded width. The three discovery groups also stand on their names without borrowing
 the boxed era-break treatment or its explanatory paragraph from the dedicated browse screens.
 
-Timeline, Storylines and Character spotlights now use cover-led cards with one sentence, an issue
-count and the actions needed to choose. Timeline has a scrollable year spine derived from the
-events actually bundled, and Storylines groups its cards by decade. Full descriptions, reading
-choices and source details remain available in Preview or the Source disclosure.
+Standing explanations have also been reduced across the rest of the app. Browse screens now stand
+on their headings, Timeline keeps only its useful era context, and Add screens show one compact
+destination inside the card where work happens. Progress methodology, manual-lookup privacy detail,
+and name-index mechanics remain available through disclosures. Library uses compact sort labels,
+Settings controls no longer repeat themselves, and the reading shelf reports only its issue count.
+Safety, recovery, attribution, legal, empty-state, and destructive-action copy remains visible.
 
-Nothing already saved is changed, and the previous combined Add address still opens Search issues.
+Timeline, Storylines and Character spotlights now use cover-led cards with one sentence, an issue
+count and the actions needed to choose. Timeline now runs vertically through era milestones, year
+groups and the cards published in each year. Empty years remain as small ticks, and the active year
+stays beside its cards while scrolling. Storylines groups its cards by decade. Full descriptions,
+reading choices, path details and source details remain available through compact disclosures or
+Preview. Year labels no longer touch the circles beside them, and collapsing the sidebar keeps its
+navigation icons visible while the destination list remains scrollable.
+
+Home now keeps every Reading List card the same height. Path position and beginner suitability sit
+as compact labels on the cover, while a story with multiple versions puts the option count in its
+existing preview action. Nothing already saved is changed, and the previous combined Add address
+still opens Search issues.
 
 For maintainers: the five Add routes keep independent history and selected-navigation state, with
-the legacy route canonicalised to issue search. The Timeline spine derives 21 years from the 46
-event stories, keeps 5 empty internal years visible, and clears narrowing before it focuses the
-first card in a chosen year. The three browse screens render 46, 6 and 7 safe cover-led cards; full
+the legacy route canonicalised to issue search. The Timeline chronology derives 21 years from the
+46 event stories and keeps 5 empty internal years visible. The three browse screens render 46, 6
+and 7 safe cover-led cards; full
 descriptions and variant selection remain in the existing preview dialog. Storylines derives the
-2000s, 2010s and 2020s bands from its current data. At 1280x900 the landing cards retain their
-273px to 397px intrinsic range but the measured blank space falls from 1,152px to 113px, the border
-floor of the same measurement. Saved-order tiles are bounded at 384px, producing two columns at
-1280px and three at 2048px, while the first-run feature caps at 1,152px on the wide view and still
-fills the available 964px at 1280px. The repaired Edge harness passes 126 assertions across 14
-scenarios.
+2000s, 2010s and 2020s bands from its current data. The Timeline renders 4 era milestones,
+16 populated year groups and 5 empty-year ticks; its year label moves above a one-column grid at
+700px and below. All 59 Home cards now measure 273px at both
+1280x900 and 2048x900, replacing the previous 273px to 397px range without restoring the 1,152px
+of empty card space. Saved-order tiles are bounded at 384px, producing two columns at 1280px and
+three at 2048px, while the first-run feature caps at 1,152px on the wide view and still fills the
+available 964px at 1280px. The repaired Edge harness passes 145 assertions across 16 scenarios,
+and all 36 targeted regressions are detected by the mutation proof.
 
-Review follow-up restored a visible focus ring when navigation moves keyboard focus to a screen or
-Timeline card, brought empty-year labels back above the text contrast threshold, and made their
+Review follow-up restored a visible focus ring when navigation moves keyboard focus to a screen,
+brought empty-year labels back above the text contrast threshold, and made their
 screen-reader wording real text rather than a label on a generic element. Legacy Add links now
 resolve before rendering, series and creator indexes warm on every route into those screens, and
 the browser harness holds the Timeline reset, scroll and focus behavior.

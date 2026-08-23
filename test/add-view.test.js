@@ -69,15 +69,16 @@ test('series and creator indexes warm when their pages open by any route', () =>
   );
 });
 
-test('the manual page still says the metadata snapshot ends in 2025 and search cannot find newer issues', () => {
+
+test('the manual page keeps the 2025 boundary in one compact sentence', () => {
   const manual = prose(pages.get('add-manual'));
   assert.match(manual, /\b2025\b/i, 'the hand-entry card no longer names the 2025 boundary');
   assert.match(
     manual,
-    /(?:newer|anything newer|very recent issues?)[^.]*not be found by search|search cannot reach/i,
+    /missing from search[^.]*post-2025|post-2025[^.]*missing from search/i,
     'the hand-entry card no longer says search misses issues beyond the snapshot',
   );
-  assert.match(manual, /still tracks/i, 'the hand-entry card no longer says a hand entry still tracks');
+  assert.match(manual, /still track/i, 'the hand-entry card no longer says a hand entry still tracks');
   assert.match(
     manual,
     /availability[^.]*unknown|unknown[^.]*availability/i,
@@ -85,17 +86,16 @@ test('the manual page still says the metadata snapshot ends in 2025 and search c
   );
 });
 
-test('the manual lookup control still says the title goes to the wiki and your progress does not', () => {
+test('the manual lookup names Marvel Fandom and keeps its privacy detail behind a disclosure', () => {
   const hintMatch = pages.get('add-manual').match(
-    /<button[^>]*id="btn-manual-lookup"[^>]*>Look up details<\/button>\s*<p class="rail-hint">([\s\S]*?)<\/p>\s*<div id="manual-candidates" class="results"><\/div>/,
+    /<button[^>]*id="btn-manual-lookup"[^>]*>Look up on Marvel Fandom<\/button>\s*<details class="field-disclosure">\s*<summary>What lookup sends<\/summary>\s*<p class="rail-hint">([\s\S]*?)<\/p>\s*<\/details>\s*<div id="manual-candidates" class="results"><\/div>/,
   );
-  assert.ok(hintMatch, 'the manual lookup hint is no longer beside the Look up details control');
+  assert.ok(hintMatch, 'the manual lookup privacy detail is no longer behind its disclosure');
   const hint = prose(hintMatch[1]);
-  assert.match(hint, /nothing happens until you press/i, 'the lookup hint no longer says the request waits for a press');
   assert.match(
     hint,
-    /sends?[^.]*words[^.]*Title box[^.]*Marvel Fandom wiki/i,
-    'the lookup hint no longer says the typed title goes to the Marvel Fandom wiki',
+    /only the title[^.]*sent to Marvel Fandom/i,
+    'the lookup detail no longer says the typed title goes to Marvel Fandom',
   );
   assert.match(
     hint,
@@ -104,8 +104,25 @@ test('the manual lookup control still says the title goes to the wiki and your p
   );
   assert.match(
     hint,
-    /nothing about your lists or your reading progress goes with it/i,
+    /lists[^.]*progress[^.]*stay here/i,
     'the lookup hint no longer says lists and reading progress stay out of the request',
+  );
+});
+
+test('each Add destination sits inside its working card instead of the page header', () => {
+  for (const [view, source] of pages) {
+    assert.doesNotMatch(source, /<div class="sub add-target">/, `${view} still repeats its destination in the header`);
+    assert.match(
+      source,
+      /<section class="card card-static addpri add-page"[^>]*>\s*<p class="add-destination add-target"><\/p>/,
+      `${view} has no compact destination inside its working card`,
+    );
+  }
+  assert.match(main, /Adding to: \$\{target\.name\}/, 'the compact destination no longer names the current list');
+  assert.doesNotMatch(
+    main,
+    /already in your library\. \$\{destination\}/,
+    'search summaries still repeat the destination below the card badge',
   );
 });
 
