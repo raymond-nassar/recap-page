@@ -132,8 +132,8 @@
 
 * Parent-prioritized material from Wave 1: Worker commit ancestry and scope; source hash and boundary identity; exact metadata rows and horizon; final 87-list plus selected-peer report regeneration; central dispositions; no-peer-duplicate batch coherence.
 * Plan and independent lanes: Validate worker commits and candidate-specific outputs once supplied, then perform central identity, horizon, relationship, and batch analysis.
-* Worker evidence relationships or inline fallback: Pending.
-* Reflection: Pending.
+* Worker evidence relationships or inline fallback: Parent-verified shard 3 commit `f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8` supplies provisional packets, exact mappings, and reports for `phalanx-reading-order` and `marvels-best-phoenix-comics`. Shards 1 and replacement shard 2 remain pending.
+* Reflection: The shard 3 file boundary and PR #171 ancestry are valid. Central source review independently re-fetched both exact WordPress records. Their full rendered-content hashes differ from the frozen records while their modification timestamps, structural counts, headings, issue-bearing block counts, and issue-bearing block digests remain exact matches. The difference is therefore outside the issue-bearing evidence boundary and does not invalidate the frozen source rows. Phalanx's 28 rows exactly expand the source's nine New Mutants entries, sixteen explicit Phalanx Covenant reading-order entries, two later Uncanny X-Men entries, and Legion of X #10. Phoenix's 53 rows exactly expand the thirteen issue-bearing passages retained by the frozen digest. Both mappings are exact, unique, and end in 2023, inside the 2025-10-29 metadata horizon. The worker's `stronger-model` source reviews are not accepted authority and must be replaced centrally, which will intentionally change packet and mapping digests. Phalanx's manifest copy also claims excluded Annihilation: Conquest and Powers of X material, so it must be corrected before approval. The two eight-issue partials with the existing X-Men variants are acceptable in principle because the Phalanx guide has a distinct product purpose, but final approval waits for regenerated reports with every selected peer. Phoenix has no provisional non-none relationship. Evidence: C13-C14, W1-W2, shard 3 commit.
 
 #### Wave 3: Contrarian
 
@@ -173,10 +173,15 @@ Pending completion of all three waves.
 | C10 | White Tiger's packet is an 82-row centrally reviewed `character-run` with a fresh packet digest. | `scripts/data/cbh-packets/white-tiger-ava-ayala.json:1-18`; `scripts/data/cbh-packets/white-tiger-ava-ayala.json:50-56`; `scripts/data/cbh-packets/white-tiger-ava-ayala.json:959-963` | read and digest validation | high | Pilot-specific boundary choices do not transfer to another source. |
 | C11 | White Tiger's report binds an 86-list pre-publication library, four partial relationships, and a central approval; its focused test independently recomputes the historical digest. | `scripts/data/cbh-overlaps/white-tiger-ava-ayala.json:1-8`; `scripts/data/cbh-overlaps/white-tiger-ava-ayala.json:540-544`; `scripts/data/cbh-mappings/white-tiger-ava-ayala.json:3907-3911`; `test/cbh-character-spotlight.test.js:79-128` | read and focused test | high | The report proves freshness at publication time, not for MRT-002-C02. |
 | C12 | The live manifest and generated catalog each contain 87 lists; nine are `character-run`, representing eight grouped stories. | `src/data/curated-lists.json:1-2900`; `src/data/catalog.json:1-3399` | parsed complete files | high | This is the pre-batch baseline worker outputs must be regenerated against. |
+| C13 | The frozen Phalanx record binds WordPress post 42471, source hash, headings, 17 issue-bearing blocks, their digest, and a maximum explicit block year of 2019. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2301-2324` | read and live digest reproduction | high | The live issue-bearing digest still matches exactly. |
+| C14 | The frozen Phoenix record binds WordPress post 36165, source hash, headings, 13 issue-bearing blocks, and their digest. | `.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2327-2348` | read and live digest reproduction | high | The live issue-bearing digest still matches exactly. |
 
 ### External Evidence
 
-No external evidence used at intake.
+| ID | Claim / finding | Source | Retrieved | Confidence | Notes |
+|---|---|---|---|---|---|
+| W1 | The live Phalanx WordPress record retains the same modification timestamp, 48 content blocks, six headings, 17 issue-bearing blocks, first and last headings, and issue-bearing digest as the frozen record. Its issue-bearing passages expand to the worker's exact 28-row sequence. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=phalanx-reading-order | 2026-08-23 | high | The full HTML digest changed outside the issue-bearing evidence boundary. |
+| W2 | The live Phoenix WordPress record retains the same modification timestamp, 58 content blocks, 14 headings, 13 issue-bearing blocks, first and last headings, and issue-bearing digest as the frozen record. Its thirteen passages expand to the worker's exact 53-row sequence. | https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=marvels-best-phoenix-comics | 2026-08-23 | high | The full HTML digest changed outside the issue-bearing evidence boundary. |
 
 ### Contradictions / Conflicts
 
@@ -190,8 +195,8 @@ No external evidence used at intake.
 | Q2 | The maintained inventory is the 128-identity root, but deferred records carry source hashes and disposition only, not accepted issue rows or relationships. | C1, C9 | high | Worker output must still earn central boundary, horizon, and relationship acceptance. |
 | Q3 | White Tiger proves the machinery, stale-input rejection, and historical-digest test pattern; its exact cut and overlap decisions are candidate-specific. | C10-C11 | high | Reuse the pattern, not its judgments or 86-list baseline. |
 | Q4 | Admit only shard-scoped candidate files from verified commits, then centrally rebind packets, mappings, reports, peers, and approvals against the live baseline. | C1-C8, C12 | high | Worker commits are evidence inputs, not merge-ready product changes. |
-| Q5 | Candidate selection remains blocked pending all three worker commits. | none yet | low | Planning cannot select scope. |
-| Q6 | The main demonstrated invalidators are stale 86-list evidence, cross-peer overlap, unresolved rows, worker-issued authority, and candidate-specific source or horizon assumptions. | C4-C7, C10-C12 | high | Contrarian testing has concrete targets. |
+| Q5 | Phalanx and Phoenix are admissible provisional candidates, but selection remains blocked pending shards 1 and 2. | C13-C14, W1-W2, shard 3 commit | medium | Planning cannot select scope yet. |
+| Q6 | The main demonstrated invalidators are stale 86-list evidence, cross-peer overlap, unresolved rows, worker-issued authority, inaccurate manifest copy, and candidate-specific source or horizon assumptions. | C4-C7, C10-C14, W1-W2 | high | Contrarian testing has concrete targets. |
 
 ## Key Discoveries
 
@@ -199,6 +204,7 @@ No external evidence used at intake.
 * Batch authoring binds every selected peer mapping and also rejects any duplicate issue id across the batch.
 * Central packet review precedes the durable packet digest. Changing worker-issued review evidence invalidates both packet and mapping digests.
 * Worker overlap reports cannot be final because the cross-shard selected peer set does not exist until coordinator selection.
+* Phalanx and Phoenix are the first two admissible provisional candidates. Their source boundaries and metadata horizons survive central challenge, but their worker authority cannot.
 
 ## Alternatives and Decision State
 
@@ -208,7 +214,7 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 
 ## Open Questions, Risks, and Residual Uncertainty
 
-* Blocking: Parent-supplied worker commit SHAs are required before candidate evidence can be accepted. After the parent corrected and restarted all three lanes, their branch tips and recorded diffs remained unchanged for more than ten minutes; the parent is checking whether execution stalled again.
+* Blocking: Parent-supplied shard 1 and replacement shard 2 commit SHAs are required before the candidate set can converge. Shard 3 is accepted as provisional evidence only.
 * Important: Worker outputs may be stale against the post-PR #171 87-list library, omit selected cross-shard peers, share issue ids with one another, or contain protected decisions that must be discarded and reproduced centrally.
 * Follow-up: None outside the active task.
 * Residual uncertainty: Candidate count, identity ambiguity, metadata fit, relationship mix, and coherent batch composition remain unknown until worker outputs arrive.
@@ -275,7 +281,8 @@ Pending worker acceptance and parent synthesis. No candidate or batch is selecte
 
 ## Sources
 
-No external sources used.
+* W1 - Comic Book Herald WordPress REST: Phalanx reading order - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=phalanx-reading-order (retrieved 2026-08-23, live record)
+* W2 - Comic Book Herald WordPress REST: Phoenix comics - https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=marvels-best-phoenix-comics (retrieved 2026-08-23, live record)
 
 ## Artifact Self-Check
 
@@ -283,7 +290,7 @@ No external sources used.
 * [ ] Every executed cycle includes Wider, Deeper, and Contrarian in order.
 * [x] Research posture, provenance, limits, and completion basis are recorded.
 * [ ] Every codebase finding carries a stable evidence ID and location.
-* [x] Sources accurately state that no external evidence was used at intake.
+* [x] Every external evidence id resolves to one source entry.
 * [x] Extension provenance and worker authority are recorded.
 * [x] No-interaction rationale and direction controls are durable.
 * [ ] Parent synthesis, re-entry, decisions, and Planning Readiness are complete.

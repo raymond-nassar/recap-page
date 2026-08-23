@@ -22,13 +22,39 @@
       },
       {
         "source_ordinals": "44-86",
-        "status": "awaiting-parent-supplied-commit",
-        "commit": null
+        "status": "replacement-worker-active",
+        "commit": null,
+        "session": "shard-02-replacement-worker",
+        "replacementReason": "The original shard 2 session produced no file changes after two immediate restarts and was archived by the parent."
       },
       {
         "source_ordinals": "87-128",
-        "status": "awaiting-parent-supplied-commit",
-        "commit": null
+        "status": "coordinator-validated-provisional-candidates",
+        "commit": "f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8",
+        "candidates": [
+          {
+            "id": "phalanx-reading-order",
+            "rows": 28,
+            "status": "admissible-pending-final-batch",
+            "centralNotes": [
+              "The live issue-bearing block digest matches the frozen boundary record.",
+              "All 28 rows reproduce the centrally accepted explicit source sequence.",
+              "The two eight-issue partial relationships with the existing X-Men variants are acceptable in principle for a distinct Phalanx guide, but require a final regenerated report and central approval.",
+              "Replace worker source authority and correct the manifest copy before final packet approval."
+            ]
+          },
+          {
+            "id": "marvels-best-phoenix-comics",
+            "rows": 53,
+            "status": "admissible-pending-final-batch",
+            "centralNotes": [
+              "The live issue-bearing block digest matches the frozen boundary record.",
+              "All 53 rows reproduce exact issue references or ranges present in the narrative best-of source.",
+              "No provisional relationship exists against the 87-list baseline or Phalanx peer.",
+              "Replace worker source authority before final packet approval."
+            ]
+          }
+        ]
       }
     ],
     "excluded_work": [
@@ -54,8 +80,8 @@
       "keyFinding": "Worker reports are provisional until final cross-shard selection and central regeneration against the live library and every selected peer."
     },
     "deeper": {
-      "status": "blocked-waiting-for-worker-commits",
-      "blocker": "All three worker branches remain at their launch tips with zero recorded diff after restart. The parent is inspecting whether they are actively processing or stalled."
+      "status": "waiting-for-worker-commits",
+      "progress": "Shard 3 commit f2d5dda64ad388b5c00af027acb3f8f2d7e9a0a8 has two coordinator-validated provisional candidates. Shard 1 and replacement shard 2 remain pending."
     }
   },
   "plan": {

@@ -569,6 +569,16 @@
     "fp": "323d3c6dc00545c4",
     "head": "{"
   },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c13|.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2301-2324|0": {
+    "anchor": ".copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2301-2324",
+    "fp": "be2237a1b30e662e",
+    "head": "\"url\": \"https://www.comicbookherald.com/phalanx-reading-order/\","
+  },
+  ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c14|.copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2327-2348|0": {
+    "anchor": ".copilot-tracking/research/2026-08-22/character-spotlight-boundaries.json:2327-2348",
+    "fp": "38238cddb8eb2d8c",
+    "head": "\"url\": \"https://www.comicbookherald.com/marvels-best-phoenix-comics/\","
+  },
   ".copilot-tracking/research/2026-08-23/character-spotlight-batch-one-research.md|codebase-evidence#c2|scripts/lib/cbh-inventory.mjs:252-345|0": {
     "anchor": "scripts/lib/cbh-inventory.mjs:252-345",
     "fp": "fb88eaaf56e1c555",
