@@ -46,6 +46,10 @@ const SETTINGS_KEY = 'mrt.settings';
 const SIDEBAR_KEY = 'sidebar.collapsed';
 const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const SHELF_SIZE = 8;
+// One binding for the words the catalog uses to add an order, shared by the home card and the
+// catalog row. They rendered two different labels for one behaviour before, which is how they
+// drifted apart in the first place.
+const CATALOG_ADD = '+ Add to library';
 // Above this many orders, scanning stops being enough and the reader needs to type.
 const HOME_FILTER_THRESHOLD = 12;
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
@@ -1062,9 +1066,7 @@ function wireNav() {
     btn.addEventListener('click', () => navigateTo(btn.dataset.view, btn.dataset.open));
   }
 
-  for (const btn of ['#btn-new-list', '#esc-new-list']) {
-    $(btn).addEventListener('click', newEmptyList);
-  }
+  $('#btn-new-list').addEventListener('click', newEmptyList);
 
   for (const btn of document.querySelectorAll('[data-covers-toggle]')) {
     btn.addEventListener('click', () => setCovers(!settings.covers));
@@ -1843,7 +1845,7 @@ function addButton(list, inLibrary) {
       },
     }, text);
   }
-  const text = '+ Add to library';
+  const text = CATALOG_ADD;
   return el('button', {
     type: 'button',
     class: 'btn',
@@ -3320,7 +3322,7 @@ async function addCreator(creator) {
 
 function doImport() {
   const text = $('#import-text').value;
-  if (!text.trim()) return notify('#import-report', 'Paste a reading order first.', 'warn');
+  if (!text.trim()) return notify('#import-report', 'Paste a reading list first.', 'warn');
 
   const { entries, unresolved, headings } = parseChecklist(text);
   const box = $('#import-report');
@@ -3902,12 +3904,15 @@ function catalogRow(story, placement, { surface = 'catalog', level = 'h3' } = {}
     act.replaceChildren(el('button', {
       class: 'btn',
       type: 'button',
-      // The accessible name always carries the full list name, so a button read out of
-      // context never says only "Import Essential reading".
-      'aria-label': `Import ${list.name}`,
+      // The same act the home cards offer, so it carries the same words. The rows said "Import"
+      // while the cards said "Add to library" for the one behaviour behind both, which is
+      // addFromCatalog delegating straight to importCurated, and the shared busy state already
+      // said "Adding". The accessible name carries the full list name, so a button read out of
+      // context never says only "Add to library".
+      'aria-label': labelledName(CATALOG_ADD, list.name),
       dataset: { key: list.id, act: 'import' },
       onclick: (e) => importCurated(list, e.currentTarget, { report }),
-    }, 'Import'));
+    }, CATALOG_ADD));
   };
   paint(chosenPath(story));
 
@@ -4092,7 +4097,19 @@ function attributionLine(list) {
   }
   if (section) parts.push(el('span', { text: `${label ? ' · ' : ''}Section: ${section}` }));
   if (updated) parts.push(el('span', { text: `${label || section ? ' · ' : ''}Snapshot taken ${updated}` }));
-  return el('p', { class: 'result-meta result-source' }, parts);
+  // Folded away rather than printed. Provenance is a thing a reader checks once about one order,
+  // never a thing they read on every row, and measured on the Timeline screen at 1280x900 the 46
+  // rows each carrying this line put 267 small-font nodes on one screen. A disclosure rather than a
+  // hover tooltip, because a tooltip reaches neither the keyboard nor touch, and Chromium expands a
+  // closed details for find-in-page, so the text stays findable while it is out of the way.
+  //
+  // The summary names the order it belongs to. Forty-six controls all announcing "Source" and
+  // nothing else is a list a screen reader user cannot navigate; the visible word stays inside the
+  // spoken name, so the two do not disagree.
+  return el('details', { class: 'result-src' }, [
+    el('summary', { 'aria-label': `Source of ${list.name}` }, 'Source'),
+    el('p', { class: 'result-meta result-source' }, parts),
+  ]);
 }
 
 function wireCatalogShelfSearch(key) {

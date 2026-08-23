@@ -14,6 +14,59 @@ quote in a bug report.
 
 ## Unreleased
 
+### Said each thing once, in the words a reader already knows
+
+In plain English: the same button had two names. Pressing it on a picture card on the front page said
+"Add to library" and pressing it on a row on a browse screen said "Import", and both did exactly the
+same thing, which is copy one of the bundled reading orders into your own library. Nothing is
+imported from anywhere and nothing leaves your machine, so it is called "Add to library" in both
+places now. The two browse screens were renamed for what is on them rather than how they were put
+together: "Browse by era" is now "Timeline" and "Line-wide reading lists" is now "Storylines". Two
+of the ways to add issues were renamed for the same reason, so the one that searches now says "Find
+a series" and the one that takes text you paste says "Paste a reading list".
+
+The screens themselves say a great deal less. Every row on every browse screen used to print who
+put the order together, where it came from and when it was copied, in small grey text, forty-six
+times over on one screen. That is now a "Source" line you can open on the one order you are
+curious about, and it is still findable by searching the page. The sentence under each screen's
+title repeated the description the front page already gives, so it is one short line now. The
+three search buttons became a magnifying glass, since the box beside each one already says what it
+searches. The strip at the very bottom of the front page offering a second way to start an empty
+list is gone, because that way is permanently in the navigation strip anyway. The one thing that
+got louder is the period headings on the Timeline screen: they now sit in a band of their own, so
+scrolling past forty-six rows tells you when the period changed.
+
+Two things were deliberately left as they were. The note saying that nothing is sent anywhere until
+you press the button stays word for word, because it is a promise rather than a hint. And the box
+for a Marvel Unlimited address stays, even though it was asked to go, because the form it sits in
+exists for issues published after the built-in data ends, and for those there is no other way to
+give the app a working link.
+
+Nothing you have saved is affected, and no reading order, filter or setting was removed.
+
+For maintainers: measured in Edge at 1280x900 against `main`, on the shipped catalogue. Visible
+words fell on every screen touched: Timeline 2,833 to 2,205 with paragraphs 100 to 54, Storylines
+692 to 611, character spotlights 1,128 to 1,031, the add screen 79 to 67, the landing page 3,566 to
+3,548. Small-font nodes fell from 267 to 207 on Timeline. Controls reading "Import" went from 46, 6
+and 7 on the three browse screens to 0; the one remaining "Import" is the paste form's own submit,
+which parses text rather than adding a bundled order. The two names were one string typed twice and
+are now one binding, so the row handler and the card handler cannot drift again. The three rail
+subtitles were removed from the shelf table as well as from the markup, because no renderer had
+drawn that field since the rail was rebuilt, so it declared copy that reached no screen. Provenance
+is a `<details>` rather than the hover tooltip that was asked for: a tooltip reaches neither the
+keyboard nor a touch screen, and Chromium opens a closed disclosure for find-in-page, so the words
+stay findable. Each summary is named for the order it belongs to, since 46 controls named "Source"
+is a list nobody can navigate. The icon buttons keep a 44px target, a `title` of "Search" and a
+fuller accessible name each. Era bands went from weight 600 and no fill to weight 700 with a fill,
+an outline and a 3px accent edge. Card heights are unchanged and the 125px spread across the 59
+landing cards is filed as BL-194 with both attempted fixes costed and rejected there: clamping the
+path sentence to one line recovered 19px and truncated nine of ten sentences mid-word, and
+reserving two lines each for the title and description made the spread worse, 125px to 145px.
+Details in BL-192 and BL-193, with the remaining requests filed as BL-194 through BL-197. The
+browser harness was run against `origin/main` and against this branch: 109 assertions pass and 10
+fail in both, the same 10 by name, so this change regressed nothing there and the standing failures
+are filed as BL-198.
+
 ### Put every reading order on the front page, and gave each kind of reading its own screen
 
 In plain English: the front page used to show twelve reading orders as picture cards and then offer

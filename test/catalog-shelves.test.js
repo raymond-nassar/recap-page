@@ -97,7 +97,7 @@ test('a screen with nothing on it is not drawn', () => {
 
 test('every screen carries the words its own empty state and heading need', () => {
   for (const shelf of CATALOG_SHELVES) {
-    for (const field of ['key', 'heading', 'sub', 'blurb', 'empty', 'railSub']) {
+    for (const field of ['key', 'heading', 'sub', 'blurb', 'empty']) {
       assert.equal(typeof shelf[field], 'string', `the ${shelf.key} shelf has no ${field}`);
       assert.ok(shelf[field].trim().length, `the ${shelf.key} shelf has an empty ${field}`);
     }

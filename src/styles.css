@@ -124,7 +124,7 @@
   --amber: #eab654;
   --blue: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:695-696`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:699-700`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -349,7 +349,6 @@ h2[tabindex="-1"]:focus {
   width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);
 }
 .ri .lbl { display: block; min-width: 0; flex: 1 1 auto; }
-.ri-sub { display: block; font-size: var(--t-caption); color: var(--muted); }
 .ri-action { color: var(--dim); }
 
 .ri .t { display: flex; justify-content: space-between; gap: .5rem; }
@@ -372,7 +371,6 @@ h2[tabindex="-1"]:focus {
    clipped at 48px. */
 .railed .rail-h,
 .railed #no-lists,
-.railed .ri-sub,
 .railed .ri .n,
 .railed .ri .bar { display: none; }
 
@@ -576,6 +574,12 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 }
 /* display:inline-flex would otherwise defeat the hidden attribute. */
 .btn[hidden] { display: none; }
+/* An icon-only submit beside the field it belongs to. The word it replaced restated the label the
+   field already carries above it, so the row loses a word without losing the action, and the word
+   is still reachable as the tooltip and as the accessible name. Square to the same 44px target the
+   search inputs beside it keep. */
+.btn-icon { padding: 0; min-width: 44px; min-height: 44px; justify-content: center; }
+.btn-icon .gi { width: auto; }
 .btn:hover { filter: brightness(1.1); }
 .btn:disabled { opacity: .5; cursor: default; filter: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
@@ -955,13 +959,21 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
   border-bottom: 1px solid var(--line);
 }
 
-/* The heading over one half of the shelf. Space above it and almost none below, so the heading
-   binds to the rows it introduces instead of floating equidistant between two sections; the grid's
-   own .4rem gap supplies the rest. The first heading gets no extra, because the list already has
-   margin above it and stacking the two pushed the shelf below the fold on a laptop. */
-.shelf-section { margin: 1rem 0 0; }
+/* The heading over one stretch of the shelf. It used to be a bold line in the same column as the
+   rows, at the same size as a row title, so scrolling a 46-row screen gave no felt boundary between
+   one era and the next. It is now a band: its own fill, its own outline and an accent edge, which
+   is what makes the break visible at a glance rather than only on reading it. Space above it and
+   almost none below, so the band binds to the rows it introduces instead of floating equidistant
+   between two sections; the grid's own .4rem gap supplies the rest. The first band gets no extra,
+   because the list already has margin above it and stacking the two pushed the shelf below the fold
+   on a laptop. */
+.shelf-section {
+  margin: 1.4rem 0 0; padding: .55rem .75rem;
+  background: var(--card-2); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent); border-radius: 10px;
+}
 .shelf-section:first-child { margin-top: 0; }
-.shelf-section-title { font-size: var(--t-body); font-weight: 600; margin: 0; letter-spacing: .01em; }
+.shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
 .shelf-section-blurb { color: var(--muted); font-size: var(--t-caption); margin: .2rem 0 0; max-width: 64ch; }
 
 .result {
@@ -975,6 +987,17 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .result-source { margin: .2rem 0 0; }
 .result-source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .result-source a:hover { color: var(--text); }
+/* The provenance disclosure. Its own marker rather than the browser's, because the default one
+   sits outside the text box and pushed the summary out of line with the rest of the row. 24px is
+   the pointer target floor in WCAG 2.5.8, and a caption-sized word does not reach it on its own. */
+.result-src { margin: .2rem 0 0; }
+.result-src > summary {
+  display: inline-flex; align-items: center; min-height: 24px; cursor: pointer;
+  color: var(--muted); font-size: var(--t-caption); list-style: none; width: fit-content;
+}
+.result-src > summary::-webkit-details-marker { display: none; }
+.result-src > summary::before { content: "\25B8"; margin-right: .35rem; }
+.result-src[open] > summary::before { content: "\25BE"; }
 /* The row is a flex line with nothing set to hold its size, so at 640 CSS pixels, which is what
    200 per cent zoom reports, the pill was the part that gave way: the title kept its width and
    "Already in your library" broke across three lines beside a one-line row. Fixing the pill and
@@ -1224,12 +1247,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    so a small button tucked at one edge is easy to sweep straight past. */
 .home-more { display: block; width: 100%; margin: 0 .1rem; }
 .attribution { margin: 1.1rem .1rem 0; }
-
-.escape {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .4rem;
-  margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--line);
-}
-.escape-label { color: var(--muted); font-size: var(--t-caption); margin-right: .2rem; }
 
 /* ---------------------------------------------------------- preview dialog */
 

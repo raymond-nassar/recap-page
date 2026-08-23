@@ -95,11 +95,25 @@ test('the manual lookup control still says the title goes to the wiki and your p
 });
 
 test('the Add view keeps exactly five primary buttons in its own markup', () => {
-  // The primary rule is about buttons whose whole class attribute is exactly `btn`. A word-boundary
-  // search would count `class="btn btn-g"` as well, which is how a guard on this very rule would
-  // have reported six buttons while the intended count was five.
-  const exactPrimaryButtons = addView.match(/class="btn"/g) ?? [];
-  assert.equal(exactPrimaryButtons.length, 5);
+  // The primary rule is about buttons whose whole class attribute is exactly `btn`, or exactly
+  // `btn btn-icon` for the three that submit a search field. A word-boundary search would count
+  // `class="btn btn-g"` as well, which is how a guard on this very rule would have reported six
+  // buttons while the intended count was five.
+  const worded = addView.match(/class="btn"/g) ?? [];
+  const iconOnly = addView.match(/class="btn btn-icon"/g) ?? [];
+  assert.equal(worded.length + iconOnly.length, 5);
+  assert.equal(iconOnly.length, 3, 'the three search submits are the icon-only ones');
+});
+
+test('every icon-only primary button carries a name and a tooltip', () => {
+  // An icon-only control has no visible text to fall back on, so the glyph is hidden from the
+  // accessibility tree and the name has to be stated. The tooltip is what the sighted user gets.
+  const buttons = addView.match(/<button[^>]*class="btn btn-icon"[^>]*>/g) ?? [];
+  assert.equal(buttons.length, 3);
+  for (const button of buttons) {
+    assert.match(button, /title="Search"/, `no tooltip on ${button}`);
+    assert.match(button, /aria-label="[^"]+"/, `no accessible name on ${button}`);
+  }
 });
 
 test('the Add view heading levels stay 1, 2, 2, 3, 3, 3, 3 with no skipped level', () => {
