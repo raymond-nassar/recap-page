@@ -46,6 +46,7 @@ const dataDir = path.join(root, 'src', 'data');
 const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
+const laterOrderIds = ['groot-reading-order'];
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
@@ -426,13 +427,16 @@ test('five mappings preserve 23 exact unique metadata identities and reviewed al
 
 test('five reports bind the complete library, four peers, and central approvals', async () => {
   const library = await loadLibrarySnapshot();
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, CBRO_SELECTED_IDS);
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(
+    library,
+    [...CBRO_SELECTED_IDS, ...laterOrderIds],
+  );
   const mappings = await Promise.all(CBRO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
   const mappingById = new Map(mappings.map((mapping) => [mapping.id, mapping]));
   const existingIds = library.lists
-    .filter((entry) => !CBRO_SELECTED_IDS.includes(entry.id))
+    .filter((entry) => ![...CBRO_SELECTED_IDS, ...laterOrderIds].includes(entry.id))
     .map((entry) => entry.id);
   for (const id of CBRO_SELECTED_IDS) {
     const packet = await readJson(path.join(packetsDir, `${id}.json`));

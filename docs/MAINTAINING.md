@@ -297,7 +297,7 @@ approval cannot invalidate its own mapping evidence.
 Only an approved, current mapping can be authored and vendored:
 
 ```text
-node scripts/author-cbh-packet.mjs --only=<id>[,<id>...]
+node scripts/author-cbh-packet.mjs --only=<id>[,<id>...] [--peer=<shipped-peer-id>]
 npm run vendor -- --only=<id>
 ```
 
@@ -306,6 +306,11 @@ when the packet, mapping sequence, report, live catalog, peer mapping, dispositi
 manifest differs from the reviewed evidence. Omitting `--only` retains the existing legacy batch
 behavior. Every resulting catalog card must credit Comic Book Herald and link to the exact guide
 section followed.
+
+Use `--peer` when a separately authored candidate was reviewed against a shipped guide's mapping.
+The peer remains in the manifest unchanged, is counted exactly once in the relationship report, and
+is excluded from the ordinary reviewed-library digest. A partial relationship does not permit
+either source sequence to lose shared issues.
 
 ### Validate the packet
 

@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import {
   approvalDigestFor,
   libraryDigestFor,
+  packetDigestFor,
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
@@ -20,7 +21,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const candidateId = 'white-tiger-ava-ayala';
 const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics'];
 const cosmicCandidateId = 'rocket-raccoon-reading-order';
-const characterCandidateIds = [...batchCandidateIds, cosmicCandidateId, candidateId];
+const grootCandidateId = 'groot-reading-order';
+const characterCandidateIds = [
+  grootCandidateId,
+  'phalanx-reading-order',
+  'marvels-best-phoenix-comics',
+  cosmicCandidateId,
+  candidateId,
+];
 
 function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
@@ -42,6 +50,22 @@ const rocketSourceSequence = [
   'GUARDIANS OF THE GALAXY ANNUAL 1|2019|1',
 ];
 
+const grootSourceSequence = [
+  'Tales to Astonish|1959|13',
+  'Incredible Hulk|1962|271',
+  ...issueRange('Rocket Raccoon', 1985, 1, 4),
+  'Marvel Preview|1975|7',
+  ...issueRange('Annihilators', 2010, 1, 4),
+  ...issueRange('Annihilators: Earthfall', 2011, 1, 4),
+  ...issueRange('Guardians of the Galaxy', 2008, 1, 25),
+  ...issueRange('Groot', 2015, 1, 6),
+  ...issueRange('Rocket Raccoon', 2014, 1, 11),
+  ...issueRange('Rocket Raccoon & Groot', 2016, 1, 10),
+  ...issueRange('Annihilation: Conquest - Starlord', 2007, 1, 4),
+  'Shuri|2018|3',
+  ...issueRange('Groot', 2023, 1, 4),
+];
+
 function assertRocketSourceBoundary(packet) {
   assert.equal(packet.rows.length, 75);
   assert.deepEqual(
@@ -58,6 +82,21 @@ const laterHistoricalIds = [
   'childs-play',
   'eighth-day',
 ];
+
+function assertGrootSourceBoundary(packet) {
+  assert.equal(
+    packet.sourceIssueBearingBlocksSha256,
+    '2f73854ba172a902a511cb2ae45ee4236bf81367166126667370c482c26478e3',
+  );
+  assert.equal(packet.sourceRetrievedAt, '2026-08-23');
+  assert.equal(packet.rows.length, 76);
+  assert.deepEqual(
+    packet.rows.map((row) => (
+      `${row.normalizedSeriesTitle}|${row.seriesYear}|${row.issueNumber}`
+    )),
+    grootSourceSequence,
+  );
+}
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
@@ -101,7 +140,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships four spotlights', async () => {
+test('the character inventory preserves every central disposition and ships five spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -112,25 +151,38 @@ test('the character inventory preserves every central disposition and ships four
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 115);
+  assert.equal(dispositionCounts.deferred, 114);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 2);
-  assert.equal(dispositionCounts['pilot-approved'], 4);
+  assert.equal(dispositionCounts['pilot-approved'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), characterCandidateIds);
-  assert.deepEqual(shipped[0].catalogIds, ['phalanx-reading-order']);
-  assert.deepEqual(shipped[0].overlapIds, ['xmen-claremont', 'xmen-claremont-complete']);
-  assert.deepEqual(shipped[1].catalogIds, ['marvels-best-phoenix-comics']);
-  assert.deepEqual(shipped[1].overlapIds, []);
-  assert.deepEqual(shipped[2].catalogIds, [cosmicCandidateId]);
-  assert.deepEqual(shipped[2].overlapIds, [
+  const shippedById = new Map(shipped.map((record) => [record.id, record]));
+  assert.deepEqual(shippedById.get('phalanx-reading-order').catalogIds, ['phalanx-reading-order']);
+  assert.deepEqual(
+    shippedById.get('phalanx-reading-order').overlapIds,
+    ['xmen-claremont', 'xmen-claremont-complete'],
+  );
+  assert.deepEqual(shippedById.get(grootCandidateId).catalogIds, [grootCandidateId]);
+  assert.deepEqual(shippedById.get(grootCandidateId).overlapIds, [
+    'annihilation-conquest',
+    cosmicCandidateId,
+    'war-of-kings',
+  ]);
+  assert.deepEqual(
+    shippedById.get('marvels-best-phoenix-comics').catalogIds,
+    ['marvels-best-phoenix-comics'],
+  );
+  assert.deepEqual(shippedById.get('marvels-best-phoenix-comics').overlapIds, []);
+  assert.deepEqual(shippedById.get(cosmicCandidateId).catalogIds, [cosmicCandidateId]);
+  assert.deepEqual(shippedById.get(cosmicCandidateId).overlapIds, [
     'marvel-fresh-start-avengers',
     'scarlet-witch-best-of',
     'war-of-kings',
   ]);
-  assert.deepEqual(shipped[3].catalogIds, [candidateId]);
-  assert.deepEqual(shipped[3].overlapIds, [
+  assert.deepEqual(shippedById.get(candidateId).catalogIds, [candidateId]);
+  assert.deepEqual(shippedById.get(candidateId).overlapIds, [
     'all-new-all-different-avengers',
     'axis',
     'hickman-full',
@@ -176,7 +228,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      ![...batchCandidateIds, cosmicCandidateId, ...laterHistoricalIds]
+      ![...batchCandidateIds, cosmicCandidateId, grootCandidateId, ...laterHistoricalIds]
         .includes(comparison.orderId)
     )),
     report.comparisons,
@@ -227,7 +279,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
       'phalanx-reading-order',
       'marvels-best-phoenix-comics',
       cosmicCandidateId,
-      'xmen-claremont',
+      grootCandidateId,
     ],
   );
   assert.equal(manifest.lists[manifestIndex].type, 'character-run');
@@ -259,7 +311,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   const inventoryRecord = inventory.find((record) => record.id === cosmicCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [cosmicCandidateId, ...laterHistoricalIds],
+    [cosmicCandidateId, grootCandidateId, ...laterHistoricalIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
@@ -276,7 +328,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      !laterHistoricalIds.includes(comparison.orderId)
+      ![grootCandidateId, ...laterHistoricalIds].includes(comparison.orderId)
     )),
     report.comparisons,
   );
@@ -385,13 +437,153 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   }), /library changed since relationship review/i);
 });
 
+test('the frozen Groot evidence stays complete, fresh, distinct, and exact', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${grootCandidateId}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${grootCandidateId}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${grootCandidateId}.json`);
+  const rocketMapping = await readJson(`scripts/data/cbh-mappings/${cosmicCandidateId}.json`);
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const generated = await readJson('src/data/groot_reading_order.json');
+  const markdown = await readFile(
+    path.join(root, 'src/data/orders/groot-reading-order.md'),
+    'utf8',
+  );
+  const parsed = parseChecklist(markdown);
+  const inventoryRecord = inventory.find((record) => record.id === grootCandidateId);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    [grootCandidateId, cosmicCandidateId],
+  );
+  const regeneratedReport = await buildReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
+    [path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`)],
+  );
+
+  assert.equal(packet.packetDigest, '1afbf2aa42c43cae2d69f726d27085aa335883f4512349ccde96c2afc40dbf88');
+  assert.equal(mapping.mappingDigest, 'ddaab7843590232ef978564b1e613f53159aaffbbb1efe2042d499d17849a2b5');
+  assert.equal(reviewedLibraryDigest, '8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602');
+  assert.equal(report.reportDigest, '7272ffb7a893e64b2643749d235cd33261e0c9e1e3860f7ebbaa60fa8431b575');
+  assert.equal(
+    mapping.relationshipReview.approvalDigest,
+    '5c66e404b3db83e9b222c3ce351a199401f4e6ebf457a9f993699cd8a6e221b7',
+  );
+  assert.deepEqual(report.peerDigests, {
+    [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
+  });
+  assert.deepEqual(regeneratedReport, report);
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: grootCandidateId,
+    inventoryRecord,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    peerMappings: [rocketMapping],
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+
+  assertGrootSourceBoundary(packet);
+  assert.equal(mapping.rows.length, 76);
+  assert.equal(report.candidateCount, 76);
+  assert.equal(report.comparisonCount, 95);
+  assert.equal(mapping.relationshipReview.dispositions.length, 95);
+  assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 76);
+  assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  assert.deepEqual(
+    mapping.rows.map((row) => row.sourceIssueReference),
+    packet.rows.map((row) => row.sourceIssueReference),
+  );
+  assert.deepEqual(
+    mapping.rows.map((row) => row.selectedIssueId),
+    [
+      11353, 9082, 22811, 22812, 22813, 22814, 19779, 36644, 36647, 36646, 36645,
+      39982, 39981, 39980, 39979, 21268, 21412, 21586, 21783, 22025, 22352, 22544,
+      22957, 23148, 23636, 23792, 23793, 23986, 24188, 25303, 25304, 25305, 25306,
+      25307, 25308, 25309, 29022, 29009, 29010, 32551, 53697, 53699, 53700, 53701,
+      54929, 54930, 50221, 50223, 50224, 50225, 50788, 51150, 52393, 52396, 52399,
+      52400, 52401, 55597, 55599, 55601, 55602, 55603, 55604, 55605, 55606, 55607,
+      55608, 16009, 16191, 16598, 16599, 71797, 107816, 107817, 107818, 107819,
+    ],
+  );
+
+  const partials = report.comparisons
+    .filter((comparison) => comparison.relationship !== 'none')
+    .map(({ orderId, relationship, sharedCount }) => ({ orderId, relationship, sharedCount }));
+  assert.deepEqual(partials, [
+    { orderId: 'annihilation-conquest', relationship: 'partial', sharedCount: 4 },
+    { orderId: cosmicCandidateId, relationship: 'partial', sharedCount: 41 },
+    { orderId: 'war-of-kings', relationship: 'partial', sharedCount: 7 },
+  ]);
+  const grootIds = new Set(mapping.rows.map((row) => String(row.selectedIssueId)));
+  const sharedRocketIds = rocketMapping.rows
+    .map((row) => String(row.selectedIssueId))
+    .filter((id) => grootIds.has(id));
+  assert.equal(sharedRocketIds.length, 41);
+  assert.deepEqual(
+    new Set(report.comparisons.find((comparison) => (
+      comparison.orderId === cosmicCandidateId
+    )).sharedIds),
+    new Set(sharedRocketIds),
+  );
+
+  const manifestEntry = manifest.lists.find((entry) => entry.id === grootCandidateId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === grootCandidateId);
+  assert.equal(manifestEntry.type, 'character-run');
+  assert.equal(manifestEntry.spotlightKind, 'complete-guide');
+  assert.equal(manifestEntry.group, null);
+  assert.equal(manifestEntry.expect, 76);
+  assert.equal(catalogEntry.type, 'character-run');
+  assert.equal(catalogEntry.spotlightKind, 'complete-guide');
+  assert.equal(catalogEntry.count, 76);
+  assert.deepEqual(
+    parsed.entries.map((entry) => String(entry.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.deepEqual(
+    generated.items.map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+
+  const malformedBoundary = structuredClone(packet);
+  malformedBoundary.sourceIssueBearingBlocksSha256 = 'not-a-digest';
+  malformedBoundary.packetDigest = packetDigestFor(malformedBoundary);
+  assert.throws(
+    () => validateFrozenPacket(malformedBoundary),
+    /sourceIssueBearingBlocksSha256 must be a lowercase SHA-256 digest/i,
+  );
+
+  const staleBoundary = structuredClone(packet);
+  staleBoundary.sourceIssueBearingBlocksSha256 = '0'.repeat(64);
+  staleBoundary.packetDigest = packetDigestFor(staleBoundary);
+  assert.doesNotThrow(() => validateFrozenPacket(staleBoundary));
+  assert.throws(() => assertGrootSourceBoundary(staleBoundary));
+
+  const stalePeer = structuredClone(rocketMapping);
+  stalePeer.rows[0].selectedIssueId = 9999;
+  assert.throws(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    peerMappings: [stalePeer],
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }), /mapping digest is stale/i);
+});
+
 test('the first character batch stays exact through evidence, catalog, and generated data', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [...batchCandidateIds, cosmicCandidateId, ...laterHistoricalIds],
+    [...batchCandidateIds, cosmicCandidateId, grootCandidateId, ...laterHistoricalIds],
   );
   const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
     id,
@@ -469,8 +661,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 95);
+  assert.equal(catalog.lists.length, 96);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 12);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 11);
+  assert.equal(characterRuns.length, 13);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 12);
 });

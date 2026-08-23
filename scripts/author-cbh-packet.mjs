@@ -398,12 +398,26 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   ordersDir = ORDERS_DIR,
   manifestFile = MANIFEST_PATH,
   payloadDir = path.dirname(MANIFEST_PATH),
+  peerIds = [],
 } = {}) {
+  assertNoDuplicates(packetIds, 'authored packet id');
+  assertNoDuplicates(peerIds, 'external peer id');
+  const packetIdSet = new Set(packetIds);
+  for (const peerId of peerIds) {
+    assert(!packetIdSet.has(peerId), `${peerId} cannot be both authored and an external peer`);
+  }
   const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, packetIds);
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, [...packetIds, ...peerIds]);
   const current = library.manifest;
   const currentLists = Array.isArray(current.lists) ? current.lists : [];
   const existing = existingEntriesForPacket(currentLists, packetIds);
+  const externalPeerIdSet = new Set(peerIds);
+  const reviewedExisting = existing.filter((entry) => !externalPeerIdSet.has(entry.id));
+  const externalPeerMappings = await Promise.all(peerIds.map(async (id) => {
+    const mapping = JSON.parse(await readFile(path.join(mappingsDir, `${id}.json`), 'utf8'));
+    assert(mapping.id === id, `${id} external peer mapping id changed`);
+    return mapping;
+  }));
   const mappings = await Promise.all(packetIds.map(async (id) => {
     const mapping = JSON.parse(await readFile(path.join(mappingsDir, `${id}.json`), 'utf8'));
     const report = JSON.parse(await readFile(path.join(overlapsDir, `${id}.json`), 'utf8'));
@@ -422,13 +436,15 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     const ids = selectedIssueIds(mapping);
     assert(new Set(ids).size === ids.length, `${id} contains a duplicate selected issue id`);
     const expectedOrderIds = [
-      ...existing.map((entry) => entry.id),
+      ...reviewedExisting.map((entry) => entry.id),
       ...packetIds.filter((peerId) => peerId !== id),
+      ...peerIds,
     ];
     if (packet) {
       const peerMappings = packetIds
         .filter((peerId) => peerId !== id)
-        .map((peerId) => mappingById.get(peerId));
+        .map((peerId) => mappingById.get(peerId))
+        .concat(externalPeerMappings);
       assertApprovedRelationshipReview({
         packet,
         mapping,
@@ -498,9 +514,23 @@ export function authorIdsFromArgs(args) {
   return ids;
 }
 
+export function peerIdsFromArgs(args) {
+  const peerArgs = args.filter((arg) => arg.startsWith('--peer='));
+  if (peerArgs.length === 0) return [];
+  if (peerArgs.length > 1) throw new Error('Use --peer once with a comma-separated guide id list');
+  const ids = peerArgs[0].slice('--peer='.length).split(',').map((id) => id.trim()).filter(Boolean);
+  if (ids.length === 0) throw new Error('--peer must name at least one guide id');
+  if (new Set(ids).size !== ids.length) throw new Error('--peer contains a duplicate guide id');
+  if (ids.some((id) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id))) {
+    throw new Error('--peer must use lower-kebab-case guide ids');
+  }
+  return ids;
+}
+
 const thisFile = fileURLToPath(import.meta.url);
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile)) {
-  authorPacket(authorIdsFromArgs(process.argv.slice(2))).then((summary) => {
+  const args = process.argv.slice(2);
+  authorPacket(authorIdsFromArgs(args), { peerIds: peerIdsFromArgs(args) }).then((summary) => {
     console.log(`Authored ${summary.guides} guides with ${summary.rows} rows; manifest now has ${summary.manifestEntries} entries.`);
   }).catch((error) => {
     console.error(error.message);

@@ -212,7 +212,10 @@ test('batch two stays exact through mapping, Markdown, generated data, catalog, 
 test('batch two has no aggregate identity, source, sequence, or pre-publication issue overlap', async () => {
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const packetSet = new Set(PACKET_IDS);
-  const laterReviewedIds = new Set(['rocket-raccoon-reading-order']);
+  const laterReviewedIds = new Set([
+    'rocket-raccoon-reading-order',
+    'groot-reading-order',
+  ]);
   const packetRecords = [];
   const existingRecords = [];
 

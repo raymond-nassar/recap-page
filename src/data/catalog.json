@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T21:31:06.928Z",
+  "generatedAt": "2026-08-23T22:42:20.662Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1989,6 +1989,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T20:43:34.162Z"
+    },
+    {
+      "id": "groot-reading-order",
+      "file": "groot_reading_order.json",
+      "name": "Groot",
+      "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 76,
+      "collections": 0,
+      "characters": [
+        "Groot",
+        "Rocket Raccoon",
+        "Guardians of the Galaxy",
+        "Star-Lord"
+      ],
+      "keywords": [
+        "Groot",
+        "Rocket Raccoon",
+        "Guardians of the Galaxy",
+        "Annihilation: Conquest",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/536bc58247fee",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/groot-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-23T22:42:20.583Z"
     },
     {
       "id": "xmen-claremont",
