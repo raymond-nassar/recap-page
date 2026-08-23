@@ -14,6 +14,24 @@ quote in a bug report.
 
 ## Unreleased
 
+### Turned Home and navigation into reading hubs
+
+In plain English: Home now asks how you want to read instead of placing every Reading List on one
+long page. Browse offers the same category choices on its own page. Timeline, Storylines and
+Character spotlights are equal choices, and future categories stay hidden until content is ready.
+
+Continue reading and Your Reading Lists still come first when you have saved progress. The featured
+recommendation, catalogue filters and full card wall have left Home; those details remain on the
+dedicated browse screens.
+
+The sidebar now stays short as the library grows. It shows one active Continue reading choice plus
+Library, Browse and Add. Saved lists and individual ways to browse or add are grouped on those hub
+pages instead of becoming more sidebar rows. Nothing already saved is changed.
+
+For maintainers: one renderer supplies the Home and Browse gateways, hub children keep direct
+addresses, and each child selects its parent in the rail. The category registry remains independent
+from the canonical three-shelf partition.
+
 ### Added Phalanx and Phoenix character spotlight reading guides
 
 In plain English: the Character spotlights shelf now includes complete guides for the Phalanx and

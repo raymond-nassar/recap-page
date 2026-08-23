@@ -1,38 +1,30 @@
-# Jobs-to-be-Done: Landing Page
+# Jobs-to-be-Done: Home
 
-## Job Statement
-When I open Recap Page and my library is empty, I want to see the
-curated reading orders that ship with the app, so I can start reading in one
-click instead of hunting through a navigation menu.
+## Primary Job
+When I open Recap Page with an empty library, I want to choose how I want to explore Marvel
+reading, so I can reach a useful set of Reading Lists without scanning the entire catalogue first.
 
 ## Secondary Job
-When I come back with lists already in my library, I want to resume where I left
-off, so I don't have to remember which issue I was on.
+When I return with Reading Lists in my library, I want to resume where I left off before choosing
+anything new, so I do not have to remember which issue was next.
 
 ## Persona
 - **Who**: Marvel Unlimited subscriber, casual-to-invested comics reader
-- **Expertise**: Knows characters, does *not* know publication order
-- **Device**: Desktop (Windows), occasional tablet
+- **Expertise**: Knows characters or stories, but may not know publication order
+- **Device**: Desktop Windows device, occasional tablet
 - **Frequency**: Opens weekly-to-daily during an active read-through
-- **Success metric**: First reading order added within 60 seconds of first launch
+- **Success metric**: Opens a relevant browse path within 15 seconds of first launch
 
-## Current Solution & Pain Points
-- **Current**: The landing page shows a dashed empty box reading "Pick something
-  to read", with prose instructing the user to "browse the catalog on the left."
-- **Pain**:
-  1. The call to action is *descriptive, not interactive* — the largest element
-     on the page cannot be clicked.
-  2. The catalog's contents are invisible until the user navigates away. Users
-     cannot judge whether the app is worth their time.
-  3. Three competing entry points (Browse the catalog / New empty list / Paste a
-     reading order) are given equal weight in the sidebar with no recommendation.
-  4. Returning users get the same empty-state screen as first-run users, with no
-     "continue reading" affordance.
-- **Consequence**: A first-run user must make a navigation decision before seeing
-  a single piece of value. Highest-risk drop-off point in the app.
+## Approved Solution
+- Ask one first-run question: **How do you want to read?**
+- Present Timeline, Storylines and Character spotlights as equal current paths.
+- Use compact browse labels and counts instead of explanatory paragraphs.
+- Reveal future overlapping categories only when content and a destination both exist.
+- Keep Continue reading and Your Reading Lists ahead of discovery for returning readers.
 
 ## Anti-goals
-- Don't turn the landing page into a storefront that buries returning users'
-  progress.
-- Don't require network access to render the catalog — the orders ship with the
-  app and this is a core product promise.
+- Do not turn Home into a second copy of every browse screen.
+- Do not show an empty category for content the app does not yet publish.
+- Do not force one story into only one discovery category.
+- Do not bury returning readers' progress behind discovery.
+- Do not require network access to decide which categories exist.

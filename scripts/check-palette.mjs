@@ -129,7 +129,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1537`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1450`'],
 ];
 
 // Two of the surfaces this stylesheet paints on are not tokens and have no hex value to read, so a
@@ -164,7 +164,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1513`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1426`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -348,7 +348,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1294` in the rail and `src/js/main.js:5250` in the
+// stated as text beside it, at `src/js/main.js:1292` in the rail and `src/js/main.js:4975` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when
@@ -389,8 +389,8 @@ export const KNOWN = [
   //
   // That is a trade of contrast on text for contrast on a glyph, and the glyph is the side that
   // carries nothing. The badge is language a reader has to read. The tick is not read by anybody:
-  // the button takes its accessible name from the `aria-label` at `src/js/main.js:2767`, which
-  // replaces the glyph in the name computation, and `aria-pressed` at `src/js/main.js:2767`
+  // the button takes its accessible name from the `aria-label` at `src/js/main.js:2502`, which
+  // replaces the glyph in the name computation, and `aria-pressed` at `src/js/main.js:2502`
   // carries the state besides. The fill already says the box is checked, emphatically, at 8.99:1
   // against a card and 9.72:1 against the page. Taking that much ratio away from words that are
   // read, to give it to a symbol that is not, is a worse outcome for the reader who needs the

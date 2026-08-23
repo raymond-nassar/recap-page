@@ -16,10 +16,10 @@ import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
 import { compareIssues } from './lib/sort.js';
 import {
-  parseCatalog, typeLabel, depthLabel, catalogFacets, filterByFacet, facetLabel,
+  parseCatalog, depthLabel, catalogFacets, filterByFacet, facetLabel,
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
-  pathPlacements, shelfSections, eraSections, decadeSections, inHomeAge,
+  pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
   firstSentence, storyYear,
   CATALOG_SHELVES, shelfLists,
 } from './lib/catalog.js';
@@ -39,7 +39,7 @@ import { shortcutAllowed } from './lib/shortcuts.js';
 import { lookupIssue } from './lib/wiki.js';
 import { READING_FILTERS, DEFAULT_FILTER, matchesReadingFilter } from './lib/readingFilters.js';
 import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
-import { VIEWS, formatRoute, parseRoute } from './lib/route.js';
+import { ADD_VIEWS, VIEWS, formatRoute, parseRoute } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 
@@ -51,8 +51,8 @@ const SHELF_SIZE = 8;
 // catalog row. They rendered two different labels for one behaviour before, which is how they
 // drifted apart in the first place.
 const CATALOG_ADD = '+ Add to library';
-// Above this many orders, scanning stops being enough and the reader needs to type.
-const HOME_FILTER_THRESHOLD = 12;
+// Above this many orders, scanning a browse shelf stops being enough and the reader needs to type.
+const CATALOG_FILTER_THRESHOLD = 12;
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
@@ -63,8 +63,6 @@ const HERO_NO_ISSUE = 'Nothing up next';
 // The same for the landing page's continue card, whose heading also names its section. Both
 // have to match the text index.html starts out holding.
 const CONTINUE_NO_LIST = 'Continue reading';
-// And for the featured journey, for the same reason: its heading names its section too.
-const FEATURE_NO_PICK = 'A place to start';
 const UPDATE_NOTICE_KEY = 'update-available';
 const UPDATE_CHECK_BUTTON_TEXT = 'Check for updates';
 
@@ -1219,14 +1217,17 @@ function showView(next, { focus = true, push = false } = {}) {
     const panel = $(`#view-${name}`);
     if (panel) panel.hidden = name !== next;
   }
+  const parent = railParentView(next);
   for (const btn of document.querySelectorAll('.ri[data-view]')) {
-    if (btn.dataset.view === next) btn.setAttribute('aria-current', 'page');
+    if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   }
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
   if (shelf) renderCatalogShelf(shelf.key);
   if (next === 'home') renderHome();
+  if (next === 'library') renderLibraryHub();
+  if (next === 'browse') renderHomeCategories();
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
@@ -1243,6 +1244,13 @@ function showView(next, { focus = true, push = false } = {}) {
 
   if (!focus) return;
   focusViewHeading(next);
+}
+
+function railParentView(next) {
+  if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)) return 'browse';
+  if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
+  if (next === 'library' || next === 'progress' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
+  return next;
 }
 
 // Where a view puts the reader when it arrives. Separate because dismissing a notice destroys the
@@ -1267,32 +1275,27 @@ function renderRail() {
   // new view's heading afterwards and so is unaffected either way.
   preservingFocus(nav, () => {
     nav.replaceChildren();
-    const { listOrder, lists } = store.state;
-    $('#no-lists').hidden = listOrder.length > 0;
-
-    for (const id of listOrder) {
-      const list = lists[id];
+    const id = activeListId();
+    const list = store.state.lists[id];
+    if (list) {
       const { read, total } = listProgress(store.state, id);
       const pct = total ? (read / total) * 100 : 0;
-      const current = view === 'read' && id === activeListId();
+      const current = view === 'read';
 
       nav.append(el('li', {}, el('button', {
         type: 'button',
         class: 'ri',
         'aria-current': current ? 'page' : null,
-        // A reading order has no glyph of its own, so the tooltip has to be built rather
-        // than read off the button: in rail mode the progress numbers are not on screen.
-        dataset: { key: id, act: 'open', tip: `${list.name}: ${read} of ${total} read` },
-        onclick: () => { store.update((s) => setActive(s, id)); showView('read', { push: true }); },
+        dataset: { key: id, act: 'open', tip: ['Continue reading', `${list.name}:`, read, 'of', total, 'read'].join(' ') },
+        onclick: () => showView('read', { push: true }),
       }, [
-        // Stands in for an icon in rail mode; hidden from the accessibility tree because
-        // the list's name is right beside it.
         el('span', { class: 'init', 'aria-hidden': true, text: (list.name || '?').trim().charAt(0) }),
         el('span', { class: 'lbl' }, [
           el('span', { class: 't' }, [
-            el('span', { text: list.name }),
+            el('span', { text: 'Continue reading' }),
             el('span', { class: 'n', text: `${read} / ${total}` }),
           ]),
+          el('span', { class: 'rail-list-name', text: list.name }),
           el('span', { class: 'bar' }, el('i', { style: { width: `${pct.toFixed(1)}%` } })),
         ]),
       ])));
@@ -1304,28 +1307,14 @@ function renderRail() {
 
 // ------------------------------------------------------------------ landing page
 
-// Filter state lives for the session, not across reloads: it is a way of narrowing what is
-// on screen right now, not a preference. See docs/ux/landing-page-flow.md.
-let homeFacet = 'all';
-let homeQuery = '';
-// The parsed catalog, kept so the grid can re-render synchronously when the library changes
-// and a card has to flip to "In library".
+// The parsed catalog is shared by later Home renders. Category availability changes only when the
+// bundled data changes, so a library update does not need to fetch or rebuild it.
 let homeCatalog = null;
 // Catalog ids that were just added, so the button can show "✓ In library" for a beat before
 // settling into "Open →". Transient by design; a reload shows the settled state.
 const justAdded = new Set();
 
 function wireHome() {
-  $('#form-home-q').addEventListener('submit', (e) => e.preventDefault());
-  const q = $('#home-q');
-  q.addEventListener('input', () => { homeQuery = q.value.trim(); renderHomeCatalog({ announceCount: true }); });
-  $('#home-q-clear').addEventListener('click', () => {
-    q.value = '';
-    homeQuery = '';
-    q.focus();
-    renderHomeCatalog({ announceCount: true });
-  });
-
   $('#btn-chero-read').addEventListener('click', (e) => {
     const issue = upNext(store.state, activeListId());
     if (issue) openInReader(issue, e);
@@ -1337,16 +1326,18 @@ function renderHome() {
   if ($('#view-home').hidden) return;
   const populated = store.state.listOrder.length > 0;
 
-  $('#home-h').textContent = populated ? 'Continue reading' : 'Start Here';
-  $('#home-cat-h').textContent = populated ? 'Discover more' : 'Reading Lists';
+  $('#home-h').textContent = populated ? 'Continue reading' : 'How do you want to read?';
+  $('#home-cat-h').classList.toggle('visually-hidden', !populated);
 
   renderContinue(populated);
   renderYours(populated);
-  renderHomeCatalog();
+  renderHomeCategories();
 
   // The attribution is required wherever Marvel data is shown, and the year has to be the
   // current one rather than a string baked into the markup.
-  $('#marvel-copyright').textContent = `© ${new Date().getFullYear()} MARVEL`;
+  for (const label of document.querySelectorAll('[data-marvel-copyright]')) {
+    label.textContent = `© ${new Date().getFullYear()} MARVEL`;
+  }
 }
 
 // State B's hero: the list being read, how far through it the reader is, and what is next.
@@ -1409,7 +1400,11 @@ function renderYours(populated) {
   writeYoursSummary(sec, store.state);
 
   const box = $('#home-yours-list');
-  box.replaceChildren(...store.state.listOrder.map((id) => {
+  box.replaceChildren(...savedListTiles());
+}
+
+function savedListTiles() {
+  return store.state.listOrder.map((id) => {
     const list = store.state.lists[id];
     const { read, total } = listProgress(store.state, id);
     // The tile prints the count as "3 / 20" and the old name said "3 of 20", so the inserted
@@ -1422,222 +1417,96 @@ function renderYours(populated) {
       'aria-label': labelledName(`${list.name} ${count}`, context),
       onclick: () => { store.update((s) => setActive(s, id)); showView('read', { push: true }); },
     }, yoursTile(list, store.state, read, total, count)));
-  }));
+  });
 }
 
-// The answer to "where do I start", for a reader who has nothing yet. Deterministic, and derived
-// from the catalog rather than from an editor's pick: the beginner-friendly order with the fewest
-// issues, ties broken by catalog order. That is the smallest real commitment the data can offer,
-// which is the question a first-time reader is actually asking. Exported for the tests, because a
-// selection rule that quietly changes is a selection rule nobody can rely on.
-export function pickFeatured(lists) {
-  let best = null;
-  for (const list of lists) {
-    if (!list.beginner) continue;
-    // Strictly less than, so the first of a tie wins and catalog order is the tie-break.
-    if (!best || list.count < best.count) best = list;
-  }
-  return best;
-}
-
-// Shown only on a genuine first run. Every one of the three conditions is a case where the reader
-// has already told us something more specific than "I do not know where to start": a library means
-// they have chosen before, and a facet or a query means they are choosing right now. Withdrawing
-// the offer at the moment it stops making sense is cheaper than explaining it later.
-function renderFeatured(all) {
-  const sec = $('#home-featured');
+function renderLibraryHub() {
   const populated = store.state.listOrder.length > 0;
-  const pick = populated || homeFacet !== 'all' || homeQuery ? null : pickFeatured(all);
-  sec.hidden = !pick;
-  // Hidden rather than emptied, so the heading keeps text. It labels this section, so an empty
-  // one would cost the section its name too.
-  if (!pick) {
-    $('#feature-h').textContent = FEATURE_NO_PICK;
-    return;
-  }
-
-  const story = groupCatalog(all).find((s) => s.lists.some((l) => l.id === pick.id)) ?? null;
-
-  $('#feature-h').textContent = pick.name;
-  $('#feature-why').textContent = pick.description ?? '';
-  $('#feature-why').hidden = !pick.description;
-
-  // The commitment, said out loud rather than left to be inferred from a metadata line. Same
-  // facts the card carries, given room, because this is where the decision is actually made.
-  $('#feature-facts').replaceChildren(...[
-    `${pick.count} issue${pick.count === 1 ? '' : 's'}`,
-    readingTimeLabel(pick.count),
-    collectionsLabel(pick),
-    typeLabel(pick.type),
-    pick.beginner ? 'No prior reading needed' : null,
-  ].filter(Boolean).map((text) => el('li', { text })));
-
-  // Decorative: the title is text right beside it.
-  paintCoverUrl($('#feature-img'), $('#feature-fb'), catalogCoverUrl(pick), hueOf(pick.name));
-  $('#feature-fs').textContent = shortTitle(pick.name);
-  $('#feature-fn').textContent = '';
-
-  // The names carry the order, so a screen reader hears which story is being started rather than
-  // one more "Start reading" identical to the eight below it. The labels are read off the buttons
-  // so editing the markup cannot leave the name behind still saying the old words.
-  const start = $('#btn-feature-start');
-  start.setAttribute('aria-label', labelledName(start.textContent, pick.name));
-  start.onclick = (e) => importCurated(pick, e.currentTarget, { navigate: true, report: '#home-cat-report' });
-
-  const preview = $('#btn-feature-preview');
-  preview.setAttribute('aria-label', labelledName(preview.textContent, pick.name));
-  preview.onclick = () => openPreview(pick, story);
+  $('#library-yours').hidden = !populated;
+  $('#library-empty').hidden = populated;
+  if (!populated) return;
+  writeYoursSummary($('#library-yours'), store.state);
+  $('#library-yours-list').replaceChildren(...savedListTiles());
 }
 
-async function renderHomeCatalog({ announceCount = false } = {}) {
-  const grid = $('#home-grid');
-  // Every other route into this function rebuilds the grid while focus is outside it, on the
-  // search box or a filter radio, and a capture from outside the container is empty and restores
-  // nothing. The route that matters is the settle 1500 ms after an add, which destroys the button
-  // focus was just put back on.
-  const held = captureFocus(grid);
-
+async function renderHomeCategories() {
+  const gateways = [...document.querySelectorAll('[data-category-gateway]')];
+  for (const label of document.querySelectorAll('[data-marvel-copyright]')) {
+    label.textContent = `© ${new Date().getFullYear()} MARVEL`;
+  }
   if (!homeCatalog) {
-    grid.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading Reading Lists…' }));
+    for (const gateway of gateways) {
+      const status = gateway.querySelector('[data-paths-status]');
+      status.hidden = false;
+      status.textContent = 'Loading ways to read…';
+    }
     try {
       homeCatalog = await loadCatalog();
     } catch (err) {
-      grid.replaceChildren();
-      $('#home-chips').hidden = true;
-      $('#form-home-q').hidden = true;
-      // The panel offers a specific order, so it cannot survive the catalog it was picked from.
-      $('#home-featured').hidden = true;
-      $('#feature-h').textContent = FEATURE_NO_PICK;
-      notify('#home-cat-report', `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
+      for (const gateway of gateways) {
+        gateway.querySelector('[data-primary-paths]').hidden = true;
+        gateway.querySelector('[data-more-paths]').hidden = true;
+        gateway.querySelector('[data-paths-status]').hidden = true;
+      }
+      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
+      notify(report, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
       return;
     }
     clearNotice(CATALOG_LOAD);
   }
 
   if (homeCatalog.dropped) {
+    const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
     notify(
-      '#home-cat-report',
+      report,
       `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`,
       'warn',
     );
   }
 
-  const all = homeCatalog.lists;
-  if (!all.length) {
-    $('#home-chips').hidden = true;
-    $('#form-home-q').hidden = true;
-    $('#home-featured').hidden = true;
-    $('#feature-h').textContent = FEATURE_NO_PICK;
-    grid.replaceChildren(el('p', { class: 'rail-hint', text: 'No curated Reading Lists are bundled with this build.' }));
-    return;
-  }
-
-  // Narrowed to the modern era before anything else looks at it, so the featured pick, the chips,
-  // the search threshold and the grid all describe the same set. It filters nothing today: every
-  // dated story bundled with this build opens in 2000 or later, so the boundary is a definition
-  // waiting for content rather than a cut being made. Undated stories are exempt, since a story
-  // that ranges across the timeline cannot be placed in an age at all.
-  const modern = groupCatalog(all).filter(inHomeAge).flatMap((story) => story.lists);
-
-  renderFeatured(modern);
-  renderHomeChips(modern);
-  // Scanning works up to about a dozen orders; past that the reader needs to be able to
-  // type. Showing the box before then would be a control with nothing to do. Counted in
-  // stories, because that is what the grid puts on screen.
-  $('#form-home-q').hidden = countStories(modern) <= HOME_FILTER_THRESHOLD;
-  if ($('#form-home-q').hidden && homeQuery) {
-    homeQuery = '';
-    $('#home-q').value = '';
-  }
-  $('#home-q-clear').hidden = !homeQuery;
-
-  // Grouped rather than capped. The grid used to show twelve of the fifty-nine and hand the rest to
-  // a second screen, and the switch from cards to that screen's rows was the jar this removed: the
-  // control promised more of the same and delivered something shaped differently. Everything the
-  // landing page is for is here now, under the same three headings the rail offers as screens, so
-  // the shelf is still divided into the three kinds of reading rather than being one wall of cards.
-  const matched = groupCatalog(searchCatalog(filterByFacet(modern, homeFacet), homeQuery));
-
-  if (!matched.length) {
-    const where = homeFacet === 'all' ? '' : ` in ${facetLabel(modern, homeFacet)}`;
-    grid.replaceChildren(el('p', {
-      class: 'rail-hint',
-      text: homeQuery
-        ? `No Reading Lists match “${homeQuery}”${where}.`
-        : `No Reading Lists${where || ''}.`,
-    }));
-  } else {
-    // Resolved once for the whole grid rather than per card, for the reason the browse screen's
-    // copy gives: every card searching every path is the same work fifty-nine times, and the
-    // answer cannot differ between them.
-    const placements = pathPlacements(homeCatalog.paths, all);
-    const groups = [];
-    for (const section of shelfSections(matched)) {
-      groups.push(shelfSectionHead(section, {
-        level: 'h3',
-        className: 'shelf-section home-shelf-section',
-        blurb: false,
-      }));
-      groups.push(el('ul', { class: 'ogrid' }, section.stories.map((s) => orderCard(s, placements.get(s.key)))));
-    }
-    grid.replaceChildren(...groups);
-  }
-
-  restoreFocus(held, { primary: 'main' });
-  // Only when the reader narrowed something. Announcing on every render would let a routine
-  // count overwrite the confirmation that an order had just been added, which is the message
-  // that actually matters.
-  if (announceCount) {
-    announceCatalog(`${matched.length} ${matched.length === 1 ? 'Reading List' : 'Reading Lists'} shown.`);
+  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists));
+  const primaryCategories = categories.filter(({ tier }) => tier === 'primary');
+  const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
+  for (const gateway of gateways) {
+    const primary = gateway.querySelector('[data-primary-paths]');
+    const secondary = gateway.querySelector('[data-secondary-paths]');
+    const more = gateway.querySelector('[data-more-paths]');
+    const status = gateway.querySelector('[data-paths-status]');
+    primary.replaceChildren(...primaryCategories.map(homeCategoryTile));
+    secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
+    primary.hidden = primaryCategories.length === 0;
+    more.hidden = secondaryCategories.length === 0;
+    status.hidden = categories.length > 0;
+    status.textContent = categories.length ? '' : 'No reading paths are bundled with this build.';
   }
 }
 
-// The grid rebuild that follows an add runs after an await, and a reader is free to move during
-// it. Focus was lost to <body> by the disable, so <body> is the only state that means "still
-// lost"; anything else is somewhere the reader chose to be, and putting them back would be the
-// same rudeness in the other direction.
-function returnFocus(held) {
-  if (document.activeElement !== document.body) return;
-  restoreFocus(held, { primary: 'main' });
-}
-
-function renderHomeChips(all) {
-  const box = $('#home-chips');
-  const options = catalogFacets(all);
-  box.hidden = options.length < 2;
-  if (box.hidden) {
-    homeFacet = 'all';
-    return;
-  }
-  if (homeFacet !== 'all' && !options.some((o) => o.key === homeFacet)) homeFacet = 'all';
-
-  // Re-rendering the radios under a reader who just chose one would destroy the element
-  // holding focus, so an unchanged set of options only moves the selection.
-  const existing = [...box.querySelectorAll('input[name="home-facet"]')];
-  if (existing.length === options.length && existing.every((r, i) => r.value === options[i].key)) {
-    for (const radio of existing) radio.checked = radio.value === homeFacet;
-    return;
-  }
-
-  box.replaceChildren(
-    el('legend', { class: 'visually-hidden', text: 'Filter Reading Lists' }),
-    // Native radios in a fieldset already give a radio group with arrow-key navigation and
-    // a checked state, so nothing here is re-implemented in ARIA.
-    ...options.map(({ key, label, count }) => el('label', { class: 'fp' }, [
-      el('input', {
-        type: 'radio',
-        name: 'home-facet',
-        value: key,
-        checked: key === homeFacet,
-        onchange: () => { homeFacet = key; renderHomeCatalog({ announceCount: true }); },
-      }),
-      el('span', { text: `${label} (${count})` }),
-    ])),
-  );
+function homeCategoryTile(category) {
+  const glyph = String.fromCodePoint(Number.parseInt(category.icon, 16));
+  const count = `${category.count} ${category.count === 1 ? 'Reading List' : 'Reading Lists'}`;
+  return el('li', {}, el('button', {
+    type: 'button',
+    class: `home-path home-path-${category.tier}`,
+    'aria-label': `${category.heading}. ${category.label}. ${count}.`,
+    dataset: { category: category.key },
+    onclick: () => showView(category.route, { push: true }),
+  }, [
+    el('span', { class: 'gi home-path-icon', 'aria-hidden': 'true', text: glyph }),
+    el('span', { class: 'home-path-copy' }, [
+      el('span', { class: 'eyebrow home-path-label', text: category.label }),
+      el('span', { class: 'home-path-title', text: category.heading }),
+      el('span', { class: 'home-path-count', text: count }),
+    ]),
+    el('span', {
+      class: 'gi home-path-arrow',
+      'aria-hidden': 'true',
+      text: String.fromCodePoint(0xE72A),
+    }),
+  ]));
 }
 
 // Which reading path the reader has chosen through a story, keyed by the story rather than by the
-// card, so a choice made on the landing page is the one the catalog then shows. Deliberately not
+// card, so a choice made in the preview is the one the catalog then shows. Deliberately not
 // persisted: it is a decision about what to add next, not a setting, and it stops meaning anything
 // the moment the order is in the library.
 const pathChoice = new Map();
@@ -1717,101 +1586,6 @@ function markOwnedPaths(root, story) {
 // density the shelf had before any of this.
 //
 // The title is a heading and the description is a <p>, so neither can sit inside a button: that is
-// not valid content for one, and it would collapse the whole card into a single unreadable
-// accessible name. The preview button is a sibling stretched over the card by CSS instead, which
-// keeps the large click target without the nesting.
-function orderCard(story, placement = null) {
-  const title = story.name ?? story.lists[0].name;
-  // Lazy, like every other cover in the app. It was the one that was not, and it mattered least
-  // while the grid was capped at twelve; the landing page now draws every order, so an eager cover
-  // here is one network request per order before the reader has scrolled to any of them.
-  const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
-  const fb = el('div', { class: 'of', 'aria-hidden': true }, [
-    el('span', { class: 'ofs', text: shortTitle(title) }),
-  ]);
-  const desc = el('p', { class: 'ocard-desc' });
-  const meta = el('p', { class: 'ocard-meta' });
-  const badges = el('div', { class: 'ocard-badges' });
-  const foot = el('div', { class: 'ocard-foot' });
-
-  // One updater for everything that names a single path, so the words and the two buttons cannot
-  // come apart. A card describing one path while its Add button imports another is the failure
-  // this exists to make impossible, and the preview dialog can change the selection under it.
-  const paint = (list) => {
-    // The cover is repainted into the same <img> rather than a fresh one, so two paths pinning
-    // the same cover issue, which most of them do, assign an identical src and the browser
-    // neither refetches it nor blanks the element between paints.
-    // The cover is decorative: the title is right next to it, so alt text would only repeat it.
-    paintCoverUrl(img, fb, catalogCoverUrl(list), hueOf(title));
-    desc.textContent = list.description ?? '';
-    desc.hidden = !list.description;
-    meta.textContent = [
-      `${list.count} issue${list.count === 1 ? '' : 's'}`,
-      collectionsLabel(list),
-      readingTimeLabel(list.count),
-      typeLabel(list.type),
-    ].filter(Boolean).join(' · ');
-    // Path position and beginner suitability remain glanceable without adding variable text rows
-    // below the description. The dedicated browse screens keep the path name and next-stop links.
-    badges.replaceChildren(...[
-      homePathBadge(placement),
-      list.beginner ? el('span', { class: 'pill pill-beginner', text: 'Beginner' }) : null,
-    ].filter(Boolean));
-    badges.hidden = badges.childElementCount === 0;
-    foot.replaceChildren(
-      addButton(list, listForCatalogId(store.state, list.id)),
-      previewButton(list, story),
-    );
-  };
-  paint(chosenPath(story));
-
-  return el('li', { class: 'ocard' }, [
-    el('div', { class: 'ocard-body' }, [
-      el('div', { class: 'ocard-art' }, [img, fb, badges]),
-      el('div', { class: 'ocard-text' }, [
-        // An h4 under the group heading the grid now draws, which is an h3 under the section's h2.
-        // The level follows the nesting rather than the styling: the card looks exactly as it did,
-        // and heading navigation runs view, section, group, card without a skip.
-        el('h4', { class: 'ocard-title', text: title }),
-        desc,
-        meta,
-      ]),
-    ]),
-    foot,
-  ]);
-}
-
-function homePathBadge(placement) {
-  if (!placement) return null;
-  const opens = placement.previous === null;
-  const visible = opens ? `Start · 1/${placement.total}` : `${placement.position}/${placement.total}`;
-  const detail = [
-    opens ? 'Start here.' : null,
-    `Step ${placement.position} of ${placement.total} in ${placement.pathName}.`,
-    placement.next ? `Next: ${placement.next.name}.` : 'Last stop.',
-  ].filter(Boolean).join(' ');
-  return el('span', { class: `pill ocard-path${opens ? ' pill-start' : ''}` }, [
-    el('span', { 'aria-hidden': 'true', text: visible }),
-    el('span', { class: 'visually-hidden', text: detail }),
-  ]);
-}
-
-function previewButton(list, story = null) {
-  const text = story?.lists.length > 1 ? `See ${story.lists.length} options` : 'See the full list';
-  return el('button', {
-    type: 'button',
-    class: 'ocard-preview',
-    'aria-label': labelledName(text, story?.name ?? list.name),
-    // Keyed by the story rather than by the path it currently shows. Choosing a different path in
-    // the dialog rebuilds this card around a different list, so a key of list.id no longer matches
-    // what focus restoration captured, and the miss falls through to the card's primary action,
-    // which is Add. That returns the reader to a state-changing control they never aimed at, one
-    // Enter away from importing an order. The story key does not move when the path does.
-    dataset: { key: story?.key ?? list.id, act: 'preview' },
-    onclick: () => openPreview(list, story),
-  }, text);
-}
-
 function addButton(list, inLibrary) {
   // One act name for both states because it is the slot that persists, not the action. Adding
   // replaces this button with "✓ In library" and then with "Open →", and the reader who pressed
@@ -1843,35 +1617,32 @@ function addButton(list, inLibrary) {
 }
 
 async function addFromCatalog(list, btn) {
-  // Read before importCurated, which disables this button. Disabling a focused control blurs it
-  // immediately, so a capture taken at rebuild time reads <body> and correctly declines to
-  // restore anything. Measured in Edge at 1280x900: clicking "+ Add to library" left
-  // document.activeElement at BODY while the button was still in the document, and still BODY
-  // two seconds later once both rebuilds had run.
-  const held = captureFocus($('#home-grid'));
-  // Flipped before the import so the card confirms in place the moment it is clicked, and
-  // rolled back if the write fails rather than leaving a false "in library".
+  // Read before importCurated disables this button. The only shared Add button now lives in the
+  // preview dialog, so focus is captured from that stable slot rather than from the retired Home grid.
+  const held = captureFocus($('#preview-add'));
   justAdded.add(list.id);
-  // Adding must not move the reader, so they can add a second order without finding their
-  // way back. The sidebar and the card are the confirmation.
   const listId = await importCurated(list, btn, { navigate: false, report: '#home-cat-report' });
   if (!listId) {
     justAdded.delete(list.id);
-    await renderHomeCatalog();
+    syncPreviewAdd();
     returnFocus(held);
     return;
   }
-  await renderHomeCatalog();
-  returnFocus(held);
   syncPreviewAdd();
-  // The card settles from "✓ In library" to "Open →" once the confirmation has been read,
-  // so the button ends up saying what it now does. The rebuild that settles it destroys the
-  // button focus was just put back on, which renderHomeCatalog preserves on its own.
-  setTimeout(async () => {
+  returnFocus(held);
+  setTimeout(() => {
+    const settleFocus = captureFocus($('#preview-add'));
     justAdded.delete(list.id);
-    await renderHomeCatalog();
     syncPreviewAdd();
+    returnFocus(settleFocus);
   }, 1500);
+}
+
+// A rebuild can finish after the reader has moved. BODY is the state left by disabling a focused
+// button; any other active element is somewhere the reader chose, so it must not be replaced.
+function returnFocus(held) {
+  if (document.activeElement !== document.body) return;
+  restoreFocus(held, { primary: 'main' });
 }
 
 // ------------------------------------------------------------------ preview
@@ -1898,11 +1669,8 @@ function wirePreview() {
     previewStory = null;
     placeNotices();
     // The card behind the dialog names one path, and the dialog is where that choice is now made,
-    // so a choice made here has to reach the card that sent the reader in. Capture after the dialog
-    // has returned focus to its opener, then rebuild only the surface behind it and return to the
-    // same preview action rather than the neighbouring Add button.
-    if (chose && view === 'home') await renderHomeCatalog();
-    else if (chose && CATALOG_SHELVES.some((shelf) => shelf.key === view)) {
+    // so a choice made here has to reach the shelf card that sent the reader in.
+    if (chose && CATALOG_SHELVES.some((shelf) => shelf.key === view)) {
       const root = $(`#${view}-results`);
       const held = captureFocus(root);
       await renderCatalogShelf(view);
@@ -3779,7 +3547,7 @@ async function renderCatalogShelf(key) {
   // box just because a different screen is long. The owner intends to grow all three, so the box
   // appears on its own when a shelf passes the threshold rather than having to be added then.
   const totalStories = countStories(mine);
-  const searchable = totalStories > HOME_FILTER_THRESHOLD;
+  const searchable = totalStories > CATALOG_FILTER_THRESHOLD;
   $(`#form-${key}-search`).hidden = !searchable;
   if (!searchable && state.query) {
     state.query = '';
@@ -4083,15 +3851,6 @@ export function pathLine(placement, surface, { showBadge = true } = {}) {
   ].filter(Boolean));
 }
 
-// Which screen a stop is drawn on, asked from where the reader is standing. The landing page draws
-// every shelf, so a stop named there is on the same page unless the age boundary keeps it off;
-// each catalogue screen draws one shelf, so a stop named there may be on another of them. Both
-// answers come from the stop itself, which carries them from the whole catalog rather than from
-// the slice the current screen happens to hold.
-function stopView(stop, surface) {
-  return surface === 'home' && stop.onHome ? 'home' : stop.shelf;
-}
-
 // Null when the stop is on the screen already showing this row, which is what keeps the offer
 // honest: a link is only drawn where pressing it takes the reader somewhere they are not.
 //
@@ -4100,14 +3859,14 @@ function stopView(stop, surface) {
 // that. Constraint 5 makes the origin load-bearing, so the address it writes is a fragment and
 // nothing else. The click is taken over only to clear the destination's narrowing first.
 function stopLink(stop, surface, { text = stop.name, label = null } = {}) {
-  const dest = stopView(stop, surface);
+  const dest = stop.shelf;
   if (dest === surface) return null;
   return el('a', {
     href: formatRoute({ view: dest }),
     'aria-label': label,
     onclick: (e) => {
       e.preventDefault();
-      goToStop(stop, surface);
+      goToStop(stop);
     },
   }, text);
 }
@@ -4129,8 +3888,8 @@ function stopLink(stop, surface, { text = stop.name, label = null } = {}) {
 // cannot see. What this cannot fix is a stop no screen holds, and nothing can be: the shelf a stop
 // names is computed from the whole catalog by the same rule the renderer uses, so the row is on
 // the destination by construction, and `catalog.test.js` holds that for every stop of every path.
-function goToStop(stop, surface) {
-  const dest = stopView(stop, surface);
+function goToStop(stop) {
+  const dest = stop.shelf;
   clearNarrowing(dest);
   // Pushed rather than replaced: this is a place the reader chose to go, so Back returns them to
   // the row they pressed. Focus goes to the destination's heading, which is where every other
@@ -4264,9 +4023,8 @@ function renderCatalogShelfFilters(key, lists, searchable) {
 // two different files.
 let importing = null;
 
-// `navigate` is false on the landing page, where adding an order must leave the reader where
-// they were so they can add a second one. The sidebar still updates, because the store change
-// re-renders it; that is the feedback, along with the announcement.
+// `navigate` is false in the preview dialog, where adding an order keeps the reader with the
+// order they were inspecting. The sidebar still updates, and the dialog action confirms the save.
 //
 // `report` is where a failure is written. This used to be alert(), which was the only path in
 // the app that stopped the page to report a failure, and the one place a reader could not read
@@ -4387,7 +4145,7 @@ function renderProgress() {
   // `active` is null only when no list exists, so "This list" has no subject to name: the subtitle
   // below would dereference it, and the choice would be between two options that both render
   // "Nothing tracked yet." The whole fieldset is hidden rather than one radio disabled, matching
-  // #home-chips and #catalog-filters, which hide for the same reason. A disabled chip was the first
+  // the browse filters, which hide for the same reason. A disabled chip was the first
   // attempt and was wrong: .fp paints the adjacent span, and with no :disabled rule it rendered
   // identically to a live one, hover lift included.
   const scoped = progressScope === 'list' && Boolean(list);
@@ -5021,6 +4779,7 @@ function renderAll() {
   renderRail();
   renderReading();
   renderHome();
+  renderLibraryHub();
   renderProgress();
   renderLibrary();
   renderQueue();

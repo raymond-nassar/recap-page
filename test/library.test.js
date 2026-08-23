@@ -279,14 +279,15 @@ test('every rail button routes to a view that exists', () => {
   assert.deepEqual(routes.filter((r) => !sections.has(r)), []);
 });
 
-test('each Library rail button carries the label its view is rendered with', () => {
+test('each Library hub choice carries the label its view is rendered with', () => {
   const html = read('src/index.html');
+  const hub = html.slice(html.indexOf('id="view-library"'), html.indexOf('id="view-progress"'));
   for (const v of LIBRARY_VIEWS) {
-    const button = html.match(new RegExp(`data-view="${v.value}"[\\s\\S]*?</button>`));
-    assert.ok(button, `no rail button routes to ${v.value}`);
+    const button = hub.match(new RegExp(`data-view="${v.value}"[\\s\\S]*?</button>`));
+    assert.ok(button, `no Library hub choice routes to ${v.value}`);
     assert.ok(
-      button[0].includes(`<span class="lbl">${v.label}</span>`),
-      `the rail button for ${v.value} does not say ${JSON.stringify(v.label)}`,
+      button[0].includes(`<span>${v.label}</span>`),
+      `the Library hub choice for ${v.value} does not say ${JSON.stringify(v.label)}`,
     );
   }
 });

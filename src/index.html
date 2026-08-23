@@ -41,76 +41,30 @@
 
         <nav id="sidebar-nav" aria-label="Main">
           <div class="nav-scroll">
-          <div class="nav-group">
-            <h2 id="rail-orders" class="rail-h">My Library</h2>
-            <ul id="list-nav" class="rail-list" aria-labelledby="rail-orders"></ul>
-            <p id="no-lists" class="rail-hint">
-              Nothing yet. Browse the catalog below to start.
-            </p>
-            <ul class="rail-list" aria-labelledby="rail-orders">
-              <li><button type="button" class="ri" data-view="library-read">
-                <span class="gi" aria-hidden="true">&#xE73E;</span>
-                <span class="lbl">Everything read</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="progress">
-                <span class="gi" aria-hidden="true">&#xE9D2;</span>
-                <span class="lbl">Progress by series</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="library-manual">
-                <span class="gi" aria-hidden="true">&#xE70F;</span>
-                <span class="lbl">Added by hand</span>
-              </button></li>
-            </ul>
-          </div>
+            <div class="nav-group">
+              <h2 id="rail-reading" class="rail-h">Reading</h2>
+              <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
+              <ul class="rail-list" aria-labelledby="rail-reading">
+                <li><button type="button" class="ri" data-view="library">
+                  <span class="gi" aria-hidden="true">&#xE8F1;</span>
+                  <span class="lbl">Library</span>
+                </button></li>
+              </ul>
+            </div>
 
-          <div class="nav-group">
-            <h2 class="rail-h">Start from</h2>
-            <ul class="rail-list">
-              <li><button type="button" class="ri ri-action" data-view="catalog">
-                <span class="gi" aria-hidden="true">&#xE736;</span>
-                <span class="lbl">Timeline</span>
-              </button></li>
-              <li><button type="button" class="ri ri-action" data-view="lines">
-                <span class="gi" aria-hidden="true">&#xE8FD;</span>
-                <span class="lbl">Storylines</span>
-              </button></li>
-              <li><button type="button" class="ri ri-action" data-view="spotlights">
-                <span class="gi" aria-hidden="true">&#xE77B;</span>
-                <span class="lbl">Character spotlights</span>
-              </button></li>
-              <li><button type="button" class="ri ri-action" id="btn-new-list">
-                <span class="gi" aria-hidden="true">&#xE710;</span>
-                <span class="lbl">New empty list</span>
-              </button></li>
-            </ul>
-          </div>
-
-          <div class="nav-group">
-            <h2 class="rail-h">Add issues</h2>
-            <ul class="rail-list">
-              <li><button type="button" class="ri" data-view="add-search">
-                <span class="gi" aria-hidden="true">&#xE721;</span>
-                <span class="lbl">Search issues</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="add-series">
-                <span class="gi" aria-hidden="true">&#xE8F1;</span>
-                <span class="lbl">Find a series</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="add-creator">
-                <span class="gi" aria-hidden="true">&#xE77B;</span>
-                <span class="lbl">Browse a creator</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="add-import">
-                <span class="gi" aria-hidden="true">&#xE77F;</span>
-                <span class="lbl">Paste a Reading List</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="add-manual">
-                <span class="gi" aria-hidden="true">&#xE948;</span>
-                <span class="lbl">Add an issue by hand</span>
-              </button></li>
-            </ul>
-          </div>
-
+            <div class="nav-group">
+              <h2 class="rail-h">Discover</h2>
+              <ul class="rail-list">
+                <li><button type="button" class="ri" data-view="browse">
+                  <span class="gi" aria-hidden="true">&#xE721;</span>
+                  <span class="lbl">Browse</span>
+                </button></li>
+                <li><button type="button" class="ri" data-view="add">
+                  <span class="gi" aria-hidden="true">&#xE710;</span>
+                  <span class="lbl">Add</span>
+                </button></li>
+              </ul>
+            </div>
           </div>
 
           <!-- Pinned to the bottom of the rail rather than left to the end of a scrolling column.
@@ -175,15 +129,14 @@
 
           <!-- ---------------------------------------- home view -->
           <!--
-            The landing page. State A (empty library) leads with the catalog itself, because
-            an empty box is not a call to action. State B (library has lists) leads with
-            "Continue reading" and demotes the catalog to "Discover more".
+            The landing page. State A asks how the reader wants to browse. State B keeps
+            "Continue reading" and saved lists first, then offers the same browsing paths.
             See docs/ux/landing-page-flow.md.
           -->
           <section id="view-home" class="view view-wide" hidden aria-labelledby="home-h">
             <div class="head">
               <div class="head-left">
-                <h1 id="home-h">Start Here</h1>
+                <h1 id="home-h">How do you want to read?</h1>
               </div>
               <div class="headright">
                 <button type="button" class="tgl" data-covers-toggle aria-pressed="true">
@@ -191,41 +144,6 @@
                 </button>
               </div>
             </div>
-
-            <!-- State A only: the answer to "where do I start", shown above the catalog on a
-                 genuine first run and withdrawn the moment the reader has a library, picks a
-                 filter or types a query. Deliberately not a card in the grid below: the grid is
-                 capped at twelve with an overflow count that a test holds, so taking a slot would
-                 make that count wrong. renderFeatured fills every id here. -->
-            <section id="home-featured" class="feature" hidden aria-labelledby="feature-h">
-              <div class="feature-in">
-                <div class="art">
-                  <img id="feature-img" alt="" />
-                  <div class="fallback" id="feature-fb" aria-hidden="true">
-                    <span class="fs" id="feature-fs"></span>
-                    <span class="fn" id="feature-fn"></span>
-                  </div>
-                </div>
-                <div class="feature-body">
-                  <div class="feature-copy">
-                    <p class="eyebrow">Featured journey</p>
-                    <!-- Given text for the same reason #chero-h is: this heading names its own
-                         section, so an empty one would leave the section unnamed too. -->
-                    <h2 id="feature-h">A place to start</h2>
-                    <p class="feature-why" id="feature-why"></p>
-                  </div>
-                  <div class="feature-decision">
-                    <ul class="feature-facts" id="feature-facts"></ul>
-                    <div class="feature-act">
-                      <!-- The one filled primary on the page. Its accessible name carries the order,
-                           so it is not the eighth identical "Start reading" a screen reader hears. -->
-                      <button type="button" class="btn" id="btn-feature-start">Start reading</button>
-                      <button type="button" class="btn btn-g" id="btn-feature-preview">See the issues</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
 
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">
@@ -264,26 +182,18 @@
               <ul class="yours" id="home-yours-list"></ul>
             </section>
 
-            <section class="sec" id="home-catalog" aria-labelledby="home-cat-h">
+            <section class="sec home-categories" id="home-categories" data-category-gateway aria-labelledby="home-cat-h">
               <div class="sec-h">
-                <h2 id="home-cat-h">Reading Lists</h2>
+                <h2 id="home-cat-h" class="visually-hidden">Ways to read</h2>
               </div>
               <div id="home-cat-report" class="report"></div>
-
-              <fieldset class="filters" id="home-chips" hidden>
-                <legend class="visually-hidden">Filter Reading Lists</legend>
-              </fieldset>
-
-              <form id="form-home-q" class="stack home-q" role="search" hidden>
-                <label for="home-q">Filter Reading Lists by title or character</label>
-                <div class="field-row">
-                  <input type="search" id="home-q" autocomplete="off" placeholder="e.g. Civil War, Spider-Man" />
-                  <button type="button" class="btn btn-g" id="home-q-clear" hidden>Clear</button>
-                </div>
-              </form>
-
-              <div class="ogrid-groups" id="home-grid"></div>
-              <p class="rail-hint attribution">Marvel metadata via marvel.emreparker.com. <span id="marvel-copyright">© MARVEL</span></p>
+              <p class="rail-hint" id="home-paths-status" data-paths-status>Loading ways to read…</p>
+              <ul class="home-paths home-paths-primary" id="home-primary-paths" data-primary-paths hidden></ul>
+              <section class="home-more-paths" id="home-more-paths" data-more-paths hidden aria-labelledby="home-more-h">
+                <div class="sec-h"><h3 id="home-more-h">More ways to read</h3></div>
+                <ul class="home-paths home-paths-secondary" id="home-secondary-paths" data-secondary-paths></ul>
+              </section>
+              <p class="rail-hint attribution">Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></p>
             </section>
           </section>
 
@@ -419,6 +329,42 @@
             </div>
           </section>
 
+          <!-- ---------------------------------------- library hub -->
+          <section id="view-library" class="view" hidden aria-labelledby="library-h">
+            <div class="head">
+              <div class="head-left"><h1 id="library-h">Library</h1></div>
+              <button type="button" class="btn primary" id="btn-new-list">New empty list</button>
+            </div>
+
+            <section class="sec" id="library-yours" aria-labelledby="library-yours-h">
+              <div class="sec-h"><h2 id="library-yours-h">Your Reading Lists</h2></div>
+              <ul class="yours" id="library-yours-list"></ul>
+            </section>
+
+            <section class="empty" id="library-empty" hidden>
+              <h2>No Reading Lists yet</h2>
+              <div class="actions">
+                <button type="button" class="btn primary" data-view="browse">Browse</button>
+                <button type="button" class="btn" data-view="add">Add comics</button>
+              </div>
+            </section>
+
+            <section class="search-hub library-tools" aria-labelledby="library-tools-h">
+              <h2 id="library-tools-h">Across your library</h2>
+              <div class="search-hub-grid">
+                <button type="button" class="search-hub-card" data-view="library-read">
+                  <span class="gi" aria-hidden="true">&#xE73E;</span><span>Everything read</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="progress">
+                  <span class="gi" aria-hidden="true">&#xE9D2;</span><span>Progress by series</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="library-manual">
+                  <span class="gi" aria-hidden="true">&#xE70F;</span><span>Added by hand</span>
+                </button>
+              </div>
+            </section>
+          </section>
+
           <!-- ---------------------------------------- progress view -->
           <section id="view-progress" class="view view-wide" hidden aria-labelledby="progress-h">
             <div class="head"><div class="head-left"><h1 id="progress-h">Progress by series</h1></div></div>
@@ -504,10 +450,45 @@
             <div id="spotlights-results" class="results"></div>
           </section>
 
-          <!-- ---------------------------------------- add views
+          <!-- ---------------------------------------- browse hub -->
+          <section id="view-browse" class="view" hidden aria-labelledby="browse-h">
+            <div class="head"><div class="head-left"><h1 id="browse-h">Browse</h1></div></div>
+            <section class="sec home-categories" data-category-gateway aria-labelledby="browse-cat-h">
+              <div class="sec-h"><h2 id="browse-cat-h" class="visually-hidden">Ways to read</h2></div>
+              <div id="browse-cat-report" class="report"></div>
+              <p class="rail-hint" data-paths-status>Loading ways to read…</p>
+              <ul class="home-paths home-paths-primary" data-primary-paths hidden></ul>
+              <section class="home-more-paths" data-more-paths hidden aria-labelledby="browse-more-h">
+                <div class="sec-h"><h3 id="browse-more-h">More ways to read</h3></div>
+                <ul class="home-paths home-paths-secondary" data-secondary-paths></ul>
+              </section>
+              <p class="rail-hint attribution">Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></p>
+            </section>
+          </section>
 
-               Each rail entry owns a route and a page. The legacy #/add route is still accepted
-               by route.js and canonicalised to the search page by showView. -->
+          <!-- ---------------------------------------- add hub -->
+          <section id="view-add" class="view" hidden aria-labelledby="add-h">
+            <div class="head"><div class="head-left"><h1 id="add-h">Add</h1></div></div>
+            <div class="search-hub-grid add-hub-grid">
+              <button type="button" class="search-hub-card" data-view="add-search">
+                <span class="gi" aria-hidden="true">&#xE721;</span><span>Search issues</span>
+              </button>
+              <button type="button" class="search-hub-card" data-view="add-series">
+                <span class="gi" aria-hidden="true">&#xE8F1;</span><span>Find a series</span>
+              </button>
+              <button type="button" class="search-hub-card" data-view="add-creator">
+                <span class="gi" aria-hidden="true">&#xE77B;</span><span>Browse a creator</span>
+              </button>
+              <button type="button" class="search-hub-card" data-view="add-import">
+                <span class="gi" aria-hidden="true">&#xE77F;</span><span>Paste a Reading List</span>
+              </button>
+              <button type="button" class="search-hub-card" data-view="add-manual">
+                <span class="gi" aria-hidden="true">&#xE948;</span><span>Add an issue by hand</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- ---------------------------------------- add child views -->
           <section id="view-add-search" class="view" hidden aria-labelledby="add-search-h">
             <div class="head"><div class="head-left"><h1 id="add-search-h">Search issues</h1></div></div>
 

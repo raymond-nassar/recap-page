@@ -44,16 +44,20 @@ function between(source, startText, endText) {
   return source.slice(start, end);
 }
 
-test('named Reading Lists and library summaries share one My Library rail group', () => {
+test('the rail stays fixed while Library, Browse, and Add own their child pages', () => {
   const rail = between(html, '<nav id="sidebar-nav"', '</nav>');
-  const nav = between(html, '<div class="nav-scroll">', '<h2 class="rail-h">Start from</h2>');
-  assert.match(nav, /<h2 id="rail-orders" class="rail-h">My Library<\/h2>/);
-  assert.match(nav, /id="list-nav"/, 'named Reading Lists left My Library');
-  for (const view of ['library-read', 'progress', 'library-manual']) {
-    assert.match(nav, new RegExp(`data-view="${view}"`), `${view} left My Library`);
+  assert.match(rail, /<h2 id="rail-reading" class="rail-h">Reading<\/h2>/);
+  assert.match(rail, /id="list-nav"/, 'the conditional Continue reading slot left the rail');
+  for (const view of ['library', 'browse', 'add', 'data', 'about']) {
+    assert.match(rail, new RegExp(`data-view="${view}"`), `${view} is missing from the fixed rail`);
   }
-  assert.doesNotMatch(rail, /<h2[^>]*>Reading Lists<\/h2>/);
-  assert.doesNotMatch(rail, /<h2[^>]*>Library<\/h2>/);
+  for (const child of ['library-read', 'progress', 'library-manual', 'catalog', 'lines', 'spotlights', ...['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']]) {
+    assert.doesNotMatch(rail, new RegExp(`data-view="${child}"`), `${child} still grows the rail`);
+  }
+  assert.match(main, /function railParentView\(next\)/, 'child pages no longer select their rail hub');
+  assert.match(main, /HOME_CATEGORIES\.some\(\(\{ route \}\) => route === next\)/);
+  assert.match(main, /ADD_VIEWS\.includes\(next\)/);
+  assert.match(main, /LIBRARY_VIEWS\.some\(\(\{ value \}\) => value === next\)/);
 });
 
 test('product copy uses Reading List everywhere and capitalizes both words', () => {
@@ -100,18 +104,14 @@ test('the timeline is a vertical chronology rather than a separate year navigato
   assert.match(styles, /\.railed \.nav-scroll\s*\{[^}]*scrollbar-width:\s*none;/s);
 });
 
-test('home cards use equal tracks after moving variable details out of the card flow', () => {
+test('Home offers three equal primary path tracks and a responsive compact tier', () => {
   assert.match(
     styles,
-    /\.ogrid\s*\{[^}]*grid-auto-rows:\s*1fr;/s,
-    'the landing grid does not give its cards equal tracks',
+    /\.home-paths\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s,
+    'the primary gateway does not give its three paths equal tracks',
   );
-  const start = main.indexOf('function orderCard');
-  const body = main.slice(start, main.indexOf('function addButton', start));
-  assert.match(body, /class: 'ocard-badges'/);
-  assert.match(body, /homePathBadge\(placement\)/);
-  assert.doesNotMatch(body, /pathLine\(placement,\s*'home'\)/);
-  assert.doesNotMatch(body, /class: 'ocard-ways'/);
+  assert.match(styles, /\.home-paths-secondary\s*\{[^}]*repeat\(auto-fit,/s);
+  assert.match(styles, /@media \(max-width:\s*620px\)\s*\{[^}]*\.home-paths-primary\s*\{[^}]*grid-template-columns:\s*1fr;/s);
 });
 
 test('saved Reading Lists use bounded responsive tiles instead of full-width rows', () => {
@@ -119,14 +119,6 @@ test('saved Reading Lists use bounded responsive tiles instead of full-width row
     styles,
     /\.yours\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit,\s*minmax\(min\(100%,\s*18rem\),\s*24rem\)\)[^}]*align-items:\s*start;/s,
     'saved Reading Lists still expand into full-width rows',
-  );
-});
-
-test('the featured reading panel stops widening once its content has enough room', () => {
-  assert.match(
-    styles,
-    /\.feature\s*\{[^}]*max-width:\s*72rem;/s,
-    'the featured panel still expands across every available pixel',
   );
 });
 
@@ -138,18 +130,10 @@ test('the continue-reading panel uses the same bounded measure', () => {
   );
 });
 
-test('home group headings do not masquerade as Timeline era breaks', () => {
-  assert.match(main, /shelfSectionHead\(section,\s*\{[^}]*level:\s*'h3'[^}]*className:\s*'shelf-section home-shelf-section'[^}]*blurb:\s*false/s);
-  assert.match(
-    styles,
-    /\.home-shelf-section\s*\{[^}]*background:\s*none;[^}]*border:\s*0;/s,
-    'the Home categories still use the boxed era-break treatment',
-  );
-});
-
 test('Home headings are not explained twice', () => {
   assert.doesNotMatch(html, /id="home-sub"/);
-  assert.match(main, /populated \? 'Continue reading' : 'Start Here'/);
+  assert.match(main, /populated \? 'Continue reading' : 'How do you want to read\?'/);
+  assert.doesNotMatch(html, /Featured journey|A place to start|Filter Reading Lists/);
   assert.match(main, /if \(blurb\) children\.push\(/);
 });
 

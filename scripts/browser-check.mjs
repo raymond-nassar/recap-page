@@ -255,8 +255,8 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 const MUTATIONS = [
   {
     id: 'home-copy-return',
-    breaks: 'home-card-layout',
-    why: 'the longer first-run heading and its explanatory sentence return',
+    breaks: 'home-category-gateway',
+    why: 'the first-run question is replaced by a generic heading and explanatory sentence',
     script: () => {
       addEventListener('load', () => {
         const heading = document.querySelector('#home-h');
@@ -325,26 +325,36 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'feature-decision-stack',
-    breaks: 'home-card-layout',
-    why: 'the feature facts and actions fall below the summary and leave the right side empty again',
+    id: 'home-paths-stack-wide',
+    breaks: 'home-category-gateway',
+    why: 'the three primary reading paths stack at desktop width instead of reading as equal choices',
     script: () => {
       addEventListener('load', () => {
         const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('.feature-body { grid-template-columns: minmax(0, 1fr) !important; }', sheet.cssRules.length);
-        sheet.insertRule('.feature-decision { max-width: 15rem; }', sheet.cssRules.length);
+        sheet.insertRule('#home-primary-paths { grid-template-columns: 1fr !important; }', sheet.cssRules.length);
       });
     },
   },
   {
-    id: 'home-card-height',
-    breaks: 'home-card-layout',
-    why: 'one Home card grows taller than its neighbours, recreating the uneven grid this scenario measures',
+    id: 'home-path-explanation',
+    breaks: 'home-category-gateway',
+    why: 'standing explanatory copy returns inside a category tile',
     script: () => {
       addEventListener('load', () => {
-        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('#home-grid .ogrid { grid-auto-rows: auto; align-items: start; }', sheet.cssRules.length);
-        sheet.insertRule('#home-grid .ocard:nth-child(2) { min-height: 390px; }', sheet.cssRules.length);
+        const insert = () => {
+          const copy = document.querySelector('.home-path-copy');
+          if (!copy || copy.querySelector('.home-path-explanation')) return false;
+          const note = document.createElement('p');
+          note.className = 'home-path-explanation';
+          note.textContent = 'Use this route when you want the stories arranged around publication milestones.';
+          copy.append(note);
+          return true;
+        };
+        if (insert()) return;
+        const observer = new MutationObserver(() => {
+          if (insert()) observer.disconnect();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
       });
     },
   },
@@ -764,7 +774,7 @@ const SCENARIOS = [
     title: 'each reading kind has its own browse screen and grouping',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
       // Read headings and cards in one pass, in document order, so "which heading is this card under"
@@ -894,7 +904,7 @@ const SCENARIOS = [
         JSON.stringify(narrowTimeline));
       await page.setViewport({ width: 1280, height: 900 });
 
-      await click(page, '[data-view="lines"]');
+      await openBrowseCategory(page, 'storylines');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
       const lines = await readShelf('#lines-results');
       const expectedStorylineHeading = FIXTURE_STORYLINE_SECTIONS[0]?.heading;
@@ -903,7 +913,7 @@ const SCENARIOS = [
         && lines.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Across the Line',
         JSON.stringify(lines));
 
-      await click(page, '[data-view="spotlights"]');
+      await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
       const spotlights = await readShelf('#spotlights-results');
       t.check('Character spotlights holds the character reading without a redundant group heading',
@@ -915,84 +925,79 @@ const SCENARIOS = [
     },
   },
   {
-    id: 'home-card-layout',
-    title: 'Home discovery stays concise and Reading List cards stay equal',
+    id: 'home-category-gateway',
+    title: 'Home offers concise reading paths that scale to more categories',
     async run(page, t) {
       await open(page, '/');
-      await page.waitForSelector('#home-grid .ocard', { timeout: 15000 });
-
-      const measure = () => page.$$eval('#home-grid .ogrid', (grids) => grids.map((grid) => {
-        const heights = [...grid.querySelectorAll('.ocard')].map((card) => card.getBoundingClientRect().height);
-        return {
-          cards: heights.length,
-          min: Math.round(Math.min(...heights)),
-          max: Math.round(Math.max(...heights)),
-          spread: Math.round(Math.max(...heights) - Math.min(...heights)),
-        };
-      }));
+      await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
       const settleLayout = () => page.evaluate(() => new Promise((resolve) => {
         requestAnimationFrame(() => requestAnimationFrame(resolve));
       }));
 
       await page.setViewport({ width: 1280, height: 900 });
       await settleLayout();
-      const standard = await measure();
-      t.check('every Home group uses one card height at 1280px',
-        standard.length > 0 && standard.every((group) => group.cards > 0 && group.spread <= 1),
-        JSON.stringify(standard));
-
-      await page.setViewport({ width: 2048, height: 1080 });
-      await settleLayout();
-      const wide = await measure();
-      t.check('and keeps one card height on the wide display from the owner review',
-        wide.length === standard.length && wide.every((group) => group.cards > 0 && group.spread <= 1),
-        JSON.stringify(wide));
-
       const context = await page.evaluate(() => {
-        const cards = [...document.querySelectorAll('#home-grid .ocard')];
-        const named = (title) => cards.find((card) => card.querySelector('.ocard-title')?.textContent.trim() === title);
-        const first = named('Browser Check Order');
-        const variant = named('Third Stop');
-        const badge = first?.querySelector('.ocard-path');
-        const feature = document.querySelector('#home-featured').getBoundingClientRect();
-        const copy = document.querySelector('.feature-copy').getBoundingClientRect();
-        const decision = document.querySelector('.feature-decision').getBoundingClientRect();
+        const paths = [...document.querySelectorAll('#home-primary-paths .home-path')];
+        const boxes = paths.map((path) => path.getBoundingClientRect());
         return {
           heading: document.querySelector('#home-h')?.textContent.trim() ?? null,
           explanatoryLines: document.querySelectorAll('#view-home > .head .sub').length,
-          feature: {
-            horizontal: decision.left > copy.right,
-            gap: Math.round(decision.left - copy.right),
-            rightInset: Math.round(feature.right - decision.right),
-            facts: document.querySelectorAll('#feature-facts li').length,
-            actions: document.querySelectorAll('.feature-act .btn').length,
-          },
-          visibleBadge: badge?.querySelector('[aria-hidden="true"]')?.textContent.trim() ?? null,
-          badgeDetail: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
-          beginner: first?.querySelector('.pill-beginner')?.textContent.trim() ?? null,
-          optionAction: variant?.querySelector('.ocard-preview')?.textContent.trim() ?? null,
-          variableRows: document.querySelectorAll('#home-grid .ocard .path-step, #home-grid .ocard .ocard-ways').length,
+          paths: paths.map((path) => ({
+            key: path.dataset.category,
+            label: path.querySelector('.home-path-label')?.textContent.trim(),
+            title: path.querySelector('.home-path-title')?.textContent.trim(),
+            count: path.querySelector('.home-path-count')?.textContent.trim(),
+          })),
+          tops: boxes.map((box) => Math.round(box.top)),
+          heights: boxes.map((box) => Math.round(box.height)),
+          paragraphs: document.querySelectorAll('.home-path p').length,
+          retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
+          moreHidden: document.querySelector('#home-more-paths')?.hidden,
         };
       });
-      t.check('the first-run heading says Start Here without explaining the choices again',
-        context.heading === 'Start Here' && context.explanatoryLines === 0, JSON.stringify(context));
-      t.check('the featured journey uses its right side for facts and actions',
-        context.feature.horizontal
-        && context.feature.gap >= 16
-        && context.feature.rightInset <= 32
-        && context.feature.facts >= 4
-        && context.feature.actions === 2,
-        JSON.stringify(context.feature));
-      t.check('the compact path badge keeps position, path name and next-stop context',
-        context.visibleBadge === 'Start · 1/3'
-        && context.badgeDetail === 'Start here. Step 1 of 3 in The Fixture Path. Next: Second Stop.',
+      t.check('the first-run heading asks one question without explaining it again',
+        context.heading === 'How do you want to read?' && context.explanatoryLines === 0,
         JSON.stringify(context));
-      t.check('beginner suitability remains visible on the cover',
-        context.beginner === 'Beginner', JSON.stringify(context));
-      t.check('a story with variants moves its option count into the existing preview action',
-        context.optionAction === 'See 2 options', JSON.stringify(context));
-      t.check('and no variable path or options row can make one card taller',
-        context.variableRows === 0, JSON.stringify(context));
+      t.check('the three current paths carry compact labels and content counts',
+        JSON.stringify(context.paths) === JSON.stringify([
+          { key: 'timeline', label: 'Browse by year', title: 'Timeline', count: '14 Reading Lists' },
+          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '1 Reading List' },
+          { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '1 Reading List' },
+        ]),
+        JSON.stringify(context.paths));
+      t.check('the primary paths remain equal choices on one desktop row',
+        context.tops.length === 3
+        && new Set(context.tops).size === 1
+        && Math.max(...context.heights) - Math.min(...context.heights) <= 1,
+        JSON.stringify({ tops: context.tops, heights: context.heights }));
+      t.check('the gateway has no standing tile paragraphs or retired catalog wall',
+        context.paragraphs === 0 && context.retired === 0 && context.moreHidden === true,
+        JSON.stringify(context));
+
+      for (const [category, view] of [
+        ['timeline', 'catalog'],
+        ['storylines', 'lines'],
+        ['character-spotlights', 'spotlights'],
+      ]) {
+        await click(page, `[data-category="${category}"]`);
+        await page.waitForFunction((id) => document.querySelector(`#view-${id}`)?.hidden === false, {}, view);
+        const destination = await page.evaluate(() => location.hash);
+        t.check(`${category} opens its browse screen`, destination === `#/${view}`, destination);
+        await open(page, '/');
+        await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
+      }
+
+      await page.setViewport({ width: 620, height: 900 });
+      await settleLayout();
+      const narrow = await page.$$eval('#home-primary-paths .home-path', (paths) => paths.map((path) => {
+        const box = path.getBoundingClientRect();
+        return { top: Math.round(box.top), width: Math.round(box.width) };
+      }));
+      t.check('a narrow window stacks full-width paths without horizontal clipping',
+        narrow.length === 3
+        && new Set(narrow.map(({ top }) => top)).size === 3
+        && narrow.every(({ width }) => width > 400 && width < 620),
+        JSON.stringify(narrow));
     },
   },
   {
@@ -1002,8 +1007,12 @@ const SCENARIOS = [
       await open(page, '/');
 
       const browse = [];
-      for (const view of ['catalog', 'lines', 'spotlights']) {
-        await click(page, `[data-view="${view}"]`);
+      for (const [view, category] of [
+        ['catalog', 'timeline'],
+        ['lines', 'storylines'],
+        ['spotlights', 'character-spotlights'],
+      ]) {
+        await openBrowseCategory(page, category);
         await page.waitForSelector(`#${view}-results .catalog-card`, { timeout: 15000 });
         browse.push(await page.$eval(`#view-${view}`, (section) => ({
           view: section.id,
@@ -1042,7 +1051,7 @@ const SCENARIOS = [
         && manual.summaries.includes('What lookup sends') && manual.open === false,
         JSON.stringify(manual));
 
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await click(page, IMPORT_BUTTON);
       await page.waitForFunction(() => document.querySelector('#shelf-note')?.textContent.trim() === '2 issues');
       const shelfNote = await page.$eval('#shelf-note', (node) => node.textContent.trim());
@@ -1082,11 +1091,109 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'hub-navigation',
+    title: 'fixed rail delegates growing choices to Library, Browse, and Add',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
+      await page.setViewport({ width: 1280, height: 900 });
+
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse [data-primary-paths] .home-path', { timeout: 15000 });
+      const gateway = await page.evaluate(() => {
+        const read = (root) => [...document.querySelectorAll(`${root} [data-primary-paths] .home-path`)]
+          .map((path) => ({
+            category: path.dataset.category,
+            title: path.querySelector('.home-path-title')?.textContent.trim(),
+            count: path.querySelector('.home-path-count')?.textContent.trim(),
+          }));
+        return {
+          home: read('#view-home'),
+          browse: read('#view-browse'),
+          hash: location.hash,
+          current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+        };
+      });
+      t.check('Browse renders the same available categories and counts as Home',
+        JSON.stringify(gateway.home) === JSON.stringify(gateway.browse),
+        JSON.stringify(gateway));
+      t.check('the Browse hub owns its address and selected rail state',
+        gateway.hash === '#/browse' && gateway.current === 'browse',
+        JSON.stringify(gateway));
+
+      await click(page, '#view-browse [data-category="storylines"]');
+      await page.waitForFunction(() => document.querySelector('#view-lines')?.hidden === false);
+      const browseChild = await page.evaluate(() => ({
+        hash: location.hash,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+      }));
+      t.check('a category child keeps Browse selected',
+        browseChild.hash === '#/lines' && browseChild.current === 'browse',
+        JSON.stringify(browseChild));
+
+      await click(page, '.ri[data-view="add"]');
+      await page.waitForFunction(() => document.querySelector('#view-add')?.hidden === false);
+      const addChoices = await page.$$eval('#view-add .search-hub-card', (buttons) => (
+        buttons.map((button) => button.dataset.view)
+      ));
+      t.check('Add groups the five add methods on one hub',
+        JSON.stringify(addChoices) === JSON.stringify([
+          'add-search', 'add-series', 'add-creator', 'add-import', 'add-manual',
+        ]),
+        JSON.stringify(addChoices));
+      await click(page, '#view-add [data-view="add-manual"]');
+      const addChild = await page.evaluate(() => ({
+        hash: location.hash,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+      }));
+      t.check('an Add child keeps Add selected',
+        addChild.hash === '#/add-manual' && addChild.current === 'add',
+        JSON.stringify(addChild));
+
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForFunction(() => document.querySelector('#view-library')?.hidden === false);
+      const libraryChoices = await page.$$eval('#view-library .library-tools [data-view]', (buttons) => (
+        buttons.map((button) => button.dataset.view)
+      ));
+      t.check('Library groups its three library-wide destinations',
+        JSON.stringify(libraryChoices) === JSON.stringify(['library-read', 'progress', 'library-manual']),
+        JSON.stringify(libraryChoices));
+      await click(page, '#view-library [data-view="progress"]');
+      const libraryChild = await page.evaluate(() => ({
+        hash: location.hash,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+      }));
+      t.check('a Library child keeps Library selected',
+        libraryChild.hash === '#/progress' && libraryChild.current === 'library',
+        JSON.stringify(libraryChild));
+
+      const rail = await page.evaluate(() => {
+        const scroll = document.querySelector('.nav-scroll');
+        return {
+          rows: [...document.querySelectorAll('#sidebar .ri')].map((button) => button.dataset.view ?? 'continue'),
+          childRows: document.querySelectorAll(
+            '#sidebar .ri[data-view="catalog"], #sidebar .ri[data-view="lines"], '
+              + '#sidebar .ri[data-view="spotlights"], #sidebar .ri[data-view^="add-"], '
+              + '#sidebar .ri[data-view="progress"], #sidebar .ri[data-view^="library-"]',
+          ).length,
+          scrollHeight: scroll.scrollHeight,
+          clientHeight: scroll.clientHeight,
+        };
+      });
+      t.check('the rail has no category, Add method, saved-list collection, or Library report rows',
+        rail.childRows === 0 && rail.rows.length <= 6,
+        JSON.stringify(rail));
+      t.check('the fixed rail fits without vertical scrolling at the reference viewport',
+        rail.scrollHeight <= rail.clientHeight,
+        JSON.stringify(rail));
+    },
+  },
+  {
     id: 'reading-path',
     title: 'the shelf says where a story sits in a reading order',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
       const rows = await page.$$eval('#catalog-results .catalog-card', (els) => els.map((e) => ({
@@ -1146,7 +1253,7 @@ const SCENARIOS = [
       t.check('the compact card keeps the issue count', first?.meta === '3 issues', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
-      await click(page, '[data-view="spotlights"]');
+      await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
       const off = await page.$eval('#spotlights-results .catalog-card', (e) => ({
         title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
@@ -1162,7 +1269,7 @@ const SCENARIOS = [
     title: 'collapsing the sidebar does not reach into the shelf',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .result-path > summary', { timeout: 15000 });
 
       const read = () => page.evaluate(() => {
@@ -1177,8 +1284,8 @@ const SCENARIOS = [
           nav: (() => {
             const rail = document.querySelector('#sidebar').getBoundingClientRect();
             const scroll = document.querySelector('.nav-scroll');
-            const icon = document.querySelector('.ri[data-view="catalog"] .gi').getBoundingClientRect();
-            const button = document.querySelector('.ri[data-view="catalog"]').getBoundingClientRect();
+            const icon = document.querySelector('.ri[data-view="browse"] .gi').getBoundingClientRect();
+            const button = document.querySelector('.ri[data-view="browse"]').getBoundingClientRect();
             const style = getComputedStyle(scroll);
             return {
               railLeft: Math.round(rail.left),
@@ -1223,7 +1330,7 @@ const SCENARIOS = [
     title: 'a curated order can be imported from the catalog',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector(IMPORT_BUTTON, { timeout: 15000 });
       t.check('the catalog offers the order', true);
 
@@ -1705,7 +1812,7 @@ const SCENARIOS = [
 
       // The behaviour the reader complained about, pinned rather than removed: the offer outlives
       // the screen it was made on, because that is the only thing keeping the undo reachable.
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
       const elsewhere = await readNotice();
       t.check('it is still there after the reader changes screen', elsewhere?.buttons.join('/') === 'Undo delete/Dismiss', JSON.stringify(elsewhere));
@@ -1946,6 +2053,13 @@ async function click(page, selector) {
   await page.evaluate((s) => document.querySelector(s).click(), selector);
 }
 
+async function openBrowseCategory(page, category) {
+  await click(page, '.ri[data-view="browse"]');
+  const selector = `#view-browse [data-category="${category}"]`;
+  await page.waitForSelector(selector, { timeout: 15000 });
+  await click(page, selector);
+}
+
 async function visibleView(page) {
   return page.evaluate(() => document.querySelector('.view:not([hidden])')?.id ?? null);
 }
@@ -1961,7 +2075,7 @@ async function readState(page) {
 
 async function importOrder(page) {
   await open(page, '/');
-  await click(page, '[data-view="catalog"]');
+  await openBrowseCategory(page, 'timeline');
   await click(page, IMPORT_BUTTON);
   await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
   await openFullOrder(page);

@@ -100,9 +100,9 @@ test('every new surface survives forced colours', () => {
   assert.match(forced, /#reading-filters \{ background: Canvas; \}/);
 });
 
-test('the sticky filters are scoped by id, because three other fieldsets share the class', () => {
+test('the sticky filters are scoped by id, because other fieldsets share the class', () => {
   assert.match(css, /#reading-filters \{[^}]*position: sticky/);
   assert.equal(/\n\.filters \{[^}]*position: sticky/.test(css), false, 'every fieldset with the filters class is now sticky');
-  const others = ['home-chips', 'progress-scope', 'catalog-filters'];
+  const others = ['progress-scope', 'catalog-filters'];
   for (const id of others) assert.match(html, new RegExp(`class="filters" id="${id}"`), `${id} is no longer a filters fieldset`);
 });

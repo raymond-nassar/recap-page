@@ -522,8 +522,8 @@ export function pathPlacements(paths, lists) {
     for (const step of Array.isArray(path?.steps) ? path.steps : []) {
       const key = storyOfOrder.get(str(step));
       if (!key || stops.some((s) => s.key === key)) continue;
-      // Which screen the stop is drawn on travels with the stop, decided by the same two rules
-      // the renderers use rather than by a second copy of them. A "Next" that names a row on
+      // Which screen the stop is drawn on travels with the stop, decided by the same rule
+      // the renderers use rather than by a second copy of it. A "Next" that names a row on
       // another screen has to be able to say which screen, and asking here means the answer is
       // taken from the whole catalog: a shelf's own renderer only ever sees its own share, so it
       // could not resolve a stop that is not its.
@@ -532,7 +532,6 @@ export function pathPlacements(paths, lists) {
         key,
         name: storyName.get(key),
         shelf: shelfKey(story),
-        onHome: inHomeAge(story),
       });
     }
     // One stop is not a sequence, and the reader learns nothing from "step 1 of 1".
@@ -673,6 +672,60 @@ export function shelfLists(lists, key) {
   return (Array.isArray(lists) ? lists : []).filter((list) => mine.has(list));
 }
 
+// ------------------------------------------------------------------ Home categories
+
+// Home categories answer how somebody wants to browse; shelves answer where a story is filed. Those
+// are deliberately separate questions. A shelf is an exclusive partition, while a future category
+// such as Marvel on Screen or Bronze Age can overlap Timeline, Storylines and Character spotlights.
+//
+// Each definition owns its availability selector. Empty results disappear before rendering, so a
+// category can be declared before its first published Reading List without leaving an empty promise
+// on Home. `route` is explicit rather than inferred from `key`: current categories lead to shelves,
+// while a later overlapping category must have its own route without changing canonical placement.
+const shelfCategory = (key) => (stories) => shelfStories(stories, key);
+
+export const HOME_CATEGORIES = [
+  {
+    key: 'timeline',
+    route: 'catalog',
+    shelf: 'catalog',
+    heading: 'Timeline',
+    label: 'Browse by year',
+    icon: 'E736',
+    tier: 'primary',
+    select: shelfCategory('catalog'),
+  },
+  {
+    key: 'storylines',
+    route: 'lines',
+    shelf: 'lines',
+    heading: 'Storylines',
+    label: 'Browse complete arcs',
+    icon: 'E8FD',
+    tier: 'primary',
+    select: shelfCategory('lines'),
+  },
+  {
+    key: 'character-spotlights',
+    route: 'spotlights',
+    shelf: 'spotlights',
+    heading: 'Character spotlights',
+    label: 'Browse heroes and teams',
+    icon: 'E77B',
+    tier: 'primary',
+    select: shelfCategory('spotlights'),
+  },
+];
+
+export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
+  const all = Array.isArray(stories) ? stories : [];
+  return definitions.flatMap(({ select, ...category }) => {
+    const matches = select(all);
+    const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
+    return matches.length ? [{ ...category, count }] : [];
+  });
+}
+
 // ------------------------------------------------------------------ shelf sections
 
 // The sentence that points at the "Start here" badge, held apart from every blurb because it is a
@@ -699,41 +752,33 @@ export function shelfSections(stories) {
 
 // ------------------------------------------------------------------ publishing ages
 
-// The ages of publishing history the catalog is divided into by year, and which of them the landing
-// page is for. Separate from `CATALOG_ERAS`, which divides one screen into named stretches: this
-// divides the catalog between screens, and the two answer different questions at different scales.
+// Publishing ages are reusable selectors for future overlapping categories. They are separate from
+// `CATALOG_ERAS`, which divides Timeline into named stretches: an age category can collect stories
+// from more than one canonical shelf and therefore answers a different question at a different scale.
 //
-// One row today. The landing page is the modern era, from 1998, which is the owner's definition of
-// where the modern line starts rather than anything derived from the bundled data. Nothing bundled
-// reaches back that far: the earliest dated story is 2000, so 1998 admits exactly what 2000 would
-// and the boundary is forward-looking. It is written as 1998 anyway, because a definition belongs
-// where the code can be read against it, and because pre-modern content is expected rather than
-// hypothetical. No blurb claims a 1998 start; displayed ranges come from what landed.
+// One row today. The modern era starts in 1998 by the owner's definition rather than by anything
+// derived from the bundled data. Nothing bundled reaches back that far: the earliest dated story is
+// 2000, so the boundary remains forward-looking. No Home tile uses it yet.
 //
-// Silver Age and Bronze Age screens are the owner's stated direction and are deliberately not built
-// here, because there is nothing to put on them: no bundled story predates 1998 at all. Adding one
-// is a row in this table plus its shelf, which is the same one-line-per-row edit adding an era is.
+// Silver Age and Bronze Age are the owner's stated direction and are deliberately not declared yet,
+// because there is no published route or dated content to put behind either tile.
 export const PUBLISHING_AGES = [
   {
     key: 'modern',
     heading: 'The modern era',
     from: 1998,
-    home: true,
   },
 ];
 
-// Whether the landing page shows a story. Undated stories are shown rather than filtered out, and
-// that is a decision rather than a fallthrough. A story with no year cannot be placed in an age at
-// all, and every undated story bundled is a character run, which is curated across the decades by
-// nature: "X-Men: Silver Age to Claremont" is Silver and Bronze Age material with no year to filter
-// on. Inferring an age for it from its title or its keywords would be guessing, and guessing wrong
-// would hide it. So the age boundary simply does not reach stories that carry no year.
-export function inHomeAge(story) {
+// Undated stories match no age rather than being guessed into one. This is the safe default for
+// character collections spanning decades and for any future category whose bounds are meaningful.
+export function inPublishingAge(story, key) {
+  const age = PUBLISHING_AGES.find((candidate) => candidate.key === key);
+  if (!age) return false;
   const year = storyYear(story);
-  if (year === null) return true;
-  return PUBLISHING_AGES.some((age) => age.home
-    && (age.from == null || year >= age.from)
-    && (age.to == null || year <= age.to));
+  if (year === null) return false;
+  return (age.from == null || year >= age.from)
+    && (age.to == null || year <= age.to);
 }
 
 // ------------------------------------------------------------------ publishing eras
