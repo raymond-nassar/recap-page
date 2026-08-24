@@ -14,6 +14,7 @@
     "cbh:prepare": "node scripts/prepare-cbh-batch.mjs",
     "cbh:resolve": "node scripts/resolve-cbh-order.mjs",
     "cbro:prepare": "node scripts/prepare-cbro-event.mjs",
+    "cbro:freeze": "node scripts/freeze-cbro-timeline-ranges.mjs",
     "cbro:approve": "node scripts/author-cbro-packet.mjs --approve",
     "cbro:author": "node scripts/author-cbro-packet.mjs --author",
     "orders:overlap": "node scripts/report-order-overlap.mjs",

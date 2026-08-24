@@ -21,7 +21,10 @@ import {
   validateMcuCompanionInventory,
   validateMcuCompanionPacket,
 } from '../scripts/lib/cbh-mcu-companion.mjs';
-import { CBRO_CONTINUATION_SELECTED_IDS } from '../scripts/lib/cbro-evidence.mjs';
+import {
+  CBRO_BATCH_TWO_SELECTED_IDS,
+  CBRO_CONTINUATION_SELECTED_IDS,
+} from '../scripts/lib/cbro-evidence.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -51,7 +54,11 @@ const expectedRelationships = {
   ],
   'marvel-what-if': [],
 };
-const frozenExcludedIds = [...MCU_SELECTED_IDS, ...CBRO_CONTINUATION_SELECTED_IDS];
+const frozenExcludedIds = [
+  ...MCU_SELECTED_IDS,
+  ...CBRO_CONTINUATION_SELECTED_IDS,
+  ...CBRO_BATCH_TWO_SELECTED_IDS,
+];
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
@@ -289,7 +296,7 @@ test('approved evidence reaches four payloads, cards, and one Marvel on Screen g
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 106);
+  assert.equal(catalog.lists.length, 111);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),

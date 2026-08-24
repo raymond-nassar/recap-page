@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "dark-phoenix-saga",
+  "inventoryId": "dark-phoenix-saga",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Dark Phoenix Saga",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "dark-phoenix-saga",
+    "name": "Dark Phoenix Saga",
+    "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "dark-phoenix-saga.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Dark Phoenix Saga",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "dark_phoenix_saga.json",
+    "characters": [
+      "X-Men",
+      "Jean Grey",
+      "Phoenix"
+    ],
+    "keywords": [
+      "Dark Phoenix Saga",
+      "X-Men",
+      "Jean Grey"
+    ],
+    "expect": 9,
+    "timeline": 1980,
+    "coverIssueId": 12446
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B02 coordinator",
+    "rationale": "The exact CBRO timeline labels, shared source digest, inclusive range boundaries, source-to-metadata aliases, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T06:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "X-Men #129",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "129",
+      "seriesId": 2258,
+      "candidateIssueId": 12446,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #130",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "130",
+      "seriesId": 2258,
+      "candidateIssueId": 12448,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #131",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "131",
+      "seriesId": 2258,
+      "candidateIssueId": 12449,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #132",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "132",
+      "seriesId": 2258,
+      "candidateIssueId": 12450,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #133",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "133",
+      "seriesId": 2258,
+      "candidateIssueId": 12451,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #134",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "134",
+      "seriesId": 2258,
+      "candidateIssueId": 12452,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #135",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "135",
+      "seriesId": 2258,
+      "candidateIssueId": 12453,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #136",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "136",
+      "seriesId": 2258,
+      "candidateIssueId": 12454,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #137",
+      "sourceRangeReference": "X-Men #129-137",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "137",
+      "seriesId": 2258,
+      "candidateIssueId": 12455,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    }
+  ],
+  "packetDigest": "7144b1d5e2cb36f3ff00631ee2aab7dc3053345ce7f7dee4327ea2a4cebfd752"
+}

@@ -23,7 +23,7 @@ section is what has to be settled before it is.
 
 ## Source-backed orders added after publication
 
-Ten historical event guides now use factual issue identities and order from Comic Book Reading
+Fifteen historical event guides now use factual issue identities and order from Comic Book Reading
 Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
 Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
 source page and section. The source licence remains null because that permission does not reach Marvel material.
@@ -116,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7110-7113`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7111-7115`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -142,16 +142,16 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6460-6472`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6461-6474`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6874-6880`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6875-6882`, why the private reporting task was left open.
 - `PRODUCT_BACKLOG.md:6940-6942`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6962-6966`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6969-6974`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7036-7041`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7067-7071`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7110-7113`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9215-9219`, the three settings named as refused on this repository today.
+- `PRODUCT_BACKLOG.md:6963-6968`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6970-6976`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7037-7043`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7068-7073`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7111-7115`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9216-9221`, the three settings named as refused on this repository today.
 - `CHANGELOG.md:2728-2731`, the released note that secret scanning cannot be turned on.
 - `CHANGELOG.md:2741-2743`, the released note that the private channel is not switched on.
 
@@ -270,6 +270,6 @@ enforcement, which is the argument for writing it down before the day rather tha
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
 quietly advertise a private, stale, or unreachable source surface. The Marvel on Screen release adds
-four public source-linked cards after Star-Lord. The historical continuation adds five Comic Book
-Reading Orders cards, including 32 issues across five exact events, bringing the catalog to 106 without
-changing the accepted publication boundary or any saved reader data.
+four public source-linked cards after Star-Lord. Two historical continuation batches add ten Comic
+Book Reading Orders cards, including 67 issues across ten exact events, bringing the catalog to 111
+without changing the accepted publication boundary or any saved reader data.

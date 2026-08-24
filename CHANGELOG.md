@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added five more historical Marvel event guides
+
+In plain English: Original Clone Saga, Phoenix Saga, Dark Phoenix Saga, Days of Future Past, and
+Contest of Champions are now available as five more historical reading guides. They add 35 issues
+from 1974 through 1982, retain the source order, and credit Comic Book Reading Orders. The catalog
+now has 111 reading lists, and nothing you have saved is changed.
+
+For maintainers: a third fixed historical release binds the shared timeline digest, five source
+labels, 35 exact metadata rows, and current full-library reports. Seven reviewed overlaps are
+explicitly approved for the X-Men and Marvel Multiverse guides; every other relationship remains
+none. The prior historical releases were regenerated against the current catalog and retain their
+separate compatibility contracts.
+
 ### Added five early historical Marvel event guides
 
 In plain English: Timeline now begins with Reed Richards and Sue Storm's Wedding, then adds

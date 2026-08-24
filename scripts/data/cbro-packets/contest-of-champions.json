@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "contest-of-champions",
+  "inventoryId": "contest-of-champions",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Contest of Champions",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 3,
+  "proposedManifest": {
+    "id": "contest-of-champions",
+    "name": "Contest of Champions",
+    "description": "Three chapters from Marvel's first Contest of Champions.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "contest-of-champions.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Contest of Champions",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "contest_of_champions.json",
+    "characters": [
+      "Avengers",
+      "X-Men",
+      "Fantastic Four"
+    ],
+    "keywords": [
+      "Contest of Champions",
+      "Avengers",
+      "X-Men"
+    ],
+    "expect": 3,
+    "timeline": 1982,
+    "coverIssueId": 39673
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B02 coordinator",
+    "rationale": "The exact CBRO timeline labels, shared source digest, inclusive range boundaries, source-to-metadata aliases, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T06:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Contest of Champions #1",
+      "sourceRangeReference": "Contest of Champions #1-3",
+      "normalizedSeriesTitle": "Contest of Champions",
+      "seriesYear": 1982,
+      "issueNumber": "1",
+      "seriesId": 14637,
+      "candidateIssueId": 39673,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Contest of Champions label resolves to the configured metadata series Marvel Super Hero Contest of Champions (1982), series 14637."
+    },
+    {
+      "sourceIssueReference": "Contest of Champions #2",
+      "sourceRangeReference": "Contest of Champions #1-3",
+      "normalizedSeriesTitle": "Contest of Champions",
+      "seriesYear": 1982,
+      "issueNumber": "2",
+      "seriesId": 14637,
+      "candidateIssueId": 39675,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Contest of Champions label resolves to the configured metadata series Marvel Super Hero Contest of Champions (1982), series 14637."
+    },
+    {
+      "sourceIssueReference": "Contest of Champions #3",
+      "sourceRangeReference": "Contest of Champions #1-3",
+      "normalizedSeriesTitle": "Contest of Champions",
+      "seriesYear": 1982,
+      "issueNumber": "3",
+      "seriesId": 14637,
+      "candidateIssueId": 39676,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Contest of Champions label resolves to the configured metadata series Marvel Super Hero Contest of Champions (1982), series 14637."
+    }
+  ],
+  "packetDigest": "6ef776481f229f264d61a9cdfe7d961117223434bf7b121ca71cfc526bebd68b"
+}

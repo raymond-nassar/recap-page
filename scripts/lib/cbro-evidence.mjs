@@ -38,7 +38,9 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 
 export const CBRO_HISTORICAL_COUNT = 58;
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  '31b6402ddbb92a141f2c17c55e359db84729ca2fb64dedf15435f4dd7cfebb88';
+  'd61fd0780570c15c19bd27d7b9ab80c82c26c46445861bf0c11274d05bfea003';
+export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
+  '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
   'muir-island-saga',
@@ -68,11 +70,84 @@ export const CBRO_CONTINUATION_AUTHOR_IDS = Object.freeze([
   'the-night-gwen-stacy-died',
   'avengers-defenders-war',
 ]);
+export const CBRO_BATCH_TWO_SELECTED_IDS = Object.freeze([
+  'original-clone-saga',
+  'phoenix-saga',
+  'dark-phoenix-saga',
+  'days-of-future-past',
+  'contest-of-champions',
+]);
+export const CBRO_BATCH_TWO_AUTHOR_IDS = CBRO_BATCH_TWO_SELECTED_IDS;
 export const CBRO_CONTINUATION_PACKET_REVIEW =
   'MRT-003-C02 batch 1 central CBRO source review';
+export const CBRO_BATCH_TWO_PACKET_REVIEW =
+  'MRT-003-C02 batch 2 central CBRO source review';
 export const CBRO_RELEASE_IDS = Object.freeze({
   original: 'mrt-003',
   continuationBatchOne: 'mrt-003-c02-b01',
+  continuationBatchTwo: 'mrt-003-c02-b02',
+});
+export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
+  [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze([
+    Object.freeze({
+      candidateId: 'kree-skrull-war',
+      orderId: 'essential-avengers',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['7342', '7344', '7345', '7346', '7347', '7348', '7349', '7350', '7351']),
+      rationale: 'The compact nine-issue event route has a distinct purpose from the 120-issue Essential Avengers guide.',
+    }),
+  ]),
+  [CBRO_RELEASE_IDS.continuationBatchTwo]: Object.freeze([
+    Object.freeze({
+      candidateId: 'phoenix-saga',
+      orderId: 'xmen-claremont',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['12416', '12417', '12418', '12419', '12420', '12421', '12422', '12423']),
+      rationale: 'The exact eight-issue Phoenix event route has a distinct purpose from the broader X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'phoenix-saga',
+      orderId: 'xmen-claremont-complete',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['12416', '12417', '12418', '12419', '12420', '12421', '12422', '12423']),
+      rationale: 'The exact eight-issue Phoenix event route has a distinct purpose from the broader optional X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'dark-phoenix-saga',
+      orderId: 'xmen-claremont',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['12446', '12448', '12449', '12450', '12451', '12452', '12453', '12454', '12455']),
+      rationale: 'The exact nine-issue Dark Phoenix event route has a distinct purpose from the broader X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'dark-phoenix-saga',
+      orderId: 'xmen-claremont-complete',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['12446', '12448', '12449', '12450', '12451', '12452', '12453', '12454', '12455']),
+      rationale: 'The exact nine-issue Dark Phoenix event route has a distinct purpose from the broader optional X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'days-of-future-past',
+      orderId: 'xmen-claremont',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['12460', '13683']),
+      rationale: 'The exact two-issue Days of Future Past event route has a distinct purpose from the broader X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'days-of-future-past',
+      orderId: 'xmen-claremont-complete',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze(['12460', '13683']),
+      rationale: 'The exact two-issue Days of Future Past event route has a distinct purpose from the broader optional X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'days-of-future-past',
+      orderId: 'marvel-multiverse',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['13683']),
+      rationale: 'The exact two-issue Days of Future Past event route preserves its source-backed sequence while Marvel Multiverse has one shared reference in a different companion context.',
+    }),
+  ]),
 });
 export const CBRO_RELEASES = Object.freeze({
   [CBRO_RELEASE_IDS.original]: Object.freeze({
@@ -81,6 +156,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_AUTHOR_IDS,
     packetReview: CBRO_PACKET_REVIEW,
     authorityIdentity: 'MRT-003 coordinator',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchOne,
@@ -88,10 +164,20 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_CONTINUATION_AUTHOR_IDS,
     packetReview: CBRO_CONTINUATION_PACKET_REVIEW,
     authorityIdentity: 'MRT-003-C02 coordinator',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.',
+  }),
+  [CBRO_RELEASE_IDS.continuationBatchTwo]: Object.freeze({
+    id: CBRO_RELEASE_IDS.continuationBatchTwo,
+    sourceIds: CBRO_BATCH_TWO_SELECTED_IDS,
+    authorIds: CBRO_BATCH_TWO_AUTHOR_IDS,
+    packetReview: CBRO_BATCH_TWO_PACKET_REVIEW,
+    authorityIdentity: 'MRT-003-C02-B02 coordinator',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.',
   }),
 });
 export const CBRO_ALL_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
+  ...CBRO_BATCH_TWO_SELECTED_IDS,
   ...CBRO_SELECTED_IDS,
 ]);
 
@@ -106,9 +192,29 @@ const INVENTORY_DISPOSITIONS = new Set([
 const INVENTORY_RELATIONSHIPS = new Set([
   'none',
   'candidate-subset',
+  'approved-mixed',
   'unresolved',
   'not-applicable',
 ]);
+
+const SELECTED_INVENTORY_RELATIONSHIPS = Object.freeze({
+  'kree-skrull-war': Object.freeze({
+    relationshipStatus: 'candidate-subset',
+    overlapIds: Object.freeze(['essential-avengers']),
+  }),
+  'phoenix-saga': Object.freeze({
+    relationshipStatus: 'candidate-subset',
+    overlapIds: Object.freeze(['xmen-claremont', 'xmen-claremont-complete']),
+  }),
+  'dark-phoenix-saga': Object.freeze({
+    relationshipStatus: 'candidate-subset',
+    overlapIds: Object.freeze(['xmen-claremont', 'xmen-claremont-complete']),
+  }),
+  'days-of-future-past': Object.freeze({
+    relationshipStatus: 'approved-mixed',
+    overlapIds: Object.freeze(['marvel-multiverse', 'xmen-claremont', 'xmen-claremont-complete']),
+  }),
+});
 const INVENTORY_DELIVERY = new Set(['ready', 'shipped', 'deferred', 'blocked', 'not-applicable']);
 
 function assert(condition, message) {
@@ -139,6 +245,17 @@ export function cbroReleaseForId(id) {
   ));
   assert(releases.length === 1, `Unknown or repeated CBRO release id: ${id}`);
   return releases[0];
+}
+
+export function cbroRelationshipDecisionFor(id, comparison) {
+  const release = cbroReleaseForId(id);
+  const decisions = CBRO_RELATIONSHIP_DECISIONS[release.id] ?? [];
+  return decisions.find((decision) => (
+    decision.candidateId === id
+    && decision.orderId === comparison?.orderId
+    && decision.relationship === comparison?.relationship
+    && canonicalJson(decision.sharedIds) === canonicalJson(comparison?.sharedIds)
+  )) ?? null;
 }
 
 export function validateCbroPacket(packet, options = {}) {
@@ -207,12 +324,14 @@ export function validateCbroHistoricalInventory(records) {
       `${label} catalogIds must be unique`);
     assert(INVENTORY_DELIVERY.has(record.deliveryStatus), `${label} deliveryStatus is invalid`);
     if (record.centralDisposition === 'selected') {
-      const expectedRelationship = record.id === 'kree-skrull-war'
-        ? 'candidate-subset'
-        : 'none';
+      const expected = SELECTED_INVENTORY_RELATIONSHIPS[record.id] ?? {
+        relationshipStatus: 'none',
+        overlapIds: [],
+      };
       assert(
         ['ready', 'shipped'].includes(record.deliveryStatus)
-          && record.relationshipStatus === expectedRelationship,
+          && record.relationshipStatus === expected.relationshipStatus
+          && canonicalJson(record.overlapIds) === canonicalJson(expected.overlapIds),
         `${label} selected state is inconsistent`,
       );
       assert(record.deliveryStatus === 'ready'
@@ -240,6 +359,9 @@ export function validateCbroHistoricalInventory(records) {
   }) => record);
   assert(digestCanonicalJson(identity) === CBRO_HISTORICAL_IDENTITY_SHA256,
     'CBRO historical inventory identity digest changed');
+  const nonselected = records.filter((record) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id));
+  assert(digestCanonicalJson(nonselected) === CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256,
+    'CBRO batch-two nonselected inventory changed');
   return true;
 }
 

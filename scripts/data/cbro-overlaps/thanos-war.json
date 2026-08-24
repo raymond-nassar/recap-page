@@ -2,7 +2,7 @@
   "candidateId": "thanos-war",
   "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da",
   "mappingDigest": "0c38d78c7155945788e369a586d0409b3953b6339f34c66c5a670945680a3199",
-  "libraryDigest": "9696a79d2f1e4870be295e5196a4da9069d21caf1cb440b916e7c351a454cf38",
+  "libraryDigest": "b3b50a0958f8d4c201af7e9d385843a12963fe6bec1b0eda80c2ff60c8a17d0f",
   "peerDigests": {
     "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 12,
-  "comparisonCount": 105,
+  "comparisonCount": 110,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -121,7 +121,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "contest-of-champions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "damnation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dark-phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -134,6 +146,12 @@
     },
     {
       "orderId": "dark-web",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "days-of-future-past",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -373,7 +391,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "original-clone-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "phalanx-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -643,5 +673,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8f604fd44d3369022032ee31456db1425faf5d047a86c4b67bc4bec398397d70"
+  "reportDigest": "ce2cebac21d42794cb2b13fec0f8fa217fff30184e17de2a0422320adf433a77"
 }

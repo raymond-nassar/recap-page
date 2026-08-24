@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "days-of-future-past",
+  "inventoryId": "days-of-future-past",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Days of Future Past",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 2,
+  "proposedManifest": {
+    "id": "days-of-future-past",
+    "name": "Days of Future Past",
+    "description": "Two X-Men chapters presenting Days of Future Past.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "days-of-future-past.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Days of Future Past",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "days_of_future_past.json",
+    "characters": [
+      "X-Men",
+      "Kitty Pryde",
+      "Wolverine"
+    ],
+    "keywords": [
+      "Days of Future Past",
+      "X-Men",
+      "Kitty Pryde"
+    ],
+    "expect": 2,
+    "timeline": 1981,
+    "coverIssueId": 12460
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B02 coordinator",
+    "rationale": "The exact CBRO timeline labels, shared source digest, inclusive range boundaries, source-to-metadata aliases, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T06:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "X-Men #141",
+      "sourceRangeReference": "X-Men #141-142",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "141",
+      "seriesId": 2258,
+      "candidateIssueId": 12460,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #142",
+      "sourceRangeReference": "X-Men #141-142",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "142",
+      "seriesId": 2258,
+      "candidateIssueId": 13683,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    }
+  ],
+  "packetDigest": "95e367a8ffbeb752469b256201c2368d268e916c13a719caa197888046fcfb2f"
+}

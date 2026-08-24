@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "mrt-003-c02-b02",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B02 coordinator",
+    "rationale": "The exact CBRO timeline labels, shared source digest, inclusive range boundaries, source-to-metadata aliases, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T06:00:00Z"
+  },
+  "events": [
+    {
+      "id": "original-clone-saga",
+      "name": "Original Clone Saga",
+      "sourceSection": "Original Clone Saga",
+      "sourceSeriesTitle": "Amazing Spider-Man",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "seriesYear": 1963,
+      "seriesId": 1987,
+      "candidateIssueIds": [6526, 6528, 6529, 6530, 6531, 6532, 6533, 6534, 6535, 6536, 6537, 6539, 6540],
+      "firstIssueNumber": 139,
+      "manualSeriesSelectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987.",
+      "description": "Thirteen chapters following Spider-Man through the original Clone Saga.",
+      "characters": ["Spider-Man", "Gwen Stacy", "Harry Osborn"],
+      "keywords": ["Original Clone Saga", "Spider-Man", "Clone"],
+      "timeline": 1973
+    },
+    {
+      "id": "phoenix-saga",
+      "name": "Phoenix Saga",
+      "sourceSection": "Phoenix Saga",
+      "sourceSeriesTitle": "X-Men",
+      "sourceRangeReference": "X-Men #101-108",
+      "seriesYear": 1963,
+      "seriesId": 2258,
+      "candidateIssueIds": [12416, 12417, 12418, 12419, 12420, 12421, 12422, 12423],
+      "firstIssueNumber": 101,
+      "manualSeriesSelectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258.",
+      "description": "Eight X-Men chapters introducing the Phoenix era.",
+      "characters": ["X-Men", "Jean Grey", "Phoenix"],
+      "keywords": ["Phoenix Saga", "X-Men", "Jean Grey"],
+      "timeline": 1976
+    },
+    {
+      "id": "dark-phoenix-saga",
+      "name": "Dark Phoenix Saga",
+      "sourceSection": "Dark Phoenix Saga",
+      "sourceSeriesTitle": "X-Men",
+      "sourceRangeReference": "X-Men #129-137",
+      "seriesYear": 1963,
+      "seriesId": 2258,
+      "candidateIssueIds": [12446, 12448, 12449, 12450, 12451, 12452, 12453, 12454, 12455],
+      "firstIssueNumber": 129,
+      "manualSeriesSelectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258.",
+      "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
+      "characters": ["X-Men", "Jean Grey", "Phoenix"],
+      "keywords": ["Dark Phoenix Saga", "X-Men", "Jean Grey"],
+      "timeline": 1980
+    },
+    {
+      "id": "days-of-future-past",
+      "name": "Days of Future Past",
+      "sourceSection": "Days of Future Past",
+      "sourceSeriesTitle": "X-Men",
+      "sourceRangeReference": "X-Men #141-142",
+      "seriesYear": 1963,
+      "seriesId": 2258,
+      "candidateIssueIds": [12460, 13683],
+      "firstIssueNumber": 141,
+      "manualSeriesSelectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258.",
+      "description": "Two X-Men chapters presenting Days of Future Past.",
+      "characters": ["X-Men", "Kitty Pryde", "Wolverine"],
+      "keywords": ["Days of Future Past", "X-Men", "Kitty Pryde"],
+      "timeline": 1981
+    },
+    {
+      "id": "contest-of-champions",
+      "name": "Contest of Champions",
+      "sourceSection": "Contest of Champions",
+      "sourceSeriesTitle": "Contest of Champions",
+      "sourceRangeReference": "Contest of Champions #1-3",
+      "seriesYear": 1982,
+      "seriesId": 14637,
+      "candidateIssueIds": [39673, 39675, 39676],
+      "firstIssueNumber": 1,
+      "manualSeriesSelectionNote": "The source's Contest of Champions label resolves to the configured metadata series Marvel Super Hero Contest of Champions (1982), series 14637.",
+      "description": "Three chapters from Marvel's first Contest of Champions.",
+      "characters": ["Avengers", "X-Men", "Fantastic Four"],
+      "keywords": ["Contest of Champions", "Avengers", "X-Men"],
+      "timeline": 1982
+    }
+  ]
+}

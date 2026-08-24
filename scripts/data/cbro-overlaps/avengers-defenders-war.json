@@ -2,7 +2,7 @@
   "candidateId": "avengers-defenders-war",
   "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
   "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-  "libraryDigest": "9696a79d2f1e4870be295e5196a4da9069d21caf1cb440b916e7c351a454cf38",
+  "libraryDigest": "b3b50a0958f8d4c201af7e9d385843a12963fe6bec1b0eda80c2ff60c8a17d0f",
   "peerDigests": {
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
     "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 8,
-  "comparisonCount": 105,
+  "comparisonCount": 110,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -115,7 +115,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "contest-of-champions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "damnation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dark-phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -128,6 +140,12 @@
     },
     {
       "orderId": "dark-web",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "days-of-future-past",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -367,7 +385,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "original-clone-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "phalanx-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -643,5 +673,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "64a5823504bc766e54e80e79c0d1937ed1525a1ead13019e339b9796c49afc50"
+  "reportDigest": "683019c16562bf89f12aa33665ad4c7bf6666e8d6d08ef41fff3c70e1727516b"
 }
