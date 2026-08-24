@@ -1003,16 +1003,14 @@ export function shelfSections(stories) {
 // that is not on screen, and the fix is the same: say what landed, which is what `eraSections`
 // derives from the stories themselves.
 //
-// Every era is named after orders the catalog actually contains, checked rather than assumed:
-// Avengers Disassembled, Civil War, Secret Invasion, Schism, Battle of the Atom, Spider-Verse,
-// Inhumans vs. X-Men, King in Black, Heroes Reborn and Fall of the House of X are all bundled.
-// Siege is not, so it names nothing here.
+// Every era is named after orders the catalog actually contains, checked rather than assumed.
+// Siege is not bundled, so it names nothing here.
 export const CATALOG_ERAS = [
   {
     key: 'historical',
-    heading: 'Muir Island Saga to Eighth Day',
-    blurb: 'The historical event shelf, from the mutant crossovers of the early 1990s through the line-wide stories at the decade close.',
-    from: 1990,
+    heading: "Reed Richards and Sue Storm's Wedding to Eighth Day",
+    blurb: 'The historical event shelf, from the first Silver Age gatherings through the line-wide stories at the 1990s close.',
+    from: 1965,
     to: 1999,
   },
   {

@@ -3903,6 +3903,186 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T12:53:39.465Z"
+    },
+    {
+      "id": "reed-richards-and-sue-storms-wedding",
+      "file": "reed_richards_and_sue_storms_wedding.json",
+      "name": "Reed Richards and Sue Storm's Wedding",
+      "description": "One annual issue bringing Marvel's heroes together for Reed Richards and Sue Storm's wedding.",
+      "type": "event",
+      "depth": "complete",
+      "count": 1,
+      "collections": 0,
+      "characters": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Doctor Doom"
+      ],
+      "keywords": [
+        "Reed Richards",
+        "Sue Storm",
+        "Wedding",
+        "Fantastic Four Annual"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1965,
+      "coverIssueId": 8707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5ad79a13aa41a",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Reed Richards and Sue Storm's Wedding",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T04:13:36.840Z"
+    },
+    {
+      "id": "kree-skrull-war",
+      "file": "kree_skrull_war.json",
+      "name": "Kree-Skrull War",
+      "description": "Nine Avengers chapters following the interstellar conflict between the Kree and Skrull empires.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Kree",
+        "Skrulls",
+        "Captain Marvel"
+      ],
+      "keywords": [
+        "Kree-Skrull War",
+        "Avengers",
+        "Kree",
+        "Skrulls"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1971,
+      "coverIssueId": 7342,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/58700351e340e",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Kree-Skrull War",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T04:13:36.842Z"
+    },
+    {
+      "id": "thanos-war",
+      "file": "thanos_war.json",
+      "name": "Thanos War",
+      "description": "Twelve chapters across Iron Man, Captain Marvel, Marvel Feature, and Avengers tracing Thanos's first major campaign.",
+      "type": "event",
+      "depth": "complete",
+      "count": 12,
+      "collections": 0,
+      "characters": [
+        "Thanos",
+        "Captain Marvel",
+        "Iron Man",
+        "Avengers"
+      ],
+      "keywords": [
+        "Thanos War",
+        "Thanos",
+        "Captain Marvel",
+        "Iron Man"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1973,
+      "coverIssueId": 9610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/4bb5eafea7ab3",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T04:13:36.846Z"
+    },
+    {
+      "id": "the-night-gwen-stacy-died",
+      "file": "the_night_gwen_stacy_died.json",
+      "name": "The Night Gwen Stacy Died",
+      "description": "Two landmark Amazing Spider-Man issues centered on Gwen Stacy and the Green Goblin.",
+      "type": "event",
+      "depth": "complete",
+      "count": 2,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Gwen Stacy",
+        "Green Goblin"
+      ],
+      "keywords": [
+        "Gwen Stacy",
+        "Amazing Spider-Man",
+        "Green Goblin"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1973,
+      "coverIssueId": 6507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/57b71f662fdc8",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "The Night Gwen Stacy Died",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T04:13:36.848Z"
+    },
+    {
+      "id": "avengers-defenders-war",
+      "file": "avengers_defenders_war.json",
+      "name": "Avengers/Defenders War",
+      "description": "Eight chapters alternating between the Avengers and Defenders as both teams enter the same conflict.",
+      "type": "event",
+      "depth": "complete",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Defenders",
+        "Dormammu",
+        "Loki"
+      ],
+      "keywords": [
+        "Avengers/Defenders War",
+        "Avengers",
+        "Defenders"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1973,
+      "coverIssueId": 6970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/58767bfe0bec1",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T04:13:36.849Z"
     }
   ],
   "paths": [

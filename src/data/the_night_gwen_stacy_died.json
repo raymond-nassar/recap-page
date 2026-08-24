@@ -1,0 +1,79 @@
+{
+  "id": "the-night-gwen-stacy-died",
+  "name": "The Night Gwen Stacy Died",
+  "description": "Two landmark Amazing Spider-Man issues centered on Gwen Stacy and the Green Goblin.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "The Night Gwen Stacy Died",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T04:13:36.848Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 2,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6507,
+      "title": "The Amazing Spider-Man (1963) #121",
+      "number": "121",
+      "url": "https://www.marvel.com/comics/issue/6507/the_amazing_spider-man_1963_121",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1973-06-01T00:00:00+0000",
+      "mu": "1973-06-01T00:00:00+0000",
+      "digitalId": 4966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/57b71f662fdc8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6508,
+      "title": "The Amazing Spider-Man (1963) #122",
+      "number": "122",
+      "url": "https://www.marvel.com/comics/issue/6508/the_amazing_spider-man_1963_122",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1973-07-01T00:00:00+0000",
+      "mu": "1973-07-01T00:00:00+0000",
+      "digitalId": 1359,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/57b72b0d9b47b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

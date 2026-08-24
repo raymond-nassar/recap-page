@@ -16,10 +16,12 @@ import {
   validateSourceIdentities,
 } from './lib/cbh-inventory.mjs';
 import {
-  CBRO_SELECTED_IDS,
-  CBRO_PACKET_REVIEW,
+  CBRO_AUTHOR_IDS as CBRO_ORIGINAL_AUTHOR_IDS,
+  CBRO_RELEASE_IDS,
+  CBRO_RELEASES,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
+  cbroReleaseForIds,
   validateCbroHistoricalInventory,
   validateCbroPacket,
   validateCbroReviewIdentity,
@@ -38,13 +40,7 @@ const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const APPROVE_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-approve-transaction.json');
 const AUTHOR_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-author-transaction.json');
 
-export const CBRO_AUTHOR_IDS = Object.freeze([
-  'muir-island-saga',
-  'midnight-massacre',
-  'bloodties',
-  'childs-play',
-  'eighth-day',
-]);
+export const CBRO_AUTHOR_IDS = CBRO_ORIGINAL_AUTHOR_IDS;
 
 const MANIFEST_FIELDS = new Set([
   'id',
@@ -75,23 +71,40 @@ function assert(condition, message) {
 
 function parseOnly(args) {
   const values = args.filter((arg) => arg.startsWith('--only='));
+  const releases = args.filter((arg) => arg.startsWith('--release='));
   if (values.length > 1) throw new Error('Use --only once with a comma-separated CBRO id list');
+  if (releases.length > 1) throw new Error('Use --release once');
+  if (values.length > 0 && releases.length > 0) {
+    throw new Error('Use --only or --release, not both');
+  }
+  if (releases.length > 0) {
+    const releaseId = releases[0].slice('--release='.length);
+    const release = CBRO_RELEASES[releaseId];
+    assert(release, `Unknown CBRO release: ${releaseId}`);
+    return [...release.authorIds];
+  }
   const ids = values.length === 0
-    ? [...CBRO_AUTHOR_IDS]
+    ? [...CBRO_RELEASES[CBRO_RELEASE_IDS.original].authorIds]
     : values[0].slice('--only='.length).split(',').map((id) => id.trim()).filter(Boolean);
   if (ids.length === 0) throw new Error('--only must name at least one CBRO id');
   if (new Set(ids).size !== ids.length) throw new Error('--only contains a duplicate CBRO id');
-  for (const id of ids) assert(CBRO_SELECTED_IDS.includes(id), `Unknown selected CBRO id: ${id}`);
   return ids;
 }
 
 function assertCompleteReleaseIds(ids) {
-  assert(canonicalJson(ids) === canonicalJson(CBRO_AUTHOR_IDS),
-    `CBRO approval and authoring require the complete ${CBRO_AUTHOR_IDS.length}-guide release in chronology order`);
+  return cbroReleaseForIds(ids, { order: 'author' });
 }
 
 function readJson(filePath) {
   return readFile(filePath, 'utf8').then(JSON.parse);
+}
+
+export function isApprovedCbroRelationship(id, comparison) {
+  return comparison.relationship === 'none' || (
+    id === 'kree-skrull-war'
+    && comparison.orderId === 'essential-avengers'
+    && comparison.relationship === 'candidate-subset'
+  );
 }
 
 function manifestEntryForCbroMapping(mapping) {
@@ -139,7 +152,7 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
   reviewedAt = new Date().toISOString(),
   journalFile = APPROVE_JOURNAL,
 } = {}) {
-  assertCompleteReleaseIds(ids);
+  const release = assertCompleteReleaseIds(ids);
   const inventory = await readJson(inventoryFile);
   validateCbroHistoricalInventory(inventory);
   const mappingPaths = Object.fromEntries(ids.map((id) => (
@@ -151,7 +164,9 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
   for (const id of ids) {
     const peerPaths = ids.filter((peerId) => peerId !== id).map((peerId) => mappingPaths[peerId]);
     const report = await buildReportForMapping(mappingPaths[id], peerPaths);
-    const nonNone = report.comparisons.filter((comparison) => comparison.relationship !== 'none');
+    const nonNone = report.comparisons.filter((comparison) => (
+      !isApprovedCbroRelationship(id, comparison)
+    ));
     assert(nonNone.length === 0,
       `${id} has relationships requiring a new central decision: ${nonNone.map((item) => (
         `${item.orderId}:${item.relationship}`
@@ -174,15 +189,25 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
       `${mapping.id} mapping names stale source content`);
     assert(canonicalJson(mapping.proposedManifest) === canonicalJson(packet.proposedManifest),
       `${mapping.id} mapping manifest differs from its packet`);
-    const dispositions = report.comparisons.map((comparison) => ({
-      orderId: comparison.orderId,
-      relationship: comparison.relationship,
-      decision: 'approved',
-      rationale: 'The current report contains no shared issue for this order.',
-      authorityType: 'policy',
-      authorityIdentity: 'MRT-003 none-overlap policy',
-      reviewedAt,
-    }));
+    const dispositions = report.comparisons.map((comparison) => {
+      const approvedSubset = comparison.relationship !== 'none'
+        && isApprovedCbroRelationship(mapping.id, comparison);
+      return {
+        orderId: comparison.orderId,
+        relationship: comparison.relationship,
+        sharedCount: comparison.sharedCount,
+        sharedIds: comparison.sharedIds,
+        decision: 'approved',
+        rationale: approvedSubset
+          ? 'The compact nine-issue event route has a distinct purpose from the 120-issue Essential Avengers guide.'
+          : 'The current report contains no shared issue for this order.',
+        authorityType: approvedSubset ? 'stronger-model' : 'policy',
+        authorityIdentity: approvedSubset
+          ? release.authorityIdentity
+          : `${release.id} none-overlap policy`,
+        reviewedAt,
+      };
+    });
     const relationshipReview = {
       reportDigest: report.reportDigest,
       packetDigest: packet.packetDigest,
@@ -191,17 +216,19 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
       peerDigests: report.peerDigests,
       dispositions,
       sourceProvider: CBRO_SOURCE_PROVIDER.id,
-      packetReview: CBRO_PACKET_REVIEW,
+      packetReview: release.packetReview,
       authorityType: 'stronger-model',
-      authorityIdentity: 'MRT-003 coordinator',
-      rationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
+      authorityIdentity: release.authorityIdentity,
+      rationale: release.id === CBRO_RELEASE_IDS.continuationBatchOne
+        ? 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.'
+        : 'Every current library and selected peer comparison was reviewed; all relationships are none.',
       reviewedAt,
     };
     relationshipReview.approvalDigest = approvalDigestFor(relationshipReview);
     return {
       ...mapping,
       reviewStatus: 'approved',
-      packetReview: CBRO_PACKET_REVIEW,
+      packetReview: release.packetReview,
       approvedManifest: structuredClone(packet.proposedManifest),
       relationshipReview,
     };

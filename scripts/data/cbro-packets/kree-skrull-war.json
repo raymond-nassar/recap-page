@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "id": "kree-skrull-war",
+  "inventoryId": "kree-skrull-war",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Kree-Skrull War",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The named timeline row and its printed issue reference or inclusive range.",
+  "excludedSourceReferences": [
+    "Other timeline rows",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "kree-skrull-war",
+    "name": "Kree-Skrull War",
+    "description": "Nine Avengers chapters following the interstellar conflict between the Kree and Skrull empires.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "kree-skrull-war.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Kree-Skrull War",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "kree_skrull_war.json",
+    "characters": [
+      "Avengers",
+      "Kree",
+      "Skrulls",
+      "Captain Marvel"
+    ],
+    "keywords": [
+      "Kree-Skrull War",
+      "Avengers",
+      "Kree",
+      "Skrulls"
+    ],
+    "expect": 9,
+    "timeline": 1971,
+    "coverIssueId": 7342
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02 coordinator",
+    "rationale": "The exact CBRO source surface, source section, exclusions, provider identity, current source digest, row order, range boundary, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T04:35:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Avengers #89",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "89",
+      "seriesId": 1991,
+      "candidateIssueId": 7342,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #90",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "90",
+      "seriesId": 1991,
+      "candidateIssueId": 7344,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #91",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "91",
+      "seriesId": 1991,
+      "candidateIssueId": 7345,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #92",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "92",
+      "seriesId": 1991,
+      "candidateIssueId": 7346,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #93",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "93",
+      "seriesId": 1991,
+      "candidateIssueId": 7347,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #94",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "94",
+      "seriesId": 1991,
+      "candidateIssueId": 7348,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #95",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "95",
+      "seriesId": 1991,
+      "candidateIssueId": 7349,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #96",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "96",
+      "seriesId": 1991,
+      "candidateIssueId": 7350,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #97",
+      "sourceRangeReference": "Avengers #89-97",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "97",
+      "seriesId": 1991,
+      "candidateIssueId": 7351,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "4b49d41011aa5b1c32eaab8fb960278aec7de448d4606053b242ab2670bcdf59"
+}

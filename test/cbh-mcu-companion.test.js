@@ -21,6 +21,7 @@ import {
   validateMcuCompanionInventory,
   validateMcuCompanionPacket,
 } from '../scripts/lib/cbh-mcu-companion.mjs';
+import { CBRO_CONTINUATION_SELECTED_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -50,6 +51,7 @@ const expectedRelationships = {
   ],
   'marvel-what-if': [],
 };
+const frozenExcludedIds = [...MCU_SELECTED_IDS, ...CBRO_CONTINUATION_SELECTED_IDS];
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
@@ -161,10 +163,10 @@ test('four frozen packets and mappings preserve 43 exact source rows', async () 
 test('four reports bind the current library and exactly three selected peers', async () => {
   const { records, entries } = await loadEvidence();
   const library = await loadLibrarySnapshot();
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, MCU_SELECTED_IDS);
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, frozenExcludedIds);
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
   const existingIds = library.lists
-    .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
+    .filter((entry) => !frozenExcludedIds.includes(entry.id))
     .map((entry) => entry.id);
 
   for (const { id, packet, mapping, report } of entries) {
@@ -224,11 +226,11 @@ test('the Marvel Multiverse subset stays explicit, central, and narrowly describ
     packet: item.packet,
     mapping: policySubset,
     report: item.report,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, MCU_SELECTED_IDS),
+    currentLibraryDigest: libraryDigestExcludingOrders(library, frozenExcludedIds),
     peerMappings: peers,
     expectedOrderIds: [
       ...library.lists
-        .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
+        .filter((entry) => !frozenExcludedIds.includes(entry.id))
         .map((entry) => entry.id),
       ...peers.map((peer) => peer.id),
     ],
@@ -263,11 +265,11 @@ test('an exact relationship remains unapprovable', async () => {
     packet: item.packet,
     mapping: exactMapping,
     report: exactReport,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, MCU_SELECTED_IDS),
+    currentLibraryDigest: libraryDigestExcludingOrders(library, frozenExcludedIds),
     peerMappings: peers,
     expectedOrderIds: [
       ...library.lists
-        .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
+        .filter((entry) => !frozenExcludedIds.includes(entry.id))
         .map((entry) => entry.id),
       ...peers.map((peer) => peer.id),
     ],
@@ -287,7 +289,7 @@ test('approved evidence reaches four payloads, cards, and one Marvel on Screen g
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 101);
+  assert.equal(catalog.lists.length, 106);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),

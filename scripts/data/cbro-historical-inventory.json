@@ -11,12 +11,14 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 1,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "centralDisposition": "selected",
+    "relationshipStatus": "none",
+    "reason": "Selected for MRT-003-C02 batch 1 after exact metadata and complete-library review.",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "reed-richards-and-sue-storms-wedding"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -31,14 +33,16 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 9,
-    "centralDisposition": "deferred-subset",
+    "centralDisposition": "selected",
     "relationshipStatus": "candidate-subset",
-    "reason": "Deferred; all nine issues are a candidate subset of Essential Avengers and require central product approval.",
+    "reason": "Selected for MRT-003-C02 batch 1 with stronger-model approval as a compact nine-issue subset of Essential Avengers.",
     "overlapIds": [
       "essential-avengers"
     ],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "kree-skrull-war"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -53,12 +57,14 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 2,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "centralDisposition": "selected",
+    "relationshipStatus": "none",
+    "reason": "Selected for MRT-003-C02 batch 1 after exact metadata and complete-library review.",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "the-night-gwen-stacy-died"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -73,12 +79,14 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "ee03c5a55da9f6923ca760031f22e81882b752c570230bbb7b671278f3e10091",
     "sourceRowCount": 8,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "centralDisposition": "selected",
+    "relationshipStatus": "none",
+    "reason": "Selected for MRT-003-C02 batch 1 after exact metadata and complete-library review.",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "avengers-defenders-war"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -93,12 +101,14 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "f52f54fa62034a80e56cc5eb49a88242d116d839009bd7ca280a04a8984b8dcd",
     "sourceRowCount": 12,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "centralDisposition": "selected",
+    "relationshipStatus": "none",
+    "reason": "Selected for MRT-003-C02 batch 1 after exact metadata and complete-library review.",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "thanos-war"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {

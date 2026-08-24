@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "id": "thanos-war",
+  "inventoryId": "thanos-war",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+  "sourceSection": null,
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "f52f54fa62034a80e56cc5eb49a88242d116d839009bd7ca280a04a8984b8dcd",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 12,
+  "proposedManifest": {
+    "id": "thanos-war",
+    "name": "Thanos War",
+    "description": "Twelve chapters across Iron Man, Captain Marvel, Marvel Feature, and Avengers tracing Thanos's first major campaign.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "thanos-war.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "thanos_war.json",
+    "characters": [
+      "Thanos",
+      "Captain Marvel",
+      "Iron Man",
+      "Avengers"
+    ],
+    "keywords": [
+      "Thanos War",
+      "Thanos",
+      "Captain Marvel",
+      "Iron Man"
+    ],
+    "expect": 12,
+    "timeline": 1973,
+    "coverIssueId": 9610
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02 coordinator",
+    "rationale": "The exact CBRO source surface, source section, exclusions, provider identity, current source digest, row order, range boundary, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T04:35:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Iron Man #55",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1968,
+      "issueNumber": "55",
+      "seriesId": 2029,
+      "candidateIssueId": 9610,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #25",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "25",
+      "seriesId": 2000,
+      "candidateIssueId": 8014,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #26",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "26",
+      "seriesId": 2000,
+      "candidateIssueId": 8015,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #27",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "27",
+      "seriesId": 2000,
+      "candidateIssueId": 8016,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #28",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "28",
+      "seriesId": 2000,
+      "candidateIssueId": 8017,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #29",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "29",
+      "seriesId": 2000,
+      "candidateIssueId": 8018,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Feature #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marvel Feature",
+      "seriesYear": 1971,
+      "issueNumber": "12",
+      "seriesId": 6676,
+      "candidateIssueId": 23322,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "30",
+      "seriesId": 2000,
+      "candidateIssueId": 8019,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "31",
+      "seriesId": 2000,
+      "candidateIssueId": 8020,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "32",
+      "seriesId": 2000,
+      "candidateIssueId": 8021,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #125",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "125",
+      "seriesId": 1991,
+      "candidateIssueId": 6981,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #33",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "33",
+      "seriesId": 2000,
+      "candidateIssueId": 8022,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da"
+}

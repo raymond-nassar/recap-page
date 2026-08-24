@@ -27,11 +27,11 @@ test('the current gateway offers every populated canonical shelf and publishing 
   const categories = availableHomeCategories(stories);
   assert.deepEqual(
     categories.map(({ key }) => key),
-    ['timeline', 'storylines', 'character-spotlights', 'marvel-on-screen', 'modern'],
+    ['timeline', 'storylines', 'character-spotlights', 'marvel-on-screen', 'silver', 'bronze', 'modern'],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
@@ -113,13 +113,16 @@ test('every declared category has compact UI metadata and its own browse subpage
   assert.match(source, /function ensurePublishingViews\(\)/, 'publishing subpages are not generated');
 });
 
-test('empty future ages stay declared but hidden from the current gateway', () => {
+test('empty publishing ages stay declared but hidden from the current gateway', () => {
   for (const key of ['golden', 'silver', 'bronze', 'copper']) {
     assert.ok(HOME_CATEGORIES.some((category) => category.key === key), `${key} is not declared`);
   }
   const available = availableHomeCategories(stories);
-  assert.ok(['golden', 'silver', 'bronze', 'copper'].every(
+  assert.ok(['golden', 'copper'].every(
     (key) => !available.some((category) => category.key === key),
+  ));
+  assert.ok(['silver', 'bronze'].every(
+    (key) => available.some((category) => category.key === key),
   ));
 });
 

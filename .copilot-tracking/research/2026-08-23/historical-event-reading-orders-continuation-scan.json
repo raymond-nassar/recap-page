@@ -1,0 +1,2206 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-24T03:27:27.168Z",
+  "accessPolicy": {
+    "normalPublicAccessOnly": true,
+    "sourcePageDelaySeconds": 5,
+    "sourceUserAgent": "MarvelReadingTrackerResearch/1.0"
+  },
+  "selectedCandidatePositions": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "sourceRows": [
+    {
+      "position": 1,
+      "id": "reed-richards-and-sue-storms-wedding",
+      "title": "Reed Richards and Sue Storm's Wedding",
+      "year": 1965,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Reed Richards and Sue Storm's Wedding",
+      "sourceForm": "timeline-text",
+      "references": [
+        "Fantastic Four Annual #3"
+      ]
+    },
+    {
+      "position": 2,
+      "id": "kree-skrull-war",
+      "title": "Kree-Skrull War",
+      "year": 1971,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Kree-Skrull War",
+      "sourceForm": "timeline-text",
+      "references": [
+        "Avengers #89",
+        "Avengers #90",
+        "Avengers #91",
+        "Avengers #92",
+        "Avengers #93",
+        "Avengers #94",
+        "Avengers #95",
+        "Avengers #96",
+        "Avengers #97"
+      ]
+    },
+    {
+      "position": 3,
+      "id": "the-night-gwen-stacy-died",
+      "title": "The Night Gwen Stacy Died",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "The Night Gwen Stacy Died",
+      "sourceForm": "timeline-text",
+      "references": [
+        "Amazing Spider-Man #121",
+        "Amazing Spider-Man #122"
+      ]
+    },
+    {
+      "position": 4,
+      "id": "avengers-defenders-war",
+      "title": "Avengers/Defenders War",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "references": [
+        "Avengers #115",
+        "Defenders #8",
+        "Avengers #116",
+        "Defenders #9",
+        "Avengers #117",
+        "Defenders #10",
+        "Avengers #118",
+        "Defenders #11"
+      ]
+    },
+    {
+      "position": 5,
+      "id": "thanos-war",
+      "title": "Thanos War",
+      "year": 1973,
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+      "sourceSection": null,
+      "sourceForm": "event-page",
+      "references": [
+        "Iron Man #55",
+        "Captain Marvel #25",
+        "Captain Marvel #26",
+        "Captain Marvel #27",
+        "Captain Marvel #28",
+        "Captain Marvel #29",
+        "Marvel Feature #12",
+        "Captain Marvel #30",
+        "Captain Marvel #31",
+        "Captain Marvel #32",
+        "Avengers #125",
+        "Captain Marvel #33"
+      ]
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "url": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "canonicalUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "retrievedAt": "2026-08-24T03:26:39.450Z",
+      "modifiedAt": "2026-07-18T14:44:04+00:00",
+      "contentType": "text/html; charset=UTF-8",
+      "etag": "\"137635-1787431231;br\"",
+      "byteLength": 79993,
+      "contentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+      "expectedReferences": [
+        "Fantastic Four Annual #3",
+        "Avengers #89",
+        "Avengers #90",
+        "Avengers #91",
+        "Avengers #92",
+        "Avengers #93",
+        "Avengers #94",
+        "Avengers #95",
+        "Avengers #96",
+        "Avengers #97",
+        "Amazing Spider-Man #121",
+        "Amazing Spider-Man #122"
+      ],
+      "extractedReferences": null,
+      "expectedReferencesPresent": false
+    },
+    {
+      "url": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+      "canonicalUrl": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+      "retrievedAt": "2026-08-24T03:26:45.511Z",
+      "modifiedAt": "2020-05-06T01:58:01+00:00",
+      "contentType": "text/html; charset=UTF-8",
+      "etag": "\"137947-1787434230;br\"",
+      "byteLength": 655278,
+      "contentSha256": "ee03c5a55da9f6923ca760031f22e81882b752c570230bbb7b671278f3e10091",
+      "expectedReferences": [
+        "Avengers #115",
+        "Defenders #8",
+        "Avengers #116",
+        "Defenders #9",
+        "Avengers #117",
+        "Defenders #10",
+        "Avengers #118",
+        "Defenders #11"
+      ],
+      "extractedReferences": [
+        "Avengers #115",
+        "Defenders #8",
+        "Avengers #116",
+        "Defenders #9",
+        "Avengers #117",
+        "Defenders #10",
+        "Avengers #118",
+        "Defenders #11"
+      ],
+      "expectedReferencesPresent": true
+    },
+    {
+      "url": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+      "canonicalUrl": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+      "retrievedAt": "2026-08-24T03:26:50.922Z",
+      "modifiedAt": "2021-10-02T06:34:29+00:00",
+      "contentType": "text/html; charset=UTF-8",
+      "etag": "\"137598-1787431082;br\"",
+      "byteLength": 655257,
+      "contentSha256": "f52f54fa62034a80e56cc5eb49a88242d116d839009bd7ca280a04a8984b8dcd",
+      "expectedReferences": [
+        "Iron Man #55",
+        "Captain Marvel #25",
+        "Captain Marvel #26",
+        "Captain Marvel #27",
+        "Captain Marvel #28",
+        "Captain Marvel #29",
+        "Marvel Feature #12",
+        "Captain Marvel #30",
+        "Captain Marvel #31",
+        "Captain Marvel #32",
+        "Avengers #125",
+        "Captain Marvel #33"
+      ],
+      "extractedReferences": [
+        "Iron Man #55",
+        "Captain Marvel #25",
+        "Captain Marvel #26",
+        "Captain Marvel #27",
+        "Captain Marvel #28",
+        "Captain Marvel #29",
+        "Marvel Feature #12",
+        "Captain Marvel #30",
+        "Captain Marvel #31",
+        "Captain Marvel #32",
+        "Avengers #125",
+        "Captain Marvel #33"
+      ],
+      "expectedReferencesPresent": true
+    }
+  ],
+  "metadataSearches": [
+    {
+      "eventId": "reed-richards-and-sue-storms-wedding",
+      "sourcePosition": 1,
+      "reference": "Fantastic Four Annual #3",
+      "parsed": {
+        "series": "Fantastic Four Annual",
+        "issueNumber": "3"
+      },
+      "retrievedAt": "2026-08-24T03:26:51.194Z",
+      "candidates": [
+        {
+          "id": 8687,
+          "title": "Fantastic Four Annual (1963) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/8687/fantastic_four_annual_1963_1",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1963-09-01T00:00:00+0000",
+          "unlimitedDate": "1963-09-01T00:00:00+0000",
+          "yearPage": 1963
+        },
+        {
+          "id": 8698,
+          "title": "Fantastic Four Annual (1963) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/8698/fantastic_four_annual_1963_2",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1964-09-01T00:00:00+0000",
+          "unlimitedDate": "1964-09-01T00:00:00+0000",
+          "yearPage": 1964
+        },
+        {
+          "id": 8707,
+          "title": "Fantastic Four Annual (1963) #3",
+          "issueNumber": "3",
+          "detailUrl": "https://www.marvel.com/comics/issue/8707/fantastic_four_annual_1963_3",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1965-10-01T00:00:00+0000",
+          "unlimitedDate": "1965-10-01T00:00:00+0000",
+          "yearPage": 1965
+        },
+        {
+          "id": 8708,
+          "title": "Fantastic Four Annual (1963) #4",
+          "issueNumber": "4",
+          "detailUrl": "https://www.marvel.com/comics/issue/8708/fantastic_four_annual_1963_4",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1966-11-01T00:00:00+0000",
+          "unlimitedDate": "1966-11-01T00:00:00+0000",
+          "yearPage": 1966
+        },
+        {
+          "id": 8709,
+          "title": "Fantastic Four Annual (1963) #5",
+          "issueNumber": "5",
+          "detailUrl": "https://www.marvel.com/comics/issue/8709/fantastic_four_annual_1963_5",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1967-11-01T00:00:00+0000",
+          "unlimitedDate": "1967-11-01T00:00:00+0000",
+          "yearPage": 1967
+        },
+        {
+          "id": 8710,
+          "title": "Fantastic Four Annual (1963) #6",
+          "issueNumber": "6",
+          "detailUrl": "https://www.marvel.com/comics/issue/8710/fantastic_four_annual_1963_6",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1968-11-01T00:00:00+0000",
+          "unlimitedDate": "1968-11-01T00:00:00+0000",
+          "yearPage": 1968
+        },
+        {
+          "id": 8711,
+          "title": "Fantastic Four Annual (1963) #7",
+          "issueNumber": "7",
+          "detailUrl": "https://www.marvel.com/comics/issue/8711/fantastic_four_annual_1963_7",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1969-11-01T00:00:00+0000",
+          "unlimitedDate": "1969-11-01T00:00:00+0000",
+          "yearPage": 1969
+        },
+        {
+          "id": 8689,
+          "title": "Fantastic Four Annual (1963) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/8689/fantastic_four_annual_1963_11",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1976-01-01T00:00:00+0000",
+          "unlimitedDate": "1976-01-01T00:00:00+0000",
+          "yearPage": 1976
+        },
+        {
+          "id": 8690,
+          "title": "Fantastic Four Annual (1963) #12",
+          "issueNumber": "12",
+          "detailUrl": "https://www.marvel.com/comics/issue/8690/fantastic_four_annual_1963_12",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1977-01-01T00:00:00+0000",
+          "unlimitedDate": "1977-01-01T00:00:00+0000",
+          "yearPage": 1977
+        },
+        {
+          "id": 8691,
+          "title": "Fantastic Four Annual (1963) #13",
+          "issueNumber": "13",
+          "detailUrl": "https://www.marvel.com/comics/issue/8691/fantastic_four_annual_1963_13",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1978-01-01T00:00:00+0000",
+          "unlimitedDate": "1978-01-01T00:00:00+0000",
+          "yearPage": 1978
+        },
+        {
+          "id": 8692,
+          "title": "Fantastic Four Annual (1963) #14",
+          "issueNumber": "14",
+          "detailUrl": "https://www.marvel.com/comics/issue/8692/fantastic_four_annual_1963_14",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1979-01-01T00:00:00+0000",
+          "unlimitedDate": "1979-01-01T00:00:00+0000",
+          "yearPage": 1979
+        },
+        {
+          "id": 8693,
+          "title": "Fantastic Four Annual (1963) #15",
+          "issueNumber": "15",
+          "detailUrl": "https://www.marvel.com/comics/issue/8693/fantastic_four_annual_1963_15",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1980-01-01T00:00:00+0000",
+          "unlimitedDate": "1980-01-01T00:00:00+0000",
+          "yearPage": 1980
+        },
+        {
+          "id": 8694,
+          "title": "Fantastic Four Annual (1963) #16",
+          "issueNumber": "16",
+          "detailUrl": "https://www.marvel.com/comics/issue/8694/fantastic_four_annual_1963_16",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1981-01-01T00:00:00+0000",
+          "unlimitedDate": "1981-01-01T00:00:00+0000",
+          "yearPage": 1981
+        },
+        {
+          "id": 8695,
+          "title": "Fantastic Four Annual (1963) #17",
+          "issueNumber": "17",
+          "detailUrl": "https://www.marvel.com/comics/issue/8695/fantastic_four_annual_1963_17",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1983-01-01T00:00:00+0000",
+          "unlimitedDate": "1983-01-01T00:00:00+0000",
+          "yearPage": 1983
+        },
+        {
+          "id": 8696,
+          "title": "Fantastic Four Annual (1963) #18",
+          "issueNumber": "18",
+          "detailUrl": "https://www.marvel.com/comics/issue/8696/fantastic_four_annual_1963_18",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1984-07-01T00:00:00+0000",
+          "unlimitedDate": "1984-07-01T00:00:00+0000",
+          "yearPage": 1984
+        },
+        {
+          "id": 8697,
+          "title": "Fantastic Four Annual (1963) #19",
+          "issueNumber": "19",
+          "detailUrl": "https://www.marvel.com/comics/issue/8697/fantastic_four_annual_1963_19",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1985-11-01T00:00:00+0000",
+          "unlimitedDate": "1985-11-01T00:00:00+0000",
+          "yearPage": 1985
+        },
+        {
+          "id": 8699,
+          "title": "Fantastic Four Annual (1963) #20",
+          "issueNumber": "20",
+          "detailUrl": "https://www.marvel.com/comics/issue/8699/fantastic_four_annual_1963_20",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1987-05-01T00:00:00+0000",
+          "unlimitedDate": "1987-05-01T00:00:00+0000",
+          "yearPage": 1987
+        },
+        {
+          "id": 8700,
+          "title": "Fantastic Four Annual (1963) #21",
+          "issueNumber": "21",
+          "detailUrl": "https://www.marvel.com/comics/issue/8700/fantastic_four_annual_1963_21",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1988-01-01T00:00:00+0000",
+          "unlimitedDate": "1988-01-01T00:00:00+0000",
+          "yearPage": 1988
+        },
+        {
+          "id": 8701,
+          "title": "Fantastic Four Annual (1963) #22",
+          "issueNumber": "22",
+          "detailUrl": "https://www.marvel.com/comics/issue/8701/fantastic_four_annual_1963_22",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1989-01-01T00:00:00+0000",
+          "unlimitedDate": "1989-01-01T00:00:00+0000",
+          "yearPage": 1989
+        },
+        {
+          "id": 8702,
+          "title": "Fantastic Four Annual (1963) #23",
+          "issueNumber": "23",
+          "detailUrl": "https://www.marvel.com/comics/issue/8702/fantastic_four_annual_1963_23",
+          "seriesId": 2012,
+          "seriesName": "Fantastic Four Annual (1963 - 1994)",
+          "onSaleDate": "1990-01-01T00:00:00+0000",
+          "unlimitedDate": "2019-09-16T00:00:00+0000",
+          "yearPage": 1990
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 1,
+      "reference": "Avengers #89",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "89"
+      },
+      "retrievedAt": "2026-08-24T03:26:51.361Z",
+      "candidates": [
+        {
+          "id": 7342,
+          "title": "Avengers (1963) #89",
+          "issueNumber": "89",
+          "detailUrl": "https://www.marvel.com/comics/issue/7342/avengers_1963_89",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1971-06-01T00:00:00+0000",
+          "unlimitedDate": "1971-06-01T00:00:00+0000",
+          "yearPage": 1971
+        },
+        {
+          "id": 17831,
+          "title": "West Coast Avengers (1985) #89",
+          "issueNumber": "89",
+          "detailUrl": "https://www.marvel.com/comics/issue/17831/west_coast_avengers_1985_89",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1992-12-10T00:00:00+0000",
+          "unlimitedDate": "2016-10-03T00:00:00+0000",
+          "yearPage": 1992
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 2,
+      "reference": "Avengers #90",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "90"
+      },
+      "retrievedAt": "2026-08-24T03:26:51.537Z",
+      "candidates": [
+        {
+          "id": 7344,
+          "title": "Avengers (1963) #90",
+          "issueNumber": "90",
+          "detailUrl": "https://www.marvel.com/comics/issue/7344/avengers_1963_90",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1971-07-01T00:00:00+0000",
+          "unlimitedDate": "1971-07-01T00:00:00+0000",
+          "yearPage": 1971
+        },
+        {
+          "id": 17832,
+          "title": "West Coast Avengers (1985) #90",
+          "issueNumber": "90",
+          "detailUrl": "https://www.marvel.com/comics/issue/17832/west_coast_avengers_1985_90",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-01-10T00:00:00+0000",
+          "unlimitedDate": "2016-10-03T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 3,
+      "reference": "Avengers #91",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "91"
+      },
+      "retrievedAt": "2026-08-24T03:26:51.725Z",
+      "candidates": [
+        {
+          "id": 7345,
+          "title": "Avengers (1963) #91",
+          "issueNumber": "91",
+          "detailUrl": "https://www.marvel.com/comics/issue/7345/avengers_1963_91",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1971-08-01T00:00:00+0000",
+          "unlimitedDate": "1971-08-01T00:00:00+0000",
+          "yearPage": 1971
+        },
+        {
+          "id": 17833,
+          "title": "West Coast Avengers (1985) #91",
+          "issueNumber": "91",
+          "detailUrl": "https://www.marvel.com/comics/issue/17833/west_coast_avengers_1985_91",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-02-10T00:00:00+0000",
+          "unlimitedDate": "2016-10-03T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 4,
+      "reference": "Avengers #92",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "92"
+      },
+      "retrievedAt": "2026-08-24T03:26:51.904Z",
+      "candidates": [
+        {
+          "id": 7346,
+          "title": "Avengers (1963) #92",
+          "issueNumber": "92",
+          "detailUrl": "https://www.marvel.com/comics/issue/7346/avengers_1963_92",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1971-09-01T00:00:00+0000",
+          "unlimitedDate": "1971-09-01T00:00:00+0000",
+          "yearPage": 1971
+        },
+        {
+          "id": 17834,
+          "title": "West Coast Avengers (1985) #92",
+          "issueNumber": "92",
+          "detailUrl": "https://www.marvel.com/comics/issue/17834/west_coast_avengers_1985_92",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-03-01T00:00:00+0000",
+          "unlimitedDate": "1993-03-01T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 5,
+      "reference": "Avengers #93",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "93"
+      },
+      "retrievedAt": "2026-08-24T03:26:52.093Z",
+      "candidates": [
+        {
+          "id": 7347,
+          "title": "Avengers (1963) #93",
+          "issueNumber": "93",
+          "detailUrl": "https://www.marvel.com/comics/issue/7347/avengers_1963_93",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1971-11-01T00:00:00+0000",
+          "unlimitedDate": "1971-11-01T00:00:00+0000",
+          "yearPage": 1971
+        },
+        {
+          "id": 17835,
+          "title": "West Coast Avengers (1985) #93",
+          "issueNumber": "93",
+          "detailUrl": "https://www.marvel.com/comics/issue/17835/west_coast_avengers_1985_93",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-04-01T00:00:00+0000",
+          "unlimitedDate": "1993-04-01T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 6,
+      "reference": "Avengers #94",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "94"
+      },
+      "retrievedAt": "2026-08-24T03:26:52.268Z",
+      "candidates": [
+        {
+          "id": 7348,
+          "title": "Avengers (1963) #94",
+          "issueNumber": "94",
+          "detailUrl": "https://www.marvel.com/comics/issue/7348/avengers_1963_94",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1971-12-01T00:00:00+0000",
+          "unlimitedDate": "1971-12-01T00:00:00+0000",
+          "yearPage": 1971
+        },
+        {
+          "id": 17836,
+          "title": "West Coast Avengers (1985) #94",
+          "issueNumber": "94",
+          "detailUrl": "https://www.marvel.com/comics/issue/17836/west_coast_avengers_1985_94",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-05-01T00:00:00+0000",
+          "unlimitedDate": "1993-05-01T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 7,
+      "reference": "Avengers #95",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "95"
+      },
+      "retrievedAt": "2026-08-24T03:26:52.449Z",
+      "candidates": [
+        {
+          "id": 7349,
+          "title": "Avengers (1963) #95",
+          "issueNumber": "95",
+          "detailUrl": "https://www.marvel.com/comics/issue/7349/avengers_1963_95",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1972-01-01T00:00:00+0000",
+          "unlimitedDate": "1972-01-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 17837,
+          "title": "West Coast Avengers (1985) #95",
+          "issueNumber": "95",
+          "detailUrl": "https://www.marvel.com/comics/issue/17837/west_coast_avengers_1985_95",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-06-01T00:00:00+0000",
+          "unlimitedDate": "1993-06-01T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 8,
+      "reference": "Avengers #96",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "96"
+      },
+      "retrievedAt": "2026-08-24T03:26:52.628Z",
+      "candidates": [
+        {
+          "id": 7350,
+          "title": "Avengers (1963) #96",
+          "issueNumber": "96",
+          "detailUrl": "https://www.marvel.com/comics/issue/7350/avengers_1963_96",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1972-02-01T00:00:00+0000",
+          "unlimitedDate": "1972-02-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 17838,
+          "title": "West Coast Avengers (1985) #96",
+          "issueNumber": "96",
+          "detailUrl": "https://www.marvel.com/comics/issue/17838/west_coast_avengers_1985_96",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-07-01T00:00:00+0000",
+          "unlimitedDate": "1993-07-01T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "kree-skrull-war",
+      "sourcePosition": 9,
+      "reference": "Avengers #97",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "97"
+      },
+      "retrievedAt": "2026-08-24T03:26:52.807Z",
+      "candidates": [
+        {
+          "id": 7351,
+          "title": "Avengers (1963) #97",
+          "issueNumber": "97",
+          "detailUrl": "https://www.marvel.com/comics/issue/7351/avengers_1963_97",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1972-03-01T00:00:00+0000",
+          "unlimitedDate": "1972-03-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 17839,
+          "title": "West Coast Avengers (1985) #97",
+          "issueNumber": "97",
+          "detailUrl": "https://www.marvel.com/comics/issue/17839/west_coast_avengers_1985_97",
+          "seriesId": 3630,
+          "seriesName": "West Coast Avengers (1985 - 1994)",
+          "onSaleDate": "1993-08-01T00:00:00+0000",
+          "unlimitedDate": "1993-08-01T00:00:00+0000",
+          "yearPage": 1993
+        }
+      ]
+    },
+    {
+      "eventId": "the-night-gwen-stacy-died",
+      "sourcePosition": 1,
+      "reference": "Amazing Spider-Man #121",
+      "parsed": {
+        "series": "Amazing Spider-Man",
+        "issueNumber": "121"
+      },
+      "retrievedAt": "2026-08-24T03:26:52.981Z",
+      "candidates": [
+        {
+          "id": 6507,
+          "title": "The Amazing Spider-Man (1963) #121",
+          "issueNumber": "121",
+          "detailUrl": "https://www.marvel.com/comics/issue/6507/the_amazing_spider-man_1963_121",
+          "seriesId": 1987,
+          "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+          "onSaleDate": "1973-06-01T00:00:00+0000",
+          "unlimitedDate": "1973-06-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 107959,
+          "title": "Amazing Spider-Man: Facsimile Edition (2023) #121",
+          "issueNumber": "121",
+          "detailUrl": "https://www.marvel.com/comics/issue/107959/amazing_spider-man_facsimile_edition_2023_121",
+          "seriesId": 37186,
+          "seriesName": "Amazing Spider-Man: Facsimile Edition (2023)",
+          "onSaleDate": "2023-06-14T00:00:00+0000",
+          "unlimitedDate": "2023-09-18T00:00:00+0000",
+          "yearPage": 2023
+        }
+      ]
+    },
+    {
+      "eventId": "the-night-gwen-stacy-died",
+      "sourcePosition": 2,
+      "reference": "Amazing Spider-Man #122",
+      "parsed": {
+        "series": "Amazing Spider-Man",
+        "issueNumber": "122"
+      },
+      "retrievedAt": "2026-08-24T03:26:53.167Z",
+      "candidates": [
+        {
+          "id": 6508,
+          "title": "The Amazing Spider-Man (1963) #122",
+          "issueNumber": "122",
+          "detailUrl": "https://www.marvel.com/comics/issue/6508/the_amazing_spider-man_1963_122",
+          "seriesId": 1987,
+          "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+          "onSaleDate": "1973-07-01T00:00:00+0000",
+          "unlimitedDate": "1973-07-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 107960,
+          "title": "Amazing Spider-Man: Facsimile Edition (2023) #122",
+          "issueNumber": "122",
+          "detailUrl": "https://www.marvel.com/comics/issue/107960/amazing_spider-man_facsimile_edition_2023_122",
+          "seriesId": 37187,
+          "seriesName": "Amazing Spider-Man: Facsimile Edition (2023)",
+          "onSaleDate": "2023-06-28T00:00:00+0000",
+          "unlimitedDate": "2023-06-08T17:07:00+0000",
+          "yearPage": 2023
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 1,
+      "reference": "Avengers #115",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "115"
+      },
+      "retrievedAt": "2026-08-24T03:26:53.333Z",
+      "candidates": [
+        {
+          "id": 6970,
+          "title": "Avengers (1963) #115",
+          "issueNumber": "115",
+          "detailUrl": "https://www.marvel.com/comics/issue/6970/avengers_1963_115",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1973-09-01T00:00:00+0000",
+          "unlimitedDate": "2012-06-19T00:00:00+0000",
+          "yearPage": 1973
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 2,
+      "reference": "Defenders #8",
+      "parsed": {
+        "series": "Defenders",
+        "issueNumber": "8"
+      },
+      "retrievedAt": "2026-08-24T03:26:53.520Z",
+      "candidates": [
+        {
+          "id": 20262,
+          "title": "Defenders (1972) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/20262/defenders_1972_1",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1972-08-01T00:00:00+0000",
+          "unlimitedDate": "1972-08-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 20326,
+          "title": "Defenders (1972) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/20326/defenders_1972_2",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1972-10-01T00:00:00+0000",
+          "unlimitedDate": "1972-10-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 20337,
+          "title": "Defenders (1972) #3",
+          "issueNumber": "3",
+          "detailUrl": "https://www.marvel.com/comics/issue/20337/defenders_1972_3",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1972-12-01T00:00:00+0000",
+          "unlimitedDate": "1972-12-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 20263,
+          "title": "Defenders (1972) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/20263/defenders_1972_10",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-11-01T00:00:00+0000",
+          "unlimitedDate": "1973-11-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20274,
+          "title": "Defenders (1972) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/20274/defenders_1972_11",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-12-01T00:00:00+0000",
+          "unlimitedDate": "1973-12-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20348,
+          "title": "Defenders (1972) #4",
+          "issueNumber": "4",
+          "detailUrl": "https://www.marvel.com/comics/issue/20348/defenders_1972_4",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-02-01T00:00:00+0000",
+          "unlimitedDate": "1973-02-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20359,
+          "title": "Defenders (1972) #5",
+          "issueNumber": "5",
+          "detailUrl": "https://www.marvel.com/comics/issue/20359/defenders_1972_5",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-04-01T00:00:00+0000",
+          "unlimitedDate": "1973-04-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20370,
+          "title": "Defenders (1972) #6",
+          "issueNumber": "6",
+          "detailUrl": "https://www.marvel.com/comics/issue/20370/defenders_1972_6",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-06-01T00:00:00+0000",
+          "unlimitedDate": "1973-06-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20381,
+          "title": "Defenders (1972) #7",
+          "issueNumber": "7",
+          "detailUrl": "https://www.marvel.com/comics/issue/20381/defenders_1972_7",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-08-01T00:00:00+0000",
+          "unlimitedDate": "1973-08-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20392,
+          "title": "Defenders (1972) #8",
+          "issueNumber": "8",
+          "detailUrl": "https://www.marvel.com/comics/issue/20392/defenders_1972_8",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-09-01T00:00:00+0000",
+          "unlimitedDate": "1973-09-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20403,
+          "title": "Defenders (1972) #9",
+          "issueNumber": "9",
+          "detailUrl": "https://www.marvel.com/comics/issue/20403/defenders_1972_9",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-10-01T00:00:00+0000",
+          "unlimitedDate": "1973-10-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20285,
+          "title": "Defenders (1972) #12",
+          "issueNumber": "12",
+          "detailUrl": "https://www.marvel.com/comics/issue/20285/defenders_1972_12",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-02-01T00:00:00+0000",
+          "unlimitedDate": "1974-02-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20296,
+          "title": "Defenders (1972) #13",
+          "issueNumber": "13",
+          "detailUrl": "https://www.marvel.com/comics/issue/20296/defenders_1972_13",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-05-01T00:00:00+0000",
+          "unlimitedDate": "1974-05-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20307,
+          "title": "Defenders (1972) #14",
+          "issueNumber": "14",
+          "detailUrl": "https://www.marvel.com/comics/issue/20307/defenders_1972_14",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-07-01T00:00:00+0000",
+          "unlimitedDate": "1974-07-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20318,
+          "title": "Defenders (1972) #15",
+          "issueNumber": "15",
+          "detailUrl": "https://www.marvel.com/comics/issue/20318/defenders_1972_15",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-09-01T00:00:00+0000",
+          "unlimitedDate": "1974-09-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20322,
+          "title": "Defenders (1972) #16",
+          "issueNumber": "16",
+          "detailUrl": "https://www.marvel.com/comics/issue/20322/defenders_1972_16",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-10-01T00:00:00+0000",
+          "unlimitedDate": "1974-10-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20323,
+          "title": "Defenders (1972) #17",
+          "issueNumber": "17",
+          "detailUrl": "https://www.marvel.com/comics/issue/20323/defenders_1972_17",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-11-01T00:00:00+0000",
+          "unlimitedDate": "1974-11-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20324,
+          "title": "Defenders (1972) #18",
+          "issueNumber": "18",
+          "detailUrl": "https://www.marvel.com/comics/issue/20324/defenders_1972_18",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-12-01T00:00:00+0000",
+          "unlimitedDate": "1974-12-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20026,
+          "title": "Giant-Size Defenders (1974) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/20026/giant-size_defenders_1974_1",
+          "seriesId": 3731,
+          "seriesName": "Giant-Size Defenders (1974)",
+          "onSaleDate": "1974-07-01T00:00:00+0000",
+          "unlimitedDate": "1974-07-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20027,
+          "title": "Giant-Size Defenders (1974) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/20027/giant-size_defenders_1974_2",
+          "seriesId": 3731,
+          "seriesName": "Giant-Size Defenders (1974)",
+          "onSaleDate": "1974-10-01T00:00:00+0000",
+          "unlimitedDate": "1974-10-01T00:00:00+0000",
+          "yearPage": 1974
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 3,
+      "reference": "Avengers #116",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "116"
+      },
+      "retrievedAt": "2026-08-24T03:26:53.694Z",
+      "candidates": [
+        {
+          "id": 6971,
+          "title": "Avengers (1963) #116",
+          "issueNumber": "116",
+          "detailUrl": "https://www.marvel.com/comics/issue/6971/avengers_1963_116",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1973-10-01T00:00:00+0000",
+          "unlimitedDate": "1973-10-01T00:00:00+0000",
+          "yearPage": 1973
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 4,
+      "reference": "Defenders #9",
+      "parsed": {
+        "series": "Defenders",
+        "issueNumber": "9"
+      },
+      "retrievedAt": "2026-08-24T03:26:53.867Z",
+      "candidates": [
+        {
+          "id": 20262,
+          "title": "Defenders (1972) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/20262/defenders_1972_1",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1972-08-01T00:00:00+0000",
+          "unlimitedDate": "1972-08-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 20326,
+          "title": "Defenders (1972) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/20326/defenders_1972_2",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1972-10-01T00:00:00+0000",
+          "unlimitedDate": "1972-10-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 20337,
+          "title": "Defenders (1972) #3",
+          "issueNumber": "3",
+          "detailUrl": "https://www.marvel.com/comics/issue/20337/defenders_1972_3",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1972-12-01T00:00:00+0000",
+          "unlimitedDate": "1972-12-01T00:00:00+0000",
+          "yearPage": 1972
+        },
+        {
+          "id": 20263,
+          "title": "Defenders (1972) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/20263/defenders_1972_10",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-11-01T00:00:00+0000",
+          "unlimitedDate": "1973-11-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20274,
+          "title": "Defenders (1972) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/20274/defenders_1972_11",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-12-01T00:00:00+0000",
+          "unlimitedDate": "1973-12-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20348,
+          "title": "Defenders (1972) #4",
+          "issueNumber": "4",
+          "detailUrl": "https://www.marvel.com/comics/issue/20348/defenders_1972_4",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-02-01T00:00:00+0000",
+          "unlimitedDate": "1973-02-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20359,
+          "title": "Defenders (1972) #5",
+          "issueNumber": "5",
+          "detailUrl": "https://www.marvel.com/comics/issue/20359/defenders_1972_5",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-04-01T00:00:00+0000",
+          "unlimitedDate": "1973-04-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20370,
+          "title": "Defenders (1972) #6",
+          "issueNumber": "6",
+          "detailUrl": "https://www.marvel.com/comics/issue/20370/defenders_1972_6",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-06-01T00:00:00+0000",
+          "unlimitedDate": "1973-06-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20381,
+          "title": "Defenders (1972) #7",
+          "issueNumber": "7",
+          "detailUrl": "https://www.marvel.com/comics/issue/20381/defenders_1972_7",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-08-01T00:00:00+0000",
+          "unlimitedDate": "1973-08-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20392,
+          "title": "Defenders (1972) #8",
+          "issueNumber": "8",
+          "detailUrl": "https://www.marvel.com/comics/issue/20392/defenders_1972_8",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-09-01T00:00:00+0000",
+          "unlimitedDate": "1973-09-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20403,
+          "title": "Defenders (1972) #9",
+          "issueNumber": "9",
+          "detailUrl": "https://www.marvel.com/comics/issue/20403/defenders_1972_9",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-10-01T00:00:00+0000",
+          "unlimitedDate": "1973-10-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20285,
+          "title": "Defenders (1972) #12",
+          "issueNumber": "12",
+          "detailUrl": "https://www.marvel.com/comics/issue/20285/defenders_1972_12",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-02-01T00:00:00+0000",
+          "unlimitedDate": "1974-02-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20296,
+          "title": "Defenders (1972) #13",
+          "issueNumber": "13",
+          "detailUrl": "https://www.marvel.com/comics/issue/20296/defenders_1972_13",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-05-01T00:00:00+0000",
+          "unlimitedDate": "1974-05-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20307,
+          "title": "Defenders (1972) #14",
+          "issueNumber": "14",
+          "detailUrl": "https://www.marvel.com/comics/issue/20307/defenders_1972_14",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-07-01T00:00:00+0000",
+          "unlimitedDate": "1974-07-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20318,
+          "title": "Defenders (1972) #15",
+          "issueNumber": "15",
+          "detailUrl": "https://www.marvel.com/comics/issue/20318/defenders_1972_15",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-09-01T00:00:00+0000",
+          "unlimitedDate": "1974-09-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20322,
+          "title": "Defenders (1972) #16",
+          "issueNumber": "16",
+          "detailUrl": "https://www.marvel.com/comics/issue/20322/defenders_1972_16",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-10-01T00:00:00+0000",
+          "unlimitedDate": "1974-10-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20323,
+          "title": "Defenders (1972) #17",
+          "issueNumber": "17",
+          "detailUrl": "https://www.marvel.com/comics/issue/20323/defenders_1972_17",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-11-01T00:00:00+0000",
+          "unlimitedDate": "1974-11-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20324,
+          "title": "Defenders (1972) #18",
+          "issueNumber": "18",
+          "detailUrl": "https://www.marvel.com/comics/issue/20324/defenders_1972_18",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1974-12-01T00:00:00+0000",
+          "unlimitedDate": "1974-12-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20026,
+          "title": "Giant-Size Defenders (1974) #1",
+          "issueNumber": "1",
+          "detailUrl": "https://www.marvel.com/comics/issue/20026/giant-size_defenders_1974_1",
+          "seriesId": 3731,
+          "seriesName": "Giant-Size Defenders (1974)",
+          "onSaleDate": "1974-07-01T00:00:00+0000",
+          "unlimitedDate": "1974-07-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 20027,
+          "title": "Giant-Size Defenders (1974) #2",
+          "issueNumber": "2",
+          "detailUrl": "https://www.marvel.com/comics/issue/20027/giant-size_defenders_1974_2",
+          "seriesId": 3731,
+          "seriesName": "Giant-Size Defenders (1974)",
+          "onSaleDate": "1974-10-01T00:00:00+0000",
+          "unlimitedDate": "1974-10-01T00:00:00+0000",
+          "yearPage": 1974
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 5,
+      "reference": "Avengers #117",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "117"
+      },
+      "retrievedAt": "2026-08-24T03:26:54.055Z",
+      "candidates": [
+        {
+          "id": 6972,
+          "title": "Avengers (1963) #117",
+          "issueNumber": "117",
+          "detailUrl": "https://www.marvel.com/comics/issue/6972/avengers_1963_117",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1973-11-01T00:00:00+0000",
+          "unlimitedDate": "1973-11-01T00:00:00+0000",
+          "yearPage": 1973
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 6,
+      "reference": "Defenders #10",
+      "parsed": {
+        "series": "Defenders",
+        "issueNumber": "10"
+      },
+      "retrievedAt": "2026-08-24T03:26:56.254Z",
+      "candidates": [
+        {
+          "id": 20263,
+          "title": "Defenders (1972) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/20263/defenders_1972_10",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-11-01T00:00:00+0000",
+          "unlimitedDate": "1973-11-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20264,
+          "title": "Defenders (1972) #100",
+          "issueNumber": "100",
+          "detailUrl": "https://www.marvel.com/comics/issue/20264/defenders_1972_100",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1981-10-01T00:00:00+0000",
+          "unlimitedDate": "1981-10-01T00:00:00+0000",
+          "yearPage": 1981
+        },
+        {
+          "id": 20265,
+          "title": "Defenders (1972) #101",
+          "issueNumber": "101",
+          "detailUrl": "https://www.marvel.com/comics/issue/20265/defenders_1972_101",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1981-11-01T00:00:00+0000",
+          "unlimitedDate": "1981-11-01T00:00:00+0000",
+          "yearPage": 1981
+        },
+        {
+          "id": 20266,
+          "title": "Defenders (1972) #102",
+          "issueNumber": "102",
+          "detailUrl": "https://www.marvel.com/comics/issue/20266/defenders_1972_102",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1981-12-01T00:00:00+0000",
+          "unlimitedDate": "1981-12-01T00:00:00+0000",
+          "yearPage": 1981
+        },
+        {
+          "id": 20267,
+          "title": "Defenders (1972) #103",
+          "issueNumber": "103",
+          "detailUrl": "https://www.marvel.com/comics/issue/20267/defenders_1972_103",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-01-01T00:00:00+0000",
+          "unlimitedDate": "1982-01-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20268,
+          "title": "Defenders (1972) #104",
+          "issueNumber": "104",
+          "detailUrl": "https://www.marvel.com/comics/issue/20268/defenders_1972_104",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-02-01T00:00:00+0000",
+          "unlimitedDate": "1982-02-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20269,
+          "title": "Defenders (1972) #105",
+          "issueNumber": "105",
+          "detailUrl": "https://www.marvel.com/comics/issue/20269/defenders_1972_105",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-03-01T00:00:00+0000",
+          "unlimitedDate": "1982-03-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20270,
+          "title": "Defenders (1972) #106",
+          "issueNumber": "106",
+          "detailUrl": "https://www.marvel.com/comics/issue/20270/defenders_1972_106",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-04-01T00:00:00+0000",
+          "unlimitedDate": "1982-04-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20271,
+          "title": "Defenders (1972) #107",
+          "issueNumber": "107",
+          "detailUrl": "https://www.marvel.com/comics/issue/20271/defenders_1972_107",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-05-01T00:00:00+0000",
+          "unlimitedDate": "1982-05-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20272,
+          "title": "Defenders (1972) #108",
+          "issueNumber": "108",
+          "detailUrl": "https://www.marvel.com/comics/issue/20272/defenders_1972_108",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-06-01T00:00:00+0000",
+          "unlimitedDate": "1982-06-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20273,
+          "title": "Defenders (1972) #109",
+          "issueNumber": "109",
+          "detailUrl": "https://www.marvel.com/comics/issue/20273/defenders_1972_109",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-07-01T00:00:00+0000",
+          "unlimitedDate": "1982-07-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 62314,
+          "title": "Secret Defenders (1993) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/62314/secret_defenders_1993_10",
+          "seriesId": 20374,
+          "seriesName": "Secret Defenders (1993 - 1995)",
+          "onSaleDate": "1993-12-01T00:00:00+0000",
+          "unlimitedDate": "1993-12-01T00:00:00+0000",
+          "yearPage": 1993
+        },
+        {
+          "id": 39765,
+          "title": "Defenders (2011) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/39765/defenders_2011_10",
+          "seriesId": 14701,
+          "seriesName": "Defenders (2011 - 2012)",
+          "onSaleDate": "2012-09-05T00:00:00+0000",
+          "unlimitedDate": "2013-04-29T00:00:00+0000",
+          "yearPage": 2012
+        },
+        {
+          "id": 46080,
+          "title": "Fearless Defenders (2013) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/46080/fearless_defenders_2013_10",
+          "seriesId": 17370,
+          "seriesName": "Fearless Defenders (2013)",
+          "onSaleDate": "2013-10-09T00:00:00+0000",
+          "unlimitedDate": "2014-04-14T00:00:00+0000",
+          "yearPage": 2013
+        },
+        {
+          "id": 66276,
+          "title": "Defenders (2017) #10",
+          "issueNumber": "10",
+          "detailUrl": "https://www.marvel.com/comics/issue/66276/defenders_2017_10",
+          "seriesId": 23074,
+          "seriesName": "Defenders (2017 - 2018)",
+          "onSaleDate": "2018-02-21T00:00:00+0000",
+          "unlimitedDate": "2018-08-27T00:00:00+0000",
+          "yearPage": 2018
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 7,
+      "reference": "Avengers #118",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "118"
+      },
+      "retrievedAt": "2026-08-24T03:26:58.534Z",
+      "candidates": [
+        {
+          "id": 6973,
+          "title": "Avengers (1963) #118",
+          "issueNumber": "118",
+          "detailUrl": "https://www.marvel.com/comics/issue/6973/avengers_1963_118",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1973-12-01T00:00:00+0000",
+          "unlimitedDate": "1973-12-01T00:00:00+0000",
+          "yearPage": 1973
+        }
+      ]
+    },
+    {
+      "eventId": "avengers-defenders-war",
+      "sourcePosition": 8,
+      "reference": "Defenders #11",
+      "parsed": {
+        "series": "Defenders",
+        "issueNumber": "11"
+      },
+      "retrievedAt": "2026-08-24T03:27:00.727Z",
+      "candidates": [
+        {
+          "id": 20274,
+          "title": "Defenders (1972) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/20274/defenders_1972_11",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1973-12-01T00:00:00+0000",
+          "unlimitedDate": "1973-12-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 20275,
+          "title": "Defenders (1972) #110",
+          "issueNumber": "110",
+          "detailUrl": "https://www.marvel.com/comics/issue/20275/defenders_1972_110",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-08-01T00:00:00+0000",
+          "unlimitedDate": "1982-08-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20276,
+          "title": "Defenders (1972) #111",
+          "issueNumber": "111",
+          "detailUrl": "https://www.marvel.com/comics/issue/20276/defenders_1972_111",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-09-01T00:00:00+0000",
+          "unlimitedDate": "1982-09-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20277,
+          "title": "Defenders (1972) #112",
+          "issueNumber": "112",
+          "detailUrl": "https://www.marvel.com/comics/issue/20277/defenders_1972_112",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-10-01T00:00:00+0000",
+          "unlimitedDate": "1982-10-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20278,
+          "title": "Defenders (1972) #113",
+          "issueNumber": "113",
+          "detailUrl": "https://www.marvel.com/comics/issue/20278/defenders_1972_113",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-11-01T00:00:00+0000",
+          "unlimitedDate": "1982-11-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20279,
+          "title": "Defenders (1972) #114",
+          "issueNumber": "114",
+          "detailUrl": "https://www.marvel.com/comics/issue/20279/defenders_1972_114",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1982-12-01T00:00:00+0000",
+          "unlimitedDate": "1982-12-01T00:00:00+0000",
+          "yearPage": 1982
+        },
+        {
+          "id": 20280,
+          "title": "Defenders (1972) #115",
+          "issueNumber": "115",
+          "detailUrl": "https://www.marvel.com/comics/issue/20280/defenders_1972_115",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1983-01-01T00:00:00+0000",
+          "unlimitedDate": "1983-01-01T00:00:00+0000",
+          "yearPage": 1983
+        },
+        {
+          "id": 20281,
+          "title": "Defenders (1972) #116",
+          "issueNumber": "116",
+          "detailUrl": "https://www.marvel.com/comics/issue/20281/defenders_1972_116",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1983-02-01T00:00:00+0000",
+          "unlimitedDate": "1983-02-01T00:00:00+0000",
+          "yearPage": 1983
+        },
+        {
+          "id": 20282,
+          "title": "Defenders (1972) #117",
+          "issueNumber": "117",
+          "detailUrl": "https://www.marvel.com/comics/issue/20282/defenders_1972_117",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1983-03-01T00:00:00+0000",
+          "unlimitedDate": "1983-03-01T00:00:00+0000",
+          "yearPage": 1983
+        },
+        {
+          "id": 20283,
+          "title": "Defenders (1972) #118",
+          "issueNumber": "118",
+          "detailUrl": "https://www.marvel.com/comics/issue/20283/defenders_1972_118",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1983-04-01T00:00:00+0000",
+          "unlimitedDate": "1983-04-01T00:00:00+0000",
+          "yearPage": 1983
+        },
+        {
+          "id": 20284,
+          "title": "Defenders (1972) #119",
+          "issueNumber": "119",
+          "detailUrl": "https://www.marvel.com/comics/issue/20284/defenders_1972_119",
+          "seriesId": 3743,
+          "seriesName": "Defenders (1972 - 1986)",
+          "onSaleDate": "1983-05-01T00:00:00+0000",
+          "unlimitedDate": "1983-05-01T00:00:00+0000",
+          "yearPage": 1983
+        },
+        {
+          "id": 62315,
+          "title": "Secret Defenders (1993) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/62315/secret_defenders_1993_11",
+          "seriesId": 20374,
+          "seriesName": "Secret Defenders (1993 - 1995)",
+          "onSaleDate": "1994-01-01T00:00:00+0000",
+          "unlimitedDate": "1994-01-01T00:00:00+0000",
+          "yearPage": 1994
+        },
+        {
+          "id": 39764,
+          "title": "Defenders (2011) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/39764/defenders_2011_11",
+          "seriesId": 14701,
+          "seriesName": "Defenders (2011 - 2012)",
+          "onSaleDate": "2012-10-03T00:00:00+0000",
+          "unlimitedDate": "2012-10-03T00:00:00+0000",
+          "yearPage": 2012
+        },
+        {
+          "id": 46081,
+          "title": "Fearless Defenders (2013) #11",
+          "issueNumber": "11",
+          "detailUrl": "https://www.marvel.com/comics/issue/46081/fearless_defenders_2013_11",
+          "seriesId": 17370,
+          "seriesName": "Fearless Defenders (2013)",
+          "onSaleDate": "2013-11-13T00:00:00+0000",
+          "unlimitedDate": "2014-05-12T00:00:00+0000",
+          "yearPage": 2013
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 1,
+      "reference": "Iron Man #55",
+      "parsed": {
+        "series": "Iron Man",
+        "issueNumber": "55"
+      },
+      "retrievedAt": "2026-08-24T03:27:02.915Z",
+      "candidates": [
+        {
+          "id": 9610,
+          "title": "Iron Man (1968) #55",
+          "issueNumber": "55",
+          "detailUrl": "https://www.marvel.com/comics/issue/9610/iron_man_1968_55",
+          "seriesId": 2029,
+          "seriesName": "Iron Man (1968 - 1996)",
+          "onSaleDate": "1973-02-01T00:00:00+0000",
+          "unlimitedDate": "1973-02-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 19930,
+          "title": "Iron Man (1998) #55",
+          "issueNumber": "55",
+          "detailUrl": "https://www.marvel.com/comics/issue/19930/iron_man_1998_55",
+          "seriesId": 2572,
+          "seriesName": "Iron Man (1998 - 2004)",
+          "onSaleDate": "2002-07-01T00:00:00+0000",
+          "unlimitedDate": "2002-07-01T00:00:00+0000",
+          "yearPage": 2002
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 2,
+      "reference": "Captain Marvel #25",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "25"
+      },
+      "retrievedAt": "2026-08-24T03:27:05.157Z",
+      "candidates": [
+        {
+          "id": 8014,
+          "title": "Captain Marvel (1968) #25",
+          "issueNumber": "25",
+          "detailUrl": "https://www.marvel.com/comics/issue/8014/captain_marvel_1968_25",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1973-03-01T00:00:00+0000",
+          "unlimitedDate": "1973-03-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 549,
+          "title": "Captain Marvel (2000) #25",
+          "issueNumber": "25",
+          "detailUrl": "https://www.marvel.com/comics/issue/549/captain_marvel_2000_25",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-01-01T00:00:00+0000",
+          "unlimitedDate": "2002-01-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 22832,
+          "title": "Captain Marvel (2002) #25",
+          "issueNumber": "25",
+          "detailUrl": "https://www.marvel.com/comics/issue/22832/captain_marvel_2002_25",
+          "seriesId": 6258,
+          "seriesName": "Captain Marvel (2002 - 2004)",
+          "onSaleDate": "2004-09-01T00:00:00+0000",
+          "unlimitedDate": "2004-09-01T00:00:00+0000",
+          "yearPage": 2004
+        },
+        {
+          "id": 89559,
+          "title": "Captain Marvel (2019) #25",
+          "issueNumber": "25",
+          "detailUrl": "https://www.marvel.com/comics/issue/89559/captain_marvel_2019_25",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-01-27T00:00:00+0000",
+          "unlimitedDate": "2021-05-03T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 3,
+      "reference": "Captain Marvel #26",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "26"
+      },
+      "retrievedAt": "2026-08-24T03:27:07.339Z",
+      "candidates": [
+        {
+          "id": 8015,
+          "title": "Captain Marvel (1968) #26",
+          "issueNumber": "26",
+          "detailUrl": "https://www.marvel.com/comics/issue/8015/captain_marvel_1968_26",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1973-05-01T00:00:00+0000",
+          "unlimitedDate": "1973-05-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 22840,
+          "title": "Captain Marvel (2000) #26",
+          "issueNumber": "26",
+          "detailUrl": "https://www.marvel.com/comics/issue/22840/captain_marvel_2000_26",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-02-01T00:00:00+0000",
+          "unlimitedDate": "2002-02-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 89560,
+          "title": "Captain Marvel (2019) #26",
+          "issueNumber": "26",
+          "detailUrl": "https://www.marvel.com/comics/issue/89560/captain_marvel_2019_26",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-02-24T00:00:00+0000",
+          "unlimitedDate": "2021-05-31T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 4,
+      "reference": "Captain Marvel #27",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "27"
+      },
+      "retrievedAt": "2026-08-24T03:27:09.558Z",
+      "candidates": [
+        {
+          "id": 8016,
+          "title": "Captain Marvel (1968) #27",
+          "issueNumber": "27",
+          "detailUrl": "https://www.marvel.com/comics/issue/8016/captain_marvel_1968_27",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1973-07-01T00:00:00+0000",
+          "unlimitedDate": "1973-07-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 22841,
+          "title": "Captain Marvel (2000) #27",
+          "issueNumber": "27",
+          "detailUrl": "https://www.marvel.com/comics/issue/22841/captain_marvel_2000_27",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-03-01T00:00:00+0000",
+          "unlimitedDate": "2002-03-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 89561,
+          "title": "Captain Marvel (2019) #27",
+          "issueNumber": "27",
+          "detailUrl": "https://www.marvel.com/comics/issue/89561/captain_marvel_2019_27",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-03-17T00:00:00+0000",
+          "unlimitedDate": "2021-06-21T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 5,
+      "reference": "Captain Marvel #28",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "28"
+      },
+      "retrievedAt": "2026-08-24T03:27:11.786Z",
+      "candidates": [
+        {
+          "id": 8017,
+          "title": "Captain Marvel (1968) #28",
+          "issueNumber": "28",
+          "detailUrl": "https://www.marvel.com/comics/issue/8017/captain_marvel_1968_28",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1973-09-01T00:00:00+0000",
+          "unlimitedDate": "1973-09-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 22842,
+          "title": "Captain Marvel (2000) #28",
+          "issueNumber": "28",
+          "detailUrl": "https://www.marvel.com/comics/issue/22842/captain_marvel_2000_28",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-03-01T00:00:00+0000",
+          "unlimitedDate": "2002-03-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 89562,
+          "title": "Captain Marvel (2019) #28",
+          "issueNumber": "28",
+          "detailUrl": "https://www.marvel.com/comics/issue/89562/captain_marvel_2019_28",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-04-21T00:00:00+0000",
+          "unlimitedDate": "2021-07-26T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 6,
+      "reference": "Captain Marvel #29",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "29"
+      },
+      "retrievedAt": "2026-08-24T03:27:14.092Z",
+      "candidates": [
+        {
+          "id": 8018,
+          "title": "Captain Marvel (1968) #29",
+          "issueNumber": "29",
+          "detailUrl": "https://www.marvel.com/comics/issue/8018/captain_marvel_1968_29",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1973-11-01T00:00:00+0000",
+          "unlimitedDate": "1973-11-01T00:00:00+0000",
+          "yearPage": 1973
+        },
+        {
+          "id": 22843,
+          "title": "Captain Marvel (2000) #29",
+          "issueNumber": "29",
+          "detailUrl": "https://www.marvel.com/comics/issue/22843/captain_marvel_2000_29",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-04-01T00:00:00+0000",
+          "unlimitedDate": "2002-04-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 89563,
+          "title": "Captain Marvel (2019) #29",
+          "issueNumber": "29",
+          "detailUrl": "https://www.marvel.com/comics/issue/89563/captain_marvel_2019_29",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-06-23T00:00:00+0000",
+          "unlimitedDate": "2021-09-27T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 7,
+      "reference": "Marvel Feature #12",
+      "parsed": {
+        "series": "Marvel Feature",
+        "issueNumber": "12"
+      },
+      "retrievedAt": "2026-08-24T03:27:16.274Z",
+      "candidates": [
+        {
+          "id": 23322,
+          "title": "Marvel Feature (1971) #12",
+          "issueNumber": "12",
+          "detailUrl": "https://www.marvel.com/comics/issue/23322/marvel_feature_1971_12",
+          "seriesId": 6676,
+          "seriesName": "Marvel Feature (1971 - 1973)",
+          "onSaleDate": "1973-11-10T00:00:00+0000",
+          "unlimitedDate": "2016-11-28T00:00:00+0000",
+          "yearPage": 1973
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 8,
+      "reference": "Captain Marvel #30",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "30"
+      },
+      "retrievedAt": "2026-08-24T03:27:18.460Z",
+      "candidates": [
+        {
+          "id": 8019,
+          "title": "Captain Marvel (1968) #30",
+          "issueNumber": "30",
+          "detailUrl": "https://www.marvel.com/comics/issue/8019/captain_marvel_1968_30",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1974-01-01T00:00:00+0000",
+          "unlimitedDate": "1974-01-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 22844,
+          "title": "Captain Marvel (2000) #30",
+          "issueNumber": "30",
+          "detailUrl": "https://www.marvel.com/comics/issue/22844/captain_marvel_2000_30",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-05-01T00:00:00+0000",
+          "unlimitedDate": "2002-05-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 89564,
+          "title": "Captain Marvel (2019) #30",
+          "issueNumber": "30",
+          "detailUrl": "https://www.marvel.com/comics/issue/89564/captain_marvel_2019_30",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-07-21T00:00:00+0000",
+          "unlimitedDate": "2021-10-25T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 9,
+      "reference": "Captain Marvel #31",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "31"
+      },
+      "retrievedAt": "2026-08-24T03:27:20.643Z",
+      "candidates": [
+        {
+          "id": 8020,
+          "title": "Captain Marvel (1968) #31",
+          "issueNumber": "31",
+          "detailUrl": "https://www.marvel.com/comics/issue/8020/captain_marvel_1968_31",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1974-03-01T00:00:00+0000",
+          "unlimitedDate": "1974-03-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 22845,
+          "title": "Captain Marvel (2000) #31",
+          "issueNumber": "31",
+          "detailUrl": "https://www.marvel.com/comics/issue/22845/captain_marvel_2000_31",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-06-01T00:00:00+0000",
+          "unlimitedDate": "2002-06-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 92221,
+          "title": "Captain Marvel (2019) #31",
+          "issueNumber": "31",
+          "detailUrl": "https://www.marvel.com/comics/issue/92221/captain_marvel_2019_31",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-08-11T00:00:00+0000",
+          "unlimitedDate": "2021-11-15T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 10,
+      "reference": "Captain Marvel #32",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "32"
+      },
+      "retrievedAt": "2026-08-24T03:27:22.811Z",
+      "candidates": [
+        {
+          "id": 8021,
+          "title": "Captain Marvel (1968) #32",
+          "issueNumber": "32",
+          "detailUrl": "https://www.marvel.com/comics/issue/8021/captain_marvel_1968_32",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1974-05-01T00:00:00+0000",
+          "unlimitedDate": "1974-05-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 22846,
+          "title": "Captain Marvel (2000) #32",
+          "issueNumber": "32",
+          "detailUrl": "https://www.marvel.com/comics/issue/22846/captain_marvel_2000_32",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-07-01T00:00:00+0000",
+          "unlimitedDate": "2002-07-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 92222,
+          "title": "Captain Marvel (2019) #32",
+          "issueNumber": "32",
+          "detailUrl": "https://www.marvel.com/comics/issue/92222/captain_marvel_2019_32",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-09-01T00:00:00+0000",
+          "unlimitedDate": "2021-12-06T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 11,
+      "reference": "Avengers #125",
+      "parsed": {
+        "series": "Avengers",
+        "issueNumber": "125"
+      },
+      "retrievedAt": "2026-08-24T03:27:24.988Z",
+      "candidates": [
+        {
+          "id": 6981,
+          "title": "Avengers (1963) #125",
+          "issueNumber": "125",
+          "detailUrl": "https://www.marvel.com/comics/issue/6981/avengers_1963_125",
+          "seriesId": 1991,
+          "seriesName": "Avengers (1963 - 1996)",
+          "onSaleDate": "1974-07-01T00:00:00+0000",
+          "unlimitedDate": "1974-07-01T00:00:00+0000",
+          "yearPage": 1974
+        }
+      ]
+    },
+    {
+      "eventId": "thanos-war",
+      "sourcePosition": 12,
+      "reference": "Captain Marvel #33",
+      "parsed": {
+        "series": "Captain Marvel",
+        "issueNumber": "33"
+      },
+      "retrievedAt": "2026-08-24T03:27:27.168Z",
+      "candidates": [
+        {
+          "id": 8022,
+          "title": "Captain Marvel (1968) #33",
+          "issueNumber": "33",
+          "detailUrl": "https://www.marvel.com/comics/issue/8022/captain_marvel_1968_33",
+          "seriesId": 2000,
+          "seriesName": "Captain Marvel (1968 - 1979)",
+          "onSaleDate": "1974-07-01T00:00:00+0000",
+          "unlimitedDate": "1974-07-01T00:00:00+0000",
+          "yearPage": 1974
+        },
+        {
+          "id": 22847,
+          "title": "Captain Marvel (2000) #33",
+          "issueNumber": "33",
+          "detailUrl": "https://www.marvel.com/comics/issue/22847/captain_marvel_2000_33",
+          "seriesId": 690,
+          "seriesName": "Captain Marvel (2000 - 2002)",
+          "onSaleDate": "2002-08-01T00:00:00+0000",
+          "unlimitedDate": "2002-08-01T00:00:00+0000",
+          "yearPage": 2002
+        },
+        {
+          "id": 92223,
+          "title": "Captain Marvel (2019) #33",
+          "issueNumber": "33",
+          "detailUrl": "https://www.marvel.com/comics/issue/92223/captain_marvel_2019_33",
+          "seriesId": 26673,
+          "seriesName": "Captain Marvel (2019 - 2023)",
+          "onSaleDate": "2021-10-06T00:00:00+0000",
+          "unlimitedDate": "2021-10-06T00:00:00+0000",
+          "yearPage": 2021
+        }
+      ]
+    }
+  ]
+}

@@ -38,7 +38,7 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 
 export const CBRO_HISTORICAL_COUNT = 58;
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  'd5d75acf607bbddf1d76c3e5682973e86071f5bb969a1b3a17f0ffd69cbb3344';
+  '31b6402ddbb92a141f2c17c55e359db84729ca2fb64dedf15435f4dd7cfebb88';
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
   'muir-island-saga',
@@ -46,6 +46,53 @@ export const CBRO_SELECTED_IDS = Object.freeze([
   'midnight-massacre',
   'childs-play',
   'eighth-day',
+]);
+export const CBRO_AUTHOR_IDS = Object.freeze([
+  'muir-island-saga',
+  'midnight-massacre',
+  'bloodties',
+  'childs-play',
+  'eighth-day',
+]);
+export const CBRO_CONTINUATION_SELECTED_IDS = Object.freeze([
+  'reed-richards-and-sue-storms-wedding',
+  'kree-skrull-war',
+  'the-night-gwen-stacy-died',
+  'avengers-defenders-war',
+  'thanos-war',
+]);
+export const CBRO_CONTINUATION_AUTHOR_IDS = Object.freeze([
+  'reed-richards-and-sue-storms-wedding',
+  'kree-skrull-war',
+  'thanos-war',
+  'the-night-gwen-stacy-died',
+  'avengers-defenders-war',
+]);
+export const CBRO_CONTINUATION_PACKET_REVIEW =
+  'MRT-003-C02 batch 1 central CBRO source review';
+export const CBRO_RELEASE_IDS = Object.freeze({
+  original: 'mrt-003',
+  continuationBatchOne: 'mrt-003-c02-b01',
+});
+export const CBRO_RELEASES = Object.freeze({
+  [CBRO_RELEASE_IDS.original]: Object.freeze({
+    id: CBRO_RELEASE_IDS.original,
+    sourceIds: CBRO_SELECTED_IDS,
+    authorIds: CBRO_AUTHOR_IDS,
+    packetReview: CBRO_PACKET_REVIEW,
+    authorityIdentity: 'MRT-003 coordinator',
+  }),
+  [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze({
+    id: CBRO_RELEASE_IDS.continuationBatchOne,
+    sourceIds: CBRO_CONTINUATION_SELECTED_IDS,
+    authorIds: CBRO_CONTINUATION_AUTHOR_IDS,
+    packetReview: CBRO_CONTINUATION_PACKET_REVIEW,
+    authorityIdentity: 'MRT-003-C02 coordinator',
+  }),
+});
+export const CBRO_ALL_SELECTED_IDS = Object.freeze([
+  ...CBRO_CONTINUATION_SELECTED_IDS,
+  ...CBRO_SELECTED_IDS,
 ]);
 
 const INVENTORY_DISPOSITIONS = new Set([
@@ -70,6 +117,28 @@ function assert(condition, message) {
 
 function isSha256(value) {
   return /^[a-f0-9]{64}$/.test(String(value ?? ''));
+}
+
+export function cbroReleaseForIds(ids, { order = 'source' } = {}) {
+  assert(Array.isArray(ids) && ids.length > 0, 'CBRO release ids are required');
+  assert(new Set(ids).size === ids.length, 'CBRO release ids contain a duplicate');
+  const key = order === 'source' ? 'sourceIds' : order === 'author' ? 'authorIds' : null;
+  assert(key, `Unknown CBRO release order: ${order}`);
+  const release = Object.values(CBRO_RELEASES).find((candidate) => (
+    canonicalJson(ids) === canonicalJson(candidate[key])
+  ));
+  const orderLabel = order === 'author' ? 'chronology' : order;
+  assert(release,
+    `CBRO ${order} operation requires one complete 5-guide release in known ${orderLabel} order`);
+  return release;
+}
+
+export function cbroReleaseForId(id) {
+  const releases = Object.values(CBRO_RELEASES).filter((release) => (
+    release.sourceIds.includes(id)
+  ));
+  assert(releases.length === 1, `Unknown or repeated CBRO release id: ${id}`);
+  return releases[0];
 }
 
 export function validateCbroPacket(packet, options = {}) {
@@ -138,8 +207,14 @@ export function validateCbroHistoricalInventory(records) {
       `${label} catalogIds must be unique`);
     assert(INVENTORY_DELIVERY.has(record.deliveryStatus), `${label} deliveryStatus is invalid`);
     if (record.centralDisposition === 'selected') {
-      assert(['ready', 'shipped'].includes(record.deliveryStatus) && record.relationshipStatus === 'none',
-        `${label} selected state is inconsistent`);
+      const expectedRelationship = record.id === 'kree-skrull-war'
+        ? 'candidate-subset'
+        : 'none';
+      assert(
+        ['ready', 'shipped'].includes(record.deliveryStatus)
+          && record.relationshipStatus === expectedRelationship,
+        `${label} selected state is inconsistent`,
+      );
       assert(record.deliveryStatus === 'ready'
         ? record.catalogIds.length === 0
         : JSON.stringify(record.catalogIds) === JSON.stringify([record.id]),
@@ -147,7 +222,7 @@ export function validateCbroHistoricalInventory(records) {
       selected.push(record.id);
     }
   }
-  assert(JSON.stringify(selected) === JSON.stringify(CBRO_SELECTED_IDS),
+  assert(JSON.stringify(selected) === JSON.stringify(CBRO_ALL_SELECTED_IDS),
     'CBRO selected inventory ids or source order changed');
   const alternateIds = records
     .filter((record) => record.universeScope === 'alternate')
@@ -169,14 +244,15 @@ export function validateCbroHistoricalInventory(records) {
 }
 
 export function validateCbroReviewIdentity(mapping) {
+  const release = cbroReleaseForId(mapping?.id);
   assert(mapping?.sourceProvider === CBRO_SOURCE_PROVIDER.id,
     `${mapping?.id ?? 'CBRO mapping'} has the wrong review provider`);
-  assert(mapping?.packetReview === CBRO_PACKET_REVIEW,
+  assert(mapping?.packetReview === release.packetReview,
     `${mapping?.id ?? 'CBRO mapping'} has the wrong packet review identity`);
   const review = mapping?.relationshipReview;
   assert(review?.sourceProvider === CBRO_SOURCE_PROVIDER.id,
     `${mapping?.id ?? 'CBRO mapping'} approval has the wrong provider`);
-  assert(review?.packetReview === CBRO_PACKET_REVIEW,
+  assert(review?.packetReview === release.packetReview,
     `${mapping?.id ?? 'CBRO mapping'} approval names a different packet review`);
   return true;
 }
