@@ -271,7 +271,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T03 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:phase id=P05 -->
-### [ ] P05: Release and persist the merged result
+### [x] P05: Release and persist the merged result
 
 * Intent: Reconcile concurrent work, publish a reviewable PR, monitor all required jobs honestly, merge, and record the final state.
 * Dependencies: P04.
@@ -284,7 +284,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P05-T01 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:task id=P05-T02 -->
-#### [ ] P05-T02: Open, monitor, and merge the pull request
+#### [x] P05-T02: Open, monitor, and merge the pull request
 
 * Requirement and evidence: Repository release policy requires plain-English orientation, exact verification counts, the co-author trailer, and honest job conclusions.
 * Expected result: PR opens with `## In plain English`, Node 20, Node 24, and lint jobs pass, cancellations are distinguished from failures, the PR merges, and the merged commit and verification record are persisted.

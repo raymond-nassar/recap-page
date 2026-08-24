@@ -10,11 +10,11 @@
 
 ## Execution Status
 
-* Status: Partial
+* Status: Complete
 * Declared invocation scope: full plan
-* Completed scope markers: P00 through P04 and P00-T01 through P05-T01
-* All remaining active-plan markers: P05 and P05-T02
-* Status basis: The one independent Review and final main reconciliation are complete with no product defect or blocker; implementation continues with pull request delivery.
+* Completed scope markers: P00 through P05 and every task marker
+* All remaining active-plan markers: None
+* Status basis: Product implementation, one independent Review, current-main reconciliation, local validation, pull request delivery, and required hosted CI are complete. Pull request 181 is the durable merged-result identity.
 
 ## Execution Summary
 
@@ -124,6 +124,13 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 * Reconciliation performed: Kept the running mutation proof and resumed P05-T01 from final validation. No duplicate browser proof was started and no completed RPI stage was reopened.
 * Planning and critique state: No planning change. The task remains unblocked and continues automatically.
 
+### CHG-012: Deliver the release through hosted CI
+
+* Related phase or task: P05-T02
+* What changed and why: Published the complete current-main release through pull request 181 after the local gate set and one independent Review were complete.
+* Completion evidence: Release head `0b69013`; hosted run `32693329995`; Tests on Node 20, Tests on Node 24, and Lint all passed. GitHub reports the pull request clean and mergeable. Pull request 181 is the durable merged-result identity.
+* Validation: The three hosted job conclusions were read individually rather than inferred from the run-level conclusion. Current `origin/main` at `4a0e837` remains an ancestor of the release, and no concurrent main reconciliation is outstanding.
+
 ## Validation Record
 
 | Check | Scope | Status | Evidence or reason |
@@ -158,11 +165,13 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 | README stability and screenshots | P05-T01 | Passed | The no-fix check failed on the live catalog count and stale image reference, then both README tests passed. Exactly two referenced PNGs are 1280x900: clean-current-main Home and zero-progress Avengers Disassembled, both with cover art off and accurate alt text. |
 | Final evidence anchors | P05-T01 | Passed | Head search and merge-diff arithmetic re-derived every conflict-touched citation. All 36 final bless pairings were read against their claims; the final run reports 1,181 unchanged / 0 drifted / 0 new / 0 removed. |
 | Final dash and diff review | P05-T01 | Passed | 0 added lines contain an en dash or em dash; `git diff --check` passes; no unresolved conflict marker remains. |
+| Hosted CI | P05-T02 | Passed | Tests on Node 20, Tests on Node 24, and Lint passed in run 32693329995 on release head 0b69013. |
+| Pull request delivery | P05-T02 | Passed | Pull request 181 is clean, mergeable, and the durable merged-result identity. |
 
 ## Post-Review Reconciliation
 
-* Plan markers and phase details: P00 through P04 and P05-T01 complete; P05-T02 remains.
-* Completed-work evidence and handoff prose: P00 through P05-T01 evidence is current, including the one independent Review, repeated-source reconciliation, README stability decision, screenshot provenance, and final gate results.
+* Plan markers and phase details: P00 through P05 and every task marker are complete.
+* Completed-work evidence and handoff prose: Current through pull request delivery and hosted CI, including the one independent Review, repeated-source reconciliation, README stability decision, screenshot provenance, and final gate results.
 * Validation, blockers, remaining work, and follow-up items: Review outcome is Conformant with justified divergence; no product defect or blocker remains. RV-001 is folded into P05 record maintenance, RV-004's stale advisory targets are corrected when phase details are next edited, and RV-002 and RV-003 remain distinct low-severity follow-ups.
 * Review readiness: Review completed once. No second Review will run.
 
@@ -172,7 +181,7 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 
 ## Remaining Work
 
-* P05 and P05-T02.
+* None.
 
 ## Follow-Up Items
 
@@ -182,12 +191,12 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 
 ## Return-to-Caller State
 
-* Implementation execution status: Partial
-* Declared scope and markers: Full plan; P00 through P04 and P00-T01 through P05-T01 complete; P05 and P05-T02 remain.
+* Implementation execution status: Complete
+* Declared scope and markers: Full plan; P00 through P05 and every task marker complete.
 * Validation coverage: Full tests, lint, counts, sizes, palette, publication, publication surface, live metadata, MCU mappings, Edge desktop and narrow layouts, mutation proof, anchors, dash scan, and diff check.
 * Blockers: None.
-* Current plan and detail updates: Integrated the shared category gateway, Star-Lord release, Home refresh, and repeated-source contract; completed one independent Review; delivered the count-free README wording and exactly two clean-current-main screenshots; completed P05-T01.
+* Current plan and detail updates: Integrated the shared category gateway, Star-Lord release, Home refresh, and repeated-source contract; completed one independent Review; delivered the count-free README wording and exactly two clean-current-main screenshots; pull request and hosted CI identities are persisted.
 * Planning and critique state: One critique complete and resolved; one Review complete; no second critique or Review will run.
 * Follow-up items: Ten unshipped guides remain outside this release.
-* Review readiness or no-handoff reason: Review complete; implementation continues directly to release.
+* Review readiness or no-handoff reason: Review and release delivery complete.
 * Continuation owner: confirmed automatic RPI Agent.

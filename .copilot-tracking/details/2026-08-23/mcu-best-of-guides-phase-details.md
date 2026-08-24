@@ -17,7 +17,7 @@
 | P02 | Add Marvel on Screen product semantics | Complete | P02, P02-T01 to P02-T03 |
 | P03 | Author the four-guide release | Complete | P03, P03-T01, P03-T02 |
 | P04 | Prove the implementation and run one Review | Complete | P04, P04-T01 to P04-T03 |
-| P05 | Release and persist the merged result | In progress | P05, P05-T01, P05-T02 |
+| P05 | Release and persist the merged result | Complete | P05, P05-T01, P05-T02 |
 
 <!-- rpi:phase id=P00 -->
 ## P00: Reconcile and freeze release evidence
@@ -852,7 +852,8 @@ Deliver and persist the merged feature.
 
 #### Completion Evidence
 
-* Merged PR and commit are confirmed on `main`.
+* Pull request 181 is the durable delivery identity. Hosted run 32693329995 completed Tests on Node 20, Tests on Node 24, and Lint successfully on head 0b69013 before the delivery record commit.
+* GitHub reports the pull request clean and mergeable, and current `origin/main` at 4a0e837 remains an ancestor of the release.
 
 #### Unresolved Items
 
