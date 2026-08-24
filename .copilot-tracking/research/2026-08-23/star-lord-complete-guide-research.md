@@ -156,7 +156,7 @@
 | C5 | Authoring validates every fresh evidence layer, then creates one ungrouped manifest entry and exact Markdown order without altering existing guide data. | `scripts/author-cbh-packet.mjs:400-507` | read | high | A one-guide packet avoids the same-batch duplicate issue-id guard. |
 | C6 | Packet, mapping, report, and approval validators reject stale digests, and library hashing deliberately ignores editorial `spotlightKind` so taxonomy updates do not rewrite issue-library evidence. | `scripts/lib/cbh-inventory.mjs:346-419` | read | high | Negative stale tests already have shared helpers. |
 | C7 | The taxonomy test owns exact Character Spotlight reading, story, subset, and Star-Lord filter assertions. | `test/catalog-shelves.test.js:37-70` | read, targeted tests | high | Baseline commit 233c463 held 96 lists, 13 readings, 12 stories, five Best of, four Complete, and four All-only readings. |
-| C8 | Character runs require explicit taxonomy; `complete-guide` is the maintained value for a complete source scope, and filters include only matching explicit values. | `src/js/lib/curated.js:94-97`; `src/js/lib/catalog.js:13-18`; `src/js/lib/catalog.js:335-340` | read | high | Star-Lord belongs in All and Complete, never Best of. |
+| C8 | Character runs require explicit taxonomy; `complete-guide` is the maintained value for a complete source scope, and filters include only matching explicit values. | `src/js/lib/curated.js:94-97`; `src/js/lib/catalog.js:13-18`; `src/js/lib/catalog.js:339-344` | read | high | Star-Lord belongs in All and Complete, never Best of. |
 
 ### External Evidence
 

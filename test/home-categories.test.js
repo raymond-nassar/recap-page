@@ -27,9 +27,12 @@ test('the current gateway offers every populated canonical shelf and publishing 
   const categories = availableHomeCategories(stories);
   assert.deepEqual(
     categories.map(({ key }) => key),
-    ['timeline', 'storylines', 'character-spotlights', 'modern'],
+    ['timeline', 'storylines', 'character-spotlights', 'marvel-on-screen', 'modern'],
   );
-  assert.deepEqual(categories.map(({ tier }) => tier), ['primary', 'primary', 'primary', 'secondary']);
+  assert.deepEqual(
+    categories.map(({ tier }) => tier),
+    ['primary', 'primary', 'primary', 'secondary', 'secondary'],
+  );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
     const expected = shelfStories(stories, category.shelf)
@@ -42,6 +45,7 @@ test('the current gateway offers every populated canonical shelf and publishing 
     modern.count,
     publishingCategoryStories(stories, 'modern').reduce((total, story) => total + story.lists.length, 0),
   );
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 4);
 });
 
 test('an empty category stays hidden while overlapping categories remain independent', () => {
@@ -92,7 +96,8 @@ test('every declared category has compact UI metadata and its own browse subpage
 
   for (const category of HOME_CATEGORIES) {
     assert.ok(VIEWS.includes(category.route), `${category.key} points to unknown route ${category.route}`);
-    const generated = PUBLISHING_CATEGORIES.some(({ route }) => route === category.route);
+    const generated = !category.shelf
+      || PUBLISHING_CATEGORIES.some(({ route }) => route === category.route);
     assert.ok(
       generated || new RegExp(`id="view-${category.route}"`).test(markup),
       `${category.key} has no browse subpage`,
@@ -116,6 +121,21 @@ test('empty future ages stay declared but hidden from the current gateway', () =
   assert.ok(['golden', 'silver', 'bronze', 'copper'].every(
     (key) => !available.some((category) => category.key === key),
   ));
+});
+
+test('Marvel on Screen keeps the four screen companions in inventory order', () => {
+  const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
+  assert.ok(category, 'Marvel on Screen is not declared');
+  assert.deepEqual(
+    category.select(stories).map((story) => story.lists[0].id),
+    [
+      'doctor-strange-multiverse-of-madness',
+      'spider-man-no-way-home',
+      'marvel-multiverse',
+      'marvel-what-if',
+    ],
+  );
+  assert.equal(category.route, 'marvel-on-screen');
 });
 
 test('Home is a category gateway rather than another copy of the catalog', () => {

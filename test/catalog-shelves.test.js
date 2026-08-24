@@ -135,6 +135,12 @@ test('a type no screen names still reaches a reader', () => {
   assert.equal(on.length, 1, `an unknown type was drawn on ${on.length} screens`);
 });
 
+test('screen companions remain reachable on the existing Storylines screen', () => {
+  const companion = { key: 'screen', lists: [{ type: 'screen-companion' }] };
+  assert.deepEqual(keys.filter((key) => shelfStories([companion], key).length), ['lines']);
+  assert.equal(CATALOG_SHELVES.length, 3, 'a fourth browse screen was added');
+});
+
 // An empty screen is dropped rather than drawn as a heading with nothing under it, the same rule the
 // eras follow. Home draws every shelf, and a search narrowing the catalog to one kind of reading is
 // a state a reader reaches rather than a theoretical one.

@@ -7,7 +7,12 @@
 
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
-import { PUBLISHING_CATEGORIES } from './catalog.js';
+import { HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catalog.js';
+
+const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
+const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
+  .filter((category) => !category.shelf && !PUBLISHING_ROUTES.has(category.route))
+  .map((category) => category.route);
 
 // Every section the app can reach. This lives here rather than in main.js so that one list backs
 // both what can be shown and what can be routed to. Split across two files, a new view could be
@@ -16,6 +21,7 @@ export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import
 export const VIEWS = [
   'home', 'read', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
+  ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
   'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value),
 ];

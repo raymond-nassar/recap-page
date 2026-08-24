@@ -14,6 +14,24 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Marvel on Screen companion guides
+
+In plain English: Home and Browse now offer Marvel on Screen as a category. Opening it shows four
+comic guides chosen to accompany Doctor Strange: Multiverse of Madness, Spider-Man: No Way Home,
+Marvel multiverse stories, and What If?. Together they add 43 issue picks. Each guide says when the
+source named only part of a broader recommendation, and nothing you have saved is changed. The
+catalog now has 101 reading lists.
+
+For maintainers: a fourteen-title inventory preserves the full user priority order while this
+release advances only the first four. Four frozen packets resolve 43 exact, release-wide unique
+rows. Each 100-comparison report covers the 97-list pre-publication library and the other three
+release peers. Central review approves two Doctor Strange partials and the two-issue Marvel
+Multiverse subsets of both Claremont paths. Exact duplicates remain unapprovable. Installed Edge
+passed 184 assertions across 19 scenarios, including the populated category, child-route focus,
+four-card source order, and one-column narrow layout. The README overview now avoids live catalog
+counts and shows current Home and Avengers Disassembled views captured from clean current main with
+cover art off.
+
 ### Gave Home a comic-book welcome
 
 In plain English: Home now opens with a centered Electric Blue comic-style RECAP PAGE! title and the shorter invitation

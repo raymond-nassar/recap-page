@@ -364,9 +364,10 @@ function isLive(node) {
 // whichever pane the reader is at. Keying it by the condition rather than by the pane is what lets
 // a later success clear it wherever it was placed.
 const CATALOG_LOAD = 'catalog-load';
-const publishingCategoryByRoute = new Map(
-  PUBLISHING_CATEGORIES.map((category) => [category.route, category]),
-);
+const generatedCategoryByRoute = new Map([
+  ...PUBLISHING_CATEGORIES,
+  ...HOME_CATEGORIES.filter((category) => !category.shelf),
+].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
 // condition that outlives whichever view the reader happens to land on, and it is cleared by
@@ -1229,7 +1230,7 @@ function showView(next, { focus = true, push = false } = {}) {
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
   if (shelf) renderCatalogShelf(shelf.key);
-  if (publishingCategoryByRoute.has(next)) renderPublishingCategory(next);
+  if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') renderHome();
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') renderHomeCategories();
@@ -1253,7 +1254,7 @@ function showView(next, { focus = true, push = false } = {}) {
 
 function railParentView(next) {
   if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)
-    || publishingCategoryByRoute.has(next)) return 'browse';
+    || generatedCategoryByRoute.has(next)) return 'browse';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
   return next;
@@ -1351,7 +1352,7 @@ function renderHome() {
 // while still leaving every individual panel looking valid.
 function ensurePublishingViews() {
   const root = $('#main .wrap');
-  for (const category of PUBLISHING_CATEGORIES) {
+  for (const category of generatedCategoryByRoute.values()) {
     if ($(`#view-${category.route}`)) continue;
     root.insertBefore(el('section', {
       id: `view-${category.route}`,
@@ -1566,7 +1567,7 @@ function homeCategoryTile(category) {
 }
 
 async function renderPublishingCategory(route) {
-  const category = publishingCategoryByRoute.get(route);
+  const category = generatedCategoryByRoute.get(route);
   if (!category) return;
   const box = $(`#${route}-results`);
   const periods = $(`#${route}-categories`);
@@ -1595,7 +1596,9 @@ async function renderPublishingCategory(route) {
   }
 
   const allStories = groupCatalog(catalog.lists);
-  const stories = publishingCategoryStories(allStories, category.key);
+  const stories = typeof category.select === 'function'
+    ? category.select(allStories)
+    : publishingCategoryStories(allStories, category.key);
   const count = stories.reduce((total, story) => total + story.lists.length, 0);
   $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
 
@@ -1800,10 +1803,10 @@ function wirePreview() {
     // The card behind the dialog names one path, and the dialog is where that choice is now made,
     // so a choice made here has to reach the shelf card that sent the reader in.
     if (chose && (CATALOG_SHELVES.some((shelf) => shelf.key === view)
-      || publishingCategoryByRoute.has(view))) {
+      || generatedCategoryByRoute.has(view))) {
       const root = $(`#${view}-results`);
       const held = captureFocus(root);
-      if (publishingCategoryByRoute.has(view)) await renderPublishingCategory(view);
+      if (generatedCategoryByRoute.has(view)) await renderPublishingCategory(view);
       else await renderCatalogShelf(view);
       returnFocus(held);
     }

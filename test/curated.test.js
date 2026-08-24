@@ -151,8 +151,28 @@ test('spotlight taxonomy is forbidden on non-character orders', () => {
   const { entries, errors } = parseManifest({
     lists: [{ ...valid, spotlightKind: 'best-of' }],
   });
+
   assert.equal(entries.length, 0);
   assert.match(errors.join('\n'), /only valid on a character-run/);
+});
+
+test('a selected screen companion is accepted without spotlight taxonomy', () => {
+  const companion = {
+    ...valid,
+    type: 'screen-companion',
+    depth: 'selected',
+  };
+  const { entries, errors } = parseManifest({ lists: [companion] });
+  assert.deepEqual(errors, []);
+  assert.equal(entries[0].type, 'screen-companion');
+  assert.equal(entries[0].depth, 'selected');
+  assert.equal(Object.hasOwn(entries[0], 'spotlightKind'), false);
+
+  const rejected = parseManifest({
+    lists: [{ ...companion, spotlightKind: 'best-of' }],
+  });
+  assert.equal(rejected.entries.length, 0);
+  assert.match(rejected.errors.join('\n'), /only valid on a character-run/);
 });
 
 test('readings grouped into one story agree on spotlight taxonomy', () => {

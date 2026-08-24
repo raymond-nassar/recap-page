@@ -86,6 +86,9 @@ test('unknown type and depth values become null instead of being displayed', () 
   assert.equal(depthLabel(null), null);
   assert.equal(typeLabel('event'), 'Event');
   assert.equal(depthLabel('essential'), 'Essential reading');
+  assert.equal(typeLabel('screen-companion'), 'Screen companion');
+  assert.equal(depthLabel('selected'), 'Selected issues');
+  assert.equal(depthHint('selected'), 'Issue-specific recommendations chosen from a broader guide.');
 });
 
 test('a missing or malformed catalog yields an empty list, not a crash', () => {
@@ -803,6 +806,10 @@ test('every reading path through one story starts in the same year', async () =>
 
 test('a story whose every reading is a character run is a spotlight', () => {
   assert.equal(shelfKey({ lists: [{ type: 'character-run' }, { type: 'character-run' }] }), 'spotlights');
+});
+
+test('a screen companion uses the existing Storylines browse fallback', () => {
+  assert.equal(shelfKey({ lists: [{ type: 'screen-companion' }] }), 'lines');
 });
 
 test('an event belongs to the screen that carries the events', () => {

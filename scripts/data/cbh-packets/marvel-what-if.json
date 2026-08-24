@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-what-if",
+  "inventoryId": "marvel-what-if",
+  "sourceUrl": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "41e07a92b9509cecab9482096f8d7c388c8bad130ce1b756896c3a8c8f4c15c4",
+  "sourceIssueBearingBlocksSha256": "a96f5a4cd76e707d36dc817404db7ec97f70dc4d85285d8ae1cdb90acbfa545d",
+  "sourceBoundary": "Includes the seven headed picks identified by their immediately preceding source captions or exact one-shot title: What If? #22, #25, #28, #30, #105, What If? Age of Ultron #5, and What If? Magik.",
+  "excludedSourceReferences": [
+    "Amazing Spider-Man #148-150 contextual continuity reference",
+    "Unnumbered What If? Age of Ultron miniseries issues other than the caption-identified #5",
+    "Editorial commentary and images"
+  ],
+  "expectedCount": 7,
+  "proposedManifest": {
+    "id": "marvel-what-if",
+    "name": "Marvel What If?",
+    "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvel-what-if.md",
+    "sourcePage": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvel_what_if.json",
+    "characters": [
+      "Doctor Doom",
+      "Thor",
+      "Daredevil",
+      "Spider-Man",
+      "Magik"
+    ],
+    "keywords": [
+      "What If",
+      "alternate reality",
+      "Marvel Multiverse",
+      "Age of Ultron",
+      "Comic Book Herald"
+    ],
+    "expect": 7,
+    "timeline": null,
+    "coverIssueId": 12135
+  },
+  "insertionAnchor": {
+    "beforeId": "white-tiger-ava-ayala"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-004 coordinator",
+    "rationale": "The canonical source identity, issue-bearing boundary, exclusions, source order, and exact metadata interpretation were independently reviewed.",
+    "reviewedAt": "2026-08-24T01:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "What If? (1977) #22",
+      "sourceRangeReference": "What If? (1977) #22",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "22",
+      "metadataIssueNumber": "22",
+      "seriesId": 2095,
+      "candidateIssueId": 12135,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "What If? (1977) #25",
+      "sourceRangeReference": "What If? (1977) #25",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "25",
+      "metadataIssueNumber": "25",
+      "seriesId": 2095,
+      "candidateIssueId": 12138,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "What If? (1977) #28",
+      "sourceRangeReference": "What If? (1977) #28",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "28",
+      "metadataIssueNumber": "28",
+      "seriesId": 2095,
+      "candidateIssueId": 58430,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "What If? (1977) #30",
+      "sourceRangeReference": "What If? (1977) #30",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "30",
+      "metadataIssueNumber": "30",
+      "seriesId": 2095,
+      "candidateIssueId": 12144,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "What If? (1989) #105",
+      "sourceRangeReference": "What If? (1989) #105",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1989,
+      "issueNumber": "105",
+      "metadataIssueNumber": "105",
+      "seriesId": 3648,
+      "candidateIssueId": 18301,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "What If? Age of Ultron #5",
+      "sourceRangeReference": "What If? Age of Ultron #5",
+      "normalizedSeriesTitle": "What If? Age of Ultron",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "metadataIssueNumber": "5",
+      "seriesId": 18819,
+      "candidateIssueId": 50309,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "What If? Magik",
+      "sourceRangeReference": "What If? Magik",
+      "normalizedSeriesTitle": "What If? Magik",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 26488,
+      "candidateIssueId": 73505,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source names the exact unnumbered one-shot; Marvel metadata numbers the only issue in that exact series #1."
+    }
+  ],
+  "packetDigest": "750e957f3b81c3b4a51d0d17eae8e8adc79b8fc2154e7d18014c1b913e810d9e"
+}

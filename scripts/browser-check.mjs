@@ -193,9 +193,10 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Thirty entries make twenty-eight stories. Three event stories sit on one path, while two
+// Thirty-four entries make thirty-two stories. Three event stories sit on one path, while two
 // storylines each cross to another browse screen. The thirteen Character Spotlight stories put
-// that shelf over its search threshold, and the ten extra events do the same for Timeline.
+// that shelf over its search threshold, the ten extra events do the same for Timeline, and four
+// screen companions populate Marvel on Screen.
 // The third stop is a story read two ways, which is the case the shelf and the path disagree about
 // most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
@@ -220,6 +221,16 @@ const CATALOG = {
     }),
     shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
     shelfEntry('browser-check-age-line', 'Across Two Periods', { type: 'creator-run', timeline: 2004 }),
+    ...[
+      'Doctor Strange: Multiverse of Madness',
+      'Spider-Man: No Way Home',
+      'Marvel Multiverse',
+      'Marvel What If?',
+    ].map((name, index) => shelfEntry(
+      `screen-companion-${index + 1}`,
+      name,
+      { type: 'screen-companion', depth: 'selected', timeline: null, beginner: false },
+    )),
     shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run', spotlightKind: 'other' }),
     shelfEntry('essential-avengers', 'Essential Avengers', { type: 'character-run', spotlightKind: 'other' }),
     shelfEntry('x-men-spine', 'X-Men Spine', {
@@ -1245,12 +1256,18 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '2 Reading Lists' },
+          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '6 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
       t.check('the populated publishing age appears without empty historical ages',
         JSON.stringify(context.secondary) === JSON.stringify([
+          {
+            key: 'marvel-on-screen',
+            label: 'Movies and streaming',
+            title: 'Marvel on Screen',
+            count: '4 Reading Lists',
+          },
           { key: 'modern', label: '1991 to present', title: 'Modern Age', count: '16 Reading Lists' },
         ]),
         JSON.stringify(context.secondary));
@@ -1266,7 +1283,7 @@ const SCENARIOS = [
         context.statuses.length === 2
         && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
           role === 'status' && !hidden && visuallyHidden
-          && text === '4 ways to read available.'),
+          && text === '5 ways to read available.'),
         JSON.stringify(context.statuses));
 
       for (const [category, view] of [
@@ -1282,6 +1299,48 @@ const SCENARIOS = [
         await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
       }
 
+      await click(page, '[data-category="marvel-on-screen"]');
+      await page.waitForSelector('#marvel-on-screen-results .catalog-card', { timeout: 15000 });
+      const screen = await page.evaluate(() => ({
+        hash: location.hash,
+        focus: document.activeElement?.id ?? null,
+        rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        count: document.querySelector('#marvel-on-screen-count')?.textContent.trim() ?? null,
+        titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
+          .map((title) => title.textContent.trim()),
+      }));
+      t.check('Marvel on Screen opens its own browse page with four companions in source order',
+        screen.hash === '#/marvel-on-screen'
+        && screen.focus === 'marvel-on-screen-h'
+        && screen.rail === 'browse'
+        && screen.count === '4 Reading Lists'
+        && screen.titles.join('/') === [
+          'Doctor Strange: Multiverse of Madness',
+          'Spider-Man: No Way Home',
+          'Marvel Multiverse',
+          'Marvel What If?',
+        ].join('/'),
+        JSON.stringify(screen));
+
+      await page.setViewport({ width: 390, height: 844 });
+      await settleLayout();
+      const screenNarrow = await page.$eval('#marvel-on-screen-results', (results) => {
+        const cards = [...results.querySelectorAll('.catalog-card')];
+        return {
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          cards: cards.length,
+          columns: new Set(cards.map((card) => Math.round(card.getBoundingClientRect().left))).size,
+        };
+      });
+      t.check('the narrow Marvel on Screen page keeps four cards in one column without overflow',
+        screenNarrow.cards === 4
+        && screenNarrow.columns === 1
+        && screenNarrow.scrollWidth <= screenNarrow.viewport,
+        JSON.stringify(screenNarrow));
+
+      await open(page, '/');
+      await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
       await page.setViewport({ width: 620, height: 900 });
       await settleLayout();
       const narrow = await page.$$eval('#home-primary-paths .home-path', (paths) => paths.map((path) => {

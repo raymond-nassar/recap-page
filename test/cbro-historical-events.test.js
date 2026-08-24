@@ -48,7 +48,14 @@ const dataDir = path.join(root, 'src', 'data');
 const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
-const laterOrderIds = ['groot-reading-order', 'star-lord-reading-order'];
+const laterOrderIds = [
+  'groot-reading-order',
+  'star-lord-reading-order',
+  'doctor-strange-multiverse-of-madness',
+  'spider-man-no-way-home',
+  'marvel-multiverse',
+  'marvel-what-if',
+];
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
