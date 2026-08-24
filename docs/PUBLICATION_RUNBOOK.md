@@ -116,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7104-7108`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7106-7110`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -142,20 +142,20 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6454-6467`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6456-6469`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6868-6875`, why the private reporting task was left open.
-- `PRODUCT_BACKLOG.md:6934-6936`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6956-6961`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6963-6969`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7030-7036`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7061-7066`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7104-7108`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9209-9214`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2656-2659`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2669-2671`, the released note that the private channel is not switched on.
+- `PRODUCT_BACKLOG.md:6870-6877`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6936-6938`, what the changelog entry beside it was corrected to say.
+- `PRODUCT_BACKLOG.md:6958-6963`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6965-6971`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7032-7038`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7063-7068`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7106-7110`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9211-9216`, the three settings named as refused on this repository today.
+- `CHANGELOG.md:2669-2672`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2682-2684`, the released note that the private channel is not switched on.
 
-The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:29-41` listed
+The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
 that sentence described a state that no longer held. It was rewritten with those three clauses
 removed, together with BL-039's long-open task, which the same day closed, and with a clause added
@@ -269,6 +269,6 @@ enforcement, which is the argument for writing it down before the day rather tha
 
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
-quietly advertise a private, stale, or unreachable source surface. The separate Groot release adds
-one public source-linked card, bringing the catalog to 96, without changing the accepted publication
-boundary or any saved reader data.
+quietly advertise a private, stale, or unreachable source surface. The separate Star-Lord release
+adds one public source-linked card, bringing the catalog to 97, without changing the accepted
+publication boundary or any saved reader data.
