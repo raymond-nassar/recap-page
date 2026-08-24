@@ -482,8 +482,8 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The field reaches the
-interface in exactly one place, at `src/js/main.js:2445`, and the function behind it already
-answers for the absence at `src/js/main.js:2633-2642`, with a test asserting the sentence it
+interface in exactly one place, at `src/js/main.js:2343`, and the function behind it already
+answers for the absence at `src/js/main.js:2531-2540`, with a test asserting the sentence it
 returns. It is also reversible: the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
