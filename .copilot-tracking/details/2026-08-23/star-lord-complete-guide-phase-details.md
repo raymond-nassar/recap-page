@@ -15,7 +15,7 @@
 | P01 | Freeze and map Star-Lord | complete | P01, P01-T01, P01-T02 |
 | P02 | Approve and publish Star-Lord | complete | P02, P02-T01, P02-T02 |
 | P03 | Prove and document the release | complete | P03, P03-T01, P03-T02 |
-| P04 | Review and deliver the release | active | P04, P04-T01, P04-T02 |
+| P04 | Review and deliver the release | complete | P04, P04-T01, P04-T02 |
 
 ## Task-Level Context
 
@@ -527,7 +527,9 @@ Run one independent Review and deliver the merged release.
 
 ### Completion Evidence
 
-* Review verdict, PR, job conclusions, merge identity, and final durable state.
+* The one Review was Conformant. Pull request 178 carries implementation commit `1a890eb`, and hosted
+  run `32680139392` concluded success for Tests on Node 20, Tests on Node 24, and Lint. The pull
+  request is the durable merged-result identity.
 
 ### Unresolved Items
 
@@ -615,7 +617,9 @@ Deliver the reviewed release through hosted CI and merge it into current `main`.
 
 #### Completion Evidence
 
-* Commit SHA, PR number, job conclusions, merge commit, and final state.
+* Implementation commit `1a890eb`, pull request 178, hosted run `32680139392`, three individually
+  verified successful job conclusions, current-main ancestry confirmation, and pull request 178 as
+  the durable merged-result identity.
 
 #### Unresolved Items
 

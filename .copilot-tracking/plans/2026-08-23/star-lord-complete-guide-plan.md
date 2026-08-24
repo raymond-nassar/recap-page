@@ -299,7 +299,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P03-T02 in .copilot-tracking/details/2026-08-23/star-lord-complete-guide-phase-details.md
 
 <!-- rpi:phase id=P04 -->
-### [~] P04: Review and deliver the release
+### [x] P04: Review and deliver the release
 
 * Intent: Run one Review, open and validate the PR, reconcile, merge, and persist completion.
 * Dependencies: P03.
@@ -313,7 +313,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T01 in .copilot-tracking/details/2026-08-23/star-lord-complete-guide-phase-details.md
 
 <!-- rpi:task id=P04-T02 -->
-#### [~] P04-T02: Deliver, reconcile, and merge
+#### [x] P04-T02: Deliver, reconcile, and merge
 
 * Requirement and evidence: Caller requires a plain-English-first PR, exact counts, required trailer,
   Node 20, Node 24 and lint conclusions, final main reconciliation, merge, and durable completion.

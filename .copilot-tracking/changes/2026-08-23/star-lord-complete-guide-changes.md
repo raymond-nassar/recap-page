@@ -10,15 +10,14 @@
 
 ## Execution Status
 
-* Status: Partial
+* Status: Complete
 * Declared invocation scope: full plan
 * Completed scope markers: P01, P01-T01, P01-T02, P02, P02-T01, P02-T02, P03, P03-T01, P03-T02,
-  P04-T01
-* All remaining active-plan markers: P04, P04-T02
-* Status basis: The complete source, mapping, relationship, authoring, and vendoring chain is
-  validated. Semantic proof, product records, current-main reconciliation, all local gates, and the
-  reviewed anchor cycle are complete. The one Review is Conformant with no findings; P04-T02 is
-  active for delivery.
+  P04, P04-T01, P04-T02
+* All remaining active-plan markers: None
+* Status basis: Product implementation, current-main reconciliation, one Review, local validation,
+  pull request delivery, and required hosted CI are complete. Pull request 178 is the durable merge
+  record.
 
 ## Execution Summary
 
@@ -27,7 +26,7 @@ complete current library plus Rocket and Groot peer report, approved all 96 rela
 one separate Complete guide, and vendored all 99 issues. P03 added durable semantic proof, product
 records, wide and narrow real-browser evidence, current-main reconciliation, and a zero-drift anchor
 lock. The one Review found no substantive defect, decision gap, evidence gap, or residual work.
-P04-T02 is active.
+P04-T02 delivered the release through pull request 178 after all required hosted jobs passed.
 
 ### Single independent Review
 
@@ -110,6 +109,17 @@ P04-T02 is active.
   Complete stories, 5 Best of stories, Star-Lord's correct inclusion and exclusion, and zero
   horizontal overflow.
 
+### Pull request, hosted CI, and merge delivery
+
+* Related phase or task: P04-T02
+* What changed and why: Published the complete reconciled release through pull request 178 after
+  refreshing current main immediately before release.
+* Completion evidence: Implementation commit `1a890eb`; hosted run `32680139392`; Tests on Node 20,
+  Tests on Node 24, and Lint all passed. Pull request 178 is the durable merged-result identity.
+* Validation: The three hosted job conclusions were read individually rather than inferred from the
+  run-level conclusion. Current `origin/main` at `b9367d8` remains an ancestor of the release, and
+  GitHub reports the pull request clean and mergeable.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### Applied the single critique
@@ -160,6 +170,8 @@ P04-T02 is active.
 | Dash scan | Added release lines | Passed | 0 en or em dashes. |
 | Diff check | Staged release | Passed | 0 whitespace errors. |
 | Anchors | All tracked evidence | Passed | 1,181 unchanged, 0 drifted, 0 new, 0 removed; 2 historical absence exemptions. |
+| Hosted CI | P04-T02 | Passed | Node 20, Node 24, and Lint passed in run 32680139392. |
+| Pull request delivery | P04-T02 | Passed | Pull request 178 is the durable merge record. |
 
 ### Reconciled current main before release
 
@@ -181,10 +193,10 @@ P04-T02 is active.
 
 ## Pre-Review Reconciliation
 
-* Plan markers and phase details: Current through completed P04-T01 and active P04-T02.
-* Completed-work evidence and handoff prose: Current through semantic, documentation, and browser
-  validation.
-* Validation, blockers, remaining work, and follow-up items: Current.
+* Plan markers and phase details: P01, P02, P03, and P04 complete.
+* Completed-work evidence and handoff prose: Current through pull request delivery and hosted CI.
+* Validation, blockers, remaining work, and follow-up items: All planned work is complete; no blocker
+  or follow-up remains.
 * Review readiness: The single Review is complete and Conformant.
 
 ## Blockers
@@ -193,7 +205,7 @@ P04-T02 is active.
 
 ## Remaining Work
 
-* P04-T02 remains.
+* None.
 
 ## Follow-Up Items
 
@@ -203,13 +215,15 @@ P04-T02 is active.
 
 ## Return-to-Caller State
 
-* Implementation execution status: Partial
-* Declared scope and markers: Full plan; P01, P02, P03, and P04-T01 complete; P04-T02 remains.
+* Implementation execution status: Complete
+* Declared scope and markers: Full plan; P01 through P04 complete.
 * Validation coverage: Planning gate, no-fix proof, 44 focused tests, 1,414 full tests, lint, counts,
-  sizes, palette, publication, publication surface, live contract, and both Edge passes passed.
+  sizes, palette, publication, publication surface, live contract, both Edge passes, and hosted CI
+  passed.
 * Blockers: None.
-* Current plan and detail updates: PC-001 through PC-009 applied.
+* Current plan and detail updates: PC-001 through PC-009 applied; pull request and hosted CI
+  identities are persisted.
 * Planning and critique state: Final and ready.
 * Follow-up items: None.
-* Review readiness or no-handoff reason: Review complete and Conformant; delivery is active.
+* Review readiness or no-handoff reason: Review and delivery are complete.
 * Continuation owner: Automatic RPI parent.
