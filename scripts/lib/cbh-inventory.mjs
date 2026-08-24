@@ -246,14 +246,14 @@ export function sourcePositionsForPacket(packet) {
   let previousSourcePosition = 0;
   for (const [index, reference] of references.entries()) {
     assertRepeatedSourceReference(reference, index, rows);
+    if (bySourcePosition.has(reference.sourcePosition)) {
+      throw new Error(`${packetId} contains a duplicate repeated source position: ${reference.sourcePosition}`);
+    }
     if (reference.sourcePosition <= previousSourcePosition) {
       throw new Error(`${packetId} repeatedSourceReferences must be in sourcePosition order`);
     }
     if (reference.sourcePosition > packet.sourceOccurrenceCount) {
       throw new Error(`${packetId} repeated source position ${reference.sourcePosition} is outside the source occurrence count`);
-    }
-    if (bySourcePosition.has(reference.sourcePosition)) {
-      throw new Error(`${packetId} contains a duplicate repeated source position: ${reference.sourcePosition}`);
     }
     bySourcePosition.set(reference.sourcePosition, reference);
     previousSourcePosition = reference.sourcePosition;

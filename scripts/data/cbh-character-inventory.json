@@ -1032,6 +1032,7 @@
     "overlapIds": [
       "annihilation-conquest",
       "rocket-raccoon-reading-order",
+      "star-lord-reading-order",
       "war-of-kings"
     ],
     "catalogIds": [
@@ -2695,13 +2696,20 @@
     "url": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The exact 99-issue boundary shares 25 source-required issues with the higher-priority Rocket Raccoon guide, so Star-Lord is deferred to a separate later authoring call.",
+    "disposition": "new-order",
+    "reason": "The exact 99-issue boundary is approved as a separate Complete guide; its shared issues remain required in the distinct Star-Lord, Rocket Raccoon, Groot, and War of Kings readings.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "rocket-raccoon-reading-order",
+      "groot-reading-order",
+      "infinity-countdown-wars",
+      "war-of-kings"
+    ],
+    "catalogIds": [
+      "star-lord-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Star-Lord (Peter Quill)"
     ],
@@ -2709,9 +2717,9 @@
       108
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "1870f3039770c875a02a426b18cb83a0ac4653c81605ce1674eedfa5d3c5c7cf",
+    "sourceContentSha256": "fc6fe92719720c4a4ebf78e1f9a80b175ab361cb95c731d23b38c37c0e99c929",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 108,

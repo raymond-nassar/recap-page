@@ -6,10 +6,10 @@
 * Task ID: MRT-002-C09-DUP
 * Task slug: repeated-source-occurrences
 * Planning status: Implementation-ready after one critique and three direct corrections
-* Implementation status: P04-T01 in progress
+* Implementation status: P04-T03 in progress after RV-001 resolution
 * Plan date: 2026-08-23
 * Mode: delegated autopilot
-* Baseline: current project default `main` at `b9367d8bdf40cf335caf1c6b2d46dfedb5e25826`
+* Baseline: reconciled project default `main` at `ff92fd0875e90b12dcbf41bdaed1cfed84d99a41`
 * Research: .copilot-tracking/research/2026-08-23/repeated-source-occurrences-research.md
 * Phase details: .copilot-tracking/details/2026-08-23/repeated-source-occurrences-phase-details.md
 * Plan critique: .copilot-tracking/reviews/plans/2026-08-23/repeated-source-occurrences-plan-critique.md
@@ -221,8 +221,9 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
   user-visible outputs.
 * Iron Man remains unpublished with all nine confirmed missing issues recorded and no source row
   omitted or inferred.
-* The final catalog remains 96 readings, 13 Character Spotlight readings, 12 Character Spotlight
-  stories, and 4 Complete guides.
+* The reconciled final catalog remains 97 readings, 14 Character Spotlight readings, 13 Character
+  Spotlight stories, and 5 Complete guides. Star-Lord arrived from current main; this feature adds no
+  card or reading.
 * Required failure proofs, local gates, browser checks, one Review, PR, Node 20/24/lint CI, merge,
   and durable completion all succeed.
 
@@ -363,8 +364,8 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 
 * Requirement and evidence: Caller and repository gates require failure proofs, full checks, live
   contract, dash scan, and wide and narrow browser observations.
-* Expected result: every required local and browser gate passes, Character Spotlight remains 13
-  readings / 12 stories / 4 Complete guides, and no temporary artifact remains.
+* Expected result: every required local and browser gate passes, reconciled Character Spotlight
+  remains 14 readings / 13 stories / 5 Complete guides, and no temporary artifact remains.
 * Detail section: P03-T02 in .copilot-tracking/details/2026-08-23/repeated-source-occurrences-phase-details.md
 
 <!-- rpi:phase id=P04 -->
@@ -375,7 +376,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Dependencies: P03 complete.
 
 <!-- rpi:task id=P04-T01 -->
-#### [~] P04-T01: Reconcile current main and refresh final evidence
+#### [x] P04-T01: Reconcile current main and refresh final evidence
 
 * Requirement and evidence: Packet, mapping, library, report, approval, count, and anchor evidence is
   baseline-sensitive and must be final before the one Review.
@@ -384,7 +385,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T01 in .copilot-tracking/details/2026-08-23/repeated-source-occurrences-phase-details.md
 
 <!-- rpi:task id=P04-T02 -->
-#### [ ] P04-T02: Run one independent Review and route findings
+#### [x] P04-T02: Run one independent Review and route findings
 
 * Requirement and evidence: Updated caller direction permits exactly one Review after the final
   reconciliation candidate exists.
@@ -393,7 +394,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T02 in .copilot-tracking/details/2026-08-23/repeated-source-occurrences-phase-details.md
 
 <!-- rpi:task id=P04-T03 -->
-#### [ ] P04-T03: Open the PR, pass CI, and merge
+#### [~] P04-T03: Open the PR, pass CI, and merge
 
 * Requirement and evidence: Updated caller direction requires a plain-English-first PR, required
   trailer, Node 20/24/lint CI, final no-drift fetch, merge, and durable completion.

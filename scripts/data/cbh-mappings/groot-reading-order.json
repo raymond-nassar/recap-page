@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "a83bdf4ba3b9bfcee2524abe830219d9754b82d5c637f49191a313c19052870f",
+    "reportDigest": "616c4564ad98a0f7f7fe5ac57d021e1e19d7156050c82c887d8e8132e9020949",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602",
+    "libraryDigest": "8b5680c2dc9ed3b3da78547d62927a95448616ac8ddafdd554675ef30ec1e870",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3833,12 +3833,21 @@
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The complete Groot and Star-Lord guides retain all source-required shared issues as distinct character reading paths.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C09-DUP coordinator",
+        "reviewedAt": "2026-08-23"
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002-C07 coordinator",
-    "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the three factual partials are approved and no exact or subset relationship exists.",
+    "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "b4acc491b8240f8b9343fba015e3891ad7a0dca9c996f765a93e130515f37e54"
+    "approvalDigest": "c12bf41481b245aade1ea4089d9226dc4a1f9698b96d076d1c219de79ecfe949"
   }
 }

@@ -321,9 +321,15 @@ behavior. Every resulting catalog card must credit Comic Book Herald and link to
 section followed.
 
 Use `--peer` when a separately authored candidate was reviewed against a shipped guide's mapping.
-The peer remains in the manifest unchanged, is counted exactly once in the relationship report, and
-is excluded from the ordinary reviewed-library digest. A partial relationship does not permit
-either source sequence to lose shared issues.
+Pass several reviewed peers as one comma-separated value when required. Each peer remains in the
+manifest unchanged, is counted exactly once in the relationship report, and is excluded from the
+ordinary reviewed-library digest. A partial relationship does not permit any source sequence to
+lose shared issues.
+
+An exact metadata issue can legitimately omit its number from the official title. A source-to-metadata
+number translation may preserve that title only when the packet pins the exact candidate issue ID,
+the returned metadata number matches, and the title contains no conflicting issue marker. The
+Star-Lord FCBD row is the maintained example: source #1 is issue 62818, metadata number 0.
 
 ### Validate the packet
 

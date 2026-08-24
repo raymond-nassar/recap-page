@@ -2774,6 +2774,14 @@ function resolvedIssueTitle(item, sourceRow) {
   const escaped = String(metadataNumber).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`#\\s*${escaped}(?=\\s|$)`, 'i');
   if (!pattern.test(title)) {
+    if (
+      sourceRow.candidateIssueId != null
+      && Number(item?.id) === sourceRow.candidateIssueId
+      && String(item?.issueNumber) === String(metadataNumber)
+      && !/#\s*\S/.test(title)
+    ) {
+      return title;
+    }
     throw new Error(`${sourceRow.sourceIssueReference} metadata title does not end in #${metadataNumber}`);
   }
   return title.replace(pattern, `#${sourceRow.issueNumber}`);

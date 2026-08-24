@@ -15,10 +15,9 @@
 * Status: Partial
 * Declared invocation scope: full plan
 * Completed scope markers: P01, P01-T01, P01-T02, P01-T03, P02, P02-T01, P03,
-  P03-T01, P03-T02
-* Active marker: P04-T01
-* All remaining active-plan markers: P04, P04-T01, P04-T02,
-  P04-T03
+  P03-T01, P03-T02, P04-T01, P04-T02
+* Active marker: P04-T03
+* All remaining active-plan markers: P04, P04-T03
 * Status basis: The shared contract, both provider paths, strict failure matrix, exact candidate
   shapes, Groot migration, and Iron Man blocker preservation are complete. Direct release records
   are the next dependency-ready task.
@@ -80,12 +79,13 @@ release.
   `test/cbh-character-spotlight.test.js`, `test/cbro-historical-events.test.js`.
 * What changed and why: Replaced two repeat-related exclusion strings with eight exact occurrence
   records at positions 72-79 targeting canonical rows 8-15; refreshed the packet, mapping, report,
-  approval, and provenance while preserving 76 selected ids and current relationships.
+  approval, and provenance while preserving 76 selected ids. Reconciliation then added Star-Lord's
+  factual 25-issue partial without changing Groot's sequence.
 * Completion evidence: Packet digest
   `b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7`;
   mapping digest `8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523`;
-  report digest `a83bdf4ba3b9bfcee2524abe830219d9754b82d5c637f49191a313c19052870f`;
-  approval digest `b4acc491b8240f8b9343fba015e3891ad7a0dca9c996f765a93e130515f37e54`.
+  report digest `616c4564ad98a0f7f7fe5ac57d021e1e19d7156050c82c887d8e8132e9020949`;
+  approval digest `c12bf41481b245aade1ea4089d9226dc4a1f9698b96d076d1c219de79ecfe949`.
   Iron Man 815/813, Old Man Logan 98/96, and Planet Hulk 109/104 fixtures all reconstruct exactly.
 * Validation: 34 focused tests passed. With implementation files stashed, the suite exited 1 with
   three failures; restoring the stash returned all 34 tests to passing.
@@ -115,8 +115,10 @@ release.
 * What changed and why: Added the shipped shared occurrence feature, plain-English unchanged-product
   outcome, exact Groot 84/76 provenance, provider-neutral maintenance rules, Iron Man blocker, and
   re-derived backlog and governance counts.
-* Completion evidence: Backlog now has 160 shipped items, 188 detail blocks, 182 constraint checks,
-  and 183 ranked rows; catalog and Character Spotlight counts remain unchanged.
+* Completion evidence: After reconciliation, backlog has 161 shipped items, 189 detail blocks, 183
+  constraint checks, and 184 ranked rows; the Star-Lord release on current main raises the catalog
+  to 97 readings and Character Spotlight to 14 readings / 13 stories / 5 Complete guides without
+  this feature adding a card.
 * Validation: 65 count, governance, link, and shipped-copy tests passed.
 
 ### Completed local and installed-Edge release proof
@@ -124,15 +126,29 @@ release.
 * Related phase or task: P03-T02.
 * Files: final bounded implementation and records.
 * What changed and why: Re-aimed every shifted product citation by head search and diff arithmetic,
-  read all 33 bless pairings, and ran the complete local and browser release boundary.
-* Completion evidence: Lint passed; 1,417 tests passed with zero failures; counts report 183 ranked
-  rows, 5 parked, 188 detail blocks, 160 Shipped, 21 Ready, 6 Dropped, and 1 Proposed; sizes reports
-  6 accurate claims; publication scans 3,399 blobs with zero findings; live metadata contract passes
-  33/33 assumptions across 17 requests; anchors report 1,172 unchanged and zero drifted/new/removed.
-  Browser runner passes 182 assertions across 19 scenarios. Real-catalog Edge checks at 1280x900 and
-  390x844 each show 12 Character Spotlight stories, 4 Complete guide stories, 5 Best of stories,
-  Groot in Complete guides, Iron Man absent, visible filters, and no horizontal overflow.
+  read every printed bless pairing, and ran the complete local and browser release boundary.
+* Completion evidence: Reconciled lint passed; 1,419 tests passed with zero failures; counts report
+  184 ranked rows, 5 parked, 189 detail blocks, 161 Shipped, 21 Ready, 6 Dropped, and 1 Proposed;
+  sizes reports 6 accurate claims; publication scans 3,428 blobs with zero findings; live metadata
+  contract passes 33/33 assumptions across 17 requests; anchors report 1,181 unchanged and zero
+  drifted/new/removed. Browser runner passes 182 assertions across 19 scenarios. Real-catalog Edge
+  checks at 1280x900 and 390x844 each show 13 Character Spotlight stories, 5 Complete guide stories,
+  5 Best of stories, Groot and Star-Lord in Complete guides, Iron Man absent, visible filters, and no
+  horizontal overflow.
 * Validation: Dash scan found zero added en or em dashes; `git diff --check` passed.
+
+### Closed the sole Review finding in the existing test owners
+
+* Related phase or task: P04-T02 and RV-001.
+* Files: `scripts/lib/cbh-inventory.mjs`, `test/cbh-batch.test.js`,
+  `test/cbro-historical-events.test.js`.
+* What changed and why: Completed the locked negative matrix with both half-present field
+  directions, duplicate and out-of-range source positions, out-of-range canonical rows, divergent
+  mapping mirrors, a behavioral CBH authoring rejection, and explicit CBRO approval/authoring
+  preflight wiring.
+* Completion evidence: Focused occurrence, character, and provider suite passes 37/37. The full
+  reconciled suite passes 1,419/1,419; lint and 1,181-anchor zero-delta checks pass.
+* Validation: RV-001 is resolved through implementation as routed. No second Review ran.
 
 ## Implementation-Time Plan and Detail Updates
 
@@ -169,31 +185,62 @@ release.
 * Planning and critique state: Implementation-ready current state; the sole critique remains
   historical and is not repeated.
 
+### Reconciled the shared release with Star-Lord on current main
+
+* Affected plan area or markers: Baseline, current counts, P04-T01, Groot and Star-Lord relationship
+  evidence, backlog identity, direct records, anchors, validation, and handoff.
+* What changed: Merged current main at `ff92fd0875e90b12dcbf41bdaed1cfed84d99a41`;
+  renumbered this backlog item from the conflicting BL-209 to BL-210; refreshed Groot's report to 96
+  comparisons with a 25-issue Star-Lord partial; refreshed Star-Lord's peer digest, report, and
+  approval; re-aimed and read all final anchors; reran every release gate.
+* Why: Star-Lord merged after the implementation baseline and changed catalog counts plus both
+  complete guides' reciprocal freshness evidence.
+* Triggering evidence: Visible fetch and merge conflict reconciliation followed by regenerated
+  factual reports.
+* User answer or decision: None required; the approved plan requires current-main reconciliation
+  before Review.
+* Reconciliation performed: Plan, details, changes record, backlog, changelog, provenance,
+  inventory, mappings, reports, tests, counts, browser evidence, and anchors are current.
+* Planning and critique state: Ready for the one independent Review; no critique rerun.
+
+### Dispositioned the sole Review finding
+
+* Affected plan area or markers: P04-T02, P04-T03, validation, review readiness, and handoff.
+* What changed: Added the missing RV-001 negative cases and public-path wiring proof, then reran
+  focused tests, the full suite, lint, and anchors.
+* Why: The one Review found the implementation correct but the locked acceptance proof incomplete.
+* Triggering evidence: RV-001 in
+  .copilot-tracking/reviews/logs/2026-08-23/repeated-source-occurrences-review.md.
+* User answer or decision: None required.
+* Reconciliation performed: Plan markers, changes evidence, validation, blocker state, and handoff
+  now record RV-001 as resolved.
+* Planning and critique state: Ready for P04-T03; no second Review.
+
 ## Validation Record
 
 | Check | Scope | Status | Evidence or reason |
 |---|---|---|---|
 | Research scratch simulation | 815/813, 98/96, 109/104 and malformed cases | Passed | Corrected run accepted all intended shapes and rejected accidental duplicate, forward target, identity mismatch, and duplicate position. |
 | Current packet identity scan | All frozen CBH and CBRO packets | Passed | Zero canonical identity collisions. |
-| Focused occurrence suite | P01 | Passed | 34 tests passed, 0 failed. |
+| Focused occurrence suite | P01 and RV-001 | Passed | 37 tests passed, 0 failed after the Review fix. |
 | No-fix failure proof | P01 | Passed | Stashed implementation made the focused suite exit 1 with three failures; restored implementation passed. |
 | Iron Man blocker test | P02 | Passed | 8 Character Spotlight tests passed; blocker and artifact absence are exact. |
 | Direct record tests | P03-T01 | Passed | 65 count, governance, link, and shipped-copy tests passed. |
 | Lint | Full tree | Passed | ESLint reported zero findings. |
-| Full tests | Full tree | Passed | 1,417 passed, 0 failed. |
-| Counts, sizes, publication | Full tree | Passed | 183 ranked rows; 6 size claims; 3,399 blobs and 0 publication findings. |
+| Full tests | Full tree | Passed | 1,419 passed, 0 failed after RV-001 resolution. |
+| Counts, sizes, publication | Full tree | Passed | 184 ranked rows; 6 size claims; 3,428 blobs and 0 publication findings. |
 | Live contract | Metadata API | Passed | 33/33 assumptions across 17 requests. |
-| Anchors | All tracked citations | Passed | 1,172 unchanged, 0 drifted, 0 new, 0 removed. |
+| Anchors | All tracked citations | Passed | 1,181 unchanged, 0 drifted, 0 new, 0 removed. |
 | Browser runner | Installed Edge | Passed | 182 assertions across 19 scenarios. |
-| Real catalog viewports | Installed Edge at 1280x900 and 390x844 | Passed | 12 stories, 4 Complete, 5 Best of, Groot present, Iron Man absent, no overflow. |
+| Real catalog viewports | Installed Edge at 1280x900 and 390x844 | Passed | 13 stories, 5 Complete, 5 Best of, Groot and Star-Lord present, Iron Man absent, no overflow. |
 | Dash and diff scans | Added lines and whitespace | Passed | 0 dash findings; diff check clean. |
 
 ## Pre-Review Reconciliation
 
-* Plan markers and phase details: P01 through P03 complete; P04-T01 active.
-* Completed-work evidence and handoff prose: Current through P03.
+* Plan markers and phase details: P01 through P03 plus P04-T01 and P04-T02 complete; P04-T03 active.
+* Completed-work evidence and handoff prose: Current through RV-001 resolution.
 * Validation, blockers, remaining work, and follow-up items: Current at opening.
-* Review readiness: Awaiting current-main reconciliation before the one Review.
+* Review readiness: Sole Review complete; RV-001 resolved; PR-ready without another Review.
 
 ## Blockers
 
@@ -202,7 +249,7 @@ release.
 
 ## Remaining Work
 
-* P04 as listed in Execution Status.
+* P04-T03 as listed in Execution Status.
 
 ## Follow-Up Items
 
@@ -217,15 +264,16 @@ release.
 
 ## Return-to-Caller State
 
-* Implementation execution status: Partial, P01 through P03 complete; P04-T01 active.
-* Declared scope and markers: Full plan; P01 through P03 markers complete.
-* Validation coverage: Research simulation, compatibility scan, 34 focused tests, no-fix proof,
-  blocker and direct-record tests, full 1,417-test suite, lint, counts, sizes, publication, contract,
+* Implementation execution status: Partial, P01 through P03 plus P04-T01 and P04-T02 complete;
+  P04-T03 active.
+* Declared scope and markers: Full plan; all markers except P04 and P04-T03 complete.
+* Validation coverage: Research simulation, compatibility scan, 37 focused tests, no-fix proof,
+  blocker and direct-record tests, full 1,419-test suite, lint, counts, sizes, publication, contract,
   anchors, browser, dash, and diff checks passed.
 * Blockers: None for the shared release; Iron Man is a follow-up blocker.
 * Current plan and detail updates: Sole critique corrections are complete and implementation state
   is active.
 * Planning and critique state: Implementation-ready after one critique.
 * Follow-up items: Iron Man, Old Man Logan, and Planet Hulk product work remain outside active scope.
-* Review readiness or no-handoff reason: Reconcile current main before the one Review.
+* Review readiness or no-handoff reason: Sole Review complete and RV-001 resolved; PR-ready.
 * Continuation owner: This automatic RPI implementation session.

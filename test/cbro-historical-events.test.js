@@ -48,7 +48,7 @@ const dataDir = path.join(root, 'src', 'data');
 const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
-const laterOrderIds = ['groot-reading-order'];
+const laterOrderIds = ['groot-reading-order', 'star-lord-reading-order'];
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
@@ -323,6 +323,27 @@ test('CBRO shares repeated-source counts, provenance, and approval derivation', 
     () => assertApprovedRelationshipReview(wrongApprovedCount),
     /approvedSourceCount differs from its frozen source occurrence count/i,
   );
+
+  const divergentMirror = cbroEvidence({ withRepeat: true });
+  divergentMirror.mapping.repeatedSourceReferences[0].sourceRangeReference = 'Different source block';
+  refreshCbroEvidenceDigests(divergentMirror);
+  assert.throws(
+    () => assertApprovedRelationshipReview(divergentMirror),
+    /mapping repeated source evidence differs from its frozen packet/i,
+  );
+});
+
+test('CBRO approval and authoring keep the shared occurrence preflight wired', async () => {
+  const source = await readFile(path.join(root, 'scripts', 'author-cbro-packet.mjs'), 'utf8');
+  const approval = source.slice(
+    source.indexOf('export async function approveCbroMappings'),
+    source.indexOf('export async function authorCbroPacket'),
+  );
+  const authoring = source.slice(source.indexOf('export async function authorCbroPacket'));
+  for (const entryPoint of [approval, authoring]) {
+    assert.match(entryPoint, /assertApprovedRelationshipReview\(\{/);
+    assert.match(entryPoint, /packetValidation:\s*\{\s*provider:\s*CBRO_SOURCE_PROVIDER\s*\}/);
+  }
 });
 
 test('CBRO provider identity binds the exact host and source origin', () => {

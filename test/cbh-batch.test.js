@@ -344,6 +344,11 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   halfPresent.packetDigest = packetDigestFor(halfPresent);
   assert.throws(() => validateFrozenPacket(halfPresent), /must appear together/i);
 
+  const inverseHalfPresent = structuredClone(evidence.packet);
+  delete inverseHalfPresent.sourceOccurrenceCount;
+  inverseHalfPresent.packetDigest = packetDigestFor(inverseHalfPresent);
+  assert.throws(() => validateFrozenPacket(inverseHalfPresent), /must appear together/i);
+
   const empty = structuredClone(evidence.packet);
   empty.repeatedSourceReferences = [];
   empty.sourceOccurrenceCount = 2;
@@ -359,6 +364,25 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   forward.repeatedSourceReferences[0].canonicalRow = 2;
   forward.packetDigest = packetDigestFor(forward);
   assert.throws(() => validateFrozenPacket(forward), /must target an earlier canonical row/i);
+
+  const duplicatePosition = structuredClone(evidence.packet);
+  duplicatePosition.sourceOccurrenceCount = 4;
+  duplicatePosition.repeatedSourceReferences.push({
+    ...structuredClone(duplicatePosition.repeatedSourceReferences[0]),
+    canonicalRow: 1,
+  });
+  duplicatePosition.packetDigest = packetDigestFor(duplicatePosition);
+  assert.throws(() => validateFrozenPacket(duplicatePosition), /duplicate repeated source position/i);
+
+  const outOfRangePosition = structuredClone(evidence.packet);
+  outOfRangePosition.repeatedSourceReferences[0].sourcePosition = 4;
+  outOfRangePosition.packetDigest = packetDigestFor(outOfRangePosition);
+  assert.throws(() => validateFrozenPacket(outOfRangePosition), /outside the source occurrence count/i);
+
+  const outOfRangeCanonicalRow = structuredClone(evidence.packet);
+  outOfRangeCanonicalRow.repeatedSourceReferences[0].canonicalRow = 3;
+  outOfRangeCanonicalRow.packetDigest = packetDigestFor(outOfRangeCanonicalRow);
+  assert.throws(() => validateFrozenPacket(outOfRangeCanonicalRow), /must name a canonical packet row/i);
 
   const identityMismatch = structuredClone(evidence.packet);
   identityMismatch.repeatedSourceReferences[0].issueNumber = '2';
@@ -408,6 +432,14 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   assert.throws(
     () => assertApprovedRelationshipReview(wrongApprovedCount),
     /approvedSourceCount differs from its frozen source occurrence count/i,
+  );
+
+  const divergentMirror = genericEvidence({ withRepeat: true });
+  divergentMirror.mapping.repeatedSourceReferences[0].sourceRangeReference = 'Different source block';
+  refreshEvidenceDigests(divergentMirror);
+  assert.throws(
+    () => assertApprovedRelationshipReview(divergentMirror),
+    /mapping repeated source evidence differs from its frozen packet/i,
   );
 });
 
@@ -665,7 +697,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
       mkdir(ordersDir),
       mkdir(payloadDir),
     ]);
-    const evidence = genericEvidence({ withPeer: true });
+    const evidence = genericEvidence({ withPeer: true, withRepeat: true });
     const peerMapping = evidence.peerMappings[0];
     const manifestEntry = (id, out, sourcePage) => ({
       id,
@@ -780,6 +812,46 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
     await writeFile(
       path.join(payloadDir, 'future_event.json'),
       JSON.stringify({ items: [{ issueId: 9001 }, { issueId: 9002 }] }),
+      'utf8',
+    );
+
+    const wrongPosition = {
+      ...evidence,
+      mapping: structuredClone(evidence.mapping),
+      report: structuredClone(evidence.report),
+    };
+    wrongPosition.mapping.rows[1].sourcePosition = 2;
+    refreshEvidenceDigests(wrongPosition);
+    await writeFile(
+      path.join(mappingsDir, 'future-event.json'),
+      JSON.stringify(wrongPosition.mapping),
+      'utf8',
+    );
+    await writeFile(
+      path.join(overlapsDir, 'future-event.json'),
+      JSON.stringify(wrongPosition.report),
+      'utf8',
+    );
+    await assert.rejects(
+      () => authorPacket(['future-event'], {
+        mappingsDir,
+        overlapsDir,
+        packetsDir,
+        ordersDir,
+        manifestFile,
+        payloadDir,
+        peerIds: ['peer-event'],
+      }),
+      /mapping row 2 sourcePosition differs from its frozen packet/i,
+    );
+    await writeFile(
+      path.join(mappingsDir, 'future-event.json'),
+      JSON.stringify(evidence.mapping),
+      'utf8',
+    );
+    await writeFile(
+      path.join(overlapsDir, 'future-event.json'),
+      JSON.stringify(evidence.report),
       'utf8',
     );
 

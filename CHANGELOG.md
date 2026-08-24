@@ -20,14 +20,27 @@ In plain English: Reading Lists still show each comic once, even when the guide 
 that comic in more than one collected range. Nothing in your saved progress or any existing reading
 sequence changes.
 
-For maintainers: frozen source evidence can now record every later occurrence with its exact source
-position and first-occurrence row. Freshness checks bind those references, both source providers use
-the same validation, and approval independently re-derives positions and source counts. Groot now
-records 84 source occurrences while retaining its existing 76-issue sequence.
+For maintainers: frozen source evidence records every later occurrence with its exact source position
+and first-occurrence row. Both providers share validation and approval re-derives positions and counts.
+Groot now records 84 occurrences while retaining 76 issues; its refreshed 96-comparison report adds
+the factual 25-issue partial relationship with Star-Lord.
 
 Iron Man remains deferred. Its repeated references are representable, but nine source-required
 issues are absent from the configured metadata contract, so no shortened guide or replacement issue
 was published.
+
+### Added the complete Star-Lord character guide
+
+In plain English: the Character spotlights shelf now includes a complete Star-Lord guide. It follows
+all 99 source-defined issues from Marvel Preview #4 through Old Man Quill #12, including every issue
+it shares with the separate Rocket Raccoon and Groot guides. The catalog now has 97 reading lists.
+Nothing you have saved is changed.
+
+For maintainers: this is the separately prioritized rank 15 release. A fresh 96-comparison report
+records no exact or subset duplicate and four approved partial relationships: 25 issues each with
+Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and Infinity Wars. All
+99 rows resolve exactly in source order and are bound to fresh source, packet, mapping, library, both
+peers, report, approval, and authoring evidence.
 
 ### Added browsing by Marvel publishing age
 

@@ -1,0 +1,4633 @@
+{
+  "id": "star-lord-reading-order",
+  "inventoryId": "star-lord-reading-order-complete-peter-quill-comics-timeline",
+  "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
+  "sourceUrl": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 99,
+  "excludedSourceReferences": [
+    "Annihilation reading-order cross-link without an explicit issue-bearing range",
+    "Star-Lord: Annihilation - Conquest product link without an explicit issue-bearing range",
+    "Wastelanders: Star-Lord product link without an explicit issue-bearing range",
+    "Collection links, covers, affiliate links, advertisements, commentary, and related-guide links"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "star-lord-reading-order",
+    "name": "Star-Lord",
+    "description": "Peter Quill from his earliest cosmic adventures through the Guardians, solo series, and Old Man Quill.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "star-lord-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "star_lord_reading_order.json",
+    "characters": [
+      "Star-Lord",
+      "Guardians of the Galaxy",
+      "Kitty Pryde",
+      "Captain Marvel"
+    ],
+    "keywords": [
+      "Star-Lord",
+      "Peter Quill",
+      "Guardians of the Galaxy",
+      "Old Man Quill",
+      "Comic Book Herald"
+    ],
+    "expect": 99,
+    "timeline": null,
+    "coverIssueId": 19776
+  },
+  "candidateMetadata": [
+    {
+      "id": 19776,
+      "title": "Marvel Preview",
+      "issueTitle": "Marvel Preview (1975) #4",
+      "seriesTitle": "Marvel Preview",
+      "apiSeriesName": "Marvel Preview (1975 - 1981)",
+      "seriesId": 3718,
+      "issueNumber": "4",
+      "seriesYear": 1975,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19776/marvel_preview_1975_4",
+      "onSaleDate": "1976-01-10T00:00:00+0000"
+    },
+    {
+      "id": 19760,
+      "title": "Marvel Preview",
+      "issueTitle": "Marvel Preview (1975) #11",
+      "seriesTitle": "Marvel Preview",
+      "apiSeriesName": "Marvel Preview (1975 - 1981)",
+      "seriesId": 3718,
+      "issueNumber": "11",
+      "seriesYear": 1975,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19760/marvel_preview_1975_11",
+      "onSaleDate": "1977-06-01T00:00:00+0000"
+    },
+    {
+      "id": 19763,
+      "title": "Marvel Preview",
+      "issueTitle": "Marvel Preview (1975) #14",
+      "seriesTitle": "Marvel Preview",
+      "apiSeriesName": "Marvel Preview (1975 - 1981)",
+      "seriesId": 3718,
+      "issueNumber": "14",
+      "seriesYear": 1975,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19763/marvel_preview_1975_14",
+      "onSaleDate": "1978-04-10T00:00:00+0000"
+    },
+    {
+      "id": 19764,
+      "title": "Marvel Preview",
+      "issueTitle": "Marvel Preview (1975) #15",
+      "seriesTitle": "Marvel Preview",
+      "apiSeriesName": "Marvel Preview (1975 - 1981)",
+      "seriesId": 3718,
+      "issueNumber": "15",
+      "seriesYear": 1975,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19764/marvel_preview_1975_15",
+      "onSaleDate": "1978-07-10T00:00:00+0000"
+    },
+    {
+      "id": 19767,
+      "title": "Marvel Preview",
+      "issueTitle": "Marvel Preview (1975) #18",
+      "seriesTitle": "Marvel Preview",
+      "apiSeriesName": "Marvel Preview (1975 - 1981)",
+      "seriesId": 3718,
+      "issueNumber": "18",
+      "seriesYear": 1975,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19767/marvel_preview_1975_18",
+      "onSaleDate": "1979-04-10T00:00:00+0000"
+    },
+    {
+      "id": 50896,
+      "title": "Marvel Comics Super Special",
+      "issueTitle": "Marvel Comics Super Special (1977) #10",
+      "seriesTitle": "Marvel Comics Super Special",
+      "apiSeriesName": "Marvel Comics Super Special (1977 - 1986)",
+      "seriesId": 19047,
+      "issueNumber": "10",
+      "seriesYear": 1977,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50896/marvel_comics_super_special_1977_10",
+      "onSaleDate": "1979-02-01T00:00:00+0000"
+    },
+    {
+      "id": 10263,
+      "title": "Marvel Spotlight",
+      "issueTitle": "Marvel Spotlight (1979) #6",
+      "seriesTitle": "Marvel Spotlight",
+      "apiSeriesName": "Marvel Spotlight (1979)",
+      "seriesId": 2046,
+      "issueNumber": "6",
+      "seriesYear": 1979,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10263/marvel_spotlight_1979_6",
+      "onSaleDate": "1980-05-01T00:00:00+0000"
+    },
+    {
+      "id": 82621,
+      "title": "Marvel Spotlight",
+      "issueTitle": "Marvel Spotlight (1979) #7",
+      "seriesTitle": "Marvel Spotlight",
+      "apiSeriesName": "Marvel Spotlight (1979)",
+      "seriesId": 2046,
+      "issueNumber": "7",
+      "seriesYear": 1979,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/82621/marvel_spotlight_1979_7",
+      "onSaleDate": "1980-07-01T00:00:00+0000"
+    },
+    {
+      "id": 10252,
+      "title": "Marvel Premiere",
+      "issueTitle": "Marvel Premiere (1972) #61",
+      "seriesTitle": "Marvel Premiere",
+      "apiSeriesName": "Marvel Premiere (1972 - 1981)",
+      "seriesId": 2045,
+      "issueNumber": "61",
+      "seriesYear": 1972,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/10252/marvel_premiere_1972_61",
+      "onSaleDate": "1981-08-10T00:00:00+0000"
+    },
+    {
+      "id": 50897,
+      "title": "Starlord",
+      "issueTitle": "Starlord (1996) #1",
+      "seriesTitle": "Starlord",
+      "apiSeriesName": "Starlord (1996 - 1997)",
+      "seriesId": 19048,
+      "issueNumber": "1",
+      "seriesYear": 1996,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50897/starlord_1996_1",
+      "onSaleDate": "1996-12-01T00:00:00+0000"
+    },
+    {
+      "id": 50898,
+      "title": "Starlord",
+      "issueTitle": "Starlord (1996) #2",
+      "seriesTitle": "Starlord",
+      "apiSeriesName": "Starlord (1996 - 1997)",
+      "seriesId": 19048,
+      "issueNumber": "2",
+      "seriesYear": 1996,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50898/starlord_1996_2",
+      "onSaleDate": "1997-01-01T00:00:00+0000"
+    },
+    {
+      "id": 50899,
+      "title": "Starlord",
+      "issueTitle": "Starlord (1996) #3",
+      "seriesTitle": "Starlord",
+      "apiSeriesName": "Starlord (1996 - 1997)",
+      "seriesId": 19048,
+      "issueNumber": "3",
+      "seriesYear": 1996,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50899/starlord_1996_3",
+      "onSaleDate": "1997-02-01T00:00:00+0000"
+    },
+    {
+      "id": 21268,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #1",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21268/guardians_of_the_galaxy_2008_1",
+      "onSaleDate": "2008-05-14T00:00:00+0000"
+    },
+    {
+      "id": 21412,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #2",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "2",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21412/guardians_of_the_galaxy_2008_2",
+      "onSaleDate": "2008-06-18T00:00:00+0000"
+    },
+    {
+      "id": 21586,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #3",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "3",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21586/guardians_of_the_galaxy_2008_3",
+      "onSaleDate": "2008-07-09T00:00:00+0000"
+    },
+    {
+      "id": 21783,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #4",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "4",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21783/guardians_of_the_galaxy_2008_4",
+      "onSaleDate": "2008-08-20T00:00:00+0000"
+    },
+    {
+      "id": 22025,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #5",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "5",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22025/guardians_of_the_galaxy_2008_5",
+      "onSaleDate": "2008-09-17T00:00:00+0000"
+    },
+    {
+      "id": 22352,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #6",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "6",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22352/guardians_of_the_galaxy_2008_6",
+      "onSaleDate": "2008-10-15T00:00:00+0000"
+    },
+    {
+      "id": 22544,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #7",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "7",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22544/guardians_of_the_galaxy_2008_7",
+      "onSaleDate": "2008-11-26T00:00:00+0000"
+    },
+    {
+      "id": 22957,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #8",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "8",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22957/guardians_of_the_galaxy_2008_8",
+      "onSaleDate": "2008-12-31T00:00:00+0000"
+    },
+    {
+      "id": 23148,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #9",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "9",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23148/guardians_of_the_galaxy_2008_9",
+      "onSaleDate": "2009-01-21T00:00:00+0000"
+    },
+    {
+      "id": 23636,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #10",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "10",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23636/guardians_of_the_galaxy_2008_10",
+      "onSaleDate": "2009-02-18T00:00:00+0000"
+    },
+    {
+      "id": 23792,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #11",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "11",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23792/guardians_of_the_galaxy_2008_11",
+      "onSaleDate": "2009-03-11T00:00:00+0000"
+    },
+    {
+      "id": 23793,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #12",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "12",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23793/guardians_of_the_galaxy_2008_12",
+      "onSaleDate": "2009-03-25T00:00:00+0000"
+    },
+    {
+      "id": 23986,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #13",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "13",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23986/guardians_of_the_galaxy_2008_13",
+      "onSaleDate": "2009-04-22T00:00:00+0000"
+    },
+    {
+      "id": 24188,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #14",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "14",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24188/guardians_of_the_galaxy_2008_14",
+      "onSaleDate": "2009-05-28T00:00:00+0000"
+    },
+    {
+      "id": 25303,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #15",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "15",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25303/guardians_of_the_galaxy_2008_15",
+      "onSaleDate": "2009-06-24T00:00:00+0000"
+    },
+    {
+      "id": 25304,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #16",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "16",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25304/guardians_of_the_galaxy_2008_16",
+      "onSaleDate": "2009-07-22T00:00:00+0000"
+    },
+    {
+      "id": 25305,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #17",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "17",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25305/guardians_of_the_galaxy_2008_17",
+      "onSaleDate": "2009-08-26T00:00:00+0000"
+    },
+    {
+      "id": 25306,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #18",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "18",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25306/guardians_of_the_galaxy_2008_18",
+      "onSaleDate": "2009-09-23T00:00:00+0000"
+    },
+    {
+      "id": 25307,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #19",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "19",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25307/guardians_of_the_galaxy_2008_19",
+      "onSaleDate": "2009-10-28T00:00:00+0000"
+    },
+    {
+      "id": 25308,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #20",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "20",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25308/guardians_of_the_galaxy_2008_20",
+      "onSaleDate": "2009-11-25T00:00:00+0000"
+    },
+    {
+      "id": 25309,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #21",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "21",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25309/guardians_of_the_galaxy_2008_21",
+      "onSaleDate": "2009-12-23T00:00:00+0000"
+    },
+    {
+      "id": 29022,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #22",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "22",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/29022/guardians_of_the_galaxy_2008_22",
+      "onSaleDate": "2010-01-27T00:00:00+0000"
+    },
+    {
+      "id": 29009,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #23",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "23",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/29009/guardians_of_the_galaxy_2008_23",
+      "onSaleDate": "2010-02-17T00:00:00+0000"
+    },
+    {
+      "id": 29010,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #24",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "24",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/29010/guardians_of_the_galaxy_2008_24",
+      "onSaleDate": "2010-03-17T00:00:00+0000"
+    },
+    {
+      "id": 32551,
+      "title": "Guardians of the Galaxy",
+      "issueTitle": "Guardians of the Galaxy (2008) #25",
+      "seriesTitle": "Guardians of the Galaxy",
+      "apiSeriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "seriesId": 4885,
+      "issueNumber": "25",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/32551/guardians_of_the_galaxy_2008_25",
+      "onSaleDate": "2010-04-21T00:00:00+0000"
+    },
+    {
+      "id": 50887,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #1",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "1",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50887/legendary_star-lord_2014_1",
+      "onSaleDate": "2014-07-02T00:00:00+0000"
+    },
+    {
+      "id": 50929,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #2",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "2",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50929/legendary_star-lord_2014_2",
+      "onSaleDate": "2014-08-06T00:00:00+0000"
+    },
+    {
+      "id": 50952,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #3",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "3",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50952/legendary_star-lord_2014_3",
+      "onSaleDate": "2014-09-03T00:00:00+0000"
+    },
+    {
+      "id": 50966,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #4",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "4",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/50966/legendary_star-lord_2014_4",
+      "onSaleDate": "2014-10-01T00:00:00+0000"
+    },
+    {
+      "id": 51052,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #5",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "5",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51052/legendary_star-lord_2014_5",
+      "onSaleDate": "2014-11-05T00:00:00+0000"
+    },
+    {
+      "id": 51141,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #6",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "6",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/51141/legendary_star-lord_2014_6",
+      "onSaleDate": "2014-12-03T00:00:00+0000"
+    },
+    {
+      "id": 53276,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #7",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "7",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/53276/legendary_star-lord_2014_7",
+      "onSaleDate": "2015-01-07T00:00:00+0000"
+    },
+    {
+      "id": 52028,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #8",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "8",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52028/legendary_star-lord_2014_8",
+      "onSaleDate": "2015-01-21T00:00:00+0000"
+    },
+    {
+      "id": 52029,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #9",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "9",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52029/legendary_star-lord_2014_9",
+      "onSaleDate": "2015-02-18T00:00:00+0000"
+    },
+    {
+      "id": 52032,
+      "title": "Legendary Star-Lord",
+      "issueTitle": "Legendary Star-Lord (2014) #10",
+      "seriesTitle": "Legendary Star-Lord",
+      "apiSeriesName": "Legendary Star-Lord (2014 - 2015)",
+      "seriesId": 19044,
+      "issueNumber": "10",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52032/legendary_star-lord_2014_10",
+      "onSaleDate": "2015-03-25T00:00:00+0000"
+    },
+    {
+      "id": 53710,
+      "title": "Star-Lord and Kitty Pryde",
+      "issueTitle": "Star-Lord and Kitty Pryde (2015) #1",
+      "seriesTitle": "Star-Lord and Kitty Pryde",
+      "apiSeriesName": "Star-Lord and Kitty Pryde (2015)",
+      "seriesId": 20093,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/53710/star-lord_and_kitty_pryde_2015_1",
+      "onSaleDate": "2015-07-22T00:00:00+0000"
+    },
+    {
+      "id": 53712,
+      "title": "Star-Lord and Kitty Pryde",
+      "issueTitle": "Star-Lord and Kitty Pryde (2015) #2",
+      "seriesTitle": "Star-Lord and Kitty Pryde",
+      "apiSeriesName": "Star-Lord and Kitty Pryde (2015)",
+      "seriesId": 20093,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/53712/star-lord_and_kitty_pryde_2015_2",
+      "onSaleDate": "2015-08-12T00:00:00+0000"
+    },
+    {
+      "id": 53713,
+      "title": "Star-Lord and Kitty Pryde",
+      "issueTitle": "Star-Lord and Kitty Pryde (2015) #3",
+      "seriesTitle": "Star-Lord and Kitty Pryde",
+      "apiSeriesName": "Star-Lord and Kitty Pryde (2015)",
+      "seriesId": 20093,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/53713/star-lord_and_kitty_pryde_2015_3",
+      "onSaleDate": "2015-09-02T00:00:00+0000"
+    },
+    {
+      "id": 56180,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #1",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56180/star-lord_2015_1",
+      "onSaleDate": "2015-11-18T00:00:00+0000"
+    },
+    {
+      "id": 56181,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #2",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56181/star-lord_2015_2",
+      "onSaleDate": "2015-12-23T00:00:00+0000"
+    },
+    {
+      "id": 56182,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #3",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56182/star-lord_2015_3",
+      "onSaleDate": "2016-01-20T00:00:00+0000"
+    },
+    {
+      "id": 56183,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #4",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "4",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56183/star-lord_2015_4",
+      "onSaleDate": "2016-02-17T00:00:00+0000"
+    },
+    {
+      "id": 56184,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #5",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "5",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56184/star-lord_2015_5",
+      "onSaleDate": "2016-03-16T00:00:00+0000"
+    },
+    {
+      "id": 56185,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #6",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "6",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56185/star-lord_2015_6",
+      "onSaleDate": "2016-04-27T00:00:00+0000"
+    },
+    {
+      "id": 56186,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #7",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56186/star-lord_2015_7",
+      "onSaleDate": "2016-05-18T00:00:00+0000"
+    },
+    {
+      "id": 56187,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2015) #8",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2015 - 2016)",
+      "seriesId": 20619,
+      "issueNumber": "8",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56187/star-lord_2015_8",
+      "onSaleDate": "2016-06-29T00:00:00+0000"
+    },
+    {
+      "id": 61681,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2016) #1",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2016 - 2017)",
+      "seriesId": 22652,
+      "issueNumber": "1",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61681/star-lord_2016_1",
+      "onSaleDate": "2016-12-21T00:00:00+0000"
+    },
+    {
+      "id": 61682,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2016) #2",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2016 - 2017)",
+      "seriesId": 22652,
+      "issueNumber": "2",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61682/star-lord_2016_2",
+      "onSaleDate": "2017-01-18T00:00:00+0000"
+    },
+    {
+      "id": 61683,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2016) #3",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2016 - 2017)",
+      "seriesId": 22652,
+      "issueNumber": "3",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61683/star-lord_2016_3",
+      "onSaleDate": "2017-02-15T00:00:00+0000"
+    },
+    {
+      "id": 61684,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2016) #4",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2016 - 2017)",
+      "seriesId": 22652,
+      "issueNumber": "4",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61684/star-lord_2016_4",
+      "onSaleDate": "2017-03-15T00:00:00+0000"
+    },
+    {
+      "id": 61685,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2016) #5",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2016 - 2017)",
+      "seriesId": 22652,
+      "issueNumber": "5",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61685/star-lord_2016_5",
+      "onSaleDate": "2017-03-29T00:00:00+0000"
+    },
+    {
+      "id": 61686,
+      "title": "Star-Lord",
+      "issueTitle": "Star-Lord (2016) #6",
+      "seriesTitle": "Star-Lord",
+      "apiSeriesName": "Star-Lord (2016 - 2017)",
+      "seriesId": 22652,
+      "issueNumber": "6",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61686/star-lord_2016_6",
+      "onSaleDate": "2017-04-19T00:00:00+0000"
+    },
+    {
+      "id": 62818,
+      "title": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "issueTitle": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "seriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "apiSeriesName": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "seriesId": 23038,
+      "issueNumber": "0",
+      "seriesYear": 2017,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "onSaleDate": "2017-05-05T00:00:00+0000"
+    },
+    {
+      "id": 61513,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #1",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61513/all-new_guardians_of_the_galaxy_2017_1",
+      "onSaleDate": "2017-05-03T00:00:00+0000"
+    },
+    {
+      "id": 61514,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #2",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "2",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61514/all-new_guardians_of_the_galaxy_2017_2",
+      "onSaleDate": "2017-05-24T00:00:00+0000"
+    },
+    {
+      "id": 61516,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #4",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "4",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61516/all-new_guardians_of_the_galaxy_2017_4",
+      "onSaleDate": "2017-06-21T00:00:00+0000"
+    },
+    {
+      "id": 61518,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #6",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "6",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61518/all-new_guardians_of_the_galaxy_2017_6",
+      "onSaleDate": "2017-07-19T00:00:00+0000"
+    },
+    {
+      "id": 61520,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #8",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "8",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61520/all-new_guardians_of_the_galaxy_2017_8",
+      "onSaleDate": "2017-08-16T00:00:00+0000"
+    },
+    {
+      "id": 61522,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #10",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "10",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61522/all-new_guardians_of_the_galaxy_2017_10",
+      "onSaleDate": "2017-09-20T00:00:00+0000"
+    },
+    {
+      "id": 61515,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #3",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "3",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61515/all-new_guardians_of_the_galaxy_2017_3",
+      "onSaleDate": "2017-06-07T00:00:00+0000"
+    },
+    {
+      "id": 61517,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #5",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "5",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61517/all-new_guardians_of_the_galaxy_2017_5",
+      "onSaleDate": "2017-07-05T00:00:00+0000"
+    },
+    {
+      "id": 61519,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #7",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "7",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61519/all-new_guardians_of_the_galaxy_2017_7",
+      "onSaleDate": "2017-08-02T00:00:00+0000"
+    },
+    {
+      "id": 61521,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #9",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "9",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61521/all-new_guardians_of_the_galaxy_2017_9",
+      "onSaleDate": "2017-09-06T00:00:00+0000"
+    },
+    {
+      "id": 61523,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #11",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "11",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61523/all-new_guardians_of_the_galaxy_2017_11",
+      "onSaleDate": "2017-10-04T00:00:00+0000"
+    },
+    {
+      "id": 61524,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #12",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "12",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61524/all-new_guardians_of_the_galaxy_2017_12",
+      "onSaleDate": "2017-10-18T00:00:00+0000"
+    },
+    {
+      "id": 65074,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #146",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "146",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65074/all-new_guardians_of_the_galaxy_2017_146",
+      "onSaleDate": "2017-11-01T00:00:00+0000"
+    },
+    {
+      "id": 65075,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #147",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "147",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65075/all-new_guardians_of_the_galaxy_2017_147",
+      "onSaleDate": "2017-11-15T00:00:00+0000"
+    },
+    {
+      "id": 65282,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #148",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "148",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65282/all-new_guardians_of_the_galaxy_2017_148",
+      "onSaleDate": "2017-12-06T00:00:00+0000"
+    },
+    {
+      "id": 65283,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #149",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "149",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65283/all-new_guardians_of_the_galaxy_2017_149",
+      "onSaleDate": "2017-12-20T00:00:00+0000"
+    },
+    {
+      "id": 65547,
+      "title": "All-New Guardians of the Galaxy",
+      "issueTitle": "All-New Guardians of the Galaxy (2017) #150",
+      "seriesTitle": "All-New Guardians of the Galaxy",
+      "apiSeriesName": "All-New Guardians of the Galaxy (2017)",
+      "seriesId": 23058,
+      "issueNumber": "150",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65547/all-new_guardians_of_the_galaxy_2017_150",
+      "onSaleDate": "2018-01-03T00:00:00+0000"
+    },
+    {
+      "id": 64961,
+      "title": "The Mighty Captain Marvel",
+      "issueTitle": "The Mighty Captain Marvel (2017) #125",
+      "seriesTitle": "The Mighty Captain Marvel",
+      "apiSeriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "seriesId": 22551,
+      "issueNumber": "125",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64961/the_mighty_captain_marvel_2017_125",
+      "onSaleDate": "2017-10-25T00:00:00+0000"
+    },
+    {
+      "id": 65062,
+      "title": "The Mighty Captain Marvel",
+      "issueTitle": "The Mighty Captain Marvel (2017) #126",
+      "seriesTitle": "The Mighty Captain Marvel",
+      "apiSeriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "seriesId": 22551,
+      "issueNumber": "126",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65062/the_mighty_captain_marvel_2017_126",
+      "onSaleDate": "2017-11-22T00:00:00+0000"
+    },
+    {
+      "id": 65271,
+      "title": "The Mighty Captain Marvel",
+      "issueTitle": "The Mighty Captain Marvel (2017) #127",
+      "seriesTitle": "The Mighty Captain Marvel",
+      "apiSeriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "seriesId": 22551,
+      "issueNumber": "127",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65271/the_mighty_captain_marvel_2017_127",
+      "onSaleDate": "2017-12-27T00:00:00+0000"
+    },
+    {
+      "id": 65902,
+      "title": "The Mighty Captain Marvel",
+      "issueTitle": "The Mighty Captain Marvel (2017) #128",
+      "seriesTitle": "The Mighty Captain Marvel",
+      "apiSeriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "seriesId": 22551,
+      "issueNumber": "128",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65902/the_mighty_captain_marvel_2017_128",
+      "onSaleDate": "2018-01-31T00:00:00+0000"
+    },
+    {
+      "id": 66271,
+      "title": "The Mighty Captain Marvel",
+      "issueTitle": "The Mighty Captain Marvel (2017) #129",
+      "seriesTitle": "The Mighty Captain Marvel",
+      "apiSeriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "seriesId": 22551,
+      "issueNumber": "129",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66271/the_mighty_captain_marvel_2017_129",
+      "onSaleDate": "2018-02-28T00:00:00+0000"
+    },
+    {
+      "id": 73829,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #1",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73829/old_man_quill_2019_1",
+      "onSaleDate": "2019-02-06T00:00:00+0000"
+    },
+    {
+      "id": 73830,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #2",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73830/old_man_quill_2019_2",
+      "onSaleDate": "2019-02-20T00:00:00+0000"
+    },
+    {
+      "id": 73831,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #3",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73831/old_man_quill_2019_3",
+      "onSaleDate": "2019-03-13T00:00:00+0000"
+    },
+    {
+      "id": 73832,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #4",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73832/old_man_quill_2019_4",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 73833,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #5",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73833/old_man_quill_2019_5",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 73834,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #6",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73834/old_man_quill_2019_6",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 73835,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #7",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "7",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73835/old_man_quill_2019_7",
+      "onSaleDate": "2019-07-03T00:00:00+0000"
+    },
+    {
+      "id": 73836,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #8",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "8",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73836/old_man_quill_2019_8",
+      "onSaleDate": "2019-08-07T00:00:00+0000"
+    },
+    {
+      "id": 73837,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #9",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "9",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73837/old_man_quill_2019_9",
+      "onSaleDate": "2019-09-04T00:00:00+0000"
+    },
+    {
+      "id": 73838,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #10",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "10",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73838/old_man_quill_2019_10",
+      "onSaleDate": "2019-10-02T00:00:00+0000"
+    },
+    {
+      "id": 73839,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #11",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "11",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73839/old_man_quill_2019_11",
+      "onSaleDate": "2019-11-06T00:00:00+0000"
+    },
+    {
+      "id": 73840,
+      "title": "Old Man Quill",
+      "issueTitle": "Old Man Quill (2019) #12",
+      "seriesTitle": "Old Man Quill",
+      "apiSeriesName": "Old Man Quill (2019)",
+      "seriesId": 26593,
+      "issueNumber": "12",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73840/old_man_quill_2019_12",
+      "onSaleDate": "2019-12-04T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Marvel Preview #4",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Preview",
+      "seriesYear": 1975,
+      "issueNumber": "4",
+      "seriesId": 3718,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19776"
+      ],
+      "selectedIssueId": 19776,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19776/marvel_preview_1975_4",
+      "resolvedIssueTitle": "Marvel Preview (1975) #4",
+      "note": "Marvel series 3718 (Marvel Preview (1975 - 1981)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        19776
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Marvel Preview #11",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Preview",
+      "seriesYear": 1975,
+      "issueNumber": "11",
+      "seriesId": 3718,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19760"
+      ],
+      "selectedIssueId": 19760,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19760/marvel_preview_1975_11",
+      "resolvedIssueTitle": "Marvel Preview (1975) #11",
+      "note": "Marvel series 3718 (Marvel Preview (1975 - 1981)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        19760
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Marvel Preview #14",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Preview",
+      "seriesYear": 1975,
+      "issueNumber": "14",
+      "seriesId": 3718,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19763"
+      ],
+      "selectedIssueId": 19763,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19763/marvel_preview_1975_14",
+      "resolvedIssueTitle": "Marvel Preview (1975) #14",
+      "note": "Marvel series 3718 (Marvel Preview (1975 - 1981)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        19763
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Marvel Preview #15",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Preview",
+      "seriesYear": 1975,
+      "issueNumber": "15",
+      "seriesId": 3718,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19764"
+      ],
+      "selectedIssueId": 19764,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19764/marvel_preview_1975_15",
+      "resolvedIssueTitle": "Marvel Preview (1975) #15",
+      "note": "Marvel series 3718 (Marvel Preview (1975 - 1981)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        19764
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Marvel Preview #18",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Preview",
+      "seriesYear": 1975,
+      "issueNumber": "18",
+      "seriesId": 3718,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19767"
+      ],
+      "selectedIssueId": 19767,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19767/marvel_preview_1975_18",
+      "resolvedIssueTitle": "Marvel Preview (1975) #18",
+      "note": "Marvel series 3718 (Marvel Preview (1975 - 1981)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        19767
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Marvel Super Special #10",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Comics Super Special",
+      "seriesYear": 1977,
+      "issueNumber": "10",
+      "seriesId": 19047,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50896"
+      ],
+      "selectedIssueId": 50896,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50896/marvel_comics_super_special_1977_10",
+      "resolvedIssueTitle": "Marvel Comics Super Special (1977) #10",
+      "note": "Marvel series 19047 (Marvel Comics Super Special (1977 - 1986)) is the reviewed metadata series for this source reference. The source shortens the title; Marvel names the exact selected series Marvel Comics Super Special.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50896
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Marvel Spotlight (1979) #6",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Spotlight",
+      "seriesYear": 1979,
+      "issueNumber": "6",
+      "seriesId": 2046,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10263"
+      ],
+      "selectedIssueId": 10263,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10263/marvel_spotlight_1979_6",
+      "resolvedIssueTitle": "Marvel Spotlight (1979) #6",
+      "note": "Marvel series 2046 (Marvel Spotlight (1979)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10263
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Marvel Spotlight (1979) #7",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Spotlight",
+      "seriesYear": 1979,
+      "issueNumber": "7",
+      "seriesId": 2046,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "82621"
+      ],
+      "selectedIssueId": 82621,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82621/marvel_spotlight_1979_7",
+      "resolvedIssueTitle": "Marvel Spotlight (1979) #7",
+      "note": "Marvel series 2046 (Marvel Spotlight (1979)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82621
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Marvel Premiere #61",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Marvel Premiere",
+      "seriesYear": 1972,
+      "issueNumber": "61",
+      "seriesId": 2045,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "10252"
+      ],
+      "selectedIssueId": 10252,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10252/marvel_premiere_1972_61",
+      "resolvedIssueTitle": "Marvel Premiere (1972) #61",
+      "note": "Marvel series 2045 (Marvel Premiere (1972 - 1981)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        10252
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Star-Lord (1996) #1",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Starlord",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 19048,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50897"
+      ],
+      "selectedIssueId": 50897,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50897/starlord_1996_1",
+      "resolvedIssueTitle": "Starlord (1996) #1",
+      "note": "Marvel series 19048 (Starlord (1996 - 1997)) is the reviewed metadata series for this source reference. Marvel removes the hyphen from the selected Starlord series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50897
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Star-Lord (1996) #2",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Starlord",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "seriesId": 19048,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50898"
+      ],
+      "selectedIssueId": 50898,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50898/starlord_1996_2",
+      "resolvedIssueTitle": "Starlord (1996) #2",
+      "note": "Marvel series 19048 (Starlord (1996 - 1997)) is the reviewed metadata series for this source reference. Marvel removes the hyphen from the selected Starlord series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50898
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Star-Lord (1996) #3",
+      "sourceRangeReference": "Marvel Preview 4, 11, 14-15, 18; Marvel Super Special 10; Marvel Spotlight (1979) 6-7; Marvel Premiere 61; Star-Lord (1996) 1-3",
+      "normalizedSeriesTitle": "Starlord",
+      "seriesYear": 1996,
+      "issueNumber": "3",
+      "seriesId": 19048,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50899"
+      ],
+      "selectedIssueId": 50899,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50899/starlord_1996_3",
+      "resolvedIssueTitle": "Starlord (1996) #3",
+      "note": "Marvel series 19048 (Starlord (1996 - 1997)) is the reviewed metadata series for this source reference. Marvel removes the hyphen from the selected Starlord series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50899
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Guardians of the Galaxy #1",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21268"
+      ],
+      "selectedIssueId": 21268,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21268/guardians_of_the_galaxy_2008_1",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #1",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21268
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Guardians of the Galaxy #2",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21412"
+      ],
+      "selectedIssueId": 21412,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21412/guardians_of_the_galaxy_2008_2",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #2",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21412
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Guardians of the Galaxy #3",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21586"
+      ],
+      "selectedIssueId": 21586,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21586/guardians_of_the_galaxy_2008_3",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #3",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21586
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Guardians of the Galaxy #4",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21783"
+      ],
+      "selectedIssueId": 21783,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21783/guardians_of_the_galaxy_2008_4",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #4",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21783
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Guardians of the Galaxy #5",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "5",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22025"
+      ],
+      "selectedIssueId": 22025,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22025/guardians_of_the_galaxy_2008_5",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #5",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22025
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Guardians of the Galaxy #6",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "6",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22352"
+      ],
+      "selectedIssueId": 22352,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22352/guardians_of_the_galaxy_2008_6",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #6",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22352
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Guardians of the Galaxy #7",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "7",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22544"
+      ],
+      "selectedIssueId": 22544,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22544/guardians_of_the_galaxy_2008_7",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #7",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22544
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Guardians of the Galaxy #8",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "8",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22957"
+      ],
+      "selectedIssueId": 22957,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22957/guardians_of_the_galaxy_2008_8",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #8",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22957
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Guardians of the Galaxy #9",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "9",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23148"
+      ],
+      "selectedIssueId": 23148,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23148/guardians_of_the_galaxy_2008_9",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #9",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23148
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Guardians of the Galaxy #10",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "10",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23636"
+      ],
+      "selectedIssueId": 23636,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23636/guardians_of_the_galaxy_2008_10",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #10",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23636
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Guardians of the Galaxy #11",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "11",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23792"
+      ],
+      "selectedIssueId": 23792,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23792/guardians_of_the_galaxy_2008_11",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #11",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23792
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Guardians of the Galaxy #12",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "12",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23793"
+      ],
+      "selectedIssueId": 23793,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23793/guardians_of_the_galaxy_2008_12",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #12",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23793
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Guardians of the Galaxy #13",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "13",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23986"
+      ],
+      "selectedIssueId": 23986,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23986/guardians_of_the_galaxy_2008_13",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #13",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23986
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Guardians of the Galaxy #14",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "14",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24188"
+      ],
+      "selectedIssueId": 24188,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24188/guardians_of_the_galaxy_2008_14",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #14",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24188
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Guardians of the Galaxy #15",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "15",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25303"
+      ],
+      "selectedIssueId": 25303,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25303/guardians_of_the_galaxy_2008_15",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #15",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25303
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Guardians of the Galaxy #16",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "16",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25304"
+      ],
+      "selectedIssueId": 25304,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25304/guardians_of_the_galaxy_2008_16",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #16",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25304
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Guardians of the Galaxy #17",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "17",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25305"
+      ],
+      "selectedIssueId": 25305,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25305/guardians_of_the_galaxy_2008_17",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #17",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25305
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Guardians of the Galaxy #18",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "18",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25306"
+      ],
+      "selectedIssueId": 25306,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25306/guardians_of_the_galaxy_2008_18",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #18",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25306
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Guardians of the Galaxy #19",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "19",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25307"
+      ],
+      "selectedIssueId": 25307,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25307/guardians_of_the_galaxy_2008_19",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #19",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25307
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Guardians of the Galaxy #20",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "20",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25308"
+      ],
+      "selectedIssueId": 25308,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25308/guardians_of_the_galaxy_2008_20",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #20",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25308
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Guardians of the Galaxy #21",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "21",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25309"
+      ],
+      "selectedIssueId": 25309,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25309/guardians_of_the_galaxy_2008_21",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #21",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25309
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Guardians of the Galaxy #22",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "22",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "29022"
+      ],
+      "selectedIssueId": 29022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/29022/guardians_of_the_galaxy_2008_22",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #22",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29022
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Guardians of the Galaxy #23",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "23",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "29009"
+      ],
+      "selectedIssueId": 29009,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/29009/guardians_of_the_galaxy_2008_23",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #23",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29009
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Guardians of the Galaxy #24",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "24",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "29010"
+      ],
+      "selectedIssueId": 29010,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/29010/guardians_of_the_galaxy_2008_24",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #24",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        29010
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Guardians of the Galaxy #25",
+      "sourceRangeReference": "Guardians of the Galaxy 1-25",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "25",
+      "seriesId": 4885,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "32551"
+      ],
+      "selectedIssueId": 32551,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/32551/guardians_of_the_galaxy_2008_25",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2008) #25",
+      "note": "Marvel series 4885 (Guardians of the Galaxy (2008 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        32551
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Star-Lord (2014) #1",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50887"
+      ],
+      "selectedIssueId": 50887,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50887/legendary_star-lord_2014_1",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #1",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50887
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Star-Lord (2014) #2",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50929"
+      ],
+      "selectedIssueId": 50929,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50929/legendary_star-lord_2014_2",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #2",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50929
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Star-Lord (2014) #3",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50952"
+      ],
+      "selectedIssueId": 50952,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50952/legendary_star-lord_2014_3",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #3",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50952
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Star-Lord (2014) #4",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "50966"
+      ],
+      "selectedIssueId": 50966,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50966/legendary_star-lord_2014_4",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #4",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        50966
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Star-Lord (2014) #5",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51052"
+      ],
+      "selectedIssueId": 51052,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51052/legendary_star-lord_2014_5",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #5",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51052
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Star-Lord (2014) #6",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "51141"
+      ],
+      "selectedIssueId": 51141,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51141/legendary_star-lord_2014_6",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #6",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        51141
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Star-Lord (2014) #7",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "53276"
+      ],
+      "selectedIssueId": 53276,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/53276/legendary_star-lord_2014_7",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #7",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        53276
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Star-Lord (2014) #8",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52028"
+      ],
+      "selectedIssueId": 52028,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52028/legendary_star-lord_2014_8",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #8",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52028
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Star-Lord (2014) #9",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52029"
+      ],
+      "selectedIssueId": 52029,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52029/legendary_star-lord_2014_9",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #9",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52029
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Star-Lord (2014) #10",
+      "sourceRangeReference": "Star-Lord (2014-2015) 1-10",
+      "normalizedSeriesTitle": "Legendary Star-Lord",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "seriesId": 19044,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52032"
+      ],
+      "selectedIssueId": 52032,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52032/legendary_star-lord_2014_10",
+      "resolvedIssueTitle": "Legendary Star-Lord (2014) #10",
+      "note": "Marvel series 19044 (Legendary Star-Lord (2014 - 2015)) is the reviewed metadata series for this source reference. The source shortens the series title; Marvel names the selected run Legendary Star-Lord.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52032
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Star-Lord & Kitty Pryde #1",
+      "sourceRangeReference": "Star-Lord & Kitty Pryde 1-3",
+      "normalizedSeriesTitle": "Star-Lord and Kitty Pryde",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20093,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "53710"
+      ],
+      "selectedIssueId": 53710,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/53710/star-lord_and_kitty_pryde_2015_1",
+      "resolvedIssueTitle": "Star-Lord and Kitty Pryde (2015) #1",
+      "note": "Marvel series 20093 (Star-Lord and Kitty Pryde (2015)) is the reviewed metadata series for this source reference. The source uses an ampersand; Marvel spells out and in the selected series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        53710
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Star-Lord & Kitty Pryde #2",
+      "sourceRangeReference": "Star-Lord & Kitty Pryde 1-3",
+      "normalizedSeriesTitle": "Star-Lord and Kitty Pryde",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20093,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "53712"
+      ],
+      "selectedIssueId": 53712,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/53712/star-lord_and_kitty_pryde_2015_2",
+      "resolvedIssueTitle": "Star-Lord and Kitty Pryde (2015) #2",
+      "note": "Marvel series 20093 (Star-Lord and Kitty Pryde (2015)) is the reviewed metadata series for this source reference. The source uses an ampersand; Marvel spells out and in the selected series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        53712
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Star-Lord & Kitty Pryde #3",
+      "sourceRangeReference": "Star-Lord & Kitty Pryde 1-3",
+      "normalizedSeriesTitle": "Star-Lord and Kitty Pryde",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20093,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "53713"
+      ],
+      "selectedIssueId": 53713,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/53713/star-lord_and_kitty_pryde_2015_3",
+      "resolvedIssueTitle": "Star-Lord and Kitty Pryde (2015) #3",
+      "note": "Marvel series 20093 (Star-Lord and Kitty Pryde (2015)) is the reviewed metadata series for this source reference. The source uses an ampersand; Marvel spells out and in the selected series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        53713
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Star-Lord (2015) #1",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56180"
+      ],
+      "selectedIssueId": 56180,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56180/star-lord_2015_1",
+      "resolvedIssueTitle": "Star-Lord (2015) #1",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56180
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Star-Lord (2015) #2",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56181"
+      ],
+      "selectedIssueId": 56181,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56181/star-lord_2015_2",
+      "resolvedIssueTitle": "Star-Lord (2015) #2",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56181
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Star-Lord (2015) #3",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56182"
+      ],
+      "selectedIssueId": 56182,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56182/star-lord_2015_3",
+      "resolvedIssueTitle": "Star-Lord (2015) #3",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56182
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Star-Lord (2015) #4",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56183"
+      ],
+      "selectedIssueId": 56183,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56183/star-lord_2015_4",
+      "resolvedIssueTitle": "Star-Lord (2015) #4",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56183
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Star-Lord (2015) #5",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56184"
+      ],
+      "selectedIssueId": 56184,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56184/star-lord_2015_5",
+      "resolvedIssueTitle": "Star-Lord (2015) #5",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56184
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Star-Lord (2015) #6",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56185"
+      ],
+      "selectedIssueId": 56185,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56185/star-lord_2015_6",
+      "resolvedIssueTitle": "Star-Lord (2015) #6",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56185
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Star-Lord (2015) #7",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56186"
+      ],
+      "selectedIssueId": 56186,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56186/star-lord_2015_7",
+      "resolvedIssueTitle": "Star-Lord (2015) #7",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56186
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Star-Lord (2015) #8",
+      "sourceRangeReference": "Star-Lord (2015-) 1-8",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20619,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56187"
+      ],
+      "selectedIssueId": 56187,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56187/star-lord_2015_8",
+      "resolvedIssueTitle": "Star-Lord (2015) #8",
+      "note": "Marvel series 20619 (Star-Lord (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56187
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Star-Lord (2016) #1",
+      "sourceRangeReference": "Star-Lord 1-6",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 22652,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61681"
+      ],
+      "selectedIssueId": 61681,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61681/star-lord_2016_1",
+      "resolvedIssueTitle": "Star-Lord (2016) #1",
+      "note": "Marvel series 22652 (Star-Lord (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61681
+      ]
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Star-Lord (2016) #2",
+      "sourceRangeReference": "Star-Lord 1-6",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "seriesId": 22652,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61682"
+      ],
+      "selectedIssueId": 61682,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61682/star-lord_2016_2",
+      "resolvedIssueTitle": "Star-Lord (2016) #2",
+      "note": "Marvel series 22652 (Star-Lord (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61682
+      ]
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Star-Lord (2016) #3",
+      "sourceRangeReference": "Star-Lord 1-6",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "seriesId": 22652,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61683"
+      ],
+      "selectedIssueId": 61683,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61683/star-lord_2016_3",
+      "resolvedIssueTitle": "Star-Lord (2016) #3",
+      "note": "Marvel series 22652 (Star-Lord (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61683
+      ]
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Star-Lord (2016) #4",
+      "sourceRangeReference": "Star-Lord 1-6",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 22652,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61684"
+      ],
+      "selectedIssueId": 61684,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61684/star-lord_2016_4",
+      "resolvedIssueTitle": "Star-Lord (2016) #4",
+      "note": "Marvel series 22652 (Star-Lord (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61684
+      ]
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Star-Lord (2016) #5",
+      "sourceRangeReference": "Star-Lord 1-6",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 22652,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61685"
+      ],
+      "selectedIssueId": 61685,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61685/star-lord_2016_5",
+      "resolvedIssueTitle": "Star-Lord (2016) #5",
+      "note": "Marvel series 22652 (Star-Lord (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61685
+      ]
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "Star-Lord (2016) #6",
+      "sourceRangeReference": "Star-Lord 1-6",
+      "normalizedSeriesTitle": "Star-Lord",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 22652,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61686"
+      ],
+      "selectedIssueId": 61686,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61686/star-lord_2016_6",
+      "resolvedIssueTitle": "Star-Lord (2016) #6",
+      "note": "Marvel series 22652 (Star-Lord (2016 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61686
+      ]
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "FCBD 2017 All-New Guardians of the Galaxy #1",
+      "sourceRangeReference": "FCBD 2017 All-New Guardians of the Galaxy 1",
+      "normalizedSeriesTitle": "Free Comic Book Day",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "metadataIssueNumber": "0",
+      "seriesId": 23038,
+      "candidateIssueId": 62818,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "62818"
+      ],
+      "selectedIssueId": 62818,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "resolvedIssueTitle": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "note": "Marvel series 23038 (Free Comic Book Day (All-New Guardians of the Galaxy) (2017)) is the reviewed metadata series for this source reference. The source title is Free Comic Book Day; Marvel names the selected series Free Comic Book Day (All-New Guardians of the Galaxy). The source calls this issue #1; Marvel metadata numbers the sole exact title-and-year issue #0.",
+      "status": "exact",
+      "selectedIssueIds": [
+        62818
+      ]
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #1",
+      "sourceRangeReference": "All-New Guardians of the Galaxy (2017) 1-2, 4, 6, 8, 10",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61513"
+      ],
+      "selectedIssueId": 61513,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61513/all-new_guardians_of_the_galaxy_2017_1",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #1",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61513
+      ]
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #2",
+      "sourceRangeReference": "All-New Guardians of the Galaxy (2017) 1-2, 4, 6, 8, 10",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61514"
+      ],
+      "selectedIssueId": 61514,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61514/all-new_guardians_of_the_galaxy_2017_2",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #2",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61514
+      ]
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #4",
+      "sourceRangeReference": "All-New Guardians of the Galaxy (2017) 1-2, 4, 6, 8, 10",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61516"
+      ],
+      "selectedIssueId": 61516,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61516/all-new_guardians_of_the_galaxy_2017_4",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #4",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61516
+      ]
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #6",
+      "sourceRangeReference": "All-New Guardians of the Galaxy (2017) 1-2, 4, 6, 8, 10",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61518"
+      ],
+      "selectedIssueId": 61518,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61518/all-new_guardians_of_the_galaxy_2017_6",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #6",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61518
+      ]
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #8",
+      "sourceRangeReference": "All-New Guardians of the Galaxy (2017) 1-2, 4, 6, 8, 10",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61520"
+      ],
+      "selectedIssueId": 61520,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61520/all-new_guardians_of_the_galaxy_2017_8",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #8",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61520
+      ]
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #10",
+      "sourceRangeReference": "All-New Guardians of the Galaxy (2017) 1-2, 4, 6, 8, 10",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61522"
+      ],
+      "selectedIssueId": 61522,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61522/all-new_guardians_of_the_galaxy_2017_10",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #10",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61522
+      ]
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #3",
+      "sourceRangeReference": "All-New Guardians of the Galaxy 3, 5, 7, 9, 11-12",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61515"
+      ],
+      "selectedIssueId": 61515,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61515/all-new_guardians_of_the_galaxy_2017_3",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #3",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61515
+      ]
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #5",
+      "sourceRangeReference": "All-New Guardians of the Galaxy 3, 5, 7, 9, 11-12",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61517"
+      ],
+      "selectedIssueId": 61517,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61517/all-new_guardians_of_the_galaxy_2017_5",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #5",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61517
+      ]
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #7",
+      "sourceRangeReference": "All-New Guardians of the Galaxy 3, 5, 7, 9, 11-12",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61519"
+      ],
+      "selectedIssueId": 61519,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61519/all-new_guardians_of_the_galaxy_2017_7",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #7",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61519
+      ]
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #9",
+      "sourceRangeReference": "All-New Guardians of the Galaxy 3, 5, 7, 9, 11-12",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61521"
+      ],
+      "selectedIssueId": 61521,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61521/all-new_guardians_of_the_galaxy_2017_9",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #9",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61521
+      ]
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #11",
+      "sourceRangeReference": "All-New Guardians of the Galaxy 3, 5, 7, 9, 11-12",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61523"
+      ],
+      "selectedIssueId": 61523,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61523/all-new_guardians_of_the_galaxy_2017_11",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #11",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61523
+      ]
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #12",
+      "sourceRangeReference": "All-New Guardians of the Galaxy 3, 5, 7, 9, 11-12",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61524"
+      ],
+      "selectedIssueId": 61524,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61524/all-new_guardians_of_the_galaxy_2017_12",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #12",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61524
+      ]
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Guardians of the Galaxy (2017) #146",
+      "sourceRangeReference": "Guardians of the Galaxy (2017) 146-150",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "146",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65074"
+      ],
+      "selectedIssueId": 65074,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65074/all-new_guardians_of_the_galaxy_2017_146",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #146",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference. Marvel keeps the legacy-numbered issues in the selected All-New Guardians of the Galaxy series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65074
+      ]
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Guardians of the Galaxy (2017) #147",
+      "sourceRangeReference": "Guardians of the Galaxy (2017) 146-150",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "147",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65075"
+      ],
+      "selectedIssueId": 65075,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65075/all-new_guardians_of_the_galaxy_2017_147",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #147",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference. Marvel keeps the legacy-numbered issues in the selected All-New Guardians of the Galaxy series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65075
+      ]
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Guardians of the Galaxy (2017) #148",
+      "sourceRangeReference": "Guardians of the Galaxy (2017) 146-150",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "148",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65282"
+      ],
+      "selectedIssueId": 65282,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65282/all-new_guardians_of_the_galaxy_2017_148",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #148",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference. Marvel keeps the legacy-numbered issues in the selected All-New Guardians of the Galaxy series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65282
+      ]
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Guardians of the Galaxy (2017) #149",
+      "sourceRangeReference": "Guardians of the Galaxy (2017) 146-150",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "149",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65283"
+      ],
+      "selectedIssueId": 65283,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65283/all-new_guardians_of_the_galaxy_2017_149",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #149",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference. Marvel keeps the legacy-numbered issues in the selected All-New Guardians of the Galaxy series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65283
+      ]
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Guardians of the Galaxy (2017) #150",
+      "sourceRangeReference": "Guardians of the Galaxy (2017) 146-150",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "150",
+      "seriesId": 23058,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65547"
+      ],
+      "selectedIssueId": 65547,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65547/all-new_guardians_of_the_galaxy_2017_150",
+      "resolvedIssueTitle": "All-New Guardians of the Galaxy (2017) #150",
+      "note": "Marvel series 23058 (All-New Guardians of the Galaxy (2017)) is the reviewed metadata series for this source reference. Marvel keeps the legacy-numbered issues in the selected All-New Guardians of the Galaxy series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65547
+      ]
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Captain Marvel (2017) #125",
+      "sourceRangeReference": "Captain Marvel (2017) 125-129",
+      "normalizedSeriesTitle": "The Mighty Captain Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "125",
+      "seriesId": 22551,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64961"
+      ],
+      "selectedIssueId": 64961,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64961/the_mighty_captain_marvel_2017_125",
+      "resolvedIssueTitle": "The Mighty Captain Marvel (2017) #125",
+      "note": "Marvel series 22551 (The Mighty Captain Marvel (2017 - 2018)) is the reviewed metadata series for this source reference. Marvel keeps these legacy-numbered issues in The Mighty Captain Marvel series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        64961
+      ]
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Captain Marvel (2017) #126",
+      "sourceRangeReference": "Captain Marvel (2017) 125-129",
+      "normalizedSeriesTitle": "The Mighty Captain Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "126",
+      "seriesId": 22551,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65062"
+      ],
+      "selectedIssueId": 65062,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65062/the_mighty_captain_marvel_2017_126",
+      "resolvedIssueTitle": "The Mighty Captain Marvel (2017) #126",
+      "note": "Marvel series 22551 (The Mighty Captain Marvel (2017 - 2018)) is the reviewed metadata series for this source reference. Marvel keeps these legacy-numbered issues in The Mighty Captain Marvel series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65062
+      ]
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Captain Marvel (2017) #127",
+      "sourceRangeReference": "Captain Marvel (2017) 125-129",
+      "normalizedSeriesTitle": "The Mighty Captain Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "127",
+      "seriesId": 22551,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65271"
+      ],
+      "selectedIssueId": 65271,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65271/the_mighty_captain_marvel_2017_127",
+      "resolvedIssueTitle": "The Mighty Captain Marvel (2017) #127",
+      "note": "Marvel series 22551 (The Mighty Captain Marvel (2017 - 2018)) is the reviewed metadata series for this source reference. Marvel keeps these legacy-numbered issues in The Mighty Captain Marvel series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65271
+      ]
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Captain Marvel (2017) #128",
+      "sourceRangeReference": "Captain Marvel (2017) 125-129",
+      "normalizedSeriesTitle": "The Mighty Captain Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "128",
+      "seriesId": 22551,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65902"
+      ],
+      "selectedIssueId": 65902,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65902/the_mighty_captain_marvel_2017_128",
+      "resolvedIssueTitle": "The Mighty Captain Marvel (2017) #128",
+      "note": "Marvel series 22551 (The Mighty Captain Marvel (2017 - 2018)) is the reviewed metadata series for this source reference. Marvel keeps these legacy-numbered issues in The Mighty Captain Marvel series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65902
+      ]
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Captain Marvel (2017) #129",
+      "sourceRangeReference": "Captain Marvel (2017) 125-129",
+      "normalizedSeriesTitle": "The Mighty Captain Marvel",
+      "seriesYear": 2017,
+      "issueNumber": "129",
+      "seriesId": 22551,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66271"
+      ],
+      "selectedIssueId": 66271,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66271/the_mighty_captain_marvel_2017_129",
+      "resolvedIssueTitle": "The Mighty Captain Marvel (2017) #129",
+      "note": "Marvel series 22551 (The Mighty Captain Marvel (2017 - 2018)) is the reviewed metadata series for this source reference. Marvel keeps these legacy-numbered issues in The Mighty Captain Marvel series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66271
+      ]
+    },
+    {
+      "sourcePosition": 88,
+      "sourceIssueReference": "Old Man Quill #1",
+      "sourceRangeReference": "Old Man Quill 1-6",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73829"
+      ],
+      "selectedIssueId": 73829,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73829/old_man_quill_2019_1",
+      "resolvedIssueTitle": "Old Man Quill (2019) #1",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73829
+      ]
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Old Man Quill #2",
+      "sourceRangeReference": "Old Man Quill 1-6",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73830"
+      ],
+      "selectedIssueId": 73830,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73830/old_man_quill_2019_2",
+      "resolvedIssueTitle": "Old Man Quill (2019) #2",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73830
+      ]
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Old Man Quill #3",
+      "sourceRangeReference": "Old Man Quill 1-6",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73831"
+      ],
+      "selectedIssueId": 73831,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73831/old_man_quill_2019_3",
+      "resolvedIssueTitle": "Old Man Quill (2019) #3",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73831
+      ]
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Old Man Quill #4",
+      "sourceRangeReference": "Old Man Quill 1-6",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73832"
+      ],
+      "selectedIssueId": 73832,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73832/old_man_quill_2019_4",
+      "resolvedIssueTitle": "Old Man Quill (2019) #4",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73832
+      ]
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Old Man Quill #5",
+      "sourceRangeReference": "Old Man Quill 1-6",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73833"
+      ],
+      "selectedIssueId": 73833,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73833/old_man_quill_2019_5",
+      "resolvedIssueTitle": "Old Man Quill (2019) #5",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73833
+      ]
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Old Man Quill #6",
+      "sourceRangeReference": "Old Man Quill 1-6",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73834"
+      ],
+      "selectedIssueId": 73834,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73834/old_man_quill_2019_6",
+      "resolvedIssueTitle": "Old Man Quill (2019) #6",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73834
+      ]
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Old Man Quill #7",
+      "sourceRangeReference": "Old Man Quill 7-12",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73835"
+      ],
+      "selectedIssueId": 73835,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73835/old_man_quill_2019_7",
+      "resolvedIssueTitle": "Old Man Quill (2019) #7",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73835
+      ]
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Old Man Quill #8",
+      "sourceRangeReference": "Old Man Quill 7-12",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "8",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73836"
+      ],
+      "selectedIssueId": 73836,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73836/old_man_quill_2019_8",
+      "resolvedIssueTitle": "Old Man Quill (2019) #8",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73836
+      ]
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Old Man Quill #9",
+      "sourceRangeReference": "Old Man Quill 7-12",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "9",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73837"
+      ],
+      "selectedIssueId": 73837,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73837/old_man_quill_2019_9",
+      "resolvedIssueTitle": "Old Man Quill (2019) #9",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73837
+      ]
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Old Man Quill #10",
+      "sourceRangeReference": "Old Man Quill 7-12",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "10",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73838"
+      ],
+      "selectedIssueId": 73838,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73838/old_man_quill_2019_10",
+      "resolvedIssueTitle": "Old Man Quill (2019) #10",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73838
+      ]
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "Old Man Quill #11",
+      "sourceRangeReference": "Old Man Quill 7-12",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "11",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73839"
+      ],
+      "selectedIssueId": 73839,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73839/old_man_quill_2019_11",
+      "resolvedIssueTitle": "Old Man Quill (2019) #11",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73839
+      ]
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Old Man Quill #12",
+      "sourceRangeReference": "Old Man Quill 7-12",
+      "normalizedSeriesTitle": "Old Man Quill",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "seriesId": 26593,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73840"
+      ],
+      "selectedIssueId": 73840,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73840/old_man_quill_2019_12",
+      "resolvedIssueTitle": "Old Man Quill (2019) #12",
+      "note": "Marvel series 26593 (Old Man Quill (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        73840
+      ]
+    }
+  ],
+  "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
+  "packetReview": "MRT-002-C08 final central source and 99-row mapping review",
+  "approvedManifest": {
+    "id": "star-lord-reading-order",
+    "name": "Star-Lord",
+    "description": "Peter Quill from his earliest cosmic adventures through the Guardians, solo series, and Old Man Quill.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "star-lord-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "star_lord_reading_order.json",
+    "characters": [
+      "Star-Lord",
+      "Guardians of the Galaxy",
+      "Kitty Pryde",
+      "Captain Marvel"
+    ],
+    "keywords": [
+      "Star-Lord",
+      "Peter Quill",
+      "Guardians of the Galaxy",
+      "Old Man Quill",
+      "Comic Book Herald"
+    ],
+    "expect": 99,
+    "timeline": null,
+    "coverIssueId": 19776
+  },
+  "relationshipReview": {
+    "reportDigest": "552d9bb8cf029f865467f2895e85d4badfc0b3a21aec14215aeec20433040543",
+    "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
+    "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
+    "libraryDigest": "8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602",
+    "peerDigests": {
+      "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
+      "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 25-issue partial is factual overlap between distinct source-defined guides; every source-required issue remains in Star-Lord.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C08 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 1-issue partial is factual overlap between distinct source-defined guides; every source-required issue remains in Star-Lord.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C08 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 25-issue partial is factual overlap between distinct source-defined guides; every source-required issue remains in Star-Lord.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C08 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 7-issue partial is factual overlap between distinct source-defined guides; every source-required issue remains in Star-Lord.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C08 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-002-C08 coordinator",
+    "rationale": "Every current-library and named Rocket and Groot peer comparison was reviewed against the separate complete-guide boundary; all four factual partials are approved and no exact or subset relationship exists.",
+    "reviewedAt": "2026-08-23",
+    "approvalDigest": "c4ef4b9a736d166c31ffc385a77a69deff39038bbd2ff545ca222a92316d546c"
+  }
+}

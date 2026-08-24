@@ -9,7 +9,7 @@
 * Evidence sources: .copilot-tracking/research/2026-08-23/repeated-source-occurrences-research.md;
   historical commits `06c2a5b6d6367706d241fcbefe41ce71aaa08f02` and
   `8a3c8629253e079e117fc7218b5b9bc8a070d876`
-* Baseline: current project default `main` at `b9367d8bdf40cf335caf1c6b2d46dfedb5e25826`
+* Baseline: reconciled project default `main` at `ff92fd0875e90b12dcbf41bdaed1cfed84d99a41`
 
 ## Phase Index
 
@@ -59,7 +59,8 @@ through one Review, PR, hosted CI, and merge.
   implementation returned all 34 tests to passing.
 * Groot: 84 occurrences, 76 canonical mapping rows, eight exact repeated references, unchanged
   selected ids and factual relationships.
-* Catalog remains: 96 readings, 13 Character Spotlight readings, 12 stories, and 4 Complete guides.
+* Reconciled catalog remains: 97 readings, 14 Character Spotlight readings, 13 stories, and 5
+  Complete guides. Star-Lord is current-main work, not part of this feature.
 * Active blocker: Iron Man publication only; the shared release is not blocked.
 
 ### Locked Test and Change Boundary
@@ -249,15 +250,16 @@ Replace prose-only repeat treatment with exact evidence and prove every supplied
 
 * Groot canonical row 72 maps to source position 80.
 * Iron Man canonical row 710 stays at position 710 and row 716 maps to position 718.
-* Groot retains the same 76 selected ids and three factual partial relationships.
+* Groot retains the same 76 selected ids and records four factual partial relationships after
+  current-main reconciliation, including 25 shared issues with Star-Lord.
 
 #### Completion Evidence
 
 * Complete. Packet digest
   `b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7`;
   mapping digest `8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523`;
-  report digest `a83bdf4ba3b9bfcee2524abe830219d9754b82d5c637f49191a313c19052870f`;
-  approval digest `b4acc491b8240f8b9343fba015e3891ad7a0dca9c996f765a93e130515f37e54`.
+  report digest `616c4564ad98a0f7f7fe5ac57d021e1e19d7156050c82c887d8e8132e9020949`;
+  approval digest `c12bf41481b245aade1ea4089d9226dc4a1f9698b96d076d1c219de79ecfe949`.
 
 #### Unresolved Items
 
@@ -387,8 +389,8 @@ stable.
 ### Validation Expectations
 
 * Direct records describe the explicit occurrence model, Groot 84/76, and Iron Man blocker.
-* Catalog stays at 96 readings; Character Spotlight stays 13 readings / 12 stories / 4 Complete
-  guides.
+* Reconciled catalog stays at 97 readings; Character Spotlight stays 14 readings / 13 stories / 5
+  Complete guides.
 * All required local and browser checks pass with exact results.
 
 ### Completion Evidence
