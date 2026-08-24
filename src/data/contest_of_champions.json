@@ -1,0 +1,134 @@
+{
+  "id": "contest-of-champions",
+  "name": "Contest of Champions",
+  "description": "Three chapters from Marvel's first Contest of Champions.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Contest of Champions",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T06:16:17.494Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 3,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 39673,
+      "title": "Marvel Super Hero Contest of Champions (1982) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/39673/marvel_super_hero_contest_of_champions_1982_1",
+      "seriesId": 14637,
+      "seriesName": "Marvel Super Hero Contest of Champions (1982)",
+      "onSale": "1982-06-01T00:00:00+0000",
+      "mu": "1982-06-01T00:00:00+0000",
+      "digitalId": 20111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/50b41d2028440",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 39675,
+      "title": "Marvel Super Hero Contest of Champions (1982) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/39675/marvel_super_hero_contest_of_champions_1982_2",
+      "seriesId": 14637,
+      "seriesName": "Marvel Super Hero Contest of Champions (1982)",
+      "onSale": "1982-07-01T00:00:00+0000",
+      "mu": "1982-07-01T00:00:00+0000",
+      "digitalId": 20112,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/50b53107bdfb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 39676,
+      "title": "Marvel Super Hero Contest of Champions (1982) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/39676/marvel_super_hero_contest_of_champions_1982_3",
+      "seriesId": 14637,
+      "seriesName": "Marvel Super Hero Contest of Champions (1982)",
+      "onSale": "1982-08-01T00:00:00+0000",
+      "mu": "1982-08-01T00:00:00+0000",
+      "digitalId": 20113,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5a5e344451d0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

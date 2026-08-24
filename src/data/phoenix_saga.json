@@ -1,0 +1,273 @@
+{
+  "id": "phoenix-saga",
+  "name": "Phoenix Saga",
+  "description": "Eight X-Men chapters introducing the Phoenix era.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Phoenix Saga",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T06:16:17.485Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12416,
+      "title": "Uncanny X-Men (1963) #101",
+      "number": "101",
+      "url": "https://www.marvel.com/comics/issue/12416/uncanny_x-men_1963_101",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1976-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/58b06d5a1c717",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Chiaramonte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12417,
+      "title": "Uncanny X-Men (1963) #102",
+      "number": "102",
+      "url": "https://www.marvel.com/comics/issue/12417/uncanny_x-men_1963_102",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1976-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1305,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/58b06e6135812",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12418,
+      "title": "Uncanny X-Men (1963) #103",
+      "number": "103",
+      "url": "https://www.marvel.com/comics/issue/12418/uncanny_x-men_1963_103",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1977-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/58b06fcb6b2a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12419,
+      "title": "Uncanny X-Men (1963) #104",
+      "number": "104",
+      "url": "https://www.marvel.com/comics/issue/12419/uncanny_x-men_1963_104",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1977-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/58b0715a71844",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12420,
+      "title": "Uncanny X-Men (1963) #105",
+      "number": "105",
+      "url": "https://www.marvel.com/comics/issue/12420/uncanny_x-men_1963_105",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1977-06-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/58b072b602b25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12421,
+      "title": "Uncanny X-Men (1963) #106",
+      "number": "106",
+      "url": "https://www.marvel.com/comics/issue/12421/uncanny_x-men_1963_106",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1977-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/58b073f1c24bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Sutton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12422,
+      "title": "Uncanny X-Men (1963) #107",
+      "number": "107",
+      "url": "https://www.marvel.com/comics/issue/12422/uncanny_x-men_1963_107",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1977-10-01T00:00:00+0000",
+      "mu": "2007-11-16T00:00:00+0000",
+      "digitalId": 4472,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/58b08688b39f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12423,
+      "title": "Uncanny X-Men (1963) #108",
+      "number": "108",
+      "url": "https://www.marvel.com/comics/issue/12423/uncanny_x-men_1963_108",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1977-12-01T00:00:00+0000",
+      "mu": "2007-11-19T00:00:00+0000",
+      "digitalId": 4473,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/58b47b21d7a38",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

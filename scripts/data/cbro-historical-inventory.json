@@ -123,12 +123,14 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 13,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "centralDisposition": "selected",
+    "relationshipStatus": "none",
+    "reason": "Selected for MRT-003-C02 batch 2 after exact metadata and complete-library plus peer review.",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "original-clone-saga"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -143,12 +145,17 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 8,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "centralDisposition": "selected",
+    "relationshipStatus": "candidate-subset",
+    "reason": "Selected for MRT-003-C02 batch 2 with stronger-model approval as an exact Phoenix event route.",
+    "overlapIds": [
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "phoenix-saga"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -163,12 +170,17 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 9,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "centralDisposition": "selected",
+    "relationshipStatus": "candidate-subset",
+    "reason": "Selected for MRT-003-C02 batch 2 with stronger-model approval as an exact Dark Phoenix event route.",
+    "overlapIds": [
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "dark-phoenix-saga"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -183,12 +195,18 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 2,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "centralDisposition": "selected",
+    "relationshipStatus": "approved-mixed",
+    "reason": "Selected for MRT-003-C02 batch 2 with stronger-model approval for its exact X-Men subsets and one Marvel Multiverse partial overlap.",
+    "overlapIds": [
+      "marvel-multiverse",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "days-of-future-past"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -203,12 +221,14 @@
     "sourceRetrievedAt": "2026-08-23",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 3,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "centralDisposition": "selected",
+    "relationshipStatus": "none",
+    "reason": "Selected for MRT-003-C02 batch 2 after exact metadata and complete-library plus peer review.",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "catalogIds": [
+      "contest-of-champions"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {

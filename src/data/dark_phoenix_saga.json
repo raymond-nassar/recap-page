@@ -1,0 +1,280 @@
+{
+  "id": "dark-phoenix-saga",
+  "name": "Dark Phoenix Saga",
+  "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Dark Phoenix Saga",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T06:16:17.489Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12446,
+      "title": "Uncanny X-Men (1963) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/12446/uncanny_x-men_1963_129",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-01-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1311,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/519b7f491722f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12448,
+      "title": "Uncanny X-Men (1963) #130",
+      "number": "130",
+      "url": "https://www.marvel.com/comics/issue/12448/uncanny_x-men_1963_130",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-02-10T00:00:00+0000",
+      "mu": "2007-01-01T00:00:00+0000",
+      "digitalId": 4494,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/58adbc99346a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12449,
+      "title": "Uncanny X-Men (1963) #131",
+      "number": "131",
+      "url": "https://www.marvel.com/comics/issue/12449/uncanny_x-men_1963_131",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-03-10T00:00:00+0000",
+      "mu": "2008-06-11T00:00:00+0000",
+      "digitalId": 4899,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5372aa08ce050",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 12450,
+      "title": "Uncanny X-Men (1963) #132",
+      "number": "132",
+      "url": "https://www.marvel.com/comics/issue/12450/uncanny_x-men_1963_132",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-04-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5372a9cf28527",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 12451,
+      "title": "Uncanny X-Men (1963) #133",
+      "number": "133",
+      "url": "https://www.marvel.com/comics/issue/12451/uncanny_x-men_1963_133",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-05-01T00:00:00+0000",
+      "mu": "2007-01-01T00:00:00+0000",
+      "digitalId": 4495,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6764061ba759c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12452,
+      "title": "Uncanny X-Men (1963) #134",
+      "number": "134",
+      "url": "https://www.marvel.com/comics/issue/12452/uncanny_x-men_1963_134",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-06-10T00:00:00+0000",
+      "mu": "2007-01-01T00:00:00+0000",
+      "digitalId": 1313,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5372a96bcad91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 12453,
+      "title": "Uncanny X-Men (1963) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/12453/uncanny_x-men_1963_135",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-07-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4496,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5372a938d5eff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 12454,
+      "title": "Uncanny X-Men (1963) #136",
+      "number": "136",
+      "url": "https://www.marvel.com/comics/issue/12454/uncanny_x-men_1963_136",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-08-01T00:00:00+0000",
+      "mu": "2007-01-01T00:00:00+0000",
+      "digitalId": 4497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/67dc3fe5c9ea4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12455,
+      "title": "Uncanny X-Men (1963) #137",
+      "number": "137",
+      "url": "https://www.marvel.com/comics/issue/12455/uncanny_x-men_1963_137",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1980-09-01T00:00:00+0000",
+      "mu": "2007-01-01T00:00:00+0000",
+      "digitalId": 4498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5372a8d26e25e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -34,6 +34,10 @@ import {
 import {
   CBRO_ALL_SELECTED_IDS,
   CBRO_AUTHOR_IDS as CBRO_ORIGINAL_AUTHOR_IDS,
+  CBRO_BATCH_TWO_AUTHOR_IDS,
+  CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256,
+  CBRO_BATCH_TWO_PACKET_REVIEW,
+  CBRO_BATCH_TWO_SELECTED_IDS,
   CBRO_CONTINUATION_AUTHOR_IDS,
   CBRO_CONTINUATION_PACKET_REVIEW,
   CBRO_CONTINUATION_SELECTED_IDS,
@@ -44,6 +48,7 @@ import {
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
   cbroReleaseForIds,
+  digestCanonicalJson,
   validateCbroHistoricalInventory,
   validateCbroPacket,
   validateCbroReviewIdentity,
@@ -57,15 +62,6 @@ const dataDir = path.join(root, 'src', 'data');
 const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
-const laterOrderIds = [
-  'groot-reading-order',
-  'star-lord-reading-order',
-  'doctor-strange-multiverse-of-madness',
-  'spider-man-no-way-home',
-  'marvel-multiverse',
-  'marvel-what-if',
-  ...CBRO_CONTINUATION_SELECTED_IDS,
-];
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
@@ -488,12 +484,24 @@ test('historical inventory preserves all 58 pre-cutoff identities and terminal s
     ['marvel-2099', 'mc2'],
   );
   const fabricated = structuredClone(inventory);
-  Object.assign(fabricated[5], {
+  Object.assign(fabricated[10], {
     id: 'fabricated-event',
     title: 'Fabricated Event',
     sourceUrl: 'https://example.test/fabricated-event',
   });
   assert.throws(() => validateCbroHistoricalInventory(fabricated), /identity digest changed/i);
+  const nonselected = inventory.filter((record) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id));
+  assert.equal(digestCanonicalJson(nonselected), CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256);
+  for (const terminalId of [
+    'days-of-future-present',
+    'countdown',
+    'legion-quest',
+    'marvel-vs-dc',
+  ]) {
+    const changed = structuredClone(inventory);
+    changed.find((record) => record.id === terminalId).deliveryStatus = 'ready';
+    assert.throws(() => validateCbroHistoricalInventory(changed), /nonselected inventory changed/i);
+  }
 });
 
 test('five frozen packets preserve provider, source digest, rows, and exclusions', async () => {
@@ -550,14 +558,14 @@ test('five reports bind the complete library, four peers, and central approvals'
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    [...CBRO_SELECTED_IDS, ...laterOrderIds],
+    CBRO_SELECTED_IDS,
   );
   const mappings = await Promise.all(CBRO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
   const mappingById = new Map(mappings.map((mapping) => [mapping.id, mapping]));
   const existingIds = library.lists
-    .filter((entry) => ![...CBRO_SELECTED_IDS, ...laterOrderIds].includes(entry.id))
+    .filter((entry) => !CBRO_SELECTED_IDS.includes(entry.id))
     .map((entry) => entry.id);
   for (const id of CBRO_SELECTED_IDS) {
     const packet = await readJson(path.join(packetsDir, `${id}.json`));
@@ -568,7 +576,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       .map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [...existingIds, ...peerMappings.map((peer) => peer.id)];
     assert.equal(report.comparisonCount, expectedOrderIds.length);
-    assert.equal(report.comparisonCount, 94);
+    assert.equal(report.comparisonCount, 110);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.equal(mapping.packetReview, CBRO_PACKET_REVIEW);
@@ -752,6 +760,136 @@ test('continuation inventory authority is scoped to the one approved subset', as
   );
 });
 
+test('batch two inventory authority admits only the documented ready state', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  const batch = inventory.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id));
+  assert.deepEqual(batch.map((record) => record.id), CBRO_BATCH_TWO_SELECTED_IDS);
+  assert.ok(batch.every((record) => record.deliveryStatus === 'shipped'
+    && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
+  assert.deepEqual(
+    batch.map((record) => [record.id, record.relationshipStatus, record.overlapIds]),
+    [
+      ['original-clone-saga', 'none', []],
+      ['phoenix-saga', 'candidate-subset', ['xmen-claremont', 'xmen-claremont-complete']],
+      ['dark-phoenix-saga', 'candidate-subset', ['xmen-claremont', 'xmen-claremont-complete']],
+      ['days-of-future-past', 'approved-mixed', ['marvel-multiverse', 'xmen-claremont', 'xmen-claremont-complete']],
+      ['contest-of-champions', 'none', []],
+    ],
+  );
+  assert.equal(
+    cbroReleaseForIds(CBRO_BATCH_TWO_SELECTED_IDS).id,
+    'mrt-003-c02-b02',
+  );
+  assert.equal(
+    cbroReleaseForIds(CBRO_BATCH_TWO_AUTHOR_IDS, { order: 'author' }).id,
+    'mrt-003-c02-b02',
+  );
+  const ready = structuredClone(inventory);
+  for (const record of ready.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))) {
+    record.catalogIds = [];
+    record.deliveryStatus = 'ready';
+  }
+  assert.doesNotThrow(() => validateCbroHistoricalInventory(ready));
+  for (const mutatedIds of [
+    CBRO_BATCH_TWO_SELECTED_IDS.slice(1),
+    [...CBRO_BATCH_TWO_SELECTED_IDS].reverse(),
+    [...CBRO_BATCH_TWO_SELECTED_IDS.slice(0, 4), 'marvel-super-heroes-secret-wars'],
+  ]) {
+    assert.throws(() => cbroReleaseForIds(mutatedIds), /complete 5-guide release/i);
+  }
+  const unresolved = structuredClone(inventory);
+  unresolved.find((record) => record.id === 'days-of-future-past').relationshipStatus = 'unresolved';
+  assert.throws(() => validateCbroHistoricalInventory(unresolved), /selected state is inconsistent/i);
+});
+
+test('batch two packets, mappings, and approvals preserve 35 exact source rows', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const expectedCounts = new Map([
+    ['original-clone-saga', 13],
+    ['phoenix-saga', 8],
+    ['dark-phoenix-saga', 9],
+    ['days-of-future-past', 2],
+    ['contest-of-champions', 3],
+  ]);
+  const issueIds = [];
+  let aliases = 0;
+  for (const id of CBRO_BATCH_TWO_SELECTED_IDS) {
+    const packet = await readJson(path.join(packetsDir, `${id}.json`));
+    const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+    const inventoryRecord = inventory.find((record) => record.id === id);
+    assert.doesNotThrow(() => validateCbroPacket(packet, {
+      expectedId: id,
+      inventoryRecord,
+      catalogEntries: manifest.lists,
+    }));
+    assert.doesNotThrow(() => validateMappingDigest(mapping));
+    assert.equal(packet.rows.length, expectedCounts.get(id));
+    assert.equal(mapping.rows.length, expectedCounts.get(id));
+    assert.equal(packet.sourceProvider, CBRO_SOURCE_PROVIDER.id);
+    assert.equal(mapping.packetReview, CBRO_BATCH_TWO_PACKET_REVIEW);
+    assert.equal(mapping.relationshipReview.packetReview, CBRO_BATCH_TWO_PACKET_REVIEW);
+    assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+    assert.ok(mapping.rows.every((row) => row.note.trim()));
+    aliases += mapping.rows.filter((row) => row.manualSeriesSelectionApproved).length;
+    issueIds.push(...mapping.rows.map((row) => String(row.selectedIssueId)));
+  }
+  assert.equal(issueIds.length, 35);
+  assert.equal(new Set(issueIds).size, 35);
+  assert.equal(aliases, 35);
+});
+
+test('batch two reports authorize exactly seven named non-none relationships', async () => {
+  const library = await loadLibrarySnapshot();
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, CBRO_BATCH_TWO_SELECTED_IDS);
+  const mappings = await Promise.all(CBRO_BATCH_TWO_SELECTED_IDS.map((id) => (
+    readJson(path.join(mappingsDir, `${id}.json`))
+  )));
+  const mappingById = new Map(mappings.map((mapping) => [mapping.id, mapping]));
+  const nonNone = [];
+  for (const id of CBRO_BATCH_TWO_SELECTED_IDS) {
+    const packet = await readJson(path.join(packetsDir, `${id}.json`));
+    const mapping = mappingById.get(id);
+    const report = await readJson(path.join(overlapsDir, `${id}.json`));
+    const peerMappings = CBRO_BATCH_TWO_SELECTED_IDS
+      .filter((peerId) => peerId !== id)
+      .map((peerId) => mappingById.get(peerId));
+    const expectedOrderIds = [
+      ...library.lists
+        .filter((entry) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(entry.id))
+        .map((entry) => entry.id),
+      ...peerMappings.map((peer) => peer.id),
+    ];
+    assert.equal(report.comparisonCount, 110);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.doesNotThrow(() => assertApprovedRelationshipReview({
+      packet,
+      mapping,
+      report,
+      currentLibraryDigest: reviewedLibraryDigest,
+      peerMappings,
+      expectedOrderIds,
+      packetValidation: { provider: CBRO_SOURCE_PROVIDER },
+    }));
+    nonNone.push(...report.comparisons.filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => ({ candidateId: id, ...comparison })));
+  }
+  assert.equal(nonNone.length, 7);
+  assert.ok(nonNone.every((comparison) => isApprovedCbroRelationship(
+    comparison.candidateId,
+    comparison,
+  )));
+  assert.equal(isApprovedCbroRelationship('contest-of-champions', nonNone[0]), false);
+  assert.equal(isApprovedCbroRelationship('phoenix-saga', {
+    ...nonNone.find((comparison) => comparison.candidateId === 'phoenix-saga'),
+    sharedIds: [],
+  }), false);
+  assert.equal(isApprovedCbroRelationship('days-of-future-past', {
+    ...nonNone.find((comparison) => comparison.orderId === 'marvel-multiverse'),
+    relationship: 'candidate-subset',
+  }), false);
+});
+
 test('continuation packets and mappings preserve all 32 exact source rows', async () => {
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
@@ -824,7 +962,7 @@ test('continuation reports bind 525 comparisons and one central subset approval'
     nonNone.push(...report.comparisons.filter((comparison) => (
       comparison.relationship !== 'none'
     )).map((comparison) => ({ candidateId: id, ...comparison })));
-    assert.equal(report.comparisonCount, 105);
+    assert.equal(report.comparisonCount, 110);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.equal(mapping.packetReview, CBRO_CONTINUATION_PACKET_REVIEW);
     assert.equal(mapping.relationshipReview.packetReview, CBRO_CONTINUATION_PACKET_REVIEW);
@@ -839,7 +977,7 @@ test('continuation reports bind 525 comparisons and one central subset approval'
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
     }));
   }
-  assert.equal(comparisonCount, 525);
+  assert.equal(comparisonCount, 550);
   assert.deepEqual(nonNone, [{
     candidateId: 'kree-skrull-war',
     orderId: 'essential-avengers',
@@ -863,7 +1001,7 @@ test('continuation reports bind 525 comparisons and one central subset approval'
   }), false);
 });
 
-test('continuation authoring ships five chronological cards and 32 exact payload rows', async () => {
+test('historical continuation authoring retains ten chronological cards and 32 batch-one payload rows', async () => {
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
@@ -871,19 +1009,21 @@ test('continuation authoring ships five chronological cards and 32 exact payload
     entry.id === 'maximum-security'
   ));
   assert.deepEqual(
-    manifest.lists.slice(
-      maximumSecurityIndex - CBRO_CONTINUATION_AUTHOR_IDS.length,
-      maximumSecurityIndex,
-    ).map((entry) => entry.id),
-    CBRO_CONTINUATION_AUTHOR_IDS,
+    manifest.lists.slice(maximumSecurityIndex - (
+      CBRO_CONTINUATION_AUTHOR_IDS.length + CBRO_BATCH_TWO_AUTHOR_IDS.length
+    ), maximumSecurityIndex).map((entry) => entry.id),
+    [...CBRO_CONTINUATION_AUTHOR_IDS, ...CBRO_BATCH_TWO_AUTHOR_IDS],
   );
 
   const selected = inventory.filter((record) => record.centralDisposition === 'selected');
-  assert.equal(selected.length, 10);
-  assert.ok(selected.every((record) => record.deliveryStatus === 'shipped'));
+  assert.equal(selected.length, 15);
+  assert.ok(selected.filter((record) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
+    .every((record) => record.deliveryStatus === 'shipped'));
+  assert.ok(selected.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
+    .every((record) => record.deliveryStatus === 'shipped'));
   assert.equal(inventory.filter((record) => (
     ['deferred', 'deferred-subset'].includes(record.centralDisposition)
-  )).length, 44);
+  )).length, 39);
   assert.equal(inventory.filter((record) => record.centralDisposition === 'blocked').length, 2);
   assert.equal(inventory.filter((record) => record.centralDisposition === 'absorbed').length, 1);
   assert.equal(inventory.filter((record) => (
@@ -914,6 +1054,43 @@ test('continuation authoring ships five chronological cards and 32 exact payload
   }
   assert.equal(issueIds.length, 32);
   assert.equal(new Set(issueIds).size, 32);
+  assert.deepEqual(firstOnSale, [...firstOnSale].sort());
+});
+
+test('batch two authoring ships five chronological cards and 35 exact payload rows', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const catalog = await readJson(path.join(dataDir, 'catalog.json'));
+  assert.equal(manifest.lists.length, 111);
+  assert.equal(catalog.lists.length, 111);
+  assert.ok(inventory.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
+    .every((record) => record.deliveryStatus === 'shipped'
+      && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
+
+  const issueIds = [];
+  const firstOnSale = [];
+  for (const id of CBRO_BATCH_TWO_AUTHOR_IDS) {
+    const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+    const entry = manifest.lists.find((candidate) => candidate.id === id);
+    const catalogEntry = catalog.lists.find((candidate) => candidate.id === id);
+    const markdown = await readFile(path.join(dataDir, 'orders', entry.sourceFile), 'utf8');
+    const parsed = parseChecklist(markdown);
+    const payload = await readJson(path.join(dataDir, entry.out));
+    assert.match(markdown, /Source: \[Comic Book Reading Orders\]\(https:\/\/comicbookreadingorders\.com\//);
+    assert.deepEqual(
+      parsed.entries.map((item) => String(item.issueId)),
+      mapping.rows.map((row) => String(row.selectedIssueId)),
+    );
+    assert.equal(payload.placeholders, 0);
+    assert.deepEqual(payload.unresolved, []);
+    assert.equal(catalogEntry.sourceOrigin, CBRO_SOURCE_ORIGIN);
+    assert.equal(catalogEntry.sourceLicense, null);
+    assert.ok(payload.items.every((item) => item.cover.path.startsWith('https://')));
+    issueIds.push(...payload.items.map((item) => String(item.issueId)));
+    firstOnSale.push(payload.items[0].onSale);
+  }
+  assert.equal(issueIds.length, 35);
+  assert.equal(new Set(issueIds).size, 35);
   assert.deepEqual(firstOnSale, [...firstOnSale].sort());
 });
 

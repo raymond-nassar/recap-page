@@ -2537,6 +2537,156 @@
       "coverIssueId": 6970
     },
     {
+      "id": "original-clone-saga",
+      "name": "Original Clone Saga",
+      "description": "Thirteen chapters following Spider-Man through the original Clone Saga.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "original-clone-saga.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Original Clone Saga",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "original_clone_saga.json",
+      "characters": [
+        "Spider-Man",
+        "Gwen Stacy",
+        "Harry Osborn"
+      ],
+      "keywords": [
+        "Original Clone Saga",
+        "Spider-Man",
+        "Clone"
+      ],
+      "expect": 13,
+      "timeline": 1973,
+      "coverIssueId": 6526
+    },
+    {
+      "id": "phoenix-saga",
+      "name": "Phoenix Saga",
+      "description": "Eight X-Men chapters introducing the Phoenix era.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "phoenix-saga.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Phoenix Saga",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "phoenix_saga.json",
+      "characters": [
+        "X-Men",
+        "Jean Grey",
+        "Phoenix"
+      ],
+      "keywords": [
+        "Phoenix Saga",
+        "X-Men",
+        "Jean Grey"
+      ],
+      "expect": 8,
+      "timeline": 1976,
+      "coverIssueId": 12416
+    },
+    {
+      "id": "dark-phoenix-saga",
+      "name": "Dark Phoenix Saga",
+      "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "dark-phoenix-saga.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Dark Phoenix Saga",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "dark_phoenix_saga.json",
+      "characters": [
+        "X-Men",
+        "Jean Grey",
+        "Phoenix"
+      ],
+      "keywords": [
+        "Dark Phoenix Saga",
+        "X-Men",
+        "Jean Grey"
+      ],
+      "expect": 9,
+      "timeline": 1980,
+      "coverIssueId": 12446
+    },
+    {
+      "id": "days-of-future-past",
+      "name": "Days of Future Past",
+      "description": "Two X-Men chapters presenting Days of Future Past.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "days-of-future-past.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Days of Future Past",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "days_of_future_past.json",
+      "characters": [
+        "X-Men",
+        "Kitty Pryde",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Days of Future Past",
+        "X-Men",
+        "Kitty Pryde"
+      ],
+      "expect": 2,
+      "timeline": 1981,
+      "coverIssueId": 12460
+    },
+    {
+      "id": "contest-of-champions",
+      "name": "Contest of Champions",
+      "description": "Three chapters from Marvel's first Contest of Champions.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "contest-of-champions.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Contest of Champions",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "contest_of_champions.json",
+      "characters": [
+        "Avengers",
+        "X-Men",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Contest of Champions",
+        "Avengers",
+        "X-Men"
+      ],
+      "expect": 3,
+      "timeline": 1982,
+      "coverIssueId": 39673
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

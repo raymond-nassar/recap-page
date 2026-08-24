@@ -369,15 +369,20 @@ The source publishes a five-second crawl delay. Use normal public access, wait b
 and stop on a changed digest until the source boundary has been read and reviewed again. Copy no page
 commentary, branding, images, or layout. Retain factual issue identities and order only.
 
-Prepare, approve, author, and vendor the selected packet:
+For a timeline-range batch, commit the reviewed range specification, then freeze, prepare, approve,
+author, and vendor the selected release:
 
 ```text
+npm run cbro:freeze -- --file=scripts/data/cbro-timeline-batch-two.json
 npm run cbro:prepare -- --release=<release-id>
 npm run cbro:approve -- --release=<release-id>
 npm run cbro:author -- --release=<release-id>
 npm run vendor -- --only=<id>[,<id>...]
 ```
 
+The range freezer accepts only explicit visible labels, inclusive issue-number ranges, candidate
+issue IDs, metadata series IDs, and reviewed source-to-metadata alias notes. It creates packets
+through the shared CBRO packet-digest primitive and does not fetch, copy, or reproduce source prose.
 Preparation writes one exact mapping per frozen packet. A mapping worker does not choose source
 boundaries, exclusions, manifest fields, aliases, chronology, or relationship dispositions. Approval
 regenerates a factual report against every current shipped order and every selected peer. Exact

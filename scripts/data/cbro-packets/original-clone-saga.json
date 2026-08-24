@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "id": "original-clone-saga",
+  "inventoryId": "original-clone-saga",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Original Clone Saga",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 13,
+  "proposedManifest": {
+    "id": "original-clone-saga",
+    "name": "Original Clone Saga",
+    "description": "Thirteen chapters following Spider-Man through the original Clone Saga.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "original-clone-saga.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Original Clone Saga",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "original_clone_saga.json",
+    "characters": [
+      "Spider-Man",
+      "Gwen Stacy",
+      "Harry Osborn"
+    ],
+    "keywords": [
+      "Original Clone Saga",
+      "Spider-Man",
+      "Clone"
+    ],
+    "expect": 13,
+    "timeline": 1973,
+    "coverIssueId": 6526
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B02 coordinator",
+    "rationale": "The exact CBRO timeline labels, shared source digest, inclusive range boundaries, source-to-metadata aliases, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T06:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Amazing Spider-Man #139",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "139",
+      "seriesId": 1987,
+      "candidateIssueId": 6526,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #140",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "140",
+      "seriesId": 1987,
+      "candidateIssueId": 6528,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #141",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "141",
+      "seriesId": 1987,
+      "candidateIssueId": 6529,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #142",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "142",
+      "seriesId": 1987,
+      "candidateIssueId": 6530,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #143",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "143",
+      "seriesId": 1987,
+      "candidateIssueId": 6531,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #144",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "144",
+      "seriesId": 1987,
+      "candidateIssueId": 6532,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #145",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "145",
+      "seriesId": 1987,
+      "candidateIssueId": 6533,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #146",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "146",
+      "seriesId": 1987,
+      "candidateIssueId": 6534,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #147",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "147",
+      "seriesId": 1987,
+      "candidateIssueId": 6535,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #148",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "148",
+      "seriesId": 1987,
+      "candidateIssueId": 6536,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #149",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "149",
+      "seriesId": 1987,
+      "candidateIssueId": 6537,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #150",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "150",
+      "seriesId": 1987,
+      "candidateIssueId": 6539,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #151",
+      "sourceRangeReference": "Amazing Spider-Man #139-151",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "151",
+      "seriesId": 1987,
+      "candidateIssueId": 6540,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's Amazing Spider-Man label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    }
+  ],
+  "packetDigest": "8190accea7cdd47fd9f5ca5c91cb6497167e67e1c4fb8100541c625c57478ee5"
+}

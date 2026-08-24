@@ -21,6 +21,7 @@ import {
   CBRO_RELEASES,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
+  cbroRelationshipDecisionFor,
   cbroReleaseForIds,
   validateCbroHistoricalInventory,
   validateCbroPacket,
@@ -100,11 +101,7 @@ function readJson(filePath) {
 }
 
 export function isApprovedCbroRelationship(id, comparison) {
-  return comparison.relationship === 'none' || (
-    id === 'kree-skrull-war'
-    && comparison.orderId === 'essential-avengers'
-    && comparison.relationship === 'candidate-subset'
-  );
+  return comparison.relationship === 'none' || cbroRelationshipDecisionFor(id, comparison) != null;
 }
 
 function manifestEntryForCbroMapping(mapping) {
@@ -190,19 +187,20 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
     assert(canonicalJson(mapping.proposedManifest) === canonicalJson(packet.proposedManifest),
       `${mapping.id} mapping manifest differs from its packet`);
     const dispositions = report.comparisons.map((comparison) => {
-      const approvedSubset = comparison.relationship !== 'none'
-        && isApprovedCbroRelationship(mapping.id, comparison);
+      const decision = comparison.relationship === 'none'
+        ? null
+        : cbroRelationshipDecisionFor(mapping.id, comparison);
       return {
         orderId: comparison.orderId,
         relationship: comparison.relationship,
         sharedCount: comparison.sharedCount,
         sharedIds: comparison.sharedIds,
         decision: 'approved',
-        rationale: approvedSubset
-          ? 'The compact nine-issue event route has a distinct purpose from the 120-issue Essential Avengers guide.'
+        rationale: decision
+          ? decision.rationale
           : 'The current report contains no shared issue for this order.',
-        authorityType: approvedSubset ? 'stronger-model' : 'policy',
-        authorityIdentity: approvedSubset
+        authorityType: decision ? 'stronger-model' : 'policy',
+        authorityIdentity: decision
           ? release.authorityIdentity
           : `${release.id} none-overlap policy`,
         reviewedAt,
@@ -219,9 +217,7 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
       packetReview: release.packetReview,
       authorityType: 'stronger-model',
       authorityIdentity: release.authorityIdentity,
-      rationale: release.id === CBRO_RELEASE_IDS.continuationBatchOne
-        ? 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.'
-        : 'Every current library and selected peer comparison was reviewed; all relationships are none.',
+      rationale: release.relationshipReviewRationale,
       reviewedAt,
     };
     relationshipReview.approvalDigest = approvalDigestFor(relationshipReview);

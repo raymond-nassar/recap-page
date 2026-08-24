@@ -167,12 +167,12 @@ test('generated data is not read as prose', () => {
   assert.equal(scanned('PRODUCT_BACKLOG.md'), true);
 
   const raw = readFileSync(join(ROOT, 'docs/anchors.lock.json'), 'utf8');
-  const echoed = [...raw.matchAll(/\b(?:is|of)\s+([\d][\d,]*)\s+lines\b/g)];
+  const echoed = [...raw.matchAll(/\b(?:is|of|was)\s+([\d][\d,]*)\s+lines\b/g)];
   assert.ok(echoed.length > 0, 'the lock no longer echoes a size statement, so this exclusion has nothing to defend');
   assert.match(
     raw,
-    /1,566 lines(?![^"]*sizes:frozen)[^"]*"/,
-    'every echoed size statement now carries its frozen marker, so the exclusion has nothing to defend',
+    /1,566 lines[^"]*sizes:frozen[^"]*"/,
+    'the lock no longer preserves the frozen historical size statement this exclusion defends',
   );
 
   const { findings } = check(ROOT);

@@ -1,0 +1,460 @@
+{
+  "id": "original-clone-saga",
+  "name": "Original Clone Saga",
+  "description": "Thirteen chapters following Spider-Man through the original Clone Saga.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Original Clone Saga",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T06:16:17.479Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 13,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6526,
+      "title": "The Amazing Spider-Man (1963) #139",
+      "number": "139",
+      "url": "https://www.marvel.com/comics/issue/6526/the_amazing_spider-man_1963_139",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1974-12-01T00:00:00+0000",
+      "mu": "1974-12-01T00:00:00+0000",
+      "digitalId": 29088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/513f932d47430",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6528,
+      "title": "The Amazing Spider-Man (1963) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/6528/the_amazing_spider-man_1963_140",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-01-01T00:00:00+0000",
+      "mu": "1975-01-01T00:00:00+0000",
+      "digitalId": 29093,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/513500fadf057",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6529,
+      "title": "The Amazing Spider-Man (1963) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/6529/the_amazing_spider-man_1963_141",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-02-01T00:00:00+0000",
+      "mu": "1975-02-01T00:00:00+0000",
+      "digitalId": 29094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/51350f0a321a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6530,
+      "title": "The Amazing Spider-Man (1963) #142",
+      "number": "142",
+      "url": "https://www.marvel.com/comics/issue/6530/the_amazing_spider-man_1963_142",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-03-01T00:00:00+0000",
+      "mu": "1975-03-01T00:00:00+0000",
+      "digitalId": 29096,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/51351d2004d5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6531,
+      "title": "The Amazing Spider-Man (1963) #143",
+      "number": "143",
+      "url": "https://www.marvel.com/comics/issue/6531/the_amazing_spider-man_1963_143",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-04-01T00:00:00+0000",
+      "mu": "1975-04-01T00:00:00+0000",
+      "digitalId": 29097,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/51360c266405a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6532,
+      "title": "The Amazing Spider-Man (1963) #144",
+      "number": "144",
+      "url": "https://www.marvel.com/comics/issue/6532/the_amazing_spider-man_1963_144",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-05-01T00:00:00+0000",
+      "mu": "1975-05-01T00:00:00+0000",
+      "digitalId": 29098,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/513612064129e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6533,
+      "title": "The Amazing Spider-Man (1963) #145",
+      "number": "145",
+      "url": "https://www.marvel.com/comics/issue/6533/the_amazing_spider-man_1963_145",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-06-01T00:00:00+0000",
+      "mu": "1975-06-01T00:00:00+0000",
+      "digitalId": 29125,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/57bb248133e9a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6534,
+      "title": "The Amazing Spider-Man (1963) #146",
+      "number": "146",
+      "url": "https://www.marvel.com/comics/issue/6534/the_amazing_spider-man_1963_146",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-07-01T00:00:00+0000",
+      "mu": "1975-07-01T00:00:00+0000",
+      "digitalId": 29127,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/57bb2afe8b1cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6535,
+      "title": "The Amazing Spider-Man (1963) #147",
+      "number": "147",
+      "url": "https://www.marvel.com/comics/issue/6535/the_amazing_spider-man_1963_147",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-08-01T00:00:00+0000",
+      "mu": "1975-08-01T00:00:00+0000",
+      "digitalId": 29130,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/57bb3eba13b63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6536,
+      "title": "The Amazing Spider-Man (1963) #148",
+      "number": "148",
+      "url": "https://www.marvel.com/comics/issue/6536/the_amazing_spider-man_1963_148",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-09-01T00:00:00+0000",
+      "mu": "1975-09-01T00:00:00+0000",
+      "digitalId": 29099,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/57bb49927fb8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6537,
+      "title": "The Amazing Spider-Man (1963) #149",
+      "number": "149",
+      "url": "https://www.marvel.com/comics/issue/6537/the_amazing_spider-man_1963_149",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-10-01T00:00:00+0000",
+      "mu": "1975-10-01T00:00:00+0000",
+      "digitalId": 29133,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/57bb551e3146d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6539,
+      "title": "The Amazing Spider-Man (1963) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/6539/the_amazing_spider-man_1963_150",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-11-01T00:00:00+0000",
+      "mu": "1975-11-01T00:00:00+0000",
+      "digitalId": 29134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/57bb5bf12b39e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6540,
+      "title": "The Amazing Spider-Man (1963) #151",
+      "number": "151",
+      "url": "https://www.marvel.com/comics/issue/6540/the_amazing_spider-man_1963_151",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1975-12-01T00:00:00+0000",
+      "mu": "1975-12-01T00:00:00+0000",
+      "digitalId": 29135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/57bc4ac6c80e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

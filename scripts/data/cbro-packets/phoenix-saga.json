@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "phoenix-saga",
+  "inventoryId": "phoenix-saga",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Phoenix Saga",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "phoenix-saga",
+    "name": "Phoenix Saga",
+    "description": "Eight X-Men chapters introducing the Phoenix era.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "phoenix-saga.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Phoenix Saga",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "phoenix_saga.json",
+    "characters": [
+      "X-Men",
+      "Jean Grey",
+      "Phoenix"
+    ],
+    "keywords": [
+      "Phoenix Saga",
+      "X-Men",
+      "Jean Grey"
+    ],
+    "expect": 8,
+    "timeline": 1976,
+    "coverIssueId": 12416
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B02 coordinator",
+    "rationale": "The exact CBRO timeline labels, shared source digest, inclusive range boundaries, source-to-metadata aliases, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T06:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "X-Men #101",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "101",
+      "seriesId": 2258,
+      "candidateIssueId": 12416,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #102",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "102",
+      "seriesId": 2258,
+      "candidateIssueId": 12417,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #103",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "103",
+      "seriesId": 2258,
+      "candidateIssueId": 12418,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #104",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "104",
+      "seriesId": 2258,
+      "candidateIssueId": 12419,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #105",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "105",
+      "seriesId": 2258,
+      "candidateIssueId": 12420,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #106",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "106",
+      "seriesId": 2258,
+      "candidateIssueId": 12421,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #107",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "107",
+      "seriesId": 2258,
+      "candidateIssueId": 12422,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    },
+    {
+      "sourceIssueReference": "X-Men #108",
+      "sourceRangeReference": "X-Men #101-108",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "108",
+      "seriesId": 2258,
+      "candidateIssueId": 12423,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's historical X-Men label resolves to the configured metadata series Uncanny X-Men (1963 - 2011), series 2258."
+    }
+  ],
+  "packetDigest": "8dd7a741edf28961a20afdc3a80021bd07c2a3f0769ed3b360986ce2219fe9b6"
+}
