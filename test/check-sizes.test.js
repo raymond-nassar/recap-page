@@ -157,10 +157,9 @@ test('the tracking artifacts are out of scope', () => {
   assert.ok(!findings.some((f) => f.file.startsWith('.copilot-tracking/')), 'a dated artifact was read as a live claim');
 });
 
-// The anchors lock stores the head text of every line it fingerprints, truncated, so it
-// holds a generated copy of a sentence stating a size with the frozen marker cut off the
-// end. The copy therefore reads as a live claim that no edit to the prose could settle,
-// because the copy is only rewritten by a bless. Unlike the exclusion above, this one is
+// The anchors lock stores truncated head text for fingerprinted lines, including generated
+// copies of historical size statements that read as live claims. No prose edit can settle
+// those copies because only a bless rewrites them. Unlike the exclusion above, this one is
 // load-bearing today, so it is tested both ways.
 test('generated data is not read as prose', () => {
   assert.equal(scanned('docs/anchors.lock.json'), false);
@@ -170,9 +169,10 @@ test('generated data is not read as prose', () => {
   const raw = readFileSync(join(ROOT, 'docs/anchors.lock.json'), 'utf8');
   const echoed = [...raw.matchAll(/\b(?:is|of)\s+([\d][\d,]*)\s+lines\b/g)];
   assert.ok(echoed.length > 0, 'the lock no longer echoes a size statement, so this exclusion has nothing to defend');
-  assert.ok(
-    !/1,566 lines[^"]*sizes:frozen/.test(raw),
-    'the marker now survives into the lock, so the copy would no longer read as live',
+  assert.match(
+    raw,
+    /1,566 lines(?![^"]*sizes:frozen)[^"]*"/,
+    'every echoed size statement now carries its frozen marker, so the exclusion has nothing to defend',
   );
 
   const { findings } = check(ROOT);

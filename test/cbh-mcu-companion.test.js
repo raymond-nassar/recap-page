@@ -24,9 +24,9 @@ import {
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
+  availableHomeCategories,
   groupCatalog,
-  homeSections,
-  inHomeAge,
+  HOME_CATEGORIES,
   parseCatalog,
   shelfLists,
 } from '../src/js/lib/catalog.js';
@@ -326,9 +326,17 @@ test('approved evidence reaches four payloads, cards, and one Marvel on Screen g
     assert.doesNotMatch(manifestEntry.description, /[\u2013\u2014]/);
   }
 
-  const eligible = groupCatalog(catalog.lists).filter(inHomeAge);
-  const screen = homeSections(eligible).find((section) => section.key === 'marvel-on-screen');
-  assert.deepEqual(screen.stories.map((story) => story.lists[0].id), MCU_SELECTED_IDS);
+  const stories = groupCatalog(catalog.lists);
+  const screen = availableHomeCategories(stories)
+    .find((category) => category.key === 'marvel-on-screen');
+  assert.equal(screen.count, 4);
+  const screenDefinition = HOME_CATEGORIES.find((category) => (
+    category.key === 'marvel-on-screen'
+  ));
+  assert.deepEqual(
+    screenDefinition.select(stories).map((story) => story.lists[0].id),
+    MCU_SELECTED_IDS,
+  );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
     13,

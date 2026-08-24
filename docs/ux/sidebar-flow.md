@@ -1,69 +1,52 @@
-# Flow Specification: Collapsible Sidebar
+# Flow Specification: Hub-based Sidebar
 
 ## Goal
-Give users a reversible way to reclaim horizontal space, and add visual rhythm to
-a 10-item navigation list that currently reads as an undifferentiated column.
+
+Keep the navigation pane short as Reading Lists, browse categories and ways to add grow. The rail
+names stable destinations. Each hub owns the choices within it.
+
+## Destinations
+
+| Group | Rail item | Behavior |
+|---|---|---|
+| Brand | Home | Opens the category gateway and returning-reader surfaces |
+| Reading | Continue reading | Appears only when an active Reading List exists |
+| Reading | Library | Opens saved lists and library-wide views |
+| Discover | Browse | Opens every available reading category |
+| Discover | Add | Opens the five ways to add comics |
+| App | Backup & settings | Stays pinned at the bottom |
+| App | About this app | Stays pinned at the bottom |
+
+Saved Reading Lists never become additional rail rows. Continue reading shows only the active list's
+name and progress. Future browse categories and Add methods belong on their hubs rather than in the
+rail.
+
+## Parent Selection
+
+- Timeline, Storylines, Character spotlights and future category pages select Browse.
+- Search issues, Find a series, Browse a creator, Paste a Reading List and Add by hand select Add.
+- Everything read, Progress by series and Added by hand select Library.
+- The active reading page selects Continue reading.
+
+Direct child addresses remain valid. Selecting a hub changes the address to that hub, and Back
+returns through the actual pages visited.
 
 ## Collapse Behavior
-- **Toggle button**: Fluent `GlobalNavButton` (glyph `E700`), top-left of the
-  pane, above the brand lockup. Persistent — visible in both states.
-- **Expanded**: current width, icon + label + sublabel.
-- **Collapsed**: **48px icon rail** — icons remain visible and clickable.
-  Not fully hidden. Section headings hide; group dividers remain as the only
-  grouping cue.
-- **Tooltips**: in rail mode, hover and keyboard focus both reveal the label.
-- **Persistence**: `localStorage` key `sidebar.collapsed`.
-- **Responsive**: auto-collapse below 1000px viewport width. A manual toggle
-  after that overrides until the next breakpoint crossing.
-- **Keyboard**: `Ctrl+\` toggles.
-- **Motion**: 150ms width transition; respect `prefers-reduced-motion`.
 
-## Icons (required — rail mode has no labels)
-| Item | Fluent glyph |
-|------|--------------|
-| Browse the catalog | `E736` |
-| New empty list | `E710` |
-| Progress by series | `E9D2` |
-| Search issues | `E721` |
-| Add a whole series | `E8F1` |
-| Browse a creator | `E77B` |
-| Paste a reading order | `E77F` |
-| Add an issue by hand | `E948` |
-| Backup & settings | `E713` |
-| About this app | `E946` |
-
-## Dividers — Option C (two-tier)
-- **Between items within a group**: 1px `rgba(255, 255, 255, 0.05)`
-- **Between groups**: 1px `rgba(255, 255, 255, 0.10)` + 12px extra vertical space
-- Implemented as CSS `border-bottom` on list items, **not** `<hr>` elements, so
-  screen readers aren't given separator noise for purely visual structure.
-- Last item in each group omits its inner divider (`:last-child`).
-- Rationale: creates two levels of hierarchy — items are separated, groups are
-  clearly delimited — without the noise of uniform hairlines across 10 rows.
-
-## Item States
-- **Rest**: transparent background
-- **Hover**: full-width surface, 6px radius, `rgba(255,255,255,0.04)`
-- **Active/selected**: 3px Marvel-red left accent bar + `rgba(255,255,255,0.08)`
-  background + increased label weight. *(No selected state exists today — this is
-  a gap, not just a polish item.)*
-- **Focus**: 2px outline, offset 2px, distinct from hover
-- **Min height**: 44px
-
-## Status Pill
-`API OK · 37,526 issues` collapses to a colored dot in rail mode, with the full
-text as its accessible name and tooltip.
+- The Fluent `GlobalNavButton` toggle stays visible in both states.
+- Expanded mode shows icons, labels and the active list's compact progress.
+- Collapsed mode is a 48px icon rail. Labels remain in the accessibility tree.
+- Hover and keyboard focus reveal the label in a tooltip.
+- The choice persists in `localStorage` under `sidebar.collapsed`.
+- The rail auto-collapses below 1000px, with `Ctrl+\` as the keyboard shortcut.
+- The 150ms transition respects `prefers-reduced-motion`.
 
 ## Accessibility Requirements
-- [ ] Toggle: `aria-expanded`, `aria-controls="sidebar-nav"`,
-      `aria-label="Toggle sidebar"`
-- [ ] Nav wrapped in `<nav aria-label="Main">`
-- [ ] Active item carries `aria-current="page"`
-- [ ] Rail mode: every link keeps a text accessible name (`aria-label` or
-      visually-hidden span) — an icon alone is not a name
-- [ ] Collapse state change announced politely ("Sidebar collapsed")
-- [ ] Tab order unaffected by collapse; no focus trap
-- [ ] Tooltips reachable by keyboard focus, not hover-only
-- [ ] Dividers are CSS borders, decorative, never announced
-- [ ] Accent-bar active state is paired with a background change (not color alone)
-- [ ] Icon-only targets are at least 44x44px in rail mode
+
+- The toggle carries `aria-expanded`, `aria-controls="sidebar-nav"` and an accessible name.
+- The active rail item carries `aria-current="page"`.
+- Every icon-only target keeps a text accessible name and a 44 by 44 pixel minimum target.
+- Collapse announcements use the polite live region.
+- Tooltips work from keyboard focus as well as pointer hover.
+- Group dividers remain decorative CSS borders.
+- The selected accent bar is paired with a surface and weight change.

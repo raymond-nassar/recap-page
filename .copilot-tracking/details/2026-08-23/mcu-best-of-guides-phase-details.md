@@ -313,7 +313,7 @@ Add the smallest data and rendering model that names what these lists are and pl
 ### Boundaries
 
 * Included: `screen-companion`, `selected`, Marvel on Screen Home category, truthful Storylines fallback context, tests, and browser coverage.
-* Excluded: a fourth browse route, rail item, shelf, Character Spotlight classification, or separate card renderer.
+* Excluded: a fourth canonical shelf, direct rail item, Character Spotlight classification, or separate card renderer. The existing category contract supplies a generated child route.
 
 ### Likely Targets
 
@@ -339,7 +339,7 @@ Add the smallest data and rendering model that names what these lists are and pl
 
 ### Unresolved Items
 
-* None. Home-only category partition is preferred over parameterizing `shelfSections`, keeping browse callers unchanged.
+* None. Current `main` now owns a shared Home/Browse category gateway with generated category pages; Marvel on Screen extends that registry instead of introducing a separate partition.
 
 <!-- rpi:task id=P02-T01 -->
 ### P02-T01: Add screen-companion and selected taxonomy
@@ -394,8 +394,8 @@ Partition Hub content through a separate table while leaving browse shelf behavi
 
 #### Boundaries
 
-* Included: one `HOME_CATEGORIES` row or equivalent table, one `homeSections` function, Home rendering switch, non-empty behavior, ordering and counts.
-* Excluded: hard-coded candidate ids, a fourth `CATALOG_SHELVES` row, or route changes.
+* Included: one `HOME_CATEGORIES` row with a type selector, generated child-route registration, non-empty behavior, source ordering, and counts.
+* Excluded: hard-coded candidate ids, a fourth `CATALOG_SHELVES` row, or a direct rail item.
 
 #### Likely Targets
 
@@ -409,11 +409,11 @@ Partition Hub content through a separate table while leaving browse shelf behavi
 
 #### Validation Expectations
 
-* `homeSections` accounts for every eligible story exactly once.
-* Existing sections retain names and order; Marvel on Screen follows them.
-* Empty Marvel on Screen data yields no empty heading.
-* The two existing `home-grid` assertions are re-pointed from `shelfSections` to `homeSections`: completeness is measured against the actual Hub partition, and every heading is either a browse-shelf heading or a declared Hub category.
-* All four `timeline: null` screen companions survive `groupCatalog(catalog.lists).filter(inHomeAge)` and land in Marvel on Screen.
+* `availableHomeCategories` exposes Marvel on Screen only when its type selector finds content.
+* Existing primary and publishing categories retain names and order; Marvel on Screen is a secondary category before publishing ages.
+* Empty Marvel on Screen data yields no gateway tile.
+* The shared Home/Browse category tests assert availability, route uniqueness, generated child pages, and concise status updates.
+* All four `timeline: null` screen companions populate Marvel on Screen in inventory order and remain outside publishing-age claims.
 
 #### Completion Evidence
 
@@ -455,12 +455,12 @@ Keep reachability and keyboard/screen-reader behavior while making Storylines co
 * Every story reaches one browse screen and one appropriate Hub group.
 * Three browse routes remain.
 * The adaptive grid becomes one column at narrow width with no horizontal overflow.
-* Marvel on Screen is a plain heading, not a link; “navigable” means screen-reader and browser heading-level navigation.
-* The existing featured first-run pick remains unchanged.
+* Marvel on Screen is a gateway button with an explicit accessible name and a generated child page whose heading receives focus.
+* The merged Hub's retired featured picker is not restored.
 
 #### Completion Evidence
 
-* Browser proof records the plain heading, four cards, import control names, browse navigation, featured-pick stability, and narrow layout.
+* Browser proof records the gateway tile, child-route focus, four cards, import control names, source order, counts, and narrow layout.
 
 #### Unresolved Items
 
@@ -536,7 +536,7 @@ Generate all user-visible list data from approved evidence.
 * Counts and IDs match mapping exactly.
 * Payloads hold zero placeholders/unresolved rows.
 * Card names and descriptions stay project-authored and dash-free.
-* `inHomeAge` retains all four manifest entries, and `pickFeatured` returns the same order before and after the release.
+* The Marvel on Screen type selector retains all four manifest entries, publishing-age selectors retain none of the undated cards, and no featured recommendation is restored.
 
 #### Completion Evidence
 

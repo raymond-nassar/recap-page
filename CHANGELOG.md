@@ -16,18 +16,56 @@ quote in a bug report.
 
 ### Added Marvel on Screen companion guides
 
-In plain English: the Hub now has a Marvel on Screen section with four comic guides chosen to
-accompany Doctor Strange: Multiverse of Madness, Spider-Man: No Way Home, Marvel multiverse stories,
-and What If?. Together they add 43 issue picks. Each guide says when the source named only part of a
-broader recommendation, and nothing you have saved is changed. The catalog now has 100 reading
-lists.
+In plain English: Home and Browse now offer Marvel on Screen as a category. Opening it shows four
+comic guides chosen to accompany Doctor Strange: Multiverse of Madness, Spider-Man: No Way Home,
+Marvel multiverse stories, and What If?. Together they add 43 issue picks. Each guide says when the
+source named only part of a broader recommendation, and nothing you have saved is changed. The
+catalog now has 100 reading lists.
 
 For maintainers: a fourteen-title inventory preserves the full user priority order while this
 release advances only the first four. Four frozen packets resolve 43 exact, release-wide unique
 rows. Each 99-comparison report covers the 96-list pre-publication library and the other three
 release peers. Central review approves two Doctor Strange partials and the two-issue Marvel
-Multiverse subsets of both Claremont paths. Exact duplicates remain unapprovable.
+Multiverse subsets of both Claremont paths. Exact duplicates remain unapprovable. Installed Edge
+passed 184 assertions across 19 scenarios, including the populated category, child-route focus,
+four-card source order, and one-column narrow layout.
 
+### Added browsing by Marvel publishing age
+
+In plain English: Home now offers Modern Age as a compact way into seven populated periods, from
+Early Modern through the current era. Each period opens its own page with the
+matching Reading Lists, including lists from different kinds of shelf when their dates belong
+together.
+
+Golden, Silver, Bronze and Copper have their own destinations but stay out of Home until the catalog
+has matching dated content. Timeline is now named Modern Timeline, and its existing address
+still works. Nothing you have saved is changed.
+
+For maintainers: one registry defines five publishing ages and seven Modern subperiods. Half-open
+year ranges give every transition year to the later period, dated stories select independently of
+canonical shelves, undated stories are excluded, and empty categories remain directly routable but
+hidden from gateways.
+
+### Turned Home and navigation into reading hubs
+
+In plain English: Home now asks how you want to read instead of placing every Reading List on one
+long page. Browse offers the same category choices on its own page. Modern Timeline, Storylines and
+Character spotlights are equal choices, and future categories stay hidden until content is ready.
+
+Continue reading and Your Reading Lists still come first when you have saved progress. The featured
+recommendation, catalogue filters and full card wall have left Home; those details remain on the
+dedicated browse screens.
+
+The sidebar now stays short as the library grows. It shows one active Continue reading choice plus
+Library, Browse and Add. Saved lists and individual ways to browse or add are grouped on those hub
+pages instead of becoming more sidebar rows. Nothing already saved is changed.
+
+Opening an existing Reading List from Preview now closes Preview instead of leaving it over the
+reading screen. Screen readers also hear when category and publishing results finish loading.
+
+For maintainers: one renderer supplies the Home and Browse gateways, hub children keep direct
+addresses, and each child selects its parent in the rail. The category registry remains independent
+from the canonical three-shelf partition.
 ### Added the complete Groot character guide
 
 In plain English: the Character spotlights shelf now includes a complete Groot guide. It follows all

@@ -62,6 +62,16 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 * Completion evidence: The four failing runs named the intended semantic assertion. A combined restored run then passed all 4 targeted tests.
 * Validation: Passed.
 
+### CHG-007: Reconcile the integrated reading gateway before Review
+
+* Affected plan area or markers: P02-T02, P02-T03, P04-T02, P05-T01, candidate lock, PC-001 through PC-003 and PC-008
+* What changed: Merged `origin/main` at b9367d8, which had replaced the Home card wall with a shared Home/Browse category gateway and generated category child pages. Reconciled Marvel on Screen into that registry with its own child route, kept Storylines as the canonical shelf, retained `timeline: null` and `beginner: false`, migrated coverage to `home-categories.test.js`, and removed this branch's superseded Home partition tests.
+* Why: The user explicitly required the existing Marvel on Screen category contract. Reviewing or releasing the pre-merge Home partition would have duplicated and contradicted the contract that landed concurrently.
+* Triggering evidence: Current `main` added BL-208, `HOME_CATEGORIES`, publishing-age routes, generated child views, and 182 Edge assertions across 19 scenarios.
+* User answer or decision: Existing confirmed Marvel on Screen placement and category-contract direction; no new decision was needed.
+* Reconciliation performed: Updated plan, details, route registry, category renderer, tests, browser fixture, backlog id from BL-208 to BL-209, documentation, counts, and validation expectations. Kept all four guide mappings and product data unchanged.
+* Planning and critique state: Immediate in-scope current-state update. The one critique remains historical; no second critique runs.
+
 ## Implementation-Time Plan and Detail Updates
 
 ### CHG-001: Start the approved full-plan implementation
@@ -90,13 +100,14 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 | Failure proof: Hub partition | P04-T01 | Passed | Replacing `homeSections` with `shelfSections` produced 1 expected landing-render failure. |
 | Failure proof: subset scope | P04-T01 | Passed | Replacing the priority 3 scope sentence produced 1 expected description failure. |
 | Failure proof: taxonomy | P04-T01 | Passed | Removing `screen-companion` from `LIST_TYPES` produced 1 expected manifest failure. |
+| Failure proof: integrated category | P04-T01 | Passed | Removing the Marvel on Screen registry row produced 1 expected undeclared-category failure; the restored focused test passed. |
 | Restored semantic checks | P04-T01 | Passed | All 4 focused checks passed after stash restoration. |
 | Full unit suite | P04-T02 | Passed | 1,428 of 1,428 tests passed after legacy library-bound tests excluded the four later MCU releases and governance counts moved to 187 blocks / 181 checks. |
 | Static release gates | P04-T02 | Passed | Lint, counts, sizes, palette, publication, and publication surface all passed. |
 | Live metadata API contract | P04-T02 | Passed | 33 of 33 general assumptions hold across 17 requests. |
 | MCU issue contract | P04-T02 | Passed | 43 of 43 mapped issue ids retain exact id, series, issue number, and detail URL. |
-| Installed Edge | P04-T02 | Passed | 160 assertions passed across 17 scenarios at desktop and narrow viewports. |
-| Installed Edge mutation proof | P04-T02 | Passed | All 17 named mutations turned their owning scenario red; the restored run remained 160/160. |
+| Installed Edge | P04-T02 | Passed | 184 assertions passed across 19 scenarios at desktop and narrow viewports after current `main` reconciliation. |
+| Installed Edge mutation proof | P04-T02 | Passed | All 22 browser mutations were detected; the restored run remained 184/184. |
 | Evidence anchors | P04-T02 | Passed | 42 changed citations were read against their claims, range boundaries were nonblank, and the post-bless run reported 1,177 unchanged / 0 drifted / 0 new / 0 removed. |
 
 ## Pre-Review Reconciliation

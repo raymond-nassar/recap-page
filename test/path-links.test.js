@@ -68,10 +68,10 @@ const NAME = [...placed.values()][0].pathName;
 // in the app pointing at two different screens.
 test('the two links are drawn on exactly the rows that cannot reach the stop by scrolling', () => {
   const rows = [];
-  for (const surface of ['home', ...CATALOG_SHELVES.map((s) => s.key)]) {
+  for (const surface of CATALOG_SHELVES.map((s) => s.key)) {
     for (const [position, placement] of byPosition) {
       const key = keyAt(position);
-      const drawn = surface === 'home' ? true : shelfOf(key) === surface;
+      const drawn = shelfOf(key) === surface;
       if (!drawn) continue;
       const line = pathLine(placement, surface);
       const drawnLinks = links(line);
@@ -85,11 +85,6 @@ test('the two links are drawn on exactly the rows that cannot reach the stop by 
 
   const both = rows.filter((r) => r.name && r.next);
   assert.deepEqual(both.map((r) => r.position), [5], 'step five is the only row carrying both links');
-
-  const home = rows.filter((r) => r.surface === 'home');
-  assert.equal(home.length, 10, 'the landing page draws every stop');
-  assert.equal(total('name') - rows.filter((r) => r.surface !== 'home').reduce((n, r) => n + r.name, 0), 0,
-    'the landing page draws the first stop, so nothing there needs a link to it');
 });
 
 // The basis of the whole decision. A backward stop link was declined because the path's name is

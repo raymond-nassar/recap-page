@@ -124,7 +124,7 @@
   --amber: #eab654;
   --blue: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:701-702`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:703-704`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -359,6 +359,10 @@ a { color: var(--blue); }
 
 .ri .t { display: flex; justify-content: space-between; gap: .5rem; }
 .ri .n { font-variant-numeric: tabular-nums; font-size: var(--t-caption); color: var(--muted); }
+.ri .rail-list-name {
+  display: block; margin-top: .15rem; overflow: hidden; color: var(--muted);
+  font-size: var(--t-caption); font-weight: 400; text-overflow: ellipsis; white-space: nowrap;
+}
 .ri .bar { display: block; height: 3px; background: var(--track); border-radius: 2px; margin-top: .45rem; overflow: hidden; }
 .ri .bar i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
@@ -376,8 +380,8 @@ a { color: var(--blue); }
    end of <body>: the rail is a scroll container, so anything drawn inside it would be
    clipped at 48px. */
 .railed .rail-h,
-.railed #no-lists,
 .railed .ri .n,
+.railed .ri .rail-list-name,
 .railed .ri .bar { display: none; }
 
 .railed .brand b,
@@ -998,6 +1002,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
 .search-hub-card:hover { border-color: var(--accent-text); background: var(--card-2); }
 .search-hub-other { margin-top: 1.25rem; }
+.library-tools { margin-top: 2rem; }
+.add-hub-grid { max-width: 48rem; }
 @media (max-width: 560px) {
   .search-hub-grid { grid-template-columns: 1fr; }
 }
@@ -1262,85 +1268,84 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .yours .yours-name { color: var(--text); font-weight: 600; font-size: var(--t-body); overflow-wrap: anywhere; }
 .yours .yours-count { color: var(--muted); font-variant-numeric: tabular-nums; }
 
-/* ---------------------------------------------------------- featured journey
+/* ---------------------------------------------------------- reading paths */
 
-   The answer to "where do I start", shown only on a genuine first run: an empty library, no facet
-   chosen and no query typed. It sits above the grid rather than taking a slot in it, because the
-   grid is capped at twelve with an overflow count that a test holds, and taking a slot would make
-   that count wrong.
-   Amber, per the brief's role for it: this is editorial guidance rather than a status or an
-   action. The action inside it is purple, and it is the one filled primary on the page. */
-.feature {
-  border: 1px solid var(--line); border-left: 4px solid var(--amber);
-  border-radius: 20px; background: var(--card);
-  padding: 1.4rem 1.6rem; margin-bottom: 1.6rem; max-width: 72rem;
+.home-categories { max-width: 72rem; }
+.home-paths {
+  list-style: none; margin: .7rem 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
 }
-.feature[hidden] { display: none; }
-.feature-in { display: grid; grid-template-columns: 132px 1fr; gap: 1.6rem; align-items: start; }
-.feature-body {
-  min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 15rem;
-  gap: 1.5rem; align-items: start;
+.home-paths li { min-width: 0; }
+.home-path {
+  --home-path-line: var(--accent-line);
+  position: relative; overflow: hidden; width: 100%; min-height: 12rem;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: end; gap: 1rem; padding: 1.25rem;
+  border: 1px solid var(--line-2); border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgb(var(--home-path-line) / 13%), transparent 62%),
+    var(--card);
+  color: var(--text); text-align: left; font: inherit; cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
 }
-.feature-copy { min-width: 0; }
-.feature-decision {
-  min-width: 0; align-self: stretch; display: grid; align-content: center; gap: 1rem;
-  padding-left: 1.25rem; border-left: 1px solid var(--line);
+.home-path::before {
+  content: ''; position: absolute; inset: 0 0 auto; height: 4px;
+  background: rgb(var(--home-path-line));
 }
-.feature h2 { font-size: var(--t-title); margin: .3rem 0 .55rem; font-weight: 600; letter-spacing: -.02em; }
-.feature .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: block; }
-body.nocovers .feature .art img, .feature .art img[hidden] { display: none; }
-.feature .art .fallback { padding: .55rem; border-radius: 12px; }
-.feature .art .fallback .fs { font-size: var(--art-label-sm); letter-spacing: .06em; }
-.feature .art .fallback .fn { font-size: var(--art-n-md); }
-.feature-why { color: var(--dim); font-size: var(--t-body); line-height: 1.55; margin: 0; max-width: 62ch; }
-/* The commitment, stated rather than implied. Every fact a reader needs before saying yes: how
-   many issues, how long, whether it ends, and whether anything has to be read first. */
-.feature-facts { list-style: none; display: grid; justify-items: start; gap: .4rem; margin: 0; padding: 0; }
-.feature-facts li {
-  border: 1px solid var(--line-2); color: var(--dim); border-radius: 999px;
-  padding: .26rem .75rem; font-size: var(--t-caption);
+.home-path[data-category="storylines"] { --home-path-line: var(--amber-line); }
+.home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); }
+.home-path:hover {
+  transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
+  background:
+    linear-gradient(145deg, rgb(var(--home-path-line) / 19%), transparent 68%),
+    var(--card-2);
 }
-.feature-act { display: grid; gap: .6rem; }
-.feature-act .btn { min-height: 44px; width: 100%; }
+.home-path-icon {
+  align-self: start; color: rgb(var(--home-path-line)); font-size: 1.45rem;
+  line-height: 1;
+}
+.home-path-copy { min-width: 0; display: grid; gap: .25rem; align-self: end; }
+.home-path-label { margin: 0; color: var(--dim); }
+.home-path-title {
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem); font-weight: 650;
+  letter-spacing: -.025em; line-height: 1.1; overflow-wrap: anywhere;
+}
+.home-path-count { color: var(--muted); font-size: var(--t-caption); }
+.home-path-arrow { color: var(--dim); font-size: 1.1rem; }
+.home-more-paths { margin-top: 1.8rem; }
+.home-more-paths .sec-h h3 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.home-paths-secondary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.home-path-secondary { min-height: 8rem; border-radius: 14px; }
+.home-path-secondary .home-path-title { font-size: var(--t-title); }
 
-@media (max-width: 1100px) {
-  .feature-body { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-  .feature-decision { padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--line); }
-  .feature-facts { display: flex; flex-wrap: wrap; }
-  .feature-act { display: flex; flex-wrap: wrap; }
-  .feature-act .btn { width: auto; }
+.publishing-meta {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .55rem;
+  margin: -.35rem 0 .65rem;
+}
+.publishing-range, .publishing-count, .publishing-highlights li {
+  border: 1px solid var(--line); border-radius: 999px; padding: .22rem .65rem;
+  color: var(--muted); font-size: var(--t-caption); background: var(--card-2);
+}
+.publishing-count { color: var(--text); }
+.publishing-highlights {
+  display: flex; flex-wrap: wrap; gap: .45rem; list-style: none;
+  margin: 0 0 1rem; padding: 0;
+}
+.publishing-periods { margin-top: 1rem; }
+.publishing-periods .sec-h h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.publishing-grid { margin-top: 0; }
+.publishing-empty { margin-top: 1rem; }
+
+@media (max-width: 900px) {
+  .home-paths-primary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
 }
 @media (max-width: 620px) {
-  .feature-in { grid-template-columns: 1fr; }
-  .feature-in .art { max-width: 132px; }
+  .home-paths-primary { grid-template-columns: 1fr; }
+  .home-paths-secondary { grid-template-columns: 1fr; }
+  .home-path { min-height: 9rem; }
 }
 
-
-.ogrid {
-  list-style: none; margin: .9rem 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .9rem;
-  grid-auto-rows: 1fr;
-}
-/* The landing grid is now one list per group rather than one list for everything, so the spacing
-   between a group's cards and the next group's heading has to come from the container rather than
-   from the grid's own top margin, which only separates a grid from what precedes it. */
-.ogrid-groups { display: flex; flex-direction: column; gap: 0; margin: .9rem 0 0; }
-.home-shelf-section { padding: 0; background: none; border: 0; border-radius: 0; }
-.ogrid-groups .home-shelf-section { margin: 1.6rem 0 0; }
-.ogrid-groups .home-shelf-section:first-child { margin-top: 0; }
-.ogrid-groups .ogrid { margin: .6rem 0 0; }
-.ocard {
-  position: relative;
-  display: flex; flex-direction: column;
-  border: 1px solid var(--line); border-radius: var(--r); background: var(--card);
-}
-.ocard:hover { border-color: var(--line-2); }
-.ocard-body { display: flex; gap: .8rem; align-items: flex-start; padding: .85rem .85rem .6rem; }
-/* 92 rather than 58, because choosing between stories is the one place cover art is doing work and
-   at 58 it was a thumbnail beside the text rather than the thing you look at first. Bounded by the
-   narrowest case rather than the widest: the track is 312 at a 1280 viewport and 313 on the full
-   canvas, leaving a 180 text column, but at the narrowest two-column band the track falls to 275
-   and the text column to 143, which is what stops this going further. */
+/* Shared cover art inside the dedicated browse cards. */
 .ocard-art { position: relative; flex: 0 0 92px; }
 .ocard-art img {
   width: 92px; aspect-ratio: 2/3; object-fit: cover; border-radius: 6px;
@@ -1360,79 +1365,16 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   font-size: var(--art-label-sm); font-weight: 700; letter-spacing: .02em; line-height: 1.2;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;
 }
-.ocard-badges {
-  position: absolute; inset: .35rem auto auto .35rem;
-  display: flex; flex-direction: column; align-items: flex-start; gap: .3rem;
-  max-width: calc(100% - .7rem); pointer-events: none;
-}
-.ocard-badges .pill {
-  max-width: 100%; padding: .12rem .4rem; overflow: hidden; text-overflow: ellipsis;
-  border-color: var(--line-2); background: var(--card); color: var(--text);
-  font-size: var(--art-label-sm); font-weight: 700; line-height: 1.35; white-space: nowrap;
-  box-shadow: 0 1px 3px rgb(var(--shadow-rgb) / calc(22% * var(--shadow-alpha)));
-}
-.ocard-badges .pill-beginner { color: var(--teal); }
-
-.ocard-text { min-width: 0; }
-.ocard-title {
-  font-size: var(--t-body); font-weight: 600; margin: 0 0 .2rem; line-height: 1.3;
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
-}
-.ocard-desc {
-  color: var(--dim); font-size: var(--t-body); margin: 0 0 .35rem; line-height: 1.45;
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
-}
-/* The clamp above is an author declaration, so it beats the user agent's [hidden] rule and the
-   description stays laid out and in the accessibility tree after hidden is set. Every bundled
-   order has a description today, but the normaliser accepts one without. */
-.ocard-desc[hidden] { display: none; }
-.ocard-meta { color: var(--muted); font-size: var(--t-caption); margin: 0 0 .35rem; }
-.ocard-foot {
-  display: flex; flex-direction: column; gap: .4rem;
-  padding: 0 .85rem .85rem; margin-top: auto;
-}
-.ocard-foot .btn { width: 100%; justify-content: center; min-height: 44px; }
-/* An outline, not the filled primary. Eight filled primaries down a grid make nothing primary:
-   purple stops meaning "this is the action" and becomes the colour the page happens to be. The
-   page keeps one filled primary, in the featured panel, and every card offers an outline. The
-   exclusion keeps `.btn-added`, which is a state rather than an action, on its own footing. */
-.ocard-foot .btn:not(.btn-added) {
-  background: none; color: var(--text); border-color: var(--line-2); font-weight: 600;
-}
-.ocard-foot .btn:not(.btn-added):hover {
-  border-color: var(--accent-text); background: rgb(var(--accent-line) / 8%);
-}
-/* The catalog rows are the same 59 orders as the grid above, rendered by a different component,
-   and the rule the grid learned never reached them. Measured: the catalog painted 59 filled
-   accent Import buttons down an 11,314px page, against exactly one filled button on the whole
-   home view. The argument is the one three rules up, only more so at 59. */
+/* Repeating a filled accent button on every browse card makes nothing primary. */
 .result-act .btn:not(.btn-added) {
   background: none; color: var(--text); border-color: var(--line-2); font-weight: 600;
 }
 .result-act .btn:not(.btn-added):hover {
   border-color: var(--accent-text); background: rgb(var(--accent-line) / 8%);
 }
-/* The preview covers the whole card, so the body is a large secondary target without the
-   heading and the description being nested inside a button, which is not valid content for
-   one and would flatten the card into a single unreadable label. The primary button is
-   raised above the overlay so it stays a separate, unambiguous action. */
-.ocard-preview {
-  min-height: 44px; background: none; border: 1px solid transparent; color: var(--blue);
-  font: inherit; font-size: var(--t-body); border-radius: 8px; text-align: center;
-}
-.ocard-preview::after { content: ''; position: absolute; inset: 0; border-radius: var(--r); }
-.ocard-preview:hover { color: var(--text); border-color: var(--line-2); }
-.ocard-foot .btn { position: relative; z-index: 1; }
-.ocard:focus-within { border-color: var(--line-2); }
 /* "In library" is a state, so it is named in the label as well as coloured. */
 .btn-added { background: rgb(var(--tint-base) / 5.882%); color: var(--teal); border-color: rgb(var(--teal-line) / 33.333%); font-weight: 600; }
 
-.home-q { max-width: 32rem; margin-top: .8rem; }
-#home-overflow { margin: .9rem .1rem .55rem; }
-/* Full width rather than sized to its text. The control is the answer to "is that everything?",
-   which the reader asks at the bottom of the grid with their eye already sweeping horizontally,
-   so a small button tucked at one edge is easy to sweep straight past. */
-.home-more { display: block; width: 100%; margin: 0 .1rem; }
 .attribution { margin: 1.1rem .1rem 0; }
 
 /* ---------------------------------------------------------- preview dialog */
@@ -1494,18 +1436,15 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   /* The accent bar and the raised surface both disappear in forced colours, so the
      selected item is marked with a border the mode is required to honour. */
   .ri[aria-current], .ri.on { border: 2px solid Highlight; }
-  .ocard, .yours button, .preview { border: 1px solid CanvasText; }
+  .home-path, .yours button, .preview { border: 1px solid CanvasText; }
+  .home-path::before { background: Highlight; }
+  .home-path-icon, .home-path-arrow { color: ButtonText; }
+  .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }
   .pbar { border: 1px solid CanvasText; }
   .pbar i { background: Highlight; }
   .rail-tip { border: 1px solid CanvasText; background: Canvas; }
-  /* The featured panel is distinguished only by a tinted edge, and forced colours discard both the
-     tint and the raised surface, so without this it is an unmarked block of text above the grid. */
-  .feature { border: 1px solid CanvasText; }
-  .feature-facts li { border: 1px solid CanvasText; }
-  /* Both the beginner badge and the selected filter carry their state in colour plus a tinted
-     border, and only the border survives here, at whatever weight the mode assigns it. Marking the
-     selected filter with Highlight is what the rail already does for the selected view. */
-  .pill-start, .pill-beginner { border: 1px solid CanvasText; }
+  /* The path badge and selected filters carry state in colour plus a tinted border. */
+  .pill-start { border: 1px solid CanvasText; }
   .addpri, .pill-held, .res-head { border-color: CanvasText; }
   #view-data .setgroup > h2 { border-bottom: 1px solid CanvasText; }
   .notice { border: 1px solid CanvasText; }

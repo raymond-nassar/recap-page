@@ -17,7 +17,7 @@ Plan and ship the first four user-priority Comic Book Herald movie and streaming
 ### User Decisions and Requirements Highlights
 
 * Preserve all fourteen selected titles and their order in a durable inventory, but ship only priorities 1 to 4 in this release.
-* Marvel on Screen placement is fixed. Do not create a fourth browse screen and do not use Character Spotlight.
+* Marvel on Screen placement is fixed. Use the existing category gateway and generated child-page contract, do not create a fourth canonical shelf, and do not use Character Spotlight.
 * Retain factual issue identity and order only. Do not copy source prose, branding, layouts, movie imagery, or comic image bytes.
 
 ### What You May Not Know
@@ -72,7 +72,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 ### Non-Goals
 
 * Shipping priorities 5 to 14 in this pull request.
-* Adding a fourth browse screen, route, or rail item.
+* Adding a fourth canonical shelf or a direct rail item. Marvel on Screen uses the category contract's child route under Browse.
 * Changing Character Spotlight semantics or filters.
 * Copying source prose, branding, layouts, movie imagery, or comic images.
 * Inferring collection contents, scraping Marvel sites, altering the canonical origin, or changing persistence.
@@ -82,7 +82,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * The app accepts `screen-companion` as a first-class list type and `selected` as a reading depth.
   * Observable acceptance criteria: all four manifest and catalog entries parse without drops; type/depth labels are visible and no entry carries `spotlightKind`.
 * The Hub renders the four selected stories, in user priority order, under one `Marvel on Screen` heading after the three established Hub groups.
-  * Observable acceptance criteria: all four `timeline: null` cards survive `inHomeAge` and appear once in that Hub group at desktop and narrow widths; the plain heading supports heading-level navigation but is not a link; search and facets retain accurate counts; no fourth route or rail item exists.
+  * Observable acceptance criteria: all four `timeline: null` cards populate one Marvel on Screen gateway tile and its generated child page in user order at desktop and narrow widths; the tile and route are keyboard and screen-reader accessible; no fourth canonical shelf or direct rail item exists.
 * Every selected guide imports the exact frozen-packet issue sequence.
   * Observable acceptance criteria: the current Research baseline is 17, 17, 2, and 7; refreshed source evidence takes precedence, and any boundary/count change pauses authoring, is recorded as a plan amendment in the changes record, and re-derives every acceptance count before work continues; source order, issue IDs, issue numbers, payloads, Markdown, manifest, and catalog agree.
 * Every source row receives an explicit outcome.
@@ -120,7 +120,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Generated Markdown and payloads preserve issue IDs and order exactly; counts equal the refreshed frozen packets, currently 17, 17, 2, and 7; placeholders and unresolved arrays are empty.
 * Catalog and manifest contain exactly four `screen-companion` / `selected` entries in user priority order with original summaries and canonical attribution.
 * Hub renders exactly four Marvel on Screen cards in priority order at 1280x900 and a narrow viewport; the group is absent when no matching content exists.
-* All four manifest entries carry `timeline: null` and `beginner: false`; `inHomeAge` retains all four and the existing featured pick is unchanged.
+* All four manifest entries carry `timeline: null` and `beginner: false`; the type selector retains all four outside publishing-age pages and the retired featured picker is not restored.
 * Timeline, Storylines, and Character Spotlights remain the only three browse screens; Character Spotlight readings and stories do not change.
 * Priority 3's card and packet state that it contains the guide's only issue-numbered selection, and its subset approval remains digest-bound.
 * No copied source prose, branding, movie image, comic image byte, em dash, en dash, runtime dependency, telemetry, origin change, or Marvel scraping is introduced.
@@ -213,14 +213,14 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 #### [x] P02-T02: Render the non-empty Marvel on Screen Hub category
 
 * Requirement and evidence: User placement is fixed; current Hub derives only the three browse shelf headings.
-* Expected result: a table-driven Home-only category partitions `screen-companion` stories into Marvel on Screen after established groups; empty categories disappear; both existing Home completeness/heading guards are re-pointed to the new partition; all other Hub headings and browse shelves keep current ordering and counts.
+* Expected result: one table-driven secondary category selects `screen-companion` stories, appears on both Home and Browse only when populated, and opens its generated child page; all other gateway categories and canonical shelves keep current ordering and counts.
 * Detail section: P02-T02 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:task id=P02-T03 -->
 #### [x] P02-T03: Preserve browse, accessibility, and narrow-layout contracts
 
 * Requirement and evidence: Every story must remain discoverable and cards already share one adaptive grid.
-* Expected result: the new type remains reachable through the existing Storylines fallback browse screen with truthful context, adds no route/rail item, keeps Character Spotlight and the featured pick unchanged, and renders a one-column Hub group at narrow width whose plain heading supports heading-level navigation without being a link.
+* Expected result: the new type remains canonically reachable through Storylines, adds one category child route but no shelf or direct rail item, keeps Character Spotlight unchanged, and renders four one-column cards on the narrow Marvel on Screen child page.
 * Detail section: P02-T03 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:phase id=P03 -->
@@ -302,14 +302,14 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 
 | Critique run and finding | Disposition | Plan response or residual risk |
 |---|---|---|
-| PC-001 Hub publishing-age filter | Resolved | Four entries are pinned to `timeline: null`; Hub tests assert `inHomeAge` retains them. |
-| PC-002 stale Hub tests | Resolved | Both existing Hub invariants are re-pointed to `homeSections`; headings may be shelf names or declared Hub categories. |
-| PC-003 featured pick drift | Resolved | Four entries are `beginner: false`; featured selection is a regression assertion. |
+| PC-001 Hub publishing-age filter | Resolved, then superseded by integrated Hub | Four entries remain `timeline: null`; Marvel on Screen selects by type and publishing-age pages do not claim them. |
+| PC-002 stale Hub tests | Resolved, then superseded by integrated Hub | The merged `home-categories` suite owns category availability, routing, counts, and empty-state behavior. |
+| PC-003 featured pick drift | Resolved, then superseded by integrated Hub | Four entries remain `beginner: false`; the merged Hub retired the featured picker. |
 | PC-004 refreshed count conflict | Resolved | Refreshed frozen packets take precedence; material boundary/count drift pauses authoring and amends plan/counts durably. |
 | PC-005 comparison-count mismatch | Resolved | Release reports use current library plus three shipped peers; Research's fourth feasibility peer is explicitly excluded. |
 | PC-006 reconciliation ambiguity | Resolved | Both reconciliations merge `origin/main`; rebase and force-push remain excluded; exit status and output are read. |
 | PC-007 anchor preconditions | Resolved | New and ignored tracking files are indexed first; head search and hunk arithmetic are both required before bless and after conflicts. |
-| PC-008 heading navigability ambiguity | Resolved | Marvel on Screen is a plain heading, not a link; navigability means heading-level navigation. |
+| PC-008 heading navigability ambiguity | Superseded by integrated category contract | Marvel on Screen is an explicit gateway button and generated child route, as the now-shipped shared category contract requires. |
 | PC-009 record conventions | Resolved | Changes use CHG-xxx sections and the shipped backlog block records the eleven-constraint gate. |
 
 ## Follow-Up Items
@@ -325,10 +325,10 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 
 ### Candidate Lock for Critique
 
-* Exact removals: none. Two existing `home-grid` assertions are re-pointed from `shelfSections` to `homeSections`; no coverage is deleted.
+* Exact removals: none from this feature. The integrated Hub merge independently retired `home-grid` and `home-featured`; their replacement `home-categories` and publishing-category tests remain the current coverage owners.
 * Maximum production additions: one MCU inventory adapter, one fourteen-record inventory, twelve CBH evidence JSON files, four order Markdown files, and four generated payloads. No new runtime dependency, route, rail item, shelf, or image asset.
 * Canonical targets: inventory, packets, mappings, overlap reports, approvals, manifest entries, order Markdown, and source identities.
 * Generated targets: four payload JSON files and the rebuilt catalog.
-* Semantic test ownership: new `test/cbh-mcu-companion.test.js`; targeted additions to `test/catalog.test.js`, `test/curated.test.js`, `test/catalog-shelves.test.js`, and `test/home-grid.test.js`; the two stale Hub invariants are re-pointed to the new partition; one browser-check scenario covers age filtering, category order, featured-pick stability, and narrow layout.
+* Semantic test ownership: new `test/cbh-mcu-companion.test.js`; targeted additions to `test/catalog.test.js`, `test/curated.test.js`, `test/catalog-shelves.test.js`, and merged `test/home-categories.test.js`; one browser-check scenario covers gateway availability, child routing, source order, counts, and narrow layout.
 * Regression ownership: all existing CBH modern/character, CBRO, catalog, path, count, size, palette, publication, anchor, privacy, copy, and browser tests.
 * Validation evidence: targeted failure proof; lint; full tests; counts; sizes; palette; publication; source/card checks; anchors cycle; live metadata contract; dash scan; diff review; Edge desktop and narrow proof; one independent Review; Node 20, Node 24, and lint job conclusions; merged commit.
