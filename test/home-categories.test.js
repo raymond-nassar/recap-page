@@ -143,9 +143,11 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
   assert.match(home, /id="home-primary-paths"/);
   assert.match(home, /id="home-secondary-paths"/);
   assert.match(home, /id="home-more-paths"[^>]*hidden/);
+  assert.match(home, /id="home-h" class="home-brand">RECAP PAGE!<\/h1>/);
+  assert.match(home, /class="home-action">Browse\. Choose\. Read\.<\/p>/);
   assert.doesNotMatch(home, /id="home-featured"|id="home-grid"|id="home-chips"|id="form-home-q"/);
   assert.doesNotMatch(home, /Featured journey|A place to start|Filter Reading Lists/);
-  assert.match(source, /populated \? 'Continue reading' : 'How do you want to read\?'/);
+  assert.doesNotMatch(source, /How do you want to read\?/);
 });
 
 test('Home and Browse use the same category renderer', () => {

@@ -51,10 +51,15 @@ test('current shipped identity and short attribution use Recap Page', () => {
 
   assert.match(html, /<title>Recap Page<\/title>/);
   assert.match(html, /<b class="lbl">Recap&nbsp;Page<\/b>/);
+  assert.match(html, /<h1 id="home-h" class="home-brand">RECAP PAGE!<\/h1>/);
   assert.match(html, /<h1 id="order-name">Recap Page<\/h1>/);
   assert.equal(manifest.name, 'Recap Page');
   assert.equal(manifest.short_name, 'Recap');
   assert.equal([...html.matchAll(/Marvel metadata via marvel\.emreparker\.com\./g)].length, 3);
+  assert.match(
+    html,
+    /<footer class="app-footer">[\s\S]*Unofficial fan project\. Metadata and links only\.[\s\S]*Read the full disclaimers[\s\S]*Marvel metadata via marvel\.emreparker\.com\./,
+  );
   assert.match(main, /download\('recap-page-backup\.json'/);
   assert.match(main, /textContent = 'Recap Page'/);
 });

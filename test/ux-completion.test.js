@@ -134,7 +134,11 @@ test('the continue-reading panel uses the same bounded measure', () => {
 
 test('Home headings are not explained twice', () => {
   assert.doesNotMatch(html, /id="home-sub"/);
-  assert.match(main, /populated \? 'Continue reading' : 'How do you want to read\?'/);
+  assert.match(html, /id="home-h" class="home-brand">RECAP PAGE!<\/h1>/);
+  assert.match(html, /class="home-action">Browse\. Choose\. Read\.<\/p>/);
+  assert.match(styles, /#view-home > \.head\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\) auto minmax\(0,\s*1fr\)/);
+  assert.match(styles, /\.home-lockup\s*\{[^}]*grid-column:\s*2;[^}]*justify-items:\s*center;/);
+  assert.doesNotMatch(main, /\$\('#home-h'\)\.textContent/);
   assert.doesNotMatch(html, /Featured journey|A place to start|Filter Reading Lists/);
   assert.match(main, /if \(blurb\) children\.push\(/);
 });
