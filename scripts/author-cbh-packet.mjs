@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { escapeLinkText } from '../src/js/lib/markdown.js';
 import {
+  assertMappingMatchesPacketOccurrences,
   canonicalJson,
   libraryDigestExcludingOrders,
   validateApprovalDigest,
@@ -224,9 +225,13 @@ function checklistTitleForRow(row) {
 export function buildMarkdown(mapping) {
   const manifest = manifestEntryForMapping(mapping);
   selectedIssueIds(mapping);
+  const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
     `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
+    ...(repeatedCount === 0 ? [] : [
+      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
+    ]),
     'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
   ].join('\n');
@@ -310,6 +315,7 @@ export function assertApprovedRelationshipReview({
   assert(canonicalJson(mapping.proposedManifest) === canonicalJson(packet.proposedManifest),
     `${candidateId} mapping manifest proposal differs from its frozen packet`);
   validateMappingDigest(mapping);
+  assertMappingMatchesPacketOccurrences(packet, mapping);
   validateReportDigest(report);
   assert(report.candidateId === candidateId, `${candidateId} report names a different candidate`);
   assert(report.packetDigest === packet.packetDigest, `${candidateId} report packet digest is stale`);

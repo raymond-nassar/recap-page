@@ -9,6 +9,8 @@ import { normalizeTitle } from '../src/js/lib/markdown.js';
 import {
   CBRO_SELECTED_IDS,
   mappingDigestFor,
+  sourceOccurrenceCountFor,
+  sourcePositionsForPacket,
   validateCbroHistoricalInventory,
   validateCbroPacket,
   writeFilesAtomically,
@@ -71,6 +73,7 @@ export async function loadCbroPackets(ids = CBRO_SELECTED_IDS, {
 export async function buildCbroMapping(packet, metadataById) {
   validateCbroPacket(packet, { expectedId: packet.id });
   const candidateMetadata = [];
+  const sourcePositions = sourcePositionsForPacket(packet);
   const rows = packet.rows.map((sourceRow, index) => {
     const item = metadataById.get(String(sourceRow.candidateIssueId));
     assert(item, `${packet.id} row ${index + 1} has no metadata for ${sourceRow.candidateIssueId}`);
@@ -99,7 +102,7 @@ export async function buildCbroMapping(packet, metadataById) {
     };
     candidateMetadata.push(candidate);
     return {
-      sourcePosition: index + 1,
+      sourcePosition: sourcePositions[index],
       ...sourceRow,
       resolutionStatus: null,
       candidateIssueIds: [item.id],
@@ -118,8 +121,14 @@ export async function buildCbroMapping(packet, metadataById) {
     sourceRetrievedAt: packet.sourceRetrievedAt,
     sourceContentSha256: packet.sourceContentSha256,
     sourceRetrievalStatus: 'retrieved',
-    approvedSourceCount: packet.expectedCount,
+    approvedSourceCount: sourceOccurrenceCountFor(packet),
     excludedSourceReferences: packet.excludedSourceReferences,
+    ...(packet.sourceOccurrenceCount == null
+      ? {}
+      : {
+        sourceOccurrenceCount: packet.sourceOccurrenceCount,
+        repeatedSourceReferences: packet.repeatedSourceReferences,
+      }),
     reviewStatus: 'pending-independent-review',
     proposedManifest: packet.proposedManifest,
     candidateMetadata,

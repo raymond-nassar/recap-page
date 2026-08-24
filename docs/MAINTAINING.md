@@ -233,6 +233,19 @@ complete manifest proposal, chronology insertion anchor, and source-review ident
 `packetDigest` is SHA-256 over canonical JSON with recursively sorted object keys and preserved
 array order. Changing any frozen field requires a new digest and a new downstream review.
 
+When a source names the same whole issue more than once, keep one canonical row at its first source
+occurrence and add `sourceOccurrenceCount` plus `repeatedSourceReferences`. Each repeated reference
+records its full-source position, earlier canonical row, raw issue and range text, and normalized
+title, year and issue number. Do not describe a required repeat as an exclusion and do not put the
+same comic into canonical rows twice. Preparation reconstructs every canonical mapping
+`sourcePosition`; approval re-derives those positions and the occurrence-total
+`approvedSourceCount` from the packet before accepting downstream digests.
+
+Packets with no repeated issue omit both optional fields and retain their existing digest meaning.
+The same rule applies to CBRO packets. In a CBRO inventory, `sourceRowCount` is the total source
+occurrence count when the packet has repeats, while the manifest expectation and generated checklist
+remain the distinct comic count.
+
 For a `complete-guide`, enumerate every source-defined whole issue in that packet. A prose-only
 recommendation or collected edition may stay outside the row set when the source does not make it an
 issue in the sequence. An unavailable or ambiguous whole issue blocks that candidate instead of
