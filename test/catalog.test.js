@@ -8,7 +8,7 @@ import {
   safeOrderFile, LIST_TYPES, READING_DEPTHS, UNCATEGORIZED,
   catalogFacets, filterByFacet, facetLabel, isShortOrder, catalogCoverUrl,
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
-  countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
+  countStories, shelfKey, shelfSections, homeSections, CATALOG_SHELVES, HOME_CATEGORIES, pathPlacements,
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing, SPOTLIGHT_KINDS,
 } from '../src/js/lib/catalog.js';
 
@@ -86,6 +86,9 @@ test('unknown type and depth values become null instead of being displayed', () 
   assert.equal(depthLabel(null), null);
   assert.equal(typeLabel('event'), 'Event');
   assert.equal(depthLabel('essential'), 'Essential reading');
+  assert.equal(typeLabel('screen-companion'), 'Screen companion');
+  assert.equal(depthLabel('selected'), 'Selected issues');
+  assert.equal(depthHint('selected'), 'Issue-specific recommendations chosen from a broader guide.');
 });
 
 test('a missing or malformed catalog yields an empty list, not a crash', () => {
@@ -805,6 +808,10 @@ test('a story whose every reading is a character run is a spotlight', () => {
   assert.equal(shelfKey({ lists: [{ type: 'character-run' }, { type: 'character-run' }] }), 'spotlights');
 });
 
+test('a screen companion uses the existing Storylines browse fallback', () => {
+  assert.equal(shelfKey({ lists: [{ type: 'screen-companion' }] }), 'lines');
+});
+
 test('an event belongs to the screen that carries the events', () => {
   assert.equal(shelfKey({ lists: [{ type: 'event' }] }), 'catalog');
 });
@@ -851,6 +858,31 @@ test('shelfSections drops a section with no rows and keeps the one that has them
   assert.equal(only[0].key, 'spotlights');
   assert.equal(shelfSections([]).length, 0);
   assert.equal(shelfSections(null).length, 0);
+});
+
+test('homeSections adds declared categories after the three browse groups', () => {
+  const stories = [
+    { key: 'event', lists: [{ type: 'event' }] },
+    { key: 'line', lists: [{ type: 'era' }] },
+    { key: 'spotlight', lists: [{ type: 'character-run' }] },
+    { key: 'screen', lists: [{ type: 'screen-companion' }] },
+  ];
+  const sections = homeSections(stories);
+  assert.deepEqual(
+    sections.map((section) => section.heading),
+    ['Timeline', 'Storylines', 'Character spotlights', 'Marvel on Screen'],
+  );
+  assert.deepEqual(sections.flatMap((section) => section.stories), stories);
+  assert.equal(HOME_CATEGORIES.length, 1);
+  assert.equal(HOME_CATEGORIES[0].key, 'marvel-on-screen');
+});
+
+test('homeSections drops an empty Hub category', () => {
+  assert.deepEqual(
+    homeSections([{ key: 'event', lists: [{ type: 'event' }] }])
+      .map((section) => section.heading),
+    ['Timeline'],
+  );
 });
 
 test('every section carries a heading and Timeline context without a page subtitle', () => {

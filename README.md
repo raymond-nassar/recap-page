@@ -2,7 +2,7 @@
 
 **A private reading companion for Marvel Unlimited.**
 
-Recap Page turns long comic events and character runs into clear reading sessions. Pick one of 66
+Recap Page turns long comic events and character runs into clear reading sessions. Pick one of 100
 curated reading orders, follow it issue by issue, and keep your place without creating an account.
 Everything runs locally in your browser.
 
@@ -15,8 +15,8 @@ order](docs/assets/marvel-reading-tracker-uncanny-x-men.png)
 
 ## Made for long reading journeys
 
-- **Start with a story, not a spreadsheet.** Browse curated events, eras, characters, and modern
-  continuity runs.
+- **Start with a story, not a spreadsheet.** Browse curated events, eras, characters, modern
+  continuity runs, and Marvel on Screen companion picks.
 - **Always know what comes next.** The current issue, next issue, part labels, and completion
   progress stay visible.
 - **Read your way.** Choose an issue, mark anything read or unread, add notes, or track a custom

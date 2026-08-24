@@ -245,6 +245,13 @@ the packet's stable id in exactly one maintained inventory, then applies the sam
 relationship, approval, authoring, and freshness checks. Do not merge their queue counts or treat a
 character disposition as a modern continuity result.
 
+Movie and streaming companion guides live in
+`scripts/data/cbh-mcu-companion-inventory.json`. That inventory preserves all fourteen user-selected
+sources in priority order, including deferred and source-blocked entries. Its selected mappings use
+the same `cbh-packets`, `cbh-mappings`, and `cbh-overlaps` directories and the same central
+relationship policy. The adapter validates inventory state and source digests; it does not duplicate
+packet, mapping, overlap, approval, or authoring logic.
+
 Prepare exactly one packet by its stable id:
 
 ```text
@@ -368,6 +375,12 @@ manifest, and chronology evidence before writing. Every resulting card must use
 For a Character Spotlight addition, also check the real catalog at desktop and narrow widths. Record
 the reading and story counts under All, Best of, and Complete guides, and confirm the new card appears
 only in the subsets named by its authored `spotlightKind`.
+
+For a Marvel on Screen addition, keep `type` as `screen-companion`, `depth` as `selected`,
+`timeline` as `null`, and `beginner` as `false`. Confirm the Hub's non-empty Marvel on Screen group
+contains every selected card once in inventory priority order at desktop and narrow widths. Do not
+add a fourth browse route or a Character Spotlight classification; the existing Storylines fallback
+keeps the cards reachable away from the Hub.
 
 ## Create reading paths and collected-edition groups
 

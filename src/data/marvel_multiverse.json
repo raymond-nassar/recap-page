@@ -1,0 +1,65 @@
+{
+  "id": "marvel-multiverse",
+  "name": "Marvel Multiverse",
+  "description": "The Days of Future Past two-parter, the only selection this ten-pick multiverse guide identifies by issue number.",
+  "source": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T01:03:59.239Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 2,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 13683,
+      "title": "Uncanny X-Men (1963) #142",
+      "number": "142",
+      "url": "https://www.marvel.com/comics/issue/13683/uncanny_x-men_1963_142",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1981-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/64e7620087cb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13684,
+      "title": "Uncanny X-Men (1963) #143",
+      "number": "143",
+      "url": "https://www.marvel.com/comics/issue/13684/uncanny_x-men_1963_143",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1981-03-10T00:00:00+0000",
+      "mu": "2008-03-26T00:00:00+0000",
+      "digitalId": 7378,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/4c7d57ed14598",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    }
+  ]
+}

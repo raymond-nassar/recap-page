@@ -1576,6 +1576,132 @@
       "timeline": 2020
     },
     {
+      "id": "doctor-strange-multiverse-of-madness",
+      "name": "Doctor Strange: Multiverse of Madness",
+      "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "doctor-strange-multiverse-of-madness.md",
+      "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "doctor_strange_multiverse_of_madness.json",
+      "characters": [
+        "Doctor Strange",
+        "Scarlet Witch",
+        "Illuminati"
+      ],
+      "keywords": [
+        "Multiverse of Madness",
+        "Doctor Strange",
+        "Illuminati",
+        "New Avengers",
+        "Comic Book Herald"
+      ],
+      "expect": 17,
+      "timeline": null,
+      "coverIssueId": 55415
+    },
+    {
+      "id": "spider-man-no-way-home",
+      "name": "Spider-Man: No Way Home",
+      "description": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-man-no-way-home.md",
+      "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-no-way-home/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "spider_man_no_way_home.json",
+      "characters": [
+        "Spider-Man",
+        "Doctor Strange",
+        "Doctor Octopus"
+      ],
+      "keywords": [
+        "No Way Home",
+        "Spider-Man",
+        "Doctor Strange",
+        "Back in Black",
+        "Comic Book Herald"
+      ],
+      "expect": 17,
+      "timeline": null,
+      "coverIssueId": 43170
+    },
+    {
+      "id": "marvel-multiverse",
+      "name": "Marvel Multiverse",
+      "description": "The Days of Future Past two-parter, the only selection this ten-pick multiverse guide identifies by issue number.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-multiverse.md",
+      "sourcePage": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvel_multiverse.json",
+      "characters": [
+        "X-Men",
+        "Kitty Pryde",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Multiverse",
+        "Days of Future Past",
+        "alternate reality",
+        "X-Men",
+        "Comic Book Herald"
+      ],
+      "expect": 2,
+      "timeline": null,
+      "coverIssueId": 13683
+    },
+    {
+      "id": "marvel-what-if",
+      "name": "Marvel What If?",
+      "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-what-if.md",
+      "sourcePage": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvel_what_if.json",
+      "characters": [
+        "Doctor Doom",
+        "Thor",
+        "Daredevil",
+        "Spider-Man",
+        "Magik"
+      ],
+      "keywords": [
+        "What If",
+        "alternate reality",
+        "Marvel Multiverse",
+        "Age of Ultron",
+        "Comic Book Herald"
+      ],
+      "expect": 7,
+      "timeline": null,
+      "coverIssueId": 12135
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",

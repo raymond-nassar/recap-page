@@ -1,0 +1,285 @@
+{
+  "id": "marvel-what-if",
+  "name": "Marvel What If?",
+  "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+  "source": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T01:03:59.245Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12135,
+      "title": "What If? (1977) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/12135/what_if_1977_22",
+      "seriesId": 2095,
+      "seriesName": "What If? (1977 - 1984)",
+      "onSale": "1980-08-01T00:00:00+0000",
+      "mu": "1980-08-01T00:00:00+0000",
+      "digitalId": 8749,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5bdb2fa25724d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Simons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Kida",
+          "role": "penciler"
+        },
+        {
+          "name": "Donald F. Glut",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12138,
+      "title": "What If? (1977) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/12138/what_if_1977_25",
+      "seriesId": 2095,
+      "seriesName": "What If? (1977 - 1984)",
+      "onSale": "1981-02-01T00:00:00+0000",
+      "mu": "1981-02-01T00:00:00+0000",
+      "digitalId": 8751,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5bdc6a8308f28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Kupperberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Simons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Dagostino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Peter B. Gillis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 58430,
+      "title": "What If? (1977) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/58430/what_if_1977_28",
+      "seriesId": 2095,
+      "seriesName": "What If? (1977 - 1984)",
+      "onSale": "1981-08-01T00:00:00+0000",
+      "mu": "1981-08-01T00:00:00+0000",
+      "digitalId": 40532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5d9f912d05b82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Michael Fleisher",
+          "role": "writer"
+        },
+        {
+          "name": "Mike W. Barr",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12144,
+      "title": "What If? (1977) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/12144/what_if_1977_30",
+      "seriesId": 2095,
+      "seriesName": "What If? (1977 - 1984)",
+      "onSale": "1981-12-01T00:00:00+0000",
+      "mu": "1981-12-01T00:00:00+0000",
+      "digitalId": 11759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5bdcb464e3f30",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Flanagan",
+          "role": "writer"
+        },
+        {
+          "name": "Peter B. Gillis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18301,
+      "title": "What If? (1989) #105",
+      "number": "105",
+      "url": "https://www.marvel.com/comics/issue/18301/what_if_1989_105",
+      "seriesId": 3648,
+      "seriesName": "What If? (1989 - 1998)",
+      "onSale": "1998-02-01T00:00:00+0000",
+      "mu": "2020-08-27T00:00:00+0000",
+      "digitalId": 52280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5f46ce6981d33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50309,
+      "title": "What If? Age of Ultron (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/50309/what_if_age_of_ultron_2014_5",
+      "seriesId": 18819,
+      "seriesName": "What If? Age of Ultron (2014)",
+      "onSale": "2014-04-30T00:00:00+0000",
+      "mu": "2014-10-27T00:00:00+0000",
+      "digitalId": 33508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/53582ba8e24b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Stevens",
+          "role": "penciler"
+        },
+        {
+          "name": "Joseph Keatinge",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73505,
+      "title": "What If? Magik (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73505/what_if_magik_2018_1",
+      "seriesId": 26488,
+      "seriesName": "What If? Magik (2018)",
+      "onSale": "2018-10-31T00:00:00+0000",
+      "mu": "2019-05-06T00:00:00+0000",
+      "digitalId": 49447,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5bd2072e217ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Filipe Andrade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Dekal",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

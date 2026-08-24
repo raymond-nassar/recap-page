@@ -8,8 +8,8 @@
 
 import { normalizeCover } from './model.js';
 
-export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era'];
-export const READING_DEPTHS = ['essential', 'complete', 'tie-ins'];
+export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
+export const READING_DEPTHS = ['essential', 'complete', 'tie-ins', 'selected'];
 export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
 
 const SPOTLIGHT_KIND_LABELS = {
@@ -27,6 +27,7 @@ const TYPE_LABELS = {
   'character-run': 'Character run',
   'creator-run': 'Creator run',
   era: 'Era',
+  'screen-companion': 'Screen companion',
 };
 
 // The chip form. A filter names a set, so it reads as a plural.
@@ -35,12 +36,14 @@ const TYPE_FACET_LABELS = {
   'character-run': 'Character runs',
   'creator-run': 'Creator runs',
   era: 'Eras',
+  'screen-companion': 'Screen companions',
 };
 
 const DEPTH_LABELS = {
   essential: 'Essential reading',
   complete: 'Complete reading',
   'tie-ins': 'Tie-ins',
+  selected: 'Selected issues',
 };
 
 // Plain English, because "essential" and "complete" only mean something to readers who
@@ -49,6 +52,7 @@ const DEPTH_HINTS = {
   essential: 'The core issues only, the shortest path through the story.',
   complete: 'Every issue, including tie-ins and side stories.',
   'tie-ins': 'The tie-in issues that surround a main story.',
+  selected: 'Issue-specific recommendations chosen from a broader guide.',
 };
 
 export function typeLabel(type) {
@@ -648,8 +652,8 @@ export const CATALOG_SHELVES = [
     types: null,
     sections: 'decades',
     heading: 'Storylines',
-    blurb: 'Whole runs rather than single events. Each one stands on its own, and several of them thread through the same years the events do.',
-    empty: 'No storylines are bundled with this build.',
+    blurb: 'Whole runs and on-screen companion picks rather than single events. Each one stands on its own, and several of them thread through the same years the events do.',
+    empty: 'No storylines or on-screen companion picks are bundled with this build.',
   },
   {
     key: 'spotlights',
@@ -722,6 +726,36 @@ export function shelfSections(stories) {
   return CATALOG_SHELVES
     .map((shelf) => ({ ...shelf, stories: shelfStories(all, shelf.key) }))
     .filter((shelf) => shelf.stories.length);
+}
+
+export const HOME_CATEGORIES = [
+  {
+    key: 'marvel-on-screen',
+    types: ['screen-companion'],
+    sections: null,
+    heading: 'Marvel on Screen',
+    blurb: 'Issue picks chosen to accompany Marvel movies and streaming stories.',
+    empty: 'No Marvel on Screen guides are bundled with this build.',
+  },
+];
+
+export function homeSections(stories) {
+  const all = Array.isArray(stories) ? stories : [];
+  const claimed = new Set();
+  const categories = HOME_CATEGORIES.map((category) => {
+    const inCategory = all.filter((story) => {
+      const lists = Array.isArray(story?.lists) ? story.lists : [];
+      const matches = lists.length > 0
+        && lists.every((list) => category.types.includes(list?.type));
+      if (matches) claimed.add(story);
+      return matches;
+    });
+    return { ...category, stories: inCategory };
+  }).filter((category) => category.stories.length);
+  return [
+    ...shelfSections(all.filter((story) => !claimed.has(story))),
+    ...categories,
+  ];
 }
 
 // ------------------------------------------------------------------ publishing ages

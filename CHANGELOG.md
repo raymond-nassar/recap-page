@@ -14,6 +14,20 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Marvel on Screen companion guides
+
+In plain English: the Hub now has a Marvel on Screen section with four comic guides chosen to
+accompany Doctor Strange: Multiverse of Madness, Spider-Man: No Way Home, Marvel multiverse stories,
+and What If?. Together they add 43 issue picks. Each guide says when the source named only part of a
+broader recommendation, and nothing you have saved is changed. The catalog now has 100 reading
+lists.
+
+For maintainers: a fourteen-title inventory preserves the full user priority order while this
+release advances only the first four. Four frozen packets resolve 43 exact, release-wide unique
+rows. Each 99-comparison report covers the 96-list pre-publication library and the other three
+release peers. Central review approves two Doctor Strange partials and the two-issue Marvel
+Multiverse subsets of both Claremont paths. Exact duplicates remain unapprovable.
+
 ### Added the complete Groot character guide
 
 In plain English: the Character spotlights shelf now includes a complete Groot guide. It follows all

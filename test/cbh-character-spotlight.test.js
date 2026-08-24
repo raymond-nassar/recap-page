@@ -82,6 +82,12 @@ const laterHistoricalIds = [
   'childs-play',
   'eighth-day',
 ];
+const laterMcuIds = [
+  'doctor-strange-multiverse-of-madness',
+  'spider-man-no-way-home',
+  'marvel-multiverse',
+  'marvel-what-if',
+];
 
 function assertGrootSourceBoundary(packet) {
   assert.equal(
@@ -218,7 +224,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [...characterCandidateIds, ...laterHistoricalIds],
+    [...characterCandidateIds, ...laterHistoricalIds, ...laterMcuIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
@@ -228,7 +234,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      ![...batchCandidateIds, cosmicCandidateId, grootCandidateId, ...laterHistoricalIds]
+      ![...batchCandidateIds, cosmicCandidateId, grootCandidateId, ...laterHistoricalIds, ...laterMcuIds]
         .includes(comparison.orderId)
     )),
     report.comparisons,
@@ -311,7 +317,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   const inventoryRecord = inventory.find((record) => record.id === cosmicCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [cosmicCandidateId, grootCandidateId, ...laterHistoricalIds],
+    [cosmicCandidateId, grootCandidateId, ...laterHistoricalIds, ...laterMcuIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
@@ -328,7 +334,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      ![grootCandidateId, ...laterHistoricalIds].includes(comparison.orderId)
+      ![grootCandidateId, ...laterHistoricalIds, ...laterMcuIds].includes(comparison.orderId)
     )),
     report.comparisons,
   );
@@ -454,7 +460,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   const inventoryRecord = inventory.find((record) => record.id === grootCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [grootCandidateId, cosmicCandidateId],
+    [grootCandidateId, cosmicCandidateId, ...laterMcuIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
@@ -472,7 +478,12 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
   });
-  assert.deepEqual(regeneratedReport, report);
+  assert.deepEqual(
+    regeneratedReport.comparisons.filter((comparison) => (
+      !laterMcuIds.includes(comparison.orderId)
+    )),
+    report.comparisons,
+  );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: grootCandidateId,
     inventoryRecord,
@@ -583,7 +594,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
   const catalog = await readJson('src/data/catalog.json');
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [...batchCandidateIds, cosmicCandidateId, grootCandidateId, ...laterHistoricalIds],
+    [...batchCandidateIds, cosmicCandidateId, grootCandidateId, ...laterHistoricalIds, ...laterMcuIds],
   );
   const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
     id,
@@ -661,7 +672,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 96);
+  assert.equal(catalog.lists.length, 100);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 13);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 12);

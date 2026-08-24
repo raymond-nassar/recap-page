@@ -1,0 +1,574 @@
+{
+  "id": "spider-man-no-way-home",
+  "name": "Spider-Man: No Way Home",
+  "description": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+  "source": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-no-way-home/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T01:03:59.238Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 17,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 43170,
+      "title": "Amazing Spider-Man (1999) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/43170/amazing_spider-man_1999_57",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-08-27T00:00:00+0000",
+      "mu": "2003-08-27T00:00:00+0000",
+      "digitalId": 29870,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/57ea8d7ee79e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43171,
+      "title": "Amazing Spider-Man (1999) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/43171/amazing_spider-man_1999_58",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-09-24T00:00:00+0000",
+      "mu": "2003-09-24T00:00:00+0000",
+      "digitalId": 29879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/57ea901a600d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 277,
+      "title": "Amazing Spider-Man (1999) #500",
+      "number": "500",
+      "url": "https://www.marvel.com/comics/issue/277/amazing_spider-man_1999_500",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-10-22T00:00:00+0000",
+      "mu": "2003-10-22T00:00:00+0000",
+      "digitalId": 5012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57fe6d3d58106",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 5960,
+      "title": "Amazing Spider-Man (1999) #539",
+      "number": "539",
+      "url": "https://www.marvel.com/comics/issue/5960/amazing_spider-man_1999_539",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2007-03-21T00:00:00+0000",
+      "mu": "2007-03-21T00:00:00+0000",
+      "digitalId": 7962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/57fbec3bec3ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bill Reinhold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6174,
+      "title": "Amazing Spider-Man (1999) #540",
+      "number": "540",
+      "url": "https://www.marvel.com/comics/issue/6174/amazing_spider-man_1999_540",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2007-05-09T00:00:00+0000",
+      "mu": "2007-05-09T00:00:00+0000",
+      "digitalId": 7963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/56cdecc254c68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bill Reinhold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6323,
+      "title": "Amazing Spider-Man (1999) #541",
+      "number": "541",
+      "url": "https://www.marvel.com/comics/issue/6323/amazing_spider-man_1999_541",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2007-06-20T00:00:00+0000",
+      "mu": "2007-06-20T00:00:00+0000",
+      "digitalId": 7964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/56cded30402ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bill Reinhold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15806,
+      "title": "Amazing Spider-Man (1999) #542",
+      "number": "542",
+      "url": "https://www.marvel.com/comics/issue/15806/amazing_spider-man_1999_542",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 7965,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/04/56cded8f71f9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bill Reinhold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15924,
+      "title": "Amazing Spider-Man (1999) #543",
+      "number": "543",
+      "url": "https://www.marvel.com/comics/issue/15924/amazing_spider-man_1999_543",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2007-08-22T00:00:00+0000",
+      "mu": "2007-08-22T00:00:00+0000",
+      "digitalId": 7966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/56d4a0abc063f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bill Reinhold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6017,
+      "title": "Friendly Neighborhood Spider-Man (2005) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/6017/friendly_neighborhood_spider-man_2005_17",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-02-07T00:00:00+0000",
+      "mu": "2007-02-07T00:00:00+0000",
+      "digitalId": 8199,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/4bb898ea58e07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6089,
+      "title": "Friendly Neighborhood Spider-Man (2005) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/6089/friendly_neighborhood_spider-man_2005_18",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-03-07T00:00:00+0000",
+      "mu": "2007-03-07T00:00:00+0000",
+      "digitalId": 8200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/56a8f446456d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6225,
+      "title": "Friendly Neighborhood Spider-Man (2005) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/6225/friendly_neighborhood_spider-man_2005_19",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-04-04T00:00:00+0000",
+      "mu": "2007-04-04T00:00:00+0000",
+      "digitalId": 8201,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/56a8f4b4df8fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13444,
+      "title": "Friendly Neighborhood Spider-Man (2005) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/13444/friendly_neighborhood_spider-man_2005_20",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-05-02T00:00:00+0000",
+      "mu": "2007-05-02T00:00:00+0000",
+      "digitalId": 8202,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/56a8f3c20f00a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15828,
+      "title": "Friendly Neighborhood Spider-Man (2005) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/15828/friendly_neighborhood_spider-man_2005_21",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-06-13T00:00:00+0000",
+      "mu": "2007-06-13T00:00:00+0000",
+      "digitalId": 8203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/56a8f3e4e15ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15945,
+      "title": "Friendly Neighborhood Spider-Man (2005) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/15945/friendly_neighborhood_spider-man_2005_22",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-07-18T00:00:00+0000",
+      "mu": "2007-07-18T00:00:00+0000",
+      "digitalId": 8204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/56a8f4702c221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20798,
+      "title": "Friendly Neighborhood Spider-Man (2005) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/20798/friendly_neighborhood_spider-man_2005_23",
+      "seriesId": 877,
+      "seriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "onSale": "2007-08-15T00:00:00+0000",
+      "mu": "2007-08-15T00:00:00+0000",
+      "digitalId": 8205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/67068671b35aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Paolo Rivera",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13498,
+      "title": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/13498/friendly_neighborhood_spider-man_annual_1_2007_1",
+      "seriesId": 3895,
+      "seriesName": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1 (2007)",
+      "onSale": "2007-05-23T00:00:00+0000",
+      "mu": "2007-05-23T00:00:00+0000",
+      "digitalId": 14989,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5bbb6de2a16c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Barry Kitson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Colleen Doran",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ronan Cliquet",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67330,
+      "title": "Doctor Strange (2015) #390",
+      "number": "390",
+      "url": "https://www.marvel.com/comics/issue/67330/doctor_strange_2015_390",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-05-23T00:00:00+0000",
+      "mu": "2018-11-26T00:00:00+0000",
+      "digitalId": 47978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5afc7f9ff1edd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

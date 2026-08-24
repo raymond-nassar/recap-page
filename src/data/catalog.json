@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T22:42:20.662Z",
+  "generatedAt": "2026-08-24T01:03:59.386Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1831,6 +1831,152 @@
       "sourceOrigin": "Assembled from Marvel series metadata (publication order)",
       "sourceLicense": null,
       "updatedAt": "2026-08-05T06:45:31.621Z"
+    },
+    {
+      "id": "doctor-strange-multiverse-of-madness",
+      "file": "doctor_strange_multiverse_of_madness.json",
+      "name": "Doctor Strange: Multiverse of Madness",
+      "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 17,
+      "collections": 0,
+      "characters": [
+        "Doctor Strange",
+        "Scarlet Witch",
+        "Illuminati"
+      ],
+      "keywords": [
+        "Multiverse of Madness",
+        "Doctor Strange",
+        "Illuminati",
+        "New Avengers",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 55415,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5605a1db4b9a5",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T01:03:59.220Z"
+    },
+    {
+      "id": "spider-man-no-way-home",
+      "file": "spider_man_no_way_home.json",
+      "name": "Spider-Man: No Way Home",
+      "description": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 17,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Doctor Strange",
+        "Doctor Octopus"
+      ],
+      "keywords": [
+        "No Way Home",
+        "Spider-Man",
+        "Doctor Strange",
+        "Back in Black",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 43170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/57ea8d7ee79e4",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-no-way-home/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T01:03:59.238Z"
+    },
+    {
+      "id": "marvel-multiverse",
+      "file": "marvel_multiverse.json",
+      "name": "Marvel Multiverse",
+      "description": "The Days of Future Past two-parter, the only selection this ten-pick multiverse guide identifies by issue number.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 2,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Kitty Pryde",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Multiverse",
+        "Days of Future Past",
+        "alternate reality",
+        "X-Men",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 13683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/64e7620087cb6",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T01:03:59.239Z"
+    },
+    {
+      "id": "marvel-what-if",
+      "file": "marvel_what_if.json",
+      "name": "Marvel What If?",
+      "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Doctor Doom",
+        "Thor",
+        "Daredevil",
+        "Spider-Man",
+        "Magik"
+      ],
+      "keywords": [
+        "What If",
+        "alternate reality",
+        "Marvel Multiverse",
+        "Age of Ultron",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5bdb2fa25724d",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T01:03:59.245Z"
     },
     {
       "id": "white-tiger-ava-ayala",

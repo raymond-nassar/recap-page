@@ -9,7 +9,7 @@ built as well as what has not. Of the 28 stories originally written here, 24 shi
 in part, 1 was never started, 1 is ruled out by a product constraint, and 1 is dropped by a product
 decision. The new items come from that same pass and from the UX study in `docs/UX_STUDY.md`.
 
-A hundred and fifty-eight items have since been delivered and are marked `Shipped` in the table below: BL-007,
+A hundred and fifty-nine items have since been delivered and are marked `Shipped` in the table below: BL-007,
 BL-014, BL-017, BL-026, BL-027, BL-029, BL-030, BL-031, BL-032, BL-033, BL-034, BL-035, BL-036,
 BL-037, BL-038, BL-039, BL-040, BL-041, BL-043, BL-044, BL-045, BL-046, BL-047, BL-048, BL-049,
 BL-050, BL-051, BL-052, BL-053, BL-054, BL-055, BL-056, BL-057, BL-058, BL-059, BL-061, BL-062,
@@ -22,7 +22,7 @@ BL-129, BL-130, BL-131, BL-132, BL-133, BL-134, BL-139, BL-140, BL-141, BL-142, 
 BL-145, BL-146, BL-147, BL-149, BL-150, BL-152, BL-153, BL-154, BL-157, BL-158, BL-160, BL-161, BL-163,
 BL-164, BL-165, BL-166, BL-167, BL-169, BL-170, BL-171, BL-174, BL-175, BL-176, BL-181, BL-182,
 BL-183, BL-184, BL-185, BL-186, BL-187, BL-189, BL-191, BL-192, BL-193, BL-194, BL-195,
-BL-196, BL-197, BL-198, BL-199, BL-200, BL-201, BL-202, BL-203, BL-204, BL-205, BL-206 and BL-207.
+BL-196, BL-197, BL-198, BL-199, BL-200, BL-201, BL-202, BL-203, BL-204, BL-205, BL-206, BL-207 and BL-208.
 Their detail blocks record what changed, what was measured, and which tasks were deliberately left
 open. BL-049 and BL-103 are the two whose delivery changed no code at all: the first was a decision,
 measured in full and closed without touching the colours, and the second was three operations on the
@@ -247,7 +247,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-149 | Read the Marvel Unlimited book id off an address the reader pastes | Story | EP-03 | Leaves alone | 8 | 8 | 3 | 1 | 19.0 | none | Measured | Shipped | src/js/reader.js:50-55 |
 | BL-161 | Redraw the app icon so it stops echoing Marvel's trade dress | Debt | EP-12 | Follows BL-100 | 5 | 5 | 8 | 1 | 18.0 | none | Measured | Shipped | src/index.html:13 |
 | BL-164 | Carry a rename without breaking the download link installed copies use | Enabler | EP-12 | Follows BL-162 | 5 | 5 | 8 | 1 | 18.0 | none | Measured | Shipped | src/js/lib/updateCheck.js:4 |
-| BL-128 | Correct the provenance record's description count and record its placeholder shape | Debt | EP-12 | Extends BL-099 | 5 | 5 | 3 | 1 | 13.0 | none | Measured | Shipped | docs/DATA_PROVENANCE.md:118-137 |
+| BL-128 | Correct the provenance record's description count and record its placeholder shape | Debt | EP-12 | Extends BL-099 | 5 | 5 | 3 | 1 | 13.0 | none | Measured | Shipped | docs/DATA_PROVENANCE.md:138-160 |
 | BL-166 | Move the app's identity off Marvel's red and onto its own purple | Debt | EP-12 | Follows BL-161 | 8 | 8 | 8 | 2 | 12.0 | none | Measured | Shipped | src/styles.css:70 |
 | BL-163 | Say where the metadata came from, instead of borrowing Marvel's API attribution | Debt | EP-12 | Extends BL-099 | 3 | 3 | 5 | 1 | 11.0 | none | Measured | Shipped | src/index.html:286 |
 | BL-140 | Give the tracker a file a non-engineer can double-click to start it | Story | EP-10 | Extends BL-139 | 5 | 2 | 3 | 1 | 10.0 | none | Observed | Shipped | absent: any way to start the app that is not a terminal command, read of the README's step 2 and a listing of the repository root |
@@ -299,6 +299,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-203 | Publish the first Character Spotlight expansion | Feature | EP-03 | Follows BL-201 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Phalanx or Phoenix reading guide on the Character spotlights shelf before this change |
 | BL-205 | Publish the prioritized cosmic Character Spotlight batch | Feature | EP-03 | Follows BL-204 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Rocket Raccoon reading guide on the Character spotlights shelf before this change |
 | BL-207 | Publish Groot as a separate complete Character Spotlight guide | Feature | EP-03 | Follows BL-205 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Groot reading guide on the Character spotlights shelf before this change |
+| BL-208 | Publish the first Marvel on Screen companion guides | Feature | EP-03 | Follows BL-207 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Marvel on Screen category or screen-companion reading guide before this change |
 | BL-087 | State the network privacy boundary where the promise appears | Debt | EP-05 | Leaves alone | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Shipped | src/index.html:676 |
 | BL-091 | Let catalog descriptions survive the WCAG text-spacing override | Defect | EP-07 | Leaves BL-028 alone | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Dropped | src/styles.css:1381-1384 |
 | BL-101 | Withdraw the undo-restore offer when erasing everything | Defect | EP-06 | Follows BL-083 | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Shipped | src/js/main.js:4749-4786 |
@@ -314,14 +315,14 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-104 | Let the anchors gate see a citation of a file with no extension | Debt | EP-12 | Extends BL-079 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | scripts/check-anchors.mjs:32 |
 | BL-105 | Derive the roadmap paragraph's status split in the counts gate | Debt | EP-12 | Extends BL-059 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | scripts/check-counts.mjs:360-435 |
 | BL-106 | Credit Comic Book Herald where a new reader would look for it | Chore | EP-12 | Follows BL-099 | 2 | 1 | 2 | 1 | 5.0 | none | Observed | Shipped | absent: any mention of Comic Book Herald in README.md, search of every tracked file on main for the name, which ten of them carry |
-| BL-107 | Date or re-derive the repeat figures BL-058 states as current | Debt | EP-12 | Extends BL-059 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | PRODUCT_BACKLOG.md:4065-4067 |
+| BL-107 | Date or re-derive the repeat figures BL-058 states as current | Debt | EP-12 | Extends BL-059 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | PRODUCT_BACKLOG.md:4066-4068 |
 | BL-111 | Check the metadata source for what it covers, not only what it returns | Enabler | EP-05 | Extends BL-021 | 1 | 1 | 3 | 1 | 5.0 | none | Measured | Shipped | scripts/check-contract.mjs:88-139 |
 | BL-141 | Let the installed window open when the server is not running | Story | EP-10 | Extends BL-139 | 5 | 2 | 3 | 2 | 5.0 | none | Measured | Shipped | absent: any service worker, listing of src/ and a launch of the installed address in Edge with the server stopped |
 | BL-143 | Shelve the catalog in reading order rather than in the order the manifest happens to list | Story | EP-01 | Extends BL-142 | 5 | 2 | 3 | 2 | 5.0 | none | Measured | Shipped | absent: any field on a manifest entry saying when its reading starts, and any sort between parsing the catalog and rendering it |
-| BL-154 | Shelve the events apart from the character runs, and say why the runs sit last | Story | EP-01 | Follows BL-152 | 5 | 3 | 2 | 2 | 5.0 | none | Measured | Shipped | `src/js/lib/catalog.js:672-678` |
+| BL-154 | Shelve the events apart from the character runs, and say why the runs sit last | Story | EP-01 | Follows BL-152 | 5 | 3 | 2 | 2 | 5.0 | none | Measured | Shipped | `src/js/lib/catalog.js:676-682` |
 | BL-156 | Make the Start here badge carry more weight than a colour change | Story | EP-01 | Follows BL-154 | 5 | 3 | 2 | 2 | 5.0 | none | Measured | Ready | `src/styles.css:439-441` |
 | BL-115 | Complete the ESLint 10 upgrade the grouped proposal could not | Chore | EP-12 | Extends BL-040 | 2 | 5 | 3 | 2 | 5.0 | none | Measured | Shipped | eslint.config.mjs:13 |
-| BL-121 | Point the three erase-and-restore citations at three different lines | Debt | EP-12 | Extends BL-101 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | PRODUCT_BACKLOG.md:1554-1555 |
+| BL-121 | Point the three erase-and-restore citations at three different lines | Debt | EP-12 | Extends BL-101 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | PRODUCT_BACKLOG.md:1555-1556 |
 | BL-122 | Catch a sentence that answers a list of things with one citation twice | Debt | EP-12 | Extends BL-121 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | scripts/check-anchors.mjs:671-704 |
 | BL-123 | Re-derive the appendix claim that rank and score disagree in four places | Debt | EP-12 | Extends BL-056 | 2 | 1 | 2 | 1 | 5.0 | none | Measured | Shipped | absent: the four-place claim and the eight-shipped-rows claim, read of the opening of Appendix B |
 | BL-043 | Give releases a version, a tag and a changelog | Chore | EP-12 | Leaves alone | 2 | 1 | 2 | 1 | 5.0 | none | Observed | Shipped | package.json:3 |
@@ -335,7 +336,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-056 | Fail the build when a derived count in the backlog disagrees with the table it is derived from | Enabler | EP-12 | Leaves alone | 3 | 1 | 5 | 2 | 4.5 | none | Measured | Shipped | absent: any recomputation of a stated count, read of the package.json scripts block and .github/workflows/ci.yml |
 | BL-198 | Bring the browser harness back into agreement with the three browse screens | Debt | EP-12 | Follows BL-189 | 2 | 2 | 5 | 2 | 4.5 | none | Measured | Shipped | measured as 109 assertions passing and 10 failing across 14 scenarios on `origin/main`, and the same 10 failing on the branch that added no code to the shelves |
 | BL-184 | Turn the root project page into a focused reader landing page | Chore | EP-12 | Extends BL-051 | 5 | 3 | 5 | 3 | 4.33 | none | Measured | Shipped | README.md:1-118 |
-| BL-191 | Make the next stop on a reading path reachable when it is on another screen | Defect | EP-01 | Follows BL-189 | 5 | 3 | 5 | 3 | 4.33 | none | Measured | Shipped | `src/js/main.js:4113-4124`, `test/catalog-shelves.test.js:271-274` |
+| BL-191 | Make the next stop on a reading path reachable when it is on another screen | Defect | EP-01 | Follows BL-189 | 5 | 3 | 5 | 3 | 4.33 | none | Measured | Shipped | `src/js/main.js:4113-4124`, `test/catalog-shelves.test.js:277-280` |
 | BL-035 | Offer an undo after a list is deleted | Story | EP-11 | Leaves alone | 5 | 2 | 5 | 3 | 4.0 | none | Observed | Shipped | src/js/main.js:2290-2319 |
 | BL-047 | Split the two meanings of the row class | Debt | EP-12 | Leaves alone | 1 | 1 | 2 | 1 | 4.0 | none | Observed | Shipped | src/styles.css:930-946 |
 | BL-049 | Decide whether the faint badge borders need to meet the 3:1 non-text minimum | Defect | EP-08 | Leaves alone | 1 | 1 | 2 | 1 | 4.0 | none | Measured | Shipped | src/styles.css:783 |
@@ -633,7 +634,7 @@ opens on the main series, so a fourth event added later cannot quietly acquire o
 second asserts each pinned short path is the main-series subsequence of its complete order, which
 is the failure mode of generating two lists from one source.
 
-Nothing in the app changed. `groupCatalog` at `src/js/lib/catalog.js:440` was already a general
+Nothing in the app changed. `groupCatalog` at `src/js/lib/catalog.js:444` was already a general
 loop over any number of groups, and the catalog now renders four rather than one.
 
 Verified: 384 unit tests pass, 10 of them new. 12 mutations of the shipped tree are all caught,
@@ -2847,7 +2848,7 @@ have survived alongside the rendered five, offering a filter with no predicate a
 which is the same silence in a new place.
 
 **An unknown filter throws rather than matching nothing.** `filterByFacet` at
-`src/js/lib/catalog.js:320-329` takes the opposite decision for the catalog, and the difference is
+`src/js/lib/catalog.js:324-333` takes the opposite decision for the catalog, and the difference is
 who can reach it. A stale facet is reachable by a reader whose saved value an older build wrote, so
 matching nothing is the honest answer there. A reading filter cannot be reached at all without an
 edit to the list, because every value comes from a radio rendered out of it and a stored value that
@@ -3227,7 +3228,7 @@ the defect landed on the paragraph least able to afford it.
 The first copy is the one the prose reads with, which is settled rather than assumed: the line above
 it ends on the bare word "The", so the sentence completes into the first copy and the second begins
 mid-clause after a full stop. The second copy was deleted; the retained text is at
-`PRODUCT_BACKLOG.md:2927-2930`.
+`PRODUCT_BACKLOG.md:2928-2931`.
 
 The second task was the substance. A scan of every tracked Markdown file, at every block length from
 eight lines down to one, found exactly one repeat, and it is this one. That result is what made a
@@ -4764,7 +4765,7 @@ Constraint gate: checked 1 to 11, none breached.
 Filed out of the BL-014 review. `src/js/main.js` was stated as 1,566 lines in three places and was
 2,563 when this item measured it, so the file had grown by 997 lines, 64 per cent, while every
 statement of its size stood
-still. The maintainability gap at `PRODUCT_BACKLOG.md:13368-13371` uses that size as the argument for
+still. The maintainability gap at `PRODUCT_BACKLOG.md:13403-13406` uses that size as the argument for
 the gap, which made the understated figure an understatement of the debt.
 
 The obvious fix would have been to overwrite 1,566 with 2,563 everywhere. That is wrong here,
@@ -4774,11 +4775,11 @@ figure as audited" at `PRODUCT_BACKLOG.md:214-216`. The clause is quoted only as
 half. The live number beside it moves whenever a test is added, and pinning a copy of it into this
 record would be the same defect in a second place, which is the rule BL-059 later had to state
 outright. Appendix A does the same thing in its own idiom, correcting a miscount inside the
-`Resolved:` line rather than editing the bullet it resolves, at `PRODUCT_BACKLOG.md:13389-13391`.
+`Resolved:` line rather than editing the bullet it resolves, at `PRODUCT_BACKLOG.md:13424-13426`.
 Overwriting would have destroyed the audit trail these sections exist to keep.
 
 So the audited figures stand and each now carries its drift. Two of the three statements were
-treated as live and one was not. The outcome narrative at `PRODUCT_BACKLOG.md:12489-12491` describes
+treated as live and one was not. The outcome narrative at `PRODUCT_BACKLOG.md:12490-12492` describes
 the state that motivated OC-3, and the same paragraph says there is no linter
 and no changelog, both of which have since shipped; correcting the number alone would leave a
 coherent snapshot half-updated and half-stale, which is worse than either. It is left as a snapshot,
@@ -4986,7 +4987,7 @@ Shipped. The rule the item asked for is that a figure belongs in a release recor
 property of the change and does not when it is a property of the tree, because only the second kind
 moves without anyone editing the record. Both audited figures are properties of the audit and stay;
 the two current values were properties of the tree and are gone, replaced by a sentence at
-`CHANGELOG.md:3496-3505` that says so and points at the backlog clause instead. That clause was
+`CHANGELOG.md:3510-3519` that says so and points at the backlog clause instead. That clause was
 checked before the entry was allowed to defer to it: `PRODUCT_BACKLOG.md:207-209` and
 `PRODUCT_BACKLOG.md:214-216` do each carry a live value and are marked as needing re-derivation, so
 deferring to them loses nothing a reader could previously find.
@@ -6595,7 +6596,7 @@ the figure rather than printing digits: its number words stopped at ninety-nine,
 goes red the moment the document states a figure the words cannot reach. That is the ceiling working
 rather than a ceiling set wrong, so the range was extended and the guard left alone. The band is
 spelled "a hundred and ninety-three" because that is how the backlog already writes a figure of that
-size, at `PRODUCT_BACKLOG.md:2650`, and one of the four tests added to the counts suite pins the
+size, at `PRODUCT_BACKLOG.md:2651`, and one of the four tests added to the counts suite pins the
 spelling to that line. "One
 hundred and ninety-three" is equally correct English, would fail every comparison it was used in,
 and would read as drift in the document rather than in the checker. The new ceiling stops below two
@@ -7668,7 +7669,7 @@ project owes it. The wording is the part worth recording, because the first draf
 debt. It said the trade order was compiled from that guide, which is wider than anything committed
 here says: `src/data/orders/new-ultimate-universe-trades.md:3-5` states the sequence and its ids as
 this project's own work and scopes the debt to the division into volumes alone, and
-`docs/DATA_PROVENANCE.md:146-152` files the order under "Compiled for this project". Review found the
+`docs/DATA_PROVENANCE.md:166-172` files the order under "Compiled for this project". Review found the
 same overclaim in the changelog, where it went further and said the committed record already backed
 it. Both now scope the debt the way the record does.
 
@@ -8466,7 +8467,7 @@ in silence rather than merged. That is the same fault as the wrapped line above,
 pattern spanning a sentence assumes the punctuation whoever wrote it last happened to use.
 Corrected rather than gated, because two figures of this class already carry a deliberate decision
 not to file, on the ground that a matcher written per sentence costs more than the figure being
-wrong. Evidence: `PRODUCT_BACKLOG.md:4888-4896`.
+wrong. Evidence: `PRODUCT_BACKLOG.md:4889-4897`.
 
 **BL-121: Point the three erase-and-restore citations at three different lines**
 
@@ -8481,7 +8482,7 @@ withdrawn. One sentence names three actions and offers three citations for them,
 three were the same line. Erasing everything, restoring a backup and undoing a restore do each call
 `forgetDeleted()`, at `src/js/main.js:4760`, `src/js/main.js:4684` and `src/js/main.js:4705`
 respectively, but the sentence cited the restore path twice and the erase path not at all. Evidence:
-`PRODUCT_BACKLOG.md:1554-1555`.
+`PRODUCT_BACKLOG.md:1555-1556`.
 
 It was filed rather than fixed there because it belongs to another item's record and that change was
 a behaviour change to the covers switch. It had also been wrong since it was written, so nothing
@@ -8567,7 +8568,7 @@ Not closed by this item: the wider class. A sentence naming three things and off
 is caught only when the two are identical. Offering two citations for three things, or three
 citations of which two merely overlap, stays unprotected, and reading a count out of English prose
 to compare against a citation count is the matcher-per-sentence cost `BL-056` measured and declined
-at `PRODUCT_BACKLOG.md:4888-4896`.
+at `PRODUCT_BACKLOG.md:4889-4897`.
 
 **Delivered** as a rule inside the anchors gate rather than a script beside it, so it runs on every
 existing invocation and CI needs no new step. A new step would have meant a new deadline, and the
@@ -8733,7 +8734,7 @@ is a different change from correcting a sentence that miscounts, and the order t
 into is the one this item has just declined to treat as authoritative.
 
 Not closed by this item: gating either figure. `BL-056` measured that class and declined it, though
-the two shapes it named as unchecked at `PRODUCT_BACKLOG.md:4888-4891` are the counts of items above
+the two shapes it named as unchecked at `PRODUCT_BACKLOG.md:4889-4892` are the counts of items above
 a row and the Cost of Delay orderings, not these. These are a third shape of the same kind, stated in
 prose too varied to match without a pattern per sentence. The two live inversions are named in the
 appendix instead, so the figure a reader acts on is written down even though no gate derives it.
@@ -9111,7 +9112,7 @@ appear only in the complete variant.
 The section titles are bold paragraphs rather than Markdown headings, which looks like a formatting
 preference and is not one. A level-2 heading in a checklist is vendored as `collectedIn`, and any
 order with one is then described to the reader by the count of them at
-`src/js/lib/catalog.js:377-382`. Uncanny #129-138 is a story arc, not a book anyone can buy, so
+`src/js/lib/catalog.js:381-386`. Uncanny #129-138 is a story arc, not a book anyone can buy, so
 headings here would have put "5 collected editions" on a card where no collected edition exists.
 Both orders vendor with `collections` at 0, which is the check that this worked.
 
@@ -9242,7 +9243,7 @@ consumer at `src/js/main.js:2445`, and the function behind that line already ans
 absence: `synopsisFallback` at `src/js/main.js:2633-2642` returns a sentence saying no synopsis is
 recorded, for a record that was hydrated and came back without one, and a test already asserts it.
 Catalog search does not read the field either, because the description it searches at
-`src/js/lib/catalog.js:150` is the order's own one-line summary, written in this repository. So this
+`src/js/lib/catalog.js:154` is the order's own one-line summary, written in this repository. So this
 is a data change with a shipped fallback already waiting for it rather than a feature to build.
 
 Drift: the field no longer reaches the interface at all. BL-134 closed the last path that could put
@@ -11161,11 +11162,11 @@ check without awaiting it, and `src/js/main.js:5082-5103` shows that the boot pa
 normal load, settings and render work without waiting for GitHub.
 
 The browser harness had to change with the feature. Its request stub now intercepts the update endpoint
-at `scripts/browser-check.mjs:2338-2345`, and the update scenario at
-`scripts/browser-check.mjs:1964-2031` verifies the default current-release response, the explicit
+at `scripts/browser-check.mjs:2392-2399`, and the update scenario at
+`scripts/browser-check.mjs:2018-2085` verifies the default current-release response, the explicit
 About button, the newer-release notice, the off switch, and a release request that never settles.
 The targeted run reported twelve update assertions passing. Five update mutations were added at
-`scripts/browser-check.mjs:734-790`: one makes the default answer newer, one suppresses a newer
+`scripts/browser-check.mjs:745-801`: one makes the default answer newer, one suppresses a newer
 answer, one corrupts the download link, one removes the release-notes link, and one rewrites the
 delivered module so boot waits for the update check.
 
@@ -12738,7 +12739,7 @@ The rail was renamed on the same principle. "Browse by era" described how the sc
 "Line-wide reading lists" described how its contents were assembled, when what a reader wants to
 know is what is on them: events in publishing order, and whole runs. They are Timeline and
 Storylines. The route ids are untouched, so every bookmark and every Back entry still parses:
-`src/js/lib/catalog.js:634-636` records why `catalog` in particular can never be renamed. On the add
+`src/js/lib/catalog.js:638-640` records why `catalog` in particular can never be renamed. On the add
 side, "Add a whole series" became "Find a series", because the button that follows it searches and
 finds and adds nothing on its own, and "Paste a reading order" became "Paste a reading list", which
 is what every other surface in the app calls the thing.
@@ -13202,6 +13203,40 @@ Sized 5 because this release revalidates one exact 76-row source boundary, 95 re
 three partial approvals, one external shipped peer, one payload, and the freshness chain. Installed
 Edge passed 24 assertions across 1280 by 900 and 390 by 844 viewports without horizontal overflow.
 
+**BL-208: Publish the first Marvel on Screen companion guides**
+
+- [x] Preserve all fourteen selected Comic Book Herald companion sources in user priority order
+- [x] Freeze and resolve the first four priorities as exact source-bound issue selections
+- [x] Compare every selected guide with the complete library and the other three release peers
+- [x] Give subset and partial relationships one central disposition each
+- [x] Add an honest screen-companion type and selected reading depth
+- [x] Put all four cards under Marvel on Screen on the Hub without a fourth browse route
+- [x] Reject stale evidence, omitted rows, exact duplicates, and inferred collection contents
+
+Constraint gate: checked 1 to 11, none breached. The release stores cover URLs only, adds no runtime
+dependency, keeps the fixed browser origin, does not alter reader launching or availability, and
+copies no source commentary, branding, layouts, movie imagery, or comic image bytes.
+
+Implemented on 2026-08-23 as the first four user priorities. Doctor Strange: Multiverse of Madness
+and Spider-Man: No Way Home each contain 17 exact issue picks, Marvel Multiverse contains the two
+Days of Future Past issues that its source identifies by number, and Marvel What If contains seven
+exact issues or one-shots. The four source orders contain 43 release-wide unique rows.
+
+Each report covers the 96-list pre-publication library and the other three selected peers, for 99
+relationships per guide and 396 overall. Central review approves two Doctor Strange partials and the
+two Marvel Multiverse candidate-subsets of the shipped Claremont paths. The other 392 relationships
+are none, and no exact duplicate has an approval path.
+
+The maintained fourteen-title inventory leaves six ranked mapping follow-ups and four source-blocked
+guides visible rather than silently dropping them. The catalog adds four reading lists, for 100
+total, while Character Spotlights remain at thirteen readings across twelve stories. The Hub gains
+one Marvel on Screen group in user order; every card also remains reachable through the existing
+Storylines fallback.
+
+Sized 5 because the release binds fourteen source identities, four exact packets and mappings, 396
+relationships and central dispositions, four generated payloads, a new type and reading depth, and
+one Hub category without adding navigation.
+
 
 ## Suggested delivery order
 
@@ -13532,16 +13567,16 @@ rebuilds every row's rank from the table and fails any `rank N of M` stated agai
 word in a heading. Sorting the table and running the gate turns four claims red, all of them in this
 appendix, so a re-sort cannot quietly invalidate what is written about the order.
 
-The cost is what decides it. A stable sort by score moves 40 of the 105 rows, and the six pairs do not
+The cost is what decides it. A stable sort by score moves 55 of the 182 rows, and the six pairs do not
 reduce to six swaps: exchanging the members of each pair in a single pass leaves six inversions
 again, because a swap can lift a row above a third one it also outscores. Nothing gates the order
 itself, so it would drift again with the next item filed. And the paragraph above leaves no decision
 resting on the order, so the exercise buys a tidier table and no better choice of what to build next.
 
-### Case 1: BL-026 is labelled P0 but ranks a hundred and fourth
+### Case 1: BL-026 is labelled P0 but ranks a hundred and fifth
 
 - Stated: P0 Foundation, the first keyboard story in the original Epic 7.
-- Calculated: WSJF 3.67, rank 104 of 181.
+- Calculated: WSJF 3.67, rank 105 of 182.
 - Driver: job size, not value. Its Cost of Delay of 11 is the thirteenth-highest distinct figure in
   the backlog. It is outranked by ninety items, eighty-one of them sized 1, 2 or 3 whose Cost of Delay
   is lower but whose size is smaller still. WSJF is explicitly a throughput heuristic, so a P0 that
@@ -13563,7 +13598,7 @@ resting on the order, so the exercise buys a tidier table and no better choice o
 ### Case 2: BL-007 is labelled P1 but sits near the bottom
 
 - Stated: P1 Core product value, event order variants.
-- Calculated: WSJF 1.4, rank 175 of 181, below a hundred and seventy unlabelled items and five places above the
+- Calculated: WSJF 1.4, rank 176 of 182, below a hundred and seventy unlabelled items and five places above the
   single P2 story.
 - Driver: both sides. Job size is 5, because the work is editorial rather than technical, and value
   is only 3, because the rendering that would display variants already ships and works. Evidence:
@@ -13621,9 +13656,9 @@ resting on the order, so the exercise buys a tidier table and no better choice o
 
 ### Where the label and the score agree
 
-- BL-014, P1, rank 130 of 181. Mid-table, which is where a P1 belongs.
-- BL-027, P1, rank 106 of 181. Mid-table.
-- BL-017, P2, rank 180 of 181. The lowest-ranked scored story other than the one that cannot be
+- BL-014, P1, rank 131 of 182. Mid-table, which is where a P1 belongs.
+- BL-027, P1, rank 107 of 182. Mid-table.
+- BL-017, P2, rank 181 of 182. The lowest-ranked scored story other than the one that cannot be
   sized, which matches its P2 label exactly.
 - BL-025, P2, parked. The label is moot, because the item was removed by the constraint gate before
   it could be scored.

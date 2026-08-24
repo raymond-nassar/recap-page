@@ -36,7 +36,7 @@ import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
 import {
-  decadeSections, eraSections, groupCatalog, shelfSections,
+  decadeSections, eraSections, groupCatalog, homeSections, shelfSections,
 } from '../src/js/lib/catalog.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
@@ -193,10 +193,10 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Twenty-nine entries make twenty-seven stories. Three event stories sit on one path, while a
+// Thirty-three entries make thirty-one stories. Three event stories sit on one path, while a
 // storyline and Essential Avengers form a second path across browse screens. The thirteen
 // Character Spotlight stories put that shelf over its search threshold, and the ten extra events
-// do the same for Timeline.
+// do the same for Timeline. Four screen companions form the Home-only Marvel on Screen group.
 // The third stop is a story read two ways, which is the case the shelf and the path disagree about
 // most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
@@ -220,6 +220,16 @@ const CATALOG = {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Essential', depth: 'essential', timeline: 2006,
     }),
     shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
+    ...[
+      'Doctor Strange: Multiverse of Madness',
+      'Spider-Man: No Way Home',
+      'Marvel Multiverse',
+      'Marvel What If?',
+    ].map((name, index) => shelfEntry(
+      `screen-companion-${index + 1}`,
+      name,
+      { type: 'screen-companion', depth: 'selected', timeline: null, beginner: false },
+    )),
     shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run', spotlightKind: 'other' }),
     shelfEntry('essential-avengers', 'Essential Avengers', { type: 'character-run', spotlightKind: 'other' }),
     shelfEntry('x-men-spine', 'X-Men Spine', {
@@ -275,6 +285,7 @@ const CATALOG = {
 const FIXTURE_SHELVES = new Map(
   shelfSections(groupCatalog(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
+const FIXTURE_HOME_SECTIONS = homeSections(groupCatalog(CATALOG.lists));
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
 const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
@@ -941,10 +952,17 @@ const SCENARIOS = [
       await click(page, '[data-view="lines"]');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
       const lines = await readShelf('#lines-results');
-      const expectedStorylineHeading = FIXTURE_STORYLINE_SECTIONS[0]?.heading;
-      t.check('Storylines holds the whole-line reading under its derived decade',
-        lines.filter((x) => x.kind === 'head').map((x) => x.heading).join('/') === expectedStorylineHeading
-        && lines.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Across the Line',
+      t.check('Storylines holds the whole-line reading and the four screen companions',
+        lines.filter((x) => x.kind === 'head').map((x) => x.heading).join('/')
+          === FIXTURE_STORYLINE_SECTIONS.map((section) => section.heading).join('/')
+        && lines.filter((x) => x.kind === 'row').map((x) => x.title).join('/')
+          === [
+            'Across the Line',
+            'Doctor Strange: Multiverse of Madness',
+            'Spider-Man: No Way Home',
+            'Marvel Multiverse',
+            'Marvel What If?',
+          ].join('/'),
         JSON.stringify(lines));
 
       await click(page, '[data-view="spotlights"]');
@@ -1186,6 +1204,13 @@ const SCENARIOS = [
           beginner: first?.querySelector('.pill-beginner')?.textContent.trim() ?? null,
           optionAction: variant?.querySelector('.ocard-preview')?.textContent.trim() ?? null,
           variableRows: document.querySelectorAll('#home-grid .ocard .path-step, #home-grid .ocard .ocard-ways').length,
+          groups: [...document.querySelectorAll('#home-grid > .home-shelf-section')]
+            .map((heading) => ({
+              heading: heading.textContent.trim(),
+              cards: [...heading.nextElementSibling.querySelectorAll('.ocard-title')]
+                .map((title) => title.textContent.trim()),
+              linked: Boolean(heading.querySelector('a')),
+            })),
         };
       });
       t.check('the first-run heading says Start Here without explaining the choices again',
@@ -1207,6 +1232,35 @@ const SCENARIOS = [
         context.optionAction === 'See 2 options', JSON.stringify(context));
       t.check('and no variable path or options row can make one card taller',
         context.variableRows === 0, JSON.stringify(context));
+      const screen = context.groups.find((group) => group.heading === 'Marvel on Screen');
+      t.check('Marvel on Screen follows the three browse groups with four unlinked companion cards',
+        context.groups.map((group) => group.heading).join('/')
+          === FIXTURE_HOME_SECTIONS.map((section) => section.heading).join('/')
+        && screen?.cards.join('/') === [
+          'Doctor Strange: Multiverse of Madness',
+          'Spider-Man: No Way Home',
+          'Marvel Multiverse',
+          'Marvel What If?',
+        ].join('/')
+        && screen.linked === false,
+        JSON.stringify(context.groups));
+
+      await page.setViewport({ width: 390, height: 844 });
+      await settleLayout();
+      const narrow = await page.$eval('#home-grid', (grid) => {
+        const screenHeading = [...grid.querySelectorAll('.home-shelf-section')]
+          .find((heading) => heading.textContent.trim() === 'Marvel on Screen');
+        const cards = [...screenHeading.nextElementSibling.querySelectorAll('.ocard')];
+        return {
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          cards: cards.length,
+          columns: new Set(cards.map((card) => Math.round(card.getBoundingClientRect().left))).size,
+        };
+      });
+      t.check('the narrow Marvel on Screen group keeps four cards in one column without overflow',
+        narrow.cards === 4 && narrow.columns === 1 && narrow.scrollWidth <= narrow.viewport,
+        JSON.stringify(narrow));
     },
   },
   {

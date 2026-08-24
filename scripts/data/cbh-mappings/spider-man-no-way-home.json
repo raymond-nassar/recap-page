@@ -1,0 +1,1658 @@
+{
+  "id": "spider-man-no-way-home",
+  "inventoryId": "spider-man-no-way-home",
+  "packetDigest": "a52ebb52a6d4910ba996ea7e50b089b43dc63554be7b49bcf92879db9c070ed8",
+  "sourceUrl": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-no-way-home/",
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "250b2b34da61adde4166a2a5c5887228e94e312cc531c2029e58b9f0bfae7ed4",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 17,
+  "excludedSourceReferences": [
+    "Related reading-order links",
+    "Spider-Man and Doctor Octopus: Negative Exposure, Spider-Verse: Warzones and Web Warriors, and Spider-Man: Fever headed picks without exact issue-number boundaries",
+    "Amazing Spider-Man Annual #2 contextual prose mention",
+    "Spider-Man: One More Day, which the source explicitly declines to recommend",
+    "Editorial commentary and images"
+  ],
+  "proposedManifest": {
+    "id": "spider-man-no-way-home",
+    "name": "Spider-Man: No Way Home",
+    "description": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-man-no-way-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-no-way-home/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "spider_man_no_way_home.json",
+    "characters": [
+      "Spider-Man",
+      "Doctor Strange",
+      "Doctor Octopus"
+    ],
+    "keywords": [
+      "No Way Home",
+      "Spider-Man",
+      "Doctor Strange",
+      "Back in Black",
+      "Comic Book Herald"
+    ],
+    "expect": 17,
+    "timeline": null,
+    "coverIssueId": 43170
+  },
+  "candidateMetadata": [
+    {
+      "id": 43170,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #57",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "57",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/43170/amazing_spider-man_1999_57",
+      "onSaleDate": "2003-08-27T00:00:00+0000"
+    },
+    {
+      "id": 43171,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #58",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "58",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/43171/amazing_spider-man_1999_58",
+      "onSaleDate": "2003-09-24T00:00:00+0000"
+    },
+    {
+      "id": 277,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #500",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "500",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/277/amazing_spider-man_1999_500",
+      "onSaleDate": "2003-10-22T00:00:00+0000"
+    },
+    {
+      "id": 5960,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #539",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "539",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5960/amazing_spider-man_1999_539",
+      "onSaleDate": "2007-03-21T00:00:00+0000"
+    },
+    {
+      "id": 6174,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #540",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "540",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6174/amazing_spider-man_1999_540",
+      "onSaleDate": "2007-05-09T00:00:00+0000"
+    },
+    {
+      "id": 6323,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #541",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "541",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6323/amazing_spider-man_1999_541",
+      "onSaleDate": "2007-06-20T00:00:00+0000"
+    },
+    {
+      "id": 15806,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #542",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "542",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15806/amazing_spider-man_1999_542",
+      "onSaleDate": "2007-07-25T00:00:00+0000"
+    },
+    {
+      "id": 15924,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #543",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "543",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15924/amazing_spider-man_1999_543",
+      "onSaleDate": "2007-08-22T00:00:00+0000"
+    },
+    {
+      "id": 6017,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #17",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "17",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6017/friendly_neighborhood_spider-man_2005_17",
+      "onSaleDate": "2007-02-07T00:00:00+0000"
+    },
+    {
+      "id": 6089,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #18",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "18",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6089/friendly_neighborhood_spider-man_2005_18",
+      "onSaleDate": "2007-03-07T00:00:00+0000"
+    },
+    {
+      "id": 6225,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #19",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "19",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6225/friendly_neighborhood_spider-man_2005_19",
+      "onSaleDate": "2007-04-04T00:00:00+0000"
+    },
+    {
+      "id": 13444,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #20",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "20",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13444/friendly_neighborhood_spider-man_2005_20",
+      "onSaleDate": "2007-05-02T00:00:00+0000"
+    },
+    {
+      "id": 15828,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #21",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "21",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15828/friendly_neighborhood_spider-man_2005_21",
+      "onSaleDate": "2007-06-13T00:00:00+0000"
+    },
+    {
+      "id": 15945,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #22",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "22",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15945/friendly_neighborhood_spider-man_2005_22",
+      "onSaleDate": "2007-07-18T00:00:00+0000"
+    },
+    {
+      "id": 20798,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2005) #23",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2005 - 2007)",
+      "seriesId": 877,
+      "issueNumber": "23",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20798/friendly_neighborhood_spider-man_2005_23",
+      "onSaleDate": "2007-08-15T00:00:00+0000"
+    },
+    {
+      "id": 13498,
+      "title": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1",
+      "issueTitle": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1 (2007) #1",
+      "seriesTitle": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1",
+      "apiSeriesName": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1 (2007)",
+      "seriesId": 3895,
+      "issueNumber": "1",
+      "seriesYear": 2007,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13498/friendly_neighborhood_spider-man_annual_1_2007_1",
+      "onSaleDate": "2007-05-23T00:00:00+0000"
+    },
+    {
+      "id": 67330,
+      "title": "Doctor Strange",
+      "issueTitle": "Doctor Strange (2015) #390",
+      "seriesTitle": "Doctor Strange",
+      "apiSeriesName": "Doctor Strange (2015 - 2018)",
+      "seriesId": 20457,
+      "issueNumber": "390",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/67330/doctor_strange_2015_390",
+      "onSaleDate": "2018-05-23T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #57",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #57",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "57",
+      "metadataIssueNumber": "57",
+      "seriesId": 454,
+      "candidateIssueId": 43170,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "43170"
+      ],
+      "selectedIssueId": 43170,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43170/amazing_spider-man_1999_57",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #57",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        43170
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #58",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #58",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "58",
+      "metadataIssueNumber": "58",
+      "seriesId": 454,
+      "candidateIssueId": 43171,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "43171"
+      ],
+      "selectedIssueId": 43171,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43171/amazing_spider-man_1999_58",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #58",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        43171
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #500",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #500",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "500",
+      "metadataIssueNumber": "500",
+      "seriesId": 454,
+      "candidateIssueId": 277,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "277"
+      ],
+      "selectedIssueId": 277,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/277/amazing_spider-man_1999_500",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #500",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        277
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #539",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #539",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "539",
+      "metadataIssueNumber": "539",
+      "seriesId": 454,
+      "candidateIssueId": 5960,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5960"
+      ],
+      "selectedIssueId": 5960,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5960/amazing_spider-man_1999_539",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #539",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5960
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #540",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #540",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "540",
+      "metadataIssueNumber": "540",
+      "seriesId": 454,
+      "candidateIssueId": 6174,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6174"
+      ],
+      "selectedIssueId": 6174,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6174/amazing_spider-man_1999_540",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #540",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6174
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #541",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #541",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "541",
+      "metadataIssueNumber": "541",
+      "seriesId": 454,
+      "candidateIssueId": 6323,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6323"
+      ],
+      "selectedIssueId": 6323,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6323/amazing_spider-man_1999_541",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #541",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6323
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #542",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #542",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "542",
+      "metadataIssueNumber": "542",
+      "seriesId": 454,
+      "candidateIssueId": 15806,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15806"
+      ],
+      "selectedIssueId": 15806,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15806/amazing_spider-man_1999_542",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #542",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        15806
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #543",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #543",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "543",
+      "metadataIssueNumber": "543",
+      "seriesId": 454,
+      "candidateIssueId": 15924,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15924"
+      ],
+      "selectedIssueId": 15924,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15924/amazing_spider-man_1999_543",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #543",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        15924
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #17",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #17",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "17",
+      "metadataIssueNumber": "17",
+      "seriesId": 877,
+      "candidateIssueId": 6017,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6017"
+      ],
+      "selectedIssueId": 6017,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6017/friendly_neighborhood_spider-man_2005_17",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #17",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6017
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #18",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #18",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "18",
+      "metadataIssueNumber": "18",
+      "seriesId": 877,
+      "candidateIssueId": 6089,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6089"
+      ],
+      "selectedIssueId": 6089,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6089/friendly_neighborhood_spider-man_2005_18",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #18",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6089
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #19",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #19",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "19",
+      "metadataIssueNumber": "19",
+      "seriesId": 877,
+      "candidateIssueId": 6225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6225"
+      ],
+      "selectedIssueId": 6225,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6225/friendly_neighborhood_spider-man_2005_19",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #19",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6225
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #20",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #20",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "20",
+      "metadataIssueNumber": "20",
+      "seriesId": 877,
+      "candidateIssueId": 13444,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13444"
+      ],
+      "selectedIssueId": 13444,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13444/friendly_neighborhood_spider-man_2005_20",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #20",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        13444
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #21",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #21",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "21",
+      "metadataIssueNumber": "21",
+      "seriesId": 877,
+      "candidateIssueId": 15828,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15828"
+      ],
+      "selectedIssueId": 15828,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15828/friendly_neighborhood_spider-man_2005_21",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #21",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        15828
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #22",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #22",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "22",
+      "metadataIssueNumber": "22",
+      "seriesId": 877,
+      "candidateIssueId": 15945,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15945"
+      ],
+      "selectedIssueId": 15945,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15945/friendly_neighborhood_spider-man_2005_22",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #22",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        15945
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2005) #23",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2005) #23",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2005,
+      "issueNumber": "23",
+      "metadataIssueNumber": "23",
+      "seriesId": 877,
+      "candidateIssueId": 20798,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20798"
+      ],
+      "selectedIssueId": 20798,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20798/friendly_neighborhood_spider-man_2005_23",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2005) #23",
+      "note": "Marvel series 877 (Friendly Neighborhood Spider-Man (2005 - 2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20798
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man Annual #1",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man Annual #1",
+      "normalizedSeriesTitle": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 3895,
+      "candidateIssueId": 13498,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13498"
+      ],
+      "selectedIssueId": 13498,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13498/friendly_neighborhood_spider-man_annual_1_2007_1",
+      "resolvedIssueTitle": "FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1 (2007) #1",
+      "note": "Marvel series 3895 (FRIENDLY NEIGHBORHOOD SPIDER-MAN ANNUAL 1 (2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        13498
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Doctor Strange (2015) #390",
+      "sourceRangeReference": "Doctor Strange (2015) #390",
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "390",
+      "metadataIssueNumber": "390",
+      "seriesId": 20457,
+      "candidateIssueId": 67330,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67330"
+      ],
+      "selectedIssueId": 67330,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67330/doctor_strange_2015_390",
+      "resolvedIssueTitle": "Doctor Strange (2015) #390",
+      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        67330
+      ]
+    }
+  ],
+  "mappingDigest": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
+  "reviewStatus": "approved",
+  "packetReview": "MRT-004 central CBH source review",
+  "approvedManifest": {
+    "id": "spider-man-no-way-home",
+    "name": "Spider-Man: No Way Home",
+    "description": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-man-no-way-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-no-way-home/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "spider_man_no_way_home.json",
+    "characters": [
+      "Spider-Man",
+      "Doctor Strange",
+      "Doctor Octopus"
+    ],
+    "keywords": [
+      "No Way Home",
+      "Spider-Man",
+      "Doctor Strange",
+      "Back in Black",
+      "Comic Book Herald"
+    ],
+    "expect": 17,
+    "timeline": null,
+    "coverIssueId": 43170
+  },
+  "relationshipReview": {
+    "reportDigest": "b025744c0f465e7460580a6a7e4f7f8651e71d2d940e869c03dafd413794cf72",
+    "packetDigest": "a52ebb52a6d4910ba996ea7e50b089b43dc63554be7b49bcf92879db9c070ed8",
+    "mappingDigest": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
+    "libraryDigest": "b59fa634730a8a342346f3bdb4984739d8e034b0faeff0cbb14557ce51604f90",
+    "peerDigests": {
+      "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
+      "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
+      "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-004 coordinator",
+    "rationale": "Every current library and selected release-peer relationship was reviewed; exact duplicates remain unapprovable.",
+    "reviewedAt": "2026-08-24T01:00:00Z",
+    "approvalDigest": "5467b2962b4a31f68b9e460ff29fc92a336a3f0c285f8d1b3cf0991e12b7ff39"
+  }
+}

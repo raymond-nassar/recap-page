@@ -56,6 +56,16 @@ test('the shipped catalog has something to feature', () => {
   assert.equal(pick.count, Math.min(...beginners.map((l) => l.count)), 'the pick is not the shortest beginner-friendly order');
 });
 
+test('a non-beginner screen companion cannot replace the featured starting point', () => {
+  const lists = catalog.lists ?? catalog.orders ?? [];
+  const before = pickFeatured(lists);
+  const after = pickFeatured([
+    ...lists,
+    { id: 'marvel-multiverse', type: 'screen-companion', beginner: false, count: 2 },
+  ]);
+  assert.equal(after.id, before.id);
+});
+
 test('the offer is withdrawn as soon as the reader has said something more specific', () => {
   // Three conditions, and each one is a case where the reader has already answered the question the
   // panel exists to ask. Read off the source rather than rendered, because the render needs a

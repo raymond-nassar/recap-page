@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-multiverse",
+  "inventoryId": "marvel-multiverse",
+  "sourceUrl": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "bd95e3e16bdd78bacb1b0a2b56cc31ad24724683d05d08e5d2ec66a90a00f658",
+  "sourceIssueBearingBlocksSha256": "7e18a3a38cd2c059f8c8fcb86ef20c73a89fba0e083c1332a01ca9140e76994c",
+  "sourceBoundary": "Includes Uncanny X-Men #142-143, the page’s only headed recommendation that identifies an exact issue range.",
+  "excludedSourceReferences": [
+    "Night of the Living Deadpool, Mutant X, Spider-Girl, Exiles, X-Treme X-Men, Ghost Spider, Cosmic Ghost Rider, Secret Wars, and Age of Apocalypse headed picks without exact issue-number boundaries",
+    "What If? #105, Spider-Geddon, Gwenom, Captain Marvel and the Carol Corps, Weirdworld, E Is for Extinction, and Legion Quest contextual prose mentions",
+    "Editorial commentary and images"
+  ],
+  "expectedCount": 2,
+  "proposedManifest": {
+    "id": "marvel-multiverse",
+    "name": "Marvel Multiverse",
+    "description": "The Days of Future Past two-parter, the only selection this ten-pick multiverse guide identifies by issue number.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvel-multiverse.md",
+    "sourcePage": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvel_multiverse.json",
+    "characters": [
+      "X-Men",
+      "Kitty Pryde",
+      "Wolverine"
+    ],
+    "keywords": [
+      "Marvel Multiverse",
+      "Days of Future Past",
+      "alternate reality",
+      "X-Men",
+      "Comic Book Herald"
+    ],
+    "expect": 2,
+    "timeline": null,
+    "coverIssueId": 13683
+  },
+  "insertionAnchor": {
+    "beforeId": "white-tiger-ava-ayala"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-004 coordinator",
+    "rationale": "The canonical source identity, issue-bearing boundary, exclusions, source order, and exact metadata interpretation were independently reviewed.",
+    "reviewedAt": "2026-08-24T01:00:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men (1963) #142",
+      "sourceRangeReference": "Uncanny X-Men (1963) #142",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "142",
+      "metadataIssueNumber": "142",
+      "seriesId": 2258,
+      "candidateIssueId": 13683,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men (1963) #143",
+      "sourceRangeReference": "Uncanny X-Men (1963) #143",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "143",
+      "metadataIssueNumber": "143",
+      "seriesId": 2258,
+      "candidateIssueId": 13684,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "f947dd5ea7b49a428fd01b02cc828f69ad84482636976c182e002b88d9a024b1"
+}

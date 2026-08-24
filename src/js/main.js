@@ -20,7 +20,7 @@ import {
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing,
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
-  pathPlacements, shelfSections, eraSections, decadeSections, inHomeAge,
+  pathPlacements, homeSections, eraSections, decadeSections, inHomeAge,
   firstSentence, storyYear,
   CATALOG_SHELVES, shelfLists,
 } from './lib/catalog.js';
@@ -1573,7 +1573,7 @@ async function renderHomeCatalog({ announceCount = false } = {}) {
     // answer cannot differ between them.
     const placements = pathPlacements(homeCatalog.paths, all);
     const groups = [];
-    for (const section of shelfSections(matched)) {
+    for (const section of homeSections(matched)) {
       groups.push(shelfSectionHead(section, {
         level: 'h3',
         className: 'shelf-section home-shelf-section',

@@ -6,10 +6,11 @@ import { fileURLToPath } from 'node:url';
 
 import {
   CATALOG_SHELVES,
+  HOME_CATEGORIES,
   groupCatalog,
   inHomeAge,
   parseCatalog,
-  shelfSections,
+  homeSections,
 } from '../src/js/lib/catalog.js';
 
 // The landing grid used to cap at twelve and hand the rest to a second screen through a "See all"
@@ -57,7 +58,7 @@ function functionBody(text, opener) {
 }
 
 test('the landing grid holds back nothing it could show', () => {
-  const shown = shelfSections(groupCatalog(catalog.lists).filter(inHomeAge))
+  const shown = homeSections(groupCatalog(catalog.lists).filter(inHomeAge))
     .reduce((n, section) => n + section.stories.length, 0);
   const eligible = groupCatalog(catalog.lists).filter(inHomeAge).length;
   assert.equal(shown, eligible, 'the landing page drew fewer stories than it was given');
@@ -88,16 +89,42 @@ test('nothing on the landing page offers to reveal what is already on it', () =>
 // Grouped rather than capped, which is what keeps fifty-nine cards from being a wall. The headings
 // come from the shelf table, so the three names on the landing page are the three the rail offers
 // as screens rather than a second vocabulary a reader has to learn.
-test('the landing grid is divided under the same names the screens carry', () => {
-  const sections = shelfSections(groupCatalog(catalog.lists).filter(inHomeAge));
+test('the landing grid is divided under browse names and declared Hub categories', () => {
+  const sections = homeSections(groupCatalog(catalog.lists).filter(inHomeAge));
+  const categoryHeadings = new Set(HOME_CATEGORIES.map((category) => category.heading));
   assert.ok(sections.length > 1, 'the landing grid drew a single undivided group');
   for (const section of sections) {
     assert.ok(
-      CATALOG_SHELVES.some((shelf) => shelf.key === section.key && shelf.heading === section.heading),
-      `the landing page drew "${section.heading}", which no screen is called`,
+      CATALOG_SHELVES.some((shelf) => shelf.key === section.key && shelf.heading === section.heading)
+        || categoryHeadings.has(section.heading),
+      `the landing page drew undeclared group "${section.heading}"`,
     );
   }
   assert.match(markup, /class="ogrid-groups" id="home-grid"/, 'the grid container cannot hold groups');
+});
+
+test('the landing render uses the Hub partition rather than the browse-shelf partition', () => {
+  const body = functionBody(source, 'async function renderHomeCatalog');
+  assert.ok(body, 'renderHomeCatalog has moved or gone');
+  assert.match(body, /homeSections\(matched\)/, 'the landing page bypasses declared Hub categories');
+  assert.doesNotMatch(body, /shelfSections\(matched\)/, 'the landing page still groups only browse shelves');
+});
+
+test('the Marvel on Screen category survives the home age filter and stays in source order', () => {
+  const stories = [
+    {
+      key: 'first',
+      lists: [{ id: 'first', type: 'screen-companion', timeline: null }],
+    },
+    {
+      key: 'second',
+      lists: [{ id: 'second', type: 'screen-companion', timeline: null }],
+    },
+  ];
+  const eligible = stories.filter(inHomeAge);
+  const category = homeSections(eligible)
+    .find((section) => section.key === 'marvel-on-screen');
+  assert.deepEqual(category.stories, stories);
 });
 
 // Fifty-nine covers on the landing page rather than twelve, so an eager fetch is the difference
