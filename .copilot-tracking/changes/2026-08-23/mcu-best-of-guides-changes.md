@@ -12,9 +12,9 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Completed scope markers: P00 through P03, P00-T01 through P03-T02, and P04-T01
-* All remaining active-plan markers: P04-T02 through P05-T02
-* Status basis: P00 through P03 and P04-T01 are complete; implementation continues at P04-T02.
+* Completed scope markers: P00 through P03 and P00-T01 through P04-T02
+* All remaining active-plan markers: P04-T03 through P05-T02
+* Status basis: P00 through P03 and P04-T01 through P04-T02 are complete; implementation continues at the one independent Review.
 
 ## Execution Summary
 
@@ -34,8 +34,8 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 
 * Related phase or task: P01, P01-T01, P01-T02, P01-T03
 * Files: `scripts/lib/cbh-mcu-companion.mjs`, `scripts/data/cbh-mcu-companion-inventory.json`, four files each under `scripts/data/cbh-packets`, `scripts/data/cbh-mappings`, and `scripts/data/cbh-overlaps`, `test/cbh-mcu-companion.test.js`
-* What changed and why: Added a narrow MCU companion inventory validator over the shared CBH primitives, froze all fourteen user priorities and terminal states, persisted four exact source packets and mappings totaling 43 unique issues, generated 99-comparison current-library/three-peer reports, and bound stronger-model approvals for two partials and two candidate-subsets. Exact duplicates remain unapprovable.
-* Completion evidence: Inventory identity digest `06dd03db51c6e64c5ab43ba712dd6da4ff6a1cb6483e8eeefdf243aa86304ad2`; selected counts 17, 17, 2, and 7; all four reports contain 99 comparisons; targeted semantic suite passes 5 of 5 tests.
+* What changed and why: Added a narrow MCU companion inventory validator over the shared CBH primitives, froze all fourteen user priorities and terminal states, persisted four exact source packets and mappings totaling 43 unique issues, and bound stronger-model approvals for two partials and two candidate-subsets. After Star-Lord merged, each report was regenerated against the 97-list pre-publication library plus three selected peers, for 100 comparisons. Exact duplicates remain unapprovable.
+* Completion evidence: Inventory identity digest `06dd03db51c6e64c5ab43ba712dd6da4ff6a1cb6483e8eeefdf243aa86304ad2`; selected counts 17, 17, 2, and 7; all four reports contain 100 comparisons; targeted semantic suite passes.
 * Validation: Passed.
 
 ### CHG-004: Add truthful list taxonomy and Marvel on Screen Hub placement
@@ -50,8 +50,8 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 
 * Related phase or task: P03, P03-T01, P03-T02
 * Files: four `src/data/orders/*.md` files, four generated `src/data/*.json` payloads, `src/data/curated-lists.json`, `src/data/catalog.json`, `scripts/data/cbh-mcu-companion-inventory.json`, `README.md`, `CHANGELOG.md`, `PRODUCT_BACKLOG.md`, `docs/DATA_PROVENANCE.md`, `docs/MAINTAINING.md`, `docs/PUBLICATION_RUNBOOK.md`, `docs/UX_STUDY.md`, and directly affected tests
-* What changed and why: Authored four approved source checklists and vendored 43 exact issues with zero unresolved rows, moved the selected inventory rows to shipped state, rebuilt the catalog to 100 readings, and documented the Marvel on Screen source, licence, maintenance, publication, UX, backlog, and reader-facing boundaries. Re-derived all counts in touched sections and updated coverage tests to 100 catalog payloads and 103 item-bearing files.
-* Completion evidence: Catalog now contains 100 readings across 93 stories and 4,211 issue rows covering 3,498 distinct ids; four selected cards appear in user order; Character Spotlight remains 13 readings; counts gate, targeted integration tests, and lint pass.
+* What changed and why: Authored four approved source checklists and vendored 43 exact issues with zero unresolved rows, moved the selected inventory rows to shipped state, and documented the Marvel on Screen source, licence, maintenance, publication, UX, backlog, and reader-facing boundaries. After Star-Lord merged, rebuilt the combined catalog to 101 readings and updated coverage tests to 101 catalog payloads and 104 item-bearing files.
+* Completion evidence: Catalog now contains 101 readings across 94 stories and 4,310 issue rows covering 3,571 distinct ids; four selected cards appear in user order; Character Spotlight includes Star-Lord at 14 readings while Marvel on Screen remains separate; counts gate, targeted integration tests, and lint pass.
 * Validation: Passed.
 
 ### CHG-006: Prove the new semantic checks detect the broken behavior
@@ -102,13 +102,15 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 | Failure proof: taxonomy | P04-T01 | Passed | Removing `screen-companion` from `LIST_TYPES` produced 1 expected manifest failure. |
 | Failure proof: integrated category | P04-T01 | Passed | Removing the Marvel on Screen registry row produced 1 expected undeclared-category failure; the restored focused test passed. |
 | Restored semantic checks | P04-T01 | Passed | All 4 focused checks passed after stash restoration. |
-| Full unit suite | P04-T02 | Passed | 1,428 of 1,428 tests passed after legacy library-bound tests excluded the four later MCU releases and governance counts moved to 187 blocks / 181 checks. |
+| Full unit suite | P04-T02 | Passed | 1,424 of 1,424 tests passed after the reading-hub and Star-Lord merges, with 189 backlog blocks and 183 constraint checks. |
 | Static release gates | P04-T02 | Passed | Lint, counts, sizes, palette, publication, and publication surface all passed. |
 | Live metadata API contract | P04-T02 | Passed | 33 of 33 general assumptions hold across 17 requests. |
 | MCU issue contract | P04-T02 | Passed | 43 of 43 mapped issue ids retain exact id, series, issue number, and detail URL. |
 | Installed Edge | P04-T02 | Passed | 184 assertions passed across 19 scenarios at desktop and narrow viewports after current `main` reconciliation. |
 | Installed Edge mutation proof | P04-T02 | Passed | All 22 browser mutations were detected; the restored run remained 184/184. |
-| Evidence anchors | P04-T02 | Passed | 42 changed citations were read against their claims, range boundaries were nonblank, and the post-bless run reported 1,177 unchanged / 0 drifted / 0 new / 0 removed. |
+| Evidence anchors | P04-T02 | Passed | The final merged-tree bless printed 260 changed citation pairings, all were read against their claims, and the post-bless run reported 1,181 unchanged / 0 drifted / 0 new / 0 removed. |
+| Dash scan | P04-T02 | Passed | 0 added lines contain an en dash or em dash. |
+| Diff check | P04-T02 | Passed | `git diff --check` passed; final feature diff against current `main` spans 66 files with generated evidence and payloads included. |
 
 ## Pre-Review Reconciliation
 
@@ -123,7 +125,7 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 
 ## Remaining Work
 
-* P04-T02 through P05-T02.
+* P04-T03 through P05-T02.
 
 ## Follow-Up Items
 
@@ -134,7 +136,7 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 ## Return-to-Caller State
 
 * Implementation execution status: Partial
-* Declared scope and markers: Full plan; P00 through P03 and P04-T01 complete; P04-T02 through P05-T02 remain.
+* Declared scope and markers: Full plan; P00 through P03 and P04-T01 through P04-T02 complete; P04-T03 through P05-T02 remain.
 * Validation coverage: Branch, evidence, taxonomy, Hub, generated data, product records, counts, targeted integration, and lint.
 * Blockers: None.
 * Current plan and detail updates: None after critique disposition.

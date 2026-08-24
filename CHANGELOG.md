@@ -20,15 +20,28 @@ In plain English: Home and Browse now offer Marvel on Screen as a category. Open
 comic guides chosen to accompany Doctor Strange: Multiverse of Madness, Spider-Man: No Way Home,
 Marvel multiverse stories, and What If?. Together they add 43 issue picks. Each guide says when the
 source named only part of a broader recommendation, and nothing you have saved is changed. The
-catalog now has 100 reading lists.
+catalog now has 101 reading lists.
 
 For maintainers: a fourteen-title inventory preserves the full user priority order while this
 release advances only the first four. Four frozen packets resolve 43 exact, release-wide unique
-rows. Each 99-comparison report covers the 96-list pre-publication library and the other three
+rows. Each 100-comparison report covers the 97-list pre-publication library and the other three
 release peers. Central review approves two Doctor Strange partials and the two-issue Marvel
 Multiverse subsets of both Claremont paths. Exact duplicates remain unapprovable. Installed Edge
 passed 184 assertions across 19 scenarios, including the populated category, child-route focus,
 four-card source order, and one-column narrow layout.
+
+### Added the complete Star-Lord character guide
+
+In plain English: the Character spotlights shelf now includes a complete Star-Lord guide. It follows
+all 99 source-defined issues from Marvel Preview #4 through Old Man Quill #12, including every issue
+it shares with the separate Rocket Raccoon and Groot guides. The catalog now has 97 reading lists.
+Nothing you have saved is changed.
+
+For maintainers: this is the separately prioritized rank 15 release. A fresh 96-comparison report
+records no exact or subset duplicate and four approved partial relationships: 25 issues each with
+Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and Infinity Wars. All
+99 rows resolve exactly in source order and are bound to fresh source, packet, mapping, library, both
+peers, report, approval, and authoring evidence.
 
 ### Added browsing by Marvel publishing age
 

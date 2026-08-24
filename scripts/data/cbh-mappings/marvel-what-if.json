@@ -359,10 +359,10 @@
     "coverIssueId": 12135
   },
   "relationshipReview": {
-    "reportDigest": "1bdf1fe90d8e23706a0606bd7b672364f404a747e48a688790c9ec2324f5993d",
+    "reportDigest": "93bdc7d56fa471c99a62034958fa27bd2419d6977c78d43133def7814494d637",
     "packetDigest": "750e957f3b81c3b4a51d0d17eae8e8adc79b8fc2154e7d18014c1b913e810d9e",
     "mappingDigest": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-    "libraryDigest": "b59fa634730a8a342346f3bdb4984739d8e034b0faeff0cbb14557ce51604f90",
+    "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
@@ -1054,6 +1054,15 @@
         "reviewedAt": "2026-08-24T01:00:00Z"
       },
       {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
         "orderId": "thanos-imperative",
         "relationship": "none",
         "decision": "approved",
@@ -1265,6 +1274,6 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "Every current library and selected release-peer relationship was reviewed; exact duplicates remain unapprovable.",
     "reviewedAt": "2026-08-24T01:00:00Z",
-    "approvalDigest": "ae922234689035f5153f189772c16ec0be5c1811c04e538d9cff3ff2a7e5f43b"
+    "approvalDigest": "1802f18e3309e206c89e422f64f178370e198cc2e76173648e4574d22f848e56"
   }
 }

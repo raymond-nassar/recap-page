@@ -1,15 +1,14 @@
 {
-  "candidateId": "marvel-multiverse",
-  "packetDigest": "f947dd5ea7b49a428fd01b02cc828f69ad84482636976c182e002b88d9a024b1",
-  "mappingDigest": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-  "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
+  "candidateId": "star-lord-reading-order",
+  "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
+  "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
+  "libraryDigest": "8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602",
   "peerDigests": {
-    "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-    "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-    "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
+    "groot-reading-order": "ddaab7843590232ef978564b1e613f53159aaffbbb1efe2042d499d17849a2b5",
+    "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
-  "candidateCount": 2,
-  "comparisonCount": 100,
+  "candidateCount": 99,
+  "comparisonCount": 96,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -150,12 +149,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "doctor-strange-multiverse-of-madness",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "doomwar",
       "sharedCount": 0,
       "sharedIds": [],
@@ -187,9 +180,35 @@
     },
     {
       "orderId": "groot-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 25,
+      "sharedIds": [
+        "21268",
+        "21412",
+        "21586",
+        "21783",
+        "22025",
+        "22352",
+        "22544",
+        "22957",
+        "23148",
+        "23636",
+        "23792",
+        "23793",
+        "23986",
+        "24188",
+        "25303",
+        "25304",
+        "25305",
+        "25306",
+        "25307",
+        "25308",
+        "25309",
+        "29022",
+        "29009",
+        "29010",
+        "32551"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "heroes-reborn-2021",
@@ -241,9 +260,11 @@
     },
     {
       "orderId": "infinity-countdown-wars",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "65547"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "inhumans-vs-x-men",
@@ -277,12 +298,6 @@
     },
     {
       "orderId": "marvel-fresh-start-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "marvel-what-if",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -379,9 +394,35 @@
     },
     {
       "orderId": "rocket-raccoon-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 25,
+      "sharedIds": [
+        "21268",
+        "21412",
+        "21586",
+        "21783",
+        "22025",
+        "22352",
+        "22544",
+        "22957",
+        "23148",
+        "23636",
+        "23792",
+        "23793",
+        "23986",
+        "24188",
+        "25303",
+        "25304",
+        "25305",
+        "25306",
+        "25307",
+        "25308",
+        "25309",
+        "29022",
+        "29009",
+        "29010",
+        "32551"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "scarlet-witch-best-of",
@@ -450,12 +491,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-no-way-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-the-other",
       "sharedCount": 0,
       "sharedIds": [],
@@ -463,12 +498,6 @@
     },
     {
       "orderId": "spider-verse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "star-lord-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -493,9 +522,17 @@
     },
     {
       "orderId": "war-of-kings",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 7,
+      "sharedIds": [
+        "23986",
+        "24188",
+        "25303",
+        "25304",
+        "25305",
+        "25306",
+        "25307"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "war-of-the-realms",
@@ -601,22 +638,16 @@
     },
     {
       "orderId": "xmen-claremont",
-      "sharedCount": 2,
-      "sharedIds": [
-        "13683",
-        "13684"
-      ],
-      "relationship": "candidate-subset"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "xmen-claremont-complete",
-      "sharedCount": 2,
-      "sharedIds": [
-        "13683",
-        "13684"
-      ],
-      "relationship": "candidate-subset"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     }
   ],
-  "reportDigest": "2c6efd1360b5751aec0e40e772635bca1c906fd6ee88eded265b5fbc09cfcb23"
+  "reportDigest": "e1f49452d6f1aba62ff1d1907fd5e23538d1eed43d4c58c8cbf06742379bd32e"
 }

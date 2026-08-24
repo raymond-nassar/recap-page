@@ -193,7 +193,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 #### [x] P01-T03: Bind complete-library, peer, and central approval evidence
 
 * Requirement and evidence: Research found two priority 1 partials and two priority 3 candidate-subsets; exact duplication has no approval path.
-* Expected result: four complete reports and approvals cover the current library plus exactly the other three shipped peers per candidate. The expected current count is 99, not Research's 100, because Research also included deferred priority 6 as a feasibility peer; priority 6 had no non-`none` relationship with a shipped candidate.
+* Expected result: four complete reports and approvals cover the 97-list pre-publication library plus exactly the other three shipped peers per candidate, for 100 comparisons each. Research also included deferred priority 6 as a feasibility peer; after Star-Lord merged, the release count reached the same number through current-library coverage instead.
 * Detail section: P01-T03 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:phase id=P02 -->
@@ -257,7 +257,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T01 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:task id=P04-T02 -->
-#### [ ] P04-T02: Run full gates and real-browser proof
+#### [x] P04-T02: Run full gates and real-browser proof
 
 * Requirement and evidence: CI gates and browser-only behavior cover different failure classes.
 * Expected result: lint, full tests, counts, sizes, palette, publication, source/card release checks, anchors re-aim/read/bless cycle, live metadata contract, dash scan, diff review, and Edge proof at 1280x900 plus narrow viewport pass with recorded counts. New files are indexed before anchors run, ignored tracking artifacts are force-added, and every moved citation is derived both from lock head text and diff hunk arithmetic before bless.

@@ -116,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7105-7109`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7107-7111`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -142,20 +142,20 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6459-6472`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6457-6470`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6869-6876`, why the private reporting task was left open.
-- `PRODUCT_BACKLOG.md:6935-6937`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6957-6962`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6964-6970`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7031-7037`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7062-7067`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7105-7109`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9210-9215`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2634-2637`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2647-2649`, the released note that the private channel is not switched on.
+- `PRODUCT_BACKLOG.md:6871-6878`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6937-6939`, what the changelog entry beside it was corrected to say.
+- `PRODUCT_BACKLOG.md:6959-6964`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6966-6972`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7033-7039`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7064-7069`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7107-7111`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9212-9217`, the three settings named as refused on this repository today.
+- `CHANGELOG.md:2685-2688`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2698-2700`, the released note that the private channel is not switched on.
 
-The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:29-41` listed
+The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
 that sentence described a state that no longer held. It was rewritten with those three clauses
 removed, together with BL-039's long-open task, which the same day closed, and with a clause added
@@ -270,5 +270,5 @@ enforcement, which is the argument for writing it down before the day rather tha
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
 quietly advertise a private, stale, or unreachable source surface. The Marvel on Screen release adds
-four public source-linked cards, bringing the catalog to 100, without changing the accepted
-publication boundary or any saved reader data.
+four public source-linked cards after Star-Lord, bringing the catalog to 101, without changing the
+accepted publication boundary or any saved reader data.

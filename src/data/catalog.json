@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T01:03:59.386Z",
+  "generatedAt": "2026-08-24T02:25:32.428Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2173,6 +2173,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T22:42:20.583Z"
+    },
+    {
+      "id": "star-lord-reading-order",
+      "file": "star_lord_reading_order.json",
+      "name": "Star-Lord",
+      "description": "Peter Quill from his earliest cosmic adventures through the Guardians, solo series, and Old Man Quill.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 99,
+      "collections": 0,
+      "characters": [
+        "Star-Lord",
+        "Guardians of the Galaxy",
+        "Kitty Pryde",
+        "Captain Marvel"
+      ],
+      "keywords": [
+        "Star-Lord",
+        "Peter Quill",
+        "Guardians of the Galaxy",
+        "Old Man Quill",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 19776,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/57f54e958058a",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T01:05:06.004Z"
     },
     {
       "id": "xmen-claremont",

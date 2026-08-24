@@ -286,7 +286,7 @@ Make the current relationship set and every disposition part of the approval dig
 
 #### Validation Expectations
 
-* Comparison count equals pre-publication library count plus exactly the other three shipped peers. The Research count of 100 included deferred priority 6 as a fourth feasibility peer; release reports intentionally exclude it and currently expect 99.
+* Comparison count equals the 97-list pre-publication library plus exactly the other three shipped peers, for 100. Research reached 100 by including deferred priority 6 as a fourth feasibility peer; final release reports exclude that peer and include the newly shipped Star-Lord card through current-library coverage.
 * Every comparison has exactly one matching disposition.
 * Exact duplication throws.
 * Priority 3 subset rationale and card scope wording are asserted together.
