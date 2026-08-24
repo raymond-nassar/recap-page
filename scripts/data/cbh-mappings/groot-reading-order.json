@@ -1,16 +1,89 @@
 {
   "id": "groot-reading-order",
   "inventoryId": "groot-reading-order",
-  "packetDigest": "1afbf2aa42c43cae2d69f726d27085aa335883f4512349ccde96c2afc40dbf88",
+  "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
   "sourceUrl": "https://www.comicbookherald.com/groot-reading-order/",
   "sourceRetrievedAt": "2026-08-23",
   "sourceRetrievalStatus": "retrieved",
-  "approvedSourceCount": 76,
+  "approvedSourceCount": 84,
   "excludedSourceReferences": [
-    "Second mention of Annihilators #1 to #4, already represented by the opening collection",
-    "Second mention of Annihilators: Earthfall #1 to #4, already represented by the opening collection",
     "I Am Groot product link without an explicit issue-bearing range",
     "Related reading-order links, product links without an issue-bearing range, and editorial prose"
+  ],
+  "sourceOccurrenceCount": 84,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 72,
+      "canonicalRow": 8,
+      "sourceIssueReference": "Annihilators #1",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 73,
+      "canonicalRow": 9,
+      "sourceIssueReference": "Annihilators #2",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 74,
+      "canonicalRow": 10,
+      "sourceIssueReference": "Annihilators #3",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 75,
+      "canonicalRow": 11,
+      "sourceIssueReference": "Annihilators #4",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 76,
+      "canonicalRow": 12,
+      "sourceIssueReference": "Annihilators: Earthfall #1",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 77,
+      "canonicalRow": 13,
+      "sourceIssueReference": "Annihilators: Earthfall #2",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 78,
+      "canonicalRow": 14,
+      "sourceIssueReference": "Annihilators: Earthfall #3",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 79,
+      "canonicalRow": 15,
+      "sourceIssueReference": "Annihilators: Earthfall #4",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "4"
+    }
   ],
   "reviewStatus": "approved",
   "proposedManifest": {
@@ -2747,7 +2820,7 @@
       ]
     },
     {
-      "sourcePosition": 72,
+      "sourcePosition": 80,
       "sourceIssueReference": "Shuri #3",
       "sourceRangeReference": "Shuri #3",
       "normalizedSeriesTitle": "Shuri",
@@ -2770,7 +2843,7 @@
       ]
     },
     {
-      "sourcePosition": 73,
+      "sourcePosition": 81,
       "sourceIssueReference": "Groot (2023) #1",
       "sourceRangeReference": "Groot (2023) #1 to #4",
       "normalizedSeriesTitle": "Groot",
@@ -2793,7 +2866,7 @@
       ]
     },
     {
-      "sourcePosition": 74,
+      "sourcePosition": 82,
       "sourceIssueReference": "Groot (2023) #2",
       "sourceRangeReference": "Groot (2023) #1 to #4",
       "normalizedSeriesTitle": "Groot",
@@ -2816,7 +2889,7 @@
       ]
     },
     {
-      "sourcePosition": 75,
+      "sourcePosition": 83,
       "sourceIssueReference": "Groot (2023) #3",
       "sourceRangeReference": "Groot (2023) #1 to #4",
       "normalizedSeriesTitle": "Groot",
@@ -2839,7 +2912,7 @@
       ]
     },
     {
-      "sourcePosition": 76,
+      "sourcePosition": 84,
       "sourceIssueReference": "Groot (2023) #4",
       "sourceRangeReference": "Groot (2023) #1 to #4",
       "normalizedSeriesTitle": "Groot",
@@ -2862,7 +2935,7 @@
       ]
     }
   ],
-  "mappingDigest": "ddaab7843590232ef978564b1e613f53159aaffbbb1efe2042d499d17849a2b5",
+  "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
   "packetReview": "MRT-002-C07 final central source and 76-row mapping review",
   "approvedManifest": {
     "id": "groot-reading-order",
@@ -2898,9 +2971,9 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "7272ffb7a893e64b2643749d235cd33261e0c9e1e3860f7ebbaa60fa8431b575",
-    "packetDigest": "1afbf2aa42c43cae2d69f726d27085aa335883f4512349ccde96c2afc40dbf88",
-    "mappingDigest": "ddaab7843590232ef978564b1e613f53159aaffbbb1efe2042d499d17849a2b5",
+    "reportDigest": "a83bdf4ba3b9bfcee2524abe830219d9754b82d5c637f49191a313c19052870f",
+    "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
+    "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "libraryDigest": "8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
@@ -3766,6 +3839,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the three factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "5c66e404b3db83e9b222c3ce351a199401f4e6ebf457a9f993699cd8a6e221b7"
+    "approvalDigest": "b4acc491b8240f8b9343fba015e3891ad7a0dca9c996f765a93e130515f37e54"
   }
 }

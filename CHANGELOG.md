@@ -14,6 +14,21 @@ quote in a bug report.
 
 ## Unreleased
 
+### Preserved repeated source references without repeating comics
+
+In plain English: Reading Lists still show each comic once, even when the guide they follow names
+that comic in more than one collected range. Nothing in your saved progress or any existing reading
+sequence changes.
+
+For maintainers: frozen source evidence can now record every later occurrence with its exact source
+position and first-occurrence row. Freshness checks bind those references, both source providers use
+the same validation, and approval independently re-derives positions and source counts. Groot now
+records 84 source occurrences while retaining its existing 76-issue sequence.
+
+Iron Man remains deferred. Its repeated references are representable, but nine source-required
+issues are absent from the configured metadata contract, so no shortened guide or replacement issue
+was published.
+
 ### Added browsing by Marvel publishing age
 
 In plain English: Home now offers Modern Age as a compact way into seven populated periods, from

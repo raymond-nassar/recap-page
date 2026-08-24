@@ -16,6 +16,7 @@ import {
   assertCompleteOverlapReport,
   authorPacket,
   authorIdsFromArgs,
+  buildMarkdown,
   existingEntriesForPacket,
   manifestEntryForMapping,
   mergePacketEntries,
@@ -27,7 +28,9 @@ import {
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourcePositionsForPacket,
   validateBatchNoDuplicates,
+  validateFrozenPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
@@ -45,7 +48,7 @@ function mappingIds(mapping) {
   return mapping.rows.map((row) => String(row.selectedIssueId));
 }
 
-function genericPacket() {
+function genericPacket({ withRepeat = false } = {}) {
   const packet = {
     schemaVersion: 1,
     id: 'future-event',
@@ -108,13 +111,26 @@ function genericPacket() {
       },
     ],
   };
+  if (withRepeat) {
+    packet.sourceOccurrenceCount = 3;
+    packet.repeatedSourceReferences = [{
+      sourcePosition: 2,
+      canonicalRow: 1,
+      sourceIssueReference: 'Future Event #1',
+      sourceRangeReference: 'Future Event #1 to #2, then #1 again',
+      normalizedSeriesTitle: 'Future Event',
+      seriesYear: 2026,
+      issueNumber: '1',
+    }];
+  }
   packet.packetDigest = packetDigestFor(packet);
   return packet;
 }
 
 function genericMapping(packet, id = packet.id) {
+  const sourcePositions = sourcePositionsForPacket(packet);
   const rows = [1, 2].map((issueNumber, index) => ({
-    sourcePosition: index + 1,
+    sourcePosition: sourcePositions[index],
     sourceIssueReference: `Future Event #${issueNumber}`,
     sourceRangeReference: null,
     normalizedSeriesTitle: 'Future Event',
@@ -137,8 +153,14 @@ function genericMapping(packet, id = packet.id) {
     sourceUrl: packet.sourceUrl,
     sourceRetrievedAt: packet.sourceRetrievedAt,
     sourceRetrievalStatus: 'retrieved',
-    approvedSourceCount: rows.length,
+    approvedSourceCount: packet.sourceOccurrenceCount ?? rows.length,
     excludedSourceReferences: [],
+    ...(packet.sourceOccurrenceCount == null
+      ? {}
+      : {
+        sourceOccurrenceCount: packet.sourceOccurrenceCount,
+        repeatedSourceReferences: structuredClone(packet.repeatedSourceReferences),
+      }),
     proposedManifest: packet.proposedManifest,
     candidateMetadata: [],
     rows,
@@ -151,8 +173,9 @@ function genericEvidence({
   relationship = 'none',
   dispositionAuthority = relationship === 'none' ? 'policy' : 'human',
   withPeer = false,
+  withRepeat = false,
 } = {}) {
-  const packet = genericPacket();
+  const packet = genericPacket({ withRepeat });
   const mapping = genericMapping(packet);
   const peerMappings = withPeer
     ? [{
@@ -230,6 +253,240 @@ function genericEvidence({
     expectedOrderIds: comparisons.map((comparison) => comparison.orderId),
   };
 }
+
+function refreshEvidenceDigests(evidence) {
+  evidence.mapping.mappingDigest = mappingDigestFor(evidence.mapping);
+  evidence.report.packetDigest = evidence.packet.packetDigest;
+  evidence.report.mappingDigest = evidence.mapping.mappingDigest;
+  evidence.report.reportDigest = reportDigestFor(evidence.report);
+  Object.assign(evidence.mapping.relationshipReview, {
+    reportDigest: evidence.report.reportDigest,
+    packetDigest: evidence.packet.packetDigest,
+    mappingDigest: evidence.mapping.mappingDigest,
+  });
+  evidence.mapping.relationshipReview.approvalDigest = approvalDigestFor(
+    evidence.mapping.relationshipReview,
+  );
+}
+
+function packetForOccurrenceShape(uniqueCount, repeated) {
+  const packet = genericPacket();
+  packet.id = 'occurrence-shape';
+  packet.inventoryId = packet.id;
+  packet.sourceUrl = 'https://www.comicbookherald.com/occurrence-shape/';
+  packet.proposedManifest = {
+    ...packet.proposedManifest,
+    id: packet.id,
+    sourceFile: `${packet.id}.md`,
+    sourcePage: packet.sourceUrl,
+    out: 'occurrence_shape.json',
+    expect: uniqueCount,
+  };
+  packet.expectedCount = uniqueCount;
+  packet.rows = Array.from({ length: uniqueCount }, (_, index) => ({
+    sourceIssueReference: `Placeholder Series ${index + 1} #1`,
+    sourceRangeReference: `Placeholder source block ${index + 1}`,
+    normalizedSeriesTitle: `Placeholder Series ${index + 1}`,
+    seriesYear: 2000,
+    issueNumber: '1',
+    seriesId: 100000 + index,
+    candidateIssueId: 200000 + index,
+    manualSeriesSelectionApproved: false,
+    selectionNote: null,
+  }));
+  for (const item of repeated) {
+    const row = packet.rows[item.canonicalRow - 1];
+    Object.assign(row, {
+      sourceIssueReference: item.sourceIssueReference,
+      sourceRangeReference: item.canonicalRangeReference,
+      normalizedSeriesTitle: item.normalizedSeriesTitle,
+      seriesYear: item.seriesYear,
+      issueNumber: item.issueNumber,
+    });
+  }
+  packet.sourceOccurrenceCount = uniqueCount + repeated.length;
+  packet.repeatedSourceReferences = repeated.map((item) => {
+    const row = packet.rows[item.canonicalRow - 1];
+    return {
+      sourcePosition: item.sourcePosition,
+      canonicalRow: item.canonicalRow,
+      sourceIssueReference: item.sourceIssueReference,
+      sourceRangeReference: item.repeatedRangeReference,
+      normalizedSeriesTitle: row.normalizedSeriesTitle,
+      seriesYear: row.seriesYear,
+      issueNumber: row.issueNumber,
+    };
+  });
+  packet.packetDigest = packetDigestFor(packet);
+  return packet;
+}
+
+test('repeated source references stay explicit, canonical, fresh, and unique', () => {
+  const evidence = genericEvidence({ withRepeat: true });
+  assert.doesNotThrow(() => validateFrozenPacket(evidence.packet));
+  assert.deepEqual(sourcePositionsForPacket(evidence.packet), [1, 3]);
+  assert.equal(evidence.mapping.approvedSourceCount, 3);
+  assert.deepEqual(evidence.mapping.rows.map((row) => row.sourcePosition), [1, 3]);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
+
+  const markdown = buildMarkdown(evidence.mapping);
+  assert.match(markdown, /3 issue occurrences, including 1 intentional repeat/);
+  assert.match(markdown, /each distinct comic once at its first source occurrence/);
+  assert.equal(parseChecklist(markdown).entries.length, 2);
+
+  const oldPacket = genericPacket();
+  assert.equal(Object.hasOwn(oldPacket, 'sourceOccurrenceCount'), false);
+  assert.equal(packetDigestFor(oldPacket), oldPacket.packetDigest);
+  assert.equal(buildMarkdown(genericEvidence().mapping).includes('intentional repeats'), false);
+
+  const halfPresent = structuredClone(evidence.packet);
+  delete halfPresent.repeatedSourceReferences;
+  halfPresent.packetDigest = packetDigestFor(halfPresent);
+  assert.throws(() => validateFrozenPacket(halfPresent), /must appear together/i);
+
+  const empty = structuredClone(evidence.packet);
+  empty.repeatedSourceReferences = [];
+  empty.sourceOccurrenceCount = 2;
+  empty.packetDigest = packetDigestFor(empty);
+  assert.throws(() => validateFrozenPacket(empty), /must be a non-empty array/i);
+
+  const wrongCount = structuredClone(evidence.packet);
+  wrongCount.sourceOccurrenceCount = 4;
+  wrongCount.packetDigest = packetDigestFor(wrongCount);
+  assert.throws(() => validateFrozenPacket(wrongCount), /must equal canonical rows plus repeated references/i);
+
+  const forward = structuredClone(evidence.packet);
+  forward.repeatedSourceReferences[0].canonicalRow = 2;
+  forward.packetDigest = packetDigestFor(forward);
+  assert.throws(() => validateFrozenPacket(forward), /must target an earlier canonical row/i);
+
+  const identityMismatch = structuredClone(evidence.packet);
+  identityMismatch.repeatedSourceReferences[0].issueNumber = '2';
+  identityMismatch.packetDigest = packetDigestFor(identityMismatch);
+  assert.throws(() => validateFrozenPacket(identityMismatch), /issueNumber differs from canonical row/i);
+
+  const missingField = structuredClone(evidence.packet);
+  delete missingField.repeatedSourceReferences[0].sourceIssueReference;
+  missingField.packetDigest = packetDigestFor(missingField);
+  assert.throws(() => validateFrozenPacket(missingField), /missing required fields: sourceIssueReference/i);
+
+  const emptyIssueReference = structuredClone(evidence.packet);
+  emptyIssueReference.repeatedSourceReferences[0].sourceIssueReference = ' ';
+  emptyIssueReference.packetDigest = packetDigestFor(emptyIssueReference);
+  assert.throws(() => validateFrozenPacket(emptyIssueReference), /sourceIssueReference must be a non-empty string/i);
+
+  const invalidRangeReference = structuredClone(evidence.packet);
+  invalidRangeReference.repeatedSourceReferences[0].sourceRangeReference = 42;
+  invalidRangeReference.packetDigest = packetDigestFor(invalidRangeReference);
+  assert.throws(() => validateFrozenPacket(invalidRangeReference), /sourceRangeReference must be a non-empty string/i);
+
+  const unsupportedField = structuredClone(evidence.packet);
+  unsupportedField.repeatedSourceReferences[0].reason = 'Already represented';
+  unsupportedField.packetDigest = packetDigestFor(unsupportedField);
+  assert.throws(() => validateFrozenPacket(unsupportedField), /unsupported fields: reason/i);
+
+  const accidentalDuplicate = genericPacket();
+  accidentalDuplicate.rows[1] = structuredClone(accidentalDuplicate.rows[0]);
+  accidentalDuplicate.packetDigest = packetDigestFor(accidentalDuplicate);
+  assert.throws(() => validateFrozenPacket(accidentalDuplicate), /duplicate canonical packet identity/i);
+
+  const stalePacket = structuredClone(evidence.packet);
+  stalePacket.repeatedSourceReferences[0].sourceRangeReference = 'Changed later';
+  assert.throws(() => validateFrozenPacket(stalePacket), /packet digest is stale/i);
+
+  const wrongPosition = genericEvidence({ withRepeat: true });
+  wrongPosition.mapping.rows[1].sourcePosition = 2;
+  refreshEvidenceDigests(wrongPosition);
+  assert.throws(
+    () => assertApprovedRelationshipReview(wrongPosition),
+    /mapping row 2 sourcePosition differs from its frozen packet/i,
+  );
+
+  const wrongApprovedCount = genericEvidence({ withRepeat: true });
+  wrongApprovedCount.mapping.approvedSourceCount = 2;
+  refreshEvidenceDigests(wrongApprovedCount);
+  assert.throws(
+    () => assertApprovedRelationshipReview(wrongApprovedCount),
+    /approvedSourceCount differs from its frozen source occurrence count/i,
+  );
+});
+
+test('the three blocked source shapes reconstruct one unique first-occurrence sequence', () => {
+  const ironMan = packetForOccurrenceShape(813, [
+    {
+      sourcePosition: 716,
+      canonicalRow: 708,
+      sourceIssueReference: 'Tony Stark: Iron Man #15',
+      canonicalRangeReference: 'Tony Stark: Iron Man #12 to #16',
+      repeatedRangeReference: 'Tony Stark: Iron Man #15 to #19',
+      normalizedSeriesTitle: 'Tony Stark: Iron Man',
+      seriesYear: 2018,
+      issueNumber: '15',
+    },
+    {
+      sourcePosition: 717,
+      canonicalRow: 709,
+      sourceIssueReference: 'Tony Stark: Iron Man #16',
+      canonicalRangeReference: 'Tony Stark: Iron Man #12 to #16',
+      repeatedRangeReference: 'Tony Stark: Iron Man #15 to #19',
+      normalizedSeriesTitle: 'Tony Stark: Iron Man',
+      seriesYear: 2018,
+      issueNumber: '16',
+    },
+  ]);
+  const oldManLogan = packetForOccurrenceShape(96, [
+    {
+      sourcePosition: 47,
+      canonicalRow: 39,
+      sourceIssueReference: 'Old Man Logan #19',
+      canonicalRangeReference: 'Old Man Logan #14 to #19',
+      repeatedRangeReference: 'Old Man Logan #19 to #25',
+      normalizedSeriesTitle: 'Old Man Logan',
+      seriesYear: 2016,
+      issueNumber: '19',
+    },
+    {
+      sourcePosition: 60,
+      canonicalRow: 52,
+      sourceIssueReference: 'Old Man Logan #25',
+      canonicalRangeReference: 'Old Man Logan #19 to #25',
+      repeatedRangeReference: 'Old Man Logan #25 to #30',
+      normalizedSeriesTitle: 'Old Man Logan',
+      seriesYear: 2016,
+      issueNumber: '25',
+    },
+  ]);
+  const planetHulkRows = [27, 29, 31, 34, 36];
+  const planetHulk = packetForOccurrenceShape(104, planetHulkRows.map((canonicalRow, index) => ({
+    sourcePosition: 39 + index,
+    canonicalRow,
+    sourceIssueReference: `World War Hulk #${index + 1}`,
+    canonicalRangeReference: 'The explicit Greg Pak interleaved order',
+    repeatedRangeReference: 'World War Hulk #1 to #5',
+    normalizedSeriesTitle: 'World War Hulk',
+    seriesYear: 2007,
+    issueNumber: String(index + 1),
+  })));
+
+  for (const packet of [ironMan, oldManLogan, planetHulk]) {
+    assert.doesNotThrow(() => validateFrozenPacket(packet));
+    assert.equal(
+      packet.sourceOccurrenceCount,
+      packet.rows.length + packet.repeatedSourceReferences.length,
+    );
+  }
+  const ironPositions = sourcePositionsForPacket(ironMan);
+  assert.equal(ironPositions[709], 710);
+  assert.equal(ironPositions[715], 718);
+  const oldManPositions = sourcePositionsForPacket(oldManLogan);
+  assert.equal(oldManPositions[38], 39);
+  assert.equal(oldManPositions[46], 48);
+  assert.equal(oldManPositions[51], 53);
+  assert.equal(oldManPositions[58], 61);
+  const planetPositions = sourcePositionsForPacket(planetHulk);
+  assert.equal(planetPositions[35], 36);
+  assert.equal(planetPositions[38], 44);
+});
 
 test('the approved Comic Book Herald packet stays exact through every generated surface', async () => {
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));

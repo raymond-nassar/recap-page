@@ -5,12 +5,85 @@
   "sourceUrl": "https://www.comicbookherald.com/groot-reading-order/",
   "sourceRetrievedAt": "2026-08-23",
   "sourceIssueBearingBlocksSha256": "2f73854ba172a902a511cb2ae45ee4236bf81367166126667370c482c26478e3",
-  "sourceBoundary": "Begins with Tales to Astonish #13 and ends with Groot (2023) #4. It includes every whole issue in the nine issue-bearing source blocks once in first-source order.",
+  "sourceBoundary": "Begins with Tales to Astonish #13 and ends with Groot (2023) #4. It preserves all 84 whole-issue source occurrences from the nine issue-bearing blocks and places each of the 76 distinct issues once at its first occurrence.",
   "excludedSourceReferences": [
-    "Second mention of Annihilators #1 to #4, already represented by the opening collection",
-    "Second mention of Annihilators: Earthfall #1 to #4, already represented by the opening collection",
     "I Am Groot product link without an explicit issue-bearing range",
     "Related reading-order links, product links without an issue-bearing range, and editorial prose"
+  ],
+  "sourceOccurrenceCount": 84,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 72,
+      "canonicalRow": 8,
+      "sourceIssueReference": "Annihilators #1",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 73,
+      "canonicalRow": 9,
+      "sourceIssueReference": "Annihilators #2",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 74,
+      "canonicalRow": 10,
+      "sourceIssueReference": "Annihilators #3",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 75,
+      "canonicalRow": 11,
+      "sourceIssueReference": "Annihilators #4",
+      "sourceRangeReference": "Annihilators #1 to #4",
+      "normalizedSeriesTitle": "Annihilators",
+      "seriesYear": 2010,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 76,
+      "canonicalRow": 12,
+      "sourceIssueReference": "Annihilators: Earthfall #1",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 77,
+      "canonicalRow": 13,
+      "sourceIssueReference": "Annihilators: Earthfall #2",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 78,
+      "canonicalRow": 14,
+      "sourceIssueReference": "Annihilators: Earthfall #3",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 79,
+      "canonicalRow": 15,
+      "sourceIssueReference": "Annihilators: Earthfall #4",
+      "sourceRangeReference": "Annihilators: Earthfall #1 to #4",
+      "normalizedSeriesTitle": "Annihilators: Earthfall",
+      "seriesYear": 2011,
+      "issueNumber": "4"
+    }
   ],
   "expectedCount": 76,
   "proposedManifest": {
@@ -52,7 +125,7 @@
   "sourceReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002-C07 coordinator",
-    "rationale": "Central review independently re-fetched the accepted post, reconciled all nine issue-bearing blocks, retained 76 first-occurrence issues, and recorded the eight later mentions as already represented.",
+    "rationale": "Central review independently re-fetched the accepted post, reconciled all nine issue-bearing blocks, retained 76 first-occurrence issues, and recorded all eight later source references with their exact positions and canonical rows.",
     "reviewedAt": "2026-08-23"
   },
   "rows": [
@@ -893,5 +966,5 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "1afbf2aa42c43cae2d69f726d27085aa335883f4512349ccde96c2afc40dbf88"
+  "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7"
 }

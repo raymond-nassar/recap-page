@@ -22,6 +22,7 @@ const candidateId = 'white-tiger-ava-ayala';
 const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics'];
 const cosmicCandidateId = 'rocket-raccoon-reading-order';
 const grootCandidateId = 'groot-reading-order';
+const ironManCandidateId = 'iron-man-reading-order';
 const characterCandidateIds = [
   grootCandidateId,
   'phalanx-reading-order',
@@ -89,6 +90,19 @@ function assertGrootSourceBoundary(packet) {
     '2f73854ba172a902a511cb2ae45ee4236bf81367166126667370c482c26478e3',
   );
   assert.equal(packet.sourceRetrievedAt, '2026-08-23');
+  assert.equal(packet.sourceOccurrenceCount, 84);
+  assert.equal(packet.repeatedSourceReferences.length, 8);
+  assert.deepEqual(
+    packet.repeatedSourceReferences.map(({ sourcePosition, canonicalRow }) => ({
+      sourcePosition,
+      canonicalRow,
+    })),
+    Array.from({ length: 8 }, (_, index) => ({
+      sourcePosition: 72 + index,
+      canonicalRow: 8 + index,
+    })),
+  );
+  assert.equal(packet.excludedSourceReferences.some((entry) => /already represented/i.test(entry)), false);
   assert.equal(packet.rows.length, 76);
   assert.deepEqual(
     packet.rows.map((row) => (
@@ -203,6 +217,33 @@ test('the character inventory rejects incomplete evidence and source sets', asyn
     ]),
     /duplicate inventory id/i,
   );
+});
+
+test('Iron Man keeps its complete boundary and exact metadata blocker without product artifacts', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const record = inventory.find((candidate) => candidate.id === ironManCandidateId);
+  assert.equal(record.centralDisposition, 'deferred');
+  assert.equal(record.deliveryStatus, 'not-applicable');
+  assert.equal(record.metadataHorizonStatus, 'blocked-exact-resolution-not-run');
+  assert.match(record.reason, /815-occurrence source boundary has 813 distinct issues/);
+  for (const required of [
+    'Crimson Dynamo #1-4',
+    'Iron Man: Viva Las Vegas #3-4',
+    'Iron Man Legacy #2, #5, and #10',
+  ]) {
+    assert.match(record.reason, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+  assert.equal(manifest.lists.some((entry) => entry.id === ironManCandidateId), false);
+  for (const relativePath of [
+    `scripts/data/cbh-packets/${ironManCandidateId}.json`,
+    `scripts/data/cbh-mappings/${ironManCandidateId}.json`,
+    `scripts/data/cbh-overlaps/${ironManCandidateId}.json`,
+    `src/data/orders/${ironManCandidateId}.md`,
+    'src/data/iron_man_reading_order.json',
+  ]) {
+    await assert.rejects(() => readFile(path.join(root, relativePath), 'utf8'), /ENOENT/);
+  }
 });
 
 test('the frozen White Tiger evidence stays exact through every generated surface', async () => {
@@ -461,13 +502,13 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
     [path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`)],
   );
 
-  assert.equal(packet.packetDigest, '1afbf2aa42c43cae2d69f726d27085aa335883f4512349ccde96c2afc40dbf88');
-  assert.equal(mapping.mappingDigest, 'ddaab7843590232ef978564b1e613f53159aaffbbb1efe2042d499d17849a2b5');
+  assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
+  assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
   assert.equal(reviewedLibraryDigest, '8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602');
-  assert.equal(report.reportDigest, '7272ffb7a893e64b2643749d235cd33261e0c9e1e3860f7ebbaa60fa8431b575');
+  assert.equal(report.reportDigest, 'a83bdf4ba3b9bfcee2524abe830219d9754b82d5c637f49191a313c19052870f');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '5c66e404b3db83e9b222c3ce351a199401f4e6ebf457a9f993699cd8a6e221b7',
+    'b4acc491b8240f8b9343fba015e3891ad7a0dca9c996f765a93e130515f37e54',
   );
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
@@ -496,6 +537,10 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   assert.equal(mapping.relationshipReview.dispositions.length, 95);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 76);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  assert.equal(mapping.approvedSourceCount, 84);
+  assert.equal(mapping.sourceOccurrenceCount, 84);
+  assert.equal(mapping.rows[70].sourcePosition, 71);
+  assert.equal(mapping.rows[71].sourcePosition, 80);
   assert.deepEqual(
     mapping.rows.map((row) => row.sourceIssueReference),
     packet.rows.map((row) => row.sourceIssueReference),
@@ -546,6 +591,8 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
+  assert.match(markdown, /84 issue occurrences, including 8 intentional repeats/);
+  assert.match(markdown, /each distinct comic once at its first source occurrence/);
   assert.deepEqual(
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),

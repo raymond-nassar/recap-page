@@ -16,6 +16,7 @@ import {
   CBRO_AUTHOR_IDS,
   approveCbroMappings,
   authorCbroPacket,
+  buildCbroMarkdown,
 } from '../scripts/author-cbro-packet.mjs';
 import {
   CBH_SOURCE_PROVIDER,
@@ -24,6 +25,7 @@ import {
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourcePositionsForPacket,
   validateBatchNoDuplicates,
   validateFrozenPacket,
   validateMappingDigest,
@@ -106,7 +108,7 @@ function cbhPacket() {
   return packet;
 }
 
-function cbroPacket() {
+function cbroPacket({ withRepeat = false } = {}) {
   const packet = {
     schemaVersion: 1,
     id: 'historical-event',
@@ -158,6 +160,18 @@ function cbroPacket() {
       selectionNote: null,
     }],
   };
+  if (withRepeat) {
+    packet.sourceOccurrenceCount = 2;
+    packet.repeatedSourceReferences = [{
+      sourcePosition: 2,
+      canonicalRow: 1,
+      sourceIssueReference: 'Historical Event #1',
+      sourceRangeReference: 'Historical Event #1 repeated by the source',
+      normalizedSeriesTitle: 'Historical Event',
+      seriesYear: 1990,
+      issueNumber: '1',
+    }];
+  }
   packet.packetDigest = packetDigestFor(packet);
   return packet;
 }
@@ -165,8 +179,10 @@ function cbroPacket() {
 function cbroEvidence({
   relationship = 'none',
   dispositionAuthority = relationship === 'none' ? 'policy' : 'stronger-model',
+  withRepeat = false,
 } = {}) {
-  const packet = cbroPacket();
+  const packet = cbroPacket({ withRepeat });
+  const sourcePositions = sourcePositionsForPacket(packet);
   const mapping = {
     id: packet.id,
     inventoryId: packet.inventoryId,
@@ -176,12 +192,19 @@ function cbroEvidence({
     sourceRetrievedAt: packet.sourceRetrievedAt,
     sourceContentSha256: packet.sourceContentSha256,
     sourceRetrievalStatus: 'retrieved',
-    approvedSourceCount: 1,
+    approvedSourceCount: packet.sourceOccurrenceCount ?? 1,
     excludedSourceReferences: packet.excludedSourceReferences,
+    ...(packet.sourceOccurrenceCount == null
+      ? {}
+      : {
+        sourceOccurrenceCount: packet.sourceOccurrenceCount,
+        repeatedSourceReferences: structuredClone(packet.repeatedSourceReferences),
+      }),
     proposedManifest: packet.proposedManifest,
     candidateMetadata: [],
     rows: [{
       ...packet.rows[0],
+      sourcePosition: sourcePositions[0],
       selectedIssueId: 9001,
       candidateIssueIds: ['9001'],
       resolutionStatus: 'exact',
@@ -247,6 +270,60 @@ function cbroEvidence({
     packetValidation: { provider: CBRO_SOURCE_PROVIDER },
   };
 }
+
+function refreshCbroEvidenceDigests(evidence) {
+  evidence.mapping.mappingDigest = mappingDigestFor(evidence.mapping);
+  evidence.report.mappingDigest = evidence.mapping.mappingDigest;
+  evidence.report.reportDigest = reportDigestFor(evidence.report);
+  Object.assign(evidence.mapping.relationshipReview, {
+    reportDigest: evidence.report.reportDigest,
+    mappingDigest: evidence.mapping.mappingDigest,
+  });
+  evidence.mapping.relationshipReview.approvalDigest = approvalDigestFor(
+    evidence.mapping.relationshipReview,
+  );
+}
+
+test('CBRO shares repeated-source counts, provenance, and approval derivation', () => {
+  const evidence = cbroEvidence({ withRepeat: true });
+  const inventoryRecord = {
+    id: evidence.packet.inventoryId,
+    sourceProvider: evidence.packet.sourceProvider,
+    sourceUrl: evidence.packet.sourceUrl,
+    sourceSection: null,
+    sourceRetrievedAt: evidence.packet.sourceRetrievedAt,
+    sourceContentSha256: evidence.packet.sourceContentSha256,
+    sourceRowCount: 2,
+  };
+  assert.doesNotThrow(() => validateCbroPacket(evidence.packet, { inventoryRecord }));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
+  assert.deepEqual(evidence.mapping.rows.map((row) => row.sourcePosition), [1]);
+  assert.equal(evidence.mapping.approvedSourceCount, 2);
+  assert.match(buildCbroMarkdown(evidence.mapping), /2 issue occurrences, including 1 intentional repeat/);
+
+  assert.throws(
+    () => validateCbroPacket(evidence.packet, {
+      inventoryRecord: { ...inventoryRecord, sourceRowCount: 1 },
+    }),
+    /source row count differs/i,
+  );
+
+  const wrongPosition = cbroEvidence({ withRepeat: true });
+  wrongPosition.mapping.rows[0].sourcePosition = 2;
+  refreshCbroEvidenceDigests(wrongPosition);
+  assert.throws(
+    () => assertApprovedRelationshipReview(wrongPosition),
+    /mapping row 1 sourcePosition differs from its frozen packet/i,
+  );
+
+  const wrongApprovedCount = cbroEvidence({ withRepeat: true });
+  wrongApprovedCount.mapping.approvedSourceCount = 1;
+  refreshCbroEvidenceDigests(wrongApprovedCount);
+  assert.throws(
+    () => assertApprovedRelationshipReview(wrongApprovedCount),
+    /approvedSourceCount differs from its frozen source occurrence count/i,
+  );
+});
 
 test('CBRO provider identity binds the exact host and source origin', () => {
   const packet = cbroPacket();
