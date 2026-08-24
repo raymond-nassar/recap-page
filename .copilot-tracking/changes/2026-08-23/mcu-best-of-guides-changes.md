@@ -12,9 +12,9 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Completed scope markers: P00 through P04 and P00-T01 through P04-T03
-* All remaining active-plan markers: P05, P05-T01, and P05-T02
-* Status basis: The one independent Review is complete with no product defect or blocker; implementation continues with final main reconciliation and release.
+* Completed scope markers: P00 through P04 and P00-T01 through P05-T01
+* All remaining active-plan markers: P05 and P05-T02
+* Status basis: The one independent Review and final main reconciliation are complete with no product defect or blocker; implementation continues with pull request delivery.
 
 ## Execution Summary
 
@@ -114,6 +114,16 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 * Reconciliation performed: Fetched and archived 4a0e837 outside the repository, served only that clean tree at `127.0.0.1:8787`, and recaptured Home plus Avengers Disassembled in installed Edge at 1280x900 with clean storage, cover art off, and zero marked progress. The files remain 1280x900 with SHA-256 values `AAC0707418552FD7AB88A18D756FA63E0B5ACD177585DBB0B10F3F3BF91D3761` and `51972F35B2A1F47CB418BE905C4BDE0C61EAFBA502DBA9360E19387D97A5C3AB`. The temporary archive and server were removed.
 * Planning and critique state: Immediate in-scope current-state update under P05-T01. The one critique and one Review remain complete; neither is repeated.
 
+### CHG-011: Recover the final gate run in place
+
+* Affected plan area or markers: P05-T01 and final validation
+* What changed: Resumed from the canonical MRT-004 Plan, details, changes, and Review artifacts without restarting Research, implementation, critique, or Review. Preserved head 6d50019, the final main reconciliation, both refreshed screenshots, all source and evidence work, and the staged citation re-aims plus 1,181-anchor lock.
+* Why: The browser mutation proof exceeded the command tool's 600-second foreground wait. The command continued under its existing shell session, so this was an orchestration timeout rather than a test, product, repository, or worktree failure.
+* Triggering evidence: The ordinary Edge run completed 184 of 184 assertions while `npm run browser:prove` remained active after 600 seconds. Full tests had already completed 1,431 of 1,431, and the live metadata contract completed 33 of 33.
+* User answer or decision: Recover in place, preserve the current worktree, report the concrete failure cause, and complete the existing one-Review release flow.
+* Reconciliation performed: Kept the running mutation proof and resumed P05-T01 from final validation. No duplicate browser proof was started and no completed RPI stage was reopened.
+* Planning and critique state: No planning change. The task remains unblocked and continues automatically.
+
 ## Validation Record
 
 | Check | Scope | Status | Evidence or reason |
@@ -141,11 +151,18 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 | Evidence anchors | P04-T02 | Passed | The final merged-tree bless printed 260 changed citation pairings, all were read against their claims, and the post-bless run reported 1,181 unchanged / 0 drifted / 0 new / 0 removed. |
 | Dash scan | P04-T02 | Passed | 0 added lines contain an en dash or em dash. |
 | Diff check | P04-T02 | Passed | `git diff --check` passed; final feature diff against current `main` spans 66 files with generated evidence and payloads included. |
+| Final main reconciliation | P05-T01 | Passed | Merged current `origin/main` through 4a0e837 without rebase, preserved the shared repeated-source contract, and moved the MCU backlog record to BL-212. |
+| Final unit and static gates | P05-T01 | Passed | 1,431 of 1,431 tests passed; lint passed; counts derived 186 ranked rows, 5 parked rows, 191 detail blocks, and 163 Shipped items; sizes measured 6 statements; palette measured 90 pairs with 0 new failures; publication and publication surface reported 0 findings. |
+| Final live contracts | P05-T01 | Passed | The general metadata contract passed 33 of 33 assumptions across 17 requests. After transient fetch failures were retried with delay, the MCU contract passed all 43 mapped issue identities. |
+| Final Edge and mutation proof | P05-T01 | Passed | Installed Edge passed 184 of 184 assertions across 19 scenarios. The existing long-running proof completed once and caught all 41 of 41 mutations in their intended scenarios. |
+| README stability and screenshots | P05-T01 | Passed | The no-fix check failed on the live catalog count and stale image reference, then both README tests passed. Exactly two referenced PNGs are 1280x900: clean-current-main Home and zero-progress Avengers Disassembled, both with cover art off and accurate alt text. |
+| Final evidence anchors | P05-T01 | Passed | Head search and merge-diff arithmetic re-derived every conflict-touched citation. All 36 final bless pairings were read against their claims; the final run reports 1,181 unchanged / 0 drifted / 0 new / 0 removed. |
+| Final dash and diff review | P05-T01 | Passed | 0 added lines contain an en dash or em dash; `git diff --check` passes; no unresolved conflict marker remains. |
 
 ## Post-Review Reconciliation
 
-* Plan markers and phase details: P00 through P04 complete; P05 remains.
-* Completed-work evidence and handoff prose: P00 through P04 evidence is current, including the one independent Review.
+* Plan markers and phase details: P00 through P04 and P05-T01 complete; P05-T02 remains.
+* Completed-work evidence and handoff prose: P00 through P05-T01 evidence is current, including the one independent Review, repeated-source reconciliation, README stability decision, screenshot provenance, and final gate results.
 * Validation, blockers, remaining work, and follow-up items: Review outcome is Conformant with justified divergence; no product defect or blocker remains. RV-001 is folded into P05 record maintenance, RV-004's stale advisory targets are corrected when phase details are next edited, and RV-002 and RV-003 remain distinct low-severity follow-ups.
 * Review readiness: Review completed once. No second Review will run.
 
@@ -155,7 +172,7 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 
 ## Remaining Work
 
-* P05, P05-T01, and P05-T02.
+* P05 and P05-T02.
 
 ## Follow-Up Items
 
@@ -166,10 +183,10 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 ## Return-to-Caller State
 
 * Implementation execution status: Partial
-* Declared scope and markers: Full plan; P00 through P04 and P00-T01 through P04-T03 complete; P05, P05-T01, and P05-T02 remain.
+* Declared scope and markers: Full plan; P00 through P04 and P00-T01 through P05-T01 complete; P05 and P05-T02 remain.
 * Validation coverage: Full tests, lint, counts, sizes, palette, publication, publication surface, live metadata, MCU mappings, Edge desktop and narrow layouts, mutation proof, anchors, dash scan, and diff check.
 * Blockers: None.
-* Current plan and detail updates: Integrated the shared category gateway and Star-Lord release, completed one independent Review, and added the user-requested count-free README stability edit to P05-T01.
+* Current plan and detail updates: Integrated the shared category gateway, Star-Lord release, Home refresh, and repeated-source contract; completed one independent Review; delivered the count-free README wording and exactly two clean-current-main screenshots; completed P05-T01.
 * Planning and critique state: One critique complete and resolved; one Review complete; no second critique or Review will run.
 * Follow-up items: Ten unshipped guides remain outside this release.
 * Review readiness or no-handoff reason: Review complete; implementation continues directly to release.

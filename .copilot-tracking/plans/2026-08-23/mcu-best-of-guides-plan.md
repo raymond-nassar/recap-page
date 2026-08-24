@@ -277,7 +277,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Dependencies: P04.
 
 <!-- rpi:task id=P05-T01 -->
-#### [ ] P05-T01: Reconcile main and rerun affected gates
+#### [x] P05-T01: Reconcile main and rerun affected gates
 
 * Requirement and evidence: Star-Lord and other catalog work may merge while this task runs.
 * Expected result: current `main` is merged into the feature branch, never rebased; native-command exit status is read and output is not suppressed before dependent work; library, peer, catalog, count, anchor, and browser evidence are regenerated where affected; conflict-touched citations are re-derived from both head text and final diff hunks. The user-requested README stability edit removes fast-changing catalog inventory figures without removing stable technical values or measured evidence. It also replaces stale imagery with exactly two current 1280x900 screenshots, Home and an open Avengers Disassembled reading view, captured from a clean profile against a temporary render of freshly fetched `origin/main` at the fixed origin. Directly affected checks, records, and anchors are updated in this release.

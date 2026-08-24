@@ -812,7 +812,8 @@ Make the release evidence describe the tree that will actually merge.
 
 #### Completion Evidence
 
-* Final head and affected gate results are recorded.
+* Current `main` through 4a0e837 is merged without rebase. The combined tree passes 1,431 tests, lint, counts, sizes, palette, publication, publication surface, 33 general live assumptions, 43 MCU issue identities, 184 Edge assertions, all 41 browser mutations, the dash and diff checks, and 1,181 unchanged anchors with no drift, additions, or removals.
+* README references exactly `docs/screenshots/home-1280.png` and `docs/screenshots/avengers-disassembled-reading-1280.png`. Both are 1280x900 captures from a clean external archive of current `origin/main`, with cover art off; the reading view shows Avengers Disassembled at zero marked progress.
 
 #### Unresolved Items
 
