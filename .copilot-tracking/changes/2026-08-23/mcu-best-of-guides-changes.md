@@ -12,13 +12,13 @@
 
 * Status: Partial
 * Declared invocation scope: full plan
-* Completed scope markers: P00 through P03 and P00-T01 through P04-T02
-* All remaining active-plan markers: P04-T03 through P05-T02
-* Status basis: P00 through P03 and P04-T01 through P04-T02 are complete; implementation continues at the one independent Review.
+* Completed scope markers: P00 through P04 and P00-T01 through P04-T03
+* All remaining active-plan markers: P05, P05-T01, and P05-T02
+* Status basis: The one independent Review is complete with no product defect or blocker; implementation continues with final main reconciliation and release.
 
 ## Execution Summary
 
-The approved implementation will ship priorities 1 to 4 as four `screen-companion` / `selected` lists under Marvel on Screen on the Hub, retain all fourteen selected sources in a guarded inventory, and complete one Review plus PR merge. Production edits have not started.
+The implementation ships priorities 1 to 4 as four `screen-companion` / `selected` lists under Marvel on Screen, retains all fourteen selected sources in a guarded inventory, and has completed the one independent Review with a Conformant with justified divergence outcome. Final release work also applies the user's count-free README inventory wording so the overview does not become stale whenever the catalog grows.
 
 ## Completed Work
 
@@ -41,7 +41,7 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 ### CHG-004: Add truthful list taxonomy and Marvel on Screen Hub placement
 
 * Related phase or task: P02, P02-T01, P02-T02, P02-T03
-* Files: `src/js/lib/catalog.js`, `src/js/main.js`, `test/catalog.test.js`, `test/curated.test.js`, `test/catalog-shelves.test.js`, `test/home-grid.test.js`, `test/home-featured.test.js`
+* Files: `src/js/lib/catalog.js`, `src/js/main.js`, `test/catalog.test.js`, `test/curated.test.js`, `test/catalog-shelves.test.js`, `test/home-categories.test.js`
 * What changed and why: Added `screen-companion` and `selected` labels, a table-driven non-empty Marvel on Screen Home category, and Home rendering through the new partition while leaving the three browse shelves intact. Screen companions remain reachable through Storylines with truthful context. Existing Hub completeness and heading tests now exercise the actual partition, `timeline: null` items survive the age filter, and non-beginner companions cannot replace the featured pick.
 * Completion evidence: Targeted catalog, manifest, shelf, Home, and featured suites passed 151 of 151 tests after the nested-test fixture was corrected.
 * Validation: Passed.
@@ -69,7 +69,7 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 * Why: The user explicitly required the existing Marvel on Screen category contract. Reviewing or releasing the pre-merge Home partition would have duplicated and contradicted the contract that landed concurrently.
 * Triggering evidence: Current `main` added BL-208, `HOME_CATEGORIES`, publishing-age routes, generated child views, and 182 Edge assertions across 19 scenarios.
 * User answer or decision: Existing confirmed Marvel on Screen placement and category-contract direction; no new decision was needed.
-* Reconciliation performed: Updated plan, details, route registry, category renderer, tests, browser fixture, backlog id from BL-208 to BL-209, documentation, counts, and validation expectations. Kept all four guide mappings and product data unchanged.
+* Reconciliation performed: Updated plan, details, route registry, category renderer, tests, browser fixture, backlog id from BL-208 to BL-210 after the Star-Lord release, then to BL-211 after the concurrent Home refresh, documentation, counts, and validation expectations. Kept all four guide mappings and product data unchanged.
 * Planning and critique state: Immediate in-scope current-state update. The one critique remains historical; no second critique runs.
 
 ## Implementation-Time Plan and Detail Updates
@@ -83,6 +83,26 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 * User answer or decision: Automatic full-plan execution was explicitly requested.
 * Reconciliation performed: Plan, phase details, critique dispositions, Research evidence, source boundary evidence, and mapping evidence were read as the current authority.
 * Planning and critique state: Current and ready; PC-001 through PC-009 are resolved; no second critique will run.
+
+### CHG-008: Apply the user-requested README inventory stability decision
+
+* Affected plan area or markers: P05-T01 and final release evidence
+* What changed: Added a bounded release requirement to remove fast-changing counts of reading orders, issues, cards, and similar catalog inventory from the README while retaining stable technical values, version requirements, the fixed origin and port, evidence dates, and measured hardware facts.
+* Why: A neighboring catalog release identified that the README overview count becomes stale as soon as another curated list lands. The user assigned the durable count-free wording to this PR to avoid parallel README conflicts.
+* Triggering evidence: The current overview says readers can pick one of 101 curated reading orders, a value already superseded whenever any concurrent list merges.
+* User answer or decision: Include this README stability edit in MRT-004, update directly affected tests, changelog if required, and evidence anchors, and continue the existing one-Review flow without a second Review.
+* Reconciliation performed: P05-T01 now owns the edit after current `main` is merged. The edit remains ancillary and does not change the fourteen-guide source boundary or the bounded four-guide product release.
+* Planning and critique state: Immediate user-directed current-state update; no new critique or Review is permitted or needed.
+
+### CHG-009: Replace stale README imagery with two current screenshots
+
+* Affected plan area or markers: P05-T01 and final release evidence
+* What changed: Added exactly two README screenshots to the bounded release requirement: the current Home view and an open actual Avengers Disassembled reading list at 1280x900.
+* Why: The user assigned current product imagery to the same PR as the count-free README wording so the overview stays accurate without parallel README conflicts or obsolete assets accumulating.
+* Triggering evidence: The existing README image no longer represents the current Home gateway and does not provide the requested open-list view.
+* User answer or decision: Immediately before capture, fetch current `origin/main`; render a clean temporary copy outside tracked files at `127.0.0.1:8787`; use installed Edge, the existing external puppeteer-core setup, an explicit 1280x900 viewport, and clean profile/storage; import and open the actual Avengers Disassembled list without personal data or fabricated progress.
+* Reconciliation performed: P05-T01 owns capture, visual and dimension checks, stable asset paths and alt text, replacement of stale assets where appropriate, README reference checks, temporary-process cleanup, and the affected full-gate rerun. The feature branch's unmerged MCU state is explicitly excluded from screenshot content.
+* Planning and critique state: Immediate user-directed current-state update; the completed Review is not repeated.
 
 ## Validation Record
 
@@ -107,17 +127,17 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 | Live metadata API contract | P04-T02 | Passed | 33 of 33 general assumptions hold across 17 requests. |
 | MCU issue contract | P04-T02 | Passed | 43 of 43 mapped issue ids retain exact id, series, issue number, and detail URL. |
 | Installed Edge | P04-T02 | Passed | 184 assertions passed across 19 scenarios at desktop and narrow viewports after current `main` reconciliation. |
-| Installed Edge mutation proof | P04-T02 | Passed | All 22 browser mutations were detected; the restored run remained 184/184. |
+| Installed Edge mutation proof | P04-T02 | Passed | All 41 browser mutations were detected; the restored run remained 184/184. |
 | Evidence anchors | P04-T02 | Passed | The final merged-tree bless printed 260 changed citation pairings, all were read against their claims, and the post-bless run reported 1,181 unchanged / 0 drifted / 0 new / 0 removed. |
 | Dash scan | P04-T02 | Passed | 0 added lines contain an en dash or em dash. |
 | Diff check | P04-T02 | Passed | `git diff --check` passed; final feature diff against current `main` spans 66 files with generated evidence and payloads included. |
 
-## Pre-Review Reconciliation
+## Post-Review Reconciliation
 
-* Plan markers and phase details: P00 through P03 complete; P04 and P05 remain.
-* Completed-work evidence and handoff prose: P00 through P03 evidence is current.
-* Validation, blockers, remaining work, and follow-up items: Current for implementation start.
-* Review readiness: Not ready; P00 through P04-T02 remain.
+* Plan markers and phase details: P00 through P04 complete; P05 remains.
+* Completed-work evidence and handoff prose: P00 through P04 evidence is current, including the one independent Review.
+* Validation, blockers, remaining work, and follow-up items: Review outcome is Conformant with justified divergence; no product defect or blocker remains. RV-001 is folded into P05 record maintenance, RV-004's stale advisory targets are corrected when phase details are next edited, and RV-002 and RV-003 remain distinct low-severity follow-ups.
+* Review readiness: Review completed once. No second Review will run.
 
 ## Blockers
 
@@ -125,7 +145,7 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 
 ## Remaining Work
 
-* P04-T03 through P05-T02.
+* P05, P05-T01, and P05-T02.
 
 ## Follow-Up Items
 
@@ -136,11 +156,11 @@ The approved implementation will ship priorities 1 to 4 as four `screen-companio
 ## Return-to-Caller State
 
 * Implementation execution status: Partial
-* Declared scope and markers: Full plan; P00 through P03 and P04-T01 through P04-T02 complete; P04-T03 through P05-T02 remain.
-* Validation coverage: Branch, evidence, taxonomy, Hub, generated data, product records, counts, targeted integration, and lint.
+* Declared scope and markers: Full plan; P00 through P04 and P00-T01 through P04-T03 complete; P05, P05-T01, and P05-T02 remain.
+* Validation coverage: Full tests, lint, counts, sizes, palette, publication, publication surface, live metadata, MCU mappings, Edge desktop and narrow layouts, mutation proof, anchors, dash scan, and diff check.
 * Blockers: None.
-* Current plan and detail updates: None after critique disposition.
-* Planning and critique state: Implementation ready; one critique complete and resolved.
+* Current plan and detail updates: Integrated the shared category gateway and Star-Lord release, completed one independent Review, and added the user-requested count-free README stability edit to P05-T01.
+* Planning and critique state: One critique complete and resolved; one Review complete; no second critique or Review will run.
 * Follow-up items: Ten unshipped guides remain outside this release.
-* Review readiness or no-handoff reason: Not ready; implementation active.
+* Review readiness or no-handoff reason: Review complete; implementation continues directly to release.
 * Continuation owner: confirmed automatic RPI Agent.

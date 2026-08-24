@@ -9,7 +9,7 @@ built as well as what has not. Of the 28 stories originally written here, 24 shi
 in part, 1 was never started, 1 is ruled out by a product constraint, and 1 is dropped by a product
 decision. The new items come from that same pass and from the UX study in `docs/UX_STUDY.md`.
 
-A hundred and sixty-one items have since been delivered and are marked `Shipped` in the table below: BL-007,
+A hundred and sixty-two items have since been delivered and are marked `Shipped` in the table below: BL-007,
 BL-014, BL-017, BL-026, BL-027, BL-029, BL-030, BL-031, BL-032, BL-033, BL-034, BL-035, BL-036,
 BL-037, BL-038, BL-039, BL-040, BL-041, BL-043, BL-044, BL-045, BL-046, BL-047, BL-048, BL-049,
 BL-050, BL-051, BL-052, BL-053, BL-054, BL-055, BL-056, BL-057, BL-058, BL-059, BL-061, BL-062,
@@ -23,7 +23,7 @@ BL-145, BL-146, BL-147, BL-149, BL-150, BL-152, BL-153, BL-154, BL-157, BL-158, 
 BL-164, BL-165, BL-166, BL-167, BL-169, BL-170, BL-171, BL-174, BL-175, BL-176, BL-181, BL-182,
 BL-183, BL-184, BL-185, BL-186, BL-187, BL-189, BL-191, BL-192, BL-193, BL-194, BL-195,
 BL-196, BL-197, BL-198, BL-199, BL-200, BL-201, BL-202, BL-203, BL-204, BL-205, BL-206, BL-207,
-BL-208, BL-209 and BL-210.
+BL-208, BL-209, BL-210 and BL-211.
 Their detail blocks record what changed, what was measured, and which tasks were deliberately left
 open. BL-049 and BL-103 are the two whose delivery changed no code at all: the first was a decision,
 measured in full and closed without touching the colours, and the second was three operations on the
@@ -302,7 +302,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-205 | Publish the prioritized cosmic Character Spotlight batch | Feature | EP-03 | Follows BL-204 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Rocket Raccoon reading guide on the Character spotlights shelf before this change |
 | BL-207 | Publish Groot as a separate complete Character Spotlight guide | Feature | EP-03 | Follows BL-205 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Groot reading guide on the Character spotlights shelf before this change |
 | BL-209 | Publish Star-Lord as a separate complete Character Spotlight guide | Feature | EP-03 | Follows BL-207 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Star-Lord reading guide on the Character spotlights shelf before this change |
-| BL-210 | Publish the first Marvel on Screen companion guides | Feature | EP-03 | Follows BL-209 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any populated Marvel on Screen category or screen-companion reading guide before this change |
+| BL-211 | Publish the first Marvel on Screen companion guides | Feature | EP-03 | Follows BL-209 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any populated Marvel on Screen category or screen-companion reading guide before this change |
 | BL-087 | State the network privacy boundary where the promise appears | Debt | EP-05 | Leaves alone | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Shipped | src/index.html:654-711 |
 | BL-091 | Let catalog descriptions survive the WCAG text-spacing override | Defect | EP-07 | Leaves BL-028 alone | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Dropped | absent: the Home catalogue description clamp measured here, removed with the Home card wall by BL-208 |
 | BL-101 | Withdraw the undo-restore offer when erasing everything | Defect | EP-06 | Follows BL-083 | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Shipped | src/js/main.js:4657-4694 |
@@ -13271,7 +13271,7 @@ four partial approvals, two external shipped peers, one payload, and the complet
 The committed Edge gate passed 182 assertions, and 14 real-catalog assertions passed across 1280 by
 900 and 390 by 844 viewports with no horizontal overflow.
 
-**BL-210: Publish the first Marvel on Screen companion guides**
+**BL-211: Publish the first Marvel on Screen companion guides**
 
 - [x] Preserve all fourteen selected Comic Book Herald companion sources in user priority order
 - [x] Freeze and resolve the first four priorities as exact source-bound issue selections
@@ -13305,7 +13305,7 @@ existing Storylines shelf.
 Sized 5 because the release binds fourteen source identities, four exact packets and mappings, 400
 relationships and central dispositions, four generated payloads, a new type and reading depth, and
 one populated category plus its generated child route without adding a canonical shelf. Installed
-Edge passed 184 assertions across 19 scenarios, and all 22 browser mutations were detected.
+Edge passed 184 assertions across 19 scenarios, and all 41 browser mutations were detected.
 
 
 **BL-208: Turn Home into a dynamic reading gateway**
@@ -13688,16 +13688,16 @@ rebuilds every row's rank from the table and fails any `rank N of M` stated agai
 word in a heading. Sorting the table and running the gate turns four claims red, all of them in this
 appendix, so a re-sort cannot quietly invalidate what is written about the order.
 
-The cost is what decides it. A stable sort by score moves 56 of the 184 rows, and the six pairs do not
+The cost is what decides it. A stable sort by score moves 56 of the 185 rows, and the six pairs do not
 reduce to six swaps: exchanging the members of each pair in a single pass leaves six inversions
 again, because a swap can lift a row above a third one it also outscores. Nothing gates the order
 itself, so it would drift again with the next item filed. And the paragraph above leaves no decision
 resting on the order, so the exercise buys a tidier table and no better choice of what to build next.
 
-### Case 1: BL-026 is labelled P0 but ranks a hundred and sixth
+### Case 1: BL-026 is labelled P0 but ranks a hundred and seventh
 
 - Stated: P0 Foundation, the first keyboard story in the original Epic 7.
-- Calculated: WSJF 3.67, rank 106 of 184.
+- Calculated: WSJF 3.67, rank 107 of 185.
 - Driver: job size, not value. Its Cost of Delay of 11 is the thirteenth-highest distinct figure in
   the backlog. It is outranked by ninety-one items, eighty-two of them sized 1, 2 or 3 whose Cost of Delay
   is lower but whose size is smaller still. WSJF is explicitly a throughput heuristic, so a P0 that
@@ -13719,7 +13719,7 @@ resting on the order, so the exercise buys a tidier table and no better choice o
 ### Case 2: BL-007 is labelled P1 but sits near the bottom
 
 - Stated: P1 Core product value, event order variants.
-- Calculated: WSJF 1.4, rank 178 of 184, below a hundred and seventy-three unlabelled items and five places above the
+- Calculated: WSJF 1.4, rank 179 of 185, below a hundred and seventy-four unlabelled items and five places above the
   single P2 story.
 - Driver: both sides. Job size is 5, because the work is editorial rather than technical, and value
   is only 3, because the rendering that would display variants already ships and works. Evidence:
@@ -13777,9 +13777,9 @@ resting on the order, so the exercise buys a tidier table and no better choice o
 
 ### Where the label and the score agree
 
-- BL-014, P1, rank 133 of 184. Mid-table, which is where a P1 belongs.
-- BL-027, P1, rank 108 of 184. Mid-table.
-- BL-017, P2, rank 183 of 184. The lowest-ranked scored story other than the one that cannot be
+- BL-014, P1, rank 134 of 185. Mid-table, which is where a P1 belongs.
+- BL-027, P1, rank 109 of 185. Mid-table.
+- BL-017, P2, rank 184 of 185. The lowest-ranked scored story other than the one that cannot be
   sized, which matches its P2 label exactly.
 - BL-025, P2, parked. The label is moot, because the item was removed by the constraint gate before
   it could be scored.

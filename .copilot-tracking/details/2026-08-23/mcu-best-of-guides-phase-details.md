@@ -16,8 +16,8 @@
 | P01 | Guard the MCU companion provider flow | Complete | P01, P01-T01 to P01-T03 |
 | P02 | Add Marvel on Screen product semantics | Complete | P02, P02-T01 to P02-T03 |
 | P03 | Author the four-guide release | Complete | P03, P03-T01, P03-T02 |
-| P04 | Prove the implementation and run one Review | In progress | P04, P04-T01 to P04-T03 |
-| P05 | Release and persist the merged result | Ready | P05, P05-T01, P05-T02 |
+| P04 | Prove the implementation and run one Review | Complete | P04, P04-T01 to P04-T03 |
+| P05 | Release and persist the merged result | In progress | P05, P05-T01, P05-T02 |
 
 <!-- rpi:phase id=P00 -->
 ## P00: Reconcile and freeze release evidence
@@ -320,7 +320,7 @@ Add the smallest data and rendering model that names what these lists are and pl
 * `src/js/lib/catalog.js`: type/depth labels and Home category partition.
 * `src/js/lib/curated.js`: generic validation reuse; code change only if required by shared constants.
 * `src/js/main.js`: Home section call.
-* `test/catalog.test.js`, `test/curated.test.js`, `test/catalog-shelves.test.js`, `test/home-grid.test.js`.
+* `test/catalog.test.js`, `test/curated.test.js`, `test/catalog-shelves.test.js`, `test/home-categories.test.js`.
 * `scripts/browser-check.mjs`.
 
 ### Dependencies
@@ -401,7 +401,7 @@ Partition Hub content through a separate table while leaving browse shelf behavi
 
 * `src/js/lib/catalog.js`.
 * `src/js/main.js`.
-* `test/home-grid.test.js`.
+* `test/home-categories.test.js`.
 
 #### Dependencies
 
@@ -443,7 +443,7 @@ Keep reachability and keyboard/screen-reader behavior while making Storylines co
 
 * `src/js/lib/catalog.js`.
 * `test/catalog-shelves.test.js`.
-* `test/home-grid.test.js`.
+* `test/home-categories.test.js`.
 * `scripts/browser-check.mjs`.
 
 #### Dependencies
@@ -735,7 +735,7 @@ Obtain independent correctness assessment and close material release blockers on
 
 #### Completion Evidence
 
-* One Review artifact and final disposition table.
+* One independent Review artifact recorded a Conformant with justified divergence outcome, no product defect, no blocker, one medium record-integrity correction for P05, and distinct routing for unrelated low-severity residual work.
 
 #### Unresolved Items
 
@@ -792,7 +792,7 @@ Make the release evidence describe the tree that will actually merge.
 
 #### Boundaries
 
-* Included: merge `origin/main` into the feature branch, read command output and exit status, resolve conflicts, regenerate reports/approvals, re-derive counts and anchors, and rerun targeted browser proof.
+* Included: merge `origin/main` into the feature branch, read command output and exit status, resolve conflicts, regenerate reports/approvals, re-derive counts and anchors, rerun targeted browser proof, and apply the user-requested count-free README inventory wording with directly affected checks and records. Replace stale README imagery with exactly two current screenshots captured at 1280x900 in installed Edge from a clean profile against a temporary freshly fetched `origin/main` render at `127.0.0.1:8787`: Home and the actual Avengers Disassembled reading view with no personal data or fabricated progress.
 * Excluded: rebase, force-push, suppressed command output, destructive reset, or trusting pre-reconciliation green output.
 
 #### Likely Targets

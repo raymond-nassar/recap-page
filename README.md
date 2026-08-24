@@ -2,16 +2,19 @@
 
 **A private reading companion for Marvel Unlimited.**
 
-Recap Page turns long comic events and character runs into clear reading sessions. Pick one of 101
-curated reading orders, follow it issue by issue, and keep your place without creating an account.
+Recap Page turns long comic events and character runs into clear reading sessions. Pick a curated
+reading order, follow it issue by issue, and keep your place without creating an account.
 Everything runs locally in your browser.
 
 It does not include comics, bypass a subscription, or replace Marvel Unlimited. When you press
 **Read**, it opens the official Marvel reader in a new tab. You need your own Marvel Unlimited
 subscription to read the issues.
 
-![Recap Page shown in the Uncanny X-Men reading
-order](docs/assets/marvel-reading-tracker-uncanny-x-men.png)
+![Recap Page Home showing the current reading gateways with cover art
+off](docs/screenshots/home-1280.png)
+
+![Avengers Disassembled open at the first issue with no progress marked and cover art
+off](docs/screenshots/avengers-disassembled-reading-1280.png)
 
 ## Made for long reading journeys
 

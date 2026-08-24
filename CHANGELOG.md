@@ -28,7 +28,9 @@ rows. Each 100-comparison report covers the 97-list pre-publication library and 
 release peers. Central review approves two Doctor Strange partials and the two-issue Marvel
 Multiverse subsets of both Claremont paths. Exact duplicates remain unapprovable. Installed Edge
 passed 184 assertions across 19 scenarios, including the populated category, child-route focus,
-four-card source order, and one-column narrow layout.
+four-card source order, and one-column narrow layout. The README overview now avoids live catalog
+counts and shows current Home and Avengers Disassembled views captured from clean current main with
+cover art off.
 
 ### Gave Home a comic-book welcome
 

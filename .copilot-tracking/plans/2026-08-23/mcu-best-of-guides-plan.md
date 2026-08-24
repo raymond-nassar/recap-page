@@ -244,7 +244,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P03-T02 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:phase id=P04 -->
-### [ ] P04: Prove the implementation and run one Review
+### [x] P04: Prove the implementation and run one Review
 
 * Intent: Demonstrate source, data, UI, accessibility, and release behavior before a pull request.
 * Dependencies: P03.
@@ -264,7 +264,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 * Detail section: P04-T02 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:task id=P04-T03 -->
-#### [ ] P04-T03: Run exactly one independent post-implementation Review
+#### [x] P04-T03: Run exactly one independent post-implementation Review
 
 * Requirement and evidence: The user requires one independent Review and no review loop.
 * Expected result: one Review artifact records its complete findings; in-scope release blockers are fixed once, unrelated work is routed, and no second Review is run.
@@ -280,7 +280,7 @@ For current user input, see [User Decisions and Requirements](#user-decisions-an
 #### [ ] P05-T01: Reconcile main and rerun affected gates
 
 * Requirement and evidence: Star-Lord and other catalog work may merge while this task runs.
-* Expected result: current `main` is merged into the feature branch, never rebased; native-command exit status is read and output is not suppressed before dependent work; library, peer, catalog, count, anchor, and browser evidence are regenerated where affected; conflict-touched citations are re-derived from both head text and final diff hunks.
+* Expected result: current `main` is merged into the feature branch, never rebased; native-command exit status is read and output is not suppressed before dependent work; library, peer, catalog, count, anchor, and browser evidence are regenerated where affected; conflict-touched citations are re-derived from both head text and final diff hunks. The user-requested README stability edit removes fast-changing catalog inventory figures without removing stable technical values or measured evidence. It also replaces stale imagery with exactly two current 1280x900 screenshots, Home and an open Avengers Disassembled reading view, captured from a clean profile against a temporary render of freshly fetched `origin/main` at the fixed origin. Directly affected checks, records, and anchors are updated in this release.
 * Detail section: P05-T01 in .copilot-tracking/details/2026-08-23/mcu-best-of-guides-phase-details.md
 
 <!-- rpi:task id=P05-T02 -->
