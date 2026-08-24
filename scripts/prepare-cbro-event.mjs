@@ -7,7 +7,9 @@ import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { resolveMapping } from './resolve-cbh-order.mjs';
 import { normalizeTitle } from '../src/js/lib/markdown.js';
 import {
-  CBRO_SELECTED_IDS,
+  CBRO_RELEASE_IDS,
+  CBRO_RELEASES,
+  cbroReleaseForIds,
   mappingDigestFor,
   sourceOccurrenceCountFor,
   sourcePositionsForPacket,
@@ -30,9 +32,20 @@ function assert(condition, message) {
 
 function parseOnly(args) {
   const values = args.filter((arg) => arg.startsWith('--only='));
+  const releases = args.filter((arg) => arg.startsWith('--release='));
   if (values.length > 1) throw new Error('Use --only once with a comma-separated CBRO id list');
+  if (releases.length > 1) throw new Error('Use --release once');
+  if (values.length > 0 && releases.length > 0) {
+    throw new Error('Use --only or --release, not both');
+  }
+  if (releases.length > 0) {
+    const releaseId = releases[0].slice('--release='.length);
+    const release = CBRO_RELEASES[releaseId];
+    assert(release, `Unknown CBRO release: ${releaseId}`);
+    return [...release.sourceIds];
+  }
   const ids = values.length === 0
-    ? [...CBRO_SELECTED_IDS]
+    ? [...CBRO_RELEASES[CBRO_RELEASE_IDS.original].sourceIds]
     : values[0].slice('--only='.length).split(',').map((id) => id.trim()).filter(Boolean);
   if (ids.length === 0) throw new Error('--only must name at least one CBRO id');
   if (new Set(ids).size !== ids.length) throw new Error('--only contains a duplicate CBRO id');
@@ -48,17 +61,20 @@ function seriesYear(seriesName) {
   return Number.isInteger(year) ? year : null;
 }
 
-export async function loadCbroPackets(ids = CBRO_SELECTED_IDS, {
-  inventoryFile = INVENTORY_PATH,
-  packetsDir = PACKETS_DIR,
-  manifestFile = MANIFEST_PATH,
-} = {}) {
+export async function loadCbroPackets(
+  ids = CBRO_RELEASES[CBRO_RELEASE_IDS.original].sourceIds,
+  {
+    inventoryFile = INVENTORY_PATH,
+    packetsDir = PACKETS_DIR,
+    manifestFile = MANIFEST_PATH,
+  } = {},
+) {
+  cbroReleaseForIds(ids, { order: 'source' });
   const inventory = JSON.parse(await readFile(inventoryFile, 'utf8'));
   validateCbroHistoricalInventory(inventory);
   const manifest = JSON.parse(await readFile(manifestFile, 'utf8'));
   const catalogEntries = Array.isArray(manifest.lists) ? manifest.lists : [];
   return Promise.all(ids.map(async (id) => {
-    assert(CBRO_SELECTED_IDS.includes(id), `Unknown selected CBRO id: ${id}`);
     const packet = JSON.parse(await readFile(path.join(packetsDir, `${id}.json`), 'utf8'));
     const inventoryRecord = inventory.find((record) => record.id === id);
     validateCbroPacket(packet, {
@@ -138,14 +154,17 @@ export async function buildCbroMapping(packet, metadataById) {
   return { ...resolved, mappingDigest: mappingDigestFor(resolved) };
 }
 
-export async function prepareCbroMappings(ids = CBRO_SELECTED_IDS, {
-  fetchIssue = null,
-  inventoryFile = INVENTORY_PATH,
-  packetsDir = PACKETS_DIR,
-  mappingsDir = MAPPINGS_DIR,
-  manifestFile = MANIFEST_PATH,
-  journalFile = PREPARE_JOURNAL,
-} = {}) {
+export async function prepareCbroMappings(
+  ids = CBRO_RELEASES[CBRO_RELEASE_IDS.original].sourceIds,
+  {
+    fetchIssue = null,
+    inventoryFile = INVENTORY_PATH,
+    packetsDir = PACKETS_DIR,
+    mappingsDir = MAPPINGS_DIR,
+    manifestFile = MANIFEST_PATH,
+    journalFile = PREPARE_JOURNAL,
+  } = {},
+) {
   const packets = await loadCbroPackets(ids, { inventoryFile, packetsDir, manifestFile });
   const getIssue = fetchIssue ?? (() => {
     const { getJson } = createJsonFetcher();

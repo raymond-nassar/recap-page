@@ -187,6 +187,11 @@ const laterHistoricalIds = [
   'midnight-massacre',
   'childs-play',
   'eighth-day',
+  'reed-richards-and-sue-storms-wedding',
+  'kree-skrull-war',
+  'the-night-gwen-stacy-died',
+  'avengers-defenders-war',
+  'thanos-war',
 ];
 const laterMcuIds = [
   'doctor-strange-multiverse-of-madness',
@@ -194,6 +199,7 @@ const laterMcuIds = [
   'marvel-multiverse',
   'marvel-what-if',
 ];
+const continuationHistoricalIds = laterHistoricalIds.slice(5);
 
 function assertGrootSourceBoundary(packet) {
   assert.equal(
@@ -400,7 +406,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [...characterCandidateIds, ...laterHistoricalIds, ...laterMcuIds],
+    [...characterCandidateIds, ...laterHistoricalIds, ...laterMcuIds, ...continuationHistoricalIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
@@ -523,7 +529,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      ![grootCandidateId, starLordCandidateId, ...laterHistoricalIds, ...laterMcuIds]
+      ![grootCandidateId, starLordCandidateId, ...laterHistoricalIds, ...laterMcuIds, ...continuationHistoricalIds]
         .includes(comparison.orderId)
     )),
     report.comparisons,
@@ -650,7 +656,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   const inventoryRecord = inventory.find((record) => record.id === grootCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [grootCandidateId, cosmicCandidateId, ...laterMcuIds],
+    [grootCandidateId, cosmicCandidateId, ...laterMcuIds, ...continuationHistoricalIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
@@ -669,7 +675,8 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
   });
   assert.deepEqual(
-    regeneratedReport.comparisons.filter((comparison) => !laterMcuIds.includes(comparison.orderId)),
+    regeneratedReport.comparisons.filter((comparison) => !laterMcuIds.includes(comparison.orderId)
+      && !continuationHistoricalIds.includes(comparison.orderId)),
     report.comparisons,
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -803,7 +810,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   ));
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [starLordCandidateId, cosmicCandidateId, grootCandidateId, ...laterMcuIds],
+    [starLordCandidateId, cosmicCandidateId, grootCandidateId, ...laterMcuIds, ...continuationHistoricalIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${starLordCandidateId}.json`),
@@ -828,6 +835,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
       !laterMcuIds.includes(comparison.orderId)
+      && !continuationHistoricalIds.includes(comparison.orderId)
     )),
     report.comparisons,
   );
@@ -1104,7 +1112,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 101);
+  assert.equal(catalog.lists.length, 106);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 14);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "reed-richards-and-sue-storms-wedding",
+  "inventoryId": "reed-richards-and-sue-storms-wedding",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Reed Richards and Sue Storm's Wedding",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The named timeline row and its printed issue reference or inclusive range.",
+  "excludedSourceReferences": [
+    "Other timeline rows",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 1,
+  "proposedManifest": {
+    "id": "reed-richards-and-sue-storms-wedding",
+    "name": "Reed Richards and Sue Storm's Wedding",
+    "description": "One annual issue bringing Marvel's heroes together for Reed Richards and Sue Storm's wedding.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "reed-richards-and-sue-storms-wedding.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Reed Richards and Sue Storm's Wedding",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "reed_richards_and_sue_storms_wedding.json",
+    "characters": [
+      "Fantastic Four",
+      "Reed Richards",
+      "Sue Storm",
+      "Doctor Doom"
+    ],
+    "keywords": [
+      "Reed Richards",
+      "Sue Storm",
+      "Wedding",
+      "Fantastic Four Annual"
+    ],
+    "expect": 1,
+    "timeline": 1965,
+    "coverIssueId": 8707
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02 coordinator",
+    "rationale": "The exact CBRO source surface, source section, exclusions, provider identity, current source digest, row order, range boundary, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T04:35:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four Annual #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
+      "issueNumber": "3",
+      "seriesId": 2012,
+      "candidateIssueId": 8707,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "3be04b3a7c5381bd5ce4bcce130e24d5f5f93e58f727a3d4efbde245958dd498"
+}

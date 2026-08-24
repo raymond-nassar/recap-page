@@ -14,6 +14,21 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added five early historical Marvel event guides
+
+In plain English: Timeline now begins with Reed Richards and Sue Storm's Wedding, then adds
+Kree-Skrull War, Thanos War, The Night Gwen Stacy Died, and Avengers/Defenders War. Together the
+five guides contain 32 issues from 1965 through 1974. Each card credits Comic Book Reading Orders
+and links to the exact source page and section followed. The catalog now has 106 reading lists, and
+nothing you have saved is changed.
+
+For maintainers: the 58-entry historical inventory now records ten shipped guides, 44 ranked
+candidates, two metadata blockers, one absorbed event, and one provenance blocker. Five reports
+cover 101 comparisons each. Of their 505 relationships, the only non-none result is Kree-Skrull
+War's centrally approved nine-issue subset of Essential Avengers. The original five-guide release
+retains its defaults, IDs, evidence, and compatibility checks.
+
+
 ### Added Marvel on Screen companion guides
 
 In plain English: Home and Browse now offer Marvel on Screen as a category. Opening it shows four

@@ -372,9 +372,9 @@ commentary, branding, images, or layout. Retain factual issue identities and ord
 Prepare, approve, author, and vendor the selected packet:
 
 ```text
-npm run cbro:prepare -- --only=<id>
-npm run cbro:approve
-npm run cbro:author
+npm run cbro:prepare -- --release=<release-id>
+npm run cbro:approve -- --release=<release-id>
+npm run cbro:author -- --release=<release-id>
 npm run vendor -- --only=<id>[,<id>...]
 ```
 
@@ -382,9 +382,10 @@ Preparation writes one exact mapping per frozen packet. A mapping worker does no
 boundaries, exclusions, manifest fields, aliases, chronology, or relationship dispositions. Approval
 regenerates a factual report against every current shipped order and every selected peer. Exact
 duplicates have no approval path. Subset and partial relationships remain central decisions.
-Approval and authoring require the complete selected release set; `--only` is deliberately refused for
-those two stages so an omitted guide cannot become an ordinary library comparison instead of a bound
-peer.
+The original five-guide release remains the default when no release is named. A release ID selects
+one known complete source-order or chronology-order set. Unknown releases, incomplete or mixed sets,
+duplicates, and the wrong order are refused so an omitted guide cannot become an ordinary library
+comparison instead of a bound peer.
 
 Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
 manifest, and chronology evidence before writing. Every resulting card must use

@@ -1,0 +1,292 @@
+{
+  "id": "kree-skrull-war",
+  "name": "Kree-Skrull War",
+  "description": "Nine Avengers chapters following the interstellar conflict between the Kree and Skrull empires.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Kree-Skrull War",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T04:13:36.842Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 7342,
+      "title": "Avengers (1963) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/7342/avengers_1963_89",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-06-01T00:00:00+0000",
+      "mu": "1971-06-01T00:00:00+0000",
+      "digitalId": 9967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/58700351e340e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7344,
+      "title": "Avengers (1963) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/7344/avengers_1963_90",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-07-01T00:00:00+0000",
+      "mu": "1971-07-01T00:00:00+0000",
+      "digitalId": 9968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/58700b30c48ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7345,
+      "title": "Avengers (1963) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/7345/avengers_1963_91",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-08-01T00:00:00+0000",
+      "mu": "1971-08-01T00:00:00+0000",
+      "digitalId": 9969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/4bb65b78aa4d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7346,
+      "title": "Avengers (1963) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/7346/avengers_1963_92",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-09-01T00:00:00+0000",
+      "mu": "1971-09-01T00:00:00+0000",
+      "digitalId": 9970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4bb65b7358f8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7347,
+      "title": "Avengers (1963) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/7347/avengers_1963_93",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-11-01T00:00:00+0000",
+      "mu": "1971-11-01T00:00:00+0000",
+      "digitalId": 9971,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5873be741053c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7348,
+      "title": "Avengers (1963) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/7348/avengers_1963_94",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-12-01T00:00:00+0000",
+      "mu": "1971-12-01T00:00:00+0000",
+      "digitalId": 9973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5873c760732ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7349,
+      "title": "Avengers (1963) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/7349/avengers_1963_95",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-01-01T00:00:00+0000",
+      "mu": "1972-01-01T00:00:00+0000",
+      "digitalId": 9972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5873d3374d463",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7350,
+      "title": "Avengers (1963) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/7350/avengers_1963_96",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-02-01T00:00:00+0000",
+      "mu": "1972-02-01T00:00:00+0000",
+      "digitalId": 9974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5873dc2eeb3a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alan Weiss",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7351,
+      "title": "Avengers (1963) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/7351/avengers_1963_97",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-03-01T00:00:00+0000",
+      "mu": "1972-03-01T00:00:00+0000",
+      "digitalId": 9975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5873f0d16b860",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

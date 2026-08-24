@@ -1,0 +1,272 @@
+{
+  "id": "avengers-defenders-war",
+  "name": "Avengers/Defenders War",
+  "description": "Eight chapters alternating between the Avengers and Defenders as both teams enter the same conflict.",
+  "source": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T04:13:36.849Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6970,
+      "title": "Avengers (1963) #115",
+      "number": "115",
+      "url": "https://www.marvel.com/comics/issue/6970/avengers_1963_115",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-09-01T00:00:00+0000",
+      "mu": "2012-06-19T00:00:00+0000",
+      "digitalId": 26989,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/58767bfe0bec1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20392,
+      "title": "Defenders (1972) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/20392/defenders_1972_8",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1973-09-01T00:00:00+0000",
+      "mu": "1973-09-01T00:00:00+0000",
+      "digitalId": 22335,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5908dcd02fe5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Mclaughlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6971,
+      "title": "Avengers (1963) #116",
+      "number": "116",
+      "url": "https://www.marvel.com/comics/issue/6971/avengers_1963_116",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-10-01T00:00:00+0000",
+      "mu": "1973-10-01T00:00:00+0000",
+      "digitalId": 4847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/587684b81486e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20403,
+      "title": "Defenders (1972) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/20403/defenders_1972_9",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1973-10-01T00:00:00+0000",
+      "mu": "1973-10-01T00:00:00+0000",
+      "digitalId": 8115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4bb851153b4da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Mclaughlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6972,
+      "title": "Avengers (1963) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/6972/avengers_1963_117",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-11-01T00:00:00+0000",
+      "mu": "1973-11-01T00:00:00+0000",
+      "digitalId": 8007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/58768bf834737",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Mclaughlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20263,
+      "title": "Defenders (1972) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/20263/defenders_1972_10",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1973-11-01T00:00:00+0000",
+      "mu": "1973-11-01T00:00:00+0000",
+      "digitalId": 8116,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/4bb851100394a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Bolle",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6973,
+      "title": "Avengers (1963) #118",
+      "number": "118",
+      "url": "https://www.marvel.com/comics/issue/6973/avengers_1963_118",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-12-01T00:00:00+0000",
+      "mu": "1973-12-01T00:00:00+0000",
+      "digitalId": 8008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/4bb65a8ebbefe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20274,
+      "title": "Defenders (1972) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/20274/defenders_1972_11",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1973-12-01T00:00:00+0000",
+      "mu": "1973-12-01T00:00:00+0000",
+      "digitalId": 8117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/4bb850f419ceb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Bolle",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

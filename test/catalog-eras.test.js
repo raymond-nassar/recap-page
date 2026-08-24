@@ -68,7 +68,7 @@ test('the eras account for every bundled reading path, not merely every story', 
 // every declared era is caught and named with its year, so the obvious fix is to add an era row
 // rather than to wonder why a count moved.
 test('an order dated outside every era is caught by name, rather than lost', () => {
-  for (const stray of [one('bronze', 1975), one('future', 2999)]) {
+  for (const stray of [one('early', 1964), one('future', 2999)]) {
     const landed = eraSections([stray]);
     assert.equal(landed.length, 1, `${stray.key} was drawn in ${landed.length} sections rather than one`);
     assert.equal(
@@ -94,7 +94,7 @@ test('nothing in the shipped catalog needs the fallback', () => {
 // The fallback's rows share nothing but having been refused by every era, so a range over them would
 // read as a stretch it covers rather than as unrelated strays.
 test('the fallback never claims a range, however many years it holds', () => {
-  const [section] = eraSections([one('bronze', 1975), one('future', 2999)]);
+  const [section] = eraSections([one('early', 1964), one('future', 2999)]);
   assert.equal(section.key, fallback.key);
   assert.equal(section.blurb, fallback.blurb, 'the fallback appended a span to its blurb');
   assert.equal(/\d{4}/.test(section.blurb), false, 'the fallback printed a year');
@@ -190,11 +190,10 @@ test('every era declares real bounds at both ends', () => {
 // happen to land. Overlap would put one year in two eras and make the partition a matter of which
 // row was written first.
 //
-// Gaps are allowed, and that is the point of closing the eras. Pre-modern content is expected, and
-// its row will not abut this one: a Bronze Age era ending in 1979 leaves two decades unclaimed.
-// Demanding contiguity would make adding that row an edit to its neighbour as well, which is exactly
-// the one-line edit the table exists to keep cheap. Anything dated inside a gap is caught by the
-// fallback, drawn for the reader and failed in the suite, so a gap loses nothing.
+// Gaps are allowed, and that is the point of closing the eras. Demanding contiguity would make
+// adding a row an edit to its neighbour as well, which is exactly the one-line edit the table exists
+// to keep cheap. Anything dated inside a gap is caught by the fallback, drawn for the reader and
+// failed in the suite, so a gap loses nothing.
 test('the eras are declared in order and no year belongs to two of them', () => {
   for (let i = 1; i < named.length; i += 1) {
     assert.ok(

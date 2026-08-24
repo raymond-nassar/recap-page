@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "the-night-gwen-stacy-died",
+  "inventoryId": "the-night-gwen-stacy-died",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "The Night Gwen Stacy Died",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The named timeline row and its printed issue reference or inclusive range.",
+  "excludedSourceReferences": [
+    "Other timeline rows",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 2,
+  "proposedManifest": {
+    "id": "the-night-gwen-stacy-died",
+    "name": "The Night Gwen Stacy Died",
+    "description": "Two landmark Amazing Spider-Man issues centered on Gwen Stacy and the Green Goblin.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "the-night-gwen-stacy-died.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "The Night Gwen Stacy Died",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "the_night_gwen_stacy_died.json",
+    "characters": [
+      "Spider-Man",
+      "Gwen Stacy",
+      "Green Goblin"
+    ],
+    "keywords": [
+      "Gwen Stacy",
+      "Amazing Spider-Man",
+      "Green Goblin"
+    ],
+    "expect": 2,
+    "timeline": 1973,
+    "coverIssueId": 6507
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02 coordinator",
+    "rationale": "The exact CBRO source surface, source section, exclusions, provider identity, current source digest, row order, range boundary, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T04:35:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Amazing Spider-Man #121",
+      "sourceRangeReference": "Amazing Spider-Man #121-122",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "121",
+      "seriesId": 1987,
+      "candidateIssueId": 6507,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The metadata title adds the leading article \"The\"; the 1963 series and exact issue numbers match the source range."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #122",
+      "sourceRangeReference": "Amazing Spider-Man #121-122",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "122",
+      "seriesId": 1987,
+      "candidateIssueId": 6508,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The metadata title adds the leading article \"The\"; the 1963 series and exact issue numbers match the source range."
+    }
+  ],
+  "packetDigest": "3b6795f00d0b007ba8815ab371178ef53ad55995a1a54b175c8aa12314246301"
+}

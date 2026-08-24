@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "avengers-defenders-war",
+  "inventoryId": "avengers-defenders-war",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+  "sourceSection": null,
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "ee03c5a55da9f6923ca760031f22e81882b752c570230bbb7b671278f3e10091",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation"
+  ],
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "avengers-defenders-war",
+    "name": "Avengers/Defenders War",
+    "description": "Eight chapters alternating between the Avengers and Defenders as both teams enter the same conflict.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "avengers-defenders-war.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/avengers-defenders-war-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "avengers_defenders_war.json",
+    "characters": [
+      "Avengers",
+      "Defenders",
+      "Dormammu",
+      "Loki"
+    ],
+    "keywords": [
+      "Avengers/Defenders War",
+      "Avengers",
+      "Defenders"
+    ],
+    "expect": 8,
+    "timeline": 1973,
+    "coverIssueId": 6970
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02 coordinator",
+    "rationale": "The exact CBRO source surface, source section, exclusions, provider identity, current source digest, row order, range boundary, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T04:35:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Avengers #115",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "115",
+      "seriesId": 1991,
+      "candidateIssueId": 6970,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Defenders #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "8",
+      "seriesId": 3743,
+      "candidateIssueId": 20392,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #116",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "116",
+      "seriesId": 1991,
+      "candidateIssueId": 6971,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Defenders #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "9",
+      "seriesId": 3743,
+      "candidateIssueId": 20403,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #117",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "117",
+      "seriesId": 1991,
+      "candidateIssueId": 6972,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Defenders #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "10",
+      "seriesId": 3743,
+      "candidateIssueId": 20263,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #118",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "118",
+      "seriesId": 1991,
+      "candidateIssueId": 6973,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Defenders #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "11",
+      "seriesId": 3743,
+      "candidateIssueId": 20274,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985"
+}

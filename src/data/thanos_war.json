@@ -1,0 +1,360 @@
+{
+  "id": "thanos-war",
+  "name": "Thanos War",
+  "description": "Twelve chapters across Iron Man, Captain Marvel, Marvel Feature, and Avengers tracing Thanos's first major campaign.",
+  "source": "https://comicbookreadingorders.com/marvel/events/thanos-war-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T04:13:36.846Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 9610,
+      "title": "Iron Man (1968) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/9610/iron_man_1968_55",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1973-02-01T00:00:00+0000",
+      "mu": "1973-02-01T00:00:00+0000",
+      "digitalId": 10850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/4bb5eafea7ab3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8014,
+      "title": "Captain Marvel (1968) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/8014/captain_marvel_1968_25",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1973-03-01T00:00:00+0000",
+      "mu": "1973-03-01T00:00:00+0000",
+      "digitalId": 10825,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/4bb5f29ad94fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8015,
+      "title": "Captain Marvel (1968) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/8015/captain_marvel_1968_26",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1973-05-01T00:00:00+0000",
+      "mu": "1973-05-01T00:00:00+0000",
+      "digitalId": 10829,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/4bb5f29553756",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Cockrum",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8016,
+      "title": "Captain Marvel (1968) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/8016/captain_marvel_1968_27",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1973-07-01T00:00:00+0000",
+      "mu": "1973-07-01T00:00:00+0000",
+      "digitalId": 10831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/4bb5f28f9bed7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8017,
+      "title": "Captain Marvel (1968) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/8017/captain_marvel_1968_28",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1973-09-01T00:00:00+0000",
+      "mu": "1973-09-01T00:00:00+0000",
+      "digitalId": 10833,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/4bb5f196160a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8018,
+      "title": "Captain Marvel (1968) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/8018/captain_marvel_1968_29",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1973-11-01T00:00:00+0000",
+      "mu": "1973-11-01T00:00:00+0000",
+      "digitalId": 10835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb5efec30339",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 23322,
+      "title": "Marvel Feature (1971) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/23322/marvel_feature_1971_12",
+      "seriesId": 6676,
+      "seriesName": "Marvel Feature (1971 - 1973)",
+      "onSale": "1973-11-10T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 29570,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/57f4fe281780c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8019,
+      "title": "Captain Marvel (1968) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/8019/captain_marvel_1968_30",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1974-01-01T00:00:00+0000",
+      "mu": "1974-01-01T00:00:00+0000",
+      "digitalId": 10837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/4bb5efe6cd58e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 8020,
+      "title": "Captain Marvel (1968) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/8020/captain_marvel_1968_31",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1974-03-01T00:00:00+0000",
+      "mu": "1974-03-01T00:00:00+0000",
+      "digitalId": 10839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4bb5efe187461",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 8021,
+      "title": "Captain Marvel (1968) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/8021/captain_marvel_1968_32",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1974-05-01T00:00:00+0000",
+      "mu": "1974-05-01T00:00:00+0000",
+      "digitalId": 10844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/4bb5efdc3fe66",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6981,
+      "title": "Avengers (1963) #125",
+      "number": "125",
+      "url": "https://www.marvel.com/comics/issue/6981/avengers_1963_125",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1974-07-01T00:00:00+0000",
+      "mu": "1974-07-01T00:00:00+0000",
+      "digitalId": 29561,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5877cdc3a158e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Cockrum",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8022,
+      "title": "Captain Marvel (1968) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/8022/captain_marvel_1968_33",
+      "seriesId": 2000,
+      "seriesName": "Captain Marvel (1968 - 1979)",
+      "onSale": "1974-07-01T00:00:00+0000",
+      "mu": "1974-07-01T00:00:00+0000",
+      "digitalId": 10846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/4bb5efd6a6263",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
