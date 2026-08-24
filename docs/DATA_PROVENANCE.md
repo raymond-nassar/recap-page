@@ -35,9 +35,9 @@ identity is the page and section together without inventing a fragment or DOM id
 in `sourceOrigin` as `Compiled for this project from Comic Book Herald's guide` and links to the
 exact guide section followed.
 
-## Marvel on Screen companion intake
+## MCU Prep companion intake
 
-The Marvel on Screen program is another build-time Comic Book Herald lane, kept separate from the
+The MCU Prep program is another build-time Comic Book Herald lane, kept separate from the
 modern continuity and Character Spotlight inventories because its fourteen sources are movie and
 streaming companion picks rather than events or single-character guides. Its maintained inventory
 records one canonical WordPress identity, current content and issue-bearing digests, explicit source

@@ -152,8 +152,8 @@ that must not be rewritten, for the same reason the dated tracking artifacts are
 - `PRODUCT_BACKLOG.md:7068-7073`, why blank issues stay enabled.
 - `PRODUCT_BACKLOG.md:7111-7115`, why `required: true` collects nothing today.
 - `PRODUCT_BACKLOG.md:9216-9221`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2728-2731`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2741-2743`, the released note that the private channel is not switched on.
+- `CHANGELOG.md:2734-2737`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2747-2749`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
@@ -269,7 +269,7 @@ enforcement, which is the argument for writing it down before the day rather tha
 
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
-quietly advertise a private, stale, or unreachable source surface. The Marvel on Screen release adds
+quietly advertise a private, stale, or unreachable source surface. The MCU Prep release adds
 four public source-linked cards after Star-Lord. Two historical continuation batches add ten Comic
 Book Reading Orders cards, including 67 issues across ten exact events, bringing the catalog to 111
 without changing the accepted publication boundary or any saved reader data.

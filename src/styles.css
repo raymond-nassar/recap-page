@@ -1296,10 +1296,10 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   list-style: none; margin: .7rem 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
 }
-.home-paths li { min-width: 0; }
+.home-paths li { min-width: 0; display: flex; }
 .home-path {
   --home-path-line: var(--accent-line);
-  position: relative; overflow: hidden; width: 100%; min-height: 12rem;
+  position: relative; overflow: hidden; width: 100%; height: 100%; min-height: 12rem;
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: end; gap: 1rem; padding: 1.25rem;
   border: 1px solid var(--line-2); border-radius: 20px;
@@ -1335,7 +1335,10 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .home-path-arrow { color: var(--dim); font-size: 1.1rem; }
 .home-more-paths { margin-top: 1.8rem; }
 .home-more-paths .sec-h h3 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
-.home-paths-secondary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.home-paths-secondary {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  grid-auto-rows: 1fr;
+}
 .home-path-secondary { min-height: 8rem; border-radius: 14px; }
 .home-path-secondary .home-path-title { font-size: var(--t-title); }
 

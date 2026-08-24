@@ -112,7 +112,16 @@ test('Home offers three equal primary path tracks and a responsive compact tier'
     /\.home-paths\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s,
     'the primary gateway does not give its three paths equal tracks',
   );
-  assert.match(styles, /\.home-paths-secondary\s*\{[^}]*repeat\(auto-fit,/s);
+  assert.match(
+    styles,
+    /\.home-paths-secondary\s*\{[^}]*repeat\(auto-fit,[^}]*grid-auto-rows:\s*1fr;/s,
+    'secondary gateway cards do not share equal row heights',
+  );
+  assert.match(
+    styles,
+    /\.home-path\s*\{[^}]*height:\s*100%;/s,
+    'gateway cards do not fill their equal-height tracks',
+  );
   assert.match(styles, /@media \(max-width:\s*620px\)\s*\{[^}]*\.home-paths-primary\s*\{[^}]*grid-template-columns:\s*1fr;/s);
 });
 

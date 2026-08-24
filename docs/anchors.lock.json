@@ -1759,13 +1759,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2728-2731|0": {
-    "anchor": "CHANGELOG.md:2728-2731",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2734-2737|0": {
+    "anchor": "CHANGELOG.md:2734-2737",
     "fp": "d78c30ec6a0a52eb",
     "head": "project's own tools write by default instead of discarding it, asks the service what copies exist"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2741-2743|0": {
-    "anchor": "CHANGELOG.md:2741-2743",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2747-2749|0": {
+    "anchor": "CHANGELOG.md:2747-2749",
     "fp": "0df22047747866e2",
     "head": "rather than being decided afresh each time. One protection could not be turned on: the service"
   },
@@ -1899,8 +1899,8 @@
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
-  "docs/UX_STUDY.md|proto-persona#attitude-to-cloud-services|PRODUCT_BACKLOG.md:13449|0": {
-    "anchor": "PRODUCT_BACKLOG.md:13449",
+  "docs/UX_STUDY.md|proto-persona#attitude-to-cloud-services|PRODUCT_BACKLOG.md:13452|0": {
+    "anchor": "PRODUCT_BACKLOG.md:13452",
     "fp": "291285cd0243aa11",
     "head": "#5 and #10. No issue was omitted, inferred or replaced to make the guide look complete."
   },
@@ -1959,8 +1959,8 @@
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1450-1452|0": {
-    "anchor": "src/styles.css:1450-1452",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1453-1455|0": {
+    "anchor": "src/styles.css:1453-1455",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -1979,8 +1979,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1450-1452|0": {
-    "anchor": "src/styles.css:1450-1452",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1453-1455|0": {
+    "anchor": "src/styles.css:1453-1455",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2084,8 +2084,8 @@
     "fp": "49408e8173086b6e",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view]')) {"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1450-1457|0": {
-    "anchor": "src/styles.css:1450-1457",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1453-1460|0": {
+    "anchor": "src/styles.css:1453-1460",
     "fp": "9bb3bad6e68a2a84",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2529,8 +2529,8 @@
     "fp": "cb635e136016596a",
     "head": ".copilot-tracking/"
   },
-  "PRODUCT_BACKLOG.md|item-details|CHANGELOG.md:3616-3626|0": {
-    "anchor": "CHANGELOG.md:3616-3626",
+  "PRODUCT_BACKLOG.md|item-details|CHANGELOG.md:3622-3632|0": {
+    "anchor": "CHANGELOG.md:3622-3632",
     "fp": "3a85c3c7cfd0285d",
     "head": "- **The audited figures in `PRODUCT_BACKLOG.md` no longer go stale in silence.** The"
   },
@@ -2644,13 +2644,13 @@
     "fp": "2622e3ad2443790b",
     "head": "224 tests exist and nothing runs them automatically. The three modules touching the browser have no"
   },
-  "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:13589|0": {
-    "anchor": "PRODUCT_BACKLOG.md:13589",
+  "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:13592|0": {
+    "anchor": "PRODUCT_BACKLOG.md:13592",
     "fp": "1a13afb472c6bb25",
     "head": "Strong, and clearly the product of deliberate work. Unreadable saved data pauses writing rather"
   },
-  "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:13611-13613|0": {
-    "anchor": "PRODUCT_BACKLOG.md:13611-13613",
+  "PRODUCT_BACKLOG.md|item-details|PRODUCT_BACKLOG.md:13614-13616|0": {
+    "anchor": "PRODUCT_BACKLOG.md:13614-13616",
     "fp": "84cf783b80fda89b",
     "head": "Resolved: `BL-030` shipped both. The policy is assembled at `server.mjs:53-64` and sent at"
   },
@@ -2724,13 +2724,13 @@
     "fp": "078ffa49c53fcf1c",
     "head": "// Real-browser regression evidence, made reproducible."
   },
-  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2361-2428|0": {
-    "anchor": "scripts/browser-check.mjs:2361-2428",
+  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2373-2440|0": {
+    "anchor": "scripts/browser-check.mjs:2373-2440",
     "fp": "c374ef88aa675d04",
     "head": "id: 'updates',"
   },
-  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2744-2751|0": {
-    "anchor": "scripts/browser-check.mjs:2744-2751",
+  "PRODUCT_BACKLOG.md|item-details|scripts/browser-check.mjs:2756-2763|0": {
+    "anchor": "scripts/browser-check.mjs:2756-2763",
     "fp": "b61d3a34759da763",
     "head": "if (url === updateApiUrl) {"
   },
@@ -3036,7 +3036,7 @@
   },
   "PRODUCT_BACKLOG.md|item-details|scripts/check-palette.mjs:152-180|0": {
     "anchor": "scripts/check-palette.mjs:152-180",
-    "fp": "b6803e5eb60d2c0a",
+    "fp": "d2a02f806206dfb6",
     "head": "export const SURFACES = {"
   },
   "PRODUCT_BACKLOG.md|item-details|scripts/check-palette.mjs:208-228|0": {
@@ -4574,13 +4574,13 @@
     "fp": "fe5aeebbafa03538",
     "head": "light enough to clear 4.5:1 the other way. This is the same split `--accent` and"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/styles.css:1450-1457|0": {
-    "anchor": "src/styles.css:1450-1457",
+  "PRODUCT_BACKLOG.md|item-details|src/styles.css:1453-1460|0": {
+    "anchor": "src/styles.css:1453-1460",
     "fp": "9bb3bad6e68a2a84",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "PRODUCT_BACKLOG.md|item-details|src/styles.css:1478|0": {
-    "anchor": "src/styles.css:1478",
+  "PRODUCT_BACKLOG.md|item-details|src/styles.css:1481|0": {
+    "anchor": "src/styles.css:1481",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
@@ -5111,7 +5111,7 @@
   },
   "PRODUCT_BACKLOG.md|table-stakes-categories#empty-states|src/index.html:136-197|0": {
     "anchor": "src/index.html:136-197",
-    "fp": "79f91b409c2a02ab",
+    "fp": "2ff4297b4722e4e7",
     "head": "<section id=\"view-home\" class=\"view view-wide\" hidden aria-labelledby=\"home-h\">"
   },
   "PRODUCT_BACKLOG.md|table-stakes-categories#first-run-experience|src/index.html:260-295|0": {
@@ -5324,8 +5324,8 @@
     "fp": "f94694921cabfa0d",
     "head": ".filter((s) => s.length > 0 && s !== LOCK);"
   },
-  "PRODUCT_BACKLOG.md|the-backlog#BL-072|src/styles.css:1502|0": {
-    "anchor": "src/styles.css:1502",
+  "PRODUCT_BACKLOG.md|the-backlog#BL-072|src/styles.css:1505|0": {
+    "anchor": "src/styles.css:1505",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -5726,7 +5726,7 @@
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-184|README.md:1-121|0": {
     "anchor": "README.md:1-121",
-    "fp": "e7ff19532cf952b6",
+    "fp": "0326cb7556efe51b",
     "head": "# Recap Page"
   },
   "PRODUCT_BACKLOG.md|the-backlog#BL-188|src/styles.css:260-263|0": {
@@ -5799,13 +5799,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1478|0": {
-    "anchor": "src/styles.css:1478",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1481|0": {
+    "anchor": "src/styles.css:1481",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1502|0": {
-    "anchor": "src/styles.css:1502",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1505|0": {
+    "anchor": "src/styles.css:1505",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

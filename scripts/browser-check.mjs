@@ -196,7 +196,7 @@ const shelfEntry = (id, name, extra = {}) => ({
 // Thirty-four entries make thirty-two stories. Three event stories sit on one path, while two
 // storylines each cross to another browse screen. The thirteen Character Spotlight stories put
 // that shelf over its search threshold, the ten extra events do the same for Timeline, and four
-// screen companions populate Marvel on Screen.
+// screen companions populate MCU Prep.
 // The third stop is a story read two ways, which is the case the shelf and the path disagree about
 // most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
@@ -1224,6 +1224,10 @@ const SCENARIOS = [
         const boxes = paths.map((path) => path.getBoundingClientRect());
         return {
           heading: document.querySelector('#home-h')?.textContent.trim() ?? null,
+          sectionHeadings: [
+            document.querySelector('#home-cat-h')?.textContent.trim() ?? null,
+            document.querySelector('#home-more-h')?.textContent.trim() ?? null,
+          ],
           explanatoryLines: document.querySelectorAll('#view-home > .head .sub').length,
           paths: paths.map((path) => ({
             key: path.dataset.category,
@@ -1239,6 +1243,7 @@ const SCENARIOS = [
           })),
           tops: boxes.map((box) => Math.round(box.top)),
           heights: boxes.map((box) => Math.round(box.height)),
+          secondaryHeights: secondary.map((path) => Math.round(path.getBoundingClientRect().height)),
           paragraphs: document.querySelectorAll('.home-path p').length,
           retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
           moreHidden: document.querySelector('#home-more-paths')?.hidden,
@@ -1253,6 +1258,9 @@ const SCENARIOS = [
       t.check('the first-run heading is the stable app masthead without an explanatory line',
         context.heading === 'RECAP PAGE!' && context.explanatoryLines === 0,
         JSON.stringify(context));
+      t.check('the discovery tiers use concise action headings',
+        JSON.stringify(context.sectionHeadings) === JSON.stringify(['Explore', 'Discover More']),
+        JSON.stringify(context.sectionHeadings));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
@@ -1265,7 +1273,7 @@ const SCENARIOS = [
           {
             key: 'marvel-on-screen',
             label: 'Movies and streaming',
-            title: 'Marvel on Screen',
+            title: 'MCU Prep',
             count: '4 Reading Lists',
           },
           { key: 'modern', label: '1991 to present', title: 'Modern Age', count: '16 Reading Lists' },
@@ -1276,6 +1284,10 @@ const SCENARIOS = [
         && new Set(context.tops).size === 1
         && Math.max(...context.heights) - Math.min(...context.heights) <= 1,
         JSON.stringify({ tops: context.tops, heights: context.heights }));
+      t.check('the secondary paths remain equal height when labels wrap',
+        context.secondaryHeights.length > 1
+        && Math.max(...context.secondaryHeights) - Math.min(...context.secondaryHeights) <= 1,
+        JSON.stringify(context.secondaryHeights));
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
         context.paragraphs === 0 && context.retired === 0 && context.moreHidden === false,
         JSON.stringify(context));
@@ -1309,7 +1321,7 @@ const SCENARIOS = [
         titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
           .map((title) => title.textContent.trim()),
       }));
-      t.check('Marvel on Screen opens its own browse page with four companions in source order',
+      t.check('MCU Prep opens its own browse page with four companions in source order',
         screen.hash === '#/marvel-on-screen'
         && screen.focus === 'marvel-on-screen-h'
         && screen.rail === 'browse'
@@ -1333,7 +1345,7 @@ const SCENARIOS = [
           columns: new Set(cards.map((card) => Math.round(card.getBoundingClientRect().left))).size,
         };
       });
-      t.check('the narrow Marvel on Screen page keeps four cards in one column without overflow',
+      t.check('the narrow MCU Prep page keeps four cards in one column without overflow',
         screenNarrow.cards === 4
         && screenNarrow.columns === 1
         && screenNarrow.scrollWidth <= screenNarrow.viewport,
