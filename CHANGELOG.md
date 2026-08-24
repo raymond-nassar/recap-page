@@ -14,6 +14,12 @@ quote in a bug report.
 
 ## Unreleased
 
+### Polished the ways to discover Reading Lists
+
+In plain English: Home and Browse now use the shorter action headings Explore and Discover More.
+The movie and streaming companion area is now named MCU Prep, and its cards stay the same height
+as the other discovery choices. Nothing you have saved is changed.
+
 ### Added five more historical Marvel event guides
 
 In plain English: Original Clone Saga, Phoenix Saga, Dark Phoenix Saga, Days of Future Past, and
@@ -42,9 +48,9 @@ War's centrally approved nine-issue subset of Essential Avengers. The original f
 retains its defaults, IDs, evidence, and compatibility checks.
 
 
-### Added Marvel on Screen companion guides
+### Added MCU Prep companion guides
 
-In plain English: Home and Browse now offer Marvel on Screen as a category. Opening it shows four
+In plain English: Home and Browse now offer MCU Prep as a category. Opening it shows four
 comic guides chosen to accompany Doctor Strange: Multiverse of Madness, Spider-Man: No Way Home,
 Marvel multiverse stories, and What If?. Together they add 43 issue picks. Each guide says when the
 source named only part of a broader recommendation, and nothing you have saved is changed. The

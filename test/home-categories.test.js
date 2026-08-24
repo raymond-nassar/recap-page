@@ -126,9 +126,10 @@ test('empty publishing ages stay declared but hidden from the current gateway', 
   ));
 });
 
-test('Marvel on Screen keeps the four screen companions in inventory order', () => {
+test('MCU Prep keeps the four screen companions in inventory order on the stable route', () => {
   const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
-  assert.ok(category, 'Marvel on Screen is not declared');
+  assert.ok(category, 'MCU Prep is not declared');
+  assert.equal(category.heading, 'MCU Prep');
   assert.deepEqual(
     category.select(stories).map((story) => story.lists[0].id),
     [
@@ -151,6 +152,14 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
   assert.doesNotMatch(home, /id="home-featured"|id="home-grid"|id="home-chips"|id="form-home-q"/);
   assert.doesNotMatch(home, /Featured journey|A place to start|Filter Reading Lists/);
   assert.doesNotMatch(source, /How do you want to read\?/);
+});
+
+test('Home and Browse use concise action headings for both discovery tiers', () => {
+  assert.match(markup, /id="home-cat-h"[^>]*>Explore<\/h2>/);
+  assert.match(markup, /id="home-more-h">Discover More<\/h3>/);
+  assert.match(markup, /id="browse-cat-h"[^>]*>Explore<\/h2>/);
+  assert.match(markup, /id="browse-more-h">Discover More<\/h3>/);
+  assert.doesNotMatch(markup, />Ways to read<|>More ways to read</);
 });
 
 test('Home and Browse use the same category renderer', () => {

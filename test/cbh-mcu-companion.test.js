@@ -283,7 +283,7 @@ test('an exact relationship remains unapprovable', async () => {
   }), /exactly duplicates.+no approval path/i);
 });
 
-test('approved evidence reaches four payloads, cards, and one Marvel on Screen group', async () => {
+test('approved evidence reaches four payloads, cards, and one MCU Prep group', async () => {
   const { inventory, entries } = await loadEvidence();
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = parseCatalog(await readJson('src/data/catalog.json'));
@@ -342,6 +342,7 @@ test('approved evidence reaches four payloads, cards, and one Marvel on Screen g
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));
+  assert.equal(screenDefinition.heading, 'MCU Prep');
   assert.deepEqual(
     screenDefinition.select(stories).map((story) => story.lists[0].id),
     MCU_SELECTED_IDS,

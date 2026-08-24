@@ -19,7 +19,7 @@ off](docs/screenshots/avengers-disassembled-reading-1280.png)
 ## Made for long reading journeys
 
 - **Start with a story, not a spreadsheet.** Browse curated events, eras, characters, modern
-  continuity runs, and Marvel on Screen companion picks.
+  continuity runs, and MCU Prep companion picks.
 - **Always know what comes next.** The current issue, next issue, part labels, and completion
   progress stay visible.
 - **Read your way.** Choose an issue, mark anything read or unread, add notes, or track a custom

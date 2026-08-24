@@ -878,7 +878,7 @@ export function availablePublishingCategories(stories, parent = null) {
 
 // Home categories answer how somebody wants to browse; shelves answer where a story is filed. Those
 // are deliberately separate questions. A shelf is an exclusive partition, while a future category
-// such as Marvel on Screen or Bronze Age can overlap Timeline, Storylines and Character spotlights.
+// such as MCU Prep or Bronze Age can overlap Timeline, Storylines and Character spotlights.
 //
 // Each definition owns its availability selector. Empty results disappear before rendering, so a
 // category can be declared before its first published Reading List without leaving an empty promise
@@ -925,7 +925,7 @@ export const HOME_CATEGORIES = [
   {
     key: 'marvel-on-screen',
     route: 'marvel-on-screen',
-    heading: 'Marvel on Screen',
+    heading: 'MCU Prep',
     label: 'Movies and streaming',
     icon: 'E714',
     tier: 'secondary',

@@ -304,7 +304,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-205 | Publish the prioritized cosmic Character Spotlight batch | Feature | EP-03 | Follows BL-204 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Rocket Raccoon reading guide on the Character spotlights shelf before this change |
 | BL-207 | Publish Groot as a separate complete Character Spotlight guide | Feature | EP-03 | Follows BL-205 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Groot reading guide on the Character spotlights shelf before this change |
 | BL-209 | Publish Star-Lord as a separate complete Character Spotlight guide | Feature | EP-03 | Follows BL-207 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any Star-Lord reading guide on the Character spotlights shelf before this change |
-| BL-212 | Publish the first Marvel on Screen companion guides | Feature | EP-03 | Follows BL-209 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any populated Marvel on Screen category or screen-companion reading guide before this change |
+| BL-212 | Publish the first MCU Prep companion guides | Feature | EP-03 | Follows BL-209 | 8 | 8 | 13 | 5 | 5.8 | none | Measured | Shipped | absent: any populated MCU Prep category or screen-companion reading guide before this change |
 | BL-087 | State the network privacy boundary where the promise appears | Debt | EP-05 | Leaves alone | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Shipped | src/index.html:654-711 |
 | BL-091 | Let catalog descriptions survive the WCAG text-spacing override | Defect | EP-07 | Leaves BL-028 alone | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Dropped | absent: the Home catalogue description clamp measured here, removed with the Home card wall by BL-208 |
 | BL-101 | Withdraw the undo-restore offer when erasing everything | Defect | EP-06 | Follows BL-083 | 5 | 3 | 3 | 2 | 5.5 | none | Measured | Shipped | src/js/main.js:4657-4694 |
@@ -383,7 +383,7 @@ existed. Each shipped item's detail block below says what changed and how it was
 | BL-062 | Delete the paragraph that BL-054's block states twice over | Debt | EP-12 | Leaves alone | 1 | 1 | 1 | 1 | 3.0 | none | Measured | Shipped | scripts/check-counts.mjs:501-535 |
 | BL-014 | Count series progress for the list being read | Story | EP-04 | Leaves alone | 5 | 2 | 2 | 3 | 3.0 | P1 | Observed | Shipped | src/js/main.js:4322-4380 |
 | BL-070 | Print each citation's claim beside its line at bless time | Debt | EP-12 | Leaves alone | 2 | 1 | 3 | 2 | 3.0 | none | Measured | Shipped | scripts/check-anchors.mjs:871 |
-| BL-072 | Give the recovery banner's two actions different weights | Story | EP-11 | Leaves alone | 3 | 3 | 2 | 2 | 4.0 | none | Measured | Shipped | src/styles.css:1502 |
+| BL-072 | Give the recovery banner's two actions different weights | Story | EP-11 | Leaves alone | 3 | 3 | 2 | 2 | 4.0 | none | Measured | Shipped | src/styles.css:1505 |
 | BL-073 | Say the recovery instructions once instead of twice | Debt | EP-11 | Leaves alone | 2 | 2 | 2 | 2 | 3.0 | none | Observed | Shipped | src/index.html:117-118 |
 | BL-075 | Keep the reason saving is paused where the reader can still see it | Debt | EP-11 | Leaves alone | 3 | 2 | 2 | 2 | 3.5 | none | Measured | Shipped | src/js/storage.js:107 |
 | BL-076 | Stop a reload during a second incident writing another dated salvage copy | Defect | EP-06 | Leaves alone | 2 | 1 | 3 | 2 | 3.0 | none | Measured | Shipped | src/js/storage.js:137-147 |
@@ -2455,7 +2455,7 @@ that every tab stop carries a 3 pixel focus outline had come to cite `body`, the
 leftover empty `.row` rule had come to cite the checkbox, and the description of the reading row
 itself had come to cite the cover-tile rules. The three that started this now point at the
 progress-ring transition at `src/styles.css:493` and the preference queries at
-`src/styles.css:1450-1457`.
+`src/styles.css:1453-1460`.
 
 Those stale numbers are written above without the usual anchor backticks on purpose. They are a
 historical citation rather than live evidence, and in the anchor form a checker would resolve them
@@ -4709,7 +4709,7 @@ have overstated it by 0.65. It is therefore two pairs, the rail and the tinted i
 the brand mark and the skip link are what share the 4.00 and 4.41.
 
 **The blocked banner: the gate learned to resolve it.** Two buttons render inside a banner whose
-background is `color-mix(in srgb, var(--warn) 12%, var(--panel))` at `src/styles.css:1478`. The choice
+background is `color-mix(in srgb, var(--warn) 12%, var(--panel))` at `src/styles.css:1481`. The choice
 this block left open was between teaching the gate that form and recording the pair as deliberately
 unmeasured. Teaching it won, because the same mechanism was needed anyway for the accent bar above,
 and a gate with two unmeasured holes in it is a gate that will grow a third. `SURFACES` at
@@ -4766,7 +4766,7 @@ Constraint gate: checked 1 to 11, none breached.
 Filed out of the BL-014 review. `src/js/main.js` was stated as 1,566 lines in three places and was
 2,563 when this item measured it, so the file had grown by 997 lines, 64 per cent, while every
 statement of its size stood
-still. The maintainability gap at `PRODUCT_BACKLOG.md:13589` uses that size as the argument for
+still. The maintainability gap at `PRODUCT_BACKLOG.md:13592` uses that size as the argument for
 the gap, which made the understated figure an understatement of the debt.
 
 The obvious fix would have been to overwrite 1,566 with 2,563 everywhere. That is wrong here,
@@ -4776,7 +4776,7 @@ figure as audited" at `PRODUCT_BACKLOG.md:215-217`. The clause is quoted only as
 half. The live number beside it moves whenever a test is added, and pinning a copy of it into this
 record would be the same defect in a second place, which is the rule BL-059 later had to state
 outright. Appendix A does the same thing in its own idiom, correcting a miscount inside the
-`Resolved:` line rather than editing the bullet it resolves, at `PRODUCT_BACKLOG.md:13611-13613`.
+`Resolved:` line rather than editing the bullet it resolves, at `PRODUCT_BACKLOG.md:13614-13616`.
 Overwriting would have destroyed the audit trail these sections exist to keep.
 
 So the audited figures stand and each now carries its drift. Two of the three statements were
@@ -4988,7 +4988,7 @@ Shipped. The rule the item asked for is that a figure belongs in a release recor
 property of the change and does not when it is a property of the tree, because only the second kind
 moves without anyone editing the record. Both audited figures are properties of the audit and stay;
 the two current values were properties of the tree and are gone, replaced by a sentence at
-`CHANGELOG.md:3616-3626` that says so and points at the backlog clause instead. That clause was
+`CHANGELOG.md:3622-3632` that says so and points at the backlog clause instead. That clause was
 checked before the entry was allowed to defer to it: `PRODUCT_BACKLOG.md:208-210` and
 `PRODUCT_BACKLOG.md:215-217` do each carry a live value and are marked as needing re-derivation, so
 deferring to them loses nothing a reader could previously find.
@@ -11168,8 +11168,8 @@ check without awaiting it, and `src/js/main.js:4991-5013` shows that the boot pa
 normal load, settings and render work without waiting for GitHub.
 
 The browser harness had to change with the feature. Its request stub now intercepts the update endpoint
-at `scripts/browser-check.mjs:2744-2751`, and the update scenario at
-`scripts/browser-check.mjs:2361-2428` verifies the default current-release response, the explicit
+at `scripts/browser-check.mjs:2756-2763`, and the update scenario at
+`scripts/browser-check.mjs:2373-2440` verifies the default current-release response, the explicit
 About button, the newer-release notice, the off switch, and a release request that never settles.
 The targeted run reported twelve update assertions passing. Five update mutations were added at
 `scripts/browser-check.mjs:806-862`: one makes the default answer newer, one suppresses a newer
@@ -13279,6 +13279,7 @@ Edge passed 24 assertions across 1280 by 900 and 390 by 844 viewports without ho
 - [x] Keep the masthead stable when saved Reading Lists add the Continue reading panel
 - [x] Put the metadata credit on the same desktop footer line as the fan-project notice
 - [x] Preserve wrapping on narrow screens and legibility in forced-colour mode
+- [x] Keep discovery cards aligned and use concise action labels throughout the Home gateway
 
 Constraint gate: checked 1 to 11, none breached. The change adds no network request, dependency,
 storage, account, comic content, reader-launch behaviour or availability claim. The shipped copy
@@ -13288,7 +13289,9 @@ Implemented on 2026-08-23 from the owner's request for more visual energy on Hom
 opens with a large angled RECAP PAGE! masthead followed by "Browse. Choose. Read." The title remains
 the page heading for both an empty and populated library, so the Continue reading panel no longer
 replaces the app identity. The two legal and source notices now share one footer line at desktop
-width and wrap together on narrower screens.
+width and wrap together on narrower screens. A 2026-08-24 follow-up names the two discovery tiers
+Explore and Discover More, renames the movie and streaming surface MCU Prep while preserving its
+route, and keeps every secondary card the same height when labels wrap.
 
 
 **BL-209: Publish Star-Lord as a separate complete Character Spotlight guide**
@@ -13333,14 +13336,14 @@ four partial approvals, two external shipped peers, one payload, and the complet
 The committed Edge gate passed 182 assertions, and 14 real-catalog assertions passed across 1280 by
 900 and 390 by 844 viewports with no horizontal overflow.
 
-**BL-212: Publish the first Marvel on Screen companion guides**
+**BL-212: Publish the first MCU Prep companion guides**
 
 - [x] Preserve all fourteen selected Comic Book Herald companion sources in user priority order
 - [x] Freeze and resolve the first four priorities as exact source-bound issue selections
 - [x] Compare every selected guide with the complete library and the other three release peers
 - [x] Give subset and partial relationships one central disposition each
 - [x] Add an honest screen-companion type and selected reading depth
-- [x] Put all four cards behind Marvel on Screen without a fourth canonical shelf
+- [x] Put all four cards behind MCU Prep without a fourth canonical shelf
 - [x] Reject stale evidence, omitted rows, exact duplicates, and inferred collection contents
 
 Constraint gate: checked 1 to 11, none breached. The release stores cover URLs only, adds no runtime
@@ -13360,7 +13363,7 @@ are none, and no exact duplicate has an approval path.
 The maintained fourteen-title inventory leaves six ranked mapping follow-ups and four source-blocked
 guides visible rather than silently dropping them. The catalog adds four reading lists after
 Star-Lord, for 101 total, while Character Spotlights remain at fourteen readings across thirteen
-stories. Home and Browse gain one Marvel on Screen category in user order, with its own category
+stories. Home and Browse gain one MCU Prep category in user order, with its own category
 subpage as the existing gateway contract requires. Every card also remains reachable through the
 existing Storylines shelf.
 
@@ -13386,7 +13389,7 @@ Constraint gate: checked 1 to 11, none breached.
 The owner selected a hybrid of the "Choose your path" and "Category lobby" concepts. Home should
 ask "How do you want to read?" and let headings, compact browse labels and distinct tiles carry the
 choice. Modern Timeline, Storylines and Character spotlights are the current paths. Future paths may
-include Marvel on Screen, Popular Characters, Alternate Universes, Silver Age and Bronze Age, but
+include MCU Prep, Popular Characters, Alternate Universes, Silver Age and Bronze Age, but
 an empty category must not appear before there is published content behind it.
 
 The category registry must remain separate from the three canonical catalogue shelves. The shelves

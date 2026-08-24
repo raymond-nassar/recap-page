@@ -10,14 +10,14 @@ App launch, or selecting the brand lockup in the sidebar.
    - **Storylines** with the compact label **Browse complete arcs**
    - **Character spotlights** with the compact label **Browse heroes and teams**
 3. Each tile shows its Reading List count and opens the matching browse screen.
-4. Additional populated categories appear under **More ways to read**. The whole group remains
+4. Additional populated categories appear under **Discover More**. The whole group remains
    hidden while no additional category has content.
 5. Marvel attribution remains at the end of the surface.
 
 ## State B: Library Has Lists
 1. **Continue reading** names the active Reading List, progress, next issue and direct actions.
 2. **Your Reading Lists** shows every saved list as a compact progress tile.
-3. **Ways to read** offers the same content-backed category gateway as State A.
+3. **Explore** offers the same content-backed category gateway as State A.
 4. Marvel attribution remains at the end of the surface.
 
 ## Transitions
