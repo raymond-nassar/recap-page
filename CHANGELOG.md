@@ -12,7 +12,7 @@ upgrading across a MAJOR.
 Releases are tagged `v<version>`. The version shown under **About this app** is the one to
 quote in a bug report.
 
-## Unreleased
+## 1.4.0
 
 ### Polished the ways to discover Reading Lists
 
