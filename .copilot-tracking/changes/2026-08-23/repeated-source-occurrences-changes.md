@@ -115,8 +115,8 @@ release.
 * What changed and why: Added the shipped shared occurrence feature, plain-English unchanged-product
   outcome, exact Groot 84/76 provenance, provider-neutral maintenance rules, Iron Man blocker, and
   re-derived backlog and governance counts.
-* Completion evidence: After reconciliation, backlog has 161 shipped items, 189 detail blocks, 183
-  constraint checks, and 184 ranked rows; the Star-Lord release on current main raises the catalog
+* Completion evidence: After final reconciliation, backlog has 162 shipped items, 190 detail blocks,
+  184 constraint checks, and 185 ranked rows; the Star-Lord release on current main raises the catalog
   to 97 readings and Character Spotlight to 14 readings / 13 stories / 5 Complete guides without
   this feature adding a card.
 * Validation: 65 count, governance, link, and shipped-copy tests passed.
@@ -128,8 +128,8 @@ release.
 * What changed and why: Re-aimed every shifted product citation by head search and diff arithmetic,
   read every printed bless pairing, and ran the complete local and browser release boundary.
 * Completion evidence: Reconciled lint passed; 1,419 tests passed with zero failures; counts report
-  184 ranked rows, 5 parked, 189 detail blocks, 161 Shipped, 21 Ready, 6 Dropped, and 1 Proposed;
-  sizes reports 6 accurate claims; publication scans 3,428 blobs with zero findings; live metadata
+  185 ranked rows, 5 parked, 190 detail blocks, 162 Shipped, 21 Ready, 6 Dropped, and 1 Proposed;
+  sizes reports 18 accurate claims; publication scans 3,487 blobs with zero findings; live metadata
   contract passes 33/33 assumptions across 17 requests; anchors report 1,181 unchanged and zero
   drifted/new/removed. Browser runner passes 182 assertions across 19 scenarios. Real-catalog Edge
   checks at 1280x900 and 390x844 each show 13 Character Spotlight stories, 5 Complete guide stories,
@@ -190,7 +190,8 @@ release.
 * Affected plan area or markers: Baseline, current counts, P04-T01, Groot and Star-Lord relationship
   evidence, backlog identity, direct records, anchors, validation, and handoff.
 * What changed: Merged current main at `ff92fd0875e90b12dcbf41bdaed1cfed84d99a41`;
-  renumbered this backlog item from the conflicting BL-209 to BL-210; refreshed Groot's report to 96
+  renumbered this backlog item from the conflicting BL-209 to BL-211 after two sequential main
+  additions; refreshed Groot's report to 96
   comparisons with a 25-issue Star-Lord partial; refreshed Star-Lord's peer digest, report, and
   approval; re-aimed and read all final anchors; reran every release gate.
 * Why: Star-Lord merged after the implementation baseline and changed catalog counts plus both
@@ -202,6 +203,24 @@ release.
 * Reconciliation performed: Plan, details, changes record, backlog, changelog, provenance,
   inventory, mappings, reports, tests, counts, browser evidence, and anchors are current.
 * Planning and critique state: Ready for the one independent Review; no critique rerun.
+
+### Integrated the final unrelated homepage update after Review
+
+* Affected plan area or markers: Baseline, backlog identity and counts, changelog ordering, direct
+  citations, anchors, validation, and P04-T03.
+* What changed: Merged current main at `f3b0875c5c45ffbb5b3a0f6337ba98345b70d896`,
+  retained its homepage masthead work, moved this feature to BL-211, re-derived 185 ranked rows,
+  190 detail blocks, 184 constraint checks, and 162 shipped items, and updated the browser scenario's
+  stale first-run-heading expectation to the new stable masthead.
+* Why: The final no-drift fetch found merged pull request 179 after the sole Review.
+* Triggering evidence: The homepage diff is unrelated to occurrence validation, provider behavior,
+  Groot freshness, or Iron Man blocking; only shared records and anchors required reconciliation.
+* User answer or decision: None required.
+* Reconciliation performed: Current plan, details, backlog, changelog, governance, citations,
+  anchors, browser harness, and validation are refreshed against final main. The stale browser
+  assertion was observed failing once before its expectation was corrected, then all 182 passed.
+* Planning and critique state: No second Review. The post-Review main change does not alter this
+  feature's implementation boundary.
 
 ### Dispositioned the sole Review finding
 
@@ -228,7 +247,7 @@ release.
 | Direct record tests | P03-T01 | Passed | 65 count, governance, link, and shipped-copy tests passed. |
 | Lint | Full tree | Passed | ESLint reported zero findings. |
 | Full tests | Full tree | Passed | 1,419 passed, 0 failed after RV-001 resolution. |
-| Counts, sizes, publication | Full tree | Passed | 184 ranked rows; 6 size claims; 3,428 blobs and 0 publication findings. |
+| Counts, sizes, publication | Full tree | Passed | 185 ranked rows; 18 size claims; 3,487 blobs and 0 publication findings. |
 | Live contract | Metadata API | Passed | 33/33 assumptions across 17 requests. |
 | Anchors | All tracked citations | Passed | 1,181 unchanged, 0 drifted, 0 new, 0 removed. |
 | Browser runner | Installed Edge | Passed | 182 assertions across 19 scenarios. |

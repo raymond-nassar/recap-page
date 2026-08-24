@@ -402,6 +402,7 @@ test('a control boundary is measured against every surface it is drawn on, not j
   assert.deepEqual(surfaces('--track'), ['--card', '--rail']);
   assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--red-fg'), ['--bg', '--card', '--card-2']);
+  assert.deepEqual(surfaces('--logo-fill'), ['--bg']);
   assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', '--track', 'the selected rail item', 'the unreadable-data banner']);
   assert.deepEqual(surfaces('--track-2'), ['--bg']);
   assert.deepEqual(surfaces('--on-accent'), ['--accent', '--teal', '--track-2']);

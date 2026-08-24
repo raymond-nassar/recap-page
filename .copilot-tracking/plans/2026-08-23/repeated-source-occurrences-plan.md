@@ -9,7 +9,7 @@
 * Implementation status: P04-T03 in progress after RV-001 resolution
 * Plan date: 2026-08-23
 * Mode: delegated autopilot
-* Baseline: reconciled project default `main` at `ff92fd0875e90b12dcbf41bdaed1cfed84d99a41`
+* Baseline: final reconciled project default `main` at `f3b0875c5c45ffbb5b3a0f6337ba98345b70d896`
 * Research: .copilot-tracking/research/2026-08-23/repeated-source-occurrences-research.md
 * Phase details: .copilot-tracking/details/2026-08-23/repeated-source-occurrences-phase-details.md
 * Plan critique: .copilot-tracking/reviews/plans/2026-08-23/repeated-source-occurrences-plan-critique.md

@@ -1239,8 +1239,8 @@ const SCENARIOS = [
           })),
         };
       });
-      t.check('the first-run heading asks one question without explaining it again',
-        context.heading === 'How do you want to read?' && context.explanatoryLines === 0,
+      t.check('the first-run heading is the stable app masthead without an explanatory line',
+        context.heading === 'RECAP PAGE!' && context.explanatoryLines === 0,
         JSON.stringify(context));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
@@ -1874,7 +1874,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:792` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:795` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the

@@ -9,7 +9,7 @@
 * Evidence sources: .copilot-tracking/research/2026-08-23/repeated-source-occurrences-research.md;
   historical commits `06c2a5b6d6367706d241fcbefe41ce71aaa08f02` and
   `8a3c8629253e079e117fc7218b5b9bc8a070d876`
-* Baseline: reconciled project default `main` at `ff92fd0875e90b12dcbf41bdaed1cfed84d99a41`
+* Baseline: final reconciled project default `main` at `f3b0875c5c45ffbb5b3a0f6337ba98345b70d896`
 
 ## Phase Index
 
