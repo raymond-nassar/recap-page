@@ -14,6 +14,8 @@ import {
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourceOccurrenceCountFor,
+  sourcePositionsForPacket,
   validateSourceIdentities,
   validateApprovalDigest,
   validateFrozenPacket,
@@ -85,7 +87,7 @@ export function validateCbroPacket(packet, options = {}) {
       `${packet.id} retrieval date differs from its inventory record`);
     assert(inventoryRecord.sourceContentSha256 === packet.sourceContentSha256,
       `${packet.id} source content differs from its inventory record`);
-    assert(inventoryRecord.sourceRowCount === packet.expectedCount,
+    assert(inventoryRecord.sourceRowCount === sourceOccurrenceCountFor(packet),
       `${packet.id} source row count differs from its inventory record`);
   }
   return result;
@@ -296,6 +298,8 @@ export {
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourceOccurrenceCountFor,
+  sourcePositionsForPacket,
   validateApprovalDigest,
   validateMappingDigest,
   validateReportDigest,

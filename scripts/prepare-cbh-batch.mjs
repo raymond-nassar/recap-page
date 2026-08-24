@@ -8,6 +8,8 @@ import { resolveMapping } from './resolve-cbh-order.mjs';
 import { normalizeTitle } from '../src/js/lib/markdown.js';
 import {
   mappingDigestFor,
+  sourceOccurrenceCountFor,
+  sourcePositionsForPacket,
   validateFrozenPacket,
   validateInventory,
   validateInventoryState,
@@ -2896,7 +2898,7 @@ export async function selectPreparationGuides(onlyIds, {
     selected.push({
       ...packet,
       isFrozenPacket: true,
-      approvedSourceCount: packet.expectedCount,
+      approvedSourceCount: sourceOccurrenceCountFor(packet),
       sourceUnavailable: false,
     });
   }
@@ -2974,6 +2976,9 @@ async function main() {
       continue;
     }
     const candidateMetadata = [];
+    const sourcePositions = guide.isFrozenPacket
+      ? sourcePositionsForPacket(guide)
+      : guide.rows.map((_, index) => index + 1);
     const rows = guide.rows.map((sourceRow, index) => {
       const series = Object.values(SERIES).find((entry) =>
         entry.id === sourceRow.seriesId && entry.title === sourceRow.normalizedSeriesTitle);
@@ -3013,7 +3018,7 @@ async function main() {
       candidateMetadata.push(...candidates);
 
       return {
-        sourcePosition: index + 1,
+        sourcePosition: sourcePositions[index],
         sourceIssueReference: sourceRow.sourceIssueReference,
         sourceRangeReference: sourceRow.sourceRangeReference,
         normalizedSeriesTitle: sourceRow.normalizedSeriesTitle,
@@ -3088,6 +3093,12 @@ async function main() {
         ? null
         : (guide.approvedSourceCount ?? rows.length),
       excludedSourceReferences: guide.excludedSourceReferences ?? [],
+      ...(guide.sourceOccurrenceCount == null
+        ? {}
+        : {
+          sourceOccurrenceCount: guide.sourceOccurrenceCount,
+          repeatedSourceReferences: guide.repeatedSourceReferences,
+        }),
       reviewStatus: guide.sourceUnavailable ? 'blocked-source-unavailable' : 'pending-independent-review',
       proposedManifest,
       candidateMetadata,

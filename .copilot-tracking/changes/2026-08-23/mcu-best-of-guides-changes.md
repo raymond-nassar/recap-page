@@ -69,7 +69,7 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 * Why: The user explicitly required the existing Marvel on Screen category contract. Reviewing or releasing the pre-merge Home partition would have duplicated and contradicted the contract that landed concurrently.
 * Triggering evidence: Current `main` added BL-208, `HOME_CATEGORIES`, publishing-age routes, generated child views, and 182 Edge assertions across 19 scenarios.
 * User answer or decision: Existing confirmed Marvel on Screen placement and category-contract direction; no new decision was needed.
-* Reconciliation performed: Updated plan, details, route registry, category renderer, tests, browser fixture, backlog id from BL-208 to BL-210 after the Star-Lord release, then to BL-211 after the concurrent Home refresh, documentation, counts, and validation expectations. Kept all four guide mappings and product data unchanged.
+* Reconciliation performed: Updated plan, details, route registry, category renderer, tests, browser fixture, backlog id from BL-208 to BL-210 after the Star-Lord release, to BL-211 after the concurrent Home refresh, then to BL-212 after the repeated-source contract, documentation, counts, and validation expectations. Kept all four guide mappings and product data unchanged.
 * Planning and critique state: Immediate in-scope current-state update. The one critique remains historical; no second critique runs.
 
 ## Implementation-Time Plan and Detail Updates
@@ -103,6 +103,16 @@ The implementation ships priorities 1 to 4 as four `screen-companion` / `selecte
 * User answer or decision: Immediately before capture, fetch current `origin/main`; render a clean temporary copy outside tracked files at `127.0.0.1:8787`; use installed Edge, the existing external puppeteer-core setup, an explicit 1280x900 viewport, and clean profile/storage; import and open the actual Avengers Disassembled list without personal data or fabricated progress.
 * Reconciliation performed: P05-T01 owns capture, visual and dimension checks, stable asset paths and alt text, replacement of stale assets where appropriate, README reference checks, temporary-process cleanup, and the affected full-gate rerun. The feature branch's unmerged MCU state is explicitly excluded from screenshot content.
 * Planning and critique state: Immediate user-directed current-state update; the completed Review is not repeated.
+
+### CHG-010: Reconcile the repeated-source contract before release
+
+* Affected plan area or markers: P05-T01, evidence freshness, release records, and final validation
+* What changed: Merged current `origin/main` at 4a0e837, which adds the shared repeated-source packet contract and refreshes Groot evidence against Star-Lord. Preserved the MCU release's later-list exclusions while accepting Star-Lord as part of Groot's refreshed reviewed library, moved the MCU backlog record to BL-212, and re-derived the combined backlog as 186 ranked rows, 5 parked rows, 191 detail blocks, and 163 Shipped items.
+* Why: The user required the final PR to describe and test current `main`. Taking either side of the Groot test conflict would have been wrong: the old MCU side excluded Star-Lord from an older Groot review, while the new main side did not know the four later MCU guides existed.
+* Triggering evidence: Current `main` advanced after the first README capture and after the independent Review. The merged targeted suite passes all 39 evidence and README checks only when Star-Lord remains in Groot's refreshed library and the four MCU guides remain excluded as later additions.
+* User answer or decision: Reconcile the repeated-source contract and recapture both README screenshots from a fresh clean `origin/main` snapshot before final gates.
+* Reconciliation performed: Fetched and archived 4a0e837 outside the repository, served only that clean tree at `127.0.0.1:8787`, and recaptured Home plus Avengers Disassembled in installed Edge at 1280x900 with clean storage, cover art off, and zero marked progress. The files remain 1280x900 with SHA-256 values `AAC0707418552FD7AB88A18D756FA63E0B5ACD177585DBB0B10F3F3BF91D3761` and `51972F35B2A1F47CB418BE905C4BDE0C61EAFBA502DBA9360E19387D97A5C3AB`. The temporary archive and server were removed.
+* Planning and critique state: Immediate in-scope current-state update under P05-T01. The one critique and one Review remain complete; neither is repeated.
 
 ## Validation Record
 

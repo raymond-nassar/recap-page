@@ -233,8 +233,25 @@ share one story and one classification. The Doom primer and Essential Avengers r
 rather than acquiring a claim their source boundaries do not support.
 
 Groot's Complete guide preserves all 76 issues in its reviewed source order. Its 41 shared issues
-with Rocket Raccoon are recorded as a partial relationship between two separately sourced guides,
-not as permission to merge either card or shorten either sequence.
+with Rocket Raccoon and 25 with Star-Lord are partial relationships between separately sourced
+guides, not permission to merge a card or shorten a sequence.
+
+Some source guides name one comic in more than one collected range. The frozen packet preserves that
+fact without turning it into a second reading step. Its canonical rows contain each distinct comic
+once at the first source occurrence. A separate repeated-reference ledger records every later source
+position, the earlier canonical row, and both the raw and normalized issue identity. Packet and
+mapping digests bind the ledger, and approval independently reconstructs the mapping positions and
+source count.
+
+Groot now records 84 source occurrences and 76 distinct issues. The later Annihilators #1-4 and
+Annihilators: Earthfall #1-4 blocks remain explicit evidence rather than exclusions, while the
+published checklist still contains 76 unique comics. Sources with no repeated whole issue omit the
+optional ledger and keep their existing evidence shape.
+
+This representation does not make an unavailable issue optional. Iron Man's 815 source occurrences
+can be represented as 813 distinct issues, including both later Tony Stark: Iron Man #15-16
+references, but the guide remains deferred because the metadata contract cannot resolve nine other
+source-required issues. No shortened Iron Man order is published.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and

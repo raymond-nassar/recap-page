@@ -114,10 +114,14 @@ function manifestEntryForCbroMapping(mapping) {
 
 export function buildCbroMarkdown(mapping) {
   const manifest = manifestEntryForCbroMapping(mapping);
+  const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
   const trail = [
     `Generated for this project from the reviewed ${mapping.id} Comic Book Reading Orders packet.`,
     `Source: [Comic Book Reading Orders](${mapping.sourceUrl}).`,
     'The checklist retains only factual issue identities and preserves the reviewed source order.',
+    ...(repeatedCount === 0 ? [] : [
+      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
+    ]),
     'No source commentary, branding, layout, or images are copied. Issue metadata and exact links come from the configured Marvel metadata snapshot.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission and publication boundary.',
   ].join('\n');

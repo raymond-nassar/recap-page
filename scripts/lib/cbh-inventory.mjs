@@ -64,6 +64,8 @@ const PACKET_FIELDS = new Set([
   'sourceIssueBearingBlocksSha256',
   'sourceBoundary',
   'excludedSourceReferences',
+  'sourceOccurrenceCount',
+  'repeatedSourceReferences',
   'expectedCount',
   'proposedManifest',
   'insertionAnchor',
@@ -83,9 +85,20 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'sourceRetrievalStatus',
   'approvedSourceCount',
   'excludedSourceReferences',
+  'sourceOccurrenceCount',
+  'repeatedSourceReferences',
   'proposedManifest',
   'candidateMetadata',
   'rows',
+]);
+const REPEATED_SOURCE_REFERENCE_FIELDS = new Set([
+  'sourcePosition',
+  'canonicalRow',
+  'sourceIssueReference',
+  'sourceRangeReference',
+  'normalizedSeriesTitle',
+  'seriesYear',
+  'issueNumber',
 ]);
 const REPORT_DIGEST_FIELDS = Object.freeze([
   'candidateId',
@@ -157,6 +170,147 @@ function assertPacketRow(row, index) {
   if (row.metadataIssueNumber != null) {
     assertNonEmptyString(String(row.metadataIssueNumber), `${label} metadataIssueNumber`);
   }
+}
+
+function packetRowIdentity(row) {
+  const issueNumber = String(row.metadataIssueNumber ?? row.issueNumber ?? '').trim();
+  if (row.candidateIssueId != null) return `issue:${row.candidateIssueId}`;
+  if (row.seriesId != null) return `series:${row.seriesId}#${issueNumber}`;
+  return [
+    'title',
+    String(row.normalizedSeriesTitle ?? '').trim().toLowerCase(),
+    String(row.seriesYear ?? ''),
+    issueNumber,
+  ].join(':');
+}
+
+function assertCanonicalPacketRows(rows, packetId) {
+  const seen = new Set();
+  for (const [index, row] of rows.entries()) {
+    const identity = packetRowIdentity(row);
+    if (seen.has(identity)) {
+      throw new Error(`${packetId} contains a duplicate canonical packet identity at row ${index + 1}: ${identity}`);
+    }
+    seen.add(identity);
+  }
+}
+
+function assertRepeatedSourceReference(reference, index, rows) {
+  const label = `Repeated source reference ${index + 1}`;
+  if (!isPlainObject(reference)) throw new Error(`${label} must be an object`);
+  const fields = Object.keys(reference);
+  const missing = [...REPEATED_SOURCE_REFERENCE_FIELDS].filter((field) => !Object.hasOwn(reference, field));
+  if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
+  const unexpected = fields.filter((field) => !REPEATED_SOURCE_REFERENCE_FIELDS.has(field));
+  if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
+  if (!Number.isInteger(reference.sourcePosition) || reference.sourcePosition < 1) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
+  if (!Number.isInteger(reference.canonicalRow)
+    || reference.canonicalRow < 1
+    || reference.canonicalRow > rows.length) {
+    throw new Error(`${label} canonicalRow must name a canonical packet row`);
+  }
+  assertNonEmptyString(reference.sourceIssueReference, `${label} sourceIssueReference`);
+  if (reference.sourceRangeReference != null) {
+    assertNonEmptyString(reference.sourceRangeReference, `${label} sourceRangeReference`);
+  }
+  assertNonEmptyString(reference.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
+  if (!Number.isInteger(reference.seriesYear)) {
+    throw new Error(`${label} seriesYear must be an integer`);
+  }
+  assertNonEmptyString(String(reference.issueNumber ?? ''), `${label} issueNumber`);
+}
+
+export function sourcePositionsForPacket(packet) {
+  const packetId = String(packet?.id ?? 'Frozen packet');
+  const rows = Array.isArray(packet?.rows) ? packet.rows : [];
+  assertCanonicalPacketRows(rows, packetId);
+  const hasOccurrenceCount = Object.hasOwn(packet ?? {}, 'sourceOccurrenceCount');
+  const hasRepeatedReferences = Object.hasOwn(packet ?? {}, 'repeatedSourceReferences');
+  if (hasOccurrenceCount !== hasRepeatedReferences) {
+    throw new Error(`${packetId} sourceOccurrenceCount and repeatedSourceReferences must appear together`);
+  }
+  if (!hasOccurrenceCount) return rows.map((_, index) => index + 1);
+
+  const references = packet.repeatedSourceReferences;
+  if (!Array.isArray(references) || references.length === 0) {
+    throw new Error(`${packetId} repeatedSourceReferences must be a non-empty array when present`);
+  }
+  if (!Number.isInteger(packet.sourceOccurrenceCount)
+    || packet.sourceOccurrenceCount !== rows.length + references.length) {
+    throw new Error(`${packetId} sourceOccurrenceCount must equal canonical rows plus repeated references`);
+  }
+
+  const bySourcePosition = new Map();
+  let previousSourcePosition = 0;
+  for (const [index, reference] of references.entries()) {
+    assertRepeatedSourceReference(reference, index, rows);
+    if (bySourcePosition.has(reference.sourcePosition)) {
+      throw new Error(`${packetId} contains a duplicate repeated source position: ${reference.sourcePosition}`);
+    }
+    if (reference.sourcePosition <= previousSourcePosition) {
+      throw new Error(`${packetId} repeatedSourceReferences must be in sourcePosition order`);
+    }
+    if (reference.sourcePosition > packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} repeated source position ${reference.sourcePosition} is outside the source occurrence count`);
+    }
+    bySourcePosition.set(reference.sourcePosition, reference);
+    previousSourcePosition = reference.sourcePosition;
+  }
+
+  const canonicalSourcePositions = [];
+  for (let sourcePosition = 1; sourcePosition <= packet.sourceOccurrenceCount; sourcePosition += 1) {
+    const reference = bySourcePosition.get(sourcePosition);
+    if (!reference) {
+      canonicalSourcePositions.push(sourcePosition);
+      continue;
+    }
+    if (reference.canonicalRow > canonicalSourcePositions.length) {
+      throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier canonical row`);
+    }
+    const canonical = rows[reference.canonicalRow - 1];
+    const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
+    for (const field of fields) {
+      if (String(reference[field]) !== String(canonical[field])) {
+        throw new Error(`${packetId} repeated source position ${sourcePosition} ${field} differs from canonical row ${reference.canonicalRow}`);
+      }
+    }
+  }
+  if (canonicalSourcePositions.length !== rows.length) {
+    throw new Error(`${packetId} source occurrence positions do not reconstruct every canonical row`);
+  }
+  return canonicalSourcePositions;
+}
+
+export function sourceOccurrenceCountFor(packet) {
+  sourcePositionsForPacket(packet);
+  return packet.sourceOccurrenceCount ?? packet.rows.length;
+}
+
+export function assertMappingMatchesPacketOccurrences(packet, mapping) {
+  const packetId = String(packet?.id ?? mapping?.id ?? 'Candidate');
+  const expectedPositions = sourcePositionsForPacket(packet);
+  const expectedCount = sourceOccurrenceCountFor(packet);
+  const packetReferences = packet.repeatedSourceReferences ?? null;
+  const mappingReferences = mapping?.repeatedSourceReferences ?? null;
+  if ((packet.sourceOccurrenceCount ?? null) !== (mapping?.sourceOccurrenceCount ?? null)
+    || canonicalJson(packetReferences) !== canonicalJson(mappingReferences)) {
+    throw new Error(`${packetId} mapping repeated source evidence differs from its frozen packet`);
+  }
+  if (mapping?.approvedSourceCount !== expectedCount) {
+    throw new Error(`${packetId} approvedSourceCount differs from its frozen source occurrence count`);
+  }
+  const mappingRows = Array.isArray(mapping?.rows) ? mapping.rows : [];
+  if (mappingRows.length !== expectedPositions.length) {
+    throw new Error(`${packetId} mapping row count differs from its canonical packet rows`);
+  }
+  for (const [index, expectedPosition] of expectedPositions.entries()) {
+    if (mappingRows[index]?.sourcePosition !== expectedPosition) {
+      throw new Error(`${packetId} mapping row ${index + 1} sourcePosition differs from its frozen packet`);
+    }
+  }
+  return true;
 }
 
 function assertManifestProposal(packet, provider) {
@@ -337,6 +491,7 @@ export function validateFrozenPacket(packet, {
     throw new Error(`${packet.id} rows must be a non-empty array`);
   }
   packet.rows.forEach((row, index) => assertPacketRow(row, index));
+  sourcePositionsForPacket(packet);
   if (!Number.isInteger(packet.expectedCount) || packet.expectedCount !== packet.rows.length) {
     throw new Error(`${packet.id} expectedCount must equal its row count`);
   }

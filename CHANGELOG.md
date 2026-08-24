@@ -43,6 +43,21 @@ its own Continue reading heading. The combined footer wraps only when the screen
 one line. The title has separate dark and light fills, a white ink outline in both themes, and a
 system-colour fallback in forced-colour mode.
 
+### Preserved repeated source references without repeating comics
+
+In plain English: Reading Lists still show each comic once, even when the guide they follow names
+that comic in more than one collected range. Nothing in your saved progress or any existing reading
+sequence changes.
+
+For maintainers: frozen source evidence records every later occurrence with its exact source position
+and first-occurrence row. Both providers share validation and approval re-derives positions and counts.
+Groot now records 84 occurrences while retaining 76 issues; its refreshed 96-comparison report adds
+the factual 25-issue partial relationship with Star-Lord.
+
+Iron Man remains deferred. Its repeated references are representable, but nine source-required
+issues are absent from the configured metadata contract, so no shortened guide or replacement issue
+was published.
+
 ### Added the complete Star-Lord character guide
 
 In plain English: the Character spotlights shelf now includes a complete Star-Lord guide. It follows

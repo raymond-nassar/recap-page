@@ -1250,8 +1250,8 @@ const SCENARIOS = [
           })),
         };
       });
-      t.check('the first-run heading asks one question without explaining it again',
-        context.heading === 'How do you want to read?' && context.explanatoryLines === 0,
+      t.check('the first-run heading is the stable app masthead without an explanatory line',
+        context.heading === 'RECAP PAGE!' && context.explanatoryLines === 0,
         JSON.stringify(context));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
