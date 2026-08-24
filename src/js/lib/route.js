@@ -7,22 +7,22 @@
 
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
+import { PUBLISHING_CATEGORIES } from './catalog.js';
 
-// Every section the rail can reach. This lives here rather than in main.js so that one list backs
+// Every section the app can reach. This lives here rather than in main.js so that one list backs
 // both what can be shown and what can be routed to. Split across two files, a new view could be
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'catalog', 'lines', 'spotlights', 'progress',
+  'home', 'read', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress',
+  ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...ADD_VIEWS,
   'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value),
 ];
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
 // renderable views, so every member of VIEWS still names a real panel.
-export const LEGACY_VIEW_ALIASES = {
-  add: 'add-search',
-};
+export const LEGACY_VIEW_ALIASES = {};
 
 function canonicalView(view) {
   return LEGACY_VIEW_ALIASES[view] ?? view;

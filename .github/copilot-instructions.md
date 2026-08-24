@@ -197,7 +197,7 @@ by a review on 2026-08-17, after it had already survived a full anchors cycle:
   claim standing **beside** it. Inside the clause it must stay exempt, since BL-040 cites the
   scripts block as evidence that no lint script existed and that block now defines one, so enrolling
   it would demand a true historical record be falsified. Beside the clause it must be backticked as
-  its   own token, the form used at `PRODUCT_BACKLOG.md:6449`. The tell is the exempt count the gate
+  its   own token, the form used at `PRODUCT_BACKLOG.md:6445`. The tell is the exempt count the gate
   prints on every run: a swallowed citation is counted rather than dropped from the tally, so that
   number moves while everything else stays green. It moves for a correct exemption too, so treat it
   as a prompt to look rather than a verdict, and know it is the only figure in the report that
@@ -536,7 +536,7 @@ Checks are written with `puppeteer-core` driving installed Edge, at
 
 **`puppeteer-core` is deliberately not a dependency of this repository and must not become one.**
 It is installed in a scratch directory outside the tree and imported by absolute path from there,
-ending in `lib/puppeteer/puppeteer-core.js`. `docs/UX_STUDY.md:921-923` records that choice and the
+ending in `lib/puppeteer/puppeteer-core.js`. `docs/UX_STUDY.md:922-924` records that choice and the
 reason: nothing was added to `package.json` and no dependency was introduced. If your first instinct
 is `npm i puppeteer-core`, that is the mistake this paragraph exists to stop.
 

@@ -5,6 +5,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { VIEWS, formatRoute, parseRoute } from '../src/js/lib/route.js';
+import { HOME_CATEGORIES, PUBLISHING_CATEGORIES } from '../src/js/lib/catalog.js';
 import { LIBRARY_VIEWS } from '../src/js/lib/library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from '../src/js/lib/readingFilters.js';
 
@@ -21,6 +22,27 @@ test('every view the rail can reach survives a round trip', () => {
     const parsed = parseRoute(formatRoute({ view }));
     assert.deepEqual(parsed, { view, listId: null, filter: null }, `round trip failed for ${view}`);
   }
+});
+
+test('every publishing category has a direct route and generated panel contract', () => {
+  const main = read('src/js/main.js');
+  for (const { route } of PUBLISHING_CATEGORIES) {
+    assert.ok(VIEWS.includes(route), `${route} is not routable`);
+    assert.deepEqual(parseRoute(`#/${route}`), { view: route, listId: null, filter: null });
+  }
+  has(main, /id:\s*`view-\$\{category\.route\}`/, 'registry-derived publishing panel ids');
+  has(main, /id:\s*`\$\{category\.route\}-h`/, 'registry-derived publishing heading ids');
+  has(main, /id:\s*`\$\{category\.route\}-report`/, 'registry-derived publishing report ids');
+  has(main, /id:\s*`\$\{category\.route\}-results`/, 'registry-derived publishing result ids');
+  has(main, /root\.insertBefore\(el\('section',[\s\S]*?\), \$\('\.app-footer'\)\)/,
+    'publishing panels inserted before the footer');
+});
+
+test('the compatible catalog route remains Modern Timeline', () => {
+  assert.deepEqual(parseRoute('#/catalog'), { view: 'catalog', listId: null, filter: null });
+  const markup = read('src/index.html');
+  assert.equal(HOME_CATEGORIES.find(({ route }) => route === 'catalog')?.heading, 'Modern Timeline');
+  has(markup, /id="catalog-h">Modern Timeline<\/h1>/, 'Modern Timeline page heading');
 });
 
 test('the library views are routable, not just the seven typed ones', () => {

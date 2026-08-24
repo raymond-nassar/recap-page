@@ -36,7 +36,7 @@ import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
 import {
-  decadeSections, eraSections, groupCatalog, shelfSections,
+  availablePublishingCategories, decadeSections, eraSections, groupCatalog, shelfSections,
 } from '../src/js/lib/catalog.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
@@ -193,10 +193,9 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Twenty-nine entries make twenty-seven stories. Three event stories sit on one path, while a
-// storyline and Essential Avengers form a second path across browse screens. The thirteen
-// Character Spotlight stories put that shelf over its search threshold, and the ten extra events
-// do the same for Timeline.
+// Thirty entries make twenty-eight stories. Three event stories sit on one path, while two
+// storylines each cross to another browse screen. The thirteen Character Spotlight stories put
+// that shelf over its search threshold, and the ten extra events do the same for Timeline.
 // The third stop is a story read two ways, which is the case the shelf and the path disagree about
 // most easily: the
 // path step names one reading, the shelf draws one row for the story, and the stop has to be
@@ -220,6 +219,7 @@ const CATALOG = {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Essential', depth: 'essential', timeline: 2006,
     }),
     shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
+    shelfEntry('browser-check-age-line', 'Across Two Periods', { type: 'creator-run', timeline: 2004 }),
     shelfEntry('browser-check-off', 'Off The Path', { type: 'character-run', spotlightKind: 'other' }),
     shelfEntry('essential-avengers', 'Essential Avengers', { type: 'character-run', spotlightKind: 'other' }),
     shelfEntry('x-men-spine', 'X-Men Spine', {
@@ -249,7 +249,7 @@ const CATALOG = {
     ...Array.from({ length: 10 }, (_, index) => shelfEntry(
       `browser-check-extra-${index + 1}`,
       `Fixture Event ${index + 1}`,
-      { timeline: 2008 },
+      { timeline: index === 0 ? 2012 : 2008 },
     )),
   ],
   paths: [
@@ -261,6 +261,13 @@ const CATALOG = {
       // The last step names the *short* reading on purpose, so a row that echoed the step rather
       // than resolving it to the story would read "Third Stop: The Short Way" and be caught.
       steps: ['browser-check', 'browser-check-two', 'browser-check-three-short'],
+    },
+    {
+      id: 'bc-age-path',
+      name: 'Across Two Periods',
+      description: 'A fixture path crossing two publishing periods.',
+      sourceOrigin: 'Fixture',
+      steps: ['browser-check-age-line', 'browser-check-extra-1'],
     },
     {
       id: 'spotlight-arrival',
@@ -277,6 +284,8 @@ const FIXTURE_SHELVES = new Map(
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
 const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
+const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(groupCatalog(CATALOG.lists));
+const FIXTURE_MODERN_PERIODS = availablePublishingCategories(groupCatalog(CATALOG.lists), 'modern');
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
 const ORDER_COUNT = ORDER.items.length;
 const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
@@ -290,8 +299,8 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 const MUTATIONS = [
   {
     id: 'home-copy-return',
-    breaks: 'home-card-layout',
-    why: 'the longer first-run heading and its explanatory sentence return',
+    breaks: 'home-category-gateway',
+    why: 'the first-run question is replaced by a generic heading and explanatory sentence',
     script: () => {
       addEventListener('load', () => {
         const heading = document.querySelector('#home-h');
@@ -300,6 +309,48 @@ const MUTATIONS = [
         sub.className = 'sub';
         sub.textContent = 'Every order below ships with the app.';
         heading.after(sub);
+      });
+    },
+  },
+  {
+    id: 'publishing-render-dispatch-off',
+    breaks: 'publishing-ages',
+    why: 'an age route opens its panel but never renders the Reading Lists selected for it',
+    rewriteMain: (source) => source.replace(
+      '  if (publishingCategoryByRoute.has(next)) renderPublishingCategory(next);',
+      '',
+    ),
+  },
+  {
+    id: 'preview-open-dialog-stays',
+    breaks: 'publishing-ages',
+    why: 'Preview stays modal after its Open action navigates to a saved Reading List',
+    rewriteMain: (source) => source.replace(
+      / {8}if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\r?\n {8}showView\('read', \{ push: true \}\);/,
+      "        showView('read', { push: true });",
+    ),
+  },
+  {
+    id: 'gateway-status-silent',
+    breaks: 'home-category-gateway',
+    why: 'asynchronous Home and Browse categories lose their polite completion status',
+    script: () => {
+      addEventListener('load', () => {
+        for (const status of document.querySelectorAll('[data-paths-status]')) {
+          status.removeAttribute('role');
+        }
+      });
+    },
+  },
+  {
+    id: 'publishing-count-silent',
+    breaks: 'publishing-ages',
+    why: 'an asynchronously rendered publishing result count is no longer announced',
+    script: () => {
+      addEventListener('load', () => {
+        for (const count of document.querySelectorAll('.publishing-count')) {
+          count.removeAttribute('role');
+        }
       });
     },
   },
@@ -360,26 +411,36 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'feature-decision-stack',
-    breaks: 'home-card-layout',
-    why: 'the feature facts and actions fall below the summary and leave the right side empty again',
+    id: 'home-paths-stack-wide',
+    breaks: 'home-category-gateway',
+    why: 'the three primary reading paths stack at desktop width instead of reading as equal choices',
     script: () => {
       addEventListener('load', () => {
         const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('.feature-body { grid-template-columns: minmax(0, 1fr) !important; }', sheet.cssRules.length);
-        sheet.insertRule('.feature-decision { max-width: 15rem; }', sheet.cssRules.length);
+        sheet.insertRule('#home-primary-paths { grid-template-columns: 1fr !important; }', sheet.cssRules.length);
       });
     },
   },
   {
-    id: 'home-card-height',
-    breaks: 'home-card-layout',
-    why: 'one Home card grows taller than its neighbours, recreating the uneven grid this scenario measures',
+    id: 'home-path-explanation',
+    breaks: 'home-category-gateway',
+    why: 'standing explanatory copy returns inside a category tile',
     script: () => {
       addEventListener('load', () => {
-        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('#home-grid .ogrid { grid-auto-rows: auto; align-items: start; }', sheet.cssRules.length);
-        sheet.insertRule('#home-grid .ocard:nth-child(2) { min-height: 390px; }', sheet.cssRules.length);
+        const insert = () => {
+          const copy = document.querySelector('.home-path-copy');
+          if (!copy || copy.querySelector('.home-path-explanation')) return false;
+          const note = document.createElement('p');
+          note.className = 'home-path-explanation';
+          note.textContent = 'Use this route when you want the stories arranged around publication milestones.';
+          copy.append(note);
+          return true;
+        };
+        if (insert()) return;
+        const observer = new MutationObserver(() => {
+          if (insert()) observer.disconnect();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
       });
     },
   },
@@ -808,7 +869,7 @@ const SCENARIOS = [
     title: 'each reading kind has its own browse screen and grouping',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
       // Read headings and cards in one pass, in document order, so "which heading is this card under"
@@ -847,10 +908,11 @@ const SCENARIOS = [
       // The acceptance criterion, read off the page rather than off the model. A route whose steps
       // straddle a heading is a route the heading is telling the reader not to follow.
       let head = null;
+      const mainPathTitles = new Set(['Browser Check Order', 'Second Stop', 'Third Stop']);
       const under = new Map();
       for (const x of shelf) {
         if (x.kind === 'head') head = x.heading;
-        else if (x.step) under.set(x.title, head);
+        else if (x.step && mainPathTitles.has(x.title)) under.set(x.title, head);
       }
       t.check('every stop of the path is on the shelf', under.size === 3, JSON.stringify([...under]));
       t.check('and every one of them sits under the same era',
@@ -938,16 +1000,21 @@ const SCENARIOS = [
         JSON.stringify(narrowTimeline));
       await page.setViewport({ width: 1280, height: 900 });
 
-      await click(page, '[data-view="lines"]');
+      await openBrowseCategory(page, 'storylines');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
       const lines = await readShelf('#lines-results');
-      const expectedStorylineHeading = FIXTURE_STORYLINE_SECTIONS[0]?.heading;
-      t.check('Storylines holds the whole-line reading under its derived decade',
-        lines.filter((x) => x.kind === 'head').map((x) => x.heading).join('/') === expectedStorylineHeading
-        && lines.filter((x) => x.kind === 'row').map((x) => x.title).join('/') === 'Across the Line',
+      const expectedStorylineHeadings = FIXTURE_STORYLINE_SECTIONS.map(({ heading }) => heading);
+      const expectedStorylineTitles = FIXTURE_STORYLINE_SECTIONS.flatMap(
+        ({ stories }) => stories.map((story) => story.name ?? story.lists[0].name),
+      );
+      t.check('Storylines holds every whole-line reading under its derived decade',
+        JSON.stringify(lines.filter((x) => x.kind === 'head').map((x) => x.heading))
+          === JSON.stringify(expectedStorylineHeadings)
+        && JSON.stringify(lines.filter((x) => x.kind === 'row').map((x) => x.title))
+          === JSON.stringify(expectedStorylineTitles),
         JSON.stringify(lines));
 
-      await click(page, '[data-view="spotlights"]');
+      await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
       const spotlights = await readShelf('#spotlights-results');
       t.check('Character spotlights holds every character story without a redundant group heading',
@@ -1078,7 +1145,7 @@ const SCENARIOS = [
         !restored.active && restored.borderWidth === '1px',
         JSON.stringify(restored));
 
-      await click(page, '[data-view="lines"]');
+      await openBrowseCategory(page, 'storylines');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
       await click(page, '[data-view="spotlights"]');
       await page.waitForFunction(() => (
@@ -1089,7 +1156,7 @@ const SCENARIOS = [
         await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'complete-guide'
         && (await cardTitles()).length === 2);
 
-      await click(page, '[data-view="lines"]');
+      await openBrowseCategory(page, 'storylines');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
       await page.evaluate(() => {
         const card = [...document.querySelectorAll('#lines-results .catalog-card')]
@@ -1129,84 +1196,253 @@ const SCENARIOS = [
     },
   },
   {
-    id: 'home-card-layout',
-    title: 'Home discovery stays concise and Reading List cards stay equal',
+    id: 'home-category-gateway',
+    title: 'Home offers concise reading paths that scale to more categories',
     async run(page, t) {
       await open(page, '/');
-      await page.waitForSelector('#home-grid .ocard', { timeout: 15000 });
-
-      const measure = () => page.$$eval('#home-grid .ogrid', (grids) => grids.map((grid) => {
-        const heights = [...grid.querySelectorAll('.ocard')].map((card) => card.getBoundingClientRect().height);
-        return {
-          cards: heights.length,
-          min: Math.round(Math.min(...heights)),
-          max: Math.round(Math.max(...heights)),
-          spread: Math.round(Math.max(...heights) - Math.min(...heights)),
-        };
-      }));
+      await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
       const settleLayout = () => page.evaluate(() => new Promise((resolve) => {
         requestAnimationFrame(() => requestAnimationFrame(resolve));
       }));
 
       await page.setViewport({ width: 1280, height: 900 });
       await settleLayout();
-      const standard = await measure();
-      t.check('every Home group uses one card height at 1280px',
-        standard.length > 0 && standard.every((group) => group.cards > 0 && group.spread <= 1),
-        JSON.stringify(standard));
-
-      await page.setViewport({ width: 2048, height: 1080 });
-      await settleLayout();
-      const wide = await measure();
-      t.check('and keeps one card height on the wide display from the owner review',
-        wide.length === standard.length && wide.every((group) => group.cards > 0 && group.spread <= 1),
-        JSON.stringify(wide));
-
       const context = await page.evaluate(() => {
-        const cards = [...document.querySelectorAll('#home-grid .ocard')];
-        const named = (title) => cards.find((card) => card.querySelector('.ocard-title')?.textContent.trim() === title);
-        const first = named('Browser Check Order');
-        const variant = named('Third Stop');
-        const badge = first?.querySelector('.ocard-path');
-        const feature = document.querySelector('#home-featured').getBoundingClientRect();
-        const copy = document.querySelector('.feature-copy').getBoundingClientRect();
-        const decision = document.querySelector('.feature-decision').getBoundingClientRect();
+        const paths = [...document.querySelectorAll('#home-primary-paths .home-path')];
+        const secondary = [...document.querySelectorAll('#home-secondary-paths .home-path')];
+        const boxes = paths.map((path) => path.getBoundingClientRect());
         return {
           heading: document.querySelector('#home-h')?.textContent.trim() ?? null,
           explanatoryLines: document.querySelectorAll('#view-home > .head .sub').length,
-          feature: {
-            horizontal: decision.left > copy.right,
-            gap: Math.round(decision.left - copy.right),
-            rightInset: Math.round(feature.right - decision.right),
-            facts: document.querySelectorAll('#feature-facts li').length,
-            actions: document.querySelectorAll('.feature-act .btn').length,
-          },
-          visibleBadge: badge?.querySelector('[aria-hidden="true"]')?.textContent.trim() ?? null,
-          badgeDetail: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
-          beginner: first?.querySelector('.pill-beginner')?.textContent.trim() ?? null,
-          optionAction: variant?.querySelector('.ocard-preview')?.textContent.trim() ?? null,
-          variableRows: document.querySelectorAll('#home-grid .ocard .path-step, #home-grid .ocard .ocard-ways').length,
+          paths: paths.map((path) => ({
+            key: path.dataset.category,
+            label: path.querySelector('.home-path-label')?.textContent.trim(),
+            title: path.querySelector('.home-path-title')?.textContent.trim(),
+            count: path.querySelector('.home-path-count')?.textContent.trim(),
+          })),
+          secondary: secondary.map((path) => ({
+            key: path.dataset.category,
+            label: path.querySelector('.home-path-label')?.textContent.trim(),
+            title: path.querySelector('.home-path-title')?.textContent.trim(),
+            count: path.querySelector('.home-path-count')?.textContent.trim(),
+          })),
+          tops: boxes.map((box) => Math.round(box.top)),
+          heights: boxes.map((box) => Math.round(box.height)),
+          paragraphs: document.querySelectorAll('.home-path p').length,
+          retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
+          moreHidden: document.querySelector('#home-more-paths')?.hidden,
+          statuses: [...document.querySelectorAll('[data-paths-status]')].map((status) => ({
+            role: status.getAttribute('role'),
+            hidden: status.hidden,
+            visuallyHidden: status.classList.contains('visually-hidden'),
+            text: status.textContent.trim(),
+          })),
         };
       });
-      t.check('the first-run heading says Start Here without explaining the choices again',
-        context.heading === 'Start Here' && context.explanatoryLines === 0, JSON.stringify(context));
-      t.check('the featured journey uses its right side for facts and actions',
-        context.feature.horizontal
-        && context.feature.gap >= 16
-        && context.feature.rightInset <= 32
-        && context.feature.facts >= 4
-        && context.feature.actions === 2,
-        JSON.stringify(context.feature));
-      t.check('the compact path badge keeps position, path name and next-stop context',
-        context.visibleBadge === 'Start · 1/3'
-        && context.badgeDetail === 'Start here. Step 1 of 3 in The Fixture Path. Next: Second Stop.',
+      t.check('the first-run heading asks one question without explaining it again',
+        context.heading === 'How do you want to read?' && context.explanatoryLines === 0,
         JSON.stringify(context));
-      t.check('beginner suitability remains visible on the cover',
-        context.beginner === 'Beginner', JSON.stringify(context));
-      t.check('a story with variants moves its option count into the existing preview action',
-        context.optionAction === 'See 2 options', JSON.stringify(context));
-      t.check('and no variable path or options row can make one card taller',
-        context.variableRows === 0, JSON.stringify(context));
+      t.check('the three current paths carry compact labels and content counts',
+        JSON.stringify(context.paths) === JSON.stringify([
+          { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
+          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '2 Reading Lists' },
+          { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
+        ]),
+        JSON.stringify(context.paths));
+      t.check('the populated publishing age appears without empty historical ages',
+        JSON.stringify(context.secondary) === JSON.stringify([
+          { key: 'modern', label: '1991 to present', title: 'Modern Age', count: '16 Reading Lists' },
+        ]),
+        JSON.stringify(context.secondary));
+      t.check('the primary paths remain equal choices on one desktop row',
+        context.tops.length === 3
+        && new Set(context.tops).size === 1
+        && Math.max(...context.heights) - Math.min(...context.heights) <= 1,
+        JSON.stringify({ tops: context.tops, heights: context.heights }));
+      t.check('the gateway has no standing tile paragraphs or retired catalog wall',
+        context.paragraphs === 0 && context.retired === 0 && context.moreHidden === false,
+        JSON.stringify(context));
+      t.check('dynamic Home and Browse categories publish one concise polite completion status each',
+        context.statuses.length === 2
+        && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
+          role === 'status' && !hidden && visuallyHidden
+          && text === '4 ways to read available.'),
+        JSON.stringify(context.statuses));
+
+      for (const [category, view] of [
+        ['timeline', 'catalog'],
+        ['storylines', 'lines'],
+        ['character-spotlights', 'spotlights'],
+      ]) {
+        await click(page, `[data-category="${category}"]`);
+        await page.waitForFunction((id) => document.querySelector(`#view-${id}`)?.hidden === false, {}, view);
+        const destination = await page.evaluate(() => location.hash);
+        t.check(`${category} opens its browse screen`, destination === `#/${view}`, destination);
+        await open(page, '/');
+        await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
+      }
+
+      await page.setViewport({ width: 620, height: 900 });
+      await settleLayout();
+      const narrow = await page.$$eval('#home-primary-paths .home-path', (paths) => paths.map((path) => {
+        const box = path.getBoundingClientRect();
+        return { top: Math.round(box.top), width: Math.round(box.width) };
+      }));
+      t.check('a narrow window stacks full-width paths without horizontal clipping',
+        narrow.length === 3
+        && new Set(narrow.map(({ top }) => top)).size === 3
+        && narrow.every(({ width }) => width > 400 && width < 620),
+        JSON.stringify(narrow));
+    },
+  },
+  {
+    id: 'publishing-ages',
+    title: 'publishing ages provide direct compact category pages',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('[data-category="modern"]', { timeout: 15000 });
+      await click(page, '[data-category="modern"]');
+      await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
+
+      const gateway = await page.evaluate(() => ({
+        hash: location.hash,
+        focus: document.activeElement?.id ?? null,
+        rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        periods: [...document.querySelectorAll('#age-modern-category-list .home-path')].map((path) => ({
+          key: path.dataset.category,
+          count: path.querySelector('.home-path-count')?.textContent.trim() ?? '',
+        })),
+      }));
+      t.check('Modern Age has its own route and receives navigation focus',
+        gateway.hash === '#/age-modern' && gateway.focus === 'age-modern-h'
+        && gateway.rail === 'browse', JSON.stringify(gateway));
+      const modernCountStatus = await page.$eval('#age-modern-count', (count) => ({
+        role: count.getAttribute('role'),
+        text: count.textContent.trim(),
+      }));
+      t.check('the publishing result count is a polite live status',
+        modernCountStatus.role === 'status'
+        && modernCountStatus.text === '16 Reading Lists',
+        JSON.stringify(modernCountStatus));
+      const panelBeforeFooter = await page.$eval('#view-age-modern', (panel) =>
+        Boolean(panel.compareDocumentPosition(document.querySelector('.app-footer'))
+          & Node.DOCUMENT_POSITION_FOLLOWING));
+      t.check('the persistent footer follows the generated age page', panelBeforeFooter);
+      t.check('Modern Age shows only populated fixture periods with derived counts',
+        JSON.stringify(gateway.periods) === JSON.stringify(
+          FIXTURE_MODERN_PERIODS.map(({ key, count }) => ({
+            key,
+            count: `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`,
+          })),
+        ), JSON.stringify(gateway.periods));
+
+      await click(page, '[data-category="event-era"]');
+      await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
+      const leaf = await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('#age-event-era-results .catalog-card')];
+        const byTitle = (title) => cards.find(
+          (card) => card.querySelector('.catalog-card-title')?.textContent.trim() === title,
+        );
+        const local = byTitle('Browser Check Order');
+        const crossing = byTitle('Across Two Periods');
+        return {
+          hash: location.hash,
+          focus: document.activeElement?.id ?? null,
+          rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+          years: cards.map((card) => Number(card.dataset.year)),
+          titles: cards.map((card) => card.querySelector('.catalog-card-title')?.textContent.trim()),
+          localLinks: local?.querySelectorAll('.path-step a').length ?? -1,
+          crossingHref: crossing?.querySelector('.path-step a')?.getAttribute('href') ?? null,
+        };
+      });
+      t.check('a leaf route draws only stories inside its effective years',
+        leaf.hash === '#/age-event-era'
+        && leaf.focus === 'age-event-era-h'
+        && leaf.rail === 'browse'
+        && leaf.years.length > 0
+        && leaf.years.every((year) => year >= 2004 && year <= 2011),
+        JSON.stringify(leaf));
+      t.check('one age leaf can cross canonical shelves',
+        leaf.titles.includes('Browser Check Order') && leaf.titles.includes('Across Two Periods'),
+        JSON.stringify(leaf.titles));
+      t.check('path stops already on the age leaf stay local while an outside stop links canonically',
+        leaf.localLinks === 0 && leaf.crossingHref === '#/catalog',
+        JSON.stringify({ localLinks: leaf.localLinks, crossingHref: leaf.crossingHref }));
+
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-short"]');
+      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      const repainted = await page.$eval(
+        '#age-event-era-results [data-story="bc-third"] [data-act="import"]',
+        (button) => button.getAttribute('aria-label'),
+      );
+      t.check('closing Preview repaints the chosen reading option on the age leaf',
+        repainted?.includes('Third Stop: The Short Way'), repainted);
+
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="import"]');
+      await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false);
+      const imported = await page.$eval('#order-name', (heading) => heading.textContent.trim());
+      t.check('Add from an age leaf imports through the existing catalog flow',
+        imported === 'Browser Check Order', imported);
+
+      await open(page, '/#/age-event-era');
+      await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        document.querySelector('#view-read')?.hidden === false
+        && !document.querySelector('#preview')?.open);
+      const openedFromPreview = await page.evaluate(() => ({
+        dialogOpen: document.querySelector('#preview')?.open ?? null,
+        readHidden: document.querySelector('#view-read')?.hidden ?? null,
+        heading: document.querySelector('#order-name')?.textContent.trim() ?? '',
+      }));
+      t.check('Preview Open closes the dialog and leaves the saved Reading List usable',
+        openedFromPreview.dialogOpen === false
+        && openedFromPreview.readHidden === false
+        && openedFromPreview.heading === 'Browser Check Order',
+        JSON.stringify(openedFromPreview));
+
+      await open(page, '/#/age-golden');
+      await page.waitForSelector('#age-golden-results .publishing-empty', { timeout: 15000 });
+      const empty = await page.evaluate(() => {
+        const visible = [...document.querySelectorAll('.view')].filter((panel) => !panel.hidden);
+        return {
+          visible: visible.map((panel) => panel.id),
+          heading: document.querySelector('#age-golden-h')?.textContent.trim(),
+          range: document.querySelector('#view-age-golden .publishing-range')?.textContent.trim(),
+          count: document.querySelector('#age-golden-count')?.textContent.trim(),
+          message: document.querySelector('#age-golden-results .publishing-empty')?.textContent.trim(),
+        };
+      });
+      t.check('a hidden empty category remains a complete honest direct page',
+        JSON.stringify(empty) === JSON.stringify({
+          visible: ['view-age-golden'],
+          heading: 'Browse Golden Age',
+          range: '1939 to 1955',
+          count: '0 Reading Lists',
+          message: 'No Reading Lists are published for this period yet.',
+        }), JSON.stringify(empty));
+
+      await page.setViewport({ width: 620, height: 900 });
+      await open(page, '/#/age-modern');
+      await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
+      const narrow = await page.$$eval('#age-modern-category-list .home-path', (paths) => paths.map((path) => {
+        const box = path.getBoundingClientRect();
+        return { top: Math.round(box.top), width: Math.round(box.width) };
+      }));
+      t.check('Modern periods stack without horizontal clipping at the narrow viewport',
+        narrow.length === FIXTURE_MODERN_PERIODS.length
+        && new Set(narrow.map(({ top }) => top)).size === narrow.length
+        && narrow.every(({ width }) => width > 400 && width < 620),
+        JSON.stringify(narrow));
+
+      t.check('the fixture exposes one populated top-level publishing age',
+        FIXTURE_PUBLISHING_AGES.map(({ key }) => key).join('/') === 'modern',
+        JSON.stringify(FIXTURE_PUBLISHING_AGES));
     },
   },
   {
@@ -1216,8 +1452,12 @@ const SCENARIOS = [
       await open(page, '/');
 
       const browse = [];
-      for (const view of ['catalog', 'lines', 'spotlights']) {
-        await click(page, `[data-view="${view}"]`);
+      for (const [view, category] of [
+        ['catalog', 'timeline'],
+        ['lines', 'storylines'],
+        ['spotlights', 'character-spotlights'],
+      ]) {
+        await openBrowseCategory(page, category);
         await page.waitForSelector(`#${view}-results .catalog-card`, { timeout: 15000 });
         browse.push(await page.$eval(`#view-${view}`, (section) => ({
           view: section.id,
@@ -1256,7 +1496,7 @@ const SCENARIOS = [
         && manual.summaries.includes('What lookup sends') && manual.open === false,
         JSON.stringify(manual));
 
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await click(page, IMPORT_BUTTON);
       await page.waitForFunction(() => document.querySelector('#shelf-note')?.textContent.trim() === '2 issues');
       const shelfNote = await page.$eval('#shelf-note', (node) => node.textContent.trim());
@@ -1296,11 +1536,109 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'hub-navigation',
+    title: 'fixed rail delegates growing choices to Library, Browse, and Add',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
+      await page.setViewport({ width: 1280, height: 900 });
+
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse [data-primary-paths] .home-path', { timeout: 15000 });
+      const gateway = await page.evaluate(() => {
+        const read = (root) => [...document.querySelectorAll(`${root} [data-primary-paths] .home-path`)]
+          .map((path) => ({
+            category: path.dataset.category,
+            title: path.querySelector('.home-path-title')?.textContent.trim(),
+            count: path.querySelector('.home-path-count')?.textContent.trim(),
+          }));
+        return {
+          home: read('#view-home'),
+          browse: read('#view-browse'),
+          hash: location.hash,
+          current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+        };
+      });
+      t.check('Browse renders the same available categories and counts as Home',
+        JSON.stringify(gateway.home) === JSON.stringify(gateway.browse),
+        JSON.stringify(gateway));
+      t.check('the Browse hub owns its address and selected rail state',
+        gateway.hash === '#/browse' && gateway.current === 'browse',
+        JSON.stringify(gateway));
+
+      await click(page, '#view-browse [data-category="storylines"]');
+      await page.waitForFunction(() => document.querySelector('#view-lines')?.hidden === false);
+      const browseChild = await page.evaluate(() => ({
+        hash: location.hash,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+      }));
+      t.check('a category child keeps Browse selected',
+        browseChild.hash === '#/lines' && browseChild.current === 'browse',
+        JSON.stringify(browseChild));
+
+      await click(page, '.ri[data-view="add"]');
+      await page.waitForFunction(() => document.querySelector('#view-add')?.hidden === false);
+      const addChoices = await page.$$eval('#view-add .search-hub-card', (buttons) => (
+        buttons.map((button) => button.dataset.view)
+      ));
+      t.check('Add groups the five add methods on one hub',
+        JSON.stringify(addChoices) === JSON.stringify([
+          'add-search', 'add-series', 'add-creator', 'add-import', 'add-manual',
+        ]),
+        JSON.stringify(addChoices));
+      await click(page, '#view-add [data-view="add-manual"]');
+      const addChild = await page.evaluate(() => ({
+        hash: location.hash,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+      }));
+      t.check('an Add child keeps Add selected',
+        addChild.hash === '#/add-manual' && addChild.current === 'add',
+        JSON.stringify(addChild));
+
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForFunction(() => document.querySelector('#view-library')?.hidden === false);
+      const libraryChoices = await page.$$eval('#view-library .library-tools [data-view]', (buttons) => (
+        buttons.map((button) => button.dataset.view)
+      ));
+      t.check('Library groups its three library-wide destinations',
+        JSON.stringify(libraryChoices) === JSON.stringify(['library-read', 'progress', 'library-manual']),
+        JSON.stringify(libraryChoices));
+      await click(page, '#view-library [data-view="progress"]');
+      const libraryChild = await page.evaluate(() => ({
+        hash: location.hash,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+      }));
+      t.check('a Library child keeps Library selected',
+        libraryChild.hash === '#/progress' && libraryChild.current === 'library',
+        JSON.stringify(libraryChild));
+
+      const rail = await page.evaluate(() => {
+        const scroll = document.querySelector('.nav-scroll');
+        return {
+          rows: [...document.querySelectorAll('#sidebar .ri')].map((button) => button.dataset.view ?? 'continue'),
+          childRows: document.querySelectorAll(
+            '#sidebar .ri[data-view="catalog"], #sidebar .ri[data-view="lines"], '
+              + '#sidebar .ri[data-view="spotlights"], #sidebar .ri[data-view^="add-"], '
+              + '#sidebar .ri[data-view="progress"], #sidebar .ri[data-view^="library-"]',
+          ).length,
+          scrollHeight: scroll.scrollHeight,
+          clientHeight: scroll.clientHeight,
+        };
+      });
+      t.check('the rail has no category, Add method, saved-list collection, or Library report rows',
+        rail.childRows === 0 && rail.rows.length <= 6,
+        JSON.stringify(rail));
+      t.check('the fixed rail fits without vertical scrolling at the reference viewport',
+        rail.scrollHeight <= rail.clientHeight,
+        JSON.stringify(rail));
+    },
+  },
+  {
     id: 'reading-path',
     title: 'the shelf says where a story sits in a reading order',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
       const rows = await page.$$eval('#catalog-results .catalog-card', (els) => els.map((e) => ({
@@ -1360,7 +1698,7 @@ const SCENARIOS = [
       t.check('the compact card keeps the issue count', first?.meta === '3 issues', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
-      await click(page, '[data-view="spotlights"]');
+      await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
       const off = await page.$eval('#spotlights-results .catalog-card', (e) => ({
         title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
@@ -1376,7 +1714,7 @@ const SCENARIOS = [
     title: 'collapsing the sidebar does not reach into the shelf',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .result-path > summary', { timeout: 15000 });
 
       const read = () => page.evaluate(() => {
@@ -1391,8 +1729,8 @@ const SCENARIOS = [
           nav: (() => {
             const rail = document.querySelector('#sidebar').getBoundingClientRect();
             const scroll = document.querySelector('.nav-scroll');
-            const icon = document.querySelector('.ri[data-view="catalog"] .gi').getBoundingClientRect();
-            const button = document.querySelector('.ri[data-view="catalog"]').getBoundingClientRect();
+            const icon = document.querySelector('.ri[data-view="browse"] .gi').getBoundingClientRect();
+            const button = document.querySelector('.ri[data-view="browse"]').getBoundingClientRect();
             const style = getComputedStyle(scroll);
             return {
               railLeft: Math.round(rail.left),
@@ -1437,7 +1775,7 @@ const SCENARIOS = [
     title: 'a curated order can be imported from the catalog',
     async run(page, t) {
       await open(page, '/');
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector(IMPORT_BUTTON, { timeout: 15000 });
       t.check('the catalog offers the order', true);
 
@@ -1536,7 +1874,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:788` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:792` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -1919,7 +2257,7 @@ const SCENARIOS = [
 
       // The behaviour the reader complained about, pinned rather than removed: the offer outlives
       // the screen it was made on, because that is the only thing keeping the undo reachable.
-      await click(page, '[data-view="catalog"]');
+      await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
       const elsewhere = await readNotice();
       t.check('it is still there after the reader changes screen', elsewhere?.buttons.join('/') === 'Undo delete/Dismiss', JSON.stringify(elsewhere));
@@ -2160,6 +2498,13 @@ async function click(page, selector) {
   await page.evaluate((s) => document.querySelector(s).click(), selector);
 }
 
+async function openBrowseCategory(page, category) {
+  await click(page, '.ri[data-view="browse"]');
+  const selector = `#view-browse [data-category="${category}"]`;
+  await page.waitForSelector(selector, { timeout: 15000 });
+  await click(page, selector);
+}
+
 async function visibleView(page) {
   return page.evaluate(() => document.querySelector('.view:not([hidden])')?.id ?? null);
 }
@@ -2175,7 +2520,7 @@ async function readState(page) {
 
 async function importOrder(page) {
   await open(page, '/');
-  await click(page, '[data-view="catalog"]');
+  await openBrowseCategory(page, 'timeline');
   await click(page, IMPORT_BUTTON);
   await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
   await openFullOrder(page);
@@ -2292,14 +2637,16 @@ async function readUpdateReport(page) {
 async function preparePage(page, origin, mutation) {
   page.__origin = origin;
   if (mutation?.rewriteMain) {
+    const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+    const rewritten = mutation.rewriteMain(source);
+    if (rewritten === source) throw new Error(`Mutation ${mutation.id} did not change main.js`);
     await page.setRequestInterception(true);
     page.on('request', async (request) => {
       if (request.url() === `${origin}/js/main.js`) {
-        const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
         await request.respond({
           status: 200,
           contentType: 'application/javascript; charset=utf-8',
-          body: mutation.rewriteMain(source),
+          body: rewritten,
         });
         return;
       }

@@ -33,22 +33,25 @@ function page(view) {
 const pages = new Map(ADD_VIEWS.map((view) => [view, page(view)]));
 const allPages = [...pages.values()].join('\n');
 
-test('the five Add choices are five routes and five pages', () => {
+test('the Add hub groups five routes with five dedicated pages', () => {
   assert.deepEqual(ADD_VIEWS, ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']);
+  const hub = page('add');
   for (const view of ADD_VIEWS) {
     assert.ok(VIEWS.includes(view), `${view} is showable but not routable`);
     assert.match(pages.get(view), new RegExp(`<h1 id="${view}-h">`), `${view} has no page heading`);
-    assert.match(html, new RegExp(`data-view="${view}"`), `${view} has no rail entry`);
+    assert.match(hub, new RegExp(`data-view="${view}"`), `${view} has no Add hub choice`);
   }
-  assert.doesNotMatch(html, /data-view="add" data-open=/, 'a rail entry still opens part of the combined screen');
-  assert.doesNotMatch(html, /id="view-add"/, 'the combined Add screen still exists');
+  assert.match(html, /class="ri" data-view="add"/, 'the rail has no Add hub entry');
 });
 
-test('the old Add address is accepted and canonicalised to Search issues', () => {
-  assert.equal(VIEWS.includes('add'), false, 'the compatibility alias is still treated as a panel');
-  assert.equal(LEGACY_VIEW_ALIASES.add, 'add-search');
-  assert.deepEqual(parseRoute('#/add'), { view: 'add-search', listId: null, filter: null });
-  assert.equal(formatRoute({ view: 'add' }), '#/add-search');
+test('the Add address opens the hub while old child addresses stay valid', () => {
+  assert.equal(VIEWS.includes('add'), true);
+  assert.equal(LEGACY_VIEW_ALIASES.add, undefined);
+  assert.deepEqual(parseRoute('#/add'), { view: 'add', listId: null, filter: null });
+  assert.equal(formatRoute({ view: 'add' }), '#/add');
+  for (const view of ADD_VIEWS) {
+    assert.deepEqual(parseRoute(`#/${view}`), { view, listId: null, filter: null });
+  }
 });
 
 test('series and creator indexes warm when their pages open by any route', () => {

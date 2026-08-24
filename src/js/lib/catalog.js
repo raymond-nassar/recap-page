@@ -549,8 +549,8 @@ export function pathPlacements(paths, lists) {
     for (const step of Array.isArray(path?.steps) ? path.steps : []) {
       const key = storyOfOrder.get(str(step));
       if (!key || stops.some((s) => s.key === key)) continue;
-      // Which screen the stop is drawn on travels with the stop, decided by the same two rules
-      // the renderers use rather than by a second copy of them. A "Next" that names a row on
+      // Which screen the stop is drawn on travels with the stop, decided by the same rule
+      // the renderers use rather than by a second copy of it. A "Next" that names a row on
       // another screen has to be able to say which screen, and asking here means the answer is
       // taken from the whole catalog: a shelf's own renderer only ever sees its own share, so it
       // could not resolve a stop that is not its.
@@ -559,7 +559,6 @@ export function pathPlacements(paths, lists) {
         key,
         name: storyName.get(key),
         shelf: shelfKey(story),
-        onHome: inHomeAge(story),
       });
     }
     // One stop is not a sequence, and the reader learns nothing from "step 1 of 1".
@@ -639,7 +638,7 @@ export const CATALOG_SHELVES = [
     key: 'catalog',
     types: ['event'],
     sections: 'eras',
-    heading: 'Timeline',
+    heading: 'Modern Timeline',
     blurb: 'Events in the order they happened. These build on each other, so reading them front to back is the surest way through.',
     empty: 'No events are bundled with this build.',
   },
@@ -700,6 +699,236 @@ export function shelfLists(lists, key) {
   return (Array.isArray(lists) ? lists : []).filter((list) => mine.has(list));
 }
 
+// ------------------------------------------------------------------ publishing ages
+
+// Publishing categories cross the canonical shelves instead of replacing them. A category can
+// contain events, whole-line stories and character spotlights together, while each of those stories
+// keeps its one canonical shelf.
+//
+// The supplied historical labels share transition years. Catalog data has year precision only, so
+// the later period owns each shared year: every `from` is inclusive and every finite `to` is the
+// year before the next period begins. This makes each category label match what its page can show
+// and keeps a dated story from appearing on two peer pages.
+export const PUBLISHING_CATEGORIES = [
+  {
+    key: 'golden',
+    route: 'age-golden',
+    parent: null,
+    heading: 'Golden Age',
+    label: '1939 to 1955',
+    from: 1939,
+    to: 1955,
+    icon: 'E736',
+    highlights: ['Timely Comics', 'Human Torch', 'Namor', 'Captain America'],
+  },
+  {
+    key: 'silver',
+    route: 'age-silver',
+    parent: null,
+    heading: 'Silver Age',
+    label: '1956 to 1969',
+    from: 1956,
+    to: 1969,
+    icon: 'E736',
+    highlights: ['Superhero revival', 'Fantastic Four from 1961'],
+  },
+  {
+    key: 'bronze',
+    route: 'age-bronze',
+    parent: null,
+    heading: 'Bronze Age',
+    label: '1970 to 1983',
+    from: 1970,
+    to: 1983,
+    icon: 'E736',
+    highlights: ['Socially conscious stories', 'X-Men expansion', 'Cosmic Marvel', 'Horror', 'Street-level heroes'],
+  },
+  {
+    key: 'copper',
+    route: 'age-copper',
+    parent: null,
+    heading: 'Copper Age',
+    label: '1984 to 1990',
+    from: 1984,
+    to: 1990,
+    icon: 'E736',
+    highlights: ['Darker storytelling', '1980s X-Men boom', 'Venom', 'Early modern Avengers', 'Creator-driven books', 'Road to 1991'],
+  },
+  {
+    key: 'modern',
+    route: 'age-modern',
+    parent: null,
+    heading: 'Modern Age',
+    label: '1991 to present',
+    from: 1991,
+    to: null,
+    icon: 'E736',
+    highlights: ['Early Modern to current'],
+  },
+  {
+    key: 'early-modern',
+    route: 'age-early-modern',
+    parent: 'modern',
+    heading: 'Early Modern',
+    label: '1991 to 1997',
+    from: 1991,
+    to: 1997,
+    icon: 'E736',
+    highlights: ['1990s line expansion'],
+  },
+  {
+    key: 'marvel-knights-heroes-return',
+    route: 'age-marvel-knights-heroes-return',
+    parent: 'modern',
+    heading: 'Marvel Knights / Heroes Return',
+    label: '1998 to 2003',
+    from: 1998,
+    to: 2003,
+    icon: 'E736',
+    highlights: ['Marvel Knights', 'Heroes Return'],
+  },
+  {
+    key: 'event-era',
+    route: 'age-event-era',
+    parent: 'modern',
+    heading: 'Event Era',
+    label: '2004 to 2011',
+    from: 2004,
+    to: 2011,
+    icon: 'E736',
+    highlights: ['Line-wide events'],
+  },
+  {
+    key: 'marvel-now',
+    route: 'age-marvel-now',
+    parent: 'modern',
+    heading: 'Marvel NOW!',
+    label: '2012 to 2014',
+    from: 2012,
+    to: 2014,
+    icon: 'E736',
+    highlights: ['Marvel NOW!'],
+  },
+  {
+    key: 'all-new-all-different',
+    route: 'age-all-new-all-different',
+    parent: 'modern',
+    heading: 'All-New All-Different',
+    label: '2015 to 2017',
+    from: 2015,
+    to: 2017,
+    icon: 'E736',
+    highlights: ['2015 relaunch'],
+  },
+  {
+    key: 'fresh-start',
+    route: 'age-fresh-start',
+    parent: 'modern',
+    heading: 'Fresh Start',
+    label: '2018 to 2020',
+    from: 2018,
+    to: 2020,
+    icon: 'E736',
+    highlights: ['Fresh Start'],
+  },
+  {
+    key: 'current',
+    route: 'age-current',
+    parent: 'modern',
+    heading: 'Current era',
+    label: '2021 to present',
+    from: 2021,
+    to: null,
+    icon: 'E736',
+    highlights: ['Current publishing era'],
+  },
+];
+
+export const PUBLISHING_AGES = PUBLISHING_CATEGORIES.filter((category) => category.parent === null);
+
+export function inPublishingAge(story, key) {
+  const category = PUBLISHING_CATEGORIES.find((candidate) => candidate.key === key);
+  if (!category) return false;
+  const year = storyYear(story);
+  if (year === null) return false;
+  return year >= category.from && (category.to === null || year <= category.to);
+}
+
+export function publishingCategoryStories(stories, key) {
+  const all = Array.isArray(stories) ? stories : [];
+  return all.filter((story) => inPublishingAge(story, key));
+}
+
+export function availablePublishingCategories(stories, parent = null) {
+  const all = Array.isArray(stories) ? stories : [];
+  return PUBLISHING_CATEGORIES
+    .filter((category) => category.parent === parent)
+    .flatMap((category) => {
+      const matches = publishingCategoryStories(all, category.key);
+      const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
+      return matches.length ? [{ ...category, count }] : [];
+    });
+}
+
+// ------------------------------------------------------------------ Home categories
+
+// Home categories answer how somebody wants to browse; shelves answer where a story is filed. Those
+// are deliberately separate questions. A shelf is an exclusive partition, while a future category
+// such as Marvel on Screen or Bronze Age can overlap Timeline, Storylines and Character spotlights.
+//
+// Each definition owns its availability selector. Empty results disappear before rendering, so a
+// category can be declared before its first published Reading List without leaving an empty promise
+// on Home. `route` is explicit rather than inferred from `key`: current categories lead to shelves,
+// while a later overlapping category must have its own route without changing canonical placement.
+const shelfCategory = (key) => (stories) => shelfStories(stories, key);
+
+export const HOME_CATEGORIES = [
+  {
+    key: 'timeline',
+    route: 'catalog',
+    shelf: 'catalog',
+    heading: 'Modern Timeline',
+    label: 'Browse by year',
+    icon: 'E736',
+    tier: 'primary',
+    select: shelfCategory('catalog'),
+  },
+  {
+    key: 'storylines',
+    route: 'lines',
+    shelf: 'lines',
+    heading: 'Storylines',
+    label: 'Browse complete arcs',
+    icon: 'E8FD',
+    tier: 'primary',
+    select: shelfCategory('lines'),
+  },
+  {
+    key: 'character-spotlights',
+    route: 'spotlights',
+    shelf: 'spotlights',
+    heading: 'Character spotlights',
+    label: 'Browse heroes and teams',
+    icon: 'E77B',
+    tier: 'primary',
+    select: shelfCategory('spotlights'),
+  },
+  ...PUBLISHING_AGES.map((category) => ({
+    ...category,
+    tier: 'secondary',
+    select: (stories) => publishingCategoryStories(stories, category.key),
+  })),
+];
+
+export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
+  const all = Array.isArray(stories) ? stories : [];
+  return definitions.flatMap(({ select, ...category }) => {
+    const matches = select(all);
+    const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
+    return matches.length ? [{ ...category, count }] : [];
+  });
+}
+
 // ------------------------------------------------------------------ shelf sections
 
 // The sentence that points at the "Start here" badge, held apart from every blurb because it is a
@@ -722,45 +951,6 @@ export function shelfSections(stories) {
   return CATALOG_SHELVES
     .map((shelf) => ({ ...shelf, stories: shelfStories(all, shelf.key) }))
     .filter((shelf) => shelf.stories.length);
-}
-
-// ------------------------------------------------------------------ publishing ages
-
-// The ages of publishing history the catalog is divided into by year, and which of them the landing
-// page is for. Separate from `CATALOG_ERAS`, which divides one screen into named stretches: this
-// divides the catalog between screens, and the two answer different questions at different scales.
-//
-// One row today. The landing page is the modern era, from 1998, which is the owner's definition of
-// where the modern line starts rather than anything derived from the bundled data. Nothing bundled
-// reaches back that far: the earliest dated story is 2000, so 1998 admits exactly what 2000 would
-// and the boundary is forward-looking. It is written as 1998 anyway, because a definition belongs
-// where the code can be read against it, and because pre-modern content is expected rather than
-// hypothetical. No blurb claims a 1998 start; displayed ranges come from what landed.
-//
-// Silver Age and Bronze Age screens are the owner's stated direction and are deliberately not built
-// here, because there is nothing to put on them: no bundled story predates 1998 at all. Adding one
-// is a row in this table plus its shelf, which is the same one-line-per-row edit adding an era is.
-export const PUBLISHING_AGES = [
-  {
-    key: 'modern',
-    heading: 'The modern era',
-    from: 1998,
-    home: true,
-  },
-];
-
-// Whether the landing page shows a story. Undated stories are shown rather than filtered out, and
-// that is a decision rather than a fallthrough. A story with no year cannot be placed in an age at
-// all, and every undated story bundled is a character run, which is curated across the decades by
-// nature: "X-Men: Silver Age to Claremont" is Silver and Bronze Age material with no year to filter
-// on. Inferring an age for it from its title or its keywords would be guessing, and guessing wrong
-// would hide it. So the age boundary simply does not reach stories that carry no year.
-export function inHomeAge(story) {
-  const year = storyYear(story);
-  if (year === null) return true;
-  return PUBLISHING_AGES.some((age) => age.home
-    && (age.from == null || year >= age.from)
-    && (age.to == null || year <= age.to));
 }
 
 // ------------------------------------------------------------------ publishing eras

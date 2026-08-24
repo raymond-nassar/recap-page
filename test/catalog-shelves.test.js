@@ -11,7 +11,7 @@ import {
   firstSentence,
   filterBySpotlightKind,
   groupCatalog,
-  inHomeAge,
+  inPublishingAge,
   parseCatalog,
   resetCatalogNarrowing,
   shelfLists,
@@ -153,7 +153,8 @@ test('every screen carries the words its own empty state and heading need', () =
   assert.equal(new Set(headings).size, headings.length, 'two screens share a heading');
 });
 
-test('Timeline uses named eras and Storylines uses decade breaks', () => {
+test('Modern Timeline uses named eras and Storylines uses decade breaks', () => {
+  assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').heading, 'Modern Timeline');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'catalog').sections, 'eras');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'lines').sections, 'decades');
   assert.equal(CATALOG_SHELVES.find((shelf) => shelf.key === 'spotlights').sections, null);
@@ -207,40 +208,25 @@ test('every screen is a route the app can reach', () => {
 
 // The modern-era boundary is data in the same table-driven place the eras are, so adding a Silver
 // Age or Bronze Age screen is a row rather than an edit to a render function.
-test('the landing page draws its boundary from the table rather than from a literal year', () => {
-  const home = PUBLISHING_AGES.filter((age) => age.home);
-  assert.equal(home.length, 1, 'exactly one age is expected to be the landing page');
-  assert.equal(typeof home[0].from, 'number', 'the landing page age declares no start year');
+test('publishing ages keep reusable boundaries for future overlapping categories', () => {
+  const modern = PUBLISHING_AGES.find((age) => age.key === 'modern');
+  assert.equal(typeof modern.from, 'number', 'the modern age declares no start year');
+  assert.equal('home' in modern, false, 'the age still owns the retired landing-page boundary');
 });
 
-test('a story older than the landing page age is kept off it', () => {
-  const from = PUBLISHING_AGES.find((age) => age.home).from;
+test('an age selector includes its boundary and refuses the year before it', () => {
+  const from = PUBLISHING_AGES.find((age) => age.key === 'modern').from;
   const older = { key: 'old', lists: [{ id: 'old', name: 'Old', type: 'event', timeline: from - 1 }] };
   const newer = { key: 'new', lists: [{ id: 'new', name: 'New', type: 'event', timeline: from }] };
-  assert.equal(inHomeAge(older), false);
-  assert.equal(inHomeAge(newer), true);
+  assert.equal(inPublishingAge(older, 'modern'), false);
+  assert.equal(inPublishingAge(newer, 'modern'), true);
 });
 
-// Deliberate, not an oversight. A story with no year cannot be placed in an age at all, and every
-// undated story bundled is a character spotlight, curated across the decades by nature. Inferring an
-// age from a title or a keyword would be guessing, and guessing wrong would hide it.
-test('a story with no year is exempt from the boundary rather than hidden by it', () => {
+test('an undated story is not guessed into a publishing age', () => {
   const undated = { key: 'best-of', lists: [{ id: 'best-of', name: 'Best of', type: 'character-run' }] };
   assert.equal(storyYear(undated), null);
-  assert.equal(inHomeAge(undated), true);
-});
-
-// The one that matters most. Whatever the boundary keeps off the landing page has to remain listed
-// somewhere, or the app is bundling an order no reader can find.
-test('nothing the landing page filters out becomes unreachable', () => {
-  for (const story of stories.filter((s) => !inHomeAge(s))) {
-    const on = keys.filter((key) => shelfStories([story], key).length);
-    assert.equal(
-      on.length,
-      1,
-      `${story.name ?? story.lists[0].name} is off the landing page and on ${on.length} other screens`,
-    );
-  }
+  assert.equal(inPublishingAge(undated, 'modern'), false);
+  assert.equal(inPublishingAge(undated, 'missing'), false);
 });
 
 // ------------------------------------------------------------- path links
@@ -256,7 +242,7 @@ test('every path stop carries the screen it is drawn on', () => {
     assert.ok(placement.first, `${key} carries no head of its path, so its name can link nowhere`);
     for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
       assert.ok(keys.includes(stop.shelf), `${key}'s neighbour ${stop.key} names a screen that exists`);
-      assert.equal(typeof stop.onHome, 'boolean', `${key}'s neighbour ${stop.key} answers the landing page's boundary`);
+      assert.equal('onHome' in stop, false, `${key}'s neighbour ${stop.key} carries retired Home placement`);
     }
   }
 });
@@ -285,22 +271,5 @@ test('every stop is listed on the screen its own link names', () => {
       groupCatalog(shelfLists(catalog.lists, stop.shelf)).some((s) => s.key === stop.key),
       `${stop.name}'s readings do not reach ${stop.shelf}, so that screen would count it and not draw it`,
     );
-  }
-});
-
-// The landing page is the one screen that filters by year, so it is the one screen a stop can be
-// missing from while still being on its shelf. This flag is what lets a row drawn there send the
-// reader to the shelf rather than to a card the page is not showing.
-test('a stop the landing page filters out says so', () => {
-  const placed = pathPlacements(catalog.paths, catalog.lists);
-  for (const placement of placed.values()) {
-    for (const stop of [placement.first, placement.previous, placement.next].filter(Boolean)) {
-      const story = stories.find((s) => s.key === stop.key);
-      assert.equal(
-        stop.onHome,
-        inHomeAge(story),
-        `${stop.name} disagrees with the boundary the landing page applies`,
-      );
-    }
   }
 });

@@ -54,7 +54,7 @@ test('current shipped identity and short attribution use Recap Page', () => {
   assert.match(html, /<h1 id="order-name">Recap Page<\/h1>/);
   assert.equal(manifest.name, 'Recap Page');
   assert.equal(manifest.short_name, 'Recap');
-  assert.equal([...html.matchAll(/Marvel metadata via marvel\.emreparker\.com\./g)].length, 2);
+  assert.equal([...html.matchAll(/Marvel metadata via marvel\.emreparker\.com\./g)].length, 3);
   assert.match(main, /download\('recap-page-backup\.json'/);
   assert.match(main, /textContent = 'Recap Page'/);
 });
