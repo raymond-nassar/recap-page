@@ -1,0 +1,3297 @@
+{
+  "id": "star-lord-reading-order",
+  "name": "Star-Lord",
+  "description": "Peter Quill from his earliest cosmic adventures through the Guardians, solo series, and Old Man Quill.",
+  "source": "https://www.comicbookherald.com/star-lord-reading-order-complete-peter-quill-comics-timeline/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T01:05:06.004Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 99,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 19776,
+      "title": "Marvel Preview (1975) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/19776/marvel_preview_1975_4",
+      "seriesId": 3718,
+      "seriesName": "Marvel Preview (1975 - 1981)",
+      "onSale": "1976-01-10T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 34277,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/57f54e958058a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Bryant",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bernie Wrightson",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Mcleod",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Thorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Fuller",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Gan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Edward S. Barkan",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19760,
+      "title": "Marvel Preview (1975) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/19760/marvel_preview_1975_11",
+      "seriesId": 3718,
+      "seriesName": "Marvel Preview (1975 - 1981)",
+      "onSale": "1977-06-01T00:00:00+0000",
+      "mu": "1977-06-01T00:00:00+0000",
+      "digitalId": 6416,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/4bb689fe1656b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19763,
+      "title": "Marvel Preview (1975) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/19763/marvel_preview_1975_14",
+      "seriesId": 3718,
+      "seriesName": "Marvel Preview (1975 - 1981)",
+      "onSale": "1978-04-10T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 34276,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/57f54fa974237",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rudy Nebres",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alfredo Alcala",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Wakelin",
+          "role": "penciler"
+        },
+        {
+          "name": "Carmine Infantino",
+          "role": "penciler"
+        },
+        {
+          "name": "Janet Elizabeth Aulisio",
+          "role": "penciler"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "David Anthony Kraft",
+          "role": "writer"
+        },
+        {
+          "name": "Don Thompson",
+          "role": "writer"
+        },
+        {
+          "name": "Maggie Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19764,
+      "title": "Marvel Preview (1975) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/19764/marvel_preview_1975_15",
+      "seriesId": 3718,
+      "seriesName": "Marvel Preview (1975 - 1981)",
+      "onSale": "1978-07-10T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 34278,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/57f551179b391",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Roussos",
+          "role": "cover artist"
+        },
+        {
+          "name": "B.K.",
+          "role": "penciler"
+        },
+        {
+          "name": "Carmine Infantino",
+          "role": "penciler"
+        },
+        {
+          "name": "Janet Elizabeth Aulisio",
+          "role": "penciler"
+        },
+        {
+          "name": "Lee Elias",
+          "role": "penciler"
+        },
+        {
+          "name": "Thomas Yeates",
+          "role": "penciler"
+        },
+        {
+          "name": "Arthur Curtis",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Don Thompson",
+          "role": "writer"
+        },
+        {
+          "name": "Maggie Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19767,
+      "title": "Marvel Preview (1975) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/19767/marvel_preview_1975_18",
+      "seriesId": 3718,
+      "seriesName": "Marvel Preview (1975 - 1981)",
+      "onSale": "1979-04-10T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 34279,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/57f551d6829a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Lee Elias",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Veitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephen Bissette",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Thompson",
+          "role": "writer"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        },
+        {
+          "name": "Ron Goulart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50896,
+      "title": "Marvel Comics Super Special (1977) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/50896/marvel_comics_super_special_1977_10",
+      "seriesId": 19047,
+      "seriesName": "Marvel Comics Super Special (1977 - 1986)",
+      "onSale": "1979-02-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 34293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/57fbc5c9bce0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Earl Norem",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10263,
+      "title": "Marvel Spotlight (1979) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10263/marvel_spotlight_1979_6",
+      "seriesId": 2046,
+      "seriesName": "Marvel Spotlight (1979)",
+      "onSale": "1980-05-01T00:00:00+0000",
+      "mu": "1980-05-01T00:00:00+0000",
+      "digitalId": 11287,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb511c7ac943",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Sutton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82621,
+      "title": "Marvel Spotlight (1979) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/82621/marvel_spotlight_1979_7",
+      "seriesId": 2046,
+      "seriesName": "Marvel Spotlight (1979)",
+      "onSale": "1980-07-01T00:00:00+0000",
+      "mu": "1980-07-01T00:00:00+0000",
+      "digitalId": 53072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5d60586d2f1bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10252,
+      "title": "Marvel Premiere (1972) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/10252/marvel_premiere_1972_61",
+      "seriesId": 2045,
+      "seriesName": "Marvel Premiere (1972 - 1981)",
+      "onSale": "1981-08-10T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 34275,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/57f5132b93892",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Sutton",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50897,
+      "title": "Starlord (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50897/starlord_1996_1",
+      "seriesId": 19048,
+      "seriesName": "Starlord (1996 - 1997)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 34283,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/583eda61c8888",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Timothy Zahn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50898,
+      "title": "Starlord (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50898/starlord_1996_2",
+      "seriesId": 19048,
+      "seriesName": "Starlord (1996 - 1997)",
+      "onSale": "1997-01-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 34285,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/583edd3d129e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Timothy Zahn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50899,
+      "title": "Starlord (1996) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50899/starlord_1996_3",
+      "seriesId": 19048,
+      "seriesName": "Starlord (1996 - 1997)",
+      "onSale": "1997-02-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 34286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/b0/583ede9b99834",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Timothy Zahn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21268,
+      "title": "Guardians of the Galaxy (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21268/guardians_of_the_galaxy_2008_1",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-05-14T00:00:00+0000",
+      "mu": "2008-05-14T00:00:00+0000",
+      "digitalId": 10838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/517ad3738f6a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21412,
+      "title": "Guardians of the Galaxy (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21412/guardians_of_the_galaxy_2008_2",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-06-18T00:00:00+0000",
+      "mu": "2008-06-18T00:00:00+0000",
+      "digitalId": 10840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/517ad37ceb179",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21586,
+      "title": "Guardians of the Galaxy (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/21586/guardians_of_the_galaxy_2008_3",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-07-09T00:00:00+0000",
+      "mu": "2008-07-09T00:00:00+0000",
+      "digitalId": 10848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/517ad3694cee2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21783,
+      "title": "Guardians of the Galaxy (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/21783/guardians_of_the_galaxy_2008_4",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-08-20T00:00:00+0000",
+      "mu": "2008-08-20T00:00:00+0000",
+      "digitalId": 10867,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/517ad36440e01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22025,
+      "title": "Guardians of the Galaxy (2008) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/22025/guardians_of_the_galaxy_2008_5",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-09-17T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 10868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/517ad355c9b05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22352,
+      "title": "Guardians of the Galaxy (2008) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/22352/guardians_of_the_galaxy_2008_6",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-10-15T00:00:00+0000",
+      "mu": "2008-10-15T00:00:00+0000",
+      "digitalId": 11045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/517ad475ab6f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22544,
+      "title": "Guardians of the Galaxy (2008) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/22544/guardians_of_the_galaxy_2008_7",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-11-26T00:00:00+0000",
+      "mu": "2008-11-26T00:00:00+0000",
+      "digitalId": 11046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/573b8064b8870",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22957,
+      "title": "Guardians of the Galaxy (2008) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/22957/guardians_of_the_galaxy_2008_8",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-12-31T00:00:00+0000",
+      "mu": "2008-12-31T00:00:00+0000",
+      "digitalId": 11047,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/517ad459c4bc5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23148,
+      "title": "Guardians of the Galaxy (2008) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/23148/guardians_of_the_galaxy_2008_9",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-01-21T00:00:00+0000",
+      "mu": "2009-01-21T00:00:00+0000",
+      "digitalId": 12954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/517ad45130d84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jack Purcell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rodney Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlos Magno",
+          "role": "penciler"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23636,
+      "title": "Guardians of the Galaxy (2008) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/23636/guardians_of_the_galaxy_2008_10",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-02-18T00:00:00+0000",
+      "mu": "2009-02-18T00:00:00+0000",
+      "digitalId": 12955,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/517ad44aa4e16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23792,
+      "title": "Guardians of the Galaxy (2008) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/23792/guardians_of_the_galaxy_2008_11",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-03-11T00:00:00+0000",
+      "mu": "2009-03-11T00:00:00+0000",
+      "digitalId": 12957,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/517ad59750d3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Yardin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23793,
+      "title": "Guardians of the Galaxy (2008) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/23793/guardians_of_the_galaxy_2008_12",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 12959,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/517ad5a167300",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paul Renaud",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23986,
+      "title": "Guardians of the Galaxy (2008) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/23986/guardians_of_the_galaxy_2008_13",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-04-22T00:00:00+0000",
+      "mu": "2009-04-22T00:00:00+0000",
+      "digitalId": 13565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/517ad59261332",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24188,
+      "title": "Guardians of the Galaxy (2008) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/24188/guardians_of_the_galaxy_2008_14",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-05-28T00:00:00+0000",
+      "mu": "2010-08-05T00:00:00+0000",
+      "digitalId": 12493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/517ad5840ecf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25303,
+      "title": "Guardians of the Galaxy (2008) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/25303/guardians_of_the_galaxy_2008_15",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12696,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/517ad57e4a6e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25304,
+      "title": "Guardians of the Galaxy (2008) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/25304/guardians_of_the_galaxy_2008_16",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-07-22T00:00:00+0000",
+      "mu": "2009-07-22T00:00:00+0000",
+      "digitalId": 15958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/517ad6ab06469",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25305,
+      "title": "Guardians of the Galaxy (2008) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/25305/guardians_of_the_galaxy_2008_17",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2013-10-16T08:48:34+0000",
+      "digitalId": 16599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/517ad6a215852",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25306,
+      "title": "Guardians of the Galaxy (2008) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/25306/guardians_of_the_galaxy_2008_18",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2009-10-06T00:00:00+0000",
+      "digitalId": 13459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/517ad697b2fb5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25307,
+      "title": "Guardians of the Galaxy (2008) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/25307/guardians_of_the_galaxy_2008_19",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-10-28T00:00:00+0000",
+      "mu": "2013-10-16T08:48:52+0000",
+      "digitalId": 17002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/517ad68eb623e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Serge Lapointe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25308,
+      "title": "Guardians of the Galaxy (2008) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/25308/guardians_of_the_galaxy_2008_20",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2009-11-25T00:00:00+0000",
+      "digitalId": 14773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/517ad68878d23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25309,
+      "title": "Guardians of the Galaxy (2008) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/25309/guardians_of_the_galaxy_2008_21",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2010-09-16T00:00:00+0000",
+      "digitalId": 14774,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/517ad7e750faf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 29022,
+      "title": "Guardians of the Galaxy (2008) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/29022/guardians_of_the_galaxy_2008_22",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2010-01-19T00:00:00+0000",
+      "digitalId": 13726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/517ad7df48bd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 29009,
+      "title": "Guardians of the Galaxy (2008) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/29009/guardians_of_the_galaxy_2008_23",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-02-09T00:00:00+0000",
+      "digitalId": 13894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/517ad7d83fa99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wes Craig",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 29010,
+      "title": "Guardians of the Galaxy (2008) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/29010/guardians_of_the_galaxy_2008_24",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2013-05-22T10:04:40+0000",
+      "digitalId": 14117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/517ad7cb98978",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Wes Craig",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 32551,
+      "title": "Guardians of the Galaxy (2008) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/32551/guardians_of_the_galaxy_2008_25",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2010-04-21T00:00:00+0000",
+      "mu": "2011-01-04T00:00:00+0000",
+      "digitalId": 14384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/517ad7c491ddf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Brad Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50887,
+      "title": "Legendary Star-Lord (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50887/legendary_star-lord_2014_1",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2014-07-02T00:00:00+0000",
+      "mu": "2015-01-05T00:00:00+0000",
+      "digitalId": 34256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/53a889daadda2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50929,
+      "title": "Legendary Star-Lord (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50929/legendary_star-lord_2014_2",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/53d668bd9c873",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50952,
+      "title": "Legendary Star-Lord (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50952/legendary_star-lord_2014_3",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2014-09-03T00:00:00+0000",
+      "mu": "2015-03-02T00:00:00+0000",
+      "digitalId": 34829,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/53f7529c0a132",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50966,
+      "title": "Legendary Star-Lord (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/50966/legendary_star-lord_2014_4",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2014-10-01T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 35247,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/54232cd62a5eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Freddie Willaims",
+          "role": "writer"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51052,
+      "title": "Legendary Star-Lord (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/51052/legendary_star-lord_2014_5",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35398,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/544697ccd4874",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51141,
+      "title": "Legendary Star-Lord (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/51141/legendary_star-lord_2014_6",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2014-12-03T00:00:00+0000",
+      "mu": "2015-06-01T00:00:00+0000",
+      "digitalId": 35823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/547cb308455d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53276,
+      "title": "Legendary Star-Lord (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/53276/legendary_star-lord_2014_7",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-01-07T00:00:00+0000",
+      "digitalId": 36165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/54a1b74be0098",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Freddie E. Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52028,
+      "title": "Legendary Star-Lord (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/52028/legendary_star-lord_2014_8",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 36374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/54b5638c5a788",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52029,
+      "title": "Legendary Star-Lord (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/52029/legendary_star-lord_2014_9",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2015-02-18T00:00:00+0000",
+      "mu": "2015-08-24T00:00:00+0000",
+      "digitalId": 36726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/54d8ed902a5b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52032,
+      "title": "Legendary Star-Lord (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/52032/legendary_star-lord_2014_10",
+      "seriesId": 19044,
+      "seriesName": "Legendary Star-Lord (2014 - 2015)",
+      "onSale": "2015-03-25T00:00:00+0000",
+      "mu": "2015-09-28T00:00:00+0000",
+      "digitalId": 36971,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5506f1feade9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53710,
+      "title": "Star-Lord and Kitty Pryde (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/53710/star-lord_and_kitty_pryde_2015_1",
+      "seriesId": 20093,
+      "seriesName": "Star-Lord and Kitty Pryde (2015)",
+      "onSale": "2015-07-22T00:00:00+0000",
+      "mu": "2016-01-18T00:00:00+0000",
+      "digitalId": 39406,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/55abf1ffe06c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alti Firmansyah",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53712,
+      "title": "Star-Lord and Kitty Pryde (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/53712/star-lord_and_kitty_pryde_2015_2",
+      "seriesId": 20093,
+      "seriesName": "Star-Lord and Kitty Pryde (2015)",
+      "onSale": "2015-08-12T00:00:00+0000",
+      "mu": "2016-02-15T00:00:00+0000",
+      "digitalId": 39691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/55c51dc18b0e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alti Firmansyah",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53713,
+      "title": "Star-Lord and Kitty Pryde (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/53713/star-lord_and_kitty_pryde_2015_3",
+      "seriesId": 20093,
+      "seriesName": "Star-Lord and Kitty Pryde (2015)",
+      "onSale": "2015-09-02T00:00:00+0000",
+      "mu": "2016-03-07T00:00:00+0000",
+      "digitalId": 39852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/55e44a7b62b6a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56180,
+      "title": "Star-Lord (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/56180/star-lord_2015_1",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2015-11-18T00:00:00+0000",
+      "mu": "2016-05-23T00:00:00+0000",
+      "digitalId": 40521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5646312b0e0bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56181,
+      "title": "Star-Lord (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/56181/star-lord_2015_2",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2015-12-23T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 40730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5678070a9d267",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56182,
+      "title": "Star-Lord (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/56182/star-lord_2015_3",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2016-01-20T00:00:00+0000",
+      "mu": "2016-07-18T00:00:00+0000",
+      "digitalId": 40929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5693f227c2f43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56183,
+      "title": "Star-Lord (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/56183/star-lord_2015_4",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2016-02-17T00:00:00+0000",
+      "mu": "2016-08-15T00:00:00+0000",
+      "digitalId": 41195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/56bb65c2bfdd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56184,
+      "title": "Star-Lord (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/56184/star-lord_2015_5",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2016-03-16T00:00:00+0000",
+      "mu": "2016-09-19T00:00:00+0000",
+      "digitalId": 41423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/56da0940ef7ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56185,
+      "title": "Star-Lord (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56185/star-lord_2015_6",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/571a82eb88fc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56186,
+      "title": "Star-Lord (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56186/star-lord_2015_7",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2016-05-18T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 41586,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/572ba7c2a0045",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 56187,
+      "title": "Star-Lord (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56187/star-lord_2015_8",
+      "seriesId": 20619,
+      "seriesName": "Star-Lord (2015 - 2016)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/576d3ea40126e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61681,
+      "title": "Star-Lord (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61681/star-lord_2016_1",
+      "seriesId": 22652,
+      "seriesName": "Star-Lord (2016 - 2017)",
+      "onSale": "2016-12-21T00:00:00+0000",
+      "mu": "2017-06-26T00:00:00+0000",
+      "digitalId": 43451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/584b12a0a17b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61682,
+      "title": "Star-Lord (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61682/star-lord_2016_2",
+      "seriesId": 22652,
+      "seriesName": "Star-Lord (2016 - 2017)",
+      "onSale": "2017-01-18T00:00:00+0000",
+      "mu": "2017-07-24T00:00:00+0000",
+      "digitalId": 43847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/58750b5bb8ab0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61683,
+      "title": "Star-Lord (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61683/star-lord_2016_3",
+      "seriesId": 22652,
+      "seriesName": "Star-Lord (2016 - 2017)",
+      "onSale": "2017-02-15T00:00:00+0000",
+      "mu": "2017-08-21T00:00:00+0000",
+      "digitalId": 44095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/589dec89b23f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61684,
+      "title": "Star-Lord (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61684/star-lord_2016_4",
+      "seriesId": 22652,
+      "seriesName": "Star-Lord (2016 - 2017)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-09-18T00:00:00+0000",
+      "digitalId": 44321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58c2ca990605b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61685,
+      "title": "Star-Lord (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/61685/star-lord_2016_5",
+      "seriesId": 22652,
+      "seriesName": "Star-Lord (2016 - 2017)",
+      "onSale": "2017-03-29T00:00:00+0000",
+      "mu": "2017-10-02T00:00:00+0000",
+      "digitalId": 44322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/58d16c6810c84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61686,
+      "title": "Star-Lord (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61686/star-lord_2016_6",
+      "seriesId": 22652,
+      "seriesName": "Star-Lord (2016 - 2017)",
+      "onSale": "2017-04-19T00:00:00+0000",
+      "mu": "2017-10-23T00:00:00+0000",
+      "digitalId": 44534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/c0/58ee79d992bc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62818,
+      "title": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "seriesId": 23038,
+      "seriesName": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "onSale": "2017-05-05T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 44806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5b22f0e28daf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61513,
+      "title": "All-New Guardians of the Galaxy (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61513/all-new_guardians_of_the_galaxy_2017_1",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-05-03T00:00:00+0000",
+      "mu": "2017-11-06T00:00:00+0000",
+      "digitalId": 44730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5900a84360ddf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61514,
+      "title": "All-New Guardians of the Galaxy (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61514/all-new_guardians_of_the_galaxy_2017_2",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-05-24T00:00:00+0000",
+      "mu": "2017-11-27T00:00:00+0000",
+      "digitalId": 44731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/591c9b19ca526",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61516,
+      "title": "All-New Guardians of the Galaxy (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61516/all-new_guardians_of_the_galaxy_2017_4",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-06-21T00:00:00+0000",
+      "mu": "2017-12-25T00:00:00+0000",
+      "digitalId": 45014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5941a8a80c113",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61518,
+      "title": "All-New Guardians of the Galaxy (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61518/all-new_guardians_of_the_galaxy_2017_6",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-07-19T00:00:00+0000",
+      "mu": "2018-01-22T00:00:00+0000",
+      "digitalId": 45308,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5967f11ad1543",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61520,
+      "title": "All-New Guardians of the Galaxy (2017) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/61520/all-new_guardians_of_the_galaxy_2017_8",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-08-16T00:00:00+0000",
+      "mu": "2018-02-19T00:00:00+0000",
+      "digitalId": 45535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/597bba6345ee4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61522,
+      "title": "All-New Guardians of the Galaxy (2017) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/61522/all-new_guardians_of_the_galaxy_2017_10",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-09-20T00:00:00+0000",
+      "mu": "2017-09-20T00:00:00+0000",
+      "digitalId": 45838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/59b93d63afe1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61515,
+      "title": "All-New Guardians of the Galaxy (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61515/all-new_guardians_of_the_galaxy_2017_3",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-06-07T00:00:00+0000",
+      "mu": "2017-12-11T00:00:00+0000",
+      "digitalId": 45013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5930668949f54",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frazer Irving",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61517,
+      "title": "All-New Guardians of the Galaxy (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/61517/all-new_guardians_of_the_galaxy_2017_5",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-07-05T00:00:00+0000",
+      "mu": "2018-01-08T00:00:00+0000",
+      "digitalId": 45205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/595537f6944d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Samnee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61519,
+      "title": "All-New Guardians of the Galaxy (2017) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/61519/all-new_guardians_of_the_galaxy_2017_7",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-08-02T00:00:00+0000",
+      "mu": "2018-02-05T00:00:00+0000",
+      "digitalId": 45534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/596d07e521810",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Smallwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61521,
+      "title": "All-New Guardians of the Galaxy (2017) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/61521/all-new_guardians_of_the_galaxy_2017_9",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-09-06T00:00:00+0000",
+      "mu": "2018-03-12T00:00:00+0000",
+      "digitalId": 45839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/599afc4c60af0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61523,
+      "title": "All-New Guardians of the Galaxy (2017) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/61523/all-new_guardians_of_the_galaxy_2017_11",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-10-04T00:00:00+0000",
+      "mu": "2018-04-09T00:00:00+0000",
+      "digitalId": 46038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/59cc031e99ba4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roland Boschi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61524,
+      "title": "All-New Guardians of the Galaxy (2017) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/61524/all-new_guardians_of_the_galaxy_2017_12",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-10-18T00:00:00+0000",
+      "mu": "2018-04-23T00:00:00+0000",
+      "digitalId": 46039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/59dfd8c01866c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65074,
+      "title": "All-New Guardians of the Galaxy (2017) #146",
+      "number": "146",
+      "url": "https://www.marvel.com/comics/issue/65074/all-new_guardians_of_the_galaxy_2017_146",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-11-01T00:00:00+0000",
+      "mu": "2018-05-07T00:00:00+0000",
+      "digitalId": 46357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/59f106b67964a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65075,
+      "title": "All-New Guardians of the Galaxy (2017) #147",
+      "number": "147",
+      "url": "https://www.marvel.com/comics/issue/65075/all-new_guardians_of_the_galaxy_2017_147",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5a0348f85bf5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65282,
+      "title": "All-New Guardians of the Galaxy (2017) #148",
+      "number": "148",
+      "url": "https://www.marvel.com/comics/issue/65282/all-new_guardians_of_the_galaxy_2017_148",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46757,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5a1f33cad9a85",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65283,
+      "title": "All-New Guardians of the Galaxy (2017) #149",
+      "number": "149",
+      "url": "https://www.marvel.com/comics/issue/65283/all-new_guardians_of_the_galaxy_2017_149",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5a3170b743f86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65547,
+      "title": "All-New Guardians of the Galaxy (2017) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/65547/all-new_guardians_of_the_galaxy_2017_150",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2018-01-03T00:00:00+0000",
+      "mu": "2018-07-09T00:00:00+0000",
+      "digitalId": 47013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5a382e241fcce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64961,
+      "title": "The Mighty Captain Marvel (2017) #125",
+      "number": "125",
+      "url": "https://www.marvel.com/comics/issue/64961/the_mighty_captain_marvel_2017_125",
+      "seriesId": 22551,
+      "seriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "onSale": "2017-10-25T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 46048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/597fa04b7c06a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michele Bandini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brent Schoonover",
+          "role": "penciler"
+        },
+        {
+          "name": "Margaret Stohl",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65062,
+      "title": "The Mighty Captain Marvel (2017) #126",
+      "number": "126",
+      "url": "https://www.marvel.com/comics/issue/65062/the_mighty_captain_marvel_2017_126",
+      "seriesId": 22551,
+      "seriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "onSale": "2017-11-22T00:00:00+0000",
+      "mu": "2018-05-28T00:00:00+0000",
+      "digitalId": 46417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5a0c6b6ed5d80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michele Bandini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip J. Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Margaret Stohl",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65271,
+      "title": "The Mighty Captain Marvel (2017) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/65271/the_mighty_captain_marvel_2017_127",
+      "seriesId": 22551,
+      "seriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "onSale": "2017-12-27T00:00:00+0000",
+      "mu": "2018-07-02T00:00:00+0000",
+      "digitalId": 46817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/5a31a22e0d53e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michele Bandini",
+          "role": "penciler"
+        },
+        {
+          "name": "Philip J. Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Margaret Stohl",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65902,
+      "title": "The Mighty Captain Marvel (2017) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/65902/the_mighty_captain_marvel_2017_128",
+      "seriesId": 22551,
+      "seriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "onSale": "2018-01-31T00:00:00+0000",
+      "mu": "2018-08-06T00:00:00+0000",
+      "digitalId": 47139,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5a68ec5cdd8bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michele Bandini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip J. Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Margaret Stohl",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66271,
+      "title": "The Mighty Captain Marvel (2017) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/66271/the_mighty_captain_marvel_2017_129",
+      "seriesId": 22551,
+      "seriesName": "The Mighty Captain Marvel (2017 - 2018)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47323,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5a8de6f341290",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michele Bandini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip J. Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Margaret Stohl",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73829,
+      "title": "Old Man Quill (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73829/old_man_quill_2019_1",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-02-06T00:00:00+0000",
+      "mu": "2019-08-12T00:00:00+0000",
+      "digitalId": 50580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5c523cdb19b5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73830,
+      "title": "Old Man Quill (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/73830/old_man_quill_2019_2",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50581,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5c6492001225f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73831,
+      "title": "Old Man Quill (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/73831/old_man_quill_2019_3",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5c802c4eaadf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73832,
+      "title": "Old Man Quill (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/73832/old_man_quill_2019_4",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5cacf3633d222",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73833,
+      "title": "Old Man Quill (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73833/old_man_quill_2019_5",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5cd44b12802f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73834,
+      "title": "Old Man Quill (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73834/old_man_quill_2019_6",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51679,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5ced9847401ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73835,
+      "title": "Old Man Quill (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/73835/old_man_quill_2019_7",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-07-03T00:00:00+0000",
+      "mu": "2020-01-06T00:00:00+0000",
+      "digitalId": 51891,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5d126da3c97fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73836,
+      "title": "Old Man Quill (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/73836/old_man_quill_2019_8",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/5d404ed02dc20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73837,
+      "title": "Old Man Quill (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/73837/old_man_quill_2019_9",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5d63e4534af57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73838,
+      "title": "Old Man Quill (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/73838/old_man_quill_2019_10",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52700,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/5d8a2ae4a302a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73839,
+      "title": "Old Man Quill (2019) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/73839/old_man_quill_2019_11",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 53013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5db841c75878f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73840,
+      "title": "Old Man Quill (2019) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/73840/old_man_quill_2019_12",
+      "seriesId": 26593,
+      "seriesName": "Old Man Quill (2019)",
+      "onSale": "2019-12-04T00:00:00+0000",
+      "mu": "2020-06-08T00:00:00+0000",
+      "digitalId": 53276,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5ddc12ed8f74d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tyler Christopher",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

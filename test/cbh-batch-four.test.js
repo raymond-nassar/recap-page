@@ -18,6 +18,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
+const laterReviewedIds = new Set(['star-lord-reading-order']);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
 const xMenPage = 'https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/';
 
@@ -243,11 +244,14 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) packetRecords.push(record);
-    else existingRecords.push(record);
+    else if (!laterReviewedIds.has(entry.id)) existingRecords.push(record);
   }
 
   assert.equal(packetRecords.length, 10);
-  assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length);
+  assert.equal(
+    existingRecords.length,
+    manifest.lists.length - packetRecords.length - laterReviewedIds.size,
+  );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);

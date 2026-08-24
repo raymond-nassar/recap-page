@@ -215,6 +215,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const laterReviewedIds = new Set([
     'rocket-raccoon-reading-order',
     'groot-reading-order',
+    'star-lord-reading-order',
   ]);
   const packetRecords = [];
   const existingRecords = [];

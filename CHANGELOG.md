@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the complete Star-Lord character guide
+
+In plain English: the Character spotlights shelf now includes a complete Star-Lord guide. It follows
+all 99 source-defined issues from Marvel Preview #4 through Old Man Quill #12, including every issue
+it shares with the separate Rocket Raccoon and Groot guides. The catalog now has 97 reading lists.
+Nothing you have saved is changed.
+
+For maintainers: this is the separately prioritized rank 15 release. A fresh 96-comparison report
+records no exact or subset duplicate and four approved partial relationships: 25 issues each with
+Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and Infinity Wars. All
+99 rows resolve exactly in source order and are bound to fresh source, packet, mapping, library, both
+peers, report, approval, and authoring evidence.
+
 ### Added browsing by Marvel publishing age
 
 In plain English: Home now offers Modern Age as a compact way into seven populated periods, from

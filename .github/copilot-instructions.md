@@ -197,7 +197,7 @@ by a review on 2026-08-17, after it had already survived a full anchors cycle:
   claim standing **beside** it. Inside the clause it must stay exempt, since BL-040 cites the
   scripts block as evidence that no lint script existed and that block now defines one, so enrolling
   it would demand a true historical record be falsified. Beside the clause it must be backticked as
-  its   own token, the form used at `PRODUCT_BACKLOG.md:6445`. The tell is the exempt count the gate
+  its     own token, the form used at `PRODUCT_BACKLOG.md:6447`. The tell is the exempt count the gate
   prints on every run: a swallowed citation is counted rather than dropped from the tally, so that
   number moves while everything else stays green. It moves for a correct exemption too, so treat it
   as a prompt to look rather than a verdict, and know it is the only figure in the report that
