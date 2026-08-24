@@ -116,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7106-7110`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7107-7111`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -142,18 +142,18 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6456-6469`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6457-6470`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6870-6877`, why the private reporting task was left open.
-- `PRODUCT_BACKLOG.md:6936-6938`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6958-6963`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6965-6971`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7032-7038`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7063-7068`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7106-7110`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9211-9216`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2669-2672`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2682-2684`, the released note that the private channel is not switched on.
+- `PRODUCT_BACKLOG.md:6871-6878`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6937-6939`, what the changelog entry beside it was corrected to say.
+- `PRODUCT_BACKLOG.md:6959-6964`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6966-6972`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7033-7039`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7064-7069`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7107-7111`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9212-9217`, the three settings named as refused on this repository today.
+- `CHANGELOG.md:2680-2683`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2693-2695`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met

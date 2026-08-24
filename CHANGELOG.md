@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Gave Home a comic-book welcome
+
+In plain English: Home now opens with a centered Electric Blue comic-style RECAP PAGE! title and the shorter invitation
+"Browse. Choose. Read." The metadata credit now shares the footer line with the fan-project notice
+and disclaimer link. Nothing you have saved is changed.
+
+For maintainers: the app name is now the stable Home heading, while returning-reader content keeps
+its own Continue reading heading. The combined footer wraps only when the screen is too narrow for
+one line. The title has separate dark and light fills, a white ink outline in both themes, and a
+system-colour fallback in forced-colour mode.
+
 ### Added the complete Star-Lord character guide
 
 In plain English: the Character spotlights shelf now includes a complete Star-Lord guide. It follows

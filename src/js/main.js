@@ -1332,7 +1332,7 @@ function renderHome() {
   if ($('#view-home').hidden) return;
   const populated = store.state.listOrder.length > 0;
 
-  $('#home-h').textContent = populated ? 'Continue reading' : 'How do you want to read?';
+  // The masthead remains the app name whether or not Continue reading is present.
   $('#home-cat-h').classList.toggle('visually-hidden', !populated);
 
   renderContinue(populated);
