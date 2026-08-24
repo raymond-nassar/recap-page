@@ -123,6 +123,7 @@
   --teal: #3fcfbb;
   --amber: #eab654;
   --blue: #7fb3ff;
+  --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
      `src/js/main.js:702-703`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
@@ -164,6 +165,7 @@
   --teal: #12695f;
   --amber: #6d4e08;
   --blue: #17509c;
+  --logo-fill: #0878e8;
   --fallback-a: hsl(var(--h) 34% 82%);
   --fallback-b: hsl(calc(var(--h) + 40) 30% 72%);
   --fallback-fg: hsl(var(--h) 55% 22%);
@@ -197,6 +199,7 @@
     --teal: #12695f;
     --amber: #6d4e08;
     --blue: #17509c;
+    --logo-fill: #0878e8;
     --fallback-a: hsl(var(--h) 34% 82%);
     --fallback-b: hsl(calc(var(--h) + 40) 30% 72%);
     --fallback-fg: hsl(var(--h) 55% 22%);
@@ -1208,8 +1211,11 @@ progress { accent-color: var(--accent); height: 6px; }
 
 .app-footer {
   border-top: 1px solid var(--line); margin-top: 2.6rem; padding-top: 1rem;
-  color: var(--muted); font-size: var(--t-caption); max-width: 76ch;
+  color: var(--muted); font-size: var(--t-caption);
+  display: flex; align-items: baseline; gap: .3rem; white-space: nowrap;
 }
+.wrap > footer.app-footer { max-width: none; }
+@media (max-width: 900px) { .app-footer { flex-wrap: wrap; white-space: normal; } }
 
 /* The footer states the bare minimum on every screen; the full disclaimers live in About,
    one click away, so they are never more than a link from wherever the reader is. */
@@ -1220,6 +1226,21 @@ progress { accent-color: var(--accent); height: 6px; }
 .linkish:hover { color: var(--text); }
 
 /* ============================================================ home */
+#view-home > .head { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } #view-home > .headright { grid-column: 3; justify-self: end; }
+.home-lockup { grid-column: 2; display: grid; justify-items: center; text-align: center; gap: .65rem; padding: .45rem 0 .25rem; }
+#view-home .home-brand {
+  color: var(--logo-fill); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; letter-spacing: .035em; line-height: .9;
+  text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: center;
+  -webkit-text-stroke: 1px var(--on-accent); text-shadow: 5px 5px 0 var(--accent);
+}
+.home-action {
+  margin: 0; color: var(--text); font-size: var(--t-subtitle); font-weight: 800;
+  letter-spacing: .08em;
+}
+@media (forced-colors: active) {
+  #view-home .home-brand { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }
+}
 
 /* Continue reading. Deliberately lighter than the reading view's hero: it answers one
    question ("which issue was I on?") and then gets out of the way. */
