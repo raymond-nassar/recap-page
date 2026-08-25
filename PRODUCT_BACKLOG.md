@@ -13717,7 +13717,7 @@ The clearest debt in the repository, and it is concentrated in one file.
 
 - Modularity gap: `src/js/main.js` is 1,566 lines and carries every view, every event handler and <!-- sizes:frozen -->
   every render function. There is no view layer to change independently.
-  Evidence: `src/js/main.js:5273`, `src/js/main.js:1212-1253` (showView switches views by
+  Evidence: `src/js/main.js:5247`, `src/js/main.js:1212-1253` (showView switches views by
   mutating a module-level variable).
   Still open, and wider than audited: the file is 5,273 lines now, so nearly every item shipped
   since has been added to the one file this gap is about. `BL-053` is the exception in kind rather
