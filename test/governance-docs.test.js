@@ -186,6 +186,9 @@ test('active workflow instructions route future work through Issues, not the his
   assert.match(governance, /Issue timeline and linked pull request/);
   assert.doesNotMatch(governance, /backlog block for that item becomes a delivery record/);
   assert.doesNotMatch(governance, /rest becomes a backlog entry/);
+  assert.match(governance, /User-visible behavior and release-relevant maintainer changes/);
+  assert.match(governance, /editorial-only maintenance/);
+  assert.doesNotMatch(governance, /Anything a reader or a maintainer would notice/);
   assert.match(paletteRunner, /Issue that owns the correction/);
   assert.doesNotMatch(paletteRunner, /BL-065 backlog block/);
 });

@@ -48,9 +48,10 @@ items and does not replace the default. The gates that have to pass are listed i
 past a red one.
 
 Every change of substance keeps its implementation record on the Issue timeline and linked pull
-request. Anything a reader or a maintainer would notice also gets an entry in
-[the changelog](CHANGELOG.md). A change that lands without those records is treated as a defect in
-its own right.
+request. User-visible behavior and release-relevant maintainer changes also get an entry in
+[the changelog](CHANGELOG.md). Internal execution records, editorial-only maintenance, and agent or
+contributor instruction changes do not need one unless they alter release-relevant maintainer
+behavior. A change that lands without a record required by these rules is treated as a defect.
 
 Findings from a review are routed rather than looped: what is material to the change in hand gets
 fixed, and the rest becomes a repository Issue. This stops a single item spiralling through review
