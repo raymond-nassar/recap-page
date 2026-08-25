@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Browse publication ages on year timelines
+
+In plain English: Silver Age, Bronze Age, Copper Age, and each populated Modern subperiod
+now place their Reading Lists beside the years they begin. Internal years with no published
+list stay visible, while Modern Age remains the gateway to its subperiods and Golden Age keeps
+its honest empty page. Nothing you have saved is changed.
+
+For maintainers: canonical and publication timelines share one configurable chronology renderer
+with route-scoped identities, explicit heading and card contracts, and content-derived year bounds.
+Browser proof covers both hosts together, including age-route reports and narrow layouts.
+
 ### Moved active planning out of the repository documents
 
 In plain English: nothing in the app or anything you have saved is affected. Work still waiting to

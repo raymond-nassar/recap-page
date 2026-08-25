@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:703-704`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:704-705`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
