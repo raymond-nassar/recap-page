@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "road-to-vengeance-missing-link",
+  "inventoryId": "road-to-vengeance-missing-link",
+  "title": "Road to Vengeance: Missing Link",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/road-to-vengeance-missing-link-reading-order/",
+  "sourceSection": null,
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "7df32d85fcd2934b45f53390641c207c91412aa1d4961df6617a95bf9aa7db5a",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "sourceRowCount": 6,
+  "unresolvedRowCount": 6,
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ghost Rider Vol. 3 #41",
+      "sourceSeriesTitle": "Ghost Rider Vol. 3",
+      "issueNumber": "41",
+      "seriesId": 6255,
+      "resolutionStatus": "unmatched",
+      "selectedIssueId": null,
+      "resolvedIssueTitle": null,
+      "marvelIssueUrl": null,
+      "onSaleDate": null
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Spirits of Vengeance #14",
+      "sourceSeriesTitle": "Spirits of Vengeance",
+      "issueNumber": "14",
+      "seriesId": 22916,
+      "resolutionStatus": "unmatched",
+      "selectedIssueId": null,
+      "resolvedIssueTitle": null,
+      "marvelIssueUrl": null,
+      "onSaleDate": null
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Ghost Rider Vol. 3 #42",
+      "sourceSeriesTitle": "Ghost Rider Vol. 3",
+      "issueNumber": "42",
+      "seriesId": 6255,
+      "resolutionStatus": "unmatched",
+      "selectedIssueId": null,
+      "resolvedIssueTitle": null,
+      "marvelIssueUrl": null,
+      "onSaleDate": null
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Spirits of Vengeance #15",
+      "sourceSeriesTitle": "Spirits of Vengeance",
+      "issueNumber": "15",
+      "seriesId": 22916,
+      "resolutionStatus": "unmatched",
+      "selectedIssueId": null,
+      "resolvedIssueTitle": null,
+      "marvelIssueUrl": null,
+      "onSaleDate": null
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Ghost Rider Vol. 3 #43",
+      "sourceSeriesTitle": "Ghost Rider Vol. 3",
+      "issueNumber": "43",
+      "seriesId": 6255,
+      "resolutionStatus": "unmatched",
+      "selectedIssueId": null,
+      "resolvedIssueTitle": null,
+      "marvelIssueUrl": null,
+      "onSaleDate": null
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Spirits of Vengeance #16",
+      "sourceSeriesTitle": "Spirits of Vengeance",
+      "issueNumber": "16",
+      "seriesId": 22916,
+      "resolutionStatus": "unmatched",
+      "selectedIssueId": null,
+      "resolvedIssueTitle": null,
+      "marvelIssueUrl": null,
+      "onSaleDate": null
+    }
+  ],
+  "blockerDigest": "62064beade889b8a71cf9ec502dd58cc114fb62ecb65e69c5af87cb9361e86b6"
+}

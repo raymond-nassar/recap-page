@@ -1,0 +1,368 @@
+{
+  "id": "time-and-time-again",
+  "name": "Time and Time Again",
+  "description": "Eight chapters carrying the New Warriors through a time-spanning conflict.",
+  "source": "https://comicbookreadingorders.com/marvel/events/time-and-time-again-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T15:53:03.206Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 69176,
+      "title": "New Warriors (1990) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/69176/new_warriors_1990_47",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1994-05-01T00:00:00+0000",
+      "mu": "2022-04-21T00:00:00+0000",
+      "digitalId": 58770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/62544880c656d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Stegbauer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "John Czop",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Kobasic",
+          "role": "penciler"
+        },
+        {
+          "name": "Vincent Evans",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83657,
+      "title": "Night Thrasher (1993) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/83657/night_thrasher_1993_11",
+      "seriesId": 29547,
+      "seriesName": "Night Thrasher (1993 - 1995)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "2023-04-28T17:21:45+0000",
+      "digitalId": 58779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/625448be5a15f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Turner",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Amash",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Boller",
+          "role": "penciler"
+        },
+        {
+          "name": "Elman Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83685,
+      "title": "Nova (1994) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83685/nova_1994_6",
+      "seriesId": 29549,
+      "seriesName": "Nova (1994 - 1995)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "1994-06-01T00:00:00+0000",
+      "digitalId": 58781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/625448a02def1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Stegbauer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Marrinan",
+          "role": "penciler"
+        },
+        {
+          "name": "David Boller",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69177,
+      "title": "New Warriors (1990) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/69177/new_warriors_1990_48",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "2022-04-21T00:00:00+0000",
+      "digitalId": 58771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/625448810f672",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stokes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Guy Dorian",
+          "role": "penciler"
+        },
+        {
+          "name": "John Czop",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Pace",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83658,
+      "title": "Night Thrasher (1993) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/83658/night_thrasher_1993_12",
+      "seriesId": 29547,
+      "seriesName": "Night Thrasher (1993 - 1995)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "2023-04-28T17:21:45+0000",
+      "digitalId": 58780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/625448c04e1d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Kane",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Amash",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Boller",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Turner",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Pace",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83686,
+      "title": "Nova (1994) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/83686/nova_1994_7",
+      "seriesId": 29549,
+      "seriesName": "Nova (1994 - 1995)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "1994-07-01T00:00:00+0000",
+      "digitalId": 58782,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/625448a0b117d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Stegbauer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Marrinan",
+          "role": "penciler"
+        },
+        {
+          "name": "David Boller",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69178,
+      "title": "New Warriors (1990) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/69178/new_warriors_1990_49",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "2022-04-21T00:00:00+0000",
+      "digitalId": 58772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/625448811edea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stokes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Guy Dorian",
+          "role": "penciler"
+        },
+        {
+          "name": "John Czop",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69179,
+      "title": "New Warriors (1990) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/69179/new_warriors_1990_50",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "2022-04-21T00:00:00+0000",
+      "digitalId": 58773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/6254489d9fbbf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

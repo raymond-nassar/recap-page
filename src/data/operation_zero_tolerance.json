@@ -1,0 +1,640 @@
+{
+  "id": "operation-zero-tolerance",
+  "name": "Operation: Zero Tolerance",
+  "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",
+  "source": "https://comicbookreadingorders.com/marvel/events/operation-zero-tolerance-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T15:53:03.208Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 20,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 22754,
+      "title": "Generation X (1994) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/22754/generation_x_1994_27",
+      "seriesId": 6256,
+      "seriesName": "Generation X (1994 - 2001)",
+      "onSale": "1997-05-10T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 31992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/57e03dd6a43fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Pop Mhan",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14356,
+      "title": "X-Men (1991) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/14356/x-men_1991_65",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1997-06-01T00:00:00+0000",
+      "mu": "1997-06-01T00:00:00+0000",
+      "digitalId": 32001,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5b116c28760d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18035,
+      "title": "X-Force (1991) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/18035/x-force_1991_67",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1997-06-01T00:00:00+0000",
+      "mu": "1997-06-01T00:00:00+0000",
+      "digitalId": 31997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5873b99d38400",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Pollina",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 7421,
+      "title": "Cable (1993) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/7421/cable_1993_45",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1997-08-10T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 32040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/56f95b2a1e452",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Green",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18036,
+      "title": "X-Force (1991) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/18036/x-force_1991_68",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1997-08-01T00:00:00+0000",
+      "mu": "1997-08-01T00:00:00+0000",
+      "digitalId": 31998,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5873bbaf4816d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pop Mhan",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 7422,
+      "title": "Cable (1993) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/7422/cable_1993_46",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1997-09-10T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 32041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/56f95b9cbeab0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jose Ladronn",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Randy Green",
+          "role": "penciler"
+        },
+        {
+          "name": "Steven Harris",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18037,
+      "title": "X-Force (1991) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/18037/x-force_1991_69",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1997-09-01T00:00:00+0000",
+      "mu": "1997-09-01T00:00:00+0000",
+      "digitalId": 31999,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5873bc43090f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Pollina",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 7423,
+      "title": "Cable (1993) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/7423/cable_1993_47",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1997-10-10T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 32042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/57d7f90cce7e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Green",
+          "role": "penciler"
+        },
+        {
+          "name": "Rob Haynes",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13887,
+      "title": "Uncanny X-Men (1963) #346",
+      "number": "346",
+      "url": "https://www.marvel.com/comics/issue/13887/uncanny_x-men_1963_346",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1997-08-01T00:00:00+0000",
+      "mu": "2013-08-12T10:53:45+0000",
+      "digitalId": 30269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/51b8c0a66b448",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22756,
+      "title": "Generation X (1994) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/22756/generation_x_1994_29",
+      "seriesId": 6256,
+      "seriesName": "Generation X (1994 - 2001)",
+      "onSale": "1997-08-10T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 31994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/57e03f9270120",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 24,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14357,
+      "title": "X-Men (1991) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/14357/x-men_1991_66",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1997-08-01T00:00:00+0000",
+      "mu": "1997-08-01T00:00:00+0000",
+      "digitalId": 32002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5b116f4e2aa6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14054,
+      "title": "Wolverine (1988) #115",
+      "number": "115",
+      "url": "https://www.marvel.com/comics/issue/14054/wolverine_1988_115",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1997-08-10T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 32058,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/585a9ff49bdab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 38,
+      "creators": [
+        {
+          "name": "Edgar Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14358,
+      "title": "X-Men (1991) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/14358/x-men_1991_67",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1997-09-01T00:00:00+0000",
+      "mu": "1997-09-01T00:00:00+0000",
+      "digitalId": 32003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5b11742bb39fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14055,
+      "title": "Wolverine (1988) #116",
+      "number": "116",
+      "url": "https://www.marvel.com/comics/issue/14055/wolverine_1988_116",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1997-09-10T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 32059,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/585aa0e7c83b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 38,
+      "creators": [
+        {
+          "name": "Edgar Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22758,
+      "title": "Generation X (1994) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/22758/generation_x_1994_30",
+      "seriesId": 6256,
+      "seriesName": "Generation X (1994 - 2001)",
+      "onSale": "1997-09-10T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 31995,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/57e040e3cb355",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 22,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22759,
+      "title": "Generation X (1994) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/22759/generation_x_1994_31",
+      "seriesId": 6256,
+      "seriesName": "Generation X (1994 - 2001)",
+      "onSale": "1997-10-10T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 31996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/57e0423f7d883",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14359,
+      "title": "X-Men (1991) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/14359/x-men_1991_68",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1997-10-01T00:00:00+0000",
+      "mu": "1997-10-01T00:00:00+0000",
+      "digitalId": 32004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/5b117a10ad5f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Seagle",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14056,
+      "title": "Wolverine (1988) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/14056/wolverine_1988_117",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1997-10-10T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 32060,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/585aa1eb4cc1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 38,
+      "creators": [
+        {
+          "name": "Edgar Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14360,
+      "title": "X-Men (1991) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/14360/x-men_1991_69",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1997-11-01T00:00:00+0000",
+      "mu": "1997-11-01T00:00:00+0000",
+      "digitalId": 32005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5b118d299eb88",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14057,
+      "title": "Wolverine (1988) #118",
+      "number": "118",
+      "url": "https://www.marvel.com/comics/issue/14057/wolverine_1988_118",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1997-11-10T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 32061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/585aa3073b695",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 38,
+      "creators": [
+        {
+          "name": "Edgar Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

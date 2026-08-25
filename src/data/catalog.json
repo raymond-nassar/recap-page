@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T08:55:08.683Z",
+  "generatedAt": "2026-08-25T15:53:03.240Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3733,6 +3733,150 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T08:55:08.650Z"
+    },
+    {
+      "id": "time-and-time-again",
+      "file": "time_and_time_again.json",
+      "name": "Time and Time Again",
+      "description": "Eight chapters carrying the New Warriors through a time-spanning conflict.",
+      "type": "event",
+      "depth": "complete",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "New Warriors",
+        "Nova",
+        "Night Thrasher"
+      ],
+      "keywords": [
+        "Time and Time Again",
+        "New Warriors",
+        "Nova",
+        "Night Thrasher"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1994,
+      "coverIssueId": 69176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/62544880c656d",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/time-and-time-again-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T15:53:03.206Z"
+    },
+    {
+      "id": "phalanx-covenant",
+      "file": "phalanx_covenant.json",
+      "name": "Phalanx Covenant",
+      "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "X-Force",
+        "Wolverine",
+        "Cable"
+      ],
+      "keywords": [
+        "Phalanx Covenant",
+        "X-Men",
+        "X-Factor",
+        "X-Force"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1994,
+      "coverIssueId": 13857,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/591227cf80337",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/phalanx-covenant-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T15:53:03.208Z"
+    },
+    {
+      "id": "operation-zero-tolerance",
+      "file": "operation_zero_tolerance.json",
+      "name": "Operation: Zero Tolerance",
+      "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",
+      "type": "event",
+      "depth": "complete",
+      "count": 20,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Cable",
+        "Generation X",
+        "X-Force"
+      ],
+      "keywords": [
+        "Operation: Zero Tolerance",
+        "X-Men",
+        "Bastion",
+        "Wolverine"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1997,
+      "coverIssueId": 22754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/57e03dd6a43fb",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/operation-zero-tolerance-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T15:53:03.208Z"
+    },
+    {
+      "id": "spider-man-identity-crisis",
+      "file": "spider_man_identity_crisis.json",
+      "name": "Spider-Man: Identity Crisis",
+      "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
+      "type": "event",
+      "depth": "complete",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Identity Crisis",
+        "Spider-Man",
+        "Ricochet",
+        "Dusk",
+        "Hornet",
+        "Prodigy"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1998,
+      "coverIssueId": 6854,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/515c9c2068c9e",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/spider-man-identity-crisis-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T15:53:03.209Z"
     },
     {
       "id": "maximum-security",

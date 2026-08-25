@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "spider-man-identity-crisis",
+  "inventoryId": "spider-man-identity-crisis",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/spider-man-identity-crisis-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "1b3dae078a0677324a78ff6f290c4a46cc21acaa24297e4d72053edda8e2af72",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "spider-man-identity-crisis",
+    "name": "Spider-Man: Identity Crisis",
+    "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-man-identity-crisis.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/spider-man-identity-crisis-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "spider_man_identity_crisis.json",
+    "characters": [
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Identity Crisis",
+      "Spider-Man",
+      "Ricochet",
+      "Dusk",
+      "Hornet",
+      "Prodigy"
+    ],
+    "expect": 8,
+    "timeline": 1998,
+    "coverIssueId": 6854
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B08 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T15:17:09.349Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Amazing Spider-Man #434",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "434",
+      "seriesId": 1987,
+      "candidateIssueId": 6854,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #435",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "435",
+      "seriesId": 1987,
+      "candidateIssueId": 6855,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Sensational Spider-Man #27",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "27",
+      "seriesId": 19135,
+      "candidateIssueId": 66339,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Sensational Spider-Man #28",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "28",
+      "seriesId": 19135,
+      "candidateIssueId": 66340,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Peter Parker: Spider-Man #91",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker: Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "91",
+      "seriesId": 2069,
+      "candidateIssueId": 10857,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Spider-Man (1990 - 1998), series 2069."
+    },
+    {
+      "sourceIssueReference": "Peter Parker: Spider-Man #92",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker: Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "92",
+      "seriesId": 2069,
+      "candidateIssueId": 10858,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Spider-Man (1990 - 1998), series 2069."
+    },
+    {
+      "sourceIssueReference": "Spectacular Spider-Man #257",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "257",
+      "seriesId": 2271,
+      "candidateIssueId": 14717,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Peter Parker, the Spectacular Spider-Man (1976 - 1998), series 2271."
+    },
+    {
+      "sourceIssueReference": "Spectacular Spider-Man #258",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "258",
+      "seriesId": 2271,
+      "candidateIssueId": 14718,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Peter Parker, the Spectacular Spider-Man (1976 - 1998), series 2271."
+    }
+  ],
+  "packetDigest": "29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1"
+}

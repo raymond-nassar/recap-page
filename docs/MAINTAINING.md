@@ -395,12 +395,12 @@ one known complete source-order or chronology-order set. Unknown releases, incom
 duplicates, and the wrong order are refused so an omitted guide cannot become an ordinary library
 comparison instead of a bound peer.
 
-The maintained historical program currently ships 32 guides. The seventh continuation release has
-three guides and 23 exact rows, which is why release validation names a complete known release rather
-than assuming every release contains five guides. For Love Nor Money, Maximum Carnage, Infinity
-Crusade, and Blood and Thunder retain complete blocker records for 80 source rows and 19 exact gaps.
-Acts of Vengeance, The Infinity Gauntlet, and Infinity War retain their earlier complete blocker
-records. Bloodties at source position 36 is already shipped, so Marvel 2099 at position 37 is the
+The maintained historical program currently ships 36 guides. The eighth continuation release has
+four guides and 45 exact rows, which is why release validation names a complete known release rather
+than assuming every release contains five guides. Road to Vengeance: Missing Link, Siege of Darkness,
+Age of Apocalypse, Over the Edge, Onslaught Saga, and Heroes Reborn retain complete blocker records
+for 210 source rows and 16 exact gaps. All earlier blocker records remain unchanged. Marvel 2099 and
+Second Clone Saga remain deferred for separate review, and MC2 at source position 54 is the paused
 next cursor.
 
 Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
