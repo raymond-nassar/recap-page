@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added three exclusion-aware historical Marvel event guides
+
+In plain English: Wraith War, Secret Wars II, and Mutant Massacre are now available as selected
+historical reading guides. They add 58 issues, keep the source sequence, and clearly name the
+31 nonessential tie-ins omitted because they are not discoverable through Marvel Unlimited. The
+catalog now has 117 reading lists, and nothing you have saved is changed.
+
+For maintainers: the release conserves all 89 source rows as 58 retained rows plus 31 exact,
+guide-scoped exclusions. Three frozen packets, mappings, and complete relationship reports bind the
+decision without inventing metadata or treating an omitted issue as unavailable.
+
 ### Added three more historical Marvel event guides
 
 In plain English: Marvel Super Heroes Secret Wars, Fall of the Mutants, and Kraven's Last Hunt are

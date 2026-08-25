@@ -198,6 +198,9 @@ const laterHistoricalIds = [
   'days-of-future-past',
   'contest-of-champions',
   'marvel-super-heroes-secret-wars',
+  'wraith-war',
+  'secret-wars-ii',
+  'mutant-massacre',
   'kravens-last-hunt',
   'fall-of-the-mutants',
 ];
@@ -1120,7 +1123,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 114);
+  assert.equal(catalog.lists.length, 117);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 14);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);

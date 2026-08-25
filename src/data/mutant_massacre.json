@@ -1,0 +1,353 @@
+{
+  "id": "mutant-massacre",
+  "name": "Mutant Massacre",
+  "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
+  "source": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T02:46:33.986Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 11,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 13751,
+      "title": "Uncanny X-Men (1963) #210",
+      "number": "210",
+      "url": "https://www.marvel.com/comics/issue/13751/uncanny_x-men_1963_210",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1986-10-01T00:00:00+0000",
+      "mu": "2014-08-08T10:50:00+0000",
+      "digitalId": 21148,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/50ad58c3e74c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12312,
+      "title": "X-Factor (1986) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/12312/x-factor_1986_9",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1986-10-01T00:00:00+0000",
+      "mu": "1986-10-01T00:00:00+0000",
+      "digitalId": 21151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/594ad499ca18b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Shoemaker",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13752,
+      "title": "Uncanny X-Men (1963) #211",
+      "number": "211",
+      "url": "https://www.marvel.com/comics/issue/13752/uncanny_x-men_1963_211",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1986-11-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 4075,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4bb65a45d3c28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12175,
+      "title": "X-Factor (1986) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/12175/x-factor_1986_10",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1986-11-01T00:00:00+0000",
+      "mu": "1986-11-01T00:00:00+0000",
+      "digitalId": 21152,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/50b4106801edf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10384,
+      "title": "New Mutants (1983) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/10384/new_mutants_1983_46",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1986-12-01T00:00:00+0000",
+      "mu": "1986-12-01T00:00:00+0000",
+      "digitalId": 21154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5a04cc4d9e587",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11701,
+      "title": "Thor (1966) #373",
+      "number": "373",
+      "url": "https://www.marvel.com/comics/issue/11701/thor_1966_373",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1986-11-01T00:00:00+0000",
+      "mu": "1986-11-01T00:00:00+0000",
+      "digitalId": 7196,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/4c35f7e3713e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13753,
+      "title": "Uncanny X-Men (1963) #212",
+      "number": "212",
+      "url": "https://www.marvel.com/comics/issue/13753/uncanny_x-men_1963_212",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1986-12-01T00:00:00+0000",
+      "mu": "2014-08-08T10:52:26+0000",
+      "digitalId": 21149,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/50b52f6e64751",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11702,
+      "title": "Thor (1966) #374",
+      "number": "374",
+      "url": "https://www.marvel.com/comics/issue/11702/thor_1966_374",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1986-12-01T00:00:00+0000",
+      "mu": "1986-12-01T00:00:00+0000",
+      "digitalId": 7197,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/4c35f7d0b0cfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12186,
+      "title": "X-Factor (1986) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/12186/x-factor_1986_11",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1986-12-01T00:00:00+0000",
+      "mu": "1986-12-01T00:00:00+0000",
+      "digitalId": 21153,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5735f97dc31c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Mandrake",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13754,
+      "title": "Uncanny X-Men (1963) #213",
+      "number": "213",
+      "url": "https://www.marvel.com/comics/issue/13754/uncanny_x-men_1963_213",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1987-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/535146ebb9f46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8227,
+      "title": "Daredevil (1964) #238",
+      "number": "238",
+      "url": "https://www.marvel.com/comics/issue/8227/daredevil_1964_238",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1987-01-01T00:00:00+0000",
+      "mu": "1987-01-01T00:00:00+0000",
+      "digitalId": 21155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/62f50d0f255f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

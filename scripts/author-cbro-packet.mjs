@@ -125,12 +125,17 @@ function manifestEntryForCbroMapping(mapping) {
 export function buildCbroMarkdown(mapping) {
   const manifest = manifestEntryForCbroMapping(mapping);
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
+  const excludedRows = mapping.excludedSourceRows ?? [];
   const trail = [
     `Generated for this project from the reviewed ${mapping.id} Comic Book Reading Orders packet.`,
     `Source: [Comic Book Reading Orders](${mapping.sourceUrl}).`,
     'The checklist retains only factual issue identities and preserves the reviewed source order.',
     ...(repeatedCount === 0 ? [] : [
       `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
+    ]),
+    ...(excludedRows.length === 0 ? [] : [
+      `This ${manifest.depth} checklist omits ${excludedRows.length} user-approved, nonessential ${excludedRows.length === 1 ? 'tie-in that is' : 'tie-ins that are'} not discoverable through Marvel Unlimited: ${excludedRows.map((row) => row.sourceIssueReference).join(', ')}.`,
+      'The linked Comic Book Reading Orders page preserves the full source order.',
     ]),
     'No source commentary, branding, layout, or images are copied. Issue metadata and exact links come from the configured Marvel metadata snapshot.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission and publication boundary.',

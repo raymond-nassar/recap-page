@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "id": "mutant-massacre",
+  "inventoryId": "mutant-massacre",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+  "sourceSection": null,
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "eb3dac85c36f732a10c67b2cb5c09b85b2c8093dc95582b67d4c58519917d8cb",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Power Pack #27",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    }
+  ],
+  "sourceOccurrenceCount": 12,
+  "expectedCount": 11,
+  "proposedManifest": {
+    "id": "mutant-massacre",
+    "name": "Mutant Massacre",
+    "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mutant-massacre.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "mutant_massacre.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "New Mutants",
+      "Thor",
+      "Daredevil"
+    ],
+    "keywords": [
+      "Mutant Massacre",
+      "X-Men",
+      "X-Factor",
+      "Marauders"
+    ],
+    "expect": 11,
+    "timeline": 1986,
+    "coverIssueId": 13751
+  },
+  "insertionAnchor": {
+    "beforeId": "fall-of-the-mutants"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B04 coordinator",
+    "rationale": "The exact source page, 89-row conservation ledger, approved guide-scoped exclusions, retained metadata, first-on-sale chronology, and non-complete manifest proposal were reviewed centrally.",
+    "reviewedAt": "2026-08-25T02:40:30.518Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men #210",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "210",
+      "seriesId": 2258,
+      "candidateIssueId": 13751,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "9",
+      "seriesId": 2098,
+      "candidateIssueId": 12312,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #211",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "211",
+      "seriesId": 2258,
+      "candidateIssueId": 13752,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "10",
+      "seriesId": 2098,
+      "candidateIssueId": 12175,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #46",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "46",
+      "seriesId": 2055,
+      "candidateIssueId": 10384,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #373",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "373",
+      "seriesId": 2083,
+      "candidateIssueId": 11701,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #212",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "212",
+      "seriesId": 2258,
+      "candidateIssueId": 13753,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #374",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "374",
+      "seriesId": 2083,
+      "candidateIssueId": 11702,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "11",
+      "seriesId": 2098,
+      "candidateIssueId": 12186,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #213",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "213",
+      "seriesId": 2258,
+      "candidateIssueId": 13754,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil #238",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "238",
+      "seriesId": 2002,
+      "candidateIssueId": 8227,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99"
+}

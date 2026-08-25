@@ -1,0 +1,241 @@
+{
+  "id": "wraith-war",
+  "name": "Wraith War",
+  "description": "Seven essential Wraith War chapters from Hulk, Avengers, and Uncanny X-Men, selected from the full source order.",
+  "source": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T02:46:33.982Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 9107,
+      "title": "Incredible Hulk (1962) #296",
+      "number": "296",
+      "url": "https://www.marvel.com/comics/issue/9107/incredible_hulk_1962_296",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-06-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5801521408752",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7113,
+      "title": "Avengers (1963) #244",
+      "number": "244",
+      "url": "https://www.marvel.com/comics/issue/7113/avengers_1963_244",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1984-06-01T00:00:00+0000",
+      "mu": "1984-06-01T00:00:00+0000",
+      "digitalId": 30482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5877dbc96de1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Carmine Infantino",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7114,
+      "title": "Avengers (1963) #245",
+      "number": "245",
+      "url": "https://www.marvel.com/comics/issue/7114/avengers_1963_245",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1984-07-01T00:00:00+0000",
+      "mu": "1984-07-01T00:00:00+0000",
+      "digitalId": 30483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5877dca0ab169",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13726,
+      "title": "Uncanny X-Men (1963) #185",
+      "number": "185",
+      "url": "https://www.marvel.com/comics/issue/13726/uncanny_x-men_1963_185",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1984-09-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33129,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5903470d2f57f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13727,
+      "title": "Uncanny X-Men (1963) #186",
+      "number": "186",
+      "url": "https://www.marvel.com/comics/issue/13727/uncanny_x-men_1963_186",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1984-10-01T00:00:00+0000",
+      "mu": "2013-08-05T11:37:32+0000",
+      "digitalId": 30052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/5903490f60d80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13728,
+      "title": "Uncanny X-Men (1963) #187",
+      "number": "187",
+      "url": "https://www.marvel.com/comics/issue/13728/uncanny_x-men_1963_187",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1984-11-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33130,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/59034a8d77f4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13729,
+      "title": "Uncanny X-Men (1963) #188",
+      "number": "188",
+      "url": "https://www.marvel.com/comics/issue/13729/uncanny_x-men_1963_188",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1984-12-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/59034db43fd1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

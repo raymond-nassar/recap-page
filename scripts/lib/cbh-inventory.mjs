@@ -64,6 +64,7 @@ const PACKET_FIELDS = new Set([
   'sourceIssueBearingBlocksSha256',
   'sourceBoundary',
   'excludedSourceReferences',
+  'excludedSourceRows',
   'sourceOccurrenceCount',
   'repeatedSourceReferences',
   'expectedCount',
@@ -85,6 +86,7 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'sourceRetrievalStatus',
   'approvedSourceCount',
   'excludedSourceReferences',
+  'excludedSourceRows',
   'sourceOccurrenceCount',
   'repeatedSourceReferences',
   'proposedManifest',
@@ -99,6 +101,12 @@ const REPEATED_SOURCE_REFERENCE_FIELDS = new Set([
   'normalizedSeriesTitle',
   'seriesYear',
   'issueNumber',
+]);
+const EXCLUDED_SOURCE_ROW_FIELDS = new Set([
+  'sourcePosition',
+  'sourceIssueReference',
+  'reason',
+  'decisionScope',
 ]);
 const REPORT_DIGEST_FIELDS = Object.freeze([
   'candidateId',
@@ -222,24 +230,45 @@ function assertRepeatedSourceReference(reference, index, rows) {
   assertNonEmptyString(String(reference.issueNumber ?? ''), `${label} issueNumber`);
 }
 
+function assertExcludedSourceRow(row, index) {
+  const label = `Excluded source row ${index + 1}`;
+  if (!isPlainObject(row)) throw new Error(`${label} must be an object`);
+  const fields = Object.keys(row);
+  const missing = [...EXCLUDED_SOURCE_ROW_FIELDS].filter((field) => !Object.hasOwn(row, field));
+  if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
+  const unexpected = fields.filter((field) => !EXCLUDED_SOURCE_ROW_FIELDS.has(field));
+  if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
+  if (!Number.isInteger(row.sourcePosition) || row.sourcePosition < 1) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
+  assertNonEmptyString(row.sourceIssueReference, `${label} sourceIssueReference`);
+  assertNonEmptyString(row.reason, `${label} reason`);
+  assertNonEmptyString(row.decisionScope, `${label} decisionScope`);
+}
+
 export function sourcePositionsForPacket(packet) {
   const packetId = String(packet?.id ?? 'Frozen packet');
   const rows = Array.isArray(packet?.rows) ? packet.rows : [];
   assertCanonicalPacketRows(rows, packetId);
   const hasOccurrenceCount = Object.hasOwn(packet ?? {}, 'sourceOccurrenceCount');
   const hasRepeatedReferences = Object.hasOwn(packet ?? {}, 'repeatedSourceReferences');
-  if (hasOccurrenceCount !== hasRepeatedReferences) {
-    throw new Error(`${packetId} sourceOccurrenceCount and repeatedSourceReferences must appear together`);
+  const hasExcludedRows = Object.hasOwn(packet ?? {}, 'excludedSourceRows');
+  if (hasOccurrenceCount !== (hasRepeatedReferences || hasExcludedRows)) {
+    throw new Error(`${packetId} sourceOccurrenceCount and supplemental source rows must appear together`);
   }
   if (!hasOccurrenceCount) return rows.map((_, index) => index + 1);
 
-  const references = packet.repeatedSourceReferences;
-  if (!Array.isArray(references) || references.length === 0) {
+  const references = hasRepeatedReferences ? packet.repeatedSourceReferences : [];
+  const excludedRows = hasExcludedRows ? packet.excludedSourceRows : [];
+  if (hasRepeatedReferences && (!Array.isArray(references) || references.length === 0)) {
     throw new Error(`${packetId} repeatedSourceReferences must be a non-empty array when present`);
   }
+  if (hasExcludedRows && (!Array.isArray(excludedRows) || excludedRows.length === 0)) {
+    throw new Error(`${packetId} excludedSourceRows must be a non-empty array when present`);
+  }
   if (!Number.isInteger(packet.sourceOccurrenceCount)
-    || packet.sourceOccurrenceCount !== rows.length + references.length) {
-    throw new Error(`${packetId} sourceOccurrenceCount must equal canonical rows plus repeated references`);
+    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length) {
+    throw new Error(`${packetId} sourceOccurrenceCount must equal canonical rows plus repeated references and excluded source rows`);
   }
 
   const bySourcePosition = new Map();
@@ -258,6 +287,21 @@ export function sourcePositionsForPacket(packet) {
     bySourcePosition.set(reference.sourcePosition, reference);
     previousSourcePosition = reference.sourcePosition;
   }
+  previousSourcePosition = 0;
+  for (const [index, excluded] of excludedRows.entries()) {
+    assertExcludedSourceRow(excluded, index);
+    if (bySourcePosition.has(excluded.sourcePosition)) {
+      throw new Error(`${packetId} contains a duplicate supplemental source position: ${excluded.sourcePosition}`);
+    }
+    if (excluded.sourcePosition <= previousSourcePosition) {
+      throw new Error(`${packetId} excludedSourceRows must be in sourcePosition order`);
+    }
+    if (excluded.sourcePosition > packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} excluded source position ${excluded.sourcePosition} is outside the source occurrence count`);
+    }
+    bySourcePosition.set(excluded.sourcePosition, excluded);
+    previousSourcePosition = excluded.sourcePosition;
+  }
 
   const canonicalSourcePositions = [];
   for (let sourcePosition = 1; sourcePosition <= packet.sourceOccurrenceCount; sourcePosition += 1) {
@@ -266,6 +310,7 @@ export function sourcePositionsForPacket(packet) {
       canonicalSourcePositions.push(sourcePosition);
       continue;
     }
+    if (!Object.hasOwn(reference, 'canonicalRow')) continue;
     if (reference.canonicalRow > canonicalSourcePositions.length) {
       throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier canonical row`);
     }
@@ -294,9 +339,14 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
   const expectedCount = sourceOccurrenceCountFor(packet);
   const packetReferences = packet.repeatedSourceReferences ?? null;
   const mappingReferences = mapping?.repeatedSourceReferences ?? null;
+  const packetExclusions = packet.excludedSourceRows ?? null;
+  const mappingExclusions = mapping?.excludedSourceRows ?? null;
   if ((packet.sourceOccurrenceCount ?? null) !== (mapping?.sourceOccurrenceCount ?? null)
     || canonicalJson(packetReferences) !== canonicalJson(mappingReferences)) {
     throw new Error(`${packetId} mapping repeated source evidence differs from its frozen packet`);
+  }
+  if (canonicalJson(packetExclusions) !== canonicalJson(mappingExclusions)) {
+    throw new Error(`${packetId} mapping excluded source evidence differs from its frozen packet`);
   }
   if (mapping?.approvedSourceCount !== expectedCount) {
     throw new Error(`${packetId} approvedSourceCount differs from its frozen source occurrence count`);

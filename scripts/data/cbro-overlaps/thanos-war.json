@@ -2,7 +2,7 @@
   "candidateId": "thanos-war",
   "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da",
   "mappingDigest": "0c38d78c7155945788e369a586d0409b3953b6339f34c66c5a670945680a3199",
-  "libraryDigest": "8b2e6515b084a514ff49a86a4598301f2df12c7fc0e4670c5181c17291d92865",
+  "libraryDigest": "e53ba9bc94be8cefcc60b5ba5f6f8e2ee33a8b6d2084658c97dfea93ae1abd2e",
   "peerDigests": {
     "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 12,
-  "comparisonCount": 113,
+  "comparisonCount": 116,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -391,6 +391,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "mutant-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -482,6 +488,12 @@
     },
     {
       "orderId": "secret-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-wars-ii",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -601,6 +613,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "wraith-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-men-age-of-x",
       "sharedCount": 0,
       "sharedIds": [],
@@ -691,5 +709,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "2d4d01933537111a90172fad81818689a4eb64f851e28e06f678bdcca2010883"
+  "reportDigest": "15f4ca2a109cb9e0adce9b097a39aa0026363cbe68d1536b4300ec25624c0f38"
 }

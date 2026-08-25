@@ -96,7 +96,7 @@ test('every shared year belongs to the later period and never to both', () => {
 test('the shipped dated catalog partitions once by age and once by Modern subperiod', () => {
   const dated = stories.filter((story) => storyYear(story) !== null);
   const modern = publishingCategoryStories(stories, 'modern');
-  assert.equal(dated.length, 90);
+  assert.equal(dated.length, 93);
   assert.equal(modern.length, 77);
 
   for (const story of dated) {
@@ -124,7 +124,7 @@ test('the shipped dated catalog partitions once by age and once by Modern subper
       .reduce((sum, story) => sum + story.lists.length, 0),
     0,
   );
-  assert.equal(topLists, 96);
+  assert.equal(topLists, 99);
   assert.equal(periodLists, 83);
 });
 
@@ -147,7 +147,7 @@ test('publishing categories cross canonical shelves without changing shelf owner
 test('only populated publishing categories are available and counts use Reading Lists', () => {
   const ages = availablePublishingCategories(stories);
   assert.deepEqual(ages.map(({ key }) => key), ['silver', 'bronze', 'copper', 'modern']);
-  assert.deepEqual(ages.map(({ count }) => count), [1, 9, 3, 83]);
+  assert.deepEqual(ages.map(({ count }) => count), [1, 9, 6, 83]);
 
   const periods = availablePublishingCategories(stories, 'modern');
   assert.deepEqual(

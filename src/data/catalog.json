@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T23:03:25.477Z",
+  "generatedAt": "2026-08-25T03:07:40.431Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3169,6 +3169,114 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-24T23:03:25.375Z"
+    },
+    {
+      "id": "wraith-war",
+      "file": "wraith_war.json",
+      "name": "Wraith War",
+      "description": "Seven essential Wraith War chapters from Hulk, Avengers, and Uncanny X-Men, selected from the full source order.",
+      "type": "event",
+      "depth": "essential",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Hulk",
+        "Avengers",
+        "X-Men"
+      ],
+      "keywords": [
+        "Wraith War",
+        "Dire Wraiths",
+        "Avengers",
+        "X-Men"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1984,
+      "coverIssueId": 9107,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5801521408752",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T02:46:33.982Z"
+    },
+    {
+      "id": "secret-wars-ii",
+      "file": "secret_wars_ii.json",
+      "name": "Secret Wars II",
+      "description": "Forty selected Secret Wars II chapters, omitting two nonessential tie-ins that are not discoverable through Marvel Unlimited.",
+      "type": "event",
+      "depth": "selected",
+      "count": 40,
+      "collections": 0,
+      "characters": [
+        "Beyonder",
+        "Avengers",
+        "Spider-Man",
+        "Fantastic Four",
+        "X-Men"
+      ],
+      "keywords": [
+        "Secret Wars II",
+        "Beyonder",
+        "Marvel event"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1985,
+      "coverIssueId": 18884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5bd088debe0aa",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/secret-wars-ii-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T02:46:33.985Z"
+    },
+    {
+      "id": "mutant-massacre",
+      "file": "mutant_massacre.json",
+      "name": "Mutant Massacre",
+      "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
+      "type": "event",
+      "depth": "selected",
+      "count": 11,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants",
+        "Thor",
+        "Daredevil"
+      ],
+      "keywords": [
+        "Mutant Massacre",
+        "X-Men",
+        "X-Factor",
+        "Marauders"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1986,
+      "coverIssueId": 13751,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/50ad58c3e74c0",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T02:46:33.986Z"
     },
     {
       "id": "fall-of-the-mutants",

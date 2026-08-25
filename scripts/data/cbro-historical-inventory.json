@@ -267,12 +267,17 @@
     "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "78388b6291a92f7664a71017daa7b30ec7c80eab4a28b39b27ac1cb48fe2d2c4",
     "sourceRowCount": 35,
-    "centralDisposition": "blocked",
-    "relationshipStatus": "unresolved",
-    "reason": "Metadata blocked: the configured snapshot has no historical ROM or ROM Annual series, leaving 30 of 35 source rows unresolved.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked",
+    "centralDisposition": "selected",
+    "relationshipStatus": "approved-mixed",
+    "reason": "Selected for MRT-003-C02-B04 as seven essential chapters with 28 exact user-approved, guide-scoped exclusions.",
+    "overlapIds": [
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "wraith-war"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -287,12 +292,19 @@
     "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "7d652467f335225a2ef8fe6284316be26c71c7774b72db4c6b449c641c144351",
     "sourceRowCount": 42,
-    "centralDisposition": "blocked",
-    "relationshipStatus": "unresolved",
-    "reason": "Metadata blocked: ROM #72 and Micronauts Vol. 2 #16 have no exact configured metadata series.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked",
+    "centralDisposition": "selected",
+    "relationshipStatus": "approved-mixed",
+    "reason": "Selected for MRT-003-C02-B04 as 40 selected chapters with two exact user-approved, guide-scoped exclusions.",
+    "overlapIds": [
+      "doctor-doom-primer",
+      "essential-avengers",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "secret-wars-ii"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -307,12 +319,17 @@
     "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "eb3dac85c36f732a10c67b2cb5c09b85b2c8093dc95582b67d4c58519917d8cb",
     "sourceRowCount": 12,
-    "centralDisposition": "blocked",
-    "relationshipStatus": "unresolved",
-    "reason": "Metadata blocked: Power Pack #27 is absent from the configured Power Pack series.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked",
+    "centralDisposition": "selected",
+    "relationshipStatus": "candidate-subset",
+    "reason": "Selected for MRT-003-C02-B04 as 11 selected chapters with one exact user-approved, guide-scoped exclusion.",
+    "overlapIds": [
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "mutant-massacre"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
