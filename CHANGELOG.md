@@ -14,6 +14,21 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added four complete historical Marvel event guides
+
+In plain English: The Evolutionary War, Inferno, Atlantis Attacks, and Days of Future Present are
+now available as complete historical reading guides. They add 71 issues, preserve each source
+sequence, and credit Comic Book Reading Orders. The catalog now has 121 reading lists, and nothing
+you have saved is changed.
+
+Acts of Vengeance was not shortened to fit the release. Its full 70-issue source order is preserved,
+but Web of Spider-Man #62 and #63 remain missing from the configured metadata. X-Tinction Agenda is
+the next historical guide in the queue.
+
+For maintainers: four frozen packets, exact mappings, and complete relationship reports bind all 71
+selected rows. The reports cover 480 current-library and selected-peer comparisons, all with no
+shared issue. Days of Future Present now resolves its former blocker exactly as issue 12360.
+
 ### Added three exclusion-aware historical Marvel event guides
 
 In plain English: Wraith War, Secret Wars II, and Mutant Massacre are now available as selected

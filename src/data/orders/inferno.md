@@ -1,0 +1,47 @@
+# Inferno: Issue-by-Issue Reading Checklist
+
+Generated for this project from the reviewed inferno Comic Book Reading Orders packet.
+Source: [Comic Book Reading Orders](https://comicbookreadingorders.com/marvel/events/inferno-reading-order/).
+The checklist retains only factual issue identities and preserves the reviewed source order.
+No source commentary, branding, layout, or images are copied. Issue metadata and exact links come from the configured Marvel metadata snapshot.
+See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission and publication boundary.
+
+- [ ] [Uncanny X-Men (1963) #239](https://www.marvel.com/comics/issue/13780/uncanny_x-men_1963_239)
+- [ ] [X-Terminators (1988) #1](https://www.marvel.com/comics/issue/41563/x-terminators_1988_1)
+- [ ] [X-Terminators (1988) #2](https://www.marvel.com/comics/issue/41564/x-terminators_1988_2)
+- [ ] [X-Terminators (1988) #3](https://www.marvel.com/comics/issue/41565/x-terminators_1988_3)
+- [ ] [X-Factor (1986) #36](https://www.marvel.com/comics/issue/12253/x-factor_1986_36)
+- [ ] [Uncanny X-Men (1963) #240](https://www.marvel.com/comics/issue/13781/uncanny_x-men_1963_240)
+- [ ] [Uncanny X-Men (1963) #241](https://www.marvel.com/comics/issue/13782/uncanny_x-men_1963_241)
+- [ ] [Fantastic Four (1961) #322](https://www.marvel.com/comics/issue/13142/fantastic_four_1961_322)
+- [ ] [Avengers (1963) #298](https://www.marvel.com/comics/issue/7172/avengers_1963_298)
+- [ ] [The Amazing Spider-Man (1963) #311](https://www.marvel.com/comics/issue/6718/the_amazing_spider-man_1963_311)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #146](https://www.marvel.com/comics/issue/14594/peter_parker_the_spectacular_spider-man_1976_146)
+- [ ] [Web of Spider-Man (1985) #47](https://www.marvel.com/comics/issue/12044/web_of_spider-man_1985_47)
+- [ ] [The Amazing Spider-Man (1963) #312](https://www.marvel.com/comics/issue/6719/the_amazing_spider-man_1963_312)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #147](https://www.marvel.com/comics/issue/14595/peter_parker_the_spectacular_spider-man_1976_147)
+- [ ] [Web of Spider-Man (1985) #48](https://www.marvel.com/comics/issue/12045/web_of_spider-man_1985_48)
+- [ ] [Daredevil (1964) #262](https://www.marvel.com/comics/issue/8254/daredevil_1964_262)
+- [ ] [Power Pack (1984) #42](https://www.marvel.com/comics/issue/43041/power_pack_1984_42)
+- [ ] [Power Pack (1984) #43](https://www.marvel.com/comics/issue/43042/power_pack_1984_43)
+- [ ] [The Amazing Spider-Man (1963) #313](https://www.marvel.com/comics/issue/6720/the_amazing_spider-man_1963_313)
+- [ ] [Avengers (1963) #299](https://www.marvel.com/comics/issue/7173/avengers_1963_299)
+- [ ] [Avengers (1963) #300](https://www.marvel.com/comics/issue/7176/avengers_1963_300)
+- [ ] [Daredevil (1964) #263](https://www.marvel.com/comics/issue/8255/daredevil_1964_263)
+- [ ] [New Mutants (1983) #71](https://www.marvel.com/comics/issue/10412/new_mutants_1983_71)
+- [ ] [X-Terminators (1988) #4](https://www.marvel.com/comics/issue/41566/x-terminators_1988_4)
+- [ ] [New Mutants (1983) #72](https://www.marvel.com/comics/issue/10413/new_mutants_1983_72)
+- [ ] [New Mutants (1983) #73](https://www.marvel.com/comics/issue/10414/new_mutants_1983_73)
+- [ ] [Fantastic Four (1961) #323](https://www.marvel.com/comics/issue/13143/fantastic_four_1961_323)
+- [ ] [Daredevil (1964) #265](https://www.marvel.com/comics/issue/8257/daredevil_1964_265)
+- [ ] [X-Factor (1986) #37](https://www.marvel.com/comics/issue/12254/x-factor_1986_37)
+- [ ] [Uncanny X-Men (1963) #242](https://www.marvel.com/comics/issue/13783/uncanny_x-men_1963_242)
+- [ ] [X-Factor (1986) #38](https://www.marvel.com/comics/issue/12255/x-factor_1986_38)
+- [ ] [Uncanny X-Men (1963) #243](https://www.marvel.com/comics/issue/13784/uncanny_x-men_1963_243)
+- [ ] [X-Factor (1986) #39](https://www.marvel.com/comics/issue/12256/x-factor_1986_39)
+- [ ] [Excalibur (1988) #6](https://www.marvel.com/comics/issue/8643/excalibur_1988_6)
+- [ ] [Excalibur (1988) #7](https://www.marvel.com/comics/issue/8654/excalibur_1988_7)
+- [ ] [The Mutant Misadventures of Cloak and Dagger (1988) #4](https://www.marvel.com/comics/issue/43044/the_mutant_misadventures_of_cloak_and_dagger_1988_4)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #148](https://www.marvel.com/comics/issue/14596/peter_parker_the_spectacular_spider-man_1976_148)
+- [ ] [Power Pack (1984) #44](https://www.marvel.com/comics/issue/43043/power_pack_1984_44)
+- [ ] [Damage Control (1989) #4](https://www.marvel.com/comics/issue/57671/damage_control_1989_4)

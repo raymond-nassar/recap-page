@@ -1,0 +1,537 @@
+{
+  "id": "evolutionary-war",
+  "name": "The Evolutionary War",
+  "description": "Eleven annual chapters carrying the Evolutionary War across Marvel heroes and teams.",
+  "source": "https://comicbookreadingorders.com/marvel/events/evolutionary-war-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T04:20:54.112Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 11,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 23511,
+      "title": "X-Factor Annual (1986) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/23511/x-factor_annual_1986_3",
+      "seriesId": 6689,
+      "seriesName": "X-Factor Annual (1986 - 1994)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "2016-05-23T00:00:00+0000",
+      "digitalId": 26022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5736189a408e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 68,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Josef Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Mazzucchelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jerry Ordway",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Paris Cullins",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Shoemaker",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Artis",
+          "role": "penciler"
+        },
+        {
+          "name": "Walter M. Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69854,
+      "title": "The Punisher Annual (1988) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69854/the_punisher_annual_1988_1",
+      "seriesId": 25499,
+      "seriesName": "The Punisher Annual (1988 - 1994)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 48206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5ae340b05d8ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Vosburg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Texeira",
+          "role": "penciler"
+        },
+        {
+          "name": "Paris Cullins",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Baron",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Salick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69459,
+      "title": "Silver Surfer Annual (1988) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69459/silver_surfer_annual_1988_1",
+      "seriesId": 19005,
+      "seriesName": "Silver Surfer Annual (1988 - 1997)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 48207,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5ae340e1d4493",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Staton",
+          "role": "penciler"
+        },
+        {
+          "name": "Paris Cullins",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10338,
+      "title": "New Mutants Annual (1984) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10338/new_mutants_annual_1984_4",
+      "seriesId": 2053,
+      "seriesName": "New Mutants Annual (1984 - 1991)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 26047,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5e5e78d66eaab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Sinclair",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Richardson",
+          "role": "cover artist"
+        },
+        {
+          "name": "June Brigman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16897,
+      "title": "Amazing Spider-Man Annual (1964) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/16897/amazing_spider-man_annual_1964_22",
+      "seriesId": 2984,
+      "seriesName": "Amazing Spider-Man Annual (1964 - 2018)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 43927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/51e00930c667d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Ditko",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8700,
+      "title": "Fantastic Four Annual (1963) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/8700/fantastic_four_annual_1963_21",
+      "seriesId": 2012,
+      "seriesName": "Fantastic Four Annual (1963 - 1994)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 39913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/52616d13adcb9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Dwyer",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12358,
+      "title": "X-Men Annual (1970) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/12358/x-men_annual_1970_12",
+      "seriesId": 2100,
+      "seriesName": "X-Men Annual (1970 - 1994)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 2830,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5fa01921835b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70099,
+      "title": "Web of Spider-Man Annual (1985) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/70099/web_of_spider-man_annual_1985_4",
+      "seriesId": 19003,
+      "seriesName": "Web of Spider-Man Annual (1985 - 1994)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 48226,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ae22152aa88f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cynthia Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Gerber",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17940,
+      "title": "West Coast Avengers Annual (1986) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/17940/west_coast_avengers_annual_1986_3",
+      "seriesId": 3632,
+      "seriesName": "West Coast Avengers Annual (1986 - 1988)",
+      "onSale": "1988-10-10T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 39919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5a8ef0572bae5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerry Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Machlan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70667,
+      "title": "Peter Parker, the Spectacular Spider-Man Annual (1979) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/70667/peter_parker_the_spectacular_spider-man_annual_1979_8",
+      "seriesId": 20403,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man Annual (1979 - 1991)",
+      "onSale": "1988-11-01T00:00:00+0000",
+      "mu": "1988-11-01T00:00:00+0000",
+      "digitalId": 48343,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5ae340085b35d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6931,
+      "title": "Avengers Annual (1967) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/6931/avengers_annual_1967_17",
+      "seriesId": 1988,
+      "seriesName": "Avengers Annual (1967 - 1994)",
+      "onSale": "1988-11-01T00:00:00+0000",
+      "mu": "1988-11-01T00:00:00+0000",
+      "digitalId": 47409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/52166b44c751a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Gustovich",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

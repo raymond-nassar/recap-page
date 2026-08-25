@@ -1,0 +1,1192 @@
+{
+  "id": "inferno",
+  "name": "Inferno",
+  "description": "Thirty-nine chapters interleaving X-Men, X-Factor, New Mutants, Spider-Man, and related Inferno stories.",
+  "source": "https://comicbookreadingorders.com/marvel/events/inferno-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T04:20:54.115Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 39,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 13780,
+      "title": "Uncanny X-Men (1963) #239",
+      "number": "239",
+      "url": "https://www.marvel.com/comics/issue/13780/uncanny_x-men_1963_239",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1988-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3083,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/59109ada922fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 41563,
+      "title": "X-Terminators (1988) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/41563/x-terminators_1988_1",
+      "seriesId": 15489,
+      "seriesName": "X-Terminators (1988)",
+      "onSale": "1988-10-01T00:00:00+0000",
+      "mu": "1988-10-01T00:00:00+0000",
+      "digitalId": 22831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/55df74a61e148",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 41564,
+      "title": "X-Terminators (1988) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/41564/x-terminators_1988_2",
+      "seriesId": 15489,
+      "seriesName": "X-Terminators (1988)",
+      "onSale": "1988-11-01T00:00:00+0000",
+      "mu": "1988-11-01T00:00:00+0000",
+      "digitalId": 22835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/55df75bb81b8d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 41565,
+      "title": "X-Terminators (1988) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/41565/x-terminators_1988_3",
+      "seriesId": 15489,
+      "seriesName": "X-Terminators (1988)",
+      "onSale": "1988-12-01T00:00:00+0000",
+      "mu": "1988-12-01T00:00:00+0000",
+      "digitalId": 22836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/55df75e0dc390",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12253,
+      "title": "X-Factor (1986) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/12253/x-factor_1986_36",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 18419,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/594d48288daff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13781,
+      "title": "Uncanny X-Men (1963) #240",
+      "number": "240",
+      "url": "https://www.marvel.com/comics/issue/13781/uncanny_x-men_1963_240",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "2011-05-11T00:00:00+0000",
+      "digitalId": 18428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/59109c77ec12d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13782,
+      "title": "Uncanny X-Men (1963) #241",
+      "number": "241",
+      "url": "https://www.marvel.com/comics/issue/13782/uncanny_x-men_1963_241",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "2011-07-20T11:20:30+0000",
+      "digitalId": 18429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/50ad2c634a405",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13142,
+      "title": "Fantastic Four (1961) #322",
+      "number": "322",
+      "url": "https://www.marvel.com/comics/issue/13142/fantastic_four_1961_322",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 23271,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5ac3893d1a66d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7172,
+      "title": "Avengers (1963) #298",
+      "number": "298",
+      "url": "https://www.marvel.com/comics/issue/7172/avengers_1963_298",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1988-12-01T00:00:00+0000",
+      "mu": "1988-12-01T00:00:00+0000",
+      "digitalId": 24104,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/4e94667e609f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6718,
+      "title": "The Amazing Spider-Man (1963) #311",
+      "number": "311",
+      "url": "https://www.marvel.com/comics/issue/6718/the_amazing_spider-man_1963_311",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 4995,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/57f3d5d939372",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Todd Mcfarlane",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14594,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #146",
+      "number": "146",
+      "url": "https://www.marvel.com/comics/issue/14594/peter_parker_the_spectacular_spider-man_1976_146",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 23276,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5825f7d30e8ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12044,
+      "title": "Web of Spider-Man (1985) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/12044/web_of_spider-man_1985_47",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 23460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/5cbf3fbe4f73e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Saviuk",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6719,
+      "title": "The Amazing Spider-Man (1963) #312",
+      "number": "312",
+      "url": "https://www.marvel.com/comics/issue/6719/the_amazing_spider-man_1963_312",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 4996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/57f3d791008a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Todd Mcfarlane",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14595,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #147",
+      "number": "147",
+      "url": "https://www.marvel.com/comics/issue/14595/peter_parker_the_spectacular_spider-man_1976_147",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 23277,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/5825f9137e973",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12045,
+      "title": "Web of Spider-Man (1985) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/12045/web_of_spider-man_1985_48",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 23287,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/60/50ad2c17b0ccf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Saviuk",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8254,
+      "title": "Daredevil (1964) #262",
+      "number": "262",
+      "url": "https://www.marvel.com/comics/issue/8254/daredevil_1964_262",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 1698,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5b522d85004ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43041,
+      "title": "Power Pack (1984) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/43041/power_pack_1984_42",
+      "seriesId": 15186,
+      "seriesName": "Power Pack (1984 - 1991)",
+      "onSale": "1988-12-01T00:00:00+0000",
+      "mu": "1988-12-01T00:00:00+0000",
+      "digitalId": 26139,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5dd428e27fafc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Drake",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43042,
+      "title": "Power Pack (1984) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/43042/power_pack_1984_43",
+      "seriesId": 15186,
+      "seriesName": "Power Pack (1984 - 1991)",
+      "onSale": "1989-01-10T00:00:00+0000",
+      "mu": "2012-04-27T00:00:00+0000",
+      "digitalId": 26138,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/50b450d46e2cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Drake",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6720,
+      "title": "The Amazing Spider-Man (1963) #313",
+      "number": "313",
+      "url": "https://www.marvel.com/comics/issue/6720/the_amazing_spider-man_1963_313",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 4997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/57f3d9c0d9e56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Todd Mcfarlane",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7173,
+      "title": "Avengers (1963) #299",
+      "number": "299",
+      "url": "https://www.marvel.com/comics/issue/7173/avengers_1963_299",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 23267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/588a42a739246",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7176,
+      "title": "Avengers (1963) #300",
+      "number": "300",
+      "url": "https://www.marvel.com/comics/issue/7176/avengers_1963_300",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "2012-07-19T00:00:00+0000",
+      "digitalId": 21962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4e946b9b0ae02",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Ralph Macchio",
+          "role": "writer"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8255,
+      "title": "Daredevil (1964) #263",
+      "number": "263",
+      "url": "https://www.marvel.com/comics/issue/8255/daredevil_1964_263",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 1699,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5b52338c75b4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10412,
+      "title": "New Mutants (1983) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/10412/new_mutants_1983_71",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 18431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5a04c921dc672",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 41566,
+      "title": "X-Terminators (1988) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/41566/x-terminators_1988_4",
+      "seriesId": 15489,
+      "seriesName": "X-Terminators (1988)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 22837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/55df760e198be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10413,
+      "title": "New Mutants (1983) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/10413/new_mutants_1983_72",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 18432,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5a04c9ea6eefc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10414,
+      "title": "New Mutants (1983) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/10414/new_mutants_1983_73",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 18433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5a04ca43251d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Manley",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13143,
+      "title": "Fantastic Four (1961) #323",
+      "number": "323",
+      "url": "https://www.marvel.com/comics/issue/13143/fantastic_four_1961_323",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 23577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5ac3932c871e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Romeo Tanghal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8257,
+      "title": "Daredevil (1964) #265",
+      "number": "265",
+      "url": "https://www.marvel.com/comics/issue/8257/daredevil_1964_265",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1989-04-01T00:00:00+0000",
+      "mu": "1989-04-01T00:00:00+0000",
+      "digitalId": 13821,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5b523a587e927",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12254,
+      "title": "X-Factor (1986) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/12254/x-factor_1986_37",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1989-02-01T00:00:00+0000",
+      "mu": "1989-02-01T00:00:00+0000",
+      "digitalId": 18420,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/594d6f45dd631",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13783,
+      "title": "Uncanny X-Men (1963) #242",
+      "number": "242",
+      "url": "https://www.marvel.com/comics/issue/13783/uncanny_x-men_1963_242",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "2011-05-25T00:00:00+0000",
+      "digitalId": 18074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/50ad2b139f1b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12255,
+      "title": "X-Factor (1986) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/12255/x-factor_1986_38",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 18421,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/594d7a7ea6a75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13784,
+      "title": "Uncanny X-Men (1963) #243",
+      "number": "243",
+      "url": "https://www.marvel.com/comics/issue/13784/uncanny_x-men_1963_243",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1989-04-01T00:00:00+0000",
+      "mu": "2011-06-01T00:00:00+0000",
+      "digitalId": 18430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/50ad29f9569ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Hilary Barta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12256,
+      "title": "X-Factor (1986) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/12256/x-factor_1986_39",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1989-04-01T00:00:00+0000",
+      "mu": "1989-04-01T00:00:00+0000",
+      "digitalId": 18422,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/594d7bd7b14d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8643,
+      "title": "Excalibur (1988) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/8643/excalibur_1988_6",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 4283,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5d03cd3d7de41",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8654,
+      "title": "Excalibur (1988) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/8654/excalibur_1988_7",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1989-04-01T00:00:00+0000",
+      "mu": "1989-04-01T00:00:00+0000",
+      "digitalId": 5818,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5d03e1dcb29f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43044,
+      "title": "The Mutant Misadventures of Cloak and Dagger (1988) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/43044/the_mutant_misadventures_of_cloak_and_dagger_1988_4",
+      "seriesId": 16368,
+      "seriesName": "The Mutant Misadventures of Cloak and Dagger (1988 - 1990)",
+      "onSale": "1989-04-01T00:00:00+0000",
+      "mu": "2012-05-01T00:00:00+0000",
+      "digitalId": 26137,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/50b454b0abc4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 14596,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #148",
+      "number": "148",
+      "url": "https://www.marvel.com/comics/issue/14596/peter_parker_the_spectacular_spider-man_1976_148",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 23278,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5825fa2493954",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43043,
+      "title": "Power Pack (1984) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/43043/power_pack_1984_44",
+      "seriesId": 15186,
+      "seriesName": "Power Pack (1984 - 1991)",
+      "onSale": "1989-03-01T00:00:00+0000",
+      "mu": "1989-03-01T00:00:00+0000",
+      "digitalId": 26200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5dd4495d25fce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Russ Heath",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 57671,
+      "title": "Damage Control (1989) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57671/damage_control_1989_4",
+      "seriesId": 21003,
+      "seriesName": "Damage Control (1989)",
+      "onSale": "1989-08-01T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 40118,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/57e588311e9c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ernie Colon",
+          "role": "penciler"
+        },
+        {
+          "name": "Dwayne Mcduffie",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

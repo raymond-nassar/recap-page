@@ -2877,6 +2877,134 @@
       "coverIssueId": 12027
     },
     {
+      "id": "evolutionary-war",
+      "name": "The Evolutionary War",
+      "description": "Eleven annual chapters carrying the Evolutionary War across Marvel heroes and teams.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "evolutionary-war.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/evolutionary-war-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "evolutionary_war.json",
+      "characters": [
+        "X-Men",
+        "Avengers",
+        "Spider-Man",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Evolutionary War",
+        "High Evolutionary",
+        "X-Men",
+        "Avengers"
+      ],
+      "expect": 11,
+      "timeline": 1988,
+      "coverIssueId": 23511
+    },
+    {
+      "id": "inferno",
+      "name": "Inferno",
+      "description": "Thirty-nine chapters interleaving X-Men, X-Factor, New Mutants, Spider-Man, and related Inferno stories.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "inferno.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/inferno-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "inferno.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Inferno",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "expect": 39,
+      "timeline": 1988,
+      "coverIssueId": 13780
+    },
+    {
+      "id": "atlantis-attacks",
+      "name": "Atlantis Attacks",
+      "description": "Seventeen chapters carrying Atlantis Attacks across annuals and related Marvel stories.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "atlantis-attacks.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/atlantis-attacks-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "atlantis_attacks.json",
+      "characters": [
+        "Avengers",
+        "Fantastic Four",
+        "X-Men",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Atlantis Attacks",
+        "Avengers",
+        "Fantastic Four",
+        "X-Men"
+      ],
+      "expect": 17,
+      "timeline": 1989,
+      "coverIssueId": 69460
+    },
+    {
+      "id": "days-of-future-present",
+      "name": "Days of Future Present",
+      "description": "Four annual chapters connecting Fantastic Four, X-Factor, New Mutants, and X-Men.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "days-of-future-present.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/days-of-future-present-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "days_of_future_present.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Days of Future Present",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "expect": 4,
+      "timeline": 1990,
+      "coverIssueId": 8702
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

@@ -1,0 +1,212 @@
+{
+  "id": "days-of-future-present",
+  "name": "Days of Future Present",
+  "description": "Four annual chapters connecting Fantastic Four, X-Factor, New Mutants, and X-Men.",
+  "source": "https://comicbookreadingorders.com/marvel/events/days-of-future-present-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T04:20:54.117Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 8702,
+      "title": "Fantastic Four Annual (1963) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/8702/fantastic_four_annual_1963_23",
+      "seriesId": 2012,
+      "seriesName": "Fantastic Four Annual (1963 - 1994)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 40797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5d7ba84588019",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "James Brock",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10340,
+      "title": "New Mutants Annual (1984) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10340/new_mutants_annual_1984_6",
+      "seriesId": 2053,
+      "seriesName": "New Mutants Annual (1984 - 1991)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "1990-01-01T00:00:00+0000",
+      "digitalId": 39918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5e5e80929de04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Wozniak",
+          "role": "penciler"
+        },
+        {
+          "name": "Gavin Curtis",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Shoemaker",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23513,
+      "title": "X-Factor Annual (1986) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/23513/x-factor_annual_1986_5",
+      "seriesId": 6689,
+      "seriesName": "X-Factor Annual (1986 - 1994)",
+      "onSale": "1990-09-01T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 39947,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5d7ba83c24571",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12360,
+      "title": "X-Men Annual (1970) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/12360/x-men_annual_1970_14",
+      "seriesId": 2100,
+      "seriesName": "X-Men Annual (1970 - 1994)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 53193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/670ed49830fea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Heike",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

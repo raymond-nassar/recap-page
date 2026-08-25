@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "days-of-future-present",
+  "inventoryId": "days-of-future-present",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/days-of-future-present-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "35a1ebf4dc8125e4c857e6bacaaca5a549ca2d3c27a982bfe47f10514bb643e4",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 4,
+  "proposedManifest": {
+    "id": "days-of-future-present",
+    "name": "Days of Future Present",
+    "description": "Four annual chapters connecting Fantastic Four, X-Factor, New Mutants, and X-Men.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "days-of-future-present.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/days-of-future-present-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "days_of_future_present.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "New Mutants",
+      "Fantastic Four"
+    ],
+    "keywords": [
+      "Days of Future Present",
+      "X-Men",
+      "X-Factor",
+      "New Mutants"
+    ],
+    "expect": 4,
+    "timeline": 1990,
+    "coverIssueId": 8702
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B05 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, refreshed source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T04:01:26.909Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four Annual #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
+      "issueNumber": "23",
+      "seriesId": 2012,
+      "candidateIssueId": 8702,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants Annual #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants Annual",
+      "seriesYear": 1984,
+      "issueNumber": "6",
+      "seriesId": 2053,
+      "candidateIssueId": 10340,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor Annual #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor Annual",
+      "seriesYear": 1986,
+      "issueNumber": "5",
+      "seriesId": 6689,
+      "candidateIssueId": 23513,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men Annual #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men Annual",
+      "seriesYear": 1970,
+      "issueNumber": "14",
+      "seriesId": 2100,
+      "candidateIssueId": 12360,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men Annual (1970 - 1994), series 2100."
+    }
+  ],
+  "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b"
+}
