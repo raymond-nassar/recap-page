@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "dead-mans-hand",
+  "inventoryId": "dead-mans-hand",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/dead-mans-hand-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "eb7c5173c77763a8d2bd6e5c661ef697b50cc75974e3f319980f88cdff3c9dd8",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "dead-mans-hand",
+    "name": "Dead Man's Hand",
+    "description": "Nine chapters connecting Daredevil, Nomad, and the Punisher through Dead Man's Hand.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "dead-mans-hand.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/dead-mans-hand-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "dead_mans_hand.json",
+    "characters": [
+      "Daredevil",
+      "Punisher",
+      "Nomad"
+    ],
+    "keywords": [
+      "Dead Man's Hand",
+      "Daredevil",
+      "Punisher",
+      "Nomad"
+    ],
+    "expect": 9,
+    "timeline": 1992,
+    "coverIssueId": 8304
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B06 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T06:20:28.250Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Daredevil #307",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "307",
+      "seriesId": 2002,
+      "candidateIssueId": 8304,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nomad Vol. 2 #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nomad Vol. 2",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "seriesId": 20373,
+      "candidateIssueId": 55128,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Nomad (1992 - 1994), series 20373."
+    },
+    {
+      "sourceIssueReference": "Punisher War Journal #45",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Punisher War Journal",
+      "seriesYear": 1988,
+      "issueNumber": "45",
+      "seriesId": 5860,
+      "candidateIssueId": 22201,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nomad Vol. 2 #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nomad Vol. 2",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "seriesId": 20373,
+      "candidateIssueId": 80303,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Nomad (1992 - 1994), series 20373."
+    },
+    {
+      "sourceIssueReference": "Daredevil #308",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "308",
+      "seriesId": 2002,
+      "candidateIssueId": 8305,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Punisher War Journal #46",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Punisher War Journal",
+      "seriesYear": 1988,
+      "issueNumber": "46",
+      "seriesId": 5860,
+      "candidateIssueId": 22202,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil #309",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "309",
+      "seriesId": 2002,
+      "candidateIssueId": 8306,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nomad Vol. 2 #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nomad Vol. 2",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "seriesId": 20373,
+      "candidateIssueId": 80304,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Nomad (1992 - 1994), series 20373."
+    },
+    {
+      "sourceIssueReference": "Punisher War Journal #47",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Punisher War Journal",
+      "seriesYear": 1988,
+      "issueNumber": "47",
+      "seriesId": 5860,
+      "candidateIssueId": 22203,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "65b4c9e1308f1bd68fe0c1538691fe3fc16e622611a7e598fbc74a56c6f112ee"
+}

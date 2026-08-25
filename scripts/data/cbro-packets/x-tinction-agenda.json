@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "x-tinction-agenda",
+  "inventoryId": "x-tinction-agenda",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/x-tinction-agenda-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "41a631e82fcdab259794ad4523251dfc8dc62212457838c3085173910de30c9e",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "x-tinction-agenda",
+    "name": "X-Tinction Agenda",
+    "description": "Nine chapters interleaving X-Men, X-Factor, and New Mutants through X-Tinction Agenda.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-tinction-agenda.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/x-tinction-agenda-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "x_tinction_agenda.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "New Mutants"
+    ],
+    "keywords": [
+      "X-Tinction Agenda",
+      "X-Men",
+      "X-Factor",
+      "New Mutants"
+    ],
+    "expect": 9,
+    "timeline": 1990,
+    "coverIssueId": 13811
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B06 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T06:20:28.250Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men #270",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "270",
+      "seriesId": 2258,
+      "candidateIssueId": 13811,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #95",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "95",
+      "seriesId": 2055,
+      "candidateIssueId": 10438,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #60",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "60",
+      "seriesId": 2098,
+      "candidateIssueId": 12280,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #271",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "271",
+      "seriesId": 2258,
+      "candidateIssueId": 13812,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #96",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "96",
+      "seriesId": 2055,
+      "candidateIssueId": 10439,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #61",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "61",
+      "seriesId": 2098,
+      "candidateIssueId": 12281,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #272",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "272",
+      "seriesId": 2258,
+      "candidateIssueId": 13813,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #97",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "97",
+      "seriesId": 2055,
+      "candidateIssueId": 10440,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #62",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "62",
+      "seriesId": 2098,
+      "candidateIssueId": 12282,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "1db83fdff9270b97a8a6edf8fa389551c842a9f39ef5499322684030bd794aab"
+}

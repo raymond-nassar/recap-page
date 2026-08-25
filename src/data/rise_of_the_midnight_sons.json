@@ -1,0 +1,194 @@
+{
+  "id": "rise-of-the-midnight-sons",
+  "name": "Rise of the Midnight Sons",
+  "description": "Six chapters assembling Ghost Rider, Morbius, and the Midnight Sons against Lilith.",
+  "source": "https://comicbookreadingorders.com/marvel/events/rise-of-the-midnight-sons-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T07:01:21.150Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 22661,
+      "title": "Ghost Rider (1990) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/22661/ghost_rider_1990_28",
+      "seriesId": 6255,
+      "seriesName": "Ghost Rider (1990 - 1998)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 40612,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5cacb84f01471",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62400,
+      "title": "Ghost Rider/Blaze: Spirits of Vengeance (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62400/ghost_riderblaze_spirits_of_vengeance_1992_1",
+      "seriesId": 22916,
+      "seriesName": "Ghost Rider/Blaze: Spirits of Vengeance (1992 - 1994)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 43352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5cacb835674fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62406,
+      "title": "Morbius: The Living Vampire (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62406/morbius_the_living_vampire_1992_1",
+      "seriesId": 22918,
+      "seriesName": "Morbius: The Living Vampire (1992 - 1995)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 43358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5cbf2ca0d95f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Witherby",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wagner",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59953,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59953/darkhold_pages_from_the_book_of_sins_1992_1",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "onSale": "1992-10-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 41693,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/57fd26c18aafb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Richard Case",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61589,
+      "title": "Nightstalkers (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61589/nightstalkers_1992_1",
+      "seriesId": 22919,
+      "seriesName": "Nightstalkers (1992 - 1994)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 42548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5cbf30a0e92a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22665,
+      "title": "Ghost Rider (1990) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/22665/ghost_rider_1990_31",
+      "seriesId": 6255,
+      "seriesName": "Ghost Rider (1990 - 1998)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 40613,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5cacb81e75525",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

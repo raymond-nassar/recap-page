@@ -38,7 +38,7 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 
 export const CBRO_HISTORICAL_COUNT = 58;
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  '2ca31d5863727481b62dda737785b7e7aa16fef810c8dd4d0f6a8288e2ab7ba7';
+  '034ba7d87a46d8a3676ec71ac22886f23b8052d48485d4208b79daf5a2145e78';
 export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
   '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256 =
@@ -58,6 +58,10 @@ export const CBRO_BATCH_FIVE_EVALUATED_OUTCOME_SHA256 =
   'cd874154fdc29686562d28da936456285d682b02c493042e84384cc553876f17';
 export const CBRO_BATCH_FIVE_ACTS_SOURCE_ROWS_SHA256 =
   '8403e921027e842daf6968479de03f95d03adaeb0d300fd7c8a32476e460c9f3';
+export const CBRO_BATCH_SIX_UNTOUCHED_INVENTORY_SHA256 =
+  'af31379e604969573f33e97429cb2a26470fd566090b8bc42e27b78ad3565199';
+export const CBRO_BATCH_SIX_EVALUATED_OUTCOME_SHA256 =
+  'b0ebfc3719069036ec3ed42740efac39f3a7c7d0e60b0733fbfa5b3f3705c248';
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
   'muir-island-saga',
@@ -127,6 +131,21 @@ export const CBRO_BATCH_FIVE_TOUCHED_IDS = Object.freeze([
   'days-of-future-present',
   'x-tinction-agenda',
 ]);
+export const CBRO_BATCH_SIX_SELECTED_IDS = Object.freeze([
+  'x-tinction-agenda',
+  'operation-galactic-storm',
+  'dead-mans-hand',
+  'rise-of-the-midnight-sons',
+]);
+export const CBRO_BATCH_SIX_AUTHOR_IDS = CBRO_BATCH_SIX_SELECTED_IDS;
+export const CBRO_BATCH_SIX_TOUCHED_IDS = Object.freeze([
+  'x-tinction-agenda',
+  'infinity-gauntlet',
+  'operation-galactic-storm',
+  'infinity-war',
+  'dead-mans-hand',
+  'rise-of-the-midnight-sons',
+]);
 export const CBRO_BATCH_THREE_TOUCHED_IDS = Object.freeze([
   'marvel-super-heroes-secret-wars',
   ...CBRO_BATCH_THREE_BLOCKED_IDS,
@@ -143,6 +162,8 @@ export const CBRO_BATCH_FOUR_PACKET_REVIEW =
   'MRT-003-C02-B04 central CBRO exclusion review';
 export const CBRO_BATCH_FIVE_PACKET_REVIEW =
   'MRT-003-C02-B05 central CBRO source review';
+export const CBRO_BATCH_SIX_PACKET_REVIEW =
+  'MRT-003-C02-B06 central CBRO source review';
 export const CBRO_RELEASE_IDS = Object.freeze({
   original: 'mrt-003',
   continuationBatchOne: 'mrt-003-c02-b01',
@@ -150,6 +171,7 @@ export const CBRO_RELEASE_IDS = Object.freeze({
   continuationBatchThree: 'mrt-003-c02-b03',
   continuationBatchFour: 'mrt-003-c02-b04',
   continuationBatchFive: 'mrt-003-c02-b05',
+  continuationBatchSix: 'mrt-003-c02-b06',
 });
 export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze([
@@ -372,6 +394,14 @@ export const CBRO_RELEASES = Object.freeze({
     authorityIdentity: 'MRT-003-C02-B05 coordinator',
     relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
   }),
+  [CBRO_RELEASE_IDS.continuationBatchSix]: Object.freeze({
+    id: CBRO_RELEASE_IDS.continuationBatchSix,
+    sourceIds: CBRO_BATCH_SIX_SELECTED_IDS,
+    authorIds: CBRO_BATCH_SIX_AUTHOR_IDS,
+    packetReview: CBRO_BATCH_SIX_PACKET_REVIEW,
+    authorityIdentity: 'MRT-003-C02-B06 coordinator',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
+  }),
 });
 const CBRO_PRE_BATCH_FIVE_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
@@ -381,7 +411,7 @@ const CBRO_PRE_BATCH_FIVE_SELECTED_IDS = Object.freeze([
   ...CBRO_BATCH_THREE_SELECTED_IDS.slice(1),
   ...CBRO_SELECTED_IDS,
 ]);
-export const CBRO_ALL_SELECTED_IDS = Object.freeze([
+const CBRO_PRE_BATCH_SIX_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
   ...CBRO_BATCH_TWO_SELECTED_IDS,
   CBRO_BATCH_THREE_SELECTED_IDS[0],
@@ -389,6 +419,18 @@ export const CBRO_ALL_SELECTED_IDS = Object.freeze([
   ...CBRO_BATCH_THREE_SELECTED_IDS.slice(1),
   ...CBRO_BATCH_FIVE_SELECTED_IDS,
   ...CBRO_SELECTED_IDS,
+]);
+export const CBRO_ALL_SELECTED_IDS = Object.freeze([
+  ...CBRO_CONTINUATION_SELECTED_IDS,
+  ...CBRO_BATCH_TWO_SELECTED_IDS,
+  CBRO_BATCH_THREE_SELECTED_IDS[0],
+  ...CBRO_BATCH_FOUR_SELECTED_IDS,
+  ...CBRO_BATCH_THREE_SELECTED_IDS.slice(1),
+  ...CBRO_BATCH_FIVE_SELECTED_IDS,
+  CBRO_BATCH_SIX_SELECTED_IDS[0],
+  CBRO_SELECTED_IDS[0],
+  ...CBRO_BATCH_SIX_SELECTED_IDS.slice(1),
+  ...CBRO_SELECTED_IDS.slice(1),
 ]);
 
 const INVENTORY_DISPOSITIONS = new Set([
@@ -525,6 +567,68 @@ const BATCH_FIVE_PREDECESSOR_STATE = Object.freeze({
     deliveryStatus: 'deferred',
   }),
 });
+const BATCH_SIX_PREDECESSOR_STATE = Object.freeze({
+  'x-tinction-agenda': Object.freeze({
+    sourceRetrievedAt: '2026-08-25',
+    sourceContentSha256: '41a631e82fcdab259794ad4523251dfc8dc62212457838c3085173910de30c9e',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred as the next source-order cursor after MRT-003-C02-B05 selected the smallest coherent four-guide batch.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+  'infinity-gauntlet': Object.freeze({
+    sourceRetrievedAt: '2026-08-23',
+    sourceContentSha256: 'b184c2cd7a3846183bdb5c18da65f30b7b33623afaaf35ac1470a488e4564572',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred to a ranked later chunk; exact metadata and complete-library review have not run.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+  'operation-galactic-storm': Object.freeze({
+    sourceRetrievedAt: '2026-08-23',
+    sourceContentSha256: 'b94e02e86c7fbbc8e712f141e3b8b7d23fe84c40310c43609664a9496a8d5d71',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred to a ranked later chunk; exact metadata and complete-library review have not run.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+  'infinity-war': Object.freeze({
+    sourceRetrievedAt: '2026-08-23',
+    sourceContentSha256: '5ac8ba0aeb8fb42775612be95c213638435c56409f0f7741780f2b7829c33720',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred to a ranked later chunk; exact metadata and complete-library review have not run.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+  'dead-mans-hand': Object.freeze({
+    sourceRetrievedAt: '2026-08-23',
+    sourceContentSha256: '8b028c3b0968b619f412527584884ef91dc1ac64a3ad31f9a2da6e6b70604ee3',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred to a ranked later chunk; exact metadata and complete-library review have not run.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+  'rise-of-the-midnight-sons': Object.freeze({
+    sourceRetrievedAt: '2026-08-23',
+    sourceContentSha256: '496f7b3eea3efa65ac10ef0ef03c047266be4ae6aca6f934ef7f00a78589973e',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred to a ranked later chunk; exact metadata and complete-library review have not run.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+});
 const INVENTORY_DELIVERY = new Set(['ready', 'shipped', 'deferred', 'blocked', 'not-applicable']);
 
 function assert(condition, message) {
@@ -537,6 +641,11 @@ function isSha256(value) {
 
 export function cbroBatchFivePredecessorRecord(record) {
   const state = BATCH_FIVE_PREDECESSOR_STATE[record.id];
+  return state ? { ...record, ...state } : record;
+}
+
+export function cbroBatchSixPredecessorRecord(record) {
+  const state = BATCH_SIX_PREDECESSOR_STATE[record.id];
   return state ? { ...record, ...state } : record;
 }
 
@@ -600,6 +709,94 @@ export function validateCbroPacket(packet, options = {}) {
       `${packet.id} source row count differs from its inventory record`);
   }
   return result;
+}
+
+export function validateCbroBlockerEvidence(evidence, options = {}) {
+  const label = evidence?.id ?? 'CBRO blocker evidence';
+  assert(evidence && typeof evidence === 'object', 'CBRO blocker evidence must be an object');
+  assert(evidence.schemaVersion === 1, `${label} blocker evidence has an unsupported schema`);
+  assert(typeof evidence.id === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(evidence.id),
+    `${label} blocker evidence id is invalid`);
+  assert(evidence.inventoryId === evidence.id, `${label} blocker inventory id differs`);
+  assert(options.expectedId == null || evidence.id === options.expectedId,
+    `${label} blocker evidence has the wrong id`);
+  assert(evidence.sourceProvider === CBRO_SOURCE_PROVIDER.id,
+    `${label} blocker evidence has the wrong provider`);
+  assert(typeof evidence.sourceUrl === 'string' && evidence.sourceUrl.startsWith('https://'),
+    `${label} blocker evidence needs a source URL`);
+  assert(evidence.sourceSection == null, `${label} blocker evidence source section must be null`);
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(evidence.sourceRetrievedAt),
+    `${label} blocker retrieval date is invalid`);
+  assert(isSha256(evidence.sourceContentSha256),
+    `${label} blocker source content digest is invalid`);
+  assert(Array.isArray(evidence.rows) && evidence.rows.length === evidence.sourceRowCount,
+    `${label} blocker rows differ from the source row count`);
+  assert(Number.isInteger(evidence.unresolvedRowCount) && evidence.unresolvedRowCount > 0,
+    `${label} blocker unresolved row count is invalid`);
+  const exactIssueIds = [];
+  let unresolved = 0;
+  for (const [index, row] of evidence.rows.entries()) {
+    const rowLabel = `${label} blocker row ${index + 1}`;
+    assert(row?.sourcePosition === index + 1, `${rowLabel} position is invalid`);
+    assert(typeof row.sourceIssueReference === 'string' && row.sourceIssueReference.trim(),
+      `${rowLabel} source reference is required`);
+    assert(typeof row.sourceSeriesTitle === 'string' && row.sourceSeriesTitle.trim(),
+      `${rowLabel} source series title is required`);
+    assert(typeof row.issueNumber === 'string' && row.issueNumber.trim(),
+      `${rowLabel} issue number is required`);
+    assert(Number.isInteger(row.seriesId) && row.seriesId > 0,
+      `${rowLabel} configured series id is invalid`);
+    assert(['exact', 'unmatched'].includes(row.resolutionStatus),
+      `${rowLabel} resolution status is invalid`);
+    if (row.resolutionStatus === 'exact') {
+      assert(typeof row.seriesName === 'string' && row.seriesName.trim(),
+        `${rowLabel} configured metadata series name is required`);
+      assert(Number.isInteger(row.seriesYear), `${rowLabel} configured series year is invalid`);
+      assert(Number.isInteger(row.selectedIssueId) && row.selectedIssueId > 0,
+        `${rowLabel} selected issue id is invalid`);
+      assert(typeof row.resolvedIssueTitle === 'string' && row.resolvedIssueTitle.trim(),
+        `${rowLabel} resolved issue title is required`);
+      assert(typeof row.marvelIssueUrl === 'string'
+        && row.marvelIssueUrl.startsWith('https://www.marvel.com/comics/issue/'),
+      `${rowLabel} Marvel issue URL is invalid`);
+      assert(typeof row.onSaleDate === 'string' && row.onSaleDate.trim(),
+        `${rowLabel} on-sale date is required`);
+      exactIssueIds.push(row.selectedIssueId);
+    } else {
+      unresolved += 1;
+      assert(row.selectedIssueId == null
+        && row.resolvedIssueTitle == null
+        && row.marvelIssueUrl == null
+        && row.onSaleDate == null,
+      `${rowLabel} unresolved outcome contains resolved metadata`);
+    }
+  }
+  assert(unresolved === evidence.unresolvedRowCount,
+    `${label} blocker unresolved row count differs from its rows`);
+  assert(new Set(exactIssueIds).size === exactIssueIds.length,
+    `${label} blocker evidence repeats an exact issue id`);
+  const digestInput = { ...evidence };
+  delete digestInput.blockerDigest;
+  assert(isSha256(evidence.blockerDigest)
+    && digestCanonicalJson(digestInput) === evidence.blockerDigest,
+  `${label} blocker evidence digest is stale`);
+  const inventoryRecord = options.inventoryRecord;
+  if (inventoryRecord) {
+    assert(inventoryRecord.id === evidence.inventoryId,
+      `${label} blocker inventory record differs`);
+    assert(inventoryRecord.sourceProvider === evidence.sourceProvider
+      && inventoryRecord.sourceUrl === evidence.sourceUrl
+      && inventoryRecord.sourceRetrievedAt === evidence.sourceRetrievedAt
+      && inventoryRecord.sourceContentSha256 === evidence.sourceContentSha256
+      && inventoryRecord.sourceRowCount === evidence.sourceRowCount,
+    `${label} blocker source evidence differs from inventory`);
+    assert(inventoryRecord.centralDisposition === 'blocked'
+      && inventoryRecord.relationshipStatus === 'unresolved'
+      && inventoryRecord.deliveryStatus === 'blocked'
+      && inventoryRecord.catalogIds.length === 0,
+    `${label} blocker inventory state is inconsistent`);
+  }
+  return true;
 }
 
 export function validateCbroHistoricalInventory(records) {
@@ -684,6 +881,7 @@ export function validateCbroHistoricalInventory(records) {
     'CBRO historical inventory identity digest changed');
   const batchTwoNonselected = records
     .filter((record) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map(cbroBatchFivePredecessorRecord)
     .map((record) => CBRO_BATCH_THREE_TOUCHED_IDS.includes(record.id)
       ? {
@@ -701,6 +899,7 @@ export function validateCbroHistoricalInventory(records) {
     'CBRO batch-two nonselected inventory changed');
   const batchThreeNonselected = records
     .filter((record) => !CBRO_BATCH_THREE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map(cbroBatchFivePredecessorRecord)
     .map((record) => CBRO_PRE_BATCH_FIVE_SELECTED_IDS.includes(record.id)
       ? {
@@ -732,6 +931,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchFourUntouched = records
     .filter((record) => !CBRO_BATCH_FOUR_SELECTED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map(cbroBatchFivePredecessorRecord)
     .map((record) => CBRO_PRE_BATCH_FIVE_SELECTED_IDS.includes(record.id)
       ? {
@@ -747,7 +947,8 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchFiveUntouched = records
     .filter((record) => !CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
-    .map((record) => CBRO_ALL_SELECTED_IDS.includes(record.id)
+    .map(cbroBatchSixPredecessorRecord)
+    .map((record) => CBRO_PRE_BATCH_SIX_SELECTED_IDS.includes(record.id)
       ? {
         ...record,
         catalogIds: [record.id],
@@ -761,6 +962,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchFiveEvaluatedOutcomes = records
     .filter((record) => CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map((record) => CBRO_BATCH_FIVE_SELECTED_IDS.includes(record.id)
       ? { ...record, catalogIds: [], deliveryStatus: 'ready' }
       : record);
@@ -768,6 +970,30 @@ export function validateCbroHistoricalInventory(records) {
     digestCanonicalJson(batchFiveEvaluatedOutcomes)
       === CBRO_BATCH_FIVE_EVALUATED_OUTCOME_SHA256,
     'CBRO batch-five evaluated outcome changed',
+  );
+  const batchSixUntouched = records
+    .filter((record) => !CBRO_BATCH_SIX_TOUCHED_IDS.includes(record.id))
+    .map((record) => CBRO_ALL_SELECTED_IDS.includes(record.id)
+      ? {
+        ...record,
+        catalogIds: [record.id],
+        deliveryStatus: 'shipped',
+      }
+      : record);
+  assert(
+    digestCanonicalJson(batchSixUntouched)
+      === CBRO_BATCH_SIX_UNTOUCHED_INVENTORY_SHA256,
+    'CBRO batch-six untouched inventory changed',
+  );
+  const batchSixEvaluatedOutcomes = records
+    .filter((record) => CBRO_BATCH_SIX_TOUCHED_IDS.includes(record.id))
+    .map((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id)
+      ? { ...record, catalogIds: [], deliveryStatus: 'ready' }
+      : record);
+  assert(
+    digestCanonicalJson(batchSixEvaluatedOutcomes)
+      === CBRO_BATCH_SIX_EVALUATED_OUTCOME_SHA256,
+    'CBRO batch-six evaluated outcome changed',
   );
   return true;
 }
