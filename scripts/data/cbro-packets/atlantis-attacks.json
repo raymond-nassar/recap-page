@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "id": "atlantis-attacks",
+  "inventoryId": "atlantis-attacks",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/atlantis-attacks-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "6130b8f9bd7935e444db01bf0c270c52d1272b59fd77abd7123d12abfad5b66a",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 17,
+  "proposedManifest": {
+    "id": "atlantis-attacks",
+    "name": "Atlantis Attacks",
+    "description": "Seventeen chapters carrying Atlantis Attacks across annuals and related Marvel stories.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "atlantis-attacks.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/atlantis-attacks-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "atlantis_attacks.json",
+    "characters": [
+      "Avengers",
+      "Fantastic Four",
+      "X-Men",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Atlantis Attacks",
+      "Avengers",
+      "Fantastic Four",
+      "X-Men"
+    ],
+    "expect": 17,
+    "timeline": 1989,
+    "coverIssueId": 69460
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B05 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, refreshed source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T04:01:26.909Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Silver Surfer Annual #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Silver Surfer Annual",
+      "seriesYear": 1988,
+      "issueNumber": "2",
+      "seriesId": 19005,
+      "candidateIssueId": 69460,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man Annual #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man Annual",
+      "seriesYear": 1976,
+      "issueNumber": "10",
+      "seriesId": 3723,
+      "candidateIssueId": 19861,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Comics Presents #26",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "26",
+      "seriesId": 2039,
+      "candidateIssueId": 10104,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Annual #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Annual",
+      "seriesYear": 1970,
+      "issueNumber": "13",
+      "seriesId": 2100,
+      "candidateIssueId": 12359,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man Annual #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "seriesYear": 1964,
+      "issueNumber": "23",
+      "seriesId": 2984,
+      "candidateIssueId": 16898,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Punisher Vol. 2 Annual #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Punisher Vol. 2 Annual",
+      "seriesYear": 1988,
+      "issueNumber": "2",
+      "seriesId": 25499,
+      "candidateIssueId": 69855,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series The Punisher Annual (1988 - 1994), series 25499."
+    },
+    {
+      "sourceIssueReference": "Spectacular Spider-Man Annual #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spectacular Spider-Man Annual",
+      "seriesYear": 1979,
+      "issueNumber": "9",
+      "seriesId": 20403,
+      "candidateIssueId": 70350,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Peter Parker, the Spectacular Spider-Man Annual (1979 - 1991), series 20403."
+    },
+    {
+      "sourceIssueReference": "Daredevil Annual #5 - Mislabeled as Annual #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil Annual",
+      "seriesYear": 1967,
+      "issueNumber": "5",
+      "seriesId": 7665,
+      "candidateIssueId": 65046,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers Annual #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers Annual",
+      "seriesYear": 1967,
+      "issueNumber": "18",
+      "seriesId": 1988,
+      "candidateIssueId": 6932,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #76",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "76",
+      "seriesId": 2055,
+      "candidateIssueId": 10417,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants Annual #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants Annual",
+      "seriesYear": 1984,
+      "issueNumber": "5",
+      "seriesId": 2053,
+      "candidateIssueId": 10339,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor Annual #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor Annual",
+      "seriesYear": 1986,
+      "issueNumber": "4",
+      "seriesId": 6689,
+      "candidateIssueId": 23512,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Web of Spider-Man Annual #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Web of Spider-Man Annual",
+      "seriesYear": 1985,
+      "issueNumber": "5",
+      "seriesId": 19003,
+      "candidateIssueId": 70100,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers West Coast #56",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers West Coast",
+      "seriesYear": 1985,
+      "issueNumber": "56",
+      "seriesId": 3630,
+      "candidateIssueId": 17798,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series West Coast Avengers (1985 - 1994), series 3630."
+    },
+    {
+      "sourceIssueReference": "Avengers West Coast Annual #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers West Coast Annual",
+      "seriesYear": 1986,
+      "issueNumber": "4",
+      "seriesId": 3632,
+      "candidateIssueId": 17842,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series West Coast Avengers Annual (1986 - 1988), series 3632."
+    },
+    {
+      "sourceIssueReference": "Thor Annual #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor Annual",
+      "seriesYear": 1966,
+      "issueNumber": "14",
+      "seriesId": 2978,
+      "candidateIssueId": 16675,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four Annual #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
+      "issueNumber": "22",
+      "seriesId": 2012,
+      "candidateIssueId": 8701,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "a872b3d3e20e3536b22d7857083ebf54fbf05313fbaa2fdfa107e8ae93d28c01"
+}

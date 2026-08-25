@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T03:07:40.431Z",
+  "generatedAt": "2026-08-25T04:20:54.152Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3346,6 +3346,150 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-24T23:03:25.392Z"
+    },
+    {
+      "id": "evolutionary-war",
+      "file": "evolutionary_war.json",
+      "name": "The Evolutionary War",
+      "description": "Eleven annual chapters carrying the Evolutionary War across Marvel heroes and teams.",
+      "type": "event",
+      "depth": "complete",
+      "count": 11,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Avengers",
+        "Spider-Man",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Evolutionary War",
+        "High Evolutionary",
+        "X-Men",
+        "Avengers"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1988,
+      "coverIssueId": 23511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5736189a408e4",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/evolutionary-war-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T04:20:54.112Z"
+    },
+    {
+      "id": "inferno",
+      "file": "inferno.json",
+      "name": "Inferno",
+      "description": "Thirty-nine chapters interleaving X-Men, X-Factor, New Mutants, Spider-Man, and related Inferno stories.",
+      "type": "event",
+      "depth": "complete",
+      "count": 39,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Inferno",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1988,
+      "coverIssueId": 13780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/59109ada922fe",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/inferno-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T04:20:54.115Z"
+    },
+    {
+      "id": "atlantis-attacks",
+      "file": "atlantis_attacks.json",
+      "name": "Atlantis Attacks",
+      "description": "Seventeen chapters carrying Atlantis Attacks across annuals and related Marvel stories.",
+      "type": "event",
+      "depth": "complete",
+      "count": 17,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Fantastic Four",
+        "X-Men",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Atlantis Attacks",
+        "Avengers",
+        "Fantastic Four",
+        "X-Men"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1989,
+      "coverIssueId": 69460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5f223d2de3191",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/atlantis-attacks-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T04:20:54.116Z"
+    },
+    {
+      "id": "days-of-future-present",
+      "file": "days_of_future_present.json",
+      "name": "Days of Future Present",
+      "description": "Four annual chapters connecting Fantastic Four, X-Factor, New Mutants, and X-Men.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Days of Future Present",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1990,
+      "coverIssueId": 8702,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5d7ba84588019",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/days-of-future-present-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T04:20:54.117Z"
     },
     {
       "id": "maximum-security",

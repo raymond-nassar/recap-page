@@ -203,6 +203,10 @@ const laterHistoricalIds = [
   'mutant-massacre',
   'kravens-last-hunt',
   'fall-of-the-mutants',
+  'evolutionary-war',
+  'inferno',
+  'atlantis-attacks',
+  'days-of-future-present',
 ];
 const laterMcuIds = [
   'doctor-strange-multiverse-of-madness',
@@ -1123,7 +1127,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 117);
+  assert.equal(catalog.lists.length, 121);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 14);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);
