@@ -2,7 +2,7 @@
   "candidateId": "dark-phoenix-saga",
   "packetDigest": "7144b1d5e2cb36f3ff00631ee2aab7dc3053345ce7f7dee4327ea2a4cebfd752",
   "mappingDigest": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
-  "libraryDigest": "4733d4a629dfad44ac0f91a96a14a361533b9325e9b7caa486bf32894bdc4dd9",
+  "libraryDigest": "e569bdbf234b41efd97d52ec61d003b9b05854e526bef8b7034a8d7c3462f94d",
   "peerDigests": {
     "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
     "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -10,7 +10,7 @@
     "phoenix-saga": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa"
   },
   "candidateCount": 9,
-  "comparisonCount": 113,
+  "comparisonCount": 116,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -385,6 +385,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "mutant-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -476,6 +482,12 @@
     },
     {
       "orderId": "secret-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-wars-ii",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -601,6 +613,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "wraith-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-men-age-of-x",
       "sharedCount": 0,
       "sharedIds": [],
@@ -711,5 +729,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "b8079edfb6e4a941593373a59fd641687ab03d8e609eee6acd2f167ab028878c"
+  "reportDigest": "f70f5d22d0323342571e1b9222457bd17317b42b54f41e2f07f54fe67a6bf061"
 }

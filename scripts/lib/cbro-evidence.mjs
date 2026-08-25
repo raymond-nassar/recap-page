@@ -38,11 +38,20 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 
 export const CBRO_HISTORICAL_COUNT = 58;
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  '0f5f60b419db40b842cbfebc258315b1a4a1a99c2fd37f7be8e6d8a191a76b4e';
+  'a3d735baaa60b7f811537cc2316bef2f3e7def5e4c471a11b4b6668022c8487f';
 export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
   '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256 =
   '7e631e916a3c79372ac099ebd5c5741fc23787a962e387f357224282eb3187d6';
+export const CBRO_BATCH_THREE_BLOCKED_OUTCOME_SHA256 =
+  'ef9445dd5b17bc105814c61b12db95dc94e4c09d9bbd6c3d199f2d1539e7b80f';
+export const CBRO_BATCH_FOUR_UNTOUCHED_INVENTORY_SHA256 =
+  '4c608fefbe04fe99279c1e4cbdcfb53bd9ef5665e2f4919f361dc23f5ddf4ebb';
+export const CBRO_BATCH_FOUR_EXCLUSION_SHA256 = Object.freeze({
+  'wraith-war': '655e90fb94d358bd0d9371d43c3068fac050e57dfe2f067cd411b813a6f03b9a',
+  'secret-wars-ii': '6764ebd3f7f4bdf7c103ce2f315068649da79f9bec78ec995ce78493418311fd',
+  'mutant-massacre': '7a9096e23f0f407903caed939afa6205c3301768823e58a2b43314988374f24a',
+});
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
   'muir-island-saga',
@@ -95,6 +104,8 @@ export const CBRO_BATCH_THREE_BLOCKED_IDS = Object.freeze([
   'secret-wars-ii',
   'mutant-massacre',
 ]);
+export const CBRO_BATCH_FOUR_SELECTED_IDS = CBRO_BATCH_THREE_BLOCKED_IDS;
+export const CBRO_BATCH_FOUR_AUTHOR_IDS = CBRO_BATCH_FOUR_SELECTED_IDS;
 export const CBRO_BATCH_THREE_TOUCHED_IDS = Object.freeze([
   'marvel-super-heroes-secret-wars',
   ...CBRO_BATCH_THREE_BLOCKED_IDS,
@@ -107,11 +118,14 @@ export const CBRO_BATCH_TWO_PACKET_REVIEW =
   'MRT-003-C02 batch 2 central CBRO source review';
 export const CBRO_BATCH_THREE_PACKET_REVIEW =
   'MRT-003-C02 batch 3 central CBRO source review';
+export const CBRO_BATCH_FOUR_PACKET_REVIEW =
+  'MRT-003-C02-B04 central CBRO exclusion review';
 export const CBRO_RELEASE_IDS = Object.freeze({
   original: 'mrt-003',
   continuationBatchOne: 'mrt-003-c02-b01',
   continuationBatchTwo: 'mrt-003-c02-b02',
   continuationBatchThree: 'mrt-003-c02-b03',
+  continuationBatchFour: 'mrt-003-c02-b04',
 });
 export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze([
@@ -220,6 +234,70 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
       rationale: 'The exact event route interleaves twenty-nine issues while the broader optional X-Men chronology shares eleven chapters.',
     }),
   ]),
+  [CBRO_RELEASE_IDS.continuationBatchFour]: Object.freeze([
+    Object.freeze({
+      candidateId: 'wraith-war',
+      orderId: 'xmen-claremont',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['13726', '13727', '13728', '13729']),
+      rationale: 'The selected seven-chapter route keeps the Wraith War sequence while the broader X-Men chronology shares its four Uncanny X-Men chapters.',
+    }),
+    Object.freeze({
+      candidateId: 'wraith-war',
+      orderId: 'xmen-claremont-complete',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['13726', '13727', '13728', '13729']),
+      rationale: 'The selected seven-chapter route keeps the Wraith War sequence while the broader optional X-Men chronology shares its four Uncanny X-Men chapters.',
+    }),
+    Object.freeze({
+      candidateId: 'secret-wars-ii',
+      orderId: 'doctor-doom-primer',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['13103']),
+      rationale: 'The selected event route and the broader Doctor Doom primer share one Fantastic Four chapter for different reader purposes.',
+    }),
+    Object.freeze({
+      candidateId: 'secret-wars-ii',
+      orderId: 'essential-avengers',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['7131', '7132']),
+      rationale: 'The selected event route and the broader Essential Avengers guide share two Avengers chapters for different reader purposes.',
+    }),
+    Object.freeze({
+      candidateId: 'secret-wars-ii',
+      orderId: 'xmen-claremont',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['10367', '13737', '10373', '13743', '10374', '13744']),
+      rationale: 'The selected event route interleaves forty chapters while the broader X-Men chronology shares six X-Men family chapters.',
+    }),
+    Object.freeze({
+      candidateId: 'secret-wars-ii',
+      orderId: 'xmen-claremont-complete',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['10367', '13737', '10373', '13743', '10374', '13744']),
+      rationale: 'The selected event route interleaves forty chapters while the broader optional X-Men chronology shares six X-Men family chapters.',
+    }),
+    Object.freeze({
+      candidateId: 'mutant-massacre',
+      orderId: 'xmen-claremont',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze([
+        '13751', '12312', '13752', '12175', '10384', '11701',
+        '13753', '11702', '12186', '13754', '8227',
+      ]),
+      rationale: 'The selected eleven-chapter Mutant Massacre route has a distinct event purpose inside the broader X-Men chronology.',
+    }),
+    Object.freeze({
+      candidateId: 'mutant-massacre',
+      orderId: 'xmen-claremont-complete',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze([
+        '13751', '12312', '13752', '12175', '10384', '11701',
+        '13753', '11702', '12186', '13754', '8227',
+      ]),
+      rationale: 'The selected eleven-chapter Mutant Massacre route has a distinct event purpose inside the broader optional X-Men chronology.',
+    }),
+  ]),
 });
 export const CBRO_RELEASES = Object.freeze({
   [CBRO_RELEASE_IDS.original]: Object.freeze({
@@ -254,11 +332,21 @@ export const CBRO_RELEASES = Object.freeze({
     authorityIdentity: 'MRT-003-C02-B03 coordinator',
     relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; only the five named Secret Wars, Spider-Man, Captain America, and X-Men relationships are approved non-none relationships.',
   }),
+  [CBRO_RELEASE_IDS.continuationBatchFour]: Object.freeze({
+    id: CBRO_RELEASE_IDS.continuationBatchFour,
+    sourceIds: CBRO_BATCH_FOUR_SELECTED_IDS,
+    authorIds: CBRO_BATCH_FOUR_AUTHOR_IDS,
+    packetReview: CBRO_BATCH_FOUR_PACKET_REVIEW,
+    authorityIdentity: 'MRT-003-C02-B04 coordinator',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.',
+  }),
 });
 export const CBRO_ALL_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
   ...CBRO_BATCH_TWO_SELECTED_IDS,
-  ...CBRO_BATCH_THREE_SELECTED_IDS,
+  CBRO_BATCH_THREE_SELECTED_IDS[0],
+  ...CBRO_BATCH_FOUR_SELECTED_IDS,
+  ...CBRO_BATCH_THREE_SELECTED_IDS.slice(1),
   ...CBRO_SELECTED_IDS,
 ]);
 
@@ -310,6 +398,23 @@ const SELECTED_INVENTORY_RELATIONSHIPS = Object.freeze({
       'xmen-claremont',
       'xmen-claremont-complete',
     ]),
+  }),
+  'wraith-war': Object.freeze({
+    relationshipStatus: 'approved-mixed',
+    overlapIds: Object.freeze(['xmen-claremont', 'xmen-claremont-complete']),
+  }),
+  'secret-wars-ii': Object.freeze({
+    relationshipStatus: 'approved-mixed',
+    overlapIds: Object.freeze([
+      'doctor-doom-primer',
+      'essential-avengers',
+      'xmen-claremont',
+      'xmen-claremont-complete',
+    ]),
+  }),
+  'mutant-massacre': Object.freeze({
+    relationshipStatus: 'candidate-subset',
+    overlapIds: Object.freeze(['xmen-claremont', 'xmen-claremont-complete']),
   }),
 });
 const BATCH_THREE_BLOCKED_REASONS = Object.freeze({
@@ -365,6 +470,14 @@ export function validateCbroPacket(packet, options = {}) {
     ...options,
     provider: CBRO_SOURCE_PROVIDER,
   });
+  const approvedExclusionDigest = CBRO_BATCH_FOUR_EXCLUSION_SHA256[packet.id];
+  if (approvedExclusionDigest) {
+    assert(
+      Array.isArray(packet.excludedSourceRows)
+        && digestCanonicalJson(packet.excludedSourceRows) === approvedExclusionDigest,
+      `${packet.id} packet differs from its approved exclusion ledger`,
+    );
+  }
   const inventoryRecord = options.inventoryRecord;
   if (inventoryRecord) {
     assert(inventoryRecord.sourceProvider === packet.sourceProvider,
@@ -442,17 +555,6 @@ export function validateCbroHistoricalInventory(records) {
       `${label} selected catalog state is inconsistent`);
       selected.push(record.id);
     }
-    if (CBRO_BATCH_THREE_BLOCKED_IDS.includes(record.id)) {
-      assert(
-        record.centralDisposition === 'blocked'
-          && record.relationshipStatus === 'unresolved'
-          && record.reason === BATCH_THREE_BLOCKED_REASONS[record.id]
-          && record.overlapIds.length === 0
-          && record.catalogIds.length === 0
-          && record.deliveryStatus === 'blocked',
-        `${label} batch-three blocked state is inconsistent`,
-      );
-    }
   }
   assert(JSON.stringify(selected) === JSON.stringify(CBRO_ALL_SELECTED_IDS),
     'CBRO selected inventory ids or source order changed');
@@ -501,6 +603,36 @@ export function validateCbroHistoricalInventory(records) {
     digestCanonicalJson(batchThreeNonselected)
       === CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256,
     'CBRO batch-three nonselected inventory changed',
+  );
+  const batchThreeBlockedOutcomes = records
+    .filter((record) => CBRO_BATCH_THREE_BLOCKED_IDS.includes(record.id))
+    .map((record) => ({
+      ...record,
+      centralDisposition: 'blocked',
+      relationshipStatus: 'unresolved',
+      reason: BATCH_THREE_BLOCKED_REASONS[record.id],
+      overlapIds: [],
+      catalogIds: [],
+      deliveryStatus: 'blocked',
+    }));
+  assert(
+    digestCanonicalJson(batchThreeBlockedOutcomes)
+      === CBRO_BATCH_THREE_BLOCKED_OUTCOME_SHA256,
+    'CBRO batch-three blocked outcome compatibility changed',
+  );
+  const batchFourUntouched = records
+    .filter((record) => !CBRO_BATCH_FOUR_SELECTED_IDS.includes(record.id))
+    .map((record) => CBRO_ALL_SELECTED_IDS.includes(record.id)
+      ? {
+        ...record,
+        catalogIds: [record.id],
+        deliveryStatus: 'shipped',
+      }
+      : record);
+  assert(
+    digestCanonicalJson(batchFourUntouched)
+      === CBRO_BATCH_FOUR_UNTOUCHED_INVENTORY_SHA256,
+    'CBRO batch-four untouched inventory changed',
   );
   return true;
 }

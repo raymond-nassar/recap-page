@@ -1,0 +1,1022 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-25T02:40:30.518Z",
+  "decisionScope": "mrt-003-c02-b04",
+  "exclusionReason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+  "sourceRowCount": 89,
+  "retainedCount": 58,
+  "excludedCount": 31,
+  "sourceIds": [
+    "wraith-war",
+    "secret-wars-ii",
+    "mutant-massacre"
+  ],
+  "authorIds": [
+    "wraith-war",
+    "secret-wars-ii",
+    "mutant-massacre"
+  ],
+  "supplementalFutureEvidence": {
+    "url": "https://www.comicbookherald.com/the-25-essential-trades-to-marvel-comics-from-1961-to-2000/",
+    "retrievedAt": "2026-08-25T02:20:42.8651808Z",
+    "byteLength": 240452,
+    "sha256": "02c1da6e95b3d400ca7cd26b5c5cec5a0e60ab43ad7f5db0e4a49354918bacc5",
+    "replacesHistoricalCursor": false
+  },
+  "guides": [
+    {
+      "id": "wraith-war",
+      "title": "Wraith War",
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+      "sourceRetrievedAt": "2026-08-23T20:22:15.450Z",
+      "sourceContentSha256": "78388b6291a92f7664a71017daa7b30ec7c80eab4a28b39b27ac1cb48fe2d2c4",
+      "sourceRowCount": 35,
+      "retainedCount": 7,
+      "excludedCount": 28,
+      "excludedSourceRows": [
+        {
+          "sourcePosition": 1,
+          "sourceIssueReference": "Rom #40",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 2,
+          "sourceIssueReference": "Rom #41",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 3,
+          "sourceIssueReference": "Rom #42",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 4,
+          "sourceIssueReference": "Rom #43",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 5,
+          "sourceIssueReference": "Rom #44",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 6,
+          "sourceIssueReference": "Rom #45",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 7,
+          "sourceIssueReference": "Rom #46",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 8,
+          "sourceIssueReference": "Rom #47",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 9,
+          "sourceIssueReference": "Rom #48",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 10,
+          "sourceIssueReference": "Rom #49",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 11,
+          "sourceIssueReference": "Rom #50",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 12,
+          "sourceIssueReference": "Rom #51",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 13,
+          "sourceIssueReference": "Rom #52",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 15,
+          "sourceIssueReference": "Rom #53",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 18,
+          "sourceIssueReference": "Rom #54",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 19,
+          "sourceIssueReference": "Rom #55",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 20,
+          "sourceIssueReference": "Rom #56",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 21,
+          "sourceIssueReference": "Rom #57",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 22,
+          "sourceIssueReference": "Rom #58",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 23,
+          "sourceIssueReference": "Rom #59",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 28,
+          "sourceIssueReference": "Rom #60",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 29,
+          "sourceIssueReference": "Rom Annual #3",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 30,
+          "sourceIssueReference": "Rom #61",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 31,
+          "sourceIssueReference": "Rom #62",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 32,
+          "sourceIssueReference": "Rom #63",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 33,
+          "sourceIssueReference": "Rom #64",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 34,
+          "sourceIssueReference": "Rom #65",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 35,
+          "sourceIssueReference": "Rom #66",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        }
+      ],
+      "rows": [
+        {
+          "sourcePosition": 14,
+          "sourceIssueReference": "Incredible Hulk #296",
+          "normalizedSeriesTitle": "Incredible Hulk",
+          "seriesYear": 1962,
+          "issueNumber": "296",
+          "seriesId": 2021,
+          "apiSeriesName": "Incredible Hulk (1962 - 1999)",
+          "candidateIssueId": 9107,
+          "resolvedIssueTitle": "Incredible Hulk (1962) #296",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/9107/incredible_hulk_1962_296",
+          "onSaleDate": "1984-06-10T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 16,
+          "sourceIssueReference": "Avengers #244",
+          "normalizedSeriesTitle": "Avengers",
+          "seriesYear": 1963,
+          "issueNumber": "244",
+          "seriesId": 1991,
+          "apiSeriesName": "Avengers (1963 - 1996)",
+          "candidateIssueId": 7113,
+          "resolvedIssueTitle": "Avengers (1963) #244",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7113/avengers_1963_244",
+          "onSaleDate": "1984-06-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 17,
+          "sourceIssueReference": "Avengers #245",
+          "normalizedSeriesTitle": "Avengers",
+          "seriesYear": 1963,
+          "issueNumber": "245",
+          "seriesId": 1991,
+          "apiSeriesName": "Avengers (1963 - 1996)",
+          "candidateIssueId": 7114,
+          "resolvedIssueTitle": "Avengers (1963) #245",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7114/avengers_1963_245",
+          "onSaleDate": "1984-07-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 24,
+          "sourceIssueReference": "Uncanny X-Men #185",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "185",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13726,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #185",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13726/uncanny_x-men_1963_185",
+          "onSaleDate": "1984-09-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 25,
+          "sourceIssueReference": "Uncanny X-Men #186",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "186",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13727,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #186",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13727/uncanny_x-men_1963_186",
+          "onSaleDate": "1984-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 26,
+          "sourceIssueReference": "Uncanny X-Men #187",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "187",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13728,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #187",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13728/uncanny_x-men_1963_187",
+          "onSaleDate": "1984-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 27,
+          "sourceIssueReference": "Uncanny X-Men #188",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "188",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13729,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #188",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13729/uncanny_x-men_1963_188",
+          "onSaleDate": "1984-12-01T00:00:00+0000"
+        }
+      ],
+      "chronology": {
+        "firstOnSaleDate": "1984-06-01T00:00:00+0000",
+        "lastOnSaleDate": "1984-12-01T00:00:00+0000"
+      }
+    },
+    {
+      "id": "secret-wars-ii",
+      "title": "Secret Wars II",
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/secret-wars-ii-reading-order/",
+      "sourceRetrievedAt": "2026-08-23T20:22:20.937Z",
+      "sourceContentSha256": "7d652467f335225a2ef8fe6284316be26c71c7774b72db4c6b449c641c144351",
+      "sourceRowCount": 42,
+      "retainedCount": 40,
+      "excludedCount": 2,
+      "excludedSourceRows": [
+        {
+          "sourcePosition": 18,
+          "sourceIssueReference": "ROM #72",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        },
+        {
+          "sourcePosition": 27,
+          "sourceIssueReference": "Micronauts Vol. 2 #16",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        }
+      ],
+      "rows": [
+        {
+          "sourcePosition": 1,
+          "sourceIssueReference": "Secret Wars II #1 (1985)",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "1",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18884,
+          "resolvedIssueTitle": "Secret Wars II (1985) #1",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18884/secret_wars_ii_1985_1",
+          "onSaleDate": "1985-07-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 2,
+          "sourceIssueReference": "New Mutants #30",
+          "normalizedSeriesTitle": "New Mutants",
+          "seriesYear": 1983,
+          "issueNumber": "30",
+          "seriesId": 2055,
+          "apiSeriesName": "New Mutants (1983 - 1991)",
+          "candidateIssueId": 10367,
+          "resolvedIssueTitle": "New Mutants (1983) #30",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/10367/new_mutants_1983_30",
+          "onSaleDate": "1985-08-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 3,
+          "sourceIssueReference": "Iron Man #197",
+          "normalizedSeriesTitle": "Iron Man",
+          "seriesYear": 1968,
+          "issueNumber": "197",
+          "seriesId": 2029,
+          "apiSeriesName": "Iron Man (1968 - 1996)",
+          "candidateIssueId": 9435,
+          "resolvedIssueTitle": "Iron Man (1968) #197",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/9435/iron_man_1968_197",
+          "onSaleDate": "1985-08-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 4,
+          "sourceIssueReference": "Captain America #308",
+          "normalizedSeriesTitle": "Captain America",
+          "seriesYear": 1968,
+          "issueNumber": "308",
+          "seriesId": 1996,
+          "apiSeriesName": "Captain America (1968 - 1996)",
+          "candidateIssueId": 7689,
+          "resolvedIssueTitle": "Captain America (1968) #308",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7689/captain_america_1968_308",
+          "onSaleDate": "1985-08-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 5,
+          "sourceIssueReference": "Uncanny X-Men #196",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "196",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13737,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #196",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13737/uncanny_x-men_1963_196",
+          "onSaleDate": "1985-08-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 6,
+          "sourceIssueReference": "Secret Wars II #2",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "2",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18885,
+          "resolvedIssueTitle": "Secret Wars II (1985) #2",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18885/secret_wars_ii_1985_2",
+          "onSaleDate": "1985-08-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 7,
+          "sourceIssueReference": "Web of Spider-Man #6",
+          "normalizedSeriesTitle": "Web of Spider-Man",
+          "seriesYear": 1985,
+          "issueNumber": "6",
+          "seriesId": 2092,
+          "apiSeriesName": "Web of Spider-Man (1985 - 1995)",
+          "candidateIssueId": 12058,
+          "resolvedIssueTitle": "Web of Spider-Man (1985) #6",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/12058/web_of_spider-man_1985_6",
+          "onSaleDate": "1985-09-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 8,
+          "sourceIssueReference": "Amazing Spider-Man #268",
+          "normalizedSeriesTitle": "Amazing Spider-Man",
+          "seriesYear": 1963,
+          "issueNumber": "268",
+          "seriesId": 1987,
+          "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+          "candidateIssueId": 6669,
+          "resolvedIssueTitle": "The Amazing Spider-Man (1963) #268",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/6669/the_amazing_spider-man_1963_268",
+          "onSaleDate": "1985-09-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 9,
+          "sourceIssueReference": "Fantastic Four #282",
+          "normalizedSeriesTitle": "Fantastic Four",
+          "seriesYear": 1961,
+          "issueNumber": "282",
+          "seriesId": 2121,
+          "apiSeriesName": "Fantastic Four (1961 - 1998)",
+          "candidateIssueId": 13097,
+          "resolvedIssueTitle": "Fantastic Four (1961) #282",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13097/fantastic_four_1961_282",
+          "onSaleDate": "1985-09-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 10,
+          "sourceIssueReference": "Secret Wars II #3",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "3",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18886,
+          "resolvedIssueTitle": "Secret Wars II (1985) #3",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18886/secret_wars_ii_1985_3",
+          "onSaleDate": "1985-09-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 11,
+          "sourceIssueReference": "Avengers #260",
+          "normalizedSeriesTitle": "Avengers",
+          "seriesYear": 1963,
+          "issueNumber": "260",
+          "seriesId": 1991,
+          "apiSeriesName": "Avengers (1963 - 1996)",
+          "candidateIssueId": 7131,
+          "resolvedIssueTitle": "Avengers (1963) #260",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7131/avengers_1963_260",
+          "onSaleDate": "1985-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 12,
+          "sourceIssueReference": "Daredevil #223",
+          "normalizedSeriesTitle": "Daredevil",
+          "seriesYear": 1964,
+          "issueNumber": "223",
+          "seriesId": 2002,
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "candidateIssueId": 8211,
+          "resolvedIssueTitle": "Daredevil (1964) #223",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/8211/daredevil_1964_223",
+          "onSaleDate": "1985-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 13,
+          "sourceIssueReference": "Fantastic Four #285",
+          "normalizedSeriesTitle": "Fantastic Four",
+          "seriesYear": 1961,
+          "issueNumber": "285",
+          "seriesId": 2121,
+          "apiSeriesName": "Fantastic Four (1961 - 1998)",
+          "candidateIssueId": 13100,
+          "resolvedIssueTitle": "Fantastic Four (1961) #285",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13100/fantastic_four_1961_285",
+          "onSaleDate": "1985-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 14,
+          "sourceIssueReference": "Incredible Hulk #312",
+          "normalizedSeriesTitle": "Incredible Hulk",
+          "seriesYear": 1962,
+          "issueNumber": "312",
+          "seriesId": 2021,
+          "apiSeriesName": "Incredible Hulk (1962 - 1999)",
+          "candidateIssueId": 9123,
+          "resolvedIssueTitle": "Incredible Hulk (1962) #312",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/9123/incredible_hulk_1962_312",
+          "onSaleDate": "1985-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 15,
+          "sourceIssueReference": "Secret Wars II #4",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "4",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18887,
+          "resolvedIssueTitle": "Secret Wars II (1985) #4",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18887/secret_wars_ii_1985_4",
+          "onSaleDate": "1985-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 16,
+          "sourceIssueReference": "Dazzler #40",
+          "normalizedSeriesTitle": "Dazzler",
+          "seriesYear": 1981,
+          "issueNumber": "40",
+          "seriesId": 3745,
+          "apiSeriesName": "Dazzler (1981 - 1986)",
+          "candidateIssueId": 20452,
+          "resolvedIssueTitle": "Dazzler (1981) #40",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/20452/dazzler_1981_40",
+          "onSaleDate": "1985-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 17,
+          "sourceIssueReference": "Alpha Flight #28",
+          "normalizedSeriesTitle": "Alpha Flight",
+          "seriesYear": 1983,
+          "issueNumber": "28",
+          "seriesId": 2116,
+          "apiSeriesName": "Alpha Flight (1983 - 1994)",
+          "candidateIssueId": 12688,
+          "resolvedIssueTitle": "Alpha Flight (1983) #28",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/12688/alpha_flight_1983_28",
+          "onSaleDate": "1985-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 19,
+          "sourceIssueReference": "Avengers #261",
+          "normalizedSeriesTitle": "Avengers",
+          "seriesYear": 1963,
+          "issueNumber": "261",
+          "seriesId": 1991,
+          "apiSeriesName": "Avengers (1963 - 1996)",
+          "candidateIssueId": 7132,
+          "resolvedIssueTitle": "Avengers (1963) #261",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7132/avengers_1963_261",
+          "onSaleDate": "1985-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 20,
+          "sourceIssueReference": "Secret Wars II #5",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "5",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18888,
+          "resolvedIssueTitle": "Secret Wars II (1985) #5",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18888/secret_wars_ii_1985_5",
+          "onSaleDate": "1985-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 21,
+          "sourceIssueReference": "The Thing #30",
+          "normalizedSeriesTitle": "The Thing",
+          "seriesYear": 1983,
+          "issueNumber": "30",
+          "seriesId": 3667,
+          "apiSeriesName": "Thing (1983 - 1986)",
+          "candidateIssueId": 18740,
+          "resolvedIssueTitle": "Thing (1983) #30",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18740/thing_1983_30",
+          "onSaleDate": "1985-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 22,
+          "sourceIssueReference": "Doctor Strange Vol. 2 #74",
+          "normalizedSeriesTitle": "Doctor Strange",
+          "seriesYear": 1974,
+          "issueNumber": "74",
+          "seriesId": 3740,
+          "apiSeriesName": "Doctor Strange (1974 - 1988)",
+          "candidateIssueId": 20158,
+          "resolvedIssueTitle": "Doctor Strange (1974) #74",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/20158/doctor_strange_1974_74",
+          "onSaleDate": "1985-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 23,
+          "sourceIssueReference": "Secret Wars II #6",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "6",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18889,
+          "resolvedIssueTitle": "Secret Wars II (1985) #6",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18889/secret_wars_ii_1985_6",
+          "onSaleDate": "1985-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 24,
+          "sourceIssueReference": "Power Pack #18",
+          "normalizedSeriesTitle": "Power Pack",
+          "seriesYear": 1984,
+          "issueNumber": "18",
+          "seriesId": 15186,
+          "apiSeriesName": "Power Pack (1984 - 1991)",
+          "candidateIssueId": 62485,
+          "resolvedIssueTitle": "Power Pack (1984) #18",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/62485/power_pack_1984_18",
+          "onSaleDate": "1986-01-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 25,
+          "sourceIssueReference": "Thor #363",
+          "normalizedSeriesTitle": "Thor",
+          "seriesYear": 1966,
+          "issueNumber": "363",
+          "seriesId": 2083,
+          "apiSeriesName": "Thor (1966 - 1996)",
+          "candidateIssueId": 11691,
+          "resolvedIssueTitle": "Thor (1966) #363",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/11691/thor_1966_363",
+          "onSaleDate": "1986-01-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 26,
+          "sourceIssueReference": "Cloak and Dagger Vol. 2 #4",
+          "normalizedSeriesTitle": "Cloak and Dagger",
+          "seriesYear": 1985,
+          "issueNumber": "4",
+          "seriesId": 14157,
+          "apiSeriesName": "Cloak and Dagger (1985 - 1987)",
+          "candidateIssueId": 62785,
+          "resolvedIssueTitle": "Cloak and Dagger (1985) #4",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/62785/cloak_and_dagger_1985_4",
+          "onSaleDate": "1986-01-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 28,
+          "sourceIssueReference": "Power Man and Iron Fist #121",
+          "normalizedSeriesTitle": "Power Man and Iron Fist",
+          "seriesYear": 1974,
+          "issueNumber": "121",
+          "seriesId": 20674,
+          "apiSeriesName": "Power Man (1974 - 1986)",
+          "candidateIssueId": 71530,
+          "resolvedIssueTitle": "Power Man (1974) #121",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/71530/power_man_1974_121",
+          "onSaleDate": "1986-01-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 29,
+          "sourceIssueReference": "Secret Wars II #7",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "7",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18890,
+          "resolvedIssueTitle": "Secret Wars II (1985) #7",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18890/secret_wars_ii_1985_7",
+          "onSaleDate": "1986-01-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 30,
+          "sourceIssueReference": "Defenders #152",
+          "normalizedSeriesTitle": "Defenders",
+          "seriesYear": 1972,
+          "issueNumber": "152",
+          "seriesId": 3743,
+          "apiSeriesName": "Defenders (1972 - 1986)",
+          "candidateIssueId": 20321,
+          "resolvedIssueTitle": "Defenders (1972) #152",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/20321/defenders_1972_152",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 31,
+          "sourceIssueReference": "New Mutants #36",
+          "normalizedSeriesTitle": "New Mutants",
+          "seriesYear": 1983,
+          "issueNumber": "36",
+          "seriesId": 2055,
+          "apiSeriesName": "New Mutants (1983 - 1991)",
+          "candidateIssueId": 10373,
+          "resolvedIssueTitle": "New Mutants (1983) #36",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/10373/new_mutants_1983_36",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 32,
+          "sourceIssueReference": "Amazing Spider-Man #273",
+          "normalizedSeriesTitle": "Amazing Spider-Man",
+          "seriesYear": 1963,
+          "issueNumber": "273",
+          "seriesId": 1987,
+          "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+          "candidateIssueId": 6675,
+          "resolvedIssueTitle": "The Amazing Spider-Man (1963) #273",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/6675/the_amazing_spider-man_1963_273",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 33,
+          "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man #111",
+          "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+          "seriesYear": 1976,
+          "issueNumber": "111",
+          "seriesId": 2271,
+          "apiSeriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+          "candidateIssueId": 14556,
+          "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #111",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/14556/peter_parker_the_spectacular_spider-man_1976_111",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 34,
+          "sourceIssueReference": "Uncanny X-Men #202",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "202",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13743,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #202",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13743/uncanny_x-men_1963_202",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 35,
+          "sourceIssueReference": "Secret Wars II #8",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "8",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18891,
+          "resolvedIssueTitle": "Secret Wars II (1985) #8",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18891/secret_wars_ii_1985_8",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 36,
+          "sourceIssueReference": "New Mutants #37",
+          "normalizedSeriesTitle": "New Mutants",
+          "seriesYear": 1983,
+          "issueNumber": "37",
+          "seriesId": 2055,
+          "apiSeriesName": "New Mutants (1983 - 1991)",
+          "candidateIssueId": 10374,
+          "resolvedIssueTitle": "New Mutants (1983) #37",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/10374/new_mutants_1983_37",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 37,
+          "sourceIssueReference": "Amazing Spider-Man #274",
+          "normalizedSeriesTitle": "Amazing Spider-Man",
+          "seriesYear": 1963,
+          "issueNumber": "274",
+          "seriesId": 1987,
+          "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+          "candidateIssueId": 6676,
+          "resolvedIssueTitle": "The Amazing Spider-Man (1963) #274",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/6676/the_amazing_spider-man_1963_274",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 38,
+          "sourceIssueReference": "Avengers #265",
+          "normalizedSeriesTitle": "Avengers",
+          "seriesYear": 1963,
+          "issueNumber": "265",
+          "seriesId": 1991,
+          "apiSeriesName": "Avengers (1963 - 1996)",
+          "candidateIssueId": 7136,
+          "resolvedIssueTitle": "Avengers (1963) #265",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7136/avengers_1963_265",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 39,
+          "sourceIssueReference": "Fantastic Four #288",
+          "normalizedSeriesTitle": "Fantastic Four",
+          "seriesYear": 1961,
+          "issueNumber": "288",
+          "seriesId": 2121,
+          "apiSeriesName": "Fantastic Four (1961 - 1998)",
+          "candidateIssueId": 13103,
+          "resolvedIssueTitle": "Fantastic Four (1961) #288",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13103/fantastic_four_1961_288",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 40,
+          "sourceIssueReference": "Uncanny X-Men #203",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "203",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13744,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #203",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13744/uncanny_x-men_1963_203",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 41,
+          "sourceIssueReference": "Secret Wars II #9",
+          "normalizedSeriesTitle": "Secret Wars II",
+          "seriesYear": 1985,
+          "issueNumber": "9",
+          "seriesId": 3694,
+          "apiSeriesName": "Secret Wars II (1985)",
+          "candidateIssueId": 18892,
+          "resolvedIssueTitle": "Secret Wars II (1985) #9",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/18892/secret_wars_ii_1985_9",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 42,
+          "sourceIssueReference": "Avengers #266",
+          "normalizedSeriesTitle": "Avengers",
+          "seriesYear": 1963,
+          "issueNumber": "266",
+          "seriesId": 1991,
+          "apiSeriesName": "Avengers (1963 - 1996)",
+          "candidateIssueId": 7137,
+          "resolvedIssueTitle": "Avengers (1963) #266",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/7137/avengers_1963_266",
+          "onSaleDate": "1986-04-01T00:00:00+0000"
+        }
+      ],
+      "chronology": {
+        "firstOnSaleDate": "1985-07-01T00:00:00+0000",
+        "lastOnSaleDate": "1986-04-01T00:00:00+0000"
+      }
+    },
+    {
+      "id": "mutant-massacre",
+      "title": "Mutant Massacre",
+      "sourceUrl": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+      "sourceRetrievedAt": "2026-08-23T20:22:26.835Z",
+      "sourceContentSha256": "eb3dac85c36f732a10c67b2cb5c09b85b2c8093dc95582b67d4c58519917d8cb",
+      "sourceRowCount": 12,
+      "retainedCount": 11,
+      "excludedCount": 1,
+      "excludedSourceRows": [
+        {
+          "sourcePosition": 7,
+          "sourceIssueReference": "Power Pack #27",
+          "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+          "decisionScope": "mrt-003-c02-b04"
+        }
+      ],
+      "rows": [
+        {
+          "sourcePosition": 1,
+          "sourceIssueReference": "Uncanny X-Men #210",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "210",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13751,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #210",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13751/uncanny_x-men_1963_210",
+          "onSaleDate": "1986-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 2,
+          "sourceIssueReference": "X-Factor #9",
+          "normalizedSeriesTitle": "X-Factor",
+          "seriesYear": 1986,
+          "issueNumber": "9",
+          "seriesId": 2098,
+          "apiSeriesName": "X-Factor (1986 - 1998)",
+          "candidateIssueId": 12312,
+          "resolvedIssueTitle": "X-Factor (1986) #9",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/12312/x-factor_1986_9",
+          "onSaleDate": "1986-10-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 3,
+          "sourceIssueReference": "Uncanny X-Men #211",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "211",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13752,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #211",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13752/uncanny_x-men_1963_211",
+          "onSaleDate": "1986-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 4,
+          "sourceIssueReference": "X-Factor #10",
+          "normalizedSeriesTitle": "X-Factor",
+          "seriesYear": 1986,
+          "issueNumber": "10",
+          "seriesId": 2098,
+          "apiSeriesName": "X-Factor (1986 - 1998)",
+          "candidateIssueId": 12175,
+          "resolvedIssueTitle": "X-Factor (1986) #10",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/12175/x-factor_1986_10",
+          "onSaleDate": "1986-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 5,
+          "sourceIssueReference": "New Mutants #46",
+          "normalizedSeriesTitle": "New Mutants",
+          "seriesYear": 1983,
+          "issueNumber": "46",
+          "seriesId": 2055,
+          "apiSeriesName": "New Mutants (1983 - 1991)",
+          "candidateIssueId": 10384,
+          "resolvedIssueTitle": "New Mutants (1983) #46",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/10384/new_mutants_1983_46",
+          "onSaleDate": "1986-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 6,
+          "sourceIssueReference": "Thor #373",
+          "normalizedSeriesTitle": "Thor",
+          "seriesYear": 1966,
+          "issueNumber": "373",
+          "seriesId": 2083,
+          "apiSeriesName": "Thor (1966 - 1996)",
+          "candidateIssueId": 11701,
+          "resolvedIssueTitle": "Thor (1966) #373",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/11701/thor_1966_373",
+          "onSaleDate": "1986-11-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 8,
+          "sourceIssueReference": "Uncanny X-Men #212",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "212",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13753,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #212",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13753/uncanny_x-men_1963_212",
+          "onSaleDate": "1986-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 9,
+          "sourceIssueReference": "Thor #374",
+          "normalizedSeriesTitle": "Thor",
+          "seriesYear": 1966,
+          "issueNumber": "374",
+          "seriesId": 2083,
+          "apiSeriesName": "Thor (1966 - 1996)",
+          "candidateIssueId": 11702,
+          "resolvedIssueTitle": "Thor (1966) #374",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/11702/thor_1966_374",
+          "onSaleDate": "1986-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 10,
+          "sourceIssueReference": "X-Factor #11",
+          "normalizedSeriesTitle": "X-Factor",
+          "seriesYear": 1986,
+          "issueNumber": "11",
+          "seriesId": 2098,
+          "apiSeriesName": "X-Factor (1986 - 1998)",
+          "candidateIssueId": 12186,
+          "resolvedIssueTitle": "X-Factor (1986) #11",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/12186/x-factor_1986_11",
+          "onSaleDate": "1986-12-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 11,
+          "sourceIssueReference": "Uncanny X-Men #213",
+          "normalizedSeriesTitle": "Uncanny X-Men",
+          "seriesYear": 1963,
+          "issueNumber": "213",
+          "seriesId": 2258,
+          "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+          "candidateIssueId": 13754,
+          "resolvedIssueTitle": "Uncanny X-Men (1963) #213",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/13754/uncanny_x-men_1963_213",
+          "onSaleDate": "1987-01-01T00:00:00+0000"
+        },
+        {
+          "sourcePosition": 12,
+          "sourceIssueReference": "Daredevil #238",
+          "normalizedSeriesTitle": "Daredevil",
+          "seriesYear": 1964,
+          "issueNumber": "238",
+          "seriesId": 2002,
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "candidateIssueId": 8227,
+          "resolvedIssueTitle": "Daredevil (1964) #238",
+          "marvelIssueUrl": "https://www.marvel.com/comics/issue/8227/daredevil_1964_238",
+          "onSaleDate": "1987-01-01T00:00:00+0000"
+        }
+      ],
+      "chronology": {
+        "firstOnSaleDate": "1986-10-01T00:00:00+0000",
+        "lastOnSaleDate": "1987-01-01T00:00:00+0000"
+      }
+    }
+  ]
+}

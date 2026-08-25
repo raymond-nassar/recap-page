@@ -28,6 +28,7 @@ import {
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourceOccurrenceCountFor,
   sourcePositionsForPacket,
   validateBatchNoDuplicates,
   validateFrozenPacket,
@@ -441,6 +442,70 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
     () => assertApprovedRelationshipReview(divergentMirror),
     /mapping repeated source evidence differs from its frozen packet/i,
   );
+});
+
+test('excluded source rows conserve exact positions without changing legacy packets', () => {
+  const packet = packetForOccurrenceShape(2, []);
+  delete packet.repeatedSourceReferences;
+  packet.sourceOccurrenceCount = 3;
+  packet.excludedSourceRows = [{
+    sourcePosition: 2,
+    sourceIssueReference: 'Licensed Tie-In #1',
+    reason: 'User-approved guide-scoped exclusion.',
+    decisionScope: 'test-release',
+  }];
+  packet.packetDigest = packetDigestFor(packet);
+  assert.doesNotThrow(() => validateFrozenPacket(packet));
+  assert.deepEqual(sourcePositionsForPacket(packet), [1, 3]);
+  assert.equal(sourceOccurrenceCountFor(packet), 3);
+
+  const wrongCount = structuredClone(packet);
+  wrongCount.sourceOccurrenceCount = 2;
+  wrongCount.packetDigest = packetDigestFor(wrongCount);
+  assert.throws(
+    () => validateFrozenPacket(wrongCount),
+    /canonical rows plus repeated references and excluded source rows/i,
+  );
+
+  const duplicatePosition = structuredClone(packet);
+  duplicatePosition.sourceOccurrenceCount = 4;
+  duplicatePosition.excludedSourceRows.push({
+    ...duplicatePosition.excludedSourceRows[0],
+    sourceIssueReference: 'Licensed Tie-In #2',
+  });
+  duplicatePosition.packetDigest = packetDigestFor(duplicatePosition);
+  assert.throws(
+    () => validateFrozenPacket(duplicatePosition),
+    /duplicate supplemental source position/i,
+  );
+
+  const unordered = structuredClone(packet);
+  unordered.sourceOccurrenceCount = 4;
+  unordered.excludedSourceRows = [
+    { ...unordered.excludedSourceRows[0], sourcePosition: 3 },
+    {
+      ...unordered.excludedSourceRows[0],
+      sourcePosition: 2,
+      sourceIssueReference: 'Licensed Tie-In #2',
+    },
+  ];
+  unordered.packetDigest = packetDigestFor(unordered);
+  assert.throws(() => validateFrozenPacket(unordered), /must be in sourcePosition order/i);
+
+  const unsupported = structuredClone(packet);
+  unsupported.excludedSourceRows[0].marvelIssueId = 1;
+  unsupported.packetDigest = packetDigestFor(unsupported);
+  assert.throws(() => validateFrozenPacket(unsupported), /unsupported fields: marvelIssueId/i);
+
+  const missingScope = structuredClone(packet);
+  delete missingScope.excludedSourceRows[0].decisionScope;
+  missingScope.packetDigest = packetDigestFor(missingScope);
+  assert.throws(() => validateFrozenPacket(missingScope), /missing required fields: decisionScope/i);
+
+  const legacy = genericPacket();
+  assert.equal(Object.hasOwn(legacy, 'sourceOccurrenceCount'), false);
+  assert.equal(Object.hasOwn(legacy, 'excludedSourceRows'), false);
+  assert.deepEqual(sourcePositionsForPacket(legacy), [1, 2]);
 });
 
 test('the three blocked source shapes reconstruct one unique first-occurrence sequence', () => {

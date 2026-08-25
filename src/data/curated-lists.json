@@ -2720,6 +2720,102 @@
       "coverIssueId": 10580
     },
     {
+      "id": "wraith-war",
+      "name": "Wraith War",
+      "description": "Seven essential Wraith War chapters from Hulk, Avengers, and Uncanny X-Men, selected from the full source order.",
+      "type": "event",
+      "depth": "essential",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "wraith-war.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "wraith_war.json",
+      "characters": [
+        "Hulk",
+        "Avengers",
+        "X-Men"
+      ],
+      "keywords": [
+        "Wraith War",
+        "Dire Wraiths",
+        "Avengers",
+        "X-Men"
+      ],
+      "expect": 7,
+      "timeline": 1984,
+      "coverIssueId": 9107
+    },
+    {
+      "id": "secret-wars-ii",
+      "name": "Secret Wars II",
+      "description": "Forty selected Secret Wars II chapters, omitting two nonessential tie-ins that are not discoverable through Marvel Unlimited.",
+      "type": "event",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "secret-wars-ii.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/secret-wars-ii-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "secret_wars_ii.json",
+      "characters": [
+        "Beyonder",
+        "Avengers",
+        "Spider-Man",
+        "Fantastic Four",
+        "X-Men"
+      ],
+      "keywords": [
+        "Secret Wars II",
+        "Beyonder",
+        "Marvel event"
+      ],
+      "expect": 40,
+      "timeline": 1985,
+      "coverIssueId": 18884
+    },
+    {
+      "id": "mutant-massacre",
+      "name": "Mutant Massacre",
+      "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
+      "type": "event",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mutant-massacre.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "mutant_massacre.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants",
+        "Thor",
+        "Daredevil"
+      ],
+      "keywords": [
+        "Mutant Massacre",
+        "X-Men",
+        "X-Factor",
+        "Marauders"
+      ],
+      "expect": 11,
+      "timeline": 1986,
+      "coverIssueId": 13751
+    },
+    {
       "id": "fall-of-the-mutants",
       "name": "Fall of the Mutants",
       "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",

@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "id": "wraith-war",
+  "inventoryId": "wraith-war",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+  "sourceSection": null,
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "78388b6291a92f7664a71017daa7b30ec7c80eab4a28b39b27ac1cb48fe2d2c4",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Rom #40",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Rom #41",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Rom #42",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Rom #43",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Rom #44",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Rom #45",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Rom #46",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Rom #47",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Rom #48",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Rom #49",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Rom #50",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Rom #51",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Rom #52",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Rom #53",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Rom #54",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Rom #55",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Rom #56",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Rom #57",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Rom #58",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Rom #59",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Rom #60",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Rom Annual #3",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Rom #61",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Rom #62",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Rom #63",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Rom #64",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Rom #65",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Rom #66",
+      "reason": "User-approved guide-scoped exclusion: nonessential tie-in not discoverable through Marvel Unlimited.",
+      "decisionScope": "mrt-003-c02-b04"
+    }
+  ],
+  "sourceOccurrenceCount": 35,
+  "expectedCount": 7,
+  "proposedManifest": {
+    "id": "wraith-war",
+    "name": "Wraith War",
+    "description": "Seven essential Wraith War chapters from Hulk, Avengers, and Uncanny X-Men, selected from the full source order.",
+    "type": "event",
+    "depth": "essential",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "wraith-war.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "wraith_war.json",
+    "characters": [
+      "Hulk",
+      "Avengers",
+      "X-Men"
+    ],
+    "keywords": [
+      "Wraith War",
+      "Dire Wraiths",
+      "Avengers",
+      "X-Men"
+    ],
+    "expect": 7,
+    "timeline": 1984,
+    "coverIssueId": 9107
+  },
+  "insertionAnchor": {
+    "beforeId": "fall-of-the-mutants"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B04 coordinator",
+    "rationale": "The exact source page, 89-row conservation ledger, approved guide-scoped exclusions, retained metadata, first-on-sale chronology, and non-complete manifest proposal were reviewed centrally.",
+    "reviewedAt": "2026-08-25T02:40:30.518Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Incredible Hulk #296",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Incredible Hulk",
+      "seriesYear": 1962,
+      "issueNumber": "296",
+      "seriesId": 2021,
+      "candidateIssueId": 9107,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #244",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "244",
+      "seriesId": 1991,
+      "candidateIssueId": 7113,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #245",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "245",
+      "seriesId": 1991,
+      "candidateIssueId": 7114,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #185",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "185",
+      "seriesId": 2258,
+      "candidateIssueId": 13726,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #186",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "186",
+      "seriesId": 2258,
+      "candidateIssueId": 13727,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #187",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "187",
+      "seriesId": 2258,
+      "candidateIssueId": 13728,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #188",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "188",
+      "seriesId": 2258,
+      "candidateIssueId": 13729,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "724e37c0091298acd6a54cc0b576604686fd03ae0f9782b810043022b6511237"
+}

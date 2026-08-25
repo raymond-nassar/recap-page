@@ -139,12 +139,15 @@ export async function buildCbroMapping(packet, metadataById) {
     sourceRetrievalStatus: 'retrieved',
     approvedSourceCount: sourceOccurrenceCountFor(packet),
     excludedSourceReferences: packet.excludedSourceReferences,
+    ...(packet.excludedSourceRows == null
+      ? {}
+      : { excludedSourceRows: packet.excludedSourceRows }),
     ...(packet.sourceOccurrenceCount == null
       ? {}
-      : {
-        sourceOccurrenceCount: packet.sourceOccurrenceCount,
-        repeatedSourceReferences: packet.repeatedSourceReferences,
-      }),
+      : { sourceOccurrenceCount: packet.sourceOccurrenceCount }),
+    ...(packet.repeatedSourceReferences == null
+      ? {}
+      : { repeatedSourceReferences: packet.repeatedSourceReferences }),
     reviewStatus: 'pending-independent-review',
     proposedManifest: packet.proposedManifest,
     candidateMetadata,

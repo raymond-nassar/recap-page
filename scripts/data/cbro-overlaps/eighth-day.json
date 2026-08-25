@@ -2,7 +2,7 @@
   "candidateId": "eighth-day",
   "packetDigest": "48aff0f1ee442018b266c4bc048de00aba77a906b73b4ce8cc9ebf43484f78fa",
   "mappingDigest": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
-  "libraryDigest": "fb62c89d0ca0214266dc066c5450c0e2216b4678b2f7809c2ab57fafe4e09147",
+  "libraryDigest": "4a66bb9890ad1baa1d8dac644fe84685184d7a10e7984f931206b93bfd622b86",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 4,
-  "comparisonCount": 113,
+  "comparisonCount": 116,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -385,6 +385,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "mutant-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -476,6 +482,12 @@
     },
     {
       "orderId": "secret-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-wars-ii",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -601,6 +613,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "wraith-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-men-age-of-x",
       "sharedCount": 0,
       "sharedIds": [],
@@ -691,5 +709,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "23b1c9b41204770d781ab59cf822b262ecd687410025c1472cd5c4df6ad057be"
+  "reportDigest": "3a1710bd3391fabeffcf75573cf96c1314b433455985edea657344d959609d81"
 }
