@@ -2,7 +2,7 @@
   "candidateId": "contest-of-champions",
   "packetDigest": "6ef776481f229f264d61a9cdfe7d961117223434bf7b121ca71cfc526bebd68b",
   "mappingDigest": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
-  "libraryDigest": "a2e944e9da46b4202c4fe712f9f9fc36aa4270562bdcabe312ddfb726dbacd40",
+  "libraryDigest": "4733d4a629dfad44ac0f91a96a14a361533b9325e9b7caa486bf32894bdc4dd9",
   "peerDigests": {
     "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
     "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -10,7 +10,7 @@
     "phoenix-saga": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa"
   },
   "candidateCount": 3,
-  "comparisonCount": 110,
+  "comparisonCount": 113,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -199,6 +199,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "fall-of-the-mutants",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "generations",
       "sharedCount": 0,
       "sharedIds": [],
@@ -289,6 +295,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "kravens-last-hunt",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "kree-skrull-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -308,6 +320,12 @@
     },
     {
       "orderId": "marvel-multiverse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-super-heroes-secret-wars",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -673,5 +691,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "5e25b2198bd94b0d992e6a08ff14830db6c145c0d539b26c5f400b56ebc6c4b1"
+  "reportDigest": "0c731c2c99f888662fb2424ea0a36a2c93976f2b4171d6ab4544f8b33592fc04"
 }

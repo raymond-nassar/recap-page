@@ -1,0 +1,233 @@
+{
+  "id": "kravens-last-hunt",
+  "name": "Kraven's Last Hunt",
+  "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
+  "source": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T23:03:25.392Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12027,
+      "title": "Web of Spider-Man (1985) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/12027/web_of_spider-man_1985_31",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1987-10-01T00:00:00+0000",
+      "mu": "1987-10-01T00:00:00+0000",
+      "digitalId": 7549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5970ca5b25a9c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6697,
+      "title": "The Amazing Spider-Man (1963) #293",
+      "number": "293",
+      "url": "https://www.marvel.com/comics/issue/6697/the_amazing_spider-man_1963_293",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1987-10-01T00:00:00+0000",
+      "mu": "1987-10-01T00:00:00+0000",
+      "digitalId": 4980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/57f25e20e08e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14578,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #131",
+      "number": "131",
+      "url": "https://www.marvel.com/comics/issue/14578/peter_parker_the_spectacular_spider-man_1976_131",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1987-10-01T00:00:00+0000",
+      "mu": "1987-10-01T00:00:00+0000",
+      "digitalId": 6674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5970cb8f59dc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12028,
+      "title": "Web of Spider-Man (1985) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/12028/web_of_spider-man_1985_32",
+      "seriesId": 2092,
+      "seriesName": "Web of Spider-Man (1985 - 1995)",
+      "onSale": "1987-11-01T00:00:00+0000",
+      "mu": "1987-11-01T00:00:00+0000",
+      "digitalId": 1081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/67c7857303ee9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6698,
+      "title": "The Amazing Spider-Man (1963) #294",
+      "number": "294",
+      "url": "https://www.marvel.com/comics/issue/6698/the_amazing_spider-man_1963_294",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1987-11-01T00:00:00+0000",
+      "mu": "1987-11-01T00:00:00+0000",
+      "digitalId": 4981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/57f2600726067",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14579,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #132",
+      "number": "132",
+      "url": "https://www.marvel.com/comics/issue/14579/peter_parker_the_spectacular_spider-man_1976_132",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1987-11-01T00:00:00+0000",
+      "mu": "1987-11-01T00:00:00+0000",
+      "digitalId": 6675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5970cb06f35b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 108295,
+      "title": "The Amazing Spider-Man: Soul Of The Hunter (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/108295/the_amazing_spider-man_soul_of_the_hunter_1992_1",
+      "seriesId": 37250,
+      "seriesName": "The Amazing Spider-Man: Soul Of The Hunter (1992)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 62057,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/63c8123d92d8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

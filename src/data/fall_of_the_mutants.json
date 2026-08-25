@@ -1,0 +1,911 @@
+{
+  "id": "fall-of-the-mutants",
+  "name": "Fall of the Mutants",
+  "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",
+  "source": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-24T23:03:25.389Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 29,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12233,
+      "title": "X-Factor (1986) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/12233/x-factor_1986_18",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1987-07-01T00:00:00+0000",
+      "mu": "1987-07-01T00:00:00+0000",
+      "digitalId": 29710,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5735fa4dbf1a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12234,
+      "title": "X-Factor (1986) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/12234/x-factor_1986_19",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1987-08-01T00:00:00+0000",
+      "mu": "1987-08-01T00:00:00+0000",
+      "digitalId": 29711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5735fb0a6b49d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12236,
+      "title": "X-Factor (1986) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/12236/x-factor_1986_20",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1987-09-01T00:00:00+0000",
+      "mu": "1987-09-01T00:00:00+0000",
+      "digitalId": 29712,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5736039de9462",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "June Brigman",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12237,
+      "title": "X-Factor (1986) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/12237/x-factor_1986_21",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1987-10-01T00:00:00+0000",
+      "mu": "1987-10-01T00:00:00+0000",
+      "digitalId": 29713,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5736051324a63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12238,
+      "title": "X-Factor (1986) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/12238/x-factor_1986_22",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1987-11-01T00:00:00+0000",
+      "mu": "1987-11-01T00:00:00+0000",
+      "digitalId": 29714,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/573605f80b226",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12239,
+      "title": "X-Factor (1986) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/12239/x-factor_1986_23",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1987-12-01T00:00:00+0000",
+      "mu": "1987-12-01T00:00:00+0000",
+      "digitalId": 29715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/573606f4131ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12240,
+      "title": "X-Factor (1986) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/12240/x-factor_1986_24",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 29716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/52617ffc4b135",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12241,
+      "title": "X-Factor (1986) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/12241/x-factor_1986_25",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1988-02-01T00:00:00+0000",
+      "mu": "1988-02-01T00:00:00+0000",
+      "digitalId": 29717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/52618007ef5b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48078,
+      "title": "Power Pack (1984) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/48078/power_pack_1984_35",
+      "seriesId": 15186,
+      "seriesName": "Power Pack (1984 - 1991)",
+      "onSale": "1988-02-03T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 29709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5825e87b66ebd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8243,
+      "title": "Daredevil (1964) #252",
+      "number": "252",
+      "url": "https://www.marvel.com/comics/issue/8243/daredevil_1964_252",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1988-03-01T00:00:00+0000",
+      "mu": "1988-03-01T00:00:00+0000",
+      "digitalId": 29706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5b509e6cdf193",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7720,
+      "title": "Captain America (1968) #339",
+      "number": "339",
+      "url": "https://www.marvel.com/comics/issue/7720/captain_america_1968_339",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1988-03-01T00:00:00+0000",
+      "mu": "1988-03-01T00:00:00+0000",
+      "digitalId": 23534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/526176f761007",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kieron Dwyer",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12242,
+      "title": "X-Factor (1986) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/12242/x-factor_1986_26",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1988-03-01T00:00:00+0000",
+      "mu": "1988-03-01T00:00:00+0000",
+      "digitalId": 29718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5261801d150c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13131,
+      "title": "Fantastic Four (1961) #312",
+      "number": "312",
+      "url": "https://www.marvel.com/comics/issue/13131/fantastic_four_1961_312",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1988-03-01T00:00:00+0000",
+      "mu": "1988-03-01T00:00:00+0000",
+      "digitalId": 29705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/a0/526177137880b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13761,
+      "title": "Uncanny X-Men (1963) #220",
+      "number": "220",
+      "url": "https://www.marvel.com/comics/issue/13761/uncanny_x-men_1963_220",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1987-08-01T00:00:00+0000",
+      "mu": "2013-08-05T11:40:22+0000",
+      "digitalId": 28007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/511419a090bb8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13762,
+      "title": "Uncanny X-Men (1963) #221",
+      "number": "221",
+      "url": "https://www.marvel.com/comics/issue/13762/uncanny_x-men_1963_221",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1987-09-01T00:00:00+0000",
+      "mu": "2013-08-05T11:41:40+0000",
+      "digitalId": 28008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/51141a18c8a3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13763,
+      "title": "Uncanny X-Men (1963) #222",
+      "number": "222",
+      "url": "https://www.marvel.com/comics/issue/13763/uncanny_x-men_1963_222",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1987-10-01T00:00:00+0000",
+      "mu": "2013-08-05T11:42:44+0000",
+      "digitalId": 28009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/51141a92ac61a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13764,
+      "title": "Uncanny X-Men (1963) #223",
+      "number": "223",
+      "url": "https://www.marvel.com/comics/issue/13764/uncanny_x-men_1963_223",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1987-11-01T00:00:00+0000",
+      "mu": "2013-08-05T11:47:13+0000",
+      "digitalId": 28010,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/51141b0d5d8fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13765,
+      "title": "Uncanny X-Men (1963) #224",
+      "number": "224",
+      "url": "https://www.marvel.com/comics/issue/13765/uncanny_x-men_1963_224",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1987-12-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7391,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5909f7057cafe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9151,
+      "title": "Incredible Hulk (1962) #340",
+      "number": "340",
+      "url": "https://www.marvel.com/comics/issue/9151/incredible_hulk_1962_340",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1988-02-01T00:00:00+0000",
+      "mu": "2008-10-10T00:00:00+0000",
+      "digitalId": 4072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5b8836640ec1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Todd Mcfarlane",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13766,
+      "title": "Uncanny X-Men (1963) #225",
+      "number": "225",
+      "url": "https://www.marvel.com/comics/issue/13766/uncanny_x-men_1963_225",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "2013-08-05T11:45:11+0000",
+      "digitalId": 28011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/51141b8ca7973",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13767,
+      "title": "Uncanny X-Men (1963) #226",
+      "number": "226",
+      "url": "https://www.marvel.com/comics/issue/13767/uncanny_x-men_1963_226",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1988-02-01T00:00:00+0000",
+      "mu": "2013-08-05T11:48:29+0000",
+      "digitalId": 28012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/51141c0a47569",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13768,
+      "title": "Uncanny X-Men (1963) #227",
+      "number": "227",
+      "url": "https://www.marvel.com/comics/issue/13768/uncanny_x-men_1963_227",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1988-03-01T00:00:00+0000",
+      "mu": "2013-08-05T11:49:28+0000",
+      "digitalId": 28013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/590a20b6371b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10394,
+      "title": "New Mutants (1983) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/10394/new_mutants_1983_55",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1987-09-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/58062004b670f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10395,
+      "title": "New Mutants (1983) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/10395/new_mutants_1983_56",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1987-10-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/580621468e821",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "June Brigman",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Nowlan",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10396,
+      "title": "New Mutants (1983) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/10396/new_mutants_1983_57",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1987-11-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5806230e7a7ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10397,
+      "title": "New Mutants (1983) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/10397/new_mutants_1983_58",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1987-12-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/5806246ee7989",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10398,
+      "title": "New Mutants (1983) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/10398/new_mutants_1983_59",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1988-01-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28023,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/52617f5d37fc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10400,
+      "title": "New Mutants (1983) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/10400/new_mutants_1983_60",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1988-02-10T00:00:00+0000",
+      "mu": "2016-04-04T00:00:00+0000",
+      "digitalId": 28024,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/52617f7703a42",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 52,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10401,
+      "title": "New Mutants (1983) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/10401/new_mutants_1983_61",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1988-03-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28025,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/52617f810b426",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

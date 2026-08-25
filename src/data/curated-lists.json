@@ -2687,6 +2687,100 @@
       "coverIssueId": 39673
     },
     {
+      "id": "marvel-super-heroes-secret-wars",
+      "name": "Marvel Super Heroes Secret Wars",
+      "description": "Twelve chapters carrying Marvel's original Secret Wars from Battleworld's opening to its conclusion.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-super-heroes-secret-wars.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Marvel Super Heroes Secret Wars",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "marvel_super_heroes_secret_wars.json",
+      "characters": [
+        "Avengers",
+        "X-Men",
+        "Fantastic Four",
+        "Doctor Doom",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Super Heroes Secret Wars",
+        "Secret Wars",
+        "Battleworld",
+        "Doctor Doom"
+      ],
+      "expect": 12,
+      "timeline": 1984,
+      "coverIssueId": 10580
+    },
+    {
+      "id": "fall-of-the-mutants",
+      "name": "Fall of the Mutants",
+      "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "fall-of-the-mutants.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "fall_of_the_mutants.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Fall of the Mutants",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "expect": 29,
+      "timeline": 1988,
+      "coverIssueId": 12233
+    },
+    {
+      "id": "kravens-last-hunt",
+      "name": "Kraven's Last Hunt",
+      "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "kravens-last-hunt.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "kravens_last_hunt.json",
+      "characters": [
+        "Spider-Man",
+        "Kraven the Hunter",
+        "Mary Jane Watson"
+      ],
+      "keywords": [
+        "Kraven's Last Hunt",
+        "Spider-Man",
+        "Kraven the Hunter"
+      ],
+      "expect": 7,
+      "timeline": 1987,
+      "coverIssueId": 12027
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

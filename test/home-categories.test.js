@@ -27,11 +27,20 @@ test('the current gateway offers every populated canonical shelf and publishing 
   const categories = availableHomeCategories(stories);
   assert.deepEqual(
     categories.map(({ key }) => key),
-    ['timeline', 'storylines', 'character-spotlights', 'marvel-on-screen', 'silver', 'bronze', 'modern'],
+    [
+      'timeline',
+      'storylines',
+      'character-spotlights',
+      'marvel-on-screen',
+      'silver',
+      'bronze',
+      'copper',
+      'modern',
+    ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
@@ -118,10 +127,10 @@ test('empty publishing ages stay declared but hidden from the current gateway', 
     assert.ok(HOME_CATEGORIES.some((category) => category.key === key), `${key} is not declared`);
   }
   const available = availableHomeCategories(stories);
-  assert.ok(['golden', 'copper'].every(
+  assert.ok(['golden'].every(
     (key) => !available.some((category) => category.key === key),
   ));
-  assert.ok(['silver', 'bronze'].every(
+  assert.ok(['silver', 'bronze', 'copper'].every(
     (key) => available.some((category) => category.key === key),
   ));
 });

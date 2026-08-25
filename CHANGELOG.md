@@ -12,6 +12,23 @@ upgrading across a MAJOR.
 Releases are tagged `v<version>`. The version shown under **About this app** is the one to
 quote in a bug report.
 
+## Unreleased
+
+### Added three more historical Marvel event guides
+
+In plain English: Marvel Super Heroes Secret Wars, Fall of the Mutants, and Kraven's Last Hunt are
+now available as historical reading guides. They add 48 issues from 1984 through 1992, retain the
+source order, and credit Comic Book Reading Orders. The catalog now has 114 reading lists, and
+nothing you have saved is changed.
+
+Wraith War, Secret Wars II, and Mutant Massacre were not shortened to fit the release. Their missing
+ROM, Micronauts, and Power Pack metadata is recorded so those guides can be researched without
+guessing or silently dropping an issue.
+
+For maintainers: the fixed batch-three release binds three current source packets, 48 exact metadata
+rows, and 339 complete-library and selected-peer comparisons. Five reviewed subset or partial
+relationships are explicitly approved; every other relationship remains none.
+
 ## 1.4.0
 
 ### Polished the ways to discover Reading Lists

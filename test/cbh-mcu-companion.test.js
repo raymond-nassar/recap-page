@@ -22,6 +22,7 @@ import {
   validateMcuCompanionPacket,
 } from '../scripts/lib/cbh-mcu-companion.mjs';
 import {
+  CBRO_BATCH_THREE_SELECTED_IDS,
   CBRO_BATCH_TWO_SELECTED_IDS,
   CBRO_CONTINUATION_SELECTED_IDS,
 } from '../scripts/lib/cbro-evidence.mjs';
@@ -58,6 +59,7 @@ const frozenExcludedIds = [
   ...MCU_SELECTED_IDS,
   ...CBRO_CONTINUATION_SELECTED_IDS,
   ...CBRO_BATCH_TWO_SELECTED_IDS,
+  ...CBRO_BATCH_THREE_SELECTED_IDS,
 ];
 
 async function readJson(relativePath) {
@@ -296,7 +298,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 111);
+  assert.equal(catalog.lists.length, 114);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),

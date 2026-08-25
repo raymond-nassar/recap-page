@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "id": "kravens-last-hunt",
+  "inventoryId": "kravens-last-hunt",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "926c778d58f0df698b0971abf65268d4e1626b6b3796dc6b41acc8cd723da296",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 7,
+  "proposedManifest": {
+    "id": "kravens-last-hunt",
+    "name": "Kraven's Last Hunt",
+    "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "kravens-last-hunt.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "kravens_last_hunt.json",
+    "characters": [
+      "Spider-Man",
+      "Kraven the Hunter",
+      "Mary Jane Watson"
+    ],
+    "keywords": [
+      "Kraven's Last Hunt",
+      "Spider-Man",
+      "Kraven the Hunter"
+    ],
+    "expect": 7,
+    "timeline": 1987,
+    "coverIssueId": 12027
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B03 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, exclusions, provider identity, unchanged source digest, row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T22:37:22Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Web of Spider-Man #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "31",
+      "seriesId": 2092,
+      "candidateIssueId": 12027,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #293",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "293",
+      "seriesId": 1987,
+      "candidateIssueId": 6697,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #131",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker, The Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "131",
+      "seriesId": 2271,
+      "candidateIssueId": 14578,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Web of Spider-Man #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Web of Spider-Man",
+      "seriesYear": 1985,
+      "issueNumber": "32",
+      "seriesId": 2092,
+      "candidateIssueId": 12028,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man #294",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "294",
+      "seriesId": 1987,
+      "candidateIssueId": 6698,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series The Amazing Spider-Man (1963 - 1998), series 1987."
+    },
+    {
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #132",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Peter Parker, The Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "132",
+      "seriesId": 2271,
+      "candidateIssueId": 14579,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man: Soul of the Hunter #1 (1992)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Amazing Spider-Man: Soul of the Hunter",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 37250,
+      "candidateIssueId": 108295,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series The Amazing Spider-Man: Soul Of The Hunter (1992), series 37250."
+    }
+  ],
+  "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a"
+}

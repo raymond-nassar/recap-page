@@ -364,6 +364,9 @@ dedicated page packet records `sourceProvider`, the exact page URL, raw page SHA
 panel boundary, exclusions, row order, manifest proposal, chronology anchor, and central source
 review. Timeline-only entries additionally require the visible event label as `sourceSection`.
 Every record carries `universeScope`; only `marvel-2099` and `mc2` may use `alternate`.
+If any source row lacks exact issue metadata, keep the whole affected event blocked and record the
+missing series and issue identity in the inventory. Do not omit that row, substitute a nearby issue,
+or widen the batch to hide the gap. Re-entry requires exact metadata for every named blocker.
 
 The source publishes a five-second crawl delay. Use normal public access, wait between page requests,
 and stop on a changed digest until the source boundary has been read and reviewed again. Copy no page
