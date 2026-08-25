@@ -6,7 +6,7 @@
 * Task ID: MRT-003-C02-B04
 * Parent task: MRT-003-C02
 * Task slug: licensed-character-issues
-* Planning status: Ready after one independent critique
+* Planning status: Complete
 * Plan date: 2026-08-24
 * Research input: .copilot-tracking/research/2026-08-24/licensed-character-issues-research.md
 * Phase details: .copilot-tracking/details/2026-08-24/licensed-character-issues-phase-details.md
@@ -277,7 +277,7 @@ included row or one exact approved exclusion, and every other omission must fail
 * Detail section: P04-T02 in .copilot-tracking/details/2026-08-24/licensed-character-issues-phase-details.md
 
 <!-- rpi:phase id=P05 -->
-### [ ] P05: Review and prepare the merge-ready pull request
+### [x] P05: Review and prepare the merge-ready pull request
 
 * Intent: Run the sole implementation Review, route its outcome, and publish only a clean candidate.
 * Dependencies: P04 complete validation.
@@ -292,7 +292,7 @@ included row or one exact approved exclusion, and every other omission must fail
 * Detail section: P05-T01 in .copilot-tracking/details/2026-08-24/licensed-character-issues-phase-details.md
 
 <!-- rpi:task id=P05-T02 -->
-#### [ ] P05-T02: Commit, open the pull request, and assess hosted readiness
+#### [x] P05-T02: Commit, open the pull request, and assess hosted readiness
 
 * Requirement and evidence: The pull request must lead with plain English, record validation numbers,
   and preserve the required commit trailer.
@@ -325,5 +325,5 @@ included row or one exact approved exclusion, and every other omission must fail
 ## Handoff
 
 * Implementation artifact: .copilot-tracking/changes/2026-08-24/licensed-character-issues-changes.md
-* Ready phase or task: P05-T02
+* Ready phase or task: None; the full plan is complete
 * Remaining provisional question or blocker: None
