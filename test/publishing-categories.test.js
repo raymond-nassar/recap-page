@@ -7,9 +7,11 @@ import { fileURLToPath } from 'node:url';
 import {
   PUBLISHING_AGES,
   PUBLISHING_CATEGORIES,
+  HOME_CATEGORIES,
   availablePublishingCategories,
   groupCatalog,
   inPublishingAge,
+  isPublishingCategoryLeaf,
   parseCatalog,
   publishingCategoryStories,
   shelfKey,
@@ -164,4 +166,16 @@ test('only populated publishing categories are available and counts use Reading 
   );
   assert.equal(byKey.has('early-modern'), true);
   assert.equal(periods.some(({ key }) => key === 'early-modern'), true);
+});
+
+test('publication leaf eligibility comes from registry structure rather than current content', () => {
+  const mcuPrep = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
+  for (const [category, expected] of [
+    [byKey.get('modern'), false],
+    [byKey.get('event-era'), true],
+    [byKey.get('golden'), true],
+    [mcuPrep, false],
+  ]) {
+    assert.equal(isPublishingCategoryLeaf(category), expected, category?.key);
+  }
 });
