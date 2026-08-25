@@ -444,7 +444,7 @@ function main() {
   const { fresh, fixed } = unresolved(css);
   for (const f of fresh) console.log(`  ${f.themeName}: ${f.message}`);
   for (const k of fixed) {
-    console.log(`  ${k} now meets the floor. Remove it from KNOWN in scripts/check-palette.mjs, and from the BL-065 backlog block if that empties it.`);
+    console.log(`  ${k} now meets the floor. Remove it from KNOWN in scripts/check-palette.mjs, and update the Issue that owns the correction.`);
   }
   if (fresh.length || fixed.length) {
     console.log(`\n${fresh.length} new pair(s) below the floor, ${fixed.length} recorded pair(s) no longer below it.`);

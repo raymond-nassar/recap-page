@@ -11,3 +11,10 @@
 # and bury this in a formatting commit.
 *.cmd text eol=crlf
 *.command text eol=lf
+
+# Derived reports and regenerated indexes are reviewable through their source inputs and checks.
+# Reviewed mappings, packets, issue data and order pages remain visible in diffs.
+scripts/data/cbh-overlaps/** linguist-generated=true
+scripts/data/cbro-overlaps/** linguist-generated=true
+src/data/catalog.json linguist-generated=true
+src/data/curated-lists.json linguist-generated=true

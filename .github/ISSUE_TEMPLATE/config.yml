@@ -24,7 +24,6 @@ contact_links:
       The app cannot show you the comics themselves, and the reasons are measured rather than
       assumed. Worth reading before asking for it.
   - name: What is already planned
-    url: https://github.com/raymond-nassar/recap-page/blob/main/PRODUCT_BACKLOG.md
+    url: https://github.com/users/raymond-nassar/projects/1
     about: >-
-      Everything waiting to be built, ranked, with the reasoning for each. Your idea may be on it
-      already.
+      Active work is planned here and each item links to the Issue that owns its reasoning.

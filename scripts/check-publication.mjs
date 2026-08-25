@@ -23,6 +23,7 @@
 // look at is worse than no gate, because it reads identically in a summary.
 
 import { execFileSync, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -42,6 +43,24 @@ export const PROTECTED = [
   ['.copilot-tracking/', 'working artifacts for one session, kept out of the product record'],
   ['.github/prompts/', 'spent instructions to an agent, which BL-060 parked rather than commit'],
 ];
+
+const PROTECTED_TRACKED_BASELINE = {
+  count: 227,
+  sha256: 'e1a3e5d8a2bc2232e5055e09484d488f2d10359e90ab424f3e9983f5cb1d40a2',
+};
+
+export function protectedTrackedFingerprint(paths) {
+  const protectedPaths = paths
+    .map((path) => path.replaceAll('\\', '/'))
+    .filter((path) => PROTECTED.some(([root]) => path.startsWith(root)))
+    .sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
+  const hash = createHash('sha256');
+  for (const path of protectedPaths) {
+    hash.update(path, 'utf8');
+    hash.update(Buffer.from([0]));
+  }
+  return { count: protectedPaths.length, sha256: hash.digest('hex') };
+}
 
 // Shapes that must not reach a published tree. Each is a signature rather than a guess at a value:
 // a match is a thing that looks like a credential or like one machine's private detail, and the
@@ -132,21 +151,30 @@ export function boundaryFaults() {
       errors.push(`git could not answer whether ${probe} is ignored (status ${run.status}): ${String(run.stderr).trim()}`);
     }
   }
+  const tracked = git(['-c', 'core.quotePath=false', 'ls-files', '-z']).split('\u0000').filter(Boolean);
+  const corpus = protectedTrackedFingerprint(tracked);
+  if (corpus.count !== PROTECTED_TRACKED_BASELINE.count || corpus.sha256 !== PROTECTED_TRACKED_BASELINE.sha256) {
+    faults.push(
+      `the protected tracked-path corpus changed from ${PROTECTED_TRACKED_BASELINE.count} path(s) at `
+      + `${PROTECTED_TRACKED_BASELINE.sha256} to ${corpus.count} path(s) at ${corpus.sha256}. `
+      + 'New session evidence and spent prompts must stay local; remove any force-added path.',
+    );
+  }
   return { faults, errors };
 }
 
 // ------------------------------------------------------------------ the content half
 
-// A file git could not read is not a file that read clean. `ls-files` quotes any path outside plain
-// ASCII under the default `core.quotePath`, and the quoted form is not a path `git show` accepts, so
-// the first version of this skipped every such file silently and reported the tree clean. Turning
-// quoting off and splitting on NUL is the fix; the surviving read failure becomes a fault, because
-// "could not look" and "looked and found nothing" must not print the same.
+// A file git could not read is not a file that read clean. Read from the index enumerated by
+// `ls-files`, not HEAD: a force-added path exists only in that index, and an alternate index is how
+// the production integration test proves the boundary without changing a developer's real one.
+// Turning quoting off and splitting on NUL preserves names outside plain ASCII; any surviving read
+// failure remains a fault because "could not look" and "looked and found nothing" are not the same.
 function trackedBlobs() {
   const files = git(['-c', 'core.quotePath=false', 'ls-files', '-z']).split('\u0000').filter(Boolean);
   return files.map((file) => {
     try {
-      return { file, body: execFileSync('git', ['show', `HEAD:${file}`], { cwd: ROOT, maxBuffer: 512e6 }), error: null };
+      return { file, body: execFileSync('git', ['show', `:${file}`], { cwd: ROOT, maxBuffer: 512e6 }), error: null };
     } catch (e) {
       return { file, body: null, error: String(e.message).split('\n')[0] };
     }

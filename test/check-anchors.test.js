@@ -16,9 +16,9 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { PROSE, blameSources, blankEdgeOf, citations, claimBefore, collisions, commentSyntax, failing, firstTime, nearMisses, pairingLines, pairings, proseRuns, relativeCitations, relativeVerdict, repeatVerdict, repeatedCitations, scopeRenames } from '../scripts/check-anchors.mjs';
+import { PROSE, blameSources, blankEdgeOf, citations, claimBefore, collisions, commentSyntax, explicitSourceMarker, failing, firstTime, nearMisses, pairingLines, pairings, proseRuns, relativeCitations, relativeVerdict, repeatVerdict, repeatedCitations, scopeRenames } from '../scripts/check-anchors.mjs';
 
 const JS = commentSyntax('a.mjs');
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
@@ -984,6 +984,81 @@ function anchorRepo() {
 function disposeAnchorRepo(repo) {
   rmSync(repo.root, { recursive: true, force: true });
 }
+
+test('document source marker grammar is exact and singular', () => {
+  const source = 'a'.repeat(40);
+  assert.equal(explicitSourceMarker(`# Frozen\n<!-- anchors:source=${source} -->\nBody\n`), source);
+  assert.equal(explicitSourceMarker('# Current\n\nBody\n'), null);
+  assert.throws(
+    () => explicitSourceMarker(`<!-- anchors:source=${source} -->\n# Frozen\n`),
+    /line 2/,
+  );
+  assert.throws(
+    () => explicitSourceMarker(`# Frozen\n<!-- anchors:source=${'A'.repeat(40)} -->\n`),
+    /full lowercase 40-hex/,
+  );
+  assert.throws(
+    () => explicitSourceMarker(`# Frozen\n<!-- anchors:source=${source} -->\n<!-- anchors:source=${'b'.repeat(40)} -->\n`),
+    /exactly once/,
+  );
+});
+
+test('explicit document sources accept one reachable commit and refuse invalid provenance', () => {
+  const repo = anchorRepo();
+  let clone = null;
+  try {
+    const source = repo.git(['rev-parse', 'HEAD']).trim();
+    const marked = (sha, name = 'CURRENT.md') =>
+      repo.write(name, `# Frozen\n<!-- anchors:source=${sha} -->\nClaim ${cite('target.js:1')}\n`);
+
+    marked(source);
+    const bless = repo.checker('--bless');
+    assert.equal(bless.status, 0, `${bless.stdout}\n${bless.stderr}`);
+    repo.write('target.js', 'new target\nsame head\nsame head\n');
+    const stable = repo.checker();
+    assert.equal(stable.status, 1, `${stable.stdout}\n${stable.stderr}`);
+    assert.doesNotMatch(`${stable.stdout}\n${stable.stderr}`, /DRIFT\s+CURRENT\.md/);
+
+    marked('f'.repeat(40));
+    let invalid = repo.checker();
+    assert.equal(invalid.status, 2);
+    assert.match(`${invalid.stdout}\n${invalid.stderr}`, /document source .* unavailable/);
+
+    const blob = repo.git(['hash-object', '-w', 'target.js']).trim();
+    marked(blob);
+    invalid = repo.checker();
+    assert.equal(invalid.status, 2);
+    assert.match(`${invalid.stdout}\n${invalid.stderr}`, /not a commit object/);
+
+    const outside = repo.git(['commit-tree', 'HEAD^{tree}', '-m', 'outside']).trim();
+    marked(outside);
+    invalid = repo.checker();
+    assert.equal(invalid.status, 2);
+    assert.match(`${invalid.stdout}\n${invalid.stderr}`, /not reachable/);
+
+    repo.write('CURRENT.md', `Current claim ${cite('target.js:1')}\n`);
+    marked(source, 'FROZEN.md');
+    repo.git(['add', 'FROZEN.md']);
+    invalid = repo.checker();
+    assert.equal(invalid.status, 2);
+    assert.match(`${invalid.stdout}\n${invalid.stderr}`, /FROZEN\.md is missing from document source/);
+
+    repo.git(['reset', '--quiet', 'FROZEN.md']);
+    rmSync(join(repo.root, 'FROZEN.md'));
+    marked(source);
+    repo.commit('explicit source marker');
+    clone = join(tmpdir(), `mrt-anchors-explicit-${process.pid}-${Date.now()}`);
+    execFileSync('git', ['clone', '--quiet', '--depth', '1', pathToFileURL(repo.root).href, clone]);
+    mkdirSync(join(clone, 'scripts'), { recursive: true });
+    cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), join(clone, 'scripts', 'check-anchors.mjs'));
+    const shallow = spawnSync(process.execPath, ['scripts/check-anchors.mjs'], { cwd: clone, encoding: 'utf8' });
+    assert.equal(shallow.status, 2, `${shallow.stdout}\n${shallow.stderr}`);
+    assert.match(`${shallow.stdout}\n${shallow.stderr}`, /shallow clone/);
+  } finally {
+    if (clone) rmSync(clone, { recursive: true, force: true });
+    disposeAnchorRepo(repo);
+  }
+});
 
 // The historical records use both direct and nested dated layouts. The undated tracking note is a
 // control: treating every path below the root as historical would make it pass for the wrong reason.

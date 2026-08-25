@@ -70,9 +70,9 @@ or earlier is worth filing.
 
 ## Asking for a change
 
-[The product backlog](PRODUCT_BACKLOG.md) lists everything already planned, ranked, with the
-reasoning for each, so it is worth a look before asking: the thing you want may be on it, and if it
-is you can see where it sits and why.
+[The planning Project](https://github.com/users/raymond-nassar/projects/1) lists active work and
+links each item to the Issue that owns its reasoning, so it is worth a look before asking: the thing
+you want may be on it already.
 
 [The contributing guide](CONTRIBUTING.md) sets out what this project will decline whatever the
 merits, which is a short list and a firm one. Reading it first saves everybody a round trip.

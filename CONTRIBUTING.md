@@ -50,11 +50,10 @@ defect to fix.
 
 ## Before you write anything
 
-Say what you are planning first, in an issue. Not because permission is needed, but because this
-repository keeps a ranked list of everything waiting to be done, in
-[the product backlog](PRODUCT_BACKLOG.md), and an idea that lands there gets weighed against the
-rest rather than judged on the day it arrives. Some things on that list have been waiting a while
-on purpose.
+Say what you are planning first, in an issue. Not because permission is needed, but because the
+[planning Project](https://github.com/users/raymond-nassar/projects/1) weighs active work against
+everything else waiting rather than judging it on the day it arrives. Some items have been waiting
+a while on purpose.
 
 Then read, in this order: what the app is trying to do, in the first half of the README; how it is
 put together, in [the architecture record](docs/ARCHITECTURE.md); and the

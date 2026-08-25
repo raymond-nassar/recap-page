@@ -1504,13 +1504,13 @@
     "fp": "66caf0af2305319d",
     "head": "Development dependencies execute in CI even though they never reach the browser. Evidence:"
   },
-  ".github/copilot-instructions.md|the-evidence-anchors-gate-and-how-to-not-corrupt|scripts/check-anchors.mjs:227-232|0": {
-    "anchor": "scripts/check-anchors.mjs:227-232",
+  ".github/copilot-instructions.md|the-evidence-anchors-gate-and-how-to-not-corrupt|scripts/check-anchors.mjs:229-234|0": {
+    "anchor": "scripts/check-anchors.mjs:229-234",
     "fp": "a17aa09a758524f0",
     "head": "// Every tracked file, listed by git rather than by this script, plus new dated evidence"
   },
-  ".github/copilot-instructions.md|the-evidence-anchors-gate-and-how-to-not-corrupt|scripts/check-anchors.mjs:427|0": {
-    "anchor": "scripts/check-anchors.mjs:427",
+  ".github/copilot-instructions.md|the-evidence-anchors-gate-and-how-to-not-corrupt|scripts/check-anchors.mjs:472|0": {
+    "anchor": "scripts/check-anchors.mjs:472",
     "fp": "6db2dec2e99dd8a3",
     "head": "if (/^\\s*absent:/.test(cell)) ranges.push([offset + from, offset + from + cell.length]);"
   },
@@ -1784,18 +1784,18 @@
     "fp": "a52faa95cf1721d7",
     "head": "If that option is not on the Security tab, it has not been turned on. It is off by default, and on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#test-publication-gate-test-js-11-15|test/publication-gate.test.js:11-15|0": {
-    "anchor": "test/publication-gate.test.js:11-15",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#test-publication-gate-test-js-20-24|test/publication-gate.test.js:20-24|0": {
+    "anchor": "test/publication-gate.test.js:20-24",
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2790-2793|0": {
-    "anchor": "CHANGELOG.md:2790-2793",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2800-2803|0": {
+    "anchor": "CHANGELOG.md:2800-2803",
     "fp": "a1bbc9d008c99c4d",
     "head": "rather than being decided afresh each time. One protection could not be turned on: the service"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2802-2805|0": {
-    "anchor": "CHANGELOG.md:2802-2805",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2812-2815|0": {
+    "anchor": "CHANGELOG.md:2812-2815",
     "fp": "f6d971f298b3d32e",
     "head": "and the deliberately destructive testing page that warns you before every button. The private"
   },
@@ -5799,10 +5799,10 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:140-144|0": {
-    "anchor": "scripts/check-publication.mjs:140-144",
-    "fp": "e47d14d9c7a5e810",
-    "head": "// A file git could not read is not a file that read clean. `ls-files` quotes any path outside plain"
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:168-172|0": {
+    "anchor": "scripts/check-publication.mjs:168-172",
+    "fp": "36abce5861d613b7",
+    "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
   "scripts/check-palette.mjs|preamble|src/js/main.js:1303|0": {
     "anchor": "src/js/main.js:1303",
