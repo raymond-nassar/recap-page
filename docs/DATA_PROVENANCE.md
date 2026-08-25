@@ -109,6 +109,12 @@ blocked on Sleepwalker #6, and Infinity War remains wholly blocked on 14 exact m
 Complete blocker records preserve all 51 and 52 source rows respectively; no missing row is replaced
 or silently omitted.
 
+The seventh continuation release adds 23 exact issue rows across X-Cutioner's Song, Mys-Tech Wars,
+and Fatal Attractions. All 381 current-library and selected-peer comparisons contain only `none`
+relationships. For Love Nor Money, Maximum Carnage, Infinity Crusade, and Blood and Thunder remain
+wholly blocked on 6, 1, 11, and 1 exact missing rows. Complete blocker records preserve all 80 source
+rows, including the rows that do resolve; none is replaced or silently omitted.
+
 Each catalog card uses `Compiled for this project from Comic Book Reading Orders`, links to the exact
 event page, and keeps `sourceLicense` null. The source owner permitted credited and linked derived
 orders except the Marvel Master Reading Order and Patreon-only orders. That permission covers the
@@ -469,7 +475,7 @@ conditions and two exclusions:
 - Build nothing from the Marvel Master Reading Order.
 - Build nothing from any reading order that site keeps behind its Patreon.
 
-Twenty-nine lists in this repository now come from that site. Each credits Comic Book Reading Orders
+Thirty-two lists in this repository now come from that site. Each credits Comic Book Reading Orders
 and links to the exact source page and section followed, which is the pattern the reply permitted.
 The site publishes no terms of use, which makes the reply the only statement of its position that
 exists.

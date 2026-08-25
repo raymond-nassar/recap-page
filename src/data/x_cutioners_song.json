@@ -1,0 +1,419 @@
+{
+  "id": "x-cutioners-song",
+  "name": "X-Cutioner's Song",
+  "description": "Thirteen chapters interleaving X-Men, X-Factor, and X-Force through X-Cutioner's Song.",
+  "source": "https://comicbookreadingorders.com/marvel/events/x-cutioners-song-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T08:55:08.645Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 13,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 13835,
+      "title": "Uncanny X-Men (1963) #294",
+      "number": "294",
+      "url": "https://www.marvel.com/comics/issue/13835/uncanny_x-men_1963_294",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1992-11-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3085,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/58ac703dd775c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12306,
+      "title": "X-Factor (1986) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/12306/x-factor_1986_84",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 11812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/4bb58216dcf87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jae Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14300,
+      "title": "X-Men (1991) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/14300/x-men_1991_14",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1992-11-10T00:00:00+0000",
+      "mu": "2016-05-09T00:00:00+0000",
+      "digitalId": 28576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5b0ecd9264877",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17979,
+      "title": "X-Force (1991) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/17979/x-force_1991_16",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 26425,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5873af7045b8e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13836,
+      "title": "Uncanny X-Men (1963) #295",
+      "number": "295",
+      "url": "https://www.marvel.com/comics/issue/13836/uncanny_x-men_1963_295",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "2013-08-12T10:18:39+0000",
+      "digitalId": 28573,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/511426c5d8b82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12307,
+      "title": "X-Factor (1986) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/12307/x-factor_1986_85",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 11813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/4bb582113e7a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jae Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14301,
+      "title": "X-Men (1991) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/14301/x-men_1991_15",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 28577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5b0ece59dd350",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17980,
+      "title": "X-Force (1991) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/17980/x-force_1991_17",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 13491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5873b35af3656",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13837,
+      "title": "Uncanny X-Men (1963) #296",
+      "number": "296",
+      "url": "https://www.marvel.com/comics/issue/13837/uncanny_x-men_1963_296",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "2013-08-12T10:21:12+0000",
+      "digitalId": 28574,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/59147cf6a0923",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12308,
+      "title": "X-Factor (1986) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/12308/x-factor_1986_86",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 11814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/4bb5810e05717",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jae Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14302,
+      "title": "X-Men (1991) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/14302/x-men_1991_16",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 28578,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5b0ed1bf649ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17981,
+      "title": "X-Force (1991) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/17981/x-force_1991_18",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 28579,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5873b4ae813d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13838,
+      "title": "Uncanny X-Men (1963) #297",
+      "number": "297",
+      "url": "https://www.marvel.com/comics/issue/13838/uncanny_x-men_1963_297",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "2013-08-12T10:23:18+0000",
+      "digitalId": 28575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/59147e67db9e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

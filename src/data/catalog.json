@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T07:01:21.189Z",
+  "generatedAt": "2026-08-25T08:55:08.683Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3631,6 +3631,108 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T07:01:21.150Z"
+    },
+    {
+      "id": "x-cutioners-song",
+      "file": "x_cutioners_song.json",
+      "name": "X-Cutioner's Song",
+      "description": "Thirteen chapters interleaving X-Men, X-Factor, and X-Force through X-Cutioner's Song.",
+      "type": "event",
+      "depth": "complete",
+      "count": 13,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "X-Force"
+      ],
+      "keywords": [
+        "X-Cutioner's Song",
+        "X-Men",
+        "X-Factor",
+        "X-Force"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1992,
+      "coverIssueId": 13835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/58ac703dd775c",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/x-cutioners-song-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T08:55:08.645Z"
+    },
+    {
+      "id": "mys-tech-wars",
+      "file": "mys_tech_wars.json",
+      "name": "Mys-Tech Wars",
+      "description": "Four issues forming the complete Mys-Tech Wars event.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Mys-Tech"
+      ],
+      "keywords": [
+        "Mys-Tech Wars",
+        "Marvel UK"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1993,
+      "coverIssueId": 102530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/6363105f6c458",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Mys-Tech Wars",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T08:55:08.649Z"
+    },
+    {
+      "id": "fatal-attractions",
+      "file": "fatal_attractions.json",
+      "name": "Fatal Attractions",
+      "description": "Six chapters carrying Fatal Attractions across the X-Men family.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Magneto"
+      ],
+      "keywords": [
+        "Fatal Attractions",
+        "X-Men",
+        "Wolverine",
+        "Magneto"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1993,
+      "coverIssueId": 12315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/591a28c976fca",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/fatal-attractions-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T08:55:08.650Z"
     },
     {
       "id": "maximum-security",

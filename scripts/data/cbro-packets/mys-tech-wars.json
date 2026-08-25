@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "mys-tech-wars",
+  "inventoryId": "mys-tech-wars",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Mys-Tech Wars",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "0ac08815c7f22a1b1787244a113acc0e28adf79d9fcc4bf7980d5da7c411eca4",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 4,
+  "proposedManifest": {
+    "id": "mys-tech-wars",
+    "name": "Mys-Tech Wars",
+    "description": "Four issues forming the complete Mys-Tech Wars event.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mys-tech-wars.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+    "sourceSection": "Mys-Tech Wars",
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "mys_tech_wars.json",
+    "characters": [
+      "Mys-Tech"
+    ],
+    "keywords": [
+      "Mys-Tech Wars",
+      "Marvel UK"
+    ],
+    "expect": 4,
+    "timeline": 1993,
+    "coverIssueId": 102530
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B07 coordinator",
+    "rationale": "The exact CBRO timeline label, current source digest, inclusive range, configured metadata series, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T08:42:10.043Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Mys-Tech Wars #1",
+      "sourceRangeReference": "Mys-Tech Wars #1-4",
+      "normalizedSeriesTitle": "Mys-Tech Wars",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "seriesId": 35414,
+      "candidateIssueId": 102530,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Mys-Tech Wars #2",
+      "sourceRangeReference": "Mys-Tech Wars #1-4",
+      "normalizedSeriesTitle": "Mys-Tech Wars",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "seriesId": 35414,
+      "candidateIssueId": 102531,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Mys-Tech Wars #3",
+      "sourceRangeReference": "Mys-Tech Wars #1-4",
+      "normalizedSeriesTitle": "Mys-Tech Wars",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "seriesId": 35414,
+      "candidateIssueId": 102532,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Mys-Tech Wars #4",
+      "sourceRangeReference": "Mys-Tech Wars #1-4",
+      "normalizedSeriesTitle": "Mys-Tech Wars",
+      "seriesYear": 1993,
+      "issueNumber": "4",
+      "seriesId": 35414,
+      "candidateIssueId": 102533,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "8f536f7d5fc44fbcc07f3245f2e1ed3a287d7b6cf4629dd4a4f1bb0ef7590705"
+}

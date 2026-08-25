@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "mrt-003-c02-b07",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "0ac08815c7f22a1b1787244a113acc0e28adf79d9fcc4bf7980d5da7c411eca4",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B07 coordinator",
+    "rationale": "The exact CBRO timeline label, current source digest, inclusive range, configured metadata series, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T08:42:10.043Z"
+  },
+  "events": [
+    {
+      "id": "mys-tech-wars",
+      "name": "Mys-Tech Wars",
+      "sourceSection": "Mys-Tech Wars",
+      "sourceSeriesTitle": "Mys-Tech Wars",
+      "sourceRangeReference": "Mys-Tech Wars #1-4",
+      "seriesYear": 1993,
+      "seriesId": 35414,
+      "candidateIssueIds": [
+        102530,
+        102531,
+        102532,
+        102533
+      ],
+      "firstIssueNumber": 1,
+      "manualSeriesSelectionNote": "The source label resolves to the configured metadata series Mys-Tech Wars (1993), series 35414.",
+      "description": "Four issues forming the complete Mys-Tech Wars event.",
+      "characters": [
+        "Mys-Tech"
+      ],
+      "keywords": [
+        "Mys-Tech Wars",
+        "Marvel UK"
+      ],
+      "timeline": 1993
+    }
+  ]
+}

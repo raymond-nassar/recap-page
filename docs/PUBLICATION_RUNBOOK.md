@@ -23,7 +23,7 @@ section is what has to be settled before it is.
 
 ## Source-backed orders added after publication
 
-Twenty-nine historical event guides now use factual issue identities and order from Comic Book Reading
+Thirty-two historical event guides now use factual issue identities and order from Comic Book Reading
 Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
 Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
 source page and section. The source licence remains null because that permission does not reach Marvel material.
@@ -152,8 +152,8 @@ that must not be rewritten, for the same reason the dated tracking artifacts are
 - `PRODUCT_BACKLOG.md:7071-7076`, why blank issues stay enabled.
 - `PRODUCT_BACKLOG.md:7114-7118`, why `required: true` collects nothing today.
 - `PRODUCT_BACKLOG.md:9219-9224`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2826-2829`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2838-2841`, the released note that the private channel is not switched on.
+- `CHANGELOG.md:2840-2843`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2852-2855`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met

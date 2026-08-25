@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "id": "x-cutioners-song",
+  "inventoryId": "x-cutioners-song",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/x-cutioners-song-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "ebc28f979902d451899595d06fdd0d58bb2ee529b5ac43156d2b5f11eba60fcd",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 13,
+  "proposedManifest": {
+    "id": "x-cutioners-song",
+    "name": "X-Cutioner's Song",
+    "description": "Thirteen chapters interleaving X-Men, X-Factor, and X-Force through X-Cutioner's Song.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-cutioners-song.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/x-cutioners-song-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "x_cutioners_song.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "X-Force"
+    ],
+    "keywords": [
+      "X-Cutioner's Song",
+      "X-Men",
+      "X-Factor",
+      "X-Force"
+    ],
+    "expect": 13,
+    "timeline": 1992,
+    "coverIssueId": 13835
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B07 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T08:42:10.043Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men #294",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "294",
+      "seriesId": 2258,
+      "candidateIssueId": 13835,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #84",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "84",
+      "seriesId": 2098,
+      "candidateIssueId": 12306,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "14",
+      "seriesId": 2265,
+      "candidateIssueId": 14300,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "X-Force #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "16",
+      "seriesId": 3633,
+      "candidateIssueId": 17979,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #295",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "295",
+      "seriesId": 2258,
+      "candidateIssueId": 13836,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #85",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "85",
+      "seriesId": 2098,
+      "candidateIssueId": 12307,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "15",
+      "seriesId": 2265,
+      "candidateIssueId": 14301,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "X-Force #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "17",
+      "seriesId": 3633,
+      "candidateIssueId": 17980,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #296",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "296",
+      "seriesId": 2258,
+      "candidateIssueId": 13837,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #86",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "86",
+      "seriesId": 2098,
+      "candidateIssueId": 12308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "16",
+      "seriesId": 2265,
+      "candidateIssueId": 14302,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "X-Force #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "18",
+      "seriesId": 3633,
+      "candidateIssueId": 17981,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #297",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "297",
+      "seriesId": 2258,
+      "candidateIssueId": 13838,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "ee73d3140c7b22e81fb5a68ba699fe05acd1674ecd66704df9519defa80183f3"
+}
