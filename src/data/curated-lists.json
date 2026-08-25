@@ -3130,6 +3130,95 @@
       "coverIssueId": 22661
     },
     {
+      "id": "x-cutioners-song",
+      "name": "X-Cutioner's Song",
+      "description": "Thirteen chapters interleaving X-Men, X-Factor, and X-Force through X-Cutioner's Song.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-cutioners-song.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/x-cutioners-song-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "x_cutioners_song.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "X-Force"
+      ],
+      "keywords": [
+        "X-Cutioner's Song",
+        "X-Men",
+        "X-Factor",
+        "X-Force"
+      ],
+      "expect": 13,
+      "timeline": 1992,
+      "coverIssueId": 13835
+    },
+    {
+      "id": "mys-tech-wars",
+      "name": "Mys-Tech Wars",
+      "description": "Four issues forming the complete Mys-Tech Wars event.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mys-tech-wars.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Mys-Tech Wars",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "mys_tech_wars.json",
+      "characters": [
+        "Mys-Tech"
+      ],
+      "keywords": [
+        "Mys-Tech Wars",
+        "Marvel UK"
+      ],
+      "expect": 4,
+      "timeline": 1993,
+      "coverIssueId": 102530
+    },
+    {
+      "id": "fatal-attractions",
+      "name": "Fatal Attractions",
+      "description": "Six chapters carrying Fatal Attractions across the X-Men family.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "fatal-attractions.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/fatal-attractions-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "fatal_attractions.json",
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Magneto"
+      ],
+      "keywords": [
+        "Fatal Attractions",
+        "X-Men",
+        "Wolverine",
+        "Magneto"
+      ],
+      "expect": 6,
+      "timeline": 1993,
+      "coverIssueId": 12315
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

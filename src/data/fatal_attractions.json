@@ -1,0 +1,266 @@
+{
+  "id": "fatal-attractions",
+  "name": "Fatal Attractions",
+  "description": "Six chapters carrying Fatal Attractions across the X-Men family.",
+  "source": "https://comicbookreadingorders.com/marvel/events/fatal-attractions-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T08:55:08.650Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12315,
+      "title": "X-Factor (1986) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/12315/x-factor_1986_92",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1993-07-10T00:00:00+0000",
+      "mu": "2017-05-15T00:00:00+0000",
+      "digitalId": 28863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/591a28c976fca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 52,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "J. M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17989,
+      "title": "X-Force (1991) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/17989/x-force_1991_25",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 28870,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5873b666c0fff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Conrad",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13845,
+      "title": "Uncanny X-Men (1963) #304",
+      "number": "304",
+      "url": "https://www.marvel.com/comics/issue/13845/uncanny_x-men_1963_304",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "2013-08-12T10:38:07+0000",
+      "digitalId": 28858,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/59148dec62e6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Jae Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14312,
+      "title": "X-Men (1991) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/14312/x-men_1991_25",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "2016-05-09T00:00:00+0000",
+      "digitalId": 28871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/5580452053a78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 52,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14198,
+      "title": "Wolverine (1988) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/14198/wolverine_1988_75",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1993-11-10T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 28714,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/585a9ad41de35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 68,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8656,
+      "title": "Excalibur (1988) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/8656/excalibur_1988_71",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1993-11-05T00:00:00+0000",
+      "mu": "2015-07-23T16:53:23+0000",
+      "digitalId": 28850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5d123aa6f3078",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

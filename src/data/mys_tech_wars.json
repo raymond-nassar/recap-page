@@ -1,0 +1,145 @@
+{
+  "id": "mys-tech-wars",
+  "name": "Mys-Tech Wars",
+  "description": "Four issues forming the complete Mys-Tech Wars event.",
+  "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceSection": "Mys-Tech Wars",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T08:55:08.649Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 102530,
+      "title": "Mys-Tech Wars (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102530/mys-tech_wars_1993_1",
+      "seriesId": 35414,
+      "seriesName": "Mys-Tech Wars (1993)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "2022-11-03T00:00:00+0000",
+      "digitalId": 59771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/6363105f6c458",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102531,
+      "title": "Mys-Tech Wars (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/102531/mys-tech_wars_1993_2",
+      "seriesId": 35414,
+      "seriesName": "Mys-Tech Wars (1993)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "2022-11-03T00:00:00+0000",
+      "digitalId": 59772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/6363105f5ff93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Whitaker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102532,
+      "title": "Mys-Tech Wars (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/102532/mys-tech_wars_1993_3",
+      "seriesId": 35414,
+      "seriesName": "Mys-Tech Wars (1993)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "2022-11-03T00:00:00+0000",
+      "digitalId": 59773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/6363105f5fcce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Whitaker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102533,
+      "title": "Mys-Tech Wars (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/102533/mys-tech_wars_1993_4",
+      "seriesId": 35414,
+      "seriesName": "Mys-Tech Wars (1993)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "2022-11-03T00:00:00+0000",
+      "digitalId": 59774,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/6363105f609ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

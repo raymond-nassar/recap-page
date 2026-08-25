@@ -14,6 +14,20 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added three more complete historical Marvel event guides
+
+In plain English: X-Cutioner's Song, Mys-Tech Wars, and Fatal Attractions are now available as
+complete historical reading guides. They add 23 issues in their source order, bringing the catalog
+to 128 reading lists, and nothing you have saved is changed.
+
+For Love Nor Money, Maximum Carnage, Infinity Crusade, and Blood and Thunder were not shortened to
+fit this release. Four complete blocker records preserve all 80 source rows and name the 19 exact
+issues missing from the configured metadata. Marvel 2099 is the next historical guide in the queue.
+
+For maintainers: three frozen packets, exact mappings, and complete relationship reports bind all
+23 selected rows. The reports cover 381 current-library and selected-peer comparisons, all with no
+shared issue.
+
 ### Added four more complete historical Marvel event guides
 
 In plain English: X-Tinction Agenda, Operation: Galactic Storm, Dead Man's Hand, and Rise of the
@@ -55,7 +69,7 @@ repository documents now link to it.
 
 In plain English: The Evolutionary War, Inferno, Atlantis Attacks, and Days of Future Present are
 now available as complete historical reading guides. They add 71 issues, preserve each source
-sequence, and credit Comic Book Reading Orders. The catalog has since reached 125 reading lists in
+sequence, and credit Comic Book Reading Orders. The catalog has since reached 128 reading lists in
 this Unreleased build, and nothing you have saved is changed.
 
 Acts of Vengeance was not shortened to fit the release. Its full 70-issue source order is preserved,

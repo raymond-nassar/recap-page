@@ -395,11 +395,13 @@ one known complete source-order or chronology-order set. Unknown releases, incom
 duplicates, and the wrong order are refused so an omitted guide cannot become an ordinary library
 comparison instead of a bound peer.
 
-The maintained historical program currently ships 29 guides. The sixth continuation release has
-four guides and 46 exact rows, which is why release validation names a complete known release rather
-than assuming every release contains five guides. Acts of Vengeance remains blocked as a whole on
-Web of Spider-Man #62 and #63. The Infinity Gauntlet and Infinity War retain complete 51-row and
-52-row blocker records, and X-Cutioner's Song at source position 29 is the next cursor.
+The maintained historical program currently ships 32 guides. The seventh continuation release has
+three guides and 23 exact rows, which is why release validation names a complete known release rather
+than assuming every release contains five guides. For Love Nor Money, Maximum Carnage, Infinity
+Crusade, and Blood and Thunder retain complete blocker records for 80 source rows and 19 exact gaps.
+Acts of Vengeance, The Infinity Gauntlet, and Infinity War retain their earlier complete blocker
+records. Bloodties at source position 36 is already shipped, so Marvel 2099 at position 37 is the
+next cursor.
 
 Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
 manifest, and chronology evidence before writing. Every resulting card must use
