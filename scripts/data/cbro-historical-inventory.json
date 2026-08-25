@@ -240,15 +240,19 @@
     "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
     "sourceSection": "Marvel Super Heroes Secret Wars",
     "sourceForm": "timeline-text",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
     "sourceRowCount": 12,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "centralDisposition": "selected",
+    "relationshipStatus": "candidate-subset",
+    "reason": "Selected for MRT-003-C02 batch 3 after exact metadata and complete-library plus peer review.",
+    "overlapIds": [
+      "doctor-doom-primer"
+    ],
+    "catalogIds": [
+      "marvel-super-heroes-secret-wars"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -260,15 +264,15 @@
     "sourceUrl": "https://comicbookreadingorders.com/marvel/events/wraith-war-reading-order/",
     "sourceSection": null,
     "sourceForm": "event-page",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "78388b6291a92f7664a71017daa7b30ec7c80eab4a28b39b27ac1cb48fe2d2c4",
     "sourceRowCount": 35,
-    "centralDisposition": "deferred",
+    "centralDisposition": "blocked",
     "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "reason": "Metadata blocked: the configured snapshot has no historical ROM or ROM Annual series, leaving 30 of 35 source rows unresolved.",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "deliveryStatus": "blocked",
     "universeScope": "main"
   },
   {
@@ -280,15 +284,15 @@
     "sourceUrl": "https://comicbookreadingorders.com/marvel/events/secret-wars-ii-reading-order/",
     "sourceSection": null,
     "sourceForm": "event-page",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "7d652467f335225a2ef8fe6284316be26c71c7774b72db4c6b449c641c144351",
     "sourceRowCount": 42,
-    "centralDisposition": "deferred",
+    "centralDisposition": "blocked",
     "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "reason": "Metadata blocked: ROM #72 and Micronauts Vol. 2 #16 have no exact configured metadata series.",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "deliveryStatus": "blocked",
     "universeScope": "main"
   },
   {
@@ -300,15 +304,15 @@
     "sourceUrl": "https://comicbookreadingorders.com/marvel/events/mutant-massacre-reading-order/",
     "sourceSection": null,
     "sourceForm": "event-page",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "eb3dac85c36f732a10c67b2cb5c09b85b2c8093dc95582b67d4c58519917d8cb",
     "sourceRowCount": 12,
-    "centralDisposition": "deferred",
+    "centralDisposition": "blocked",
     "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
+    "reason": "Metadata blocked: Power Pack #27 is absent from the configured Power Pack series.",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "deliveryStatus": "blocked",
     "universeScope": "main"
   },
   {
@@ -320,15 +324,19 @@
     "sourceUrl": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
     "sourceSection": null,
     "sourceForm": "event-page",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "926c778d58f0df698b0971abf65268d4e1626b6b3796dc6b41acc8cd723da296",
     "sourceRowCount": 7,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "centralDisposition": "selected",
+    "relationshipStatus": "approved-mixed",
+    "reason": "Selected for MRT-003-C02 batch 3 after exact metadata and complete-library plus peer review.",
+    "overlapIds": [
+      "spider-man-best-of"
+    ],
+    "catalogIds": [
+      "kravens-last-hunt"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {
@@ -340,15 +348,21 @@
     "sourceUrl": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
     "sourceSection": null,
     "sourceForm": "event-page",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-24",
     "sourceContentSha256": "c1bfabd6da3079cf2c9d785e31a2ddbe7c1a20813e75cb522781a76a68497cac",
     "sourceRowCount": 29,
-    "centralDisposition": "deferred",
-    "relationshipStatus": "unresolved",
-    "reason": "Deferred to a ranked later chunk; exact metadata and complete-library review have not run.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "deferred",
+    "centralDisposition": "selected",
+    "relationshipStatus": "approved-mixed",
+    "reason": "Selected for MRT-003-C02 batch 3 after exact metadata and complete-library plus peer review.",
+    "overlapIds": [
+      "captain-america-best-of",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "fall-of-the-mutants"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "main"
   },
   {

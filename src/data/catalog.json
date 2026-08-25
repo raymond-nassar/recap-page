@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T06:16:17.572Z",
+  "generatedAt": "2026-08-24T23:03:25.477Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3131,6 +3131,113 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-24T06:16:17.494Z"
+    },
+    {
+      "id": "marvel-super-heroes-secret-wars",
+      "file": "marvel_super_heroes_secret_wars.json",
+      "name": "Marvel Super Heroes Secret Wars",
+      "description": "Twelve chapters carrying Marvel's original Secret Wars from Battleworld's opening to its conclusion.",
+      "type": "event",
+      "depth": "complete",
+      "count": 12,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "X-Men",
+        "Fantastic Four",
+        "Doctor Doom",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Super Heroes Secret Wars",
+        "Secret Wars",
+        "Battleworld",
+        "Doctor Doom"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1984,
+      "coverIssueId": 10580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/51dee6dd91671",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
+      "sourceSection": "Marvel Super Heroes Secret Wars",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T23:03:25.375Z"
+    },
+    {
+      "id": "fall-of-the-mutants",
+      "file": "fall_of_the_mutants.json",
+      "name": "Fall of the Mutants",
+      "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",
+      "type": "event",
+      "depth": "complete",
+      "count": 29,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Fall of the Mutants",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1988,
+      "coverIssueId": 12233,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5735fa4dbf1a3",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T23:03:25.389Z"
+    },
+    {
+      "id": "kravens-last-hunt",
+      "file": "kravens_last_hunt.json",
+      "name": "Kraven's Last Hunt",
+      "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Kraven the Hunter",
+        "Mary Jane Watson"
+      ],
+      "keywords": [
+        "Kraven's Last Hunt",
+        "Spider-Man",
+        "Kraven the Hunter"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1987,
+      "coverIssueId": 12027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5970ca5b25a9c",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/kravens-last-hunt-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T23:03:25.392Z"
     },
     {
       "id": "maximum-security",

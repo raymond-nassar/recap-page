@@ -23,7 +23,7 @@ section is what has to be settled before it is.
 
 ## Source-backed orders added after publication
 
-Fifteen historical event guides now use factual issue identities and order from Comic Book Reading
+Eighteen historical event guides now use factual issue identities and order from Comic Book Reading
 Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
 Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
 source page and section. The source licence remains null because that permission does not reach Marvel material.
@@ -116,7 +116,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 One thing changes with nobody touching it. Every `required: true` in the issue forms is inert while
 the repository is private and starts being enforced on publication, which is recorded with its
-reasoning at `PRODUCT_BACKLOG.md:7111-7115`. The forms do not need editing. It is listed here
+reasoning at `PRODUCT_BACKLOG.md:7112-7116`. The forms do not need editing. It is listed here
 because a form that suddenly rejects a submission looks like a regression to whoever hits it first.
 ## The prose that stops being true
 
@@ -142,18 +142,18 @@ exception. Ten of the twenty-one are in `PRODUCT_BACKLOG.md` and two more are in
 Eleven of those twelve say what was true when a piece of work was delivered, and they are history
 that must not be rewritten, for the same reason the dated tracking artifacts are not re-aimed:
 
-- `PRODUCT_BACKLOG.md:6461-6474`, why secret scanning was left unticked, and what push protection
+- `PRODUCT_BACKLOG.md:6462-6475`, why secret scanning was left unticked, and what push protection
   does when asked for without it.
-- `PRODUCT_BACKLOG.md:6875-6882`, why the private reporting task was left open.
-- `PRODUCT_BACKLOG.md:6940-6942`, what the changelog entry beside it was corrected to say.
-- `PRODUCT_BACKLOG.md:6963-6968`, why the contribution guide is written in the future tense.
-- `PRODUCT_BACKLOG.md:6970-6976`, why the code of conduct offers no private channel.
-- `PRODUCT_BACKLOG.md:7037-7043`, why the branch rules task was left open and could not be read.
-- `PRODUCT_BACKLOG.md:7068-7073`, why blank issues stay enabled.
-- `PRODUCT_BACKLOG.md:7111-7115`, why `required: true` collects nothing today.
-- `PRODUCT_BACKLOG.md:9216-9221`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2734-2737`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2747-2749`, the released note that the private channel is not switched on.
+- `PRODUCT_BACKLOG.md:6876-6883`, why the private reporting task was left open.
+- `PRODUCT_BACKLOG.md:6941-6943`, what the changelog entry beside it was corrected to say.
+- `PRODUCT_BACKLOG.md:6964-6969`, why the contribution guide is written in the future tense.
+- `PRODUCT_BACKLOG.md:6971-6977`, why the code of conduct offers no private channel.
+- `PRODUCT_BACKLOG.md:7038-7044`, why the branch rules task was left open and could not be read.
+- `PRODUCT_BACKLOG.md:7069-7074`, why blank issues stay enabled.
+- `PRODUCT_BACKLOG.md:7112-7116`, why `required: true` collects nothing today.
+- `PRODUCT_BACKLOG.md:9217-9222`, the three settings named as refused on this repository today.
+- `CHANGELOG.md:2764-2767`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2776-2779`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
@@ -270,6 +270,6 @@ enforcement, which is the argument for writing it down before the day rather tha
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
 quietly advertise a private, stale, or unreachable source surface. The MCU Prep release adds
-four public source-linked cards after Star-Lord. Two historical continuation batches add ten Comic
-Book Reading Orders cards, including 67 issues across ten exact events, bringing the catalog to 111
+four public source-linked cards after Star-Lord. Three historical continuation batches add thirteen
+Comic Book Reading Orders cards, including 115 issues across thirteen exact events, bringing the catalog to 114
 without changing the accepted publication boundary or any saved reader data.

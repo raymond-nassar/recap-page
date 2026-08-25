@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "mrt-003-c02-b03",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/event-timeline/",
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "2ce9dab79ef1f71bc2c4bdbb366f56e29b9f18dccb5c073613192dd7f2be54eb",
+  "sourceBoundary": "The visible timeline label and its exact inclusive issue range, expanded in ascending issue-number order.",
+  "excludedSourceReferences": [
+    "Page commentary and navigation",
+    "Trade collections",
+    "Branding, layout, and images"
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B03 coordinator",
+    "rationale": "The exact CBRO timeline label, unchanged source digest, inclusive range, source-to-metadata alias, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T22:37:19Z"
+  },
+  "events": [
+    {
+      "id": "marvel-super-heroes-secret-wars",
+      "name": "Marvel Super Heroes Secret Wars",
+      "sourceSection": "Marvel Super Heroes Secret Wars",
+      "sourceSeriesTitle": "Marvel Super Heroes Secret Wars",
+      "sourceRangeReference": "Marvel Super Heroes Secret Wars #1-12",
+      "seriesYear": 1984,
+      "seriesId": 2063,
+      "candidateIssueIds": [
+        10580,
+        10584,
+        10585,
+        10586,
+        10587,
+        10588,
+        10589,
+        10590,
+        10591,
+        10581,
+        10582,
+        10583
+      ],
+      "firstIssueNumber": 1,
+      "manualSeriesSelectionNote": "The source's historical Marvel Super Heroes Secret Wars label resolves to the configured metadata series Secret Wars (1984 - 1985), series 2063.",
+      "description": "Twelve chapters carrying Marvel's original Secret Wars from Battleworld's opening to its conclusion.",
+      "characters": [
+        "Avengers",
+        "X-Men",
+        "Fantastic Four",
+        "Doctor Doom",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Super Heroes Secret Wars",
+        "Secret Wars",
+        "Battleworld",
+        "Doctor Doom"
+      ],
+      "timeline": 1984
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "candidateId": "childs-play",
   "packetDigest": "a89c36fd519746af77bd6beaf1ddc8f4efa3f82e66e53d2aba88890262dc7a9b",
   "mappingDigest": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
-  "libraryDigest": "40293b068fe0acb2c33fbcf08805470306323fe4728e70d89aa580fcb1bcb4c4",
+  "libraryDigest": "fb62c89d0ca0214266dc066c5450c0e2216b4678b2f7809c2ab57fafe4e09147",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 4,
-  "comparisonCount": 110,
+  "comparisonCount": 113,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -199,6 +199,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "fall-of-the-mutants",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "generations",
       "sharedCount": 0,
       "sharedIds": [],
@@ -289,6 +295,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "kravens-last-hunt",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "kree-skrull-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -308,6 +320,12 @@
     },
     {
       "orderId": "marvel-multiverse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-super-heroes-secret-wars",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -673,5 +691,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9742313b37db6a05c448ea80a617cf494697482c5c35569f5ab10b909743c2fc"
+  "reportDigest": "9eab9755ee89fe9a2e572c9474c72c5587b3279091d1fca90545ce15cf69222b"
 }

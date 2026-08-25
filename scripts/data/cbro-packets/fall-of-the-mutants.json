@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 1,
+  "id": "fall-of-the-mutants",
+  "inventoryId": "fall-of-the-mutants",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
+  "sourceRetrievedAt": "2026-08-24",
+  "sourceContentSha256": "c1bfabd6da3079cf2c9d785e31a2ddbe7c1a20813e75cb522781a76a68497cac",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 29,
+  "proposedManifest": {
+    "id": "fall-of-the-mutants",
+    "name": "Fall of the Mutants",
+    "description": "Twenty-nine chapters interleaving X-Factor, X-Men, New Mutants, and related Fall of the Mutants stories.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "fall-of-the-mutants.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/fall-of-the-mutants-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "fall_of_the_mutants.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "New Mutants"
+    ],
+    "keywords": [
+      "Fall of the Mutants",
+      "X-Men",
+      "X-Factor",
+      "New Mutants"
+    ],
+    "expect": 29,
+    "timeline": 1988,
+    "coverIssueId": 12233
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B03 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, exclusions, provider identity, unchanged source digest, row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-24T22:37:22Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "X-Factor #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "18",
+      "seriesId": 2098,
+      "candidateIssueId": 12233,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "19",
+      "seriesId": 2098,
+      "candidateIssueId": 12234,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "20",
+      "seriesId": 2098,
+      "candidateIssueId": 12236,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #21",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "21",
+      "seriesId": 2098,
+      "candidateIssueId": 12237,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "22",
+      "seriesId": 2098,
+      "candidateIssueId": 12238,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "23",
+      "seriesId": 2098,
+      "candidateIssueId": 12239,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #24",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "24",
+      "seriesId": 2098,
+      "candidateIssueId": 12240,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #25",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "25",
+      "seriesId": 2098,
+      "candidateIssueId": 12241,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack #35",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Power Pack",
+      "seriesYear": 1984,
+      "issueNumber": "35",
+      "seriesId": 15186,
+      "candidateIssueId": 48078,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil #252",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "252",
+      "seriesId": 2002,
+      "candidateIssueId": 8243,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain America #339",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 1968,
+      "issueNumber": "339",
+      "seriesId": 1996,
+      "candidateIssueId": 7720,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Factor #26",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "26",
+      "seriesId": 2098,
+      "candidateIssueId": 12242,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #312",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "312",
+      "seriesId": 2121,
+      "candidateIssueId": 13131,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #220",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "220",
+      "seriesId": 2258,
+      "candidateIssueId": 13761,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #221",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "221",
+      "seriesId": 2258,
+      "candidateIssueId": 13762,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #222",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "222",
+      "seriesId": 2258,
+      "candidateIssueId": 13763,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #223",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "223",
+      "seriesId": 2258,
+      "candidateIssueId": 13764,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #224",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "224",
+      "seriesId": 2258,
+      "candidateIssueId": 13765,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Incredible Hulk #340",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Incredible Hulk",
+      "seriesYear": 1962,
+      "issueNumber": "340",
+      "seriesId": 2021,
+      "candidateIssueId": 9151,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #225",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "225",
+      "seriesId": 2258,
+      "candidateIssueId": 13766,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #226",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "226",
+      "seriesId": 2258,
+      "candidateIssueId": 13767,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #227",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "227",
+      "seriesId": 2258,
+      "candidateIssueId": 13768,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #55",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "55",
+      "seriesId": 2055,
+      "candidateIssueId": 10394,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #56",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "56",
+      "seriesId": 2055,
+      "candidateIssueId": 10395,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #57",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "57",
+      "seriesId": 2055,
+      "candidateIssueId": 10396,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #58",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "58",
+      "seriesId": 2055,
+      "candidateIssueId": 10397,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #59",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "59",
+      "seriesId": 2055,
+      "candidateIssueId": 10398,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #60",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "60",
+      "seriesId": 2055,
+      "candidateIssueId": 10400,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Mutants #61",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "61",
+      "seriesId": 2055,
+      "candidateIssueId": 10401,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "837424c8369ec6be50dde9c2e53f0d013fc927d9f34a7ac2656679f6eed6624e"
+}
