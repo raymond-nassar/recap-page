@@ -241,13 +241,15 @@ second review and route unrelated work to follow-up.
 <!-- rpi:task id=P05-T01 -->
 ### P05-T01: Commit and publish a plain-English-first pull request
 
-* Status: In progress
+* Status: Complete
 
 Fetch and reconcile current main, regenerate and rerun affected evidence, commit with the required
 trailer, push, open a non-draft pull request, and monitor actual Node 20, Node 24, and lint jobs.
 
 <!-- rpi:task id=P05-T02 -->
 ### P05-T02: Merge and persist the next cursor
+
+* Status: In progress
 
 Merge only green hosted validation, record PR and merge evidence, persist final inventory counts and
 blockers, report The Evolutionary War as the next ordered candidate, and notify the creator. Do not

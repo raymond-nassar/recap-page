@@ -13,8 +13,8 @@
 
 ## Active Work
 
-P05-T01 is active. The sole Review is complete, RV-001 and RV-002 are implemented, and the final
-candidate is ready for current-main reconciliation, commit, pull request, and hosted validation.
+P05-T02 is active. Pull request 186 is published and its first hosted validation set is green.
+The final publication-evidence commit must pass the same required jobs before merge.
 
 ## Completed Work
 
@@ -62,6 +62,13 @@ RV-001 moved only the new batch-three entry under a fresh Unreleased heading and
 content unchanged. RV-002 reconciled P04-T01, P04-T02, and the P04 phase as complete. P05 is now the
 only active phase.
 
+### P05-T01: Commit, pull request, and hosted validation
+
+Commit d24113fbf62ab83c39f4a05279877e07ad7be9eb published the reviewed implementation in
+https://github.com/raymond-nassar/recap-page/pull/186. CI run 32793956938 passed Lint, Tests on
+Node 20, and Tests on Node 24. Code scanning run 32793955359 passed both analysis jobs and CodeQL.
+The pull request is non-draft and opens with the required plain-English section.
+
 ## Implementation Decisions
 
 * The full approved plan is in scope.
@@ -103,7 +110,8 @@ None.
 
 ## Remaining Work
 
-P05-T01 and P05-T02 remain active.
+P05-T02 remains active. Merge only after the publication-evidence commit receives green hosted
+validation, then persist the merge SHA and notify the creator.
 
 ## Follow-Up Items
 
