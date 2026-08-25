@@ -21,7 +21,8 @@ import {
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
   pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
-  availablePublishingCategories, publishingCategoryStories, firstSentence, storyYear,
+  availablePublishingCategories, isPublishingCategoryLeaf, publishingCategoryStories,
+  firstSentence, storyYear, timelineYears,
   CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
@@ -1603,7 +1604,10 @@ async function renderPublishingCategory(route) {
   $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
 
   const children = availablePublishingCategories(allStories, category.key);
-  if (children.length) {
+  const isPublishingCategory = PUBLISHING_CATEGORIES.some(
+    (candidate) => candidate.key === category.key && candidate.route === category.route,
+  );
+  if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
     box.replaceChildren();
     periodList.replaceChildren(...children.map((child) => homeCategoryTile({
       ...child,
@@ -1624,13 +1628,24 @@ async function renderPublishingCategory(route) {
 
   const placements = pathPlacements(catalog.paths, catalog.lists);
   const localStoryKeys = new Set(stories.map((story) => story.key));
+  if (isPublishingCategoryLeaf(category)) {
+    const years = timelineYears(stories);
+    renderTimelineSections(box, [{
+      ...category, stories, from: years[0].year, to: years[years.length - 1].year,
+    }], placements, {
+      idPrefix: route, showEmptyYears: true, sectionBlurb: false,
+      cardOptions: {
+        surface: route,
+        report: `#${route}-report`,
+        localStoryKeys,
+      },
+    });
+    return;
+  }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
     grid.append(catalogCard(story, placements.get(story.key), {
-      surface: route,
-      report: `#${route}-report`,
-      localStoryKeys,
-      level: 'h2',
+      surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
     }));
   }
   box.append(grid);
@@ -3733,7 +3748,14 @@ async function renderCatalogShelf(key) {
   const grouped = Boolean(shelf.sections);
   if (key === 'catalog') {
     renderTimelineSections(box, sections, placements, {
+      idPrefix: 'timeline',
       showEmptyYears: state.facet === 'all' && !state.query,
+      sectionBlurb: true,
+      sectionLevel: 'h2',
+      yearLevel: 'h3',
+      cardLevel: 'h4',
+      undatedCardLevel: 'h3',
+      cardOptions: { surface: 'catalog' },
     });
   }
   for (const section of sections) {
@@ -3783,10 +3805,14 @@ function shelfSectionHead(
 
 // The Timeline is content now, not a separate strip of links. Era milestones, year markers and
 // cards share one vertical axis, so the chronology stays beside the stories it describes.
-function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
+function renderTimelineSections(box, sections, placements, {
+  idPrefix = 'timeline', showEmptyYears, sectionBlurb = true,
+  sectionLevel = 'h2', yearLevel = 'h3', cardLevel = 'h4', undatedCardLevel = 'h3',
+  cardOptions = {},
+}) {
   const flow = el('div', { class: 'timeline-flow' });
   for (const section of sections) {
-    const sectionId = `timeline-era-${section.key}`;
+    const sectionId = `${idPrefix}-era-${section.key}`;
     const era = el('section', {
       class: 'timeline-era',
       'aria-labelledby': sectionId,
@@ -3794,6 +3820,8 @@ function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
       el('div', { class: 'timeline-era-node', 'aria-hidden': 'true' }),
       shelfSectionHead(section, {
         className: 'shelf-section timeline-era-head',
+        level: sectionLevel,
+        blurb: sectionBlurb,
         headingId: sectionId,
       }),
     ]);
@@ -3822,12 +3850,11 @@ function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
         continue;
       }
 
-      const yearId = `timeline-year-${year}`;
+      const yearId = `${idPrefix}-year-${year}`;
       const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
       for (const story of yearStories) {
         grid.append(catalogCard(story, placements.get(story.key), {
-          surface: 'catalog',
-          level: 'h4',
+          ...cardOptions, level: cardLevel,
         }));
       }
       yearList.append(el('section', {
@@ -3835,7 +3862,7 @@ function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
         'aria-labelledby': yearId,
       }, [
         el('div', { class: 'timeline-year-marker' }, [
-          el('h3', { id: yearId, class: 'timeline-year-label', text: `${year}` }),
+          el(yearLevel, { id: yearId, class: 'timeline-year-label', text: `${year}` }),
         ]),
         grid,
       ]));
@@ -3845,8 +3872,7 @@ function renderTimelineSections(box, sections, placements, { showEmptyYears }) {
       const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
       for (const story of section.stories) {
         grid.append(catalogCard(story, placements.get(story.key), {
-          surface: 'catalog',
-          level: 'h3',
+          ...cardOptions, level: undatedCardLevel,
         }));
       }
       yearList.append(grid);

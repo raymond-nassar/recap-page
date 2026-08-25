@@ -328,8 +328,35 @@ const MUTATIONS = [
     breaks: 'publishing-ages',
     why: 'an age route opens its panel but never renders the Reading Lists selected for it',
     rewriteMain: (source) => source.replace(
-      '  if (publishingCategoryByRoute.has(next)) renderPublishingCategory(next);',
+      '  if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);',
       '',
+    ),
+  },
+  {
+    id: 'publishing-canonical-year-heading-flat',
+    breaks: 'publishing-ages',
+    why: 'the canonical Timeline year loses its h3 level after the shared renderer is configured',
+    rewriteMain: (source) => source.replace(
+      "      yearLevel: 'h3',",
+      "      yearLevel: 'h2',",
+    ),
+  },
+  {
+    id: 'publishing-timeline-id-scope-off',
+    breaks: 'publishing-ages',
+    why: 'an age timeline reuses the canonical id prefix after both route panels have rendered',
+    rewriteMain: (source) => source.replace(
+      '    idPrefix: route, showEmptyYears: true, sectionBlurb: false,',
+      "    idPrefix: 'timeline', showEmptyYears: true, sectionBlurb: false,",
+    ),
+  },
+  {
+    id: 'publishing-report-target-catalog',
+    breaks: 'publishing-ages',
+    why: 'an age-card import failure is written into the hidden canonical catalog report',
+    rewriteMain: (source) => source.replace(
+      '      report: `#${route}-report`,',
+      "      report: '#catalog-report',",
     ),
   },
   {
@@ -1318,6 +1345,7 @@ const SCENARIOS = [
         focus: document.activeElement?.id ?? null,
         rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
         count: document.querySelector('#marvel-on-screen-count')?.textContent.trim() ?? null,
+        timeline: Boolean(document.querySelector('#marvel-on-screen-results .timeline-flow')),
         titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
           .map((title) => title.textContent.trim()),
       }));
@@ -1333,6 +1361,8 @@ const SCENARIOS = [
           'Marvel What If?',
         ].join('/'),
         JSON.stringify(screen));
+      t.check('MCU Prep stays outside publication-age chronology',
+        screen.timeline === false, JSON.stringify(screen));
 
       await page.setViewport({ width: 390, height: 844 });
       await settleLayout();
@@ -1383,6 +1413,7 @@ const SCENARIOS = [
           key: path.dataset.category,
           count: path.querySelector('.home-path-count')?.textContent.trim() ?? '',
         })),
+        timeline: Boolean(document.querySelector('#age-modern-results .timeline-flow')),
       }));
       t.check('Modern Age has its own route and receives navigation focus',
         gateway.hash === '#/age-modern' && gateway.focus === 'age-modern-h'
@@ -1406,7 +1437,24 @@ const SCENARIOS = [
             count: `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`,
           })),
         ), JSON.stringify(gateway.periods));
+      t.check('Modern Age remains a gateway without an aggregate chronology',
+        gateway.timeline === false, JSON.stringify(gateway));
 
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results .timeline-year-row:not(.is-empty)', { timeout: 15000 });
+      const canonicalHeadings = await page.$eval('#view-catalog', (panel) => ({
+        view: panel.querySelector('#catalog-h')?.tagName ?? null,
+        era: panel.querySelector('.timeline-era-head .shelf-section-title')?.tagName ?? null,
+        year: panel.querySelector('.timeline-year-label')?.tagName ?? null,
+        card: panel.querySelector('.timeline-year-cards .catalog-card-title')?.tagName ?? null,
+      }));
+      t.check('the shared renderer preserves the canonical h1 h2 h3 h4 hierarchy',
+        JSON.stringify(canonicalHeadings) === JSON.stringify({
+          view: 'H1', era: 'H2', year: 'H3', card: 'H4',
+        }), JSON.stringify(canonicalHeadings));
+
+      await openBrowseCategory(page, 'modern');
+      await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
       await click(page, '[data-category="event-era"]');
       await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
       const leaf = await page.evaluate(() => {
@@ -1420,10 +1468,26 @@ const SCENARIOS = [
           hash: location.hash,
           focus: document.activeElement?.id ?? null,
           rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+          count: document.querySelector('#age-event-era-count')?.textContent.trim() ?? null,
+          timeline: Boolean(document.querySelector('#age-event-era-results .timeline-flow')),
           years: cards.map((card) => Number(card.dataset.year)),
           titles: cards.map((card) => card.querySelector('.catalog-card-title')?.textContent.trim()),
           localLinks: local?.querySelectorAll('.path-step a').length ?? -1,
           crossingHref: crossing?.querySelector('.path-step a')?.getAttribute('href') ?? null,
+          groups: [...document.querySelectorAll('#age-event-era-results .timeline-year-row')].map((row) => ({
+            year: Number(
+              row.querySelector('.timeline-year-label')?.textContent
+              ?? row.querySelector('.timeline-year-marker > [aria-hidden="true"]')?.textContent,
+            ),
+            empty: row.classList.contains('is-empty'),
+            cards: [...row.querySelectorAll('.catalog-card')].map((card) => Number(card.dataset.year)),
+          })),
+          headings: {
+            view: document.querySelector('#age-event-era-h')?.tagName ?? null,
+            age: document.querySelector('#age-event-era-results .timeline-era-head .shelf-section-title')?.tagName ?? null,
+            year: document.querySelector('#age-event-era-results .timeline-year-label')?.tagName ?? null,
+            card: document.querySelector('#age-event-era-results .catalog-card-title')?.tagName ?? null,
+          },
         };
       });
       t.check('a leaf route draws only stories inside its effective years',
@@ -1433,12 +1497,111 @@ const SCENARIOS = [
         && leaf.years.length > 0
         && leaf.years.every((year) => year >= 2004 && year <= 2011),
         JSON.stringify(leaf));
+      t.check('Event Era keeps its Reading List count while the spine groups story cards',
+        leaf.count === '14 Reading Lists', JSON.stringify(leaf.count));
+      t.check('the age spine uses content bounds and preserves only its internal empty year',
+        leaf.timeline
+        && leaf.groups.map(({ year }) => year).join('/') === '2004/2005/2006/2007/2008'
+        && leaf.groups.filter(({ empty }) => empty).map(({ year }) => year).join('/') === '2007'
+        && leaf.groups.every((group) => group.empty
+          ? group.cards.length === 0
+          : group.cards.length > 0 && group.cards.every((year) => year === group.year)),
+        JSON.stringify(leaf.groups));
+      t.check('the generated chronology uses the route h1 and h2 h3 h4 content hierarchy',
+        JSON.stringify(leaf.headings) === JSON.stringify({
+          view: 'H1', age: 'H2', year: 'H3', card: 'H4',
+        }), JSON.stringify(leaf.headings));
       t.check('one age leaf can cross canonical shelves',
         leaf.titles.includes('Browser Check Order') && leaf.titles.includes('Across Two Periods'),
         JSON.stringify(leaf.titles));
       t.check('path stops already on the age leaf stay local while an outside stop links canonically',
         leaf.localLinks === 0 && leaf.crossingHref === '#/catalog',
         JSON.stringify({ localLinks: leaf.localLinks, crossingHref: leaf.crossingHref }));
+
+      const timelineIdentity = await page.evaluate(() => {
+        const ids = [...document.querySelectorAll('.timeline-flow [id]')].map(({ id }) => id);
+        const sections = [...document.querySelectorAll(
+          '.timeline-era[aria-labelledby], .timeline-year-row[aria-labelledby]',
+        )];
+        return {
+          duplicates: ids.filter((id, index) => ids.indexOf(id) !== index),
+          brokenOwners: sections.filter((section) => {
+            const target = document.getElementById(section.getAttribute('aria-labelledby'));
+            return !target || !section.contains(target);
+          }).map((section) => section.getAttribute('aria-labelledby')),
+        };
+      });
+      t.check('canonical and generated chronologies keep global ids and local heading ownership',
+        timelineIdentity.duplicates.length === 0 && timelineIdentity.brokenOwners.length === 0,
+        JSON.stringify(timelineIdentity));
+
+      const ageVertical = await page.$eval('#age-event-era-results', (results) => {
+        const rows = [...results.querySelectorAll('.timeline-year-row:not(.is-empty)')];
+        const clearance = (row) => {
+          const marker = row.querySelector('.timeline-year-marker');
+          const label = row.querySelector('.timeline-year-label');
+          const node = getComputedStyle(marker, '::after');
+          const border = parseFloat(node.borderLeftWidth) + parseFloat(node.borderRightWidth);
+          const width = parseFloat(node.width) + (node.boxSizing === 'border-box' ? 0 : border);
+          const nodeLeft = marker.getBoundingClientRect().right - parseFloat(node.right) - width;
+          return Math.round((nodeLeft - label.getBoundingClientRect().right) * 10) / 10;
+        };
+        return {
+          sticky: rows.map((row) => getComputedStyle(row.querySelector('.timeline-year-marker')).position),
+          clearances: rows.map(clearance),
+          equalHeights: rows.every((row) => {
+            const heights = [...row.querySelectorAll('.catalog-card')]
+              .map((card) => Math.round(card.getBoundingClientRect().height));
+            return Math.max(...heights) - Math.min(...heights) <= 1;
+          }),
+        };
+      });
+      t.check('the age spine keeps sticky labels clear of its nodes and equal-height year cards',
+        ageVertical.equalHeights
+        && ageVertical.sticky.every((position) => position === 'sticky')
+        && ageVertical.clearances.every((gap) => gap >= 4),
+        JSON.stringify(ageVertical));
+
+      await page.evaluate(() => { window.__mrtMutation = 'import-fail'; });
+      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="import"]');
+      await page.waitForFunction(
+        () => (document.querySelector('#age-event-era-report')?.textContent ?? '').trim().length > 0,
+        { timeout: 15000 },
+      );
+      const ageImportFailure = await page.evaluate(() => ({
+        age: document.querySelector('#age-event-era-report')?.textContent.trim() ?? '',
+        catalog: document.querySelector('#catalog-report')?.textContent.trim() ?? '',
+      }));
+      t.check('an age-card import failure is reported on the age route',
+        ageImportFailure.age.length > 0 && ageImportFailure.catalog.length === 0,
+        JSON.stringify(ageImportFailure));
+      await page.evaluate(() => { window.__mrtMutation = null; });
+
+      await page.setViewport({ width: 620, height: 900 });
+      await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
+      const narrowAge = await page.$eval(
+        '#age-event-era-results .timeline-year-row:not(.is-empty)',
+        (row) => {
+          const marker = row.querySelector('.timeline-year-marker').getBoundingClientRect();
+          const cards = row.querySelector('.timeline-year-cards').getBoundingClientRect();
+          return {
+            viewport: innerWidth,
+            scrollWidth: document.documentElement.scrollWidth,
+            markerPosition: getComputedStyle(row.querySelector('.timeline-year-marker')).position,
+            markerBottom: Math.round(marker.bottom),
+            cardsTop: Math.round(cards.top),
+            columns: new Set([...row.querySelectorAll('.catalog-card')]
+              .map((card) => Math.round(card.getBoundingClientRect().left))).size,
+          };
+        },
+      );
+      t.check('a narrow age spine puts its year above one-column cards without overflow',
+        narrowAge.markerPosition === 'relative'
+        && narrowAge.markerBottom <= narrowAge.cardsTop
+        && narrowAge.columns === 1
+        && narrowAge.scrollWidth <= narrowAge.viewport,
+        JSON.stringify(narrowAge));
+      await page.setViewport({ width: 1280, height: 900 });
 
       await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
       await page.waitForSelector('#preview[open] input[data-key="browser-check-three-short"]');
@@ -1487,6 +1650,7 @@ const SCENARIOS = [
           range: document.querySelector('#view-age-golden .publishing-range')?.textContent.trim(),
           count: document.querySelector('#age-golden-count')?.textContent.trim(),
           message: document.querySelector('#age-golden-results .publishing-empty')?.textContent.trim(),
+          timeline: Boolean(document.querySelector('#age-golden-results .timeline-flow')),
         };
       });
       t.check('a hidden empty category remains a complete honest direct page',
@@ -1496,6 +1660,7 @@ const SCENARIOS = [
           range: '1939 to 1955',
           count: '0 Reading Lists',
           message: 'No Reading Lists are published for this period yet.',
+          timeline: false,
         }), JSON.stringify(empty));
 
       await page.setViewport({ width: 620, height: 900 });
@@ -2873,8 +3038,10 @@ async function runScenario(browser, origin, scenario, mutation) {
   const page = await context.newPage();
   const t = tally();
   let error = null;
+  let prepared = false;
   try {
     await preparePage(page, origin, mutation);
+    prepared = true;
     await scenario.run(page, t);
   } catch (err) {
     error = err?.message ?? String(err);
@@ -2882,7 +3049,9 @@ async function runScenario(browser, origin, scenario, mutation) {
   } finally {
     await context.close().catch(() => {});
   }
-  return { id: scenario.id, title: scenario.title, rows: t.rows, error };
+  return {
+    id: scenario.id, title: scenario.title, rows: t.rows, error, prepared,
+  };
 }
 
 function report(results, { quiet = false } = {}) {
@@ -3018,7 +3187,7 @@ async function main() {
       // difference between evidence and a green tick.
       const broke = (aimed?.rows ?? []).filter((row) => !row.ok)
         .map((row) => (row.detail ? `${row.name} (${row.detail})` : row.name));
-      const caught = broke.length > 0;
+      const caught = aimed?.prepared === true && broke.length > 0;
       if (!caught) unproved += 1;
       console.log(`  ${caught ? 'ok  ' : 'FAIL'} ${mutation.id}: ${mutation.why}`);
       console.log(`         aimed at ${mutation.breaks}, where it breaks: ${broke.join('; ') || 'nothing'}`);

@@ -849,6 +849,9 @@ export const PUBLISHING_CATEGORIES = [
 ];
 
 export const PUBLISHING_AGES = PUBLISHING_CATEGORIES.filter((category) => category.parent === null);
+export const isPublishingCategoryLeaf = (category) => PUBLISHING_CATEGORIES.some(
+  (candidate) => candidate.key === category?.key && candidate.route === category?.route,
+) && !PUBLISHING_CATEGORIES.some((candidate) => candidate.parent === category?.key);
 
 export function inPublishingAge(story, key) {
   const category = PUBLISHING_CATEGORIES.find((candidate) => candidate.key === key);
