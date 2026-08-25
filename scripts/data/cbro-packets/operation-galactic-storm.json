@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "id": "operation-galactic-storm",
+  "inventoryId": "operation-galactic-storm",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/operation-galactic-storm-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "9678355b2013a4202a71a79b39190637d9a0974394598be0a738fdaf81db777c",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 22,
+  "proposedManifest": {
+    "id": "operation-galactic-storm",
+    "name": "Operation: Galactic Storm",
+    "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "operation-galactic-storm.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/operation-galactic-storm-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "operation_galactic_storm.json",
+    "characters": [
+      "Avengers",
+      "Captain America",
+      "Iron Man",
+      "Thor"
+    ],
+    "keywords": [
+      "Operation: Galactic Storm",
+      "Avengers",
+      "Kree",
+      "Shi'ar"
+    ],
+    "expect": 22,
+    "timeline": 1992,
+    "coverIssueId": 7779
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B06 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T06:20:28.250Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Captain America #398",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 1968,
+      "issueNumber": "398",
+      "seriesId": 1996,
+      "candidateIssueId": 7779,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers West Coast #80",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers West Coast",
+      "seriesYear": 1985,
+      "issueNumber": "80",
+      "seriesId": 3630,
+      "candidateIssueId": 17822,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series West Coast Avengers (1985 - 1994), series 3630."
+    },
+    {
+      "sourceIssueReference": "Quasar #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "32",
+      "seriesId": 3695,
+      "candidateIssueId": 18920,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wonder Man #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "7",
+      "seriesId": 3645,
+      "candidateIssueId": 18283,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #345",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "345",
+      "seriesId": 1991,
+      "candidateIssueId": 7225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man #278",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1968,
+      "issueNumber": "278",
+      "seriesId": 2029,
+      "candidateIssueId": 9525,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #445",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "445",
+      "seriesId": 2083,
+      "candidateIssueId": 11773,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain America #399",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 1968,
+      "issueNumber": "399",
+      "seriesId": 1996,
+      "candidateIssueId": 7780,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers West Coast #81",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers West Coast",
+      "seriesYear": 1985,
+      "issueNumber": "81",
+      "seriesId": 3630,
+      "candidateIssueId": 17823,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series West Coast Avengers (1985 - 1994), series 3630."
+    },
+    {
+      "sourceIssueReference": "Quasar #33",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "33",
+      "seriesId": 3695,
+      "candidateIssueId": 18921,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wonder Man #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "8",
+      "seriesId": 3645,
+      "candidateIssueId": 18284,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #346",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "346",
+      "seriesId": 1991,
+      "candidateIssueId": 7226,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man #279",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1968,
+      "issueNumber": "279",
+      "seriesId": 2029,
+      "candidateIssueId": 9526,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #446",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "446",
+      "seriesId": 2083,
+      "candidateIssueId": 11774,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain America #400",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 1968,
+      "issueNumber": "400",
+      "seriesId": 1996,
+      "candidateIssueId": 7781,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers West Coast #82",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers West Coast",
+      "seriesYear": 1985,
+      "issueNumber": "82",
+      "seriesId": 3630,
+      "candidateIssueId": 17824,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series West Coast Avengers (1985 - 1994), series 3630."
+    },
+    {
+      "sourceIssueReference": "Quasar #34",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "34",
+      "seriesId": 3695,
+      "candidateIssueId": 18922,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wonder Man #9",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "9",
+      "seriesId": 3645,
+      "candidateIssueId": 18285,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #347",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "347",
+      "seriesId": 1991,
+      "candidateIssueId": 7227,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain America #401",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 1968,
+      "issueNumber": "401",
+      "seriesId": 1996,
+      "candidateIssueId": 7782,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Quasar #35",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "35",
+      "seriesId": 3695,
+      "candidateIssueId": 18923,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Quasar #36",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "36",
+      "seriesId": 3695,
+      "candidateIssueId": 18924,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "c6dea6816313c62c9cd1432e7961093198844de8d1a82ac47b32ae9ef3577ef9"
+}

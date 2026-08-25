@@ -23,7 +23,7 @@ section is what has to be settled before it is.
 
 ## Source-backed orders added after publication
 
-Twenty-two historical event guides now use factual issue identities and order from Comic Book Reading
+Twenty-nine historical event guides now use factual issue identities and order from Comic Book Reading
 Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
 Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
 source page and section. The source licence remains null because that permission does not reach Marvel material.
@@ -152,8 +152,8 @@ that must not be rewritten, for the same reason the dated tracking artifacts are
 - `PRODUCT_BACKLOG.md:7071-7076`, why blank issues stay enabled.
 - `PRODUCT_BACKLOG.md:7114-7118`, why `required: true` collects nothing today.
 - `PRODUCT_BACKLOG.md:9219-9224`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:2811-2814`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:2823-2826`, the released note that the private channel is not switched on.
+- `CHANGELOG.md:2826-2829`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:2838-2841`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
@@ -270,6 +270,6 @@ enforcement, which is the argument for writing it down before the day rather tha
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
 quietly advertise a private, stale, or unreachable source surface. The MCU Prep release adds
-four public source-linked cards after Star-Lord. Three historical continuation batches add thirteen
-Comic Book Reading Orders cards, including 115 issues across thirteen exact events, bringing the catalog to 114
-without changing the accepted publication boundary or any saved reader data.
+four public source-linked cards after Star-Lord. Six historical continuation batches add twenty-four
+Comic Book Reading Orders cards containing 290 delivered issues across those guides, bringing the
+catalog to 125 without changing the accepted publication boundary or any saved reader data.

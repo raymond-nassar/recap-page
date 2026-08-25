@@ -1,0 +1,307 @@
+{
+  "id": "x-tinction-agenda",
+  "name": "X-Tinction Agenda",
+  "description": "Nine chapters interleaving X-Men, X-Factor, and New Mutants through X-Tinction Agenda.",
+  "source": "https://comicbookreadingorders.com/marvel/events/x-tinction-agenda-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T07:01:21.146Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 13811,
+      "title": "Uncanny X-Men (1981) #270",
+      "number": "270",
+      "url": "https://www.marvel.com/comics/issue/13811/uncanny_x-men_1981_270",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/52618efbe199e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10438,
+      "title": "New Mutants (1983) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/10438/new_mutants_1983_95",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1990-11-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28381,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/52618f6d6ce04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Josef Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12280,
+      "title": "X-Factor (1986) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/12280/x-factor_1986_60",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1990-11-01T00:00:00+0000",
+      "mu": "1990-11-01T00:00:00+0000",
+      "digitalId": 28384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/52618ecf5842b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13812,
+      "title": "Uncanny X-Men (1963) #271",
+      "number": "271",
+      "url": "https://www.marvel.com/comics/issue/13812/uncanny_x-men_1963_271",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-12-01T00:00:00+0000",
+      "mu": "2013-08-05T11:54:57+0000",
+      "digitalId": 28375,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/51141edbd30ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10439,
+      "title": "New Mutants (1983) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/10439/new_mutants_1983_96",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1990-12-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/52618f6740ea4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Josef Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12281,
+      "title": "X-Factor (1986) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/12281/x-factor_1986_61",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1990-12-01T00:00:00+0000",
+      "mu": "1990-12-01T00:00:00+0000",
+      "digitalId": 28385,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/52618e76c2dd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13813,
+      "title": "Uncanny X-Men (1963) #272",
+      "number": "272",
+      "url": "https://www.marvel.com/comics/issue/13813/uncanny_x-men_1963_272",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-01-01T00:00:00+0000",
+      "mu": "2013-08-05T11:56:12+0000",
+      "digitalId": 28376,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/51141f5a19cbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10440,
+      "title": "New Mutants (1983) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/10440/new_mutants_1983_97",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1991-01-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 28383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/52618f5835e03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Josef Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Guang Yap",
+          "role": "penciler"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12282,
+      "title": "X-Factor (1986) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/12282/x-factor_1986_62",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1991-01-01T00:00:00+0000",
+      "mu": "1991-01-01T00:00:00+0000",
+      "digitalId": 28386,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/52618e68af49c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Bogdanove",
+          "role": "penciler"
+        },
+        {
+          "name": "Louise Simonson",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

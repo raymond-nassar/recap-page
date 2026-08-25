@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T04:20:54.152Z",
+  "generatedAt": "2026-08-25T07:01:21.189Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3490,6 +3490,147 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T04:20:54.117Z"
+    },
+    {
+      "id": "x-tinction-agenda",
+      "file": "x_tinction_agenda.json",
+      "name": "X-Tinction Agenda",
+      "description": "Nine chapters interleaving X-Men, X-Factor, and New Mutants through X-Tinction Agenda.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "keywords": [
+        "X-Tinction Agenda",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1990,
+      "coverIssueId": 13811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/52618efbe199e",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/x-tinction-agenda-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T07:01:21.146Z"
+    },
+    {
+      "id": "operation-galactic-storm",
+      "file": "operation_galactic_storm.json",
+      "name": "Operation: Galactic Storm",
+      "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",
+      "type": "event",
+      "depth": "complete",
+      "count": 22,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Captain America",
+        "Iron Man",
+        "Thor"
+      ],
+      "keywords": [
+        "Operation: Galactic Storm",
+        "Avengers",
+        "Kree",
+        "Shi'ar"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1992,
+      "coverIssueId": 7779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/56e6e03aeea8f",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/operation-galactic-storm-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T07:01:21.148Z"
+    },
+    {
+      "id": "dead-mans-hand",
+      "file": "dead_mans_hand.json",
+      "name": "Dead Man's Hand",
+      "description": "Nine chapters connecting Daredevil, Nomad, and the Punisher through Dead Man's Hand.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Nomad"
+      ],
+      "keywords": [
+        "Dead Man's Hand",
+        "Daredevil",
+        "Punisher",
+        "Nomad"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1992,
+      "coverIssueId": 8304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5c9e82d7f3206",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/dead-mans-hand-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T07:01:21.149Z"
+    },
+    {
+      "id": "rise-of-the-midnight-sons",
+      "file": "rise_of_the_midnight_sons.json",
+      "name": "Rise of the Midnight Sons",
+      "description": "Six chapters assembling Ghost Rider, Morbius, and the Midnight Sons against Lilith.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Ghost Rider",
+        "Morbius",
+        "Blade"
+      ],
+      "keywords": [
+        "Rise of the Midnight Sons",
+        "Ghost Rider",
+        "Morbius",
+        "Lilith"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1992,
+      "coverIssueId": 22661,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5cacb84f01471",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/rise-of-the-midnight-sons-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-25T07:01:21.150Z"
     },
     {
       "id": "maximum-security",

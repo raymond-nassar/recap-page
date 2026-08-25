@@ -98,8 +98,8 @@ test('every shared year belongs to the later period and never to both', () => {
 test('the shipped dated catalog partitions once by age and once by Modern subperiod', () => {
   const dated = stories.filter((story) => storyYear(story) !== null);
   const modern = publishingCategoryStories(stories, 'modern');
-  assert.equal(dated.length, 97);
-  assert.equal(modern.length, 77);
+  assert.equal(dated.length, 101);
+  assert.equal(modern.length, 80);
 
   for (const story of dated) {
     assert.equal(
@@ -126,8 +126,8 @@ test('the shipped dated catalog partitions once by age and once by Modern subper
       .reduce((sum, story) => sum + story.lists.length, 0),
     0,
   );
-  assert.equal(topLists, 103);
-  assert.equal(periodLists, 83);
+  assert.equal(topLists, 107);
+  assert.equal(periodLists, 86);
 });
 
 test('undated stories are not guessed into any publishing category', () => {
@@ -149,13 +149,13 @@ test('publishing categories cross canonical shelves without changing shelf owner
 test('only populated publishing categories are available and counts use Reading Lists', () => {
   const ages = availablePublishingCategories(stories);
   assert.deepEqual(ages.map(({ key }) => key), ['silver', 'bronze', 'copper', 'modern']);
-  assert.deepEqual(ages.map(({ count }) => count), [1, 9, 10, 83]);
+  assert.deepEqual(ages.map(({ count }) => count), [1, 9, 11, 86]);
 
   const periods = availablePublishingCategories(stories, 'modern');
   assert.deepEqual(
     periods.map(({ key, count }) => [key, count]),
     [
-      ['early-modern', 4],
+      ['early-modern', 7],
       ['marvel-knights-heroes-return', 2],
       ['event-era', 35],
       ['marvel-now', 10],

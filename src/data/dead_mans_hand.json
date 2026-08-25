@@ -1,0 +1,319 @@
+{
+  "id": "dead-mans-hand",
+  "name": "Dead Man's Hand",
+  "description": "Nine chapters connecting Daredevil, Nomad, and the Punisher through Dead Man's Hand.",
+  "source": "https://comicbookreadingorders.com/marvel/events/dead-mans-hand-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T07:01:21.149Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 8304,
+      "title": "Daredevil (1964) #307",
+      "number": "307",
+      "url": "https://www.marvel.com/comics/issue/8304/daredevil_1964_307",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 58144,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5c9e82d7f3206",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Mcdaniel",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 55128,
+      "title": "Nomad (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55128/nomad_1992_4",
+      "seriesId": 20373,
+      "seriesName": "Nomad (1992 - 1994)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 37405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5825e1ef338f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Fry",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22201,
+      "title": "Punisher War Journal (1988) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/22201/punisher_war_journal_1988_45",
+      "seriesId": 5860,
+      "seriesName": "Punisher War Journal (1988 - 1995)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58152,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/61c33823aae50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Hebert",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Dixon",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80303,
+      "title": "Nomad (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/80303/nomad_1992_5",
+      "seriesId": 20373,
+      "seriesName": "Nomad (1992 - 1994)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58150,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/61c33822d7d3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Clarke Hawbaker",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8305,
+      "title": "Daredevil (1964) #308",
+      "number": "308",
+      "url": "https://www.marvel.com/comics/issue/8305/daredevil_1964_308",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 58145,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/61c338028bd1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Mcdaniel",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22202,
+      "title": "Punisher War Journal (1988) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/22202/punisher_war_journal_1988_46",
+      "seriesId": 5860,
+      "seriesName": "Punisher War Journal (1988 - 1995)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58153,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/61c33824ce442",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Hebert",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Manley",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Dixon",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8306,
+      "title": "Daredevil (1964) #309",
+      "number": "309",
+      "url": "https://www.marvel.com/comics/issue/8306/daredevil_1964_309",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/61c33803a7c83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Mcdaniel",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80304,
+      "title": "Nomad (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/80304/nomad_1992_6",
+      "seriesId": 20373,
+      "seriesName": "Nomad (1992 - 1994)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/61c338238a86c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Clarke Hawbaker",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22203,
+      "title": "Punisher War Journal (1988) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/22203/punisher_war_journal_1988_47",
+      "seriesId": 5860,
+      "seriesName": "Punisher War Journal (1988 - 1995)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/61c33825b325f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Hebert",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Dixon",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

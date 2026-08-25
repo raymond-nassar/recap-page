@@ -45,6 +45,12 @@ import {
   CBRO_BATCH_FIVE_SELECTED_IDS,
   CBRO_BATCH_FIVE_TOUCHED_IDS,
   CBRO_BATCH_FIVE_UNTOUCHED_INVENTORY_SHA256,
+  CBRO_BATCH_SIX_AUTHOR_IDS,
+  CBRO_BATCH_SIX_EVALUATED_OUTCOME_SHA256,
+  CBRO_BATCH_SIX_PACKET_REVIEW,
+  CBRO_BATCH_SIX_SELECTED_IDS,
+  CBRO_BATCH_SIX_TOUCHED_IDS,
+  CBRO_BATCH_SIX_UNTOUCHED_INVENTORY_SHA256,
   CBRO_BATCH_THREE_AUTHOR_IDS,
   CBRO_BATCH_THREE_BLOCKED_OUTCOME_SHA256,
   CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256,
@@ -66,8 +72,10 @@ import {
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
   cbroBatchFivePredecessorRecord,
+  cbroBatchSixPredecessorRecord,
   cbroReleaseForIds,
   digestCanonicalJson,
+  validateCbroBlockerEvidence,
   validateCbroHistoricalInventory,
   validateCbroPacket,
   validateCbroReviewIdentity,
@@ -81,6 +89,7 @@ const dataDir = path.join(root, 'src', 'data');
 const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
+const blockersDir = path.join(root, 'scripts', 'data', 'cbro-blockers');
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
@@ -503,7 +512,7 @@ test('historical inventory preserves all 58 pre-cutoff identities and terminal s
     ['marvel-2099', 'mc2'],
   );
   const fabricated = structuredClone(inventory);
-  Object.assign(fabricated[21], {
+  Object.assign(fabricated[29], {
     id: 'fabricated-event',
     title: 'Fabricated Event',
     sourceUrl: 'https://example.test/fabricated-event',
@@ -511,6 +520,7 @@ test('historical inventory preserves all 58 pre-cutoff identities and terminal s
   assert.throws(() => validateCbroHistoricalInventory(fabricated), /identity digest changed/i);
   const nonselected = inventory
     .filter((record) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map(cbroBatchFivePredecessorRecord)
     .map((record) => CBRO_BATCH_THREE_TOUCHED_IDS.includes(record.id)
       ? {
@@ -594,7 +604,7 @@ test('five reports bind the complete library, four peers, and central approvals'
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    [...CBRO_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS],
+    [...CBRO_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS, ...CBRO_BATCH_SIX_SELECTED_IDS],
   );
   const mappings = await Promise.all(CBRO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
@@ -604,6 +614,7 @@ test('five reports bind the complete library, four peers, and central approvals'
     .filter((entry) => ![
       ...CBRO_SELECTED_IDS,
       ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
     ].includes(entry.id))
     .map((entry) => entry.id);
   for (const id of CBRO_SELECTED_IDS) {
@@ -882,7 +893,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    [...CBRO_BATCH_TWO_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS],
+    [...CBRO_BATCH_TWO_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS, ...CBRO_BATCH_SIX_SELECTED_IDS],
   );
   const mappings = await Promise.all(CBRO_BATCH_TWO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
@@ -901,6 +912,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
         .filter((entry) => ![
           ...CBRO_BATCH_TWO_SELECTED_IDS,
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -985,6 +997,7 @@ test('batch three authority preserves six exact outcomes and every untouched inv
 
   const untouched = inventory
     .filter((record) => !CBRO_BATCH_THREE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map(cbroBatchFivePredecessorRecord);
   assert.equal(
     digestCanonicalJson(untouched),
@@ -1049,7 +1062,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    [...CBRO_BATCH_THREE_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS],
+    [...CBRO_BATCH_THREE_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS, ...CBRO_BATCH_SIX_SELECTED_IDS],
   );
   const mappings = await Promise.all(CBRO_BATCH_THREE_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
@@ -1068,6 +1081,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
         .filter((entry) => ![
           ...CBRO_BATCH_THREE_SELECTED_IDS,
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1161,6 +1175,7 @@ test('batch four conserves 89 source rows through 31 exact exclusions', async ()
 
   const untouched = inventory
     .filter((record) => !CBRO_BATCH_FOUR_SELECTED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord)
     .map(cbroBatchFivePredecessorRecord);
   assert.equal(
     digestCanonicalJson(untouched),
@@ -1202,7 +1217,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    [...CBRO_BATCH_FOUR_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS],
+    [...CBRO_BATCH_FOUR_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS, ...CBRO_BATCH_SIX_SELECTED_IDS],
   );
   const mappings = await Promise.all(CBRO_BATCH_FOUR_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
@@ -1221,6 +1236,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
         .filter((entry) => ![
           ...CBRO_BATCH_FOUR_SELECTED_IDS,
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1307,7 +1323,7 @@ test('continuation reports bind 580 comparisons and one central subset approval'
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    [...CBRO_CONTINUATION_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS],
+    [...CBRO_CONTINUATION_SELECTED_IDS, ...CBRO_BATCH_FIVE_SELECTED_IDS, ...CBRO_BATCH_SIX_SELECTED_IDS],
   );
   const mappings = await Promise.all(CBRO_CONTINUATION_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
@@ -1327,6 +1343,7 @@ test('continuation reports bind 580 comparisons and one central subset approval'
         .filter((entry) => ![
           ...CBRO_CONTINUATION_SELECTED_IDS,
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1381,12 +1398,13 @@ test('historical continuation authoring retains all chronological cards and 32 b
   const maximumSecurityIndex = manifest.lists.findIndex((entry) => (
     entry.id === 'maximum-security'
   ));
+  const continuationEndIndex = maximumSecurityIndex - CBRO_BATCH_SIX_AUTHOR_IDS.length;
   assert.deepEqual(
-    manifest.lists.slice(maximumSecurityIndex - (
+    manifest.lists.slice(continuationEndIndex - (
       CBRO_CONTINUATION_AUTHOR_IDS.length + CBRO_BATCH_TWO_AUTHOR_IDS.length
       + CBRO_BATCH_THREE_AUTHOR_IDS.length + CBRO_BATCH_FOUR_AUTHOR_IDS.length
       + CBRO_BATCH_FIVE_AUTHOR_IDS.length
-    ), maximumSecurityIndex).map((entry) => entry.id),
+    ), continuationEndIndex).map((entry) => entry.id),
     [
       ...CBRO_CONTINUATION_AUTHOR_IDS,
       ...CBRO_BATCH_TWO_AUTHOR_IDS,
@@ -1398,12 +1416,12 @@ test('historical continuation authoring retains all chronological cards and 32 b
   );
 
   const selected = inventory.filter((record) => record.centralDisposition === 'selected');
-  assert.equal(selected.length, 25);
+  assert.equal(selected.length, 29);
   assert.ok(selected.every((record) => ['ready', 'shipped'].includes(record.deliveryStatus)));
   assert.equal(inventory.filter((record) => (
     ['deferred', 'deferred-subset'].includes(record.centralDisposition)
-  )).length, 29);
-  assert.equal(inventory.filter((record) => record.centralDisposition === 'blocked').length, 2);
+  )).length, 23);
+  assert.equal(inventory.filter((record) => record.centralDisposition === 'blocked').length, 4);
   assert.equal(inventory.filter((record) => record.centralDisposition === 'absorbed').length, 1);
   assert.equal(inventory.filter((record) => (
     record.centralDisposition === 'provenance-blocked'
@@ -1440,8 +1458,8 @@ test('batch two authoring ships five chronological cards and 35 exact payload ro
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 121);
-  assert.equal(catalog.lists.length, 121);
+  assert.equal(manifest.lists.length, 125);
+  assert.equal(catalog.lists.length, 125);
   assert.ok(inventory.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1477,8 +1495,8 @@ test('batch three authoring ships three chronological cards and 48 exact payload
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 121);
-  assert.equal(catalog.lists.length, 121);
+  assert.equal(manifest.lists.length, 125);
+  assert.equal(catalog.lists.length, 125);
   assert.ok(inventory.filter((record) => CBRO_BATCH_THREE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1486,13 +1504,14 @@ test('batch three authoring ships three chronological cards and 48 exact payload
   const maximumSecurityIndex = manifest.lists.findIndex((entry) => (
     entry.id === 'maximum-security'
   ));
+  const batchThreeEndIndex = maximumSecurityIndex - CBRO_BATCH_SIX_AUTHOR_IDS.length;
   assert.deepEqual(
     manifest.lists.slice(
-      maximumSecurityIndex - (
+      batchThreeEndIndex - (
         CBRO_BATCH_FOUR_AUTHOR_IDS.length + CBRO_BATCH_THREE_AUTHOR_IDS.length
         + CBRO_BATCH_FIVE_AUTHOR_IDS.length
       ),
-      maximumSecurityIndex,
+      batchThreeEndIndex,
     )
       .map((entry) => entry.id)
       .filter((id) => CBRO_BATCH_THREE_AUTHOR_IDS.includes(id)),
@@ -1609,12 +1628,18 @@ test('batch five authority preserves six evaluated records and all 70 blocked so
     assert.throws(() => cbroReleaseForIds(mutatedIds), /complete known release/i);
   }
 
-  const evaluated = inventory.filter((record) => CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id));
+  const preBatchSixSelectedIds = CBRO_ALL_SELECTED_IDS.filter((id) => (
+    !CBRO_BATCH_SIX_SELECTED_IDS.includes(id)
+  ));
+  const evaluated = inventory
+    .filter((record) => CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchSixPredecessorRecord);
   assert.deepEqual(evaluated.map((record) => record.id), CBRO_BATCH_FIVE_TOUCHED_IDS);
   assert.equal(
     digestCanonicalJson(inventory
       .filter((record) => !CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
-      .map((record) => CBRO_ALL_SELECTED_IDS.includes(record.id)
+      .map(cbroBatchSixPredecessorRecord)
+      .map((record) => preBatchSixSelectedIds.includes(record.id)
         ? { ...record, catalogIds: [record.id], deliveryStatus: 'shipped' }
         : record)),
     CBRO_BATCH_FIVE_UNTOUCHED_INVENTORY_SHA256,
@@ -1731,7 +1756,7 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
-    CBRO_BATCH_FIVE_SELECTED_IDS,
+    [...CBRO_BATCH_FIVE_SELECTED_IDS, ...CBRO_BATCH_SIX_SELECTED_IDS],
   );
   const mappings = await Promise.all(CBRO_BATCH_FIVE_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
@@ -1747,7 +1772,10 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
       .map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [
       ...library.lists
-        .filter((entry) => !CBRO_BATCH_FIVE_SELECTED_IDS.includes(entry.id))
+        .filter((entry) => ![
+          ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
+        ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
@@ -1799,15 +1827,16 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
   const maximumSecurityIndex = manifest.lists.findIndex((entry) => (
     entry.id === 'maximum-security'
   ));
+  const batchFiveEndIndex = maximumSecurityIndex - CBRO_BATCH_SIX_AUTHOR_IDS.length;
   assert.deepEqual(
     manifest.lists.slice(
-      maximumSecurityIndex - CBRO_BATCH_FIVE_AUTHOR_IDS.length,
-      maximumSecurityIndex,
+      batchFiveEndIndex - CBRO_BATCH_FIVE_AUTHOR_IDS.length,
+      batchFiveEndIndex,
     ).map((entry) => entry.id),
     CBRO_BATCH_FIVE_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 121);
-  assert.equal(catalog.lists.length, 121);
+  assert.equal(manifest.lists.length, 125);
+  assert.equal(catalog.lists.length, 125);
   assert.ok(inventory.filter((record) => CBRO_BATCH_FIVE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1848,9 +1877,9 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
       [record.centralDisposition]: (counts[record.centralDisposition] ?? 0) + 1,
     }), {}),
     {
-      selected: 25,
-      blocked: 2,
-      deferred: 28,
+      selected: 29,
+      blocked: 4,
+      deferred: 22,
       'deferred-subset': 1,
       absorbed: 1,
       'provenance-blocked': 1,
@@ -1862,15 +1891,377 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
       [record.deliveryStatus]: (counts[record.deliveryStatus] ?? 0) + 1,
     }), {}),
     {
-      shipped: 25,
-      blocked: 3,
-      deferred: 29,
+      shipped: 29,
+      blocked: 5,
+      deferred: 23,
       'not-applicable': 1,
     },
   );
   assert.equal(manifest.lists.some((entry) => (
-    ['acts-of-vengeance', 'x-tinction-agenda'].includes(entry.id)
+    entry.id === 'acts-of-vengeance'
   )), false);
+});
+
+test('batch six authority preserves six outcomes and both complete blocker records', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  assert.doesNotThrow(() => validateCbroHistoricalInventory(inventory));
+  assert.equal(
+    cbroReleaseForIds(CBRO_BATCH_SIX_SELECTED_IDS).id,
+    CBRO_RELEASE_IDS.continuationBatchSix,
+  );
+  assert.equal(
+    cbroReleaseForIds(CBRO_BATCH_SIX_AUTHOR_IDS, { order: 'author' }).id,
+    CBRO_RELEASE_IDS.continuationBatchSix,
+  );
+  for (const mutatedIds of [
+    CBRO_BATCH_SIX_SELECTED_IDS.slice(1),
+    [...CBRO_BATCH_SIX_SELECTED_IDS].reverse(),
+    [...CBRO_BATCH_SIX_SELECTED_IDS.slice(0, 3), 'infinity-war'],
+  ]) {
+    assert.throws(() => cbroReleaseForIds(mutatedIds), /complete known release/i);
+  }
+
+  const evaluated = inventory.filter((record) => CBRO_BATCH_SIX_TOUCHED_IDS.includes(record.id));
+  assert.deepEqual(evaluated.map((record) => record.id), CBRO_BATCH_SIX_TOUCHED_IDS);
+  assert.equal(
+    digestCanonicalJson(inventory
+      .filter((record) => !CBRO_BATCH_SIX_TOUCHED_IDS.includes(record.id))
+      .map((record) => CBRO_ALL_SELECTED_IDS.includes(record.id)
+        ? { ...record, catalogIds: [record.id], deliveryStatus: 'shipped' }
+        : record)),
+    CBRO_BATCH_SIX_UNTOUCHED_INVENTORY_SHA256,
+  );
+  assert.equal(
+    digestCanonicalJson(evaluated.map((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id)
+      ? { ...record, catalogIds: [], deliveryStatus: 'ready' }
+      : record)),
+    CBRO_BATCH_SIX_EVALUATED_OUTCOME_SHA256,
+  );
+  assert.ok(evaluated.filter((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id))
+    .every((record) => record.centralDisposition === 'selected'
+      && record.relationshipStatus === 'none'
+      && ['ready', 'shipped'].includes(record.deliveryStatus)));
+
+  const blockers = [
+    {
+      id: 'infinity-gauntlet',
+      rowCount: 51,
+      unresolved: [[23, 'Sleepwalker #6', 21939]],
+    },
+    {
+      id: 'infinity-war',
+      rowCount: 52,
+      unresolved: [
+        [8, 'Deathlok Vol. 2 #16', 20006],
+        [10, 'Alpha Flight #110', 2116],
+        [20, 'Silver Sable and the Wild Pack #4', 16367],
+        [22, 'Wonder Man #13', 3645],
+        [27, 'Quasar #38', 3695],
+        [28, 'Nomad Vol. 2 #7', 20373],
+        [32, 'Alpha Flight #111', 2116],
+        [33, 'Silver Sable and the Wild Pack #5', 16367],
+        [37, 'Wonder Man #14', 3645],
+        [39, 'Quasar #39', 3695],
+        [42, 'Sleepwalker #18', 21939],
+        [47, 'Wonder Man #15', 3645],
+        [51, 'Alpha Flight #112', 2116],
+        [52, 'Quasar #40', 3695],
+      ],
+    },
+  ];
+  for (const expected of blockers) {
+    const evidence = await readJson(path.join(blockersDir, `${expected.id}.json`));
+    const inventoryRecord = inventory.find((record) => record.id === expected.id);
+    assert.doesNotThrow(() => validateCbroBlockerEvidence(evidence, {
+      expectedId: expected.id,
+      inventoryRecord,
+    }));
+    assert.equal(evidence.rows.length, expected.rowCount);
+    assert.deepEqual(
+      evidence.rows
+        .filter((row) => row.resolutionStatus !== 'exact')
+        .map((row) => [row.sourcePosition, row.sourceIssueReference, row.seriesId]),
+      expected.unresolved,
+    );
+    assert.equal(
+      evidence.rows.filter((row) => row.resolutionStatus === 'exact').length,
+      expected.rowCount - expected.unresolved.length,
+    );
+    for (const relativePath of [
+      ['scripts', 'data', 'cbro-packets', `${expected.id}.json`],
+      ['scripts', 'data', 'cbro-mappings', `${expected.id}.json`],
+      ['scripts', 'data', 'cbro-overlaps', `${expected.id}.json`],
+      ['src', 'data', 'orders', `${expected.id}.md`],
+      ['src', 'data', `${expected.id.replaceAll('-', '_')}.json`],
+    ]) {
+      await assert.rejects(() => access(path.join(root, ...relativePath)), /ENOENT/);
+    }
+  }
+
+  const acts = inventory.find((record) => record.id === 'acts-of-vengeance');
+  assert.equal(acts.sourceRowCount, 70);
+  assert.equal(acts.sourceContentSha256, 'f03b70a54dd6d50cc0a52d6ce69cb6ae74c9f5ae6bf09670bed2d91531e116bb');
+  assert.equal(acts.centralDisposition, 'blocked');
+  assert.equal(acts.deliveryStatus, 'blocked');
+  assert.match(acts.reason, /Web of Spider-Man #62 and #63/);
+  assert.deepEqual(cbroBatchSixPredecessorRecord(acts), acts);
+  const next = inventory.find((record) => record.id === 'x-cutioners-song');
+  assert.equal(next.position, 29);
+  assert.equal(next.centralDisposition, 'deferred');
+  assert.equal(next.deliveryStatus, 'deferred');
+
+  assert.deepEqual(
+    inventory.reduce((counts, record) => ({
+      ...counts,
+      [record.centralDisposition]: (counts[record.centralDisposition] ?? 0) + 1,
+    }), {}),
+    {
+      selected: 29,
+      blocked: 4,
+      deferred: 22,
+      'deferred-subset': 1,
+      absorbed: 1,
+      'provenance-blocked': 1,
+    },
+  );
+  assert.deepEqual(
+    inventory.reduce((counts, record) => ({
+      ...counts,
+      [record.deliveryStatus]: (counts[record.deliveryStatus] ?? 0) + 1,
+    }), {}),
+    {
+      shipped: 29,
+      blocked: 5,
+      deferred: 23,
+      'not-applicable': 1,
+    },
+  );
+  assert.equal(CBRO_BATCH_SIX_PACKET_REVIEW, 'MRT-003-C02-B06 central CBRO source review');
+});
+
+test('batch six packets and mappings preserve 46 exact tracked source rows', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const expected = new Map([
+    ['x-tinction-agenda', {
+      count: 9,
+      packetRows: '092c71563c431721a4cfc321cc953541a620eb600e68b62326d8be0c97a28d45',
+      mappingRows: '9c768d931d00563a42c62536201f33180691f34f3972d2fa77c0def1b9cb9b25',
+    }],
+    ['operation-galactic-storm', {
+      count: 22,
+      packetRows: '7f63f820f08310452977edec0e30094283e5432293b3de856bd85330cc7994f6',
+      mappingRows: '00a46a766224503da40ed8cb6a112b8dbff4fedb5533d3345f254f67e55ba0e4',
+    }],
+    ['dead-mans-hand', {
+      count: 9,
+      packetRows: '2c89cfc785c7efed5c9b6ea0838878bed2773f1036e7b5b75711d2a8cd5e7869',
+      mappingRows: '094d61ee083134641fca60a72561d40c4ae95726b5de67f238cb3c1bcb6f8b07',
+    }],
+    ['rise-of-the-midnight-sons', {
+      count: 6,
+      packetRows: 'ab7b0e62b6fcccadc54def4f0a4a0c1f16116630397a4a1de425596bfd4a1029',
+      mappingRows: '78a9a35b2caeaf92d24e589a6111a8bb5fa92808a844c0b9f830941587637381',
+    }],
+  ]);
+  const issueIds = [];
+  for (const id of CBRO_BATCH_SIX_SELECTED_IDS) {
+    const packet = await readJson(path.join(packetsDir, `${id}.json`));
+    const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+    const expectedEvidence = expected.get(id);
+    assert.doesNotThrow(() => validateCbroPacket(packet, {
+      expectedId: id,
+      inventoryRecord: inventory.find((record) => record.id === id),
+      catalogEntries: manifest.lists,
+    }));
+    assert.doesNotThrow(() => validateMappingDigest(mapping));
+    assert.equal(packet.rows.length, expectedEvidence.count);
+    assert.equal(mapping.rows.length, expectedEvidence.count);
+    assert.equal(packet.excludedSourceRows, undefined);
+    assert.equal(mapping.excludedSourceRows, undefined);
+    assert.equal(mapping.packetReview, CBRO_BATCH_SIX_PACKET_REVIEW);
+    assert.equal(mapping.relationshipReview.packetReview, CBRO_BATCH_SIX_PACKET_REVIEW);
+    assert.equal(digestCanonicalJson(packet.rows), expectedEvidence.packetRows);
+    assert.equal(
+      digestCanonicalJson(mapping.rows.map((row) => ({
+        sourcePosition: row.sourcePosition,
+        sourceIssueReference: row.sourceIssueReference,
+        selectedIssueId: row.selectedIssueId,
+        marvelIssueUrl: row.marvelIssueUrl,
+      }))),
+      expectedEvidence.mappingRows,
+    );
+    assert.deepEqual(
+      mapping.rows.map((row) => row.sourceIssueReference),
+      packet.rows.map((row) => row.sourceIssueReference),
+    );
+    assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+    issueIds.push(...mapping.rows.map((row) => String(row.selectedIssueId)));
+  }
+  assert.equal(issueIds.length, 46);
+  assert.equal(new Set(issueIds).size, 46);
+});
+
+test('batch six reports bind 496 all-none comparisons and reject stale evidence', async () => {
+  const expectedComparisonDigests = new Map([
+    ['x-tinction-agenda', 'c12a6cb48af08ef28b0d9845806031cc996ee1384df24381ac49c671a64dafb7'],
+    ['operation-galactic-storm', '64901cd8c41878c161155113f03f2a39de791d4648482c4aa96c142edbb518e5'],
+    ['dead-mans-hand', '33f3dbf200361239ffeb36acdc489c7ab8a6621f004a334db8a67532139b13e9'],
+    ['rise-of-the-midnight-sons', '34838f97ef30ebf01be2c2901fb760609017dfb140b407ea094b08154abf6495'],
+  ]);
+  const library = await loadLibrarySnapshot();
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(
+    library,
+    CBRO_BATCH_SIX_SELECTED_IDS,
+  );
+  const mappings = await Promise.all(CBRO_BATCH_SIX_SELECTED_IDS.map((id) => (
+    readJson(path.join(mappingsDir, `${id}.json`))
+  )));
+  const mappingById = new Map(mappings.map((mapping) => [mapping.id, mapping]));
+  let comparisonCount = 0;
+  for (const id of CBRO_BATCH_SIX_SELECTED_IDS) {
+    const packet = await readJson(path.join(packetsDir, `${id}.json`));
+    const mapping = mappingById.get(id);
+    const report = await readJson(path.join(overlapsDir, `${id}.json`));
+    const peerMappings = CBRO_BATCH_SIX_SELECTED_IDS
+      .filter((peerId) => peerId !== id)
+      .map((peerId) => mappingById.get(peerId));
+    const expectedOrderIds = [
+      ...library.lists
+        .filter((entry) => !CBRO_BATCH_SIX_SELECTED_IDS.includes(entry.id))
+        .map((entry) => entry.id),
+      ...peerMappings.map((peer) => peer.id),
+    ];
+    comparisonCount += report.comparisonCount;
+    assert.equal(report.comparisonCount, 124);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.equal(digestCanonicalJson(report.comparisons), expectedComparisonDigests.get(id));
+    assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
+    assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
+    assert.doesNotThrow(() => assertApprovedRelationshipReview({
+      packet,
+      mapping,
+      report,
+      currentLibraryDigest: reviewedLibraryDigest,
+      peerMappings,
+      expectedOrderIds,
+      packetValidation: { provider: CBRO_SOURCE_PROVIDER },
+    }));
+
+    if (id === CBRO_BATCH_SIX_SELECTED_IDS[0]) {
+      const staleReport = structuredClone(report);
+      staleReport.comparisons.pop();
+      staleReport.comparisonCount = staleReport.comparisons.length;
+      staleReport.reportDigest = reportDigestFor(staleReport);
+      assert.throws(() => assertApprovedRelationshipReview({
+        packet,
+        mapping,
+        report: staleReport,
+        currentLibraryDigest: reviewedLibraryDigest,
+        peerMappings,
+        expectedOrderIds,
+        packetValidation: { provider: CBRO_SOURCE_PROVIDER },
+      }), /report|comparison/i);
+    }
+  }
+  assert.equal(comparisonCount, 496);
+});
+
+test('batch six authoring ships four chronological cards and 46 exact payload rows', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const catalog = await readJson(path.join(dataDir, 'catalog.json'));
+  const maximumSecurityIndex = manifest.lists.findIndex((entry) => (
+    entry.id === 'maximum-security'
+  ));
+  assert.deepEqual(
+    manifest.lists.slice(
+      maximumSecurityIndex - CBRO_BATCH_SIX_AUTHOR_IDS.length,
+      maximumSecurityIndex,
+    ).map((entry) => entry.id),
+    CBRO_BATCH_SIX_AUTHOR_IDS,
+  );
+  assert.equal(manifest.lists.length, 125);
+  assert.equal(catalog.lists.length, 125);
+  assert.ok(inventory.filter((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id))
+    .every((record) => record.deliveryStatus === 'shipped'
+      && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
+
+  const firstOnSale = new Map([
+    ['x-tinction-agenda', '1990-11-01T00:00:00+0000'],
+    ['operation-galactic-storm', '1992-03-01T00:00:00+0000'],
+    ['dead-mans-hand', '1992-08-01T00:00:00+0000'],
+    ['rise-of-the-midnight-sons', '1992-08-01T00:00:00+0000'],
+  ]);
+  const issueIds = [];
+  for (const id of CBRO_BATCH_SIX_AUTHOR_IDS) {
+    const packet = await readJson(path.join(packetsDir, `${id}.json`));
+    const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+    const entry = manifest.lists.find((candidate) => candidate.id === id);
+    const catalogEntry = catalog.lists.find((candidate) => candidate.id === id);
+    const markdown = await readFile(path.join(dataDir, 'orders', entry.sourceFile), 'utf8');
+    const parsed = parseChecklist(markdown);
+    const payload = await readJson(path.join(dataDir, entry.out));
+    assert.equal(entry.depth, 'complete');
+    assert.equal(catalogEntry.depth, 'complete');
+    assert.match(markdown, /Source: \[Comic Book Reading Orders\]\(https:\/\/comicbookreadingorders\.com\//);
+    assert.doesNotMatch(markdown, /not discoverable through Marvel Unlimited/i);
+    assert.deepEqual(
+      parsed.entries.map((item) => String(item.issueId)),
+      mapping.rows.map((row) => String(row.selectedIssueId)),
+    );
+    assert.equal(payload.items.length, packet.rows.length);
+    assert.equal(payload.placeholders, 0);
+    assert.deepEqual(payload.unresolved, []);
+    assert.equal(catalogEntry.sourceOrigin, CBRO_SOURCE_ORIGIN);
+    assert.equal(catalogEntry.sourceLicense, null);
+    assert.ok(payload.items.every((item) => item.cover.path.startsWith('https://')));
+    assert.equal(
+      [...mapping.candidateMetadata]
+        .map((candidate) => candidate.onSaleDate)
+        .sort()[0],
+      firstOnSale.get(id),
+    );
+    issueIds.push(...payload.items.map((item) => String(item.issueId)));
+  }
+  assert.equal(issueIds.length, 46);
+  assert.equal(new Set(issueIds).size, 46);
+  assert.deepEqual(
+    inventory.reduce((counts, record) => ({
+      ...counts,
+      [record.centralDisposition]: (counts[record.centralDisposition] ?? 0) + 1,
+    }), {}),
+    {
+      selected: 29,
+      blocked: 4,
+      deferred: 22,
+      'deferred-subset': 1,
+      absorbed: 1,
+      'provenance-blocked': 1,
+    },
+  );
+  assert.deepEqual(
+    inventory.reduce((counts, record) => ({
+      ...counts,
+      [record.deliveryStatus]: (counts[record.deliveryStatus] ?? 0) + 1,
+    }), {}),
+    {
+      shipped: 29,
+      blocked: 5,
+      deferred: 23,
+      'not-applicable': 1,
+    },
+  );
+  assert.equal(manifest.lists.some((entry) => (
+    ['infinity-gauntlet', 'infinity-war', 'acts-of-vengeance', 'x-cutioners-song']
+      .includes(entry.id)
+  )), false);
+  const provenance = await readFile(path.join(root, 'docs', 'DATA_PROVENANCE.md'), 'utf8');
+  assert.match(provenance, /sixth continuation release adds 46 exact issue rows/i);
+  assert.match(provenance, /Twenty-nine lists in this repository now come from that site/);
+  const maintaining = await readFile(path.join(root, 'docs', 'MAINTAINING.md'), 'utf8');
+  assert.match(maintaining, /currently ships 29 guides/);
+  assert.match(maintaining, /X-Cutioner's Song at source position 29 is the next cursor/);
 });
 
 test('current-library and selected-peer duplicate guards reject exact duplicates', async () => {

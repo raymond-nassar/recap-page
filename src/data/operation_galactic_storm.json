@@ -1,0 +1,664 @@
+{
+  "id": "operation-galactic-storm",
+  "name": "Operation: Galactic Storm",
+  "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",
+  "source": "https://comicbookreadingorders.com/marvel/events/operation-galactic-storm-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T07:01:21.148Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 22,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 7779,
+      "title": "Captain America (1968) #398",
+      "number": "398",
+      "url": "https://www.marvel.com/comics/issue/7779/captain_america_1968_398",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "1992-03-01T00:00:00+0000",
+      "digitalId": 718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/56e6e03aeea8f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Levins",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17822,
+      "title": "West Coast Avengers (1985) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/17822/west_coast_avengers_1985_80",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "2010-02-02T00:00:00+0000",
+      "digitalId": 5268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5cb9e4c66be3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18920,
+      "title": "Quasar (1989) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/18920/quasar_1989_32",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 6758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb6f77ab35ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18283,
+      "title": "Wonder Man (1991) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/18283/wonder_man_1991_7",
+      "seriesId": 3645,
+      "seriesName": "Wonder Man (1991 - 1994)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "1992-03-01T00:00:00+0000",
+      "digitalId": 7703,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/66ba8520b1532",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7225,
+      "title": "Avengers (1963) #345",
+      "number": "345",
+      "url": "https://www.marvel.com/comics/issue/7225/avengers_1963_345",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "1992-03-01T00:00:00+0000",
+      "digitalId": 5176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/58920e926eef6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9525,
+      "title": "Iron Man (1968) #278",
+      "number": "278",
+      "url": "https://www.marvel.com/comics/issue/9525/iron_man_1968_278",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "1992-03-01T00:00:00+0000",
+      "digitalId": 6191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb6e94ba14e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11773,
+      "title": "Thor (1966) #445",
+      "number": "445",
+      "url": "https://www.marvel.com/comics/issue/11773/thor_1966_445",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "1992-03-01T00:00:00+0000",
+      "digitalId": 7204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5a007d5711f75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7780,
+      "title": "Captain America (1968) #399",
+      "number": "399",
+      "url": "https://www.marvel.com/comics/issue/7780/captain_america_1968_399",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "1992-04-01T00:00:00+0000",
+      "digitalId": 5428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/4bb6ee41c9ccb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Levins",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17823,
+      "title": "West Coast Avengers (1985) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/17823/west_coast_avengers_1985_81",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "2010-02-16T00:00:00+0000",
+      "digitalId": 5269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5cb9ecc3b1b82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18921,
+      "title": "Quasar (1989) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/18921/quasar_1989_33",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 6759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/4bb6f77539032",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rurik Tyler",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18284,
+      "title": "Wonder Man (1991) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/18284/wonder_man_1991_8",
+      "seriesId": 3645,
+      "seriesName": "Wonder Man (1991 - 1994)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "1992-04-01T00:00:00+0000",
+      "digitalId": 7704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/4bb7a1ea681ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Nichols",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephen B. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7226,
+      "title": "Avengers (1963) #346",
+      "number": "346",
+      "url": "https://www.marvel.com/comics/issue/7226/avengers_1963_346",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "1992-04-01T00:00:00+0000",
+      "digitalId": 5177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58920fda6405c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9526,
+      "title": "Iron Man (1968) #279",
+      "number": "279",
+      "url": "https://www.marvel.com/comics/issue/9526/iron_man_1968_279",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "1992-04-01T00:00:00+0000",
+      "digitalId": 6192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/4bb6e94656e7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11774,
+      "title": "Thor (1966) #446",
+      "number": "446",
+      "url": "https://www.marvel.com/comics/issue/11774/thor_1966_446",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "1992-04-01T00:00:00+0000",
+      "digitalId": 7205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5a00805912c25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7781,
+      "title": "Captain America (1968) #400",
+      "number": "400",
+      "url": "https://www.marvel.com/comics/issue/7781/captain_america_1968_400",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "1992-05-01T00:00:00+0000",
+      "digitalId": 1172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/56e6e0d39e71a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kathryn Bolinger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Levins",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17824,
+      "title": "West Coast Avengers (1985) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/17824/west_coast_avengers_1985_82",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "1992-05-01T00:00:00+0000",
+      "digitalId": 5270,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5cba16a93ae73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18922,
+      "title": "Quasar (1989) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/18922/quasar_1989_34",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 6760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/4bb6f76fd96b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18285,
+      "title": "Wonder Man (1991) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/18285/wonder_man_1991_9",
+      "seriesId": 3645,
+      "seriesName": "Wonder Man (1991 - 1994)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "1992-05-01T00:00:00+0000",
+      "digitalId": 7705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/4bb7a070a2d2e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephen B. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7227,
+      "title": "Avengers (1963) #347",
+      "number": "347",
+      "url": "https://www.marvel.com/comics/issue/7227/avengers_1963_347",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "1992-05-01T00:00:00+0000",
+      "digitalId": 5178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/589210c44d71f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 7782,
+      "title": "Captain America (1968) #401",
+      "number": "401",
+      "url": "https://www.marvel.com/comics/issue/7782/captain_america_1968_401",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "1992-06-01T00:00:00+0000",
+      "digitalId": 5432,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/4bb6ee3c875a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18923,
+      "title": "Quasar (1989) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/18923/quasar_1989_35",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 6761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/4bb6f76a849c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18924,
+      "title": "Quasar (1989) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/18924/quasar_1989_36",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 6762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/4bb6f76564d4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

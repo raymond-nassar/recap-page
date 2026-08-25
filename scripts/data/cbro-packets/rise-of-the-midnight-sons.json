@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "rise-of-the-midnight-sons",
+  "inventoryId": "rise-of-the-midnight-sons",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/rise-of-the-midnight-sons-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "1532434a3d1685b54f11a27d26d7e3b6d3dbcdaae9e718553ea3d7127540c1f8",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 6,
+  "proposedManifest": {
+    "id": "rise-of-the-midnight-sons",
+    "name": "Rise of the Midnight Sons",
+    "description": "Six chapters assembling Ghost Rider, Morbius, and the Midnight Sons against Lilith.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "rise-of-the-midnight-sons.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/rise-of-the-midnight-sons-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "rise_of_the_midnight_sons.json",
+    "characters": [
+      "Ghost Rider",
+      "Morbius",
+      "Blade"
+    ],
+    "keywords": [
+      "Rise of the Midnight Sons",
+      "Ghost Rider",
+      "Morbius",
+      "Lilith"
+    ],
+    "expect": 6,
+    "timeline": 1992,
+    "coverIssueId": 22661
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B06 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T06:20:28.250Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Ghost Rider Vol. 3 #28",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Ghost Rider Vol. 3",
+      "seriesYear": 1990,
+      "issueNumber": "28",
+      "seriesId": 6255,
+      "candidateIssueId": 22661,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Ghost Rider (1990 - 1998), series 6255."
+    },
+    {
+      "sourceIssueReference": "Spirits of Vengeance #1 (1992)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spirits of Vengeance",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 22916,
+      "candidateIssueId": 62400,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Ghost Rider/Blaze: Spirits of Vengeance (1992 - 1994), series 22916."
+    },
+    {
+      "sourceIssueReference": "Morbius: The Living Vampire #1 (1992)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Morbius: The Living Vampire",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 22918,
+      "candidateIssueId": 62406,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Darkhold #1 (1992)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Darkhold",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 21932,
+      "candidateIssueId": 59953,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Darkhold: Pages from the Book of Sins (1992), series 21932."
+    },
+    {
+      "sourceIssueReference": "Nightstalkers #1 (1992)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nightstalkers",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 22919,
+      "candidateIssueId": 61589,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ghost Rider Vol. 3 #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Ghost Rider Vol. 3",
+      "seriesYear": 1990,
+      "issueNumber": "31",
+      "seriesId": 6255,
+      "candidateIssueId": 22665,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Ghost Rider (1990 - 1998), series 6255."
+    }
+  ],
+  "packetDigest": "6029323e308e00b27b48d4ae71a856faa62cce380551cc9bc7e86541e0149768"
+}

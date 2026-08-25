@@ -14,13 +14,28 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added four more complete historical Marvel event guides
+
+In plain English: X-Tinction Agenda, Operation: Galactic Storm, Dead Man's Hand, and Rise of the
+Midnight Sons are now available as complete historical reading guides. They add 46 issues in their
+source order, bringing the catalog to 125 reading lists, and nothing you have saved is changed.
+
+The Infinity Gauntlet and Infinity War were not shortened to fit this release. Their complete 51-row
+and 52-row source sequences remain preserved while one and 14 exact issues are missing from the
+configured metadata. Acts of Vengeance remains separately blocked on Web of Spider-Man #62 and #63.
+X-Cutioner's Song is the next historical guide in the queue.
+
+For maintainers: four frozen packets, exact mappings, and complete relationship reports bind all 46
+selected rows. The reports cover 496 current-library and selected-peer comparisons, all with no
+shared issue. Two durable blocker records preserve every one of the 103 held source rows and name
+each unresolved issue.
+
 ### Browse publication ages on year timelines
 
 In plain English: Silver Age, Bronze Age, Copper Age, and each populated Modern subperiod
 now place their Reading Lists beside the years they begin. Internal years with no published
 list stay visible, while Modern Age remains the gateway to its subperiods and Golden Age keeps
 its honest empty page. Nothing you have saved is changed.
-
 For maintainers: canonical and publication timelines share one configurable chronology renderer
 with route-scoped identities, explicit heading and card contracts, and content-derived year bounds.
 Browser proof covers both hosts together, including age-route reports and narrow layouts.
@@ -40,12 +55,12 @@ repository documents now link to it.
 
 In plain English: The Evolutionary War, Inferno, Atlantis Attacks, and Days of Future Present are
 now available as complete historical reading guides. They add 71 issues, preserve each source
-sequence, and credit Comic Book Reading Orders. The catalog now has 121 reading lists, and nothing
-you have saved is changed.
+sequence, and credit Comic Book Reading Orders. The catalog has since reached 125 reading lists in
+this Unreleased build, and nothing you have saved is changed.
 
 Acts of Vengeance was not shortened to fit the release. Its full 70-issue source order is preserved,
-but Web of Spider-Man #62 and #63 remain missing from the configured metadata. X-Tinction Agenda is
-the next historical guide in the queue.
+but Web of Spider-Man #62 and #63 remain missing from the configured metadata. The following
+historical batch starts with X-Tinction Agenda.
 
 For maintainers: four frozen packets, exact mappings, and complete relationship reports bind all 71
 selected rows. The reports cover 480 current-library and selected-peer comparisons, all with no

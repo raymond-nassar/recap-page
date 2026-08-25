@@ -3005,6 +3005,131 @@
       "coverIssueId": 8702
     },
     {
+      "id": "x-tinction-agenda",
+      "name": "X-Tinction Agenda",
+      "description": "Nine chapters interleaving X-Men, X-Factor, and New Mutants through X-Tinction Agenda.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-tinction-agenda.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/x-tinction-agenda-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "x_tinction_agenda.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "keywords": [
+        "X-Tinction Agenda",
+        "X-Men",
+        "X-Factor",
+        "New Mutants"
+      ],
+      "expect": 9,
+      "timeline": 1990,
+      "coverIssueId": 13811
+    },
+    {
+      "id": "operation-galactic-storm",
+      "name": "Operation: Galactic Storm",
+      "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "operation-galactic-storm.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/operation-galactic-storm-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "operation_galactic_storm.json",
+      "characters": [
+        "Avengers",
+        "Captain America",
+        "Iron Man",
+        "Thor"
+      ],
+      "keywords": [
+        "Operation: Galactic Storm",
+        "Avengers",
+        "Kree",
+        "Shi'ar"
+      ],
+      "expect": 22,
+      "timeline": 1992,
+      "coverIssueId": 7779
+    },
+    {
+      "id": "dead-mans-hand",
+      "name": "Dead Man's Hand",
+      "description": "Nine chapters connecting Daredevil, Nomad, and the Punisher through Dead Man's Hand.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "dead-mans-hand.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/dead-mans-hand-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "dead_mans_hand.json",
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Nomad"
+      ],
+      "keywords": [
+        "Dead Man's Hand",
+        "Daredevil",
+        "Punisher",
+        "Nomad"
+      ],
+      "expect": 9,
+      "timeline": 1992,
+      "coverIssueId": 8304
+    },
+    {
+      "id": "rise-of-the-midnight-sons",
+      "name": "Rise of the Midnight Sons",
+      "description": "Six chapters assembling Ghost Rider, Morbius, and the Midnight Sons against Lilith.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "rise-of-the-midnight-sons.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/rise-of-the-midnight-sons-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "rise_of_the_midnight_sons.json",
+      "characters": [
+        "Ghost Rider",
+        "Morbius",
+        "Blade"
+      ],
+      "keywords": [
+        "Rise of the Midnight Sons",
+        "Ghost Rider",
+        "Morbius",
+        "Lilith"
+      ],
+      "expect": 6,
+      "timeline": 1992,
+      "coverIssueId": 22661
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",
