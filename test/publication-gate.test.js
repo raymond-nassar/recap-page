@@ -3,10 +3,19 @@ import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { PROTECTED, PATTERNS, ALLOWED, boundaryFaults, findings, decode, excluded } from '../scripts/check-publication.mjs';
+import {
+  PROTECTED,
+  PATTERNS,
+  ALLOWED,
+  boundaryFaults,
+  protectedTrackedFingerprint,
+  findings,
+  decode,
+  excluded,
+} from '../scripts/check-publication.mjs';
 
 // The publication gate answered a question that only gets asked once, and it was asked on
 // 2026-08-16, the day this repository was made public. The day has happened, and by then every
@@ -134,6 +143,64 @@ test('the boundary is probed at the root of a protected directory as well as ins
   for (const [dir] of PROTECTED) {
     assert.ok(ignored(`${dir}2099-01-01/nested-artifact.md`), `${dir} holds a nested file out`);
     assert.ok(ignored(`${dir}artifact-at-the-root.md`), `${dir} holds a file at its own root out`);
+  }
+});
+
+test('the protected tracked-path fingerprint has unambiguous canonical framing', () => {
+  const ordered = protectedTrackedFingerprint(['.github/prompts/b', '.copilot-tracking/a']);
+  const reversed = protectedTrackedFingerprint(['.copilot-tracking/a', '.github\\prompts\\b']);
+  assert.deepEqual(reversed, ordered, 'input order and path separators do not change the corpus');
+  assert.notEqual(
+    protectedTrackedFingerprint(['.copilot-tracking/a', '.copilot-tracking/bc']).sha256,
+    protectedTrackedFingerprint(['.copilot-tracking/ab', '.copilot-tracking/c']).sha256,
+    'a NUL after every path prevents path-boundary collisions',
+  );
+  assert.equal(
+    protectedTrackedFingerprint(['.copilot-tracking/a\nb']).count,
+    1,
+    'a newline belongs to one path instead of becoming a delimiter',
+  );
+  assert.deepEqual(
+    protectedTrackedFingerprint(['ordinary.txt']),
+    protectedTrackedFingerprint([]),
+    'unprotected paths do not affect the protected corpus',
+  );
+});
+
+test('the production gate rejects a force-added protected path without touching the real index', () => {
+  const workspace = fileURLToPath(root);
+  const dir = mkdtempSync(join(tmpdir(), 'mrt-publication-index-'));
+  const realIndexText = git(['rev-parse', '--git-path', 'index']).trim();
+  const realIndex = resolve(workspace, realIndexText);
+  const before = readFileSync(realIndex);
+  const protectedFile = join(workspace, '.copilot-tracking', 'publication-boundary-proof.tmp');
+  const controlFile = join(workspace, 'publication-boundary-control.tmp');
+  const runWith = (file, indexName) => {
+    const alternateIndex = join(dir, indexName);
+    cpSync(realIndex, alternateIndex);
+    const env = { ...process.env, GIT_INDEX_FILE: alternateIndex };
+    writeFileSync(file, 'publication boundary proof\n');
+    const add = spawnSync('git', ['add', '--force', '--', file], { cwd: workspace, env, encoding: 'utf8' });
+    assert.equal(add.status, 0, add.stderr);
+    return spawnSync(process.execPath, ['scripts/check-publication.mjs'], {
+      cwd: workspace,
+      env,
+      encoding: 'utf8',
+      maxBuffer: 512e6,
+    });
+  };
+  try {
+    const protectedRun = runWith(protectedFile, 'protected.index');
+    assert.equal(protectedRun.status, 1, `${protectedRun.stdout}${protectedRun.stderr}`);
+    assert.match(protectedRun.stdout, /protected tracked-path corpus changed/);
+
+    const controlRun = runWith(controlFile, 'control.index');
+    assert.equal(controlRun.status, 0, `${controlRun.stdout}${controlRun.stderr}`);
+    assert.deepEqual(readFileSync(realIndex), before, 'the real Git index is unchanged');
+  } finally {
+    rmSync(protectedFile, { force: true });
+    rmSync(controlFile, { force: true });
+    rmSync(dir, { recursive: true, force: true });
   }
 });
 
@@ -267,6 +334,16 @@ test('the gate reports what it could not read rather than reporting it clean', (
     // The boundary half reads the working tree, so it holds on a shallow clone and must pass here.
     // Otherwise this would exit 1 for a reason that has nothing to do with the history.
     writeFileSync(join(origin, '.gitignore'), PROTECTED.map(([root]) => root).join('\n') + '\n');
+    const protectedPaths = git(['-c', 'core.quotePath=false', 'ls-files', '-z', '.copilot-tracking', '.github/prompts'])
+      .split('\u0000').filter(Boolean);
+    for (const path of protectedPaths) {
+      const target = join(origin, path);
+      mkdirSync(dirname(target), { recursive: true });
+      writeFileSync(target, '');
+    }
+    for (let at = 0; at < protectedPaths.length; at += 50) {
+      run(['add', '--force', '--', ...protectedPaths.slice(at, at + 50)], origin);
+    }
     writeFileSync(join(origin, 'readme.md'), 'first\n');
     run(['add', '-A'], origin);
     run(['commit', '--quiet', '-m', 'first'], origin);

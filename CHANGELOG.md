@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Moved active planning out of the repository documents
+
+In plain English: nothing in the app or anything you have saved is affected. Work still waiting to
+be done now has one Issue each and a shared planning view, while the old backlog remains available
+as a read-only history of what shipped, what was declined and why.
+
+For maintainers: routine changes can use Direct or Lean workflow depth, new phase evidence stays
+local, the publication gate rejects force-added session artifacts, and GitHub collapses only the
+four explicitly derived output paths. The active Project carries 22 migrated work items and the
+repository documents now link to it.
+
 ### Added four complete historical Marvel event guides
 
 In plain English: The Evolutionary War, Inferno, Atlantis Attacks, and Days of Future Present are
@@ -28,7 +39,6 @@ the next historical guide in the queue.
 For maintainers: four frozen packets, exact mappings, and complete relationship reports bind all 71
 selected rows. The reports cover 480 current-library and selected-peer comparisons, all with no
 shared issue. Days of Future Present now resolves its former blocker exactly as issue 12360.
-
 ### Added three exclusion-aware historical Marvel event guides
 
 In plain English: Wraith War, Secret Wars II, and Mutant Massacre are now available as selected

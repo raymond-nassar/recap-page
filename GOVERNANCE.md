@@ -14,14 +14,16 @@ describing a process that would have one participant.
 
 ## Roadmap
 
-Everything under consideration lives in [the product backlog](PRODUCT_BACKLOG.md), one ranked table
-with a detail block behind each row. An idea is not on the roadmap until it is in that table, and
-things get onto it by being proposed in an issue.
+Everything under consideration lives in a repository Issue and appears in the
+[planning Project](https://github.com/users/raymond-nassar/projects/1). The Issue owns scope,
+acceptance criteria, dependencies and discussion. Its open or closed state owns whether the work is
+active or completed. The Project owns readiness, priority, work type, epic and scoring fields; its
+built-in status is the planning view rather than a second completion record.
 
 Rank is computed rather than chosen. Each item carries a value, a time criticality, a risk or
-opportunity score and a size, and the ratio of the first three to the last is what orders the
-table. The reasoning for that choice, including why the more common alternative degenerates for a
-single-user app, is written down under "Why WSJF" in the backlog itself.
+opportunity score and a size, and the ratio of the first three to the last is its WSJF value. The
+frozen [historical backlog](PRODUCT_BACKLOG.md) preserves the original rationale, delivered items
+and dropped decisions without remaining an active ledger.
 
 Three things follow from ranking this way, and all three are deliberate:
 
@@ -29,15 +31,12 @@ Three things follow from ranking this way, and all three are deliberate:
   item that is also large will wait behind several small ones.
 - **Order is not a promise.** The numbers get revisited when what they were estimating turns out to
   be wrong, and an item can move down as easily as up.
-- **A declined item stays visible.** Items are marked as dropped with the reason rather than
-  deleted, so the argument survives and does not have to be had again from scratch.
+- **A declined item stays visible.** Its Issue is closed with the reason rather than deleted, so
+  the argument survives and does not have to be had again from scratch.
 
-Each item also records a constraint check against the standing product constraints, which are the
-things this project will not trade away. Measured on 2026-08-25: of the 196 items with a detail
-block, 190 carry that check, and the only six without one are the six that were dropped. They were
-dropped for different reasons, one for breaching a constraint before it was ever scored, and none of
-them is missing a check that somebody forgot to run. [The contributing
-guide](CONTRIBUTING.md) lists the constraints in the form a contributor needs.
+Each Issue also records its constraint check against the standing product constraints, which are
+the things this project will not trade away. The [contributing guide](CONTRIBUTING.md) lists those
+constraints in the form a contributor needs.
 
 ## What ships, and when
 
@@ -48,13 +47,13 @@ items and does not replace the default. The gates that have to pass are listed i
 [the contributing guide](CONTRIBUTING.md) and enforced by CI, and the maintainer does not merge
 past a red one.
 
-Every change of substance also gets a written record in two places: the backlog block for that item
-becomes a delivery record rather than a proposal, and anything a reader or a maintainer would
-notice gets an entry in [the changelog](CHANGELOG.md). A change that lands without those is a
-change the documents now disagree with, which is treated as a defect in its own right.
+Every change of substance keeps its implementation record on the Issue timeline and linked pull
+request. Anything a reader or a maintainer would notice also gets an entry in
+[the changelog](CHANGELOG.md). A change that lands without those records is treated as a defect in
+its own right.
 
 Findings from a review are routed rather than looped: what is material to the change in hand gets
-fixed, and the rest becomes a backlog entry. This stops a single item spiralling through review
+fixed, and the rest becomes a repository Issue. This stops a single item spiralling through review
 rounds chasing work that belongs to a later one. It is not a licence to ship a known material
 defect, and reporting a review clean while one is open would be the failure this rule exists to
 avoid.

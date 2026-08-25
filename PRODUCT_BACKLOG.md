@@ -1,8 +1,8 @@
 # Recap Page Expansion Backlog
-
-This backlog describes the next product improvements in plain English. It is intended
-for review before implementation. The goal is to make the tracker useful for many
-Marvel reading lists and events, not only Jonathan Hickman's Secret Wars orders.
+<!-- anchors:source=e0ef811d53eef803df1752f9ba38d9e25cded729 -->
+This file is a frozen historical snapshot. Active work now lives in the [GitHub Project](https://github.com/users/raymond-nassar/projects/1)
+and its [repository Issues](https://github.com/raymond-nassar/recap-page/issues). Scores, rationale, delivered work and dropped decisions below
+are preserved as the record at commit `e0ef811d53eef803df1752f9ba38d9e25cded729`; do not add or reprioritize work here.
 
 It was rewritten after a full pass over the shipped code, so it now records what has already been
 built as well as what has not. Of the 28 stories originally written here, 24 ship in full, 1 ships
@@ -6960,7 +6960,7 @@ documents instead of duplicating their policy. Evidence: `README.md:100-110`,
 `CONTRIBUTING.md:1-224`, `SUPPORT.md:1-87` and `GOVERNANCE.md:1-5`.
 
 Shipped as four documents, a test that keeps them honest, and one correction to the README that the
-work turned up. `CONTRIBUTING.md` is 224 lines, `GOVERNANCE.md` 98, `SUPPORT.md` 87 and
+work turned up. `CONTRIBUTING.md` is 224 lines, `GOVERNANCE.md` 98, `SUPPORT.md` 87 and <!-- sizes:frozen -->
 `CODE_OF_CONDUCT.md` 61.
 
 The framing is the part worth defending. Nobody outside this repository can see it, open an issue or

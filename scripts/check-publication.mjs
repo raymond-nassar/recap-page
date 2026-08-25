@@ -23,6 +23,7 @@
 // look at is worse than no gate, because it reads identically in a summary.
 
 import { execFileSync, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -42,6 +43,24 @@ export const PROTECTED = [
   ['.copilot-tracking/', 'working artifacts for one session, kept out of the product record'],
   ['.github/prompts/', 'spent instructions to an agent, which BL-060 parked rather than commit'],
 ];
+
+const PROTECTED_TRACKED_BASELINE = {
+  count: 227,
+  sha256: 'e1a3e5d8a2bc2232e5055e09484d488f2d10359e90ab424f3e9983f5cb1d40a2',
+};
+
+export function protectedTrackedFingerprint(paths) {
+  const protectedPaths = paths
+    .map((path) => path.replaceAll('\\', '/'))
+    .filter((path) => PROTECTED.some(([root]) => path.startsWith(root)))
+    .sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
+  const hash = createHash('sha256');
+  for (const path of protectedPaths) {
+    hash.update(path, 'utf8');
+    hash.update(Buffer.from([0]));
+  }
+  return { count: protectedPaths.length, sha256: hash.digest('hex') };
+}
 
 // Shapes that must not reach a published tree. Each is a signature rather than a guess at a value:
 // a match is a thing that looks like a credential or like one machine's private detail, and the
@@ -131,6 +150,15 @@ export function boundaryFaults() {
       }
       errors.push(`git could not answer whether ${probe} is ignored (status ${run.status}): ${String(run.stderr).trim()}`);
     }
+  }
+  const tracked = git(['-c', 'core.quotePath=false', 'ls-files', '-z']).split('\u0000').filter(Boolean);
+  const corpus = protectedTrackedFingerprint(tracked);
+  if (corpus.count !== PROTECTED_TRACKED_BASELINE.count || corpus.sha256 !== PROTECTED_TRACKED_BASELINE.sha256) {
+    faults.push(
+      `the protected tracked-path corpus changed from ${PROTECTED_TRACKED_BASELINE.count} path(s) at `
+      + `${PROTECTED_TRACKED_BASELINE.sha256} to ${corpus.count} path(s) at ${corpus.sha256}. `
+      + 'New session evidence and spent prompts must stay local; remove any force-added path.',
+    );
   }
   return { faults, errors };
 }

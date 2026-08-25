@@ -15,38 +15,31 @@ pre-restore and salvage keys the recovery paths depend on, so read it before tou
 Serve it with `npm start` and open it in a real browser. Do not try to verify UI behaviour in a
 sandboxed webview: it blocks the popups the reader launch depends on.
 
-## The workflow this repository was built with
+## Use only as much workflow as the risk needs
 
-This repository was originally built with the RPI workflow from
-[microsoft/hve-core](https://github.com/microsoft/hve-core): Research, Plan, Implement, Review. The
-evidence is still committed, under `.copilot-tracking/`, one dated directory per phase:
+This repository was built with Research, Plan, Implement and Review. Its first six phase artifacts
+remain committed under `.copilot-tracking/` as historical design rationale. Read that original
+research and plan before changing the browser-companion architecture.
 
-```
-research/  plans/  details/  changes/  reviews/plans/  reviews/logs/
-```
+New phase evidence is local working state. `.gitignore` holds it out, and it must never be
+force-added. A lasting decision belongs once in the durable surface that owns it: the Issue for
+scope and acceptance criteria, the pull request for delivery and verification, a maintained
+document for product policy, or code and tests for an executable contract. Handoffs point to that
+evidence instead of copying it.
 
-All six carry `2026-08-03/marvel-reading-tracker-*.md` under task id `MRT-001`. Read the research
-and plan artifacts before proposing anything structural. They record *why* the app is a browser
-companion rather than an emulator, with the hardware evidence behind that decision, and they are
-the closest thing this repository has to a design rationale.
+Choose the lightest tier that credibly covers the work:
 
-Keep using the convention rather than inventing a scratch layout:
+- **Direct:** Bounded, low-risk changes. Inspect, implement, run the smallest relevant validation,
+  and review the diff. Do not create ceremonial phase records.
+- **Lean:** Routine content, deterministic data work and bounded features. Reuse accepted research,
+  keep a concise local plan when coordination helps, and perform one material review.
+- **Full:** Persistence, recovery, security, privacy, schema, uncertain architecture and
+  cross-cutting changes. Use complete Research, Plan, Implement and Review evidence locally.
 
-- One stable task id and one lower-kebab-case task slug across every artifact for a task.
-- Dated directories, `YYYY-MM-DD`.
-- `Pxx` for phases and `Pxx-Txx` for tasks, carried as `<!-- rpi:phase id=P00 -->` and
-  `<!-- rpi:task id=P00-T01 -->` markers immediately before the matching heading in the plan.
-- Plan critiques number findings `CR-xxx` in a table. The changes record uses `CHG-xxx` section
-  headings. One of the four names the plan task it closes; the rest exist precisely because the
-  work departed from the plan, which is what a changes record is for. Do not invent a task id to
-  hang an unplanned change on, and do not decline to record one because it has no task. The
-  metadata under each heading varies, and `CHG-004` has none, so match the neighbouring entry
-  rather than imposing a shape on the record. The review log refers back to those `CHG-xxx` ids.
-- Tracking artifacts are working evidence, not product documentation. Keep `.copilot-tracking/`
-  paths out of product code, code comments and commit messages. Tooling configuration is exempt
-  and has to be, since `eslint.config.mjs` ignores the directory by glob, and documentation may
-  cite an artifact as evidence, as `PRODUCT_BACKLOG.md` does. Exactly one commit message in the
-  history breaks the rule, and it is the one that added this bullet.
+Escalate to Full as soon as risk, uncertainty or cross-cutting impact grows. Workflow depth never
+removes a repository gate. Use deterministic, economical workers for bounded mechanical work and
+reserve stronger workers for decisions and review. Parallel work must have disjoint write
+boundaries; one owner integrates shared files serially.
 
 **The rule that matters most: persist to the artifact, not to the conversation.** Working state
 that only exists in a session is gone the moment the session is.
@@ -68,9 +61,10 @@ and say so plainly. Never invent a plausible-looking replacement, and never quie
 eleven came back only because one untracked file happened to survive on one machine, which is luck
 rather than a process, and luck is not a thing to plan the next one around.
 
-## Research, then plan, then implement
+## Research, then plan, then implement when the tier requires it
 
-The order is load-bearing, and the expensive mistakes here came from skipping to the end.
+For Lean and Full work, the order is load-bearing. Direct work still inspects before editing and
+reviews after validation, but does not manufacture phase documents to prove that sequence.
 
 Research is read only. Do not edit source while establishing what is true. RPI runs each research
 cycle in three waves and the third is the one people skip:
@@ -108,9 +102,8 @@ only to correct the record left by the one before it:
   for another reason, or leave it. **Do not open a change for it, do not route it as a follow-up,
   and do not raise it as a review finding.** This does not license inventing figures: an assertion
   you choose to make must still be true. It says to make fewer of them.
-- **Do not widen active scope.** Unrelated work becomes an explicit follow-up entry in
-  `PRODUCT_BACKLOG.md`, not an extra commit in the current change. One major feature per pull
-  request.
+- **Do not widen active scope.** Unrelated work becomes a repository Issue, not an extra commit in
+  the current change. One major feature per pull request.
 - **Review findings are routed, not looped.** Fix what is material to the change in hand; file the
   rest. Do not spiral a task through repeated review rounds chasing findings that belong in a later
   item. Equally, never report a clean review while a material finding is still open.
@@ -144,7 +137,7 @@ Every `path:line` citation in every tracked file, this one included, is fingerpr
 the **content** of the lines it names, not by the numbers. Editing code moves lines and breaks
 fingerprints. That is the gate working.
 
-Do not narrow that to a list of filenames. `scripts/check-anchors.mjs:227-232` explains why in the
+Do not narrow that to a list of filenames. `scripts/check-anchors.mjs:229-234` explains why in the
 script itself: an enumeration is a list someone has to keep complete, and every anchor defect the
 gate exists to catch was caused by exactly that.
 
@@ -188,7 +181,7 @@ by a review on 2026-08-17, after it had already survived a full anchors cycle:
   12 of the workflow file", never in the citation form.
 - **The `absent:` exemption reaches past its own clause, and what it swallows is dropped in
   silence.** A backticked `absent:` token exempts only itself, but an unbackticked table cell
-  beginning with the marker exempts the **whole cell**, at `scripts/check-anchors.mjs:427`. So a
+  beginning with the marker exempts the **whole cell**, at `scripts/check-anchors.mjs:472`. So a
   live citation written after an absence clause in the same cell is not drifted and not lost. It is
   never enrolled at all, and the run reports 0 drifted, 0 new and 0 removed while the claim is
   watched by nothing. BL-145's evidence row was written that way and passed a complete cycle before
@@ -429,15 +422,12 @@ later. Refusals are a backstop, not a design.
   `## In plain English`.** It goes first, above every section written for a reader who already knows
   the codebase. The owner reviews these to decide whether a change is right, and asked for them
   because the technical sections were making that harder rather than easier.
-- Update `CHANGELOG.md` under `## Unreleased` for anything a user or maintainer would notice. CI
-  changes count; there is precedent in the 1.0.0 entry.
-- Update `PRODUCT_BACKLOG.md` in the same change that ships the work, not afterwards. Work that
-  lands without a backlog record is work the document now disagrees with.
-- **Agent and contributor instructions are exempt from the backlog rule**, this file included. They
-  change how work is done, not what the product does, and the backlog's own opening line scopes it
-  to product improvements. This is a narrow exemption: repository infrastructure is **not** exempt,
-  and BL-039 and BL-040 are the precedent, both CI and lint tooling with full backlog blocks.
-  Record instructions changes in `CHANGELOG.md` only.
+- Update `CHANGELOG.md` under `## Unreleased` only for user-visible behavior or a release-relevant
+  maintainer change. Internal execution records and editorial-only maintenance do not need an entry.
+- Update the canonical backlog item only when its scope, acceptance criteria, readiness or delivery
+  state changes. Do not copy phase narration into it, and do not edit unrelated backlog items.
+- Agent and contributor instructions change how work is done, not the product. They need neither a
+  backlog update nor a changelog entry unless they alter release-relevant maintainer behavior.
 
 Plain English means a specific thing here, not a shortened copy of the technical summary:
 

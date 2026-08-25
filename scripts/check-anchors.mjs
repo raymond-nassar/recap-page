@@ -21,7 +21,7 @@
 // one line each, with the prose that cites the line beside the line itself. One
 // line each rather than one per anchor, because two citations re-aimed onto the
 // same line is the shape that got a false claim blessed here once already.
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
@@ -135,6 +135,8 @@ const args = process.argv.slice(2);
 const bless = args.includes('--bless');
 const ref = args.includes('--ref') ? args[args.indexOf('--ref') + 1] : null;
 const ACTIVE_SOURCE = ref;
+const EXPLICIT_SOURCE_TOKEN = '<!-- anchors:source';
+const EXPLICIT_SOURCE_LINE = /^<!-- anchors:source=([0-9a-f]{40}) -->$/;
 
 // A NUL byte means the file is not text, which is how git itself decides. Deciding by
 // extension instead would be the enumeration `docs` above refuses, and it would have
@@ -293,6 +295,20 @@ function isLocalOnlyDocument(path) {
   return documentInventory().localOnly.has(path);
 }
 
+export function explicitSourceMarker(text) {
+  const marked = text
+    .split(/\r?\n/)
+    .map((line, index) => ({ line, index }))
+    .filter(({ line }) => line.trimStart().startsWith(EXPLICIT_SOURCE_TOKEN));
+  if (marked.length === 0) return null;
+  if (marked.length !== 1) throw new Error('document source marker must appear exactly once');
+  const [{ line, index }] = marked;
+  if (index !== 1) throw new Error('document source marker must be on line 2');
+  const match = EXPLICIT_SOURCE_LINE.exec(line);
+  if (!match) throw new Error('document source marker must use a full lowercase 40-hex commit id');
+  return match[1];
+}
+
 function isHistoricalArtifact(path) {
   const parts = path.replaceAll('\\', '/').split('/');
   const root = parts.indexOf('.copilot-tracking');
@@ -352,7 +368,30 @@ export function blameSources(text, output, doc) {
   return sources;
 }
 
+const explicitSourceCache = new Map();
+function validatedExplicitSource(doc, text) {
+  const source = explicitSourceMarker(text);
+  if (source === null) return null;
+  const key = `${doc}\0${source}\0${ref ?? 'HEAD'}`;
+  if (explicitSourceCache.has(key)) return explicitSourceCache.get(key);
+
+  const type = spawnSync('git', ['cat-file', '-t', source], { encoding: 'utf8' });
+  if (type.status !== 0) throw new Error(`${doc} document source ${source} is unavailable`);
+  if (type.stdout.trim() !== 'commit') throw new Error(`${doc} document source ${source} is not a commit object`);
+
+  const selectedTree = ref ?? 'HEAD';
+  const ancestor = spawnSync('git', ['merge-base', '--is-ancestor', source, selectedTree], { encoding: 'utf8' });
+  if (ancestor.status === 1) throw new Error(`${doc} document source ${source} is not reachable from ${selectedTree}`);
+  if (ancestor.status !== 0) throw new Error(`cannot compare ${doc} document source ${source} with ${selectedTree}`);
+  if (!sourceFiles(source).has(doc)) throw new Error(`${doc} is missing from document source ${source}`);
+
+  explicitSourceCache.set(key, source);
+  return source;
+}
+
 function lineSources(doc, text) {
+  const explicit = validatedExplicitSource(doc, text);
+  if (explicit !== null) return text.split('\n').map(() => explicit);
   if (!isHistoricalArtifact(doc)) return text.split('\n').map(() => ACTIVE_SOURCE);
   if (provenanceCache.has(doc)) return provenanceCache.get(doc);
 
@@ -401,6 +440,12 @@ function malformedRanges(text, syntax = PROSE, knownForLine = () => null) {
 function hasCommittedHistory() {
   const selectedTree = ref ?? 'HEAD';
   return docs().some((doc) => isHistoricalArtifact(doc) && sourceFiles(selectedTree).has(doc));
+}
+
+function hasExplicitDocumentSource() {
+  return docs().some((doc) => read(doc)
+    ?.split(/\r?\n/)
+    .some((line) => line.trimStart().startsWith(EXPLICIT_SOURCE_TOKEN)));
 }
 
 // Whether a citation is a claim about a past state. The marker's reach is the
@@ -1254,7 +1299,7 @@ function main() {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim() === 'true';
-    if (shallow && hasCommittedHistory()) {
+    if (shallow && (hasCommittedHistory() || hasExplicitDocumentSource())) {
       console.error('FATAL: a shallow clone cannot establish historical evidence provenance; use full history.');
       process.exit(2);
     }

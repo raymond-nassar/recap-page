@@ -5,8 +5,8 @@ import { posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // These six documents are almost entirely claims about the rest of the repository: which checks
-// run, which scripts exist, where to read about something, how many items carry a constraint
-// check. Every one of those goes stale silently. A link to a heading that has been renamed still
+// run, which scripts exist, where to read about something, and which record owns a decision.
+// Every one of those goes stale silently. A link to a heading that has been renamed still
 // renders as a link, a gate added to CI does not announce itself in the guide that lists the
 // gates, and a count copied forward from a previous edit is the defect this repository has
 // already shipped twice. So the expectations below are computed from the repository and the
@@ -33,9 +33,10 @@ const flat = Object.fromEntries(
 );
 const pkg = JSON.parse(read('package.json'));
 const workflow = read('.github/workflows/ci.yml');
-const backlog = read('PRODUCT_BACKLOG.md');
 const browserRunner = read('scripts/browser-check.mjs');
 const upgradeRunner = read('scripts/upgrade-check.mjs');
+const copilotInstructions = read('.github/copilot-instructions.md').replace(/\s+/g, ' ');
+const paletteRunner = read('scripts/check-palette.mjs').replace(/\s+/g, ' ');
 
 // Every check the workflow actually runs, read out of its run steps rather than out of its prose,
 // which mentions checks it deliberately does not run.
@@ -165,15 +166,28 @@ test('the contract check is still outside CI, which is why the guide says to run
   assert.match(flat['CONTRIBUTING.md'], /outside CI/);
 });
 
-test('the governance record counts the constraint checks the backlog actually carries', () => {
-  // The one figure in these documents that is derived from another document, and so the one that
-  // would rot without anyone touching the sentence that states it.
-  const blocks = [...backlog.matchAll(/^\*\*(BL-\d+):/gm)].length;
-  const gates = [...backlog.matchAll(/^Constraint gate:/gm)].length;
-  assert.ok(
-    flat['GOVERNANCE.md'].includes(`the ${blocks} items with a detail block, ${gates} carry that check`),
-    `the record disagrees with the backlog, which has ${blocks} blocks and ${gates} checks`,
+test('the governance record gives active planning one owner for each concern', () => {
+  const governance = flat['GOVERNANCE.md'];
+  assert.match(governance, /The Issue owns scope, acceptance criteria, dependencies and discussion/);
+  assert.match(governance, /open or closed state owns whether the work is active or completed/);
+  assert.match(governance, /The Project owns readiness, priority, work type, epic and scoring fields/);
+  assert.match(governance, /built-in status is the planning view rather than a second completion record/);
+  assert.match(
+    governance,
+    /frozen \[historical backlog\]\(PRODUCT_BACKLOG\.md\) preserves the original rationale/,
   );
+  assert.doesNotMatch(governance, /items with a detail block.*carry that check/);
+});
+
+test('active workflow instructions route future work through Issues, not the historical backlog', () => {
+  const governance = flat['GOVERNANCE.md'];
+  assert.match(copilotInstructions, /Unrelated work becomes a repository Issue/);
+  assert.doesNotMatch(copilotInstructions, /follow-up entry in `PRODUCT_BACKLOG\.md`/);
+  assert.match(governance, /Issue timeline and linked pull request/);
+  assert.doesNotMatch(governance, /backlog block for that item becomes a delivery record/);
+  assert.doesNotMatch(governance, /rest becomes a backlog entry/);
+  assert.match(paletteRunner, /Issue that owns the correction/);
+  assert.doesNotMatch(paletteRunner, /BL-065 backlog block/);
 });
 
 test('a concern about the maintainer has a route that does not go through them', () => {
