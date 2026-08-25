@@ -195,7 +195,10 @@ test('the production gate rejects a force-added protected path without touching 
     assert.match(protectedRun.stdout, /protected tracked-path corpus changed/);
 
     const controlRun = runWith(controlFile, 'control.index');
-    assert.equal(controlRun.status, 0, `${controlRun.stdout}${controlRun.stderr}`);
+    const shallow = git(['rev-parse', '--is-shallow-repository']).trim() === 'true';
+    assert.equal(controlRun.status, shallow ? 2 : 0, `${controlRun.stdout}${controlRun.stderr}`);
+    assert.doesNotMatch(controlRun.stdout, /could not read publication-boundary-control\.tmp/);
+    if (shallow) assert.match(controlRun.stdout, /history half of this gate was not answered/);
     assert.deepEqual(readFileSync(realIndex), before, 'the real Git index is unchanged');
   } finally {
     rmSync(protectedFile, { force: true });

@@ -165,16 +165,16 @@ export function boundaryFaults() {
 
 // ------------------------------------------------------------------ the content half
 
-// A file git could not read is not a file that read clean. `ls-files` quotes any path outside plain
-// ASCII under the default `core.quotePath`, and the quoted form is not a path `git show` accepts, so
-// the first version of this skipped every such file silently and reported the tree clean. Turning
-// quoting off and splitting on NUL is the fix; the surviving read failure becomes a fault, because
-// "could not look" and "looked and found nothing" must not print the same.
+// A file git could not read is not a file that read clean. Read from the index enumerated by
+// `ls-files`, not HEAD: a force-added path exists only in that index, and an alternate index is how
+// the production integration test proves the boundary without changing a developer's real one.
+// Turning quoting off and splitting on NUL preserves names outside plain ASCII; any surviving read
+// failure remains a fault because "could not look" and "looked and found nothing" are not the same.
 function trackedBlobs() {
   const files = git(['-c', 'core.quotePath=false', 'ls-files', '-z']).split('\u0000').filter(Boolean);
   return files.map((file) => {
     try {
-      return { file, body: execFileSync('git', ['show', `HEAD:${file}`], { cwd: ROOT, maxBuffer: 512e6 }), error: null };
+      return { file, body: execFileSync('git', ['show', `:${file}`], { cwd: ROOT, maxBuffer: 512e6 }), error: null };
     } catch (e) {
       return { file, body: null, error: String(e.message).split('\n')[0] };
     }

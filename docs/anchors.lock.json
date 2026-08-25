@@ -5801,8 +5801,8 @@
   },
   "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:168-172|0": {
     "anchor": "scripts/check-publication.mjs:168-172",
-    "fp": "e47d14d9c7a5e810",
-    "head": "// A file git could not read is not a file that read clean. `ls-files` quotes any path outside plain"
+    "fp": "36abce5861d613b7",
+    "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
   "scripts/check-palette.mjs|preamble|src/js/main.js:1303|0": {
     "anchor": "src/js/main.js:1303",
