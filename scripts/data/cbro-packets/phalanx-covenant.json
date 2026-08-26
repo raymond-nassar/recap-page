@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "id": "phalanx-covenant",
+  "inventoryId": "phalanx-covenant",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/phalanx-covenant-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "078cef46910d14306828bf02e97139728a06a73499c939f9e37748892f83004a",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "phalanx-covenant",
+    "name": "Phalanx Covenant",
+    "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "phalanx-covenant.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/phalanx-covenant-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "phalanx_covenant.json",
+    "characters": [
+      "X-Men",
+      "X-Factor",
+      "X-Force",
+      "Wolverine",
+      "Cable"
+    ],
+    "keywords": [
+      "Phalanx Covenant",
+      "X-Men",
+      "X-Factor",
+      "X-Force"
+    ],
+    "expect": 9,
+    "timeline": 1994,
+    "coverIssueId": 13857
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B08 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T15:17:09.349Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men #316",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "316",
+      "seriesId": 2258,
+      "candidateIssueId": 13857,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #36",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "36",
+      "seriesId": 2265,
+      "candidateIssueId": 14324,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #317",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "317",
+      "seriesId": 2258,
+      "candidateIssueId": 13858,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #37",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "37",
+      "seriesId": 2265,
+      "candidateIssueId": 14325,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "X-Factor #106",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "106",
+      "seriesId": 2098,
+      "candidateIssueId": 12182,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #38",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "38",
+      "seriesId": 3633,
+      "candidateIssueId": 18003,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Excalibur #82",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "82",
+      "seriesId": 2011,
+      "candidateIssueId": 8668,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine Vol. 2 #85",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Vol. 2",
+      "seriesYear": 1988,
+      "issueNumber": "85",
+      "seriesId": 2262,
+      "candidateIssueId": 14209,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Wolverine (1988 - 2003), series 2262."
+    },
+    {
+      "sourceIssueReference": "Cable #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "16",
+      "seriesId": 1995,
+      "candidateIssueId": 7389,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "a5114c1e6b5485449c95721d1534e89397562ef4946c6adfdf416987659f1d03"
+}

@@ -1,0 +1,351 @@
+{
+  "id": "phalanx-covenant",
+  "name": "Phalanx Covenant",
+  "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
+  "source": "https://comicbookreadingorders.com/marvel/events/phalanx-covenant-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T15:53:03.208Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 13857,
+      "title": "Uncanny X-Men (1963) #316",
+      "number": "316",
+      "url": "https://www.marvel.com/comics/issue/13857/uncanny_x-men_1963_316",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2012-09-25T00:00:00+0000",
+      "digitalId": 23501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/591227cf80337",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14324,
+      "title": "X-Men (1991) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/14324/x-men_1991_36",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 23499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/664b514a530dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13858,
+      "title": "Uncanny X-Men (1963) #317",
+      "number": "317",
+      "url": "https://www.marvel.com/comics/issue/13858/uncanny_x-men_1963_317",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2012-09-25T00:00:00+0000",
+      "digitalId": 23502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/5913157c211d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14325,
+      "title": "X-Men (1991) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/14325/x-men_1991_37",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2015-05-26T13:02:24+0000",
+      "digitalId": 23500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5b980992a98ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Sellers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12182,
+      "title": "X-Factor (1986) #106",
+      "number": "106",
+      "url": "https://www.marvel.com/comics/issue/12182/x-factor_1986_106",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 42020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5ab3f7b3b647d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Conrad",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        },
+        {
+          "name": "Kerry Gammill",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18003,
+      "title": "X-Force (1991) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/18003/x-force_1991_38",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 42028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5bae418525af1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Conrad",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8668,
+      "title": "Excalibur (1988) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/8668/excalibur_1988_82",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 42008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5caf57bac407a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Floyd",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Moy",
+          "role": "cover artist"
+        },
+        {
+          "name": "W.C. Carani",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14209,
+      "title": "Wolverine (1988) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/14209/wolverine_1988_85",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 43102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/59a4854a99b8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7389,
+      "title": "Cable (1993) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/7389/cable_1993_16",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 34950,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5b1e8abdb6d6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Sellers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Skroce",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

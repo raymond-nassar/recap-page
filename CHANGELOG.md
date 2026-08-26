@@ -14,6 +14,21 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added four complete historical Marvel event guides
+
+In plain English: Time and Time Again, Phalanx Covenant, Operation: Zero Tolerance, and Spider-Man:
+Identity Crisis are now available as complete historical reading guides. They add 45 issues in their
+source order, bringing the catalog to 132 reading lists, and nothing you have saved is changed.
+
+Road to Vengeance: Missing Link, Siege of Darkness, Age of Apocalypse, Over the Edge, Onslaught Saga,
+and Heroes Reborn were not shortened to fit this release. Six complete blocker records preserve all
+210 source rows and name the 16 exact issues missing from the configured metadata. Marvel 2099 and
+Second Clone Saga remain deferred for separate review, and the historical program is paused at MC2.
+
+For maintainers: four frozen packets, exact mappings, and complete relationship reports bind all 45
+selected rows. The reports cover 524 current-library and selected-peer comparisons. Phalanx Covenant
+is the one centrally approved subset; all 523 other relationships share no issue.
+
 ### Added three more complete historical Marvel event guides
 
 In plain English: X-Cutioner's Song, Mys-Tech Wars, and Fatal Attractions are now available as

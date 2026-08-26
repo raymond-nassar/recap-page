@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "id": "operation-zero-tolerance",
+  "inventoryId": "operation-zero-tolerance",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/operation-zero-tolerance-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "f39a8db572943a551894c8801e8ca55ebda14d396b7d3632b19427d8ea296b8e",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 20,
+  "proposedManifest": {
+    "id": "operation-zero-tolerance",
+    "name": "Operation: Zero Tolerance",
+    "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "operation-zero-tolerance.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/operation-zero-tolerance-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "operation_zero_tolerance.json",
+    "characters": [
+      "X-Men",
+      "Wolverine",
+      "Cable",
+      "Generation X",
+      "X-Force"
+    ],
+    "keywords": [
+      "Operation: Zero Tolerance",
+      "X-Men",
+      "Bastion",
+      "Wolverine"
+    ],
+    "expect": 20,
+    "timeline": 1997,
+    "coverIssueId": 22754
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B08 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T15:17:09.349Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Generation X #27",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generation X",
+      "seriesYear": 1994,
+      "issueNumber": "27",
+      "seriesId": 6256,
+      "candidateIssueId": 22754,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #65",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "65",
+      "seriesId": 2265,
+      "candidateIssueId": 14356,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "X-Force #67",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "67",
+      "seriesId": 3633,
+      "candidateIssueId": 18035,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable #45",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "45",
+      "seriesId": 1995,
+      "candidateIssueId": 7421,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #68",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "68",
+      "seriesId": 3633,
+      "candidateIssueId": 18036,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable #46",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "46",
+      "seriesId": 1995,
+      "candidateIssueId": 7422,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Force #69",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "69",
+      "seriesId": 3633,
+      "candidateIssueId": 18037,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable #47",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "47",
+      "seriesId": 1995,
+      "candidateIssueId": 7423,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #346",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "346",
+      "seriesId": 2258,
+      "candidateIssueId": 13887,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generation X #29",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generation X",
+      "seriesYear": 1994,
+      "issueNumber": "29",
+      "seriesId": 6256,
+      "candidateIssueId": 22756,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #66",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "66",
+      "seriesId": 2265,
+      "candidateIssueId": 14357,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Wolverine Vol. 2 #115",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Vol. 2",
+      "seriesYear": 1988,
+      "issueNumber": "115",
+      "seriesId": 2262,
+      "candidateIssueId": 14054,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Wolverine (1988 - 2003), series 2262."
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #67",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "67",
+      "seriesId": 2265,
+      "candidateIssueId": 14358,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Wolverine Vol. 2 #116",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Vol. 2",
+      "seriesYear": 1988,
+      "issueNumber": "116",
+      "seriesId": 2262,
+      "candidateIssueId": 14055,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Wolverine (1988 - 2003), series 2262."
+    },
+    {
+      "sourceIssueReference": "Generation X #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generation X",
+      "seriesYear": 1994,
+      "issueNumber": "30",
+      "seriesId": 6256,
+      "candidateIssueId": 22758,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Generation X #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Generation X",
+      "seriesYear": 1994,
+      "issueNumber": "31",
+      "seriesId": 6256,
+      "candidateIssueId": 22759,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #68",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "68",
+      "seriesId": 2265,
+      "candidateIssueId": 14359,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Wolverine Vol. 2 #117",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Vol. 2",
+      "seriesYear": 1988,
+      "issueNumber": "117",
+      "seriesId": 2262,
+      "candidateIssueId": 14056,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Wolverine (1988 - 2003), series 2262."
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #69",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "69",
+      "seriesId": 2265,
+      "candidateIssueId": 14360,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Wolverine Vol. 2 #118",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Vol. 2",
+      "seriesYear": 1988,
+      "issueNumber": "118",
+      "seriesId": 2262,
+      "candidateIssueId": 14057,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Wolverine (1988 - 2003), series 2262."
+    }
+  ],
+  "packetDigest": "a132a3a3661900f6a5e81e9d7bc505df833a9d85cedfcc114a2b354aba637ec2"
+}

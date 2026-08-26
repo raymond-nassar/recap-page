@@ -3219,6 +3219,134 @@
       "coverIssueId": 12315
     },
     {
+      "id": "time-and-time-again",
+      "name": "Time and Time Again",
+      "description": "Eight chapters carrying the New Warriors through a time-spanning conflict.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "time-and-time-again.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/time-and-time-again-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "time_and_time_again.json",
+      "characters": [
+        "New Warriors",
+        "Nova",
+        "Night Thrasher"
+      ],
+      "keywords": [
+        "Time and Time Again",
+        "New Warriors",
+        "Nova",
+        "Night Thrasher"
+      ],
+      "expect": 8,
+      "timeline": 1994,
+      "coverIssueId": 69176
+    },
+    {
+      "id": "phalanx-covenant",
+      "name": "Phalanx Covenant",
+      "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "phalanx-covenant.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/phalanx-covenant-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "phalanx_covenant.json",
+      "characters": [
+        "X-Men",
+        "X-Factor",
+        "X-Force",
+        "Wolverine",
+        "Cable"
+      ],
+      "keywords": [
+        "Phalanx Covenant",
+        "X-Men",
+        "X-Factor",
+        "X-Force"
+      ],
+      "expect": 9,
+      "timeline": 1994,
+      "coverIssueId": 13857
+    },
+    {
+      "id": "operation-zero-tolerance",
+      "name": "Operation: Zero Tolerance",
+      "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "operation-zero-tolerance.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/operation-zero-tolerance-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "operation_zero_tolerance.json",
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Cable",
+        "Generation X",
+        "X-Force"
+      ],
+      "keywords": [
+        "Operation: Zero Tolerance",
+        "X-Men",
+        "Bastion",
+        "Wolverine"
+      ],
+      "expect": 20,
+      "timeline": 1997,
+      "coverIssueId": 22754
+    },
+    {
+      "id": "spider-man-identity-crisis",
+      "name": "Spider-Man: Identity Crisis",
+      "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-man-identity-crisis.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/spider-man-identity-crisis-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "spider_man_identity_crisis.json",
+      "characters": [
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Identity Crisis",
+        "Spider-Man",
+        "Ricochet",
+        "Dusk",
+        "Hornet",
+        "Prodigy"
+      ],
+      "expect": 8,
+      "timeline": 1998,
+      "coverIssueId": 6854
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

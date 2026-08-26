@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "time-and-time-again",
+  "inventoryId": "time-and-time-again",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/time-and-time-again-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "1539215aed5c19e0aab532faf7177136565e30888cbc08e40078fda07b1a0a88",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "time-and-time-again",
+    "name": "Time and Time Again",
+    "description": "Eight chapters carrying the New Warriors through a time-spanning conflict.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "time-and-time-again.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/time-and-time-again-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "time_and_time_again.json",
+    "characters": [
+      "New Warriors",
+      "Nova",
+      "Night Thrasher"
+    ],
+    "keywords": [
+      "Time and Time Again",
+      "New Warriors",
+      "Nova",
+      "Night Thrasher"
+    ],
+    "expect": 8,
+    "timeline": 1994,
+    "coverIssueId": 69176
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B08 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-25T15:17:09.349Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "New Warriors #47",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "47",
+      "seriesId": 16341,
+      "candidateIssueId": 69176,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Night Thrasher #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Night Thrasher",
+      "seriesYear": 1993,
+      "issueNumber": "11",
+      "seriesId": 29547,
+      "candidateIssueId": 83657,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nova Vol. 2 #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nova Vol. 2",
+      "seriesYear": 1994,
+      "issueNumber": "6",
+      "seriesId": 29549,
+      "candidateIssueId": 83685,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Nova (1994 - 1995), series 29549."
+    },
+    {
+      "sourceIssueReference": "New Warriors #48",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "48",
+      "seriesId": 16341,
+      "candidateIssueId": 69177,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Night Thrasher #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Night Thrasher",
+      "seriesYear": 1993,
+      "issueNumber": "12",
+      "seriesId": 29547,
+      "candidateIssueId": 83658,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nova Vol. 2 #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nova Vol. 2",
+      "seriesYear": 1994,
+      "issueNumber": "7",
+      "seriesId": 29549,
+      "candidateIssueId": 83686,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series Nova (1994 - 1995), series 29549."
+    },
+    {
+      "sourceIssueReference": "New Warriors #49",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "49",
+      "seriesId": 16341,
+      "candidateIssueId": 69178,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Warriors #50",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "50",
+      "seriesId": 16341,
+      "candidateIssueId": 69179,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d"
+}

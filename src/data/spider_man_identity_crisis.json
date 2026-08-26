@@ -1,0 +1,260 @@
+{
+  "id": "spider-man-identity-crisis",
+  "name": "Spider-Man: Identity Crisis",
+  "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
+  "source": "https://comicbookreadingorders.com/marvel/events/spider-man-identity-crisis-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-25T15:53:03.209Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6854,
+      "title": "The Amazing Spider-Man (1963) #434",
+      "number": "434",
+      "url": "https://www.marvel.com/comics/issue/6854/the_amazing_spider-man_1963_434",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1998-05-01T00:00:00+0000",
+      "mu": "1998-05-01T00:00:00+0000",
+      "digitalId": 29660,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/515c9c2068c9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6855,
+      "title": "The Amazing Spider-Man (1963) #435",
+      "number": "435",
+      "url": "https://www.marvel.com/comics/issue/6855/the_amazing_spider-man_1963_435",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1998-06-01T00:00:00+0000",
+      "mu": "1998-06-01T00:00:00+0000",
+      "digitalId": 29670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/515d90fbdb2eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66339,
+      "title": "Sensational Spider-Man (1996) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/66339/sensational_spider-man_1996_27",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1998-05-01T00:00:00+0000",
+      "mu": "2021-12-09T00:00:00+0000",
+      "digitalId": 47364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/61a64cff7e6a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Case",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66340,
+      "title": "Sensational Spider-Man (1996) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/66340/sensational_spider-man_1996_28",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1998-06-01T00:00:00+0000",
+      "mu": "2021-12-09T00:00:00+0000",
+      "digitalId": 47365,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/61a64d03afb2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Richard Case",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10857,
+      "title": "Spider-Man (1990) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/10857/spider-man_1990_91",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1998-05-01T00:00:00+0000",
+      "mu": "2021-11-18T00:00:00+0000",
+      "digitalId": 47307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/619575b16f457",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10858,
+      "title": "Spider-Man (1990) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/10858/spider-man_1990_92",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1998-06-01T00:00:00+0000",
+      "mu": "2021-11-18T00:00:00+0000",
+      "digitalId": 47308,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/619575b187119",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14717,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #257",
+      "number": "257",
+      "url": "https://www.marvel.com/comics/issue/14717/peter_parker_the_spectacular_spider-man_1976_257",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1998-05-01T00:00:00+0000",
+      "mu": "1998-05-01T00:00:00+0000",
+      "digitalId": 46648,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5a21bb51d8097",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14718,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #258",
+      "number": "258",
+      "url": "https://www.marvel.com/comics/issue/14718/peter_parker_the_spectacular_spider-man_1976_258",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1998-06-01T00:00:00+0000",
+      "mu": "1998-06-01T00:00:00+0000",
+      "digitalId": 46649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5a21bb7043fee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Glenn Greenberg",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
