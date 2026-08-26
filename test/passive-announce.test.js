@@ -7,7 +7,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { announceChannel, stateAnnouncer, passiveAnnouncer, hydrationAnnouncement } from '../src/js/main.js';
+import {
+  announceChannel,
+  stateAnnouncer,
+  passiveAnnouncer,
+  hydrationAnnouncement,
+  withSaveEducation,
+} from '../src/js/main.js';
+import { SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
 
 function heard() {
   const said = [];
@@ -174,7 +181,7 @@ function channel() {
 }
 
 // This is addToActive: it confirms the add, then starts the hydrator, whose start() reports
-// 'running' before its first await. `src/js/main.js:3185` and `src/js/hydrate.js:50`.
+// 'running' before its first await. `src/js/main.js:3274-3277` and `src/js/hydrate.js:50`.
 test('a confirmation and the hydration start raised together are both heard', () => {
   const c = channel();
   c.announce('Added 20 issues to Reading.');
@@ -218,4 +225,29 @@ test('a message raised while a write is pending joins it rather than starting a 
   c.tick();
   assert.equal(c.node.textContent, 'two three');
   assert.equal(c.pending(), 0, 'the slot must be released before the write, not left holding');
+});
+
+test('new education is one combined action message rather than a second notification', () => {
+  const message = withSaveEducation('Added House of M: 20 issues.', {
+    previous: SAVE_EDUCATION_STATE.UNSEEN,
+    current: SAVE_EDUCATION_STATE.EXPLAINING,
+    changed: true,
+  });
+
+  assert.equal(
+    message,
+    'Added House of M: 20 issues. Your lists and progress save automatically in this browser; '
+      + 'use Backup & settings for a copy you can restore elsewhere.',
+  );
+});
+
+test('education does not repeat after it has already been introduced or completed', () => {
+  const action = 'House of M #1 marked read.';
+  for (const transition of [
+    { previous: SAVE_EDUCATION_STATE.EXPLAINING, current: SAVE_EDUCATION_STATE.COMPLETE, changed: true },
+    { previous: SAVE_EDUCATION_STATE.COMPLETE, current: SAVE_EDUCATION_STATE.COMPLETE, changed: false },
+    null,
+  ]) {
+    assert.equal(withSaveEducation(action, transition), action);
+  }
 });

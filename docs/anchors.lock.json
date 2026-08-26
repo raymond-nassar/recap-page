@@ -1534,30 +1534,30 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2473-2481|0": {
-    "anchor": "src/js/main.js:2473-2481",
-    "fp": "87adf53ac65002fa",
-    "head": "// stood when it was last open."
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2547-2555|0": {
+    "anchor": "src/js/main.js:2547-2555",
+    "fp": "2ce9cb5e784ef76c",
+    "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2585|0": {
-    "anchor": "src/js/main.js:2585",
-    "fp": "d10b36aa74a59bcf",
-    "head": "}"
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2659|0": {
+    "anchor": "src/js/main.js:2659",
+    "fp": "931bd75b9e4067fe",
+    "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2686-2689|0": {
-    "anchor": "src/js/main.js:2686-2689",
-    "fp": "54964e2dad1f86eb",
-    "head": "}, ["
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2760-2774|0": {
+    "anchor": "src/js/main.js:2760-2774",
+    "fp": "8553f513ec379f80",
+    "head": "onclick: () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:317-319|0": {
-    "anchor": "src/js/main.js:317-319",
-    "fp": "4484c78ed03a4840",
-    "head": "// otherwise a screen-reader user hears \"List deleted\" for a deletion that did not happen."
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:343-345|0": {
+    "anchor": "src/js/main.js:343-345",
+    "fp": "b70cf478e0e33507",
+    "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:4984-5004|0": {
-    "anchor": "src/js/main.js:4984-5004",
-    "fp": "85ce6184f7e01510",
-    "head": "if (said.has(secs)) return false;"
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5149-5169|0": {
+    "anchor": "src/js/main.js:5149-5169",
+    "fp": "4feac5c9bcb85e34",
+    "head": "function renderAll() {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:365-392|0": {
     "anchor": "src/js/storage.js:365-392",
@@ -1604,14 +1604,14 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:4657-4659|0": {
-    "anchor": "src/js/main.js:4657-4659",
-    "fp": "e15cb137f3de8832",
-    "head": "// It used to read \"nothing was changed\" whatever had happened, including after a swap that"
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:4822-4824|0": {
+    "anchor": "src/js/main.js:4822-4824",
+    "fp": "8f226e48e15a5fea",
+    "head": "cache = new ResponseCache({ baseUrl: value });"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:80-93|0": {
-    "anchor": "src/js/main.js:80-93",
-    "fp": "4de140b277f385a2",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:83-98|0": {
+    "anchor": "src/js/main.js:83-98",
+    "fp": "aa9271359fe868b3",
     "head": "const settings = loadSettings();"
   },
   "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:129|0": {
@@ -1619,10 +1619,10 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:966|0": {
-    "anchor": "src/index.html:966",
-    "fp": "252b187dfd918af6",
-    "head": "more than 200 characters, and every existing question is a single short answer, so"
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:989|0": {
+    "anchor": "src/index.html:989",
+    "fp": "9f74c3a9fa356fa2",
+    "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
   "docs/ARCHITECTURE.md|the-three-entry-points|src/js/app.js:12-24|0": {
     "anchor": "src/js/app.js:12-24",
@@ -1634,10 +1634,10 @@
     "fp": "2c436fb3c32130cb",
     "head": "<script type=\"module\" src=\"./open.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:632|0": {
-    "anchor": "src/js/main.js:632",
-    "fp": "03d9aba6351173e5",
-    "head": "try {"
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:695|0": {
+    "anchor": "src/js/main.js:695",
+    "fp": "382bdc82a62fe977",
+    "head": "localStorage.setItem(SETTINGS_KEY, JSON.stringify({"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:663-680|0": {
     "anchor": "src/js/storage.js:663-680",
@@ -1664,10 +1664,10 @@
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:972|0": {
-    "anchor": "src/js/main.js:972",
-    "fp": "814dac96ec49af19",
-    "head": "if (persist) {"
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1035|0": {
+    "anchor": "src/js/main.js:1035",
+    "fp": "d1cd028d4d972b4e",
+    "head": "try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch { /* non-fatal */ }"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|server.mjs:14-16|0": {
     "anchor": "server.mjs:14-16",
@@ -1689,8 +1689,8 @@
     "fp": "c03449b9fc2d5b2d",
     "head": "const DB_NAME = 'mrt-cache';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:49-50|0": {
-    "anchor": "src/js/main.js:49-50",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:52-53|0": {
+    "anchor": "src/js/main.js:52-53",
     "fp": "9179653f1e66ad0d",
     "head": "const SETTINGS_KEY = 'mrt.settings';"
   },
@@ -1709,20 +1709,20 @@
     "fp": "9f4e8a74882b0cdb",
     "head": "const raw = JSON.parse(localStorage.getItem('mrt.settings') || '{}');"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2361|0": {
-    "anchor": "src/js/main.js:2361",
-    "fp": "2c58b0f2b094944d",
-    "head": "})"
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2435|0": {
+    "anchor": "src/js/main.js:2435",
+    "fp": "326dd7903e5bfaeb",
+    "head": "$('#hero-desc').textContent = synopsisFallback(issue, sessionSynopsis.get(issue.issueId));"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2549-2558|0": {
-    "anchor": "src/js/main.js:2549-2558",
-    "fp": "255d3b64ee2b89cd",
-    "head": "// coming, which is the whole of what this item was about. The order matches detailsState for the"
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:2623-2632|0": {
+    "anchor": "src/js/main.js:2623-2632",
+    "fp": "1c9519267c0515d1",
+    "head": "export function synopsisFallback(issue, sessionEntry = null) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:890|0": {
-    "anchor": "src/index.html:890",
-    "fp": "f68e02bbda3c41be",
-    "head": "data format <span id=\"about-schema\" class=\"mono\">unknown</span>."
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:913|0": {
+    "anchor": "src/index.html:913",
+    "fp": "cd4793f475d06ae8",
+    "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
   },
   "docs/PUBLICATION_RUNBOOK.md|before-anything-is-flipped|docs/DATA_PROVENANCE.md:11-13|0": {
     "anchor": "docs/DATA_PROVENANCE.md:11-13",
@@ -1784,13 +1784,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3030-3034|0": {
-    "anchor": "CHANGELOG.md:3030-3034",
-    "fp": "705eb84e7693eafb",
-    "head": "review. The rule for how urgently to act is now written down beside the settings that act on it,"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3034-3045|0": {
+    "anchor": "CHANGELOG.md:3034-3045",
+    "fp": "7ebb6ef43a1f1241",
+    "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3036-3046|0": {
-    "anchor": "CHANGELOG.md:3036-3046",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3047-3057|0": {
+    "anchor": "CHANGELOG.md:3047-3057",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -1849,13 +1849,13 @@
     "fp": "b49d224a819dbd31",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:370-372|0": {
-    "anchor": "src/index.html:370-372",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:380-382|0": {
+    "anchor": "src/index.html:380-382",
     "fp": "ab300ebb4156bcfc",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:333-366|0": {
-    "anchor": "src/index.html:333-366",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:343-376|0": {
+    "anchor": "src/index.html:343-376",
     "fp": "c739d03d04000a3b",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -1874,23 +1874,23 @@
     "fp": "a9bb973b1a54d296",
     "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:260-295|0": {
-    "anchor": "src/index.html:260-295",
+  "docs/UX_STUDY.md|job-stories|src/index.html:270-305|0": {
+    "anchor": "src/index.html:270-305",
     "fp": "530c3d774c082668",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:287|0": {
-    "anchor": "src/index.html:287",
+  "docs/UX_STUDY.md|job-stories|src/index.html:297|0": {
+    "anchor": "src/index.html:297",
     "fp": "a628208c2b24bcfe",
     "head": "Done, next <kbd>D</kbd>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:370-372|0": {
-    "anchor": "src/index.html:370-372",
+  "docs/UX_STUDY.md|job-stories|src/index.html:380-382|0": {
+    "anchor": "src/index.html:380-382",
     "fp": "ab300ebb4156bcfc",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:371-375|0": {
-    "anchor": "src/index.html:371-375",
+  "docs/UX_STUDY.md|job-stories|src/index.html:381-385|0": {
+    "anchor": "src/index.html:381-385",
     "fp": "3d856d97acb5205e",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
   },
@@ -1899,28 +1899,28 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:1831-1864|0": {
-    "anchor": "src/js/main.js:1831-1864",
-    "fp": "04a88fb4f78141d7",
-    "head": "if (generatedCategoryByRoute.has(view)) await renderPublishingCategory(view);"
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:1900-1933|0": {
+    "anchor": "src/js/main.js:1900-1933",
+    "fp": "f0b8798998bab248",
+    "head": "async function openPreview(list, story = null) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:2704-2705|0": {
-    "anchor": "src/js/main.js:2704-2705",
-    "fp": "e3dcf759a8391dcd",
-    "head": "// A title is not reachable by touch, is skipped by several screen readers, and"
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:2789-2790|0": {
+    "anchor": "src/js/main.js:2789-2790",
+    "fp": "c4badc70c9aad76e",
+    "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:4348-4406|0": {
-    "anchor": "src/js/main.js:4348-4406",
-    "fp": "c13f7005b234f737",
-    "head": "// from the other entry point is cleared too."
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:4513-4571|0": {
+    "anchor": "src/js/main.js:4513-4571",
+    "fp": "79b5cea527fa18be",
+    "head": "function renderProgress() {"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/main.js:1949-1952|0": {
-    "anchor": "src/js/main.js:1949-1952",
-    "fp": "feb70fd76c6fdf8f",
-    "head": "// before this change, with a sixth radio authored into the fieldset: selecting it showed all 8"
+  "docs/UX_STUDY.md|keyboard|src/js/main.js:2018-2021|0": {
+    "anchor": "src/js/main.js:2018-2021",
+    "fp": "d52c5acfb3ad6365",
+    "head": "$('#reading-filters').append(...READING_FILTERS.map((f) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:658|0": {
-    "anchor": "src/styles.css:658",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:660|0": {
+    "anchor": "src/styles.css:660",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -1929,8 +1929,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:260-295|0": {
-    "anchor": "src/index.html:260-295",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:270-305|0": {
+    "anchor": "src/index.html:270-305",
     "fp": "530c3d774c082668",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -1939,20 +1939,20 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/main.js:2704-2705|0": {
-    "anchor": "src/js/main.js:2704-2705",
-    "fp": "e3dcf759a8391dcd",
-    "head": "// A title is not reachable by touch, is skipped by several screen readers, and"
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/main.js:2789-2790|0": {
+    "anchor": "src/js/main.js:2789-2790",
+    "fp": "c4badc70c9aad76e",
+    "head": "detailsBadge(item),"
   },
   "docs/UX_STUDY.md|step-1-heuristic-evaluation#10|src/index.html:42-87|0": {
     "anchor": "src/index.html:42-87",
     "fp": "d787ef54028c3004",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/main.js:2760-2765|0": {
-    "anchor": "src/js/main.js:2760-2765",
-    "fp": "73d8ea714e25b58c",
-    "head": "// the reader's own act of marking the last matching issue read. The checked filter is both the"
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/main.js:2845-2850|0": {
+    "anchor": "src/js/main.js:2845-2850",
+    "fp": "2435be3c1e7a1165",
+    "head": "const SHORT_LABEL = {"
   },
   "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/index.html:112-127|0": {
     "anchor": "src/index.html:112-127",
@@ -1969,18 +1969,18 @@
     "fp": "8b3c07e445e71673",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:401-407|0": {
-    "anchor": "src/index.html:401-407",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:411-417|0": {
+    "anchor": "src/index.html:411-417",
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4154-4163|0": {
-    "anchor": "src/js/main.js:4154-4163",
-    "fp": "60c009eef0decb57",
-    "head": "const parts = [];"
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4303-4312|0": {
+    "anchor": "src/js/main.js:4303-4312",
+    "fp": "63bbb0187f80cd11",
+    "head": "function wireCatalogShelfSearch(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1460-1462|0": {
-    "anchor": "src/styles.css:1460-1462",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1462-1464|0": {
+    "anchor": "src/styles.css:1462-1464",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -1999,9 +1999,9 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1460-1462|0": {
-    "anchor": "src/styles.css:1460-1462",
-    "fp": "6505ad8d84b22c24",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1462-1469|0": {
+    "anchor": "src/styles.css:1462-1469",
+    "fp": "9bb3bad6e68a2a84",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
   "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:493|0": {
@@ -2009,8 +2009,8 @@
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:287|0": {
-    "anchor": "src/index.html:287",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:297|0": {
+    "anchor": "src/index.html:297",
     "fp": "a628208c2b24bcfe",
     "head": "Done, next <kbd>D</kbd>"
   },
@@ -2024,40 +2024,40 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:602|0": {
-    "anchor": "src/styles.css:602",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:604|0": {
+    "anchor": "src/styles.css:604",
     "fp": "3a6460e8dae6367c",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:723-724|0": {
-    "anchor": "src/styles.css:723-724",
-    "fp": "84480504cda2bac1",
-    "head": "every descendant against the page, and at .48 that dropped the meta line and the"
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:729-730|0": {
+    "anchor": "src/styles.css:729-730",
+    "fp": "4867cdf75f778888",
+    "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:726|0": {
-    "anchor": "src/styles.css:726",
-    "fp": "45268134c3c20af2",
-    "head": "not depend on colour alone. */"
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:732|0": {
+    "anchor": "src/styles.css:732",
+    "fp": "6ba162a32bf16415",
+    "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:260-295|0": {
-    "anchor": "src/index.html:260-295",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:270-305|0": {
+    "anchor": "src/index.html:270-305",
     "fp": "530c3d774c082668",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:538-545|0": {
-    "anchor": "src/styles.css:538-545",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:540-547|0": {
+    "anchor": "src/styles.css:540-547",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:738-740|0": {
-    "anchor": "src/styles.css:738-740",
-    "fp": "c661222618446a67",
-    "head": "font-size: var(--t-caption); font-weight: 700;"
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:744-747|0": {
+    "anchor": "src/styles.css:744-747",
+    "fp": "713b8b6372bfe540",
+    "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:795-796|0": {
-    "anchor": "src/styles.css:795-796",
-    "fp": "9c05d7bae58479f8",
-    "head": ".badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }"
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:801-802|0": {
+    "anchor": "src/styles.css:801-802",
+    "fp": "3a7250a4d0e170ae",
+    "head": ".ract { display: flex; gap: .25rem; opacity: 0; }"
   },
   "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:102|0": {
     "anchor": "src/index.html:102",
@@ -2069,28 +2069,28 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:527|0": {
-    "anchor": "src/index.html:527",
-    "fp": "0044bc12901a668e",
-    "head": "<form id=\"form-search\" class=\"stack\">"
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:550|0": {
+    "anchor": "src/index.html:550",
+    "fp": "7a1f8a1e2c6321e7",
+    "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:350-362|0": {
-    "anchor": "src/js/main.js:350-362",
-    "fp": "520c26cbfc76d2bc",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:412-425|0": {
+    "anchor": "src/js/main.js:412-425",
+    "fp": "d21a7a81a8feb563",
     "head": "// A message goes down exactly one channel. Writing into a container that is itself a live"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:355-362|0": {
-    "anchor": "src/js/main.js:355-362",
-    "fp": "5764aecb469a3dda",
-    "head": "// marking a container as a live region later cannot quietly reintroduce the double-speak."
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:418-425|0": {
+    "anchor": "src/js/main.js:418-425",
+    "fp": "c8ff28f8e2ea386d",
+    "head": "function isLive(node) {"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:504-525|0": {
-    "anchor": "src/js/main.js:504-525",
-    "fp": "9340b369a6fdcf57",
-    "head": "// the screen: these panes hold what they are given until something clears them."
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:567-588|0": {
+    "anchor": "src/js/main.js:567-588",
+    "fp": "f76887d8203d25d8",
+    "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null, links = []) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:260-295|0": {
-    "anchor": "src/index.html:260-295",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:270-305|0": {
+    "anchor": "src/index.html:270-305",
     "fp": "530c3d774c082668",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2099,13 +2099,13 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1227-1229|0": {
-    "anchor": "src/js/main.js:1227-1229",
-    "fp": "30d214bc1796a5cb",
-    "head": "view = next;"
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1296-1298|0": {
+    "anchor": "src/js/main.js:1296-1298",
+    "fp": "49408e8173086b6e",
+    "head": "for (const btn of document.querySelectorAll('.ri[data-view]')) {"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1460-1462|0": {
-    "anchor": "src/styles.css:1460-1462",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1462-1464|0": {
+    "anchor": "src/styles.css:1462-1464",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2114,15 +2114,15 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2700-2705|0": {
-    "anchor": "src/js/main.js:2700-2705",
-    "fp": "5684c503a1c1a914",
-    "head": "el('div', { class: 'rt', text: item.title }),"
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2785-2790|0": {
+    "anchor": "src/js/main.js:2785-2790",
+    "fp": "b5ed750de57fac97",
+    "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2760-2765|0": {
-    "anchor": "src/js/main.js:2760-2765",
-    "fp": "73d8ea714e25b58c",
-    "head": "// the reader's own act of marking the last matching issue read. The checked filter is both the"
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/main.js:2845-2850|0": {
+    "anchor": "src/js/main.js:2845-2850",
+    "fp": "2435be3c1e7a1165",
+    "head": "const SHORT_LABEL = {"
   },
   "docs/UX_STUDY.md|ux-d-001-the-mobile-layout-rule-never-takes-effe|src/styles.css:260-263|0": {
     "anchor": "src/styles.css:260-263",
@@ -2134,8 +2134,8 @@
     "fp": "296bd727f51c2837",
     "head": ".rail {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:287|0": {
-    "anchor": "src/index.html:287",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:297|0": {
+    "anchor": "src/index.html:297",
     "fp": "a628208c2b24bcfe",
     "head": "Done, next <kbd>D</kbd>"
   },
@@ -2144,100 +2144,100 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/main.js:2791-2814|0": {
-    "anchor": "src/js/main.js:2791-2814",
-    "fp": "524ab94620da9d97",
-    "head": "if (note === null) return;"
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/main.js:2876-2899|0": {
+    "anchor": "src/js/main.js:2876-2899",
+    "fp": "0b4690332af2c11d",
+    "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:4984-5004|0": {
-    "anchor": "src/js/main.js:4984-5004",
-    "fp": "85ce6184f7e01510",
-    "head": "if (said.has(secs)) return false;"
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5149-5169|0": {
+    "anchor": "src/js/main.js:5149-5169",
+    "fp": "4feac5c9bcb85e34",
+    "head": "function renderAll() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:87-92|0": {
-    "anchor": "src/js/main.js:87-92",
-    "fp": "7fb043b63c200c1a",
-    "head": "// silently reverted on the next paint."
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:91-96|0": {
+    "anchor": "src/js/main.js:91-96",
+    "fp": "179d485d49b3bd60",
+    "head": "const store = new Store({"
   },
   "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:56-100|0": {
     "anchor": "src/js/ask.js:56-100",
     "fp": "db818e7343a867ed",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2050-2058|0": {
-    "anchor": "src/js/main.js:2050-2058",
-    "fp": "792ac5fbd78afd4d",
-    "head": "});"
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2120-2128|0": {
+    "anchor": "src/js/main.js:2120-2128",
+    "fp": "23cc17f6a74f0d37",
+    "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2077-2093|0": {
-    "anchor": "src/js/main.js:2077-2093",
-    "fp": "33e561ea74c805fe",
-    "head": "// null is backing out, \"\" is deleting the note. askText folds those together; askNote does"
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2147-2163|0": {
+    "anchor": "src/js/main.js:2147-2163",
+    "fp": "6cbc2f6bdb1dc112",
+    "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4261|0": {
-    "anchor": "src/js/main.js:4261",
-    "fp": "542fabac0124b8a4",
-    "head": "// A second click while the first import is still fetching runs the whole import again and mints a"
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4417|0": {
+    "anchor": "src/js/main.js:4417",
+    "fp": "8ab27e651ace604e",
+    "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:504-525|0": {
-    "anchor": "src/js/main.js:504-525",
-    "fp": "9340b369a6fdcf57",
-    "head": "// the screen: these panes hold what they are given until something clears them."
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:567-588|0": {
+    "anchor": "src/js/main.js:567-588",
+    "fp": "f76887d8203d25d8",
+    "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null, links = []) {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:2077-2093|0": {
-    "anchor": "src/js/main.js:2077-2093",
-    "fp": "33e561ea74c805fe",
-    "head": "// null is backing out, \"\" is deleting the note. askText folds those together; askNote does"
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:2147-2163|0": {
+    "anchor": "src/js/main.js:2147-2163",
+    "fp": "6cbc2f6bdb1dc112",
+    "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:4634-4640|0": {
-    "anchor": "src/js/main.js:4634-4640",
-    "fp": "c49cc7cc0a330c27",
-    "head": "// Asked of the file's declared size, so a file picked by mistake is refused before `text()`"
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:4799-4805|0": {
+    "anchor": "src/js/main.js:4799-4805",
+    "fp": "8e57ce8810ab55d4",
+    "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:287|0": {
-    "anchor": "src/index.html:287",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:297|0": {
+    "anchor": "src/index.html:297",
     "fp": "a628208c2b24bcfe",
     "head": "Done, next <kbd>D</kbd>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:825-836|0": {
-    "anchor": "src/index.html:825-836",
-    "fp": "c83acc1387312ffd",
-    "head": "and originating with Marvel. The snapshot ends in 2025, so very recent issues may be"
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:848-859|0": {
+    "anchor": "src/index.html:848-859",
+    "fp": "d285f976e18ead5e",
+    "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/main.js:2791-2814|0": {
-    "anchor": "src/js/main.js:2791-2814",
-    "fp": "524ab94620da9d97",
-    "head": "if (note === null) return;"
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/main.js:2876-2899|0": {
+    "anchor": "src/js/main.js:2876-2899",
+    "fp": "0b4690332af2c11d",
+    "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1213-1254|0": {
-    "anchor": "src/js/main.js:1213-1254",
-    "fp": "5ea29da0cca27d34",
-    "head": "endFilterRun({ commit: false });"
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1282-1323|0": {
+    "anchor": "src/js/main.js:1282-1323",
+    "fp": "a353cf952ed31fad",
+    "head": "function showView(next, { focus = true, push = false } = {}) {"
   },
   "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/lib/readingFilters.js:25-50|0": {
     "anchor": "src/js/lib/readingFilters.js:25-50",
     "fp": "33eb001b939b3f47",
     "head": "export const READING_FILTERS = ["
   },
-  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/main.js:118|0": {
-    "anchor": "src/js/main.js:118",
-    "fp": "9af0f62cb269955a",
-    "head": "// Its restored value is applied in wireReading(), which runs before the first render."
+  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/main.js:144|0": {
+    "anchor": "src/js/main.js:144",
+    "fp": "b7554b1d675a5f56",
+    "head": "let filter = DEFAULT_FILTER;"
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|design/mockups/5-longbox-focus.html:169-172|0": {
     "anchor": "design/mockups/5-longbox-focus.html:169-172",
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:333-366|0": {
-    "anchor": "src/index.html:333-366",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:343-376|0": {
+    "anchor": "src/index.html:343-376",
     "fp": "c739d03d04000a3b",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/main.js:2705|0": {
-    "anchor": "src/js/main.js:2705",
-    "fp": "0ffd56abb1f8201d",
-    "head": "// here it was the only place the hedge behind a two-word badge was written down,"
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/main.js:2790|0": {
+    "anchor": "src/js/main.js:2790",
+    "fp": "bd66076a7b8dce19",
+    "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
   "docs/UX_STUDY.md|which-direction-was-adopted|design/mockups/index.html:51-62|0": {
     "anchor": "design/mockups/index.html:51-62",
@@ -5764,10 +5764,10 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:795|0": {
-    "anchor": "src/styles.css:795",
-    "fp": "1aee32d4cb1a97ad",
-    "head": ".badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }"
+  "scripts/browser-check.mjs|preamble|src/styles.css:801|0": {
+    "anchor": "src/styles.css:801",
+    "fp": "188826f8749bd3bc",
+    "head": ".ract { display: flex; gap: .25rem; opacity: 0; }"
   },
   "scripts/check-anchors.mjs|preamble|scripts/check-contract.mjs:1|0": {
     "anchor": "scripts/check-contract.mjs:1",
@@ -5799,33 +5799,33 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1304|0": {
-    "anchor": "src/js/main.js:1304",
-    "fp": "eb72482408cc8932",
-    "head": "dataset: { key: id, act: 'open', tip: ['Continue reading', `${list.name}:`, read, 'of', total, 'read"
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1373|0": {
+    "anchor": "src/js/main.js:1373",
+    "fp": "b16e0bda4cf16693",
+    "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:2684|0": {
-    "anchor": "src/js/main.js:2684",
-    "fp": "1394faae7727bb21",
-    "head": "const node = el('li', {"
-  },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:2690|0": {
-    "anchor": "src/js/main.js:2690",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:2757|0": {
+    "anchor": "src/js/main.js:2757",
     "fp": "1c4f24ab55f1e36b",
     "head": "'aria-pressed': String(item.read),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:5216|0": {
-    "anchor": "src/js/main.js:5216",
-    "fp": "c9defa978241ac5d",
-    "head": "? [' ', el('span', { class: 'badge badge-done' }, [el('span', { 'aria-hidden': 'true', text: '✓' }),"
+  "scripts/check-palette.mjs|preamble|src/js/main.js:2758|0": {
+    "anchor": "src/js/main.js:2758",
+    "fp": "6260601161fee24f",
+    "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1488|0": {
-    "anchor": "src/styles.css:1488",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:5381|0": {
+    "anchor": "src/js/main.js:5381",
+    "fp": "3a90f9bd69dfcf96",
+    "head": "el('span', { class: 'yours-count', text: count }),"
+  },
+  "scripts/check-palette.mjs|preamble|src/styles.css:1490|0": {
+    "anchor": "src/styles.css:1490",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1512|0": {
-    "anchor": "src/styles.css:1512",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1514|0": {
+    "anchor": "src/styles.css:1514",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -5849,20 +5849,20 @@
     "fp": "c91a0a86b137ab9d",
     "head": ".railed .rail-foot .pill { width: 10px; height: 10px; padding: 0; border-radius: 50%; overflow: hidd"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:598|0": {
-    "anchor": "src/styles.css:598",
+  "scripts/check-palette.mjs|preamble|src/styles.css:600|0": {
+    "anchor": "src/styles.css:600",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:740|0": {
-    "anchor": "src/styles.css:740",
-    "fp": "9ab05dbc2cd36e10",
-    "head": "body.nocovers .row .rf, .row .rf.show { display: flex; }"
+  "scripts/check-palette.mjs|preamble|src/styles.css:746|0": {
+    "anchor": "src/styles.css:746",
+    "fp": "ab1b965d8a6c63ba",
+    "head": "background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-ca"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:742|0": {
-    "anchor": "src/styles.css:742",
-    "fp": "d189a1903a8e42f0",
-    "head": ".cb {"
+  "scripts/check-palette.mjs|preamble|src/styles.css:748|0": {
+    "anchor": "src/styles.css:748",
+    "fp": "66318b8a9bc87d06",
+    "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
   "SECURITY.md|in-scope|.github/workflows/ci.yml:18-19|0": {
     "anchor": ".github/workflows/ci.yml:18-19",
@@ -5899,8 +5899,8 @@
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
-  "src/styles.css|preamble|src/js/main.js:705-706|0": {
-    "anchor": "src/js/main.js:705-706",
+  "src/styles.css|preamble|src/js/main.js:767-768|0": {
+    "anchor": "src/js/main.js:767-768",
     "fp": "0e7acbb25b031850",
     "head": "function fallbackHue(issue) {"
   },
@@ -5914,10 +5914,10 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/main.js:3185|0": {
-    "anchor": "src/js/main.js:3185",
-    "fp": "176a7f88e1cd46fb",
-    "head": "added = res.added; skipped = res.skipped;"
+  "test/passive-announce.test.js|preamble|src/js/main.js:3274-3277|0": {
+    "anchor": "src/js/main.js:3274-3277",
+    "fp": "aef17ca5da7c2c9f",
+    "head": "announce(withSaveEducation("
   },
   "test/shipped-copy.test.js|preamble|server.mjs:13|0": {
     "anchor": "server.mjs:13",
