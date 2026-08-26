@@ -195,7 +195,7 @@ const shelfEntry = (id, name, extra = {}) => ({
 
 // Thirty-four entries make thirty-two stories. Three event stories sit on one path, while two
 // storylines each cross to another browse screen. The thirteen Character Spotlight stories put
-// that shelf over its search threshold, the ten extra events do the same for Timeline, and four
+// that shelf over its search threshold, the ten extra events do the same for Timeline, and five
 // screen companions populate MCU Prep.
 // The third stop is a story read two ways, which is the case the shelf and the path disagree about
 // most easily: the
@@ -226,6 +226,7 @@ const CATALOG = {
       'Spider-Man: No Way Home',
       'Marvel Multiverse',
       'Marvel What If?',
+      'Spider-Man: Far From Home',
     ].map((name, index) => shelfEntry(
       `screen-companion-${index + 1}`,
       name,
@@ -1291,7 +1292,7 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '6 Reading Lists' },
+          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '7 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
@@ -1301,7 +1302,7 @@ const SCENARIOS = [
             key: 'marvel-on-screen',
             label: 'Movies and streaming',
             title: 'MCU Prep',
-            count: '4 Reading Lists',
+            count: '5 Reading Lists',
           },
           { key: 'modern', label: '1991 to present', title: 'Modern Age', count: '16 Reading Lists' },
         ]),
@@ -1349,16 +1350,17 @@ const SCENARIOS = [
         titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
           .map((title) => title.textContent.trim()),
       }));
-      t.check('MCU Prep opens its own browse page with four companions in source order',
+      t.check('MCU Prep opens its own browse page with five companions in source order',
         screen.hash === '#/marvel-on-screen'
         && screen.focus === 'marvel-on-screen-h'
         && screen.rail === 'browse'
-        && screen.count === '4 Reading Lists'
+        && screen.count === '5 Reading Lists'
         && screen.titles.join('/') === [
           'Doctor Strange: Multiverse of Madness',
           'Spider-Man: No Way Home',
           'Marvel Multiverse',
           'Marvel What If?',
+          'Spider-Man: Far From Home',
         ].join('/'),
         JSON.stringify(screen));
       t.check('MCU Prep stays outside publication-age chronology',
@@ -1375,8 +1377,8 @@ const SCENARIOS = [
           columns: new Set(cards.map((card) => Math.round(card.getBoundingClientRect().left))).size,
         };
       });
-      t.check('the narrow MCU Prep page keeps four cards in one column without overflow',
-        screenNarrow.cards === 4
+      t.check('the narrow MCU Prep page keeps five cards in one column without overflow',
+        screenNarrow.cards === 5
         && screenNarrow.columns === 1
         && screenNarrow.scrollWidth <= screenNarrow.viewport,
         JSON.stringify(screenNarrow));

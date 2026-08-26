@@ -7,17 +7,17 @@ import {
 
 export const MCU_COMPANION_COUNT = 14;
 export const MCU_COMPANION_IDENTITY_SHA256 =
-  '06dd03db51c6e64c5ab43ba712dd6da4ff6a1cb6483e8eeefdf243aa86304ad2';
+  '3f1385d457081d0ccaa7513ae161c42895d3ce2dd05ced0d06d5bf25d47bda11';
 export const MCU_PACKET_REVIEW = 'MRT-004 central CBH source review';
 export const MCU_SELECTED_IDS = Object.freeze([
   'doctor-strange-multiverse-of-madness',
   'spider-man-no-way-home',
   'marvel-multiverse',
   'marvel-what-if',
-]);
-export const MCU_FOLLOW_UP_IDS = Object.freeze([
   'wandavision',
   'spider-man-far-from-home',
+]);
+export const MCU_FOLLOW_UP_IDS = Object.freeze([
   'avengers-endgame-character-picks',
   'miles-morales-spider-verse',
   'venom-movie',
@@ -126,7 +126,7 @@ export function validateMcuCompanionInventory(inventory) {
   assert(JSON.stringify(followUps.map((record) => record.id)) === JSON.stringify(MCU_FOLLOW_UP_IDS),
     'MCU companion follow-up ids or priority order changed');
   assert(JSON.stringify(followUps.map((record) => record.followUpRank))
-    === JSON.stringify([1, 2, 3, 4, 5, 6]),
+    === JSON.stringify([3, 4, 5, 6]),
   'MCU companion follow-up ranks changed');
   for (const record of followUps) {
     assert(['pending', 'reviewed-feasibility'].includes(record.relationshipStatus),
@@ -143,7 +143,7 @@ export function validateMcuCompanionInventory(inventory) {
       `${record.id} blocked relationship state is invalid`);
     assert(record.deliveryStatus === 'blocked', `${record.id} blocked delivery state is invalid`);
     assert(record.followUpRank == null, `${record.id} blocked row cannot have a follow-up rank`);
-    assert(record.sourceBoundaryStatus === 'blocked-no-complete-issue-boundary',
+    assert(['exact-reviewed-boundary', 'blocked-no-complete-issue-boundary'].includes(record.sourceBoundaryStatus),
       `${record.id} blocked source boundary status is invalid`);
     assert(record.catalogIds.length === 0, `${record.id} blocked row cannot name a catalog id`);
   }

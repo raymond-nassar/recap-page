@@ -1,0 +1,260 @@
+{
+  "id": "spider-man-far-from-home",
+  "name": "Spider-Man: Far From Home",
+  "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+  "source": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T05:16:35.956Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6886,
+      "title": "The Amazing Spider-Man (1963) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/6886/the_amazing_spider-man_1963_66",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1968-11-01T00:00:00+0000",
+      "mu": "1968-11-01T00:00:00+0000",
+      "digitalId": 4165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/57adc8c11461d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6887,
+      "title": "The Amazing Spider-Man (1963) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/6887/the_amazing_spider-man_1963_67",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1968-12-01T00:00:00+0000",
+      "mu": "1968-12-01T00:00:00+0000",
+      "digitalId": 4166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/57adda713d542",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14751,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-01-01T00:00:00+0000",
+      "mu": "1981-01-01T00:00:00+0000",
+      "digitalId": 6688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5cf0286e8546f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14752,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-02-01T00:00:00+0000",
+      "mu": "1981-02-01T00:00:00+0000",
+      "digitalId": 6689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5cf036efc0ca4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24425,
+      "title": "Amazing Spider-Man (1999) #618",
+      "number": "618",
+      "url": "https://www.marvel.com/comics/issue/24425/amazing_spider-man_1999_618",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2010-09-20T00:00:00+0000",
+      "digitalId": 14134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5808c5aed97c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcos Martin",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 28224,
+      "title": "Amazing Spider-Man (1999) #619",
+      "number": "619",
+      "url": "https://www.marvel.com/comics/issue/28224/amazing_spider-man_1999_619",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2011-02-24T15:32:03+0000",
+      "digitalId": 17461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5808cfa2e3a82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 28225,
+      "title": "Amazing Spider-Man (1999) #620",
+      "number": "620",
+      "url": "https://www.marvel.com/comics/issue/28225/amazing_spider-man_1999_620",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-02-10T00:00:00+0000",
+      "mu": "2010-02-01T00:00:00+0000",
+      "digitalId": 13837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5808da540c2c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74028,
+      "title": "Friendly Neighborhood Spider-Man (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/74028/friendly_neighborhood_spider-man_2019_6",
+      "seriesId": 26679,
+      "seriesName": "Friendly Neighborhood Spider-Man (2019 - Present)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-11-11T00:00:00+0000",
+      "digitalId": 51401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5ccc6905b8689",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew C. Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
