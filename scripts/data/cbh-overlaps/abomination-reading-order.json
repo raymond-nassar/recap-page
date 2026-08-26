@@ -2,10 +2,10 @@
   "candidateId": "abomination-reading-order",
   "packetDigest": "dd7a839a63aec8212fba45ce1c438ac1852034ea7c949ce6457c8aa5c4d497cd",
   "mappingDigest": "8dff0a5405f015083ddcb118d441b7c0cc42d53b91e8cc40a2ef7fb2c4447831",
-  "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
   "peerDigests": {},
   "candidateCount": 127,
-  "comparisonCount": 137,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -83,6 +83,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -271,12 +277,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -680,12 +680,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -800,12 +794,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -836,5 +824,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "05d0119136812ae674bf54e825270e408247a453e8ef3e7afe4f3f2c09c1d41e"
+  "reportDigest": "a56594a5301a4643f0e423d39353d430d998fe8eda94efbe45820e54c7b3c7d8"
 }

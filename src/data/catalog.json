@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T14:21:03.728Z",
+  "generatedAt": "2026-08-26T15:37:31.056Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2633,6 +2633,51 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T03:25:17.084Z"
+    },
+    {
+      "id": "captain-america-reading-order-modern-marvel-era",
+      "file": "captain_america_reading_order_modern_marvel_era.json",
+      "name": "Captain America: Modern Marvel Era",
+      "description": "Captain America from The New Deal through the 2023 run, preserving Comic Book Herald's modern Marvel-era checklist and any unresolved source rows as explicit provenance.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 69,
+      "collections": 0,
+      "characters": [
+        "Captain America",
+        "Steve Rogers",
+        "Sam Wilson",
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Falcon",
+        "Sharon Carter",
+        "Red Skull"
+      ],
+      "keywords": [
+        "Captain America",
+        "Steve Rogers",
+        "Sam Wilson",
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Secret Empire",
+        "Comic Book Herald",
+        "Modern Marvel Era"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 12817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5bc4c652db1e4",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T15:37:30.965Z"
     },
     {
       "id": "doctor-doom-primer",

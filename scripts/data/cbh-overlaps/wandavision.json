@@ -2,15 +2,10 @@
   "candidateId": "wandavision",
   "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
   "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
-  "libraryDigest": "95826fce84e1f1651d9c4b81ca5fba47555f19089210d07b1c15ed56f318462b",
-  "peerDigests": {
-    "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-    "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-    "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-    "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
-  },
+  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
+  "peerDigests": {},
   "candidateCount": 56,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -86,6 +81,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -861,5 +862,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "937acd0fbc89ff0a6e2eab961566e751d07d5beb2410e6a5a3bf783015ba925f"
+  "reportDigest": "9692f5a4ec66e0b4d9b86310e98d63ac4fcf58d87dec92322cc9c117e1218dda"
 }

@@ -10661,10 +10661,10 @@
     "authorityIdentity": "GPT-5.5 implementation session",
     "rationale": "Central relationship review approved the Modern X-Men fast-track as a source-preserving selected spotlight. Existing subset relationships remain canonical event guides, and partial overlaps are justified by narrower or different spotlight boundaries rather than duplicate catalog identities.",
     "reviewedAt": "2026-08-25",
-    "reportDigest": "9d09297f401b7f06fa366d43bd2f06bd4d480f83efdf0fb38797bbcd28b1b60e",
+    "reportDigest": "9e527486c531a9339768816e059085f4240ffec697951f8b483c1c7ca1118b2c",
     "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
     "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-    "libraryDigest": "1d4bef7ffbdbff39015c2d7efcdcfd8ed1922f8c28233c504940d322bfce1c92",
+    "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
     "peerDigests": {},
     "dispositions": [
       {
@@ -11146,17 +11146,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "zero-overlap policy",
-        "rationale": "No shared issue IDs were observed in the current overlap report.",
-        "reviewedAt": "2026-08-25"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -11828,17 +11817,6 @@
         "reviewedAt": "2026-08-25"
       },
       {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "zero-overlap policy",
-        "rationale": "No shared issue IDs were observed in the current overlap report.",
-        "reviewedAt": "2026-08-25"
-      },
-      {
         "orderId": "spider-man-identity-crisis",
         "relationship": "none",
         "sharedCount": 0,
@@ -11949,29 +11927,7 @@
         "reviewedAt": "2026-08-25"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "zero-overlap policy",
-        "rationale": "No shared issue IDs were observed in the current overlap report.",
-        "reviewedAt": "2026-08-25"
-      },
-      {
         "orderId": "venomverse",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "zero-overlap policy",
-        "rationale": "No shared issue IDs were observed in the current overlap report.",
-        "reviewedAt": "2026-08-25"
-      },
-      {
-        "orderId": "wandavision",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -12252,28 +12208,6 @@
         "reviewedAt": "2026-08-25"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "partial",
-        "sharedCount": 10,
-        "sharedIds": [
-          "27513",
-          "26966",
-          "26967",
-          "27512",
-          "26968",
-          "26969",
-          "26970",
-          "26971",
-          "26972",
-          "27424"
-        ],
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.5 implementation session",
-        "rationale": "Approved partial overlap. The shared issues are the Utopia crossover chapters printed directly in the X-Men fast-track source, while the shipped Utopia guide remains the canonical event reading and this selected guide preserves the source boundary.",
-        "reviewedAt": "2026-08-25"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "sharedCount": 0,
@@ -12327,19 +12261,8 @@
         "authorityIdentity": "zero-overlap policy",
         "rationale": "No shared issue IDs were observed in the current overlap report.",
         "reviewedAt": "2026-08-25"
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "zero-overlap policy",
-        "rationale": "No shared issue IDs were observed in the current overlap report.",
-        "reviewedAt": "2026-08-25"
       }
     ],
-    "approvalDigest": "ed5cea90dddd2e858388eb4d5590c45312b433fe9f2e08c0aabd8f185b939041"
+    "approvalDigest": "4856f61399e3809f58a3983742cbf2ddd2669eec18d8264da1160988a511b388"
   }
 }

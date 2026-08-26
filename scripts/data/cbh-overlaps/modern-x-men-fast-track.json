@@ -2,10 +2,10 @@
   "candidateId": "modern-x-men-fast-track",
   "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
   "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-  "libraryDigest": "1d4bef7ffbdbff39015c2d7efcdcfd8ed1922f8c28233c504940d322bfce1c92",
+  "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
   "peerDigests": {},
   "candidateCount": 278,
-  "comparisonCount": 140,
+  "comparisonCount": 134,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -21,12 +21,6 @@
     },
     {
       "orderId": "all-new-all-different-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -277,12 +271,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -669,12 +657,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-far-from-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-identity-crisis",
       "sharedCount": 0,
       "sharedIds": [],
@@ -735,19 +717,7 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "wandavision",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -933,23 +903,6 @@
       "relationship": "existing-subset"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 10,
-      "sharedIds": [
-        "27513",
-        "26966",
-        "26967",
-        "27512",
-        "26968",
-        "26969",
-        "26970",
-        "26971",
-        "26972",
-        "27424"
-      ],
-      "relationship": "partial"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -980,5 +933,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9d09297f401b7f06fa366d43bd2f06bd4d480f83efdf0fb38797bbcd28b1b60e"
+  "reportDigest": "9e527486c531a9339768816e059085f4240ffec697951f8b483c1c7ca1118b2c"
 }

@@ -2,17 +2,11 @@
   "candidateId": "rocket-raccoon-reading-order",
   "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
   "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "e23bcf5faa08d772d68914862167ca6120baca47220d81287fed799b58f933ed",
+  "libraryDigest": "7ccf4a07de5e205b397d44dea5f0b3468dd0adb6d568e56ef28ee427ca0eee12",
   "peerDigests": {},
   "candidateCount": 75,
-  "comparisonCount": 141,
+  "comparisonCount": 133,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -27,12 +21,6 @@
     },
     {
       "orderId": "all-new-all-different-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -326,12 +314,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "hickman-x-men",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "house-of-m",
       "sharedCount": 0,
       "sharedIds": [],
@@ -488,12 +470,6 @@
     },
     {
       "orderId": "minimum-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "modern-x-men-fast-track",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -690,12 +666,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-far-from-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-identity-crisis",
       "sharedCount": 0,
       "sharedIds": [],
@@ -782,33 +752,10 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "wandavision",
-      "sharedCount": 10,
-      "sharedIds": [
-        "71433",
-        "71435",
-        "71436",
-        "71437",
-        "71438",
-        "71439",
-        "71440",
-        "71441",
-        "71442",
-        "71987"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "war-of-kings",
@@ -927,12 +874,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -963,5 +904,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4858d81a960a5133f389a95b0c3b475568610913fb93bb3715de3d5147b9fbe4"
+  "reportDigest": "8d1790f0969a9315aeb6cf9e1dc9f9f7160a3971239de10ff8eb52aa837904e9"
 }

@@ -1005,16 +1005,17 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // WandaVision, Spider-Man: Far From Home, and the Modern X-Men Fast Track order merged in
   // from main, and again the same day after the Amazing Spider-Man complete guide added 106
   // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
-  // the live metadata index does not list. The Abomination guide added two more empty responses,
-  // bringing the total to 81 across five affected orders. Written down as observations rather than
-  // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
-  // this line deliberately rather than watching a range quietly widen.
+  // the live metadata index does not list. The Captain America modern guide added 69 more
+  // placeholders, bringing the bundled placeholder total to 181 across five affected orders.
+  // Written down as observations rather than floors: they move whenever an order is added or
+  // re-vendored, and moving one should mean editing this line deliberately rather than watching a
+  // range quietly widen.
   //
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
-  assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 181, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 181, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 81);
   assert.equal(affected, 5);
 });
@@ -1207,6 +1208,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // already present in the bundled catalog.
   //
   // The Abomination guide adds two more exact issue pages with no metadata response.
-  assert.equal(refused.length, 164);
+  // The Captain America modern guide added one representative issue row, so the refusal total
+  // drops by one.
+  assert.equal(refused.length, 232);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

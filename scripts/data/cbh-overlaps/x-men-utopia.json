@@ -2,10 +2,10 @@
   "candidateId": "x-men-utopia",
   "packetDigest": "532457b6800fecb8f31944fa85170e849ff6f007e10594bde6686fd3439a0ad1",
   "mappingDigest": "b47bf9e1ceb0f7a9559aea67a01aa009640cc81cd71504660bbdeb26fc391242",
-  "libraryDigest": "6d58c636041ea7c81d0339da1e692c8b7d6d3790ad5319128d3c724994abace2",
+  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
   "peerDigests": {},
   "candidateCount": 14,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -81,6 +81,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -822,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "05d217795d55675233dfe687c6d55d0fbb9b009eaf9ded1183624e0638e009f1"
+  "reportDigest": "47df82c7266b32ad62c1eddd0894dbf81eb7c8d868831aaee3ebc587e0f9495e"
 }

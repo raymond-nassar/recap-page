@@ -2,10 +2,10 @@
   "candidateId": "hickman-x-men",
   "packetDigest": "800288f321acf9793b0800e2c6c3f8ece3283ba341d672b9903924edae04f439",
   "mappingDigest": "faef0663fd0c7dc17b1f7f8449971662adda7d8612666f4990970955cc30efa7",
-  "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
+  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
   "peerDigests": {},
   "candidateCount": 54,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -81,6 +81,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -837,5 +843,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "e131d1d23bea5c186caeb2e0bceb82e82f38c26652d004d828fff3f570e83973"
+  "reportDigest": "0d4a3fec76383025df3925eebe4d4d51d42a1b1594426c2c714bfac22c0a5e00"
 }

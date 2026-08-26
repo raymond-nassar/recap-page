@@ -251,16 +251,53 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);
   const existingIssueIds = new Set(existingRecords.flatMap((record) => record.selectedIssueIds));
   assert.deepEqual(packetIssueIds.filter((id) => existingIssueIds.has(id)), []);
+  const allowedOverlaps = new Map([
+    ['annihilation-conquest', [
+      {
+        orderId: 'groot-reading-order',
+        sharedCount: 4,
+        sharedIds: ['16009', '16191', '16598', '16599'],
+        relationship: 'partial',
+      },
+    ]],
+    ['war-of-kings', [
+      {
+        orderId: 'groot-reading-order',
+        sharedCount: 7,
+        sharedIds: ['23986', '24188', '25303', '25304', '25305', '25306', '25307'],
+        relationship: 'partial',
+      },
+      {
+        orderId: 'rocket-raccoon-reading-order',
+        sharedCount: 7,
+        sharedIds: ['23986', '24188', '25303', '25304', '25305', '25306', '25307'],
+        relationship: 'partial',
+      },
+      {
+        orderId: 'star-lord-reading-order',
+        sharedCount: 7,
+        sharedIds: ['23986', '24188', '25303', '25304', '25305', '25306', '25307'],
+        relationship: 'partial',
+      },
+    ]],
+  ]);
 
   for (const id of PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 45);
-    assert.equal(report.comparisons.length, 45);
-    assert.ok(report.comparisons.every((comparison) => (
-      comparison.relationship === 'none'
-      && comparison.sharedCount === 0
-      && comparison.sharedIds.length === 0
-    )), `${id} has an unapproved overlap`);
+    assert.equal(report.comparisonCount, 134);
+    assert.equal(report.comparisons.length, 134);
+    const allowed = allowedOverlaps.get(id) ?? [];
+    assert.ok(report.comparisons.every((comparison) => {
+      const expected = allowed.find((entry) => entry.orderId === comparison.orderId);
+      if (expected) {
+        return comparison.relationship === expected.relationship
+          && comparison.sharedCount === expected.sharedCount
+          && JSON.stringify(comparison.sharedIds) === JSON.stringify(expected.sharedIds);
+      }
+      return comparison.relationship === 'none'
+        && comparison.sharedCount === 0
+        && comparison.sharedIds.length === 0;
+    }), `${id} has an unapproved overlap`);
   }
 });
 
@@ -277,12 +314,32 @@ test('blocked approved candidates retain exact blocker evidence', async () => {
   );
   assert.deepEqual(
     realm.comparisons.filter((comparison) => comparison.relationship !== 'none'),
-    [{
-      orderId: 'war-of-kings',
-      sharedCount: 3,
-      sharedIds: ['26094', '26095', '26096'],
-      relationship: 'partial',
-    }],
+    [
+      {
+        orderId: 'groot-reading-order',
+        sharedCount: 6,
+        sharedIds: ['25308', '25309', '29022', '29009', '29010', '32551'],
+        relationship: 'partial',
+      },
+      {
+        orderId: 'rocket-raccoon-reading-order',
+        sharedCount: 6,
+        sharedIds: ['25308', '25309', '29022', '29009', '29010', '32551'],
+        relationship: 'partial',
+      },
+      {
+        orderId: 'star-lord-reading-order',
+        sharedCount: 6,
+        sharedIds: ['25308', '25309', '29022', '29009', '29010', '32551'],
+        relationship: 'partial',
+      },
+      {
+        orderId: 'war-of-kings',
+        sharedCount: 3,
+        sharedIds: ['26094', '26095', '26096'],
+        relationship: 'partial',
+      },
+    ],
   );
   assert.deepEqual(
     worldWarHulk.comparisons.filter((comparison) => comparison.relationship !== 'none'),
