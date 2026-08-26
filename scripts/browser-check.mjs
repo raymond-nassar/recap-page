@@ -1111,7 +1111,7 @@ const SCENARIOS = [
         '#spotlights-results .catalog-card-title',
         (nodes) => nodes.map((node) => node.textContent.trim()),
       );
-      const choose = async (value) => {
+      const chooseKind = async (value) => {
         await click(page, `input[name="spotlights-kind"][value="${value}"]`);
         await page.waitForFunction(
           (expected) => (
@@ -1122,38 +1122,113 @@ const SCENARIOS = [
           value,
         );
       };
+      const chooseSort = async (value) => {
+        await click(page, `input[name="spotlights-sort"][value="${value}"]`);
+        await page.waitForFunction(
+          (expected) => (
+            document.querySelector('input[name="spotlights-sort"]:checked')?.value === expected
+           && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+          ),
+          {},
+          value,
+        );
+      };
+
+      const currentTitles = [
+        'Off The Path',
+        'Essential Avengers',
+        'X-Men',
+        'Phoenix',
+        'Captain America',
+        'Spider-Man',
+        'Thor',
+        'Scarlet Witch',
+        'White Tiger',
+        'Phalanx',
+        'Other Spotlight 1',
+        'Other Spotlight 2',
+        'Other Spotlight 3',
+      ];
+      const popularityTitles = [
+        'Spider-Man',
+        'Captain America',
+        'Thor',
+        'Scarlet Witch',
+        'Phoenix',
+        'Essential Avengers',
+        'X-Men',
+        'Off The Path',
+        'White Tiger',
+        'Phalanx',
+        'Other Spotlight 1',
+        'Other Spotlight 2',
+        'Other Spotlight 3',
+      ];
 
       const initial = await page.evaluate(() => ({
-        labels: [...document.querySelectorAll('input[name="spotlights-kind"]')]
+        kindLabels: [...document.querySelectorAll('input[name="spotlights-kind"]')]
           .map((input) => input.nextElementSibling.textContent.trim()),
-        checked: document.querySelector('input[name="spotlights-kind"]:checked')?.value ?? null,
-        legend: document.querySelector('.spotlight-filters legend')?.textContent.trim() ?? null,
+        kindChecked: document.querySelector('input[name="spotlights-kind"]:checked')?.value ?? null,
+        kindLegend: document.querySelector('.spotlight-filters legend')?.textContent.trim() ?? null,
+        sortLabels: [...document.querySelectorAll('input[name="spotlights-sort"]')]
+          .map((input) => input.nextElementSibling.textContent.trim()),
+        sortChecked: document.querySelector('input[name="spotlights-sort"]:checked')?.value ?? null,
+        sortLegend: document.querySelector('.spotlight-sort legend')?.textContent.trim() ?? null,
       }));
-      t.check('the header exposes the three requested choices with All selected',
-        initial.labels.join('/') === 'All/Best of/Complete guides'
-        && initial.checked === 'all'
-        && initial.legend === 'Filter Character Spotlight guides',
+      t.check('the header exposes the popularity sort and the three requested choices with Current order selected',
+        initial.kindLabels.join('/') === 'All/Best of/Complete guides'
+       && initial.kindChecked === 'all'
+       && initial.kindLegend === 'Filter Character Spotlight guides'
+       && initial.sortLabels.join('/') === 'Current order/Popularity'
+       && initial.sortChecked === 'current-order'
+       && initial.sortLegend === 'Sort Character Spotlight guides',
         JSON.stringify(initial));
-      t.check('All keeps every fixture story, including the grouped X-Men card',
-        (await cardTitles()).length === 13 && (await cardTitles()).filter((title) => title === 'X-Men').length === 1,
+      t.check('Current order keeps the fixture stories in their shipped order',
+        JSON.stringify(await cardTitles()) === JSON.stringify(currentTitles),
         JSON.stringify(await cardTitles()));
 
-      await choose('best-of');
-      const best = await cardTitles();
-      t.check('Best of shows only the five explicitly classified stories',
-        best.join('/') === 'Phoenix/Captain America/Spider-Man/Thor/Scarlet Witch',
-        JSON.stringify(best));
+      await chooseSort('popularity');
+      await page.waitForFunction(() => /Sorted by popularity\./.test(
+        document.querySelector('#announcer')?.textContent ?? '',
+      ));
+      const popular = await cardTitles();
+      const hashAfterPopularity = await page.evaluate(() => location.hash);
+      const reportAfterPopularity = await page.$eval('#announcer', (node) => node.textContent.trim());
+      t.check('Popularity ranks the matching stories first and preserves the unranked tail',
+        JSON.stringify(popular) === JSON.stringify(popularityTitles),
+        JSON.stringify(popular));
+      t.check('Popularity writes the sort into the address and announces it',
+        hashAfterPopularity.includes('sort=popularity') && /Sorted by popularity\./.test(reportAfterPopularity),
+        JSON.stringify({ hashAfterPopularity, reportAfterPopularity }));
 
-      await choose('complete-guide');
-      const complete = await cardTitles();
-      t.check('Complete guides shows only the two explicitly classified stories',
-        complete.join('/') === 'White Tiger/Phalanx',
-        JSON.stringify(complete));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => (
+        document.querySelector('input[name="spotlights-sort"]:checked')?.value === 'popularity'
+       && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+      ));
+      t.check('Reload keeps the popularity sort and its URL',
+        await page.evaluate(() => location.hash) === hashAfterPopularity
+       && await page.$eval('input[name="spotlights-sort"]:checked', (input) => input.value) === 'popularity'
+       && JSON.stringify(await cardTitles()) === JSON.stringify(popularityTitles),
+        JSON.stringify({ hash: await page.evaluate(() => location.hash), titles: await cardTitles() }));
 
-      await choose('all');
-      t.check('returning to All restores every story', (await cardTitles()).length === 13);
+      await chooseSort('current-order');
+      const currentHash = await page.evaluate(() => location.hash);
+      t.check('returning to Current order restores the shipped order and clears the sort from the URL',
+        !currentHash.includes('sort=') && JSON.stringify(await cardTitles()) === JSON.stringify(currentTitles),
+        JSON.stringify({ hash: currentHash, titles: await cardTitles() }));
 
-      await choose('best-of');
+      await page.goBack({ waitUntil: 'load' }).catch(() => {});
+      await page.waitForFunction(() => (
+        document.querySelector('input[name="spotlights-sort"]:checked')?.value === 'popularity'
+       && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+      )).catch(() => {});
+      t.check('Back returns to the popularity sort',
+        await page.evaluate(() => location.hash) === hashAfterPopularity
+       && await page.$eval('input[name="spotlights-sort"]:checked', (input) => input.value) === 'popularity',
+        JSON.stringify({ hash: await page.evaluate(() => location.hash), checked: await page.$eval('input[name="spotlights-sort"]:checked', (input) => input.value) }));
+
+      await chooseKind('best-of');
       await page.$eval('#spotlights-q', (input) => {
         input.value = 'Phoenix';
         input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1161,7 +1236,8 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelectorAll('#spotlights-results .catalog-card').length === 1);
       t.check('search composes with the selected subset',
         (await cardTitles()).join('/') === 'Phoenix'
-        && await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'best-of',
+       && await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'best-of'
+       && await page.$eval('input[name="spotlights-sort"]:checked', (input) => input.value) === 'popularity',
         JSON.stringify(await cardTitles()));
       await click(page, '#spotlights-clear');
       await page.waitForFunction(() => (
@@ -1170,12 +1246,12 @@ const SCENARIOS = [
       t.check('clearing search restores the selected Best of subset',
         (await cardTitles()).length === 5, JSON.stringify(await cardTitles()));
 
-      await choose('all');
+      await chooseKind('all');
       await page.focus('input[name="spotlights-kind"][value="all"]');
       await page.keyboard.press('ArrowRight');
       await page.waitForFunction(() => (
         document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'best-of'
-        && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+       && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
       ));
       const keyboard = await page.evaluate(() => ({
         checked: document.querySelector('input[name="spotlights-kind"]:checked')?.value ?? null,
@@ -1186,7 +1262,7 @@ const SCENARIOS = [
         keyboard.checked === 'best-of' && keyboard.focused === 'best-of' && keyboard.cards === 5,
         JSON.stringify(keyboard));
 
-      await choose('complete-guide');
+      await chooseKind('complete-guide');
       const client = await page.createCDPSession();
       await client.send('Emulation.setEmulatedMedia', {
         features: [{ name: 'forced-colors', value: 'active' }],
@@ -1222,11 +1298,13 @@ const SCENARIOS = [
       await click(page, '[data-view="spotlights"]');
       await page.waitForFunction(() => (
         document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'complete-guide'
+        && document.querySelector('input[name="spotlights-sort"]:checked')?.value === 'popularity'
         && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
       ));
-      t.check('ordinary shelf navigation preserves Complete guides',
+      t.check('ordinary shelf navigation preserves Complete guides and popularity sort',
         await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'complete-guide'
-        && (await cardTitles()).length === 2);
+        && await page.$eval('input[name="spotlights-sort"]:checked', (input) => input.value) === 'popularity'
+        && (await page.evaluate(() => location.hash)).includes('sort=popularity'));
 
       await openBrowseCategory(page, 'storylines');
       await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
@@ -1240,29 +1318,31 @@ const SCENARIOS = [
       await page.waitForFunction(() => (
         !document.querySelector('#view-spotlights').hidden
         && document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'all'
+        && document.querySelector('input[name="spotlights-sort"]:checked')?.value === 'popularity'
         && [...document.querySelectorAll('#spotlights-results .catalog-card-title')]
           .some((node) => node.textContent.trim() === 'Essential Avengers')
+        && location.hash.includes('sort=popularity')
       ));
-      t.check('path arrival resets All so Essential Avengers cannot stay hidden', true);
+      t.check('path arrival resets All but keeps the popularity sort', true);
 
       await page.setViewport({ width: 360, height: 800 });
       await page.waitForFunction(() => matchMedia('(max-width: 620px)').matches);
       const narrow = await page.evaluate(() => {
         const heading = document.querySelector('#spotlights-h').getBoundingClientRect();
-        const filters = document.querySelector('.spotlight-filters').getBoundingClientRect();
-        const labels = [...document.querySelectorAll('.spotlight-filters label')]
+        const controls = document.querySelector('.spotlight-controls').getBoundingClientRect();
+        const labels = [...document.querySelectorAll('.spotlight-controls label')]
           .map((label) => label.getBoundingClientRect());
         return {
           viewport: innerWidth,
           scrollWidth: document.documentElement.scrollWidth,
-          filtersTop: Math.round(filters.top),
+          controlsTop: Math.round(controls.top),
           headingBottom: Math.round(heading.bottom),
           labelsVisible: labels.every((rect) => rect.left >= 0 && rect.right <= innerWidth),
         };
       });
-      t.check('the three controls wrap below the heading at 360 by 800 without horizontal overflow',
+      t.check('the spotlight controls wrap below the heading at 360 by 800 without horizontal overflow',
         narrow.scrollWidth <= narrow.viewport
-        && narrow.filtersTop >= narrow.headingBottom
+        && narrow.controlsTop >= narrow.headingBottom
         && narrow.labelsVisible,
         JSON.stringify(narrow));
     },
