@@ -988,12 +988,20 @@
     "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/",
     "guideType": "era",
     "window": "Q6",
-    "disposition": "deferred",
-    "reason": "Multi-year family program with nested event guides",
-    "sourceRetrievedAt": "2026-08-20",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable"
+    "disposition": "new-order",
+    "reason": "Shipped: exact 54-row creator-run mapping, centrally approved intentional overlaps with existing event and character guides, and catalog entry",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "judgment-day",
+      "marvels-best-phoenix-comics",
+      "white-tiger-ava-ayala",
+      "x-men-inferno",
+      "x-of-swords"
+    ],
+    "catalogIds": [
+      "hickman-x-men"
+    ],
+    "deliveryStatus": "shipped"
   },
   {
     "position": 65,

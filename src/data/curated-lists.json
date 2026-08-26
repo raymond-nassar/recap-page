@@ -693,6 +693,43 @@
       "coverIssueId": 71271
     },
     {
+      "id": "hickman-x-men",
+      "name": "Jonathan Hickman's X-Men",
+      "description": "Jonathan Hickman's Krakoa-era X-Men story from House of X and Powers of X through Inferno, limited to issues he wrote or co-wrote.",
+      "type": "creator-run",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "hickman-x-men.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/",
+      "sourceSection": "Hickman-authored Krakoa issues from House of X through Inferno",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "hickman_x_men.json",
+      "characters": [
+        "X-Men",
+        "Cyclops",
+        "Moira X",
+        "Mystique",
+        "Destiny",
+        "Krakoa"
+      ],
+      "keywords": [
+        "Jonathan Hickman",
+        "House of X",
+        "Powers of X",
+        "Dawn of X",
+        "Reign of X",
+        "Inferno",
+        "Krakoa"
+      ],
+      "expect": 54,
+      "timeline": 2019,
+      "coverIssueId": 72984
+    },
+    {
       "id": "absolute-carnage",
       "name": "Absolute Carnage",
       "description": "Carnage hunts the codices left in former symbiote hosts, drawing Venom and Spider-Man into the conflict.",

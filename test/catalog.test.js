@@ -130,6 +130,23 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
   }
 });
 
+test('the bundled Hickman X-Men order is a distinct creator run', async () => {
+  const { lists } = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
+  const entry = lists.find((list) => list.id === 'hickman-x-men');
+  assert.ok(entry, 'missing Hickman X-Men entry');
+  assert.equal(entry.type, 'creator-run');
+  assert.equal(entry.depth, 'complete');
+  assert.equal(entry.group, null);
+  assert.equal(entry.count, 54);
+
+  const order = JSON.parse(await readFile(new URL('../src/data/hickman_x_men.json', import.meta.url), 'utf8'));
+  const ids = order.items.map((item) => item.issueId);
+  assert.deepEqual(ids.slice(0, 4), [72984, 72991, 72985, 72992]);
+  assert.ok(ids.includes(90151), 'X-Men #21 closes Hickman on the title');
+  assert.deepEqual(ids.slice(-4), [96222, 96223, 96224, 96225]);
+  assert.ok(!ids.includes(112184), 'post-Hickman X-Men (2021) rows are broader Krakoa context');
+});
+
 test('every catalog cover resolves to a variant URL the browser can request', async () => {
   const url = new URL('../src/data/catalog.json', import.meta.url);
   const { lists } = parseCatalog(JSON.parse(await readFile(url, 'utf8')));
