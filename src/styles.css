@@ -369,7 +369,7 @@ a { color: var(--blue); }
 .ri .bar { display: block; height: 3px; background: var(--track); border-radius: 2px; margin-top: .45rem; overflow: hidden; }
 .ri .bar i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
-/* A reading order has no glyph of its own, so its initial stands in for one in rail mode. */
+/* A Reading Order has no glyph of its own, so its initial stands in for one in rail mode. */
 .ri .init {
   display: none; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px;
   background: rgb(var(--tint-base) / 7.059%); color: var(--text); font-size: var(--t-caption); font-weight: 700;
@@ -841,7 +841,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    it. Positioning rather than a grid column, and deliberately: the privacy copy in the Cover art
    card is extracted by a test that slices from the heading to the next `</div>`, so a wrapper
    element around the text would silently cut that extraction in half. This shape needs no wrapper
-   and no change to source order, which keeps the reading order the same as the visual order. */
+   and no change to source order, which keeps the Reading Order the same as the visual order. */
 .setting { position: relative; padding-right: 15rem; }
 .setting > .setting-ctl {
   position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%);
@@ -1520,7 +1520,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 /* ============================================================ reading screen
 
-   The refinements MRT-003 made to the active reading order. They sit after the base sections
+   The refinements MRT-003 made to the active Reading Order. They sit after the base sections
    deliberately: several of them refine a rule declared above, and the block ends with its own
    forced-colours overrides, which have to come after the two general ones or they would be
    overridden by them rather than the other way round. */
