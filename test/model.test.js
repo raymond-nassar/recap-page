@@ -1008,10 +1008,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
-  assert.equal(claimed, 6, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 6, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 76);
-  assert.equal(affected, 3);
+  assert.equal(affected, 4);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1036,8 +1036,8 @@ test('import builds its gap disclosure from the items, not from the order payloa
 // starts asserting metadata it does not have again. Every other check of the refusal builds its own
 // state and so passes with this call site reverted; the defect was never in the model.
 //
-// 4,660 of the 4,732 non-placeholder curated items carry metadata and 72 do not, so
-// `hydrated: true` over the map was a statement about the whole file that was false for 43
+// 4,660 of the 4,736 non-placeholder curated items carry metadata and 76 do not, so
+// `hydrated: true` over the map was a statement about the whole file that was false for 47
 // distinct issues.
 test('import lets each curated item speak for itself rather than asserting metadata over the file', () => {
   const main = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
@@ -1193,7 +1193,16 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
 =======
   // Deliberately edited on 2026-08-26, from 40 to 49. WandaVision added nine exact Marvel issue
   // pages that the metadata API refuses while keeping their official issue links.
+<<<<<<< HEAD
   assert.equal(refused.length, 49);
 >>>>>>> 1414b30b (Add WandaVision MCU Prep guide)
+=======
+  //
+  // Deliberately edited again the same day, from 49 to 159. The Amazing Spider-Man complete guide
+  // adds 106 checklist lines with no Marvel link, each hashed to its own placeholder id by title
+  // and order, so all 106 are distinct new refusals with nothing else in the catalog to collide
+  // with.
+  assert.equal(refused.length, 159);
+>>>>>>> a72a9a4f (Rebase Agatha baselines)
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

@@ -89,11 +89,13 @@ const frozenExcludedIds = [
   ...CBRO_BATCH_SEVEN_SELECTED_IDS,
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   ...CBRO_BATCH_NINE_SELECTED_IDS,
+  'agatha-harkness-reading-order',
   'hickman-x-men',
   'modern-x-men-fast-track',
   'ultimate-marvel-intro',
   'x-men-utopia',
   'x-men-messiah-to-avx',
+  'amazing-spider-man-reading-order-modern-marvel-era',
 ];
 
 function peerIdsForReviewedReport(id) {
@@ -112,6 +114,7 @@ function excludedIdsForReviewedReport(id, peerIds) {
       'ultimate-marvel-intro',
       'x-men-utopia',
       'modern-x-men-fast-track',
+      'amazing-spider-man-reading-order-modern-marvel-era',
     ];
   }
   return frozenExcludedIds;
@@ -404,7 +407,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 140);
+  assert.equal(catalog.lists.length, 142);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -457,7 +460,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    15,
+    16,
     'Character Spotlight count differs from the reconciled Star-Lord baseline',
   );
 });

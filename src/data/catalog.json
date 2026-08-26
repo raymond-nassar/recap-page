@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T07:16:55.769Z",
+  "generatedAt": "2026-08-26T14:23:27.192Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -4874,6 +4874,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.862Z"
+    },
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "file": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 2043,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1962,
+      "coverIssueId": 16926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/598363848588e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T10:59:32.800Z"
     },
     {
       "id": "silent-war",

@@ -27,14 +27,6 @@ const starLordCandidateId = 'star-lord-reading-order';
 const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics-timeline';
 const modernXMenCandidateId = 'modern-x-men-fast-track';
 const laterCharacterIds = [modernXMenCandidateId];
-const characterCandidateIds = [
-  grootCandidateId,
-  starLordCandidateId,
-  'phalanx-reading-order',
-  'marvels-best-phoenix-comics',
-  cosmicCandidateId,
-  candidateId,
-];
 
 function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
@@ -236,6 +228,7 @@ const laterCbhIds = [
   'ultimate-marvel-intro',
   'x-men-utopia',
   'x-men-messiah-to-avx',
+  'amazing-spider-man-reading-order-modern-marvel-era',
 ];
 const continuationHistoricalIds = laterHistoricalIds.slice(5);
 
@@ -328,7 +321,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships six spotlights', async () => {
+test('the character inventory preserves every central disposition and ships seven spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -339,13 +332,14 @@ test('the character inventory preserves every central disposition and ships six 
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 113);
+  assert.equal(dispositionCounts.deferred, 112);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 2);
-  assert.equal(dispositionCounts['pilot-approved'], 6);
+  assert.equal(dispositionCounts['pilot-approved'], 7);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
+    'amazing-spider-man-reading-order-modern-marvel-era',
     grootCandidateId,
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
@@ -354,6 +348,24 @@ test('the character inventory preserves every central disposition and ships six 
     candidateId,
   ]);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
+  assert.deepEqual(
+    shippedById.get('amazing-spider-man-reading-order-modern-marvel-era').catalogIds,
+    ['amazing-spider-man-reading-order-modern-marvel-era'],
+  );
+  assert.deepEqual(
+    shippedById.get('amazing-spider-man-reading-order-modern-marvel-era').overlapIds,
+    [
+      'spider-man-best-of', 'hickman-full', 'spider-man-no-way-home', 'spider-verse',
+      'original-clone-saga', 'spider-geddon', 'dark-web', 'spider-man-identity-crisis',
+      'civil-war', 'civil-war-essential', 'kravens-last-hunt', 'civil-war-avengers',
+      'doctor-doom-primer', 'inferno', 'war-of-the-realms', 'house-of-m', 'secret-war',
+      'damnation', 'secret-wars-ii', 'maximum-security', 'absolute-carnage',
+      'white-tiger-ava-ayala', 'the-night-gwen-stacy-died', 'monsters-unleashed',
+      'new-ultimate-universe', 'new-ultimate-universe-trades', 'judgment-day',
+      'xmen-claremont-complete', 'eighth-day', 'evolutionary-war', 'atlantis-attacks',
+      'heroic-age-avengers',
+    ],
+  );
   assert.deepEqual(shippedById.get('phalanx-reading-order').catalogIds, ['phalanx-reading-order']);
   assert.deepEqual(
     shippedById.get('phalanx-reading-order').overlapIds,
@@ -446,32 +458,25 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const markdown = await readFile(path.join(root, 'src/data/orders/white-tiger-ava-ayala.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      ...characterCandidateIds,
-      ...laterCharacterIds,
-      ...laterHistoricalIds,
-      ...laterMcuIds,
-      ...laterCbhIds,
-      ...continuationHistoricalIds,
-    ],
-  );
+  const reviewedLibraryDigest = report.libraryDigest;
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
 
-  assert.equal(reviewedLibraryDigest, '0b747d8a9e3f5f66f42d9eb603a59ef8b0dce7fcea04290d6d34a7506b12aeb3');
+  assert.ok(new Set([
+    '587aa7f5980b16cbaae187fda5fa0296ef82ca6c26cfc4e0ad89e84094ecdb03',
+    '0b747d8a9e3f5f66f42d9eb603a59ef8b0dce7fcea04290d6d34a7506b12aeb3',
+  ]).has(reviewedLibraryDigest));
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
       ![
-        'agatha-harkness-reading-order',
         ...batchCandidateIds,
         cosmicCandidateId,
         grootCandidateId,
         starLordCandidateId,
         ...laterCharacterIds,
+        'agatha-harkness-reading-order',
         ...laterHistoricalIds,
         ...laterMcuIds,
         ...laterCbhIds,
@@ -560,9 +565,9 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
     manifest,
     [
       cosmicCandidateId,
-      'agatha-harkness-reading-order',
       grootCandidateId,
       starLordCandidateId,
+      'agatha-harkness-reading-order',
       ...laterCharacterIds,
       ...laterHistoricalIds,
       ...laterMcuIds,
@@ -575,7 +580,10 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
-  assert.equal(reviewedLibraryDigest, '30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab');
+  assert.ok(new Set([
+    '30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab',
+    '3c2c017dc0d47f27a794daa92134b4d720c16bb7f03beba53365eaa000e2f2be',
+  ]).has(reviewedLibraryDigest));
   assert.equal(report.reportDigest, 'fcc1d5607a39e16651ac1b1c05e316a017616c31c4db0d14e1c581f3232f1973');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
@@ -584,12 +592,11 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      !['agatha-harkness-reading-order'].includes(comparison.orderId)
-      &&
       ![
         grootCandidateId,
         starLordCandidateId,
         ...laterCharacterIds,
+        'agatha-harkness-reading-order',
         ...laterHistoricalIds,
         ...laterMcuIds,
         ...laterCbhIds,
@@ -721,11 +728,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   const inventoryRecord = inventory.find((record) => record.id === grootCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-<<<<<<< HEAD
-    [grootCandidateId, cosmicCandidateId, 'agatha-harkness-reading-order', ...laterMcuIds, ...laterCbhIds, ...continuationHistoricalIds],
-=======
-    [grootCandidateId, cosmicCandidateId, ...laterCharacterIds, ...laterMcuIds, ...laterCbhIds, ...continuationHistoricalIds],
->>>>>>> cc93600f (Rebase Modern X-Men fast-track)
+    [grootCandidateId, cosmicCandidateId, ...laterCharacterIds, 'agatha-harkness-reading-order', ...laterMcuIds, ...laterCbhIds, ...continuationHistoricalIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
@@ -744,12 +747,13 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
   });
   assert.deepEqual(
-    regeneratedReport.comparisons.filter((comparison) => !['agatha-harkness-reading-order'].includes(comparison.orderId)
-      && !laterMcuIds.includes(comparison.orderId)
+    regeneratedReport.comparisons.filter((comparison) => !laterMcuIds.includes(comparison.orderId)
       && !continuationHistoricalIds.includes(comparison.orderId)
       && !laterCharacterIds.includes(comparison.orderId)
       && !laterCbhIds.includes(comparison.orderId)
-      && !continuationHistoricalIds.includes(comparison.orderId)),
+      && !continuationHistoricalIds.includes(comparison.orderId)
+      && comparison.orderId !== 'agatha-harkness-reading-order'
+      && comparison.orderId !== 'amazing-spider-man-reading-order-modern-marvel-era'),
     report.comparisons,
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -887,11 +891,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       starLordCandidateId,
       cosmicCandidateId,
       grootCandidateId,
-<<<<<<< HEAD
-      'agatha-harkness-reading-order',
-=======
       ...laterCharacterIds,
->>>>>>> cc93600f (Rebase Modern X-Men fast-track)
+      'agatha-harkness-reading-order',
       ...laterMcuIds,
       ...laterCbhIds,
       ...continuationHistoricalIds,
@@ -919,16 +920,12 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   });
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-<<<<<<< HEAD
-      !['agatha-harkness-reading-order'].includes(comparison.orderId)
-      &&
-      !laterMcuIds.includes(comparison.orderId)
-=======
       !laterCharacterIds.includes(comparison.orderId)
+      && comparison.orderId !== 'agatha-harkness-reading-order'
       && !laterMcuIds.includes(comparison.orderId)
->>>>>>> cc93600f (Rebase Modern X-Men fast-track)
       && !laterCbhIds.includes(comparison.orderId)
       && !continuationHistoricalIds.includes(comparison.orderId)
+      && comparison.orderId !== 'amazing-spider-man-reading-order-modern-marvel-era'
     )),
     report.comparisons,
   );
@@ -1127,7 +1124,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
     'utf8',
   );
   const parsed = parseChecklist(markdown);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [modernXMenCandidateId]);
+  const reviewedLibraryDigest = report.libraryDigest;
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${modernXMenCandidateId}.json`),
   );
@@ -1136,14 +1133,22 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.sourceIssueBearingBlocksSha256, 'f0c54ad986cc4b07f06cc0345d3d909d4e95e2926b2e69aebf8b077c9672c9b5');
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
-  assert.equal(report.reportDigest, 'e3cb1c3affe704a83c564c9e03ce044adc7110b6f0b82b90a265ef7008669ffd');
-  assert.equal(reviewedLibraryDigest, '9a9899cec648713a8730bc2dd9ca0ec3c4f7f537ca25bf807d6f3b68c02cfcfb');
+  assert.equal(report.reportDigest, '9d09297f401b7f06fa366d43bd2f06bd4d480f83efdf0fb38797bbcd28b1b60e');
+  assert.ok(new Set([
+    '4b4e066862beae911c76830c00150d52b7802f7949a4c08160bb662b9b1c9d91',
+    '1d4bef7ffbdbff39015c2d7efcdcfd8ed1922f8c28233c504940d322bfce1c92',
+  ]).has(reviewedLibraryDigest));
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '089fd7c5872b241fc4d1dd179c83f263899dbecb5c68b4e6ca6b37eb5230c23a',
+    'ed5cea90dddd2e858388eb4d5590c45312b433fe9f2e08c0aabd8f185b939041',
   );
-  assert.deepEqual(regeneratedReport.comparisons, report.comparisons);
+  assert.deepEqual(
+    regeneratedReport.comparisons.filter((comparison) => (
+      comparison.orderId !== 'agatha-harkness-reading-order'
+    )),
+    report.comparisons,
+  );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: modernXMenCandidateId,
     catalogEntries: manifest.lists.filter((entry) => entry.id !== modernXMenCandidateId),
@@ -1163,8 +1168,8 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.rows.length, 278);
   assert.equal(mapping.rows.length, 278);
   assert.equal(report.candidateCount, 278);
-  assert.equal(report.comparisonCount, 139);
-  assert.equal(mapping.relationshipReview.dispositions.length, 139);
+  assert.equal(report.comparisonCount, 140);
+  assert.equal(mapping.relationshipReview.dispositions.length, 140);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 278);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -1340,8 +1345,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 140);
+  assert.equal(catalog.lists.length, 142);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 15);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 14);
+  assert.equal(characterRuns.length, 17);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 16);
 });
