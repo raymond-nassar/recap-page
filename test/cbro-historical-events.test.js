@@ -1,4 +1,4 @@
-﻿import test from 'node:test';
+import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   access,
@@ -86,7 +86,6 @@ import {
   CBRO_RELATIONSHIP_DECISIONS,
   CBRO_RELEASES,
   CBRO_SELECTED_IDS,
-  CBH_LATER_ORDER_IDS,
   CBRO_PACKET_REVIEW,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
@@ -112,13 +111,13 @@ const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
 const blockersDir = path.join(root, 'scripts', 'data', 'cbro-blockers');
-const laterCbhOrderIds = Object.freeze([...CBH_LATER_ORDER_IDS]);
+const laterCbhOrderIds = Object.freeze([
+  'hickman-x-men',
+  'ultimate-marvel-intro',
+  'x-men-utopia',
+  'x-men-messiah-to-avx',
+]);
 const postCbroChronologyIds = Object.freeze(['ultimate-marvel-intro']);
-const laterMcuCompanionIds = [
-  'wandavision',
-  'spider-man-far-from-home',
-  'modern-x-men-fast-track',
-];
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
@@ -638,13 +637,15 @@ test('five reports bind the complete library, four peers, and central approvals'
     library,
     [
       ...CBRO_SELECTED_IDS,
-
+      ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -652,9 +653,12 @@ test('five reports bind the complete library, four peers, and central approvals'
   const existingIds = library.lists
     .filter((entry) => ![
       ...CBRO_SELECTED_IDS,
-
+      ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ].includes(entry.id))
     .map((entry) => entry.id);
@@ -667,7 +671,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       .map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [...existingIds, ...peerMappings.map((peer) => peer.id)];
     assert.equal(report.comparisonCount, expectedOrderIds.length);
-    assert.equal(report.comparisonCount, 133);
+    assert.equal(report.comparisonCount, 117);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.equal(mapping.packetReview, CBRO_PACKET_REVIEW);
@@ -684,7 +688,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -936,13 +940,15 @@ test('batch two reports authorize exactly seven named non-none relationships', a
     library,
     [
       ...CBRO_BATCH_TWO_SELECTED_IDS,
-
+      ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_TWO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -959,20 +965,24 @@ test('batch two reports authorize exactly seven named non-none relationships', a
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_TWO_SELECTED_IDS,
+          ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
+          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
-    assert.equal(report.comparisonCount, 133);
-    assert.equal(report.libraryDigest, report.libraryDigest);
+    assert.equal(report.comparisonCount, 117);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1116,13 +1126,15 @@ test('batch three reports authorize exactly five named non-none relationships', 
     library,
     [
       ...CBRO_BATCH_THREE_SELECTED_IDS,
-
+      ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_THREE_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1139,20 +1151,24 @@ test('batch three reports authorize exactly five named non-none relationships', 
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_THREE_SELECTED_IDS,
+          ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
+          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
-    assert.equal(report.comparisonCount, 133);
-    assert.equal(report.libraryDigest, report.libraryDigest);
+    assert.equal(report.comparisonCount, 117);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1282,13 +1298,15 @@ test('batch four reports authorize exactly eight named non-none relationships', 
     library,
     [
       ...CBRO_BATCH_FOUR_SELECTED_IDS,
-
+      ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_FOUR_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1305,20 +1323,24 @@ test('batch four reports authorize exactly eight named non-none relationships', 
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_FOUR_SELECTED_IDS,
+          ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
+          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
-    assert.equal(report.comparisonCount, 133);
-    assert.equal(report.libraryDigest, report.libraryDigest);
+    assert.equal(report.comparisonCount, 117);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1390,19 +1412,21 @@ test('continuation packets and mappings preserve all 32 exact source rows', asyn
   assert.equal(new Set(issueIds).size, 32);
 });
 
-test('continuation reports bind 665 comparisons and one central subset approval', async () => {
+test('continuation reports bind 580 comparisons and one central subset approval', async () => {
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
     [
       ...CBRO_CONTINUATION_SELECTED_IDS,
-
+      ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_CONTINUATION_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1420,8 +1444,12 @@ test('continuation reports bind 665 comparisons and one central subset approval'
       ...library.lists
         .filter((entry) => ![
           ...CBRO_CONTINUATION_SELECTED_IDS,
+          ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
+          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -1431,8 +1459,8 @@ test('continuation reports bind 665 comparisons and one central subset approval'
     nonNone.push(...report.comparisons.filter((comparison) => (
       comparison.relationship !== 'none'
     )).map((comparison) => ({ candidateId: id, ...comparison })));
-    assert.equal(report.comparisonCount, 133);
-    assert.equal(report.libraryDigest, report.libraryDigest);
+    assert.equal(report.comparisonCount, 117);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.equal(mapping.packetReview, CBRO_CONTINUATION_PACKET_REVIEW);
     assert.equal(mapping.relationshipReview.packetReview, CBRO_CONTINUATION_PACKET_REVIEW);
     assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
@@ -1440,13 +1468,13 @@ test('continuation reports bind 665 comparisons and one central subset approval'
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
     }));
   }
-  assert.equal(comparisonCount, 665);
+  assert.equal(comparisonCount, 585);
   assert.deepEqual(nonNone, [{
     candidateId: 'kree-skrull-war',
     orderId: 'essential-avengers',
@@ -1542,8 +1570,8 @@ test('batch two authoring ships five chronological cards and 35 exact payload ro
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   assert.ok(inventory.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1579,8 +1607,8 @@ test('batch three authoring ships three chronological cards and 48 exact payload
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   assert.ok(inventory.filter((record) => CBRO_BATCH_THREE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1722,7 +1750,7 @@ test('batch five authority preserves six evaluated records and all 70 blocked so
       && !CBRO_BATCH_SEVEN_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_EIGHT_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_NINE_SELECTED_IDS.includes(id)
-      && !laterCbhOrderIds.includes(id) && !laterMcuCompanionIds.includes(id)
+      && !laterCbhOrderIds.includes(id)
   ));
   const evaluated = inventory
     .filter((record) => CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
@@ -1851,18 +1879,20 @@ test('batch five packets and mappings preserve 71 exact source rows without excl
   assert.equal(new Set(issueIds).size, 71);
 });
 
-test('batch five reports bind 532 all-none comparisons and reject stale evidence', async () => {
+test('batch five reports bind 480 all-none comparisons and reject stale evidence', async () => {
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
     [
       ...CBRO_BATCH_FIVE_SELECTED_IDS,
+      ...CBRO_BATCH_SIX_SELECTED_IDS,
+      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_FIVE_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1879,23 +1909,33 @@ test('batch five reports bind 532 all-none comparisons and reject stale evidence
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
+          ...CBRO_BATCH_SIX_SELECTED_IDS,
+          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
     comparisonCount += report.comparisonCount;
-    assert.equal(report.comparisonCount, 133);
-    assert.equal(report.libraryDigest, report.libraryDigest);
-    assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
+    assert.equal(report.comparisonCount, 121);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.deepEqual(
+      report.comparisons.filter((comparison) => comparison.relationship !== 'none').map((comparison) => ([
+        comparison.orderId,
+        comparison.relationship,
+        comparison.sharedCount,
+      ])),
+      id === 'atlantis-attacks' ? [['agatha-harkness-reading-order', 'partial', 1]] : [],
+    );
     assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1910,14 +1950,14 @@ test('batch five reports bind 532 all-none comparisons and reject stale evidence
         packet,
         mapping,
         report: staleReport,
-        currentLibraryDigest: report.libraryDigest,
+        currentLibraryDigest: reviewedLibraryDigest,
         peerMappings,
         expectedOrderIds,
         packetValidation: { provider: CBRO_SOURCE_PROVIDER },
       }), /report|comparison/i);
     }
   }
-  assert.equal(comparisonCount, 532);
+  assert.equal(comparisonCount, 484);
 });
 
 test('batch five authoring ships four chronological cards and 71 exact payload rows', async () => {
@@ -1947,8 +1987,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     ).map((entry) => entry.id),
     CBRO_BATCH_FIVE_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   assert.ok(inventory.filter((record) => CBRO_BATCH_FIVE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2037,7 +2077,7 @@ test('batch six authority preserves six outcomes and both complete blocker recor
     !CBRO_BATCH_SEVEN_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_EIGHT_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_NINE_SELECTED_IDS.includes(id)
-      && !laterCbhOrderIds.includes(id) && !laterMcuCompanionIds.includes(id)
+      && !laterCbhOrderIds.includes(id)
   ));
   assert.deepEqual(evaluated.map((record) => record.id), CBRO_BATCH_SIX_TOUCHED_IDS);
   assert.equal(
@@ -2232,10 +2272,10 @@ test('batch six packets and mappings preserve 46 exact tracked source rows', asy
 
 test('batch six reports bind 496 all-none comparisons and reject stale evidence', async () => {
   const expectedComparisonDigests = new Map([
-    ['x-tinction-agenda', '2e32978966cbb2aa03b7e114f3da6f67bc046c7ae48397a34c09612be2f5ed44'],
-    ['operation-galactic-storm', '66d1de83116fc7cb8133710653d5604eeabcde8cd48444158b907c2a681f690a'],
-    ['dead-mans-hand', 'c13c04597a12c464881bf18c04e9bfbc932485c4a6d9159887b9f81be0678cfa'],
-    ['rise-of-the-midnight-sons', '699a33d74ccbd4d38b7e5b6dd94e18c67cef37cc8619cd94c913363fc8793cba'],
+    ['x-tinction-agenda', 'a63f8c8de79a511d144dd2aa53c9dcb01803c817e9961052d948e2c458db76a8'],
+    ['operation-galactic-storm', 'acd8366abab9ca22f237d89683b4f4414497dfdd73f90a542acfbe84063d6a2c'],
+    ['dead-mans-hand', '77724d131463e56816ac8a7858852023afe4bff8bc8a5a43c31dc7dd444b76ab'],
+    ['rise-of-the-midnight-sons', '8f4fa1aa104daf3a9ef111656b993c96669881aa5889e60bf12a0b45a6923b65'],
   ]);
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
@@ -2246,11 +2286,9 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...CBRO_BATCH_EIGHT_SELECTED_IDS,
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_SIX_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -2267,16 +2305,18 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_SIX_SELECTED_IDS,
+          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
     comparisonCount += report.comparisonCount;
-    assert.equal(report.comparisonCount, 133);
-    assert.equal(report.libraryDigest, report.libraryDigest);
+    assert.equal(report.comparisonCount, 125);
+    assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.equal(digestCanonicalJson(report.comparisons), expectedComparisonDigests.get(id));
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
@@ -2284,7 +2324,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -2299,14 +2339,14 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
         packet,
         mapping,
         report: staleReport,
-        currentLibraryDigest: report.libraryDigest,
+        currentLibraryDigest: reviewedLibraryDigest,
         peerMappings,
         expectedOrderIds,
         packetValidation: { provider: CBRO_SOURCE_PROVIDER },
       }), /report|comparison/i);
     }
   }
-  assert.equal(comparisonCount, 532);
+  assert.equal(comparisonCount, 500);
 });
 
 test('batch six authoring ships four chronological cards and 46 exact payload rows', async () => {
@@ -2328,8 +2368,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
     ).map((entry) => entry.id),
     CBRO_BATCH_SIX_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2747,35 +2787,33 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       ...CBRO_BATCH_EIGHT_SELECTED_IDS,
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const expectedDigests = new Map([
     ['time-and-time-again', {
       packet: 'eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d',
       mapping: 'e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4',
-      report: 'b26b409131dbf258dc01de85bb6b7e6d02c4988e4a1f0cbb59ca33413e7e8e38',
-      approval: '9dc26ea8d42e6d8322063cd39e90038d822954a1e65fd960b71542c4b3adfade',
+      report: '6c0620595a957e53c13ff94747d6e78d7aeee09596bfc56685d1c6aa8207efee',
+      approval: '6732a4950c9a57943ebe54227a6365e36305878b102950c4c55479ad78735f71',
     }],
     ['phalanx-covenant', {
       packet: 'a5114c1e6b5485449c95721d1534e89397562ef4946c6adfdf416987659f1d03',
       mapping: '9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718',
-      report: '0edeb12a12390d51fd7c16add303165f4956c9ae5031b453cfb13b15de0c9b3f',
-      approval: '0eae68248e319b363ddedbac0e4352aa63b0e9ece0c2002c27cc4ed2ded03334',
+      report: 'bfbb1e0db643697818f36211dc7736206863957fc1bb7eba63a67b33d72d904b',
+      approval: 'a738a98116db8c44319d19eece1755d30e5f6c902b809f586526e5ee33f5a9d6',
     }],
     ['operation-zero-tolerance', {
       packet: 'a132a3a3661900f6a5e81e9d7bc505df833a9d85cedfcc114a2b354aba637ec2',
       mapping: '498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74',
-      report: '0fa772515f340ecca0d0e04507e5132abf58bd61caf81d00b751222ba93d9bea',
-      approval: '3e9e752d6b054f57733cc1f81fa8a81882299618919e7b56fe04f88f186f1143',
+      report: 'bff59d4c87ecd9c7a1b9f987d16ed26941eb1b5cadb2525a3cdfcd07241939a3',
+      approval: '656d88f34b69db9a5fe104c701e6766ce77e28db340473e5009b4fb80a3b8e5c',
     }],
     ['spider-man-identity-crisis', {
       packet: '29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1',
       mapping: 'c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741',
-      report: 'ba37bf13d33b065fffd5a2e7090f33129a79cd0c37d10e54061bddb27578447e',
-      approval: 'fece54af697b749ffb9e53f910e11e18315e3982f6a883e1047f701c85472384',
+      report: 'eb5c4ee5e1f150fcdd11cef487bf581c68a2f2e99514395b840b37f1fcd0a2bb',
+      approval: 'ed28cf16d52b2f06452f0128646d1f311895b7d39d77622e81b234ef32df4c42',
     }],
   ]);
   const mappingById = new Map();
@@ -2802,8 +2840,8 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       ...library.lists
         .filter((candidate) => ![
           ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
@@ -2821,7 +2859,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -2832,7 +2870,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
     assert.equal(mapping.relationshipReview.approvalDigest, expected.approval);
     assert.equal(packet.rows.length, mapping.rows.length);
     assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-    assert.equal(report.comparisonCount, 133);
+    assert.equal(report.comparisonCount, 132);
     const reportNonNone = report.comparisons.filter(
       (comparison) => comparison.relationship !== 'none',
     );
@@ -2883,11 +2921,11 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       mappingById.get(id).candidateMetadata.map((candidate) => candidate.onSaleDate).sort()[0]
     ))].sort(),
   );
-  assert.equal(comparisonCount, 532);
+  assert.equal(comparisonCount, 528);
   assert.equal(issueIds.length, 45);
   assert.equal(new Set(issueIds).size, 45);
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   assert.ok(inventory.filter((record) => CBRO_BATCH_EIGHT_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -3088,18 +3126,23 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const library = await loadLibrarySnapshot();
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(
+    library,
+    [...CBRO_BATCH_NINE_SELECTED_IDS, ...laterCbhOrderIds],
+  );
+
   const expectedDigests = new Map([
     ['hunt-for-xavier', {
       packet: 'a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba',
       mapping: '5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c',
-      report: 'a153a6bbd04d8f0ff6a12c4de571e43c35b0dd9a326af3a54ea52fb35ab2a867',
-      approval: '9677d6a8691553daf28e08b71d588791c1646ca4c013a05b59131550c70f098c',
+      report: '0fad4f3034206dffebf88ffd683ce8613bd13886d9a7112f42170881e4f6f757',
+      approval: 'd149c17f9dbef34e5d0de744f55c7eb3eb94d68dd4ab2b50a3966db19d0283c4',
     }],
     ['magneto-war', {
       packet: '3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827',
       mapping: 'bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1',
-      report: 'ccc6f4401ddb3105cd395e5ea32363d758c7faf9cde028f07ecdbf3893103db6',
-      approval: '084cf9922067dd4b92758b1e7f17bfa7feb2f67e315424442594865ad1c2a5a3',
+      report: 'f2a7df9063cc766e9f08a754a016fd67988a4bee54d29d51433af7515b3dc71a',
+      approval: 'e3bef68bac53be771e2755ec3c772a971199640bd346cedf0571b769ff0e4cd4',
     }],
   ]);
   const mappingById = new Map();
@@ -3120,7 +3163,6 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
         .filter((candidate) => ![
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
@@ -3138,7 +3180,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -3147,7 +3189,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
     assert.equal(mapping.mappingDigest, expected.mapping);
     assert.equal(report.reportDigest, expected.report);
     assert.equal(mapping.relationshipReview.approvalDigest, expected.approval);
-    assert.equal(report.comparisonCount, 133);
+    assert.equal(report.comparisonCount, 134);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     issueIds.push(...mapping.rows.map((row) => String(row.selectedIssueId)));
     comparisonCount += report.comparisonCount;
@@ -3162,7 +3204,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
   );
   assert.equal(issueIds.length, 14);
   assert.equal(new Set(issueIds).size, 14);
-  assert.equal(comparisonCount, 266);
+  assert.equal(comparisonCount, 268);
   const stale = structuredClone(mappingById.get('hunt-for-xavier'));
   stale.rows[0].selectedIssueId += 1;
   assert.throws(() => validateMappingDigest(stale), /mapping digest is stale/);
@@ -3172,8 +3214,8 @@ test('batch nine product output and maintained records close the sequential sour
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   for (const [id, count] of [['hunt-for-xavier', 6], ['magneto-war', 8]]) {
     const entry = manifest.lists.find((candidate) => candidate.id === id);
     const catalogEntry = catalog.lists.find((candidate) => candidate.id === id);
@@ -3216,31 +3258,29 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       ...CBRO_BATCH_EIGHT_SELECTED_IDS,
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
-      ...laterMcuCompanionIds,
 
     ],
   );
-  void reviewedLibraryDigest;
   const issueIds = [];
   let comparisonCount = 0;
   const expectedDigests = new Map([
     ['x-cutioners-song', {
       packet: 'ee73d3140c7b22e81fb5a68ba699fe05acd1674ecd66704df9519defa80183f3',
       mapping: '0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582',
-      report: '061f19bbdaa19bb32fc53ad8d862edc496221fcbd4eb70058e261ddb6b20d330',
-      approval: '876407d34544bbb7065dafade1c7c1bd8e1510a397bbe0a8d2f72a50b37fe99c',
+      report: '9fa0146e69592515835b3f4319432771fa25a1e702fc436f7e963c44b57a3596',
+      approval: '6872e77852eebbba5ec9058fd10b5b91f30f258998ff9aafaa1103e22eb03768',
     }],
     ['mys-tech-wars', {
       packet: '8f536f7d5fc44fbcc07f3245f2e1ed3a287d7b6cf4629dd4a4f1bb0ef7590705',
       mapping: '1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306',
-      report: '896b476d7a3c452d685dbf7ddd02ee98e37f276f8a9085c9b15b2d0717219706',
-      approval: '254cfd920fa89088e0089943ce8abac3ece12cab2bd2e41e8a34c881273605dd',
+      report: '82aaf3e5e4a858d531720b97e614213b2dbdfae45c141dcfd9be3c94798b24c5',
+      approval: '9be8477a3e6484853f1d540f13db87474b907ce9d60039013115d30b3094d099',
     }],
     ['fatal-attractions', {
       packet: '2f52914f5c42ab4c8459064bdafac5f932b7f628f00fbae37e1b16f409016bbb',
       mapping: '30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9',
-      report: '684d93be69a933649cbdfe2f8cd906e380ba0cbde6649cfafc5ad0d15e5bf162',
-      approval: 'ddced48ee3abf4097a3e1db053ca00ca0a2092a5e1102b2af2b7be58865abb9d',
+      report: '07b4c71c444108e478fb2e18cb1f9e6b73ad25abd1fa39637cd77209189197dd',
+      approval: '247ea55cc8ab31ea464e51b60464f5a68c80f24be57bd93267fef5aa81e77809',
     }],
   ]);
   const mappingById = new Map();
@@ -3262,8 +3302,9 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       ...library.lists
         .filter((candidate) => ![
           ...CBRO_BATCH_SEVEN_SELECTED_IDS,
+          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
-          ...laterMcuCompanionIds,
 
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
@@ -3281,7 +3322,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       packet,
       mapping,
       report,
-      currentLibraryDigest: report.libraryDigest,
+      currentLibraryDigest: reviewedLibraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -3292,7 +3333,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
     assert.equal(report.reportDigest, expected.report);
     assert.equal(mapping.relationshipReview.approvalDigest, expected.approval);
     assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-    assert.equal(report.comparisonCount, 133);
+    assert.equal(report.comparisonCount, 128);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.equal(entry.depth, 'complete');
     assert.equal(catalogEntry.depth, 'complete');
@@ -3311,11 +3352,11 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       mappingById.get(id).candidateMetadata.map((candidate) => candidate.onSaleDate).sort()[0]
     ))].sort(),
   );
-  assert.equal(comparisonCount, 399);
+  assert.equal(comparisonCount, 384);
   assert.equal(issueIds.length, 23);
   assert.equal(new Set(issueIds).size, 23);
-  assert.equal(manifest.lists.length, 144);
-  assert.equal(catalog.lists.length, 144);
+  assert.equal(manifest.lists.length, 138);
+  assert.equal(catalog.lists.length, 138);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SEVEN_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));

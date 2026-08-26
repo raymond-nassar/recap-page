@@ -2,13 +2,19 @@
   "candidateId": "ultimate-marvel-intro",
   "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
   "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-  "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
+  "libraryDigest": "3df0f46d8e52a05084d0c13019e8f28703d2c158c7ec92019b1632977f414595",
   "peerDigests": {},
   "candidateCount": 121,
-  "comparisonCount": 134,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -267,6 +273,12 @@
     },
     {
       "orderId": "hickman-minimal",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -782,6 +794,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -812,5 +830,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "2aa868c40a55630fbc8d5a53b9baa93a255148a9b5e28c0ac2869f9b7e19f358"
+  "reportDigest": "4b1a728dfb754964b684c41fb3a2ae2e67925ff2ff1b1bea60d055f052dc52ce"
 }

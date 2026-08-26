@@ -1,0 +1,3122 @@
+{
+  "id": "agatha-harkness-reading-order",
+  "name": "Agatha Harkness",
+  "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+  "source": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T07:16:55.688Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 104,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12903,
+      "title": "Fantastic Four (1961) #107",
+      "number": "107",
+      "url": "https://www.marvel.com/comics/issue/12903/fantastic_four_1961_107",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-02-01T00:00:00+0000",
+      "mu": "1971-02-01T00:00:00+0000",
+      "digitalId": 10734,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/6728e6c1d021f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12905,
+      "title": "Fantastic Four (1961) #109",
+      "number": "109",
+      "url": "https://www.marvel.com/comics/issue/12905/fantastic_four_1961_109",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-04-01T00:00:00+0000",
+      "mu": "1971-04-01T00:00:00+0000",
+      "digitalId": 10736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5ab405bb055fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12907,
+      "title": "Fantastic Four (1961) #110",
+      "number": "110",
+      "url": "https://www.marvel.com/comics/issue/12907/fantastic_four_1961_110",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-05-01T00:00:00+0000",
+      "mu": "1971-05-01T00:00:00+0000",
+      "digitalId": 10737,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/5ab40b31cc646",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12908,
+      "title": "Fantastic Four (1961) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/12908/fantastic_four_1961_111",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-06-01T00:00:00+0000",
+      "mu": "1971-06-01T00:00:00+0000",
+      "digitalId": 1208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5ab40f155981a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12909,
+      "title": "Fantastic Four (1961) #112",
+      "number": "112",
+      "url": "https://www.marvel.com/comics/issue/12909/fantastic_four_1961_112",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-07-01T00:00:00+0000",
+      "mu": "1971-07-01T00:00:00+0000",
+      "digitalId": 5859,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/4bb7a9df2f608",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12910,
+      "title": "Fantastic Four (1961) #113",
+      "number": "113",
+      "url": "https://www.marvel.com/comics/issue/12910/fantastic_four_1961_113",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-08-01T00:00:00+0000",
+      "mu": "1971-08-01T00:00:00+0000",
+      "digitalId": 10738,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5ab417965d443",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 12911,
+      "title": "Fantastic Four (1961) #114",
+      "number": "114",
+      "url": "https://www.marvel.com/comics/issue/12911/fantastic_four_1961_114",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-09-01T00:00:00+0000",
+      "mu": "1971-09-01T00:00:00+0000",
+      "digitalId": 10739,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5ab8f755ef26e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 12913,
+      "title": "Fantastic Four (1961) #116",
+      "number": "116",
+      "url": "https://www.marvel.com/comics/issue/12913/fantastic_four_1961_116",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-11-01T00:00:00+0000",
+      "mu": "1971-11-01T00:00:00+0000",
+      "digitalId": 5860,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/4bb7a8ce86475",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12914,
+      "title": "Fantastic Four (1961) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/12914/fantastic_four_1961_117",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1971-12-01T00:00:00+0000",
+      "mu": "1971-12-01T00:00:00+0000",
+      "digitalId": 22834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5ab90cc03f082",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12918,
+      "title": "Fantastic Four (1961) #120",
+      "number": "120",
+      "url": "https://www.marvel.com/comics/issue/12918/fantastic_four_1961_120",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1972-03-01T00:00:00+0000",
+      "mu": "1972-03-01T00:00:00+0000",
+      "digitalId": 22844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5ab91cee66b83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12921,
+      "title": "Fantastic Four (1961) #123",
+      "number": "123",
+      "url": "https://www.marvel.com/comics/issue/12921/fantastic_four_1961_123",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1972-06-01T00:00:00+0000",
+      "mu": "1972-06-01T00:00:00+0000",
+      "digitalId": 22851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5ab938072819c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12925,
+      "title": "Fantastic Four (1961) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/12925/fantastic_four_1961_127",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1972-10-01T00:00:00+0000",
+      "mu": "1972-10-01T00:00:00+0000",
+      "digitalId": 22873,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5ab94d4d62010",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12927,
+      "title": "Fantastic Four (1961) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/12927/fantastic_four_1961_129",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1972-12-01T00:00:00+0000",
+      "mu": "2012-06-01T00:00:00+0000",
+      "digitalId": 26869,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5ab95ae1458ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12940,
+      "title": "Fantastic Four (1961) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/12940/fantastic_four_1961_140",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1973-11-01T00:00:00+0000",
+      "mu": "2012-06-15T00:00:00+0000",
+      "digitalId": 26926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/50b4340cddb1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12941,
+      "title": "Fantastic Four (1961) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/12941/fantastic_four_1961_141",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1973-12-01T00:00:00+0000",
+      "mu": "2012-06-27T00:00:00+0000",
+      "digitalId": 26927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/50adcadb3d05c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6983,
+      "title": "Avengers (1963) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/6983/avengers_1963_127",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1974-09-01T00:00:00+0000",
+      "mu": "1974-09-01T00:00:00+0000",
+      "digitalId": 5124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4bb6deb39058f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 12951,
+      "title": "Fantastic Four (1961) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/12951/fantastic_four_1961_150",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1974-09-01T00:00:00+0000",
+      "mu": "1974-09-01T00:00:00+0000",
+      "digitalId": 5863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/4bb7a8b1c2d62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6984,
+      "title": "Avengers (1963) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/6984/avengers_1963_128",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1974-10-01T00:00:00+0000",
+      "mu": "1974-10-01T00:00:00+0000",
+      "digitalId": 29960,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/5878f439d6843",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 6985,
+      "title": "Avengers (1963) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/6985/avengers_1963_129",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1974-11-01T00:00:00+0000",
+      "mu": "1974-11-01T00:00:00+0000",
+      "digitalId": 29256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/04/5878fdf9cb3fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20021,
+      "title": "Giant-Size Avengers (1974) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/20021/giant-size_avengers_1974_2",
+      "seriesId": 3729,
+      "seriesName": "Giant-Size Avengers (1974)",
+      "onSale": "1974-11-10T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 37071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/57f267a7b2aaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 68,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6987,
+      "title": "Avengers (1963) #130",
+      "number": "130",
+      "url": "https://www.marvel.com/comics/issue/6987/avengers_1963_130",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1974-12-01T00:00:00+0000",
+      "mu": "1974-12-01T00:00:00+0000",
+      "digitalId": 29258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/58790646068ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6990,
+      "title": "Avengers (1963) #133",
+      "number": "133",
+      "url": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1975-03-01T00:00:00+0000",
+      "mu": "1975-03-01T00:00:00+0000",
+      "digitalId": 29286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/587e382724977",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6991,
+      "title": "Avengers (1963) #134",
+      "number": "134",
+      "url": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1975-04-01T00:00:00+0000",
+      "mu": "1975-04-01T00:00:00+0000",
+      "digitalId": 29255,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/587e40fce0e56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20023,
+      "title": "Giant-Size Avengers (1974) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "seriesId": 3729,
+      "seriesName": "Giant-Size Avengers (1974)",
+      "onSale": "1975-06-01T00:00:00+0000",
+      "mu": "1975-06-01T00:00:00+0000",
+      "digitalId": 6024,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4bb68ad96310c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12985,
+      "title": "Fantastic Four (1961) #181",
+      "number": "181",
+      "url": "https://www.marvel.com/comics/issue/12985/fantastic_four_1961_181",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1977-04-01T00:00:00+0000",
+      "mu": "1977-04-01T00:00:00+0000",
+      "digitalId": 31114,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5aba6c206289e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12986,
+      "title": "Fantastic Four (1961) #182",
+      "number": "182",
+      "url": "https://www.marvel.com/comics/issue/12986/fantastic_four_1961_182",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1977-05-01T00:00:00+0000",
+      "mu": "1977-05-01T00:00:00+0000",
+      "digitalId": 31115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5214f5f93e383",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12989,
+      "title": "Fantastic Four (1961) #185",
+      "number": "185",
+      "url": "https://www.marvel.com/comics/issue/12989/fantastic_four_1961_185",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1977-08-01T00:00:00+0000",
+      "mu": "1977-08-01T00:00:00+0000",
+      "digitalId": 5873,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5aba911827736",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12990,
+      "title": "Fantastic Four (1961) #186",
+      "number": "186",
+      "url": "https://www.marvel.com/comics/issue/12990/fantastic_four_1961_186",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1977-09-01T00:00:00+0000",
+      "mu": "1977-09-01T00:00:00+0000",
+      "digitalId": 5874,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5aba969061c27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12991,
+      "title": "Fantastic Four (1961) #187",
+      "number": "187",
+      "url": "https://www.marvel.com/comics/issue/12991/fantastic_four_1961_187",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1977-10-01T00:00:00+0000",
+      "mu": "1977-10-01T00:00:00+0000",
+      "digitalId": 1071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4bc480499d7db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12992,
+      "title": "Fantastic Four (1961) #188",
+      "number": "188",
+      "url": "https://www.marvel.com/comics/issue/12992/fantastic_four_1961_188",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1977-11-01T00:00:00+0000",
+      "mu": "1977-11-01T00:00:00+0000",
+      "digitalId": 5876,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb7a708110ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12996,
+      "title": "Fantastic Four (1961) #191",
+      "number": "191",
+      "url": "https://www.marvel.com/comics/issue/12996/fantastic_four_1961_191",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1978-02-01T00:00:00+0000",
+      "mu": "1978-02-01T00:00:00+0000",
+      "digitalId": 5877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/4bb7a696a4553",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12998,
+      "title": "Fantastic Four (1961) #193",
+      "number": "193",
+      "url": "https://www.marvel.com/comics/issue/12998/fantastic_four_1961_193",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1978-04-01T00:00:00+0000",
+      "mu": "1978-04-01T00:00:00+0000",
+      "digitalId": 29983,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5abba38ce6ac9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12999,
+      "title": "Fantastic Four (1961) #194",
+      "number": "194",
+      "url": "https://www.marvel.com/comics/issue/12999/fantastic_four_1961_194",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1978-05-01T00:00:00+0000",
+      "mu": "1978-05-01T00:00:00+0000",
+      "digitalId": 29986,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/5abba901c7beb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13001,
+      "title": "Fantastic Four (1961) #196",
+      "number": "196",
+      "url": "https://www.marvel.com/comics/issue/13001/fantastic_four_1961_196",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1978-07-01T00:00:00+0000",
+      "mu": "1978-07-01T00:00:00+0000",
+      "digitalId": 29988,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/5abbb2feef102",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8691,
+      "title": "Fantastic Four Annual (1963) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/8691/fantastic_four_annual_1963_13",
+      "seriesId": 2012,
+      "seriesName": "Fantastic Four Annual (1963 - 1994)",
+      "onSale": "1978-01-01T00:00:00+0000",
+      "mu": "1978-01-01T00:00:00+0000",
+      "digitalId": 43117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5ad7730896b2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13011,
+      "title": "Fantastic Four (1961) #204",
+      "number": "204",
+      "url": "https://www.marvel.com/comics/issue/13011/fantastic_four_1961_204",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1979-03-01T00:00:00+0000",
+      "mu": "2012-07-26T00:00:00+0000",
+      "digitalId": 22689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/50ad8f0e24a2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8692,
+      "title": "Fantastic Four Annual (1963) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/8692/fantastic_four_annual_1963_14",
+      "seriesId": 2012,
+      "seriesName": "Fantastic Four Annual (1963 - 1994)",
+      "onSale": "1979-01-01T00:00:00+0000",
+      "mu": "1979-01-01T00:00:00+0000",
+      "digitalId": 5960,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4c364ecac83ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "writer"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13031,
+      "title": "Fantastic Four (1961) #222",
+      "number": "222",
+      "url": "https://www.marvel.com/comics/issue/13031/fantastic_four_1961_222",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1980-09-01T00:00:00+0000",
+      "mu": "1980-09-01T00:00:00+0000",
+      "digitalId": 31120,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/526173bc5ab71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13032,
+      "title": "Fantastic Four (1961) #223",
+      "number": "223",
+      "url": "https://www.marvel.com/comics/issue/13032/fantastic_four_1961_223",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1980-10-01T00:00:00+0000",
+      "mu": "1980-10-01T00:00:00+0000",
+      "digitalId": 31121,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/52617384eda1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Moench",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18460,
+      "title": "Vision and the Scarlet Witch (1985) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18460/vision_and_the_scarlet_witch_1985_3",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "onSale": "1985-12-01T00:00:00+0000",
+      "mu": "1985-12-01T00:00:00+0000",
+      "digitalId": 21807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5c9902d7c1d51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Howell",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18461,
+      "title": "Vision and the Scarlet Witch (1985) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/18461/vision_and_the_scarlet_witch_1985_4",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "onSale": "1986-01-01T00:00:00+0000",
+      "mu": "1986-01-01T00:00:00+0000",
+      "digitalId": 21812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5c990a40cee61",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Howell",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18462,
+      "title": "Vision and the Scarlet Witch (1985) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/18462/vision_and_the_scarlet_witch_1985_5",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "onSale": "1986-02-01T00:00:00+0000",
+      "mu": "1986-02-01T00:00:00+0000",
+      "digitalId": 21813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5c99107971e24",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jack Abel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Howell",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17792,
+      "title": "West Coast Avengers (1985) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/17792/west_coast_avengers_1985_50",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-11-01T00:00:00+0000",
+      "mu": "2009-11-24T00:00:00+0000",
+      "digitalId": 5267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5ca4e179125a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17793,
+      "title": "West Coast Avengers (1985) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/17793/west_coast_avengers_1985_51",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-11-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 9863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5ca4f9bcce7eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17794,
+      "title": "West Coast Avengers (1985) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-12-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 10934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ca502dc73d37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 7190,
+      "title": "Avengers (1963) #313",
+      "number": "313",
+      "url": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2012-07-19T00:00:00+0000",
+      "digitalId": 21874,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/4e9496d04f378",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17797,
+      "title": "West Coast Avengers (1985) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/17797/west_coast_avengers_1985_55",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1990-02-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 10937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5ca515a89778b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17798,
+      "title": "West Coast Avengers (1985) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/17798/west_coast_avengers_1985_56",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1990-03-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 10938,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5ca5fcf4b6e1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 17799,
+      "title": "West Coast Avengers (1985) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/17799/west_coast_avengers_1985_57",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1990-04-01T00:00:00+0000",
+      "mu": "1990-04-01T00:00:00+0000",
+      "digitalId": 10939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/4bb5879b3b89f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 17803,
+      "title": "West Coast Avengers (1985) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/17803/west_coast_avengers_1985_61",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 10941,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5ca61b3033e87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17804,
+      "title": "West Coast Avengers (1985) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/17804/west_coast_avengers_1985_62",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1990-09-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 10942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5ca6243e8c67b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17805,
+      "title": "West Coast Avengers (1985) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/17805/west_coast_avengers_1985_63",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1990-10-01T00:00:00+0000",
+      "mu": "1990-10-01T00:00:00+0000",
+      "digitalId": 47215,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5bd34491574fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9294,
+      "title": "Infinity War (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9294/infinity_war_1992_3",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 3367,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/51f696aa57eb3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18453,
+      "title": "Warlock and the Infinity Watch (1992) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/18453/warlock_and_the_infinity_watch_1992_8",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 7506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/4c36078543316",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13192,
+      "title": "Fantastic Four (1961) #368",
+      "number": "368",
+      "url": "https://www.marvel.com/comics/issue/13192/fantastic_four_1961_368",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 31219,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5294ee52376b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18261,
+      "title": "Wonder Man (1991) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/18261/wonder_man_1991_13",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 18926,
+      "title": "Quasar (1989) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/18926/quasar_1989_38",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 9295,
+      "title": "Infinity War (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9295/infinity_war_1992_4",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 3368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/51f6969dce931",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12651,
+      "title": "Alpha Flight (1983) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/12651/alpha_flight_1983_111",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 18262,
+      "title": "Wonder Man (1991) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/18262/wonder_man_1991_14",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 20208,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/20208/doctor_strange_sorcerer_supreme_1988_46",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 49082,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5b888712313f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20209,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/20209/doctor_strange_sorcerer_supreme_1988_47",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 49083,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5b8887d5cd53c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Petrecca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geof Isherwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9297,
+      "title": "Infinity War (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9297/infinity_war_1992_6",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 3370,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/51f69686e27c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73576,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/73576/darkhold_pages_from_the_book_of_sins_1992_4",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 49877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5ba52e6f4e54f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norman Felche",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73577,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73577/darkhold_pages_from_the_book_of_sins_1992_5",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 49878,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5ba52e5045806",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ariane Lenshoek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Bigley",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Case",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73578,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73578/darkhold_pages_from_the_book_of_sins_1992_6",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 49879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5ba52db4c971b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ariane Lenshoek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Woch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Bigley",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Case",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73579,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/73579/darkhold_pages_from_the_book_of_sins_1992_7",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 49880,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/5ba52e2b02bf2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rurik Tyler",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13196,
+      "title": "Fantastic Four (1961) #371",
+      "number": "371",
+      "url": "https://www.marvel.com/comics/issue/13196/fantastic_four_1961_371",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 31222,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/526696a320ffb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13197,
+      "title": "Fantastic Four (1961) #372",
+      "number": "372",
+      "url": "https://www.marvel.com/comics/issue/13197/fantastic_four_1961_372",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 31223,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/526164c519e07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13198,
+      "title": "Fantastic Four (1961) #373",
+      "number": "373",
+      "url": "https://www.marvel.com/comics/issue/13198/fantastic_four_1961_373",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 31224,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/52616320f31cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13199,
+      "title": "Fantastic Four (1961) #374",
+      "number": "374",
+      "url": "https://www.marvel.com/comics/issue/13199/fantastic_four_1961_374",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 31225,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5294ecb3255f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13200,
+      "title": "Fantastic Four (1961) #375",
+      "number": "375",
+      "url": "https://www.marvel.com/comics/issue/13200/fantastic_four_1961_375",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 31226,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/5261623799708",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13201,
+      "title": "Fantastic Four (1961) #376",
+      "number": "376",
+      "url": "https://www.marvel.com/comics/issue/13201/fantastic_four_1961_376",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "1993-05-01T00:00:00+0000",
+      "digitalId": 31240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/526161aea1155",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13202,
+      "title": "Fantastic Four (1961) #377",
+      "number": "377",
+      "url": "https://www.marvel.com/comics/issue/13202/fantastic_four_1961_377",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 31241,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5294ec4ce70cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57094,
+      "title": "Scarlet Witch (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57094/scarlet_witch_2015_1",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2015-12-09T00:00:00+0000",
+      "mu": "2016-06-13T00:00:00+0000",
+      "digitalId": 40660,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/565f5a69631d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13246,
+      "title": "Fantastic Four (1961) #416",
+      "number": "416",
+      "url": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5ac7dbbcd54d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13322,
+      "title": "Fantastic Four (1996) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/13322/fantastic_four_1996_7",
+      "seriesId": 2123,
+      "seriesName": "Fantastic Four (1996 - 1997)",
+      "onSale": "1997-05-01T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3336,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bc35f2f572c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom McWeeney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Choi",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15135,
+      "title": "Silver Surfer (1987) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/15135/silver_surfer_1987_135",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1998-01-01T00:00:00+0000",
+      "mu": "1998-01-01T00:00:00+0000",
+      "digitalId": 51516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/5ce2ccac5e5ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15136,
+      "title": "Silver Surfer (1987) #136",
+      "number": "136",
+      "url": "https://www.marvel.com/comics/issue/15136/silver_surfer_1987_136",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1998-02-01T00:00:00+0000",
+      "mu": "1998-02-01T00:00:00+0000",
+      "digitalId": 51517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/04/5ce2ccf79f8f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cary Nord",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15137,
+      "title": "Silver Surfer (1987) #137",
+      "number": "137",
+      "url": "https://www.marvel.com/comics/issue/15137/silver_surfer_1987_137",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1998-03-01T00:00:00+0000",
+      "mu": "1998-03-01T00:00:00+0000",
+      "digitalId": 51518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5ce2cd20843e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17491,
+      "title": "Avengers (1998) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/17491/avengers_1998_10",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1998-11-10T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/58516c235127a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": []
+    },
+    {
+      "issueId": 17492,
+      "title": "Avengers (1998) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/17492/avengers_1998_11",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1998-12-10T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5121,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/50/5854065669f35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": []
+    },
+    {
+      "issueId": 923,
+      "title": "Avengers (1998) #503",
+      "number": "503",
+      "url": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2004-11-03T00:00:00+0000",
+      "mu": "2004-11-03T00:00:00+0000",
+      "digitalId": 3903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/4f5a4f71e8dd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57311,
+      "title": "Vision (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57311/vision_2015_3",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-01-06T00:00:00+0000",
+      "mu": "2016-07-11T00:00:00+0000",
+      "digitalId": 40814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/568aa87faf2ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57314,
+      "title": "Vision (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57314/vision_2015_6",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/56fed74db493a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco D'ALFONSO",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57315,
+      "title": "Vision (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57315/vision_2015_7",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41563,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5727b3e39c805",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57319,
+      "title": "Vision (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57319/vision_2015_11",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42650,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/57d07176697ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57097,
+      "title": "Scarlet Witch (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57097/scarlet_witch_2015_2",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-01-13T00:00:00+0000",
+      "mu": "2016-07-11T00:00:00+0000",
+      "digitalId": 40859,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/567abbe0e4270",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57099,
+      "title": "Scarlet Witch (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57099/scarlet_witch_2015_3",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-02-03T00:00:00+0000",
+      "mu": "2016-08-01T00:00:00+0000",
+      "digitalId": 41074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/56a7c0a23d85a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57100,
+      "title": "Scarlet Witch (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57100/scarlet_witch_2015_4",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-03-16T00:00:00+0000",
+      "mu": "2016-09-19T00:00:00+0000",
+      "digitalId": 41418,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/56e3350ca4454",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Dillon",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57104,
+      "title": "Scarlet Witch (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57104/scarlet_witch_2015_8",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42053,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/577537bec36c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Tula Lotay",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57108,
+      "title": "Scarlet Witch (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57108/scarlet_witch_2015_12",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-11-02T00:00:00+0000",
+      "mu": "2017-05-08T00:00:00+0000",
+      "digitalId": 43173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/58052854c0f37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "penciler"
+        },
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60028,
+      "title": "Scarlet Witch (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/60028/scarlet_witch_2015_13",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-12-07T00:00:00+0000",
+      "mu": "2017-06-12T00:00:00+0000",
+      "digitalId": 43446,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/583da3fc94707",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Marks",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60029,
+      "title": "Scarlet Witch (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/60029/scarlet_witch_2015_14",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2017-01-04T00:00:00+0000",
+      "mu": "2017-07-10T00:00:00+0000",
+      "digitalId": 43835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/585c12d377abf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Shawn Crystal",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60138,
+      "title": "Scarlet Witch (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/60138/scarlet_witch_2015_15",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44123,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/58a47b9798962",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Vanesa Del Rey",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80065,
+      "title": "Doctor Strange Annual (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/80065/doctor_strange_annual_2019_1",
+      "seriesId": 28290,
+      "seriesName": "Doctor Strange Annual (2019)",
+      "onSale": "2019-10-30T00:00:00+0000",
+      "mu": "2020-05-04T00:00:00+0000",
+      "digitalId": 52786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5daf69b0ea180",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andy Macdonald",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ariel Olivetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Lalit Kumar",
+          "role": "penciler"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77235,
+      "title": "Captain America (2018) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/77235/captain_america_2018_19",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5e28a32636e95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Masters",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77238,
+      "title": "Captain America (2018) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/77238/captain_america_2018_22",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)",
+      "onSale": "2020-08-19T00:00:00+0000",
+      "mu": "2020-08-19T00:00:00+0000",
+      "digitalId": 54861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5f2c343f5e779",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77239,
+      "title": "Captain America (2018) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/77239/captain_america_2018_23",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-09-16T00:00:00+0000",
+      "digitalId": 55405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/5f594325d6835",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76737,
+      "title": "Fantastic Four: Antithesis (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76737/fantastic_four_antithesis_2020_1",
+      "seriesId": 27550,
+      "seriesName": "Fantastic Four: Antithesis (2020)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-11-30T00:00:00+0000",
+      "digitalId": 55390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5f3d36c25a243",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76741,
+      "title": "Fantastic Four: Antithesis (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76741/fantastic_four_antithesis_2020_4",
+      "seriesId": 27550,
+      "seriesName": "Fantastic Four: Antithesis (2020)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/601afd5cdd6ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79805,
+      "title": "Strange Academy (2020) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/79805/strange_academy_2020_8",
+      "seriesId": 28177,
+      "seriesName": "Strange Academy (2020 - 2022)",
+      "onSale": "2021-02-03T00:00:00+0000",
+      "mu": "2021-05-10T00:00:00+0000",
+      "digitalId": 56178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/6009e1e781a07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77243,
+      "title": "Captain America (2018) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/77243/captain_america_2018_27",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)",
+      "onSale": "2021-02-17T00:00:00+0000",
+      "mu": "2021-05-24T00:00:00+0000",
+      "digitalId": 56007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/6026d1a6b61cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89543,
+      "title": "Captain America (2018) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/89543/captain_america_2018_28",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)",
+      "onSale": "2021-03-31T00:00:00+0000",
+      "mu": "2021-07-05T00:00:00+0000",
+      "digitalId": 56390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/605cee44d93ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

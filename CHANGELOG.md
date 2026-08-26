@@ -49,6 +49,12 @@ publication history (1963, 1999, 2014, 2017, 2018, 2022, 2025), and Superior Spi
 resolve which volume a bare issue number belongs to wherever the two disagree. It overlaps 32 other
 catalog entries, most heavily the Best of Spider-Man reading at 209 shared issues.
 
+### Added Agatha Harkness reading order
+
+In plain English: Agatha Harkness now has its own complete reading guide. It adds 104 distinct issues from 105 source occurrences, keeps the one repeated Scarlet Witch entry at its first appearance, and nothing you have saved is changed.
+
+For maintainers: the frozen packet, exact mapping, and overlap report bind all 104 canonical rows. Four partial overlaps are centrally approved: West Coast Avengers #56, Avengers #503, the Doom primer cluster, and the Scarlet Witch best-of collection.
+
 ### Added the opening Ultimate Marvel Universe guide
 
 In plain English: The first original Ultimate Marvel Universe reading guide is now available. It

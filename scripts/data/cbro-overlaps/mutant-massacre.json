@@ -2,16 +2,22 @@
   "candidateId": "mutant-massacre",
   "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
   "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-  "libraryDigest": "b5ed89be76bef1fd9d4a7f5fd3aa67cf1f9e37e7e55805564e93b70afdca5f43",
+  "libraryDigest": "dfbee8e5ae8413d92ad40f8e8f4107c53d06532487ca7810e54d36f3d92d2e35",
   "peerDigests": {
     "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
     "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
   },
   "candidateCount": 11,
-  "comparisonCount": 133,
+  "comparisonCount": 117,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -42,12 +48,6 @@
     },
     {
       "orderId": "apocalypse-wars",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "atlantis-attacks",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -161,18 +161,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "days-of-future-present",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "dead-mans-hand",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "death-of-doctor-strange",
       "sharedCount": 0,
       "sharedIds": [],
@@ -215,12 +203,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "evolutionary-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "fall-house-x-rise-powers-x",
       "sharedCount": 0,
       "sharedIds": [],
@@ -228,12 +210,6 @@
     },
     {
       "orderId": "fall-of-the-mutants",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "fatal-attractions",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -293,18 +269,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "hunt-for-xavier",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "inferno",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "infinite-destinies",
       "sharedCount": 0,
       "sharedIds": [],
@@ -354,12 +318,6 @@
     },
     {
       "orderId": "last-annihilation",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -437,12 +395,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "mys-tech-wars",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -461,25 +413,7 @@
       "relationship": "none"
     },
     {
-      "orderId": "operation-galactic-storm",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "operation-zero-tolerance",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "original-clone-saga",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "phalanx-covenant",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -516,12 +450,6 @@
     },
     {
       "orderId": "revolutionary-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "rise-of-the-midnight-sons",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -605,12 +533,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-identity-crisis",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-no-way-home",
       "sharedCount": 0,
       "sharedIds": [],
@@ -659,12 +581,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "time-and-time-again",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -702,12 +618,6 @@
     },
     {
       "orderId": "wraith-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "x-cutioners-song",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -791,12 +701,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-tinction-agenda",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "xmen-claremont",
       "sharedCount": 11,
       "sharedIds": [
@@ -833,5 +737,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "628f3e7962efe84a5eaabbd3a6fb430dae9dc60d097e338e2eb910deffe71544"
+  "reportDigest": "adb50cb0f7f6b4ff8bab0e01ba6359b8977d2cb0a773b774ac852de415946114"
 }

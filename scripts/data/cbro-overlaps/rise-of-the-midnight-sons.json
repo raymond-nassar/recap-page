@@ -2,17 +2,23 @@
   "candidateId": "rise-of-the-midnight-sons",
   "packetDigest": "6029323e308e00b27b48d4ae71a856faa62cce380551cc9bc7e86541e0149768",
   "mappingDigest": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
-  "libraryDigest": "ac6ebd5c94384c92121d5438c819c99ebdf8966b7a060537f4855f8842e7259f",
+  "libraryDigest": "7c273f5869f363703abee26842e7ee0a92c975c1d209f156e866bae790ae299f",
   "peerDigests": {
     "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
     "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
     "x-tinction-agenda": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4"
   },
   "candidateCount": 6,
-  "comparisonCount": 133,
+  "comparisonCount": 125,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -234,12 +240,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "fatal-attractions",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "generations",
       "sharedCount": 0,
       "sharedIds": [],
@@ -289,12 +289,6 @@
     },
     {
       "orderId": "hunt-for-wolverine",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hunt-for-xavier",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -355,12 +349,6 @@
     },
     {
       "orderId": "last-annihilation",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -444,12 +432,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "mys-tech-wars",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -474,19 +456,7 @@
       "relationship": "none"
     },
     {
-      "orderId": "operation-zero-tolerance",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "original-clone-saga",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "phalanx-covenant",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -606,12 +576,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-identity-crisis",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-no-way-home",
       "sharedCount": 0,
       "sharedIds": [],
@@ -660,12 +624,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "time-and-time-again",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -703,12 +661,6 @@
     },
     {
       "orderId": "wraith-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "x-cutioners-song",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -810,5 +762,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6a2733cf91e331e8f18cc834937fef2d8463643f00362e23684ff4e608220d69"
+  "reportDigest": "51068dfd179a94d8b9cccc2d4f73ea75d6ec12e2bd9f8eba86a169f920796d5b"
 }

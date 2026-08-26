@@ -964,10 +964,10 @@
     "coverIssueId": 66912
   },
   "relationshipReview": {
-    "reportDigest": "0aa15dba5a8195e81d9350fe6a11228da0fc0674ef7472fa95236a599f248477",
+    "reportDigest": "3c620b9e710653add2031b1a2677667b17944493daf3d822c3af1b02d670dac3",
     "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4",
     "mappingDigest": "1f4ed5ebc388bfb433ab5b863856eeea2f6eb3536e960e0f0ed65b5f0ee9c1d3",
-    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "libraryDigest": "2a735adcd5627552854c72b7afd7e43a50f308fb4cb68da66251d05da0b69ed2",
     "peerDigests": {},
     "dispositions": [
       {
@@ -1740,6 +1740,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog was reviewed; 1 partial relationship required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "cda3237baa65ad891a6d6d493e02a42d6f1770d7c2baa0a363e0b35a8d47380d"
+    "approvalDigest": "8fa5ff8e10cb2ff99b40f0ca1bda7ed2d2bb819aa70aab06b1ab864daadddfa8"
   }
 }

@@ -303,10 +303,10 @@
     "coverIssueId": 95798
   },
   "relationshipReview": {
-    "reportDigest": "5008d87814529e3b0dfa5de72f037871b20b17b5f5be7ee7bd957876b9bbe7d7",
+    "reportDigest": "49c69095ae00f5fcac96613158ebed834ad8f5d18c854821bc94d1dff8907c5d",
     "packetDigest": "b0b68b28211a271f6e8ea4491718f5b8fbeb881ea52cbee0607d24892ade4584",
     "mappingDigest": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146",
-    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "libraryDigest": "a7fdd47a1c9dacc6e2017650ceaef1e1ec8e4485efe1e2c384e3ce72b83770ba",
     "peerDigests": {
       "death-of-doctor-strange": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
       "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7"
@@ -1082,6 +1082,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "b94de06af3e84a10190c41d8ce2f18a5f62441c9fd7d30b95b693b988e1d1a00"
+    "approvalDigest": "85088618eb271839239c974ef1693539e6e6a03841f27ddc359a01dffaa27bfa"
   }
 }

@@ -1,0 +1,5190 @@
+{
+  "id": "agatha-harkness-reading-order",
+  "inventoryId": "agatha-harkness-reading-order",
+  "packetDigest": "00356c88548e6fd5896da5fb88fbfe67dbfdfe071702f03d85ce962236eb07e4",
+  "sourceUrl": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 105,
+  "excludedSourceReferences": [],
+  "sourceOccurrenceCount": 105,
+  "proposedManifest": {
+    "id": "agatha-harkness-reading-order",
+    "name": "Agatha Harkness",
+    "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "agatha-harkness-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "agatha_harkness_reading_order.json",
+    "characters": [
+      "Agatha Harkness",
+      "Fantastic Four",
+      "Scarlet Witch",
+      "Vision"
+    ],
+    "keywords": [
+      "Agatha Harkness",
+      "Fantastic Four",
+      "Scarlet Witch",
+      "Vision",
+      "Comic Book Herald"
+    ],
+    "expect": 104,
+    "timeline": null,
+    "coverIssueId": 12903
+  },
+  "candidateMetadata": [
+    {
+      "id": 12903,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #107",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "107",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12903/fantastic_four_1961_107",
+      "onSaleDate": "1971-02-01T00:00:00+0000"
+    },
+    {
+      "id": 12905,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #109",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "109",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12905/fantastic_four_1961_109",
+      "onSaleDate": "1971-04-01T00:00:00+0000"
+    },
+    {
+      "id": 12907,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #110",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "110",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12907/fantastic_four_1961_110",
+      "onSaleDate": "1971-05-01T00:00:00+0000"
+    },
+    {
+      "id": 12908,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #111",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "111",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12908/fantastic_four_1961_111",
+      "onSaleDate": "1971-06-01T00:00:00+0000"
+    },
+    {
+      "id": 12909,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #112",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "112",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12909/fantastic_four_1961_112",
+      "onSaleDate": "1971-07-01T00:00:00+0000"
+    },
+    {
+      "id": 12910,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #113",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "113",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12910/fantastic_four_1961_113",
+      "onSaleDate": "1971-08-01T00:00:00+0000"
+    },
+    {
+      "id": 12911,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #114",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "114",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12911/fantastic_four_1961_114",
+      "onSaleDate": "1971-09-01T00:00:00+0000"
+    },
+    {
+      "id": 12913,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #116",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "116",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12913/fantastic_four_1961_116",
+      "onSaleDate": "1971-11-01T00:00:00+0000"
+    },
+    {
+      "id": 12914,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #117",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "117",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12914/fantastic_four_1961_117",
+      "onSaleDate": "1971-12-01T00:00:00+0000"
+    },
+    {
+      "id": 12918,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #120",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "120",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12918/fantastic_four_1961_120",
+      "onSaleDate": "1972-03-01T00:00:00+0000"
+    },
+    {
+      "id": 12921,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #123",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "123",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12921/fantastic_four_1961_123",
+      "onSaleDate": "1972-06-01T00:00:00+0000"
+    },
+    {
+      "id": 12925,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #127",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "127",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12925/fantastic_four_1961_127",
+      "onSaleDate": "1972-10-01T00:00:00+0000"
+    },
+    {
+      "id": 12927,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #129",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "129",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12927/fantastic_four_1961_129",
+      "onSaleDate": "1972-12-01T00:00:00+0000"
+    },
+    {
+      "id": 12940,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #140",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "140",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12940/fantastic_four_1961_140",
+      "onSaleDate": "1973-11-01T00:00:00+0000"
+    },
+    {
+      "id": 12941,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #141",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "141",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12941/fantastic_four_1961_141",
+      "onSaleDate": "1973-12-01T00:00:00+0000"
+    },
+    {
+      "id": 6983,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #127",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "127",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6983/avengers_1963_127",
+      "onSaleDate": "1974-09-01T00:00:00+0000"
+    },
+    {
+      "id": 12951,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #150",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "150",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12951/fantastic_four_1961_150",
+      "onSaleDate": "1974-09-01T00:00:00+0000"
+    },
+    {
+      "id": 6984,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #128",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "128",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6984/avengers_1963_128",
+      "onSaleDate": "1974-10-01T00:00:00+0000"
+    },
+    {
+      "id": 6985,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #129",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "129",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6985/avengers_1963_129",
+      "onSaleDate": "1974-11-01T00:00:00+0000"
+    },
+    {
+      "id": 20021,
+      "title": "Giant-Size Avengers",
+      "issueTitle": "Giant-Size Avengers (1974) #2",
+      "seriesTitle": "Giant-Size Avengers",
+      "apiSeriesName": "Giant-Size Avengers (1974)",
+      "seriesId": 3729,
+      "issueNumber": "2",
+      "seriesYear": 1974,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20021/giant-size_avengers_1974_2",
+      "onSaleDate": "1974-11-10T00:00:00+0000"
+    },
+    {
+      "id": 6987,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #130",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "130",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6987/avengers_1963_130",
+      "onSaleDate": "1974-12-01T00:00:00+0000"
+    },
+    {
+      "id": 6990,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #133",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "133",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "onSaleDate": "1975-03-01T00:00:00+0000"
+    },
+    {
+      "id": 6991,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #134",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "134",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "onSaleDate": "1975-04-01T00:00:00+0000"
+    },
+    {
+      "id": 20023,
+      "title": "Giant-Size Avengers",
+      "issueTitle": "Giant-Size Avengers (1974) #4",
+      "seriesTitle": "Giant-Size Avengers",
+      "apiSeriesName": "Giant-Size Avengers (1974)",
+      "seriesId": 3729,
+      "issueNumber": "4",
+      "seriesYear": 1974,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "onSaleDate": "1975-06-01T00:00:00+0000"
+    },
+    {
+      "id": 12985,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #181",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "181",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12985/fantastic_four_1961_181",
+      "onSaleDate": "1977-04-01T00:00:00+0000"
+    },
+    {
+      "id": 12986,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #182",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "182",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12986/fantastic_four_1961_182",
+      "onSaleDate": "1977-05-01T00:00:00+0000"
+    },
+    {
+      "id": 12989,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #185",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "185",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12989/fantastic_four_1961_185",
+      "onSaleDate": "1977-08-01T00:00:00+0000"
+    },
+    {
+      "id": 12990,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #186",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "186",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12990/fantastic_four_1961_186",
+      "onSaleDate": "1977-09-01T00:00:00+0000"
+    },
+    {
+      "id": 12991,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #187",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "187",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12991/fantastic_four_1961_187",
+      "onSaleDate": "1977-10-01T00:00:00+0000"
+    },
+    {
+      "id": 12992,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #188",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "188",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12992/fantastic_four_1961_188",
+      "onSaleDate": "1977-11-01T00:00:00+0000"
+    },
+    {
+      "id": 12996,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #191",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "191",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12996/fantastic_four_1961_191",
+      "onSaleDate": "1978-02-01T00:00:00+0000"
+    },
+    {
+      "id": 12998,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #193",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "193",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12998/fantastic_four_1961_193",
+      "onSaleDate": "1978-04-01T00:00:00+0000"
+    },
+    {
+      "id": 12999,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #194",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "194",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12999/fantastic_four_1961_194",
+      "onSaleDate": "1978-05-01T00:00:00+0000"
+    },
+    {
+      "id": 13001,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #196",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "196",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13001/fantastic_four_1961_196",
+      "onSaleDate": "1978-07-01T00:00:00+0000"
+    },
+    {
+      "id": 8691,
+      "title": "Fantastic Four Annual",
+      "issueTitle": "Fantastic Four Annual (1963) #13",
+      "seriesTitle": "Fantastic Four Annual",
+      "apiSeriesName": "Fantastic Four Annual (1963 - 1994)",
+      "seriesId": 2012,
+      "issueNumber": "13",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8691/fantastic_four_annual_1963_13",
+      "onSaleDate": "1978-01-01T00:00:00+0000"
+    },
+    {
+      "id": 13011,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #204",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "204",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13011/fantastic_four_1961_204",
+      "onSaleDate": "1979-03-01T00:00:00+0000"
+    },
+    {
+      "id": 8692,
+      "title": "Fantastic Four Annual",
+      "issueTitle": "Fantastic Four Annual (1963) #14",
+      "seriesTitle": "Fantastic Four Annual",
+      "apiSeriesName": "Fantastic Four Annual (1963 - 1994)",
+      "seriesId": 2012,
+      "issueNumber": "14",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8692/fantastic_four_annual_1963_14",
+      "onSaleDate": "1979-01-01T00:00:00+0000"
+    },
+    {
+      "id": 13031,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #222",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "222",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13031/fantastic_four_1961_222",
+      "onSaleDate": "1980-09-01T00:00:00+0000"
+    },
+    {
+      "id": 13032,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #223",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "223",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13032/fantastic_four_1961_223",
+      "onSaleDate": "1980-10-01T00:00:00+0000"
+    },
+    {
+      "id": 18460,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1985) #3",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "seriesId": 3655,
+      "issueNumber": "3",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/18460/vision_and_the_scarlet_witch_1985_3",
+      "onSaleDate": "1985-12-01T00:00:00+0000"
+    },
+    {
+      "id": 18461,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1985) #4",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "seriesId": 3655,
+      "issueNumber": "4",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/18461/vision_and_the_scarlet_witch_1985_4",
+      "onSaleDate": "1986-01-01T00:00:00+0000"
+    },
+    {
+      "id": 18462,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1985) #5",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "seriesId": 3655,
+      "issueNumber": "5",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/18462/vision_and_the_scarlet_witch_1985_5",
+      "onSaleDate": "1986-02-01T00:00:00+0000"
+    },
+    {
+      "id": 17792,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #50",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "50",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17792/west_coast_avengers_1985_50",
+      "onSaleDate": "1989-11-01T00:00:00+0000"
+    },
+    {
+      "id": 17793,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #51",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "51",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17793/west_coast_avengers_1985_51",
+      "onSaleDate": "1989-11-01T00:00:00+0000"
+    },
+    {
+      "id": 17794,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #52",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "52",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "onSaleDate": "1989-12-01T00:00:00+0000"
+    },
+    {
+      "id": 7190,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #313",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "313",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "onSaleDate": "1990-01-01T00:00:00+0000"
+    },
+    {
+      "id": 17797,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #55",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "55",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17797/west_coast_avengers_1985_55",
+      "onSaleDate": "1990-02-01T00:00:00+0000"
+    },
+    {
+      "id": 17798,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #56",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "56",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17798/west_coast_avengers_1985_56",
+      "onSaleDate": "1990-03-01T00:00:00+0000"
+    },
+    {
+      "id": 17799,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #57",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "57",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17799/west_coast_avengers_1985_57",
+      "onSaleDate": "1990-04-01T00:00:00+0000"
+    },
+    {
+      "id": 17803,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #61",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "61",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17803/west_coast_avengers_1985_61",
+      "onSaleDate": "1990-08-01T00:00:00+0000"
+    },
+    {
+      "id": 17804,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #62",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "62",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17804/west_coast_avengers_1985_62",
+      "onSaleDate": "1990-09-01T00:00:00+0000"
+    },
+    {
+      "id": 17805,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #63",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "63",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17805/west_coast_avengers_1985_63",
+      "onSaleDate": "1990-10-01T00:00:00+0000"
+    },
+    {
+      "id": 9294,
+      "title": "Infinity War",
+      "issueTitle": "Infinity War (1992) #3",
+      "seriesTitle": "Infinity War",
+      "apiSeriesName": "Infinity War (1992)",
+      "seriesId": 2024,
+      "issueNumber": "3",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/9294/infinity_war_1992_3",
+      "onSaleDate": "1992-08-01T00:00:00+0000"
+    },
+    {
+      "id": 18453,
+      "title": "Warlock and the Infinity Watch",
+      "issueTitle": "Warlock and the Infinity Watch (1992) #8",
+      "seriesTitle": "Warlock and the Infinity Watch",
+      "apiSeriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "seriesId": 3654,
+      "issueNumber": "8",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/18453/warlock_and_the_infinity_watch_1992_8",
+      "onSaleDate": "1992-09-01T00:00:00+0000"
+    },
+    {
+      "id": 13192,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #368",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "368",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13192/fantastic_four_1961_368",
+      "onSaleDate": "1992-09-01T00:00:00+0000"
+    },
+    {
+      "id": 18261,
+      "title": "Wonder Man",
+      "issueTitle": "Wonder Man (1991) #13",
+      "seriesTitle": "Wonder Man",
+      "apiSeriesName": "Wonder Man (1991)",
+      "seriesId": null,
+      "issueNumber": "13",
+      "seriesYear": 1991,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/18261/wonder_man_1991_13",
+      "onSaleDate": null
+    },
+    {
+      "id": 18926,
+      "title": "Quasar",
+      "issueTitle": "Quasar (1989) #38",
+      "seriesTitle": "Quasar",
+      "apiSeriesName": "Quasar (1989 - 1994)",
+      "seriesId": 3695,
+      "issueNumber": "undefined",
+      "seriesYear": 1989,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/18926/quasar_1989_38",
+      "onSaleDate": null
+    },
+    {
+      "id": 9295,
+      "title": "Infinity War",
+      "issueTitle": "Infinity War (1992) #4",
+      "seriesTitle": "Infinity War",
+      "apiSeriesName": "Infinity War (1992)",
+      "seriesId": 2024,
+      "issueNumber": "4",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/9295/infinity_war_1992_4",
+      "onSaleDate": "1992-09-01T00:00:00+0000"
+    },
+    {
+      "id": 12651,
+      "title": "Alpha Flight",
+      "issueTitle": "Alpha Flight (1983) #111",
+      "seriesTitle": "Alpha Flight",
+      "apiSeriesName": "Alpha Flight (1983 - 1994)",
+      "seriesId": 2116,
+      "issueNumber": "undefined",
+      "seriesYear": 1983,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12651/alpha_flight_1983_111",
+      "onSaleDate": null
+    },
+    {
+      "id": 18262,
+      "title": "Wonder Man",
+      "issueTitle": "Wonder Man (1991) #14",
+      "seriesTitle": "Wonder Man",
+      "apiSeriesName": "Wonder Man (1991)",
+      "seriesId": null,
+      "issueNumber": "14",
+      "seriesYear": 1991,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/18262/wonder_man_1991_14",
+      "onSaleDate": null
+    },
+    {
+      "id": 20208,
+      "title": "Doctor Strange: Sorcerer Supreme",
+      "issueTitle": "Doctor Strange, Sorcerer Supreme (1988) #46",
+      "seriesTitle": "Doctor Strange: Sorcerer Supreme",
+      "apiSeriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "seriesId": 3741,
+      "issueNumber": "46",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20208/doctor_strange_sorcerer_supreme_1988_46",
+      "onSaleDate": "1992-10-01T00:00:00+0000"
+    },
+    {
+      "id": 20209,
+      "title": "Doctor Strange: Sorcerer Supreme",
+      "issueTitle": "Doctor Strange, Sorcerer Supreme (1988) #47",
+      "seriesTitle": "Doctor Strange: Sorcerer Supreme",
+      "apiSeriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "seriesId": 3741,
+      "issueNumber": "47",
+      "seriesYear": 1988,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20209/doctor_strange_sorcerer_supreme_1988_47",
+      "onSaleDate": "1992-11-01T00:00:00+0000"
+    },
+    {
+      "id": 9297,
+      "title": "Infinity War",
+      "issueTitle": "Infinity War (1992) #6",
+      "seriesTitle": "Infinity War",
+      "apiSeriesName": "Infinity War (1992)",
+      "seriesId": 2024,
+      "issueNumber": "6",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/9297/infinity_war_1992_6",
+      "onSaleDate": "1992-11-01T00:00:00+0000"
+    },
+    {
+      "id": 73576,
+      "title": "Darkhold: Pages From The Book Of Sins",
+      "issueTitle": "Darkhold: Pages from the Book of Sins (1992) #4",
+      "seriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "apiSeriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "seriesId": 21932,
+      "issueNumber": "4",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73576/darkhold_pages_from_the_book_of_sins_1992_4",
+      "onSaleDate": "1993-01-01T00:00:00+0000"
+    },
+    {
+      "id": 73577,
+      "title": "Darkhold: Pages From The Book Of Sins",
+      "issueTitle": "Darkhold: Pages from the Book of Sins (1992) #5",
+      "seriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "apiSeriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "seriesId": 21932,
+      "issueNumber": "5",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73577/darkhold_pages_from_the_book_of_sins_1992_5",
+      "onSaleDate": "1993-02-01T00:00:00+0000"
+    },
+    {
+      "id": 73578,
+      "title": "Darkhold: Pages From The Book Of Sins",
+      "issueTitle": "Darkhold: Pages from the Book of Sins (1992) #6",
+      "seriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "apiSeriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "seriesId": 21932,
+      "issueNumber": "6",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73578/darkhold_pages_from_the_book_of_sins_1992_6",
+      "onSaleDate": "1993-03-01T00:00:00+0000"
+    },
+    {
+      "id": 73579,
+      "title": "Darkhold: Pages From The Book Of Sins",
+      "issueTitle": "Darkhold: Pages from the Book of Sins (1992) #7",
+      "seriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "apiSeriesName": "Darkhold: Pages from the Book of Sins (1992)",
+      "seriesId": 21932,
+      "issueNumber": "7",
+      "seriesYear": 1992,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/73579/darkhold_pages_from_the_book_of_sins_1992_7",
+      "onSaleDate": "1993-04-01T00:00:00+0000"
+    },
+    {
+      "id": 13196,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #371",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "371",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13196/fantastic_four_1961_371",
+      "onSaleDate": "1992-12-01T00:00:00+0000"
+    },
+    {
+      "id": 13197,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #372",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "372",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13197/fantastic_four_1961_372",
+      "onSaleDate": "1993-01-01T00:00:00+0000"
+    },
+    {
+      "id": 13198,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #373",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "373",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13198/fantastic_four_1961_373",
+      "onSaleDate": "1993-02-01T00:00:00+0000"
+    },
+    {
+      "id": 13199,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #374",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "374",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13199/fantastic_four_1961_374",
+      "onSaleDate": "1993-03-01T00:00:00+0000"
+    },
+    {
+      "id": 13200,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #375",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "375",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13200/fantastic_four_1961_375",
+      "onSaleDate": "1993-04-01T00:00:00+0000"
+    },
+    {
+      "id": 13201,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #376",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "376",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13201/fantastic_four_1961_376",
+      "onSaleDate": "1993-05-01T00:00:00+0000"
+    },
+    {
+      "id": 13202,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #377",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "377",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13202/fantastic_four_1961_377",
+      "onSaleDate": "1993-06-01T00:00:00+0000"
+    },
+    {
+      "id": 57094,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #1",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57094/scarlet_witch_2015_1",
+      "onSaleDate": "2015-12-09T00:00:00+0000"
+    },
+    {
+      "id": 13246,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #416",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "416",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "onSaleDate": "1996-09-01T00:00:00+0000"
+    },
+    {
+      "id": 13322,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1996) #7",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1996 - 1997)",
+      "seriesId": 2123,
+      "issueNumber": "7",
+      "seriesYear": 1996,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13322/fantastic_four_1996_7",
+      "onSaleDate": "1997-05-01T00:00:00+0000"
+    },
+    {
+      "id": 15135,
+      "title": "Silver Surfer",
+      "issueTitle": "Silver Surfer (1987) #135",
+      "seriesTitle": "Silver Surfer",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "135",
+      "seriesYear": 1987,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15135/silver_surfer_1987_135",
+      "onSaleDate": "1998-01-01T00:00:00+0000"
+    },
+    {
+      "id": 15136,
+      "title": "Silver Surfer",
+      "issueTitle": "Silver Surfer (1987) #136",
+      "seriesTitle": "Silver Surfer",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "136",
+      "seriesYear": 1987,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15136/silver_surfer_1987_136",
+      "onSaleDate": "1998-02-01T00:00:00+0000"
+    },
+    {
+      "id": 15137,
+      "title": "Silver Surfer",
+      "issueTitle": "Silver Surfer (1987) #137",
+      "seriesTitle": "Silver Surfer",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "137",
+      "seriesYear": 1987,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15137/silver_surfer_1987_137",
+      "onSaleDate": "1998-03-01T00:00:00+0000"
+    },
+    {
+      "id": 17491,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1998) #10",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1998 - 2004)",
+      "seriesId": 354,
+      "issueNumber": "10",
+      "seriesYear": 1998,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17491/avengers_1998_10",
+      "onSaleDate": "1998-11-10T00:00:00+0000"
+    },
+    {
+      "id": 17492,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1998) #11",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1998 - 2004)",
+      "seriesId": 354,
+      "issueNumber": "11",
+      "seriesYear": 1998,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17492/avengers_1998_11",
+      "onSaleDate": "1998-12-10T00:00:00+0000"
+    },
+    {
+      "id": 923,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1998) #503",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1998 - 2004)",
+      "seriesId": 354,
+      "issueNumber": "503",
+      "seriesYear": 1998,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "onSaleDate": "2004-11-03T00:00:00+0000"
+    },
+    {
+      "id": 57311,
+      "title": "Vision",
+      "issueTitle": "Vision (2015) #3",
+      "seriesTitle": "Vision",
+      "apiSeriesName": "Vision (2015 - 2016)",
+      "seriesId": 20897,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57311/vision_2015_3",
+      "onSaleDate": "2016-01-06T00:00:00+0000"
+    },
+    {
+      "id": 57314,
+      "title": "Vision",
+      "issueTitle": "Vision (2015) #6",
+      "seriesTitle": "Vision",
+      "apiSeriesName": "Vision (2015 - 2016)",
+      "seriesId": 20897,
+      "issueNumber": "6",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57314/vision_2015_6",
+      "onSaleDate": "2016-04-06T00:00:00+0000"
+    },
+    {
+      "id": 57315,
+      "title": "Vision",
+      "issueTitle": "Vision (2015) #7",
+      "seriesTitle": "Vision",
+      "apiSeriesName": "Vision (2015 - 2016)",
+      "seriesId": 20897,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57315/vision_2015_7",
+      "onSaleDate": "2016-05-11T00:00:00+0000"
+    },
+    {
+      "id": 57319,
+      "title": "Vision",
+      "issueTitle": "Vision (2015) #11",
+      "seriesTitle": "Vision",
+      "apiSeriesName": "Vision (2015 - 2016)",
+      "seriesId": 20897,
+      "issueNumber": "11",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57319/vision_2015_11",
+      "onSaleDate": "2016-09-21T00:00:00+0000"
+    },
+    {
+      "id": 57097,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #2",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57097/scarlet_witch_2015_2",
+      "onSaleDate": "2016-01-13T00:00:00+0000"
+    },
+    {
+      "id": 57099,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #3",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57099/scarlet_witch_2015_3",
+      "onSaleDate": "2016-02-03T00:00:00+0000"
+    },
+    {
+      "id": 57100,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #4",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "4",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57100/scarlet_witch_2015_4",
+      "onSaleDate": "2016-03-16T00:00:00+0000"
+    },
+    {
+      "id": 57104,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #8",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "8",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57104/scarlet_witch_2015_8",
+      "onSaleDate": "2016-07-06T00:00:00+0000"
+    },
+    {
+      "id": 57108,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #12",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "12",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57108/scarlet_witch_2015_12",
+      "onSaleDate": "2016-11-02T00:00:00+0000"
+    },
+    {
+      "id": 60028,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #13",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "13",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60028/scarlet_witch_2015_13",
+      "onSaleDate": "2016-12-07T00:00:00+0000"
+    },
+    {
+      "id": 60029,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #14",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "14",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60029/scarlet_witch_2015_14",
+      "onSaleDate": "2017-01-04T00:00:00+0000"
+    },
+    {
+      "id": 60138,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (2015) #15",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (2015 - 2017)",
+      "seriesId": 20854,
+      "issueNumber": "15",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60138/scarlet_witch_2015_15",
+      "onSaleDate": "2017-02-22T00:00:00+0000"
+    },
+    {
+      "id": 80065,
+      "title": "Doctor Strange Annual",
+      "issueTitle": "Doctor Strange Annual (2019) #1",
+      "seriesTitle": "Doctor Strange Annual",
+      "apiSeriesName": "Doctor Strange Annual (2019)",
+      "seriesId": 28290,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/80065/doctor_strange_annual_2019_1",
+      "onSaleDate": "2019-10-30T00:00:00+0000"
+    },
+    {
+      "id": 77235,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #19",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "19",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77235/captain_america_2018_19",
+      "onSaleDate": "2020-02-19T00:00:00+0000"
+    },
+    {
+      "id": 77238,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #22",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "22",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77238/captain_america_2018_22",
+      "onSaleDate": "2020-08-19T00:00:00+0000"
+    },
+    {
+      "id": 77239,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #23",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "23",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77239/captain_america_2018_23",
+      "onSaleDate": "2020-09-16T00:00:00+0000"
+    },
+    {
+      "id": 76737,
+      "title": "Fantastic Four: Antithesis",
+      "issueTitle": "Fantastic Four: Antithesis (2020) #1",
+      "seriesTitle": "Fantastic Four: Antithesis",
+      "apiSeriesName": "Fantastic Four: Antithesis (2020)",
+      "seriesId": 27550,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76737/fantastic_four_antithesis_2020_1",
+      "onSaleDate": "2020-08-26T00:00:00+0000"
+    },
+    {
+      "id": 76741,
+      "title": "Fantastic Four: Antithesis",
+      "issueTitle": "Fantastic Four: Antithesis (2020) #4",
+      "seriesTitle": "Fantastic Four: Antithesis",
+      "apiSeriesName": "Fantastic Four: Antithesis (2020)",
+      "seriesId": 27550,
+      "issueNumber": "4",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76741/fantastic_four_antithesis_2020_4",
+      "onSaleDate": "2020-11-25T00:00:00+0000"
+    },
+    {
+      "id": 79805,
+      "title": "Strange Academy",
+      "issueTitle": "Strange Academy (2020) #8",
+      "seriesTitle": "Strange Academy",
+      "apiSeriesName": "Strange Academy (2020 - 2022)",
+      "seriesId": 28177,
+      "issueNumber": "8",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/79805/strange_academy_2020_8",
+      "onSaleDate": "2021-02-03T00:00:00+0000"
+    },
+    {
+      "id": 77243,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #27",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "27",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77243/captain_america_2018_27",
+      "onSaleDate": "2021-02-17T00:00:00+0000"
+    },
+    {
+      "id": 89543,
+      "title": "Captain America",
+      "issueTitle": "Captain America (2018) #28",
+      "seriesTitle": "Captain America",
+      "apiSeriesName": "Captain America (2018 - 2022)",
+      "seriesId": 24503,
+      "issueNumber": "28",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/89543/captain_america_2018_28",
+      "onSaleDate": "2021-03-31T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Fantastic Four (1961) #107",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "107",
+      "seriesId": 2121,
+      "candidateIssueId": 12903,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12903"
+      ],
+      "selectedIssueId": 12903,
+      "selectedIssueIds": [
+        12903
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12903/fantastic_four_1961_107",
+      "resolvedIssueTitle": "Fantastic Four (1961) #107",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Fantastic Four (1961) #109",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "109",
+      "seriesId": 2121,
+      "candidateIssueId": 12905,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12905"
+      ],
+      "selectedIssueId": 12905,
+      "selectedIssueIds": [
+        12905
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12905/fantastic_four_1961_109",
+      "resolvedIssueTitle": "Fantastic Four (1961) #109",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Fantastic Four (1961) #110",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "110",
+      "seriesId": 2121,
+      "candidateIssueId": 12907,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12907"
+      ],
+      "selectedIssueId": 12907,
+      "selectedIssueIds": [
+        12907
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12907/fantastic_four_1961_110",
+      "resolvedIssueTitle": "Fantastic Four (1961) #110",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Fantastic Four (1961) #111",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "111",
+      "seriesId": 2121,
+      "candidateIssueId": 12908,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12908"
+      ],
+      "selectedIssueId": 12908,
+      "selectedIssueIds": [
+        12908
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12908/fantastic_four_1961_111",
+      "resolvedIssueTitle": "Fantastic Four (1961) #111",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Fantastic Four (1961) #112",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "112",
+      "seriesId": 2121,
+      "candidateIssueId": 12909,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12909"
+      ],
+      "selectedIssueId": 12909,
+      "selectedIssueIds": [
+        12909
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12909/fantastic_four_1961_112",
+      "resolvedIssueTitle": "Fantastic Four (1961) #112",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Fantastic Four (1961) #113",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "113",
+      "seriesId": 2121,
+      "candidateIssueId": 12910,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12910"
+      ],
+      "selectedIssueId": 12910,
+      "selectedIssueIds": [
+        12910
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12910/fantastic_four_1961_113",
+      "resolvedIssueTitle": "Fantastic Four (1961) #113",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Fantastic Four (1961) #114",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "114",
+      "seriesId": 2121,
+      "candidateIssueId": 12911,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12911"
+      ],
+      "selectedIssueId": 12911,
+      "selectedIssueIds": [
+        12911
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12911/fantastic_four_1961_114",
+      "resolvedIssueTitle": "Fantastic Four (1961) #114",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Fantastic Four (1961) #116",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "116",
+      "seriesId": 2121,
+      "candidateIssueId": 12913,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12913"
+      ],
+      "selectedIssueId": 12913,
+      "selectedIssueIds": [
+        12913
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12913/fantastic_four_1961_116",
+      "resolvedIssueTitle": "Fantastic Four (1961) #116",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Fantastic Four (1961) #117",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "117",
+      "seriesId": 2121,
+      "candidateIssueId": 12914,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12914"
+      ],
+      "selectedIssueId": 12914,
+      "selectedIssueIds": [
+        12914
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12914/fantastic_four_1961_117",
+      "resolvedIssueTitle": "Fantastic Four (1961) #117",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Fantastic Four (1961) #120",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "120",
+      "seriesId": 2121,
+      "candidateIssueId": 12918,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12918"
+      ],
+      "selectedIssueId": 12918,
+      "selectedIssueIds": [
+        12918
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12918/fantastic_four_1961_120",
+      "resolvedIssueTitle": "Fantastic Four (1961) #120",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Fantastic Four (1961) #123",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "123",
+      "seriesId": 2121,
+      "candidateIssueId": 12921,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12921"
+      ],
+      "selectedIssueId": 12921,
+      "selectedIssueIds": [
+        12921
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12921/fantastic_four_1961_123",
+      "resolvedIssueTitle": "Fantastic Four (1961) #123",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Fantastic Four (1961) #127",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "127",
+      "seriesId": 2121,
+      "candidateIssueId": 12925,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12925"
+      ],
+      "selectedIssueId": 12925,
+      "selectedIssueIds": [
+        12925
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12925/fantastic_four_1961_127",
+      "resolvedIssueTitle": "Fantastic Four (1961) #127",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Fantastic Four (1961) #129",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "129",
+      "seriesId": 2121,
+      "candidateIssueId": 12927,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12927"
+      ],
+      "selectedIssueId": 12927,
+      "selectedIssueIds": [
+        12927
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12927/fantastic_four_1961_129",
+      "resolvedIssueTitle": "Fantastic Four (1961) #129",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Fantastic Four (1961) #140",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "140",
+      "seriesId": 2121,
+      "candidateIssueId": 12940,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12940"
+      ],
+      "selectedIssueId": 12940,
+      "selectedIssueIds": [
+        12940
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12940/fantastic_four_1961_140",
+      "resolvedIssueTitle": "Fantastic Four (1961) #140",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Fantastic Four (1961) #141",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "141",
+      "seriesId": 2121,
+      "candidateIssueId": 12941,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12941"
+      ],
+      "selectedIssueId": 12941,
+      "selectedIssueIds": [
+        12941
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12941/fantastic_four_1961_141",
+      "resolvedIssueTitle": "Fantastic Four (1961) #141",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Avengers (1963) #127",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "127",
+      "seriesId": 1991,
+      "candidateIssueId": 6983,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6983"
+      ],
+      "selectedIssueId": 6983,
+      "selectedIssueIds": [
+        6983
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6983/avengers_1963_127",
+      "resolvedIssueTitle": "Avengers (1963) #127",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Fantastic Four (1961) #150",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "150",
+      "seriesId": 2121,
+      "candidateIssueId": 12951,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12951"
+      ],
+      "selectedIssueId": 12951,
+      "selectedIssueIds": [
+        12951
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12951/fantastic_four_1961_150",
+      "resolvedIssueTitle": "Fantastic Four (1961) #150",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Avengers (1963) #128",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "128",
+      "seriesId": 1991,
+      "candidateIssueId": 6984,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6984"
+      ],
+      "selectedIssueId": 6984,
+      "selectedIssueIds": [
+        6984
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6984/avengers_1963_128",
+      "resolvedIssueTitle": "Avengers (1963) #128",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Avengers (1963) #129",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "129",
+      "seriesId": 1991,
+      "candidateIssueId": 6985,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6985"
+      ],
+      "selectedIssueId": 6985,
+      "selectedIssueIds": [
+        6985
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6985/avengers_1963_129",
+      "resolvedIssueTitle": "Avengers (1963) #129",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Giant-Size Avengers #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Giant-Size Avengers",
+      "seriesYear": 1974,
+      "issueNumber": "2",
+      "seriesId": 3729,
+      "candidateIssueId": 20021,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20021"
+      ],
+      "selectedIssueId": 20021,
+      "selectedIssueIds": [
+        20021
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20021/giant-size_avengers_1974_2",
+      "resolvedIssueTitle": "Giant-Size Avengers (1974) #2",
+      "note": "Marvel series 3729 (Giant-Size Avengers (1974)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Avengers (1963) #130",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "130",
+      "seriesId": 1991,
+      "candidateIssueId": 6987,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6987"
+      ],
+      "selectedIssueId": 6987,
+      "selectedIssueIds": [
+        6987
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6987/avengers_1963_130",
+      "resolvedIssueTitle": "Avengers (1963) #130",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Avengers (1963) #133",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "133",
+      "seriesId": 1991,
+      "candidateIssueId": 6990,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6990"
+      ],
+      "selectedIssueId": 6990,
+      "selectedIssueIds": [
+        6990
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "resolvedIssueTitle": "Avengers (1963) #133",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Avengers (1963) #134",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "134",
+      "seriesId": 1991,
+      "candidateIssueId": 6991,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6991"
+      ],
+      "selectedIssueId": 6991,
+      "selectedIssueIds": [
+        6991
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "resolvedIssueTitle": "Avengers (1963) #134",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Giant-Size Avengers #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Giant-Size Avengers",
+      "seriesYear": 1974,
+      "issueNumber": "4",
+      "seriesId": 3729,
+      "candidateIssueId": 20023,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20023"
+      ],
+      "selectedIssueId": 20023,
+      "selectedIssueIds": [
+        20023
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "resolvedIssueTitle": "Giant-Size Avengers (1974) #4",
+      "note": "Marvel series 3729 (Giant-Size Avengers (1974)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Fantastic Four (1961) #181",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "181",
+      "seriesId": 2121,
+      "candidateIssueId": 12985,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12985"
+      ],
+      "selectedIssueId": 12985,
+      "selectedIssueIds": [
+        12985
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12985/fantastic_four_1961_181",
+      "resolvedIssueTitle": "Fantastic Four (1961) #181",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Fantastic Four (1961) #182",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "182",
+      "seriesId": 2121,
+      "candidateIssueId": 12986,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12986"
+      ],
+      "selectedIssueId": 12986,
+      "selectedIssueIds": [
+        12986
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12986/fantastic_four_1961_182",
+      "resolvedIssueTitle": "Fantastic Four (1961) #182",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Fantastic Four (1961) #185",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "185",
+      "seriesId": 2121,
+      "candidateIssueId": 12989,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12989"
+      ],
+      "selectedIssueId": 12989,
+      "selectedIssueIds": [
+        12989
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12989/fantastic_four_1961_185",
+      "resolvedIssueTitle": "Fantastic Four (1961) #185",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Fantastic Four (1961) #186",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "186",
+      "seriesId": 2121,
+      "candidateIssueId": 12990,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12990"
+      ],
+      "selectedIssueId": 12990,
+      "selectedIssueIds": [
+        12990
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12990/fantastic_four_1961_186",
+      "resolvedIssueTitle": "Fantastic Four (1961) #186",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Fantastic Four (1961) #187",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "187",
+      "seriesId": 2121,
+      "candidateIssueId": 12991,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12991"
+      ],
+      "selectedIssueId": 12991,
+      "selectedIssueIds": [
+        12991
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12991/fantastic_four_1961_187",
+      "resolvedIssueTitle": "Fantastic Four (1961) #187",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Fantastic Four (1961) #188",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "188",
+      "seriesId": 2121,
+      "candidateIssueId": 12992,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12992"
+      ],
+      "selectedIssueId": 12992,
+      "selectedIssueIds": [
+        12992
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12992/fantastic_four_1961_188",
+      "resolvedIssueTitle": "Fantastic Four (1961) #188",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Fantastic Four (1961) #191",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "191",
+      "seriesId": 2121,
+      "candidateIssueId": 12996,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12996"
+      ],
+      "selectedIssueId": 12996,
+      "selectedIssueIds": [
+        12996
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12996/fantastic_four_1961_191",
+      "resolvedIssueTitle": "Fantastic Four (1961) #191",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Fantastic Four (1961) #193",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "193",
+      "seriesId": 2121,
+      "candidateIssueId": 12998,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12998"
+      ],
+      "selectedIssueId": 12998,
+      "selectedIssueIds": [
+        12998
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12998/fantastic_four_1961_193",
+      "resolvedIssueTitle": "Fantastic Four (1961) #193",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Fantastic Four (1961) #194",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "194",
+      "seriesId": 2121,
+      "candidateIssueId": 12999,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12999"
+      ],
+      "selectedIssueId": 12999,
+      "selectedIssueIds": [
+        12999
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12999/fantastic_four_1961_194",
+      "resolvedIssueTitle": "Fantastic Four (1961) #194",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Fantastic Four (1961) #196",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "196",
+      "seriesId": 2121,
+      "candidateIssueId": 13001,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13001"
+      ],
+      "selectedIssueId": 13001,
+      "selectedIssueIds": [
+        13001
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13001/fantastic_four_1961_196",
+      "resolvedIssueTitle": "Fantastic Four (1961) #196",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Annual (1963) #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
+      "issueNumber": "13",
+      "seriesId": 2012,
+      "candidateIssueId": 8691,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8691"
+      ],
+      "selectedIssueId": 8691,
+      "selectedIssueIds": [
+        8691
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8691/fantastic_four_annual_1963_13",
+      "resolvedIssueTitle": "Fantastic Four Annual (1963) #13",
+      "note": "Marvel series 2012 (Fantastic Four Annual (1963 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Fantastic Four (1961) #204",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "204",
+      "seriesId": 2121,
+      "candidateIssueId": 13011,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13011"
+      ],
+      "selectedIssueId": 13011,
+      "selectedIssueIds": [
+        13011
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13011/fantastic_four_1961_204",
+      "resolvedIssueTitle": "Fantastic Four (1961) #204",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Annual (1963) #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
+      "issueNumber": "14",
+      "seriesId": 2012,
+      "candidateIssueId": 8692,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8692"
+      ],
+      "selectedIssueId": 8692,
+      "selectedIssueIds": [
+        8692
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8692/fantastic_four_annual_1963_14",
+      "resolvedIssueTitle": "Fantastic Four Annual (1963) #14",
+      "note": "Marvel series 2012 (Fantastic Four Annual (1963 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Fantastic Four (1961) #222",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "222",
+      "seriesId": 2121,
+      "candidateIssueId": 13031,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13031"
+      ],
+      "selectedIssueId": 13031,
+      "selectedIssueIds": [
+        13031
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13031/fantastic_four_1961_222",
+      "resolvedIssueTitle": "Fantastic Four (1961) #222",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Fantastic Four (1961) #223",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "223",
+      "seriesId": 2121,
+      "candidateIssueId": 13032,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13032"
+      ],
+      "selectedIssueId": 13032,
+      "selectedIssueIds": [
+        13032
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13032/fantastic_four_1961_223",
+      "resolvedIssueTitle": "Fantastic Four (1961) #223",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1985,
+      "issueNumber": "3",
+      "seriesId": 3655,
+      "candidateIssueId": 18460,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18460"
+      ],
+      "selectedIssueId": 18460,
+      "selectedIssueIds": [
+        18460
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18460/vision_and_the_scarlet_witch_1985_3",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1985) #3",
+      "note": "Marvel series 3655 (Vision and the Scarlet Witch (1985 - 1986)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1985,
+      "issueNumber": "4",
+      "seriesId": 3655,
+      "candidateIssueId": 18461,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18461"
+      ],
+      "selectedIssueId": 18461,
+      "selectedIssueIds": [
+        18461
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18461/vision_and_the_scarlet_witch_1985_4",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1985) #4",
+      "note": "Marvel series 3655 (Vision and the Scarlet Witch (1985 - 1986)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1985,
+      "issueNumber": "5",
+      "seriesId": 3655,
+      "candidateIssueId": 18462,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18462"
+      ],
+      "selectedIssueId": 18462,
+      "selectedIssueIds": [
+        18462
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18462/vision_and_the_scarlet_witch_1985_5",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1985) #5",
+      "note": "Marvel series 3655 (Vision and the Scarlet Witch (1985 - 1986)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Avengers West Coast (1989) #50",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "50",
+      "seriesId": 3630,
+      "candidateIssueId": 17792,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17792"
+      ],
+      "selectedIssueId": 17792,
+      "selectedIssueIds": [
+        17792
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17792/west_coast_avengers_1985_50",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #50",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Avengers West Coast (1989) #51",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "51",
+      "seriesId": 3630,
+      "candidateIssueId": 17793,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17793"
+      ],
+      "selectedIssueId": 17793,
+      "selectedIssueIds": [
+        17793
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17793/west_coast_avengers_1985_51",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #51",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Avengers West Coast (1989) #52",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "52",
+      "seriesId": 3630,
+      "candidateIssueId": 17794,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17794"
+      ],
+      "selectedIssueId": 17794,
+      "selectedIssueIds": [
+        17794
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #52",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Avengers (1963) #313",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "313",
+      "seriesId": 1991,
+      "candidateIssueId": 7190,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7190"
+      ],
+      "selectedIssueId": 7190,
+      "selectedIssueIds": [
+        7190
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "resolvedIssueTitle": "Avengers (1963) #313",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Avengers West Coast (1989) #55",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "55",
+      "seriesId": 3630,
+      "candidateIssueId": 17797,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17797"
+      ],
+      "selectedIssueId": 17797,
+      "selectedIssueIds": [
+        17797
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17797/west_coast_avengers_1985_55",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #55",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Avengers West Coast (1989) #56",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "56",
+      "seriesId": 3630,
+      "candidateIssueId": 17798,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17798"
+      ],
+      "selectedIssueId": 17798,
+      "selectedIssueIds": [
+        17798
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17798/west_coast_avengers_1985_56",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #56",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Avengers West Coast (1989) #57",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "57",
+      "seriesId": 3630,
+      "candidateIssueId": 17799,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17799"
+      ],
+      "selectedIssueId": 17799,
+      "selectedIssueIds": [
+        17799
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17799/west_coast_avengers_1985_57",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #57",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Avengers West Coast (1989) #61",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "61",
+      "seriesId": 3630,
+      "candidateIssueId": 17803,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17803"
+      ],
+      "selectedIssueId": 17803,
+      "selectedIssueIds": [
+        17803
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17803/west_coast_avengers_1985_61",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #61",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Avengers West Coast (1989) #62",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "62",
+      "seriesId": 3630,
+      "candidateIssueId": 17804,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17804"
+      ],
+      "selectedIssueId": 17804,
+      "selectedIssueIds": [
+        17804
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17804/west_coast_avengers_1985_62",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #62",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Avengers West Coast (1989) #63",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "63",
+      "seriesId": 3630,
+      "candidateIssueId": 17805,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17805"
+      ],
+      "selectedIssueId": 17805,
+      "selectedIssueIds": [
+        17805
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17805/west_coast_avengers_1985_63",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #63",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Infinity War #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "3",
+      "seriesId": 2024,
+      "candidateIssueId": 9294,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "9294"
+      ],
+      "selectedIssueId": 9294,
+      "selectedIssueIds": [
+        9294
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9294/infinity_war_1992_3",
+      "resolvedIssueTitle": "Infinity War (1992) #3",
+      "note": "Marvel series 2024 (Infinity War (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Warlock and the Infinity Watch #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Warlock and the Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "8",
+      "seriesId": 3654,
+      "candidateIssueId": 18453,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18453"
+      ],
+      "selectedIssueId": 18453,
+      "selectedIssueIds": [
+        18453
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18453/warlock_and_the_infinity_watch_1992_8",
+      "resolvedIssueTitle": "Warlock and the Infinity Watch (1992) #8",
+      "note": "Marvel series 3654 (Warlock and the Infinity Watch (1992 - 1995)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Fantastic Four #368",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "368",
+      "seriesId": 2121,
+      "candidateIssueId": 13192,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13192"
+      ],
+      "selectedIssueId": 13192,
+      "selectedIssueIds": [
+        13192
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13192/fantastic_four_1961_368",
+      "resolvedIssueTitle": "Fantastic Four (1961) #368",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Wonder Man #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "13",
+      "seriesId": null,
+      "candidateIssueId": 18261,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18261"
+      ],
+      "selectedIssueId": 18261,
+      "selectedIssueIds": [
+        18261
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18261/wonder_man_1991_13",
+      "resolvedIssueTitle": "Wonder Man (1991) #13",
+      "note": "The owner supplied the exact direct-page identity after search and series endpoints omitted the record.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Quasar #38",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "38",
+      "seriesId": 3695,
+      "candidateIssueId": 18926,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18926"
+      ],
+      "selectedIssueId": 18926,
+      "selectedIssueIds": [
+        18926
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18926/quasar_1989_38",
+      "resolvedIssueTitle": "Quasar (1989) #38",
+      "note": "Marvel series 3695 (Quasar (1989 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Infinity War #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "seriesId": 2024,
+      "candidateIssueId": 9295,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "9295"
+      ],
+      "selectedIssueId": 9295,
+      "selectedIssueIds": [
+        9295
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9295/infinity_war_1992_4",
+      "resolvedIssueTitle": "Infinity War (1992) #4",
+      "note": "Marvel series 2024 (Infinity War (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Alpha Flight #111",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Alpha Flight",
+      "seriesYear": 1983,
+      "issueNumber": "111",
+      "seriesId": 2116,
+      "candidateIssueId": 12651,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12651"
+      ],
+      "selectedIssueId": 12651,
+      "selectedIssueIds": [
+        12651
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12651/alpha_flight_1983_111",
+      "resolvedIssueTitle": "Alpha Flight (1983) #111",
+      "note": "Marvel series 2116 (Alpha Flight (1983 - 1994)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Wonder Man #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "14",
+      "seriesId": null,
+      "candidateIssueId": 18262,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "18262"
+      ],
+      "selectedIssueId": 18262,
+      "selectedIssueIds": [
+        18262
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18262/wonder_man_1991_14",
+      "resolvedIssueTitle": "Wonder Man (1991) #14",
+      "note": "The owner supplied the exact direct-page identity after search and series endpoints omitted the record.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Doctor Strange: Sorcerer Supreme #46",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Doctor Strange: Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "46",
+      "seriesId": 3741,
+      "candidateIssueId": 20208,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20208"
+      ],
+      "selectedIssueId": 20208,
+      "selectedIssueIds": [
+        20208
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20208/doctor_strange_sorcerer_supreme_1988_46",
+      "resolvedIssueTitle": "Doctor Strange, Sorcerer Supreme (1988) #46",
+      "note": "Marvel series 3741 (Doctor Strange, Sorcerer Supreme (1988 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Doctor Strange: Sorcerer Supreme #47",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Doctor Strange: Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "47",
+      "seriesId": 3741,
+      "candidateIssueId": 20209,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20209"
+      ],
+      "selectedIssueId": 20209,
+      "selectedIssueIds": [
+        20209
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20209/doctor_strange_sorcerer_supreme_1988_47",
+      "resolvedIssueTitle": "Doctor Strange, Sorcerer Supreme (1988) #47",
+      "note": "Marvel series 3741 (Doctor Strange, Sorcerer Supreme (1988 - 1996)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Infinity War #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "seriesId": 2024,
+      "candidateIssueId": 9297,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "9297"
+      ],
+      "selectedIssueId": 9297,
+      "selectedIssueIds": [
+        9297
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9297/infinity_war_1992_6",
+      "resolvedIssueTitle": "Infinity War (1992) #6",
+      "note": "Marvel series 2024 (Infinity War (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "seriesId": 21932,
+      "candidateIssueId": 73576,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73576"
+      ],
+      "selectedIssueId": 73576,
+      "selectedIssueIds": [
+        73576
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73576/darkhold_pages_from_the_book_of_sins_1992_4",
+      "resolvedIssueTitle": "Darkhold: Pages from the Book of Sins (1992) #4",
+      "note": "Marvel series 21932 (Darkhold: Pages from the Book of Sins (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "seriesId": 21932,
+      "candidateIssueId": 73577,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73577"
+      ],
+      "selectedIssueId": 73577,
+      "selectedIssueIds": [
+        73577
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73577/darkhold_pages_from_the_book_of_sins_1992_5",
+      "resolvedIssueTitle": "Darkhold: Pages from the Book of Sins (1992) #5",
+      "note": "Marvel series 21932 (Darkhold: Pages from the Book of Sins (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "seriesId": 21932,
+      "candidateIssueId": 73578,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73578"
+      ],
+      "selectedIssueId": 73578,
+      "selectedIssueIds": [
+        73578
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73578/darkhold_pages_from_the_book_of_sins_1992_6",
+      "resolvedIssueTitle": "Darkhold: Pages from the Book of Sins (1992) #6",
+      "note": "Marvel series 21932 (Darkhold: Pages from the Book of Sins (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Darkhold: Pages From The Book Of Sins",
+      "seriesYear": 1992,
+      "issueNumber": "7",
+      "seriesId": 21932,
+      "candidateIssueId": 73579,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "73579"
+      ],
+      "selectedIssueId": 73579,
+      "selectedIssueIds": [
+        73579
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73579/darkhold_pages_from_the_book_of_sins_1992_7",
+      "resolvedIssueTitle": "Darkhold: Pages from the Book of Sins (1992) #7",
+      "note": "Marvel series 21932 (Darkhold: Pages from the Book of Sins (1992)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Fantastic Four #371",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "371",
+      "seriesId": 2121,
+      "candidateIssueId": 13196,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13196"
+      ],
+      "selectedIssueId": 13196,
+      "selectedIssueIds": [
+        13196
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13196/fantastic_four_1961_371",
+      "resolvedIssueTitle": "Fantastic Four (1961) #371",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Fantastic Four #372",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "372",
+      "seriesId": 2121,
+      "candidateIssueId": 13197,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13197"
+      ],
+      "selectedIssueId": 13197,
+      "selectedIssueIds": [
+        13197
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13197/fantastic_four_1961_372",
+      "resolvedIssueTitle": "Fantastic Four (1961) #372",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Fantastic Four #373",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "373",
+      "seriesId": 2121,
+      "candidateIssueId": 13198,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13198"
+      ],
+      "selectedIssueId": 13198,
+      "selectedIssueIds": [
+        13198
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13198/fantastic_four_1961_373",
+      "resolvedIssueTitle": "Fantastic Four (1961) #373",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Fantastic Four #374",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "374",
+      "seriesId": 2121,
+      "candidateIssueId": 13199,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13199"
+      ],
+      "selectedIssueId": 13199,
+      "selectedIssueIds": [
+        13199
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13199/fantastic_four_1961_374",
+      "resolvedIssueTitle": "Fantastic Four (1961) #374",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Fantastic Four #375",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "375",
+      "seriesId": 2121,
+      "candidateIssueId": 13200,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13200"
+      ],
+      "selectedIssueId": 13200,
+      "selectedIssueIds": [
+        13200
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13200/fantastic_four_1961_375",
+      "resolvedIssueTitle": "Fantastic Four (1961) #375",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Fantastic Four #376",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "376",
+      "seriesId": 2121,
+      "candidateIssueId": 13201,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13201"
+      ],
+      "selectedIssueId": 13201,
+      "selectedIssueIds": [
+        13201
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13201/fantastic_four_1961_376",
+      "resolvedIssueTitle": "Fantastic Four (1961) #376",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Fantastic Four #377",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "377",
+      "seriesId": 2121,
+      "candidateIssueId": 13202,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13202"
+      ],
+      "selectedIssueId": 13202,
+      "selectedIssueIds": [
+        13202
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13202/fantastic_four_1961_377",
+      "resolvedIssueTitle": "Fantastic Four (1961) #377",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Scarlet Witch #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20854,
+      "candidateIssueId": 57094,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57094"
+      ],
+      "selectedIssueId": 57094,
+      "selectedIssueIds": [
+        57094
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57094/scarlet_witch_2015_1",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #1",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Fantastic Four (1961) #416",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "416",
+      "seriesId": 2121,
+      "candidateIssueId": 13246,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13246"
+      ],
+      "selectedIssueId": 13246,
+      "selectedIssueIds": [
+        13246
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "resolvedIssueTitle": "Fantastic Four (1961) #416",
+      "note": "Marvel series 2121 (Fantastic Four (1961 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Fantastic Four (1996) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1996,
+      "issueNumber": "7",
+      "seriesId": 2123,
+      "candidateIssueId": 13322,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13322"
+      ],
+      "selectedIssueId": 13322,
+      "selectedIssueIds": [
+        13322
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13322/fantastic_four_1996_7",
+      "resolvedIssueTitle": "Fantastic Four (1996) #7",
+      "note": "Marvel series 2123 (Fantastic Four (1996 - 1997)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Silver Surfer (1987) #135",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "135",
+      "seriesId": 2288,
+      "candidateIssueId": 15135,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15135"
+      ],
+      "selectedIssueId": 15135,
+      "selectedIssueIds": [
+        15135
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15135/silver_surfer_1987_135",
+      "resolvedIssueTitle": "Silver Surfer (1987) #135",
+      "note": "Marvel series 2288 (Silver Surfer (1987 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Silver Surfer (1987) #136",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "136",
+      "seriesId": 2288,
+      "candidateIssueId": 15136,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15136"
+      ],
+      "selectedIssueId": 15136,
+      "selectedIssueIds": [
+        15136
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15136/silver_surfer_1987_136",
+      "resolvedIssueTitle": "Silver Surfer (1987) #136",
+      "note": "Marvel series 2288 (Silver Surfer (1987 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Silver Surfer (1987) #137",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "137",
+      "seriesId": 2288,
+      "candidateIssueId": 15137,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15137"
+      ],
+      "selectedIssueId": 15137,
+      "selectedIssueIds": [
+        15137
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15137/silver_surfer_1987_137",
+      "resolvedIssueTitle": "Silver Surfer (1987) #137",
+      "note": "Marvel series 2288 (Silver Surfer (1987 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Avengers (1998) #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "issueNumber": "10",
+      "seriesId": 354,
+      "candidateIssueId": 17491,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17491"
+      ],
+      "selectedIssueId": 17491,
+      "selectedIssueIds": [
+        17491
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17491/avengers_1998_10",
+      "resolvedIssueTitle": "Avengers (1998) #10",
+      "note": "Marvel series 354 (Avengers (1998 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Avengers (1998) #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "issueNumber": "11",
+      "seriesId": 354,
+      "candidateIssueId": 17492,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17492"
+      ],
+      "selectedIssueId": 17492,
+      "selectedIssueIds": [
+        17492
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17492/avengers_1998_11",
+      "resolvedIssueTitle": "Avengers (1998) #11",
+      "note": "Marvel series 354 (Avengers (1998 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Avengers (1998) #503",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "issueNumber": "503",
+      "seriesId": 354,
+      "candidateIssueId": 923,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "923"
+      ],
+      "selectedIssueId": 923,
+      "selectedIssueIds": [
+        923
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "resolvedIssueTitle": "Avengers (1998) #503",
+      "note": "Marvel series 354 (Avengers (1998 - 2004)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Vision #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20897,
+      "candidateIssueId": 57311,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57311"
+      ],
+      "selectedIssueId": 57311,
+      "selectedIssueIds": [
+        57311
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57311/vision_2015_3",
+      "resolvedIssueTitle": "Vision (2015) #3",
+      "note": "Marvel series 20897 (Vision (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Vision #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20897,
+      "candidateIssueId": 57314,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57314"
+      ],
+      "selectedIssueId": 57314,
+      "selectedIssueIds": [
+        57314
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57314/vision_2015_6",
+      "resolvedIssueTitle": "Vision (2015) #6",
+      "note": "Marvel series 20897 (Vision (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Vision #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20897,
+      "candidateIssueId": 57315,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57315"
+      ],
+      "selectedIssueId": 57315,
+      "selectedIssueIds": [
+        57315
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57315/vision_2015_7",
+      "resolvedIssueTitle": "Vision (2015) #7",
+      "note": "Marvel series 20897 (Vision (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Vision #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20897,
+      "candidateIssueId": 57319,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57319"
+      ],
+      "selectedIssueId": 57319,
+      "selectedIssueIds": [
+        57319
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57319/vision_2015_11",
+      "resolvedIssueTitle": "Vision (2015) #11",
+      "note": "Marvel series 20897 (Vision (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Scarlet Witch (2016) #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20854,
+      "candidateIssueId": 57097,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57097"
+      ],
+      "selectedIssueId": 57097,
+      "selectedIssueIds": [
+        57097
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57097/scarlet_witch_2015_2",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #2",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Scarlet Witch (2016) #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20854,
+      "candidateIssueId": 57099,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57099"
+      ],
+      "selectedIssueId": 57099,
+      "selectedIssueIds": [
+        57099
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57099/scarlet_witch_2015_3",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #3",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Scarlet Witch (2016) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20854,
+      "candidateIssueId": 57100,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57100"
+      ],
+      "selectedIssueId": 57100,
+      "selectedIssueIds": [
+        57100
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57100/scarlet_witch_2015_4",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #4",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Scarlet Witch (2016) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20854,
+      "candidateIssueId": 57104,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57104"
+      ],
+      "selectedIssueId": 57104,
+      "selectedIssueIds": [
+        57104
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57104/scarlet_witch_2015_8",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #8",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Scarlet Witch (2016) #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20854,
+      "candidateIssueId": 57108,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57108"
+      ],
+      "selectedIssueId": 57108,
+      "selectedIssueIds": [
+        57108
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57108/scarlet_witch_2015_12",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #12",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Scarlet Witch (2016) #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20854,
+      "candidateIssueId": 60028,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60028"
+      ],
+      "selectedIssueId": 60028,
+      "selectedIssueIds": [
+        60028
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60028/scarlet_witch_2015_13",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #13",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Scarlet Witch (2016) #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20854,
+      "candidateIssueId": 60029,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60029"
+      ],
+      "selectedIssueId": 60029,
+      "selectedIssueIds": [
+        60029
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60029/scarlet_witch_2015_14",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #14",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Scarlet Witch (2016) #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20854,
+      "candidateIssueId": 60138,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60138"
+      ],
+      "selectedIssueId": 60138,
+      "selectedIssueIds": [
+        60138
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60138/scarlet_witch_2015_15",
+      "resolvedIssueTitle": "Scarlet Witch (2015) #15",
+      "note": "Marvel series 20854 (Scarlet Witch (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Doctor Strange Annual (2019) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Doctor Strange Annual",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 28290,
+      "candidateIssueId": 80065,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "80065"
+      ],
+      "selectedIssueId": 80065,
+      "selectedIssueIds": [
+        80065
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/80065/doctor_strange_annual_2019_1",
+      "resolvedIssueTitle": "Doctor Strange Annual (2019) #1",
+      "note": "Marvel series 28290 (Doctor Strange Annual (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "Captain America (2018) #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "19",
+      "seriesId": 24503,
+      "candidateIssueId": 77235,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77235"
+      ],
+      "selectedIssueId": 77235,
+      "selectedIssueIds": [
+        77235
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77235/captain_america_2018_19",
+      "resolvedIssueTitle": "Captain America (2018) #19",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Captain America (2018) #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "22",
+      "seriesId": 24503,
+      "candidateIssueId": 77238,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77238"
+      ],
+      "selectedIssueId": 77238,
+      "selectedIssueIds": [
+        77238
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77238/captain_america_2018_22",
+      "resolvedIssueTitle": "Captain America (2018) #22",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "Captain America (2018) #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "23",
+      "seriesId": 24503,
+      "candidateIssueId": 77239,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77239"
+      ],
+      "selectedIssueId": 77239,
+      "selectedIssueIds": [
+        77239
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77239/captain_america_2018_23",
+      "resolvedIssueTitle": "Captain America (2018) #23",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "Fantastic Four: Antithesis (2020) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four: Antithesis",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 27550,
+      "candidateIssueId": 76737,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76737"
+      ],
+      "selectedIssueId": 76737,
+      "selectedIssueIds": [
+        76737
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76737/fantastic_four_antithesis_2020_1",
+      "resolvedIssueTitle": "Fantastic Four: Antithesis (2020) #1",
+      "note": "Marvel series 27550 (Fantastic Four: Antithesis (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "Fantastic Four: Antithesis (2020) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four: Antithesis",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 27550,
+      "candidateIssueId": 76741,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76741"
+      ],
+      "selectedIssueId": 76741,
+      "selectedIssueIds": [
+        76741
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76741/fantastic_four_antithesis_2020_4",
+      "resolvedIssueTitle": "Fantastic Four: Antithesis (2020) #4",
+      "note": "Marvel series 27550 (Fantastic Four: Antithesis (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Strange Academy (2020) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Strange Academy",
+      "seriesYear": 2020,
+      "issueNumber": "8",
+      "seriesId": 28177,
+      "candidateIssueId": 79805,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "79805"
+      ],
+      "selectedIssueId": 79805,
+      "selectedIssueIds": [
+        79805
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/79805/strange_academy_2020_8",
+      "resolvedIssueTitle": "Strange Academy (2020) #8",
+      "note": "Marvel series 28177 (Strange Academy (2020 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Captain America (2018) #27",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "27",
+      "seriesId": 24503,
+      "candidateIssueId": 77243,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77243"
+      ],
+      "selectedIssueId": 77243,
+      "selectedIssueIds": [
+        77243
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77243/captain_america_2018_27",
+      "resolvedIssueTitle": "Captain America (2018) #27",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 105,
+      "sourceIssueReference": "Captain America (2018) #28",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2018,
+      "issueNumber": "28",
+      "seriesId": 24503,
+      "candidateIssueId": 89543,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "89543"
+      ],
+      "selectedIssueId": 89543,
+      "selectedIssueIds": [
+        89543
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/89543/captain_america_2018_28",
+      "resolvedIssueTitle": "Captain America (2018) #28",
+      "note": "Marvel series 24503 (Captain America (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact"
+    }
+  ],
+  "mappingDigest": "68b36b41c894d439b4b2fa56b4fc600e035b1fda361cd146b537340b6b29c6df",
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 88,
+      "canonicalRow": 75,
+      "sourceIssueReference": "Scarlet Witch (2016) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "1"
+    }
+  ],
+  "reviewStatus": "approved",
+  "packetReview": "Source boundary, 104 canonical issues, 1 repeated source reference, and 4 partial overlap relationships reviewed by GPT-5.4 mini on 2026-08-26.",
+  "approvedManifest": {
+    "id": "agatha-harkness-reading-order",
+    "name": "Agatha Harkness",
+    "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "agatha-harkness-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "agatha_harkness_reading_order.json",
+    "characters": [
+      "Agatha Harkness",
+      "Fantastic Four",
+      "Scarlet Witch",
+      "Vision"
+    ],
+    "keywords": [
+      "Agatha Harkness",
+      "Fantastic Four",
+      "Scarlet Witch",
+      "Vision",
+      "Comic Book Herald"
+    ],
+    "expect": 104,
+    "timeline": null,
+    "coverIssueId": 12903
+  },
+  "relationshipReview": {
+    "reportDigest": "0bddef4e4eb614e39c82843bc99e0d380a7055bd2399bf6ad5158ed432e9c959",
+    "packetDigest": "00356c88548e6fd5896da5fb88fbfe67dbfdfe071702f03d85ce962236eb07e4",
+    "mappingDigest": "68b36b41c894d439b4b2fa56b4fc600e035b1fda361cd146b537340b6b29c6df",
+    "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The only shared issue is West Coast Avengers (1985) #56, which is the Agatha bridge issue used by both guides.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.4 mini",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The only shared issue is Avengers (1998) #503, which is the Agatha-era appearance shared by both guides.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.4 mini",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared issues are Fantastic Four (1961) #116 and #196 plus Infinity War (1992) #3, #4, and #6, so this is a narrow Doom-related overlap rather than a duplicate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.4 mini",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared issues are Avengers (1963) #128, Vision and the Scarlet Witch (1985) #3-5, and Scarlet Witch (2015) #1-4, #8, and #12-15, which are the Wanda and Agatha intersections that both guides intentionally include.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.4 mini",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.4 mini",
+    "rationale": "Every current library comparison was reviewed; 133 none relationships needed no exception and 4 partial overlaps were justified individually.",
+    "reviewedAt": "2026-08-26T00:00:00Z",
+    "approvalDigest": "1c91bdee15abe3e79c2413dcbde2043e4bd486fdc0a95f078beaebd96fa00673"
+  }
+}

@@ -2,17 +2,23 @@
   "candidateId": "phalanx-covenant",
   "packetDigest": "a5114c1e6b5485449c95721d1534e89397562ef4946c6adfdf416987659f1d03",
   "mappingDigest": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
-  "libraryDigest": "04972a102e330d9efbae85ceb847b5de6b337903538ec68f4749e27569934d47",
+  "libraryDigest": "810bca0b57a0b4f6f5624cfde19807510dac11191c80c190c3fc94e27e028a69",
   "peerDigests": {
     "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
     "spider-man-identity-crisis": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
     "time-and-time-again": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4"
   },
   "candidateCount": 9,
-  "comparisonCount": 133,
+  "comparisonCount": 132,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -294,12 +300,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "hunt-for-xavier",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "inferno",
       "sharedCount": 0,
       "sharedIds": [],
@@ -355,12 +355,6 @@
     },
     {
       "orderId": "last-annihilation",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -820,5 +814,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "0edeb12a12390d51fd7c16add303165f4956c9ae5031b453cfb13b15de0c9b3f"
+  "reportDigest": "bfbb1e0db643697818f36211dc7736206863957fc1bb7eba63a67b33d72d904b"
 }

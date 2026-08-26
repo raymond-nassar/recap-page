@@ -1001,10 +1001,10 @@
     "coverIssueId": 71314
   },
   "relationshipReview": {
-    "reportDigest": "16e4db5cada64a7598d3c5ac77e227f305bb9e13ac2258bd39870750fda2e49d",
+    "reportDigest": "4c3ad9db7ca75acb0084b2e0aa1dca1cfee3a4f0f22977e73d5b474f1b1c967a",
     "packetDigest": "26378833c6cefcf5fe3648c09fd68d9fb544a94b4a51c880ab4aad35e4014813",
     "mappingDigest": "71d7c0accbab5764114f223d92959dd2e9490cd4ceaa2a4ddd617db6542d78b3",
-    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "libraryDigest": "2ba96a7c00d52f71f0f216d7620bf06307c8c26a58ca5b5d514031b50c182fca",
     "peerDigests": {
       "age-of-x-man": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
       "iron-man-2020": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6"
@@ -1780,6 +1780,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "d77396df960364cec6edc851245e7cfedc605e63177f66d6b4744623861f4f67"
+    "approvalDigest": "58134f4134f2b80bc2f888e47ab4b2fe246543a3e8c461f0f7a188e544228562"
   }
 }

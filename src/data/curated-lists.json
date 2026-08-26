@@ -1943,6 +1943,39 @@
       "coverIssueId": 8605
     },
     {
+      "id": "agatha-harkness-reading-order",
+      "name": "Agatha Harkness",
+      "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "agatha-harkness-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "agatha_harkness_reading_order.json",
+      "characters": [
+        "Agatha Harkness",
+        "Fantastic Four",
+        "Scarlet Witch",
+        "Vision"
+      ],
+      "keywords": [
+        "Agatha Harkness",
+        "Fantastic Four",
+        "Scarlet Witch",
+        "Vision",
+        "Comic Book Herald"
+      ],
+      "expect": 104,
+      "timeline": null,
+      "coverIssueId": 12903
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "name": "Rocket Raccoon",
       "description": "Rocket Raccoon from his Half-World debut through the modern Guardians, his solo adventures, and Avengers: No Road Home.",

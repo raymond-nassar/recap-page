@@ -1937,10 +1937,10 @@
     "authorityIdentity": "GPT-5.5 central review",
     "rationale": "Approved the creator-run boundary as Hickman-written or Hickman-co-written rows through Inferno. Partial overlaps are intentional because existing event and character guides represent different truthful catalog contexts rather than duplicate line-wide Krakoa intake.",
     "reviewedAt": "2026-08-26T00:00:00Z",
-    "reportDigest": "e131d1d23bea5c186caeb2e0bceb82e82f38c26652d004d828fff3f570e83973",
+    "reportDigest": "55c5fe2c4e5d0268de665bd6671c8663cbc28728b68181b09707b2cca7943035",
     "packetDigest": "800288f321acf9793b0800e2c6c3f8ece3283ba341d672b9903924edae04f439",
     "mappingDigest": "faef0663fd0c7dc17b1f7f8449971662adda7d8612666f4990970955cc30efa7",
-    "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
+    "libraryDigest": "c65b57b65e6550dee2002f56b3bed07692ddc88524025f341f70313a486f2880",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3150,6 +3150,6 @@
         "reviewedAt": "2026-08-26T00:00:00Z"
       }
     ],
-    "approvalDigest": "79cfb01a97b76d22c5fe35e8fad672c7bb0860fba9f7991d30443c1dcf1e49ef"
+    "approvalDigest": "1748d89dd50e9bc9099ffe4bfb6004d1a164214bb4d26c0e2a2bf85c2b38afea"
   }
 }

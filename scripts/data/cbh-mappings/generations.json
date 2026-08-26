@@ -462,10 +462,10 @@
     "coverIssueId": 63963
   },
   "relationshipReview": {
-    "reportDigest": "bd35c6c7495a1ff9bd7bc092a6c0d61f3bc388d8097b469a9230b03217e48dfb",
+    "reportDigest": "39330e3c90a4fa5a3c309e2d4192b9152b7cb88db0339352dc23be98acc4274f",
     "packetDigest": "e11ec57846dd73238f07511b32000799e5d35415e941421cf3b576e49781d981",
     "mappingDigest": "9bb719ce2cafc3edb63bde42f5cbf19aabed942bb4231a246a49a036a91523fa",
-    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "libraryDigest": "d0de21d793a8a61225828fd062e4713d09c10eeff68df6e32aef2a0e5d9c56e4",
     "peerDigests": {
       "x-men-extermination": "398031e9ec8c6bc6d992f346747d175890852d103a162435b16e6420bc8f3a5a"
     },
@@ -1240,6 +1240,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "67eb36660d4d3bb8e1e29239a683eebf50edb73c9ae8e5ddd646830228b902d4"
+    "approvalDigest": "c66a9db8c0736cfa5739dfe1bfe2c85defcfb57ca6964208da89a16fa5ed2871"
   }
 }
