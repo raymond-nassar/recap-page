@@ -1739,6 +1739,70 @@
       "coverIssueId": 12135
     },
     {
+      "id": "wandavision",
+      "name": "WandaVision",
+      "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "wandavision.md",
+      "sourcePage": "https://www.comicbookherald.com/10-best-comics-to-read-with-wandavision/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "wandavision.json",
+      "characters": [
+        "Scarlet Witch",
+        "Vision",
+        "Avengers",
+        "Wiccan",
+        "Speed"
+      ],
+      "keywords": [
+        "WandaVision",
+        "Scarlet Witch",
+        "Vision",
+        "House of M",
+        "Comic Book Herald"
+      ],
+      "expect": 56,
+      "timeline": null,
+      "coverIssueId": 11954
+    },
+    {
+      "id": "spider-man-far-from-home",
+      "name": "Spider-Man: Far From Home",
+      "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-man-far-from-home.md",
+      "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "spider_man_far_from_home.json",
+      "characters": [
+        "Spider-Man",
+        "Mysterio",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Far From Home",
+        "Spider-Man",
+        "Mysterio",
+        "The Gauntlet",
+        "Comic Book Herald"
+      ],
+      "expect": 8,
+      "timeline": null,
+      "coverIssueId": 74028
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
@@ -1977,6 +2041,41 @@
       "expect": 99,
       "timeline": null,
       "coverIssueId": 19776
+    },
+    {
+      "id": "modern-x-men-fast-track",
+      "name": "Modern X-Men Fast Track",
+      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "other",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "modern-x-men-fast-track.md",
+      "sourcePage": "https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/",
+      "sourceSection": "X-Men Events & Major Stories (2001 to 2015)",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "modern_x_men_fast_track.json",
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Cyclops",
+        "Jean Grey",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Modern X-Men",
+        "New X-Men",
+        "Astonishing X-Men",
+        "X-Force",
+        "Comic Book Herald"
+      ],
+      "expect": 278,
+      "timeline": null,
+      "coverIssueId": 14933
     },
     {
       "id": "xmen-claremont",
@@ -3478,6 +3577,42 @@
       "coverIssueId": 12393
     },
     {
+      "id": "ultimate-marvel-intro",
+      "name": "Ultimate Marvel: Intro to the Ultimate U",
+      "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
+      "type": "era",
+      "depth": "complete",
+      "beginner": true,
+      "group": "ultimate-marvel-earth-1610",
+      "groupName": "Ultimate Marvel Universe",
+      "variant": "Intro to the Ultimate U",
+      "sourceFile": "ultimate-marvel-intro.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/",
+      "sourceSection": "Intro to the Ultimate U",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "ultimate_marvel_intro.json",
+      "characters": [
+        "Spider-Man",
+        "X-Men",
+        "Ultimates",
+        "Fantastic Four",
+        "Daredevil",
+        "Elektra",
+        "Iron Man"
+      ],
+      "keywords": [
+        "Ultimate Marvel",
+        "Earth-1610",
+        "Ultimate Spider-Man",
+        "Ultimate X-Men",
+        "Ultimate War"
+      ],
+      "expect": 121,
+      "timeline": 2000,
+      "coverIssueId": 4372
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",
@@ -4061,6 +4196,35 @@
       "expect": 12,
       "timeline": 2005,
       "coverIssueId": 2453
+    },
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "amazing-spider-man-reading-order-modern-marvel-era.md",
+      "sourcePage": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "expect": 2043,
+      "timeline": 1962,
+      "coverIssueId": 16926
     },
     {
       "id": "silent-war",

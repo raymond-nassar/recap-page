@@ -1,0 +1,1281 @@
+{
+  "schemaVersion": 1,
+  "id": "ultimate-marvel-intro",
+  "inventoryId": "ultimate-marvel-intro",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/",
+  "sourceSection": "Intro to the Ultimate U",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceIssueBearingBlocksSha256": "635883453cc2e77167cf61c66ed58bb3973ed7af6735999d1dd95935003536fb",
+  "sourceBoundary": "The rows under The Ultimate Marvel Reading Order > Intro to the Ultimate U, ending before After the Ultimate War. Ultimate Marvel Team-Up #9 is preserved as an excluded source row because the source marks it out of continuity.",
+  "excludedSourceReferences": [
+    "Ultimate Marvel Team-Up #9"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 106,
+      "sourceIssueReference": "Ultimate Marvel Team-Up #9",
+      "reason": "The source marks this Fantastic Four story out of continuity.",
+      "decisionScope": "Excluded from the Earth-1610 issue order while preserving the source occurrence."
+    }
+  ],
+  "sourceOccurrenceCount": 122,
+  "expectedCount": 121,
+  "proposedManifest": {
+    "id": "ultimate-marvel-intro",
+    "name": "Ultimate Marvel: Intro to the Ultimate U",
+    "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
+    "type": "era",
+    "depth": "complete",
+    "beginner": true,
+    "group": "ultimate-marvel-earth-1610",
+    "groupName": "Ultimate Marvel Universe",
+    "variant": "Intro to the Ultimate U",
+    "sourceFile": "ultimate-marvel-intro.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/",
+    "sourceSection": "Intro to the Ultimate U",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "ultimate_marvel_intro.json",
+    "characters": [
+      "Spider-Man",
+      "X-Men",
+      "Ultimates",
+      "Fantastic Four",
+      "Daredevil",
+      "Elektra",
+      "Iron Man"
+    ],
+    "keywords": [
+      "Ultimate Marvel",
+      "Earth-1610",
+      "Ultimate Spider-Man",
+      "Ultimate X-Men",
+      "Ultimate War"
+    ],
+    "expect": 121,
+    "timeline": 2000,
+    "coverIssueId": 4372
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.5",
+    "rationale": "The corrected Earth-1610-only boundary, visible section boundaries, excluded fast-track, trade, out-of-continuity, post-Secret-Wars, and 2023-continuity material, and the first release row set were reviewed against the fetched guide text before mapping.",
+    "reviewedAt": "2026-08-26T05:20:00Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #1",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "1",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #2",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "2",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #3",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "3",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #4",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "4",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #5",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "5",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #6",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "6",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #7",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "7",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #8",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "8",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #9",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "9",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #10",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "10",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #11",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "11",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #12",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "12",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #13",
+      "sourceRangeReference": "Ultimate Spider-Man #1 - #13",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "13",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Daredevil & Elektra #1",
+      "sourceRangeReference": "Ultimate Daredevil & Elektra #1 - #4",
+      "normalizedSeriesTitle": "Ultimate Daredevil & Elektra",
+      "seriesYear": 2002,
+      "issueNumber": "1",
+      "seriesId": 2298,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Daredevil & Elektra #2",
+      "sourceRangeReference": "Ultimate Daredevil & Elektra #1 - #4",
+      "normalizedSeriesTitle": "Ultimate Daredevil & Elektra",
+      "seriesYear": 2002,
+      "issueNumber": "2",
+      "seriesId": 2298,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Daredevil & Elektra #3",
+      "sourceRangeReference": "Ultimate Daredevil & Elektra #1 - #4",
+      "normalizedSeriesTitle": "Ultimate Daredevil & Elektra",
+      "seriesYear": 2002,
+      "issueNumber": "3",
+      "seriesId": 2298,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Daredevil & Elektra #4",
+      "sourceRangeReference": "Ultimate Daredevil & Elektra #1 - #4",
+      "normalizedSeriesTitle": "Ultimate Daredevil & Elektra",
+      "seriesYear": 2002,
+      "issueNumber": "4",
+      "seriesId": 2298,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Elektra #1",
+      "sourceRangeReference": "Ultimate Elektra #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Elektra",
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "seriesId": 767,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Elektra #2",
+      "sourceRangeReference": "Ultimate Elektra #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Elektra",
+      "seriesYear": 2004,
+      "issueNumber": "2",
+      "seriesId": 767,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Elektra #3",
+      "sourceRangeReference": "Ultimate Elektra #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Elektra",
+      "seriesYear": 2004,
+      "issueNumber": "3",
+      "seriesId": 767,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Elektra #4",
+      "sourceRangeReference": "Ultimate Elektra #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Elektra",
+      "seriesYear": 2004,
+      "issueNumber": "4",
+      "seriesId": 767,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Elektra #5",
+      "sourceRangeReference": "Ultimate Elektra #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Elektra",
+      "seriesYear": 2004,
+      "issueNumber": "5",
+      "seriesId": 767,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man #1",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 761,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man #2",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man",
+      "seriesYear": 2005,
+      "issueNumber": "2",
+      "seriesId": 761,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man #3",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man",
+      "seriesYear": 2005,
+      "issueNumber": "3",
+      "seriesId": 761,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man #4",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man",
+      "seriesYear": 2005,
+      "issueNumber": "4",
+      "seriesId": 761,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man #5",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man",
+      "seriesYear": 2005,
+      "issueNumber": "5",
+      "seriesId": 761,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man II #1",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man II",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3179,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man II #2",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man II",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 3179,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man II #3",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man II",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 3179,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man II #4",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man II",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 3179,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Iron Man II #5",
+      "sourceRangeReference": "Ultimate Iron Man #1 - #5 + Ultimate Iron Man II #1 - #5",
+      "normalizedSeriesTitle": "Ultimate Iron Man II",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 3179,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #1",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "1",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #2",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "2",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #3",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "3",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #4",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "4",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #5",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "5",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #6",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "6",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #7",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "7",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #8",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1 - #8",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "8",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #1",
+      "sourceRangeReference": "Ultimate X-Men #1 - #6",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "1",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #2",
+      "sourceRangeReference": "Ultimate X-Men #1 - #6",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "2",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #3",
+      "sourceRangeReference": "Ultimate X-Men #1 - #6",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "3",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #4",
+      "sourceRangeReference": "Ultimate X-Men #1 - #6",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "4",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #5",
+      "sourceRangeReference": "Ultimate X-Men #1 - #6",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "5",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #6",
+      "sourceRangeReference": "Ultimate X-Men #1 - #6",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "6",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #14",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "14",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #15",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "15",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #16",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "16",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #17",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "17",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #18",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "18",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #19",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "19",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #20",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "20",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #21",
+      "sourceRangeReference": "Ultimate Spider-Man #14 - #21",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "21",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #10",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "10",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #11",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "11",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #12",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "12",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #13",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "13",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #14",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "14",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #15",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "15",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #16",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #10 - #16",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "16",
+      "seriesId": 2311,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #7",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "7",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #8",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "8",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #9",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "9",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #10",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "10",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #11",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "11",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #12",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "12",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #13",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "13",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #14",
+      "sourceRangeReference": "Ultimate X-Men #7 - #14",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "14",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #22",
+      "sourceRangeReference": "Ultimate Spider-Man #22 - #27",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "22",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #23",
+      "sourceRangeReference": "Ultimate Spider-Man #22 - #27",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "23",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #24",
+      "sourceRangeReference": "Ultimate Spider-Man #22 - #27",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "24",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #25",
+      "sourceRangeReference": "Ultimate Spider-Man #22 - #27",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "25",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #26",
+      "sourceRangeReference": "Ultimate Spider-Man #22 - #27",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "26",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #27",
+      "sourceRangeReference": "Ultimate Spider-Man #22 - #27",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "27",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #1",
+      "sourceRangeReference": "Ultimates #1 - #3",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "1",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #2",
+      "sourceRangeReference": "Ultimates #1 - #3",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "2",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #3",
+      "sourceRangeReference": "Ultimates #1 - #3",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "3",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #15",
+      "sourceRangeReference": "Ultimate X-Men #15 - #20",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "15",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #16",
+      "sourceRangeReference": "Ultimate X-Men #15 - #20",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "16",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #17",
+      "sourceRangeReference": "Ultimate X-Men #15 - #20",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "17",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #18",
+      "sourceRangeReference": "Ultimate X-Men #15 - #20",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "18",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #19",
+      "sourceRangeReference": "Ultimate X-Men #15 - #20",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "19",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #20",
+      "sourceRangeReference": "Ultimate X-Men #15 - #20",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "20",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #28",
+      "sourceRangeReference": "Ultimate Spider-Man #28 - #32",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "28",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #29",
+      "sourceRangeReference": "Ultimate Spider-Man #28 - #32",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "29",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #30",
+      "sourceRangeReference": "Ultimate Spider-Man #28 - #32",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "30",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #31",
+      "sourceRangeReference": "Ultimate Spider-Man #28 - #32",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "31",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #32",
+      "sourceRangeReference": "Ultimate Spider-Man #28 - #32",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "32",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #4",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "4",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #5",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "5",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #6",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "6",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #7",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "7",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #8",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "8",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #9",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "9",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #10",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "10",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #11",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "11",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #12",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "12",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimates #13",
+      "sourceRangeReference": "Ultimates #4 - #13",
+      "normalizedSeriesTitle": "Ultimates",
+      "seriesYear": 2002,
+      "issueNumber": "13",
+      "seriesId": 664,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Fantastic Four #1",
+      "sourceRangeReference": "Ultimate Fantastic Four #1 - #6",
+      "normalizedSeriesTitle": "Ultimate Fantastic Four",
+      "seriesYear": 2003,
+      "issueNumber": "1",
+      "seriesId": 702,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Fantastic Four #2",
+      "sourceRangeReference": "Ultimate Fantastic Four #1 - #6",
+      "normalizedSeriesTitle": "Ultimate Fantastic Four",
+      "seriesYear": 2003,
+      "issueNumber": "2",
+      "seriesId": 702,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Fantastic Four #3",
+      "sourceRangeReference": "Ultimate Fantastic Four #1 - #6",
+      "normalizedSeriesTitle": "Ultimate Fantastic Four",
+      "seriesYear": 2003,
+      "issueNumber": "3",
+      "seriesId": 702,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Fantastic Four #4",
+      "sourceRangeReference": "Ultimate Fantastic Four #1 - #6",
+      "normalizedSeriesTitle": "Ultimate Fantastic Four",
+      "seriesYear": 2003,
+      "issueNumber": "4",
+      "seriesId": 702,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Fantastic Four #5",
+      "sourceRangeReference": "Ultimate Fantastic Four #1 - #6",
+      "normalizedSeriesTitle": "Ultimate Fantastic Four",
+      "seriesYear": 2003,
+      "issueNumber": "5",
+      "seriesId": 702,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Fantastic Four #6",
+      "sourceRangeReference": "Ultimate Fantastic Four #1 - #6",
+      "normalizedSeriesTitle": "Ultimate Fantastic Four",
+      "seriesYear": 2003,
+      "issueNumber": "6",
+      "seriesId": 702,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #33",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "33",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #34",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "34",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #35",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "35",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #36",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "36",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #37",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "37",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #38",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "38",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate Spider-Man #39",
+      "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "39",
+      "seriesId": 466,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #21",
+      "sourceRangeReference": "Ultimate X-Men #21 - #25",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "21",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #22",
+      "sourceRangeReference": "Ultimate X-Men #21 - #25",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "22",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #23",
+      "sourceRangeReference": "Ultimate X-Men #21 - #25",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "23",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #24",
+      "sourceRangeReference": "Ultimate X-Men #21 - #25",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "24",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate X-Men #25",
+      "sourceRangeReference": "Ultimate X-Men #21 - #25",
+      "normalizedSeriesTitle": "Ultimate X-Men",
+      "seriesYear": 2001,
+      "issueNumber": "25",
+      "seriesId": 474,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate War #1",
+      "sourceRangeReference": "Ultimate War #1 - #4",
+      "normalizedSeriesTitle": "Ultimate War",
+      "seriesYear": 2002,
+      "issueNumber": "1",
+      "seriesId": 3659,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate War #2",
+      "sourceRangeReference": "Ultimate War #1 - #4",
+      "normalizedSeriesTitle": "Ultimate War",
+      "seriesYear": 2002,
+      "issueNumber": "2",
+      "seriesId": 3659,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate War #3",
+      "sourceRangeReference": "Ultimate War #1 - #4",
+      "normalizedSeriesTitle": "Ultimate War",
+      "seriesYear": 2002,
+      "issueNumber": "3",
+      "seriesId": 3659,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Ultimate War #4",
+      "sourceRangeReference": "Ultimate War #1 - #4",
+      "normalizedSeriesTitle": "Ultimate War",
+      "seriesYear": 2002,
+      "issueNumber": "4",
+      "seriesId": 3659,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc"
+}

@@ -97,6 +97,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
   assert.deepEqual(
     sorted.filter((entry) => entry.timeline >= 2000 && entry.timeline <= 2010).map((entry) => entry.id),
     [
+      'ultimate-marvel-intro',
       'maximum-security',
       'avengers-disassembled',
       'secret-war',
@@ -217,7 +218,11 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'rocket-raccoon-reading-order',
     'groot-reading-order',
     'star-lord-reading-order',
+    'modern-x-men-fast-track',
     'x-men-utopia',
+    'amazing-spider-man-reading-order-modern-marvel-era',
+    'wandavision',
+    'spider-man-far-from-home',
   ]);
   const packetRecords = [];
   const existingRecords = [];

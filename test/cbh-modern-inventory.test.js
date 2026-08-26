@@ -269,6 +269,36 @@ test('live inventory validation accepts a guarded lifecycle and rejects invalid 
       catalogIds: ['catalog-4'],
       deliveryStatus: 'shipped',
     },
+    {
+      position: 6,
+      id: 'section-one',
+      title: 'Section One',
+      url: 'https://example.com/shared-page',
+      sourceSection: 'First Section',
+      guideType: 'era',
+      window: 'Q2',
+      disposition: 'deferred',
+      reason: 'Inventoried as a section of a larger source page.',
+      sourceRetrievedAt: '2026-08-20',
+      overlapIds: [],
+      catalogIds: [],
+      deliveryStatus: 'not-applicable',
+    },
+    {
+      position: 7,
+      id: 'section-two',
+      title: 'Section Two',
+      url: 'https://example.com/shared-page',
+      sourceSection: 'Second Section',
+      guideType: 'era',
+      window: 'Q2',
+      disposition: 'deferred',
+      reason: 'Inventoried as a separate section of the same source page.',
+      sourceRetrievedAt: '2026-08-20',
+      overlapIds: [],
+      catalogIds: [],
+      deliveryStatus: 'not-applicable',
+    },
   ];
 
   assert.doesNotThrow(() => validateLiveInventory(liveRecords));
@@ -279,4 +309,12 @@ test('live inventory validation accepts a guarded lifecycle and rejects invalid 
     disposition: 'new-order',
   };
   assert.throws(() => validateLiveInventory([invalid]), /deliveryStatus/i);
+  assert.throws(() => validateLiveInventory([
+    { ...liveRecords[5], position: 1 },
+    { ...liveRecords[6], position: 2, sourceSection: liveRecords[5].sourceSection },
+  ]), /Duplicate inventory source section/i);
+  assert.throws(() => validateLiveInventory([
+    { ...liveRecords[5], position: 1, sourceSection: undefined },
+    { ...liveRecords[6], position: 2 },
+  ]), /Duplicate inventory url/i);
 });

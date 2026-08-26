@@ -1,376 +1,515 @@
 {
-  "id": "marvel-what-if",
-  "inventoryId": "marvel-what-if",
-  "packetDigest": "750e957f3b81c3b4a51d0d17eae8e8adc79b8fc2154e7d18014c1b913e810d9e",
-  "sourceUrl": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
-  "sourceRetrievedAt": "2026-08-24",
-  "sourceContentSha256": "41e07a92b9509cecab9482096f8d7c388c8bad130ce1b756896c3a8c8f4c15c4",
+  "id": "spider-man-far-from-home",
+  "inventoryId": "spider-man-far-from-home",
+  "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3",
+  "sourceUrl": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceContentSha256": "eb12094ab82fa0605bd35397b14e7148e7306f3036823394d52360a46c409301",
   "sourceRetrievalStatus": "retrieved",
-  "approvedSourceCount": 7,
+  "approvedSourceCount": 24,
   "excludedSourceReferences": [
-    "Amazing Spider-Man #148-150 contextual continuity reference",
-    "Unnumbered What If? Age of Ultron miniseries issues other than the caption-identified #5",
-    "Editorial commentary and images"
+    "Related reading-order links",
+    "Contextual comic mentions inside included issue discussions",
+    "Video-game and film context links",
+    "Spider-Men unnumbered recommendation",
+    "Spider-Verse and Spider-Geddon unnumbered recommendations",
+    "Hickman Avengers / Secret Wars and whole-run Hickman follow-on links",
+    "Friendly Neighborhood Spider-Man first-seven-issues context outside the exact #6 recommendation",
+    "Editorial commentary, images, embeds, advertisements, and subscription links"
   ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Related Reading Orders: Amazing Spider-Man",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Related Reading Orders: Mysterio",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Related Reading Orders: Miles Morales",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #13",
+      "reason": "Contextual Mysterio debut mention inside the #66-67 discussion, not the row recommended by the heading.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Amazing Spider-Man Annual (1964) #1",
+      "reason": "Contextual Sinister Six mention inside the #66-67 discussion, not the row recommended by the heading.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Spider-Man: Shattered Dimensions",
+      "reason": "Video-game influence mention, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #2",
+      "reason": "Contextual Tinkerer aliens mention inside the #50-51 discussion, not a recommended row.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Shed",
+      "reason": "Contextual later Gauntlet story mention without an issue-number boundary.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "PS4 Spider-Man",
+      "reason": "Video-game comparison, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Spider-Men",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spider-Man: Into the Spider-Verse",
+      "reason": "Film comparison inside the Spider-Men discussion, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Spider-Verse",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Geddon",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Hickman Avengers / Secret Wars",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Hickman's Marvel Universe work as a whole",
+      "reason": "Contextual whole-run follow-on link without an issue-number boundary.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2019) first seven issues",
+      "reason": "Contextual read-status mention; only #6 is issue-specific recommendation text.",
+      "decisionScope": "contextual-mention"
+    }
+  ],
+  "sourceOccurrenceCount": 24,
+  "reviewStatus": "approved",
   "proposedManifest": {
-    "id": "marvel-what-if",
-    "name": "Marvel What If?",
-    "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+    "id": "spider-man-far-from-home",
+    "name": "Spider-Man: Far From Home",
+    "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
     "type": "screen-companion",
     "depth": "selected",
     "beginner": false,
     "group": null,
     "groupName": null,
     "variant": null,
-    "sourceFile": "marvel-what-if.md",
-    "sourcePage": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+    "sourceFile": "spider-man-far-from-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
     "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
     "sourceLicense": null,
-    "out": "marvel_what_if.json",
+    "out": "spider_man_far_from_home.json",
     "characters": [
-      "Doctor Doom",
-      "Thor",
-      "Daredevil",
       "Spider-Man",
-      "Magik"
+      "Mysterio",
+      "Peter Parker"
     ],
     "keywords": [
-      "What If",
-      "alternate reality",
-      "Marvel Multiverse",
-      "Age of Ultron",
+      "Far From Home",
+      "Spider-Man",
+      "Mysterio",
+      "The Gauntlet",
       "Comic Book Herald"
     ],
-    "expect": 7,
+    "expect": 8,
     "timeline": null,
-    "coverIssueId": 12135
+    "coverIssueId": 74028
   },
   "candidateMetadata": [
     {
-      "id": 12135,
-      "title": "What If?",
-      "issueTitle": "What If? (1977) #22",
-      "seriesTitle": "What If?",
-      "apiSeriesName": "What If? (1977 - 1984)",
-      "seriesId": 2095,
-      "issueNumber": "22",
-      "seriesYear": 1977,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/12135/what_if_1977_22",
-      "onSaleDate": "1980-08-01T00:00:00+0000"
+      "id": 6886,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (1963) #66",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "seriesId": 1987,
+      "issueNumber": "66",
+      "seriesYear": 1963,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/6886/the_amazing_spider-man_1963_66",
+      "onSaleDate": "1968-11-01T00:00:00+0000"
     },
     {
-      "id": 12138,
-      "title": "What If?",
-      "issueTitle": "What If? (1977) #25",
-      "seriesTitle": "What If?",
-      "apiSeriesName": "What If? (1977 - 1984)",
-      "seriesId": 2095,
-      "issueNumber": "25",
-      "seriesYear": 1977,
+      "id": 6887,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (1963) #67",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "seriesId": 1987,
+      "issueNumber": "67",
+      "seriesYear": 1963,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/6887/the_amazing_spider-man_1963_67",
+      "onSaleDate": "1968-12-01T00:00:00+0000"
+    },
+    {
+      "id": 14751,
+      "title": "Peter Parker, the Spectacular Spider-Man",
+      "issueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "seriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "apiSeriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "seriesId": 2271,
+      "issueNumber": "50",
+      "seriesYear": 1976,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/12138/what_if_1977_25",
+      "detailUrl": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "onSaleDate": "1981-01-01T00:00:00+0000"
+    },
+    {
+      "id": 14752,
+      "title": "Peter Parker, the Spectacular Spider-Man",
+      "issueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "seriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "apiSeriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "seriesId": 2271,
+      "issueNumber": "51",
+      "seriesYear": 1976,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
       "onSaleDate": "1981-02-01T00:00:00+0000"
     },
     {
-      "id": 58430,
-      "title": "What If?",
-      "issueTitle": "What If? (1977) #28",
-      "seriesTitle": "What If?",
-      "apiSeriesName": "What If? (1977 - 1984)",
-      "seriesId": 2095,
-      "issueNumber": "28",
-      "seriesYear": 1977,
+      "id": 24425,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #618",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "618",
+      "seriesYear": 1999,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/58430/what_if_1977_28",
-      "onSaleDate": "1981-08-01T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/24425/amazing_spider-man_1999_618",
+      "onSaleDate": "2010-01-20T00:00:00+0000"
     },
     {
-      "id": 12144,
-      "title": "What If?",
-      "issueTitle": "What If? (1977) #30",
-      "seriesTitle": "What If?",
-      "apiSeriesName": "What If? (1977 - 1984)",
-      "seriesId": 2095,
-      "issueNumber": "30",
-      "seriesYear": 1977,
+      "id": 28224,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #619",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "619",
+      "seriesYear": 1999,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/12144/what_if_1977_30",
-      "onSaleDate": "1981-12-01T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/28224/amazing_spider-man_1999_619",
+      "onSaleDate": "2010-01-27T00:00:00+0000"
     },
     {
-      "id": 18301,
-      "title": "What If?",
-      "issueTitle": "What If? (1989) #105",
-      "seriesTitle": "What If?",
-      "apiSeriesName": "What If? (1989 - 1998)",
-      "seriesId": 3648,
-      "issueNumber": "105",
-      "seriesYear": 1989,
+      "id": 28225,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #620",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "620",
+      "seriesYear": 1999,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/18301/what_if_1989_105",
-      "onSaleDate": "1998-02-01T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/28225/amazing_spider-man_1999_620",
+      "onSaleDate": "2010-02-10T00:00:00+0000"
     },
     {
-      "id": 50309,
-      "title": "What If? Age of Ultron",
-      "issueTitle": "What If? Age of Ultron (2014) #5",
-      "seriesTitle": "What If? Age of Ultron",
-      "apiSeriesName": "What If? Age of Ultron (2014)",
-      "seriesId": 18819,
-      "issueNumber": "5",
-      "seriesYear": 2014,
+      "id": 74028,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2019) #6",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2019 - Present)",
+      "seriesId": 26679,
+      "issueNumber": "6",
+      "seriesYear": 2019,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/50309/what_if_age_of_ultron_2014_5",
-      "onSaleDate": "2014-04-30T00:00:00+0000"
-    },
-    {
-      "id": 73505,
-      "title": "What If? Magik",
-      "issueTitle": "What If? Magik (2018) #1",
-      "seriesTitle": "What If? Magik",
-      "apiSeriesName": "What If? Magik (2018)",
-      "seriesId": 26488,
-      "issueNumber": "1",
-      "seriesYear": 2018,
-      "manualSeriesSelection": true,
-      "manualSeriesSelectionApproved": true,
-      "detailUrl": "https://www.marvel.com/comics/issue/73505/what_if_magik_2018_1",
-      "onSaleDate": "2018-10-31T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/74028/friendly_neighborhood_spider-man_2019_6",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
     }
   ],
   "rows": [
     {
-      "sourcePosition": 1,
-      "sourceIssueReference": "What If? (1977) #22",
-      "sourceRangeReference": "What If? (1977) #22",
-      "normalizedSeriesTitle": "What If?",
-      "seriesYear": 1977,
-      "issueNumber": "22",
-      "metadataIssueNumber": "22",
-      "seriesId": 2095,
-      "candidateIssueId": 12135,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "12135"
-      ],
-      "selectedIssueId": 12135,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12135/what_if_1977_22",
-      "resolvedIssueTitle": "What If? (1977) #22",
-      "note": "Marvel series 2095 (What If? (1977 - 1984)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        12135
-      ]
-    },
-    {
-      "sourcePosition": 2,
-      "sourceIssueReference": "What If? (1977) #25",
-      "sourceRangeReference": "What If? (1977) #25",
-      "normalizedSeriesTitle": "What If?",
-      "seriesYear": 1977,
-      "issueNumber": "25",
-      "metadataIssueNumber": "25",
-      "seriesId": 2095,
-      "candidateIssueId": 12138,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "12138"
-      ],
-      "selectedIssueId": 12138,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12138/what_if_1977_25",
-      "resolvedIssueTitle": "What If? (1977) #25",
-      "note": "Marvel series 2095 (What If? (1977 - 1984)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        12138
-      ]
-    },
-    {
-      "sourcePosition": 3,
-      "sourceIssueReference": "What If? (1977) #28",
-      "sourceRangeReference": "What If? (1977) #28",
-      "normalizedSeriesTitle": "What If?",
-      "seriesYear": 1977,
-      "issueNumber": "28",
-      "metadataIssueNumber": "28",
-      "seriesId": 2095,
-      "candidateIssueId": 58430,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "58430"
-      ],
-      "selectedIssueId": 58430,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58430/what_if_1977_28",
-      "resolvedIssueTitle": "What If? (1977) #28",
-      "note": "Marvel series 2095 (What If? (1977 - 1984)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        58430
-      ]
-    },
-    {
       "sourcePosition": 4,
-      "sourceIssueReference": "What If? (1977) #30",
-      "sourceRangeReference": "What If? (1977) #30",
-      "normalizedSeriesTitle": "What If?",
-      "seriesYear": 1977,
-      "issueNumber": "30",
-      "metadataIssueNumber": "30",
-      "seriesId": 2095,
-      "candidateIssueId": 12144,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #66",
+      "sourceRangeReference": "Amazing Spider-Man (1963) #66-67",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "66",
+      "metadataIssueNumber": "66",
+      "seriesId": 1987,
+      "candidateIssueId": 6886,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "12144"
+        6886
       ],
-      "selectedIssueId": 12144,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12144/what_if_1977_30",
-      "resolvedIssueTitle": "What If? (1977) #30",
-      "note": "Marvel series 2095 (What If? (1977 - 1984)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 6886,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6886/the_amazing_spider-man_1963_66",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #66",
+      "note": "Marvel series 1987 (The Amazing Spider-Man (1963 - 1998)) is the reviewed metadata series for this source reference. Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "status": "exact",
       "selectedIssueIds": [
-        12144
+        6886
       ]
     },
     {
       "sourcePosition": 5,
-      "sourceIssueReference": "What If? (1989) #105",
-      "sourceRangeReference": "What If? (1989) #105",
-      "normalizedSeriesTitle": "What If?",
-      "seriesYear": 1989,
-      "issueNumber": "105",
-      "metadataIssueNumber": "105",
-      "seriesId": 3648,
-      "candidateIssueId": 18301,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "18301"
-      ],
-      "selectedIssueId": 18301,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18301/what_if_1989_105",
-      "resolvedIssueTitle": "What If? (1989) #105",
-      "note": "Marvel series 3648 (What If? (1989 - 1998)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        18301
-      ]
-    },
-    {
-      "sourcePosition": 6,
-      "sourceIssueReference": "What If? Age of Ultron #5",
-      "sourceRangeReference": "What If? Age of Ultron #5",
-      "normalizedSeriesTitle": "What If? Age of Ultron",
-      "seriesYear": 2014,
-      "issueNumber": "5",
-      "metadataIssueNumber": "5",
-      "seriesId": 18819,
-      "candidateIssueId": 50309,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "50309"
-      ],
-      "selectedIssueId": 50309,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50309/what_if_age_of_ultron_2014_5",
-      "resolvedIssueTitle": "What If? Age of Ultron (2014) #5",
-      "note": "Marvel series 18819 (What If? Age of Ultron (2014)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        50309
-      ]
-    },
-    {
-      "sourcePosition": 7,
-      "sourceIssueReference": "What If? Magik",
-      "sourceRangeReference": "What If? Magik",
-      "normalizedSeriesTitle": "What If? Magik",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "metadataIssueNumber": "1",
-      "seriesId": 26488,
-      "candidateIssueId": 73505,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #67",
+      "sourceRangeReference": "Amazing Spider-Man (1963) #66-67",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "67",
+      "metadataIssueNumber": "67",
+      "seriesId": 1987,
+      "candidateIssueId": 6887,
       "manualSeriesSelectionApproved": true,
-      "selectionNote": "The source names the exact unnumbered one-shot; Marvel metadata numbers the only issue in that exact series #1.",
+      "selectionNote": "Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "73505"
+        6887
       ],
-      "selectedIssueId": 73505,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73505/what_if_magik_2018_1",
-      "resolvedIssueTitle": "What If? Magik (2018) #1",
-      "note": "The source names the exact unnumbered one-shot; Marvel metadata numbers the only issue in that exact series #1.",
+      "selectedIssueId": 6887,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6887/the_amazing_spider-man_1963_67",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #67",
+      "note": "Marvel series 1987 (The Amazing Spider-Man (1963 - 1998)) is the reviewed metadata series for this source reference. Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "status": "exact",
       "selectedIssueIds": [
-        73505
+        6887
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "sourceRangeReference": "Peter Parker, the Spectacular Spider-Man (1976) #50-51",
+      "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "50",
+      "metadataIssueNumber": "50",
+      "seriesId": 2271,
+      "candidateIssueId": 14751,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        14751
+      ],
+      "selectedIssueId": 14751,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "note": "Marvel series 2271 (Peter Parker, the Spectacular Spider-Man (1976 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        14751
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "sourceRangeReference": "Peter Parker, the Spectacular Spider-Man (1976) #50-51",
+      "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "51",
+      "metadataIssueNumber": "51",
+      "seriesId": 2271,
+      "candidateIssueId": 14752,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        14752
+      ],
+      "selectedIssueId": 14752,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "note": "Marvel series 2271 (Peter Parker, the Spectacular Spider-Man (1976 - 1998)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        14752
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #618",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "618",
+      "metadataIssueNumber": "618",
+      "seriesId": 454,
+      "candidateIssueId": 24425,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        24425
+      ],
+      "selectedIssueId": 24425,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24425/amazing_spider-man_1999_618",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #618",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24425
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #619",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "619",
+      "metadataIssueNumber": "619",
+      "seriesId": 454,
+      "candidateIssueId": 28224,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        28224
+      ],
+      "selectedIssueId": 28224,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28224/amazing_spider-man_1999_619",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #619",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28224
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #620",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "620",
+      "metadataIssueNumber": "620",
+      "seriesId": 454,
+      "candidateIssueId": 28225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        28225
+      ],
+      "selectedIssueId": 28225,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28225/amazing_spider-man_1999_620",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #620",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        28225
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2019) #6",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2019) #6",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "metadataIssueNumber": "6",
+      "seriesId": 26679,
+      "candidateIssueId": 74028,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The 2019 Tom Taylor series is required here; the 2005 Friendly Neighborhood Spider-Man series is not the source row.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        74028
+      ],
+      "selectedIssueId": 74028,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74028/friendly_neighborhood_spider-man_2019_6",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2019) #6",
+      "note": "Marvel series 26679 (Friendly Neighborhood Spider-Man (2019 - Present)) is the reviewed metadata series for this source reference. The 2019 Tom Taylor series is required here; the 2005 Friendly Neighborhood Spider-Man series is not the source row.",
+      "status": "exact",
+      "selectedIssueIds": [
+        74028
       ]
     }
   ],
-  "mappingDigest": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-  "reviewStatus": "approved",
+  "mappingDigest": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
   "packetReview": "MRT-004 central CBH source review",
   "approvedManifest": {
-    "id": "marvel-what-if",
-    "name": "Marvel What If?",
-    "description": "Seven alternate-reality issues and one-shots from this What If best-of guide.",
+    "id": "spider-man-far-from-home",
+    "name": "Spider-Man: Far From Home",
+    "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
     "type": "screen-companion",
     "depth": "selected",
     "beginner": false,
     "group": null,
     "groupName": null,
     "variant": null,
-    "sourceFile": "marvel-what-if.md",
-    "sourcePage": "https://www.comicbookherald.com/best-of-marvel-what-if-comics/",
+    "sourceFile": "spider-man-far-from-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
     "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
     "sourceLicense": null,
-    "out": "marvel_what_if.json",
+    "out": "spider_man_far_from_home.json",
     "characters": [
-      "Doctor Doom",
-      "Thor",
-      "Daredevil",
       "Spider-Man",
-      "Magik"
+      "Mysterio",
+      "Peter Parker"
     ],
     "keywords": [
-      "What If",
-      "alternate reality",
-      "Marvel Multiverse",
-      "Age of Ultron",
+      "Far From Home",
+      "Spider-Man",
+      "Mysterio",
+      "The Gauntlet",
       "Comic Book Herald"
     ],
-    "expect": 7,
+    "expect": 8,
     "timeline": null,
-    "coverIssueId": 12135
+    "coverIssueId": 74028
   },
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-004 coordinator",
-    "rationale": "The current library and the four other shipped MCU companion peers were reviewed; prior central approvals were preserved and the new Far From Home peer adds no shared issue.",
+    "rationale": "The current library and the four shipped MCU companion peers were reviewed. Only spider-man-best-of shares issues, and that partial overlap preserves separate screen-companion value through three unique Far From Home rows.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "46bb2c11145c1fa109983ae70208ae6d426ca9e448e683a060d05c40a4325b41",
-    "packetDigest": "750e957f3b81c3b4a51d0d17eae8e8adc79b8fc2154e7d18014c1b913e810d9e",
-    "mappingDigest": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
+    "reportDigest": "e9b04e20969e360dfee62f63c4a9eb040d582d0298ca565724af94f48bb42b52",
+    "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3",
+    "mappingDigest": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
     "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
+      "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
       "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
     },
     "dispositions": [
@@ -789,6 +928,15 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26T05:09:20Z"
+      },
+      {
         "orderId": "marvels-best-phoenix-comics",
         "relationship": "none",
         "decision": "approved",
@@ -1024,20 +1172,11 @@
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "none",
+        "relationship": "partial",
         "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26T05:09:20Z"
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
+        "rationale": "The five shared Mysterio issues are a factual partial overlap with the existing Spider-Man best-of path. Peter Parker, the Spectacular Spider-Man #50-51 and Friendly Neighborhood Spider-Man (2019) #6 remain unique to this screen companion, so the guide keeps distinct Far From Home value.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -1284,6 +1423,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "845be6904c494564bc04f69116ed0e5e78f7d1d1ada2a12e68e6ad14c31f1291"
+    "approvalDigest": "249b56408fd903b89035391c6e75037825f8708827d9bf56bbd97bea5189c339"
   }
 }

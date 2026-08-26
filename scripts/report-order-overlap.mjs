@@ -158,11 +158,12 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
   const peers = peerMappings.map((peer) => peer.order);
   const candidateOrderId = String(mapping.id ?? path.basename(mappingPath, path.extname(mappingPath)));
   const peerOrderIds = new Set(peers.map((peer) => String(peer.orderId)));
-  const excludedIds = new Set([candidateOrderId, ...peerOrderIds, ...CBH_LATER_ORDER_IDS]);
+  const laterOrderIds = new Set(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS);
+  const excludedIds = new Set([candidateOrderId, ...peerOrderIds, ...laterOrderIds]);
   const library = await loadLibrarySnapshot(options);
   const orders = library.orders.filter((item) => (
     item.orderId !== candidateOrderId && !peerOrderIds.has(String(item.orderId))
-    && !CBH_LATER_ORDER_IDS.includes(String(item.orderId))
+    && !laterOrderIds.has(String(item.orderId))
   ));
   const factualReport = buildComparisonReport({ candidateIds, orders, peerOrders: peers });
   if (!usesFreshnessContract) return factualReport;
@@ -170,7 +171,6 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
   const peerDigests = Object.fromEntries(peerMappings
     .map(({ mapping: peer }) => [String(peer.id), peer.mappingDigest])
     .sort(([left], [right]) => left.localeCompare(right)));
-  const laterOrderIds = new Set(CBH_LATER_ORDER_IDS);
   const excludedWithLater = new Set([...excludedIds, ...laterOrderIds]);
   const report = {
     candidateId: candidateOrderId,

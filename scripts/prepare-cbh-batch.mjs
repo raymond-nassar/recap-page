@@ -22,6 +22,7 @@ const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const INVENTORY_PATHS = Object.freeze([
   path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-character-inventory.json'),
+  path.join(ROOT, 'scripts', 'data', 'cbh-ultimate-inventory.json'),
 ]);
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const RETRIEVED_AT = '2026-08-21';
@@ -3098,6 +3099,7 @@ async function main() {
         : {
           sourceOccurrenceCount: guide.sourceOccurrenceCount,
           repeatedSourceReferences: guide.repeatedSourceReferences,
+          excludedSourceRows: guide.excludedSourceRows,
         }),
       reviewStatus: guide.sourceUnavailable ? 'blocked-source-unavailable' : 'pending-independent-review',
       proposedManifest,

@@ -130,8 +130,8 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, manifest.lists.length - 4);
-  assert.equal(new Set(comparedIds).size, manifest.lists.length - 4);
+  assert.equal(report.comparisonCount, manifest.lists.length - 6);
+  assert.equal(new Set(comparedIds).size, manifest.lists.length - 6);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
 });

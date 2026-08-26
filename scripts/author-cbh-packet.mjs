@@ -150,6 +150,7 @@ const INSERT_BEFORE = Object.freeze({
   venomverse: 'new-ultimate-universe',
   'infinity-countdown-wars': 'new-ultimate-universe',
   damnation: 'new-ultimate-universe',
+  'ultimate-marvel-intro': 'maximum-security',
 });
 
 const MANIFEST_FIELDS = new Set([
@@ -232,7 +233,7 @@ export function buildMarkdown(mapping) {
     ...(repeatedCount === 0 ? [] : [
       `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
     ]),
-    'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata after the packet resolution and overlap gates passed.',
+    'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
   ].join('\n');
   const checklist = mapping.rows.map((row) => (

@@ -257,7 +257,17 @@ test('preparation selects one frozen packet by inventory id without changing leg
   const inventoryPath = path.join(tempDir, 'inventory.json');
   const manifestPath = path.join(tempDir, 'manifest.json');
   mkdirSync(packetsDir);
-  const packet = frozenPacket({ inventoryId: 'future-inventory' });
+  const excludedSourceRows = [{
+    sourcePosition: 2,
+    sourceIssueReference: 'Future Event Preview #1',
+    reason: 'Guide-scoped source exclusion.',
+    decisionScope: 'future-event',
+  }];
+  const packet = frozenPacket({
+    inventoryId: 'future-inventory',
+    sourceOccurrenceCount: 2,
+    excludedSourceRows,
+  });
   writeFileSync(path.join(packetsDir, 'future-event.json'), JSON.stringify(packet), 'utf8');
   writeFileSync(inventoryPath, JSON.stringify([{
     position: 1,
@@ -284,6 +294,8 @@ test('preparation selects one frozen packet by inventory id without changing leg
   assert.equal(selected[0].id, 'future-event');
   assert.equal(selected[0].isFrozenPacket, true);
   assert.equal(selected[0].rows.length, 1);
+  assert.equal(selected[0].approvedSourceCount, 2);
+  assert.deepEqual(selected[0].excludedSourceRows, excludedSourceRows);
 
   const duplicateInventoryPath = path.join(tempDir, 'duplicate-inventory.json');
   writeFileSync(duplicateInventoryPath, readFileSync(inventoryPath), 'utf8');

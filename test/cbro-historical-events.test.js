@@ -113,6 +113,12 @@ const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
 const blockersDir = path.join(root, 'scripts', 'data', 'cbro-blockers');
 const laterCbhOrderIds = Object.freeze([...CBH_LATER_ORDER_IDS]);
+const postCbroChronologyIds = Object.freeze(['ultimate-marvel-intro']);
+const laterMcuCompanionIds = [
+  'wandavision',
+  'spider-man-far-from-home',
+  'modern-x-men-fast-track',
+];
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
@@ -634,6 +640,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       ...CBRO_SELECTED_IDS,
 
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -647,6 +654,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       ...CBRO_SELECTED_IDS,
 
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ].includes(entry.id))
     .map((entry) => entry.id);
@@ -930,6 +938,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
       ...CBRO_BATCH_TWO_SELECTED_IDS,
 
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -951,6 +960,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
         .filter((entry) => ![
           ...CBRO_BATCH_TWO_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -1108,6 +1118,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
       ...CBRO_BATCH_THREE_SELECTED_IDS,
 
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -1129,6 +1140,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
         .filter((entry) => ![
           ...CBRO_BATCH_THREE_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -1272,6 +1284,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
       ...CBRO_BATCH_FOUR_SELECTED_IDS,
 
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -1293,6 +1306,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
         .filter((entry) => ![
           ...CBRO_BATCH_FOUR_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -1384,6 +1398,7 @@ test('continuation reports bind 665 comparisons and one central subset approval'
       ...CBRO_CONTINUATION_SELECTED_IDS,
 
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -1406,6 +1421,7 @@ test('continuation reports bind 665 comparisons and one central subset approval'
         .filter((entry) => ![
           ...CBRO_CONTINUATION_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -1465,7 +1481,8 @@ test('historical continuation authoring retains all chronological cards and 32 b
     - CBRO_BATCH_SIX_AUTHOR_IDS.length
     - CBRO_BATCH_SEVEN_AUTHOR_IDS.length
     - CBRO_BATCH_EIGHT_AUTHOR_IDS.length
-    - CBRO_BATCH_NINE_AUTHOR_IDS.length;
+    - CBRO_BATCH_NINE_AUTHOR_IDS.length
+    - postCbroChronologyIds.length;
   assert.deepEqual(
     manifest.lists.slice(continuationEndIndex - (
       CBRO_CONTINUATION_AUTHOR_IDS.length + CBRO_BATCH_TWO_AUTHOR_IDS.length
@@ -1525,8 +1542,8 @@ test('batch two authoring ships five chronological cards and 35 exact payload ro
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   assert.ok(inventory.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1562,8 +1579,8 @@ test('batch three authoring ships three chronological cards and 48 exact payload
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   assert.ok(inventory.filter((record) => CBRO_BATCH_THREE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1575,7 +1592,8 @@ test('batch three authoring ships three chronological cards and 48 exact payload
     - CBRO_BATCH_SIX_AUTHOR_IDS.length
     - CBRO_BATCH_SEVEN_AUTHOR_IDS.length
     - CBRO_BATCH_EIGHT_AUTHOR_IDS.length
-    - CBRO_BATCH_NINE_AUTHOR_IDS.length;
+    - CBRO_BATCH_NINE_AUTHOR_IDS.length
+    - postCbroChronologyIds.length;
   assert.deepEqual(
     manifest.lists.slice(
       batchThreeEndIndex - (
@@ -1704,6 +1722,7 @@ test('batch five authority preserves six evaluated records and all 70 blocked so
       && !CBRO_BATCH_SEVEN_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_EIGHT_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_NINE_SELECTED_IDS.includes(id)
+      && !laterCbhOrderIds.includes(id) && !laterMcuCompanionIds.includes(id)
   ));
   const evaluated = inventory
     .filter((record) => CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
@@ -1839,6 +1858,7 @@ test('batch five reports bind 532 all-none comparisons and reject stale evidence
     [
       ...CBRO_BATCH_FIVE_SELECTED_IDS,
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -1860,6 +1880,7 @@ test('batch five reports bind 532 all-none comparisons and reject stale evidence
         .filter((entry) => ![
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -1917,7 +1938,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     - CBRO_BATCH_SIX_AUTHOR_IDS.length
     - CBRO_BATCH_SEVEN_AUTHOR_IDS.length
     - CBRO_BATCH_EIGHT_AUTHOR_IDS.length
-    - CBRO_BATCH_NINE_AUTHOR_IDS.length;
+    - CBRO_BATCH_NINE_AUTHOR_IDS.length
+    - postCbroChronologyIds.length;
   assert.deepEqual(
     manifest.lists.slice(
       batchFiveEndIndex - CBRO_BATCH_FIVE_AUTHOR_IDS.length,
@@ -1925,8 +1947,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     ).map((entry) => entry.id),
     CBRO_BATCH_FIVE_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   assert.ok(inventory.filter((record) => CBRO_BATCH_FIVE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2015,6 +2037,7 @@ test('batch six authority preserves six outcomes and both complete blocker recor
     !CBRO_BATCH_SEVEN_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_EIGHT_SELECTED_IDS.includes(id)
       && !CBRO_BATCH_NINE_SELECTED_IDS.includes(id)
+      && !laterCbhOrderIds.includes(id) && !laterMcuCompanionIds.includes(id)
   ));
   assert.deepEqual(evaluated.map((record) => record.id), CBRO_BATCH_SIX_TOUCHED_IDS);
   assert.equal(
@@ -2223,6 +2246,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...CBRO_BATCH_EIGHT_SELECTED_IDS,
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -2244,6 +2268,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
         .filter((entry) => ![
           ...CBRO_BATCH_SIX_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(entry.id))
         .map((entry) => entry.id),
@@ -2294,7 +2319,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
   const batchSixEndIndex = maximumSecurityIndex
     - CBRO_BATCH_SEVEN_AUTHOR_IDS.length
     - CBRO_BATCH_EIGHT_AUTHOR_IDS.length
-    - CBRO_BATCH_NINE_AUTHOR_IDS.length;
+    - CBRO_BATCH_NINE_AUTHOR_IDS.length
+    - postCbroChronologyIds.length;
   assert.deepEqual(
     manifest.lists.slice(
       batchSixEndIndex - CBRO_BATCH_SIX_AUTHOR_IDS.length,
@@ -2302,8 +2328,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
     ).map((entry) => entry.id),
     CBRO_BATCH_SIX_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2721,6 +2747,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       ...CBRO_BATCH_EIGHT_SELECTED_IDS,
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -2776,6 +2803,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
         .filter((candidate) => ![
           ...CBRO_BATCH_EIGHT_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
@@ -2858,8 +2886,8 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
   assert.equal(comparisonCount, 532);
   assert.equal(issueIds.length, 45);
   assert.equal(new Set(issueIds).size, 45);
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   assert.ok(inventory.filter((record) => CBRO_BATCH_EIGHT_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -3060,12 +3088,6 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const library = await loadLibrarySnapshot();
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(
-    library,
-    [...CBRO_BATCH_NINE_SELECTED_IDS, ...laterCbhOrderIds],
-  );
-  void reviewedLibraryDigest;
-
   const expectedDigests = new Map([
     ['hunt-for-xavier', {
       packet: 'a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba',
@@ -3098,6 +3120,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
         .filter((candidate) => ![
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
@@ -3149,8 +3172,8 @@ test('batch nine product output and maintained records close the sequential sour
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   for (const [id, count] of [['hunt-for-xavier', 6], ['magneto-war', 8]]) {
     const entry = manifest.lists.find((candidate) => candidate.id === id);
     const catalogEntry = catalog.lists.find((candidate) => candidate.id === id);
@@ -3193,6 +3216,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       ...CBRO_BATCH_EIGHT_SELECTED_IDS,
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
+      ...laterMcuCompanionIds,
 
     ],
   );
@@ -3239,6 +3263,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
         .filter((candidate) => ![
           ...CBRO_BATCH_SEVEN_SELECTED_IDS,
           ...laterCbhOrderIds,
+          ...laterMcuCompanionIds,
 
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
@@ -3289,8 +3314,8 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
   assert.equal(comparisonCount, 399);
   assert.equal(issueIds.length, 23);
   assert.equal(new Set(issueIds).size, 23);
-  assert.equal(manifest.lists.length, 137);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(manifest.lists.length, 142);
+  assert.equal(catalog.lists.length, 142);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SEVEN_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
