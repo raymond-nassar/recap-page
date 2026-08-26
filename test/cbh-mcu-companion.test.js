@@ -382,7 +382,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    20,
-    'Character Spotlight count differs from the reconciled Agatha baseline',
+    21,
+    'Character Spotlight count differs from the reconciled Wolverine baseline',
   );
 });
