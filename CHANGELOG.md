@@ -14,40 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
-### Added the complete Iron Man Character Spotlight guide
+### Added the Thanos reading guide
 
-In plain English: the Character spotlights shelf now includes a complete Iron Man guide. It follows
-all 811 issues from the source reading order, including two issues the source names twice for two
-different story turns, listed once each in your checklist. The catalog now has 142 reading lists.
-Nothing you have saved is changed.
+In plain English: A 272-issue Thanos reading guide is now available, from his first Cosmic Cube
+campaigns through the Legacy of Thanos. Seven comics in the source guide are not on Marvel Unlimited,
+so the checklist leaves them out while preserving their places for maintainers. Nothing you have saved
+is changed.
 
-For maintainers: the source inventory records 815 occurrences across 813 distinct issue identities.
-The two later occurrences of the same first two Tony Stark: Iron Man issues are recorded as repeated
-source references rather than duplicate canonical rows, and two source-marked out-of-continuity
-issues are excluded with recorded reasons, leaving 811 canonical rows. The frozen packet, exact
-mapping, and complete relationship report bind all 811 rows. Seven of them (Crimson Dynamo #1
-through #4 and Iron Man Legacy #2, #5, and #10) resolve to owner-confirmed exact ids that this
-project's live metadata index does not list, which is why they were the ones still deferred.
-
-### Added the Amazing Spider-Man complete reading order
-
-In plain English: There is now a single reading list that carries Amazing Spider-Man from the
-character's first appearance through the present day, following one guide's own path across every
-renumbering, relaunch, and companion title along the way. Nothing you have saved is changed.
-
-Most of the guide's 2,043 named issues, 1,937 of them, resolve to an exact Marvel issue. The
-remaining 106 are references the guide names that could not be matched to a single Marvel-metadata
-issue: a wall calendar, a text recap page, a handful of one-shots and ongoing issues the metadata
-service itself does not carry. None are invented; each ships as a plain checklist row with no link,
-and all 106 are tracked for follow-up research in a linked GitHub issue.
-
-For maintainers: this order is compiled by hand from Comic Book Herald's Amazing Spider-Man reading
-order, in the same manner as the existing Best of Spider-Man reading, rather than through the
-frozen-packet pipeline. Amazing Spider-Man's own numbering restarts seven times across its
-publication history (1963, 1999, 2014, 2017, 2018, 2022, 2025), and Superior Spider-Man's twice
-(2013, 2018), so a source block position rather than the source's own year label was used to
-resolve which volume a bare issue number belongs to wherever the two disagree. It overlaps 32 other
-catalog entries, most heavily the Best of Spider-Man reading at 209 shared issues.
+For maintainers: the frozen source records 321 occurrences across 279 identities, including 42
+intentional later mentions. Twelve exact identities use reviewed Marvel facts because the configured
+metadata provider omits them. Seven closed availability exclusions link to the separately assigned
+missing-comics issue. The complete-library report covers 137 comparisons with nine approved non-none
+relationships.
 
 ### Added the opening Ultimate Marvel Universe guide
 

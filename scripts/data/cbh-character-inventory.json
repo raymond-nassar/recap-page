@@ -2309,9 +2309,11 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "All 53 retained source rows resolve exactly inside the metadata horizon and share no issues with the other selected guide.",
+    "reason": "All 53 retained source rows resolve exactly inside the metadata horizon. The guide shares no issues with Phalanx and one source-required issue with the later Thanos guide.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
+    "overlapIds": [
+      "thanos-reading-order"
+    ],
     "catalogIds": [
       "marvels-best-phoenix-comics"
     ],
@@ -2436,11 +2438,14 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "All 75 source rows resolve exactly inside the metadata horizon, and the complete guide remains distinct despite three current-library partial relationships.",
+    "reason": "All 75 source rows resolve exactly inside the metadata horizon, and the complete guide remains distinct despite six current-library partial relationships.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
+      "groot-reading-order",
       "marvel-fresh-start-avengers",
       "scarlet-witch-best-of",
+      "star-lord-reading-order",
+      "thanos-reading-order",
       "war-of-kings"
     ],
     "catalogIds": [
@@ -2848,13 +2853,25 @@
     "url": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The complete source boundary requires Spidey Super Stories #39, which is absent from the metadata snapshot, so Thanos cannot be published without silently shortening the guide.",
+    "disposition": "new-order",
+    "reason": "The accepted boundary has 321 source occurrences across 279 identities. The guide publishes 272 exact issue links, preserves 42 later mentions, and retains seven Marvel Unlimited availability exclusions in provenance under Issue #235.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "doctor-doom-primer",
+      "hickman-full",
+      "hickman-minimal",
+      "infinity-countdown-wars",
+      "judgment-day",
+      "marvels-best-phoenix-comics",
+      "rocket-raccoon-reading-order",
+      "thanos-war",
+      "thor-best-of"
+    ],
+    "catalogIds": [
+      "thanos-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Thanos"
     ],
@@ -2864,7 +2881,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "661c99bc3ac4adab6a16ed4db911b3edb0df7139af2ea80990d33e1f272f77d7",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 112,

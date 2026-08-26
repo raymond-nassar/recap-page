@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "4858d81a960a5133f389a95b0c3b475568610913fb93bb3715de3d5147b9fbe4",
+    "reportDigest": "dbd21c1b4a4bbcd1fafc53beeebd889a86af8d4c05342ca04c22b5630ac73715",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "e23bcf5faa08d772d68914862167ca6120baca47220d81287fed799b58f933ed",
+    "libraryDigest": "31985a3e5f7c5d249dc9c88a2de3655150ee64e193f64983251da497073f72bd",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3517,15 +3517,6 @@
         "reviewedAt": "2026-08-23"
       },
       {
-        "orderId": "modern-x-men-fast-track",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
-      },
-      {
         "orderId": "monsters-unleashed",
         "relationship": "none",
         "decision": "approved",
@@ -3859,13 +3850,33 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 6,
+        "sharedIds": [
+          "73420",
+          "73421",
+          "73422",
+          "73423",
+          "73424",
+          "73425"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -3874,7 +3885,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -4142,6 +4155,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "a97fbc4a4c63a9dbc9720e4c3a8bb3f617ffae65e0dc97fdb696b0054022a40c"
+    "approvalDigest": "ebd4120757b90a59542172be8221a347842445a5a5807accf6527959c144667e"
   }
 }

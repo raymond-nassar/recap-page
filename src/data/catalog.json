@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T14:21:03.728Z",
+  "generatedAt": "2026-08-26T07:40:10.185Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2404,68 +2404,26 @@
       "updatedAt": "2026-08-24T01:05:06.004Z"
     },
     {
-      "id": "iron-man-reading-order",
-      "file": "iron_man_reading_order.json",
-      "name": "Iron Man",
-      "description": "Tony Stark's Iron Man path from Tales of Suspense through the modern Invincible Iron Man, Tony Stark: Iron Man, and Iron Man (2020) runs, following the source's character-only cuts through broader collections.",
+      "id": "thanos-reading-order",
+      "file": "thanos_reading_order.json",
+      "name": "Thanos",
+      "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
       "type": "character-run",
-      "depth": "complete",
-      "spotlightKind": "complete-guide",
-      "count": 811,
-      "collections": 0,
-      "characters": [
-        "Iron Man",
-        "Tony Stark",
-        "War Machine",
-        "Ironheart",
-        "Riri Williams"
-      ],
-      "keywords": [
-        "Iron Man",
-        "Tony Stark",
-        "War Machine",
-        "Ironheart",
-        "Armor Wars",
-        "Extremis",
-        "Comic Book Herald"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": true,
-      "timeline": null,
-      "coverIssueId": 11280,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg",
-        "ext": "jpg"
-      },
-      "source": "https://www.comicbookherald.com/iron-man-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "updatedAt": "2026-08-26T08:33:32.614Z"
-    },
-    {
-      "id": "modern-x-men-fast-track",
-      "file": "modern_x_men_fast_track.json",
-      "name": "Modern X-Men Fast Track",
-      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
-      "type": "character-run",
-      "depth": "selected",
+      "depth": "partial",
       "spotlightKind": "other",
-      "count": 278,
+      "count": 272,
       "collections": 0,
       "characters": [
-        "X-Men",
-        "Wolverine",
-        "Cyclops",
-        "Jean Grey",
-        "New Mutants"
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Guardians of the Galaxy"
       ],
       "keywords": [
-        "Modern X-Men",
-        "New X-Men",
-        "Astonishing X-Men",
-        "X-Force",
+        "Thanos",
+        "Infinity Gauntlet",
+        "Adam Warlock",
+        "Marvel Cosmic",
         "Comic Book Herald"
       ],
       "group": null,
@@ -2473,16 +2431,15 @@
       "variant": null,
       "beginner": false,
       "timeline": null,
-      "coverIssueId": 14933,
+      "coverIssueId": 9610,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/4bb5eafea7ab3",
         "ext": "jpg"
       },
-      "source": "https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/",
-      "sourceSection": "X-Men Events & Major Stories (2001 to 2015)",
+      "source": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T05:56:13.889Z"
+      "updatedAt": "2026-08-26T07:36:34.796Z"
     },
     {
       "id": "xmen-claremont",

@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "5b0c749ea174e7a8c2e0ae2f36685be5d1924ad2455d5daa3886dc5267dc8452",
+    "reportDigest": "6a870116acdf3bce5c1d4dc9eb8607a8a107871f6048825d8475e8d2f608c367",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "6eec8210d29184db4a08575a3793a286d155f7cc1b3cb30bef7a344d6721145b",
+    "libraryDigest": "b235403f26b6b4fb44a4b3874cf4a067115e39227b671b8cd7b3f007a1e406a3",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3619,15 +3619,6 @@
         "reviewedAt": "2026-08-23"
       },
       {
-        "orderId": "modern-x-men-fast-track",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
-      },
-      {
         "orderId": "monsters-unleashed",
         "relationship": "none",
         "decision": "approved",
@@ -3955,9 +3946,9 @@
         "orderId": "star-lord-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "Shared issues were reviewed and approved.",
+        "rationale": "The complete Groot and Star-Lord guides retain all source-required shared issues as distinct character reading paths.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "relationship-review-model-v1",
+        "authorityIdentity": "MRT-002-C09-DUP coordinator",
         "reviewedAt": "2026-08-23"
       },
       {
@@ -3967,6 +3958,17 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
         "reviewedAt": "2026-08-23"
       },
       {
@@ -4253,6 +4255,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "0eb2c63d89ca50cf968ebb7ea4447b6f11f46a2330d7a3859af12d4ba8e82a91"
+    "approvalDigest": "23f038239722d97318c96ee3e150a61208b9876752b7f40e8a4e73c80acfa1b8"
   }
 }

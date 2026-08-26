@@ -531,10 +531,10 @@
     "coverIssueId": 93315
   },
   "relationshipReview": {
-    "reportDigest": "6419575a83980cc0e575140190aeebc9cf772bbe2c6179452bb327df02aad192",
+    "reportDigest": "194b82a680884ee5801830d661179cdcaa866464efd1e4a39a4b6e966cfa91a6",
     "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6",
     "mappingDigest": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
-    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "libraryDigest": "45bda80a23c6dc1e9f8dbcaad91ecba3344da84a5395b4fed778070d7f2366e2",
     "peerDigests": {
       "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7",
       "reckoning-war": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146"
@@ -1117,6 +1117,17 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -1310,6 +1321,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "f51fcf3b502a93fd8aeaa2b54878fd06a4d99c43cadabc6a9254fec25ed45910"
+    "approvalDigest": "2dea4f20ec63ce027e02626facb85e28f5d4ccb84dea210bb00225bc3409a54f"
   }
 }

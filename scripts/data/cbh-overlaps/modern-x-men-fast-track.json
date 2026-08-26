@@ -2,10 +2,10 @@
   "candidateId": "modern-x-men-fast-track",
   "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
   "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-  "libraryDigest": "1d4bef7ffbdbff39015c2d7efcdcfd8ed1922f8c28233c504940d322bfce1c92",
+  "libraryDigest": "f18d8c83ca47fa348afd66176656f7ff6639606c791af0d8abcffada8d212731",
   "peerDigests": {},
   "candidateCount": 278,
-  "comparisonCount": 140,
+  "comparisonCount": 141,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -711,6 +711,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -980,5 +986,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9d09297f401b7f06fa366d43bd2f06bd4d480f83efdf0fb38797bbcd28b1b60e"
+  "reportDigest": "f03086652a82fb0473223d40e6985d97d7f5ba659aa8c8e7d451d618ed80f294"
 }

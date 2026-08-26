@@ -2,7 +2,7 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "43989b1ec0dcac2b0082a33a8b7fc0576c5f6db424f57c85dcfd291c32bf085a",
+  "libraryDigest": "3aae20f12fef3b9513e356e839461aea89943119c7c2a84afcb798880d2bde45",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
@@ -471,12 +471,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "modern-x-men-fast-track",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "monsters-unleashed",
       "sharedCount": 0,
       "sharedIds": [],
@@ -725,6 +719,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -919,5 +919,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "067f32612ec26658462b1d26fe838982c70d2adefd27ed1c6ffe4f6fcb56879f"
+  "reportDigest": "fd063315d03c18ed010b18c90184b0f0faed983dbfdba7d238e38585837f1ae9"
 }

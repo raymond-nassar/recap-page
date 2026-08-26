@@ -412,10 +412,10 @@
     "coverIssueId": 68367
   },
   "relationshipReview": {
-    "reportDigest": "6678a9b305ea13ad84d9789ec21539a989d6c813837cd7258c249037ba7d1700",
+    "reportDigest": "07bbf069d9cba55764d8577efc260855a83185525f806870c1a255174c1a1658",
     "packetDigest": "c55cf0d5ea0fafbceab23a081a2a36cad3a9e8ef947d39845d4f450df66b8610",
     "mappingDigest": "398031e9ec8c6bc6d992f346747d175890852d103a162435b16e6420bc8f3a5a",
-    "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+    "libraryDigest": "8149f1191bd3d8e97a26b96b483629dfdee2be7335d053eee5ae90d467ac82f0",
     "peerDigests": {
       "generations": "9bb719ce2cafc3edb63bde42f5cbf19aabed942bb4231a246a49a036a91523fa"
     },
@@ -1006,6 +1006,17 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -1190,6 +1201,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "63f99ab4fd50b45359273d5c269d344d341eaddfd731858a8a7843e521180f21"
+    "approvalDigest": "904217fdb10a3bd8f1850f22e78ced45d81566d8ad2f54100de79b91850ae406"
   }
 }

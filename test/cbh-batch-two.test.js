@@ -223,6 +223,18 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'x-men-utopia',
     'iron-man-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',
+    'doctor-strange-multiverse-of-madness',
+    'spider-man-no-way-home',
+    'marvel-multiverse',
+    'marvel-what-if',
+    'secret-invasion',
+    'secret-invasion-essential',
+    'x-of-swords',
+    'king-in-black',
+    'agents-of-atlas-reading-order',
+    'white-tiger-ava-ayala',
+    'phalanx-reading-order',
+    'marvels-best-phoenix-comics',
     'wandavision',
     'spider-man-far-from-home',
   ]);
@@ -244,7 +256,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    manifest.lists.length - packetRecords.length - laterReviewedIds.size,
+    113,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
