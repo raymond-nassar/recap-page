@@ -303,10 +303,10 @@
     "coverIssueId": 95798
   },
   "relationshipReview": {
-    "reportDigest": "49c69095ae00f5fcac96613158ebed834ad8f5d18c854821bc94d1dff8907c5d",
+    "reportDigest": "833a74b2cc99b0811298e40195b084822fa2b7b1f045f8b99f18fcc983a63fb6",
     "packetDigest": "b0b68b28211a271f6e8ea4491718f5b8fbeb881ea52cbee0607d24892ade4584",
     "mappingDigest": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146",
-    "libraryDigest": "a7fdd47a1c9dacc6e2017650ceaef1e1ec8e4485efe1e2c384e3ce72b83770ba",
+    "libraryDigest": "45bda80a23c6dc1e9f8dbcaad91ecba3344da84a5395b4fed778070d7f2366e2",
     "peerDigests": {
       "death-of-doctor-strange": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
       "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7"
@@ -889,6 +889,17 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -1082,6 +1093,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "85088618eb271839239c974ef1693539e6e6a03841f27ddc359a01dffaa27bfa"
+    "approvalDigest": "5f3df91df3911b786882b055cbe5fc23fa55352335790a5ffc00ad47c596ddf2"
   }
 }

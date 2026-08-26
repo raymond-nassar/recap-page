@@ -67,6 +67,7 @@ const PACKET_FIELDS = new Set([
   'excludedSourceRows',
   'sourceOccurrenceCount',
   'repeatedSourceReferences',
+  'sourceGaps',
   'expectedCount',
   'proposedManifest',
   'insertionAnchor',
@@ -89,6 +90,7 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'excludedSourceRows',
   'sourceOccurrenceCount',
   'repeatedSourceReferences',
+  'sourceGaps',
   'proposedManifest',
   'candidateMetadata',
   'rows',
@@ -108,6 +110,21 @@ const EXCLUDED_SOURCE_ROW_FIELDS = new Set([
   'reason',
   'decisionScope',
 ]);
+const SOURCE_GAP_FIELDS = new Set([
+  'sourcePosition',
+  'sourceIssueReference',
+  'sourceRangeReference',
+  'normalizedSeriesTitle',
+  'seriesYear',
+  'issueNumber',
+  'kind',
+  'status',
+  'checkedAt',
+  'auditBasis',
+  'evidenceSources',
+  'evidenceDigest',
+]);
+const GAP_EVIDENCE_SOURCE_FIELDS = new Set(['kind', 'url', 'retrievedAt']);
 const REPORT_DIGEST_FIELDS = Object.freeze([
   'candidateId',
   'packetDigest',
@@ -115,6 +132,7 @@ const REPORT_DIGEST_FIELDS = Object.freeze([
   'libraryDigest',
   'peerDigests',
   'candidateCount',
+  'sourceCounts',
   'comparisonCount',
   'comparisons',
 ]);
@@ -214,6 +232,7 @@ function assertRepeatedSourceReference(reference, index, rows) {
   if (!Number.isInteger(reference.sourcePosition) || reference.sourcePosition < 1) {
     throw new Error(`${label} sourcePosition must be a positive integer`);
   }
+
   if (!Number.isInteger(reference.canonicalRow)
     || reference.canonicalRow < 1
     || reference.canonicalRow > rows.length) {
@@ -246,6 +265,94 @@ function assertExcludedSourceRow(row, index) {
   assertNonEmptyString(row.decisionScope, `${label} decisionScope`);
 }
 
+function sourceIdentityKey(value) {
+  return [
+    String(value.normalizedSeriesTitle ?? '').trim().toLowerCase(),
+    String(value.seriesYear ?? ''),
+    String(value.issueNumber ?? '').trim(),
+  ].join('|');
+}
+
+function gapEvidencePayload(gap) {
+  return {
+    sourcePosition: gap.sourcePosition,
+    sourceIssueReference: gap.sourceIssueReference,
+    sourceRangeReference: gap.sourceRangeReference ?? null,
+    normalizedSeriesTitle: gap.normalizedSeriesTitle,
+    seriesYear: gap.seriesYear,
+    issueNumber: String(gap.issueNumber),
+    kind: gap.kind,
+    status: gap.status,
+    checkedAt: gap.checkedAt,
+    auditBasis: gap.auditBasis,
+    evidenceSources: gap.evidenceSources,
+  };
+}
+
+export function gapEvidenceDigestFor(gap) {
+  return digestCanonicalJson(gapEvidencePayload(gap));
+}
+
+function assertSourceGap(gap, index) {
+  const label = `Source gap ${index + 1}`;
+  if (!isPlainObject(gap)) throw new Error(`${label} must be an object`);
+  const missing = [...SOURCE_GAP_FIELDS].filter((field) => !Object.hasOwn(gap, field));
+  if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
+  const unexpected = Object.keys(gap).filter((field) => !SOURCE_GAP_FIELDS.has(field));
+  if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
+  if (!Number.isInteger(gap.sourcePosition) || gap.sourcePosition < 1) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
+  assertNonEmptyString(gap.sourceIssueReference, `${label} sourceIssueReference`);
+  if (gap.sourceRangeReference != null) {
+    assertNonEmptyString(gap.sourceRangeReference, `${label} sourceRangeReference`);
+  }
+  assertNonEmptyString(gap.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
+  if (!Number.isInteger(gap.seriesYear)) throw new Error(`${label} seriesYear must be an integer`);
+  assertNonEmptyString(String(gap.issueNumber ?? ''), `${label} issueNumber`);
+  const validPair = (gap.kind === 'published-metadata-gap' && gap.status === 'open')
+    || (gap.kind === 'availability-exclusion' && gap.status === 'closed')
+    || (gap.kind === 'source-correction' && gap.status === 'closed');
+  if (!validPair) throw new Error(`${label} kind and status are not a supported pair`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(gap.checkedAt ?? ''))) {
+    throw new Error(`${label} checkedAt must be a YYYY-MM-DD date`);
+  }
+  assertNonEmptyString(gap.auditBasis, `${label} auditBasis`);
+  if (!Array.isArray(gap.evidenceSources) || gap.evidenceSources.length === 0) {
+    throw new Error(`${label} evidenceSources must be a non-empty array`);
+  }
+  const keys = gap.evidenceSources.map((source, sourceIndex) => {
+    if (!isPlainObject(source)) throw new Error(`${label} evidence source ${sourceIndex + 1} must be an object`);
+    const sourceMissing = [...GAP_EVIDENCE_SOURCE_FIELDS].filter((field) => !Object.hasOwn(source, field));
+    if (sourceMissing.length > 0) {
+      throw new Error(`${label} evidence source ${sourceIndex + 1} is missing required fields: ${sourceMissing.join(', ')}`);
+    }
+    const sourceUnexpected = Object.keys(source).filter((field) => !GAP_EVIDENCE_SOURCE_FIELDS.has(field));
+    if (sourceUnexpected.length > 0) {
+      throw new Error(`${label} evidence source ${sourceIndex + 1} has unsupported fields: ${sourceUnexpected.join(', ')}`);
+    }
+    assertNonEmptyString(source.kind, `${label} evidence source ${sourceIndex + 1} kind`);
+    let url;
+    try {
+      url = new URL(source.url);
+    } catch {
+      throw new Error(`${label} evidence source ${sourceIndex + 1} url must be https`);
+    }
+    if (url.protocol !== 'https:') throw new Error(`${label} evidence source ${sourceIndex + 1} url must be https`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(source.retrievedAt ?? ''))) {
+      throw new Error(`${label} evidence source ${sourceIndex + 1} retrievedAt must be a YYYY-MM-DD date`);
+    }
+    return `${source.kind}\u0000${source.url}\u0000${source.retrievedAt}`;
+  });
+  const sorted = [...keys].sort((left, right) => left.localeCompare(right));
+  if (new Set(keys).size !== keys.length) throw new Error(`${label} evidenceSources contains a duplicate`);
+  if (canonicalJson(keys) !== canonicalJson(sorted)) {
+    throw new Error(`${label} evidenceSources must be sorted by kind, url, and retrievedAt`);
+  }
+  assertSha256(gap.evidenceDigest, `${label} evidenceDigest`);
+  if (gapEvidenceDigestFor(gap) !== gap.evidenceDigest) throw new Error(`${label} evidence digest is stale`);
+}
+
 export function sourcePositionsForPacket(packet) {
   const packetId = String(packet?.id ?? 'Frozen packet');
   const rows = Array.isArray(packet?.rows) ? packet.rows : [];
@@ -253,7 +360,8 @@ export function sourcePositionsForPacket(packet) {
   const hasOccurrenceCount = Object.hasOwn(packet ?? {}, 'sourceOccurrenceCount');
   const hasRepeatedReferences = Object.hasOwn(packet ?? {}, 'repeatedSourceReferences');
   const hasExcludedRows = Object.hasOwn(packet ?? {}, 'excludedSourceRows');
-  if (hasOccurrenceCount !== (hasRepeatedReferences || hasExcludedRows)) {
+  const hasSourceGaps = Object.hasOwn(packet ?? {}, 'sourceGaps');
+  if (hasOccurrenceCount !== (hasRepeatedReferences || hasExcludedRows || hasSourceGaps)) {
     throw new Error(`${packetId} sourceOccurrenceCount and supplemental source rows must appear together`);
   }
   if (!hasOccurrenceCount) return rows.map((_, index) => index + 1);
@@ -266,9 +374,13 @@ export function sourcePositionsForPacket(packet) {
   if (hasExcludedRows && (!Array.isArray(excludedRows) || excludedRows.length === 0)) {
     throw new Error(`${packetId} excludedSourceRows must be a non-empty array when present`);
   }
+  const gaps = hasSourceGaps ? packet.sourceGaps : [];
+  if (hasSourceGaps && (!Array.isArray(gaps) || gaps.length === 0)) {
+    throw new Error(`${packetId} sourceGaps must be a non-empty array when present`);
+  }
   if (!Number.isInteger(packet.sourceOccurrenceCount)
-    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length) {
-    throw new Error(`${packetId} sourceOccurrenceCount must equal canonical rows plus repeated references and excluded source rows`);
+    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length + gaps.length) {
+    throw new Error(`${packetId} sourceOccurrenceCount must equal exact rows plus supplemental source rows`);
   }
 
   const bySourcePosition = new Map();
@@ -301,6 +413,26 @@ export function sourcePositionsForPacket(packet) {
     }
     bySourcePosition.set(excluded.sourcePosition, excluded);
     previousSourcePosition = excluded.sourcePosition;
+  }
+  const rowIdentities = new Set(rows.map(sourceIdentityKey));
+  const gapIdentities = new Set();
+  for (const [index, gap] of gaps.entries()) {
+    assertSourceGap(gap, index);
+    if (index > 0 && gap.sourcePosition <= gaps[index - 1].sourcePosition) {
+      throw new Error(`${packetId} sourceGaps must be in sourcePosition order`);
+    }
+    if (gap.sourcePosition > packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} source gap position ${gap.sourcePosition} is outside the source occurrence count`);
+    }
+    if (bySourcePosition.has(gap.sourcePosition)) {
+      throw new Error(`${packetId} source position ${gap.sourcePosition} is used more than once`);
+    }
+    const identity = sourceIdentityKey(gap);
+    if (rowIdentities.has(identity) || gapIdentities.has(identity)) {
+      throw new Error(`${packetId} source gaps and exact rows must have unique identities`);
+    }
+    gapIdentities.add(identity);
+    bySourcePosition.set(gap.sourcePosition, gap);
   }
 
   const canonicalSourcePositions = [];
@@ -341,9 +473,12 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
   const mappingReferences = mapping?.repeatedSourceReferences ?? null;
   const packetExclusions = packet.excludedSourceRows ?? null;
   const mappingExclusions = mapping?.excludedSourceRows ?? null;
+  const packetGaps = packet.sourceGaps ?? null;
+  const mappingGaps = mapping?.sourceGaps ?? null;
   if ((packet.sourceOccurrenceCount ?? null) !== (mapping?.sourceOccurrenceCount ?? null)
-    || canonicalJson(packetReferences) !== canonicalJson(mappingReferences)) {
-    throw new Error(`${packetId} mapping repeated source evidence differs from its frozen packet`);
+    || canonicalJson(packetReferences) !== canonicalJson(mappingReferences)
+    || canonicalJson(packetGaps) !== canonicalJson(mappingGaps)) {
+    throw new Error(`${packetId} mapping source position evidence differs from its frozen packet`);
   }
   if (canonicalJson(packetExclusions) !== canonicalJson(mappingExclusions)) {
     throw new Error(`${packetId} mapping excluded source evidence differs from its frozen packet`);
@@ -358,6 +493,51 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
   for (const [index, expectedPosition] of expectedPositions.entries()) {
     if (mappingRows[index]?.sourcePosition !== expectedPosition) {
       throw new Error(`${packetId} mapping row ${index + 1} sourcePosition differs from its frozen packet`);
+    }
+  }
+  return true;
+}
+
+export function assertGapTransition(previousPacket, proposedPacket, proposedMapping) {
+  validateFrozenPacket(previousPacket);
+  validateFrozenPacket(proposedPacket);
+  assertMappingMatchesPacketOccurrences(proposedPacket, proposedMapping);
+  const previousGaps = previousPacket.sourceGaps ?? [];
+  if (previousGaps.length === 0) return true;
+  const proposedGaps = new Map((proposedPacket.sourceGaps ?? [])
+    .map((gap) => [gap.sourcePosition, gap]));
+  const proposedPositions = sourcePositionsForPacket(proposedPacket);
+  const rowsByPosition = new Map(proposedPositions
+    .map((sourcePosition, index) => [sourcePosition, proposedPacket.rows[index]]));
+  const mappingByPosition = new Map((proposedMapping.rows ?? [])
+    .map((row) => [row.sourcePosition, row]));
+  for (const previous of previousGaps) {
+    const retained = proposedGaps.get(previous.sourcePosition);
+    if (retained) {
+      const closesAvailabilityGap = (
+        previous.kind === 'published-metadata-gap'
+        && previous.status === 'open'
+        && retained.kind === 'availability-exclusion'
+        && retained.status === 'closed'
+      );
+      if (sourceIdentityKey(retained) !== sourceIdentityKey(previous)
+        || (!closesAvailabilityGap
+          && (retained.kind !== previous.kind || retained.status !== previous.status))) {
+        throw new Error(`Source gap at position ${previous.sourcePosition} changed identity or disposition`);
+      }
+      continue;
+    }
+    if (previous.kind !== 'published-metadata-gap' || previous.status !== 'open') {
+      throw new Error(`Closed source gap at position ${previous.sourcePosition} cannot become exact`);
+    }
+    const row = rowsByPosition.get(previous.sourcePosition);
+    const mappingRow = mappingByPosition.get(previous.sourcePosition);
+    if (!row || !mappingRow || mappingRow.resolutionStatus !== 'exact') {
+      throw new Error(`Open source gap at position ${previous.sourcePosition} disappeared without an exact replacement`);
+    }
+    if (sourceIdentityKey(row) !== sourceIdentityKey(previous)
+      || sourceIdentityKey(mappingRow) !== sourceIdentityKey(previous)) {
+      throw new Error(`Open source gap at position ${previous.sourcePosition} changed identity when resolved`);
     }
   }
   return true;

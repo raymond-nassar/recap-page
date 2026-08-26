@@ -274,10 +274,10 @@
     "coverIssueId": 80296
   },
   "relationshipReview": {
-    "reportDigest": "d2b8315fa7813910e6734e33af6ece46f5f7c9f283c9c17c93e8f862b9031bfd",
+    "reportDigest": "afbb37fa19f39927995935c7b00cb22d740b27fd7ef7679e7b3197356cf887c0",
     "packetDigest": "9a2870e6538537a067900c1b7d5dc18d729e9a6ab6364c9b35abb3edbdde7853",
     "mappingDigest": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf",
-    "libraryDigest": "aceb658d6491c8e7d4dd514dfc198e0012717019ee82eeb9c4e5b7a296e64c5d",
+    "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
     "peerDigests": {
       "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
       "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -287,17 +287,6 @@
     "dispositions": [
       {
         "orderId": "absolute-carnage",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "mrt-003 none-overlap policy",
-        "reviewedAt": "2026-08-25T03:09:11.977Z"
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -1298,6 +1287,17 @@
         "reviewedAt": "2026-08-25T03:09:11.977Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:11.977Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1579,6 +1579,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T03:09:11.977Z",
-    "approvalDigest": "82953723dd8a43191b5e8be6e7ec42738966e6fa39345a5ce51df4b3aa4be9b0"
+    "approvalDigest": "15460fc8e218ecd8f449b48aee85b7da9b660b24cf8cc279204708f303ce4123"
   }
 }

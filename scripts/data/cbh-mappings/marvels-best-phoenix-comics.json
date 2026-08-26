@@ -2045,10 +2045,10 @@
     "coverIssueId": 8605
   },
   "relationshipReview": {
-    "reportDigest": "b9b6ffcd2774b904ea57d570f6c52006e3759776b69e3162557cc0fe23d10c4f",
+    "reportDigest": "3925e08e952a81ae9fcbddbbde56de87026e5a79a004af7c6d07f171b6b1af00",
     "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
     "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
-    "libraryDigest": "b98fa731985605f31ec77ea50839ded16d4a82f0e88421f9bfed08c8ac77712f",
+    "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
     "peerDigests": {
       "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
     },
@@ -2059,21 +2059,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -2081,10 +2068,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -2092,10 +2077,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "annihilation",
@@ -2103,10 +2086,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -2114,10 +2095,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -2125,32 +2104,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "atlantis-attacks",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "avengers-defenders-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -2158,10 +2113,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -2169,10 +2122,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "axis",
@@ -2180,21 +2131,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "bloodties",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -2202,10 +2140,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "chaos-war",
@@ -2213,21 +2149,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "childs-play",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "civil-war",
@@ -2235,10 +2158,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -2246,10 +2167,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -2257,10 +2176,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -2268,21 +2185,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "contest-of-champions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "damnation",
@@ -2290,21 +2194,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dark-phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -2312,10 +2203,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "dark-web",
@@ -2323,43 +2212,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "days-of-future-past",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "days-of-future-present",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dead-mans-hand",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -2367,10 +2221,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "devils-reign",
@@ -2378,10 +2230,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -2389,21 +2239,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doctor-strange-multiverse-of-madness",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "doomwar",
@@ -2411,21 +2248,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "eighth-day",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "essential-avengers",
@@ -2433,21 +2257,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "evolutionary-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -2455,32 +2266,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "fall-of-the-mutants",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "fatal-attractions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "generations",
@@ -2488,21 +2275,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "groot-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -2510,10 +2284,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -2521,10 +2293,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "hickman-full",
@@ -2532,10 +2302,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -2543,27 +2311,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "hickman-x-men",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The current report records this overlap for central approval.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 5,
-        "sharedIds": [
-          "79945",
-          "79946",
-          "79947",
-          "79948",
-          "79949"
-        ]
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "house-of-m",
@@ -2571,10 +2320,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -2582,10 +2329,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -2593,32 +2338,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "hunt-for-xavier",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "inferno",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -2626,10 +2347,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -2637,10 +2356,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -2648,10 +2365,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -2659,10 +2374,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "judgment-day",
@@ -2670,10 +2383,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "king-in-black",
@@ -2681,32 +2392,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "kravens-last-hunt",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "kree-skrull-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "last-annihilation",
@@ -2714,21 +2401,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "magneto-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -2736,43 +2410,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "marvel-multiverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "marvel-super-heroes-secret-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "marvel-what-if",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "maximum-security",
@@ -2780,10 +2419,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "messiah-complex",
@@ -2791,10 +2428,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "messiah-war",
@@ -2802,21 +2437,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "midnight-massacre",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -2824,10 +2446,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -2835,43 +2455,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "muir-island-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "mutant-massacre",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "mys-tech-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "necrosha",
@@ -2879,10 +2464,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -2890,10 +2473,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -2901,54 +2482,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "operation-galactic-storm",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "operation-zero-tolerance",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "original-clone-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "phalanx-covenant",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -2956,21 +2491,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "planet-hulk",
@@ -2978,10 +2500,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "reckoning-war",
@@ -2989,21 +2509,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "reed-richards-and-sue-storms-wedding",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -3011,32 +2518,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "rise-of-the-midnight-sons",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "rocket-raccoon-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -3044,10 +2527,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "second-coming",
@@ -3055,10 +2536,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "secret-invasion",
@@ -3066,10 +2545,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -3077,10 +2554,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "secret-war",
@@ -3088,21 +2563,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "secret-wars-ii",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "shadowland",
@@ -3110,10 +2572,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "silent-war",
@@ -3121,10 +2581,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -3132,10 +2590,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "spider-geddon",
@@ -3143,10 +2599,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "spider-island",
@@ -3154,10 +2608,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -3165,32 +2617,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-identity-crisis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-no-way-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -3198,10 +2626,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "spider-verse",
@@ -3209,21 +2635,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -3231,32 +2644,21 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
-        "orderId": "thanos-war",
-        "relationship": "none",
+        "orderId": "thanos-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "61702"
+        ],
+        "relationship": "partial",
         "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "the-night-gwen-stacy-died",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "thor-best-of",
@@ -3264,32 +2666,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "time-and-time-again",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "venomverse",
@@ -3297,10 +2675,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "war-of-kings",
@@ -3308,10 +2684,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -3319,10 +2693,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -3330,10 +2702,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -3341,10 +2711,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -3352,32 +2720,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wraith-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "x-cutioners-song",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -3385,10 +2729,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -3396,10 +2738,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -3407,10 +2747,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -3418,10 +2756,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -3429,10 +2765,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -3440,10 +2774,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -3451,10 +2783,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -3462,10 +2792,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -3473,10 +2801,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-schism",
@@ -3484,10 +2810,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -3495,21 +2819,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-of-swords",
@@ -3517,10 +2828,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "x-termination",
@@ -3528,21 +2837,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "x-tinction-agenda",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -3550,10 +2846,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -3561,16 +2855,14 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C02 coordinator",
-        "rationale": "The current report contains no shared issue for this order.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z",
-        "sharedCount": 0,
-        "sharedIds": []
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "218f5599d3075a20968f3418283ee665a758f58246346b54067b4f9ea61e0617"
+    "approvalDigest": "2e218bc4b4f04f233e2c0f1e421bea936e591548ad6c5dbe7c41ead5a9fd0b8f"
   }
 }

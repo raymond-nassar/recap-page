@@ -2,19 +2,13 @@
   "candidateId": "ultimate-marvel-intro",
   "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
   "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-  "libraryDigest": "3df0f46d8e52a05084d0c13019e8f28703d2c158c7ec92019b1632977f414595",
+  "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
   "peerDigests": {},
   "candidateCount": 121,
-  "comparisonCount": 137,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -273,12 +267,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -656,6 +644,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -794,12 +788,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -830,5 +818,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4b1a728dfb754964b684c41fb3a2ae2e67925ff2ff1b1bea60d055f052dc52ce"
+  "reportDigest": "b1d5cb727fe7d28580f76065e01ee57c97cf65aa9d733dcf0255ab59fe89ca8d"
 }

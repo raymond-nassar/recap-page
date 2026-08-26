@@ -14,18 +14,57 @@ quote in a bug report.
 
 ## Unreleased
 
-### Added Agatha Harkness reading order
+### Added the Thanos reading guide
 
-In plain English: Agatha Harkness now has her own complete reading guide. It adds 104 distinct issues from 105 source occurrences, keeps the one repeated Scarlet Witch entry at its first appearance, and nothing you have saved is changed.
+In plain English: A 272-issue Thanos reading guide is now available, from his first Cosmic Cube
+campaigns through the Legacy of Thanos. Seven comics in the source guide are not on Marvel Unlimited,
+so the checklist leaves them out while preserving their places for maintainers. Nothing you have saved
+is changed.
 
-For maintainers: the frozen packet, exact mapping, and overlap report bind all 104 canonical rows. Four partial overlaps are centrally approved: West Coast Avengers #56, Avengers #503, the Doom primer cluster, and the Scarlet Witch best-of collection.
+For maintainers: the frozen source records 321 occurrences across 279 identities, including 42
+intentional later mentions. Twelve exact identities use reviewed Marvel facts because the configured
+metadata provider omits them. Seven closed availability exclusions link to the separately assigned
+missing-comics issue. The complete-library report covers 137 comparisons with nine approved non-none
+relationships.
+
+### Added the complete Ant-Man character guide
+
+In plain English: The Character Spotlights now include a complete Ant-Man guide, following Hank
+Pym, Scott Lang, and the rest of the Ant-Man legacy from his first appearance through 2022, 386
+issues in all. The catalog now has 138 reading lists. Three old, hard-to-find comics referenced by
+the source guide (a 2003 miniseries, a 2001 series, and a 2012 original graphic novel) are absent
+from every comic database this app can check, so they are recorded as excluded rather than guessed
+at or silently dropped. Nothing you have saved is changed.
+
+For maintainers: the full source inventory records 437 whole-issue occurrences across the guide's
+eight numbered sections and its Latest Additions, preserving the owner's clarification for Ant-Man
+& The Wasp: Living Legends, the War of the Realms: War Scrolls B and C backup features resolved to
+their three parent issues, and Tales to Astonish #37 and #43 already read inside an earlier span.
+Thirty-five occurrences (Ant-Man: Season One, Alias #1-28, Secret Empire #9-10, and the 2003 Ant-Man
+MAX mini) are excluded as absent from the vendored series index, a live series listing pass, and a
+live full text issue search, leaving 386 distinct issues. The relationship report covers 137
+current-library comparisons; twelve partial and one existing-subset relationship are centrally
+approved as crossover reading both guides independently require.
+### Added the complete Iron Man Character Spotlight guide
+
+In plain English: the Character spotlights shelf now includes a complete Iron Man guide. It follows
+all 811 issues from the source reading order, including two issues the source names twice for two
+different story turns, listed once each in your checklist. The catalog now has 142 reading lists.
+Nothing you have saved is changed.
+
+For maintainers: the source inventory records 815 occurrences across 813 distinct issue identities.
+The two later occurrences of the same first two Tony Stark: Iron Man issues are recorded as repeated
+source references rather than duplicate canonical rows, and two source-marked out-of-continuity
+issues are excluded with recorded reasons, leaving 811 canonical rows. The frozen packet, exact
+mapping, and complete relationship report bind all 811 rows. Seven of them (Crimson Dynamo #1
+through #4 and Iron Man Legacy #2, #5, and #10) resolve to owner-confirmed exact ids that this
+project's live metadata index does not list, which is why they were the ones still deferred.
 
 ### Added the Amazing Spider-Man complete reading order
 
 In plain English: There is now a single reading list that carries Amazing Spider-Man from the
 character's first appearance through the present day, following one guide's own path across every
-renumbering, relaunch, and companion title along the way, bringing the catalog to 138 reading
-lists. Nothing you have saved is changed.
+renumbering, relaunch, and companion title along the way. Nothing you have saved is changed.
 
 Most of the guide's 2,043 named issues, 1,937 of them, resolve to an exact Marvel issue. The
 remaining 106 are references the guide names that could not be matched to a single Marvel-metadata

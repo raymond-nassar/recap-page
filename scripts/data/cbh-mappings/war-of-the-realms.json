@@ -2526,10 +2526,10 @@
   },
   "packetReview": "MRT-002 final central source review",
   "relationshipReview": {
-    "reportDigest": "67fd6f1c2b2a3c24be7929b19baae65c5162a7112f9cc5291205e0cad5a53813",
+    "reportDigest": "57240d60cf5920d79f9caca1960491d633acbbc30197f8c2260361d05c0fe905",
     "packetDigest": "1a14ff7aeef925329a961b323c7c03fdf8817378f6cb3073441ff7d99ad44b2d",
     "mappingDigest": "6a7cee46ef9ae023c87deb5aebdecd4dc5011f35e9a98e9a4b1c9e450f22c287",
-    "libraryDigest": "003b0f46866c8c3cda76fb81f1834b84ef2b2f85636c64dd59ec3a50a8c139c6",
+    "libraryDigest": "7ae9fe26c863d3c19dcdf3cde3f69753c70fbeb9b76f017f7dff32a89f6a8e34",
     "peerDigests": {
       "absolute-carnage": "87bbad853038ab891fcf0d48545b5a3e9010da3e784af28f4e06f629ed43165b"
     },
@@ -3120,6 +3120,17 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "partial",
         "decision": "approved",
@@ -3304,6 +3315,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "e43ae46db957141b0eeb623b07999ea81a25f82271066665c9784f89013f9bff"
+    "approvalDigest": "fedba62d582ecb2bb78b70b502b1294e7a311519848ac8bd5a32d682f39f6d00"
   }
 }

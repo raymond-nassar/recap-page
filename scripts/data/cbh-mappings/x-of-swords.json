@@ -1006,10 +1006,10 @@
     "coverIssueId": 85662
   },
   "relationshipReview": {
-    "reportDigest": "08ac9919693008cbd48e5282bcfe3d6b70f8b9ef7e0fac32190c283dd3175000",
+    "reportDigest": "440cbe119807c9f9f49b3f0c3d65b2c120064eeae0815a2a7f20de8497672d1e",
     "packetDigest": "57ee256e63363c7d7309dc27e482566db38153205e3911a5d7816f22045ac0a0",
     "mappingDigest": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3",
-    "libraryDigest": "c5837690caca602e69ccc02571d346d983439d789946ebcf2f5b2103947f0966",
+    "libraryDigest": "0dea147fec25c6ef87da0addc9abc392869238229eec3b5c5cd91c8bde3c6961",
     "peerDigests": {
       "heroes-reborn-2021": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620"
     },
@@ -1600,6 +1600,17 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -1784,6 +1795,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "8750a8bd852d6b9d024c829591e4df9e12a2690cf174a7fb84446b07ace24807"
+    "approvalDigest": "1e882a26e782a69c709e02dff308d22a2a23a518d36273029ee5aa872ee0a49b"
   }
 }

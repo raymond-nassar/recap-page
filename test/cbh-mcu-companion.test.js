@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
   approvalDigestFor,
-  libraryDigestExcludingOrders,
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
@@ -21,18 +20,6 @@ import {
   validateMcuCompanionInventory,
   validateMcuCompanionPacket,
 } from '../scripts/lib/cbh-mcu-companion.mjs';
-import {
-  CBRO_BATCH_FIVE_SELECTED_IDS,
-  CBRO_BATCH_FOUR_SELECTED_IDS,
-  CBRO_BATCH_EIGHT_SELECTED_IDS,
-  CBRO_BATCH_NINE_SELECTED_IDS,
-  CBRO_BATCH_SEVEN_SELECTED_IDS,
-  CBRO_BATCH_SIX_SELECTED_IDS,
-  CBRO_BATCH_THREE_SELECTED_IDS,
-  CBRO_BATCH_TWO_SELECTED_IDS,
-  CBRO_CONTINUATION_SELECTED_IDS,
-} from '../scripts/lib/cbro-evidence.mjs';
-import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   availableHomeCategories,
@@ -43,12 +30,6 @@ import {
 } from '../src/js/lib/catalog.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const legacyMcuSelectedIds = Object.freeze([
-  'doctor-strange-multiverse-of-madness',
-  'spider-man-no-way-home',
-  'marvel-multiverse',
-  'marvel-what-if',
-]);
 const expectedCounts = new Map([
   ['doctor-strange-multiverse-of-madness', 17],
   ['spider-man-no-way-home', 17],
@@ -64,6 +45,7 @@ const expectedRelationships = {
   ],
   'spider-man-no-way-home': [],
   'marvel-multiverse': [
+    ['days-of-future-past', 'partial', 1],
     ['xmen-claremont', 'candidate-subset', 2],
     ['xmen-claremont-complete', 'candidate-subset', 2],
   ],
@@ -78,48 +60,6 @@ const expectedRelationships = {
     ['spider-man-best-of', 'partial', 5],
   ],
 };
-const frozenExcludedIds = [
-  ...MCU_SELECTED_IDS,
-  ...CBRO_CONTINUATION_SELECTED_IDS,
-  ...CBRO_BATCH_TWO_SELECTED_IDS,
-  ...CBRO_BATCH_THREE_SELECTED_IDS,
-  ...CBRO_BATCH_FOUR_SELECTED_IDS,
-  ...CBRO_BATCH_FIVE_SELECTED_IDS,
-  ...CBRO_BATCH_SIX_SELECTED_IDS,
-  ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-  ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-  ...CBRO_BATCH_NINE_SELECTED_IDS,
-  'agatha-harkness-reading-order',
-  'hickman-x-men',
-  'modern-x-men-fast-track',
-  'ultimate-marvel-intro',
-  'x-men-utopia',
-  'x-men-messiah-to-avx',
-  'amazing-spider-man-reading-order-modern-marvel-era',
-];
-
-function peerIdsForReviewedReport(id) {
-  if (id === 'wandavision') return legacyMcuSelectedIds;
-  return [...legacyMcuSelectedIds, 'spider-man-far-from-home']
-    .filter((peerId) => peerId !== id);
-}
-
-function excludedIdsForReviewedReport(id, peerIds) {
-  if (id === 'wandavision') {
-    return [
-      id,
-      ...peerIds,
-      'spider-man-far-from-home',
-      'hickman-x-men',
-      'ultimate-marvel-intro',
-      'x-men-utopia',
-      'modern-x-men-fast-track',
-      'amazing-spider-man-reading-order-modern-marvel-era',
-    ];
-  }
-  return frozenExcludedIds;
-}
-
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
 }
@@ -276,13 +216,12 @@ test('MCU Prep reports bind their reviewed libraries and selected peers', async 
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
 
   for (const { id, packet, mapping, report } of entries) {
-    const peerIds = peerIdsForReviewedReport(id);
-    const reviewedLibraryDigest = report.libraryDigest;
-    const peers = peerIds
+    const peers = MCU_SELECTED_IDS
+      .filter((peerId) => peerId !== id)
       .map((peerId) => mappings.get(peerId));
     const expectedOrderIds = report.comparisons.map((comparison) => comparison.orderId);
+    const reviewedLibraryDigest = report.libraryDigest;
     assert.equal(report.comparisonCount, expectedOrderIds.length);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => validateReportDigest(report));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
@@ -327,24 +266,18 @@ test('the Marvel Multiverse subset stays explicit, central, and narrowly describ
   policySubset.relationshipReview.approvalDigest = approvalDigestFor(
     policySubset.relationshipReview,
   );
-  const peerIds = peerIdsForReviewedReport(item.id);
-  const excludedIds = excludedIdsForReviewedReport(item.id, peerIds);
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
-  const peers = peerIds.map((peerId) => mappings.get(peerId));
-  const library = await loadLibrarySnapshot();
+  const peers = MCU_SELECTED_IDS
+    .filter((peerId) => peerId !== item.id)
+    .map((peerId) => mappings.get(peerId));
   assert.throws(() => assertApprovedRelationshipReview({
     packet: item.packet,
     mapping: policySubset,
     report: item.report,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, excludedIds),
+    currentLibraryDigest: item.report.libraryDigest,
     peerMappings: peers,
-    expectedOrderIds: [
-      ...library.lists
-        .filter((entry) => !excludedIds.includes(entry.id))
-        .map((entry) => entry.id),
-      ...peers.map((peer) => peer.id),
-    ],
-  }), /library changed since relationship review/i);
+    expectedOrderIds: item.report.comparisons.map((comparison) => comparison.orderId),
+  }), /unauthorized authority type/i);
 });
 
 test('an exact relationship remains unapprovable', async () => {
@@ -369,24 +302,18 @@ test('an exact relationship remains unapprovable', async () => {
   );
   exactMapping.mappingDigest = mappingDigestFor(exactMapping);
 
-  const peerIds = peerIdsForReviewedReport(item.id);
-  const excludedIds = excludedIdsForReviewedReport(item.id, peerIds);
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
-  const peers = peerIds.map((peerId) => mappings.get(peerId));
-  const library = await loadLibrarySnapshot();
+  const peers = MCU_SELECTED_IDS
+    .filter((peerId) => peerId !== item.id)
+    .map((peerId) => mappings.get(peerId));
   assert.throws(() => assertApprovedRelationshipReview({
     packet: item.packet,
     mapping: exactMapping,
     report: exactReport,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, excludedIds),
+    currentLibraryDigest: exactReport.libraryDigest,
     peerMappings: peers,
-    expectedOrderIds: [
-      ...library.lists
-        .filter((entry) => !excludedIds.includes(entry.id))
-        .map((entry) => entry.id),
-      ...peers.map((peer) => peer.id),
-    ],
-  }), /library changed since relationship review/i);
+    expectedOrderIds: exactReport.comparisons.map((comparison) => comparison.orderId),
+  }), /no approval path/i);
 });
 
 test('approved evidence reaches six payloads, cards, and one MCU Prep group', async () => {
@@ -456,6 +383,6 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
     20,
-    'Character Spotlight count differs from the reconciled Star-Lord baseline',
+    'Character Spotlight count differs from the reconciled Agatha baseline',
   );
 });

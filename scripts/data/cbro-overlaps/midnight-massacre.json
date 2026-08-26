@@ -2,7 +2,7 @@
   "candidateId": "midnight-massacre",
   "packetDigest": "9a2870e6538537a067900c1b7d5dc18d729e9a6ab6364c9b35abb3edbdde7853",
   "mappingDigest": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf",
-  "libraryDigest": "aceb658d6491c8e7d4dd514dfc198e0012717019ee82eeb9c4e5b7a296e64c5d",
+  "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -14,12 +14,6 @@
   "comparisons": [
     {
       "orderId": "absolute-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -565,6 +559,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -715,5 +715,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "d2b8315fa7813910e6734e33af6ece46f5f7c9f283c9c17c93e8f862b9031bfd"
+  "reportDigest": "afbb37fa19f39927995935c7b00cb22d740b27fd7ef7679e7b3197356cf887c0"
 }

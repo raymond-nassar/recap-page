@@ -2,19 +2,13 @@
   "candidateId": "x-men-utopia",
   "packetDigest": "532457b6800fecb8f31944fa85170e849ff6f007e10594bde6686fd3439a0ad1",
   "mappingDigest": "b47bf9e1ceb0f7a9559aea67a01aa009640cc81cd71504660bbdeb26fc391242",
-  "libraryDigest": "722f55096f8e34b5479c865b2303c59f04ccd18b6f195bfbb9fb1bb3f952d8fb",
+  "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
   "peerDigests": {},
   "candidateCount": 14,
-  "comparisonCount": 137,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -277,12 +271,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -660,6 +648,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -679,12 +673,6 @@
     },
     {
       "orderId": "time-and-time-again",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ultimate-marvel-intro",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -840,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "283a0c5d4f737c1cfb1963cd94152435dae4dd85e573b718607e207a546c2af6"
+  "reportDigest": "b7b8564b4f54f17b9c43ed42e562f9993421acf5bede833f867f38b9e5af350e"
 }

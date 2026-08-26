@@ -1709,10 +1709,10 @@
     "coverIssueId": 100366
   },
   "relationshipReview": {
-    "reportDigest": "acc8cdd3e6c1d8661297e4cf3681596fbef6e1e2bbd49553a28d548302e76432",
+    "reportDigest": "c2bab5c55841bd99d1fb7596886eba2c68f560393046c477d0d9f20b11c41e93",
     "packetDigest": "0c70ff6e72733a68c6b52507154c5810b6b21c0c997083b830231df44f7c48b1",
     "mappingDigest": "45bb86755c51897b1bdfd3bb43b2cdd445e50e769a6d35b8b281a5af01fc55c1",
-    "libraryDigest": "072a7cdc8f0354ca8d267a0c39491c3e46897d74069661dda312821b32979246",
+    "libraryDigest": "a5e247406f1b53e8e013403aec5f93819854caa96f8512df7c30880fcf1bc426",
     "peerDigests": {
       "dark-web": "e82dbaa204cc50c6da6044023a4808f80071473751bb6a70545ca9bc9c65382f",
       "sins-of-sinister": "8fe36184b0887ead545859dffe393814c9c33ca2738d2a5fb100004b66b891e1"
@@ -2295,6 +2295,21 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 3,
+        "sharedIds": [
+          "85569",
+          "85570",
+          "85571"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -2488,6 +2503,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "e0e25cecd2008d958a525f3c41455f37d689311fafb1f3f7df1935dbcea8951d"
+    "approvalDigest": "49d782690aebf1ebe1c94deb2e0a3a24d37f24b7a822bc63e6500bba4896bf6c"
   }
 }

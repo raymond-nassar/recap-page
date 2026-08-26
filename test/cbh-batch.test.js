@@ -24,6 +24,8 @@ import {
 } from '../scripts/author-cbh-packet.mjs';
 import {
   approvalDigestFor,
+  assertGapTransition,
+  gapEvidenceDigestFor,
   libraryDigestFor,
   mappingDigestFor,
   packetDigestFor,
@@ -126,6 +128,48 @@ function genericPacket({ withRepeat = false } = {}) {
   }
   packet.packetDigest = packetDigestFor(packet);
   return packet;
+}
+
+function genericGapPacket(kind = 'published-metadata-gap') {
+  const packet = genericPacket();
+  const missingRow = packet.rows.pop();
+  packet.expectedCount = 1;
+  packet.proposedManifest.expect = 1;
+  packet.sourceOccurrenceCount = 2;
+  packet.sourceGaps = [{
+    sourcePosition: 2,
+    sourceIssueReference: missingRow.sourceIssueReference,
+    sourceRangeReference: missingRow.sourceRangeReference,
+    normalizedSeriesTitle: missingRow.normalizedSeriesTitle,
+    seriesYear: missingRow.seriesYear,
+    issueNumber: missingRow.issueNumber,
+    kind,
+    status: kind === 'published-metadata-gap' ? 'open' : 'closed',
+    checkedAt: '2026-08-26',
+    auditBasis: kind === 'published-metadata-gap'
+      ? 'The exact identity remains unresolved.'
+      : 'The owner confirmed this comic is unavailable.',
+    evidenceSources: [{
+      kind: 'tracking-issue',
+      url: 'https://example.test/issues/1',
+      retrievedAt: '2026-08-26',
+    }],
+  }];
+  packet.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(packet.sourceGaps[0]);
+  packet.packetDigest = packetDigestFor(packet);
+  return packet;
+}
+
+function genericGapMapping(packet) {
+  const mapping = genericMapping(genericPacket());
+  mapping.packetDigest = packet.packetDigest;
+  mapping.approvedSourceCount = packet.sourceOccurrenceCount;
+  mapping.sourceOccurrenceCount = packet.sourceOccurrenceCount;
+  mapping.sourceGaps = structuredClone(packet.sourceGaps);
+  mapping.proposedManifest = structuredClone(packet.proposedManifest);
+  mapping.rows = mapping.rows.slice(0, 1);
+  mapping.mappingDigest = mappingDigestFor(mapping);
+  return mapping;
 }
 
 function genericMapping(packet, id = packet.id) {
@@ -322,6 +366,100 @@ function packetForOccurrenceShape(uniqueCount, repeated) {
   return packet;
 }
 
+test('open source gaps close only as the same exact identity or an availability exclusion', () => {
+  const openPacket = genericGapPacket();
+  const exactPacket = genericPacket();
+  const exactMapping = genericMapping(exactPacket);
+  assert.doesNotThrow(() => assertGapTransition(openPacket, exactPacket, exactMapping));
+
+  const unavailablePacket = genericGapPacket('availability-exclusion');
+  const unavailableMapping = genericGapMapping(unavailablePacket);
+  assert.doesNotThrow(() => assertGapTransition(openPacket, unavailablePacket, unavailableMapping));
+
+  assert.throws(
+    () => assertGapTransition(unavailablePacket, exactPacket, exactMapping),
+    /closed source gap.*cannot become exact/i,
+  );
+
+  const changedIdentity = structuredClone(unavailablePacket);
+  changedIdentity.sourceGaps[0].issueNumber = '3';
+  changedIdentity.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(changedIdentity.sourceGaps[0]);
+  changedIdentity.packetDigest = packetDigestFor(changedIdentity);
+  assert.throws(
+    () => assertGapTransition(openPacket, changedIdentity, genericGapMapping(changedIdentity)),
+    /changed identity or disposition/i,
+  );
+});
+
+test('the final Thanos artifacts conserve every source position and publish only dispositioned issues', async () => {
+  const packet = await readJson(path.join(root, 'scripts', 'data', 'cbh-packets', 'thanos-reading-order.json'));
+  const mapping = await readJson(path.join(mappingsDir, 'thanos-reading-order.json'));
+  const report = await readJson(path.join(overlapsDir, 'thanos-reading-order.json'));
+  const payload = await readJson(path.join(dataDir, 'thanos_reading_order.json'));
+  const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const markdown = await readFile(path.join(dataDir, 'orders', 'thanos-reading-order.md'), 'utf8');
+  const exclusions = [
+    "Logan's Run #6",
+    'Spidey Super Stories #39',
+    'Deathlok #16',
+    'Silver Sable & The Wild Pack #4',
+    'Silver Sable & The Wild Pack #5',
+    'Nomad #7',
+    'Sleepwalker #18',
+  ];
+  const sparseIssueIds = [18261, 18262, 18263, 12648, 12650, 12651, 12652, 18925, 18926, 18927, 18929, 23490];
+  const resolvedPositions = [
+    [114, 18261],
+    [115, 18262],
+    [116, 18263],
+    [117, 12650],
+    [118, 12651],
+    [119, 12652],
+    [125, 18925],
+    [126, 18926],
+    [127, 18927],
+    [128, 18929],
+    [137, 12648],
+    [176, 23490],
+  ];
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet));
+  assert.deepEqual({
+    occurrences: packet.sourceOccurrenceCount,
+    identities: packet.rows.length + packet.sourceGaps.length,
+    published: packet.rows.length,
+    exclusions: packet.sourceGaps.length,
+    repeats: packet.repeatedSourceReferences.length,
+  }, {
+    occurrences: 321,
+    identities: 279,
+    published: 272,
+    exclusions: 7,
+    repeats: 42,
+  });
+  assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourceIssueReference), exclusions);
+  assert.ok(packet.sourceGaps.every((gap) => gap.kind === 'availability-exclusion' && gap.status === 'closed'));
+  assert.deepEqual(report.sourceCounts, mapping.relationshipReview.sourceCounts);
+  assert.equal(report.comparisonCount, 137);
+  assert.equal(mapping.relationshipReview.dispositions.length, 137);
+  assert.equal(mapping.rows.length, 272);
+  assert.deepEqual(
+    mapping.rows
+      .filter((row) => sparseIssueIds.includes(Number(row.selectedIssueId)))
+      .map((row) => [row.sourcePosition, Number(row.selectedIssueId)]),
+    resolvedPositions,
+  );
+  assert.equal(payload.items.length, 272);
+  assert.equal(manifest.lists.find((entry) => entry.id === packet.id).expect, 272);
+  assert.deepEqual(
+    payload.items.filter((item) => sparseIssueIds.includes(item.issueId)).map((item) => item.issueId).sort((a, b) => a - b),
+    [...sparseIssueIds].sort((a, b) => a - b),
+  );
+  for (const exclusion of exclusions) {
+    assert.equal(markdown.includes(exclusion), false, `${exclusion} leaked into the published checklist`);
+  }
+});
+
 test('repeated source references stay explicit, canonical, fresh, and unique', () => {
   const evidence = genericEvidence({ withRepeat: true });
   assert.doesNotThrow(() => validateFrozenPacket(evidence.packet));
@@ -331,8 +469,8 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
 
   const markdown = buildMarkdown(evidence.mapping);
-  assert.match(markdown, /3 issue occurrences, including 1 intentional repeat/);
-  assert.match(markdown, /each distinct comic once at its first source occurrence/);
+  assert.match(markdown, /3 issue occurrences, including 1 intentional repeat.*lists each distinct comic once at its first source occurrence/);
+  assert.match(markdown, /No source commentary or images are copied\./);
   assert.equal(parseChecklist(markdown).entries.length, 2);
 
   const oldPacket = genericPacket();
@@ -359,7 +497,7 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   const wrongCount = structuredClone(evidence.packet);
   wrongCount.sourceOccurrenceCount = 4;
   wrongCount.packetDigest = packetDigestFor(wrongCount);
-  assert.throws(() => validateFrozenPacket(wrongCount), /must equal canonical rows plus repeated references/i);
+  assert.throws(() => validateFrozenPacket(wrongCount), /must equal exact rows plus supplemental source rows/i);
 
   const forward = structuredClone(evidence.packet);
   forward.repeatedSourceReferences[0].canonicalRow = 2;
@@ -440,7 +578,7 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   refreshEvidenceDigests(divergentMirror);
   assert.throws(
     () => assertApprovedRelationshipReview(divergentMirror),
-    /mapping repeated source evidence differs from its frozen packet/i,
+    /mapping source position evidence differs from its frozen packet/i,
   );
 });
 
@@ -464,7 +602,7 @@ test('excluded source rows conserve exact positions without changing legacy pack
   wrongCount.packetDigest = packetDigestFor(wrongCount);
   assert.throws(
     () => validateFrozenPacket(wrongCount),
-    /canonical rows plus repeated references and excluded source rows/i,
+    /exact rows plus supplemental source rows/i,
   );
 
   const duplicatePosition = structuredClone(packet);

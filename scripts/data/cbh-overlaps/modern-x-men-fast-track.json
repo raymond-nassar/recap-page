@@ -2,10 +2,10 @@
   "candidateId": "modern-x-men-fast-track",
   "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
   "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-  "libraryDigest": "cc94f4b05fd4f7c25998df4c61f3081640a5410fdfb7203a2c67479c68076e50",
+  "libraryDigest": "8cd2803280bbe187442a885ac0aaa194d9b463a6bdcf10db4cff06bc4fd14842",
   "peerDigests": {},
   "candidateCount": 278,
-  "comparisonCount": 137,
+  "comparisonCount": 143,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -32,6 +32,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "annihilation",
       "sharedCount": 0,
       "sharedIds": [],
@@ -39,6 +45,12 @@
     },
     {
       "orderId": "annihilation-conquest",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -277,6 +289,12 @@
     },
     {
       "orderId": "hickman-minimal",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -705,6 +723,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -724,6 +748,12 @@
     },
     {
       "orderId": "time-and-time-again",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ultimate-marvel-intro",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -921,6 +951,23 @@
       "relationship": "existing-subset"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 10,
+      "sharedIds": [
+        "27513",
+        "26966",
+        "26967",
+        "27512",
+        "26968",
+        "26969",
+        "26970",
+        "26971",
+        "26972",
+        "27424"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -951,5 +998,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "01ce56309e610ae4cc5d534b4e06d5a2f54cb965fbbfb4c7931991a4463afafe"
+  "reportDigest": "1d61e8dce8c7bce247e853144a3621bd39443cc00ddfdabd2e41e5b85466e617"
 }

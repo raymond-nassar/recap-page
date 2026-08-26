@@ -248,8 +248,29 @@ remain the distinct comic count.
 
 For a `complete-guide`, enumerate every source-defined whole issue in that packet. A prose-only
 recommendation or collected edition may stay outside the row set when the source does not make it an
-issue in the sequence. An unavailable or ambiguous whole issue blocks that candidate instead of
-permitting an inferred replacement or a shorter guide.
+issue in the sequence. An ambiguous identity blocks that candidate instead of permitting an inferred
+replacement or a shorter guide. Missing optional metadata does not block publication when reviewed
+evidence establishes the Marvel issue ID, title, number, series identity, and exact issue link.
+Preserve those facts in the row and allow unavailable dates, cover, digital ID, page count, and
+creators to remain `null` or empty in the pinned payload.
+
+A source-defined guide may instead ship as `depth: partial` and `spotlightKind: other` when the user
+has approved a gap-tolerant release. Keep exact issue identities in `rows`, including identities
+established by reviewed evidence when the configured metadata provider omits them. Put every
+unresolved or explicitly unavailable identity in optional `sourceGaps`, mirrored in the mapping and
+excluded from Markdown and browser payloads. Each gap records its one-based source position, raw
+issue and range references, normalized identity, kind and status, checked date, audit basis, sorted
+evidence sources and a digest recomputed from that complete evidence. `published-metadata-gap` is
+open and fillable; `availability-exclusion` is closed after an explicit availability disposition;
+`source-correction` is closed and cannot become an issue. Link a maintained tracking Issue from the
+gap evidence when future availability or metadata work has been assigned separately.
+
+Exact rows, gaps and repeated references must partition every source position. Exact rows plus gaps
+must also be unique, pairwise-disjoint source identities. Resolving an open gap requires either an exact row or a closed availability exclusion with the same
+identity at the same position. Renew the packet first, then mapping, overlap report and central
+approval; each unchanged downstream layer must fail stale until renewed. Closed gaps cannot become
+exact rows later without a new policy decision. Moved positions, changed identities and unexplained
+removals fail instead of becoming metadata.
 
 The maintained source records are split by program. Modern event and crossover candidates remain in
 `scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and

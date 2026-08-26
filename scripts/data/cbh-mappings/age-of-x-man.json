@@ -1260,10 +1260,10 @@
     "coverIssueId": 72932
   },
   "relationshipReview": {
-    "reportDigest": "7c812b2a224d2dcdb0ca762dad497ed2afa5ccfdd628767d353b1bae9706392e",
+    "reportDigest": "89d37e942f34d50fe504b32df68bf9eafceb9e22698cf6df5c95483e1794a7fd",
     "packetDigest": "e57def2e5f8cfcfc972f310fa34f498e038ec0005f29bc576a9f3577579905fb",
     "mappingDigest": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
-    "libraryDigest": "2ba96a7c00d52f71f0f216d7620bf06307c8c26a58ca5b5d514031b50c182fca",
+    "libraryDigest": "a074d86396c5ff9604136d8efc69450a91561da0cfb5eeeab23b7fe9bcf9ce12",
     "peerDigests": {
       "iron-man-2020": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6",
       "spider-geddon": "71d7c0accbab5764114f223d92959dd2e9490cd4ceaa2a4ddd617db6542d78b3"
@@ -1846,6 +1846,17 @@
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -2039,6 +2050,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "e2471dd065f07eb9404efc541d2309852a2a2e0c6a35f9c6012bdc417ac31667"
+    "approvalDigest": "7fff4495d6045b6fde16232e2186f7a53d5dcece67bec6376188a0610d18757b"
   }
 }

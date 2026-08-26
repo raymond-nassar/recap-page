@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,6 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -127,12 +126,11 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
     path.join(mappingsDir, 'secret-war.json'),
     [path.join(mappingsDir, 'spider-man-the-other.json')],
   );
-  const manifest = JSON.parse(readFileSync(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, manifest.lists.length - CBH_LATER_ORDER_IDS.length);
-  assert.equal(new Set(comparedIds).size, manifest.lists.length - CBH_LATER_ORDER_IDS.length);
+  assert.equal(report.comparisonCount, 134);
+  assert.equal(new Set(comparedIds).size, 134);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
 });

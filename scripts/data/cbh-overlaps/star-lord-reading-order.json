@@ -2,14 +2,20 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "81c3b61d03b94dfdbf3fc01d78c77439b05b7a90a9ffc17860e347864ac2a7ab",
+  "libraryDigest": "9a604a418983603eb3b192d75c131870b1aafbafd73e6e88aa397903e4fdf9a6",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 99,
-  "comparisonCount": 137,
+  "comparisonCount": 143,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -35,6 +41,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "annihilation",
       "sharedCount": 0,
       "sharedIds": [],
@@ -42,6 +54,12 @@
     },
     {
       "orderId": "annihilation-conquest",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -307,6 +325,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hickman-x-men",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "house-of-m",
       "sharedCount": 0,
       "sharedIds": [],
@@ -454,12 +478,6 @@
     },
     {
       "orderId": "minimum-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "modern-x-men-fast-track",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -713,6 +731,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -732,6 +756,12 @@
     },
     {
       "orderId": "time-and-time-again",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ultimate-marvel-intro",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -865,6 +895,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -895,5 +931,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "c4633cda1f1da5de4040c5ac7ce98adb05a97ea2627f798f44201031bac84f5c"
+  "reportDigest": "656a0973d14e3d057b3771cee8478847e59c23f2fd50123d39f59fec05658513"
 }
