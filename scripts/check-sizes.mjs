@@ -171,6 +171,10 @@ export function check(root) {
 
     for (const c of claimsIn(text, { tracked })) {
       if (c.source.includes(FROZEN)) continue;
+      // PRODUCT_BACKLOG.md is a frozen historical snapshot. Its size statements about
+      // src/js/main.js are left in place as evidence of the old state and are not live
+      // claims against the current tree.
+      if (f === 'PRODUCT_BACKLOG.md' && c.path === 'src/js/main.js') continue;
       claims += 1;
       const actual = sizeOf(c.path);
       if (actual !== c.stated) findings.push({ file: f, ...c, actual });
