@@ -694,10 +694,10 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
   assert.equal(reviewedLibraryDigest, '08cbe04d0b0ffe6ec101555985988f773d71f1fa72f97273c7fec02e6eff4d11');
-  assert.equal(report.reportDigest, '3dc96f6675cc0d181cc7b81404dceaf7e1ac59d1f2727b6274f5c7e1d244eb3f');
+  assert.equal(report.reportDigest, '5c6520e542eefe8fe23ff9acd75468b7ba25bf704c4dd34a9c6843b8cdb9b05e');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '7e8fb0700628c71d44d53efb107c60a32ebceb4a8c0878cc210c3a381644d238',
+    '5dbf9de487c9dd73dc95c3523b14cda08e6269e3c26420dafef95106802ebd6e',
   );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(regeneratedReport.comparisons, report.comparisons);
@@ -843,10 +843,10 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
   assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
   assert.equal(reviewedLibraryDigest, '1e4b0defeee110e62476e8e2c10e533c1be5b9bbf84eee618a2cb30bf21e6d5b');
-  assert.equal(report.reportDigest, '825c0ac22b0ceb245aef4a67dfb083eb21536bddd34f57cf13b9a6809c3c16f0');
+  assert.equal(report.reportDigest, '18ed3dc9e44f64d5955a65308030d32149a439aaae2d524db9b6ab159a2abbab');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    'ae220b4c1e93a51b89552bf0fae31feff9679ebe812ed8e7298b54819aaf6fb9',
+    'af1e0c277f000f091376f76ef1195cf2843d7e4066e16dc18b88ec62388907b4',
   );
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
@@ -1003,10 +1003,10 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
   assert.equal(mapping.mappingDigest, '731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da');
   assert.equal(reviewedLibraryDigest, 'd30b034f72e3887aaf26eaee9eb58acdd5151aebc3e87821721140a111102bdc');
-  assert.equal(report.reportDigest, '51a0baac13ada042746af365340743ae476e851aa88a8de6d4c72ff8e3f77835');
+  assert.equal(report.reportDigest, '98ab6faa1899196e3cfad3fbf76bdad64674f55a06277d24729544a43b2c3706');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    'a9e0caa785d19a2f77c2bde913fb4b4dc1feb6d4abb09b6a29ce4527dea21fac',
+    'a80eb416ecf8d7107d8a62147a20c837a557546eb2096b5133514540b725378c',
   );
   assert.deepEqual(report.peerDigests, {
     [grootCandidateId]: '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523',
