@@ -1358,13 +1358,17 @@
     "url": "https://www.comicbookherald.com/iron-man-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The 815-occurrence source boundary has 813 distinct issues and is now representable without duplicate output, but publication remains blocked because the configured metadata contract cannot resolve source-required Crimson Dynamo #1-4, Iron Man: Viva Las Vegas #3-4, or Iron Man Legacy #2, #5, and #10.",
+    "disposition": "new-order",
+    "reason": "The 815-occurrence source boundary reduces to 811 distinct issues once the two repeated Tony Stark: Iron Man (2018) #15/#16 occurrences and the two never-published Iron Man: Viva Las Vegas #3-4 rows are recorded, and all 811 resolve exactly, including the owner-supplied exact ids for Crimson Dynamo #1-4 and Iron Man Legacy #2, #5, and #10, which this project's live metadata index does not currently list.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "iron-man-2020"
+    ],
+    "catalogIds": [
+      "iron-man-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Iron Man"
     ],
@@ -1374,7 +1378,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "61b3eb71bffefe629ce6b2c7f96353d5cb50c5ee66bc8e9d03217858092c9bfa",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 55,

@@ -1001,17 +1001,20 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   }
 
   assert.ok(empty > 0, 'no bundled order has an item that came back empty, so this check proves nothing');
-  // Read on 2026-08-15 across the fourteen bundled orders. Written down as observations rather
-  // than floors: they move whenever an order is added or re-vendored, and moving one should mean
-  // editing this line deliberately rather than watching a range quietly widen.
+  // Read on 2026-08-15 across the fourteen bundled orders, then re-derived on 2026-08-26 once the
+  // Iron Man guide shipped with seven owner-supplied issue ids (Crimson Dynamo #1-4 and Iron Man
+  // Legacy #2, #5, #10) that this project's live metadata index does not list, adding a third
+  // affected order and seven more empty items. Written down as observations rather than floors:
+  // they move whenever an order is added or re-vendored, and moving one should mean editing this
+  // line deliberately rather than watching a range quietly widen.
   //
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
   assert.equal(claimed, 6, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 6, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 63);
-  assert.equal(affected, 2);
+  assert.equal(empty, 70);
+  assert.equal(affected, 3);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1187,6 +1190,13 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // over because a placeholder's id is hashed from the order it sits in as well as its title. The
   // Ultimate figure is unchanged at 34, which is the check that this grew for the stated reason
   // rather than because an order regressed.
-  assert.equal(refused.length, 40);
+  //
+  // Deliberately edited on 2026-08-26, from 40 to 47. The Iron Man guide shipped with seven
+  // owner-supplied issue ids (Crimson Dynamo #1-4 and Iron Man Legacy #2, #5, #10) that this
+  // project's live metadata index does not list, so those seven arrive with no digitalId or
+  // seriesId and are refused on arrival like every other gap this test already counts. None of
+  // the seven repeat an id already present in the bundled catalog, so the total moves by exactly
+  // seven rather than by fewer through an overlap.
+  assert.equal(refused.length, 47);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
