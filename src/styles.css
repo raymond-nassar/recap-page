@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:704-705`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:705-706`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -672,10 +672,14 @@ details.full[open] > summary .chev { transform: rotate(90deg); }
   border-color: var(--accent-text);
 }
 .fp input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
-.spotlight-filters { margin: 0; min-width: 0; justify-content: flex-end; }
+.spotlight-controls { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
+.spotlight-controls .filters { margin: 0; min-width: 0; }
+.spotlight-filters { justify-content: flex-end; }
+.spotlight-sort { justify-content: flex-end; }
 
 @media (max-width: 620px) {
-  .spotlight-filters { width: 100%; justify-content: flex-start; }
+  .spotlight-controls { width: 100%; justify-content: flex-start; }
+  .spotlight-controls .filters { width: 100%; justify-content: flex-start; }
 }
 
 /* The choice between reading paths through one story, in the catalog list and in the preview
@@ -1357,6 +1361,8 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .publishing-periods { margin-top: 1rem; }
 .publishing-periods .sec-h h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.marvel-ages-group + .marvel-ages-group { margin-top: 2rem; }
+#marvel-ages-modern-all { min-height: 44px; }
 .publishing-grid { margin-top: 0; }
 .publishing-empty { margin-top: 1rem; }
 
@@ -1367,6 +1373,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   .home-paths-primary { grid-template-columns: 1fr; }
   .home-paths-secondary { grid-template-columns: 1fr; }
   .home-path { min-height: 9rem; }
+  #marvel-ages-modern .sec-h { align-items: stretch; flex-direction: column; }
 }
 
 /* Shared cover art inside the dedicated browse cards. */

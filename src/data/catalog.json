@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T15:37:31.056Z",
+  "generatedAt": "2026-08-26T20:07:19.021Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2255,6 +2255,44 @@
       "updatedAt": "2026-08-23T16:37:33.121Z"
     },
     {
+      "id": "agatha-harkness-reading-order",
+      "file": "agatha_harkness_reading_order.json",
+      "name": "Agatha Harkness",
+      "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 104,
+      "collections": 0,
+      "characters": [
+        "Agatha Harkness",
+        "Fantastic Four",
+        "Scarlet Witch",
+        "Vision"
+      ],
+      "keywords": [
+        "Agatha Harkness",
+        "Fantastic Four",
+        "Scarlet Witch",
+        "Vision",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/6728e6c1d021f",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T07:16:55.688Z"
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "file": "rocket_raccoon_reading_order.json",
       "name": "Rocket Raccoon",
@@ -2404,68 +2442,26 @@
       "updatedAt": "2026-08-24T01:05:06.004Z"
     },
     {
-      "id": "iron-man-reading-order",
-      "file": "iron_man_reading_order.json",
-      "name": "Iron Man",
-      "description": "Tony Stark's Iron Man path from Tales of Suspense through the modern Invincible Iron Man, Tony Stark: Iron Man, and Iron Man (2020) runs, following the source's character-only cuts through broader collections.",
+      "id": "thanos-reading-order",
+      "file": "thanos_reading_order.json",
+      "name": "Thanos",
+      "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
       "type": "character-run",
-      "depth": "complete",
+      "depth": "partial",
       "spotlightKind": "complete-guide",
-      "count": 811,
+      "count": 272,
       "collections": 0,
       "characters": [
-        "Iron Man",
-        "Tony Stark",
-        "War Machine",
-        "Ironheart",
-        "Riri Williams"
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Guardians of the Galaxy"
       ],
       "keywords": [
-        "Iron Man",
-        "Tony Stark",
-        "War Machine",
-        "Ironheart",
-        "Armor Wars",
-        "Extremis",
-        "Comic Book Herald"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": true,
-      "timeline": null,
-      "coverIssueId": 11280,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg",
-        "ext": "jpg"
-      },
-      "source": "https://www.comicbookherald.com/iron-man-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "updatedAt": "2026-08-26T08:33:32.614Z"
-    },
-    {
-      "id": "modern-x-men-fast-track",
-      "file": "modern_x_men_fast_track.json",
-      "name": "Modern X-Men Fast Track",
-      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
-      "type": "character-run",
-      "depth": "selected",
-      "spotlightKind": "other",
-      "count": 278,
-      "collections": 0,
-      "characters": [
-        "X-Men",
-        "Wolverine",
-        "Cyclops",
-        "Jean Grey",
-        "New Mutants"
-      ],
-      "keywords": [
-        "Modern X-Men",
-        "New X-Men",
-        "Astonishing X-Men",
-        "X-Force",
+        "Thanos",
+        "Infinity Gauntlet",
+        "Adam Warlock",
+        "Marvel Cosmic",
         "Comic Book Herald"
       ],
       "group": null,
@@ -2473,16 +2469,90 @@
       "variant": null,
       "beginner": false,
       "timeline": null,
-      "coverIssueId": 14933,
+      "coverIssueId": 9610,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/4bb5eafea7ab3",
         "ext": "jpg"
       },
-      "source": "https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/",
-      "sourceSection": "X-Men Events & Major Stories (2001 to 2015)",
+      "source": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T05:56:13.889Z"
+      "updatedAt": "2026-08-26T07:36:34.796Z"
+    },
+    {
+      "id": "ant-man-reading-order",
+      "file": "ant_man_reading_order.json",
+      "name": "Ant-Man",
+      "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 386,
+      "collections": 0,
+      "characters": [
+        "Ant-Man",
+        "Hank Pym",
+        "Scott Lang",
+        "Wasp",
+        "Giant-Man"
+      ],
+      "keywords": [
+        "Ant-Man",
+        "Hank Pym",
+        "Scott Lang",
+        "Avengers",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/536d6fa682524",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T08:00:03.031Z"
+    },
+    {
+      "id": "wolverine-reading-order",
+      "file": "wolverine_reading_order.json",
+      "name": "Wolverine",
+      "description": "Wolverine from Giant-Size X-Men through Old Man Logan, preserving exact issue links and unresolved source provenance.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 1222,
+      "collections": 0,
+      "characters": [
+        "Wolverine",
+        "X-Men",
+        "Old Man Logan"
+      ],
+      "keywords": [
+        "Wolverine",
+        "X-Men",
+        "Old Man Logan",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 8797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5b314996e924c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/wolverine-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T20:07:18.806Z"
     },
     {
       "id": "xmen-claremont",
@@ -2633,51 +2703,6 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T03:25:17.084Z"
-    },
-    {
-      "id": "captain-america-reading-order-modern-marvel-era",
-      "file": "captain_america_reading_order_modern_marvel_era.json",
-      "name": "Captain America: Modern Marvel Era",
-      "description": "Captain America from The New Deal through the 2023 run, preserving Comic Book Herald's modern Marvel-era checklist and any unresolved source rows as explicit provenance.",
-      "type": "character-run",
-      "depth": "complete",
-      "spotlightKind": "complete-guide",
-      "count": 69,
-      "collections": 0,
-      "characters": [
-        "Captain America",
-        "Steve Rogers",
-        "Sam Wilson",
-        "Bucky Barnes",
-        "Winter Soldier",
-        "Falcon",
-        "Sharon Carter",
-        "Red Skull"
-      ],
-      "keywords": [
-        "Captain America",
-        "Steve Rogers",
-        "Sam Wilson",
-        "Bucky Barnes",
-        "Winter Soldier",
-        "Secret Empire",
-        "Comic Book Herald",
-        "Modern Marvel Era"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": true,
-      "timeline": null,
-      "coverIssueId": 12817,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5bc4c652db1e4",
-        "ext": "jpg"
-      },
-      "source": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "updatedAt": "2026-08-26T15:37:30.965Z"
     },
     {
       "id": "doctor-doom-primer",

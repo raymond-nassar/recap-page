@@ -19,9 +19,10 @@ import {
   parseCatalog, depthLabel, catalogFacets, filterByFacet, facetLabel,
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing,
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
+  sortSpotlightStories, spotlightSortLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
   pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
-  availablePublishingCategories, isPublishingCategoryLeaf, publishingCategoryStories,
+  availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
   CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
 } from './lib/catalog.js';
@@ -1141,7 +1142,9 @@ function syncHash({ push = false } = {}) {
   // rather than theoretical: background hydration writes through store.update on its own timer, and
   // every store.update reaches renderAll, which syncs.
   const shown = filterRunOpen && !push ? filterRunBase : filter;
-  const next = formatRoute({ view, listId: activeListId(), filter: shown });
+  const spotlightState = shelfState.get('spotlights');
+  const sort = view === 'spotlights' && spotlightState ? spotlightState.sort : null;
+  const next = formatRoute({ view, listId: activeListId(), filter: shown, sort });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1189,6 +1192,10 @@ function endFilterRun({ commit }) {
 function applyRoute(route, { focus, filterIfAbsent }) {
   if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
     store.update((s) => setActive(s, route.listId));
+  }
+  const spotlightState = shelfState.get('spotlights');
+  if (route.view === 'spotlights' && spotlightState) {
+    spotlightState.sort = route.sort === 'popularity' ? 'popularity' : null;
   }
   // Before showView, so the passive sync at the end of showView computes the address this route
   // already describes and returns early rather than writing one and being corrected a moment later.
@@ -1333,9 +1340,11 @@ function wireHome() {
 function renderHome() {
   if ($('#view-home').hidden) return;
   const populated = store.state.listOrder.length > 0;
+  const firstRun = ensureHomeFirstRun();
 
   // The masthead remains the app name whether or not Continue reading is present.
   $('#home-cat-h').classList.toggle('visually-hidden', !populated);
+  firstRun.hidden = populated;
 
   renderContinue(populated);
   renderYours(populated);
@@ -1378,20 +1387,9 @@ function ensurePublishingViews() {
       el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
-      el('section', {
-        id: `${category.route}-categories`,
-        class: 'publishing-periods',
-        hidden: true,
-        'aria-labelledby': `${category.route}-categories-h`,
-      }, [
-        el('div', { class: 'sec-h' }, [
-          el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' }),
-        ]),
-        el('ul', {
-          id: `${category.route}-category-list`,
-          class: 'home-paths home-paths-secondary',
-        }),
-      ]),
+      ...(category.kind === 'publishing-index' ? [] : [el('section', { id: `${category.route}-categories`, class: 'publishing-periods', hidden: true, 'aria-labelledby': `${category.route}-categories-h` }, [
+        el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
+        el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' })])]),
       el('div', { id: `${category.route}-results`, class: 'results' }),
     ]), $('.app-footer'));
   }
@@ -1486,59 +1484,57 @@ function renderLibraryHub() {
   $('#library-yours-list').replaceChildren(...savedListTiles());
 }
 
+function ensureHomeFirstRun() {
+  let section = $('#home-first-run');
+  if (section) return section;
+  const recommendation = el('div', { id: 'home-recommended', class: 'notice notice-act', hidden: true }, [
+    el('div', { class: 'grow' }, [
+      el('h3', { id: 'home-recommended-h', text: 'Recommended start: Avengers Disassembled (2004)' }),
+      el('p', { text: "This app's short modern event path. Five issues, with many later stories building from it." }),
+    ]),
+    el('button', { type: 'button', id: 'btn-home-recommended', class: 'btn' }, 'Preview this Reading List'),
+  ]);
+  section = el('section', { id: 'home-first-run', class: 'sec', hidden: true, 'aria-labelledby': 'home-first-run-h' }, [
+    el('div', { class: 'sec-h' }, el('h2', { id: 'home-first-run-h', text: 'Where do you want to start?' })),
+    el('p', { class: 'home-first-run-copy', text: 'Browse curated Reading Lists. Add individual issues or your own list.' }), recommendation,
+  ]);
+  $('#home-categories').prepend(section);
+  return section;
+}
+
 async function renderHomeCategories() {
-  const gateways = [...document.querySelectorAll('[data-category-gateway]')];
-  for (const label of document.querySelectorAll('[data-marvel-copyright]')) {
-    label.textContent = `© ${new Date().getFullYear()} MARVEL`;
-  }
+  const gateways = [...document.querySelectorAll('[data-category-gateway]')]; for (const label of document.querySelectorAll('[data-marvel-copyright]')) label.textContent = `© ${new Date().getFullYear()} MARVEL`;
   if (!homeCatalog) {
-    for (const gateway of gateways) {
-      const status = gateway.querySelector('[data-paths-status]');
-      status.classList.remove('visually-hidden');
-      status.hidden = false;
-      status.textContent = 'Loading ways to read…';
-    }
+    for (const gateway of gateways) { const status = gateway.querySelector('[data-paths-status]'); status.classList.remove('visually-hidden'); status.hidden = false; status.textContent = 'Loading ways to read…'; }
     try {
       homeCatalog = await loadCatalog();
     } catch (err) {
       for (const gateway of gateways) {
-        gateway.querySelector('[data-primary-paths]').hidden = true;
-        gateway.querySelector('[data-more-paths]').hidden = true;
-        gateway.querySelector('[data-paths-status]').hidden = true;
+        gateway.querySelector('[data-primary-paths]').hidden = true; gateway.querySelector('[data-more-paths]').hidden = true; gateway.querySelector('[data-paths-status]').hidden = true;
       }
-      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
-      notify(report, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
+      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report'; notify(report, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
       return;
     }
     clearNotice(CATALOG_LOAD);
   }
 
+  const recommendation = $('#home-recommended'); if (recommendation) {
+    const list = homeCatalog.lists.find(({ id }) => id === 'avengers-disassembled'); recommendation.hidden = !list; if (list) $('#btn-home-recommended').onclick = () => openPreview(list);
+  }
   if (homeCatalog.dropped) {
     const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
-    notify(
-      report,
-      `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`,
-      'warn',
-    );
+    notify(report, `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`, 'warn');
   }
 
-  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists));
-  const primaryCategories = categories.filter(({ tier }) => tier === 'primary');
-  const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
+  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists)); const primaryCategories = categories.filter(({ tier }) => tier === 'primary'); const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
   for (const gateway of gateways) {
     const primary = gateway.querySelector('[data-primary-paths]');
     const secondary = gateway.querySelector('[data-secondary-paths]');
-    const more = gateway.querySelector('[data-more-paths]');
-    const status = gateway.querySelector('[data-paths-status]');
-    primary.replaceChildren(...primaryCategories.map(homeCategoryTile));
-    secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
-    primary.hidden = primaryCategories.length === 0;
-    more.hidden = secondaryCategories.length === 0;
-    const statusText = categories.length
-      ? `${categories.length} ways to read available.`
-      : 'No reading paths are bundled with this build.';
-    status.classList.toggle('visually-hidden', categories.length > 0);
-    status.hidden = false;
+    const more = gateway.querySelector('[data-more-paths]'); const status = gateway.querySelector('[data-paths-status]');
+    primary.replaceChildren(...primaryCategories.map(homeCategoryTile)); secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
+    primary.hidden = primaryCategories.length === 0; more.hidden = secondaryCategories.length === 0;
+    const statusText = categories.length ? `${categories.length} ways to read available.` : 'No reading paths are bundled with this build.';
+    status.classList.toggle('visually-hidden', categories.length > 0); status.hidden = false;
     if (status.textContent !== statusText) status.textContent = statusText;
   }
 }
@@ -1567,6 +1563,14 @@ function homeCategoryTile(category) {
   ]));
 }
 
+function renderPublishingIndex(category, allStories) {
+  const box = $(`#${category.route}-results`); const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
+  $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`; box.replaceChildren();
+  if (count === 0) { box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' })); return; }
+  if (earlier.length) box.append(el('section', { id: 'marvel-ages-earlier', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-earlier-h' }, [el('div', { class: 'sec-h' }, el('h2', { id: 'marvel-ages-earlier-h', text: 'Earlier Marvel' })), el('ul', { id: 'marvel-ages-earlier-list', class: 'home-paths home-paths-secondary' }, earlier.map((child) => homeCategoryTile({ ...child, tier: 'secondary' })))]));
+  if (modern) { const aggregateLabel = labelledName('Browse all Modern Age Reading Lists', `${modern.label}, ${modern.count} Reading Lists`); box.append(el('section', { id: 'marvel-ages-modern', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-modern-h' }, [el('div', { class: 'sec-h' }, [el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }), el('button', { id: 'marvel-ages-modern-all', type: 'button', class: 'quiet', text: 'Browse all Modern Age Reading Lists', 'aria-label': aggregateLabel, onclick: () => showView('age-modern', { push: true }) })]), el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeCategoryTile({ ...child, tier: 'secondary' })))])); }
+}
+
 async function renderPublishingCategory(route) {
   const category = generatedCategoryByRoute.get(route);
   if (!category) return;
@@ -1578,8 +1582,7 @@ async function renderPublishingCategory(route) {
     'aria-hidden': 'true',
     text: 'Loading Reading Lists…',
   }));
-  periods.hidden = true;
-  periodList.replaceChildren();
+  if (periods) periods.hidden = true; if (periodList) periodList.replaceChildren();
   clearNotice(CATALOG_LOAD);
 
   let catalog;
@@ -1597,6 +1600,10 @@ async function renderPublishingCategory(route) {
   }
 
   const allStories = groupCatalog(catalog.lists);
+  if (category.kind === 'publishing-index') {
+    renderPublishingIndex(category, allStories);
+    return;
+  }
   const stories = typeof category.select === 'function'
     ? category.select(allStories)
     : publishingCategoryStories(allStories, category.key);
@@ -3612,7 +3619,7 @@ let catalogLoad = null;
 // arrived at. Keyed by the table so a new shelf needs no state added here.
 const shelfState = new Map(CATALOG_SHELVES.map((shelf) => [
   shelf.key,
-  { facet: 'all', query: '', spotlight: 'all' },
+  { facet: 'all', query: '', spotlight: 'all', sort: null },
 ]));
 let catalogAnnounceTimer = null;
 
@@ -3710,6 +3717,7 @@ async function renderCatalogShelf(key) {
   // The facets describe the whole shelf, not the current search, so searching never
   // makes a filter vanish from under the reader's cursor.
   renderCatalogShelfFilters(key, mine, searchable);
+  if (key === 'spotlights') syncCatalogShelfSort(key);
 
   // Character Spotlight's editorial subset is applied before every generic narrowing step. It is
   // separate from the generic facets because it is always available on this one shelf, including
@@ -3724,17 +3732,23 @@ async function renderCatalogShelf(key) {
   const inFacet = filterByFacet(inSpotlight, state.facet);
   const shown = searchCatalog(inFacet, state.query);
 
+  const sortSentence = key === 'spotlights'
+    ? ` Sorted by ${spotlightSortLabel(state.sort).toLowerCase()}.`
+    : '';
+
   if (!shown.length) {
     const where = catalogNarrowingLabel(key, mine, state);
     const msg = state.query
       ? `No Reading Lists match “${state.query}”${where}.`
       : `No Reading Lists${where || ' in that category'}.`;
     box.append(el('p', { class: 'rail-hint', text: msg }));
-    announceCatalog(msg);
+    announceCatalog(`${msg}${sortSentence}`);
     return;
   }
 
-  const stories = groupCatalog(shown);
+  const stories = key === 'spotlights'
+    ? sortSpotlightStories(groupCatalog(shown), state.sort)
+    : groupCatalog(shown);
   // Resolved once for the whole shelf rather than per row: nineteen rows each searching every
   // path is the same work nineteen times, and the answer cannot differ between them. Resolved
   // against the whole catalog rather than this shelf, because a path runs through orders this
@@ -3778,7 +3792,7 @@ async function renderCatalogShelf(key) {
   if (!catalog.dropped) {
     const where = catalogNarrowingLabel(key, mine, state);
     const match = state.query ? ` matching “${state.query}”` : '';
-    announceCatalog(`${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.`);
+    announceCatalog(`${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.${sortSentence}`);
   }
 }
 
@@ -4048,8 +4062,13 @@ function stopLink(
 ) {
   const dest = stop.shelf;
   if (dest === surface || localStoryKeys?.has(stop.key)) return null;
+  const href = { view: dest };
+  if (dest === 'spotlights') {
+    const spotlightState = shelfState.get(dest);
+    href.sort = spotlightState ? spotlightState.sort : null;
+  }
   return el('a', {
-    href: formatRoute({ view: dest }),
+    href: formatRoute(href),
     'aria-label': label,
     onclick: (e) => {
       e.preventDefault();
@@ -4097,6 +4116,16 @@ function clearNarrowing(dest) {
   $(`#${dest}-clear`).hidden = true;
   for (const radio of document.querySelectorAll(`input[name="${dest}-kind"]`)) {
     radio.checked = radio.value === state.spotlight;
+  }
+}
+
+function syncCatalogShelfSort(key) {
+  if (key !== 'spotlights') return;
+  const state = shelfState.get(key);
+  if (!state) return;
+  const checked = state.sort === 'popularity' ? 'popularity' : 'current-order';
+  for (const radio of document.querySelectorAll('input[name="spotlights-sort"]')) {
+    radio.checked = radio.value === checked;
   }
 }
 
@@ -4172,6 +4201,13 @@ function wireCatalogShelfSearch(key) {
       radio.addEventListener('change', () => {
         state.spotlight = radio.value;
         renderCatalogShelf(key);
+      });
+    }
+    for (const radio of document.querySelectorAll('input[name="spotlights-sort"]')) {
+      radio.addEventListener('change', () => {
+        state.sort = radio.value === 'popularity' ? 'popularity' : null;
+        renderCatalogShelf(key);
+        syncHash({ push: true });
       });
     }
   }

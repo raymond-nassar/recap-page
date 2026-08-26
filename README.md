@@ -10,8 +10,8 @@ It does not include comics, bypass a subscription, or replace Marvel Unlimited. 
 **Read**, it opens the official Marvel reader in a new tab. You need your own Marvel Unlimited
 subscription to read the issues.
 
-![Recap Page Home showing the current reading gateways with cover art
-off](docs/screenshots/home-1280.png)
+![Recap Page empty Home asking where to start and offering its recommended modern event path,
+with cover art off](docs/screenshots/home-1280.png)
 
 ![Avengers Disassembled open at the first issue with no progress marked and cover art
 off](docs/screenshots/avengers-disassembled-reading-1280.png)
