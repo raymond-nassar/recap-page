@@ -90,6 +90,7 @@ const frozenExcludedIds = [
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   ...CBRO_BATCH_NINE_SELECTED_IDS,
   'hickman-x-men',
+  'modern-x-men-fast-track',
   'ultimate-marvel-intro',
   'x-men-utopia',
   'x-men-messiah-to-avx',

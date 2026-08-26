@@ -2367,6 +2367,46 @@
       "updatedAt": "2026-08-24T01:05:06.004Z"
     },
     {
+      "id": "modern-x-men-fast-track",
+      "file": "modern_x_men_fast_track.json",
+      "name": "Modern X-Men Fast Track",
+      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "other",
+      "count": 278,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Cyclops",
+        "Jean Grey",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Modern X-Men",
+        "New X-Men",
+        "Astonishing X-Men",
+        "X-Force",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 14933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/",
+      "sourceSection": "X-Men Events & Major Stories (2001 to 2015)",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:56:13.889Z"
+    },
+    {
       "id": "xmen-claremont",
       "file": "xmen_claremont.json",
       "name": "X-Men: Silver Age to Claremont",

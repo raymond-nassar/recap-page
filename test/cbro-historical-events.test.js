@@ -121,6 +121,7 @@ const postCbroChronologyIds = Object.freeze(['ultimate-marvel-intro']);
 const laterMcuCompanionIds = [
   'wandavision',
   'spider-man-far-from-home',
+  'modern-x-men-fast-track',
 ];
 
 async function readJson(filePath) {
@@ -648,6 +649,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_SELECTED_IDS.map((id) => (
@@ -664,6 +666,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ].includes(entry.id))
     .map((entry) => entry.id);
   for (const id of CBRO_SELECTED_IDS) {
@@ -951,6 +954,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_BATCH_TWO_SELECTED_IDS.map((id) => (
@@ -976,6 +980,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1137,6 +1142,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_BATCH_THREE_SELECTED_IDS.map((id) => (
@@ -1162,6 +1168,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1309,6 +1316,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_BATCH_FOUR_SELECTED_IDS.map((id) => (
@@ -1334,6 +1342,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1429,6 +1438,7 @@ test('continuation reports bind 580 comparisons and one central subset approval'
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_CONTINUATION_SELECTED_IDS.map((id) => (
@@ -1455,6 +1465,7 @@ test('continuation reports bind 580 comparisons and one central subset approval'
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1895,6 +1906,7 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_BATCH_FIVE_SELECTED_IDS.map((id) => (
@@ -1919,6 +1931,7 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -2291,6 +2304,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const mappings = await Promise.all(CBRO_BATCH_SIX_SELECTED_IDS.map((id) => (
@@ -2314,6 +2328,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -2792,6 +2807,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const expectedDigests = new Map([
@@ -2847,6 +2863,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
       ...peerMappings.map((peer) => peer.id),
@@ -3167,6 +3184,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
       ...peerMappings.map((peer) => peer.id),
@@ -3262,6 +3280,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
   const issueIds = [];
@@ -3309,6 +3328,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
       ...peerMappings.map((peer) => peer.id),

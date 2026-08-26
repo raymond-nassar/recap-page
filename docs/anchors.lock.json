@@ -1789,6 +1789,7 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
+<<<<<<< HEAD
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2937-2948|0": {
     "anchor": "CHANGELOG.md:2937-2948",
     "fp": "7ebb6ef43a1f1241",
@@ -1796,6 +1797,15 @@
   },
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2950-2960|0": {
     "anchor": "CHANGELOG.md:2950-2960",
+=======
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2933-2944|0": {
+    "anchor": "CHANGELOG.md:2933-2944",
+    "fp": "7ebb6ef43a1f1241",
+    "head": "- **The project now watches its own development tooling for known security problems, and says how"
+  },
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2946-2956|0": {
+    "anchor": "CHANGELOG.md:2946-2956",
+>>>>>>> cc93600f (Rebase Modern X-Men fast-track)
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
