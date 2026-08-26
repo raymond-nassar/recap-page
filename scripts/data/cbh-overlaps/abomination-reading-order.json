@@ -1,22 +1,12 @@
 {
-  "candidateId": "spider-man-identity-crisis",
-  "packetDigest": "29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1",
-  "mappingDigest": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
-  "libraryDigest": "d9f71e4c7642ecf9aa75be62b816c80113cf5c0e3ff9a87c21f9012ba6b57632",
-  "peerDigests": {
-    "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
-    "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
-    "time-and-time-again": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4"
-  },
-  "candidateCount": 8,
-  "comparisonCount": 132,
+  "candidateId": "abomination-reading-order",
+  "packetDigest": "dd7a839a63aec8212fba45ce1c438ac1852034ea7c949ce6457c8aa5c4d497cd",
+  "mappingDigest": "8dff0a5405f015083ddcb118d441b7c0cc42d53b91e8cc40a2ef7fb2c4447831",
+  "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+  "peerDigests": {},
+  "candidateCount": 127,
+  "comparisonCount": 137,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -55,9 +45,11 @@
     },
     {
       "orderId": "atlantis-attacks",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "16898"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "avengers-defenders-war",
@@ -217,9 +209,11 @@
     },
     {
       "orderId": "essential-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "7341"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "evolutionary-war",
@@ -282,6 +276,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hickman-x-men",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "house-of-m",
       "sharedCount": 0,
       "sharedIds": [],
@@ -295,6 +295,12 @@
     },
     {
       "orderId": "hunt-for-wolverine",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hunt-for-xavier",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -360,6 +366,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "magneto-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "marvel-fresh-start-avengers",
       "sharedCount": 0,
       "sharedIds": [],
@@ -391,9 +403,11 @@
     },
     {
       "orderId": "maximum-security",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "14421"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "messiah-complex",
@@ -606,6 +620,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-identity-crisis",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-man-no-way-home",
       "sharedCount": 0,
       "sharedIds": [],
@@ -655,6 +675,12 @@
     },
     {
       "orderId": "time-and-time-again",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ultimate-marvel-intro",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -774,6 +800,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -804,5 +836,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "1f5e53545105ea657b1152e4bd463052a4affcacd1ee8a515dcb73237fd4468c"
+  "reportDigest": "05d0119136812ae674bf54e825270e408247a453e8ef3e7afe4f3f2c09c1d41e"
 }

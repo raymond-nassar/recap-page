@@ -2,15 +2,21 @@
   "candidateId": "marvel-multiverse",
   "packetDigest": "f947dd5ea7b49a428fd01b02cc828f69ad84482636976c182e002b88d9a024b1",
   "mappingDigest": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-  "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
+  "libraryDigest": "14a0e753d67440755355d7ba3d26905ad59a51c573eda8bae42e94ae22056ea3",
   "peerDigests": {
     "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
     "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
     "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
   },
   "candidateCount": 2,
-  "comparisonCount": 100,
+  "comparisonCount": 101,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -618,5 +624,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "2c6efd1360b5751aec0e40e772635bca1c906fd6ee88eded265b5fbc09cfcb23"
+  "reportDigest": "0f6d3fcc24b15684ed2de8ba2e6506327f37be2e758507a0f6cd21e8c7590353"
 }

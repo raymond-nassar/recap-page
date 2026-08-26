@@ -274,10 +274,10 @@
     "coverIssueId": 80296
   },
   "relationshipReview": {
-    "reportDigest": "ec511aa095abca97bd4e3adc57bfb03dcd39b74f1075a40e9504cc54d8ce132c",
+    "reportDigest": "0a428794fa07758decc176fdee01a8b440b9b4a1c59e91741ba5ca18f943dc5b",
     "packetDigest": "9a2870e6538537a067900c1b7d5dc18d729e9a6ab6364c9b35abb3edbdde7853",
     "mappingDigest": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf",
-    "libraryDigest": "4a66bb9890ad1baa1d8dac644fe84685184d7a10e7984f931206b93bfd622b86",
+    "libraryDigest": "0067feb672100d425c636ef9fe90329daf78916cad53c3054d3fa8b8bcfa9775",
     "peerDigests": {
       "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
       "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -285,6 +285,17 @@
       "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:11.977Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1568,6 +1579,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T03:09:11.977Z",
-    "approvalDigest": "8901584c01a702aa00bff6dcdb19bae5bd4ad0c961b97937d58452155d7dd61b"
+    "approvalDigest": "934e75728185ccd09a1b0e8948a09557b6e47c47265627b62b3fdcefa3954a90"
   }
 }

@@ -425,16 +425,27 @@
     "coverIssueId": 13811
   },
   "relationshipReview": {
-    "reportDigest": "ec430ad6496095569c571797daafe5aff839aff76b94c42acac878d28b0d046d",
+    "reportDigest": "cf428f2fe955e3c02c79aeb475c6621b57e662a89ea9e5ed047c2c03a7981376",
     "packetDigest": "1db83fdff9270b97a8a6edf8fa389551c842a9f39ef5499322684030bd794aab",
     "mappingDigest": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4",
-    "libraryDigest": "80d399dac493e59524ec3ecebb6bb157444da1bab75af545c60306988e8f031d",
+    "libraryDigest": "4b21da858cd804292b0d514e4072c6bce6ed8048a083639f90c6abdd1a2e39cf",
     "peerDigests": {
       "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
       "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
       "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
+        "reviewedAt": "2026-08-25T06:58:53.619Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1806,6 +1817,6 @@
     "authorityIdentity": "MRT-003-C02-B06 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T06:58:53.619Z",
-    "approvalDigest": "1afb055fdb708832fff61cf7390b7caadb0e9d8bb7db10f027361e944f5b4dcf"
+    "approvalDigest": "51178f4b816c8bce7566554612b4d9242d5277f326439c22662f757be16aef6d"
   }
 }

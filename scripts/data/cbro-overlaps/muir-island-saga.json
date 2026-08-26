@@ -2,7 +2,7 @@
   "candidateId": "muir-island-saga",
   "packetDigest": "dcb274a7d0ebf4213018883fb7d43238d93a037d4fdaf9dddd52e78033d363e8",
   "mappingDigest": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779",
-  "libraryDigest": "4a66bb9890ad1baa1d8dac644fe84685184d7a10e7984f931206b93bfd622b86",
+  "libraryDigest": "0067feb672100d425c636ef9fe90329daf78916cad53c3054d3fa8b8bcfa9775",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -10,8 +10,14 @@
     "midnight-massacre": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf"
   },
   "candidateCount": 5,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "relationship": "none",
+      "sharedCount": 0,
+      "sharedIds": []
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -709,5 +715,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8fdbcaccf253c75820bb30345506028ee9aae6e985deed9b81bc498b680760cf"
+  "reportDigest": "017af85b253d3367fe3151a322d8323342b6b9d6d75590e2936363b0b765cd3f"
 }

@@ -198,7 +198,7 @@ test('four reports bind the current library and exactly three selected peers', a
     const peers = MCU_SELECTED_IDS.filter((peerId) => peerId !== id)
       .map((peerId) => mappings.get(peerId));
     const expectedOrderIds = [...existingIds, ...peers.map((peer) => peer.id)];
-    assert.equal(report.comparisonCount, 100);
+    assert.equal(report.comparisonCount, 101);
     assert.equal(report.comparisonCount, expectedOrderIds.length);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => validateReportDigest(report));
@@ -220,7 +220,7 @@ test('four reports bind the current library and exactly three selected peers', a
         ]),
       expectedRelationships[id],
     );
-    assert.equal(mapping.relationshipReview.dispositions.length, 100);
+    assert.equal(mapping.relationshipReview.dispositions.length, 101);
     assert.equal(records.get(id).relationshipStatus, 'reviewed');
   }
 });
@@ -314,7 +314,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(catalog.lists.length, 138);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -367,7 +367,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    14,
+    15,
     'Character Spotlight count differs from the reconciled Star-Lord baseline',
   );
 });

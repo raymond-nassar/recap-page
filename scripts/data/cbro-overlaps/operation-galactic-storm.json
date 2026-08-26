@@ -2,15 +2,21 @@
   "candidateId": "operation-galactic-storm",
   "packetDigest": "c6dea6816313c62c9cd1432e7961093198844de8d1a82ac47b32ae9ef3577ef9",
   "mappingDigest": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
-  "libraryDigest": "80d399dac493e59524ec3ecebb6bb157444da1bab75af545c60306988e8f031d",
+  "libraryDigest": "4b21da858cd804292b0d514e4072c6bce6ed8048a083639f90c6abdd1a2e39cf",
   "peerDigests": {
     "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
     "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
     "x-tinction-agenda": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4"
   },
   "candidateCount": 22,
-  "comparisonCount": 124,
+  "comparisonCount": 125,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "relationship": "none",
+      "sharedCount": 0,
+      "sharedIds": []
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -756,5 +762,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "c1a1b7dcc2da76cf7a1376e3a37d86f3de93963f34bc00ac6478b07887fb05f5"
+  "reportDigest": "ecf072258b465f2cd8d9f47d2add52f49b976fa4196b191933ac52796442a8ae"
 }

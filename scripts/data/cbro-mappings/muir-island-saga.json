@@ -272,10 +272,10 @@
     "coverIssueId": 13819
   },
   "relationshipReview": {
-    "reportDigest": "8fdbcaccf253c75820bb30345506028ee9aae6e985deed9b81bc498b680760cf",
+    "reportDigest": "017af85b253d3367fe3151a322d8323342b6b9d6d75590e2936363b0b765cd3f",
     "packetDigest": "dcb274a7d0ebf4213018883fb7d43238d93a037d4fdaf9dddd52e78033d363e8",
     "mappingDigest": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779",
-    "libraryDigest": "4a66bb9890ad1baa1d8dac644fe84685184d7a10e7984f931206b93bfd622b86",
+    "libraryDigest": "0067feb672100d425c636ef9fe90329daf78916cad53c3054d3fa8b8bcfa9775",
     "peerDigests": {
       "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
       "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -283,6 +283,17 @@
       "midnight-massacre": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:11.977Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1566,6 +1577,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T03:09:11.977Z",
-    "approvalDigest": "c33a7fa0c054e50525b40ff8778eea307af0e3322dbf604fa36fba675388a5ca"
+    "approvalDigest": "65a0a4ab91eb801a4f8f66c96319a235ef0a3dc3bddedfc8b7f78502853f57cc"
   }
 }

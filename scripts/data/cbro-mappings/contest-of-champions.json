@@ -195,10 +195,10 @@
     "coverIssueId": 39673
   },
   "relationshipReview": {
-    "reportDigest": "8b6135dc4773ede1e90073ddcb5c7e1f0809d85676fe43dc64db62872f169092",
+    "reportDigest": "a3eba66f91a5426d256fb1361ca8c15db4c11c800d731756e008481ce67e47eb",
     "packetDigest": "6ef776481f229f264d61a9cdfe7d961117223434bf7b121ca71cfc526bebd68b",
     "mappingDigest": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
-    "libraryDigest": "e569bdbf234b41efd97d52ec61d003b9b05854e526bef8b7034a8d7c3462f94d",
+    "libraryDigest": "49f0d2dc394f3848b62ae2e012e99d8b81277d56c732a09a0ff043cef82f0752",
     "peerDigests": {
       "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
       "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -206,6 +206,17 @@
       "phoenix-saga": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b02 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:13.162Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1489,6 +1500,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-25T03:09:13.162Z",
-    "approvalDigest": "a9d0de3f8bbdca4cfd383aeeff9dd8af3259f65be8f8b15f41c0739320d725cd"
+    "approvalDigest": "68599cd282bdaa5c45eceac51661dd7c19b7b34d1b0485b6a1b2c66a4a122864"
   }
 }

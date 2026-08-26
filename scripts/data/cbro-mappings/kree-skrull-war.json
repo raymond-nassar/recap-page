@@ -426,10 +426,10 @@
     "coverIssueId": 7342
   },
   "relationshipReview": {
-    "reportDigest": "53607255550b02ea50cb4d34e97c2031b231067cfd7245ad513e9b1f8a6fc08e",
+    "reportDigest": "5e2260e224fd1293c93f31b0d5b159d74cd7c770e8a7205d50a3db146c75d119",
     "packetDigest": "4b49d41011aa5b1c32eaab8fb960278aec7de448d4606053b242ab2670bcdf59",
     "mappingDigest": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
-    "libraryDigest": "e53ba9bc94be8cefcc60b5ba5f6f8e2ee33a8b6d2084658c97dfea93ae1abd2e",
+    "libraryDigest": "30065322b03c549858fbe003753dd87d123dfaf574d91d2c725b950a1c983961",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -437,6 +437,17 @@
       "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b01 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:12.554Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1730,6 +1741,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-25T03:09:12.554Z",
-    "approvalDigest": "eb46c038af3f773cb62467d539d2e8e2717c111cebc08603c37d1e31afd16b57"
+    "approvalDigest": "e4306ed150b62acc62825de13e880dcf8de50522fe4372184a34e00ceb8d3b6f"
   }
 }

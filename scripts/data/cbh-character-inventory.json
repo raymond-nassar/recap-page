@@ -6,13 +6,19 @@
     "url": "https://www.comicbookherald.com/abomination-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "All 127 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite three approved partial relationships.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "atlantis-attacks",
+      "essential-avengers",
+      "maximum-security"
+    ],
+    "catalogIds": [
+      "abomination-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Abomination"
     ],
@@ -22,7 +28,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "caffa7a1a36d3fd25396be7be4ace07e45f1e8a09bcdc8e447f32117b0f02665",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 2,

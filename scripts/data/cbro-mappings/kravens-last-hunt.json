@@ -347,15 +347,26 @@
     "coverIssueId": 12027
   },
   "relationshipReview": {
-    "reportDigest": "53988800674fa72552d623e0306131e51adf20ac370dd5dafab858c5079dc9a1",
+    "reportDigest": "6f80cf1b14eaac30c8d0187448636a6faf32d855f7c5eeb084ba59eab38db312",
     "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
     "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-    "libraryDigest": "3acd69dc77bb9ca52b6637c94c38a7d914fa838e08a4653c77086c95b71e0203",
+    "libraryDigest": "ba4699713d966f44ff5824d2d5ab19e908842acd45130d175f2fbedcf8cf860b",
     "peerDigests": {
       "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
       "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b03 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:13.777Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1646,6 +1657,6 @@
     "authorityIdentity": "MRT-003-C02-B03 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the five named Secret Wars, Spider-Man, Captain America, and X-Men relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-25T03:09:13.777Z",
-    "approvalDigest": "a4d666f47e5787608aea6151351b13639b6a2ed3f2c3698fcdbf10110900fdd9"
+    "approvalDigest": "16704ae8d855f5a34b83ea766fee51d471d6e3d9a061d1283dd6e58de912244a"
   }
 }

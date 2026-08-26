@@ -514,15 +514,26 @@
     "coverIssueId": 13751
   },
   "relationshipReview": {
-    "reportDigest": "cd1de87f43351734a588ca81b08501cb4ddfa408d4274a9ff4ac6543a4ac98b9",
+    "reportDigest": "a4efe3c5cadbaaa14661aee7a630f0c15241a36101cfe41fae80fc34c77f6c96",
     "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
     "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-    "libraryDigest": "f645bd66dba3707bf5270b3d00435a9aa5d8cbc9ac2ba4b7d41fd8632f853856",
+    "libraryDigest": "2b5e55fb33aa986c136a29fe73af4f4e2450e5fab8bb8c04e34bea48251eee28",
     "peerDigests": {
       "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
       "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b04 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:07:30.362Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1830,6 +1841,6 @@
     "authorityIdentity": "MRT-003-C02-B04 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-25T03:07:30.362Z",
-    "approvalDigest": "5b47b3ab31aef25e7f0eee7158d5ddab4c793a5ca2392611962dce26c484dbbb"
+    "approvalDigest": "7adff881bc9c3f604e40913a534cb0a84b3cd7fe99a2ca14def76e8f6c29fd94"
   }
 }

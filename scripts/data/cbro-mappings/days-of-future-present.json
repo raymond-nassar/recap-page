@@ -237,16 +237,27 @@
     "coverIssueId": 8702
   },
   "relationshipReview": {
-    "reportDigest": "35a309bd670ead3db23115c2f5cef22c08c670c9310c97b62ea700779b0c6c2d",
+    "reportDigest": "78e32e83d9db9a9677881d27d85dd93eacea146a465baf9189ec9617b405182a",
     "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b",
     "mappingDigest": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
-    "libraryDigest": "ba66adef6f68e546bc9c3a32a73c8141620636e379d729e67055d86d4d0223f3",
+    "libraryDigest": "24c5214526738853b2424aa0689bf2db6175ba4e90969c56b14906ab8659f247",
     "peerDigests": {
       "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
       "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
       "inferno": "cd50d51c12c4161c2f9c9ad076159f9222fbf4030c8a3318dd94341db0084fca"
     },
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b05 none-overlap policy",
+        "reviewedAt": "2026-08-25T04:18:25.991Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1574,6 +1585,6 @@
     "authorityIdentity": "MRT-003-C02-B05 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T04:18:25.991Z",
-    "approvalDigest": "7c8cb13f9372b4b901697e07b6541cc2bd6ca19456adfaa8d2ff3e98133135bd"
+    "approvalDigest": "f4c46afb7ec95996cd718257f04de57f4533d680ff3a51ab43c63438d4f29c36"
   }
 }

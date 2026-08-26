@@ -2,7 +2,7 @@
   "candidateId": "dark-phoenix-saga",
   "packetDigest": "7144b1d5e2cb36f3ff00631ee2aab7dc3053345ce7f7dee4327ea2a4cebfd752",
   "mappingDigest": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
-  "libraryDigest": "e569bdbf234b41efd97d52ec61d003b9b05854e526bef8b7034a8d7c3462f94d",
+  "libraryDigest": "49f0d2dc394f3848b62ae2e012e99d8b81277d56c732a09a0ff043cef82f0752",
   "peerDigests": {
     "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
     "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -10,8 +10,14 @@
     "phoenix-saga": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa"
   },
   "candidateCount": 9,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "relationship": "none",
+      "sharedCount": 0,
+      "sharedIds": []
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -729,5 +735,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "f70f5d22d0323342571e1b9222457bd17317b42b54f41e2f07f54fe67a6bf061"
+  "reportDigest": "46e04f5cd66bfe93822b93e655892fd3cd8f31bc205f16c1ddb0245400587582"
 }

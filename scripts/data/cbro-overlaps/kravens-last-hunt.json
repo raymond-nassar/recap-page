@@ -2,14 +2,20 @@
   "candidateId": "kravens-last-hunt",
   "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
   "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-  "libraryDigest": "3acd69dc77bb9ca52b6637c94c38a7d914fa838e08a4653c77086c95b71e0203",
+  "libraryDigest": "ba4699713d966f44ff5824d2d5ab19e908842acd45130d175f2fbedcf8cf860b",
   "peerDigests": {
     "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
     "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
   },
   "candidateCount": 7,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "relationship": "none",
+      "sharedCount": 0,
+      "sharedIds": []
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -714,5 +720,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "53988800674fa72552d623e0306131e51adf20ac370dd5dafab858c5079dc9a1"
+  "reportDigest": "6f80cf1b14eaac30c8d0187448636a6faf32d855f7c5eeb084ba59eab38db312"
 }

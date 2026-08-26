@@ -2,15 +2,21 @@
   "candidateId": "inferno",
   "packetDigest": "3b73a8a5c41f5e853da3174368fc63a815978483a654047b3d2cae80335a04cf",
   "mappingDigest": "cd50d51c12c4161c2f9c9ad076159f9222fbf4030c8a3318dd94341db0084fca",
-  "libraryDigest": "ba66adef6f68e546bc9c3a32a73c8141620636e379d729e67055d86d4d0223f3",
+  "libraryDigest": "24c5214526738853b2424aa0689bf2db6175ba4e90969c56b14906ab8659f247",
   "peerDigests": {
     "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
     "days-of-future-present": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
     "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197"
   },
   "candidateCount": 39,
-  "comparisonCount": 120,
+  "comparisonCount": 121,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "relationship": "none",
+      "sharedCount": 0,
+      "sharedIds": []
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -732,5 +738,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "40ff15ccf1109b72c5242198d6ba5a25e494c92bcc279651b1bf52358acee7b4"
+  "reportDigest": "287ed08186b64a4d519f96f7f2bacf9a7e23c15c4d1cf76d654f711904d5363d"
 }

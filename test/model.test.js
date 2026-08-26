@@ -1010,8 +1010,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
   assert.equal(claimed, 6, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 6, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 63);
-  assert.equal(affected, 2);
+  assert.equal(empty, 65);
+  assert.equal(affected, 3);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1187,6 +1187,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // over because a placeholder's id is hashed from the order it sits in as well as its title. The
   // Ultimate figure is unchanged at 34, which is the check that this grew for the stated reason
   // rather than because an order regressed.
-  assert.equal(refused.length, 40);
+  assert.equal(refused.length, 42);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
