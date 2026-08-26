@@ -2045,10 +2045,10 @@
     "coverIssueId": 8605
   },
   "relationshipReview": {
-    "reportDigest": "f193742b2bd409e3b81c9a9f7f88c6305861e50b2a3dcefcba66fd5a963281b2",
+    "reportDigest": "3925e08e952a81ae9fcbddbbde56de87026e5a79a004af7c6d07f171b6b1af00",
     "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
     "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
-    "libraryDigest": "5c3cffae19707cb7b7d41f25e824cd4dce8a462f8a5bb42c78f444b9a8b5e37f",
+    "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
     "peerDigests": {
       "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
     },
@@ -2058,7 +2058,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2067,7 +2067,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2076,7 +2076,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2085,7 +2085,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2094,7 +2094,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2103,25 +2103,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "atlantis-attacks",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "avengers-defenders-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2130,7 +2112,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2139,7 +2121,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2148,16 +2130,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "bloodties",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2166,16 +2139,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2184,16 +2148,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "childs-play",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2202,7 +2157,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2211,7 +2166,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2220,7 +2175,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2229,16 +2184,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "contest-of-champions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2247,16 +2193,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "dark-phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2265,7 +2202,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2274,34 +2211,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "days-of-future-past",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "days-of-future-present",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "dead-mans-hand",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2310,7 +2220,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2319,7 +2229,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2328,16 +2238,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "doctor-strange-multiverse-of-madness",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2346,16 +2247,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "eighth-day",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2364,16 +2256,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "evolutionary-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2382,25 +2265,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "fall-of-the-mutants",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "fatal-attractions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2409,16 +2274,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "groot-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2427,7 +2283,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2436,7 +2292,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2445,7 +2301,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2454,7 +2310,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2463,7 +2319,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2472,7 +2328,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2481,25 +2337,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "hunt-for-xavier",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "inferno",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2508,7 +2346,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2517,7 +2355,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2526,7 +2364,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2535,7 +2373,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2544,7 +2382,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2553,25 +2391,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "kravens-last-hunt",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "kree-skrull-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2580,16 +2400,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "magneto-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2598,34 +2409,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "marvel-multiverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "marvel-super-heroes-secret-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "marvel-what-if",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2634,7 +2418,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2643,7 +2427,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2652,16 +2436,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "midnight-massacre",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2670,7 +2445,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2679,34 +2454,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "muir-island-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "mutant-massacre",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "mys-tech-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2715,7 +2463,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2724,7 +2472,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2733,43 +2481,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "operation-galactic-storm",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "operation-zero-tolerance",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "original-clone-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "phalanx-covenant",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2778,16 +2490,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2796,7 +2499,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2805,16 +2508,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "reed-richards-and-sue-storms-wedding",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2823,25 +2517,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "rise-of-the-midnight-sons",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "rocket-raccoon-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2850,7 +2526,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2859,7 +2535,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2868,7 +2544,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2877,7 +2553,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2886,16 +2562,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "secret-wars-ii",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2904,7 +2571,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2913,7 +2580,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2922,7 +2589,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2931,7 +2598,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2940,7 +2607,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2949,25 +2616,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "spider-man-identity-crisis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "spider-man-no-way-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2976,7 +2625,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -2985,16 +2634,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3003,26 +2643,21 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
-        "orderId": "thanos-war",
-        "relationship": "none",
+        "orderId": "thanos-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "61702"
+        ],
+        "relationship": "partial",
         "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "the-night-gwen-stacy-died",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
@@ -3030,16 +2665,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "time-and-time-again",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3048,7 +2674,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3057,7 +2683,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3066,7 +2692,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3075,7 +2701,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3084,7 +2710,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3093,25 +2719,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "wraith-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "x-cutioners-song",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3120,7 +2728,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3129,7 +2737,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3138,7 +2746,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3147,7 +2755,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3156,7 +2764,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3165,7 +2773,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3174,7 +2782,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3183,7 +2791,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3192,7 +2800,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3201,7 +2809,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3210,7 +2818,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3219,7 +2827,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3228,16 +2836,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "x-tinction-agenda",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3246,7 +2845,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
@@ -3255,7 +2854,7 @@
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
+        "authorityIdentity": "MRT-002-C02 coordinator",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       }
@@ -3264,6 +2863,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "9600461f9531e176aaefa38334f977b4e8edac9f176a8b40c51b37ae1eb6ec01"
+    "approvalDigest": "2e218bc4b4f04f233e2c0f1e421bea936e591548ad6c5dbe7c41ead5a9fd0b8f"
   }
 }

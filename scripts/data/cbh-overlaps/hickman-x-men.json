@@ -2,7 +2,7 @@
   "candidateId": "hickman-x-men",
   "packetDigest": "800288f321acf9793b0800e2c6c3f8ece3283ba341d672b9903924edae04f439",
   "mappingDigest": "faef0663fd0c7dc17b1f7f8449971662adda7d8612666f4990970955cc30efa7",
-  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
+  "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
   "peerDigests": {},
   "candidateCount": 54,
   "comparisonCount": 135,
@@ -81,12 +81,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -659,6 +653,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -843,5 +843,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "0d4a3fec76383025df3925eebe4d4d51d42a1b1594426c2c714bfac22c0a5e00"
+  "reportDigest": "97958c44554a934fe471a198c5ce67380c90c1a30f1948b7401e667ebbcfcb84"
 }

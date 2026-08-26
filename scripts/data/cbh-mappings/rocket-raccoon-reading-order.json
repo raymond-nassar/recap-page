@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "5c6520e542eefe8fe23ff9acd75468b7ba25bf704c4dd34a9c6843b8cdb9b05e",
+    "reportDigest": "409622f259a08d1581c928b43e29d687f55348f3deccfe5a778f3c7532f436e1",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "08cbe04d0b0ffe6ec101555985988f773d71f1fa72f97273c7fec02e6eff4d11",
+    "libraryDigest": "2f7ded40f78b6ba53fd96d168b32db2b51a6fd3fc57acd1ce226397333823236",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3046,6 +3046,17 @@
       },
       {
         "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
@@ -4571,6 +4582,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "5dbf9de487c9dd73dc95c3523b14cda08e6269e3c26420dafef95106802ebd6e"
+    "approvalDigest": "bc223f5c76bea861b3f141216d24994ede68823ddbcb783716f7c578dcb83f73"
   }
 }

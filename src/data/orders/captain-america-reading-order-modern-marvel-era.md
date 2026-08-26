@@ -1,8 +1,8 @@
-# Captain America Reading Order (Modern Marvel Era)
+# Captain America Reading List (Modern Marvel Era)
 
 Source guide from Comic Book Herald, preserved as explicit provenance when provider metadata is incomplete.
 
-Derived from the rendered Comic Book Herald page captured for this issue, then normalized to the repository's checklist format so the same Reading Order can ship with explicit unresolved provenance instead of being blocked by missing metadata. See scripts/vendor-orders.mjs for the published data shape and docs/DATA_PROVENANCE.md for the publication boundary this checklist stays within.
+Derived from the rendered Comic Book Herald page captured for this issue, then normalized to the repository's checklist format so the same Reading List can ship with explicit unresolved provenance instead of being blocked by missing metadata. See scripts/vendor-orders.mjs for the published data shape and docs/DATA_PROVENANCE.md for the publication boundary this checklist stays within.
 
 The repeated source rows are kept as distinct provenance entries in source order, with unresolved titles left as checklist placeholders rather than invented matches.
 

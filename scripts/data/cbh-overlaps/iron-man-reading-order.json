@@ -2,10 +2,10 @@
   "candidateId": "iron-man-reading-order",
   "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805",
   "mappingDigest": "3b1656e2f3d9eda936d2930e7d1fbb3db5ab7a094268e40a2cf0560aa463828c",
-  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
+  "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
   "peerDigests": {},
   "candidateCount": 811,
-  "comparisonCount": 135,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -88,12 +88,6 @@
         "11327"
       ],
       "relationship": "partial"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
     },
     {
       "orderId": "chaos-war",
@@ -335,6 +329,14 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "hickman-x-men",
+      "sharedCount": 1,
+      "sharedIds": [
+        "85662"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "house-of-m",
@@ -767,6 +769,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "ultimate-marvel-intro",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -884,6 +892,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 1,
       "sharedIds": [
@@ -916,5 +930,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9197432155888c44bf4957107b4315c63e5d785660ee4c133e6ddb9a7a1222b1"
+  "reportDigest": "a24d2616f8d67b274ff0379f11805cb7e0f6188334e8bef63dcb674907e94264"
 }

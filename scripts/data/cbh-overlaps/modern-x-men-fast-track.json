@@ -2,10 +2,10 @@
   "candidateId": "modern-x-men-fast-track",
   "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
   "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-  "libraryDigest": "9c4f0f3bac5322e4a786e61b1314ec3d60b7cf5b49100a76977f8cbb54ffed15",
+  "libraryDigest": "9e8aa9f21ebc47e4ae0fa250914aab5bcd8937b05a9c8c7f6feaff65af87ded5",
   "peerDigests": {},
   "candidateCount": 278,
-  "comparisonCount": 144,
+  "comparisonCount": 145,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -99,6 +99,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1139,5 +1145,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "40918acc2e6030ff6c828d90b9470b4286220f24758ec21a2bf0f2e1351ffc22"
+  "reportDigest": "1f060973d05dda3787063b516450903db0aeb85dadb0a9dc84a1056f4e68bdcc"
 }

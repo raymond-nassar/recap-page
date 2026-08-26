@@ -2,7 +2,7 @@
   "candidateId": "ultimate-marvel-intro",
   "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
   "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
+  "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
   "peerDigests": {},
   "candidateCount": 121,
   "comparisonCount": 135,
@@ -81,12 +81,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -650,6 +644,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -818,5 +818,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "52cc06752d9030a7fc2b788fd58a5aacaea8fca9628e4fb395690e5b4412a05a"
+  "reportDigest": "b1d5cb727fe7d28580f76065e01ee57c97cf65aa9d733dcf0255ab59fe89ca8d"
 }

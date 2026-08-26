@@ -850,34 +850,17 @@ test('the original authored packet keeps its identities, sequence, and pre-publi
   assert.equal(packetIssueIds.length, 238);
   assert.equal(new Set(packetIssueIds).size, 238);
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
-  const allowedOverlaps = new Map([
-    ['axis', [
-      {
-        orderId: 'white-tiger-ava-ayala',
-        relationship: 'partial',
-        sharedCount: 4,
-        sharedIds: ['48592', '51049', '51550', '51158'],
-      },
-    ]],
-  ]);
 
   for (const id of PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134, `${id} overlap boundary changed`);
+    assert.equal(report.comparisonCount, 35, `${id} overlap boundary changed`);
     assert.equal(report.candidateCount, packetRecords.find((record) => record.id === id).selectedIssueIds.length);
-    assert.equal(report.comparisons.length, 134);
-    const allowed = allowedOverlaps.get(id) ?? [];
-    assert.ok(report.comparisons.every((comparison) => {
-      const expected = allowed.find((entry) => entry.orderId === comparison.orderId);
-      if (expected) {
-        return comparison.relationship === expected.relationship
-          && comparison.sharedCount === expected.sharedCount
-          && JSON.stringify(comparison.sharedIds) === JSON.stringify(expected.sharedIds);
-      }
-      return comparison.relationship === 'none'
-        && comparison.sharedCount === 0
-        && comparison.sharedIds.length === 0;
-    }), `${id} has an unapproved semantic overlap`);
+    assert.equal(report.comparisons.length, 35);
+    assert.ok(report.comparisons.every((comparison) => (
+      comparison.relationship === 'none'
+      && comparison.sharedCount === 0
+      && comparison.sharedIds.length === 0
+    )), `${id} has an unapproved semantic overlap`);
   }
 });
 

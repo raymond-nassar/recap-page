@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Recap Page",
   "short_name": "Recap",
-  "description": "A private checklist for Marvel Reading Orders, kept on your own computer.",
+  "description": "A private checklist for Marvel reading orders, kept on your own computer.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

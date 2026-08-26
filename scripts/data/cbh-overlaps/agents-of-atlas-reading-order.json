@@ -2,10 +2,10 @@
   "candidateId": "agents-of-atlas-reading-order",
   "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
   "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
-  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
+  "libraryDigest": "b8c7dd2dc80f8652ee792f9d22dbdd2e80f3656df916838008d3f3a03c0b250e",
   "peerDigests": {},
   "candidateCount": 80,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -81,12 +81,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -273,6 +267,12 @@
     },
     {
       "orderId": "hickman-minimal",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -795,6 +795,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -825,5 +831,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "e7b2d9d5d3873f8b1b4c26a5445c491d0c59c1019c3ffb90e1e76ad0f592c801"
+  "reportDigest": "fdade994f0f81e3167261c7a65b7aabe0b406ee823131ad657d9db7e9dcf4031"
 }

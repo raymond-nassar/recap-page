@@ -37,22 +37,13 @@
     "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "new-order",
-    "reason": "The modern Marvel-era guide now ships with 69 source rows, 13 resolved items, and 56 explicit placeholders, so the remaining metadata gaps are preserved as provenance instead of blocking publication.",
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [
-      "captain-america-best-of",
-      "doctor-doom-primer",
-      "essential-avengers",
-      "heroic-age-avengers",
-      "iron-man-reading-order",
-      "marvel-super-heroes-secret-wars"
-    ],
-    "catalogIds": [
-      "captain-america-reading-order-modern-marvel-era"
-    ],
-    "deliveryStatus": "shipped",
-    "centralDisposition": "pilot-approved",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
     "labels": [
       "Adam Warlock"
     ],
@@ -62,7 +53,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "ecec1c32719085c216b4f0bd1a599b1b3e58dc3777bdbca92445b7dedf70de36",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "approved"
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
     "position": 3,
@@ -71,22 +62,13 @@
     "url": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "new-order",
-    "reason": "The modern Marvel-era guide ships with explicit unresolved provenance, a representative cover issue, and the same exact source boundary, so the catalog entry can be published without inventing missing rows.",
+    "disposition": "deferred",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [
-      "captain-america-best-of",
-      "doctor-doom-primer",
-      "essential-avengers",
-      "heroic-age-avengers",
-      "iron-man-reading-order",
-      "marvel-super-heroes-secret-wars"
-    ],
-    "catalogIds": [
-      "captain-america-reading-order-modern-marvel-era"
-    ],
-    "deliveryStatus": "shipped",
-    "centralDisposition": "pilot-approved",
+    "overlapIds": [],
+    "catalogIds": [],
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "deferred",
     "labels": [
       "Agatha Harkness"
     ],
@@ -96,7 +78,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "4affd62d844d51a08ab529047a0334cc45d1f8e05008aad19b7ee4f3018ba4bb",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "approved"
+    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
     "position": 4,

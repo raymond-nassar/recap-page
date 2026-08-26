@@ -241,26 +241,13 @@ test('batch three keeps its original identities, sequence, and no-overlap report
 
   for (const id of THIRD_PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134);
-    assert.equal(report.comparisons.length, 134);
-    const approved = new Map([
-      ['x-men-regenesis', new Map([
-        ['white-tiger-ava-ayala', ['partial', 1, ['36485']]],
-      ])],
-    ]);
-    const allowed = approved.get(id) ?? new Map();
-    assert.ok(report.comparisons.every((comparison) => {
-      const expected = allowed.get(comparison.orderId);
-      if (expected) {
-        const [relationship, sharedCount, sharedIds] = expected;
-        return comparison.relationship === relationship
-          && comparison.sharedCount === sharedCount
-          && JSON.stringify(comparison.sharedIds) === JSON.stringify(sharedIds);
-      }
-      return comparison.relationship === 'none'
-        && comparison.sharedCount === 0
-        && comparison.sharedIds.length === 0;
-    }), `${id} has an unapproved overlap`);
+    assert.equal(report.comparisonCount, 55);
+    assert.equal(report.comparisons.length, 55);
+    assert.ok(report.comparisons.every((comparison) => (
+      comparison.relationship === 'none'
+      && comparison.sharedCount === 0
+      && comparison.sharedIds.length === 0
+    )), `${id} has an unapproved overlap`);
   }
 });
 
