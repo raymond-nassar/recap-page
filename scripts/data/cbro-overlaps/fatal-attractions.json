@@ -2,20 +2,14 @@
   "candidateId": "fatal-attractions",
   "packetDigest": "2f52914f5c42ab4c8459064bdafac5f932b7f628f00fbae37e1b16f409016bbb",
   "mappingDigest": "30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9",
-  "libraryDigest": "8316fcd0d80072103421b176f942ce3dd2089378c360bdc1e15326f5361f51a9",
+  "libraryDigest": "014b73310ddd78e2dddd854b170beffef7668278172bd0420a51379c5c538aca",
   "peerDigests": {
     "mys-tech-wars": "1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306",
     "x-cutioners-song": "0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582"
   },
   "candidateCount": 6,
-  "comparisonCount": 128,
+  "comparisonCount": 133,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -293,6 +287,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hunt-for-xavier",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "inferno",
       "sharedCount": 0,
       "sharedIds": [],
@@ -348,6 +348,12 @@
     },
     {
       "orderId": "last-annihilation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -461,7 +467,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "operation-zero-tolerance",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "original-clone-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phalanx-covenant",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -587,6 +605,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-identity-crisis",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-man-no-way-home",
       "sharedCount": 0,
       "sharedIds": [],
@@ -630,6 +654,12 @@
     },
     {
       "orderId": "thor-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "time-and-time-again",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -779,5 +809,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "ed2f67321ff15e9730d1e03e2ce315570ea785beef1fbefc4b2261dda8e4f96f"
+  "reportDigest": "684d93be69a933649cbdfe2f8cd906e380ba0cbde6649cfafc5ad0d15e5bf162"
 }

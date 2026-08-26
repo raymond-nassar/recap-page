@@ -2,19 +2,13 @@
   "candidateId": "hunt-for-xavier",
   "packetDigest": "a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba",
   "mappingDigest": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c",
-  "libraryDigest": "03ff69339b793fec946849dbd112dc0f4dee2387fbde135f1c4342698e77ccc9",
+  "libraryDigest": "2b0eeb45ab08abab5b52d6f73a92876572805e4d42c0774e28e09a7163e0fc55",
   "peerDigests": {
     "magneto-war": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1"
   },
   "candidateCount": 6,
-  "comparisonCount": 134,
+  "comparisonCount": 133,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -814,5 +808,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "3f3b759ca2a038841858d057e2eb129c6d93675cc8e777e26766e88a06ca3d12"
+  "reportDigest": "a153a6bbd04d8f0ff6a12c4de571e43c35b0dd9a326af3a54ea52fb35ab2a867"
 }

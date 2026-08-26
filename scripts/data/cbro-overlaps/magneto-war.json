@@ -2,19 +2,13 @@
   "candidateId": "magneto-war",
   "packetDigest": "3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827",
   "mappingDigest": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1",
-  "libraryDigest": "03ff69339b793fec946849dbd112dc0f4dee2387fbde135f1c4342698e77ccc9",
+  "libraryDigest": "2b0eeb45ab08abab5b52d6f73a92876572805e4d42c0774e28e09a7163e0fc55",
   "peerDigests": {
     "hunt-for-xavier": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c"
   },
   "candidateCount": 8,
-  "comparisonCount": 134,
+  "comparisonCount": 133,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -814,5 +808,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "e33b929944c2723e80ef3a21b8fcf10c2ad3fdcc2f02a198a383e73d921529a8"
+  "reportDigest": "ccc6f4401ddb3105cd395e5ea32363d758c7faf9cde028f07ecdbf3893103db6"
 }

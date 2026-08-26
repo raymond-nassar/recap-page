@@ -2095,6 +2095,47 @@
       "updatedAt": "2026-08-26T05:16:35.956Z"
     },
     {
+      "id": "agents-of-atlas-reading-order",
+      "file": "agents_of_atlas_reading_order.json",
+      "name": "Agents of Atlas",
+      "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 80,
+      "collections": 0,
+      "characters": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "Namora",
+        "Marvel Boy",
+        "Gorilla-Man",
+        "M-11",
+        "What If?"
+      ],
+      "keywords": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "What If?",
+        "Jeff Parker",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 4801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56b216e07bc79",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T09:49:42.158Z"
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "file": "white_tiger_ava_ayala.json",
       "name": "White Tiger: Ava Ayala",

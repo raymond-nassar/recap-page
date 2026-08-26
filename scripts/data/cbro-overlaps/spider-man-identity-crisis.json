@@ -2,21 +2,15 @@
   "candidateId": "spider-man-identity-crisis",
   "packetDigest": "29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1",
   "mappingDigest": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
-  "libraryDigest": "d9f71e4c7642ecf9aa75be62b816c80113cf5c0e3ff9a87c21f9012ba6b57632",
+  "libraryDigest": "04972a102e330d9efbae85ceb847b5de6b337903538ec68f4749e27569934d47",
   "peerDigests": {
     "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
     "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
     "time-and-time-again": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4"
   },
   "candidateCount": 8,
-  "comparisonCount": 132,
+  "comparisonCount": 133,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -300,6 +294,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hunt-for-xavier",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "inferno",
       "sharedCount": 0,
       "sharedIds": [],
@@ -355,6 +355,12 @@
     },
     {
       "orderId": "last-annihilation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -804,5 +810,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "1f5e53545105ea657b1152e4bd463052a4affcacd1ee8a515dcb73237fd4468c"
+  "reportDigest": "ba37bf13d33b065fffd5a2e7090f33129a79cd0c37d10e54061bddb27578447e"
 }
