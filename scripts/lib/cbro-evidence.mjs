@@ -83,6 +83,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'agents-of-atlas-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
   'iron-man-reading-order',
+  'ant-man-reading-order',
   'wandavision',
   'spider-man-far-from-home',
   'modern-x-men-fast-track',
@@ -262,6 +263,13 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
       relationship: 'candidate-subset',
       sharedIds: Object.freeze(['7342', '7344', '7345', '7346', '7347', '7348', '7349', '7350', '7351']),
       rationale: 'The compact nine-issue event route has a distinct purpose from the 120-issue Essential Avengers guide.',
+    }),
+    Object.freeze({
+      candidateId: 'kree-skrull-war',
+      orderId: 'ant-man-reading-order',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['7347']),
+      rationale: 'The compact nine-issue event route keeps one shared Kree-Skrull chapter while the broader Ant-Man reading order serves a different story purpose.',
     }),
     Object.freeze({
       candidateId: 'thanos-war',
@@ -472,7 +480,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_CONTINUATION_AUTHOR_IDS,
     packetReview: CBRO_CONTINUATION_PACKET_REVIEW,
     authorityIdentity: 'MRT-003-C02 coordinator',
-    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships.',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset, the Thanos War subset, and Ant-Man partial relationship are the approved non-none relationships.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchTwo]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchTwo,

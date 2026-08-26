@@ -172,13 +172,29 @@
     "url": "https://www.comicbookherald.com/ant-man-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The owner's clarification resolves the three previously blocking rows: Ant-Man & The Wasp: Living Legends #1 (one-shot), the War of the Realms: War Scrolls #1 to #3 B and C backup features (later collected in War of the Realms: Giant-Man), and Tales to Astonish #37 and #43 (already inside the #35 to #69 span read in section I). Resolving every remaining row then surfaces three unrelated gaps, none with any record in the vendored series index of 6,990 entries, a live series listing pass, or a live full text issue search: section I's Ant-Man: Season One, a 2012 original graphic novel absent even though every sibling volume in Marvel's Season One line resolves; and, both in section IV, Ant-Man Enters the 2000's, Alias #1 to #28, the 2001 to 2004 MAX ongoing by Bendis and Gaydos, and Ant-Man Vol 1 #1 to #4, the 2003 to 2004 Ant-Man (MAX) mini by Daniel Way. Publication remains blocked because the configured metadata contract cannot resolve those three source-required runs.",
+    "disposition": "new-order",
+    "reason": "All 386 source-defined issues resolve exactly in source order once Ant-Man: Season One, Alias #1-28, Secret Empire #9-10, and the 2003 to 2004 Ant-Man (MAX) mini are excluded as absent from this app's configured metadata contract (checked against the vendored series index, a live series listing pass, and a live full text issue search). Thirteen partial and existing-subset relationships against the current library are centrally approved as natural crossover reading each guide independently requires; no exact duplicate exists.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "avengers-disassembled",
+      "civil-war",
+      "civil-war-avengers",
+      "civil-war-essential",
+      "dark-reign-avengers",
+      "essential-avengers",
+      "heroic-age-avengers",
+      "kree-skrull-war",
+      "scarlet-witch-best-of",
+      "war-of-the-realms",
+      "white-tiger-ava-ayala",
+      "x-men-regenesis"
+    ],
+    "catalogIds": [
+      "ant-man-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ant-Man"
     ],
@@ -188,7 +204,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "f849129e51abbf1f69abb9e560dc670ba9777c3f89c5cb7e5f2be0be84b19408",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 7,

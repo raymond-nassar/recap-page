@@ -426,10 +426,10 @@
     "coverIssueId": 7342
   },
   "relationshipReview": {
-    "reportDigest": "059b6e01eb0312e1dd675beaecfdb9eabf6d154665dbfd16bb2229269dfea33d",
+    "reportDigest": "5cd9e4f512767cc6f49ee8ceb9647b69e1299079a3c852a0a867add9beece378",
     "packetDigest": "4b49d41011aa5b1c32eaab8fb960278aec7de448d4606053b242ab2670bcdf59",
     "mappingDigest": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
-    "libraryDigest": "bca1d4ab7c87dc95fcf8927ebb1d3dc4111644648e88752b0e08c67f93ac45b2",
+    "libraryDigest": "7c90c9d86fbe33f9da393c21f4d01da2bac165dd1cc781cfbd813831dfaa1d06",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -490,6 +490,19 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b01 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:38:48.585Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "7347"
+        ],
+        "decision": "approved",
+        "rationale": "The compact nine-issue event route keeps one shared Kree-Skrull chapter while the broader Ant-Man reading order serves a different story purpose.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-003-C02 coordinator",
         "reviewedAt": "2026-08-26T15:38:48.585Z"
       },
       {
@@ -1928,6 +1941,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:38:48.585Z",
-    "approvalDigest": "0d3cc0a1aaf6a8a799e3c10254a2e3e7c50b616e6362c58b1518690a9872dbff"
+    "approvalDigest": "0e4a03ea983275a6f1e38c8561db8410764e56f118878f4c6b3abaf8a5711c06"
   }
 }

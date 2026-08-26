@@ -2410,7 +2410,7 @@
       "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
       "type": "character-run",
       "depth": "partial",
-      "spotlightKind": "other",
+      "spotlightKind": "complete-guide",
       "count": 272,
       "collections": 0,
       "characters": [
@@ -2440,6 +2440,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T07:36:34.796Z"
+    },
+    {
+      "id": "ant-man-reading-order",
+      "file": "ant_man_reading_order.json",
+      "name": "Ant-Man",
+      "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "ant-man-reading-order.md",
+      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "ant_man_reading_order.json",
+      "characters": [
+        "Ant-Man",
+        "Hank Pym",
+        "Scott Lang",
+        "Wasp",
+        "Giant-Man"
+      ],
+      "keywords": [
+        "Ant-Man",
+        "Hank Pym",
+        "Scott Lang",
+        "Avengers",
+        "Comic Book Herald"
+      ],
+      "count": 386,
+      "collections": 0,
+      "timeline": null,
+      "coverIssueId": 11379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/536d6fa682524",
+        "ext": "jpg"
+      },
+      "updatedAt": "2026-08-26T08:00:03.031Z"
     },
     {
       "id": "xmen-claremont",
