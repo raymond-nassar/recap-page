@@ -3750,10 +3750,10 @@
     "coverIssueId": 19776
   },
   "relationshipReview": {
-    "reportDigest": "51a0baac13ada042746af365340743ae476e851aa88a8de6d4c72ff8e3f77835",
+    "reportDigest": "98ab6faa1899196e3cfad3fbf76bdad64674f55a06277d24729544a43b2c3706",
     "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
     "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-    "libraryDigest": "331b1b1bd21f837ae03cb1f910a8f606d194e0e9db112f3ddcbead74e7faccc2",
+    "libraryDigest": "d30b034f72e3887aaf26eaee9eb58acdd5151aebc3e87821721140a111102bdc",
     "peerDigests": {
       "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
@@ -5408,6 +5408,6 @@
     "authorityIdentity": "MRT-002-C08 coordinator",
     "rationale": "Every current-library and named Rocket and Groot peer comparison was reviewed against the separate complete-guide boundary; all four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "a9e0caa785d19a2f77c2bde913fb4b4dc1feb6d4abb09b6a29ce4527dea21fac"
+    "approvalDigest": "a80eb416ecf8d7107d8a62147a20c837a557546eb2096b5133514540b725378c"
   }
 }

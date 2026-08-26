@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "3dc96f6675cc0d181cc7b81404dceaf7e1ac59d1f2727b6274f5c7e1d244eb3f",
+    "reportDigest": "5c6520e542eefe8fe23ff9acd75468b7ba25bf704c4dd34a9c6843b8cdb9b05e",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "61fb224ec5658c2d14edaac8855d70b61471f6af193cd5472ab2c67ddc4fba8e",
+    "libraryDigest": "08cbe04d0b0ffe6ec101555985988f773d71f1fa72f97273c7fec02e6eff4d11",
     "peerDigests": {},
     "dispositions": [
       {
@@ -4571,6 +4571,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "7e8fb0700628c71d44d53efb107c60a32ebceb4a8c0878cc210c3a381644d238"
+    "approvalDigest": "5dbf9de487c9dd73dc95c3523b14cda08e6269e3c26420dafef95106802ebd6e"
   }
 }
