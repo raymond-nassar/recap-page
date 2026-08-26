@@ -23,7 +23,7 @@ section is what has to be settled before it is.
 
 ## Source-backed orders added after publication
 
-Thirty-six historical event guides now use factual issue identities and order from Comic Book Reading
+Thirty-eight historical event guides now use factual issue identities and order from Comic Book Reading
 Orders. The source owner permitted credited and linked derived lists, excluding the Marvel Master
 Reading Order and Patreon-only orders. Every shipped card names that source and links to the exact
 source page and section. The source licence remains null because that permission does not reach Marvel material.
@@ -270,6 +270,6 @@ enforcement, which is the argument for writing it down before the day rather tha
 The dated publication decision above stays historical, but its two gates remain release checks.
 Source-linked catalog additions run both after the working tree is complete so a new card cannot
 quietly advertise a private, stale, or unreachable source surface. The MCU Prep release adds
-four public source-linked cards after Star-Lord. Eight historical continuation batches add thirty-one
-Comic Book Reading Orders cards containing 358 delivered issues across those guides, bringing the
-catalog to 132 without changing the accepted publication boundary or any saved reader data.
+four public source-linked cards after Star-Lord. Nine historical continuation batches add thirty-three
+Comic Book Reading Orders cards containing 372 delivered issues across those guides, bringing the
+catalog to 134 without changing the accepted publication boundary or any saved reader data.

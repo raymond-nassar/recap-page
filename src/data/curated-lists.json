@@ -3347,6 +3347,64 @@
       "coverIssueId": 6854
     },
     {
+      "id": "hunt-for-xavier",
+      "name": "The Hunt for Xavier",
+      "description": "Six chapters following the X-Men through The Hunt for Xavier.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "hunt-for-xavier.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/hunt-for-xavier-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "hunt_for_xavier.json",
+      "characters": [
+        "X-Men",
+        "Professor X"
+      ],
+      "keywords": [
+        "The Hunt for Xavier",
+        "X-Men",
+        "Professor X"
+      ],
+      "expect": 6,
+      "timeline": 1998,
+      "coverIssueId": 13903
+    },
+    {
+      "id": "magneto-war",
+      "name": "Magneto War",
+      "description": "Eight chapters following the X-Men through Magneto War.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "magneto-war.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/magneto-war-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "magneto_war.json",
+      "characters": [
+        "X-Men",
+        "Magneto"
+      ],
+      "keywords": [
+        "Magneto War",
+        "X-Men",
+        "Magneto"
+      ],
+      "expect": 8,
+      "timeline": 1999,
+      "coverIssueId": 12393
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

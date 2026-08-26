@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "id": "magneto-war",
+  "inventoryId": "magneto-war",
+  "sourceProvider": "comic-book-reading-orders",
+  "sourceUrl": "https://comicbookreadingorders.com/marvel/events/magneto-war-reading-order/",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceContentSha256": "9e6763a09ca9b51470883b230deccd106cb0afe24a1c4d5eb0b7761858b60759",
+  "sourceBoundary": "The active Single Issues panel, in displayed order.",
+  "excludedSourceReferences": [
+    "Trade collections",
+    "Page commentary and navigation",
+    "Branding, layout, and images"
+  ],
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "magneto-war",
+    "name": "Magneto War",
+    "description": "Eight chapters following the X-Men through Magneto War.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "magneto-war.md",
+    "sourcePage": "https://comicbookreadingorders.com/marvel/events/magneto-war-reading-order/",
+    "sourceSection": null,
+    "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+    "sourceLicense": null,
+    "out": "magneto_war.json",
+    "characters": [
+      "X-Men",
+      "Magneto"
+    ],
+    "keywords": [
+      "Magneto War",
+      "X-Men",
+      "Magneto"
+    ],
+    "expect": 8,
+    "timeline": 1999,
+    "coverIssueId": 12393
+  },
+  "insertionAnchor": {
+    "beforeId": "maximum-security"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-003-C02-B09 coordinator",
+    "rationale": "The exact CBRO page, active issue panel, provider identity, current source digest, unchanged row order, manifest proposal, and first-on-sale chronology were reviewed centrally.",
+    "reviewedAt": "2026-08-26T04:24:30.006Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "X-Men: Magneto War #1 (1999)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: Magneto War",
+      "seriesYear": 1999,
+      "issueNumber": "1",
+      "seriesId": 2106,
+      "candidateIssueId": 12393,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-MEN: THE MAGNETO WAR 1 (1999), series 2106."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #366",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "366",
+      "seriesId": 2258,
+      "candidateIssueId": 13907,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #86",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "86",
+      "seriesId": 2265,
+      "candidateIssueId": 14379,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #367",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "367",
+      "seriesId": 2258,
+      "candidateIssueId": 13908,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men Vol. 2 #87",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Vol. 2",
+      "seriesYear": 1991,
+      "issueNumber": "87",
+      "seriesId": 2265,
+      "candidateIssueId": 14380,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source label resolves to the configured metadata series X-Men (1991 - 2001), series 2265."
+    },
+    {
+      "sourceIssueReference": "Magneto Rex #1 (1999)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Magneto Rex",
+      "seriesYear": 1999,
+      "issueNumber": "1",
+      "seriesId": 2035,
+      "candidateIssueId": 9999,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Magneto Rex #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Magneto Rex",
+      "seriesYear": 1999,
+      "issueNumber": "2",
+      "seriesId": 2035,
+      "candidateIssueId": 10000,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Magneto Rex #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Magneto Rex",
+      "seriesYear": 1999,
+      "issueNumber": "3",
+      "seriesId": 2035,
+      "candidateIssueId": 10001,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827"
+}

@@ -25,6 +25,7 @@ import {
   CBRO_BATCH_FIVE_SELECTED_IDS,
   CBRO_BATCH_FOUR_SELECTED_IDS,
   CBRO_BATCH_EIGHT_SELECTED_IDS,
+  CBRO_BATCH_NINE_SELECTED_IDS,
   CBRO_BATCH_SEVEN_SELECTED_IDS,
   CBRO_BATCH_SIX_SELECTED_IDS,
   CBRO_BATCH_THREE_SELECTED_IDS,
@@ -70,6 +71,7 @@ const frozenExcludedIds = [
   ...CBRO_BATCH_SIX_SELECTED_IDS,
   ...CBRO_BATCH_SEVEN_SELECTED_IDS,
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
+  ...CBRO_BATCH_NINE_SELECTED_IDS,
 ];
 
 async function readJson(relativePath) {
@@ -308,7 +310,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 132);
+  assert.equal(catalog.lists.length, 134);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
