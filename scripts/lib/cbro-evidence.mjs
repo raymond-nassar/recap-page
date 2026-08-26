@@ -74,6 +74,15 @@ export const CBRO_BATCH_NINE_UNTOUCHED_INVENTORY_SHA256 =
   '961fcc9ca2e340236d6becd38734632a618318660efe85c49eca813e4ceaa5fd';
 export const CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256 =
   '486e8e72c2cbe226e17780a0bb4c9c3ab93b4a059eff7e234e02015d271cc5ff';
+export const CBH_LATER_ORDER_IDS = Object.freeze([
+  'hickman-x-men',
+  'ultimate-marvel-intro',
+  'x-men-utopia',
+  'x-men-messiah-to-avx',
+  'agents-of-atlas-reading-order',
+  'amazing-spider-man-reading-order-modern-marvel-era',
+  'iron-man-reading-order',
+]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
   'muir-island-saga',

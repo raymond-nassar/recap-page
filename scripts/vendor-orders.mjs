@@ -27,6 +27,7 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
+import { RateLimiter } from '../src/js/lib/limiter.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
@@ -45,7 +46,18 @@ async function loadOrders() {
   return { entries, paths };
 }
 
-const { getJson } = createJsonFetcher();
+// Vendoring hammers the metadata service harder than the app does, so use a stricter
+// limiter here to stay clear of its burst cap while still keeping the run deterministic.
+const { getJson } = createJsonFetcher({
+  maxAttempts: 10,
+  limiter: new RateLimiter({
+    concurrency: 1,
+    windows: [
+      { max: 10, ms: 60_000 },
+      { max: 5, ms: 10_000 },
+    ],
+  }),
+});
 
 async function getText(url) {
   const res = await fetch(url);

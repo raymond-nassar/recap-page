@@ -236,6 +236,7 @@ const laterCbhIds = [
   'ultimate-marvel-intro',
   'x-men-utopia',
   'x-men-messiah-to-avx',
+  'agents-of-atlas-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
   ironManCandidateId,
 ];
@@ -1218,10 +1219,12 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [modernXMenCandidateId, ironManCandidateId],
+    [modernXMenCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${modernXMenCandidateId}.json`),
+    [],
+    { excludedOrderIds: ['agents-of-atlas-reading-order'] },
   );
 
   assert.equal(packet.packetDigest, '7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a');
@@ -1431,8 +1434,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 142);
+  assert.equal(catalog.lists.length, 143);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 17);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 16);
+  assert.equal(characterRuns.length, 18);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 17);
 });

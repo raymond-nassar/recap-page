@@ -1,15 +1,11 @@
 {
-  "candidateId": "time-and-time-again",
-  "packetDigest": "eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d",
-  "mappingDigest": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4",
-  "libraryDigest": "04972a102e330d9efbae85ceb847b5de6b337903538ec68f4749e27569934d47",
-  "peerDigests": {
-    "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
-    "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
-    "spider-man-identity-crisis": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741"
-  },
-  "candidateCount": 8,
-  "comparisonCount": 133,
+  "candidateId": "agents-of-atlas-reading-order",
+  "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
+  "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
+  "libraryDigest": "b8c7dd2dc80f8652ee792f9d22dbdd2e80f3656df916838008d3f3a03c0b250e",
+  "peerDigests": {},
+  "candidateCount": 80,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -271,6 +267,12 @@
     },
     {
       "orderId": "hickman-minimal",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -553,9 +555,11 @@
     },
     {
       "orderId": "secret-invasion",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "21418"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "secret-invasion-essential",
@@ -666,6 +670,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "time-and-time-again",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -679,9 +689,14 @@
     },
     {
       "orderId": "war-of-the-realms",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 4,
+      "sharedIds": [
+        "76615",
+        "76616",
+        "77259",
+        "77260"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "white-tiger-ava-ayala",
@@ -780,6 +795,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -810,5 +831,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b26b409131dbf258dc01de85bb6b7e6d02c4988e4a1f0cbb59ca33413e7e8e38"
+  "reportDigest": "fdade994f0f81e3167261c7a65b7aabe0b406ee823131ad657d9db7e9dcf4031"
 }
