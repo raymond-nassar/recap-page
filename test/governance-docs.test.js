@@ -183,6 +183,10 @@ test('active workflow instructions route future work through Issues, not the his
   const governance = flat['GOVERNANCE.md'];
   assert.match(copilotInstructions, /Unrelated work becomes a repository Issue/);
   assert.doesNotMatch(copilotInstructions, /follow-up entry in `PRODUCT_BACKLOG\.md`/);
+  assert.match(copilotInstructions, /Reading-list publication is gap-tolerant/);
+  assert.match(copilotInstructions, /Missing Marvel Unlimited or provider metadata must not block/);
+  assert.match(copilotInstructions, /file a separate repository Issue assigned to `raymond-nassar`/);
+  assert.match(copilotInstructions, /supersedes older stop-on-any-gap guidance/);
   assert.match(governance, /Issue timeline and linked pull request/);
   assert.doesNotMatch(governance, /backlog block for that item becomes a delivery record/);
   assert.doesNotMatch(governance, /rest becomes a backlog entry/);
