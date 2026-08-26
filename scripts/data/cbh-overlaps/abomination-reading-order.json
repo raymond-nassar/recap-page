@@ -1,21 +1,12 @@
 {
-  "candidateId": "star-lord-reading-order",
-  "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
-  "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "43989b1ec0dcac2b0082a33a8b7fc0576c5f6db424f57c85dcfd291c32bf085a",
-  "peerDigests": {
-    "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
-  },
-  "candidateCount": 99,
-  "comparisonCount": 141,
+  "candidateId": "abomination-reading-order",
+  "packetDigest": "dd7a839a63aec8212fba45ce1c438ac1852034ea7c949ce6457c8aa5c4d497cd",
+  "mappingDigest": "8dff0a5405f015083ddcb118d441b7c0cc42d53b91e8cc40a2ef7fb2c4447831",
+  "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+  "peerDigests": {},
+  "candidateCount": 127,
+  "comparisonCount": 137,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
@@ -30,12 +21,6 @@
     },
     {
       "orderId": "all-new-all-different-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -60,9 +45,11 @@
     },
     {
       "orderId": "atlantis-attacks",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "16898"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "avengers-defenders-war",
@@ -222,9 +209,11 @@
     },
     {
       "orderId": "essential-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "7341"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "evolutionary-war",
@@ -258,35 +247,9 @@
     },
     {
       "orderId": "groot-reading-order",
-      "sharedCount": 25,
-      "sharedIds": [
-        "21268",
-        "21412",
-        "21586",
-        "21783",
-        "22025",
-        "22352",
-        "22544",
-        "22957",
-        "23148",
-        "23636",
-        "23792",
-        "23793",
-        "23986",
-        "24188",
-        "25303",
-        "25304",
-        "25305",
-        "25306",
-        "25307",
-        "25308",
-        "25309",
-        "29022",
-        "29009",
-        "29010",
-        "32551"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "heroes-reborn-2021",
@@ -356,11 +319,9 @@
     },
     {
       "orderId": "infinity-countdown-wars",
-      "sharedCount": 1,
-      "sharedIds": [
-        "65547"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "inhumans-vs-x-men",
@@ -442,9 +403,11 @@
     },
     {
       "orderId": "maximum-security",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "14421"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "messiah-complex",
@@ -466,12 +429,6 @@
     },
     {
       "orderId": "minimum-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "modern-x-men-fast-track",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -586,35 +543,9 @@
     },
     {
       "orderId": "rocket-raccoon-reading-order",
-      "sharedCount": 25,
-      "sharedIds": [
-        "21268",
-        "21412",
-        "21586",
-        "21783",
-        "22025",
-        "22352",
-        "22544",
-        "22957",
-        "23148",
-        "23636",
-        "23792",
-        "23793",
-        "23986",
-        "24188",
-        "25303",
-        "25304",
-        "25305",
-        "25306",
-        "25307",
-        "25308",
-        "25309",
-        "29022",
-        "29009",
-        "29010",
-        "32551"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "scarlet-witch-best-of",
@@ -689,12 +620,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-far-from-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-identity-crisis",
       "sharedCount": 0,
       "sharedIds": [],
@@ -714,6 +639,12 @@
     },
     {
       "orderId": "spider-verse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "star-lord-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -761,24 +692,10 @@
       "relationship": "none"
     },
     {
-      "orderId": "wandavision",
+      "orderId": "war-of-kings",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "war-of-kings",
-      "sharedCount": 7,
-      "sharedIds": [
-        "23986",
-        "24188",
-        "25303",
-        "25304",
-        "25305",
-        "25306",
-        "25307"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "war-of-the-realms",
@@ -919,5 +836,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "067f32612ec26658462b1d26fe838982c70d2adefd27ed1c6ffe4f6fcb56879f"
+  "reportDigest": "05d0119136812ae674bf54e825270e408247a453e8ef3e7afe4f3f2c09c1d41e"
 }

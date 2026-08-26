@@ -1005,17 +1005,18 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // WandaVision, Spider-Man: Far From Home, and the Modern X-Men Fast Track order merged in
   // from main, and again the same day after the Amazing Spider-Man complete guide added 106
   // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
-  // the live metadata index does not list. Written down as observations rather than floors: they
-  // move whenever an order is added or re-vendored, and moving one should mean editing this line
-  // deliberately rather than watching a range quietly widen.
+  // the live metadata index does not list. The Abomination guide added two more empty responses,
+  // bringing the total to 81 across five affected orders. Written down as observations rather than
+  // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
+  // this line deliberately rather than watching a range quietly widen.
   //
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
   assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 79);
-  assert.equal(affected, 4);
+  assert.equal(empty, 81);
+  assert.equal(affected, 5);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1181,7 +1182,7 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   }
 
   const refused = Object.values(s.issues).filter((i) => i.detailsRefused);
-  // 72 items across three orders, which are 43 distinct issues because the two Ultimate orders
+  // 74 items across four orders, which include 45 distinct issues because the two Ultimate orders
   // overlap. Read on 2026-08-14; written down as an observation rather than a floor, so
   // re-vendoring an order means editing this line deliberately.
   //
@@ -1204,6 +1205,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Deliberately edited again the same day, from 155 to 162. The Iron Man guide added seven
   // owner-confirmed issue ids that the live metadata index does not list, and none repeat an id
   // already present in the bundled catalog.
-  assert.equal(refused.length, 162);
+  //
+  // The Abomination guide adds two more exact issue pages with no metadata response.
+  assert.equal(refused.length, 164);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

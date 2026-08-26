@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T11:09:49.937Z",
+  "generatedAt": "2026-08-26T14:21:03.728Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2292,6 +2292,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T20:43:34.162Z"
+    },
+    {
+      "id": "abomination-reading-order",
+      "file": "abomination_reading_order.json",
+      "name": "Abomination",
+      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 127,
+      "collections": 0,
+      "characters": [
+        "Abomination",
+        "Hulk"
+      ],
+      "keywords": [
+        "Abomination",
+        "Hulk",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 11427,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/536d4ab702ac1",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/abomination-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T07:11:31.019Z"
     },
     {
       "id": "groot-reading-order",

@@ -1977,6 +1977,35 @@
       "coverIssueId": 11353
     },
     {
+      "id": "abomination-reading-order",
+      "name": "Abomination",
+      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "abomination-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/abomination-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "abomination_reading_order.json",
+      "characters": [
+        "Abomination",
+        "Hulk"
+      ],
+      "keywords": [
+        "Abomination",
+        "Hulk",
+        "Comic Book Herald"
+      ],
+      "expect": 127,
+      "timeline": null,
+      "coverIssueId": 11427
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",
