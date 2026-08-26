@@ -51,6 +51,38 @@ For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: In
 intentional because those events remain complete event guides, while Destiny of X and Fall of X are
 broader Krakoa continuations rather than Hickman creator-run rows.
 
+### Added WandaVision to MCU Prep
+
+In plain English: WandaVision now has its own MCU Prep reading guide. It adds the exact Scarlet
+Witch and Vision issues named by the source, and nothing you have saved is changed.
+
+For maintainers: WandaVision ships 56 issue rows, preserves three collection or run headings as
+explicit exclusions, and records four centrally approved partial overlaps. The maintained MCU Prep
+inventory now records six shipped guides, four ranked follow-ups, and four blocked entries. The
+later Avengers character-picks guide is no longer blocked on Hawkeye (2012) #23; that source-list
+error is recorded to omit in its later mapping instead.
+
+### Added Spider-Man: Far From Home to MCU Prep
+
+In plain English: MCU Prep now includes a Spider-Man: Far From Home guide with eight issue-specific
+comic picks. Nothing you have saved is changed.
+
+For maintainers: the guide is bound to Comic Book Herald WordPress post 40184, not the separate
+podcast post 40334. Five issues overlap with The Best of Spider-Man and are centrally approved as a
+partial relationship; Peter Parker, the Spectacular Spider-Man #50-51 and Friendly Neighborhood
+Spider-Man (2019) #6 keep the guide distinct.
+
+### Preserved blocked MCU Prep continuations
+
+In plain English: no new comic guide is added here, and nothing you have saved is changed. The next
+WandaVision guide stays unpublished because several exact issues named by the source are missing
+from the configured metadata. A later Avengers character guide is also held for the same reason.
+
+For maintainers: the fourteen-title MCU Prep inventory now records four ranked follow-ups and six
+blocked entries. WandaVision keeps its eleven headed picks and current source digest, but West Coast
+Avengers #42-45 and #47 are unavailable. The Avengers character pick stays blocked on Hawkeye (2012)
+#23, because the configured series currently ends at #22.
+
 ### Added the final sequential historical Marvel event guides
 
 In plain English: The Hunt for Xavier and Magneto War are now available as complete historical

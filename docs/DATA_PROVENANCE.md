@@ -45,15 +45,18 @@ boundary, delivery state, overlap ids, and follow-up or blocker for every user-s
 
 The first release publishes the first four priorities as 43 exact rows: 17 for Doctor Strange:
 Multiverse of Madness, 17 for Spider-Man: No Way Home, 2 for Marvel Multiverse, and 7 for Marvel
-What If?. The card type is `screen-companion` and the reading depth is `selected`; both describe the
-project-authored product surface rather than a field copied from the source. All four use
-`timeline: null` because their selected issues span decades, and `beginner: false` so a two-issue
-subset does not become the featured starting point.
+What If?. The second release adds Spider-Man: Far From Home as 8 exact rows. The card type is
+`screen-companion` and the reading depth is `selected`; both describe the project-authored product
+surface rather than a field copied from the source. All five use `timeline: null` because their
+selected issues span decades, and `beginner: false` so a two-issue subset does not become the
+featured starting point.
 
-Collection-only recommendations, contextual issue mentions, and explicitly declined
-recommendations remain named exclusions. The two Marvel Multiverse issues are centrally approved
-candidate-subsets of both Claremont paths, not exact duplicates. No source commentary, branding,
-layout, movie imagery, or comic image bytes are copied.
+Collection-only recommendations, unnumbered picks, contextual issue mentions, and explicitly
+declined recommendations remain named exclusions. The two Marvel Multiverse issues are centrally
+approved candidate-subsets of both Claremont paths, and five Far From Home rows are centrally
+approved as a partial overlap with the existing Spider-Man best-of path. Neither relationship is an
+exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
+copied.
 
 ## Historical Comic Book Reading Orders intake
 

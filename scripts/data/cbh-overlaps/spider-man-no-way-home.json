@@ -6,10 +6,11 @@
   "peerDigests": {
     "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
     "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-    "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f"
+    "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
+    "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05"
   },
   "candidateCount": 17,
-  "comparisonCount": 100,
+  "comparisonCount": 101,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -456,6 +457,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-far-from-home",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-man-the-other",
       "sharedCount": 0,
       "sharedIds": [],
@@ -612,5 +619,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "13e25304ac54df4bbcd136ddc828404da990fc02a231f1e9615d8f43f54cb564"
+  "reportDigest": "9405df910b767f3d632c58cab32a0fab6dca61a78240b1ff974d20a902ab80ed"
 }
