@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T06:05:00.000Z",
+  "generatedAt": "2026-08-26T08:00:03.091Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2253,6 +2253,45 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-24T01:05:06.004Z"
+    },
+    {
+      "id": "ant-man-reading-order",
+      "file": "ant_man_reading_order.json",
+      "name": "Ant-Man",
+      "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 386,
+      "collections": 0,
+      "characters": [
+        "Ant-Man",
+        "Hank Pym",
+        "Scott Lang",
+        "Wasp",
+        "Giant-Man"
+      ],
+      "keywords": [
+        "Ant-Man",
+        "Hank Pym",
+        "Scott Lang",
+        "Avengers",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/536d6fa682524",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T08:00:03.031Z"
     },
     {
       "id": "xmen-claremont",

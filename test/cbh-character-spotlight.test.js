@@ -232,6 +232,7 @@ const laterCbhIds = [
   'ultimate-marvel-intro',
   'x-men-utopia',
   'x-men-messiah-to-avx',
+  'ant-man-reading-order',
 ];
 const continuationHistoricalIds = laterHistoricalIds.slice(5);
 
@@ -335,13 +336,14 @@ test('the character inventory preserves every central disposition and ships six 
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 113);
+  assert.equal(dispositionCounts.deferred, 112);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 2);
-  assert.equal(dispositionCounts['pilot-approved'], 6);
+  assert.equal(dispositionCounts['pilot-approved'], 7);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
+    'ant-man-reading-order',
     grootCandidateId,
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
@@ -385,6 +387,22 @@ test('the character inventory preserves every central disposition and ships six 
     'all-new-all-different-avengers',
     'axis',
     'hickman-full',
+    'x-men-regenesis',
+  ]);
+  assert.deepEqual(shippedById.get('ant-man-reading-order').catalogIds, ['ant-man-reading-order']);
+  assert.deepEqual(shippedById.get('ant-man-reading-order').overlapIds, [
+    'all-new-all-different-avengers',
+    'avengers-disassembled',
+    'civil-war',
+    'civil-war-avengers',
+    'civil-war-essential',
+    'dark-reign-avengers',
+    'essential-avengers',
+    'heroic-age-avengers',
+    'kree-skrull-war',
+    'scarlet-witch-best-of',
+    'war-of-the-realms',
+    'white-tiger-ava-ayala',
     'x-men-regenesis',
   ]);
 });
@@ -998,7 +1016,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   );
   const starLordIndex = manifest.lists.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(manifest.lists[starLordIndex - 1].id, grootCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 1].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 1].id, 'ant-man-reading-order');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -1176,8 +1194,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(catalog.lists.length, 138);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 14);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);
+  assert.equal(characterRuns.length, 15);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 14);
 });
