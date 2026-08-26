@@ -1124,10 +1124,10 @@
     "coverIssueId": 10353
   },
   "relationshipReview": {
-    "reportDigest": "9a6a46e9d5312683530d1bcf899222e2a6458627190f36759a64cf8dc5097172",
+    "reportDigest": "667b56eb3608a87b039fc79f5b736bb76f8d2a54f46e5e8d327377c27c174f31",
     "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb",
     "mappingDigest": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495",
-    "libraryDigest": "4356357b07c13318a06ead874b65e0259c5e81baa7a31b71722f1fcac5bc498f",
+    "libraryDigest": "b98fa731985605f31ec77ea50839ded16d4a82f0e88421f9bfed08c8ac77712f",
     "peerDigests": {
       "marvels-best-phoenix-comics": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0"
     },
@@ -2672,6 +2672,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 2 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "7dbaa34a1a21163fd1596b43589fd207b2a7da3d89105c05a82c74e9e677612c"
+    "approvalDigest": "4419df48fb7937b758e01fcb1509cf4fd577546be50c5b1f2a34fd700a2e5ffd"
   }
 }

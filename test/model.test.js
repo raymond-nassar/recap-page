@@ -1010,8 +1010,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
   assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 76);
-  assert.equal(affected, 4);
+  assert.equal(empty, 85);
+  assert.equal(affected, 6);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1186,23 +1186,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // refused on arrival for the same reason an empty item is: no lookup will ever answer for it.
   // The six are two distinct issues in the spine and four in the complete variant, counted twice
   // over because a placeholder's id is hashed from the order it sits in as well as its title. The
-<<<<<<< HEAD
-  // Ultimate figure is unchanged at 34, which is the check that this grew for the stated reason
-  // rather than because an order regressed.
-  assert.equal(refused.length, 44);
-=======
-  // Deliberately edited on 2026-08-26, from 40 to 49. WandaVision added nine exact Marvel issue
-  // pages that the metadata API refuses while keeping their official issue links.
-<<<<<<< HEAD
-  assert.equal(refused.length, 49);
->>>>>>> 1414b30b (Add WandaVision MCU Prep guide)
-=======
-  //
   // Deliberately edited again the same day, from 49 to 159. The Amazing Spider-Man complete guide
   // adds 106 checklist lines with no Marvel link, each hashed to its own placeholder id by title
   // and order, so all 106 are distinct new refusals with nothing else in the catalog to collide
   // with.
-  assert.equal(refused.length, 159);
->>>>>>> a72a9a4f (Rebase Agatha baselines)
+  assert.equal(refused.length, 168);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

@@ -3123,10 +3123,10 @@
     "coverIssueId": 36489
   },
   "relationshipReview": {
-    "reportDigest": "adcfec711a0ac34b8e38097bc94fca97d371db823bebbc72c6e0ffbeeccc3c47",
+    "reportDigest": "83b192c97d51d8db75eec92c9a6640689c744038d9cc9996a6b2805a814135c9",
     "packetDigest": "959310f882b67d5b83e8f8ba9ff6136adcd3c61523d05bdef3d9113d9767b740",
     "mappingDigest": "0d4465c495c15bf7b405964a6d50975ba3023bc10be03ba6923a19eb3954060c",
-    "libraryDigest": "0b747d8a9e3f5f66f42d9eb603a59ef8b0dce7fcea04290d6d34a7506b12aeb3",
+    "libraryDigest": "8d97d4573dc3ea502727e9c74441281ccf76f2d3cd154bf95277b53204592e90",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3908,6 +3908,6 @@
     "authorityIdentity": "MRT-002-C01 coordinator",
     "rationale": "All 86 current-library relationships were reviewed. The four partial relationships match the central Research disposition and are approved for this broad character path.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "4f3db247f24cf37a450886a123189db8cc1d2600ab04edb93a8872206a7fb414"
+    "approvalDigest": "9368512947b1188ddd29bd43ab2e0aa6990b256989aa0e3b487ba6decfc53ccb"
   }
 }

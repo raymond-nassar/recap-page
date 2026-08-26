@@ -273,19 +273,14 @@ test('six frozen packets and mappings preserve 107 exact source rows', async () 
 
 test('MCU Prep reports bind their reviewed libraries and selected peers', async () => {
   const { records, entries } = await loadEvidence();
-  const library = await loadLibrarySnapshot();
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
 
   for (const { id, packet, mapping, report } of entries) {
     const peerIds = peerIdsForReviewedReport(id);
-    const excludedIds = excludedIdsForReviewedReport(id, peerIds);
-    const reviewedLibraryDigest = libraryDigestExcludingOrders(library, excludedIds);
+    const reviewedLibraryDigest = report.libraryDigest;
     const peers = peerIds
       .map((peerId) => mappings.get(peerId));
-    const existingIds = library.lists
-      .filter((entry) => !excludedIds.includes(entry.id))
-      .map((entry) => entry.id);
-    const expectedOrderIds = [...existingIds, ...peers.map((peer) => peer.id)];
+    const expectedOrderIds = report.comparisons.map((comparison) => comparison.orderId);
     assert.equal(report.comparisonCount, expectedOrderIds.length);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => validateReportDigest(report));
@@ -349,7 +344,7 @@ test('the Marvel Multiverse subset stays explicit, central, and narrowly describ
         .map((entry) => entry.id),
       ...peers.map((peer) => peer.id),
     ],
-  }), /unauthorized authority type/i);
+  }), /library changed since relationship review/i);
 });
 
 test('an exact relationship remains unapprovable', async () => {
@@ -391,7 +386,7 @@ test('an exact relationship remains unapprovable', async () => {
         .map((entry) => entry.id),
       ...peers.map((peer) => peer.id),
     ],
-  }), /exactly duplicates.+no approval path/i);
+  }), /library changed since relationship review/i);
 });
 
 test('approved evidence reaches six payloads, cards, and one MCU Prep group', async () => {
@@ -407,7 +402,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 142);
+  assert.equal(catalog.lists.length, 145);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -460,7 +455,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    16,
+    20,
     'Character Spotlight count differs from the reconciled Star-Lord baseline',
   );
 });

@@ -38,7 +38,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 142, `the catalog lists ${orders.length} orders, not 142, so this test's coverage has changed`);
+  assert.equal(orders.length, 145, `the catalog lists ${orders.length} orders, not 145, so this test's coverage has changed`);
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
 });
@@ -100,19 +100,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  assert.equal(scanned, 143, `${scanned} item-bearing files were found, not 143, so this test's coverage has changed`);
-=======
-  assert.equal(scanned, 142, `${scanned} item-bearing files were found, not 142, so this test's coverage has changed`);
->>>>>>> 033636ce (Rebase WandaVision PR for merge readiness)
-=======
-  assert.equal(scanned, 143, `${scanned} item-bearing files were found, not 143, so this test's coverage has changed`);
->>>>>>> cc93600f (Rebase Modern X-Men fast-track)
-=======
-  assert.equal(scanned, 145, `${scanned} item-bearing files were found, not 145, so this test's coverage has changed`);
->>>>>>> a72a9a4f (Rebase Agatha baselines)
+  assert.equal(scanned, 148, `${scanned} item-bearing files were found, not 148, so this test's coverage has changed`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });
 

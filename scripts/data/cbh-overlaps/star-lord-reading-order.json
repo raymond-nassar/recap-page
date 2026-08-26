@@ -2,22 +2,22 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "43989b1ec0dcac2b0082a33a8b7fc0576c5f6db424f57c85dcfd291c32bf085a",
+  "libraryDigest": "81c3b61d03b94dfdbf3fc01d78c77439b05b7a90a9ffc17860e347864ac2a7ab",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 99,
-  "comparisonCount": 141,
+  "comparisonCount": 137,
   "comparisons": [
     {
-      "orderId": "abomination-reading-order",
+      "orderId": "absolute-carnage",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
-      "orderId": "absolute-carnage",
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -30,12 +30,6 @@
     },
     {
       "orderId": "all-new-all-different-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -308,12 +302,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -749,12 +737,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -883,12 +865,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -919,5 +895,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "067f32612ec26658462b1d26fe838982c70d2adefd27ed1c6ffe4f6fcb56879f"
+  "reportDigest": "c4633cda1f1da5de4040c5ac7ce98adb05a97ea2627f798f44201031bac84f5c"
 }

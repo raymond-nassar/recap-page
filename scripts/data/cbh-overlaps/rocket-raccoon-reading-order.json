@@ -2,19 +2,19 @@
   "candidateId": "rocket-raccoon-reading-order",
   "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
   "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "e23bcf5faa08d772d68914862167ca6120baca47220d81287fed799b58f933ed",
+  "libraryDigest": "d5d86e61db2526f271944041784d5d5943ff43fe0985058c0d2ae1f1057d133b",
   "peerDigests": {},
   "candidateCount": 75,
-  "comparisonCount": 141,
+  "comparisonCount": 137,
   "comparisons": [
     {
-      "orderId": "abomination-reading-order",
+      "orderId": "absolute-carnage",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
-      "orderId": "absolute-carnage",
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -27,12 +27,6 @@
     },
     {
       "orderId": "all-new-all-different-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -321,12 +315,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -782,12 +770,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -927,12 +909,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -963,5 +939,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4858d81a960a5133f389a95b0c3b475568610913fb93bb3715de3d5147b9fbe4"
+  "reportDigest": "10bd3396acf1bfa44595e872a66ce73d752df6cc86baea3a6689c79fb137ecdf"
 }
