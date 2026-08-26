@@ -226,6 +226,7 @@ const laterMcuIds = [
   'spider-man-no-way-home',
   'marvel-multiverse',
   'marvel-what-if',
+  'wandavision',
   'spider-man-far-from-home',
 ];
 const laterCbhIds = [

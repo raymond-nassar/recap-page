@@ -51,6 +51,17 @@ For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: In
 intentional because those events remain complete event guides, while Destiny of X and Fall of X are
 broader Krakoa continuations rather than Hickman creator-run rows.
 
+### Added WandaVision to MCU Prep
+
+In plain English: WandaVision now has its own MCU Prep reading guide. It adds the exact Scarlet
+Witch and Vision issues named by the source, and nothing you have saved is changed.
+
+For maintainers: WandaVision ships 56 issue rows, preserves three collection or run headings as
+explicit exclusions, and records four centrally approved partial overlaps. The maintained MCU Prep
+inventory now records six shipped guides, four ranked follow-ups, and four blocked entries. The
+later Avengers character-picks guide is no longer blocked on Hawkeye (2012) #23; that source-list
+error is recorded to omit in its later mapping instead.
+
 ### Added Spider-Man: Far From Home to MCU Prep
 
 In plain English: MCU Prep now includes a Spider-Man: Far From Home guide with eight issue-specific
