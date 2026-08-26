@@ -107,11 +107,19 @@ test('the MCU companion inventory preserves all fourteen user priorities and ter
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'follow-up')
       .map((record) => record.followUpRank),
-    [1, 2, 3, 4, 5, 6],
+    [2, 4, 5, 6],
   );
   assert.equal(
     inventory.records.filter((record) => record.centralDisposition === 'blocked').length,
-    4,
+    6,
+  );
+  assert.match(
+    inventory.records.find((record) => record.id === 'wandavision').reason,
+    /West Coast Avengers #42-45 and #47.+missing/i,
+  );
+  assert.match(
+    inventory.records.find((record) => record.id === 'avengers-endgame-character-picks').reason,
+    /Hawkeye \(2012\) #23.+series 16309.+#22/i,
   );
   assert.equal(
     inventory.records.find((record) => record.id === 'spider-man-far-from-home').wordpressId,
