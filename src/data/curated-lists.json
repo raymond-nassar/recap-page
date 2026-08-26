@@ -4162,6 +4162,35 @@
       "coverIssueId": 2453
     },
     {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "amazing-spider-man-reading-order-modern-marvel-era.md",
+      "sourcePage": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "expect": 2043,
+      "timeline": 1962,
+      "coverIssueId": 16926
+    },
+    {
       "id": "silent-war",
       "name": "Silent War",
       "description": "The six-issue conflict between the Inhumans and the United States after Son of M.",

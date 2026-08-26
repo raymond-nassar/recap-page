@@ -14,6 +14,27 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the Amazing Spider-Man complete reading order
+
+In plain English: There is now a single reading list that carries Amazing Spider-Man from the
+character's first appearance through the present day, following one guide's own path across every
+renumbering, relaunch, and companion title along the way, bringing the catalog to 138 reading
+lists. Nothing you have saved is changed.
+
+Most of the guide's 2,043 named issues, 1,937 of them, resolve to an exact Marvel issue. The
+remaining 106 are references the guide names that could not be matched to a single Marvel-metadata
+issue: a wall calendar, a text recap page, a handful of one-shots and ongoing issues the metadata
+service itself does not carry. None are invented; each ships as a plain checklist row with no link,
+and all 106 are tracked for follow-up research in a linked GitHub issue.
+
+For maintainers: this order is compiled by hand from Comic Book Herald's Amazing Spider-Man reading
+order, in the same manner as the existing Best of Spider-Man reading, rather than through the
+frozen-packet pipeline. Amazing Spider-Man's own numbering restarts seven times across its
+publication history (1963, 1999, 2014, 2017, 2018, 2022, 2025), and Superior Spider-Man's twice
+(2013, 2018), so a source block position rather than the source's own year label was used to
+resolve which volume a bare issue number belongs to wherever the two disagree. It overlaps 32 other
+catalog entries, most heavily the Best of Spider-Man reading at 209 shared issues.
+
 ### Added the opening Ultimate Marvel Universe guide
 
 In plain English: The first original Ultimate Marvel Universe reading guide is now available. It
