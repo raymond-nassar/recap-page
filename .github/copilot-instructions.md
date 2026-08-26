@@ -424,10 +424,11 @@ later. Refusals are a backstop, not a design.
   because the technical sections were making that harder rather than easier.
 - Update `CHANGELOG.md` under `## Unreleased` only for user-visible behavior or a release-relevant
   maintainer change. Internal execution records and editorial-only maintenance do not need an entry.
-- Update the canonical backlog item only when its scope, acceptance criteria, readiness or delivery
-  state changes. Do not copy phase narration into it, and do not edit unrelated backlog items.
+- Do not edit `PRODUCT_BACKLOG.md`; it is a frozen historical snapshot. Active scope, acceptance
+  criteria, readiness, priority and delivery state belong in the repository Issue, planning Project
+  and linked pull request, as `GOVERNANCE.md` defines.
 - Agent and contributor instructions change how work is done, not the product. They need neither a
-  backlog update nor a changelog entry unless they alter release-relevant maintainer behavior.
+  Project update nor a changelog entry unless they alter release-relevant maintainer behavior.
 
 Plain English means a specific thing here, not a shortened copy of the technical summary:
 
