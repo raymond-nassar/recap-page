@@ -1216,6 +1216,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       abominationCandidateId,
       modernXMenCandidateId,
       'agents-of-atlas-reading-order',
+      ironManCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
