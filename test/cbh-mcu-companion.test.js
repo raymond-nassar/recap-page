@@ -89,6 +89,7 @@ const frozenExcludedIds = [
   ...CBRO_BATCH_SEVEN_SELECTED_IDS,
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   ...CBRO_BATCH_NINE_SELECTED_IDS,
+  'agents-of-atlas-reading-order',
   'hickman-x-men',
   'modern-x-men-fast-track',
   'ant-man-reading-order',
@@ -96,6 +97,8 @@ const frozenExcludedIds = [
   'x-men-utopia',
   'x-men-messiah-to-avx',
   'amazing-spider-man-reading-order-modern-marvel-era',
+  'abomination-reading-order',
+  'iron-man-reading-order',
 ];
 
 function peerIdsForReviewedReport(id) {
@@ -111,11 +114,14 @@ function excludedIdsForReviewedReport(id, peerIds) {
       ...peerIds,
       'spider-man-far-from-home',
       'ant-man-reading-order',
+      'agents-of-atlas-reading-order',
       'hickman-x-men',
       'ultimate-marvel-intro',
       'x-men-utopia',
       'modern-x-men-fast-track',
       'amazing-spider-man-reading-order-modern-marvel-era',
+      'abomination-reading-order',
+      'iron-man-reading-order',
     ];
   }
   return frozenExcludedIds;
@@ -408,7 +414,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 142);
+  assert.equal(catalog.lists.length, 145);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -461,7 +467,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    17,
+    20,
     'Character Spotlight count differs from the reconciled Star-Lord baseline',
   );
 });

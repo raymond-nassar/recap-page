@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T11:09:49.937Z",
+  "generatedAt": "2026-08-26T14:21:03.728Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2095,6 +2095,47 @@
       "updatedAt": "2026-08-26T05:16:35.956Z"
     },
     {
+      "id": "agents-of-atlas-reading-order",
+      "file": "agents_of_atlas_reading_order.json",
+      "name": "Agents of Atlas",
+      "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 80,
+      "collections": 0,
+      "characters": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "Namora",
+        "Marvel Boy",
+        "Gorilla-Man",
+        "M-11",
+        "What If?"
+      ],
+      "keywords": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "What If?",
+        "Jeff Parker",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 4801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56b216e07bc79",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T09:49:42.158Z"
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "file": "white_tiger_ava_ayala.json",
       "name": "White Tiger: Ava Ayala",
@@ -2253,6 +2294,40 @@
       "updatedAt": "2026-08-23T20:43:34.162Z"
     },
     {
+      "id": "abomination-reading-order",
+      "file": "abomination_reading_order.json",
+      "name": "Abomination",
+      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 127,
+      "collections": 0,
+      "characters": [
+        "Abomination",
+        "Hulk"
+      ],
+      "keywords": [
+        "Abomination",
+        "Hulk",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 11427,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/536d4ab702ac1",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/abomination-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T07:11:31.019Z"
+    },
+    {
       "id": "groot-reading-order",
       "file": "groot_reading_order.json",
       "name": "Groot",
@@ -2327,6 +2402,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-24T01:05:06.004Z"
+    },
+    {
+      "id": "iron-man-reading-order",
+      "file": "iron_man_reading_order.json",
+      "name": "Iron Man",
+      "description": "Tony Stark's Iron Man path from Tales of Suspense through the modern Invincible Iron Man, Tony Stark: Iron Man, and Iron Man (2020) runs, following the source's character-only cuts through broader collections.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 811,
+      "collections": 0,
+      "characters": [
+        "Iron Man",
+        "Tony Stark",
+        "War Machine",
+        "Ironheart",
+        "Riri Williams"
+      ],
+      "keywords": [
+        "Iron Man",
+        "Tony Stark",
+        "War Machine",
+        "Ironheart",
+        "Armor Wars",
+        "Extremis",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/iron-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T08:33:32.614Z"
     },
     {
       "id": "modern-x-men-fast-track",

@@ -2,13 +2,13 @@
   "candidateId": "fatal-attractions",
   "packetDigest": "2f52914f5c42ab4c8459064bdafac5f932b7f628f00fbae37e1b16f409016bbb",
   "mappingDigest": "30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9",
-  "libraryDigest": "3ffe78610ec811180156e08fabd8b4dff9ba978e68f781eba67a9058ab7d9dc7",
+  "libraryDigest": "6afc8bc4144d036983b2b38d6836d0e4a4ae62f27521172073371628d1f8ff85",
   "peerDigests": {
     "mys-tech-wars": "1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306",
     "x-cutioners-song": "0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582"
   },
   "candidateCount": 6,
-  "comparisonCount": 127,
+  "comparisonCount": 134,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -36,6 +36,12 @@
     },
     {
       "orderId": "annihilation-conquest",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -287,6 +293,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hunt-for-xavier",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "inferno",
       "sharedCount": 0,
       "sharedIds": [],
@@ -342,6 +354,12 @@
     },
     {
       "orderId": "last-annihilation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -455,7 +473,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "operation-zero-tolerance",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "original-clone-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phalanx-covenant",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -581,6 +611,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-identity-crisis",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-man-no-way-home",
       "sharedCount": 0,
       "sharedIds": [],
@@ -624,6 +660,12 @@
     },
     {
       "orderId": "thor-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "time-and-time-again",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -773,5 +815,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "f3703ca29a565f7358c53387d664b52fd1601d2fbb4177c516a0cd0f3ca1d48b"
+  "reportDigest": "2f24f451530c5d2b47c45250b076a4fae21d7cee94e129bcf3413f86262e8ee8"
 }

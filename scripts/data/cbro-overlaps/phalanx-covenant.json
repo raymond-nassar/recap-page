@@ -2,14 +2,14 @@
   "candidateId": "phalanx-covenant",
   "packetDigest": "a5114c1e6b5485449c95721d1534e89397562ef4946c6adfdf416987659f1d03",
   "mappingDigest": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
-  "libraryDigest": "b79d04e15c042c5af7b5c0c909ef413bc8ea0de75d32e74e28fd358192ebe441",
+  "libraryDigest": "e81bb4161537d20baabd7aa93a880eb42295655c6091312d56f79c8a6327c8d2",
   "peerDigests": {
     "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
     "spider-man-identity-crisis": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
     "time-and-time-again": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4"
   },
   "candidateCount": 9,
-  "comparisonCount": 131,
+  "comparisonCount": 134,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -37,6 +37,12 @@
     },
     {
       "orderId": "annihilation-conquest",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -294,6 +300,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hunt-for-xavier",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "inferno",
       "sharedCount": 0,
       "sharedIds": [],
@@ -349,6 +361,12 @@
     },
     {
       "orderId": "last-annihilation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -808,5 +826,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "2243a459bc9cac33239082b63094d1a00fb50001226c4625e84f1996edce4ac9"
+  "reportDigest": "b32963582a4518d033c68f22e31f49bebb1a23a3602fae6fe3dc2b56d61c96f9"
 }

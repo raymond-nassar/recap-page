@@ -1803,6 +1803,42 @@
       "coverIssueId": 74028
     },
     {
+      "id": "agents-of-atlas-reading-order",
+      "name": "Agents of Atlas",
+      "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "agents-of-atlas-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "agents_of_atlas_reading_order.json",
+      "characters": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "Namora",
+        "Marvel Boy",
+        "Gorilla-Man",
+        "M-11",
+        "What If?"
+      ],
+      "keywords": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "What If?",
+        "Jeff Parker",
+        "Comic Book Herald"
+      ],
+      "expect": 80,
+      "timeline": null,
+      "coverIssueId": 4801
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
@@ -1941,6 +1977,35 @@
       "coverIssueId": 11353
     },
     {
+      "id": "abomination-reading-order",
+      "name": "Abomination",
+      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "abomination-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/abomination-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "abomination_reading_order.json",
+      "characters": [
+        "Abomination",
+        "Hulk"
+      ],
+      "keywords": [
+        "Abomination",
+        "Hulk",
+        "Comic Book Herald"
+      ],
+      "expect": 127,
+      "timeline": null,
+      "coverIssueId": 11427
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",
@@ -2005,6 +2070,42 @@
       "expect": 99,
       "timeline": null,
       "coverIssueId": 19776
+    },
+    {
+      "id": "iron-man-reading-order",
+      "name": "Iron Man",
+      "description": "Tony Stark's Iron Man path from Tales of Suspense through the modern Invincible Iron Man, Tony Stark: Iron Man, and Iron Man (2020) runs, following the source's character-only cuts through broader collections.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "iron-man-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/iron-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "iron_man_reading_order.json",
+      "characters": [
+        "Iron Man",
+        "Tony Stark",
+        "War Machine",
+        "Ironheart",
+        "Riri Williams"
+      ],
+      "keywords": [
+        "Iron Man",
+        "Tony Stark",
+        "War Machine",
+        "Ironheart",
+        "Armor Wars",
+        "Extremis",
+        "Comic Book Herald"
+      ],
+      "expect": 811,
+      "timeline": null,
+      "coverIssueId": 11280
     },
     {
       "id": "modern-x-men-fast-track",

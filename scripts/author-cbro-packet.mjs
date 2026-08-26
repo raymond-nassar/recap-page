@@ -19,6 +19,7 @@ import {
   CBRO_AUTHOR_IDS as CBRO_ORIGINAL_AUTHOR_IDS,
   CBRO_RELEASE_IDS,
   CBRO_RELEASES,
+  CBH_LATER_ORDER_IDS,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
   cbroRelationshipDecisionFor,
@@ -40,6 +41,11 @@ const ORDERS_DIR = path.join(ROOT, 'src', 'data', 'orders');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const APPROVE_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-approve-transaction.json');
 const AUTHOR_JOURNAL = path.join(ROOT, 'scripts', 'data', '.cbro-author-transaction.json');
+const CBH_LATER_MCU_COMPANION_IDS = Object.freeze([
+  'wandavision',
+  'spider-man-far-from-home',
+  'modern-x-men-fast-track',
+]);
 
 export const CBRO_AUTHOR_IDS = CBRO_ORIGINAL_AUTHOR_IDS;
 
@@ -165,7 +171,9 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
   const reports = [];
   for (const id of ids) {
     const peerPaths = ids.filter((peerId) => peerId !== id).map((peerId) => mappingPaths[peerId]);
-    const report = await buildReportForMapping(mappingPaths[id], peerPaths);
+    const report = await buildReportForMapping(mappingPaths[id], peerPaths, {
+      excludedOrderIds: [...CBH_LATER_ORDER_IDS, ...CBH_LATER_MCU_COMPANION_IDS],
+    });
     const nonNone = report.comparisons.filter((comparison) => (
       !isApprovedCbroRelationship(id, comparison)
     ));
