@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "ac66a75d25d9a9d74c5d709838567cb6ddab886a9420256455afbb60dab5c92d",
+    "reportDigest": "4858d81a960a5133f389a95b0c3b475568610913fb93bb3715de3d5147b9fbe4",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "4d90fca8c401ed21b06032f24d7bb62773bb0ad4598417a60c8d154b375e2e75",
+    "libraryDigest": "e23bcf5faa08d772d68914862167ca6120baca47220d81287fed799b58f933ed",
     "peerDigests": {},
     "dispositions": [
       {
@@ -2900,6 +2900,15 @@
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23"
@@ -3508,6 +3517,15 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "monsters-unleashed",
         "relationship": "none",
         "decision": "approved",
@@ -3778,6 +3796,15 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "spider-man-identity-crisis",
         "relationship": "none",
         "decision": "approved",
@@ -3883,6 +3910,15 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "10 shared issues were reviewed; both source sequences remain intact.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-23"
       },
       {
@@ -4106,6 +4142,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "069c772e438e0a6a5aff54931a2badbd7c1a3a272fcc12c261a783527ef29b61"
+    "approvalDigest": "a97fbc4a4c63a9dbc9720e4c3a8bb3f617ffae65e0dc97fdb696b0054022a40c"
   }
 }

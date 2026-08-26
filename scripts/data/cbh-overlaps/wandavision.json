@@ -1,16 +1,16 @@
 {
-  "candidateId": "marvel-what-if",
-  "packetDigest": "750e957f3b81c3b4a51d0d17eae8e8adc79b8fc2154e7d18014c1b913e810d9e",
-  "mappingDigest": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-  "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
+  "candidateId": "wandavision",
+  "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
+  "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
+  "libraryDigest": "95826fce84e1f1651d9c4b81ca5fba47555f19089210d07b1c15ed56f318462b",
   "peerDigests": {
     "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
     "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-    "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
+    "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
     "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
   },
-  "candidateCount": 7,
-  "comparisonCount": 101,
+  "candidateCount": 56,
+  "comparisonCount": 134,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -44,6 +44,18 @@
     },
     {
       "orderId": "apocalypse-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "atlantis-attacks",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "avengers-defenders-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -115,7 +127,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "contest-of-champions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "damnation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dark-phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -128,6 +152,24 @@
     },
     {
       "orderId": "dark-web",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "days-of-future-past",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "days-of-future-present",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dead-mans-hand",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -170,12 +212,34 @@
     },
     {
       "orderId": "essential-avengers",
+      "sharedCount": 3,
+      "sharedIds": [
+        "7047",
+        "7048",
+        "7049"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "evolutionary-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
       "orderId": "fall-house-x-rise-powers-x",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fall-of-the-mutants",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fatal-attractions",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -235,6 +299,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "hunt-for-xavier",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "inferno",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "infinite-destinies",
       "sharedCount": 0,
       "sharedIds": [],
@@ -271,19 +347,60 @@
       "relationship": "none"
     },
     {
+      "orderId": "kravens-last-hunt",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "kree-skrull-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "last-annihilation",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
-      "orderId": "marvel-fresh-start-avengers",
+      "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
+      "orderId": "marvel-fresh-start-avengers",
+      "sharedCount": 10,
+      "sharedIds": [
+        "71433",
+        "71435",
+        "71436",
+        "71437",
+        "71438",
+        "71439",
+        "71440",
+        "71441",
+        "71442",
+        "71987"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "marvel-multiverse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-super-heroes-secret-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-what-if",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -337,6 +454,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "mutant-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mys-tech-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -355,7 +484,37 @@
       "relationship": "none"
     },
     {
+      "orderId": "operation-galactic-storm",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "operation-zero-tolerance",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "original-clone-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phalanx-covenant",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "phalanx-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -373,22 +532,63 @@
       "relationship": "none"
     },
     {
+      "orderId": "reed-richards-and-sue-storms-wedding",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "revolutionary-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
-      "orderId": "rocket-raccoon-reading-order",
+      "orderId": "rise-of-the-midnight-sons",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
+      "orderId": "rocket-raccoon-reading-order",
+      "sharedCount": 10,
+      "sharedIds": [
+        "71433",
+        "71435",
+        "71436",
+        "71437",
+        "71438",
+        "71439",
+        "71440",
+        "71441",
+        "71442",
+        "71987"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "scarlet-witch-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 17,
+      "sharedIds": [
+        "11954",
+        "11955",
+        "11956",
+        "11957",
+        "7047",
+        "7048",
+        "7049",
+        "71433",
+        "71435",
+        "71436",
+        "71437",
+        "71438",
+        "71439",
+        "71440",
+        "71441",
+        "71442",
+        "71987"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "second-coming",
@@ -410,6 +610,12 @@
     },
     {
       "orderId": "secret-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-wars-ii",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -451,7 +657,7 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-far-from-home",
+      "orderId": "spider-man-identity-crisis",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -487,7 +693,25 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-night-gwen-stacy-died",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "time-and-time-again",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -524,6 +748,18 @@
     },
     {
       "orderId": "world-war-hulk-aftersmash",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "wraith-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-cutioners-song",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -607,6 +843,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "x-tinction-agenda",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "xmen-claremont",
       "sharedCount": 0,
       "sharedIds": [],
@@ -619,5 +861,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "46bb2c11145c1fa109983ae70208ae6d426ca9e448e683a060d05c40a4325b41"
+  "reportDigest": "937acd0fbc89ff0a6e2eab961566e751d07d5beb2410e6a5a3bf783015ba925f"
 }

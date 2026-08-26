@@ -45,15 +45,18 @@ boundary, delivery state, overlap ids, and follow-up or blocker for every user-s
 
 The first release publishes the first four priorities as 43 exact rows: 17 for Doctor Strange:
 Multiverse of Madness, 17 for Spider-Man: No Way Home, 2 for Marvel Multiverse, and 7 for Marvel
-What If?. The card type is `screen-companion` and the reading depth is `selected`; both describe the
-project-authored product surface rather than a field copied from the source. All four use
-`timeline: null` because their selected issues span decades, and `beginner: false` so a two-issue
-subset does not become the featured starting point.
+What If?. The second release adds Spider-Man: Far From Home as 8 exact rows. The card type is
+`screen-companion` and the reading depth is `selected`; both describe the project-authored product
+surface rather than a field copied from the source. All five use `timeline: null` because their
+selected issues span decades, and `beginner: false` so a two-issue subset does not become the
+featured starting point.
 
-Collection-only recommendations, contextual issue mentions, and explicitly declined
-recommendations remain named exclusions. The two Marvel Multiverse issues are centrally approved
-candidate-subsets of both Claremont paths, not exact duplicates. No source commentary, branding,
-layout, movie imagery, or comic image bytes are copied.
+Collection-only recommendations, unnumbered picks, contextual issue mentions, and explicitly
+declined recommendations remain named exclusions. The two Marvel Multiverse issues are centrally
+approved candidate-subsets of both Claremont paths, and five Far From Home rows are centrally
+approved as a partial overlap with the existing Spider-Man best-of path. Neither relationship is an
+exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
+copied.
 
 ## Historical Comic Book Reading Orders intake
 
@@ -291,14 +294,25 @@ refuses all ten of the old prose values by construction rather than by anyone re
 check. The shape test is the point. An enumeration of permitted identifiers would be one more
 list somebody has to keep complete.
 
-The current Character Spotlight shelf has fourteen readings across thirteen stories. Five readings are
-explicit Best of selections, five are complete guides, and four are `other`. The two X-Men readings
-share one story and one classification. The Doom primer and Essential Avengers remain under All
-rather than acquiring a claim their source boundaries do not support.
+The current Character Spotlight shelf has fifteen readings across thirteen stories. Five readings are
+explicit Best of selections, six are complete guides, and four are `other`. The two X-Men readings
+share one story and one classification; the Amazing Spider-Man complete guide and the Best of
+Spider-Man reading share a second story, distinct classifications. The Doom primer and Essential
+Avengers remain under All rather than acquiring a claim their source boundaries do not support.
 
 Groot's Complete guide preserves all 76 issues in its reviewed source order. Its 41 shared issues
 with Rocket Raccoon and 25 with Star-Lord are partial relationships between separately sourced
 guides, not permission to merge a card or shorten a sequence.
+
+The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
+shares a story with, rather than carried through the frozen-packet pipeline the six other complete
+guides use: it is not derived from Marvel metadata and cannot be checked against it, only the issue
+ids and titles come from Marvel, by resolving each issue the source guide names. Of 2,043
+source-defined rows, 1,937 resolve to an exact Marvel issue; the remaining 106 ship as explicit
+plain-text placeholders, never an invented identity, and are tracked for follow-up research in a
+linked GitHub issue. It overlaps 32 other catalog entries, the largest being 209 shared issues with
+the Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
+Spider-Verse orders.
 
 Some source guides name one comic in more than one collected range. The frozen packet preserves that
 fact without turning it into a second reading step. Its canonical rows contain each distinct comic

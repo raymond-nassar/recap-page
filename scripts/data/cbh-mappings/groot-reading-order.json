@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "6151f69d2c1c38fa25e66a825dbd5ff67cd45001c596e6cfb49d7d1cde5406e5",
+    "reportDigest": "5b0c749ea174e7a8c2e0ae2f36685be5d1924ad2455d5daa3886dc5267dc8452",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "4050121ce2c0fa6b5a8829e646b1b346d073c55d9f6519e52a4e7a4450b846d3",
+    "libraryDigest": "6eec8210d29184db4a08575a3793a286d155f7cc1b3cb30bef7a344d6721145b",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3011,6 +3011,15 @@
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23"
@@ -3610,6 +3619,15 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "monsters-unleashed",
         "relationship": "none",
         "decision": "approved",
@@ -3889,6 +3907,15 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "spider-man-identity-crisis",
         "relationship": "none",
         "decision": "approved",
@@ -3992,6 +4019,15 @@
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23"
@@ -4217,6 +4253,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "d4cee84b6b6cb03298967b44f70128e559952fc5c0afae72724d08f1fa56d9c3"
+    "approvalDigest": "0eb2c63d89ca50cf968ebb7ea4447b6f11f46a2330d7a3859af12d4ba8e82a91"
   }
 }

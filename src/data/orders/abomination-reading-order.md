@@ -2,7 +2,7 @@
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen abomination-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
-No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata after the packet resolution and overlap gates passed.
+No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
 - [ ] [Tales to Astonish (1959) #80](https://www.marvel.com/comics/issue/11427/tales_to_astonish_1959_80)
