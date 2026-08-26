@@ -227,6 +227,13 @@ export function buildMarkdown(mapping) {
   const manifest = manifestEntryForMapping(mapping);
   selectedIssueIds(mapping);
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
+  const rowsBySourcePosition = new Map(mapping.rows.map((row) => [row.sourcePosition, {
+    kind: 'exact',
+    value: row,
+  }]));
+  for (const gap of mapping.sourceGaps ?? []) {
+    rowsBySourcePosition.set(gap.sourcePosition, { kind: 'gap', value: gap });
+  }
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
     `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
@@ -236,9 +243,14 @@ export function buildMarkdown(mapping) {
     'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
   ].join('\n');
-  const checklist = mapping.rows.map((row) => (
-    `- [ ] [${escapeLinkText(checklistTitleForRow(row))}](${row.marvelIssueUrl})`
-  ));
+  const checklist = [...rowsBySourcePosition.entries()]
+    .sort(([left], [right]) => left - right)
+    .map(([, entry]) => {
+      if (entry.kind === 'exact') {
+        return `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`;
+      }
+      return `- [ ] ${escapeLinkText(entry.value.sourceIssueReference).replace(/[\u2013\u2014]/g, '-')}`;
+    });
   return `# ${manifest.name}: Issue-by-Issue Reading Checklist\n\n${trail}\n\n${checklist.join('\n')}\n`;
 }
 

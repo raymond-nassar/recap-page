@@ -75,6 +75,7 @@ export const CBRO_BATCH_NINE_UNTOUCHED_INVENTORY_SHA256 =
 export const CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256 =
   '486e8e72c2cbe226e17780a0bb4c9c3ab93b4a059eff7e234e02015d271cc5ff';
 export const CBH_LATER_ORDER_IDS = Object.freeze([
+  'wolverine-reading-order',
   'hickman-x-men',
   'ultimate-marvel-intro',
   'x-men-utopia',

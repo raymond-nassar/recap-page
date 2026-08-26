@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "4e19120db3da7e77366fa8deb7c1def52e0b7bb8ff016bd120d9edd0cc0598bd",
+    "reportDigest": "3dc96f6675cc0d181cc7b81404dceaf7e1ac59d1f2727b6274f5c7e1d244eb3f",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "d40a930551aafff0bc2a60abf99eb648d6eb35f1225d646ad6f8aac0b5fa2489",
+    "libraryDigest": "61fb224ec5658c2d14edaac8855d70b61471f6af193cd5472ab2c67ddc4fba8e",
     "peerDigests": {},
     "dispositions": [
       {
@@ -4338,6 +4338,15 @@
         "sharedIds": []
       },
       {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "world-war-hulk-aftersmash",
         "relationship": "none",
         "decision": "approved",
@@ -4562,6 +4571,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "0b780d2e2c0bc4b1e88fbb587e6f46fb27f0a65742c612e63588664a6c7ffbed"
+    "approvalDigest": "7e8fb0700628c71d44d53efb107c60a32ebceb4a8c0878cc210c3a381644d238"
   }
 }

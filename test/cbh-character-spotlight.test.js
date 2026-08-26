@@ -27,7 +27,7 @@ const ironManCandidateId = 'iron-man-reading-order';
 const starLordCandidateId = 'star-lord-reading-order';
 const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics-timeline';
 const modernXMenCandidateId = 'modern-x-men-fast-track';
-const laterCharacterIds = ['ant-man-reading-order', 'agatha-harkness-reading-order', modernXMenCandidateId];
+const laterCharacterIds = ['ant-man-reading-order', 'agatha-harkness-reading-order', 'wolverine-reading-order', modernXMenCandidateId];
 const characterCandidateIds = [
   abominationCandidateId,
   grootCandidateId,
@@ -334,7 +334,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships ten spotlights', async () => {
+test('the character inventory preserves every central disposition and ships eleven spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -347,8 +347,8 @@ test('the character inventory preserves every central disposition and ships ten 
   }, {});
   assert.equal(dispositionCounts.deferred, 108);
   assert.equal(dispositionCounts.excluded, 7);
-  assert.equal(dispositionCounts.blocked, 2);
-  assert.equal(dispositionCounts['pilot-approved'], 11);
+  assert.equal(dispositionCounts.blocked, 1);
+  assert.equal(dispositionCounts['pilot-approved'], 12);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -363,6 +363,7 @@ test('the character inventory preserves every central disposition and ships ten 
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
     'white-tiger-ava-ayala',
+    'wolverine-reading-order',
   ]);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get(abominationCandidateId).catalogIds, [abominationCandidateId]);
@@ -692,11 +693,11 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
-  assert.equal(reviewedLibraryDigest, 'd40a930551aafff0bc2a60abf99eb648d6eb35f1225d646ad6f8aac0b5fa2489');
-  assert.equal(report.reportDigest, '4e19120db3da7e77366fa8deb7c1def52e0b7bb8ff016bd120d9edd0cc0598bd');
+  assert.equal(reviewedLibraryDigest, '61fb224ec5658c2d14edaac8855d70b61471f6af193cd5472ab2c67ddc4fba8e');
+  assert.equal(report.reportDigest, '3dc96f6675cc0d181cc7b81404dceaf7e1ac59d1f2727b6274f5c7e1d244eb3f');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '0b780d2e2c0bc4b1e88fbb587e6f46fb27f0a65742c612e63588664a6c7ffbed',
+    '7e8fb0700628c71d44d53efb107c60a32ebceb4a8c0878cc210c3a381644d238',
   );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(regeneratedReport.comparisons, report.comparisons);
@@ -718,8 +719,8 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assertRocketSourceBoundary(packet);
   assert.equal(mapping.rows.length, 75);
   assert.equal(report.candidateCount, 75);
-  assert.equal(report.comparisonCount, 143);
-  assert.equal(mapping.relationshipReview.dispositions.length, 143);
+  assert.equal(report.comparisonCount, 144);
+  assert.equal(mapping.relationshipReview.dispositions.length, 144);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 75);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -841,11 +842,11 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
   assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
-  assert.equal(reviewedLibraryDigest, '419a88f2cb38e214628551e069f2fc7d7c465a9d09f9648d739e4e3765c37b54');
-  assert.equal(report.reportDigest, '4d16a40a2e0c7216c90bd74e109b9455c72c74da07e63e792217cb6806210ce0');
+  assert.equal(reviewedLibraryDigest, '476bf70c7443ecaefd0ac497ee23d092b6ba6acee8a0cfb4be0256512fb8917f');
+  assert.equal(report.reportDigest, '825c0ac22b0ceb245aef4a67dfb083eb21536bddd34f57cf13b9a6809c3c16f0');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '59ee10bc2a50c2c28dc82c23485307de1c5d29df8e5c9c66d963944390e40ea8',
+    'ae220b4c1e93a51b89552bf0fae31feff9679ebe812ed8e7298b54819aaf6fb9',
   );
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
@@ -870,8 +871,8 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   assertGrootSourceBoundary(packet);
   assert.equal(mapping.rows.length, 76);
   assert.equal(report.candidateCount, 76);
-  assert.equal(report.comparisonCount, 143);
-  assert.equal(mapping.relationshipReview.dispositions.length, 143);
+  assert.equal(report.comparisonCount, 144);
+  assert.equal(mapping.relationshipReview.dispositions.length, 144);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 76);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.equal(mapping.approvedSourceCount, 84);
@@ -1001,11 +1002,11 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
   assert.equal(mapping.mappingDigest, '731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da');
-  assert.equal(reviewedLibraryDigest, '9a604a418983603eb3b192d75c131870b1aafbafd73e6e88aa397903e4fdf9a6');
-  assert.equal(report.reportDigest, '656a0973d14e3d057b3771cee8478847e59c23f2fd50123d39f59fec05658513');
+  assert.equal(reviewedLibraryDigest, '331b1b1bd21f837ae03cb1f910a8f606d194e0e9db112f3ddcbead74e7faccc2');
+  assert.equal(report.reportDigest, '51a0baac13ada042746af365340743ae476e851aa88a8de6d4c72ff8e3f77835');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '562078453d7563bc61924e9d744336fda88bcbae377cff6c8a98efc7facd24cb',
+    'a9e0caa785d19a2f77c2bde913fb4b4dc1feb6d4abb09b6a29ce4527dea21fac',
   );
   assert.deepEqual(report.peerDigests, {
     [grootCandidateId]: '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523',
@@ -1031,8 +1032,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assertStarLordSourceBoundary(packet);
   assert.equal(mapping.rows.length, 99);
   assert.equal(report.candidateCount, 99);
-  assert.equal(report.comparisonCount, 143);
-  assert.equal(mapping.relationshipReview.dispositions.length, 143);
+  assert.equal(report.comparisonCount, 144);
+  assert.equal(mapping.relationshipReview.dispositions.length, 144);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 99);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -1063,7 +1064,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     { orderId: cosmicCandidateId, relationship: 'partial', sharedCount: 25 },
     { orderId: 'war-of-kings', relationship: 'partial', sharedCount: 7 },
   ]);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 139);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 140);
 
   const starLordIds = new Set(mapping.rows.map((row) => String(row.selectedIssueId)));
   for (const peerMapping of [rocketMapping, grootMapping]) {
@@ -1110,7 +1111,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex - 1].id, grootCandidateId);
   assert.equal(manifest.lists[starLordIndex + 1].id, 'thanos-reading-order');
   assert.equal(manifest.lists[starLordIndex + 2].id, 'ant-man-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 3].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 3].id, 'wolverine-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 4].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -1227,12 +1229,12 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.sourceIssueBearingBlocksSha256, 'f0c54ad986cc4b07f06cc0345d3d909d4e95e2926b2e69aebf8b077c9672c9b5');
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
-  assert.equal(report.reportDigest, '1d61e8dce8c7bce247e853144a3621bd39443cc00ddfdabd2e41e5b85466e617');
-  assert.equal(reviewedLibraryDigest, '8cd2803280bbe187442a885ac0aaa194d9b463a6bdcf10db4cff06bc4fd14842');
+  assert.equal(report.reportDigest, '242ea6b651d9522bf21cd08c57db3a3944f93a70dc1afd5d66ca53077acd546c');
+  assert.equal(reviewedLibraryDigest, '3771fd07c1ca92175d8a9b6d72a159bca4b5e9e96048a516215438983afef684');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    'd4fc927a58d8e117dc97a4e4f5028e8f2f4fb7e2c8bf69d9dc8f75ad9d37157c',
+    '8f4b90cc2999fe99d3674a0d51beb030e4886d576184dbbe2c0cef421d936e85',
   );
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
@@ -1259,8 +1261,8 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.rows.length, 278);
   assert.equal(mapping.rows.length, 278);
   assert.equal(report.candidateCount, 278);
-  assert.equal(report.comparisonCount, 143);
-  assert.equal(mapping.relationshipReview.dispositions.length, 143);
+  assert.equal(report.comparisonCount, 144);
+  assert.equal(mapping.relationshipReview.dispositions.length, 144);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 278);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -1303,6 +1305,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       { orderId: 'marvels-best-phoenix-comics', relationship: 'partial', sharedCount: 9 },
       { orderId: 'messiah-war', relationship: 'existing-subset', sharedCount: 10 },
       { orderId: 'second-coming', relationship: 'existing-subset', sharedCount: 23 },
+      { orderId: 'wolverine-reading-order', relationship: 'partial', sharedCount: 134 },
       { orderId: 'x-men-age-of-x', relationship: 'partial', sharedCount: 9 },
       { orderId: 'x-men-battle-of-the-atom', relationship: 'existing-subset', sharedCount: 10 },
       { orderId: 'x-men-curse-of-the-mutants', relationship: 'partial', sharedCount: 6 },
@@ -1425,8 +1428,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 145);
+  assert.equal(catalog.lists.length, 146);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 20);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 19);
+  assert.equal(characterRuns.length, 21);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 20);
 });

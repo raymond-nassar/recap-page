@@ -1,0 +1,1230 @@
+# Wolverine: Issue-by-Issue Reading Checklist
+
+Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen wolverine-reading-order issue mapping.
+The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
+The frozen source records 1328 issue occurrences, including 69 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
+No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
+See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
+
+- [ ] [Giant-Size X-Men (1975) #1](https://www.marvel.com/comics/issue/8797/giant-size_x-men_1975_1)
+- [ ] [Uncanny X-Men (1963) #94](https://www.marvel.com/comics/issue/12548/uncanny_x-men_1963_94)
+- [ ] [Uncanny X-Men (1963) #95](https://www.marvel.com/comics/issue/12549/uncanny_x-men_1963_95)
+- [ ] [Uncanny X-Men (1963) #96](https://www.marvel.com/comics/issue/12550/uncanny_x-men_1963_96)
+- [ ] [Uncanny X-Men (1963) #97](https://www.marvel.com/comics/issue/12551/uncanny_x-men_1963_97)
+- [ ] [Uncanny X-Men (1963) #98](https://www.marvel.com/comics/issue/12552/uncanny_x-men_1963_98)
+- [ ] [Uncanny X-Men (1963) #99](https://www.marvel.com/comics/issue/12553/uncanny_x-men_1963_99)
+- [ ] [Uncanny X-Men (1963) #100](https://www.marvel.com/comics/issue/12415/uncanny_x-men_1963_100)
+- [ ] [Uncanny X-Men (1963) #101](https://www.marvel.com/comics/issue/12416/uncanny_x-men_1963_101)
+- [ ] [Uncanny X-Men (1963) #102](https://www.marvel.com/comics/issue/12417/uncanny_x-men_1963_102)
+- [ ] [Uncanny X-Men (1963) #103](https://www.marvel.com/comics/issue/12418/uncanny_x-men_1963_103)
+- [ ] [Uncanny X-Men (1963) #104](https://www.marvel.com/comics/issue/12419/uncanny_x-men_1963_104)
+- [ ] [Uncanny X-Men (1963) #105](https://www.marvel.com/comics/issue/12420/uncanny_x-men_1963_105)
+- [ ] [Uncanny X-Men (1963) #106](https://www.marvel.com/comics/issue/12421/uncanny_x-men_1963_106)
+- [ ] [Uncanny X-Men (1963) #107](https://www.marvel.com/comics/issue/12422/uncanny_x-men_1963_107)
+- [ ] [Uncanny X-Men (1963) #108](https://www.marvel.com/comics/issue/12423/uncanny_x-men_1963_108)
+- [ ] [Uncanny X-Men (1963) #109](https://www.marvel.com/comics/issue/12424/uncanny_x-men_1963_109)
+- [ ] [Uncanny X-Men (1963) #110](https://www.marvel.com/comics/issue/12426/uncanny_x-men_1963_110)
+- [ ] [Iron Fist (1975) #14](https://www.marvel.com/comics/issue/22626/iron_fist_1975_14)
+- [ ] Iron Fist #15
+- [ ] [Marvel Team-Up (1972) #53](https://www.marvel.com/comics/issue/19674/marvel_team-up_1972_53)
+- [ ] [Marvel Team-Up (1972) #69](https://www.marvel.com/comics/issue/19691/marvel_team-up_1972_69)
+- [ ] Marvel Team-Up #70
+- [ ] [Marvel Team-Up Annual (1976) #1](https://www.marvel.com/comics/issue/61140/marvel_team-up_annual_1976_1)
+- [ ] [Wolverine (1982) #1](https://www.marvel.com/comics/issue/12168/wolverine_1982_1)
+- [ ] [Wolverine (1982) #2](https://www.marvel.com/comics/issue/12169/wolverine_1982_2)
+- [ ] [Wolverine (1982) #3](https://www.marvel.com/comics/issue/12170/wolverine_1982_3)
+- [ ] [Wolverine (1982) #4](https://www.marvel.com/comics/issue/12171/wolverine_1982_4)
+- [ ] [Uncanny X-Men (1963) #172](https://www.marvel.com/comics/issue/13713/uncanny_x-men_1963_172)
+- [ ] [Uncanny X-Men (1963) #173](https://www.marvel.com/comics/issue/13714/uncanny_x-men_1963_173)
+- [ ] [Kitty Pryde and Wolverine (1984) #1](https://www.marvel.com/comics/issue/21645/kitty_pryde_and_wolverine_1984_1)
+- [ ] [Kitty Pryde and Wolverine (1984) #2](https://www.marvel.com/comics/issue/21646/kitty_pryde_and_wolverine_1984_2)
+- [ ] [Kitty Pryde and Wolverine (1984) #3](https://www.marvel.com/comics/issue/21647/kitty_pryde_and_wolverine_1984_3)
+- [ ] [Kitty Pryde and Wolverine (1984) #4](https://www.marvel.com/comics/issue/21648/kitty_pryde_and_wolverine_1984_4)
+- [ ] [Kitty Pryde and Wolverine (1984) #5](https://www.marvel.com/comics/issue/21649/kitty_pryde_and_wolverine_1984_5)
+- [ ] [Kitty Pryde and Wolverine (1984) #6](https://www.marvel.com/comics/issue/21650/kitty_pryde_and_wolverine_1984_6)
+- [ ] [Wolverine (2010) #1](https://www.marvel.com/comics/issue/30224/wolverine_2010_1)
+- [ ] [Wolverine (2010) #2](https://www.marvel.com/comics/issue/30228/wolverine_2010_2)
+- [ ] [Wolverine (2010) #3](https://www.marvel.com/comics/issue/30229/wolverine_2010_3)
+- [ ] [Wolverine (2010) #4](https://www.marvel.com/comics/issue/30230/wolverine_2010_4)
+- [ ] [Wolverine (2010) #5](https://www.marvel.com/comics/issue/30231/wolverine_2010_5)
+- [ ] [Wolverine (2010) #6](https://www.marvel.com/comics/issue/30232/wolverine_2010_6)
+- [ ] [Wolverine (2010) #7](https://www.marvel.com/comics/issue/30233/wolverine_2010_7)
+- [ ] [Wolverine (2010) #8](https://www.marvel.com/comics/issue/30234/wolverine_2010_8)
+- [ ] [Wolverine (1988) #9](https://www.marvel.com/comics/issue/14214/wolverine_1988_9)
+- [ ] Wolverine #10
+- [ ] Wolverine #11
+- [ ] Wolverine #12
+- [ ] Wolverine #13
+- [ ] Wolverine #14
+- [ ] Wolverine #15
+- [ ] Wolverine #16
+- [ ] [Marvel Comics Presents (1988) #1](https://www.marvel.com/comics/issue/10010/marvel_comics_presents_1988_1)
+- [ ] Marvel Comics Presents #2
+- [ ] Marvel Comics Presents #3
+- [ ] Marvel Comics Presents #4
+- [ ] Marvel Comics Presents #5
+- [ ] Marvel Comics Presents #6
+- [ ] Marvel Comics Presents #7
+- [ ] Marvel Comics Presents #8
+- [ ] Marvel Comics Presents #9
+- [ ] Marvel Comics Presents #10
+- [ ] [Marvel Age Annual (1985) #4](https://www.marvel.com/comics/issue/71517/marvel_age_annual_1985_4)
+- [ ] Wolverine: Deep Cut #1
+- [ ] Wolverine: Deep Cut #2
+- [ ] Wolverine: Deep Cut #3
+- [ ] Wolverine: Deep Cut #4
+- [ ] [Uncanny X-Men (1963) #246](https://www.marvel.com/comics/issue/13787/uncanny_x-men_1963_246)
+- [ ] [Uncanny X-Men (1963) #251](https://www.marvel.com/comics/issue/13792/uncanny_x-men_1963_251)
+- [ ] Web Of Venom: VeÃ¢â‚¬â„¢Nam (2018) #1
+- [ ] [Wolverine (2010) #17](https://www.marvel.com/comics/issue/36469/wolverine_2010_17)
+- [ ] [Wolverine (2010) #18](https://www.marvel.com/comics/issue/36466/wolverine_2010_18)
+- [ ] [Wolverine (2010) #19](https://www.marvel.com/comics/issue/38839/wolverine_2010_19)
+- [ ] [Wolverine (2003) #20](https://www.marvel.com/comics/issue/860/wolverine_2003_20)
+- [ ] [Wolverine (2003) #21](https://www.marvel.com/comics/issue/897/wolverine_2003_21)
+- [ ] [Wolverine (2003) #22](https://www.marvel.com/comics/issue/16/wolverine_2003_22)
+- [ ] [Wolverine (2003) #23](https://www.marvel.com/comics/issue/1419/wolverine_2003_23)
+- [ ] [Wolverine (2003) #24](https://www.marvel.com/comics/issue/1517/wolverine_2003_24)
+- [ ] [Wolverine (2003) #25](https://www.marvel.com/comics/issue/1617/wolverine_2003_25)
+- [ ] [Wolverine (2003) #26](https://www.marvel.com/comics/issue/1712/wolverine_2003_26)
+- [ ] [Wolverine (2003) #27](https://www.marvel.com/comics/issue/1822/wolverine_2003_27)
+- [ ] [Wolverine (2003) #28](https://www.marvel.com/comics/issue/1963/wolverine_2003_28)
+- [ ] [Wolverine (2003) #29](https://www.marvel.com/comics/issue/2066/wolverine_2003_29)
+- [ ] [Wolverine (2003) #30](https://www.marvel.com/comics/issue/2173/wolverine_2003_30)
+- [ ] Wolverine/Nick Fury: The Scorpio Connection Graphic Novel
+- [ ] Wolverine: The Jungle Adventure
+- [ ] [Wolverine (2003) #31](https://www.marvel.com/comics/issue/2297/wolverine_2003_31)
+- [ ] [Wolverine (2003) #32](https://www.marvel.com/comics/issue/2519/wolverine_2003_32)
+- [ ] [Wolverine (1988) #33](https://www.marvel.com/comics/issue/14152/wolverine_1988_33)
+- [ ] Wolverine (vol. 2) #34
+- [ ] Wolverine (vol. 2) #35
+- [ ] Wolverine (vol. 2) #36
+- [ ] Wolverine (vol. 2) #37
+- [ ] Wolverine (vol. 2) #38
+- [ ] Wolverine (vol. 2) #39
+- [ ] Wolverine (vol. 2) #40
+- [ ] Wolverine (vol. 2) #41
+- [ ] Wolverine (vol. 2) #42
+- [ ] Wolverine (vol. 2) #43
+- [ ] Wolverine (vol. 2) #44
+- [ ] Wolverine: Bloodlust
+- [ ] Wolverine: Bloody Choices
+- [ ] Wolverine #47
+- [ ] Wolverine #48
+- [ ] Wolverine #49
+- [ ] Wolverine #50
+- [ ] Wolverine #51
+- [ ] Wolverine #52
+- [ ] Wolverine #53
+- [ ] Wolverine #54
+- [ ] Wolverine #55
+- [ ] Wolverine #56
+- [ ] Wolverine #57
+- [ ] [Wolverine (1988) #54](https://www.marvel.com/comics/issue/14175/wolverine_1988_54)
+- [ ] Wolverine #58
+- [ ] Wolverine #59
+- [ ] Wolverine #60
+- [ ] Wolverine #61
+- [ ] [Wolverine (2003) #62](https://www.marvel.com/comics/issue/20642/wolverine_2003_62)
+- [ ] [Wolverine (2003) #63](https://www.marvel.com/comics/issue/20833/wolverine_2003_63)
+- [ ] [Wolverine (2003) #64](https://www.marvel.com/comics/issue/20971/wolverine_2003_64)
+- [ ] [Wolverine (2003) #65](https://www.marvel.com/comics/issue/21180/wolverine_2003_65)
+- [ ] Wolverine #66
+- [ ] Wolverine #67
+- [ ] Wolverine #68
+- [ ] Ghost Rider/Wolverine/Punisher: Hearts of Darkness
+- [ ] Material from Marvel Holiday Special (1991) #2
+- [ ] Logan: Path Of The Warlord
+- [ ] Shadow Society
+- [ ] Wolverine: Agent Of Atlas #1
+- [ ] Wolverine: Agent Of Atlas #2
+- [ ] Wolverine: Agent Of Atlas #3
+- [ ] First X-Men #1
+- [ ] First X-Men #2
+- [ ] First X-Men #3
+- [ ] [X-Men: First Class (2006) #4](https://www.marvel.com/comics/issue/5722/x-men_first_class_2006_4)
+- [ ] First X-Men #5
+- [ ] Wolverine: Hunger
+- [ ] Wolverine (1988) -1
+- [ ] Before The Fantastic Four: Ben Grimm & Logan #1
+- [ ] Before The Fantastic Four: Ben Grimm & Logan #2
+- [ ] Before The Fantastic Four: Ben Grimm & Logan #3
+- [ ] Wolverine/Cable
+- [ ] Marvel Comics Presents #93
+- [ ] Marvel Comics Presents #94
+- [ ] Marvel Comics Presents #95
+- [ ] Marvel Comics Presents #96
+- [ ] Marvel Comics Presents #97
+- [ ] Marvel Comics Presents #98
+- [ ] Wolverine: The Amazing Immortal Man & Other Bloody Tales
+- [ ] Wolverine (2010) 1000
+- [ ] Captain America Annual 8
+- [ ] Daredevil (1964) 249
+- [ ] Spider-Man Vs. Wolverine
+- [ ] [Incredible Hulk (1962) #340](https://www.marvel.com/comics/issue/9151/incredible_hulk_1962_340)
+- [ ] Wolverine (1988) 134
+- [ ] Wolverine Vs. Thor #1
+- [ ] Wolverine Vs. Thor #2
+- [ ] Wolverine Vs. Thor #3
+- [ ] Marvel Universe Vs. Wolverine #1
+- [ ] Marvel Universe Vs. Wolverine #2
+- [ ] Marvel Universe Vs. Wolverine #3
+- [ ] Marvel Universe Vs. Wolverine #4
+- [ ] [Marvel Comics Presents (1988) #117](https://www.marvel.com/comics/issue/10030/marvel_comics_presents_1988_117)
+- [ ] Marvel Comics Presents #118
+- [ ] [Marvel Comics Presents (1988) #119](https://www.marvel.com/comics/issue/10032/marvel_comics_presents_1988_119)
+- [ ] Marvel Comics Presents #120
+- [ ] Marvel Comics Presents #121
+- [ ] [Marvel Comics Presents (1988) #122](https://www.marvel.com/comics/issue/10036/marvel_comics_presents_1988_122)
+- [ ] Marvel Comics Presents #72
+- [ ] Marvel Comics Presents #73
+- [ ] Marvel Comics Presents #74
+- [ ] [Marvel Comics Presents (1988) #75](https://www.marvel.com/comics/issue/10158/marvel_comics_presents_1988_75)
+- [ ] Marvel Comics Presents #76
+- [ ] Marvel Comics Presents #77
+- [ ] Marvel Comics Presents #78
+- [ ] Marvel Comics Presents #79
+- [ ] Marvel Comics Presents #80
+- [ ] Marvel Comics Presents #81
+- [ ] Marvel Comics Presents #82
+- [ ] [Marvel Comics Presents (1988) #83](https://www.marvel.com/comics/issue/10167/marvel_comics_presents_1988_83)
+- [ ] Marvel Comics Presents #84
+- [ ] [Uncanny X-Men (1963) #205](https://www.marvel.com/comics/issue/13746/uncanny_x-men_1963_205)
+- [ ] Material from Wolverine (1988) #166
+- [ ] Marvel Comics Presents #75
+- [ ] [Marvel Comics Presents (1988) #80](https://www.marvel.com/comics/issue/10164/marvel_comics_presents_1988_80)
+- [ ] [Marvel Comics Presents (1988) #82](https://www.marvel.com/comics/issue/10166/marvel_comics_presents_1988_82)
+- [ ] Marvel Comics Presents #83
+- [ ] Wolverine #69
+- [ ] Wolverine #70
+- [ ] Wolverine #71
+- [ ] Wolverine #72
+- [ ] Wolverine #73
+- [ ] Wolverine #74
+- [ ] [Wolverine (1988) #75](https://www.marvel.com/comics/issue/14198/wolverine_1988_75)
+- [ ] Wolverine: Inner Fury
+- [ ] Wolverine: Killing
+- [ ] Wolverine: Global Jeopardy
+- [ ] Sabretooth #1
+- [ ] Sabretooth #2
+- [ ] Sabretooth #3
+- [ ] [Sabretooth (1993) #4](https://www.marvel.com/comics/issue/82130/sabretooth_1993_4)
+- [ ] [X-Men (1991) #25](https://www.marvel.com/comics/issue/14312/x-men_1991_25)
+- [ ] [X-Factor (1986) #92](https://www.marvel.com/comics/issue/12315/x-factor_1986_92)
+- [ ] [X-Force (1991) #25](https://www.marvel.com/comics/issue/17989/x-force_1991_25)
+- [ ] [Uncanny X-Men (1963) #304](https://www.marvel.com/comics/issue/13845/uncanny_x-men_1963_304)
+- [ ] [Excalibur (1988) #71](https://www.marvel.com/comics/issue/8656/excalibur_1988_71)
+- [ ] Uncanny X-Men Annual #17
+- [ ] Wolverine #76
+- [ ] Wolverine #77
+- [ ] Wolverine #78
+- [ ] Wolverine #79
+- [ ] Wolverine #80
+- [ ] Wolverine #81
+- [ ] Wolverine #82
+- [ ] Wolverine #83
+- [ ] Wolverine #84
+- [ ] [Wolverine (1988) #85](https://www.marvel.com/comics/issue/14209/wolverine_1988_85)
+- [ ] Wolverine #86
+- [ ] [Cable (1993) #16](https://www.marvel.com/comics/issue/7389/cable_1993_16)
+- [ ] Wolverine: Evilution
+- [ ] Wolverine and Nick Fury: Scorpio Rising
+- [ ] Ghost Rider/Wolverine/Punisher: The Dark Design
+- [ ] Wolverine #87
+- [ ] Wolverine #88
+- [ ] Wolverine #89
+- [ ] [Wolverine (1988) #90](https://www.marvel.com/comics/issue/14215/wolverine_1988_90)
+- [ ] Wolverine #91
+- [ ] Wolverine #92
+- [ ] Wolverine #93
+- [ ] Wolverine #94
+- [ ] Wolverine #95
+- [ ] Wolverine #96
+- [ ] Wolverine #97
+- [ ] Wolverine #98
+- [ ] Wolverine #99
+- [ ] [Wolverine (1988) #100](https://www.marvel.com/comics/issue/14038/wolverine_1988_100)
+- [ ] Wolverine/Gambit: Victims #1
+- [ ] Wolverine/Gambit: Victims #2
+- [ ] Wolverine/Gambit: Victims #3
+- [ ] Wolverine/Gambit: Victims #4
+- [ ] Age of Apocalypse reading order
+- [ ] Wolverine (vol. 2) #103-104 and the full Onslaught crossover
+- [ ] Wolverine #101
+- [ ] Wolverine #102
+- [ ] Wolverine #103
+- [ ] [Wolverine (1988) #104](https://www.marvel.com/comics/issue/14042/wolverine_1988_104)
+- [ ] Wolverine #105
+- [ ] Wolverine #106
+- [ ] Wolverine #107
+- [ ] Wolverine #108
+- [ ] Wolverine #109
+- [ ] 102.5
+- [ ] Wolverine Annual 96
+- [ ] Uncanny X-Men #332
+- [ ] Venom: Tooth and Claw #1
+- [ ] Venom: Tooth and Claw #2
+- [ ] Venom: Tooth and Claw #3
+- [ ] Logan: Shadow Society
+- [ ] Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins
+- [ ] Wolverine #119
+- [ ] Wolverine #120
+- [ ] Wolverine #121
+- [ ] Wolverine #122
+- [ ] Wolverine (vol. 2) #123
+- [ ] Wolverine (vol. 2) #124
+- [ ] Wolverine (vol. 2) #125
+- [ ] [Wolverine (1988) #126](https://www.marvel.com/comics/issue/14066/wolverine_1988_126)
+- [ ] Wolverine (vol. 2) #127
+- [ ] Wolverine (vol. 2) #128
+- [ ] Wolverine (vol. 2) #129
+- [ ] Wolverine (vol. 2) #130
+- [ ] Wolverine (vol. 2) #131
+- [ ] Wolverine (vol. 2) #132
+- [ ] Wolverine: Black Rio
+- [ ] Wolverine #133
+- [ ] Wolverine #134
+- [ ] Wolverine #135
+- [ ] Wolverine #136
+- [ ] Wolverine #137
+- [ ] Wolverine #138
+- [ ] Wolverine #139
+- [ ] [Wolverine (1988) #140](https://www.marvel.com/comics/issue/14082/wolverine_1988_140)
+- [ ] Wolverine #141
+- [ ] Wolverine #142
+- [ ] Wolverine #143
+- [ ] Wolverine #144
+- [ ] Wolverine #145
+- [ ] Wolverine #146
+- [ ] Wolverine #147
+- [ ] Wolverine #148
+- [ ] Wolverine #149
+- [ ] Hulk (1999) #8
+- [ ] Wolveirne/Cable one-shot
+- [ ] Wolverine #150
+- [ ] Wolverine #151
+- [ ] Wolverine #152
+- [ ] Wolverine #153
+- [ ] Wolverine #154
+- [ ] [Wolverine (1988) #155](https://www.marvel.com/comics/issue/14098/wolverine_1988_155)
+- [ ] Wolverine #156
+- [ ] Wolverine #157
+- [ ] Wolverine #158
+- [ ] Annual Ã¢â‚¬â„¢99
+- [ ] Wolverine: The Origin #1
+- [ ] Wolverine: The Origin #2
+- [ ] Wolverine: The Origin #3
+- [ ] Wolverine: The Origin #4
+- [ ] Wolverine: The Origin #5
+- [ ] Wolverine: The Origin #6
+- [ ] Wolverine (vol. 2) #159
+- [ ] Wolverine (vol. 2) #160
+- [ ] Wolverine (vol. 2) #161
+- [ ] Wolverine (vol. 2) #162
+- [ ] Wolverine (vol. 2) #163
+- [ ] Wolverine (vol. 2) #164
+- [ ] Wolverine (vol. 2) #165
+- [ ] Wolverine (vol. 2) #166
+- [ ] Wolverine (vol. 2) #167
+- [ ] Wolverine (vol. 2) #168
+- [ ] Wolverine (vol. 2) #169
+- [ ] Wolverine (vol. 2) #170
+- [ ] Wolverine (vol. 2) #171
+- [ ] Wolverine (vol. 2) #172
+- [ ] Annual #2000
+- [ ] Annual #2001
+- [ ] Wolverine #162
+- [ ] Wolverine #163
+- [ ] Wolverine #164
+- [ ] Wolverine #165
+- [ ] Wolverine #166
+- [ ] 173-174
+- [ ] 176
+- [ ] Deadpool #57
+- [ ] Deadpool #58
+- [ ] Deadpool #59
+- [ ] Deadpool #60
+- [ ] Weapon X (2002) 1/2
+- [ ] 1-28
+- [ ] Weapon X: The Draft Ã¢â‚¬â€œ Sauron
+- [ ] Wild Child
+- [ ] Kane
+- [ ] Marrow
+- [ ] Agent Zero
+- [ ] Weapon X: Days Of Future Now #1
+- [ ] Weapon X: Days Of Future Now #2
+- [ ] Weapon X: Days Of Future Now #3
+- [ ] Weapon X: Days Of Future Now #4
+- [ ] Weapon X: Days Of Future Now #5
+- [ ] Material From Wolverine (1988) 175
+- [ ] Deadpool (2012) 27
+- [ ] Wolverine #173
+- [ ] Wolverine #174
+- [ ] Wolverine #175
+- [ ] Wolverine #176
+- [ ] [Wolverine (1988) #177](https://www.marvel.com/comics/issue/14122/wolverine_1988_177)
+- [ ] Wolverine #178
+- [ ] Wolverine #179
+- [ ] Wolverine #180
+- [ ] Wolverine #181
+- [ ] Wolverine #182
+- [ ] Wolverine #183
+- [ ] Wolverine #184
+- [ ] [Wolverine (1988) #185](https://www.marvel.com/comics/issue/14131/wolverine_1988_185)
+- [ ] Wolverine #186
+- [ ] Wolverine #187
+- [ ] Wolverine #188
+- [ ] Wolverine #189
+- [ ] Wolverine: Xisle #1
+- [ ] Wolverine: Xisle #2
+- [ ] Wolverine: Xisle #3
+- [ ] Wolverine: Xisle #4
+- [ ] Wolverine: Xisle #5
+- [ ] Wolverine: Snikt #1
+- [ ] Wolverine: Snikt #2
+- [ ] Wolverine: Snikt #3
+- [ ] Wolverine: Snikt #4
+- [ ] Wolverine: Snikt #5
+- [ ] Punisher War Journal #6
+- [ ] Punisher War Journal #7
+- [ ] Wolverine/Punisher: Damaging Evidence #1
+- [ ] Wolverine/Punisher: Damaging Evidence #2
+- [ ] Wolverine/Punisher: Damaging Evidence #3
+- [ ] Punisher War Zone 19
+- [ ] Wolverine/Punisher: Revelation #1
+- [ ] Wolverine/Punisher: Revelation #2
+- [ ] Wolverine/Punisher: Revelation #3
+- [ ] Wolverine/Punisher: Revelation #4
+- [ ] Punisher #16
+- [ ] Punisher #17
+- [ ] Wolverine 186
+- [ ] Wolverine/Punisher #1
+- [ ] Wolverine/Punisher #2
+- [ ] Wolverine/Punisher #3
+- [ ] Wolverine/Punisher #4
+- [ ] Wolverine/Punisher #5
+- [ ] Astonishing Tales: Wolverine/Punisher #1
+- [ ] Astonishing Tales: Wolverine/Punisher #2
+- [ ] Astonishing Tales: Wolverine/Punisher #3
+- [ ] Astonishing Tales: Wolverine/Punisher #4
+- [ ] Astonishing Tales: Wolverine/Punisher #5
+- [ ] Astonishing Tales: Wolverine/Punisher #6
+- [ ] [Wolverine (2003) #9](https://www.marvel.com/comics/issue/231/wolverine_2003_9)
+- [ ] [Wolverine (2003) #13](https://www.marvel.com/comics/issue/464/wolverine_2003_13)
+- [ ] [New X-Men (2001) #114](https://www.marvel.com/comics/issue/14933/new_x-men_2001_114)
+- [ ] [New X-Men (2001) #115](https://www.marvel.com/comics/issue/14934/new_x-men_2001_115)
+- [ ] [New X-Men (2001) #116](https://www.marvel.com/comics/issue/14935/new_x-men_2001_116)
+- [ ] New X-Men Annual #1
+- [ ] [New X-Men (2001) #117](https://www.marvel.com/comics/issue/14936/new_x-men_2001_117)
+- [ ] [New X-Men (2001) #118](https://www.marvel.com/comics/issue/14937/new_x-men_2001_118)
+- [ ] [New X-Men (2001) #119](https://www.marvel.com/comics/issue/14938/new_x-men_2001_119)
+- [ ] [New X-Men (2001) #120](https://www.marvel.com/comics/issue/14939/new_x-men_2001_120)
+- [ ] [New X-Men (2001) #121](https://www.marvel.com/comics/issue/14940/new_x-men_2001_121)
+- [ ] [New X-Men (2001) #122](https://www.marvel.com/comics/issue/14941/new_x-men_2001_122)
+- [ ] [New X-Men (2001) #123](https://www.marvel.com/comics/issue/14942/new_x-men_2001_123)
+- [ ] [New X-Men (2001) #124](https://www.marvel.com/comics/issue/14943/new_x-men_2001_124)
+- [ ] [New X-Men (2001) #125](https://www.marvel.com/comics/issue/14944/new_x-men_2001_125)
+- [ ] [New X-Men (2001) #126](https://www.marvel.com/comics/issue/14945/new_x-men_2001_126)
+- [ ] [New X-Men (2001) #127](https://www.marvel.com/comics/issue/14946/new_x-men_2001_127)
+- [ ] [New X-Men (2001) #128](https://www.marvel.com/comics/issue/14947/new_x-men_2001_128)
+- [ ] [New X-Men (2001) #129](https://www.marvel.com/comics/issue/14948/new_x-men_2001_129)
+- [ ] [New X-Men (2001) #130](https://www.marvel.com/comics/issue/14949/new_x-men_2001_130)
+- [ ] [New X-Men (2001) #131](https://www.marvel.com/comics/issue/14950/new_x-men_2001_131)
+- [ ] [New X-Men (2001) #132](https://www.marvel.com/comics/issue/14951/new_x-men_2001_132)
+- [ ] [New X-Men (2001) #133](https://www.marvel.com/comics/issue/14952/new_x-men_2001_133)
+- [ ] [New X-Men (2001) #134](https://www.marvel.com/comics/issue/14953/new_x-men_2001_134)
+- [ ] [New X-Men (2001) #135](https://www.marvel.com/comics/issue/14954/new_x-men_2001_135)
+- [ ] [New X-Men (2001) #136](https://www.marvel.com/comics/issue/14955/new_x-men_2001_136)
+- [ ] [New X-Men (2001) #137](https://www.marvel.com/comics/issue/14956/new_x-men_2001_137)
+- [ ] [New X-Men (2001) #138](https://www.marvel.com/comics/issue/14957/new_x-men_2001_138)
+- [ ] [New X-Men (2001) #139](https://www.marvel.com/comics/issue/14958/new_x-men_2001_139)
+- [ ] [New X-Men (2001) #140](https://www.marvel.com/comics/issue/14959/new_x-men_2001_140)
+- [ ] [New X-Men (2001) #141](https://www.marvel.com/comics/issue/14960/new_x-men_2001_141)
+- [ ] [New X-Men (2001) #142](https://www.marvel.com/comics/issue/14961/new_x-men_2001_142)
+- [ ] [New X-Men (2001) #143](https://www.marvel.com/comics/issue/14962/new_x-men_2001_143)
+- [ ] [New X-Men (2001) #144](https://www.marvel.com/comics/issue/14963/new_x-men_2001_144)
+- [ ] [New X-Men (2001) #145](https://www.marvel.com/comics/issue/14964/new_x-men_2001_145)
+- [ ] [New X-Men (2001) #146](https://www.marvel.com/comics/issue/14965/new_x-men_2001_146)
+- [ ] [New X-Men (2001) #147](https://www.marvel.com/comics/issue/125/new_x-men_2001_147)
+- [ ] [New X-Men (2001) #148](https://www.marvel.com/comics/issue/136/new_x-men_2001_148)
+- [ ] [New X-Men (2001) #149](https://www.marvel.com/comics/issue/124/new_x-men_2001_149)
+- [ ] [New X-Men (2001) #150](https://www.marvel.com/comics/issue/123/new_x-men_2001_150)
+- [ ] [New X-Men (2001) #151](https://www.marvel.com/comics/issue/122/new_x-men_2001_151)
+- [ ] [New X-Men (2001) #152](https://www.marvel.com/comics/issue/121/new_x-men_2001_152)
+- [ ] [New X-Men (2001) #153](https://www.marvel.com/comics/issue/120/new_x-men_2001_153)
+- [ ] [New X-Men (2001) #154](https://www.marvel.com/comics/issue/420/new_x-men_2001_154)
+- [ ] New X-Men #155
+- [ ] New X-Men #156
+- [ ] [Astonishing X-Men (2004) #1](https://www.marvel.com/comics/issue/660/astonishing_x-men_2004_1)
+- [ ] [Astonishing X-Men (2004) #2](https://www.marvel.com/comics/issue/723/astonishing_x-men_2004_2)
+- [ ] [Astonishing X-Men (2004) #3](https://www.marvel.com/comics/issue/531/astonishing_x-men_2004_3)
+- [ ] [Astonishing X-Men (2004) #4](https://www.marvel.com/comics/issue/1808/astonishing_x-men_2004_4)
+- [ ] [Astonishing X-Men (2004) #5](https://www.marvel.com/comics/issue/843/astonishing_x-men_2004_5)
+- [ ] [Astonishing X-Men (2004) #6](https://www.marvel.com/comics/issue/927/astonishing_x-men_2004_6)
+- [ ] [Astonishing X-Men (2004) #7](https://www.marvel.com/comics/issue/38/astonishing_x-men_2004_7)
+- [ ] [Astonishing X-Men (2004) #8](https://www.marvel.com/comics/issue/1436/astonishing_x-men_2004_8)
+- [ ] [Astonishing X-Men (2004) #9](https://www.marvel.com/comics/issue/1626/astonishing_x-men_2004_9)
+- [ ] [Astonishing X-Men (2004) #10](https://www.marvel.com/comics/issue/1719/astonishing_x-men_2004_10)
+- [ ] [Astonishing X-Men (2004) #11](https://www.marvel.com/comics/issue/2842/astonishing_x-men_2004_11)
+- [ ] [Astonishing X-Men (2004) #12](https://www.marvel.com/comics/issue/2161/astonishing_x-men_2004_12)
+- [ ] [Astonishing X-Men (2004) #13](https://www.marvel.com/comics/issue/3475/astonishing_x-men_2004_13)
+- [ ] [Astonishing X-Men (2004) #14](https://www.marvel.com/comics/issue/4022/astonishing_x-men_2004_14)
+- [ ] [Astonishing X-Men (2004) #15](https://www.marvel.com/comics/issue/4253/astonishing_x-men_2004_15)
+- [ ] [Astonishing X-Men (2004) #16](https://www.marvel.com/comics/issue/4736/astonishing_x-men_2004_16)
+- [ ] [Astonishing X-Men (2004) #17](https://www.marvel.com/comics/issue/5034/astonishing_x-men_2004_17)
+- [ ] [Astonishing X-Men (2004) #18](https://www.marvel.com/comics/issue/5188/astonishing_x-men_2004_18)
+- [ ] [Astonishing X-Men (2004) #19](https://www.marvel.com/comics/issue/5417/astonishing_x-men_2004_19)
+- [ ] [Astonishing X-Men (2004) #20](https://www.marvel.com/comics/issue/5674/astonishing_x-men_2004_20)
+- [ ] [Astonishing X-Men (2004) #21](https://www.marvel.com/comics/issue/6120/astonishing_x-men_2004_21)
+- [ ] [Astonishing X-Men (2004) #22](https://www.marvel.com/comics/issue/6309/astonishing_x-men_2004_22)
+- [ ] [Astonishing X-Men (2004) #23](https://www.marvel.com/comics/issue/16119/astonishing_x-men_2004_23)
+- [ ] [Astonishing X-Men (2004) #24](https://www.marvel.com/comics/issue/17353/astonishing_x-men_2004_24)
+- [ ] Astonishing X-Men Annual #1
+- [ ] [New Avengers (2004) #1](https://www.marvel.com/comics/issue/40/new_avengers_2004_1)
+- [ ] [New Avengers (2004) #2](https://www.marvel.com/comics/issue/1438/new_avengers_2004_2)
+- [ ] [New Avengers (2004) #3](https://www.marvel.com/comics/issue/1532/new_avengers_2004_3)
+- [ ] [New Avengers (2004) #4](https://www.marvel.com/comics/issue/1628/new_avengers_2004_4)
+- [ ] [New Avengers (2004) #5](https://www.marvel.com/comics/issue/1720/new_avengers_2004_5)
+- [ ] [New Avengers (2004) #6](https://www.marvel.com/comics/issue/1829/new_avengers_2004_6)
+- [ ] Wolverine: Soultaker #1
+- [ ] Wolverine: Soultaker #2
+- [ ] Wolverine: Soultaker #3
+- [ ] Wolverine: Soultaker #4
+- [ ] Wolverine: Soultaker #5
+- [ ] Wolverine (vol. 3) #33-35 and related House of M tie-ins
+- [ ] [House of M (2005) #1](https://www.marvel.com/comics/issue/2092/house_of_m_2005_1)
+- [ ] [House of M (2005) #2](https://www.marvel.com/comics/issue/2093/house_of_m_2005_2)
+- [ ] [House of M (2005) #3](https://www.marvel.com/comics/issue/2198/house_of_m_2005_3)
+- [ ] [House of M (2005) #4](https://www.marvel.com/comics/issue/2199/house_of_m_2005_4)
+- [ ] [House of M (2005) #5](https://www.marvel.com/comics/issue/2316/house_of_m_2005_5)
+- [ ] [House of M (2005) #6](https://www.marvel.com/comics/issue/14511/house_of_m_2005_6)
+- [ ] [House of M (2005) #7](https://www.marvel.com/comics/issue/2427/house_of_m_2005_7)
+- [ ] [House of M (2005) #8](https://www.marvel.com/comics/issue/2428/house_of_m_2005_8)
+- [ ] Wolverine (vol. 2) #187
+- [ ] Wolverine (vol. 2) #188
+- [ ] Wolverine (vol. 2) #189
+- [ ] [Wolverine (2003) #33](https://www.marvel.com/comics/issue/2520/wolverine_2003_33)
+- [ ] Wolverine (vol. 3) #34
+- [ ] Wolverine (vol. 3) #35
+- [ ] Wolverine (vol. 3) #36
+- [ ] Wolverine (vol. 3) #37
+- [ ] Wolverine (vol. 3) #38
+- [ ] [Wolverine (2003) #39](https://www.marvel.com/comics/issue/3538/wolverine_2003_39)
+- [ ] Wolverine (vol. 3) #40
+- [ ] Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut
+- [ ] Sabretooth (vol. 3) #1
+- [ ] Sabretooth (vol. 3) #2
+- [ ] [Sabretooth (1993) #3](https://www.marvel.com/comics/issue/82129/sabretooth_1993_3)
+- [ ] Sabretooth (vol. 3) #4
+- [ ] Wolverine (vol. 3) #41
+- [ ] 49
+- [ ] Giant-Size Wolverine #1
+- [ ] [X-Men Unlimited (1993) #12](https://www.marvel.com/comics/issue/18113/x-men_unlimited_1993_12)
+- [ ] Wolverine (vol. 3) #42
+- [ ] Wolverine (vol. 3) #43
+- [ ] Wolverine (vol. 3) #44
+- [ ] Wolverine (vol. 3) #45
+- [ ] Wolverine (vol. 3) #46
+- [ ] Wolverine (vol. 3) #47
+- [ ] Wolverine (vol. 3) #48
+- [ ] Wolverine: Origins #6
+- [ ] Wolverine: Origins #7
+- [ ] Wolverine: Origins #8
+- [ ] Wolverine: Origins #9
+- [ ] Wolverine: Origins #10
+- [ ] Wolverine: Origins #11
+- [ ] Wolverine: Origins #12
+- [ ] Wolverine: Origins #13
+- [ ] Wolverine: Origins #14
+- [ ] Wolverine: Origins #15
+- [ ] Annual #1
+- [ ] What If: Wolverine #1
+- [ ] Wolverine (vol. 3) #50
+- [ ] Wolverine (vol. 3) #51
+- [ ] Wolverine (vol. 3) #52
+- [ ] Wolverine (vol. 3) #53
+- [ ] Wolverine (vol. 3) #54
+- [ ] Wolverine (vol. 3) #55
+- [ ] Wolverine and Black Cat: Claws #1
+- [ ] Wolverine and Black Cat: Claws #2
+- [ ] Wolverine and Black Cat: Claws #3
+- [ ] Wolverine (vol. 3) #56
+- [ ] Wolverine (vol. 3) #57
+- [ ] Wolverine (vol. 3) #58
+- [ ] Wolverine (vol. 3) #59
+- [ ] Wolverine (vol. 3) #60
+- [ ] Wolverine (vol. 3) #61
+- [ ] [Wolverine (1988) #88](https://www.marvel.com/comics/issue/14212/wolverine_1988_88)
+- [ ] 154-155
+- [ ] Deadpool (1997) 27
+- [ ] [Cable & Deadpool (2004) #43](https://www.marvel.com/comics/issue/15933/cable_deadpool_2004_43)
+- [ ] Cable & Deadpool #44
+- [ ] Wolverine: Origins #21
+- [ ] Wolverine: Origins #22
+- [ ] Wolverine: Origins #23
+- [ ] Wolverine: Origins #24
+- [ ] Wolverine: Origins #25
+- [ ] Wolverine/Deadpool: The Decoy 1
+- [ ] Material From Wolverine Annual Ã¢â‚¬â„¢95
+- [ ] Logan #1
+- [ ] Logan #2
+- [ ] [Before the Fantastic Four: Ben Grimm & Logan (2000) #3](https://www.marvel.com/comics/issue/62693/before_the_fantastic_four_ben_grimm_logan_2000_3)
+- [ ] X-Men: Messiah Complex One-Shot
+- [ ] [Uncanny X-Men (1963) #492](https://www.marvel.com/comics/issue/17206/uncanny_x-men_1963_492)
+- [ ] [Uncanny X-Men (1963) #493](https://www.marvel.com/comics/issue/17336/uncanny_x-men_1963_493)
+- [ ] [Uncanny X-Men (1963) #494](https://www.marvel.com/comics/issue/17576/uncanny_x-men_1963_494)
+- [ ] [X-Men (2004) #205](https://www.marvel.com/comics/issue/17205/x-men_2004_205)
+- [ ] [X-Men (2004) #206](https://www.marvel.com/comics/issue/17334/x-men_2004_206)
+- [ ] [X-Men (2004) #207](https://www.marvel.com/comics/issue/17575/x-men_2004_207)
+- [ ] [New X-Men (2004) #44](https://www.marvel.com/comics/issue/17223/new_x-men_2004_44)
+- [ ] [New X-Men (2004) #45](https://www.marvel.com/comics/issue/17356/new_x-men_2004_45)
+- [ ] [New X-Men (2004) #46](https://www.marvel.com/comics/issue/17595/new_x-men_2004_46)
+- [ ] [X-Factor (1986) #25](https://www.marvel.com/comics/issue/12241/x-factor_1986_25)
+- [ ] [X-Factor (1986) #26](https://www.marvel.com/comics/issue/12242/x-factor_1986_26)
+- [ ] [X-Factor (2005) #27](https://www.marvel.com/comics/issue/17615/x-factor_2005_27)
+- [ ] Wolverine (2003) 56
+- [ ] 62-65
+- [ ] material from 73-74
+- [ ] [Wolverine: Manifest Destiny (2008) #1](https://www.marvel.com/comics/issue/22380/wolverine_manifest_destiny_2008_1)
+- [ ] [Wolverine: Manifest Destiny (2008) #2](https://www.marvel.com/comics/issue/22571/wolverine_manifest_destiny_2008_2)
+- [ ] [Wolverine: Manifest Destiny (2008) #3](https://www.marvel.com/comics/issue/22988/wolverine_manifest_destiny_2008_3)
+- [ ] [Wolverine: Manifest Destiny (2008) #4](https://www.marvel.com/comics/issue/23164/wolverine_manifest_destiny_2008_4)
+- [ ] Wolverine: Weapon X #1
+- [ ] Wolverine: Weapon X #2
+- [ ] Wolverine: Weapon X #3
+- [ ] Wolverine: Weapon X #4
+- [ ] Wolverine: Weapon X #5
+- [ ] Wolverine: Chop Shop
+- [ ] Wolverine: Switchback
+- [ ] Wolverine Holiday Special: Flies to a Spider
+- [ ] Wolverine: Dead ManÃ¢â‚¬â„¢s Hand
+- [ ] [X-Force (2008) #1](https://www.marvel.com/comics/issue/20704/x-force_2008_1)
+- [ ] [X-Force (2008) #2](https://www.marvel.com/comics/issue/20895/x-force_2008_2)
+- [ ] [X-Force (2008) #3](https://www.marvel.com/comics/issue/21028/x-force_2008_3)
+- [ ] [X-Force (1991) #4](https://www.marvel.com/comics/issue/18005/x-force_1991_4)
+- [ ] [X-Force (2008) #5](https://www.marvel.com/comics/issue/21561/x-force_2008_5)
+- [ ] [X-Force (2008) #6](https://www.marvel.com/comics/issue/21757/x-force_2008_6)
+- [ ] [X-Force (2008) #7](https://www.marvel.com/comics/issue/21996/x-force_2008_7)
+- [ ] [X-Force (2008) #8](https://www.marvel.com/comics/issue/22322/x-force_2008_8)
+- [ ] [X-Force (2008) #9](https://www.marvel.com/comics/issue/22521/x-force_2008_9)
+- [ ] [X-Force (2008) #10](https://www.marvel.com/comics/issue/22929/x-force_2008_10)
+- [ ] [X-Force (2008) #11](https://www.marvel.com/comics/issue/23125/x-force_2008_11)
+- [ ] Dark Reign: The List Ã¢â‚¬â€œ Wolverine #1
+- [ ] Wolverine: Weapon X #6
+- [ ] Wolverine: Weapon X #7
+- [ ] Wolverine: Weapon X #8
+- [ ] Wolverine: Weapon X #9
+- [ ] Wolverine: Weapon X #10
+- [ ] Wolverine: Weapon X #11
+- [ ] Wolverine: Weapon X #12
+- [ ] Wolverine: Weapon X #13
+- [ ] Wolverine: Weapon X #14
+- [ ] Wolverine: Weapon X #15
+- [ ] Wolverine: Weapon X #16
+- [ ] Dark X-Men: The Beginning 3
+- [ ] All-New Wolverine Saga
+- [ ] Wolverine: Origins #16
+- [ ] Wolverine: Origins #17
+- [ ] Wolverine: Origins #18
+- [ ] Wolverine: Origins #19
+- [ ] Wolverine: Origins #20
+- [ ] Wolverine: Origins #26
+- [ ] Wolverine: Origins #27
+- [ ] Wolverine: Origins #28
+- [ ] Wolverine: Origins #29
+- [ ] Wolverine: Origins #30
+- [ ] Wolverine: Origins #31
+- [ ] Wolverine: Origins #32
+- [ ] X-Men: Original Sin #1
+- [ ] [X-Men Legacy (2008) #217](https://www.marvel.com/comics/issue/22254/x-men_legacy_2008_217)
+- [ ] [X-Men Legacy (2008) #218](https://www.marvel.com/comics/issue/22462/x-men_legacy_2008_218)
+- [ ] X-Force/Cable: Messiah War
+- [ ] [Cable (2008) #13](https://www.marvel.com/comics/issue/23971/cable_2008_13)
+- [ ] [Cable (2008) #14](https://www.marvel.com/comics/issue/24171/cable_2008_14)
+- [ ] [Cable (2008) #15](https://www.marvel.com/comics/issue/24631/cable_2008_15)
+- [ ] [X-Force (2008) #14](https://www.marvel.com/comics/issue/23969/x-force_2008_14)
+- [ ] [X-Force (2008) #15](https://www.marvel.com/comics/issue/24170/x-force_2008_15)
+- [ ] [X-Force (2008) #16](https://www.marvel.com/comics/issue/27253/x-force_2008_16)
+- [ ] X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook
+- [ ] [X-Force (2008) #12](https://www.marvel.com/comics/issue/23617/x-force_2008_12)
+- [ ] [X-Force (2008) #13](https://www.marvel.com/comics/issue/23772/x-force_2008_13)
+- [ ] [X-Force (1991) #17](https://www.marvel.com/comics/issue/17980/x-force_1991_17)
+- [ ] [X-Force (1991) #18](https://www.marvel.com/comics/issue/17981/x-force_1991_18)
+- [ ] X-Force (vol. 3) #19
+- [ ] X-Force (vol. 3) #20
+- [ ] 21-25
+- [ ] New X-Men #32
+- [ ] [New Mutants (2009) #6](https://www.marvel.com/comics/issue/26055/new_mutants_2009_6)
+- [ ] [New Mutants (2019) #7](https://www.marvel.com/comics/issue/76763/new_mutants_2019_7)
+- [ ] [New Mutants (2009) #8](https://www.marvel.com/comics/issue/26057/new_mutants_2009_8)
+- [ ] [X-Men Legacy (2008) #231](https://www.marvel.com/comics/issue/27348/x-men_legacy_2008_231)
+- [ ] [X-Men Legacy (2008) #232](https://www.marvel.com/comics/issue/28415/x-men_legacy_2008_232)
+- [ ] [X-Men Legacy (2008) #233](https://www.marvel.com/comics/issue/30700/x-men_legacy_2008_233)
+- [ ] [X-Men Legacy (2008) #234](https://www.marvel.com/comics/issue/30701/x-men_legacy_2008_234)
+- [ ] X Necrosha
+- [ ] X Necrosha: The Gathering
+- [ ] Wolverine: Origins #33
+- [ ] Wolverine: Origins #34
+- [ ] Wolverine: Origins #35
+- [ ] Wolverine: Origins #36
+- [ ] Wolverine: Origins #37
+- [ ] Wolverine: Origins #38
+- [ ] Wolverine: Origins #39
+- [ ] Wolverine: Origins #40
+- [ ] Wolverine: Origins #41
+- [ ] Wolverine: Origins #42
+- [ ] Wolverine: Origins #43
+- [ ] Wolverine: Origins #44
+- [ ] Wolverine: Origins #45
+- [ ] Wolverine: Origins #46
+- [ ] Wolverine: Origins #47
+- [ ] Wolverine: Origins #48
+- [ ] Wolverine: Origins #49
+- [ ] Wolverine: Origins #50
+- [ ] Dark Wolverine #85
+- [ ] Dark Wolverine #86
+- [ ] Second Coming: Prepare
+- [ ] Second Coming #1
+- [ ] Second Coming #2
+- [ ] [Uncanny X-Men (1963) #523](https://www.marvel.com/comics/issue/32564/uncanny_x-men_1963_523)
+- [ ] [Uncanny X-Men (1963) #524](https://www.marvel.com/comics/issue/30621/uncanny_x-men_1963_524)
+- [ ] [Uncanny X-Men (1963) #525](https://www.marvel.com/comics/issue/30622/uncanny_x-men_1963_525)
+- [ ] [New Mutants (2009) #12](https://www.marvel.com/comics/issue/32552/new_mutants_2009_12)
+- [ ] [New Mutants (2009) #13](https://www.marvel.com/comics/issue/30486/new_mutants_2009_13)
+- [ ] [New Mutants (2009) #14](https://www.marvel.com/comics/issue/30487/new_mutants_2009_14)
+- [ ] [X-Men Legacy (2008) #235](https://www.marvel.com/comics/issue/32598/x-men_legacy_2008_235)
+- [ ] [X-Men Legacy (2008) #236](https://www.marvel.com/comics/issue/30703/x-men_legacy_2008_236)
+- [ ] [X-Men Legacy (2008) #237](https://www.marvel.com/comics/issue/30704/x-men_legacy_2008_237)
+- [ ] [X-Force (2008) #26](https://www.marvel.com/comics/issue/32583/x-force_2008_26)
+- [ ] [X-Force (2008) #27](https://www.marvel.com/comics/issue/30673/x-force_2008_27)
+- [ ] [X-Force (2008) #28](https://www.marvel.com/comics/issue/30674/x-force_2008_28)
+- [ ] Astonishing Spider-Man & Wolverine #1
+- [ ] Astonishing Spider-Man & Wolverine #2
+- [ ] Astonishing Spider-Man & Wolverine #3
+- [ ] Astonishing Spider-Man & Wolverine #4
+- [ ] [Astonishing Spider-Man & Wolverine (2010) #5](https://www.marvel.com/comics/issue/31224/astonishing_spider-man_wolverine_2010_5)
+- [ ] Astonishing Spider-Man & Wolverine #6
+- [ ] Wolverine #9
+- [ ] [Wolverine (2010) #5.1](https://www.marvel.com/comics/issue/39288/wolverine_2010_5.1)
+- [ ] Wolverine: Road To Hell 1
+- [ ] [Uncanny X-Force (2010) #1](https://www.marvel.com/comics/issue/32573/uncanny_x-force_2010_1)
+- [ ] [Uncanny X-Force (2010) #2](https://www.marvel.com/comics/issue/32581/uncanny_x-force_2010_2)
+- [ ] [Uncanny X-Force (2010) #3](https://www.marvel.com/comics/issue/32585/uncanny_x-force_2010_3)
+- [ ] [Uncanny X-Force (2010) #4](https://www.marvel.com/comics/issue/32586/uncanny_x-force_2010_4)
+- [ ] Wolverine and Jubilee #1
+- [ ] Wolverine and Jubilee #2
+- [ ] Wolverine and Jubilee #3
+- [ ] Wolverine and Jubilee #4
+- [ ] Uncanny X-Men #244
+- [ ] [Uncanny X-Force (2010) #5](https://www.marvel.com/comics/issue/32589/uncanny_x-force_2010_5)
+- [ ] [Uncanny X-Force (2010) #6](https://www.marvel.com/comics/issue/32591/uncanny_x-force_2010_6)
+- [ ] [Uncanny X-Force (2010) #7](https://www.marvel.com/comics/issue/32593/uncanny_x-force_2010_7)
+- [ ] #5.1
+- [ ] [Fear Itself: Wolverine (2011) #1](https://www.marvel.com/comics/issue/38947/fear_itself_wolverine_2011_1)
+- [ ] [Fear Itself: Wolverine (2011) #2](https://www.marvel.com/comics/issue/38945/fear_itself_wolverine_2011_2)
+- [ ] [Fear Itself: Wolverine (2011) #3](https://www.marvel.com/comics/issue/38946/fear_itself_wolverine_2011_3)
+- [ ] [New Mutants (1983) #29](https://www.marvel.com/comics/issue/10365/new_mutants_1983_29)
+- [ ] [New Mutants (1983) #30](https://www.marvel.com/comics/issue/10367/new_mutants_1983_30)
+- [ ] [New Mutants (1983) #31](https://www.marvel.com/comics/issue/10368/new_mutants_1983_31)
+- [ ] [New Mutants (1983) #32](https://www.marvel.com/comics/issue/10369/new_mutants_1983_32)
+- [ ] 300-304
+- [ ] Schism #1
+- [ ] Schism #2
+- [ ] Schism #3
+- [ ] Schism #4
+- [ ] Schism #5
+- [ ] [Wolverine & the X-Men (2011) #1](https://www.marvel.com/comics/issue/38586/wolverine_the_x-men_2011_1)
+- [ ] [Wolverine & the X-Men (2011) #2](https://www.marvel.com/comics/issue/38584/wolverine_the_x-men_2011_2)
+- [ ] [Wolverine & the X-Men (2011) #3](https://www.marvel.com/comics/issue/38582/wolverine_the_x-men_2011_3)
+- [ ] [Wolverine & the X-Men (2011) #4](https://www.marvel.com/comics/issue/38576/wolverine_the_x-men_2011_4)
+- [ ] [Wolverine & the X-Men (2011) #5](https://www.marvel.com/comics/issue/38575/wolverine_the_x-men_2011_5)
+- [ ] [Wolverine & the X-Men (2011) #6](https://www.marvel.com/comics/issue/38579/wolverine_the_x-men_2011_6)
+- [ ] [Wolverine & the X-Men (2011) #7](https://www.marvel.com/comics/issue/38581/wolverine_the_x-men_2011_7)
+- [ ] [Wolverine & the X-Men (2011) #8](https://www.marvel.com/comics/issue/38577/wolverine_the_x-men_2011_8)
+- [ ] [Wolverine & the X-Men (2011) #9](https://www.marvel.com/comics/issue/38585/wolverine_the_x-men_2011_9)
+- [ ] [Wolverine & the X-Men (2011) #10](https://www.marvel.com/comics/issue/38583/wolverine_the_x-men_2011_10)
+- [ ] [Wolverine & the X-Men (2011) #11](https://www.marvel.com/comics/issue/38580/wolverine_the_x-men_2011_11)
+- [ ] [Wolverine & the X-Men (2014) #12](https://www.marvel.com/comics/issue/48907/wolverine_the_x-men_2014_12)
+- [ ] [Wolverine & the X-Men (2011) #13](https://www.marvel.com/comics/issue/40088/wolverine_the_x-men_2011_13)
+- [ ] [Wolverine & the X-Men (2011) #14](https://www.marvel.com/comics/issue/40089/wolverine_the_x-men_2011_14)
+- [ ] [Wolverine & the X-Men (2011) #15](https://www.marvel.com/comics/issue/40085/wolverine_the_x-men_2011_15)
+- [ ] [Wolverine & the X-Men (2011) #16](https://www.marvel.com/comics/issue/40084/wolverine_the_x-men_2011_16)
+- [ ] Wolverine & The X-Men #17
+- [ ] [Wolverine & the X-Men (2011) #18](https://www.marvel.com/comics/issue/40087/wolverine_the_x-men_2011_18)
+- [ ] Wolverine & The X-Men #19
+- [ ] Wolverine & The X-Men #20
+- [ ] Wolverine & The X-Men #21
+- [ ] Wolverine & The X-Men #22
+- [ ] [Wolverine & the X-Men (2011) #23](https://www.marvel.com/comics/issue/43281/wolverine_the_x-men_2011_23)
+- [ ] Wolverine & The X-Men #24
+- [ ] Wolverine & The X-Men #25
+- [ ] Wolverine & The X-Men #26
+- [ ] [Wolverine & the X-Men (2011) #27](https://www.marvel.com/comics/issue/43277/wolverine_the_x-men_2011_27)
+- [ ] Wolverine & The X-Men #28
+- [ ] Wolverine & The X-Men #29
+- [ ] Wolverine & The X-Men #30
+- [ ] Wolverine & The X-Men #31
+- [ ] Wolverine & The X-Men #32
+- [ ] Wolverine & The X-Men #33
+- [ ] Wolverine & The X-Men #34
+- [ ] Wolverine & The X-Men #35
+- [ ] [Wolverine & the X-Men (2011) #36](https://www.marvel.com/comics/issue/46738/wolverine_the_x-men_2011_36)
+- [ ] [Wolverine & the X-Men (2011) #37](https://www.marvel.com/comics/issue/48097/wolverine_the_x-men_2011_37)
+- [ ] Wolverine & The X-Men #38
+- [ ] Wolverine & The X-Men #39
+- [ ] Wolverine & The X-Men #40
+- [ ] Wolverine & The X-Men #41
+- [ ] [Wolverine & the X-Men (2011) #42](https://www.marvel.com/comics/issue/48912/wolverine_the_x-men_2011_42)
+- [ ] Wolverine: The Best There Is #1
+- [ ] Wolverine: The Best There Is #2
+- [ ] Wolverine: The Best There Is #3
+- [ ] Wolverine: The Best There Is #4
+- [ ] Wolverine: The Best There Is #5
+- [ ] Wolverine: The Best There Is #6
+- [ ] Wolverine: The Best There Is #7
+- [ ] Wolverine: The Best There Is #8
+- [ ] Wolverine: The Best There Is #9
+- [ ] Wolverine: The Best There Is #10
+- [ ] Wolverine: The Best There Is #11
+- [ ] Wolverine: The Best There Is #12
+- [ ] Wolverine and the X-Men (vol. 1) #1
+- [ ] Wolverine and the X-Men (vol. 1) #2
+- [ ] Wolverine and the X-Men (vol. 1) #3
+- [ ] Wolverine and the X-Men (vol. 1) #4
+- [ ] Wolverine and the X-Men: Alpha and Omega #1
+- [ ] Wolverine and the X-Men: Alpha and Omega #2
+- [ ] Wolverine and the X-Men: Alpha and Omega #3
+- [ ] [Uncanny X-Force (2010) #8](https://www.marvel.com/comics/issue/32595/uncanny_x-force_2010_8)
+- [ ] [Uncanny X-Force (2010) #9](https://www.marvel.com/comics/issue/32597/uncanny_x-force_2010_9)
+- [ ] [Uncanny X-Force (2010) #10](https://www.marvel.com/comics/issue/32574/uncanny_x-force_2010_10)
+- [ ] [Uncanny X-Force (2010) #11](https://www.marvel.com/comics/issue/32577/uncanny_x-force_2010_11)
+- [ ] [Uncanny X-Force (2010) #12](https://www.marvel.com/comics/issue/32578/uncanny_x-force_2010_12)
+- [ ] [Uncanny X-Force (2010) #13](https://www.marvel.com/comics/issue/35294/uncanny_x-force_2010_13)
+- [ ] [Uncanny X-Force (2010) #14](https://www.marvel.com/comics/issue/35300/uncanny_x-force_2010_14)
+- [ ] [Uncanny X-Force (2010) #15](https://www.marvel.com/comics/issue/35298/uncanny_x-force_2010_15)
+- [ ] [Uncanny X-Force (2010) #16](https://www.marvel.com/comics/issue/36153/uncanny_x-force_2010_16)
+- [ ] [Uncanny X-Force (2010) #17](https://www.marvel.com/comics/issue/35296/uncanny_x-force_2010_17)
+- [ ] [Uncanny X-Force (2010) #18](https://www.marvel.com/comics/issue/35297/uncanny_x-force_2010_18)
+- [ ] [Uncanny X-Force (2010) #19](https://www.marvel.com/comics/issue/40454/uncanny_x-force_2010_19)
+- [ ] [Uncanny X-Force (2010) #20](https://www.marvel.com/comics/issue/40453/uncanny_x-force_2010_20)
+- [ ] [Uncanny X-Force (2010) #21](https://www.marvel.com/comics/issue/40455/uncanny_x-force_2010_21)
+- [ ] [Uncanny X-Force (2010) #22](https://www.marvel.com/comics/issue/40452/uncanny_x-force_2010_22)
+- [ ] [Uncanny X-Force (2010) #23](https://www.marvel.com/comics/issue/40441/uncanny_x-force_2010_23)
+- [ ] [Uncanny X-Force (2010) #24](https://www.marvel.com/comics/issue/40448/uncanny_x-force_2010_24)
+- [ ] Wolverine and the X-Men (vol. 1) #5
+- [ ] Wolverine and the X-Men (vol. 1) #6
+- [ ] Wolverine and the X-Men (vol. 1) #7
+- [ ] Wolverine and the X-Men (vol. 1) #8
+- [ ] Wolverine #305
+- [ ] Wolverine #306
+- [ ] Wolverine #307
+- [ ] Wolverine #308
+- [ ] Wolverine #309
+- [ ] Wolverine #310
+- [ ] Wolverine #311
+- [ ] [Wolverine (2010) #312](https://www.marvel.com/comics/issue/41246/wolverine_2010_312)
+- [ ] Wolverine #313
+- [ ] [Wolverine (2010) #314](https://www.marvel.com/comics/issue/41242/wolverine_2010_314)
+- [ ] Wolverine #315
+- [ ] Wolverine #316
+- [ ] Wolverine #317
+- [ ] [Avengers Vs. X-Men (2012) #unresolved](https://www.marvel.com/comics/issue/42332/avengers_vs_x-men_2012)
+- [ ] [Avengers Vs. X-Men (2012) #1](https://www.marvel.com/comics/issue/41188/avengers_vs_x-men_2012_1)
+- [ ] [Avengers Vs. X-Men (2012) #2](https://www.marvel.com/comics/issue/41191/avengers_vs_x-men_2012_2)
+- [ ] [Avengers Vs. X-Men (2012) #3](https://www.marvel.com/comics/issue/41187/avengers_vs_x-men_2012_3)
+- [ ] [Avengers Vs. X-Men (2012) #4](https://www.marvel.com/comics/issue/41193/avengers_vs_x-men_2012_4)
+- [ ] [Avengers Vs. X-Men (2012) #5](https://www.marvel.com/comics/issue/41190/avengers_vs_x-men_2012_5)
+- [ ] [Avengers Vs. X-Men (2012) #6](https://www.marvel.com/comics/issue/41189/avengers_vs_x-men_2012_6)
+- [ ] [Avengers Vs. X-Men (2012) #7](https://www.marvel.com/comics/issue/41192/avengers_vs_x-men_2012_7)
+- [ ] [Avengers Vs. X-Men (2012) #8](https://www.marvel.com/comics/issue/41275/avengers_vs_x-men_2012_8)
+- [ ] [Avengers Vs. X-Men (2012) #9](https://www.marvel.com/comics/issue/41277/avengers_vs_x-men_2012_9)
+- [ ] [Avengers Vs. X-Men (2012) #10](https://www.marvel.com/comics/issue/41276/avengers_vs_x-men_2012_10)
+- [ ] [Avengers Vs. X-Men (2012) #11](https://www.marvel.com/comics/issue/41279/avengers_vs_x-men_2012_11)
+- [ ] [Avengers Vs. X-Men (2012) #12](https://www.marvel.com/comics/issue/41278/avengers_vs_x-men_2012_12)
+- [ ] AvX: VS #1
+- [ ] AvX: VS #2
+- [ ] AvX: VS #3
+- [ ] AvX: VS #4
+- [ ] AvX: VS #5
+- [ ] AvX: VS #6
+- [ ] Avengers vs. X-Men: Infinite #1
+- [ ] 6
+- [ ] 10
+- [ ] Material from Marvel Point One
+- [ ] [Avengers Academy (2010) #29](https://www.marvel.com/comics/issue/40251/avengers_academy_2010_29)
+- [ ] [Avengers Academy (2010) #30](https://www.marvel.com/comics/issue/40250/avengers_academy_2010_30)
+- [ ] [Avengers Academy (2010) #31](https://www.marvel.com/comics/issue/40253/avengers_academy_2010_31)
+- [ ] [Avengers Academy (2010) #32](https://www.marvel.com/comics/issue/40254/avengers_academy_2010_32)
+- [ ] [Avengers Academy (2010) #33](https://www.marvel.com/comics/issue/40264/avengers_academy_2010_33)
+- [ ] [Secret Avengers (2010) #26](https://www.marvel.com/comics/issue/40706/secret_avengers_2010_26)
+- [ ] [Secret Avengers (2010) #27](https://www.marvel.com/comics/issue/40705/secret_avengers_2010_27)
+- [ ] [Secret Avengers (2010) #28](https://www.marvel.com/comics/issue/40709/secret_avengers_2010_28)
+- [ ] [Avengers (2010) #25](https://www.marvel.com/comics/issue/40405/avengers_2010_25)
+- [ ] [Avengers (2010) #26](https://www.marvel.com/comics/issue/40410/avengers_2010_26)
+- [ ] [Avengers (2010) #27](https://www.marvel.com/comics/issue/40406/avengers_2010_27)
+- [ ] [Avengers (2010) #28](https://www.marvel.com/comics/issue/40404/avengers_2010_28)
+- [ ] [Avengers (2010) #29](https://www.marvel.com/comics/issue/40409/avengers_2010_29)
+- [ ] [Avengers (2010) #30](https://www.marvel.com/comics/issue/40400/avengers_2010_30)
+- [ ] [New Avengers (2004) #24](https://www.marvel.com/comics/issue/5096/new_avengers_2004_24)
+- [ ] [New Avengers (2004) #25](https://www.marvel.com/comics/issue/5248/new_avengers_2004_25)
+- [ ] [New Avengers (2004) #26](https://www.marvel.com/comics/issue/5413/new_avengers_2004_26)
+- [ ] [New Avengers (2004) #27](https://www.marvel.com/comics/issue/5963/new_avengers_2004_27)
+- [ ] [New Avengers (2004) #28](https://www.marvel.com/comics/issue/6122/new_avengers_2004_28)
+- [ ] [New Avengers (2004) #29](https://www.marvel.com/comics/issue/6265/new_avengers_2004_29)
+- [ ] [New Avengers (2004) #30](https://www.marvel.com/comics/issue/13437/new_avengers_2004_30)
+- [ ] [X-Men Legacy (2008) #266](https://www.marvel.com/comics/issue/40841/x-men_legacy_2008_266)
+- [ ] [X-Men Legacy (2008) #267](https://www.marvel.com/comics/issue/40843/x-men_legacy_2008_267)
+- [ ] [X-Men Legacy (2008) #268](https://www.marvel.com/comics/issue/40847/x-men_legacy_2008_268)
+- [ ] X-Men Legacy #269
+- [ ] X-Men Legacy #270
+- [ ] Wolverine and The X-Men #9
+- [ ] Wolverine and The X-Men #10
+- [ ] Wolverine and The X-Men #11
+- [ ] Wolverine and The X-Men #12
+- [ ] Wolverine and The X-Men #13
+- [ ] Wolverine and The X-Men #14
+- [ ] Wolverine and The X-Men #15
+- [ ] Wolverine and The X-Men #16
+- [ ] 18
+- [ ] [Uncanny X-Men (1963) #11](https://www.marvel.com/comics/issue/12425/uncanny_x-men_1963_11)
+- [ ] [Uncanny X-Men (2013) #12](https://www.marvel.com/comics/issue/46677/uncanny_x-men_2013_12)
+- [ ] [Uncanny X-Men (2013) #13](https://www.marvel.com/comics/issue/48095/uncanny_x-men_2013_13)
+- [ ] [Uncanny X-Men (1963) #14](https://www.marvel.com/comics/issue/12458/uncanny_x-men_1963_14)
+- [ ] [Uncanny X-Men (1963) #15](https://www.marvel.com/comics/issue/12461/uncanny_x-men_1963_15)
+- [ ] [Uncanny X-Men (2016) #16](https://www.marvel.com/comics/issue/56064/uncanny_x-men_2016_16)
+- [ ] [Uncanny X-Men (2016) #17](https://www.marvel.com/comics/issue/60862/uncanny_x-men_2016_17)
+- [ ] [Uncanny X-Men (2016) #18](https://www.marvel.com/comics/issue/60863/uncanny_x-men_2016_18)
+- [ ] [Uncanny X-Men (1963) #19](https://www.marvel.com/comics/issue/12465/uncanny_x-men_1963_19)
+- [ ] [Uncanny X-Men (1963) #20](https://www.marvel.com/comics/issue/12467/uncanny_x-men_1963_20)
+- [ ] [Avx: Consequences (2012) #1](https://www.marvel.com/comics/issue/44526/avx_consequences_2012_1)
+- [ ] [Avx: Consequences (2012) #2](https://www.marvel.com/comics/issue/45721/avx_consequences_2012_2)
+- [ ] [Avx: Consequences (2012) #3](https://www.marvel.com/comics/issue/45724/avx_consequences_2012_3)
+- [ ] [Avx: Consequences (2012) #4](https://www.marvel.com/comics/issue/45935/avx_consequences_2012_4)
+- [ ] [Avx: Consequences (2012) #5](https://www.marvel.com/comics/issue/43696/avx_consequences_2012_5)
+- [ ] Wolverine and the X-Men (vol. 1) #14
+- [ ] Wolverine and the X-Men (vol. 1) #15
+- [ ] Wolverine and the X-Men (vol. 1) #16
+- [ ] Wolverine and the X-Men (vol. 1) #17
+- [ ] Wolverine and the X-Men (vol. 1) #18
+- [ ] Wolverine and the X-Men (vol. 1) #19
+- [ ] Wolverine and the X-Men (vol. 1) #20
+- [ ] Wolverine and the X-Men (vol. 1) #21
+- [ ] Wolverine and the X-Men (vol. 1) #22
+- [ ] Wolverine and the X-Men (vol. 1) #23
+- [ ] Wolverine and the X-Men (vol. 1) #24
+- [ ] Savage Wolverine #1
+- [ ] Savage Wolverine #2
+- [ ] Savage Wolverine #3
+- [ ] Savage Wolverine #4
+- [ ] Savage Wolverine #5
+- [ ] [Savage Wolverine (2013) #6](https://www.marvel.com/comics/issue/46412/savage_wolverine_2013_6)
+- [ ] Savage Wolverine #7
+- [ ] Savage Wolverine #8
+- [ ] Savage Wolverine #9
+- [ ] [Savage Wolverine (2013) #10](https://www.marvel.com/comics/issue/46416/savage_wolverine_2013_10)
+- [ ] Savage Wolverine #11
+- [ ] Wolverine and the X-Men (vol. 1) #25
+- [ ] Wolverine and the X-Men (vol. 1) #26
+- [ ] Wolverine and the X-Men (vol. 1) #27
+- [ ] Wolverine and the X-Men (vol. 1) #28
+- [ ] Wolverine and the X-Men (vol. 1) #29
+- [ ] [Avengers (2010) #12.1](https://www.marvel.com/comics/issue/39852/avengers_2010_12.1)
+- [ ] [Age of Ultron (2013) #1](https://www.marvel.com/comics/issue/47001/age_of_ultron_2013_1)
+- [ ] [Age of Ultron (2013) #2](https://www.marvel.com/comics/issue/47003/age_of_ultron_2013_2)
+- [ ] [Age of Ultron (2013) #3](https://www.marvel.com/comics/issue/37405/age_of_ultron_2013_3)
+- [ ] [Age of Ultron (2013) #4](https://www.marvel.com/comics/issue/37406/age_of_ultron_2013_4)
+- [ ] [Age of Ultron (2013) #5](https://www.marvel.com/comics/issue/37407/age_of_ultron_2013_5)
+- [ ] [Age of Ultron (2013) #6](https://www.marvel.com/comics/issue/45904/age_of_ultron_2013_6)
+- [ ] [Age of Ultron (2013) #7](https://www.marvel.com/comics/issue/45905/age_of_ultron_2013_7)
+- [ ] [Age of Ultron (2013) #8](https://www.marvel.com/comics/issue/45906/age_of_ultron_2013_8)
+- [ ] [Age of Ultron (2013) #9](https://www.marvel.com/comics/issue/45907/age_of_ultron_2013_9)
+- [ ] [Age of Ultron (2013) #10](https://www.marvel.com/comics/issue/45908/age_of_ultron_2013_10)
+- [ ] Wolverine and the X-Men (vol. 1) #30
+- [ ] Wolverine and the X-Men (vol. 1) #31
+- [ ] Wolverine and the X-Men (vol. 1) #32
+- [ ] Wolverine and the X-Men (vol. 1) #33
+- [ ] Wolverine and the X-Men (vol. 1) #34
+- [ ] Wolverine and the X-Men (vol. 1) #35
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #1
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #2
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #3
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #4
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #5
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #6
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #7
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #8
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #9
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #10
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #11
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #12
+- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #13
+- [ ] Wolverine (vol. 5) #9
+- [ ] [Wolverine (2013) #10](https://www.marvel.com/comics/issue/46729/wolverine_2013_10)
+- [ ] Wolverine (vol. 5) #11
+- [ ] Wolverine (vol. 5) #12
+- [ ] Wolverine (vol. 5) #13
+- [ ] Wolverine and the X-Men (vol. 1) #38
+- [ ] Wolverine and the X-Men (vol. 1) #39
+- [ ] Wolverine and the X-Men (vol. 1) #40
+- [ ] Wolverine and the X-Men (vol. 1) #41
+- [ ] Wolverine and the X-Men (vol. 1) #42
+- [ ] Wolverine and the X-Men Annual #1
+- [ ] Amazing X-Men (vol. 2) #1
+- [ ] Amazing X-Men (vol. 2) #2
+- [ ] Amazing X-Men (vol. 2) #3
+- [ ] Amazing X-Men (vol. 2) #4
+- [ ] Amazing X-Men (vol. 2) #5
+- [ ] Amazing X-Men (vol. 2) #6
+- [ ] Savage Wolverine #12
+- [ ] Savage Wolverine #13
+- [ ] Savage Wolverine #14
+- [ ] Savage Wolverine #15
+- [ ] [Savage Wolverine (2013) #16](https://www.marvel.com/comics/issue/48806/savage_wolverine_2013_16)
+- [ ] Savage Wolverine #17
+- [ ] Wolverine (vol. 6) #9
+- [ ] Wolverine (vol. 6) #10
+- [ ] Wolverine (vol. 6) #11
+- [ ] Wolverine (vol. 6) #12
+- [ ] Wolverine Annual #1
+- [ ] Wolverine and the X-Men (vol. 2) #1
+- [ ] Wolverine and the X-Men (vol. 2) #2
+- [ ] Wolverine and the X-Men (vol. 2) #3
+- [ ] Wolverine and the X-Men (vol. 2) #4
+- [ ] Wolverine and the X-Men (vol. 2) #5
+- [ ] Wolverine and the X-Men (vol. 2) #6
+- [ ] Savage Wolverine #18
+- [ ] Savage Wolverine #19
+- [ ] Savage Wolverine #20
+- [ ] Savage Wolverine #21
+- [ ] Savage Wolverine #22
+- [ ] Savage Wolverine #23
+- [ ] [Death of Wolverine (2014) #1](https://www.marvel.com/comics/issue/50946/death_of_wolverine_2014_1)
+- [ ] Death of Wolverine #2
+- [ ] [Death of Wolverine (2014) #3](https://www.marvel.com/comics/issue/50948/death_of_wolverine_2014_3)
+- [ ] Death of Wolverine #4
+- [ ] Death of Wolverine: The Weapon X Program #1
+- [ ] Death of Wolverine: The Weapon X Program #2
+- [ ] Death of Wolverine: The Weapon X Program #3
+- [ ] Death of Wolverine: The Weapon X Program #4
+- [ ] Death of Wolverine: The Weapon X Program #5
+- [ ] Death of Wolverine: The Logan Legacy #1
+- [ ] Death of Wolverine: The Logan Legacy #2
+- [ ] Death of Wolverine: The Logan Legacy #3
+- [ ] Death of Wolverine: The Logan Legacy #4
+- [ ] Death of Wolverine: The Logan Legacy #5
+- [ ] Death of Wolverine: The Logan Legacy #6
+- [ ] Death of Wolverine: The Logan Legacy #7
+- [ ] Death of Wolverine: Deadpool and Captain America
+- [ ] Death of Wolverine: Life After Logan
+- [ ] Wolverine and the X-Men (vol. 2) #10
+- [ ] Wolverine and the X-Men (vol. 2) #11
+- [ ] Nightcrawler (vol. 4) #7
+- [ ] Wolverines #1
+- [ ] Wolverines #2
+- [ ] [Wolverines (2015) #3](https://www.marvel.com/comics/issue/52913/wolverines_2015_3)
+- [ ] Wolverines #4
+- [ ] Wolverines #5
+- [ ] Wolverines #6
+- [ ] Wolverines #7
+- [ ] Wolverines #8
+- [ ] [Wolverines (2015) #9](https://www.marvel.com/comics/issue/52923/wolverines_2015_9)
+- [ ] Wolverines #10
+- [ ] Wolverines #11
+- [ ] Wolverines #12
+- [ ] Wolverines #13
+- [ ] Wolverines #14
+- [ ] Wolverines #15
+- [ ] Wolverines #16
+- [ ] Wolverines #17
+- [ ] Wolverines #18
+- [ ] Wolverines #19
+- [ ] Wolverines #20
+- [ ] Old Man Logan #1
+- [ ] Old Man Logan #2
+- [ ] Old Man Logan #3
+- [ ] Old Man Logan #4
+- [ ] [Old Man Logan (2015) #5](https://www.marvel.com/comics/issue/52310/old_man_logan_2015_5)
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #1
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #2
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #3
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #4
+- [ ] [Extraordinary X-Men (2015) #1](https://www.marvel.com/comics/issue/55433/extraordinary_x-men_2015_1)
+- [ ] Extraordinary X-Men #2
+- [ ] Extraordinary X-Men #3
+- [ ] Extraordinary X-Men #4
+- [ ] Extraordinary X-Men #5
+- [ ] Extraordinary X-Men #6
+- [ ] Extraordinary X-Men #7
+- [ ] [Extraordinary X-Men (2015) #8](https://www.marvel.com/comics/issue/55440/extraordinary_x-men_2015_8)
+- [ ] [Extraordinary X-Men (2015) #9](https://www.marvel.com/comics/issue/55441/extraordinary_x-men_2015_9)
+- [ ] [Extraordinary X-Men (2015) #10](https://www.marvel.com/comics/issue/55442/extraordinary_x-men_2015_10)
+- [ ] [Extraordinary X-Men (2015) #11](https://www.marvel.com/comics/issue/55443/extraordinary_x-men_2015_11)
+- [ ] [Extraordinary X-Men (2015) #12](https://www.marvel.com/comics/issue/55444/extraordinary_x-men_2015_12)
+- [ ] All-New Wolverine #7
+- [ ] All-New Wolverine #8
+- [ ] All-New Wolverine #9
+- [ ] All-New Wolverine #10
+- [ ] [All-New Wolverine (2015) #11](https://www.marvel.com/comics/issue/56442/all-new_wolverine_2015_11)
+- [ ] All-New Wolverine #12
+- [ ] Civil War II: X-Men #1
+- [ ] Civil War II: X-Men #2
+- [ ] Civil War II: X-Men #3
+- [ ] Civil War II: X-Men #4
+- [ ] Old Man Logan #14
+- [ ] Old Man Logan #15
+- [ ] Old Man Logan #16
+- [ ] Old Man Logan #17
+- [ ] Old Man Logan #18
+- [ ] Extraordinary X-Men #13
+- [ ] Extraordinary X-Men #14
+- [ ] Extraordinary X-Men #15
+- [ ] Extraordinary X-Men #16
+- [ ] [Ivx (2016) #0](https://www.marvel.com/comics/issue/61593/ivx_2016)
+- [ ] [Ivx (2016) #1](https://www.marvel.com/comics/issue/61594/ivx_2016_1)
+- [ ] [Ivx (2016) #2](https://www.marvel.com/comics/issue/61595/ivx_2016_2)
+- [ ] [Ivx (2016) #3](https://www.marvel.com/comics/issue/61596/ivx_2016_3)
+- [ ] [Ivx (2016) #4](https://www.marvel.com/comics/issue/61597/ivx_2016_4)
+- [ ] [Ivx (2016) #5](https://www.marvel.com/comics/issue/61598/ivx_2016_5)
+- [ ] [Ivx (2016) #6](https://www.marvel.com/comics/issue/61982/ivx_2016_6)
+- [ ] [Extraordinary X-Men (2015) #17](https://www.marvel.com/comics/issue/55449/extraordinary_x-men_2015_17)
+- [ ] [Extraordinary X-Men (2015) #18](https://www.marvel.com/comics/issue/55450/extraordinary_x-men_2015_18)
+- [ ] [Extraordinary X-Men (2015) #19](https://www.marvel.com/comics/issue/55451/extraordinary_x-men_2015_19)
+- [ ] Extraordinary X-Men #20
+- [ ] X-Men Prime (2017) #1
+- [ ] Old Man Logan #19
+- [ ] Old Man Logan #20
+- [ ] Old Man Logan #21
+- [ ] Old Man Logan #22
+- [ ] Old Man Logan #23
+- [ ] Old Man Logan #24
+- [ ] Weapon X #1
+- [ ] Weapon X #2
+- [ ] Weapon X #3
+- [ ] Weapon X #4
+- [ ] Totally Awesome Hulk (2015) #19
+- [ ] Weapons of Mutant Destruction: Alpha (2017) #1
+- [ ] Weapon X #5
+- [ ] [Weapon X (2017) #6](https://www.marvel.com/comics/issue/63870/weapon_x_2017_6)
+- [ ] Totally Awesome Hulk #20
+- [ ] [The Totally Awesome Hulk (2015) #21](https://www.marvel.com/comics/issue/60851/the_totally_awesome_hulk_2015_21)
+- [ ] Totally Awesome Hulk #22
+- [ ] Weapon X #7
+- [ ] Weapon X #8
+- [ ] Weapon X #9
+- [ ] Weapon X #10
+- [ ] Weapon X #11
+- [ ] X-Men Gold #1
+- [ ] X-Men Gold #2
+- [ ] X-Men Gold #3
+- [ ] X-Men Gold #4
+- [ ] X-Men Gold #5
+- [ ] X-Men Gold #6
+- [ ] X-Men Gold #7
+- [ ] X-Men Gold #8
+- [ ] [X-Men: Gold (2017) #9](https://www.marvel.com/comics/issue/64290/x-men_gold_2017_9)
+- [ ] X-Men Gold #10
+- [ ] X-Men Gold #11
+- [ ] Generations: Banner Hulk & Totally Awesome Hulk #1
+- [ ] [Generations: Captain Marvel & Captain Mar-Vell (2017) #1](https://www.marvel.com/comics/issue/64386/generations_captain_marvel_captain_mar-vell_2017_1)
+- [ ] Generations: Captain Marvel & Ms. Marvel (2017) #1
+- [ ] [Generations: Hawkeye & Hawkeye (2017) #1](https://www.marvel.com/comics/issue/63956/generations_hawkeye_hawkeye_2017_1)
+- [ ] [Generations: Iron Man & Ironheart (2017) #1](https://www.marvel.com/comics/issue/64389/generations_iron_man_ironheart_2017_1)
+- [ ] [Generations: Miles Morales Spider-Man & Peter Parker Spider-Man (2017) #1](https://www.marvel.com/comics/issue/64396/generations_miles_morales_spider-man_peter_parker_spider-man_2017_1)
+- [ ] [Generations: Phoenix & Jean Grey (2017) #1](https://www.marvel.com/comics/issue/63961/generations_phoenix_jean_grey_2017_1)
+- [ ] [Generations: Sam Wilson Captain America & Steve Rogers Captain America (2017) #1](https://www.marvel.com/comics/issue/64383/generations_sam_wilson_captain_america_steve_rogers_captain_america_2017_1)
+- [ ] [Generations: The Unworthy Thor & The Mighty Thor (2017) #1](https://www.marvel.com/comics/issue/63967/generations_the_unworthy_thor_the_mighty_thor_2017_1)
+- [ ] [Generations: Wolverine & All-New Wolverine (2017) #1](https://www.marvel.com/comics/issue/63958/generations_wolverine_all-new_wolverine_2017_1)
+- [ ] [Marvel Legacy (2017) #1](https://www.marvel.com/comics/issue/64417/marvel_legacy_2017_1)
+- [ ] Marvel Legacy Primer pages
+- [ ] FOOM Magazine (2017)
+- [ ] X-Men Blue #13
+- [ ] X-Men Blue #14
+- [ ] X-Men Blue #15
+- [ ] X-Men Gold #13
+- [ ] X-Men Gold #14
+- [ ] X-Men Gold #15
+- [ ] Weapon X #12
+- [ ] Weapon X #13
+- [ ] [Weapon X (2017) #14](https://www.marvel.com/comics/issue/66220/weapon_x_2017_14)
+- [ ] Weapon X #15
+- [ ] Weapon X #16
+- [ ] Weapon X #17
+- [ ] Weapon X #18
+- [ ] Weapon X #19
+- [ ] Weapon X #20
+- [ ] Weapon X #21
+- [ ] Deadpool Vs. Old Man Logan
+- [ ] Phoenix Resurrection: The Return Of Jean Grey #1
+- [ ] Phoenix Resurrection: The Return Of Jean Grey #2
+- [ ] Phoenix Resurrection: The Return Of Jean Grey #3
+- [ ] Phoenix Resurrection: The Return Of Jean Grey #4
+- [ ] Phoenix Resurrection: The Return Of Jean Grey #5
+- [ ] X-Men Gold (2017) #12
+- [ ] 16-20
+- [ ] X-Men Gold #21
+- [ ] X-Men Gold #22
+- [ ] X-Men Gold #23
+- [ ] X-Men Gold #24
+- [ ] X-Men Gold #25
+- [ ] Old Man Logan #25
+- [ ] Old Man Logan #26
+- [ ] Old Man Logan #27
+- [ ] [Old Man Logan (2016) #28](https://www.marvel.com/comics/issue/60748/old_man_logan_2016_28)
+- [ ] Old Man Logan #29
+- [ ] Old Man Logan #30
+- [ ] Old Man Logan #31
+- [ ] Old Man Logan #32
+- [ ] [Old Man Logan (2016) #33](https://www.marvel.com/comics/issue/65659/old_man_logan_2016_33)
+- [ ] Old Man Logan #34
+- [ ] Old Man Logan #35
+- [ ] Infinity Countdown Prime (2018)
+- [ ] [Infinity Countdown (2018) #1](https://www.marvel.com/comics/issue/66416/infinity_countdown_2018_1)
+- [ ] [Infinity Countdown (2018) #2](https://www.marvel.com/comics/issue/66684/infinity_countdown_2018_2)
+- [ ] [Infinity Countdown (2018) #3](https://www.marvel.com/comics/issue/67022/infinity_countdown_2018_3)
+- [ ] [Infinity Countdown (2018) #4](https://www.marvel.com/comics/issue/68653/infinity_countdown_2018_4)
+- [ ] [Infinity Countdown (2018) #5](https://www.marvel.com/comics/issue/68656/infinity_countdown_2018_5)
+- [ ] Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)
+- [ ] [Hunt for Wolverine (2018) #1](https://www.marvel.com/comics/issue/66912/hunt_for_wolverine_2018_1)
+- [ ] [Hunt for Wolverine: Weapon Lost (2018) #1](https://www.marvel.com/comics/issue/67019/hunt_for_wolverine_weapon_lost_2018_1)
+- [ ] [Hunt for Wolverine: Weapon Lost (2018) #2](https://www.marvel.com/comics/issue/68605/hunt_for_wolverine_weapon_lost_2018_2)
+- [ ] [Hunt for Wolverine: Weapon Lost (2018) #3](https://www.marvel.com/comics/issue/68606/hunt_for_wolverine_weapon_lost_2018_3)
+- [ ] [Hunt for Wolverine: Weapon Lost (2018) #4](https://www.marvel.com/comics/issue/68608/hunt_for_wolverine_weapon_lost_2018_4)
+- [ ] [Hunt for Wolverine: Adamantium Agenda (2018) #1](https://www.marvel.com/comics/issue/67341/hunt_for_wolverine_adamantium_agenda_2018_1)
+- [ ] [Hunt for Wolverine: Adamantium Agenda (2018) #2](https://www.marvel.com/comics/issue/68583/hunt_for_wolverine_adamantium_agenda_2018_2)
+- [ ] [Hunt for Wolverine: Adamantium Agenda (2018) #3](https://www.marvel.com/comics/issue/68584/hunt_for_wolverine_adamantium_agenda_2018_3)
+- [ ] [Hunt for Wolverine: Adamantium Agenda (2018) #4](https://www.marvel.com/comics/issue/68586/hunt_for_wolverine_adamantium_agenda_2018_4)
+- [ ] [Hunt for Wolverine: Claws of a Killer (2018) #1](https://www.marvel.com/comics/issue/67342/hunt_for_wolverine_claws_of_a_killer_2018_1)
+- [ ] [Hunt for Wolverine: Claws of a Killer (2018) #2](https://www.marvel.com/comics/issue/68591/hunt_for_wolverine_claws_of_a_killer_2018_2)
+- [ ] [Hunt for Wolverine: Claws of a Killer (2018) #3](https://www.marvel.com/comics/issue/68592/hunt_for_wolverine_claws_of_a_killer_2018_3)
+- [ ] [Hunt for Wolverine: Claws of a Killer (2018) #4](https://www.marvel.com/comics/issue/68594/hunt_for_wolverine_claws_of_a_killer_2018_4)
+- [ ] [Hunt for Wolverine: Mystery in Madripoor (2018) #1](https://www.marvel.com/comics/issue/67343/hunt_for_wolverine_mystery_in_madripoor_2018_1)
+- [ ] [Hunt for Wolverine: Mystery in Madripoor (2018) #2](https://www.marvel.com/comics/issue/68599/hunt_for_wolverine_mystery_in_madripoor_2018_2)
+- [ ] [Hunt for Wolverine: Mystery in Madripoor (2018) #3](https://www.marvel.com/comics/issue/68600/hunt_for_wolverine_mystery_in_madripoor_2018_3)
+- [ ] [Hunt for Wolverine: Mystery in Madripoor (2018) #4](https://www.marvel.com/comics/issue/68602/hunt_for_wolverine_mystery_in_madripoor_2018_4)
+- [ ] [Hunt for Wolverine: Dead Ends (2018) #1](https://www.marvel.com/comics/issue/67583/hunt_for_wolverine_dead_ends_2018_1)
+- [ ] WhereÃ¢â‚¬â„¢s Wolverine pages and Material from Marvel Legacay (2017) #1
+- [ ] [Old Man Logan (2016) #36](https://www.marvel.com/comics/issue/66505/old_man_logan_2016_36)
+- [ ] Old Man Logan #37
+- [ ] Old Man Logan #38
+- [ ] Old Man Logan #39
+- [ ] Old Man Logan #40
+- [ ] Old Man Logan #41
+- [ ] Old Man Logan #42
+- [ ] Old Man Logan #43
+- [ ] Old Man Logan #44
+- [ ] Old Man Logan #45
+- [ ] [Return of Wolverine (2018) #1](https://www.marvel.com/comics/issue/70117/return_of_wolverine_2018_1)
+- [ ] [Return of Wolverine (2018) #2](https://www.marvel.com/comics/issue/70127/return_of_wolverine_2018_2)
+- [ ] [Return of Wolverine (2018) #3](https://www.marvel.com/comics/issue/70129/return_of_wolverine_2018_3)
+- [ ] [Return of Wolverine (2018) #4](https://www.marvel.com/comics/issue/70130/return_of_wolverine_2018_4)
+- [ ] [Return of Wolverine (2018) #5](https://www.marvel.com/comics/issue/70131/return_of_wolverine_2018_5)
+- [ ] [Extermination (2018) #1](https://www.marvel.com/comics/issue/68367/extermination_2018_1)
+- [ ] [Extermination (2018) #2](https://www.marvel.com/comics/issue/68368/extermination_2018_2)
+- [ ] [Extermination (2018) #3](https://www.marvel.com/comics/issue/68369/extermination_2018_3)
+- [ ] [Extermination (2018) #4](https://www.marvel.com/comics/issue/68370/extermination_2018_4)
+- [ ] [Extermination (2018) #5](https://www.marvel.com/comics/issue/68371/extermination_2018_5)
+- [ ] Old Man Logan #46
+- [ ] Old Man Logan #47
+- [ ] Old Man Logan #48
+- [ ] Old Man Logan #49
+- [ ] Old Man Logan #50
+- [ ] Dead Man Logan #1

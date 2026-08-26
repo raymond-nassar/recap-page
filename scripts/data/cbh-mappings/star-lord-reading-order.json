@@ -3750,10 +3750,10 @@
     "coverIssueId": 19776
   },
   "relationshipReview": {
-    "reportDigest": "656a0973d14e3d057b3771cee8478847e59c23f2fd50123d39f59fec05658513",
+    "reportDigest": "51a0baac13ada042746af365340743ae476e851aa88a8de6d4c72ff8e3f77835",
     "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
     "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-    "libraryDigest": "9a604a418983603eb3b192d75c131870b1aafbafd73e6e88aa397903e4fdf9a6",
+    "libraryDigest": "331b1b1bd21f837ae03cb1f910a8f606d194e0e9db112f3ddcbead74e7faccc2",
     "peerDigests": {
       "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
@@ -5175,6 +5175,15 @@
         "sharedIds": []
       },
       {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "world-war-hulk-aftersmash",
         "relationship": "none",
         "decision": "approved",
@@ -5399,6 +5408,6 @@
     "authorityIdentity": "MRT-002-C08 coordinator",
     "rationale": "Every current-library and named Rocket and Groot peer comparison was reviewed against the separate complete-guide boundary; all four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "562078453d7563bc61924e9d744336fda88bcbae377cff6c8a98efc7facd24cb"
+    "approvalDigest": "a9e0caa785d19a2f77c2bde913fb4b4dc1feb6d4abb09b6a29ce4527dea21fac"
   }
 }

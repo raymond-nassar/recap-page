@@ -2,13 +2,13 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "9a604a418983603eb3b192d75c131870b1aafbafd73e6e88aa397903e4fdf9a6",
+  "libraryDigest": "331b1b1bd21f837ae03cb1f910a8f606d194e0e9db112f3ddcbead74e7faccc2",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 99,
-  "comparisonCount": 143,
+  "comparisonCount": 144,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -811,6 +811,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "wolverine-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "world-war-hulk-aftersmash",
       "sharedCount": 0,
       "sharedIds": [],
@@ -931,5 +937,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "656a0973d14e3d057b3771cee8478847e59c23f2fd50123d39f59fec05658513"
+  "reportDigest": "51a0baac13ada042746af365340743ae476e851aa88a8de6d4c72ff8e3f77835"
 }
