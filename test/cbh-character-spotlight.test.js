@@ -340,7 +340,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships twelve spotlights', async () => {
+test('the character inventory preserves every central disposition and ships fifteen spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -351,14 +351,16 @@ test('the character inventory preserves every central disposition and ships twel
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 107);
+  assert.equal(dispositionCounts.deferred, 105);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 13);
+  assert.equal(dispositionCounts['pilot-approved'], 15);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
     abominationCandidateId,
+    'adam-warlock-reading-order',
+    'agatha-harkness-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',
     'ant-man-reading-order',
     'captain-america-reading-order-modern-marvel-era',

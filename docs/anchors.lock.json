@@ -219,11 +219,6 @@
     "fp": "ea614da883406417",
     "head": "// A blank edge is only fatal when the run is not comparing against a named ref, since a"
   },
-  ".copilot-tracking/research/2026-08-21/historical-anchor-support-research.md|codebase-evidence#c9|.copilot-tracking/research/subagents/2026-08-20/modern-marvel-continuity-guides-internal-wider.md:41-79|0": {
-    "anchor": ".copilot-tracking/research/subagents/2026-08-20/modern-marvel-continuity-guides-internal-wider.md:41-79",
-    "fp": "95f06a909cd4d813",
-    "head": "| Authoring the curated manifest and orders | `scripts/vendor-orders.mjs`, `src/js/lib/curated.js`, "
-  },
   ".copilot-tracking/research/2026-08-21/major-release-docs-research.md|codebase-evidence#c1|CHANGELOG.md:5-10|0": {
     "anchor": "CHANGELOG.md:5-10",
     "fp": "1e9ed36434487155",
