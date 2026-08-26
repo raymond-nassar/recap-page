@@ -56,6 +56,7 @@ test('the hero offers one dominant action, and the way out of the app is a link'
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
   const cta = hero.match(/<div class="cta">[\s\S]*?<\/div>/)[0];
   assert.match(cta, /class="btn btn-lg" id="btn-hero-read"/);
+  assert.match(cta, /class="btn btn-g" id="btn-hero-inspect"/);
   assert.match(cta, /class="btn btn-g" id="btn-hero-done"/);
   assert.match(cta, /class="btn btn-link" id="btn-hero-info"/);
   assert.equal((cta.match(/btn-lg/g) || []).length, 1, 'more than one call to action carries the dominant treatment');

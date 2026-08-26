@@ -44,6 +44,7 @@ import { READING_FILTERS, DEFAULT_FILTER, matchesReadingFilter } from './lib/rea
 import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
 import { ADD_VIEWS, VIEWS, formatRoute, parseRoute } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
+import { issuePresentation, resolveIssueFocus } from './lib/issueFocus.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
@@ -143,6 +144,10 @@ globalThis.addEventListener?.('storage', dispatchStorageEvent);
 // Its restored value is applied in wireReading(), which runs before the first render.
 let filter = DEFAULT_FILTER;
 let view = 'read';
+let issueRoute = null;
+let issueFocusLoad = null;
+let issueFocusResult = null;
+let issueSynopsisId = null;
 let updateNoticeDismissed = false;
 let updateCheckInFlight = false;
 
@@ -774,6 +779,11 @@ function paintCover(img, fb, issue, variant) {
   paintCoverUrl(img, fb, coverUrl(issue, variant), fallbackHue(issue));
 }
 
+function paintHeroBackground(target, issue) {
+  const url = settings.covers ? coverUrl(issue, 'detail') : null;
+  target.style.backgroundImage = url ? `url("${url}")` : 'none';
+}
+
 // The hue is passed in rather than derived, because a catalog card's cover belongs to a
 // reading order, not to a single issue.
 function paintCoverUrl(img, fb, url, hue) {
@@ -1113,6 +1123,49 @@ function navigateTo(view) {
   showView(view, { push: true });
 }
 
+function issueFocusHref(issueId, context = null) {
+  return formatRoute({ view: 'issue', issueId, context });
+}
+
+function openIssueFocus(issueId, context, opener) {
+  const route = { view: 'issue', issueId: Number(issueId), context };
+  const href = formatRoute(route);
+  if (!href) return;
+  const current = history.state && typeof history.state === 'object' ? history.state : {};
+  history.replaceState({ ...current, issueFocusOpener: opener }, '', location.href);
+  issueRoute = route;
+  history.pushState(null, '', href);
+  if ($('#preview').open) $('#preview').close();
+  showView('issue', { focus: true });
+}
+
+function issueFocusAnchor(issue, {
+  context = null, surface, control = null, className = null, tabIndex = null, children,
+} = {}) {
+  return el('a', {
+    class: className,
+    href: issueFocusHref(issue.issueId, context),
+    tabindex: tabIndex,
+    dataset: {
+      focusSource: surface,
+      focusControl: control ?? '',
+      issueId: issue.issueId,
+      contextId: context?.id ?? '',
+    },
+    onclick: (event) => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      openIssueFocus(issue.issueId, context, {
+        view,
+        surface,
+        control,
+        issueId: issue.issueId,
+        contextId: context?.id ?? null,
+      });
+    },
+  }, children);
+}
+
 // The action an empty state offers. A screen with nothing on it is the one place a reader has no
 // context to work from, so it hands over the next step rather than naming a control elsewhere.
 function emptyAction({ label, view }) {
@@ -1206,7 +1259,9 @@ function syncHash({ push = false } = {}) {
   const shown = filterRunOpen && !push ? filterRunBase : filter;
   const spotlightState = shelfState.get('spotlights');
   const sort = view === 'spotlights' && spotlightState ? spotlightState.sort : null;
-  const next = formatRoute({ view, listId: activeListId(), filter: shown, sort });
+  const next = view === 'issue' && issueRoute
+    ? formatRoute(issueRoute)
+    : formatRoute({ view, listId: activeListId(), filter: shown, sort });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1215,7 +1270,14 @@ function syncHash({ push = false } = {}) {
   // deliberate navigation does overwrite it, because the anchor is no longer where they are.
   if (!push && location.hash && !parseRoute(location.hash)) return;
 
-  if (push) history.pushState(null, '', next);
+  if (push) {
+    const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+    if (Object.hasOwn(current, 'issueFocusOpener')) {
+      delete current.issueFocusOpener;
+      history.replaceState(Object.keys(current).length ? current : null, '', location.href);
+    }
+    history.pushState(null, '', next);
+  }
   else history.replaceState(null, '', next);
 }
 
@@ -1252,6 +1314,20 @@ function endFilterRun({ commit }) {
 // the question the guard means. BL-068 has since given the map a null prototype, so this now holds
 // twice over, and it stays because it states the question rather than relying on the map's type.
 function applyRoute(route, { focus, filterIfAbsent }) {
+  if (issueSynopsisId != null && (route.view !== 'issue' || route.issueId !== issueSynopsisId)) {
+    synopsisRunner.cancel();
+    issueSynopsisId = null;
+  }
+  if (route.view === 'issue') {
+    endFilterRun({ commit: false });
+    issueRoute = route;
+    showView('issue', { focus });
+    return;
+  }
+  issueFocusLoad?.abort();
+  issueFocusLoad = null;
+  issueFocusResult = null;
+  issueRoute = null;
   if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
     store.update((s) => setActive(s, route.listId));
   }
@@ -1274,6 +1350,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
   // close.
   endFilterRun({ commit: false });
   showView(route.view, { focus });
+  if (focus) void restoreIssueFocusOpener(route.view);
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1285,6 +1362,16 @@ function showView(next, { focus = true, push = false } = {}) {
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
+  if (next !== 'issue' && view === 'issue') {
+    issueFocusLoad?.abort();
+    issueFocusLoad = null;
+    issueFocusResult = null;
+    issueRoute = null;
+    if (issueSynopsisId != null) {
+      synopsisRunner.cancel();
+      issueSynopsisId = null;
+    }
+  }
 
   view = next;
   warmNameIndexForView(next);
@@ -1304,6 +1391,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'home') renderHome();
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') renderHomeCategories();
+  if (next === 'issue') void renderIssueFocus();
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
@@ -1339,6 +1427,155 @@ function focusViewHeading(name) {
   if (!heading) return;
   heading.setAttribute('tabindex', '-1');
   heading.focus({ preventScroll: true });
+}
+
+function matchingIssueOpener(opener) {
+  return [...document.querySelectorAll('[data-focus-source][data-issue-id]')].find((node) => (
+    node.dataset.focusSource === opener.surface
+    && (node.dataset.focusControl || null) === (opener.control || null)
+    && Number(node.dataset.issueId) === Number(opener.issueId)
+    && (node.dataset.contextId || null) === (opener.contextId || null)
+  )) ?? null;
+}
+
+async function restoreIssueFocusOpener(sourceView) {
+  const opener = history.state?.issueFocusOpener;
+  if (!opener || opener.view !== sourceView) return;
+  if (opener.surface === 'full-order') {
+    $('#full').open = true;
+    renderRows();
+  }
+  if (opener.surface === 'preview' && opener.contextId) {
+    try {
+      const catalog = await loadCatalog();
+      const list = catalog.lists.find((entry) => entry.id === opener.contextId);
+      if (list) await openPreview(list);
+    } catch {
+      focusViewHeading(sourceView);
+      return;
+    }
+  }
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  const target = matchingIssueOpener(opener);
+  if (target?.isConnected) target.focus({ preventScroll: true });
+  else focusViewHeading(sourceView);
+}
+
+function loadBundledOrder(file, { signal } = {}) {
+  return fetch(`./data/${file}`, { cache: 'no-cache', signal }).then(async (res) => {
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  });
+}
+
+function issueContextText(context) {
+  if (!context) return '';
+  const position = context.total ? `${context.position} of ${context.total}` : '';
+  return [context.name, context.collectedIn, position].filter(Boolean).join(' · ');
+}
+
+function paintIssueFocus(result) {
+  const card = $('#issue-focus-card');
+  const status = $('#issue-focus-status');
+  const issue = result?.issue;
+  issueFocusResult = result;
+  if (!issue) {
+    card.hidden = true;
+    $('#issue-focus-h').textContent = 'Issue unavailable';
+    $('#issue-focus-context').textContent = '';
+    status.textContent = issueRoute?.issueId < 0
+      ? 'This local issue is no longer in saved data or the bundled order named by the link.'
+      : 'Issue details could not be loaded. Your saved lists and progress are unchanged.';
+    return;
+  }
+
+  const context = result.context;
+  const override = context?.override ?? store.state.overrides[issue.issueId] ?? null;
+  const presentation = issuePresentation(issue, {
+    override,
+    position: context?.position ?? null,
+    total: context?.total ?? null,
+    description: synopsisFallback(issue, sessionSynopsis.get(issue.issueId)),
+  });
+  $('#issue-focus-h').textContent = presentation.title;
+  $('#issue-focus-context').textContent = issueContextText(context);
+  status.textContent = result.contextStatus === 'stale'
+    ? 'The list or bundled order in this link no longer contains this issue. Showing issue details without that context.'
+    : '';
+  card.hidden = false;
+  paintCover($('#issue-focus-img'), $('#issue-focus-fb'), issue, 'portrait_uncanny');
+  $('#issue-focus-img').alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
+  $('#issue-focus-fs').textContent = seriesOnly(issue.seriesName);
+  $('#issue-focus-fn').textContent = presentation.number;
+  paintHeroBackground($('#issue-focus-bg'), issue);
+  $('#issue-focus-by').textContent = presentation.byline;
+  $('#issue-focus-desc').textContent = presentation.description;
+  $('#issue-focus-facts').replaceChildren(...presentation.facts.map((item) => (
+    fact(item.key, item.value, item.className)
+  )));
+  const note = $('#issue-focus-note');
+  note.textContent = context?.note ?? '';
+  note.hidden = !note.textContent;
+  $('#btn-issue-read').hidden = !presentation.launchable;
+  const info = $('#btn-issue-info');
+  info.hidden = !presentation.detailUrl;
+  if (presentation.detailUrl) {
+    info.href = presentation.detailUrl;
+    info.setAttribute('aria-label', labelledName(info.textContent, `${issue.title} on marvel.com`));
+  } else {
+    info.removeAttribute('href');
+    info.removeAttribute('aria-label');
+  }
+  $('#btn-issue-synopsis').hidden = issue.issueId < 0 || synopsisRunner.active;
+  $('#btn-cancel-issue-synopsis').hidden = true;
+}
+
+async function renderIssueFocus() {
+  if (!issueRoute) return;
+  issueFocusLoad?.abort();
+  const controller = new AbortController();
+  issueFocusLoad = controller;
+  issueFocusResult = null;
+  $('#issue-focus-card').hidden = true;
+  $('#issue-focus-h').textContent = 'Loading issue details';
+  $('#issue-focus-context').textContent = '';
+  $('#issue-focus-status').textContent = 'Loading issue details…';
+  let catalog = null;
+  if (issueRoute.context?.kind === 'order') {
+    try {
+      catalog = await loadCatalog();
+    } catch {
+      catalog = null;
+    }
+  }
+  try {
+    const result = await resolveIssueFocus({
+      issueId: issueRoute.issueId,
+      context: issueRoute.context,
+      state: store.state,
+      catalog,
+      loadOrder: loadBundledOrder,
+      api,
+      signal: controller.signal,
+    });
+    if (issueFocusLoad !== controller || controller.signal.aborted) return;
+    paintIssueFocus(result);
+    if (result.contextStatus === 'stale' && issueRoute.context) {
+      issueRoute = { ...issueRoute, context: null };
+      syncHash();
+    }
+  } catch (error) {
+    if (error?.name === 'AbortError' || issueFocusLoad !== controller) return;
+    paintIssueFocus({ issue: null, source: 'unavailable', context: null, contextStatus: 'none', error });
+  }
+}
+
+function wireIssueFocus() {
+  $('#btn-issue-read').addEventListener('click', (event) => {
+    if (issueFocusResult?.issue) openInReader(issueFocusResult.issue, event);
+  });
+  $('#btn-issue-synopsis').addEventListener('click', startIssueSynopsis);
+  $('#btn-cancel-issue-synopsis').addEventListener('click', () => synopsisRunner.cancel());
 }
 
 // ------------------------------------------------------------------ rail
@@ -1961,7 +2198,12 @@ async function loadPreviewIssues(list) {
         // Numbered because the order is the point; the reading order is what the reader came
         // to the preview to see.
         el('span', { class: 'pn', text: String(i + 1) }),
-        el('span', { text: item.title || 'Untitled issue' }),
+        issueFocusAnchor(item, {
+          context: { kind: 'order', id: list.id },
+          surface: 'preview',
+          className: 'preview-issue-link',
+          children: item.title || 'Untitled issue',
+        }),
       ]));
     });
     $('#preview-body').replaceChildren(el('ol', { class: 'preview-list' }, nodes));
@@ -2194,6 +2436,18 @@ function wireReading() {
     const issue = upNext(store.state, activeListId());
     if (issue) openInReader(issue, e);
   });
+  $('#btn-hero-inspect').addEventListener('click', () => {
+    const issue = upNext(store.state, activeListId());
+    const listId = activeListId();
+    if (issue && listId) {
+      openIssueFocus(issue.issueId, { kind: 'list', id: listId }, {
+        view: 'read',
+        surface: 'hero',
+        issueId: issue.issueId,
+        contextId: listId,
+      });
+    }
+  });
 
   $('#btn-hero-done').addEventListener('click', () => markCurrentRead());
 }
@@ -2404,51 +2658,39 @@ function renderHero() {
   }
 
   const override = store.state.overrides[issue.issueId];
-  const av = availability(issue, { override });
   const position = (store.state.lists[id]?.itemIds.indexOf(issue.issueId) ?? -1) + 1;
   const total = store.state.lists[id]?.itemIds.length ?? 0;
+  const presentation = issuePresentation(issue, {
+    override,
+    position,
+    total,
+    description: synopsisFallback(issue, sessionSynopsis.get(issue.issueId)),
+  });
 
   paintCover($('#hero-img'), $('#hero-fb'), issue, 'portrait_uncanny');
   $('#hero-img').alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
   $('#hero-fs').textContent = seriesOnly(issue.seriesName);
   $('#hero-fn').textContent = issue.number ? `#${issue.number}` : '';
 
-  const bgUrl = settings.covers ? coverUrl(issue, 'detail') : null;
-  $('#hero-bg').style.backgroundImage = bgUrl ? `url("${bgUrl}")` : 'none';
+  paintHeroBackground($('#hero-bg'), issue);
 
   $('#hero-title').textContent = issue.title;
+  const inspect = $('#btn-hero-inspect');
+  inspect.dataset.focusSource = 'hero';
+  inspect.dataset.issueId = String(issue.issueId);
+  inspect.dataset.contextId = id;
 
-  // Marvel spells it "penciler" with one l, so /penciller/ never matched and /artist/ matched
-  // "cover artist" instead, because the hero credited the cover artist and omitted the interior one.
-  // Cover credits are excluded: they are not the creative team for the story.
-  const credits = (issue.creators ?? [])
-    .filter((c) => {
-      const role = String(c.role || '');
-      return !/cover/i.test(role) && /writer|pencill?er|artist|inker/i.test(role);
-    })
-    .slice(0, 3)
-    .map((c) => c.name);
-  $('#hero-by').textContent = [issue.seriesName, credits.join(' & ') || null].filter(Boolean).join(' · ');
+  $('#hero-by').textContent = presentation.byline;
 
   // Three states, not two. "Details have not been fetched yet" is a promise that something is
   // coming, and for an issue the snapshot has no record of, nothing is.
-  $('#hero-desc').textContent = synopsisFallback(issue, sessionSynopsis.get(issue.issueId));
-
-  const avClass = av.state === STATE.EXPECTED || av.state === STATE.OVERRIDE_AVAILABLE ? 'ok'
-    : av.state === STATE.SCHEDULED ? 'warn' : '';
-  // An absent fact is left out rather than printed as "Unknown". A row of four facts where three
-  // read Unknown tells a reader nothing they could not see from the empty screen, and it costs the
-  // one fact that is present the prominence of being the only one. Availability is never dropped:
-  // its unknown state is a distinct, meaningful answer rather than a missing value, which is the
-  // whole reason that model has five states instead of a boolean.
-  const facts = [fact('In Unlimited', `${SHORT[av.state]} ${describe(issue, { override })}`, avClass)];
-  if (issue.pageCount) facts.push(fact('Pages', String(issue.pageCount)));
-  if (ymd(issue.onSale)) facts.push(fact('Released', ymd(issue.onSale)));
-  if (total) facts.push(fact('Position', `${position} of ${total}`));
-  $('#hero-facts').replaceChildren(...facts);
+  $('#hero-desc').textContent = presentation.description;
+  $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
+    fact(item.key, item.value, item.className)
+  )));
 
   const info = $('#btn-hero-info');
-  const infoHref = detailUrl(issue);
+  const infoHref = presentation.detailUrl;
   info.hidden = !infoHref;
   if (infoHref) {
     info.href = infoHref;
@@ -2496,27 +2738,36 @@ function renderShelf() {
       const short = shortTitle(it.title);
       const year = ymd(it.onSale).slice(0, 4);
       const label = [short, year].filter(Boolean).join(' ');
-      const context = 'Open in Marvel Unlimited';
+      const readContext = 'Open in Marvel Unlimited';
       // The tooltip is painted text, so it carries the label exactly as the caption prints it.
       // Only the accessible name goes through labelWords, and its symbol stripping is licensed
       // for names rather than for anything visible: a tooltip reading "House of M 1 2005" two
       // pixels above a caption reading "House of M #1" would be a fresh mismatch of the same
       // kind this change removes. Both are built from one binding so they cannot drift apart.
-      const name = labelledName(label, context);
+      const readName = labelledName(label, readContext);
+      const context = { kind: 'list', id };
 
-      shelf.append(el('li', { class: 'tile' }, el('button', {
-        type: 'button',
-        title: `${label}: ${context}`,
-        'aria-label': name,
-        dataset: { key: it.issueId, act: 'open' },
-        onclick: (e) => openInReader(it, e),
-      }, [
-        el('div', { class: 'ph' }, [img, fb]),
-        el('div', { class: 'lab' }, [
-          el('b', { text: short }),
-          year,
-        ]),
-      ])));
+      shelf.append(el('li', { class: 'tile' }, [
+        issueFocusAnchor(it, {
+          context,
+          surface: 'coming',
+          className: 'tile-focus',
+          children: [
+            el('div', { class: 'ph' }, [img, fb]),
+            el('div', { class: 'lab' }, [
+              el('b', { text: short }),
+              year,
+            ]),
+          ] }),
+        el('button', {
+          type: 'button',
+          class: 'tile-read',
+          title: `${label}: ${readContext}`,
+          'aria-label': readName,
+          dataset: { key: it.issueId, act: 'open' },
+          onclick: (e) => openInReader(it, e),
+        }, 'Read'),
+      ]));
     }
   }, {
     primary: 'open',
@@ -2773,9 +3024,22 @@ function renderRows() {
             }
           },
         }, item.read ? '✓' : ''),
-        el('div', { class: 'thumb' }, [img, fb]),
+        issueFocusAnchor(item, {
+          context: { kind: 'list', id },
+          surface: 'full-order',
+          control: 'cover',
+          className: 'thumb row-focus-cover',
+          tabIndex: '-1',
+          children: [img, fb],
+        }),
         el('div', {}, [
-          el('div', { class: 'rt', text: item.title }),
+          issueFocusAnchor(item, {
+            context: { kind: 'list', id },
+            surface: 'full-order',
+            control: 'title',
+            className: 'rt row-focus-title',
+            children: item.title,
+          }),
           el('div', { class: 'rm' }, [
             item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
             // The full availability wording is text inside the badge, not a title attribute.
@@ -3064,6 +3328,14 @@ function renderSynopsis(status) {
   // The hero is showing a sentence that may have just been answered, and nothing else repaints on a
   // synopsis arriving: none of this is in the store, so no update() fires.
   renderHero();
+  if (view === 'issue' && issueFocusResult) {
+    const focusStatus = $('#issue-synopsis-status');
+    focusStatus.textContent = synopsisStatusLine(status);
+    focusStatus.hidden = !focusStatus.textContent;
+    paintIssueFocus(issueFocusResult);
+    $('#btn-issue-synopsis').hidden = issueFocusResult.issue.issueId < 0 || synopsisRunner.active;
+    $('#btn-cancel-issue-synopsis').hidden = !synopsisRunner.active;
+  }
 }
 
 async function startSynopsisRun() {
@@ -3075,6 +3347,16 @@ async function startSynopsisRun() {
   const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
   if (!yes) return;
   synopsisRunner.start(list.id);
+}
+
+async function startIssueSynopsis() {
+  const issueId = issueFocusResult?.issue?.issueId;
+  if (!Number.isInteger(issueId) || issueId < 1) return;
+  const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
+  if (!yes || view !== 'issue' || issueRoute?.issueId !== issueId) return;
+  issueSynopsisId = issueId;
+  await synopsisRunner.startIssue(issueId);
+  if (!synopsisRunner.active) issueSynopsisId = null;
 }
 
 // ------------------------------------------------------------------ add view
@@ -3232,7 +3514,11 @@ function renderResults(sel, items, metaFn) {
 
     box.append(el('div', { class: 'result' }, [
       el('div', { class: 'result-main' }, [
-        el('div', { class: 'result-title', text: it.title }),
+        issueFocusAnchor(it, {
+          surface: 'search',
+          className: 'result-title result-title-link',
+          children: it.title,
+        }),
         el('div', { class: 'result-meta', text: metaFn(it) }),
       ]),
       ...(heldCount(store.state, [it]) ? [el('span', { class: 'pill-held', text: 'Already in your library' })] : []),
@@ -4644,13 +4930,20 @@ function libraryRow(row, v) {
   const fb = el('div', { class: 'rcov-f', text: row.number ? `#${row.number}` : '?' });
   paintCover(img, fb, row, 'portrait_incredible');
 
-  return el('div', { class: 'result result-cov' }, [
+  const contents = [
     el('div', { class: 'rcov' }, [img, fb]),
     el('div', { class: 'result-main' }, [
       el('div', { class: 'result-title', text: row.title }),
       el('div', { class: 'result-meta' }, [el('span', { text: meta }), ...badge]),
     ]),
-  ]);
+  ];
+  return v.value === 'library-read'
+    ? issueFocusAnchor(row, {
+      surface: 'everything-read',
+      className: 'result result-cov result-focus',
+      children: contents,
+    })
+    : el('div', { class: 'result result-cov' }, contents);
 }
 
 // ------------------------------------------------------------------ data view
@@ -5191,6 +5484,7 @@ export function boot() {
   wireSidebar();
   wireNav();
   wireReading();
+  wireIssueFocus();
   wireAdd();
   wireData();
   wireSalvage();

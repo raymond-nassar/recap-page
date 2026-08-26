@@ -168,6 +168,22 @@ const ORDER = {
   ],
 };
 
+const NEGATIVE_ORDER_ITEM = {
+  issueId: -900004,
+  title: 'Local Browser Check Issue',
+  number: 'Local',
+  url: null,
+  seriesId: null,
+  seriesName: 'Browser Check',
+  onSale: null,
+  mu: null,
+  digitalId: null,
+  cover: null,
+  description: null,
+  pageCount: 0,
+  creators: [],
+};
+
 // A shelf entry, with only the fields a row reads. Written as a factory because the path needs
 // five of them and repeating twenty fields five times would bury the two that differ per stop.
 const shelfEntry = (id, name, extra = {}) => ({
@@ -682,6 +698,62 @@ const MUTATIONS = [
       history.pushState = () => {};
       history.replaceState = () => {};
     },
+  },
+  {
+    id: 'issue-focus-no-push',
+    breaks: 'issue-focus',
+    why: 'issue inspection stops creating its one history entry, so Back cannot return to the source',
+    rewriteMain: (source) => source.replace("  history.pushState(null, '', href);", ''),
+  },
+  {
+    id: 'issue-focus-forget-opener',
+    breaks: 'issue-focus',
+    why: 'the source entry loses its ephemeral opener, so Back cannot restore focus to the inspect link',
+    rewriteMain: (source) => source.replace(
+      '  history.replaceState({ ...current, issueFocusOpener: opener }, \'\', location.href);',
+      '',
+    ),
+  },
+  {
+    id: 'issue-focus-writes-state',
+    breaks: 'issue-focus',
+    why: 'opening issue details mutates saved progress, violating the URL-only selection contract',
+    script: () => {
+      const real = history.pushState.bind(history);
+      history.pushState = (state, unused, url) => {
+        if (String(url).startsWith('#/issue/')) {
+          localStorage.setItem('mrt.state.v2', `${localStorage.getItem('mrt.state.v2')} `);
+        }
+        return real(state, unused, url);
+      };
+    },
+  },
+  {
+    id: 'issue-focus-coming-read-missing',
+    breaks: 'issue-focus',
+    why: 'Coming up loses its separate Read action and leaves inspection as the only tile action',
+    script: () => {
+      const remove = () => document.querySelectorAll('#shelf .tile-read').forEach((node) => node.remove());
+      addEventListener('load', () => {
+        new MutationObserver(remove).observe(document.body, { childList: true, subtree: true });
+        remove();
+      });
+    },
+  },
+  {
+    id: 'issue-focus-control-identity-missing',
+    breaks: 'issue-focus',
+    why: 'full-order title and cover links collapse to one opener identity, so Back lands on the first link',
+    rewriteMain: (source) => source.replace(
+      '    && (node.dataset.focusControl || null) === (opener.control || null)',
+      '',
+    ),
+  },
+  {
+    id: 'issue-focus-opener-not-consumed',
+    breaks: 'issue-focus',
+    why: 'a deliberate later navigation leaves the old opener on its source history entry',
+    rewriteMain: (source) => source.replace('      delete current.issueFocusOpener;', ''),
   },
   {
     id: 'hide-blocked',
@@ -2492,7 +2564,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:801` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:818` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -2987,6 +3059,222 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'issue-focus',
+    title: 'issue details stay separate from reading progress and return focus to their source',
+    async run(page, t) {
+      const browserErrors = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+
+      await open(page, '/');
+      await openBrowseCategory(page, 'timeline');
+      await click(page, IMPORT_BUTTON);
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+
+      const coming = await page.evaluate(() => {
+        const tile = document.querySelector('#shelf .tile');
+        const inspect = tile?.querySelector('.tile-focus');
+        const read = tile?.querySelector('.tile-read');
+        return {
+          inspect: !!inspect,
+          read: !!read,
+          nested: !!inspect?.contains(read) || !!read?.contains(inspect),
+          rows: document.querySelectorAll('#rows .row').length,
+          state: localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      t.check('Coming up exposes separate non-nested Inspect and Read actions',
+        coming.inspect && coming.read && !coming.nested, JSON.stringify(coming));
+      t.check('opening no full-order rows is part of the issue-focus starting state',
+        coming.rows === 0, `${coming.rows} row(s)`);
+
+      await page.evaluate(() => {
+        const link = document.querySelector('#shelf .tile .tile-focus');
+        link.focus();
+        link.click();
+      });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      const focused = await page.evaluate(() => ({
+        hash: location.hash,
+        title: document.querySelector('#issue-focus-h')?.textContent.trim(),
+        state: localStorage.getItem('mrt.state.v2'),
+        requests: window.__mrtIssueRequests ?? 0,
+        rows: document.querySelectorAll('#rows .row').length,
+        read: !document.querySelector('#btn-issue-read')?.hidden,
+        info: !document.querySelector('#btn-issue-info')?.hidden,
+      }));
+      t.check('Coming up inspection opens the canonical saved-list route',
+        /^#\/issue\/900002\?list=/.test(focused.hash), focused.hash);
+      t.check('the dedicated view renders the selected issue with distinct external actions',
+        focused.title === ORDER.items[1].title && focused.read && focused.info, JSON.stringify(focused));
+      t.check('saved issue focus makes no detail request and does not render the closed full order',
+        focused.requests === 0 && focused.rows === 0, JSON.stringify(focused));
+      t.check('opening and rendering issue focus leave saved state byte for byte unchanged',
+        focused.state === coming.state, 'saved state changed');
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      const reloaded = await page.evaluate(() => ({
+        hash: location.hash,
+        title: document.querySelector('#issue-focus-h')?.textContent.trim(),
+        active: document.activeElement?.id ?? null,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      t.check('reload keeps the issue route without stealing initial focus',
+        reloaded.hash === focused.hash && reloaded.title === focused.title && reloaded.active !== 'issue-focus-h',
+        JSON.stringify(reloaded));
+      t.check('reload still leaves saved state byte for byte unchanged',
+        reloaded.state === coming.state, 'saved state changed');
+
+      await page.evaluate(() => history.back());
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.evaluate(() => new Promise((resolve) => setTimeout(resolve, 500)));
+      const returned = await page.evaluate((savedState) => ({
+        issueId: document.activeElement?.dataset.issueId ?? null,
+        active: document.activeElement?.outerHTML?.slice(0, 300) ?? null,
+        historyState: history.state,
+        stateSame: localStorage.getItem('mrt.state.v2') === savedState,
+      }), coming.state);
+      t.check('Back restores focus to the Coming up inspect link',
+        returned.issueId === '900002' && returned.stateSame, JSON.stringify(returned));
+
+      await page.evaluate(() => history.forward());
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.waitForFunction(() => document.activeElement?.id === 'issue-focus-h');
+      t.check('Forward returns to issue focus and names the destination through its heading', true);
+
+      await page.evaluate(() => {
+        sessionStorage.setItem('mrt.issue-focus.negative', '1');
+        location.hash = '#/issue/-900004?order=browser-check';
+      });
+      await page.waitForFunction(
+        () => document.querySelector('#issue-focus-h')?.textContent.trim() === 'Local Browser Check Issue',
+      );
+      const negative = await page.evaluate((savedState) => ({
+        hash: location.hash,
+        requests: window.__mrtIssueRequests ?? 0,
+        context: document.querySelector('#issue-focus-context')?.textContent.trim(),
+        synopsisHidden: document.querySelector('#btn-issue-synopsis')?.hidden,
+        stateSame: localStorage.getItem('mrt.state.v2') === savedState,
+      }), coming.state);
+      t.check('a direct negative bundled issue resolves only through validated order membership',
+        negative.hash === '#/issue/-900004?order=browser-check'
+          && negative.context.includes(CATALOG.lists[0].name)
+          && negative.requests === 0,
+        JSON.stringify(negative));
+      t.check('a negative bundled issue offers no upstream synopsis and writes no state',
+        negative.synopsisHidden && negative.stateSame, JSON.stringify(negative));
+
+      await open(page, '/');
+      await openBrowseCategory(page, 'timeline');
+      await click(page, '#catalog-results [data-act="preview"]');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      const previewState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        const link = document.querySelector('#preview .preview-issue-link');
+        link.focus();
+        link.click();
+      });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      const preview = await page.evaluate((savedState) => ({
+        hash: location.hash,
+        dialog: document.querySelector('#preview')?.open ?? null,
+        requests: window.__mrtIssueRequests ?? 0,
+        stateSame: localStorage.getItem('mrt.state.v2') === savedState,
+      }), previewState);
+      t.check('an unsaved Preview issue closes the dialog and carries catalog context',
+        preview.hash === '#/issue/900001?order=browser-check' && preview.dialog === false,
+        JSON.stringify(preview));
+      t.check('bundled Preview focus makes no detail request and writes no state',
+        preview.requests === 0 && preview.stateSame, JSON.stringify(preview));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      await page.waitForFunction(() => document.activeElement?.classList.contains('preview-issue-link'));
+      const previewReturn = await page.evaluate((savedState) => ({
+        issueId: document.activeElement?.dataset.issueId ?? null,
+        stateSame: localStorage.getItem('mrt.state.v2') === savedState,
+      }), previewState);
+      t.check('Back from a reloaded Preview issue reopens the dialog and restores its link',
+        previewReturn.issueId === '900001' && previewReturn.stateSame,
+        JSON.stringify(previewReturn));
+
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      await click(page, '#list-nav .ri[data-act="open"]');
+      await openFullOrder(page);
+      await page.evaluate(() => {
+        const link = document.querySelector('#rows .row-focus-title');
+        link.focus();
+        link.click();
+      });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForSelector('#view-read:not([hidden]) #rows .row-focus-title');
+      await page.waitForFunction(() => document.activeElement?.classList.contains('row-focus-title'));
+      t.check('Back restores the exact full-order link that opened issue focus', true);
+
+      await openFullOrder(page);
+      for (let guard = 0; guard < ORDER_COUNT; guard += 1) {
+        const unread = await page.$('#rows [data-act="read"][aria-pressed="false"]');
+        if (!unread) break;
+        await page.evaluate((node) => node.click(), unread);
+      }
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#view-library [data-view="library-read"]');
+      await page.waitForSelector('#view-library-read .result-focus');
+      const readState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        const link = document.querySelector('#view-library-read .result-focus');
+        link.focus();
+        link.click();
+      });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      const everything = await page.evaluate((savedState) => ({
+        hash: location.hash,
+        stateSame: localStorage.getItem('mrt.state.v2') === savedState,
+      }), readState);
+      t.check('Everything read opens issue-only focus without inventing list context',
+        /^#\/issue\/90000[1-3]$/.test(everything.hash), everything.hash);
+      t.check('Everything read inspection leaves its completed progress unchanged',
+        everything.stateSame, 'saved state changed');
+
+      await page.evaluate(() => history.back());
+      await page.waitForSelector('#view-library-read:not([hidden]) .result-focus');
+      await page.waitForFunction(() => document.activeElement?.classList.contains('result-focus'));
+      t.check('Back restores focus to the Everything read issue link', true);
+
+      await click(page, '.brand[data-view="home"]');
+      await page.evaluate(() => history.back());
+      await page.waitForSelector('#view-library-read:not([hidden]) .result-focus');
+      await page.waitForFunction(() => document.activeElement?.id === 'library-read-h');
+      const reusedSource = await page.evaluate(() => ({
+        active: document.activeElement?.id ?? null,
+        opener: history.state?.issueFocusOpener ?? null,
+      }));
+      t.check('a later navigation consumes the old opener before that source entry is reused',
+        reusedSource.active === 'library-read-h' && reusedSource.opener === null,
+        JSON.stringify(reusedSource));
+
+      await page.setViewport({ width: 320, height: 800 });
+      await page.evaluate(() => document.querySelector('#view-library-read .result-focus').click());
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      const narrow = await page.evaluate(() => ({
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        targets: [...document.querySelectorAll('#view-issue .cta > :not([hidden])')]
+          .every((node) => node.getBoundingClientRect().height >= 40),
+      }));
+      t.check('issue focus stays usable at 320 pixels without horizontal clipping',
+        narrow.overflow <= 1 && narrow.targets, JSON.stringify(narrow));
+      t.check('the issue-focus journeys produce no console or page errors',
+        browserErrors.length === 0, browserErrors.join(' / '));
+    },
+  },
+  {
     id: 'reading-screen',
     title: 'the reading screen uses the desktop it is given and states progress in words',
     async run(page, t) {
@@ -3276,7 +3564,7 @@ async function preparePage(page, origin, mutation) {
   }
   await page.setViewport({ width: 1280, height: 900 });
   await page.evaluateOnNewDocument(
-    (catalog, catalogFixtures, order, orderFile, appVersion, updateApiUrl) => {
+    (catalog, catalogFixtures, order, negativeOrderItem, orderFile, appVersion, updateApiUrl) => {
       const real = window.fetch.bind(window);
       const json = (body, status = 200) => new Response(JSON.stringify(body), {
         status,
@@ -3311,7 +3599,11 @@ async function preparePage(page, origin, mutation) {
           return Promise.resolve(json(selectedCatalog));
         }
         if (url.endsWith(`data/${orderFile}`)) {
+          window.__mrtOrderRequests = (window.__mrtOrderRequests ?? 0) + 1;
           if (window.__mrtMutation === 'import-fail') return Promise.resolve(json({ error: 'mutation' }, 500));
+          if (sessionStorage.getItem('mrt.issue-focus.negative') === '1') {
+            return Promise.resolve(json({ ...order, items: [...order.items, negativeOrderItem] }));
+          }
           return Promise.resolve(json(order));
         }
         if (url === updateApiUrl) {
@@ -3362,7 +3654,9 @@ async function preparePage(page, origin, mutation) {
         // Only the synopsis scenario sets the flag, and it sets it before the first navigation.
         // Left unset this line is reached by no request any other scenario makes, so what they
         // see is the stub they saw before it was added.
-        const issue = window.__mrtSynopsis ? /\/issues\/(\d+)(?:\?|$)/.exec(url) : null;
+        const issuePath = /\/issues\/(-?\d+)(?:\?|$)/.exec(url);
+        if (issuePath) window.__mrtIssueRequests = (window.__mrtIssueRequests ?? 0) + 1;
+        const issue = window.__mrtSynopsis ? issuePath : null;
         if (issue) {
           const answers = window.__mrtSynopsis === 'answer';
           // Delayed on purpose, and this is the whole reason the scenario can make its claim. An
@@ -3411,6 +3705,7 @@ async function preparePage(page, origin, mutation) {
       sparse: SPARSE_PUBLISHING_CATALOG,
     },
     ORDER,
+    NEGATIVE_ORDER_ITEM,
     ORDER_FILE,
     APP_VERSION,
     LATEST_RELEASE_API_URL,
