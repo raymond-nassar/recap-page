@@ -1,0 +1,1870 @@
+{
+  "id": "wandavision",
+  "name": "WandaVision",
+  "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
+  "source": "https://www.comicbookherald.com/10-best-comics-to-read-with-wandavision/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T05:28:25.902Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 56,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 6968,
+      "title": "Avengers (1963) #113",
+      "number": "113",
+      "url": "https://www.marvel.com/comics/issue/6968/avengers_1963_113",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-07-01T00:00:00+0000",
+      "mu": "2012-06-19T00:00:00+0000",
+      "digitalId": 26987,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/4c1295117ac46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6990,
+      "title": "Avengers (1963) #133",
+      "number": "133",
+      "url": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1975-03-01T00:00:00+0000",
+      "mu": "1975-03-01T00:00:00+0000",
+      "digitalId": 29286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/587e382724977",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6991,
+      "title": "Avengers (1963) #134",
+      "number": "134",
+      "url": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1975-04-01T00:00:00+0000",
+      "mu": "1975-04-01T00:00:00+0000",
+      "digitalId": 29255,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/587e40fce0e56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6992,
+      "title": "Avengers (1963) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/6992/avengers_1963_135",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1975-05-01T00:00:00+0000",
+      "mu": "1975-05-01T00:00:00+0000",
+      "digitalId": 29257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/587e4a128c8b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Chiaramonte",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20023,
+      "title": "Giant-Size Avengers (1974) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "seriesId": 3729,
+      "seriesName": "Giant-Size Avengers (1974)",
+      "onSale": "1975-06-01T00:00:00+0000",
+      "mu": "1975-06-01T00:00:00+0000",
+      "digitalId": 6024,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4bb68ad96310c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11954,
+      "title": "Vision and the Scarlet Witch (1982) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/11954/vision_and_the_scarlet_witch_1982_1",
+      "seriesId": 2090,
+      "seriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "onSale": "1982-11-01T00:00:00+0000",
+      "mu": "1982-11-01T00:00:00+0000",
+      "digitalId": 3100,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5c9b8c175007d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11955,
+      "title": "Vision and the Scarlet Witch (1982) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/11955/vision_and_the_scarlet_witch_1982_2",
+      "seriesId": 2090,
+      "seriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "onSale": "1982-12-01T00:00:00+0000",
+      "mu": "1982-12-01T00:00:00+0000",
+      "digitalId": 3101,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5c9b94dcee203",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11956,
+      "title": "Vision and the Scarlet Witch (1982) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/11956/vision_and_the_scarlet_witch_1982_3",
+      "seriesId": 2090,
+      "seriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "onSale": "1983-01-01T00:00:00+0000",
+      "mu": "1983-01-01T00:00:00+0000",
+      "digitalId": 3102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5c9b9ad0d50e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11957,
+      "title": "Vision and the Scarlet Witch (1982) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/11957/vision_and_the_scarlet_witch_1982_4",
+      "seriesId": 2090,
+      "seriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "onSale": "1983-02-01T00:00:00+0000",
+      "mu": "1983-02-01T00:00:00+0000",
+      "digitalId": 3103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5c9ba313906b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7047,
+      "title": "Avengers (1963) #185",
+      "number": "185",
+      "url": "https://www.marvel.com/comics/issue/7047/avengers_1963_185",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1979-07-01T00:00:00+0000",
+      "mu": "1979-07-01T00:00:00+0000",
+      "digitalId": 12430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/58860afcdbce7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7048,
+      "title": "Avengers (1963) #186",
+      "number": "186",
+      "url": "https://www.marvel.com/comics/issue/7048/avengers_1963_186",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1979-08-01T00:00:00+0000",
+      "mu": "1979-08-01T00:00:00+0000",
+      "digitalId": 12884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/4e95aef4e25e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7049,
+      "title": "Avengers (1963) #187",
+      "number": "187",
+      "url": "https://www.marvel.com/comics/issue/7049/avengers_1963_187",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1979-09-01T00:00:00+0000",
+      "mu": "1979-09-01T00:00:00+0000",
+      "digitalId": 12431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/58860d46c048b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7123,
+      "title": "Avengers (1963) #253",
+      "number": "253",
+      "url": "https://www.marvel.com/comics/issue/7123/avengers_1963_253",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1985-03-01T00:00:00+0000",
+      "mu": "1985-03-01T00:00:00+0000",
+      "digitalId": 33736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/53e513fb80140",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7124,
+      "title": "Avengers (1963) #254",
+      "number": "254",
+      "url": "https://www.marvel.com/comics/issue/7124/avengers_1963_254",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1985-04-01T00:00:00+0000",
+      "mu": "1985-04-01T00:00:00+0000",
+      "digitalId": 33743,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/53e513db65ff1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 55231,
+      "title": "West Coast Avengers (1985) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 55232,
+      "title": "West Coast Avengers (1985) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 55233,
+      "title": "West Coast Avengers (1985) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 55234,
+      "title": "West Coast Avengers (1985) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 17927,
+      "title": "West Coast Avengers (1985) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-07-01T00:00:00+0000",
+      "mu": "1989-07-01T00:00:00+0000",
+      "digitalId": 5263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5bd38531b88c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Machlan",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 55236,
+      "title": "West Coast Avengers (1985) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 17790,
+      "title": "West Coast Avengers (1985) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-09-01T00:00:00+0000",
+      "mu": "2009-11-10T00:00:00+0000",
+      "digitalId": 5265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb6e93bd6e3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17791,
+      "title": "West Coast Avengers (1985) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/17791/west_coast_avengers_1985_49",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-10-01T00:00:00+0000",
+      "mu": "2009-11-17T00:00:00+0000",
+      "digitalId": 5266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5ca4d87db55d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17794,
+      "title": "West Coast Avengers (1985) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-12-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 10934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ca502dc73d37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 54974,
+      "title": "Scarlet Witch (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/54974/scarlet_witch_1994_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 54975,
+      "title": "Scarlet Witch (1994) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/54975/scarlet_witch_1994_2",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 54977,
+      "title": "Scarlet Witch (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/54977/scarlet_witch_1994_3",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 54978,
+      "title": "Scarlet Witch (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/54978/scarlet_witch_1994_4",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 65415,
+      "title": "Avengers (2016) #675",
+      "number": "675",
+      "url": "https://www.marvel.com/comics/issue/65415/avengers_2016_675",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-01-10T00:00:00+0000",
+      "mu": "2018-07-16T00:00:00+0000",
+      "digitalId": 47035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5a4fbc800b2ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65897,
+      "title": "Avengers (2016) #676",
+      "number": "676",
+      "url": "https://www.marvel.com/comics/issue/65897/avengers_2016_676",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-01-17T00:00:00+0000",
+      "mu": "2018-07-23T00:00:00+0000",
+      "digitalId": 47095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5a5667ed0c5a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65898,
+      "title": "Avengers (2016) #677",
+      "number": "677",
+      "url": "https://www.marvel.com/comics/issue/65898/avengers_2016_677",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-01-24T00:00:00+0000",
+      "mu": "2018-07-30T00:00:00+0000",
+      "digitalId": 47096,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/5a61105b60bb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65899,
+      "title": "Avengers (2016) #678",
+      "number": "678",
+      "url": "https://www.marvel.com/comics/issue/65899/avengers_2016_678",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-01-31T00:00:00+0000",
+      "mu": "2018-08-06T00:00:00+0000",
+      "digitalId": 47097,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5a68eca84d13e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66086,
+      "title": "Avengers (2016) #679",
+      "number": "679",
+      "url": "https://www.marvel.com/comics/issue/66086/avengers_2016_679",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-02-07T00:00:00+0000",
+      "mu": "2018-08-13T00:00:00+0000",
+      "digitalId": 47235,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5a72431073fb7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66185,
+      "title": "Avengers (2016) #680",
+      "number": "680",
+      "url": "https://www.marvel.com/comics/issue/66185/avengers_2016_680",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-02-14T00:00:00+0000",
+      "mu": "2018-08-20T00:00:00+0000",
+      "digitalId": 47234,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/5a7b3e03cbe1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66266,
+      "title": "Avengers (2016) #681",
+      "number": "681",
+      "url": "https://www.marvel.com/comics/issue/66266/avengers_2016_681",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-02-21T00:00:00+0000",
+      "mu": "2018-08-27T00:00:00+0000",
+      "digitalId": 47318,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5a848348b8206",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66267,
+      "title": "Avengers (2016) #682",
+      "number": "682",
+      "url": "https://www.marvel.com/comics/issue/66267/avengers_2016_682",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47319,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5a96cfd1b1ec9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66395,
+      "title": "Avengers (2016) #683",
+      "number": "683",
+      "url": "https://www.marvel.com/comics/issue/66395/avengers_2016_683",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-03-07T00:00:00+0000",
+      "mu": "2018-09-10T00:00:00+0000",
+      "digitalId": 47472,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5a972a1f04b95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66482,
+      "title": "Avengers (2016) #684",
+      "number": "684",
+      "url": "https://www.marvel.com/comics/issue/66482/avengers_2016_684",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-03-14T00:00:00+0000",
+      "mu": "2018-09-17T00:00:00+0000",
+      "digitalId": 47546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5aa062681b4c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66530,
+      "title": "Avengers (2016) #685",
+      "number": "685",
+      "url": "https://www.marvel.com/comics/issue/66530/avengers_2016_685",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-03-21T00:00:00+0000",
+      "mu": "2018-09-24T00:00:00+0000",
+      "digitalId": 47547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5aa95ee48b902",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66531,
+      "title": "Avengers (2016) #686",
+      "number": "686",
+      "url": "https://www.marvel.com/comics/issue/66531/avengers_2016_686",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-03-28T00:00:00+0000",
+      "mu": "2018-10-01T00:00:00+0000",
+      "digitalId": 47548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5ab2ab35a5e9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66668,
+      "title": "Avengers (2016) #687",
+      "number": "687",
+      "url": "https://www.marvel.com/comics/issue/66668/avengers_2016_687",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-04-04T00:00:00+0000",
+      "mu": "2018-10-08T00:00:00+0000",
+      "digitalId": 47693,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5abd645222b67",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66753,
+      "title": "Avengers (2016) #688",
+      "number": "688",
+      "url": "https://www.marvel.com/comics/issue/66753/avengers_2016_688",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47721,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5ac52364ccb77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66829,
+      "title": "Avengers (2016) #689",
+      "number": "689",
+      "url": "https://www.marvel.com/comics/issue/66829/avengers_2016_689",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-04-18T00:00:00+0000",
+      "mu": "2018-10-22T00:00:00+0000",
+      "digitalId": 47748,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/5ace68ee3e679",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66905,
+      "title": "Avengers (2016) #690",
+      "number": "690",
+      "url": "https://www.marvel.com/comics/issue/66905/avengers_2016_690",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5ad7add17bc2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71433,
+      "title": "Avengers No Road Home (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71433/avengers_no_road_home_2019_1",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-02-13T00:00:00+0000",
+      "mu": "2019-08-19T00:00:00+0000",
+      "digitalId": 50603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5c5c57f2aedad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71435,
+      "title": "Avengers No Road Home (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71435/avengers_no_road_home_2019_2",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5c64942fd5bfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71436,
+      "title": "Avengers No Road Home (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71436/avengers_no_road_home_2019_3",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-02-27T00:00:00+0000",
+      "mu": "2019-09-02T00:00:00+0000",
+      "digitalId": 50605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/5c6dda9879934",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71437,
+      "title": "Avengers No Road Home (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/71437/avengers_no_road_home_2019_4",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-03-06T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 50868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5c76f8b34dd91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71438,
+      "title": "Avengers No Road Home (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/71438/avengers_no_road_home_2019_5",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5c802d7e2a89a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71439,
+      "title": "Avengers No Road Home (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/71439/avengers_no_road_home_2019_6",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5c88158e87a0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71440,
+      "title": "Avengers No Road Home (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/71440/avengers_no_road_home_2019_7",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-03-27T00:00:00+0000",
+      "mu": "2019-09-30T00:00:00+0000",
+      "digitalId": 50919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5c93f6119b852",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71441,
+      "title": "Avengers No Road Home (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/71441/avengers_no_road_home_2019_8",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5c9bfa8f54615",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlo Barberi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71442,
+      "title": "Avengers No Road Home (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/71442/avengers_no_road_home_2019_9",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-10-14T00:00:00+0000",
+      "digitalId": 51073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ca3bee16660c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Medina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71987,
+      "title": "Avengers No Road Home (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/71987/avengers_no_road_home_2019_10",
+      "seriesId": 26034,
+      "seriesName": "Avengers No Road Home (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5cacf67f2a27e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72984,
+      "title": "House of X (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72984/house_of_x_2019_1",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 51975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5d2c9219cea44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 88646,
+      "title": "Empyre: X-Men (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/88646/empyre_x-men_2020_1",
+      "seriesId": 30527,
+      "seriesName": "Empyre: X-Men (2020)",
+      "onSale": "2020-07-22T00:00:00+0000",
+      "mu": "2020-10-26T00:00:00+0000",
+      "digitalId": 54883,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5f282a83dd008",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Matteo Buffagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 88649,
+      "title": "Empyre: X-Men (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/88649/empyre_x-men_2020_4",
+      "seriesId": 30527,
+      "seriesName": "Empyre: X-Men (2020)",
+      "onSale": "2020-08-19T00:00:00+0000",
+      "mu": "2020-11-23T00:00:00+0000",
+      "digitalId": 55083,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5f2c342578dc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

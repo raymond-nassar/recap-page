@@ -1,0 +1,3565 @@
+{
+  "id": "wandavision",
+  "inventoryId": "wandavision",
+  "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
+  "sourceUrl": "https://www.comicbookherald.com/10-best-comics-to-read-with-wandavision/",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceContentSha256": "73632d470f8d77030b56884e2be9031363462aef74ae4828bcee252c74baf936",
+  "sourceIssueBearingBlocksSha256": "204e570b4afc7f218fb4b3e9549076eb3298c2f43ba8070584624ad547f8f690",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 59,
+  "excludedSourceReferences": [
+    "Avengers Disassembled / House of M collection and continuity recommendation without a complete issue-number boundary",
+    "Scarlet Witch - Witch's Road run and collection recommendation without a complete issue-number boundary",
+    "Vision by King & Walta run and collection recommendation without a complete issue-number boundary",
+    "Related reading-order links, product links, images, and editorial prose"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Avengers Disassembled / House of M",
+      "reason": "The heading is a collection and continuity recommendation without a complete issue-number boundary for this selected packet.",
+      "decisionScope": "explicit source exclusion, no inferred collection contents"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Scarlet Witch - Witch's Road",
+      "reason": "The heading is a run and collection recommendation without a complete issue-number boundary for this selected packet.",
+      "decisionScope": "explicit source exclusion, no inferred run contents"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Vision by King & Walta",
+      "reason": "The heading is a run and collection recommendation without a complete issue-number boundary for this selected packet.",
+      "decisionScope": "explicit source exclusion, no inferred run contents"
+    }
+  ],
+  "sourceOccurrenceCount": 59,
+  "proposedManifest": {
+    "id": "wandavision",
+    "name": "WandaVision",
+    "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "wandavision.md",
+    "sourcePage": "https://www.comicbookherald.com/10-best-comics-to-read-with-wandavision/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "wandavision.json",
+    "characters": [
+      "Scarlet Witch",
+      "Vision",
+      "Avengers",
+      "Wiccan",
+      "Speed"
+    ],
+    "keywords": [
+      "WandaVision",
+      "Scarlet Witch",
+      "Vision",
+      "House of M",
+      "Comic Book Herald"
+    ],
+    "expect": 56,
+    "timeline": null,
+    "coverIssueId": 11954
+  },
+  "candidateMetadata": [
+    {
+      "id": 6968,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #113",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "113",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6968/avengers_1963_113",
+      "onSaleDate": "1973-07-01T00:00:00+0000"
+    },
+    {
+      "id": 6990,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #133",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "133",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "onSaleDate": "1975-03-01T00:00:00+0000"
+    },
+    {
+      "id": 6991,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #134",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "134",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "onSaleDate": "1975-04-01T00:00:00+0000"
+    },
+    {
+      "id": 6992,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #135",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "135",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6992/avengers_1963_135",
+      "onSaleDate": "1975-05-01T00:00:00+0000"
+    },
+    {
+      "id": 20023,
+      "title": "Giant-Size Avengers",
+      "issueTitle": "Giant-Size Avengers (1974) #4",
+      "seriesTitle": "Giant-Size Avengers",
+      "apiSeriesName": "Giant-Size Avengers (1974)",
+      "seriesId": 3729,
+      "issueNumber": "4",
+      "seriesYear": 1974,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "onSaleDate": "1975-06-01T00:00:00+0000"
+    },
+    {
+      "id": 11954,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1982) #1",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "seriesId": 2090,
+      "issueNumber": "1",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11954/vision_and_the_scarlet_witch_1982_1",
+      "onSaleDate": "1982-11-01T00:00:00+0000"
+    },
+    {
+      "id": 11955,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1982) #2",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "seriesId": 2090,
+      "issueNumber": "2",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11955/vision_and_the_scarlet_witch_1982_2",
+      "onSaleDate": "1982-12-01T00:00:00+0000"
+    },
+    {
+      "id": 11956,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1982) #3",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "seriesId": 2090,
+      "issueNumber": "3",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11956/vision_and_the_scarlet_witch_1982_3",
+      "onSaleDate": "1983-01-01T00:00:00+0000"
+    },
+    {
+      "id": 11957,
+      "title": "Vision and the Scarlet Witch",
+      "issueTitle": "Vision and the Scarlet Witch (1982) #4",
+      "seriesTitle": "Vision and the Scarlet Witch",
+      "apiSeriesName": "Vision and the Scarlet Witch (1982 - 1983)",
+      "seriesId": 2090,
+      "issueNumber": "4",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11957/vision_and_the_scarlet_witch_1982_4",
+      "onSaleDate": "1983-02-01T00:00:00+0000"
+    },
+    {
+      "id": 7047,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #185",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "185",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7047/avengers_1963_185",
+      "onSaleDate": "1979-07-01T00:00:00+0000"
+    },
+    {
+      "id": 7048,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #186",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "186",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7048/avengers_1963_186",
+      "onSaleDate": "1979-08-01T00:00:00+0000"
+    },
+    {
+      "id": 7049,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #187",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "187",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7049/avengers_1963_187",
+      "onSaleDate": "1979-09-01T00:00:00+0000"
+    },
+    {
+      "id": 7123,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #253",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "253",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7123/avengers_1963_253",
+      "onSaleDate": "1985-03-01T00:00:00+0000"
+    },
+    {
+      "id": 7124,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #254",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "254",
+      "seriesYear": 1963,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/7124/avengers_1963_254",
+      "onSaleDate": "1985-04-01T00:00:00+0000"
+    },
+    {
+      "id": 55231,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #42",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "42",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+      "onSaleDate": null
+    },
+    {
+      "id": 55232,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #43",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "43",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+      "onSaleDate": null
+    },
+    {
+      "id": 55233,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #44",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "44",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+      "onSaleDate": null
+    },
+    {
+      "id": 55234,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #45",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "45",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+      "onSaleDate": null
+    },
+    {
+      "id": 17927,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #46",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "46",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46",
+      "onSaleDate": "1989-07-01T00:00:00+0000"
+    },
+    {
+      "id": 55236,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #47",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "47",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+      "onSaleDate": null
+    },
+    {
+      "id": 17790,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #48",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "48",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "onSaleDate": "1989-09-01T00:00:00+0000"
+    },
+    {
+      "id": 17791,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #49",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "49",
+      "seriesYear": 1985,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/17791/west_coast_avengers_1985_49",
+      "onSaleDate": "1989-10-01T00:00:00+0000"
+    },
+    {
+      "id": 17794,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #52",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "52",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "onSaleDate": "1989-12-01T00:00:00+0000"
+    },
+    {
+      "id": 54974,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (1994) #1",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (1994)",
+      "seriesId": null,
+      "issueNumber": "1",
+      "seriesYear": 1994,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/54974/scarlet_witch_1994_1",
+      "onSaleDate": null
+    },
+    {
+      "id": 54975,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (1994) #2",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (1994)",
+      "seriesId": null,
+      "issueNumber": "2",
+      "seriesYear": 1994,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/54975/scarlet_witch_1994_2",
+      "onSaleDate": null
+    },
+    {
+      "id": 54977,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (1994) #3",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (1994)",
+      "seriesId": null,
+      "issueNumber": "3",
+      "seriesYear": 1994,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/54977/scarlet_witch_1994_3",
+      "onSaleDate": null
+    },
+    {
+      "id": 54978,
+      "title": "Scarlet Witch",
+      "issueTitle": "Scarlet Witch (1994) #4",
+      "seriesTitle": "Scarlet Witch",
+      "apiSeriesName": "Scarlet Witch (1994)",
+      "seriesId": null,
+      "issueNumber": "4",
+      "seriesYear": 1994,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/54978/scarlet_witch_1994_4",
+      "onSaleDate": null
+    },
+    {
+      "id": 65415,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #675",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "675",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65415/avengers_2016_675",
+      "onSaleDate": null
+    },
+    {
+      "id": 65897,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #676",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "676",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65897/avengers_2016_676",
+      "onSaleDate": null
+    },
+    {
+      "id": 65898,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #677",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "677",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65898/avengers_2016_677",
+      "onSaleDate": null
+    },
+    {
+      "id": 65899,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #678",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "678",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/65899/avengers_2016_678",
+      "onSaleDate": null
+    },
+    {
+      "id": 66086,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #679",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "679",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66086/avengers_2016_679",
+      "onSaleDate": null
+    },
+    {
+      "id": 66185,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #680",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "680",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66185/avengers_2016_680",
+      "onSaleDate": null
+    },
+    {
+      "id": 66266,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #681",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "681",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66266/avengers_2016_681",
+      "onSaleDate": null
+    },
+    {
+      "id": 66267,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #682",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "682",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66267/avengers_2016_682",
+      "onSaleDate": null
+    },
+    {
+      "id": 66395,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #683",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "683",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66395/avengers_2016_683",
+      "onSaleDate": null
+    },
+    {
+      "id": 66482,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #684",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "684",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66482/avengers_2016_684",
+      "onSaleDate": null
+    },
+    {
+      "id": 66530,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #685",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "685",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66530/avengers_2016_685",
+      "onSaleDate": null
+    },
+    {
+      "id": 66531,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #686",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "686",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66531/avengers_2016_686",
+      "onSaleDate": null
+    },
+    {
+      "id": 66668,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #687",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "687",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66668/avengers_2016_687",
+      "onSaleDate": null
+    },
+    {
+      "id": 66753,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #688",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "688",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66753/avengers_2016_688",
+      "onSaleDate": null
+    },
+    {
+      "id": 66829,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #689",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "689",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66829/avengers_2016_689",
+      "onSaleDate": null
+    },
+    {
+      "id": 66905,
+      "title": "Avengers",
+      "issueTitle": "Avengers (2016) #690",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (2016 - 2018)",
+      "seriesId": 22547,
+      "issueNumber": "690",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66905/avengers_2016_690",
+      "onSaleDate": null
+    },
+    {
+      "id": 71433,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #1",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71433/avengers_no_road_home_2019_1",
+      "onSaleDate": "2019-02-13T00:00:00+0000"
+    },
+    {
+      "id": 71435,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #2",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71435/avengers_no_road_home_2019_2",
+      "onSaleDate": "2019-02-20T00:00:00+0000"
+    },
+    {
+      "id": 71436,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #3",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71436/avengers_no_road_home_2019_3",
+      "onSaleDate": "2019-02-27T00:00:00+0000"
+    },
+    {
+      "id": 71437,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #4",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71437/avengers_no_road_home_2019_4",
+      "onSaleDate": "2019-03-06T00:00:00+0000"
+    },
+    {
+      "id": 71438,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #5",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71438/avengers_no_road_home_2019_5",
+      "onSaleDate": "2019-03-13T00:00:00+0000"
+    },
+    {
+      "id": 71439,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #6",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71439/avengers_no_road_home_2019_6",
+      "onSaleDate": "2019-03-20T00:00:00+0000"
+    },
+    {
+      "id": 71440,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #7",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "7",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71440/avengers_no_road_home_2019_7",
+      "onSaleDate": "2019-03-27T00:00:00+0000"
+    },
+    {
+      "id": 71441,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #8",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "8",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71441/avengers_no_road_home_2019_8",
+      "onSaleDate": "2019-04-03T00:00:00+0000"
+    },
+    {
+      "id": 71442,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #9",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "9",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71442/avengers_no_road_home_2019_9",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 71987,
+      "title": "Avengers No Road Home",
+      "issueTitle": "Avengers No Road Home (2019) #10",
+      "seriesTitle": "Avengers No Road Home",
+      "apiSeriesName": "Avengers No Road Home (2019)",
+      "seriesId": 26034,
+      "issueNumber": "10",
+      "seriesYear": 2019,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/71987/avengers_no_road_home_2019_10",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 72984,
+      "title": "House of X",
+      "issueTitle": "House of X (2019) #1",
+      "seriesTitle": "House of X",
+      "apiSeriesName": "House of X (2019)",
+      "seriesId": 26338,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/72984/house_of_x_2019_1",
+      "onSaleDate": "2019-07-24T00:00:00+0000"
+    },
+    {
+      "id": 88646,
+      "title": "Empyre: X-Men",
+      "issueTitle": "Empyre: X-Men (2020) #1",
+      "seriesTitle": "Empyre: X-Men",
+      "apiSeriesName": "Empyre: X-Men (2020)",
+      "seriesId": 30527,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/88646/empyre_x-men_2020_1",
+      "onSaleDate": "2020-07-22T00:00:00+0000"
+    },
+    {
+      "id": 88649,
+      "title": "Empyre: X-Men",
+      "issueTitle": "Empyre: X-Men (2020) #4",
+      "seriesTitle": "Empyre: X-Men",
+      "apiSeriesName": "Empyre: X-Men (2020)",
+      "seriesId": 30527,
+      "issueNumber": "4",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/88649/empyre_x-men_2020_4",
+      "onSaleDate": "2020-08-19T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Avengers #113",
+      "sourceRangeReference": "Avengers #113",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "113",
+      "metadataIssueNumber": "113",
+      "seriesId": 1991,
+      "candidateIssueId": 6968,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6968"
+      ],
+      "selectedIssueId": 6968,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6968/avengers_1963_113",
+      "resolvedIssueTitle": "Avengers (1963) #113",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6968
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Avengers #133",
+      "sourceRangeReference": "Avengers #133 to #135",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "133",
+      "metadataIssueNumber": "133",
+      "seriesId": 1991,
+      "candidateIssueId": 6990,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6990"
+      ],
+      "selectedIssueId": 6990,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "resolvedIssueTitle": "Avengers (1963) #133",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6990
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Avengers #134",
+      "sourceRangeReference": "Avengers #133 to #135",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "134",
+      "metadataIssueNumber": "134",
+      "seriesId": 1991,
+      "candidateIssueId": 6991,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6991"
+      ],
+      "selectedIssueId": 6991,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "resolvedIssueTitle": "Avengers (1963) #134",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6991
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Avengers #135",
+      "sourceRangeReference": "Avengers #133 to #135",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "135",
+      "metadataIssueNumber": "135",
+      "seriesId": 1991,
+      "candidateIssueId": 6992,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6992"
+      ],
+      "selectedIssueId": 6992,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6992/avengers_1963_135",
+      "resolvedIssueTitle": "Avengers (1963) #135",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6992
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Giant-Size Avengers (1974) #4",
+      "sourceRangeReference": "Giant-Size Avengers (1974) #4",
+      "normalizedSeriesTitle": "Giant-Size Avengers",
+      "seriesYear": 1974,
+      "issueNumber": "4",
+      "metadataIssueNumber": "4",
+      "seriesId": 3729,
+      "candidateIssueId": 20023,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20023"
+      ],
+      "selectedIssueId": 20023,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "resolvedIssueTitle": "Giant-Size Avengers (1974) #4",
+      "note": "Marvel series 3729 (Giant-Size Avengers (1974)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20023
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Vision and Scarlet Witch #1",
+      "sourceRangeReference": "Vision and Scarlet Witch (1982) #1-4",
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1982,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 2090,
+      "candidateIssueId": 11954,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11954"
+      ],
+      "selectedIssueId": 11954,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11954/vision_and_the_scarlet_witch_1982_1",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1982) #1",
+      "note": "Marvel series 2090 (Vision and the Scarlet Witch (1982 - 1983)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        11954
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Vision and Scarlet Witch #2",
+      "sourceRangeReference": "Vision and Scarlet Witch (1982) #1-4",
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1982,
+      "issueNumber": "2",
+      "metadataIssueNumber": "2",
+      "seriesId": 2090,
+      "candidateIssueId": 11955,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11955"
+      ],
+      "selectedIssueId": 11955,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11955/vision_and_the_scarlet_witch_1982_2",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1982) #2",
+      "note": "Marvel series 2090 (Vision and the Scarlet Witch (1982 - 1983)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        11955
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Vision and Scarlet Witch #3",
+      "sourceRangeReference": "Vision and Scarlet Witch (1982) #1-4",
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1982,
+      "issueNumber": "3",
+      "metadataIssueNumber": "3",
+      "seriesId": 2090,
+      "candidateIssueId": 11956,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11956"
+      ],
+      "selectedIssueId": 11956,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11956/vision_and_the_scarlet_witch_1982_3",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1982) #3",
+      "note": "Marvel series 2090 (Vision and the Scarlet Witch (1982 - 1983)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        11956
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Vision and Scarlet Witch #4",
+      "sourceRangeReference": "Vision and Scarlet Witch (1982) #1-4",
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1982,
+      "issueNumber": "4",
+      "metadataIssueNumber": "4",
+      "seriesId": 2090,
+      "candidateIssueId": 11957,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11957"
+      ],
+      "selectedIssueId": 11957,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11957/vision_and_the_scarlet_witch_1982_4",
+      "resolvedIssueTitle": "Vision and the Scarlet Witch (1982) #4",
+      "note": "Marvel series 2090 (Vision and the Scarlet Witch (1982 - 1983)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        11957
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Avengers #185",
+      "sourceRangeReference": "Avengers #185 to #187",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "185",
+      "metadataIssueNumber": "185",
+      "seriesId": 1991,
+      "candidateIssueId": 7047,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7047"
+      ],
+      "selectedIssueId": 7047,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7047/avengers_1963_185",
+      "resolvedIssueTitle": "Avengers (1963) #185",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        7047
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Avengers #186",
+      "sourceRangeReference": "Avengers #185 to #187",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "186",
+      "metadataIssueNumber": "186",
+      "seriesId": 1991,
+      "candidateIssueId": 7048,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7048"
+      ],
+      "selectedIssueId": 7048,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7048/avengers_1963_186",
+      "resolvedIssueTitle": "Avengers (1963) #186",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        7048
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Avengers #187",
+      "sourceRangeReference": "Avengers #185 to #187",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "187",
+      "metadataIssueNumber": "187",
+      "seriesId": 1991,
+      "candidateIssueId": 7049,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7049"
+      ],
+      "selectedIssueId": 7049,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7049/avengers_1963_187",
+      "resolvedIssueTitle": "Avengers (1963) #187",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        7049
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Avengers #253",
+      "sourceRangeReference": "Avengers #253 to #254",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "253",
+      "metadataIssueNumber": "253",
+      "seriesId": 1991,
+      "candidateIssueId": 7123,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7123"
+      ],
+      "selectedIssueId": 7123,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7123/avengers_1963_253",
+      "resolvedIssueTitle": "Avengers (1963) #253",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        7123
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Avengers #254",
+      "sourceRangeReference": "Avengers #253 to #254",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "254",
+      "metadataIssueNumber": "254",
+      "seriesId": 1991,
+      "candidateIssueId": 7124,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "7124"
+      ],
+      "selectedIssueId": 7124,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7124/avengers_1963_254",
+      "resolvedIssueTitle": "Avengers (1963) #254",
+      "note": "Marvel series 1991 (Avengers (1963 - 1996)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        7124
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "West Coast Avengers #42",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "42",
+      "metadataIssueNumber": "42",
+      "seriesId": 3630,
+      "candidateIssueId": 55231,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55231"
+      ],
+      "selectedIssueId": 55231,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #42",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55231
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "West Coast Avengers #43",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "43",
+      "metadataIssueNumber": "43",
+      "seriesId": 3630,
+      "candidateIssueId": 55232,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55232"
+      ],
+      "selectedIssueId": 55232,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #43",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55232
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "West Coast Avengers #44",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "44",
+      "metadataIssueNumber": "44",
+      "seriesId": 3630,
+      "candidateIssueId": 55233,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55233"
+      ],
+      "selectedIssueId": 55233,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #44",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55233
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "West Coast Avengers #45",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "45",
+      "metadataIssueNumber": "45",
+      "seriesId": 3630,
+      "candidateIssueId": 55234,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55234"
+      ],
+      "selectedIssueId": 55234,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #45",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55234
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "West Coast Avengers #46",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "46",
+      "metadataIssueNumber": "46",
+      "seriesId": 3630,
+      "candidateIssueId": 17927,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17927"
+      ],
+      "selectedIssueId": 17927,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #46",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17927
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "West Coast Avengers #47",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "47",
+      "metadataIssueNumber": "47",
+      "seriesId": 3630,
+      "candidateIssueId": 55236,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55236"
+      ],
+      "selectedIssueId": 55236,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #47",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55236
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "West Coast Avengers #48",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "48",
+      "metadataIssueNumber": "48",
+      "seriesId": 3630,
+      "candidateIssueId": 17790,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17790"
+      ],
+      "selectedIssueId": 17790,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #48",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17790
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "West Coast Avengers #49",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "49",
+      "metadataIssueNumber": "49",
+      "seriesId": 3630,
+      "candidateIssueId": 17791,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17791"
+      ],
+      "selectedIssueId": 17791,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17791/west_coast_avengers_1985_49",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #49",
+      "note": "The official Marvel issue page is present, but the maintained metadata API does not return this issue; the user supplied the exact Marvel Unlimited page.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17791
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "West Coast Avengers #52",
+      "sourceRangeReference": "West Coast Avengers #42 to #49, #52",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "52",
+      "metadataIssueNumber": "52",
+      "seriesId": 3630,
+      "candidateIssueId": 17794,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17794"
+      ],
+      "selectedIssueId": 17794,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #52",
+      "note": "Marvel series 3630 (West Coast Avengers (1985 - 1994)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17794
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Scarlet Witch #1",
+      "sourceRangeReference": "Scarlet Witch #1 to #4",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 1994,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 54974,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "54974"
+      ],
+      "selectedIssueId": 54974,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/54974/scarlet_witch_1994_1",
+      "resolvedIssueTitle": "Scarlet Witch (1994) #1",
+      "note": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        54974
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Scarlet Witch #2",
+      "sourceRangeReference": "Scarlet Witch #1 to #4",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 1994,
+      "issueNumber": "2",
+      "metadataIssueNumber": "2",
+      "seriesId": null,
+      "candidateIssueId": 54975,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "54975"
+      ],
+      "selectedIssueId": 54975,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/54975/scarlet_witch_1994_2",
+      "resolvedIssueTitle": "Scarlet Witch (1994) #2",
+      "note": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        54975
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Scarlet Witch #3",
+      "sourceRangeReference": "Scarlet Witch #1 to #4",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 1994,
+      "issueNumber": "3",
+      "metadataIssueNumber": "3",
+      "seriesId": null,
+      "candidateIssueId": 54977,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "54977"
+      ],
+      "selectedIssueId": 54977,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/54977/scarlet_witch_1994_3",
+      "resolvedIssueTitle": "Scarlet Witch (1994) #3",
+      "note": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        54977
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Scarlet Witch #4",
+      "sourceRangeReference": "Scarlet Witch #1 to #4",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 1994,
+      "issueNumber": "4",
+      "metadataIssueNumber": "4",
+      "seriesId": null,
+      "candidateIssueId": 54978,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "54978"
+      ],
+      "selectedIssueId": 54978,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/54978/scarlet_witch_1994_4",
+      "resolvedIssueTitle": "Scarlet Witch (1994) #4",
+      "note": "The source identifies the 1994 Dan Abnett and Andy Lanning miniseries; the official Marvel issue page is used because the maintained metadata API does not index this series.",
+      "status": "exact",
+      "selectedIssueIds": [
+        54978
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Avengers #675",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "675",
+      "metadataIssueNumber": "675",
+      "seriesId": 22547,
+      "candidateIssueId": 65415,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65415"
+      ],
+      "selectedIssueId": 65415,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65415/avengers_2016_675",
+      "resolvedIssueTitle": "Avengers (2016) #675",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65415
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Avengers #676",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "676",
+      "metadataIssueNumber": "676",
+      "seriesId": 22547,
+      "candidateIssueId": 65897,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65897"
+      ],
+      "selectedIssueId": 65897,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65897/avengers_2016_676",
+      "resolvedIssueTitle": "Avengers (2016) #676",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65897
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Avengers #677",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "677",
+      "metadataIssueNumber": "677",
+      "seriesId": 22547,
+      "candidateIssueId": 65898,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65898"
+      ],
+      "selectedIssueId": 65898,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65898/avengers_2016_677",
+      "resolvedIssueTitle": "Avengers (2016) #677",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65898
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Avengers #678",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "678",
+      "metadataIssueNumber": "678",
+      "seriesId": 22547,
+      "candidateIssueId": 65899,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "65899"
+      ],
+      "selectedIssueId": 65899,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65899/avengers_2016_678",
+      "resolvedIssueTitle": "Avengers (2016) #678",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        65899
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Avengers #679",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "679",
+      "metadataIssueNumber": "679",
+      "seriesId": 22547,
+      "candidateIssueId": 66086,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66086"
+      ],
+      "selectedIssueId": 66086,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66086/avengers_2016_679",
+      "resolvedIssueTitle": "Avengers (2016) #679",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66086
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Avengers #680",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "680",
+      "metadataIssueNumber": "680",
+      "seriesId": 22547,
+      "candidateIssueId": 66185,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66185"
+      ],
+      "selectedIssueId": 66185,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66185/avengers_2016_680",
+      "resolvedIssueTitle": "Avengers (2016) #680",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66185
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Avengers #681",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "681",
+      "metadataIssueNumber": "681",
+      "seriesId": 22547,
+      "candidateIssueId": 66266,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66266"
+      ],
+      "selectedIssueId": 66266,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66266/avengers_2016_681",
+      "resolvedIssueTitle": "Avengers (2016) #681",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66266
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Avengers #682",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "682",
+      "metadataIssueNumber": "682",
+      "seriesId": 22547,
+      "candidateIssueId": 66267,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66267"
+      ],
+      "selectedIssueId": 66267,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66267/avengers_2016_682",
+      "resolvedIssueTitle": "Avengers (2016) #682",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66267
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Avengers #683",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "683",
+      "metadataIssueNumber": "683",
+      "seriesId": 22547,
+      "candidateIssueId": 66395,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66395"
+      ],
+      "selectedIssueId": 66395,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66395/avengers_2016_683",
+      "resolvedIssueTitle": "Avengers (2016) #683",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66395
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Avengers #684",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "684",
+      "metadataIssueNumber": "684",
+      "seriesId": 22547,
+      "candidateIssueId": 66482,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66482"
+      ],
+      "selectedIssueId": 66482,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66482/avengers_2016_684",
+      "resolvedIssueTitle": "Avengers (2016) #684",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66482
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Avengers #685",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "685",
+      "metadataIssueNumber": "685",
+      "seriesId": 22547,
+      "candidateIssueId": 66530,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66530"
+      ],
+      "selectedIssueId": 66530,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66530/avengers_2016_685",
+      "resolvedIssueTitle": "Avengers (2016) #685",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66530
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Avengers #686",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "686",
+      "metadataIssueNumber": "686",
+      "seriesId": 22547,
+      "candidateIssueId": 66531,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66531"
+      ],
+      "selectedIssueId": 66531,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66531/avengers_2016_686",
+      "resolvedIssueTitle": "Avengers (2016) #686",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66531
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Avengers #687",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "687",
+      "metadataIssueNumber": "687",
+      "seriesId": 22547,
+      "candidateIssueId": 66668,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66668"
+      ],
+      "selectedIssueId": 66668,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66668/avengers_2016_687",
+      "resolvedIssueTitle": "Avengers (2016) #687",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66668
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Avengers #688",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "688",
+      "metadataIssueNumber": "688",
+      "seriesId": 22547,
+      "candidateIssueId": 66753,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66753"
+      ],
+      "selectedIssueId": 66753,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66753/avengers_2016_688",
+      "resolvedIssueTitle": "Avengers (2016) #688",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66753
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Avengers #689",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "689",
+      "metadataIssueNumber": "689",
+      "seriesId": 22547,
+      "candidateIssueId": 66829,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66829"
+      ],
+      "selectedIssueId": 66829,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66829/avengers_2016_689",
+      "resolvedIssueTitle": "Avengers (2016) #689",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66829
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Avengers #690",
+      "sourceRangeReference": "Avengers #675 to #690",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "690",
+      "metadataIssueNumber": "690",
+      "seriesId": 22547,
+      "candidateIssueId": 66905,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66905"
+      ],
+      "selectedIssueId": 66905,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66905/avengers_2016_690",
+      "resolvedIssueTitle": "Avengers (2016) #690",
+      "note": "Marvel series 22547 (Avengers (2016 - 2018)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        66905
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Avengers: No Road Home #1",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 26034,
+      "candidateIssueId": 71433,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71433"
+      ],
+      "selectedIssueId": 71433,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71433/avengers_no_road_home_2019_1",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #1",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71433
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Avengers: No Road Home #2",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "metadataIssueNumber": "2",
+      "seriesId": 26034,
+      "candidateIssueId": 71435,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71435"
+      ],
+      "selectedIssueId": 71435,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71435/avengers_no_road_home_2019_2",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #2",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71435
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Avengers: No Road Home #3",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "metadataIssueNumber": "3",
+      "seriesId": 26034,
+      "candidateIssueId": 71436,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71436"
+      ],
+      "selectedIssueId": 71436,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71436/avengers_no_road_home_2019_3",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #3",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71436
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Avengers: No Road Home #4",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "metadataIssueNumber": "4",
+      "seriesId": 26034,
+      "candidateIssueId": 71437,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71437"
+      ],
+      "selectedIssueId": 71437,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71437/avengers_no_road_home_2019_4",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #4",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71437
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Avengers: No Road Home #5",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "metadataIssueNumber": "5",
+      "seriesId": 26034,
+      "candidateIssueId": 71438,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71438"
+      ],
+      "selectedIssueId": 71438,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71438/avengers_no_road_home_2019_5",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #5",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71438
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Avengers: No Road Home #6",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "metadataIssueNumber": "6",
+      "seriesId": 26034,
+      "candidateIssueId": 71439,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71439"
+      ],
+      "selectedIssueId": 71439,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71439/avengers_no_road_home_2019_6",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #6",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71439
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Avengers: No Road Home #7",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "metadataIssueNumber": "7",
+      "seriesId": 26034,
+      "candidateIssueId": 71440,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71440"
+      ],
+      "selectedIssueId": 71440,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71440/avengers_no_road_home_2019_7",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #7",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71440
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Avengers: No Road Home #8",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "8",
+      "metadataIssueNumber": "8",
+      "seriesId": 26034,
+      "candidateIssueId": 71441,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71441"
+      ],
+      "selectedIssueId": 71441,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71441/avengers_no_road_home_2019_8",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #8",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71441
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Avengers: No Road Home #9",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "9",
+      "metadataIssueNumber": "9",
+      "seriesId": 26034,
+      "candidateIssueId": 71442,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71442"
+      ],
+      "selectedIssueId": 71442,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71442/avengers_no_road_home_2019_9",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #9",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71442
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Avengers: No Road Home #10",
+      "sourceRangeReference": "Avengers: No Road Home #1 to #10",
+      "normalizedSeriesTitle": "Avengers No Road Home",
+      "seriesYear": 2019,
+      "issueNumber": "10",
+      "metadataIssueNumber": "10",
+      "seriesId": 26034,
+      "candidateIssueId": 71987,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel metadata omits the colon in the series title.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "71987"
+      ],
+      "selectedIssueId": 71987,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71987/avengers_no_road_home_2019_10",
+      "resolvedIssueTitle": "Avengers No Road Home (2019) #10",
+      "note": "Marvel metadata omits the colon in the series title.",
+      "status": "exact",
+      "selectedIssueIds": [
+        71987
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "House of X #1",
+      "sourceRangeReference": "House of X #1, Empyre X-Men #1, #4",
+      "normalizedSeriesTitle": "House of X",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 26338,
+      "candidateIssueId": 72984,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "72984"
+      ],
+      "selectedIssueId": 72984,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72984/house_of_x_2019_1",
+      "resolvedIssueTitle": "House of X (2019) #1",
+      "note": "Marvel series 26338 (House of X (2019)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        72984
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Empyre X-Men #1",
+      "sourceRangeReference": "House of X #1, Empyre X-Men #1, #4",
+      "normalizedSeriesTitle": "Empyre: X-Men",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 30527,
+      "candidateIssueId": 88646,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "88646"
+      ],
+      "selectedIssueId": 88646,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/88646/empyre_x-men_2020_1",
+      "resolvedIssueTitle": "Empyre: X-Men (2020) #1",
+      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88646
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Empyre X-Men #4",
+      "sourceRangeReference": "House of X #1, Empyre X-Men #1, #4",
+      "normalizedSeriesTitle": "Empyre: X-Men",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "metadataIssueNumber": "4",
+      "seriesId": 30527,
+      "candidateIssueId": 88649,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "88649"
+      ],
+      "selectedIssueId": 88649,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/88649/empyre_x-men_2020_4",
+      "resolvedIssueTitle": "Empyre: X-Men (2020) #4",
+      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata source for this exact source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88649
+      ]
+    }
+  ],
+  "reviewStatus": "approved",
+  "packetReview": "MRT-004 central CBH source review",
+  "approvedManifest": {
+    "id": "wandavision",
+    "name": "WandaVision",
+    "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "wandavision.md",
+    "sourcePage": "https://www.comicbookherald.com/10-best-comics-to-read-with-wandavision/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "wandavision.json",
+    "characters": [
+      "Scarlet Witch",
+      "Vision",
+      "Avengers",
+      "Wiccan",
+      "Speed"
+    ],
+    "keywords": [
+      "WandaVision",
+      "Scarlet Witch",
+      "Vision",
+      "House of M",
+      "Comic Book Herald"
+    ],
+    "expect": 56,
+    "timeline": null,
+    "coverIssueId": 11954
+  },
+  "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-004 coordinator",
+    "rationale": "Every current-library and selected-peer relationship was reviewed after exact WandaVision mapping. Four partial overlaps are approved because they preserve the source sequence for a distinct MCU Prep screen companion; all other comparisons share no issue.",
+    "reviewedAt": "2026-08-26",
+    "reportDigest": "bec8698a289da4ff508c15be32965b91ced96d42a3367f2f82d15f13e1d991d3",
+    "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
+    "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
+    "libraryDigest": "0a12715f8d428d14c583ba8970b8fcfb1419b70df0e52bc26e8943c13ebaf50d",
+    "peerDigests": {
+      "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
+      "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
+      "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
+      "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
+    },
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The reviewed reading purpose is distinct from essential-avengers.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The reviewed reading purpose is distinct from hickman-x-men.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The reviewed reading purpose is distinct from marvel-fresh-start-avengers.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The reviewed reading purpose is distinct from rocket-raccoon-reading-order.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The reviewed reading purpose is distinct from scarlet-witch-best-of.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      }
+    ],
+    "approvalDigest": "3ed380b8da61ae5cbca368f697b093e9eaf7d4faee7b0d1c78598a4a88e8ee51"
+  }
+}

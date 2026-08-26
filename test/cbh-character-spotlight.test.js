@@ -226,6 +226,8 @@ const laterMcuIds = [
   'spider-man-no-way-home',
   'marvel-multiverse',
   'marvel-what-if',
+  'wandavision',
+  'spider-man-far-from-home',
 ];
 const laterCbhIds = [
   'hickman-x-men',
@@ -324,7 +326,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships seven spotlights', async () => {
+test('the character inventory preserves every central disposition and ships six spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -374,10 +376,7 @@ test('the character inventory preserves every central disposition and ships seve
     shippedById.get('marvels-best-phoenix-comics').catalogIds,
     ['marvels-best-phoenix-comics'],
   );
-  assert.deepEqual(
-    shippedById.get('marvels-best-phoenix-comics').overlapIds,
-    ['thanos-reading-order'],
-  );
+  assert.deepEqual(shippedById.get('marvels-best-phoenix-comics').overlapIds, ['thanos-reading-order']);
   assert.deepEqual(shippedById.get(cosmicCandidateId).catalogIds, [cosmicCandidateId]);
   assert.deepEqual(shippedById.get(cosmicCandidateId).overlapIds, [
     'groot-reading-order',
@@ -1186,7 +1185,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 138);
+  assert.equal(catalog.lists.length, 140);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 15);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 14);

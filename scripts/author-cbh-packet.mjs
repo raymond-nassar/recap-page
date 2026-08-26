@@ -227,15 +227,13 @@ export function buildMarkdown(mapping) {
   const manifest = manifestEntryForMapping(mapping);
   selectedIssueIds(mapping);
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
-  const gapCount = mapping.sourceGaps?.length ?? 0;
-  const identityCount = mapping.rows.length + gapCount;
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
     `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
-    ...(repeatedCount === 0 && gapCount === 0 ? [] : [
-      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences across ${identityCount} distinct identities. This checklist publishes ${mapping.rows.length} exact issue identities, records ${gapCount} source ${gapCount === 1 ? 'identity' : 'identities'} outside the published output in maintainer evidence, and preserves ${repeatedCount} later source ${repeatedCount === 1 ? 'mention' : 'mentions'} without duplicating output.`,
+    ...(repeatedCount === 0 ? [] : [
+      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
     ]),
-    'No source commentary or images are copied. Issue identities and exact links come from reviewed evidence; available issue details come from Marvel metadata after the packet resolution and overlap gates passed.',
+    'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
   ].join('\n');
   const checklist = mapping.rows.map((row) => (
@@ -337,19 +335,6 @@ export function assertApprovedRelationshipReview({
     candidateCount: selectedIssueIds(mapping).length,
     expectedOrderIds,
   });
-  if (Array.isArray(packet.sourceGaps)) {
-    const expectedCounts = {
-      sourceOccurrenceCount: packet.sourceOccurrenceCount,
-      sourceIdentityCount: packet.rows.length + packet.sourceGaps.length,
-      includedIssueCount: packet.rows.length,
-      sourceGapCount: packet.sourceGaps.length,
-      repeatedSourceReferenceCount: packet.repeatedSourceReferences?.length ?? 0,
-    };
-    assert(canonicalJson(report.sourceCounts) === canonicalJson(expectedCounts),
-      `${candidateId} report source counts differ from its packet`);
-    assert(canonicalJson(mapping.relationshipReview?.sourceCounts) === canonicalJson(expectedCounts),
-      `${candidateId} approval source counts differ from its packet`);
-  }
 
   assert(mapping.reviewStatus === 'approved', `${candidateId} is not approved`);
   assert(typeof mapping.packetReview === 'string' && mapping.packetReview.trim(),

@@ -1789,15 +1789,15 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2912-2923|0": {
-    "anchor": "CHANGELOG.md:2912-2923",
-    "fp": "7ebb6ef43a1f1241",
-    "head": "- **The project now watches its own development tooling for known security problems, and says how"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:1715-1718|0": {
+    "anchor": "CHANGELOG.md:1715-1718",
+    "fp": "e7217df03bc137d4",
+    "head": "rather than merely counted. With them are the three protections that cost nothing once a project is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2925-2935|0": {
-    "anchor": "CHANGELOG.md:2925-2935",
-    "fp": "c37eedd88ad1c81c",
-    "head": "- **The project now has a published security policy, which names a private route for reporting a"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2952-2955|0": {
+    "anchor": "CHANGELOG.md:2952-2955",
+    "fp": "a1bbc9d008c99c4d",
+    "head": "rather than being decided afresh each time. One protection could not be turned on: the service"
   },
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|PRODUCT_BACKLOG.md:30-42|0": {
     "anchor": "PRODUCT_BACKLOG.md:30-42",

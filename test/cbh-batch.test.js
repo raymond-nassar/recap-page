@@ -469,8 +469,8 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
 
   const markdown = buildMarkdown(evidence.mapping);
-  assert.match(markdown, /3 issue occurrences across 2 distinct identities.*preserves 1 later source mention/);
-  assert.match(markdown, /publishes 2 exact issue identities/);
+  assert.match(markdown, /3 issue occurrences, including 1 intentional repeat.*lists each distinct comic once at its first source occurrence/);
+  assert.match(markdown, /No source commentary or images are copied\./);
   assert.equal(parseChecklist(markdown).entries.length, 2);
 
   const oldPacket = genericPacket();

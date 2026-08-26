@@ -1,763 +1,515 @@
 {
-  "id": "doctor-strange-multiverse-of-madness",
-  "inventoryId": "doctor-strange-multiverse-of-madness",
-  "packetDigest": "bd0b58b61128f9787c658f0f182daf04df4b06a668b20225c049cb233f53ed10",
-  "sourceUrl": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
-  "sourceRetrievedAt": "2026-08-24",
-  "sourceContentSha256": "be3477c5bf2da2b6321ccd775ff49f98933f87c11a1408524d1072f4d68d4418",
+  "id": "spider-man-far-from-home",
+  "inventoryId": "spider-man-far-from-home",
+  "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3",
+  "sourceUrl": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceContentSha256": "eb12094ab82fa0605bd35397b14e7148e7306f3036823394d52360a46c409301",
   "sourceRetrievalStatus": "retrieved",
-  "approvedSourceCount": 17,
+  "approvedSourceCount": 24,
   "excludedSourceReferences": [
     "Related reading-order links",
-    "Doctor Strange and the Sorcerers Supreme, The Mystic Hands of Doctor Strange, What Is It That Disturbs You Stephen, Marvel Zombies, Young Avengers, and Exiles headed picks without a complete issue-number boundary",
-    "Empyre: X-Men #1 and #4 and Exiles #66 contextual prose mentions",
-    "Editorial commentary and images"
+    "Contextual comic mentions inside included issue discussions",
+    "Video-game and film context links",
+    "Spider-Men unnumbered recommendation",
+    "Spider-Verse and Spider-Geddon unnumbered recommendations",
+    "Hickman Avengers / Secret Wars and whole-run Hickman follow-on links",
+    "Friendly Neighborhood Spider-Man first-seven-issues context outside the exact #6 recommendation",
+    "Editorial commentary, images, embeds, advertisements, and subscription links"
   ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Related Reading Orders: Amazing Spider-Man",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Related Reading Orders: Mysterio",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Related Reading Orders: Miles Morales",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #13",
+      "reason": "Contextual Mysterio debut mention inside the #66-67 discussion, not the row recommended by the heading.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Amazing Spider-Man Annual (1964) #1",
+      "reason": "Contextual Sinister Six mention inside the #66-67 discussion, not the row recommended by the heading.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Spider-Man: Shattered Dimensions",
+      "reason": "Video-game influence mention, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #2",
+      "reason": "Contextual Tinkerer aliens mention inside the #50-51 discussion, not a recommended row.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Shed",
+      "reason": "Contextual later Gauntlet story mention without an issue-number boundary.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "PS4 Spider-Man",
+      "reason": "Video-game comparison, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Spider-Men",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spider-Man: Into the Spider-Verse",
+      "reason": "Film comparison inside the Spider-Men discussion, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Spider-Verse",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Geddon",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Hickman Avengers / Secret Wars",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Hickman's Marvel Universe work as a whole",
+      "reason": "Contextual whole-run follow-on link without an issue-number boundary.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2019) first seven issues",
+      "reason": "Contextual read-status mention; only #6 is issue-specific recommendation text.",
+      "decisionScope": "contextual-mention"
+    }
+  ],
+  "sourceOccurrenceCount": 24,
+  "reviewStatus": "approved",
   "proposedManifest": {
-    "id": "doctor-strange-multiverse-of-madness",
-    "name": "Doctor Strange: Multiverse of Madness",
-    "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
+    "id": "spider-man-far-from-home",
+    "name": "Spider-Man: Far From Home",
+    "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
     "type": "screen-companion",
     "depth": "selected",
     "beginner": false,
     "group": null,
     "groupName": null,
     "variant": null,
-    "sourceFile": "doctor-strange-multiverse-of-madness.md",
-    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
+    "sourceFile": "spider-man-far-from-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
     "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
     "sourceLicense": null,
-    "out": "doctor_strange_multiverse_of_madness.json",
+    "out": "spider_man_far_from_home.json",
     "characters": [
-      "Doctor Strange",
-      "Scarlet Witch",
-      "Illuminati"
+      "Spider-Man",
+      "Mysterio",
+      "Peter Parker"
     ],
     "keywords": [
-      "Multiverse of Madness",
-      "Doctor Strange",
-      "Illuminati",
-      "New Avengers",
+      "Far From Home",
+      "Spider-Man",
+      "Mysterio",
+      "The Gauntlet",
       "Comic Book Herald"
     ],
-    "expect": 17,
+    "expect": 8,
     "timeline": null,
-    "coverIssueId": 55415
+    "coverIssueId": 74028
   },
   "candidateMetadata": [
     {
-      "id": 55415,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #1",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "1",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55415/doctor_strange_2015_1",
-      "onSaleDate": "2015-10-07T00:00:00+0000"
-    },
-    {
-      "id": 55416,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #2",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "2",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55416/doctor_strange_2015_2",
-      "onSaleDate": "2015-11-04T00:00:00+0000"
-    },
-    {
-      "id": 55417,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #3",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "3",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55417/doctor_strange_2015_3",
-      "onSaleDate": "2015-12-02T00:00:00+0000"
-    },
-    {
-      "id": 55418,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #4",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "4",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55418/doctor_strange_2015_4",
-      "onSaleDate": "2016-01-06T00:00:00+0000"
-    },
-    {
-      "id": 55419,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #5",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "5",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55419/doctor_strange_2015_5",
-      "onSaleDate": "2016-02-03T00:00:00+0000"
-    },
-    {
-      "id": 55420,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #6",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "6",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55420/doctor_strange_2015_6",
-      "onSaleDate": "2016-03-09T00:00:00+0000"
-    },
-    {
-      "id": 55421,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #7",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "7",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55421/doctor_strange_2015_7",
-      "onSaleDate": "2016-04-27T00:00:00+0000"
-    },
-    {
-      "id": 55422,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #8",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "8",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55422/doctor_strange_2015_8",
-      "onSaleDate": "2016-05-25T00:00:00+0000"
-    },
-    {
-      "id": 55423,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #9",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "9",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55423/doctor_strange_2015_9",
-      "onSaleDate": "2016-06-22T00:00:00+0000"
-    },
-    {
-      "id": 55424,
-      "title": "Doctor Strange",
-      "issueTitle": "Doctor Strange (2015) #10",
-      "seriesTitle": "Doctor Strange",
-      "apiSeriesName": "Doctor Strange (2015 - 2018)",
-      "seriesId": 20457,
-      "issueNumber": "10",
-      "seriesYear": 2015,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/55424/doctor_strange_2015_10",
-      "onSaleDate": "2016-08-03T00:00:00+0000"
-    },
-    {
-      "id": 3984,
-      "title": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1",
-      "issueTitle": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1 (2006) #1",
-      "seriesTitle": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1",
-      "apiSeriesName": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1 (2006 - Present)",
-      "seriesId": 43504,
-      "issueNumber": "1",
-      "seriesYear": 2006,
+      "id": 6886,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (1963) #66",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "seriesId": 1987,
+      "issueNumber": "66",
+      "seriesYear": 1963,
       "manualSeriesSelection": true,
       "manualSeriesSelectionApproved": true,
-      "detailUrl": "https://www.marvel.com/comics/issue/3984/new_avengers_illuminati_one-shot_1_2006_1",
-      "onSaleDate": "2006-04-19T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/6886/the_amazing_spider-man_1963_66",
+      "onSaleDate": "1968-11-01T00:00:00+0000"
     },
     {
-      "id": 5723,
-      "title": "New Avengers: Illuminati",
-      "issueTitle": "New Avengers: Illuminati (2006) #1",
-      "seriesTitle": "New Avengers: Illuminati",
-      "apiSeriesName": "New Avengers: Illuminati (2006 - 2008)",
-      "seriesId": 1137,
-      "issueNumber": "1",
-      "seriesYear": 2006,
+      "id": 6887,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (1963) #67",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "seriesId": 1987,
+      "issueNumber": "67",
+      "seriesYear": 1963,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true,
+      "detailUrl": "https://www.marvel.com/comics/issue/6887/the_amazing_spider-man_1963_67",
+      "onSaleDate": "1968-12-01T00:00:00+0000"
+    },
+    {
+      "id": 14751,
+      "title": "Peter Parker, the Spectacular Spider-Man",
+      "issueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "seriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "apiSeriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "seriesId": 2271,
+      "issueNumber": "50",
+      "seriesYear": 1976,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/5723/new_avengers_illuminati_2006_1",
-      "onSaleDate": "2006-12-20T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "onSaleDate": "1981-01-01T00:00:00+0000"
     },
     {
-      "id": 5864,
-      "title": "New Avengers: Illuminati",
-      "issueTitle": "New Avengers: Illuminati (2006) #2",
-      "seriesTitle": "New Avengers: Illuminati",
-      "apiSeriesName": "New Avengers: Illuminati (2006 - 2008)",
-      "seriesId": 1137,
-      "issueNumber": "2",
-      "seriesYear": 2006,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/5864/new_avengers_illuminati_2006_2",
-      "onSaleDate": "2007-02-21T00:00:00+0000"
-    },
-    {
-      "id": 13481,
-      "title": "New Avengers: Illuminati",
-      "issueTitle": "New Avengers: Illuminati (2006) #3",
-      "seriesTitle": "New Avengers: Illuminati",
-      "apiSeriesName": "New Avengers: Illuminati (2006 - 2008)",
-      "seriesId": 1137,
-      "issueNumber": "3",
-      "seriesYear": 2006,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/13481/new_avengers_illuminati_2006_3",
-      "onSaleDate": "2007-05-30T00:00:00+0000"
-    },
-    {
-      "id": 15968,
-      "title": "New Avengers: Illuminati",
-      "issueTitle": "New Avengers: Illuminati (2006) #4",
-      "seriesTitle": "New Avengers: Illuminati",
-      "apiSeriesName": "New Avengers: Illuminati (2006 - 2008)",
-      "seriesId": 1137,
-      "issueNumber": "4",
-      "seriesYear": 2006,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/15968/new_avengers_illuminati_2006_4",
-      "onSaleDate": "2007-08-01T00:00:00+0000"
-    },
-    {
-      "id": 17254,
-      "title": "New Avengers: Illuminati",
-      "issueTitle": "New Avengers: Illuminati (2006) #5",
-      "seriesTitle": "New Avengers: Illuminati",
-      "apiSeriesName": "New Avengers: Illuminati (2006 - 2008)",
-      "seriesId": 1137,
-      "issueNumber": "5",
-      "seriesYear": 2006,
-      "manualSeriesSelection": false,
-      "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/17254/new_avengers_illuminati_2006_5",
-      "onSaleDate": "2007-11-07T00:00:00+0000"
-    },
-    {
-      "id": 23747,
-      "title": "New Avengers",
-      "issueTitle": "New Avengers (2004) #51",
-      "seriesTitle": "New Avengers",
-      "apiSeriesName": "New Avengers (2004 - 2010)",
-      "seriesId": 753,
+      "id": 14752,
+      "title": "Peter Parker, the Spectacular Spider-Man",
+      "issueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "seriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "apiSeriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "seriesId": 2271,
       "issueNumber": "51",
-      "seriesYear": 2004,
+      "seriesYear": 1976,
       "manualSeriesSelection": false,
       "manualSeriesSelectionApproved": false,
-      "detailUrl": "https://www.marvel.com/comics/issue/23747/new_avengers_2004_51",
-      "onSaleDate": "2009-03-25T00:00:00+0000"
+      "detailUrl": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
+      "onSaleDate": "1981-02-01T00:00:00+0000"
+    },
+    {
+      "id": 24425,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #618",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "618",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24425/amazing_spider-man_1999_618",
+      "onSaleDate": "2010-01-20T00:00:00+0000"
+    },
+    {
+      "id": 28224,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #619",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "619",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28224/amazing_spider-man_1999_619",
+      "onSaleDate": "2010-01-27T00:00:00+0000"
+    },
+    {
+      "id": 28225,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #620",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "620",
+      "seriesYear": 1999,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28225/amazing_spider-man_1999_620",
+      "onSaleDate": "2010-02-10T00:00:00+0000"
+    },
+    {
+      "id": 74028,
+      "title": "Friendly Neighborhood Spider-Man",
+      "issueTitle": "Friendly Neighborhood Spider-Man (2019) #6",
+      "seriesTitle": "Friendly Neighborhood Spider-Man",
+      "apiSeriesName": "Friendly Neighborhood Spider-Man (2019 - Present)",
+      "seriesId": 26679,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/74028/friendly_neighborhood_spider-man_2019_6",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
     }
   ],
   "rows": [
     {
-      "sourcePosition": 1,
-      "sourceIssueReference": "Doctor Strange (2015) #1",
-      "sourceRangeReference": "Doctor Strange (2015) #1",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "1",
-      "metadataIssueNumber": "1",
-      "seriesId": 20457,
-      "candidateIssueId": 55415,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "55415"
-      ],
-      "selectedIssueId": 55415,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55415/doctor_strange_2015_1",
-      "resolvedIssueTitle": "Doctor Strange (2015) #1",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        55415
-      ]
-    },
-    {
-      "sourcePosition": 2,
-      "sourceIssueReference": "Doctor Strange (2015) #2",
-      "sourceRangeReference": "Doctor Strange (2015) #2",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "2",
-      "metadataIssueNumber": "2",
-      "seriesId": 20457,
-      "candidateIssueId": 55416,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "55416"
-      ],
-      "selectedIssueId": 55416,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55416/doctor_strange_2015_2",
-      "resolvedIssueTitle": "Doctor Strange (2015) #2",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        55416
-      ]
-    },
-    {
-      "sourcePosition": 3,
-      "sourceIssueReference": "Doctor Strange (2015) #3",
-      "sourceRangeReference": "Doctor Strange (2015) #3",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "3",
-      "metadataIssueNumber": "3",
-      "seriesId": 20457,
-      "candidateIssueId": 55417,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "55417"
-      ],
-      "selectedIssueId": 55417,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55417/doctor_strange_2015_3",
-      "resolvedIssueTitle": "Doctor Strange (2015) #3",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        55417
-      ]
-    },
-    {
       "sourcePosition": 4,
-      "sourceIssueReference": "Doctor Strange (2015) #4",
-      "sourceRangeReference": "Doctor Strange (2015) #4",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "4",
-      "metadataIssueNumber": "4",
-      "seriesId": 20457,
-      "candidateIssueId": 55418,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #66",
+      "sourceRangeReference": "Amazing Spider-Man (1963) #66-67",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "66",
+      "metadataIssueNumber": "66",
+      "seriesId": 1987,
+      "candidateIssueId": 6886,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "55418"
+        6886
       ],
-      "selectedIssueId": 55418,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55418/doctor_strange_2015_4",
-      "resolvedIssueTitle": "Doctor Strange (2015) #4",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 6886,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6886/the_amazing_spider-man_1963_66",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #66",
+      "note": "Marvel series 1987 (The Amazing Spider-Man (1963 - 1998)) is the reviewed metadata series for this source reference. Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "status": "exact",
       "selectedIssueIds": [
-        55418
+        6886
       ]
     },
     {
       "sourcePosition": 5,
-      "sourceIssueReference": "Doctor Strange (2015) #5",
-      "sourceRangeReference": "Doctor Strange (2015) #5",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "5",
-      "metadataIssueNumber": "5",
-      "seriesId": 20457,
-      "candidateIssueId": 55419,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #67",
+      "sourceRangeReference": "Amazing Spider-Man (1963) #66-67",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "67",
+      "metadataIssueNumber": "67",
+      "seriesId": 1987,
+      "candidateIssueId": 6887,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "55419"
+        6887
       ],
-      "selectedIssueId": 55419,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55419/doctor_strange_2015_5",
-      "resolvedIssueTitle": "Doctor Strange (2015) #5",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 6887,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6887/the_amazing_spider-man_1963_67",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #67",
+      "note": "Marvel series 1987 (The Amazing Spider-Man (1963 - 1998)) is the reviewed metadata series for this source reference. Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series.",
       "status": "exact",
       "selectedIssueIds": [
-        55419
-      ]
-    },
-    {
-      "sourcePosition": 6,
-      "sourceIssueReference": "Doctor Strange (2015) #6",
-      "sourceRangeReference": "Doctor Strange (2015) #6",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "6",
-      "metadataIssueNumber": "6",
-      "seriesId": 20457,
-      "candidateIssueId": 55420,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "55420"
-      ],
-      "selectedIssueId": 55420,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55420/doctor_strange_2015_6",
-      "resolvedIssueTitle": "Doctor Strange (2015) #6",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        55420
-      ]
-    },
-    {
-      "sourcePosition": 7,
-      "sourceIssueReference": "Doctor Strange (2015) #7",
-      "sourceRangeReference": "Doctor Strange (2015) #7",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "7",
-      "metadataIssueNumber": "7",
-      "seriesId": 20457,
-      "candidateIssueId": 55421,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "55421"
-      ],
-      "selectedIssueId": 55421,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55421/doctor_strange_2015_7",
-      "resolvedIssueTitle": "Doctor Strange (2015) #7",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        55421
-      ]
-    },
-    {
-      "sourcePosition": 8,
-      "sourceIssueReference": "Doctor Strange (2015) #8",
-      "sourceRangeReference": "Doctor Strange (2015) #8",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "8",
-      "metadataIssueNumber": "8",
-      "seriesId": 20457,
-      "candidateIssueId": 55422,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "55422"
-      ],
-      "selectedIssueId": 55422,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55422/doctor_strange_2015_8",
-      "resolvedIssueTitle": "Doctor Strange (2015) #8",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        55422
+        6887
       ]
     },
     {
       "sourcePosition": 9,
-      "sourceIssueReference": "Doctor Strange (2015) #9",
-      "sourceRangeReference": "Doctor Strange (2015) #9",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "9",
-      "metadataIssueNumber": "9",
-      "seriesId": 20457,
-      "candidateIssueId": 55423,
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "sourceRangeReference": "Peter Parker, the Spectacular Spider-Man (1976) #50-51",
+      "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "50",
+      "metadataIssueNumber": "50",
+      "seriesId": 2271,
+      "candidateIssueId": 14751,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "55423"
+        14751
       ],
-      "selectedIssueId": 55423,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55423/doctor_strange_2015_9",
-      "resolvedIssueTitle": "Doctor Strange (2015) #9",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 14751,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "note": "Marvel series 2271 (Peter Parker, the Spectacular Spider-Man (1976 - 1998)) is the reviewed metadata series for this source reference.",
       "status": "exact",
       "selectedIssueIds": [
-        55423
+        14751
       ]
     },
     {
       "sourcePosition": 10,
-      "sourceIssueReference": "Doctor Strange (2015) #10",
-      "sourceRangeReference": "Doctor Strange (2015) #10",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": 2015,
-      "issueNumber": "10",
-      "metadataIssueNumber": "10",
-      "seriesId": 20457,
-      "candidateIssueId": 55424,
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "sourceRangeReference": "Peter Parker, the Spectacular Spider-Man (1976) #50-51",
+      "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "51",
+      "metadataIssueNumber": "51",
+      "seriesId": 2271,
+      "candidateIssueId": 14752,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "55424"
+        14752
       ],
-      "selectedIssueId": 55424,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55424/doctor_strange_2015_10",
-      "resolvedIssueTitle": "Doctor Strange (2015) #10",
-      "note": "Marvel series 20457 (Doctor Strange (2015 - 2018)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 14752,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
+      "resolvedIssueTitle": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "note": "Marvel series 2271 (Peter Parker, the Spectacular Spider-Man (1976 - 1998)) is the reviewed metadata series for this source reference.",
       "status": "exact",
       "selectedIssueIds": [
-        55424
-      ]
-    },
-    {
-      "sourcePosition": 11,
-      "sourceIssueReference": "New Avengers: Illuminati #0",
-      "sourceRangeReference": "New Avengers: Illuminati #0",
-      "normalizedSeriesTitle": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1",
-      "seriesYear": 2006,
-      "issueNumber": "0",
-      "metadataIssueNumber": "1",
-      "seriesId": 43504,
-      "candidateIssueId": 3984,
-      "manualSeriesSelectionApproved": true,
-      "selectionNote": "The source calls the separately published Illuminati one-shot #0; Marvel metadata numbers the only issue in its exact one-shot series #1.",
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "3984"
-      ],
-      "selectedIssueId": 3984,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3984/new_avengers_illuminati_one-shot_1_2006_1",
-      "resolvedIssueTitle": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1 (2006) #1",
-      "note": "The source calls the separately published Illuminati one-shot #0; Marvel metadata numbers the only issue in its exact one-shot series #1.",
-      "status": "exact",
-      "selectedIssueIds": [
-        3984
+        14752
       ]
     },
     {
       "sourcePosition": 12,
-      "sourceIssueReference": "New Avengers: Illuminati #1",
-      "sourceRangeReference": "New Avengers: Illuminati #1",
-      "normalizedSeriesTitle": "New Avengers: Illuminati",
-      "seriesYear": 2006,
-      "issueNumber": "1",
-      "metadataIssueNumber": "1",
-      "seriesId": 1137,
-      "candidateIssueId": 5723,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #618",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "618",
+      "metadataIssueNumber": "618",
+      "seriesId": 454,
+      "candidateIssueId": 24425,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "5723"
+        24425
       ],
-      "selectedIssueId": 5723,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5723/new_avengers_illuminati_2006_1",
-      "resolvedIssueTitle": "New Avengers: Illuminati (2006) #1",
-      "note": "Marvel series 1137 (New Avengers: Illuminati (2006 - 2008)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 24425,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24425/amazing_spider-man_1999_618",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #618",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
       "status": "exact",
       "selectedIssueIds": [
-        5723
+        24425
       ]
     },
     {
       "sourcePosition": 13,
-      "sourceIssueReference": "New Avengers: Illuminati #2",
-      "sourceRangeReference": "New Avengers: Illuminati #2",
-      "normalizedSeriesTitle": "New Avengers: Illuminati",
-      "seriesYear": 2006,
-      "issueNumber": "2",
-      "metadataIssueNumber": "2",
-      "seriesId": 1137,
-      "candidateIssueId": 5864,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #619",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "619",
+      "metadataIssueNumber": "619",
+      "seriesId": 454,
+      "candidateIssueId": 28224,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "5864"
+        28224
       ],
-      "selectedIssueId": 5864,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5864/new_avengers_illuminati_2006_2",
-      "resolvedIssueTitle": "New Avengers: Illuminati (2006) #2",
-      "note": "Marvel series 1137 (New Avengers: Illuminati (2006 - 2008)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 28224,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28224/amazing_spider-man_1999_619",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #619",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
       "status": "exact",
       "selectedIssueIds": [
-        5864
+        28224
       ]
     },
     {
       "sourcePosition": 14,
-      "sourceIssueReference": "New Avengers: Illuminati #3",
-      "sourceRangeReference": "New Avengers: Illuminati #3",
-      "normalizedSeriesTitle": "New Avengers: Illuminati",
-      "seriesYear": 2006,
-      "issueNumber": "3",
-      "metadataIssueNumber": "3",
-      "seriesId": 1137,
-      "candidateIssueId": 13481,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #620",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "620",
+      "metadataIssueNumber": "620",
+      "seriesId": 454,
+      "candidateIssueId": 28225,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "13481"
+        28225
       ],
-      "selectedIssueId": 13481,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13481/new_avengers_illuminati_2006_3",
-      "resolvedIssueTitle": "New Avengers: Illuminati (2006) #3",
-      "note": "Marvel series 1137 (New Avengers: Illuminati (2006 - 2008)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 28225,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28225/amazing_spider-man_1999_620",
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #620",
+      "note": "Marvel series 454 (Amazing Spider-Man (1999 - 2013)) is the reviewed metadata series for this source reference.",
       "status": "exact",
       "selectedIssueIds": [
-        13481
+        28225
       ]
     },
     {
-      "sourcePosition": 15,
-      "sourceIssueReference": "New Avengers: Illuminati #4",
-      "sourceRangeReference": "New Avengers: Illuminati #4",
-      "normalizedSeriesTitle": "New Avengers: Illuminati",
-      "seriesYear": 2006,
-      "issueNumber": "4",
-      "metadataIssueNumber": "4",
-      "seriesId": 1137,
-      "candidateIssueId": 15968,
+      "sourcePosition": 24,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2019) #6",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2019) #6",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "metadataIssueNumber": "6",
+      "seriesId": 26679,
+      "candidateIssueId": 74028,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
+      "selectionNote": "The 2019 Tom Taylor series is required here; the 2005 Friendly Neighborhood Spider-Man series is not the source row.",
       "resolutionStatus": "exact",
       "candidateIssueIds": [
-        "15968"
+        74028
       ],
-      "selectedIssueId": 15968,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15968/new_avengers_illuminati_2006_4",
-      "resolvedIssueTitle": "New Avengers: Illuminati (2006) #4",
-      "note": "Marvel series 1137 (New Avengers: Illuminati (2006 - 2008)) is the reviewed metadata series for this source reference.",
+      "selectedIssueId": 74028,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74028/friendly_neighborhood_spider-man_2019_6",
+      "resolvedIssueTitle": "Friendly Neighborhood Spider-Man (2019) #6",
+      "note": "Marvel series 26679 (Friendly Neighborhood Spider-Man (2019 - Present)) is the reviewed metadata series for this source reference. The 2019 Tom Taylor series is required here; the 2005 Friendly Neighborhood Spider-Man series is not the source row.",
       "status": "exact",
       "selectedIssueIds": [
-        15968
-      ]
-    },
-    {
-      "sourcePosition": 16,
-      "sourceIssueReference": "New Avengers: Illuminati #5",
-      "sourceRangeReference": "New Avengers: Illuminati #5",
-      "normalizedSeriesTitle": "New Avengers: Illuminati",
-      "seriesYear": 2006,
-      "issueNumber": "5",
-      "metadataIssueNumber": "5",
-      "seriesId": 1137,
-      "candidateIssueId": 17254,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "17254"
-      ],
-      "selectedIssueId": 17254,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17254/new_avengers_illuminati_2006_5",
-      "resolvedIssueTitle": "New Avengers: Illuminati (2006) #5",
-      "note": "Marvel series 1137 (New Avengers: Illuminati (2006 - 2008)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        17254
-      ]
-    },
-    {
-      "sourcePosition": 17,
-      "sourceIssueReference": "New Avengers #51",
-      "sourceRangeReference": "New Avengers #51",
-      "normalizedSeriesTitle": "New Avengers",
-      "seriesYear": 2004,
-      "issueNumber": "51",
-      "metadataIssueNumber": "51",
-      "seriesId": 753,
-      "candidateIssueId": 23747,
-      "manualSeriesSelectionApproved": false,
-      "selectionNote": null,
-      "resolutionStatus": "exact",
-      "candidateIssueIds": [
-        "23747"
-      ],
-      "selectedIssueId": 23747,
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23747/new_avengers_2004_51",
-      "resolvedIssueTitle": "New Avengers (2004) #51",
-      "note": "Marvel series 753 (New Avengers (2004 - 2010)) is the reviewed metadata series for this source reference.",
-      "status": "exact",
-      "selectedIssueIds": [
-        23747
+        74028
       ]
     }
   ],
-  "mappingDigest": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-  "reviewStatus": "approved",
+  "mappingDigest": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
   "packetReview": "MRT-004 central CBH source review",
   "approvedManifest": {
-    "id": "doctor-strange-multiverse-of-madness",
-    "name": "Doctor Strange: Multiverse of Madness",
-    "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
+    "id": "spider-man-far-from-home",
+    "name": "Spider-Man: Far From Home",
+    "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
     "type": "screen-companion",
     "depth": "selected",
     "beginner": false,
     "group": null,
     "groupName": null,
     "variant": null,
-    "sourceFile": "doctor-strange-multiverse-of-madness.md",
-    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
+    "sourceFile": "spider-man-far-from-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
     "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
     "sourceLicense": null,
-    "out": "doctor_strange_multiverse_of_madness.json",
+    "out": "spider_man_far_from_home.json",
     "characters": [
-      "Doctor Strange",
-      "Scarlet Witch",
-      "Illuminati"
+      "Spider-Man",
+      "Mysterio",
+      "Peter Parker"
     ],
     "keywords": [
-      "Multiverse of Madness",
-      "Doctor Strange",
-      "Illuminati",
-      "New Avengers",
+      "Far From Home",
+      "Spider-Man",
+      "Mysterio",
+      "The Gauntlet",
       "Comic Book Herald"
     ],
-    "expect": 17,
+    "expect": 8,
     "timeline": null,
-    "coverIssueId": 55415
+    "coverIssueId": 74028
   },
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-004 coordinator",
-    "rationale": "The current library and the four other shipped MCU companion peers were reviewed; prior central approvals were preserved and the new Far From Home peer adds no shared issue.",
+    "rationale": "The current library and the four shipped MCU companion peers were reviewed. Only spider-man-best-of shares issues, and that partial overlap preserves separate screen-companion value through three unique Far From Home rows.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "1f496c8861083abe94e475e80f4748b0fdc59b67d4c814b55b5faf0d7612cc51",
-    "packetDigest": "bd0b58b61128f9787c658f0f182daf04df4b06a668b20225c049cb233f53ed10",
-    "mappingDigest": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
+    "reportDigest": "4dc24c61fae0b787f2eca2834176d8a12a3c08b5e3be62955a65c8dcf4d18307",
+    "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3",
+    "mappingDigest": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
     "libraryDigest": "09245d989263995458dcf53e150c07c4440e07d180d3a54dd3845dba37f494b5",
     "peerDigests": {
+      "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
       "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
       "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
     },
     "dispositions": [
@@ -907,11 +659,11 @@
       },
       {
         "orderId": "civil-war-avengers",
-        "relationship": "partial",
+        "relationship": "none",
         "decision": "approved",
-        "rationale": "The reviewed reading purpose is distinct from civil-war-avengers.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-004 coordinator",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -961,11 +713,11 @@
       },
       {
         "orderId": "dark-reign-avengers",
-        "relationship": "partial",
+        "relationship": "none",
         "decision": "approved",
-        "rationale": "The reviewed reading purpose is distinct from dark-reign-avengers.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-004 coordinator",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -1024,6 +776,15 @@
       },
       {
         "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26T05:09:20Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
         "relationship": "none",
         "decision": "approved",
         "rationale": "The current report contains no shared issue for this order.",
@@ -1654,20 +1415,11 @@
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "none",
+        "relationship": "partial",
         "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26T05:09:20Z"
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
+        "rationale": "The reviewed reading purpose is distinct from spider-man-best-of.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -2013,6 +1765,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "a1c7690728d2d662b7df93f44792b1bfc665343f03966e90f835ab7b1a726878"
+    "approvalDigest": "3110a7cf8173381697224f4f0237aa5ce2f4a7eb63c0ef5f676520c2d8e79ea7"
   }
 }
