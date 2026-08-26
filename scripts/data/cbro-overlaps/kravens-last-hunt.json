@@ -2,7 +2,7 @@
   "candidateId": "kravens-last-hunt",
   "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
   "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-  "libraryDigest": "b981bf545ffec929d53b55e2d2e82caf4253021f31625403c97f1668dac28db8",
+  "libraryDigest": "c24d61e7a5510a094f4b05f81db3885a23239c9a2e05e0e067aeccf998580070",
   "peerDigests": {
     "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
     "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
@@ -36,12 +36,6 @@
     },
     {
       "orderId": "annihilation-conquest",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -654,6 +648,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -822,5 +822,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9c096e50881b7a18432eff9fb976c6e48bfb43901ca72b8a8eb31622c2f9fda6"
+  "reportDigest": "6d2719a0f33ea9e1cd3bf9ba595af134b834931c2b0965cc957461a987a488e0"
 }

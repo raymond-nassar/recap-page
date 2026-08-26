@@ -2,7 +2,7 @@
   "candidateId": "contest-of-champions",
   "packetDigest": "6ef776481f229f264d61a9cdfe7d961117223434bf7b121ca71cfc526bebd68b",
   "mappingDigest": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
-  "libraryDigest": "24dd316c6c5565fde9ad90c89278307978437208102d9746a0b3581ea35084d7",
+  "libraryDigest": "e63c8e6a92e25f93805cae6517f27ea83e91b27ee334ff83c84374afe850bac7",
   "peerDigests": {
     "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
     "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -38,12 +38,6 @@
     },
     {
       "orderId": "annihilation-conquest",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -649,6 +643,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -817,5 +817,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "dd92b0c9a273fd159adcc74eefb544a4878d18fb07abd37bb2027e48af9add59"
+  "reportDigest": "67a84723c23dba522de65a82f29bcfbac7fe7b6eac03319fe4a18ecf29ba75cf"
 }

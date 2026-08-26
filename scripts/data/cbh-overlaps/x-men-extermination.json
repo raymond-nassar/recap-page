@@ -2,12 +2,12 @@
   "candidateId": "x-men-extermination",
   "packetDigest": "c55cf0d5ea0fafbceab23a081a2a36cad3a9e8ef947d39845d4f450df66b8610",
   "mappingDigest": "398031e9ec8c6bc6d992f346747d175890852d103a162435b16e6420bc8f3a5a",
-  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+  "libraryDigest": "8149f1191bd3d8e97a26b96b483629dfdee2be7335d053eee5ae90d467ac82f0",
   "peerDigests": {
     "generations": "9bb719ce2cafc3edb63bde42f5cbf19aabed942bb4231a246a49a036a91523fa"
   },
   "candidateCount": 9,
-  "comparisonCount": 85,
+  "comparisonCount": 86,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -400,6 +400,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -520,5 +526,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6678a9b305ea13ad84d9789ec21539a989d6c813837cd7258c249037ba7d1700"
+  "reportDigest": "07bbf069d9cba55764d8577efc260855a83185525f806870c1a255174c1a1658"
 }

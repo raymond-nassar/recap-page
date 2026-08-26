@@ -2,7 +2,7 @@
   "candidateId": "thanos-war",
   "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da",
   "mappingDigest": "0c38d78c7155945788e369a586d0409b3953b6339f34c66c5a670945680a3199",
-  "libraryDigest": "459a566e25c269a0bf85cfb3103b5354fc6c00928f1b7d2e0c4c532facd83929",
+  "libraryDigest": "bca1d4ab7c87dc95fcf8927ebb1d3dc4111644648e88752b0e08c67f93ac45b2",
   "peerDigests": {
     "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -38,12 +38,6 @@
     },
     {
       "orderId": "annihilation-conquest",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -655,6 +649,25 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 12,
+      "sharedIds": [
+        "9610",
+        "8014",
+        "8015",
+        "8016",
+        "8017",
+        "8018",
+        "23322",
+        "8019",
+        "8020",
+        "8021",
+        "6981",
+        "8022"
+      ],
+      "relationship": "candidate-subset"
+    },
+    {
       "orderId": "the-night-gwen-stacy-died",
       "sharedCount": 0,
       "sharedIds": [],
@@ -817,5 +830,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "d4e740251dfe7ce56cde043f35cea6cc45fdcfb9538f4358f5c4d3db3d72f52c"
+  "reportDigest": "1150a525284f800fd642f438f97ff01156e4146f4a1f65d5242296c81e6bfb9a"
 }

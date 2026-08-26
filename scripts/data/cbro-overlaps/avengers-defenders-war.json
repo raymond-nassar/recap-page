@@ -2,7 +2,7 @@
   "candidateId": "avengers-defenders-war",
   "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
   "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-  "libraryDigest": "459a566e25c269a0bf85cfb3103b5354fc6c00928f1b7d2e0c4c532facd83929",
+  "libraryDigest": "bca1d4ab7c87dc95fcf8927ebb1d3dc4111644648e88752b0e08c67f93ac45b2",
   "peerDigests": {
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
     "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -38,12 +38,6 @@
     },
     {
       "orderId": "annihilation-conquest",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -649,6 +643,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -817,5 +817,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "37551ae5542e49a9f19fe28e3f5391434a6c3aec7be7cf538f1fcef88e898c11"
+  "reportDigest": "13d3b531a2f0cd3bde21dd8ad1290bb6c3c97ec26ca437f714347b82a52c056e"
 }

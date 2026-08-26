@@ -10661,10 +10661,10 @@
     "authorityIdentity": "GPT-5.5 implementation session",
     "rationale": "Central relationship review approved the Modern X-Men fast-track as a source-preserving selected spotlight. Existing subset relationships remain canonical event guides, and partial overlaps are justified by narrower or different spotlight boundaries rather than duplicate catalog identities.",
     "reviewedAt": "2026-08-25",
-    "reportDigest": "ed6a1bb3155aea74ce22c117f63a05d4e9ccd1df578a709cfe844ba580369ee3",
+    "reportDigest": "1f24d70bb4b2fec8d796188a95e24c0b1d31bfa88c0132727ae4a4a401746d95",
     "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
     "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-    "libraryDigest": "6f9486917542ad714e8b7e7ef1a3e666bd6f8d4931b1cb2a5ef436c9ee028672",
+    "libraryDigest": "b06376338574ede6e2036e70d796a8a0e2d81a9fc8b8b303f577519098f71da5",
     "peerDigests": {},
     "dispositions": [
       {
@@ -10691,6 +10691,17 @@
       },
       {
         "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "zero-overlap policy",
+        "rationale": "No shared issue IDs were observed in the current overlap report.",
+        "reviewedAt": "2026-08-25"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -11916,6 +11927,17 @@
         "reviewedAt": "2026-08-25"
       },
       {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "zero-overlap policy",
+        "rationale": "No shared issue IDs were observed in the current overlap report.",
+        "reviewedAt": "2026-08-25"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -12338,19 +12360,8 @@
         "authorityIdentity": "zero-overlap policy",
         "rationale": "No shared issue IDs were observed in the current overlap report.",
         "reviewedAt": "2026-08-25"
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "zero-overlap policy",
-        "rationale": "No shared issue IDs were observed in the current overlap report.",
-        "reviewedAt": "2026-08-25"
       }
     ],
-    "approvalDigest": "4b25c7efe05f7a71aa978c95e10f5c50cad8e90ab5f59fa14801e5a332943c8e"
+    "approvalDigest": "ec3c1f55093f9a5d40867f5260a8a5dd516009989761cce0bcd23a19982e27a6"
   }
 }

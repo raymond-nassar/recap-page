@@ -2,7 +2,7 @@
   "candidateId": "mutant-massacre",
   "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
   "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-  "libraryDigest": "7ab829ad8e36b30c8d4a2d94188f587a2483767e82434ed811a7b74b6d8bc9a5",
+  "libraryDigest": "6488e2a82857a6f942a7c1650b8a5e0a6734c836e1448188cfba529adbfe577a",
   "peerDigests": {
     "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
     "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
@@ -36,12 +36,6 @@
     },
     {
       "orderId": "annihilation-conquest",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -647,6 +641,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -839,5 +839,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "9c7b2764fef5d58c1717e9c662def1a0980c2d8838596062c50c6638e7b7e396"
+  "reportDigest": "8c29b863da2e2ef5e9d0f9ab864542c78eeec230d8d0ab5d64583e529064134a"
 }

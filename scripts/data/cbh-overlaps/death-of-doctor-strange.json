@@ -2,13 +2,13 @@
   "candidateId": "death-of-doctor-strange",
   "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6",
   "mappingDigest": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
-  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+  "libraryDigest": "45bda80a23c6dc1e9f8dbcaad91ecba3344da84a5395b4fed778070d7f2366e2",
   "peerDigests": {
     "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7",
     "reckoning-war": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146"
   },
   "candidateCount": 12,
-  "comparisonCount": 85,
+  "comparisonCount": 86,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -395,6 +395,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -521,5 +527,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6419575a83980cc0e575140190aeebc9cf772bbe2c6179452bb327df02aad192"
+  "reportDigest": "194b82a680884ee5801830d661179cdcaa866464efd1e4a39a4b6e966cfa91a6"
 }

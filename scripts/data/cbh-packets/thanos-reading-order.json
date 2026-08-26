@@ -1,0 +1,3431 @@
+{
+  "schemaVersion": 1,
+  "id": "thanos-reading-order",
+  "inventoryId": "the-complete-thanos-reading-order-guide",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "661c99bc3ac4adab6a16ed4db911b3edb0df7139af2ea80990d33e1f272f77d7",
+  "sourceIssueBearingBlocksSha256": "c58cf93e75bb6e34c59a75fdeee6daac9b50b0833e3bb3ac64148715573ea34f",
+  "sourceBoundary": "Begins with Iron Man #55 and ends with Thor (2020) #35. The frozen boundary contains 321 source occurrences across 279 identities: 272 published exact issues, seven Marvel Unlimited availability exclusions, and 42 later source mentions.",
+  "excludedSourceReferences": [
+    "Title-only collections, graphic novels, cross-links, affiliate links, covers, advertisements, and commentary without explicit issue numbers",
+    "Deadpool #64, which the source explicitly calls unnecessary for a Thanos binge",
+    "Thanos: Death Sentence, which the source identifies as a prose novel outside standard continuity"
+  ],
+  "expectedCount": 272,
+  "proposedManifest": {
+    "id": "thanos-reading-order",
+    "name": "Thanos",
+    "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "depth": "partial",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "thanos-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "thanos_reading_order.json",
+    "characters": [
+      "Thanos",
+      "Adam Warlock",
+      "Silver Surfer",
+      "Guardians of the Galaxy"
+    ],
+    "keywords": [
+      "Thanos",
+      "Infinity Gauntlet",
+      "Adam Warlock",
+      "Marvel Cosmic",
+      "Comic Book Herald"
+    ],
+    "expect": 272,
+    "timeline": null,
+    "coverIssueId": 9610
+  },
+  "insertionAnchor": {
+    "beforeId": "xmen-claremont"
+  },
+  "sourceReview": {
+    "authorityType": "human",
+    "authorityIdentity": "repository owner",
+    "rationale": "The owner dispositioned all 279 source identities: 272 publish as exact issues, seven remain in provenance as Marvel Unlimited availability exclusions, and all 42 later mentions remain explicit without synthetic records.",
+    "reviewedAt": "2026-08-26"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Iron Man #55",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1968,
+      "issueNumber": "55",
+      "seriesId": 2029,
+      "candidateIssueId": 9610,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #25",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "25",
+      "seriesId": 2000,
+      "candidateIssueId": 8014,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #26",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "26",
+      "seriesId": 2000,
+      "candidateIssueId": 8015,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #27",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "27",
+      "seriesId": 2000,
+      "candidateIssueId": 8016,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #28",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "28",
+      "seriesId": 2000,
+      "candidateIssueId": 8017,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "29",
+      "seriesId": 2000,
+      "candidateIssueId": 8018,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #30",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "30",
+      "seriesId": 2000,
+      "candidateIssueId": 8019,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #31",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "31",
+      "seriesId": 2000,
+      "candidateIssueId": 8020,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #32",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "32",
+      "seriesId": 2000,
+      "candidateIssueId": 8021,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #33",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "33",
+      "seriesId": 2000,
+      "candidateIssueId": 8022,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "34",
+      "seriesId": 2000,
+      "candidateIssueId": 8023,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Feature #12",
+      "normalizedSeriesTitle": "Marvel Feature",
+      "seriesYear": 1971,
+      "issueNumber": "12",
+      "seriesId": 6676,
+      "candidateIssueId": 23322,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers #125",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "125",
+      "seriesId": 1991,
+      "candidateIssueId": 6981,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Strange Tales #178",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "178",
+      "seriesId": 2076,
+      "candidateIssueId": 22130,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Strange Tales #179",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "179",
+      "seriesId": 2076,
+      "candidateIssueId": 22131,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Strange Tales #180",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "180",
+      "seriesId": 2076,
+      "candidateIssueId": 22132,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Strange Tales #181",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "181",
+      "seriesId": 2076,
+      "candidateIssueId": 50905,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #9",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "9",
+      "seriesId": 2091,
+      "candidateIssueId": 11972,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #10",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "10",
+      "seriesId": 2091,
+      "candidateIssueId": 11959,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #11",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "11",
+      "seriesId": 2091,
+      "candidateIssueId": 11960,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #12",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "12",
+      "seriesId": 2091,
+      "candidateIssueId": 11961,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #13",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "13",
+      "seriesId": 2091,
+      "candidateIssueId": 11962,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #14",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "14",
+      "seriesId": 2091,
+      "candidateIssueId": 11963,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock #15",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "15",
+      "seriesId": 2091,
+      "candidateIssueId": 11964,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Team-Up #55",
+      "normalizedSeriesTitle": "Marvel Team-Up",
+      "seriesYear": 1972,
+      "issueNumber": "55",
+      "seriesId": 3716,
+      "candidateIssueId": 19676,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers Annual #7",
+      "normalizedSeriesTitle": "Avengers Annual",
+      "seriesYear": 1967,
+      "issueNumber": "7",
+      "seriesId": 1988,
+      "candidateIssueId": 6943,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Two-In-One Annual #2",
+      "normalizedSeriesTitle": "Marvel Two-In-One Annual",
+      "seriesYear": 1976,
+      "issueNumber": "2",
+      "seriesId": 18135,
+      "candidateIssueId": 47961,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Graphic Novel #1",
+      "normalizedSeriesTitle": "Marvel Graphic Novel",
+      "seriesYear": 1982,
+      "issueNumber": "1",
+      "seriesId": 16385,
+      "candidateIssueId": 43439,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil #105",
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "105",
+      "seriesId": 2002,
+      "candidateIssueId": 8080,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #34",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "34",
+      "seriesId": 2288,
+      "candidateIssueId": 15169,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #35",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "35",
+      "seriesId": 2288,
+      "candidateIssueId": 15170,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #36",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "36",
+      "seriesId": 2288,
+      "candidateIssueId": 15171,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #37",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "37",
+      "seriesId": 2288,
+      "candidateIssueId": 15172,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #38",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "38",
+      "seriesId": 2288,
+      "candidateIssueId": 15173,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos Quest #1",
+      "normalizedSeriesTitle": "Thanos Quest",
+      "seriesYear": 1990,
+      "issueNumber": "1",
+      "seriesId": 2081,
+      "candidateIssueId": 11448,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos Quest #2",
+      "normalizedSeriesTitle": "Thanos Quest",
+      "seriesYear": 1990,
+      "issueNumber": "2",
+      "seriesId": 2081,
+      "candidateIssueId": 11449,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #1",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 3654,
+      "candidateIssueId": 18413,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #2",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "2",
+      "seriesId": 3654,
+      "candidateIssueId": 18424,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #3",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "3",
+      "seriesId": 3654,
+      "candidateIssueId": 18435,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #4",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "seriesId": 3654,
+      "candidateIssueId": 18446,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #5",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "seriesId": 3654,
+      "candidateIssueId": 18450,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #6",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "seriesId": 3654,
+      "candidateIssueId": 18451,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #7",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "7",
+      "seriesId": 3654,
+      "candidateIssueId": 18452,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #8",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "8",
+      "seriesId": 3654,
+      "candidateIssueId": 18453,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #9",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "9",
+      "seriesId": 3654,
+      "candidateIssueId": 18454,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #10",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "10",
+      "seriesId": 3654,
+      "candidateIssueId": 18414,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #11",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "11",
+      "seriesId": 3654,
+      "candidateIssueId": 18415,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #12",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "12",
+      "seriesId": 3654,
+      "candidateIssueId": 18416,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #13",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "13",
+      "seriesId": 3654,
+      "candidateIssueId": 18417,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #14",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "14",
+      "seriesId": 3654,
+      "candidateIssueId": 18418,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #15",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "seriesId": 3654,
+      "candidateIssueId": 18419,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #16",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "16",
+      "seriesId": 3654,
+      "candidateIssueId": 18420,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "17",
+      "seriesId": 3654,
+      "candidateIssueId": 18421,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #18",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "18",
+      "seriesId": 3654,
+      "candidateIssueId": 18422,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #19",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "19",
+      "seriesId": 3654,
+      "candidateIssueId": 18423,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #20",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "20",
+      "seriesId": 3654,
+      "candidateIssueId": 18425,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #21",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "21",
+      "seriesId": 3654,
+      "candidateIssueId": 18426,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #22",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "22",
+      "seriesId": 3654,
+      "candidateIssueId": 18427,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity War #1",
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 2024,
+      "candidateIssueId": 9292,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity War #2",
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "2",
+      "seriesId": 2024,
+      "candidateIssueId": 9293,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity War #3",
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "3",
+      "seriesId": 2024,
+      "candidateIssueId": 9294,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity War #4",
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "seriesId": 2024,
+      "candidateIssueId": 9295,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity War #5",
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "seriesId": 2024,
+      "candidateIssueId": 9296,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity War #6",
+      "normalizedSeriesTitle": "Infinity War",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "seriesId": 2024,
+      "candidateIssueId": 9297,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #366",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "366",
+      "seriesId": 2121,
+      "candidateIssueId": 13190,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #367",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "367",
+      "seriesId": 2121,
+      "candidateIssueId": 13191,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #368",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "368",
+      "seriesId": 2121,
+      "candidateIssueId": 13192,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #369",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "369",
+      "seriesId": 2121,
+      "candidateIssueId": 13193,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #370",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "370",
+      "seriesId": 2121,
+      "candidateIssueId": 13195,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Man #24",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "24",
+      "seriesId": 2069,
+      "candidateIssueId": 10783,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Daredevil #310",
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "issueNumber": "310",
+      "seriesId": 2002,
+      "candidateIssueId": 8308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Doctor Strange, Sorcerer Supreme #42",
+      "normalizedSeriesTitle": "Doctor Strange, Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "42",
+      "seriesId": 3741,
+      "candidateIssueId": 20204,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Doctor Strange, Sorcerer Supreme #43",
+      "normalizedSeriesTitle": "Doctor Strange, Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "43",
+      "seriesId": 3741,
+      "candidateIssueId": 20205,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Doctor Strange, Sorcerer Supreme #44",
+      "normalizedSeriesTitle": "Doctor Strange, Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "44",
+      "seriesId": 3741,
+      "candidateIssueId": 20206,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Doctor Strange, Sorcerer Supreme #45",
+      "normalizedSeriesTitle": "Doctor Strange, Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "45",
+      "seriesId": 3741,
+      "candidateIssueId": 20207,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Doctor Strange, Sorcerer Supreme #46",
+      "normalizedSeriesTitle": "Doctor Strange, Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "46",
+      "seriesId": 3741,
+      "candidateIssueId": 20208,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Doctor Strange, Sorcerer Supreme #47",
+      "normalizedSeriesTitle": "Doctor Strange, Sorcerer Supreme",
+      "seriesYear": 1988,
+      "issueNumber": "47",
+      "seriesId": 3741,
+      "candidateIssueId": 20209,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #67",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "67",
+      "seriesId": 2288,
+      "candidateIssueId": 15205,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #68",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "68",
+      "seriesId": 2288,
+      "candidateIssueId": 15206,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #69",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "69",
+      "seriesId": 2288,
+      "candidateIssueId": 15207,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wonder Man #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "13",
+      "seriesId": 3645,
+      "candidateIssueId": 18261,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Wonder Man #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "14",
+      "seriesId": 3645,
+      "candidateIssueId": 18262,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Wonder Man #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wonder Man",
+      "seriesYear": 1991,
+      "issueNumber": "15",
+      "seriesId": 3645,
+      "candidateIssueId": 18263,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Alpha Flight #110",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Alpha Flight",
+      "seriesYear": 1983,
+      "issueNumber": "110",
+      "seriesId": 2116,
+      "candidateIssueId": 12650,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Alpha Flight #111",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Alpha Flight",
+      "seriesYear": 1983,
+      "issueNumber": "111",
+      "seriesId": 2116,
+      "candidateIssueId": 12651,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Alpha Flight #112",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Alpha Flight",
+      "seriesYear": 1983,
+      "issueNumber": "112",
+      "seriesId": 2116,
+      "candidateIssueId": 12652,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Guardians Of The Galaxy #27",
+      "normalizedSeriesTitle": "Guardians Of The Galaxy",
+      "seriesYear": 1990,
+      "issueNumber": "27",
+      "seriesId": 19019,
+      "candidateIssueId": 58025,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians Of The Galaxy #28",
+      "normalizedSeriesTitle": "Guardians Of The Galaxy",
+      "seriesYear": 1990,
+      "issueNumber": "28",
+      "seriesId": 19019,
+      "candidateIssueId": 58026,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians Of The Galaxy #29",
+      "normalizedSeriesTitle": "Guardians Of The Galaxy",
+      "seriesYear": 1990,
+      "issueNumber": "29",
+      "seriesId": 19019,
+      "candidateIssueId": 58027,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Quasar #37",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "37",
+      "seriesId": 3695,
+      "candidateIssueId": 18925,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Quasar #38",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "38",
+      "seriesId": 3695,
+      "candidateIssueId": 18926,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Quasar #39",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "39",
+      "seriesId": 3695,
+      "candidateIssueId": 18927,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Quasar #40",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Quasar",
+      "seriesYear": 1989,
+      "issueNumber": "40",
+      "seriesId": 3695,
+      "candidateIssueId": 18929,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "New Warriors #27",
+      "normalizedSeriesTitle": "New Warriors",
+      "seriesYear": 1990,
+      "issueNumber": "27",
+      "seriesId": 16341,
+      "candidateIssueId": 69159,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marc Spector: Moon Knight #41",
+      "normalizedSeriesTitle": "Marc Spector: Moon Knight",
+      "seriesYear": 1989,
+      "issueNumber": "41",
+      "seriesId": 23996,
+      "candidateIssueId": 68914,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marc Spector: Moon Knight #42",
+      "normalizedSeriesTitle": "Marc Spector: Moon Knight",
+      "seriesYear": 1989,
+      "issueNumber": "42",
+      "seriesId": 23996,
+      "candidateIssueId": 68915,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marc Spector: Moon Knight #43",
+      "normalizedSeriesTitle": "Marc Spector: Moon Knight",
+      "seriesYear": 1989,
+      "issueNumber": "43",
+      "seriesId": 23996,
+      "candidateIssueId": 68916,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marc Spector: Moon Knight #44",
+      "normalizedSeriesTitle": "Marc Spector: Moon Knight",
+      "seriesYear": 1989,
+      "issueNumber": "44",
+      "seriesId": 23996,
+      "candidateIssueId": 68917,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain America #408",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 1968,
+      "issueNumber": "408",
+      "seriesId": 1996,
+      "candidateIssueId": 7789,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Alpha Flight #109",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Alpha Flight",
+      "seriesYear": 1983,
+      "issueNumber": "109",
+      "seriesId": 2116,
+      "candidateIssueId": 12648,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Marvel Comics Presents #108",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "108",
+      "seriesId": 2039,
+      "candidateIssueId": 10020,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Comics Presents #109",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "109",
+      "seriesId": 2039,
+      "candidateIssueId": 10021,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Comics Presents #110",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "110",
+      "seriesId": 2039,
+      "candidateIssueId": 10023,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Comics Presents #111",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "111",
+      "seriesId": 2039,
+      "candidateIssueId": 10024,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Comics Presents #112",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "112",
+      "seriesId": 2039,
+      "candidateIssueId": 10025,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Crusade #1",
+      "normalizedSeriesTitle": "Infinity Crusade",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "seriesId": 6673,
+      "candidateIssueId": 23307,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Crusade #2",
+      "normalizedSeriesTitle": "Infinity Crusade",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "seriesId": 6673,
+      "candidateIssueId": 23308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Crusade #3",
+      "normalizedSeriesTitle": "Infinity Crusade",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "seriesId": 6673,
+      "candidateIssueId": 23309,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #1",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "seriesId": 6686,
+      "candidateIssueId": 23483,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #2",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "seriesId": 6686,
+      "candidateIssueId": 23484,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #3",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "seriesId": 6686,
+      "candidateIssueId": 23485,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Crusade #4",
+      "normalizedSeriesTitle": "Infinity Crusade",
+      "seriesYear": 1993,
+      "issueNumber": "4",
+      "seriesId": 6673,
+      "candidateIssueId": 23310,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Crusade #5",
+      "normalizedSeriesTitle": "Infinity Crusade",
+      "seriesYear": 1993,
+      "issueNumber": "5",
+      "seriesId": 6673,
+      "candidateIssueId": 23311,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Crusade #6",
+      "normalizedSeriesTitle": "Infinity Crusade",
+      "seriesYear": 1993,
+      "issueNumber": "6",
+      "seriesId": 6673,
+      "candidateIssueId": 23312,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #4",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "4",
+      "seriesId": 6686,
+      "candidateIssueId": 23486,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #5",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "5",
+      "seriesId": 6686,
+      "candidateIssueId": 23487,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #468",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "468",
+      "seriesId": 2083,
+      "candidateIssueId": 11796,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #86",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "86",
+      "seriesId": 2288,
+      "candidateIssueId": 15226,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #6",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "6",
+      "seriesId": 6686,
+      "candidateIssueId": 23488,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #23",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "23",
+      "seriesId": 3654,
+      "candidateIssueId": 18428,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #469",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "469",
+      "seriesId": 2083,
+      "candidateIssueId": 11797,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #87",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "87",
+      "seriesId": 2288,
+      "candidateIssueId": 15227,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #7",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "7",
+      "seriesId": 6686,
+      "candidateIssueId": 23489,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #24",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "24",
+      "seriesId": 3654,
+      "candidateIssueId": 18429,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #470",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "470",
+      "seriesId": 2083,
+      "candidateIssueId": 11798,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer #88",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "88",
+      "seriesId": 2288,
+      "candidateIssueId": 15228,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock Chronicles #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "8",
+      "seriesId": 6686,
+      "candidateIssueId": 23490,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity was reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #25",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "25",
+      "seriesId": 3654,
+      "candidateIssueId": 18430,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #471",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "471",
+      "seriesId": 2083,
+      "candidateIssueId": 11799,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #26",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "26",
+      "seriesId": 3654,
+      "candidateIssueId": 18431,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #27",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "27",
+      "seriesId": 3654,
+      "candidateIssueId": 18432,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #28",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "28",
+      "seriesId": 3654,
+      "candidateIssueId": 18433,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #29",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "29",
+      "seriesId": 3654,
+      "candidateIssueId": 18434,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #30",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "30",
+      "seriesId": 3654,
+      "candidateIssueId": 18436,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #31",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "31",
+      "seriesId": 3654,
+      "candidateIssueId": 18437,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #32",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "32",
+      "seriesId": 3654,
+      "candidateIssueId": 18438,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #33",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "33",
+      "seriesId": 3654,
+      "candidateIssueId": 18439,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #34",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "34",
+      "seriesId": 3654,
+      "candidateIssueId": 18440,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #35",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "35",
+      "seriesId": 3654,
+      "candidateIssueId": 18441,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #36",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "36",
+      "seriesId": 3654,
+      "candidateIssueId": 18442,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #37",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "37",
+      "seriesId": 3654,
+      "candidateIssueId": 18443,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #38",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "38",
+      "seriesId": 3654,
+      "candidateIssueId": 18444,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #39",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "39",
+      "seriesId": 3654,
+      "candidateIssueId": 18445,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #40",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "40",
+      "seriesId": 3654,
+      "candidateIssueId": 18447,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #41",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "41",
+      "seriesId": 3654,
+      "candidateIssueId": 18448,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Warlock & The Infinity Watch #42",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "42",
+      "seriesId": 3654,
+      "candidateIssueId": 18449,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Secret Defenders #12",
+      "normalizedSeriesTitle": "Secret Defenders",
+      "seriesYear": 1993,
+      "issueNumber": "12",
+      "seriesId": 20374,
+      "candidateIssueId": 58270,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Secret Defenders #13",
+      "normalizedSeriesTitle": "Secret Defenders",
+      "seriesYear": 1993,
+      "issueNumber": "13",
+      "seriesId": 20374,
+      "candidateIssueId": 58271,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Secret Defenders #14",
+      "normalizedSeriesTitle": "Secret Defenders",
+      "seriesYear": 1993,
+      "issueNumber": "14",
+      "seriesId": 20374,
+      "candidateIssueId": 58272,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Powers #1",
+      "normalizedSeriesTitle": "Cosmic Powers",
+      "seriesYear": 1994,
+      "issueNumber": "1",
+      "seriesId": 21247,
+      "candidateIssueId": 58264,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Powers #2",
+      "normalizedSeriesTitle": "Cosmic Powers",
+      "seriesYear": 1994,
+      "issueNumber": "2",
+      "seriesId": 21247,
+      "candidateIssueId": 58265,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Powers #3",
+      "normalizedSeriesTitle": "Cosmic Powers",
+      "seriesYear": 1994,
+      "issueNumber": "3",
+      "seriesId": 21247,
+      "candidateIssueId": 58266,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Powers #4",
+      "normalizedSeriesTitle": "Cosmic Powers",
+      "seriesYear": 1994,
+      "issueNumber": "4",
+      "seriesId": 21247,
+      "candidateIssueId": 58267,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Powers #5",
+      "normalizedSeriesTitle": "Cosmic Powers",
+      "seriesYear": 1994,
+      "issueNumber": "5",
+      "seriesId": 21247,
+      "candidateIssueId": 58268,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Powers #6",
+      "normalizedSeriesTitle": "Cosmic Powers",
+      "seriesYear": 1994,
+      "issueNumber": "6",
+      "seriesId": 21247,
+      "candidateIssueId": 58269,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #4",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "4",
+      "seriesId": 14243,
+      "candidateIssueId": 66061,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #5",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "5",
+      "seriesId": 14243,
+      "candidateIssueId": 66062,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #6",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "6",
+      "seriesId": 14243,
+      "candidateIssueId": 66063,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #7",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "7",
+      "seriesId": 14243,
+      "candidateIssueId": 66064,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #8",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "8",
+      "seriesId": 14243,
+      "candidateIssueId": 66235,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #9",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "9",
+      "seriesId": 14243,
+      "candidateIssueId": 66236,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #10",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "10",
+      "seriesId": 14243,
+      "candidateIssueId": 66237,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Ka-Zar #11",
+      "normalizedSeriesTitle": "Ka-Zar",
+      "seriesYear": 1997,
+      "issueNumber": "11",
+      "seriesId": 14243,
+      "candidateIssueId": 66238,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #18",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "18",
+      "seriesId": 581,
+      "candidateIssueId": 18640,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #19",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "19",
+      "seriesId": 581,
+      "candidateIssueId": 18641,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #20",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "20",
+      "seriesId": 581,
+      "candidateIssueId": 18643,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #21",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "21",
+      "seriesId": 581,
+      "candidateIssueId": 18644,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #22",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "22",
+      "seriesId": 581,
+      "candidateIssueId": 18645,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #23",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "23",
+      "seriesId": 581,
+      "candidateIssueId": 18646,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #24",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "24",
+      "seriesId": 581,
+      "candidateIssueId": 18647,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #25",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1998,
+      "issueNumber": "25",
+      "seriesId": 581,
+      "candidateIssueId": 18648,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #17",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "17",
+      "seriesId": 690,
+      "candidateIssueId": 307,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #18",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "18",
+      "seriesId": 690,
+      "candidateIssueId": 371,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Captain Marvel #19",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "19",
+      "seriesId": 690,
+      "candidateIssueId": 308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #1",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "1",
+      "seriesId": 548,
+      "candidateIssueId": 176,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #2",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "2",
+      "seriesId": 548,
+      "candidateIssueId": 175,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #3",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "3",
+      "seriesId": 548,
+      "candidateIssueId": 174,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #4",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "4",
+      "seriesId": 548,
+      "candidateIssueId": 173,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #5",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "5",
+      "seriesId": 548,
+      "candidateIssueId": 172,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #6",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "6",
+      "seriesId": 548,
+      "candidateIssueId": 171,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #7",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "7",
+      "seriesId": 548,
+      "candidateIssueId": 398,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #8",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "8",
+      "seriesId": 548,
+      "candidateIssueId": 424,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #9",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "9",
+      "seriesId": 548,
+      "candidateIssueId": 460,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #10",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "10",
+      "seriesId": 548,
+      "candidateIssueId": 625,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #11",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "11",
+      "seriesId": 548,
+      "candidateIssueId": 684,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #12",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2003,
+      "issueNumber": "12",
+      "seriesId": 548,
+      "candidateIssueId": 598,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #24",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "24",
+      "seriesId": 16451,
+      "candidateIssueId": 50096,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #25",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "25",
+      "seriesId": 16451,
+      "candidateIssueId": 50973,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #26",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "26",
+      "seriesId": 16451,
+      "candidateIssueId": 52257,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #27",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "27",
+      "seriesId": 16451,
+      "candidateIssueId": 52259,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #28",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "28",
+      "seriesId": 16451,
+      "candidateIssueId": 51172,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #29",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "29",
+      "seriesId": 16451,
+      "candidateIssueId": 52261,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #30",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "30",
+      "seriesId": 16451,
+      "candidateIssueId": 52263,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #31",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "31",
+      "seriesId": 16451,
+      "candidateIssueId": 52265,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #32",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "32",
+      "seriesId": 16451,
+      "candidateIssueId": 52266,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "New Avengers #33",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "33",
+      "seriesId": 16451,
+      "candidateIssueId": 52267,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Gauntlet #1",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19471,
+      "candidateIssueId": 51976,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Gauntlet #2",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19471,
+      "candidateIssueId": 51978,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Gauntlet #3",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 19471,
+      "candidateIssueId": 51979,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Gauntlet #4",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 19471,
+      "candidateIssueId": 51980,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Gauntlet #5",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 19471,
+      "candidateIssueId": 51981,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #1",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 22653,
+      "candidateIssueId": 61697,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Unworthy Thor #1",
+      "normalizedSeriesTitle": "Unworthy Thor",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 22655,
+      "candidateIssueId": 61718,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Unworthy Thor #2",
+      "normalizedSeriesTitle": "Unworthy Thor",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "seriesId": 22655,
+      "candidateIssueId": 61719,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Unworthy Thor #3",
+      "normalizedSeriesTitle": "Unworthy Thor",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "seriesId": 22655,
+      "candidateIssueId": 61720,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Unworthy Thor #4",
+      "normalizedSeriesTitle": "Unworthy Thor",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 22655,
+      "candidateIssueId": 61721,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Unworthy Thor #5",
+      "normalizedSeriesTitle": "Unworthy Thor",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 22655,
+      "candidateIssueId": 61722,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #2",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "seriesId": 22653,
+      "candidateIssueId": 61698,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #3",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "seriesId": 22653,
+      "candidateIssueId": 61699,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #4",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 22653,
+      "candidateIssueId": 61700,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #5",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 22653,
+      "candidateIssueId": 61701,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #6",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 22653,
+      "candidateIssueId": 61702,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #7",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "7",
+      "seriesId": 22653,
+      "candidateIssueId": 61703,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #8",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "8",
+      "seriesId": 22653,
+      "candidateIssueId": 61704,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #9",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "9",
+      "seriesId": 22653,
+      "candidateIssueId": 61705,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #10",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "10",
+      "seriesId": 22653,
+      "candidateIssueId": 61706,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #11",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "11",
+      "seriesId": 22653,
+      "candidateIssueId": 61707,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #12",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "12",
+      "seriesId": 22653,
+      "candidateIssueId": 61708,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #13",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "13",
+      "seriesId": 22653,
+      "candidateIssueId": 61709,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #14",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "14",
+      "seriesId": 22653,
+      "candidateIssueId": 61710,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #15",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "15",
+      "seriesId": 22653,
+      "candidateIssueId": 61711,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #16",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "16",
+      "seriesId": 22653,
+      "candidateIssueId": 61712,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #17",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "17",
+      "seriesId": 22653,
+      "candidateIssueId": 66560,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #3",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24308,
+      "candidateIssueId": 69925,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #4",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24308,
+      "candidateIssueId": 69926,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos Annual #1",
+      "normalizedSeriesTitle": "Thanos Annual",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 26009,
+      "candidateIssueId": 66923,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Ghost Rider #1",
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24329,
+      "candidateIssueId": 67319,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Ghost Rider #2",
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24329,
+      "candidateIssueId": 67320,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Ghost Rider #3",
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24329,
+      "candidateIssueId": 67321,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Ghost Rider #4",
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24329,
+      "candidateIssueId": 67322,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cosmic Ghost Rider #5",
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 24329,
+      "candidateIssueId": 67323,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Infinity Wars Prime #1",
+      "normalizedSeriesTitle": "Infinity Wars Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24340,
+      "candidateIssueId": 67349,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos Legacy #1",
+      "normalizedSeriesTitle": "Thanos Legacy",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25951,
+      "candidateIssueId": 71037,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #1",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26480,
+      "candidateIssueId": 73420,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #2",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26480,
+      "candidateIssueId": 73421,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #3",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26480,
+      "candidateIssueId": 73422,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #4",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26480,
+      "candidateIssueId": 73423,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #5",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26480,
+      "candidateIssueId": 73424,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #6",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26480,
+      "candidateIssueId": 73425,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #1",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27318,
+      "candidateIssueId": 76330,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #2",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27318,
+      "candidateIssueId": 76610,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #3",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27318,
+      "candidateIssueId": 77257,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #4",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27318,
+      "candidateIssueId": 77666,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #5",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27318,
+      "candidateIssueId": 78510,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos #6",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 27318,
+      "candidateIssueId": 78936,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer Rebirth #1",
+      "normalizedSeriesTitle": "Silver Surfer Rebirth",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 32268,
+      "candidateIssueId": 94752,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer Rebirth #2",
+      "normalizedSeriesTitle": "Silver Surfer Rebirth",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 32268,
+      "candidateIssueId": 94753,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer Rebirth #3",
+      "normalizedSeriesTitle": "Silver Surfer Rebirth",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 32268,
+      "candidateIssueId": 94754,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer Rebirth #4",
+      "normalizedSeriesTitle": "Silver Surfer Rebirth",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 32268,
+      "candidateIssueId": 94755,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer Rebirth #5",
+      "normalizedSeriesTitle": "Silver Surfer Rebirth",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 32268,
+      "candidateIssueId": 94756,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #1",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 30146,
+      "candidateIssueId": 85560,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #2",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 30146,
+      "candidateIssueId": 85561,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #3",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 30146,
+      "candidateIssueId": 85562,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #4",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 30146,
+      "candidateIssueId": 85563,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #5",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 30146,
+      "candidateIssueId": 85564,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #6",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "6",
+      "seriesId": 30146,
+      "candidateIssueId": 85565,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #7",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "7",
+      "seriesId": 30146,
+      "candidateIssueId": 85566,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #8",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "8",
+      "seriesId": 30146,
+      "candidateIssueId": 85567,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #9",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "9",
+      "seriesId": 30146,
+      "candidateIssueId": 85568,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #10",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "10",
+      "seriesId": 30146,
+      "candidateIssueId": 85569,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #11",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "11",
+      "seriesId": 30146,
+      "candidateIssueId": 85570,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Eternals #12",
+      "normalizedSeriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "issueNumber": "12",
+      "seriesId": 30146,
+      "candidateIssueId": 85571,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #27",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "27",
+      "seriesId": 28031,
+      "candidateIssueId": 95875,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #28",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "28",
+      "seriesId": 28031,
+      "candidateIssueId": 95876,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thanos: Death Notes #1",
+      "normalizedSeriesTitle": "Thanos: Death Notes",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35719,
+      "candidateIssueId": 103976,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #29",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "29",
+      "seriesId": 28031,
+      "candidateIssueId": 95877,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #30",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "30",
+      "seriesId": 28031,
+      "candidateIssueId": 95878,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #31",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "31",
+      "seriesId": 28031,
+      "candidateIssueId": 102279,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #32",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "32",
+      "seriesId": 28031,
+      "candidateIssueId": 102281,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #33",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "33",
+      "seriesId": 28031,
+      "candidateIssueId": 102283,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #34",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "34",
+      "seriesId": 28031,
+      "candidateIssueId": 102285,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor #35",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "35",
+      "seriesId": 28031,
+      "candidateIssueId": 102287,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "385758b69b84394fd9a3952d08e31cff45df1fd0929fc7f171c97db99d25e062",
+  "sourceOccurrenceCount": 321,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 31,
+      "canonicalRow": 1,
+      "sourceIssueReference": "Iron Man #55",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1968,
+      "issueNumber": "55"
+    },
+    {
+      "sourcePosition": 32,
+      "canonicalRow": 2,
+      "sourceIssueReference": "Captain Marvel #25",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "25"
+    },
+    {
+      "sourcePosition": 33,
+      "canonicalRow": 3,
+      "sourceIssueReference": "Captain Marvel #26",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "26"
+    },
+    {
+      "sourcePosition": 34,
+      "canonicalRow": 4,
+      "sourceIssueReference": "Captain Marvel #27",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "27"
+    },
+    {
+      "sourcePosition": 35,
+      "canonicalRow": 5,
+      "sourceIssueReference": "Captain Marvel #28",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "28"
+    },
+    {
+      "sourcePosition": 36,
+      "canonicalRow": 6,
+      "sourceIssueReference": "Captain Marvel #29",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "29"
+    },
+    {
+      "sourcePosition": 37,
+      "canonicalRow": 7,
+      "sourceIssueReference": "Captain Marvel #30",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "30"
+    },
+    {
+      "sourcePosition": 38,
+      "canonicalRow": 8,
+      "sourceIssueReference": "Captain Marvel #31",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "31"
+    },
+    {
+      "sourcePosition": 39,
+      "canonicalRow": 9,
+      "sourceIssueReference": "Captain Marvel #32",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "32"
+    },
+    {
+      "sourcePosition": 40,
+      "canonicalRow": 13,
+      "sourceIssueReference": "Avengers #125",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "125"
+    },
+    {
+      "sourcePosition": 41,
+      "canonicalRow": 10,
+      "sourceIssueReference": "Captain Marvel #33",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "33"
+    },
+    {
+      "sourcePosition": 42,
+      "canonicalRow": 11,
+      "sourceIssueReference": "Captain Marvel #34",
+      "sourceRangeReference": "Iron Man #55; Captain Marvel #25 to #32; Avengers #125; Captain Marvel #33 to #34",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 1968,
+      "issueNumber": "34"
+    },
+    {
+      "sourcePosition": 43,
+      "canonicalRow": 14,
+      "sourceIssueReference": "Strange Tales #178",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "178"
+    },
+    {
+      "sourcePosition": 44,
+      "canonicalRow": 15,
+      "sourceIssueReference": "Strange Tales #179",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "179"
+    },
+    {
+      "sourcePosition": 45,
+      "canonicalRow": 16,
+      "sourceIssueReference": "Strange Tales #180",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "180"
+    },
+    {
+      "sourcePosition": 46,
+      "canonicalRow": 17,
+      "sourceIssueReference": "Strange Tales #181",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "181"
+    },
+    {
+      "sourcePosition": 47,
+      "canonicalRow": 18,
+      "sourceIssueReference": "Warlock #9",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 48,
+      "canonicalRow": 19,
+      "sourceIssueReference": "Warlock #10",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 49,
+      "canonicalRow": 20,
+      "sourceIssueReference": "Warlock #11",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 50,
+      "canonicalRow": 21,
+      "sourceIssueReference": "Warlock #12",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 51,
+      "canonicalRow": 22,
+      "sourceIssueReference": "Warlock #13",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 52,
+      "canonicalRow": 23,
+      "sourceIssueReference": "Warlock #14",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 53,
+      "canonicalRow": 24,
+      "sourceIssueReference": "Warlock #15",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Warlock",
+      "seriesYear": 1972,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 54,
+      "canonicalRow": 25,
+      "sourceIssueReference": "Marvel Team-Up #55",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Marvel Team-Up",
+      "seriesYear": 1972,
+      "issueNumber": "55"
+    },
+    {
+      "sourcePosition": 55,
+      "canonicalRow": 26,
+      "sourceIssueReference": "Avengers Annual #7",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Avengers Annual",
+      "seriesYear": 1967,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 56,
+      "canonicalRow": 27,
+      "sourceIssueReference": "Marvel Two-In-One Annual #2",
+      "sourceRangeReference": "Strange Tales #178 to #181; Warlock #9 to #15; Marvel Team-Up #55; Avengers Annual #7; Marvel Two-in-One Annual #2",
+      "normalizedSeriesTitle": "Marvel Two-In-One Annual",
+      "seriesYear": 1976,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 101,
+      "canonicalRow": 43,
+      "sourceIssueReference": "Warlock & The Infinity Watch #7",
+      "sourceRangeReference": "Warlock And The Infinity Watch #7 to #10",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 102,
+      "canonicalRow": 44,
+      "sourceIssueReference": "Warlock & The Infinity Watch #8",
+      "sourceRangeReference": "Warlock And The Infinity Watch #7 to #10",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 103,
+      "canonicalRow": 45,
+      "sourceIssueReference": "Warlock & The Infinity Watch #9",
+      "sourceRangeReference": "Warlock And The Infinity Watch #7 to #10",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 104,
+      "canonicalRow": 46,
+      "sourceIssueReference": "Warlock & The Infinity Watch #10",
+      "sourceRangeReference": "Warlock And The Infinity Watch #7 to #10",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 143,
+      "canonicalRow": 47,
+      "sourceIssueReference": "Warlock & The Infinity Watch #11",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 144,
+      "canonicalRow": 48,
+      "sourceIssueReference": "Warlock & The Infinity Watch #12",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 145,
+      "canonicalRow": 49,
+      "sourceIssueReference": "Warlock & The Infinity Watch #13",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 146,
+      "canonicalRow": 50,
+      "sourceIssueReference": "Warlock & The Infinity Watch #14",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 147,
+      "canonicalRow": 51,
+      "sourceIssueReference": "Warlock & The Infinity Watch #15",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 148,
+      "canonicalRow": 52,
+      "sourceIssueReference": "Warlock & The Infinity Watch #16",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 149,
+      "canonicalRow": 53,
+      "sourceIssueReference": "Warlock & The Infinity Watch #17",
+      "sourceRangeReference": "Warlock & The Infinity Watch #11 to #17",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 156,
+      "canonicalRow": 54,
+      "sourceIssueReference": "Warlock & The Infinity Watch #18",
+      "sourceRangeReference": "Warlock And The Infinity Watch #18 to #19",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 157,
+      "canonicalRow": 55,
+      "sourceIssueReference": "Warlock & The Infinity Watch #19",
+      "sourceRangeReference": "Warlock And The Infinity Watch #18 to #19",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 163,
+      "canonicalRow": 56,
+      "sourceIssueReference": "Warlock & The Infinity Watch #20",
+      "sourceRangeReference": "Warlock And The Infinity Watch #20 to #22",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 164,
+      "canonicalRow": 57,
+      "sourceIssueReference": "Warlock & The Infinity Watch #21",
+      "sourceRangeReference": "Warlock And The Infinity Watch #20 to #22",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 165,
+      "canonicalRow": 58,
+      "sourceIssueReference": "Warlock & The Infinity Watch #22",
+      "sourceRangeReference": "Warlock And The Infinity Watch #20 to #22",
+      "normalizedSeriesTitle": "Warlock & The Infinity Watch",
+      "seriesYear": 1992,
+      "issueNumber": "22"
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Logan's Run #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Logan's Run",
+      "seriesYear": 1977,
+      "issueNumber": "6",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/31155/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Logan's%20Run%206&limit=100",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "07dc144779f174da6fcf04c8a77f49089825a02c4af221c6f25655bcebbb753b"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Spidey Super Stories #39",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spidey Super Stories",
+      "seriesYear": 1974,
+      "issueNumber": "39",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/86655/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "bibliographic-series",
+          "url": "https://www.comics.org/api/series/2188/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Super%20Stories%2039&limit=100",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "provider-upstream-absence",
+          "url": "https://marvel.geoffrich.net/year/1979/__data.json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "8517f241d2661873f102a1fd4ef8b394d6ad88eaa016cbc7485f9763de023b46"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Deathlok #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Deathlok",
+      "seriesYear": 1991,
+      "issueNumber": "16",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/97216/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/series/20006/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "97d58ed8929f5313b83e23f7bb7a54ebae752bcdb3baf40191f62b4aae467ebb"
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "Silver Sable & The Wild Pack #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Silver Sable and the Wild Pack",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/87627/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/series/16367/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "c4168a4043717d4b1fe51e9da646495720605779a81e25ee2b457325fe6dde90"
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "Silver Sable & The Wild Pack #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Silver Sable and the Wild Pack",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/87628/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/series/16367/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "50aa6e51bae01e33cd70378b4bd2e013c32cebfc439b93e5f9d6b886f55bd78c"
+    },
+    {
+      "sourcePosition": 134,
+      "sourceIssueReference": "Nomad #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nomad",
+      "seriesYear": 1992,
+      "issueNumber": "7",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/64909/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/series/20373/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "2369ccc23c0b46c0e260315275c6f59eb8043b3fde4db6b5c1a9f95f1223b07e"
+    },
+    {
+      "sourcePosition": 135,
+      "sourceIssueReference": "Sleepwalker #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Sleepwalker",
+      "seriesYear": 1991,
+      "issueNumber": "18",
+      "kind": "availability-exclusion",
+      "status": "closed",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The owner verified this source-required comic is not available through Marvel Unlimited; Issue #235 tracks future availability.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-issue",
+          "url": "https://www.comics.org/api/issue/69710/?format=json",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/235",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/series/21939/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-23"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts/555?_fields=id,slug,modified,title,content",
+          "retrievedAt": "2026-08-23"
+        }
+      ],
+      "evidenceDigest": "1c460a867bfbf3938c80c248e603989d8557fd2773e7428a9b086eaba68d17cf"
+    }
+  ]
+}

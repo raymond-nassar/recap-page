@@ -83,6 +83,10 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'agents-of-atlas-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
   'iron-man-reading-order',
+  'ant-man-reading-order',
+  'wandavision',
+  'spider-man-far-from-home',
+  'modern-x-men-fast-track',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
@@ -266,6 +270,26 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
       relationship: 'partial',
       sharedIds: Object.freeze(['7347']),
       rationale: 'The compact nine-issue event route keeps one shared Kree-Skrull chapter while the broader Ant-Man reading order serves a different story purpose.',
+    }),
+    Object.freeze({
+      candidateId: 'thanos-war',
+      orderId: 'thanos-reading-order',
+      relationship: 'candidate-subset',
+      sharedIds: Object.freeze([
+        '9610',
+        '8014',
+        '8015',
+        '8016',
+        '8017',
+        '8018',
+        '23322',
+        '8019',
+        '8020',
+        '8021',
+        '6981',
+        '8022',
+      ]),
+      rationale: 'This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.',
     }),
   ]),
   [CBRO_RELEASE_IDS.continuationBatchTwo]: Object.freeze([
@@ -456,7 +480,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_CONTINUATION_AUTHOR_IDS,
     packetReview: CBRO_CONTINUATION_PACKET_REVIEW,
     authorityIdentity: 'MRT-003-C02 coordinator',
-    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset, the Thanos War subset, and Ant-Man partial relationship are the approved non-none relationships.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchTwo]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchTwo,

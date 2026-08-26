@@ -2,12 +2,12 @@
   "candidateId": "phalanx-reading-order",
   "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb",
   "mappingDigest": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495",
-  "libraryDigest": "5aac85d8ff7e085eb038bb021ccc106b240070648a8fc152f4a60acecee2bdc0",
+  "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
   "peerDigests": {
     "marvels-best-phoenix-comics": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0"
   },
   "candidateCount": 28,
-  "comparisonCount": 88,
+  "comparisonCount": 89,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -406,6 +406,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -556,5 +562,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "6ed2f90708a0bbb1c22ae311850202371768ec4d6f6ce738af611658aad3a22c"
+  "reportDigest": "fbbbb91e74d1290ec59620802fed842f89cf9e9693ecc2be4a54cf44d34abd83"
 }
