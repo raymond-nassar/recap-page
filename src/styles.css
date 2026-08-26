@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:705-706`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:767-768`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -512,6 +512,8 @@ body.nocovers .tgl .sw::after { left: 2px; }
 /* The order's blurb sits under the title, so it needs the header's own left edge rather than the
    inset a settings card gives it. */
 .order-desc { margin-top: .45rem; }
+.save-education { max-width: 72ch; }
+.save-education .rail-hint { margin: 0 0 .75rem; }
 
 .quiet {
   border: 1px solid var(--line-2); background: none; color: var(--muted);

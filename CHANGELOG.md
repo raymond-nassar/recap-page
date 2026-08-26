@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Explained where reading progress is saved
+
+In plain English: After your first Reading List is saved, the reading screen now explains that
+lists and progress save automatically in this browser, not in cookies, an account, or a cloud copy.
+The explanation points to JSON backup and restore for protecting or moving progress, then leaves
+after your first saved progress change. It is not repeated after later saves.
+
+For maintainers: the explanation has its own non-portable browser preference and advances only
+after confirmed reader-data writes. Existing quota, unreadable-data, conflict, restore, salvage,
+and erase reporting remains authoritative.
+
 ### Made the first useful reading path obvious
 
 In plain English: Empty Home now asks where you want to start, explains the difference between

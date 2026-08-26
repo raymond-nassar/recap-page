@@ -97,3 +97,14 @@ test('the store error keeps the reason, which the standing copy cannot know', ()
   assert.match(blockedStore().blockedReason, /Unsupported schema version 99/);
   assert.doesNotMatch(bannerProse(), /schema/i);
 });
+
+test('save education stays outside recovery copy and hides while saving is blocked', () => {
+  const html = readFileSync(join(ROOT, 'src/index.html'), 'utf8');
+  const main = readFileSync(join(ROOT, 'src/js/main.js'), 'utf8');
+  const blockedStart = html.indexOf('<section id="blocked-banner"');
+  const blockedEnd = html.indexOf('</section>', blockedStart);
+
+  assert.doesNotMatch(html.slice(blockedStart, blockedEnd), /save-education/);
+  assert.match(main, /const hidden = saveEducation\.current\(\)[\s\S]{0,100}\|\| store\.blocked/);
+  assert.doesNotMatch(main, /record(?:NonEmptyList|DirectProgress)Save[\s\S]{0,300}#save-report/);
+});
