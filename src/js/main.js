@@ -45,6 +45,9 @@ import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
 import { ADD_VIEWS, VIEWS, formatRoute, parseRoute } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
+import {
+  SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
+} from './lib/saveEducation.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 const SIDEBAR_KEY = 'sidebar.collapsed';
@@ -91,6 +94,7 @@ const store = new Store({
     if (err) notify('#save-report', err, 'error');
   },
 });
+const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
 const hydrator = new Hydrator({ api, store, onProgress: renderHydration });
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
@@ -106,10 +110,31 @@ const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis
 // tab must not write its old snapshot back over, so it is passed on as the same absence.
 // addEventListener is optional-called because this module is imported by tests in Node, where the
 // global has no listener to add and there is no second tab to hear from.
-globalThis.addEventListener?.('storage', (event) => {
-  if (event.key !== null && event.key !== STATE_KEY) return;
-  store.adoptForeignWrite(event.key === null ? null : event.newValue);
-});
+export function dispatchStorageEvent(
+  event,
+  {
+    readerStore = store,
+    education = saveEducation,
+    renderEducation = renderSaveEducation,
+  } = {},
+) {
+  if (event.key === STATE_KEY) {
+    readerStore.adoptForeignWrite(event.newValue);
+    return;
+  }
+  if (event.key === SAVE_EDUCATION_KEY) {
+    education.adopt(event.newValue);
+    renderEducation();
+    return;
+  }
+  if (event.key === null) {
+    readerStore.adoptForeignWrite(null);
+    education.adopt(null);
+    renderEducation();
+  }
+}
+
+globalThis.addEventListener?.('storage', dispatchStorageEvent);
 
 // One filter, shared by every list, and it now survives a reload. Per list was considered and
 // rejected: the filter already crossed lists within a session, so making it per list would have
@@ -317,6 +342,43 @@ const announce = announceChannel(
 // otherwise a screen-reader user hears "List deleted" for a deletion that did not happen.
 function announceIfSaved(msg) {
   if (store.lastUpdateOk) announce(msg);
+}
+
+const SAVE_EDUCATION_ANNOUNCEMENT =
+  'Your lists and progress save automatically in this browser; '
+  + 'use Backup & settings for a copy you can restore elsewhere.';
+
+export function withSaveEducation(message, transition) {
+  if (transition?.previous !== SAVE_EDUCATION_STATE.UNSEEN || !transition.changed) return message;
+  return `${message} ${SAVE_EDUCATION_ANNOUNCEMENT}`;
+}
+
+function renderSaveEducation() {
+  const host = $('#save-education');
+  if (!host) return;
+  const listId = activeListId() ?? '';
+  const list = Object.hasOwn(store.state.lists, listId) ? store.state.lists[listId] : null;
+  const hidden = saveEducation.current() !== SAVE_EDUCATION_STATE.EXPLAINING
+    || store.blocked
+    || !list
+    || list.itemIds.length === 0;
+  if (hidden && !host.hidden && host.contains(document.activeElement)) focusViewHeading('read');
+  host.hidden = hidden;
+}
+
+function recordNonEmptyListSave({ ok, added, listId }) {
+  const list = Object.hasOwn(store.state.lists, listId) ? store.state.lists[listId] : null;
+  if (!ok || added <= 0 || !list || list.itemIds.length === 0) return null;
+  const transition = saveEducation.begin();
+  renderSaveEducation();
+  return transition;
+}
+
+function recordDirectProgressSave({ wasRead, state, issueId }) {
+  if (!store.lastUpdateOk || isRead(state, issueId) === wasRead) return null;
+  const transition = saveEducation.complete();
+  renderSaveEducation();
+  return transition;
 }
 
 // A passive surface changes without moving focus, so nothing tells a screen reader it changed at
@@ -1957,6 +2019,7 @@ function wireReading() {
     el('input', { type: 'radio', name: 'filter', value: f.value }),
     el('span', { text: f.label }),
   ])));
+  $('#save-education-settings').addEventListener('click', () => showView('data', { push: true }));
 
   // `renderRows` builds nothing while the order is closed, so opening it is what asks for the
   // rows. `toggle` fires before the next paint, so the order is filled by the time the details
@@ -2244,13 +2307,16 @@ function undoDelete() {
 function markCurrentRead() {
   const issue = upNext(store.state, activeListId());
   if (!issue) return;
+  const wasRead = isRead(store.state, issue.issueId);
   // Only announce success if the write actually stuck, because store.update rolls back on failure
   // and the error is surfaced separately by the onChange handler.
-  if (!isRead(store.update((s) => markRead(s, issue.issueId, true)), issue.issueId)) return;
+  const saved = store.update((s) => markRead(s, issue.issueId, true));
+  const transition = recordDirectProgressSave({ wasRead, state: saved, issueId: issue.issueId });
+  if (!transition) return;
   const next = upNext(store.state, activeListId());
-  announce(next
+  announce(withSaveEducation(next
     ? `${issue.title} marked read. Next up: ${next.title}.`
-    : `${issue.title} marked read. That is the whole order finished.`);
+    : `${issue.title} marked read. That is the whole order finished.`, transition));
   // The hero's own buttons are static markup that the re-render leaves in place, so pressing D
   // from the hero keeps focus and stays live on the next press. The shelf and the full order are
   // rebuilt with replaceChildren, which used to destroy a control focused there and drop focus to
@@ -2269,6 +2335,7 @@ function renderReading() {
 
   $('#reading-body').hidden = !list;
   $('#ring-wrap').hidden = !list;
+  renderSaveEducation();
 
   if (!list) {
     // Reaching the reading view with no list means the last one was just deleted. The
@@ -2691,8 +2758,19 @@ function renderRows() {
           'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,
           dataset: { key: item.issueId, act: 'read' },
           onclick: () => {
-            store.update((s) => toggleRead(s, item.issueId));
-            announceIfSaved(`${item.title} ${isRead(store.state, item.issueId) ? 'marked read' : 'marked unread'}.`);
+            const wasRead = isRead(store.state, item.issueId);
+            const saved = store.update((s) => toggleRead(s, item.issueId));
+            const transition = recordDirectProgressSave({
+              wasRead,
+              state: saved,
+              issueId: item.issueId,
+            });
+            if (transition) {
+              announce(withSaveEducation(
+                `${item.title} ${isRead(saved, item.issueId) ? 'marked read' : 'marked unread'}.`,
+                transition,
+              ));
+            }
           },
         }, item.read ? '✓' : ''),
         el('div', { class: 'thumb' }, [img, fb]),
@@ -3163,22 +3241,24 @@ function renderResults(sel, items, metaFn) {
   }
 }
 
-// Returns null when the list could not be created, rather than an undefined id that would be
-// passed downstream as if it were a real list.
+// Carries every setup write, because lastUpdateOk describes only the most recent one and a later
+// successful issue write must not hide a failed create or active-list write.
 function ensureList(name) {
   let id = activeListId();
   if (!id) {
     const created = store.update((s) => createList(s, { name }));
-    if (!store.lastUpdateOk) return null;
+    if (!store.lastUpdateOk) return { listId: null, ok: false };
     id = created.listOrder[created.listOrder.length - 1];
     store.update((s) => setActive(s, id));
+    if (!store.lastUpdateOk) return { listId: id, ok: false };
   }
-  return id;
+  return { listId: id, ok: true };
 }
 
 function addToActive(issues, message, { sort = false } = {}) {
-  const id = ensureList(DEFAULT_LIST_NAME);
-  if (!id) return { added: 0, skipped: 0, ok: false, listName: null };
+  const setup = ensureList(DEFAULT_LIST_NAME);
+  const id = setup.listId;
+  if (!setup.ok) return { added: 0, skipped: 0, ok: false, listName: null };
   let added = 0, skipped = 0;
   store.update((s) => {
     const res = addIssuesToList(s, id, issues, { sort });
@@ -3187,9 +3267,14 @@ function addToActive(issues, message, { sort = false } = {}) {
   });
   // added/skipped are counted inside the updater, which runs before the write. If the write
   // failed the change was rolled back, so those counts describe nothing that survived.
-  if (!store.lastUpdateOk) return { added: 0, skipped: 0, ok: false, listName: null };
+  const ok = setup.ok && store.lastUpdateOk;
+  if (!ok) return { added: 0, skipped: 0, ok: false, listName: null };
   const listName = store.state.lists[id]?.name ?? 'your list';
-  announce(`${message} ${added} added${skipped ? `, ${skipped} already in the list` : ''}.`);
+  const transition = recordNonEmptyListSave({ ok, added, listId: id });
+  announce(withSaveEducation(
+    `${message} ${added} added${skipped ? `, ${skipped} already in the list` : ''}.`,
+    transition,
+  ));
 
   // Search, series and creator results come from list endpoints, which return neither `cover`
   // nor `digitalId`; only /v1/issues/{id} does. Without hydration the issue lands with no art
@@ -3249,6 +3334,7 @@ function doImport() {
 
   const intoNew = $('#import-new-list').checked;
   let listId;
+  let setupOk;
   if (intoNew) {
     const name = headings[0] || `Imported ${new Date().toLocaleDateString()}`;
     const created = store.update((s) => createList(s, { name, description: 'Imported from a pasted Reading List.' }));
@@ -3257,9 +3343,13 @@ function doImport() {
     }
     listId = created.listOrder[created.listOrder.length - 1];
     store.update((s) => setActive(s, listId));
+    setupOk = store.lastUpdateOk;
+    if (!setupOk) return;
   } else {
-    listId = ensureList(DEFAULT_LIST_NAME);
-    if (!listId) return notify('#import-report', 'Could not create a list, so nothing was imported.', 'error');
+    const setup = ensureList(DEFAULT_LIST_NAME);
+    listId = setup.listId;
+    setupOk = setup.ok;
+    if (!setupOk) return notify('#import-report', 'Could not create a list, so nothing was imported.', 'error');
   }
 
   // Markdown carries only a title and an id, so metadata starts as pending and is
@@ -3286,7 +3376,8 @@ function doImport() {
 
   // The counts were taken inside the updater, before the write. A rolled-back write means
   // nothing was imported, whatever they say.
-  if (!store.lastUpdateOk) {
+  const operationOk = setupOk && store.lastUpdateOk;
+  if (!operationOk) {
     return notify('#import-report', 'Nothing was imported: that change could not be saved.', 'error');
   }
 
@@ -3299,7 +3390,8 @@ function doImport() {
     box.append(wrap);
   }
 
-  announce(`Imported ${added} issues.`);
+  const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
+  announce(withSaveEducation(`Imported ${added} issues.`, transition));
   hydrator.start(listId);
 }
 
@@ -3318,15 +3410,29 @@ function unresolvedRow(entry, listId) {
       if (res.status === 'resolved') {
         // Auto-accept only a single exact normalized match. Anything else is a choice
         // for you to make, because silently picking result #1 files the wrong comic.
-        store.update((s) => addIssuesToList(s, listId, [res.match], {}).state);
+        let added = 0;
+        store.update((s) => {
+          const result = addIssuesToList(s, listId, [res.match], {});
+          added = result.added;
+          return result.state;
+        });
         if (!store.lastUpdateOk) {
           btn.disabled = false;
           row.append(el('p', { class: 'notice notice-error', text: 'That match could not be saved.' }));
           return;
         }
-        if (entry.read) store.update((s) => markRead(s, res.match.issueId, true));
+        let operationOk = true;
+        if (entry.read) {
+          store.update((s) => markRead(s, res.match.issueId, true));
+          operationOk = store.lastUpdateOk;
+          if (!operationOk) {
+            btn.disabled = false;
+            return;
+          }
+        }
+        const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
         row.replaceChildren(el('p', { class: 'notice notice-ok', text: `Matched: ${res.match.title}` }));
-        announce(`Matched ${entry.title}.`);
+        announce(withSaveEducation(`Matched ${entry.title}.`, transition));
         return;
       }
       const choices = el('div', { class: 'results' });
@@ -3348,14 +3454,25 @@ function unresolvedRow(entry, listId) {
           el('button', {
             type: 'button', class: 'btn btn-g',
             onclick: () => {
-              store.update((s) => addIssuesToList(s, listId, [c], {}).state);
+              let added = 0;
+              store.update((s) => {
+                const result = addIssuesToList(s, listId, [c], {});
+                added = result.added;
+                return result.state;
+              });
               if (!store.lastUpdateOk) {
                 row.replaceChildren(el('p', { class: 'notice notice-error', text: `${c.title} could not be saved.` }));
                 return;
               }
-              if (entry.read) store.update((s) => markRead(s, c.issueId, true));
+              let operationOk = true;
+              if (entry.read) {
+                store.update((s) => markRead(s, c.issueId, true));
+                operationOk = store.lastUpdateOk;
+                if (!operationOk) return;
+              }
+              const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
               row.replaceChildren(el('p', { class: 'notice notice-ok', text: `Added ${c.title}.` }));
-              announce(`Added ${c.title}.`);
+              announce(withSaveEducation(`Added ${c.title}.`, transition));
             },
           }, 'This one'),
         ]));
@@ -3551,8 +3668,9 @@ function doManual() {
   // no account and no request to anyone.
   const digitalId = digitalIdFromUrl(url);
   const detail = manualDetailUrl(url, digitalId);
-  const listId = ensureList(DEFAULT_LIST_NAME);
-  if (!listId) return notify('#manual-report', 'Could not create a list, so nothing was added.', 'error');
+  const setup = ensureList(DEFAULT_LIST_NAME);
+  const listId = setup.listId;
+  if (!setup.ok) return notify('#manual-report', 'Could not create a list, so nothing was added.', 'error');
 
   // Report what actually happened rather than assuming success. This previously announced
   // "Added" even when the entry had been silently discarded.
@@ -3574,7 +3692,8 @@ function doManual() {
     return res.state;
   });
 
-  if (!store.lastUpdateOk || added === 0) {
+  const operationOk = setup.ok && store.lastUpdateOk;
+  if (!operationOk || added === 0) {
     return notify(
       '#manual-report',
       skipped > 0
@@ -3592,9 +3711,10 @@ function doManual() {
   // from the row afterwards, so it is said here rather than left to be discovered by clicking. An
   // entry that took the wiki's issue id now has a Read button where it had none, and saying it
   // opens marvel.com is the difference between a working link and a disappointment.
+  const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
   notify(
     '#manual-report',
-    [
+    withSaveEducation([
       `Added “${title}”.`,
       digitalId
         ? 'Read opens it in Marvel Unlimited.'
@@ -3605,7 +3725,7 @@ function doManual() {
       digitalId
         ? 'Availability still shows as unknown, because that is a separate field the metadata snapshot would have supplied.'
         : 'Availability shows as unknown because it is not in the metadata snapshot.',
-    ].filter(Boolean).join(' '),
+    ].filter(Boolean).join(' '), transition),
     'ok',
   );
 }
@@ -4325,12 +4445,21 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     }
     if (navigate) {
       store.update((s) => setActive(s, listId));
+      if (!store.lastUpdateOk) {
+        clearNotice(importKey);
+        return listId;
+      }
       showView('read', { push: true });
     } else if (!store.state.active) {
       // Nothing was being read, so the first order added becomes the one "Continue reading"
       // resumes. It does not steal the active list from a reader who already had one.
       store.update((s) => setActive(s, listId));
+      if (!store.lastUpdateOk) {
+        clearNotice(importKey);
+        return listId;
+      }
     }
+    const transition = recordNonEmptyListSave({ ok: true, added, listId });
 
     // Some curated orders are short of metadata, in two ways that look nothing alike to a reader
     // and had been reported as one. Saying so is the difference between a known gap and a list
@@ -4347,7 +4476,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     // contradicting it. Cleared by the order's key, not by this pane, so an attempt that failed
     // from the other entry point is cleared too.
     clearNotice(importKey);
-    announce(parts.join(' '));
+    announce(withSaveEducation(parts.join(' '), transition));
     return listId;
   } catch (err) {
     notify(report, `Could not load ${list.name}: ${err.message}. Your lists are unchanged.`, 'error', importKey);

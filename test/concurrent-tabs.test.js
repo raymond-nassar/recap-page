@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Store, KEY } from '../src/js/storage.js';
+import { dispatchStorageEvent } from '../src/js/main.js';
+import {
+  SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
+} from '../src/js/lib/saveEducation.js';
 import {
   createEmptyState, createList, addIssuesToList, markRead, isRead, exportBackup, migrate,
 } from '../src/js/lib/model.js';
@@ -166,6 +170,46 @@ test('adopting repaints, because a tab showing stale data is the visible half of
   b.adoptForeignWrite(storage.getItem(KEY));
 
   assert.equal(repaints, before + 1, 'adoption must notify, or the screen keeps the old data');
+});
+
+test('production storage dispatch keeps reader data and education in their own lanes', () => {
+  const storage = fakeStorage({ [KEY]: seedRaw() });
+  const education = createSaveEducation({ storage });
+  education.complete();
+  const readerBefore = storage.getItem(KEY);
+  const readerEvents = [];
+  const readerStore = { adoptForeignWrite: (raw) => readerEvents.push(raw) };
+  let educationRenders = 0;
+
+  dispatchStorageEvent(
+    { key: SAVE_EDUCATION_KEY, newValue: SAVE_EDUCATION_STATE.EXPLAINING },
+    { readerStore, education, renderEducation: () => { educationRenders += 1; } },
+  );
+  assert.equal(storage.getItem(SAVE_EDUCATION_KEY), SAVE_EDUCATION_STATE.COMPLETE);
+  assert.equal(educationRenders, 1, 'a preference event must repaint its own surface');
+  assert.deepEqual(readerEvents, [], 'preference traffic must never enter the reader store');
+  assert.equal(storage.getItem(KEY), readerBefore, 'preference repair must not rewrite reader data');
+
+  dispatchStorageEvent(
+    { key: KEY, newValue: '{"new":"reader state"}' },
+    { readerStore, education, renderEducation: () => { educationRenders += 1; } },
+  );
+  dispatchStorageEvent(
+    { key: 'unrelated', newValue: 'anything' },
+    { readerStore, education, renderEducation: () => { educationRenders += 1; } },
+  );
+  assert.deepEqual(readerEvents, ['{"new":"reader state"}']);
+  assert.equal(educationRenders, 1);
+
+  storage.removeItem(SAVE_EDUCATION_KEY);
+  dispatchStorageEvent(
+    { key: null, newValue: null },
+    { readerStore, education, renderEducation: () => { educationRenders += 1; } },
+  );
+  assert.deepEqual(readerEvents, ['{"new":"reader state"}', null]);
+  assert.equal(storage.getItem(SAVE_EDUCATION_KEY), SAVE_EDUCATION_STATE.COMPLETE);
+  assert.equal(educationRenders, 2);
+  assert.equal(storage.getItem(KEY), readerBefore);
 });
 
 // ----------------------------------------------------------------------------- whole-state routes
