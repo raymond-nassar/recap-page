@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T05:37:34.525Z",
+  "generatedAt": "2026-08-26T06:05:00.000Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3985,6 +3985,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T04:25:58.012Z"
+    },
+    {
+      "id": "ultimate-marvel-intro",
+      "file": "ultimate_marvel_intro.json",
+      "name": "Ultimate Marvel: Intro to the Ultimate U",
+      "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
+      "type": "era",
+      "depth": "complete",
+      "count": 121,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "X-Men",
+        "Ultimates",
+        "Fantastic Four",
+        "Daredevil",
+        "Elektra",
+        "Iron Man"
+      ],
+      "keywords": [
+        "Ultimate Marvel",
+        "Earth-1610",
+        "Ultimate Spider-Man",
+        "Ultimate X-Men",
+        "Ultimate War"
+      ],
+      "group": "ultimate-marvel-earth-1610",
+      "groupName": "Ultimate Marvel Universe",
+      "variant": "Intro to the Ultimate U",
+      "beginner": true,
+      "timeline": 2000,
+      "coverIssueId": 4372,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/",
+      "sourceSection": "Intro to the Ultimate U",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:12:20.429Z"
     },
     {
       "id": "maximum-security",

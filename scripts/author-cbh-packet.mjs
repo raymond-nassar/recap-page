@@ -150,6 +150,7 @@ const INSERT_BEFORE = Object.freeze({
   venomverse: 'new-ultimate-universe',
   'infinity-countdown-wars': 'new-ultimate-universe',
   damnation: 'new-ultimate-universe',
+  'ultimate-marvel-intro': 'maximum-security',
 });
 
 const MANIFEST_FIELDS = new Set([
