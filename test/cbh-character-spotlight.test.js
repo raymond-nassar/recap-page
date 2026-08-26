@@ -1216,7 +1216,6 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       abominationCandidateId,
       modernXMenCandidateId,
       'agents-of-atlas-reading-order',
-      ironManCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1229,12 +1228,12 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.sourceIssueBearingBlocksSha256, 'f0c54ad986cc4b07f06cc0345d3d909d4e95e2926b2e69aebf8b077c9672c9b5');
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
-  assert.equal(report.reportDigest, '242ea6b651d9522bf21cd08c57db3a3944f93a70dc1afd5d66ca53077acd546c');
-  assert.equal(reviewedLibraryDigest, '3771fd07c1ca92175d8a9b6d72a159bca4b5e9e96048a516215438983afef684');
+  assert.equal(report.reportDigest, '40918acc2e6030ff6c828d90b9470b4286220f24758ec21a2bf0f2e1351ffc22');
+  assert.equal(reviewedLibraryDigest, '9c4f0f3bac5322e4a786e61b1314ec3d60b7cf5b49100a76977f8cbb54ffed15');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '8f4b90cc2999fe99d3674a0d51beb030e4886d576184dbbe2c0cef421d936e85',
+    '0c0733eada61dcf7fc9b45de8445ae78463a8b235d3147c69837a9acab9ec892',
   );
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
