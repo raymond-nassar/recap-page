@@ -189,11 +189,11 @@ test('the start year is a phrase, and an order that ranges across the timeline h
 
 // ------------------------------------------------------------------ the shipped data
 
-test('the shipped manifest declares a path that resolves end to end', async () => {
+test('the shipped manifest declares paths that resolve end to end', async () => {
   const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
   const { paths, errors } = parseManifest(manifest);
   assert.deepEqual(errors, []);
-  assert.equal(paths.length, 1);
+  assert.equal(paths.length, 2);
 
   const catalog = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
   assert.equal(catalog.dropped, 0);
@@ -201,49 +201,56 @@ test('the shipped manifest declares a path that resolves end to end', async () =
 
   // Every step resolves, so the rendered total is the declared one. A step that stopped resolving
   // would renumber the path silently, which is exactly the drift this asserts against.
-  assert.equal(placed.size, paths[0].steps.length);
-  for (const placement of placed.values()) assert.equal(placement.total, paths[0].steps.length);
-
-  const start = [...placed.values()].find((p) => p.previous === null);
-  assert.equal(start.position, 1);
-  assert.equal([...placed.values()].filter((p) => p.previous === null).length, 1);
-  assert.equal([...placed.values()].filter((p) => p.next === null).length, 1);
+  const expectedTotal = paths.reduce((total, readingPath) => total + readingPath.steps.length, 0);
+  assert.equal(placed.size, expectedTotal);
+  for (const readingPath of paths) {
+    const pathPlacementsForPath = [...placed.values()].filter((placement) => placement.pathId === readingPath.id);
+    assert.equal(pathPlacementsForPath.length, readingPath.steps.length);
+    assert.ok(pathPlacementsForPath.every((placement) => placement.total === readingPath.steps.length));
+    assert.equal(pathPlacementsForPath.filter((p) => p.previous === null).length, 1);
+    assert.equal(pathPlacementsForPath.filter((p) => p.next === null).length, 1);
+  }
 });
 
 // The chain is only honest if a reader who works through it is never sent the same issue twice,
 // and that has to hold for every depth they might pick at each stop, not just the readings the
-// steps happen to name. Measured rather than assumed: 15 orders across 10 stories, 99 pairs.
-test('no two stops on the shipped path share an issue, at any reading depth', async () => {
+// steps happen to name.
+test('no two stops on a shipped path share an issue, at any reading depth', async () => {
   const catalog = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
-  const placed = pathPlacements(catalog.paths, catalog.lists);
-  const byStory = new Map();
-  for (const list of catalog.lists) {
-    const key = storyKey(list);
-    if (!placed.has(key)) continue;
-    if (!byStory.has(key)) byStory.set(key, []);
-    byStory.get(key).push(list);
-  }
-
+  const listsById = new Map(catalog.lists.map((list) => [list.id, list]));
   const issues = new Map();
-  for (const group of byStory.values()) {
-    for (const list of group) {
-      const file = JSON.parse(await readFile(new URL(`../src/data/${list.file}`, import.meta.url), 'utf8'));
-      issues.set(list.id, new Set((file.items ?? []).map((i) => i.issueId)));
-    }
-  }
-
-  const stories = [...byStory.values()];
   let pairs = 0;
-  for (let a = 0; a < stories.length; a += 1) {
-    for (let b = a + 1; b < stories.length; b += 1) {
-      for (const x of stories[a]) {
-        for (const y of stories[b]) {
-          pairs += 1;
-          const shared = [...issues.get(x.id)].filter((id) => issues.get(y.id).has(id));
-          assert.deepEqual(shared, [], `${x.id} and ${y.id} share ${shared.length} issues`);
+
+  for (const readingPath of catalog.paths) {
+    const byStory = new Map();
+    for (const step of readingPath.steps) {
+      const list = listsById.get(step);
+      const key = storyKey(list);
+      if (!byStory.has(key)) byStory.set(key, []);
+      byStory.get(key).push(list);
+    }
+
+    for (const group of byStory.values()) {
+      for (const list of group) {
+        if (!issues.has(list.id)) {
+          const file = JSON.parse(await readFile(new URL(`../src/data/${list.file}`, import.meta.url), 'utf8'));
+          issues.set(list.id, new Set((file.items ?? []).map((i) => i.issueId)));
+        }
+      }
+    }
+
+    const stories = [...byStory.values()];
+    for (let a = 0; a < stories.length; a += 1) {
+      for (let b = a + 1; b < stories.length; b += 1) {
+        for (const x of stories[a]) {
+          for (const y of stories[b]) {
+            pairs += 1;
+            const shared = [...issues.get(x.id)].filter((id) => issues.get(y.id).has(id));
+            assert.deepEqual(shared, [], `${readingPath.id}: ${x.id} and ${y.id} share ${shared.length} issues`);
+          }
         }
       }
     }
   }
-  assert.equal(pairs, 99);
+  assert.equal(pairs, 111);
 });

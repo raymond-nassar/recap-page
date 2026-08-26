@@ -3673,6 +3673,38 @@
       "coverIssueId": 27620
     },
     {
+      "id": "x-men-utopia",
+      "name": "Avengers and X-Men: Utopia",
+      "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-men-utopia.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+      "sourceSection": "Avengers and X-Men: Utopia",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "x_men_utopia.json",
+      "characters": [
+        "X-Men",
+        "Cyclops",
+        "Emma Frost",
+        "Dark Avengers"
+      ],
+      "keywords": [
+        "Utopia",
+        "Dark Reign",
+        "X-Men",
+        "Dark Avengers"
+      ],
+      "expect": 14,
+      "timeline": 2009,
+      "coverIssueId": 27513
+    },
+    {
       "id": "x-men-nation-x",
       "name": "X-Men: Nation X",
       "description": "Twenty chapters interleaving Uncanny X-Men, X-Men Legacy, Deadpool, Nation X, and the X-Factor one-shot.",
@@ -4415,6 +4447,26 @@
         "hickman-minimal",
         "all-new-all-different-avengers",
         "marvel-fresh-start-avengers"
+      ]
+    },
+    {
+      "id": "x-men-messiah-to-avx",
+      "name": "X-Men: Messiah Complex to Avengers vs. X-Men",
+      "description": "The X-Men event track from Messiah Complex through Regenesis. Utopia is available as its own order, but this path leaves it out because its exact section overlaps Nation X and Dark Reign.",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's X-Men events guide and adjacent exact guides.",
+      "steps": [
+        "messiah-complex",
+        "x-men-divided-we-stand",
+        "x-men-manifest-destiny",
+        "messiah-war",
+        "x-men-nation-x",
+        "necrosha",
+        "second-coming",
+        "x-men-curse-of-the-mutants",
+        "wolverine-goes-to-hell",
+        "x-men-age-of-x",
+        "x-men-schism",
+        "x-men-regenesis"
       ]
     }
   ]

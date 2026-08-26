@@ -433,13 +433,19 @@ export function libraryDigestExcludingOrders(library, excludedOrderIds = []) {
   const excluded = new Set(excludedOrderIds);
   const lists = (library?.manifest?.lists ?? [])
     .filter((entry) => !excluded.has(entry.id));
+  const paths = Array.isArray(library?.manifest?.paths)
+    ? library.manifest.paths.filter((entry) => (
+      !excluded.has(entry.id)
+      && !entry.steps?.some((step) => excluded.has(step))
+    ))
+    : library?.manifest?.paths;
   const orderIssueIds = Array.isArray(library?.orderIssueIds)
     ? library.orderIssueIds.filter((entry) => !excluded.has(entry.id))
     : Object.fromEntries(
       Object.entries(library?.orderIssueIds ?? {})
         .filter(([id]) => !excluded.has(id)),
     );
-  return libraryDigestFor({ ...library.manifest, lists }, orderIssueIds);
+  return libraryDigestFor({ ...library.manifest, lists, paths }, orderIssueIds);
 }
 
 export function validateMappingDigest(mapping) {

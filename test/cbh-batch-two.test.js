@@ -119,6 +119,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
       'dark-reign-avengers',
       'war-of-kings',
       'messiah-war',
+      'x-men-utopia',
       'x-men-nation-x',
       'necrosha',
       'doomwar',
@@ -216,6 +217,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'rocket-raccoon-reading-order',
     'groot-reading-order',
     'star-lord-reading-order',
+    'x-men-utopia',
   ]);
   const packetRecords = [];
   const existingRecords = [];

@@ -40,9 +40,13 @@ globalThis.document = {
 const { pathLine } = await import('../src/js/main.js');
 
 const placed = pathPlacements(catalog.paths, catalog.lists);
-const byPosition = new Map([...placed.values()].map((p) => [p.position, p]));
+const MODERN_AVENGERS_PATH_ID = 'modern-avengers';
+const modernPlacements = new Map([...placed.entries()].filter(([, placement]) => (
+  placement.pathId === MODERN_AVENGERS_PATH_ID
+)));
+const byPosition = new Map([...modernPlacements.values()].map((p) => [p.position, p]));
 const shelfOf = (key) => CATALOG_SHELVES.find((shelf) => shelfStories(stories, shelf.key).some((s) => s.key === key)).key;
-const keyAt = (position) => [...placed.entries()].find(([, p]) => p.position === position)[0];
+const keyAt = (position) => [...modernPlacements.entries()].find(([, p]) => p.position === position)[0];
 
 function links(el) {
   const found = [];
@@ -61,7 +65,7 @@ function words(el) {
   return (el.textContent || '') + (el.children ?? []).map(words).join('');
 }
 
-const NAME = [...placed.values()][0].pathName;
+const NAME = [...modernPlacements.values()][0].pathName;
 
 // The count the owner's choice rests on, measured rather than asserted from the design. Nine rows
 // take a linked name and two take a linked "Next", and step five takes both, which is the only row
