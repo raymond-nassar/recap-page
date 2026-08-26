@@ -1229,7 +1229,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
   assert.equal(report.reportDigest, '242ea6b651d9522bf21cd08c57db3a3944f93a70dc1afd5d66ca53077acd546c');
-  assert.equal(reviewedLibraryDigest, '9c4f0f3bac5322e4a786e61b1314ec3d60b7cf5b49100a76977f8cbb54ffed15');
+  assert.equal(reviewedLibraryDigest, '3771fd07c1ca92175d8a9b6d72a159bca4b5e9e96048a516215438983afef684');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,
