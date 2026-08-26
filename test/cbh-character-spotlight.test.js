@@ -227,6 +227,7 @@ const laterMcuIds = [
   'marvel-multiverse',
   'marvel-what-if',
 ];
+const laterXMenIds = ['x-men-utopia', 'x-men-messiah-to-avx'];
 const continuationHistoricalIds = laterHistoricalIds.slice(5);
 
 function assertGrootSourceBoundary(packet) {
@@ -279,6 +280,10 @@ async function readJson(relativePath) {
 async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]) {
   const excluded = new Set(excludedIds);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
+  const paths = (manifest.paths ?? []).filter((entry) => (
+    !excluded.has(entry.id)
+    && !entry.steps?.some((step) => excluded.has(step))
+  ));
   const orderIssueIds = await Promise.all(lists.map(async (entry) => {
     const payload = await readJson(path.join('src', 'data', entry.out || `${entry.id}.json`));
     return {
@@ -286,7 +291,7 @@ async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]
       issueIds: issueIdsFromValue(payload),
     };
   }));
-  return libraryDigestFor({ ...manifest, lists }, orderIssueIds);
+  return libraryDigestFor({ ...manifest, lists, paths }, orderIssueIds);
 }
 
 test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => {
@@ -434,7 +439,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [...characterCandidateIds, ...laterHistoricalIds, ...laterMcuIds, ...continuationHistoricalIds],
+    [...characterCandidateIds, ...laterHistoricalIds, ...laterMcuIds, ...continuationHistoricalIds, ...laterXMenIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
@@ -451,6 +456,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
         starLordCandidateId,
         ...laterHistoricalIds,
         ...laterMcuIds,
+        ...laterXMenIds,
       ]
         .includes(comparison.orderId)
     )),
@@ -540,6 +546,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
       starLordCandidateId,
       ...laterHistoricalIds,
       ...laterMcuIds,
+      ...laterXMenIds,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -557,7 +564,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => (
-      ![grootCandidateId, starLordCandidateId, ...laterHistoricalIds, ...laterMcuIds, ...continuationHistoricalIds]
+      ![grootCandidateId, starLordCandidateId, ...laterHistoricalIds, ...laterMcuIds, ...continuationHistoricalIds, ...laterXMenIds]
         .includes(comparison.orderId)
     )),
     report.comparisons,
@@ -684,7 +691,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   const inventoryRecord = inventory.find((record) => record.id === grootCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [grootCandidateId, cosmicCandidateId, ...laterMcuIds, ...continuationHistoricalIds],
+    [grootCandidateId, cosmicCandidateId, ...laterMcuIds, ...continuationHistoricalIds, ...laterXMenIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
@@ -704,7 +711,8 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   });
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => !laterMcuIds.includes(comparison.orderId)
-      && !continuationHistoricalIds.includes(comparison.orderId)),
+      && !continuationHistoricalIds.includes(comparison.orderId)
+      && !laterXMenIds.includes(comparison.orderId)),
     report.comparisons,
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -838,7 +846,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   ));
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [starLordCandidateId, cosmicCandidateId, grootCandidateId, ...laterMcuIds, ...continuationHistoricalIds],
+    [starLordCandidateId, cosmicCandidateId, grootCandidateId, ...laterMcuIds, ...continuationHistoricalIds, ...laterXMenIds],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${starLordCandidateId}.json`),
@@ -864,6 +872,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     regeneratedReport.comparisons.filter((comparison) => (
       !laterMcuIds.includes(comparison.orderId)
       && !continuationHistoricalIds.includes(comparison.orderId)
+      && !laterXMenIds.includes(comparison.orderId)
     )),
     report.comparisons,
   );
@@ -1062,6 +1071,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
       starLordCandidateId,
       ...laterHistoricalIds,
       ...laterMcuIds,
+      ...laterXMenIds,
     ],
   );
   const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
@@ -1140,7 +1150,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 134);
+  assert.equal(catalog.lists.length, 135);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 14);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);

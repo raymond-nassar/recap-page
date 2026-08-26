@@ -1,0 +1,1820 @@
+{
+  "id": "x-men-utopia",
+  "inventoryId": "x-men-events-fast-track",
+  "packetDigest": "532457b6800fecb8f31944fa85170e849ff6f007e10594bde6686fd3439a0ad1",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+  "sourceSection": "Avengers and X-Men: Utopia",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 14,
+  "excludedSourceReferences": [],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "x-men-utopia",
+    "name": "Avengers and X-Men: Utopia",
+    "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-men-utopia.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+    "sourceSection": "Avengers and X-Men: Utopia",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_men_utopia.json",
+    "characters": [
+      "X-Men",
+      "Cyclops",
+      "Emma Frost",
+      "Dark Avengers"
+    ],
+    "keywords": [
+      "Utopia",
+      "Dark Reign",
+      "X-Men",
+      "Dark Avengers"
+    ],
+    "expect": 14,
+    "timeline": 2009,
+    "coverIssueId": 27513
+  },
+  "candidateMetadata": [
+    {
+      "id": 26965,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #512",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "512",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26965/uncanny_x-men_1963_512",
+      "onSaleDate": "2009-06-24T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26966,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #513",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "513",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26966/uncanny_x-men_1963_513",
+      "onSaleDate": "2009-07-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26967,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #514",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "514",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26967/uncanny_x-men_1963_514",
+      "onSaleDate": "2009-08-12T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26968,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #515",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "515",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26968/uncanny_x-men_1963_515",
+      "onSaleDate": "2009-09-23T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26969,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #516",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "516",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26969/uncanny_x-men_1963_516",
+      "onSaleDate": "2009-10-14T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26970,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #517",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "517",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26970/uncanny_x-men_1963_517",
+      "onSaleDate": "2009-11-25T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26971,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #518",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "518",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26971/uncanny_x-men_1963_518",
+      "onSaleDate": "2009-12-03T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 26972,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #519",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "519",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/26972/uncanny_x-men_1963_519",
+      "onSaleDate": "2009-12-23T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 27513,
+      "title": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1",
+      "issueTitle": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009) #1",
+      "seriesTitle": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1",
+      "apiSeriesName": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009)",
+      "seriesId": 8799,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "detailUrl": "https://www.marvel.com/comics/issue/27513/dark_avengersuncanny_x-men_utopia_1_2009_1",
+      "onSaleDate": "2009-06-24T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 27512,
+      "title": "Dark Avengers/Uncanny X-Men: Exodus",
+      "issueTitle": "Dark Avengers/Uncanny X-Men: Exodus (2009) #1",
+      "seriesTitle": "Dark Avengers/Uncanny X-Men: Exodus",
+      "apiSeriesName": "Dark Avengers/Uncanny X-Men: Exodus (2009)",
+      "seriesId": 8798,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "detailUrl": "https://www.marvel.com/comics/issue/27512/dark_avengersuncanny_x-men_exodus_2009_1",
+      "onSaleDate": "2009-09-10T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 24814,
+      "title": "Dark Avengers",
+      "issueTitle": "Dark Avengers (2009) #9",
+      "seriesTitle": "Dark Avengers",
+      "apiSeriesName": "Dark Avengers (2009 - 2010)",
+      "seriesId": 6599,
+      "issueNumber": "9",
+      "seriesYear": 2009,
+      "detailUrl": "https://www.marvel.com/comics/issue/24814/dark_avengers_2009_9",
+      "onSaleDate": "2009-09-16T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 24806,
+      "title": "Dark Avengers",
+      "issueTitle": "Dark Avengers (2009) #10",
+      "seriesTitle": "Dark Avengers",
+      "apiSeriesName": "Dark Avengers (2009 - 2010)",
+      "seriesId": 6599,
+      "issueNumber": "10",
+      "seriesYear": 2009,
+      "detailUrl": "https://www.marvel.com/comics/issue/24806/dark_avengers_2009_10",
+      "onSaleDate": "2009-10-21T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 27424,
+      "title": "Dark Reign: The List - X-Men",
+      "issueTitle": "Dark Reign: The List - X-Men (2009) #1",
+      "seriesTitle": "Dark Reign: The List - X-Men",
+      "apiSeriesName": "Dark Reign: The List - X-Men (2009)",
+      "seriesId": 8753,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "detailUrl": "https://www.marvel.com/comics/issue/27424/dark_reign_the_list_-_x-men_2009_1",
+      "onSaleDate": "2009-09-23T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 24059,
+      "title": "DARK REIGN: THE CABAL 1",
+      "issueTitle": "DARK REIGN: THE CABAL 1 (2009) #1",
+      "seriesTitle": "DARK REIGN: THE CABAL 1",
+      "apiSeriesName": "DARK REIGN: THE CABAL 1 (2009)",
+      "seriesId": 7239,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "detailUrl": "https://www.marvel.com/comics/issue/24059/dark_reign_the_cabal_1_2009_1",
+      "onSaleDate": "2009-04-29T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Uncanny X-Men #512",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "512",
+      "seriesId": 2258,
+      "candidateIssueId": 26965,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26965"
+      ],
+      "selectedIssueId": 26965,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26965/uncanny_x-men_1963_512",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #512",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26965
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Uncanny X-Men #513",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "513",
+      "seriesId": 2258,
+      "candidateIssueId": 26966,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26966"
+      ],
+      "selectedIssueId": 26966,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26966/uncanny_x-men_1963_513",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #513",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26966
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Uncanny X-Men #514",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "514",
+      "seriesId": 2258,
+      "candidateIssueId": 26967,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26967"
+      ],
+      "selectedIssueId": 26967,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26967/uncanny_x-men_1963_514",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #514",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26967
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Uncanny X-Men #515",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "515",
+      "seriesId": 2258,
+      "candidateIssueId": 26968,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26968"
+      ],
+      "selectedIssueId": 26968,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26968/uncanny_x-men_1963_515",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #515",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26968
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Uncanny X-Men #516",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "516",
+      "seriesId": 2258,
+      "candidateIssueId": 26969,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26969"
+      ],
+      "selectedIssueId": 26969,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26969/uncanny_x-men_1963_516",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #516",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26969
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Uncanny X-Men #517",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "517",
+      "seriesId": 2258,
+      "candidateIssueId": 26970,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26970"
+      ],
+      "selectedIssueId": 26970,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26970/uncanny_x-men_1963_517",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #517",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26970
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Uncanny X-Men #518",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "518",
+      "seriesId": 2258,
+      "candidateIssueId": 26971,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26971"
+      ],
+      "selectedIssueId": 26971,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26971/uncanny_x-men_1963_518",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #518",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26971
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Uncanny X-Men #519",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "519",
+      "seriesId": 2258,
+      "candidateIssueId": 26972,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26972"
+      ],
+      "selectedIssueId": 26972,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26972/uncanny_x-men_1963_519",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #519",
+      "note": "Marvel series 2258 (Uncanny X-Men (1963 - 2011)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        26972
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Dark Avengers/Uncanny X-Men: Utopia #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8799,
+      "candidateIssueId": 27513,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27513"
+      ],
+      "selectedIssueId": 27513,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27513/dark_avengersuncanny_x-men_utopia_1_2009_1",
+      "resolvedIssueTitle": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009) #1",
+      "note": "Marvel series 8799 (DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27513
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Dark Avengers/Uncanny X-Men: Exodus #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Avengers/Uncanny X-Men: Exodus",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8798,
+      "candidateIssueId": 27512,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27512"
+      ],
+      "selectedIssueId": 27512,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27512/dark_avengersuncanny_x-men_exodus_2009_1",
+      "resolvedIssueTitle": "Dark Avengers/Uncanny X-Men: Exodus (2009) #1",
+      "note": "Marvel series 8798 (Dark Avengers/Uncanny X-Men: Exodus (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27512
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Dark Avengers #9",
+      "sourceRangeReference": "Dark Avengers #9-10",
+      "normalizedSeriesTitle": "Dark Avengers",
+      "seriesYear": 2009,
+      "issueNumber": "9",
+      "seriesId": 6599,
+      "candidateIssueId": 24814,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24814"
+      ],
+      "selectedIssueId": 24814,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24814/dark_avengers_2009_9",
+      "resolvedIssueTitle": "Dark Avengers (2009) #9",
+      "note": "Marvel series 6599 (Dark Avengers (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24814
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Dark Avengers #10",
+      "sourceRangeReference": "Dark Avengers #9-10",
+      "normalizedSeriesTitle": "Dark Avengers",
+      "seriesYear": 2009,
+      "issueNumber": "10",
+      "seriesId": 6599,
+      "candidateIssueId": 24806,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24806"
+      ],
+      "selectedIssueId": 24806,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24806/dark_avengers_2009_10",
+      "resolvedIssueTitle": "Dark Avengers (2009) #10",
+      "note": "Marvel series 6599 (Dark Avengers (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24806
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Dark Reign: The List - X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Reign: The List - X-Men",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8753,
+      "candidateIssueId": 27424,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27424"
+      ],
+      "selectedIssueId": 27424,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27424/dark_reign_the_list_-_x-men_2009_1",
+      "resolvedIssueTitle": "Dark Reign: The List - X-Men (2009) #1",
+      "note": "Marvel series 8753 (Dark Reign: The List - X-Men (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27424
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Dark Reign: The Cabal #1",
+      "sourceRangeReference": "Material from Dark Reign: The Cabal #1",
+      "normalizedSeriesTitle": "DARK REIGN: THE CABAL 1",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7239,
+      "candidateIssueId": 24059,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24059"
+      ],
+      "selectedIssueId": 24059,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24059/dark_reign_the_cabal_1_2009_1",
+      "resolvedIssueTitle": "DARK REIGN: THE CABAL 1 (2009) #1",
+      "note": "Marvel series 7239 (DARK REIGN: THE CABAL 1 (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24059
+      ]
+    }
+  ],
+  "mappingDigest": "b47bf9e1ceb0f7a9559aea67a01aa009640cc81cd71504660bbdeb26fc391242",
+  "packetReview": "X-Men 2007-2012 reconciliation central review",
+  "approvedManifest": {
+    "id": "x-men-utopia",
+    "name": "Avengers and X-Men: Utopia",
+    "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-men-utopia.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+    "sourceSection": "Avengers and X-Men: Utopia",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_men_utopia.json",
+    "characters": [
+      "X-Men",
+      "Cyclops",
+      "Emma Frost",
+      "Dark Avengers"
+    ],
+    "keywords": [
+      "Utopia",
+      "Dark Reign",
+      "X-Men",
+      "Dark Avengers"
+    ],
+    "expect": 14,
+    "timeline": 2009,
+    "coverIssueId": 27513
+  },
+  "relationshipReview": {
+    "reportDigest": "05d217795d55675233dfe687c6d55d0fbb9b009eaf9ded1183624e0638e009f1",
+    "packetDigest": "532457b6800fecb8f31944fa85170e849ff6f007e10594bde6686fd3439a0ad1",
+    "mappingDigest": "b47bf9e1ceb0f7a9559aea67a01aa009640cc81cd71504660bbdeb26fc391242",
+    "libraryDigest": "6d58c636041ea7c81d0339da1e692c8b7d6d3790ad5319128d3c724994abace2",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "Approved as an exact standalone Utopia section even though dark-reign-avengers already uses 3 shared issues; the non-overlap reading path excludes Utopia so readers are not sent through the same issue twice.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.5",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "Approved as an exact standalone Utopia section even though x-men-nation-x already uses 5 shared issues; the non-overlap reading path excludes Utopia so readers are not sent through the same issue twice.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.5",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T04:55:00.000Z"
+      }
+    ],
+    "rationale": "Every overlap was reviewed centrally. Utopia is retained as a standalone exact source section, while the shipped no-repeat X-Men path sequences the existing non-overlapping guides instead of duplicating Utopia rows.",
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.5",
+    "reviewedAt": "2026-08-26T04:55:00.000Z",
+    "approvalDigest": "b851446b0b28b7020db8441ffefa5dc4d1c5d8abbbe4533fd89a285a0202f149"
+  }
+}

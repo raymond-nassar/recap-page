@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "id": "x-men-utopia",
+  "inventoryId": "x-men-events-fast-track",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+  "sourceSection": "Avengers and X-Men: Utopia",
+  "sourceRetrievedAt": "2026-08-25",
+  "sourceBoundary": "The Avengers and X-Men: Utopia section's single collected-edition boundary: Uncanny X-Men #512-519, the Utopia and Exodus one-shots, Dark Avengers #9-10, Dark Reign: The List - X-Men #1, and material from Dark Reign: The Cabal #1.",
+  "excludedSourceReferences": [],
+  "expectedCount": 14,
+  "proposedManifest": {
+    "id": "x-men-utopia",
+    "name": "Avengers and X-Men: Utopia",
+    "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "x-men-utopia.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+    "sourceSection": "Avengers and X-Men: Utopia",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "x_men_utopia.json",
+    "characters": [
+      "X-Men",
+      "Cyclops",
+      "Emma Frost",
+      "Dark Avengers"
+    ],
+    "keywords": [
+      "Utopia",
+      "Dark Reign",
+      "X-Men",
+      "Dark Avengers"
+    ],
+    "expect": 14,
+    "timeline": 2009,
+    "coverIssueId": 27513
+  },
+  "insertionAnchor": {
+    "beforeId": "x-men-nation-x"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.5",
+    "rationale": "The visible collected-edition boundary, exact section identity, issue count, and insertion point were reviewed against the fetched source page and current catalog. Utopia is a true gap because broader shipped orders only cover parts of the section and overlap the rest.",
+    "reviewedAt": "2026-08-26T04:55:00.000Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Uncanny X-Men #512",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "512",
+      "seriesId": 2258,
+      "candidateIssueId": 26965,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #513",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "513",
+      "seriesId": 2258,
+      "candidateIssueId": 26966,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #514",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "514",
+      "seriesId": 2258,
+      "candidateIssueId": 26967,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #515",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "515",
+      "seriesId": 2258,
+      "candidateIssueId": 26968,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #516",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "516",
+      "seriesId": 2258,
+      "candidateIssueId": 26969,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #517",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "517",
+      "seriesId": 2258,
+      "candidateIssueId": 26970,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #518",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "518",
+      "seriesId": 2258,
+      "candidateIssueId": 26971,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men #519",
+      "sourceRangeReference": "Uncanny X-Men #512-519",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "519",
+      "seriesId": 2258,
+      "candidateIssueId": 26972,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Dark Avengers/Uncanny X-Men: Utopia #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8799,
+      "candidateIssueId": 27513,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Dark Avengers/Uncanny X-Men: Exodus #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Avengers/Uncanny X-Men: Exodus",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8798,
+      "candidateIssueId": 27512,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Dark Avengers #9",
+      "sourceRangeReference": "Dark Avengers #9-10",
+      "normalizedSeriesTitle": "Dark Avengers",
+      "seriesYear": 2009,
+      "issueNumber": "9",
+      "seriesId": 6599,
+      "candidateIssueId": 24814,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Dark Avengers #10",
+      "sourceRangeReference": "Dark Avengers #9-10",
+      "normalizedSeriesTitle": "Dark Avengers",
+      "seriesYear": 2009,
+      "issueNumber": "10",
+      "seriesId": 6599,
+      "candidateIssueId": 24806,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Dark Reign: The List - X-Men #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Dark Reign: The List - X-Men",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8753,
+      "candidateIssueId": 27424,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Dark Reign: The Cabal #1",
+      "sourceRangeReference": "Material from Dark Reign: The Cabal #1",
+      "normalizedSeriesTitle": "DARK REIGN: THE CABAL 1",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7239,
+      "candidateIssueId": 24059,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "532457b6800fecb8f31944fa85170e849ff6f007e10594bde6686fd3439a0ad1"
+}

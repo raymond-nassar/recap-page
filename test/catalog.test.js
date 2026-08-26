@@ -893,7 +893,7 @@ test('narrowing can leave a screen populated with the first stop gone', async ()
     .filter((stories) => stories.length && !first(stories));
   assert.ok(hiding.length, 'a facet keeps rows while dropping the story the badge is on');
 
-  const searched = groupCatalog(searchCatalog(catalog.lists, 'x-men'));
+  const searched = groupCatalog(searchCatalog(catalog.lists, 'spider'));
   assert.ok(searched.length && !first(searched), 'and so does a search');
 });
 

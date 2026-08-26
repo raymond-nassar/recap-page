@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T04:25:58.054Z",
+  "generatedAt": "2026-08-26T04:57:25.961Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -4220,6 +4220,43 @@
       "updatedAt": "2026-08-21T15:16:57.184Z"
     },
     {
+      "id": "x-men-utopia",
+      "file": "x_men_utopia.json",
+      "name": "Avengers and X-Men: Utopia",
+      "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+      "type": "event",
+      "depth": "complete",
+      "count": 14,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Cyclops",
+        "Emma Frost",
+        "Dark Avengers"
+      ],
+      "keywords": [
+        "Utopia",
+        "Dark Reign",
+        "X-Men",
+        "Dark Avengers"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2009,
+      "coverIssueId": 27513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/4bb45b68ef7cd",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+      "sourceSection": "Avengers and X-Men: Utopia",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T04:57:08.387Z"
+    },
+    {
       "id": "x-men-nation-x",
       "file": "x_men_nation_x.json",
       "name": "X-Men: Nation X",
@@ -5089,6 +5126,26 @@
         "hickman-minimal",
         "all-new-all-different-avengers",
         "marvel-fresh-start-avengers"
+      ]
+    },
+    {
+      "id": "x-men-messiah-to-avx",
+      "name": "X-Men: Messiah Complex to Avengers vs. X-Men",
+      "description": "The X-Men event track from Messiah Complex through Regenesis. Utopia is available as its own order, but this path leaves it out because its exact section overlaps Nation X and Dark Reign.",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's X-Men events guide and adjacent exact guides.",
+      "steps": [
+        "messiah-complex",
+        "x-men-divided-we-stand",
+        "x-men-manifest-destiny",
+        "messiah-war",
+        "x-men-nation-x",
+        "necrosha",
+        "second-coming",
+        "x-men-curse-of-the-mutants",
+        "wolverine-goes-to-hell",
+        "x-men-age-of-x",
+        "x-men-schism",
+        "x-men-regenesis"
       ]
     }
   ]

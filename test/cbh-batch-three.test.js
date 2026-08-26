@@ -19,6 +19,7 @@ const dataDir = path.join(root, 'src', 'data');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const sharedXMenPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/';
+const laterReviewedIds = new Set(['x-men-utopia']);
 
 const EXPECTED_COUNTS = Object.freeze({
   'x-men-divided-we-stand': 48,
@@ -231,11 +232,11 @@ test('batch three keeps its original identities, sequence, and no-overlap report
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) packetRecords.push(record);
-    else existingRecords.push(record);
+    else if (!laterReviewedIds.has(entry.id)) existingRecords.push(record);
   }
 
   assert.equal(packetRecords.length, 10);
-  assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length);
+  assert.equal(existingRecords.length, manifest.lists.length - packetRecords.length - laterReviewedIds.size);
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
   for (const id of THIRD_PACKET_IDS) {

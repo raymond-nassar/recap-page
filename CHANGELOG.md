@@ -14,6 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the Utopia gap and X-Men event path
+
+In plain English: The X-Men guide now has a continuous event path from Messiah Complex through
+Regenesis, and Utopia is available as its own 14-issue reading guide. The path does not send you
+through Utopia because those issues already overlap nearby guides, so following the path will not ask
+you to read the same issue twice. Nothing you have saved is changed.
+
+For maintainers: the Utopia packet, mapping, and relationship report bind 14 source rows. Two
+partial overlaps are centrally approved: five shared Uncanny X-Men issues with Nation X and three
+shared crossover issues with the Avengers Dark Reign order. Avengers vs. X-Men remains a handoff,
+not a claimed stop in this page's source coverage.
+
 ### Added the final sequential historical Marvel event guides
 
 In plain English: The Hunt for Xavier and Magneto War are now available as complete historical
