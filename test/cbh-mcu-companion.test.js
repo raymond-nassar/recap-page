@@ -103,7 +103,17 @@ function peerIdsForReviewedReport(id) {
 }
 
 function excludedIdsForReviewedReport(id, peerIds) {
-  if (id === 'wandavision') return [id, ...peerIds, 'spider-man-far-from-home'];
+  if (id === 'wandavision') {
+    return [
+      id,
+      ...peerIds,
+      'spider-man-far-from-home',
+      'ant-man-reading-order',
+      'hickman-x-men',
+      'ultimate-marvel-intro',
+      'x-men-utopia',
+    ];
+  }
   return frozenExcludedIds;
 }
 
@@ -394,7 +404,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 138);
+  assert.equal(catalog.lists.length, 140);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
