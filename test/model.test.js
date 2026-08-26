@@ -1013,8 +1013,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
-  assert.equal(claimed, 897, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 897, 'the bundled placeholder total moved; re-derive the figures in the record');
+  // The Captain America guide adds 69 source-preserving placeholders. Its representative cover
+  // record remains a placeholder, so the total rises without claiming a metadata match.
+  assert.equal(claimed, 966, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 966, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1206,7 +1208,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-confirmed issue ids that the live metadata index does not list, and none repeat an id
   // already present in the bundled catalog.
   //
-  // The Abomination guide adds two more exact issue pages with no metadata response.
-  assert.equal(refused.length, 942);
+  // The Abomination guide adds two more exact issue pages with no metadata response. Captain
+  // America adds 69 placeholders, 68 of which are new negative identifiers because its cover
+  // record already has a pinned Marvel issue id.
+  assert.equal(refused.length, 1010);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
