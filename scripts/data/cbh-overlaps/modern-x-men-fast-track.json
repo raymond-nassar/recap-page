@@ -2,13 +2,19 @@
   "candidateId": "modern-x-men-fast-track",
   "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
   "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-  "libraryDigest": "1d4bef7ffbdbff39015c2d7efcdcfd8ed1922f8c28233c504940d322bfce1c92",
+  "libraryDigest": "8cd2803280bbe187442a885ac0aaa194d9b463a6bdcf10db4cff06bc4fd14842",
   "peerDigests": {},
   "candidateCount": 278,
-  "comparisonCount": 140,
+  "comparisonCount": 143,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -39,6 +45,12 @@
     },
     {
       "orderId": "annihilation-conquest",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -711,6 +723,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -980,5 +998,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9d09297f401b7f06fa366d43bd2f06bd4d480f83efdf0fb38797bbcd28b1b60e"
+  "reportDigest": "1d61e8dce8c7bce247e853144a3621bd39443cc00ddfdabd2e41e5b85466e617"
 }

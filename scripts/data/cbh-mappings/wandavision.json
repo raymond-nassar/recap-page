@@ -2297,14 +2297,15 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "Every current-library and selected-peer relationship was reviewed after exact WandaVision mapping. Four partial overlaps are approved because they preserve the source sequence for a distinct MCU Prep screen companion; all other comparisons share no issue.",
     "reviewedAt": "2026-08-26",
-    "reportDigest": "937acd0fbc89ff0a6e2eab961566e751d07d5beb2410e6a5a3bf783015ba925f",
+    "reportDigest": "4f0e4dd25798a502e6e80685dca2cd8634ee949207a01e88a8781c838775353a",
     "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
     "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
-    "libraryDigest": "95826fce84e1f1651d9c4b81ca5fba47555f19089210d07b1c15ed56f318462b",
+    "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
       "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
+      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
       "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
     },
     "dispositions": [
@@ -2609,7 +2610,7 @@
         "orderId": "essential-avengers",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The overlap is limited to the three Chthon origin issues also present in the broad Avengers essentials guide; the WandaVision screen companion keeps the source sequence intact and does not replace that guide.",
+        "rationale": "The reviewed reading purpose is distinct from essential-avengers.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26"
@@ -2843,7 +2844,7 @@
         "orderId": "marvel-fresh-start-avengers",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The overlap is the complete Avengers: No Road Home segment, which remains a partial relationship because the WandaVision guide also contains older Scarlet Witch and Vision history plus later X-Men context.",
+        "rationale": "The reviewed reading purpose is distinct from marvel-fresh-start-avengers.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26"
@@ -3095,7 +3096,7 @@
         "orderId": "rocket-raccoon-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The overlap is the complete Avengers: No Road Home segment, approved because the existing character guide and this WandaVision screen companion serve different reading paths and no issue is dropped.",
+        "rationale": "The reviewed reading purpose is distinct from rocket-raccoon-reading-order.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26"
@@ -3104,7 +3105,7 @@
         "orderId": "scarlet-witch-best-of",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The overlap is expected because both guides follow Scarlet Witch and Vision milestones, but this screen companion has a distinct WandaVision source boundary and keeps every shared issue in source order.",
+        "rationale": "The reviewed reading purpose is distinct from scarlet-witch-best-of.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26"
@@ -3209,6 +3210,15 @@
         "reviewedAt": "2026-08-26"
       },
       {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
         "orderId": "spider-man-identity-crisis",
         "relationship": "none",
         "decision": "approved",
@@ -3255,6 +3265,15 @@
       },
       {
         "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thanos-reading-order",
         "relationship": "none",
         "decision": "approved",
         "rationale": "The current report contains no shared issue for this order.",
@@ -3515,6 +3534,6 @@
         "reviewedAt": "2026-08-26"
       }
     ],
-    "approvalDigest": "ee021424d090c66fddf0150cab93c2cebbe47e7963a9d1c77a656985b65ee0fd"
+    "approvalDigest": "e82b565b1ef45186377b5c1e39c0be60476dd0599f9cb2e4a172ffb6bcfc7ab9"
   }
 }

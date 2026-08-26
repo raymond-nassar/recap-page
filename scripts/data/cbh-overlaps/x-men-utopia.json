@@ -2,10 +2,10 @@
   "candidateId": "x-men-utopia",
   "packetDigest": "532457b6800fecb8f31944fa85170e849ff6f007e10594bde6686fd3439a0ad1",
   "mappingDigest": "b47bf9e1ceb0f7a9559aea67a01aa009640cc81cd71504660bbdeb26fc391242",
-  "libraryDigest": "6d58c636041ea7c81d0339da1e692c8b7d6d3790ad5319128d3c724994abace2",
+  "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
   "peerDigests": {},
   "candidateCount": 14,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -648,6 +648,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -822,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "05d217795d55675233dfe687c6d55d0fbb9b009eaf9ded1183624e0638e009f1"
+  "reportDigest": "b7b8564b4f54f17b9c43ed42e562f9993421acf5bede833f867f38b9e5af350e"
 }

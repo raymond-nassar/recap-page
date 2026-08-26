@@ -25,6 +25,37 @@ For maintainers: the gateway, its count, and its visibility are derived from the
 Empty periods remain hidden, all existing age and period addresses remain compatible, and browser
 history includes the gateway when readers enter through Home or Browse.
 
+### Added the Thanos reading guide
+
+In plain English: A 272-issue Thanos reading guide is now available, from his first Cosmic Cube
+campaigns through the Legacy of Thanos. Seven comics in the source guide are not on Marvel Unlimited,
+so the checklist leaves them out while preserving their places for maintainers. Nothing you have saved
+is changed.
+
+For maintainers: the frozen source records 321 occurrences across 279 identities, including 42
+intentional later mentions. Twelve exact identities use reviewed Marvel facts because the configured
+metadata provider omits them. Seven closed availability exclusions link to the separately assigned
+missing-comics issue. The complete-library report covers 137 comparisons with nine approved non-none
+relationships.
+
+### Added the complete Ant-Man character guide
+
+In plain English: The Character Spotlights now include a complete Ant-Man guide, following Hank
+Pym, Scott Lang, and the rest of the Ant-Man legacy from his first appearance through 2022, 386
+issues in all. The catalog now has 138 reading lists. Three old, hard-to-find comics referenced by
+the source guide (a 2003 miniseries, a 2001 series, and a 2012 original graphic novel) are absent
+from every comic database this app can check, so they are recorded as excluded rather than guessed
+at or silently dropped. Nothing you have saved is changed.
+
+For maintainers: the full source inventory records 437 whole-issue occurrences across the guide's
+eight numbered sections and its Latest Additions, preserving the owner's clarification for Ant-Man
+& The Wasp: Living Legends, the War of the Realms: War Scrolls B and C backup features resolved to
+their three parent issues, and Tales to Astonish #37 and #43 already read inside an earlier span.
+Thirty-five occurrences (Ant-Man: Season One, Alias #1-28, Secret Empire #9-10, and the 2003 Ant-Man
+MAX mini) are excluded as absent from the vendored series index, a live series listing pass, and a
+live full text issue search, leaving 386 distinct issues. The relationship report covers 137
+current-library comparisons; twelve partial and one existing-subset relationship are centrally
+approved as crossover reading both guides independently require.
 ### Added the complete Iron Man Character Spotlight guide
 
 In plain English: the Character spotlights shelf now includes a complete Iron Man guide. It follows

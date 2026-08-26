@@ -2,10 +2,10 @@
   "candidateId": "fall-house-x-rise-powers-x",
   "packetDigest": "2038dbbaef9ad1d42b0bc0f0efea44de7d527e459fe9c34649dd25495fb0ecea",
   "mappingDigest": "9aaca36b8a823c50d8ff26cf7ba267319e716deb0dc8dac041c65597724b2326",
-  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+  "libraryDigest": "91d1c73b84ad63c50c9b95ba8aedda27ba94456a32bf2ee2cc0f8517320e139f",
   "peerDigests": {},
   "candidateCount": 34,
-  "comparisonCount": 85,
+  "comparisonCount": 86,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -392,6 +392,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -518,5 +524,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "d4b585a6fc63dc831d85597eaad804044313fac73e290ec2222158af1509c67c"
+  "reportDigest": "160ad58a61d50071406c02d042e657b68d7420565c4e4f712e86cdb091c6e7da"
 }

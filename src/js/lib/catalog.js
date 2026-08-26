@@ -9,7 +9,7 @@
 import { normalizeCover } from './model.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
-export const READING_DEPTHS = ['essential', 'complete', 'tie-ins', 'selected'];
+export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
 export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
 
 const SPOTLIGHT_KIND_LABELS = {
@@ -42,6 +42,7 @@ const TYPE_FACET_LABELS = {
 const DEPTH_LABELS = {
   essential: 'Essential reading',
   complete: 'Complete reading',
+  partial: 'Partial reading',
   'tie-ins': 'Tie-ins',
   selected: 'Selected issues',
 };
@@ -51,6 +52,7 @@ const DEPTH_LABELS = {
 const DEPTH_HINTS = {
   essential: 'The core issues only, the shortest path through the story.',
   complete: 'Every issue, including tie-ins and side stories.',
+  partial: 'Available issues from a broader guide, with known omissions recorded.',
   'tie-ins': 'The tie-in issues that surround a main story.',
   selected: 'Issue-specific recommendations chosen from a broader guide.',
 };

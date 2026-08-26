@@ -2,10 +2,10 @@
   "candidateId": "hunt-for-wolverine",
   "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4",
   "mappingDigest": "1f4ed5ebc388bfb433ab5b863856eeea2f6eb3536e960e0f0ed65b5f0ee9c1d3",
-  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+  "libraryDigest": "1d7d1478a87b1e1f025cae1f0f4161ef8b6e29d1821016af2781dfc7770d6c21",
   "peerDigests": {},
   "candidateCount": 24,
-  "comparisonCount": 85,
+  "comparisonCount": 86,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -394,6 +394,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -520,5 +526,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "0aa15dba5a8195e81d9350fe6a11228da0fc0674ef7472fa95236a599f248477"
+  "reportDigest": "583e0d59343c954785cacad23e1e89c889a6b490977aa3c6544141471be2548b"
 }

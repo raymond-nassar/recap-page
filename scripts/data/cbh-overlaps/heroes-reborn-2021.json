@@ -2,12 +2,12 @@
   "candidateId": "heroes-reborn-2021",
   "packetDigest": "5a27486f35415e510a6bffcc034bc1f38288a820ac4429efe4605b29541d37d2",
   "mappingDigest": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620",
-  "libraryDigest": "f1da281c4deb02b9975312e2176d74560d0d4f5d0e5adf97a7f11d09f43646e6",
+  "libraryDigest": "0dea147fec25c6ef87da0addc9abc392869238229eec3b5c5cd91c8bde3c6961",
   "peerDigests": {
     "x-of-swords": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3"
   },
   "candidateCount": 18,
-  "comparisonCount": 85,
+  "comparisonCount": 86,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -394,6 +394,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -520,5 +526,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "cadf4d989dcccabf23f83103f0ca211049f6c4f39f059a956e46a3f022cf7d05"
+  "reportDigest": "43ae4e5e5f088f781bf8b976d0cbb2cb5e000fda695965c7b2bc6adb5f8d9703"
 }

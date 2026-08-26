@@ -4576,10 +4576,10 @@
     "coverIssueId": 4372
   },
   "relationshipReview": {
-    "reportDigest": "2aa868c40a55630fbc8d5a53b9baa93a255148a9b5e28c0ac2869f9b7e19f358",
+    "reportDigest": "b1d5cb727fe7d28580f76065e01ee57c97cf65aa9d733dcf0255ab59fe89ca8d",
     "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
     "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-    "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
+    "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
     "peerDigests": {},
     "dispositions": [
       {
@@ -5537,6 +5537,17 @@
         "reviewedAt": "2026-08-26T05:30:00Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-26T05:30:00Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "decision": "approved",
@@ -5793,6 +5804,6 @@
     "authorityIdentity": "GPT-5.5",
     "reviewedAt": "2026-08-26T05:30:00Z",
     "rationale": "The first Earth-1610 Ultimate Marvel release was compared against every current catalog order. All 134 relationships are none, so no existing order or selected peer duplicates this issue sequence.",
-    "approvalDigest": "97c4392ecb9925d2f7d41f46c758adecd05b4c091f727e684587df7a8ad507be"
+    "approvalDigest": "a564f3506960438bbfce44da33948476fa7b56c41e18d21e4ec5d91d04835918"
   }
 }
