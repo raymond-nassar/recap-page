@@ -1,0 +1,471 @@
+{
+  "id": "x-men-utopia",
+  "name": "Avengers and X-Men: Utopia",
+  "description": "Fourteen chapters covering the Utopia crossover through Uncanny X-Men, Dark Avengers, the Utopia and Exodus one-shots, and the Dark Reign companion issues.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/",
+  "sourceSection": "Avengers and X-Men: Utopia",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T04:57:08.387Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 14,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 26965,
+      "title": "Uncanny X-Men (1963) #512",
+      "number": "512",
+      "url": "https://www.marvel.com/comics/issue/26965/uncanny_x-men_1963_512",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2010-08-18T00:00:00+0000",
+      "digitalId": 12715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/59270cec7c4fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yanick Paquette",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26966,
+      "title": "Uncanny X-Men (1963) #513",
+      "number": "513",
+      "url": "https://www.marvel.com/comics/issue/26966/uncanny_x-men_1963_513",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-07-01T00:00:00+0000",
+      "mu": "2010-09-01T00:00:00+0000",
+      "digitalId": 12766,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/59271fc24f6e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26967,
+      "title": "Uncanny X-Men (1963) #514",
+      "number": "514",
+      "url": "https://www.marvel.com/comics/issue/26967/uncanny_x-men_1963_514",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-08-12T00:00:00+0000",
+      "mu": "2010-11-17T00:00:00+0000",
+      "digitalId": 16919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/5927228f489d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rian Hughes",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26968,
+      "title": "Uncanny X-Men (1963) #515",
+      "number": "515",
+      "url": "https://www.marvel.com/comics/issue/26968/uncanny_x-men_1963_515",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2010-12-01T00:00:00+0000",
+      "digitalId": 13478,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/592725ce03018",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26969,
+      "title": "Uncanny X-Men (1963) #516",
+      "number": "516",
+      "url": "https://www.marvel.com/comics/issue/26969/uncanny_x-men_1963_516",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-10-14T00:00:00+0000",
+      "mu": "2011-04-06T00:00:00+0000",
+      "digitalId": 17070,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/5927290854df9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26970,
+      "title": "Uncanny X-Men (1963) #517",
+      "number": "517",
+      "url": "https://www.marvel.com/comics/issue/26970/uncanny_x-men_1963_517",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2011-04-13T00:00:00+0000",
+      "digitalId": 17325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/59272b1c71314",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26971,
+      "title": "Uncanny X-Men (1963) #518",
+      "number": "518",
+      "url": "https://www.marvel.com/comics/issue/26971/uncanny_x-men_1963_518",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-12-03T00:00:00+0000",
+      "mu": "2011-04-20T00:00:00+0000",
+      "digitalId": 18508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/59272d4a09b86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26972,
+      "title": "Uncanny X-Men (1963) #519",
+      "number": "519",
+      "url": "https://www.marvel.com/comics/issue/26972/uncanny_x-men_1963_519",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2011-04-27T00:00:00+0000",
+      "digitalId": 18507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/59272efd4012f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27513,
+      "title": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27513/dark_avengersuncanny_x-men_utopia_1_2009_1",
+      "seriesId": 8799,
+      "seriesName": "DARK AVENGERS/UNCANNY X-MEN: UTOPIA 1 (2009)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/4bb45b68ef7cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Top Cow Joe Weems",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27512,
+      "title": "Dark Avengers/Uncanny X-Men: Exodus (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27512/dark_avengersuncanny_x-men_exodus_2009_1",
+      "seriesId": 8798,
+      "seriesName": "Dark Avengers/Uncanny X-Men: Exodus (2009)",
+      "onSale": "2009-09-10T00:00:00+0000",
+      "mu": "2011-01-25T15:09:50+0000",
+      "digitalId": 16942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5ae75f7d92355",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24814,
+      "title": "Dark Avengers (2009) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/24814/dark_avengers_2009_9",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-09-16T00:00:00+0000",
+      "mu": "2009-12-23T00:00:00+0000",
+      "digitalId": 13562,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/514ca04f8dedc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24806,
+      "title": "Dark Avengers (2009) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/24806/dark_avengers_2009_10",
+      "seriesId": 6599,
+      "seriesName": "Dark Avengers (2009 - 2010)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2010-02-09T00:00:00+0000",
+      "digitalId": 13811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/514ca040da121",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27424,
+      "title": "Dark Reign: The List - X-Men (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27424/dark_reign_the_list_-_x-men_2009_1",
+      "seriesId": 8753,
+      "seriesName": "Dark Reign: The List - X-Men (2009)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2011-03-01T10:02:39+0000",
+      "digitalId": 18362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5b5b5e95765ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24059,
+      "title": "DARK REIGN: THE CABAL 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24059/dark_reign_the_cabal_1_2009_1",
+      "seriesId": 7239,
+      "seriesName": "DARK REIGN: THE CABAL 1 (2009)",
+      "onSale": "2009-04-29T00:00:00+0000",
+      "mu": "2009-04-29T00:00:00+0000",
+      "digitalId": 13698,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/52c5cb7e114d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Max Fiumara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tonci Zonjic",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        },
+        {
+          "name": "Peter Milligan",
+          "role": "writer"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

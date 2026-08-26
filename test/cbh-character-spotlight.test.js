@@ -230,6 +230,8 @@ const laterMcuIds = [
 const laterCbhIds = [
   'hickman-x-men',
   'ultimate-marvel-intro',
+  'x-men-utopia',
+  'x-men-messiah-to-avx',
 ];
 const continuationHistoricalIds = laterHistoricalIds.slice(5);
 
@@ -283,6 +285,10 @@ async function readJson(relativePath) {
 async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]) {
   const excluded = new Set(excludedIds);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
+  const paths = (manifest.paths ?? []).filter((entry) => (
+    !excluded.has(entry.id)
+    && !entry.steps?.some((step) => excluded.has(step))
+  ));
   const orderIssueIds = await Promise.all(lists.map(async (entry) => {
     const payload = await readJson(path.join('src', 'data', entry.out || `${entry.id}.json`));
     return {
@@ -290,7 +296,7 @@ async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]
       issueIds: issueIdsFromValue(payload),
     };
   }));
-  return libraryDigestFor({ ...manifest, lists }, orderIssueIds);
+  return libraryDigestFor({ ...manifest, lists, paths }, orderIssueIds);
 }
 
 test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => {
@@ -723,6 +729,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   });
   assert.deepEqual(
     regeneratedReport.comparisons.filter((comparison) => !laterMcuIds.includes(comparison.orderId)
+      && !continuationHistoricalIds.includes(comparison.orderId)
       && !laterCbhIds.includes(comparison.orderId)
       && !continuationHistoricalIds.includes(comparison.orderId)),
     report.comparisons,
@@ -1169,7 +1176,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 136);
+  assert.equal(catalog.lists.length, 137);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 14);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);

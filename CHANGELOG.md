@@ -17,7 +17,7 @@ quote in a bug report.
 ### Added the opening Ultimate Marvel Universe guide
 
 In plain English: The first original Ultimate Marvel Universe reading guide is now available. It
-adds 121 issues from the early Earth-1610 era, ending at Ultimate War, bringing the catalog to 136
+adds 121 issues from the early Earth-1610 era, ending at Ultimate War, bringing the catalog to 137
 reading lists, and nothing you have saved is changed.
 
 The guide stops before the next section of the source order. The fast-track recommendations, trade
@@ -29,11 +29,23 @@ sections and four excluded non-main or out-of-scope sections. The first frozen p
 and complete relationship report bind all 121 selected rows. The report covers 134 current-library
 comparisons, all with no shared issue.
 
+### Added the Utopia gap and X-Men event path
+
+In plain English: The X-Men guide now has a continuous event path from Messiah Complex through
+Regenesis, and Utopia is available as its own 14-issue reading guide. The path does not send you
+through Utopia because those issues already overlap nearby guides, so following the path will not ask
+you to read the same issue twice. Nothing you have saved is changed.
+
+For maintainers: the Utopia packet, mapping, and relationship report bind 14 source rows. Two
+partial overlaps are centrally approved: five shared Uncanny X-Men issues with Nation X and three
+shared crossover issues with the Avengers Dark Reign order. Avengers vs. X-Men remains a handoff,
+not a claimed stop in this page's source coverage.
+
 ### Added Jonathan Hickman's X-Men creator-run
 
 In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It
-adds 54 Hickman-written or Hickman-co-written issues in source order, bringing the catalog to 135
-reading lists, and nothing you have saved is changed.
+adds 54 Hickman-written or Hickman-co-written issues in source order, and nothing you have saved is
+changed.
 
 For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are
 intentional because those events remain complete event guides, while Destiny of X and Fall of X are
