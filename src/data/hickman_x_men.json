@@ -1,0 +1,1719 @@
+{
+  "id": "hickman-x-men",
+  "name": "Jonathan Hickman's X-Men",
+  "description": "Jonathan Hickman's Krakoa-era X-Men story from House of X and Powers of X through Inferno, limited to issues he wrote or co-wrote.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/jonathan-hickman-x-men-reading-order/",
+  "sourceSection": "Hickman-authored Krakoa issues from House of X through Inferno",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T05:10:16.783Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 54,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 72984,
+      "title": "House of X (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72984/house_of_x_2019_1",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 51975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5d2c9219cea44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72991,
+      "title": "Powers of X (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72991/powers_of_x_2019_1",
+      "seriesId": 26340,
+      "seriesName": "Powers of X (2019)",
+      "onSale": "2019-07-31T00:00:00+0000",
+      "mu": "2020-02-03T00:00:00+0000",
+      "digitalId": 51997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5d3881009cf09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72985,
+      "title": "House of X (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72985/house_of_x_2019_2",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5d404f03e956c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72992,
+      "title": "Powers of X (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72992/powers_of_x_2019_2",
+      "seriesId": 26340,
+      "seriesName": "Powers of X (2019)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 52353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/5d4c2c000a550",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72993,
+      "title": "Powers of X (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72993/powers_of_x_2019_3",
+      "seriesId": 26340,
+      "seriesName": "Powers of X (2019)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": 52382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5d5422c0d398c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72986,
+      "title": "House of X (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72986/house_of_x_2019_3",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52403,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5d5d4cb71428f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72987,
+      "title": "House of X (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72987/house_of_x_2019_4",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d63e46315cfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75125,
+      "title": "Marvel Comics (2019) #1000",
+      "number": "1000",
+      "url": "https://www.marvel.com/comics/issue/75125/marvel_comics_2019_1000",
+      "seriesId": 27020,
+      "seriesName": "Marvel Comics (2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52319,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/04/5d5d4cbf869ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Allred",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Azaceta",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        },
+        {
+          "name": "Kareem Abdul-Jabbar",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72994,
+      "title": "Powers of X (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72994/powers_of_x_2019_4",
+      "seriesId": 26340,
+      "seriesName": "Powers of X (2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5d700f767292d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72988,
+      "title": "House of X (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72988/house_of_x_2019_5",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2020-03-23T00:00:00+0000",
+      "digitalId": 52492,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5d7671b846bbf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72995,
+      "title": "Powers of X (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72995/powers_of_x_2019_5",
+      "seriesId": 26340,
+      "seriesName": "Powers of X (2019)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-30T00:00:00+0000",
+      "digitalId": 52538,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5d7f92faf2652",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72989,
+      "title": "House of X (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/72989/house_of_x_2019_6",
+      "seriesId": 26338,
+      "seriesName": "House of X (2019)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5d8a2ac99618d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 72996,
+      "title": "Powers of X (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/72996/powers_of_x_2019_6",
+      "seriesId": 26340,
+      "seriesName": "Powers of X (2019)",
+      "onSale": "2019-10-09T00:00:00+0000",
+      "mu": "2020-04-13T00:00:00+0000",
+      "digitalId": 52701,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5d924cee0554e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76803,
+      "title": "X-Men (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76803/x-men_2019_1",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2019-10-16T00:00:00+0000",
+      "mu": "2020-04-20T00:00:00+0000",
+      "digitalId": 52818,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5d4b3306e6152",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76757,
+      "title": "New Mutants (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76757/new_mutants_2019_1",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 53011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5db841cf8eec1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76804,
+      "title": "X-Men (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76804/x-men_2019_2",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2020-05-18T00:00:00+0000",
+      "digitalId": 53040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5dc092b3b56f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76758,
+      "title": "New Mutants (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76758/new_mutants_2019_2",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2019-11-27T00:00:00+0000",
+      "mu": "2020-06-01T00:00:00+0000",
+      "digitalId": 53012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5dc9db95c6064",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76805,
+      "title": "X-Men (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/76805/x-men_2019_3",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2019-12-04T00:00:00+0000",
+      "mu": "2019-12-04T00:00:00+0000",
+      "digitalId": 53309,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5ddc12cb3c18e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76984,
+      "title": "Incoming! (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76984/incoming_2019_1",
+      "seriesId": 27620,
+      "seriesName": "Incoming! (2019)",
+      "onSale": "2019-12-26T00:00:00+0000",
+      "mu": "2020-06-29T00:00:00+0000",
+      "digitalId": 53263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5df908fde11be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Carmen Carnero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Fornes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Ed Brisson",
+          "role": "writer"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76806,
+      "title": "X-Men (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76806/x-men_2019_4",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-01-01T00:00:00+0000",
+      "mu": "2020-07-06T00:00:00+0000",
+      "digitalId": 53310,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5e00d9c50b084",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76761,
+      "title": "New Mutants (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/76761/new_mutants_2019_5",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2020-01-08T00:00:00+0000",
+      "mu": "2020-07-13T00:00:00+0000",
+      "digitalId": 53576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5e0a66482fa4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76807,
+      "title": "X-Men (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/76807/x-men_2019_5",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-01-29T00:00:00+0000",
+      "mu": "2020-08-03T00:00:00+0000",
+      "digitalId": 53609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5e289070527ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79944,
+      "title": "X-Men (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/79944/x-men_2019_6",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-02-12T00:00:00+0000",
+      "mu": "2020-08-17T00:00:00+0000",
+      "digitalId": 53610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5e3b355d9acbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Matteo Buffagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76763,
+      "title": "New Mutants (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/76763/new_mutants_2019_7",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5e28a3c311c3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82527,
+      "title": "Giant-Size X-Men: Jean Grey and Emma Frost (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82527/giant-size_x-men_jean_grey_and_emma_frost_2020_1",
+      "seriesId": 29334,
+      "seriesName": "Giant-Size X-Men: Jean Grey and Emma Frost (2020)",
+      "onSale": "2020-02-26T00:00:00+0000",
+      "mu": "2020-08-31T00:00:00+0000",
+      "digitalId": 53964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5e4c363549aca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79945,
+      "title": "X-Men (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/79945/x-men_2019_7",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-02-26T00:00:00+0000",
+      "mu": "2020-08-31T00:00:00+0000",
+      "digitalId": 54084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5e28a1ff7befe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79946,
+      "title": "X-Men (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/79946/x-men_2019_8",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-03-11T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5e5835541c3ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79947,
+      "title": "X-Men (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/79947/x-men_2019_9",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-03-25T00:00:00+0000",
+      "mu": "2020-09-28T00:00:00+0000",
+      "digitalId": 54358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5e62ac9e4f616",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82506,
+      "title": "Giant-Size X-Men: Nightcrawler (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82506/giant-size_x-men_nightcrawler_2020_1",
+      "seriesId": 29326,
+      "seriesName": "Giant-Size X-Men: Nightcrawler (2020)",
+      "onSale": "2020-03-25T00:00:00+0000",
+      "mu": "2020-09-28T00:00:00+0000",
+      "digitalId": 54264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5e62acae4d4fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alan Davis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82502,
+      "title": "Giant-Size X-Men: Magneto (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82502/giant-size_x-men_magneto_2020_1",
+      "seriesId": 29325,
+      "seriesName": "Giant-Size X-Men: Magneto (2020)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-10-19T00:00:00+0000",
+      "digitalId": 54617,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5f0cbd3f2d186",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ramon K. Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Oliver",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 85662,
+      "title": "Free Comic Book Day: X-Men (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/85662/free_comic_book_day_x-men_2020_1",
+      "seriesId": 30155,
+      "seriesName": "Free Comic Book Day: X-Men (2020)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-08-05T00:00:00+0000",
+      "digitalId": 54261,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5f2c345fc3e56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79948,
+      "title": "X-Men (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/79948/x-men_2019_10",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-07-29T00:00:00+0000",
+      "mu": "2020-11-02T00:00:00+0000",
+      "digitalId": 54670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5f282a6193e81",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 88646,
+      "title": "Empyre: X-Men (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/88646/empyre_x-men_2020_1",
+      "seriesId": 30527,
+      "seriesName": "Empyre: X-Men (2020)",
+      "onSale": "2020-07-22T00:00:00+0000",
+      "mu": "2020-10-26T00:00:00+0000",
+      "digitalId": 54883,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5f282a83dd008",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Matteo Buffagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 88649,
+      "title": "Empyre: X-Men (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/88649/empyre_x-men_2020_4",
+      "seriesId": 30527,
+      "seriesName": "Empyre: X-Men (2020)",
+      "onSale": "2020-08-19T00:00:00+0000",
+      "mu": "2020-11-23T00:00:00+0000",
+      "digitalId": 55083,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5f2c342578dc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79949,
+      "title": "X-Men (2019) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/79949/x-men_2019_11",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-11-30T00:00:00+0000",
+      "digitalId": 54946,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5f3d36a469d4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82526,
+      "title": "Giant-Size X-Men: Fantomex (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82526/giant-size_x-men_fantomex_2020_1",
+      "seriesId": 29333,
+      "seriesName": "Giant-Size X-Men: Fantomex (2020)",
+      "onSale": "2020-08-05T00:00:00+0000",
+      "mu": "2020-11-09T00:00:00+0000",
+      "digitalId": 54892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5f276d2b2326d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82514,
+      "title": "Giant-Size X-Men: Storm (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82514/giant-size_x-men_storm_2020_1",
+      "seriesId": 29328,
+      "seriesName": "Giant-Size X-Men: Storm (2020)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/5f5943257990d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Russell Dauterman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79950,
+      "title": "X-Men (2019) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/79950/x-men_2019_12",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55142,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5f5942f03d023",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84337,
+      "title": "X of Swords: Creation (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84337/x_of_swords_creation_2020_1",
+      "seriesId": 29688,
+      "seriesName": "X of Swords: Creation (2020)",
+      "onSale": "2020-09-23T00:00:00+0000",
+      "mu": "2020-12-28T00:00:00+0000",
+      "digitalId": 55417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5f651095f1537",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 72,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84427,
+      "title": "X-Men (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/84427/x-men_2019_13",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-10-21T00:00:00+0000",
+      "mu": "2021-01-25T00:00:00+0000",
+      "digitalId": 55576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5f3ee08a6a1a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84338,
+      "title": "X of Swords: Stasis (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84338/x_of_swords_stasis_2020_1",
+      "seriesId": 29689,
+      "seriesName": "X of Swords: Stasis (2020)",
+      "onSale": "2020-10-28T00:00:00+0000",
+      "mu": "2021-02-01T00:00:00+0000",
+      "digitalId": 55574,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/60196808e5b52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84428,
+      "title": "X-Men (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/84428/x-men_2019_14",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-11-04T00:00:00+0000",
+      "mu": "2021-02-08T00:00:00+0000",
+      "digitalId": 55717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/601af75ea4c52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84429,
+      "title": "X-Men (2019) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/84429/x-men_2019_15",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/50/601afd40307ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84339,
+      "title": "X Of Swords: Destruction (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84339/x_of_swords_destruction_2020_1",
+      "seriesId": 29690,
+      "seriesName": "X Of Swords: Destruction (2020)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/601afd400bb22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90146,
+      "title": "X-Men (2019) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/90146/x-men_2019_16",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2020-12-30T00:00:00+0000",
+      "mu": "2021-04-05T00:00:00+0000",
+      "digitalId": 55842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5fda7d9e56a62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90147,
+      "title": "X-Men (2019) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/90147/x-men_2019_17",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2021-01-27T00:00:00+0000",
+      "mu": "2023-02-27T00:00:00+0000",
+      "digitalId": 56062,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/6009ea0295688",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90148,
+      "title": "X-Men (2019) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/90148/x-men_2019_18",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2021-02-24T00:00:00+0000",
+      "mu": "2021-05-31T00:00:00+0000",
+      "digitalId": 56190,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/60464e5177a28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90149,
+      "title": "X-Men (2019) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/90149/x-men_2019_19",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2021-03-31T00:00:00+0000",
+      "mu": "2021-07-05T00:00:00+0000",
+      "digitalId": 56468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/605cee280efcc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90150,
+      "title": "X-Men (2019) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/90150/x-men_2019_20",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2021-05-26T00:00:00+0000",
+      "mu": "2021-08-30T00:00:00+0000",
+      "digitalId": 56837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/60afe2c089086",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mobili",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90151,
+      "title": "X-Men (2019) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/90151/x-men_2019_21",
+      "seriesId": 27567,
+      "seriesName": "X-Men (2019 - 2021)",
+      "onSale": "2021-06-09T00:00:00+0000",
+      "mu": "2021-09-13T00:00:00+0000",
+      "digitalId": 56924,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/60afe250e1e29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Dragotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "penciler"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96222,
+      "title": "Inferno (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/96222/inferno_2021_1",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2021-09-29T00:00:00+0000",
+      "mu": "2022-01-03T00:00:00+0000",
+      "digitalId": 57667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/614b401028eca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96223,
+      "title": "Inferno (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/96223/inferno_2021_2",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2021-10-27T00:00:00+0000",
+      "mu": "2022-01-31T00:00:00+0000",
+      "digitalId": 57787,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/6169eee772019",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96224,
+      "title": "Inferno (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/96224/inferno_2021_3",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2021-12-08T00:00:00+0000",
+      "mu": "2022-03-14T00:00:00+0000",
+      "digitalId": 57909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/618ea53502e89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Adriano DI Benedetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96225,
+      "title": "Inferno (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/96225/inferno_2021_4",
+      "seriesId": 32954,
+      "seriesName": "Inferno (2021 - 2022)",
+      "onSale": "2022-01-05T00:00:00+0000",
+      "mu": "2022-04-11T00:00:00+0000",
+      "digitalId": 58181,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/61d4c4fa3053f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
