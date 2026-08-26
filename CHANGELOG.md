@@ -14,6 +14,16 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Spider-Man: Far From Home to MCU Prep
+
+In plain English: MCU Prep now includes a Spider-Man: Far From Home guide with eight issue-specific
+comic picks. Nothing you have saved is changed.
+
+For maintainers: the guide is bound to Comic Book Herald WordPress post 40184, not the separate
+podcast post 40334. Five issues overlap with The Best of Spider-Man and are centrally approved as a
+partial relationship; Peter Parker, the Spectacular Spider-Man #50-51 and Friendly Neighborhood
+Spider-Man (2019) #6 keep the guide distinct.
+
 ### Preserved blocked MCU Prep continuations
 
 In plain English: no new comic guide is added here, and nothing you have saved is changed. The next

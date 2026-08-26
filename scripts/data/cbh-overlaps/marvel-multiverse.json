@@ -6,10 +6,11 @@
   "peerDigests": {
     "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
     "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
+    "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
     "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
   },
   "candidateCount": 2,
-  "comparisonCount": 100,
+  "comparisonCount": 101,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -450,6 +451,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-far-from-home",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-man-no-way-home",
       "sharedCount": 0,
       "sharedIds": [],
@@ -618,5 +625,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "2c6efd1360b5751aec0e40e772635bca1c906fd6ee88eded265b5fbc09cfcb23"
+  "reportDigest": "1a547a296b05959536855a7b3b8716d4df9d41ba2ea9c5b60ae956e21329acf3"
 }
