@@ -18,6 +18,9 @@ anything new, so I do not have to remember which issue was next.
 ## Approved Solution
 - Ask one first-run question: **How do you want to read?**
 - Present Modern Timeline, Storylines and Character spotlights as equal current paths.
+- Present MCU Prep and Marvel Ages as secondary paths when their bundled Reading Lists exist.
+- Keep Modern Timeline primary while Marvel Ages groups populated publishing periods chronologically.
+- Let readers choose a Modern period from Marvel Ages or open Modern Age as one aggregate.
 - Use compact browse labels and counts instead of explanatory paragraphs.
 - Reveal future overlapping categories only when content and a destination both exist.
 - Keep Continue reading and Your Reading Lists ahead of discovery for returning readers.
@@ -25,6 +28,7 @@ anything new, so I do not have to remember which issue was next.
 ## Anti-goals
 - Do not turn Home into a second copy of every browse screen.
 - Do not show an empty category for content the app does not yet publish.
+- Do not present a particular publication year or event as the universal place to begin.
 - Do not force one story into only one discovery category.
 - Do not bury returning readers' progress behind discovery.
 - Do not require network access to decide which categories exist.

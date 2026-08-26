@@ -125,6 +125,43 @@ test('Home offers three equal primary path tracks and a responsive compact tier'
   assert.match(styles, /@media \(max-width:\s*620px\)\s*\{[^}]*\.home-paths-primary\s*\{[^}]*grid-template-columns:\s*1fr;/s);
 });
 
+test('Marvel Ages uses one generated accessible gateway instead of static markup', () => {
+  assert.doesNotMatch(html, /id="view-marvel-ages"/);
+  assert.match(main, /function renderPublishingIndex\(category, allStories\)/);
+  assert.match(
+    main,
+    /if \(periods\) periods\.hidden = true;\s*if \(periodList\) periodList\.replaceChildren\(\);/,
+  );
+  assert.match(
+    main,
+    /if \(category\.kind === 'publishing-index'\) \{\s*renderPublishingIndex\(category, allStories\);\s*return;\s*\}/,
+  );
+  assert.match(
+    main,
+    /category\.kind === 'publishing-index' \? \[\] : \[\s*el\('section'/,
+    'the gateway still receives the ordinary period picker',
+  );
+  for (const id of [
+    'marvel-ages-earlier',
+    'marvel-ages-earlier-h',
+    'marvel-ages-earlier-list',
+    'marvel-ages-modern',
+    'marvel-ages-modern-h',
+    'marvel-ages-modern-all',
+    'marvel-ages-modern-list',
+  ]) {
+    assert.match(main, new RegExp(`['"]${id}['"]`), `${id} is missing`);
+  }
+  assert.match(main, /'aria-labelledby': 'marvel-ages-earlier-h'/);
+  assert.match(main, /'aria-labelledby': 'marvel-ages-modern-h'/);
+  assert.match(main, /text: 'No Reading Lists are published by age yet\.'/);
+  assert.match(
+    main,
+    /labelledName\(\s*'Browse all Modern Age Reading Lists',\s*`\$\{modern\.label\}, \$\{modern\.count\} Reading Lists`,?\s*\)/,
+  );
+  assert.match(main, /showView\('age-modern', \{ push: true \}\)/);
+});
+
 test('saved Reading Lists use bounded responsive tiles instead of full-width rows', () => {
   assert.match(
     styles,

@@ -38,6 +38,35 @@ test('every publishing category has a direct route and generated panel contract'
     'publishing panels inserted before the footer');
 });
 
+test('Marvel Ages has one generated route without changing publishing hashes', () => {
+  const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-ages');
+  assert.equal(category?.route, 'marvel-ages');
+  assert.ok(VIEWS.includes(category.route));
+  assert.deepEqual(parseRoute('#/marvel-ages'), {
+    view: 'marvel-ages',
+    listId: null,
+    filter: null,
+  });
+  assert.equal(formatRoute({ view: category.route }), '#/marvel-ages');
+  assert.deepEqual(
+    PUBLISHING_CATEGORIES.map(({ route }) => route),
+    [
+      'age-golden',
+      'age-silver',
+      'age-bronze',
+      'age-copper',
+      'age-modern',
+      'age-early-modern',
+      'age-marvel-knights-heroes-return',
+      'age-event-era',
+      'age-marvel-now',
+      'age-all-new-all-different',
+      'age-fresh-start',
+      'age-current',
+    ],
+  );
+});
+
 test('the compatible catalog route remains Modern Timeline', () => {
   assert.deepEqual(parseRoute('#/catalog'), { view: 'catalog', listId: null, filter: null });
   const markup = read('src/index.html');

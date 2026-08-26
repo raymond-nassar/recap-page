@@ -7,8 +7,9 @@ import { fileURLToPath } from 'node:url';
 import {
   CATALOG_SHELVES,
   HOME_CATEGORIES,
+  MARVEL_AGES_CATEGORY,
   PUBLISHING_CATEGORIES,
-  publishingCategoryStories,
+  publishingAgeGroups,
   availableHomeCategories,
   groupCatalog,
   parseCatalog,
@@ -23,7 +24,7 @@ const source = read('src/js/main.js');
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = groupCatalog(catalog.lists);
 
-test('the current gateway offers every populated canonical shelf and publishing age', () => {
+test('the current gateway offers three primary modes and two secondary gateways', () => {
   const categories = availableHomeCategories(stories);
   assert.deepEqual(
     categories.map(({ key }) => key),
@@ -32,15 +33,12 @@ test('the current gateway offers every populated canonical shelf and publishing 
       'storylines',
       'character-spotlights',
       'marvel-on-screen',
-      'silver',
-      'bronze',
-      'copper',
-      'modern',
+      'marvel-ages',
     ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
@@ -49,11 +47,7 @@ test('the current gateway offers every populated canonical shelf and publishing 
     assert.ok(expected > 0, `${category.heading} has no content`);
     assert.equal(category.count, expected, `${category.heading} reports the wrong availability`);
   }
-  const modern = categories.find(({ key }) => key === 'modern');
-  assert.equal(
-    modern.count,
-    publishingCategoryStories(stories, 'modern').reduce((total, story) => total + story.lists.length, 0),
-  );
+  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 120);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 6);
 });
 
@@ -122,17 +116,26 @@ test('every declared category has compact UI metadata and its own browse subpage
   assert.match(source, /function ensurePublishingViews\(\)/, 'publishing subpages are not generated');
 });
 
-test('empty publishing ages stay declared but hidden from the current gateway', () => {
+test('publishing ages stay declared while the shared gateway owns discovery', () => {
   for (const key of ['golden', 'silver', 'bronze', 'copper']) {
-    assert.ok(HOME_CATEGORIES.some((category) => category.key === key), `${key} is not declared`);
+    assert.ok(PUBLISHING_CATEGORIES.some((category) => category.key === key), `${key} is not declared`);
+    assert.ok(!HOME_CATEGORIES.some((category) => category.key === key), `${key} remains a Home peer`);
   }
   const available = availableHomeCategories(stories);
-  assert.ok(['golden'].every(
-    (key) => !available.some((category) => category.key === key),
-  ));
-  assert.ok(['silver', 'bronze', 'copper'].every(
-    (key) => available.some((category) => category.key === key),
-  ));
+  assert.ok(available.some(({ key }) => key === 'marvel-ages'));
+  assert.ok(!available.some(({ key }) => key === 'golden'));
+});
+
+test('Marvel Ages hides when empty and shares one count derivation with its screen', () => {
+  const fixture = [
+    { key: 'silver-fixture', lists: [{ id: 'silver-fixture', timeline: 1961 }] },
+    { key: 'modern-fixture', lists: [{ id: 'modern-fixture', timeline: 2012 }] },
+    { key: 'undated-fixture', lists: [{ id: 'undated-fixture', timeline: null }] },
+  ];
+  const categories = availableHomeCategories(fixture, [MARVEL_AGES_CATEGORY]);
+  assert.equal(categories[0].count, publishingAgeGroups(fixture).count);
+  assert.equal(categories[0].count, 2);
+  assert.deepEqual(availableHomeCategories([], [MARVEL_AGES_CATEGORY]), []);
 });
 
 test('MCU Prep keeps the six screen companions in inventory order on the stable route', () => {

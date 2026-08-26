@@ -11,7 +11,9 @@ App launch, or selecting the brand lockup in the sidebar.
    - **Character spotlights** with the compact label **Browse heroes and teams**
 3. Each tile shows its Reading List count and opens the matching browse screen.
 4. Additional populated categories appear under **Discover More**. The whole group remains
-   hidden while no additional category has content.
+   hidden while no additional category has content:
+   - **MCU Prep** opens preparation lists for Marvel Cinematic Universe titles.
+   - **Marvel Ages** opens one chronological gateway for populated publishing periods.
 5. Marvel attribution remains at the end of the surface.
 
 ## State B: Library Has Lists
@@ -22,7 +24,12 @@ App launch, or selecting the brand lockup in the sidebar.
 
 ## Transitions
 - Primary or additional category tile opens its own browse subpage and creates a browser history entry.
+- Marvel Ages first shows populated earlier ages, then populated Modern periods. Its **Browse all
+  Modern Age Reading Lists** action keeps Modern available as an aggregate.
+- Existing age and Modern-period addresses remain directly usable. Back and Forward include the
+  Marvel Ages gateway when the reader entered through it.
 - A category with no matching published content is not rendered.
+- A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
 - Adding a Reading List happens on its browse screen or in its preview dialog, not on Home.
 - Returning with Back restores Home rather than creating a second navigation model.
 
