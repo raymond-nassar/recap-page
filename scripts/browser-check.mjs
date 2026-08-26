@@ -259,7 +259,8 @@ const CATALOG = {
       `Other Spotlight ${index + 1}`,
       { type: 'character-run', spotlightKind: 'other' },
     )),
-    ...Array.from({ length: 10 }, (_, index) => shelfEntry(
+    shelfEntry('avengers-disassembled', 'Avengers Disassembled', { timeline: 2004, beginner: true }),
+    ...Array.from({ length: 9 }, (_, index) => shelfEntry(
       `browser-check-extra-${index + 1}`,
       `Fixture Event ${index + 1}`,
       { timeline: index === 0 ? 2012 : 2008 },
@@ -333,6 +334,16 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // are injected into the page rather than edited into a source file, so a killed run cannot leave
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
+  {
+    id: 'first-run-question-generic',
+    breaks: 'home-first-run-wayfinding',
+    why: 'the first-run question no longer asks the reader where they want to start',
+    script: () => {
+      addEventListener('load', () => {
+        document.querySelector('#home-first-run-h').textContent = 'Choose something to read';
+      });
+    },
+  },
   {
     id: 'home-copy-return',
     breaks: 'home-category-gateway',
@@ -1514,6 +1525,116 @@ const SCENARIOS = [
         && new Set(narrow.map(({ top }) => top)).size === 3
         && narrow.every(({ width }) => width > 400 && width < 620),
         JSON.stringify(narrow));
+    },
+  },
+  {
+    id: 'home-first-run-wayfinding',
+    title: 'empty Home makes the first useful reading path obvious',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
+      const initial = await page.evaluate(() => ({
+        question: document.querySelector('#home-first-run-h')?.textContent.trim() ?? null,
+        distinction: document.querySelector('.home-first-run-copy')?.textContent.trim() ?? null,
+        recommendation: document.querySelector('#home-recommended-h')?.textContent.trim() ?? null,
+        recommendationHidden: document.querySelector('#home-recommended')?.hidden ?? null,
+      }));
+      t.check('clean Home asks one visible question and distinguishes curated Browse from Add',
+        initial.question === 'Where do you want to start?'
+        && initial.distinction === 'Browse curated Reading Lists. Add individual issues or your own list.'
+        && initial.recommendation === 'Recommended start: Avengers Disassembled (2004)'
+        && initial.recommendationHidden === false,
+        JSON.stringify(initial));
+
+      await page.setViewport({ width: 320, height: 900 });
+      const narrow = await page.evaluate(() => {
+        const region = document.querySelector('#home-first-run');
+        const regionRect = region.getBoundingClientRect();
+        const controls = [...document.querySelectorAll('#home-first-run button')].map(
+          (button) => button.getBoundingClientRect(),
+        );
+        return {
+          viewport: innerWidth,
+          regionLeft: Math.round(regionRect.left),
+          regionRight: Math.round(regionRect.right),
+          regionWidth: region.clientWidth,
+          regionScrollWidth: region.scrollWidth,
+          visible: controls.every((rect) => rect.left >= 0 && rect.right <= innerWidth && rect.height >= 44),
+        };
+      });
+      t.check('first-run guidance reflows at 320 pixels without clipping its controls',
+        narrow.regionLeft >= 0 && narrow.regionRight <= narrow.viewport
+        && narrow.regionScrollWidth <= narrow.regionWidth && narrow.visible,
+        JSON.stringify(narrow));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse:not([hidden])');
+      t.check('first-run guidance exists only on Home',
+        await page.$eval('#view-browse', (browse) => !browse.querySelector('#home-first-run')));
+
+      await open(page, '/');
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
+      await click(page, '#home-primary-paths [data-category="timeline"]');
+      await page.waitForFunction(() => location.hash === '#/catalog'
+        && document.activeElement?.id === 'catalog-h');
+      await click(page, '#catalog-results [data-act="preview"]');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/home'
+        && document.activeElement?.id === 'home-h');
+      t.check('a primary category uses real history and Back returns focus to Home', true);
+
+      const before = await page.evaluate(() => ({
+        hash: location.hash,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      await page.evaluate(() => {
+        const button = document.querySelector('#btn-home-recommended');
+        button.focus();
+        button.click();
+      });
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'Avengers Disassembled');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      const after = await page.evaluate(() => ({
+        hash: location.hash,
+        state: localStorage.getItem('mrt.state.v2'),
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('recommended Preview opens and closes without changing state, history, or focus',
+        after.hash === before.hash && after.state === before.state
+        && after.focus === 'btn-home-recommended',
+        JSON.stringify({ before, after }));
+
+      await click(page, '#btn-home-recommended');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state.listOrder.length === 1;
+      });
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      const populated = await page.evaluate(() => {
+        const firstRun = document.querySelector('#home-first-run');
+        const continued = document.querySelector('#home-continue');
+        const yours = document.querySelector('#home-yours');
+        const categories = document.querySelector('#home-categories');
+        return {
+          firstRunHidden: firstRun.hidden,
+          continueHidden: continued.hidden,
+          yoursHidden: yours.hidden,
+          order: [continued, yours, categories].map((node) => Math.round(node.getBoundingClientRect().top)),
+        };
+      });
+      t.check('adding from Home restores returning-reader priority',
+        populated.firstRunHidden && !populated.continueHidden && !populated.yoursHidden
+        && populated.order[0] < populated.order[1] && populated.order[1] < populated.order[2],
+        JSON.stringify(populated));
     },
   },
   {

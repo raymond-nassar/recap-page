@@ -168,6 +168,34 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
   assert.doesNotMatch(source, /How do you want to read\?/);
 });
 
+test('empty Home creates one labelled first-run region without changing Browse', () => {
+  const start = source.indexOf('function ensureHomeFirstRun');
+  const body = source.slice(start, source.indexOf('async function renderHomeCategories', start));
+  assert.notEqual(start, -1, 'the first-run region builder is missing');
+  assert.match(body, /id: 'home-first-run'[\s\S]*'aria-labelledby': 'home-first-run-h'/);
+  assert.match(body, /el\('h2', \{ id: 'home-first-run-h', text: 'Where do you want to start\?'/);
+  assert.match(body, /Browse curated Reading Lists\. Add individual issues or your own list\./);
+  assert.match(body, /\$\('#home-categories'\)\.prepend\(section\)/);
+  assert.doesNotMatch(markup.slice(markup.indexOf('id="view-browse"')), /home-first-run/);
+});
+
+test('first-run guidance follows the same local populated state as Home', () => {
+  const start = source.indexOf('function renderHome()');
+  const body = source.slice(start, source.indexOf('function ensurePublishingViews', start));
+  assert.match(body, /const populated = store\.state\.listOrder\.length > 0;/);
+  assert.match(body, /const firstRun = ensureHomeFirstRun\(\);/);
+  assert.match(body, /firstRun\.hidden = populated;/);
+});
+
+test('the recommended start resolves after catalog load and only opens Preview', () => {
+  const start = source.indexOf("const recommendation = $('#home-recommended')");
+  const body = source.slice(start, source.indexOf('if (homeCatalog.dropped)', start));
+  assert.notEqual(start, -1, 'the recommended-start catalog resolution is missing');
+  assert.match(body, /homeCatalog\.lists\.find\(\(\{ id \}\) => id === 'avengers-disassembled'\)/);
+  assert.match(body, /\$\('#btn-home-recommended'\)\.onclick = \(\) => openPreview\(list\)/);
+  assert.doesNotMatch(body, /importCurated|setActive|showView|location\.hash|localStorage/);
+});
+
 test('Home and Browse use concise action headings for both discovery tiers', () => {
   assert.match(markup, /id="home-cat-h"[^>]*>Explore<\/h2>/);
   assert.match(markup, /id="home-more-h">Discover More<\/h3>/);

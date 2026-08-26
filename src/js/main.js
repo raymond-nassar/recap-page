@@ -1340,9 +1340,11 @@ function wireHome() {
 function renderHome() {
   if ($('#view-home').hidden) return;
   const populated = store.state.listOrder.length > 0;
+  const firstRun = ensureHomeFirstRun();
 
   // The masthead remains the app name whether or not Continue reading is present.
   $('#home-cat-h').classList.toggle('visually-hidden', !populated);
+  firstRun.hidden = populated;
 
   renderContinue(populated);
   renderYours(populated);
@@ -1482,59 +1484,57 @@ function renderLibraryHub() {
   $('#library-yours-list').replaceChildren(...savedListTiles());
 }
 
+function ensureHomeFirstRun() {
+  let section = $('#home-first-run');
+  if (section) return section;
+  const recommendation = el('div', { id: 'home-recommended', class: 'notice notice-act', hidden: true }, [
+    el('div', { class: 'grow' }, [
+      el('h3', { id: 'home-recommended-h', text: 'Recommended start: Avengers Disassembled (2004)' }),
+      el('p', { text: "This app's short modern event path. Five issues, with many later stories building from it." }),
+    ]),
+    el('button', { type: 'button', id: 'btn-home-recommended', class: 'btn' }, 'Preview this Reading List'),
+  ]);
+  section = el('section', { id: 'home-first-run', class: 'sec', hidden: true, 'aria-labelledby': 'home-first-run-h' }, [
+    el('div', { class: 'sec-h' }, el('h2', { id: 'home-first-run-h', text: 'Where do you want to start?' })),
+    el('p', { class: 'home-first-run-copy', text: 'Browse curated Reading Lists. Add individual issues or your own list.' }), recommendation,
+  ]);
+  $('#home-categories').prepend(section);
+  return section;
+}
+
 async function renderHomeCategories() {
-  const gateways = [...document.querySelectorAll('[data-category-gateway]')];
-  for (const label of document.querySelectorAll('[data-marvel-copyright]')) {
-    label.textContent = `© ${new Date().getFullYear()} MARVEL`;
-  }
+  const gateways = [...document.querySelectorAll('[data-category-gateway]')]; for (const label of document.querySelectorAll('[data-marvel-copyright]')) label.textContent = `© ${new Date().getFullYear()} MARVEL`;
   if (!homeCatalog) {
-    for (const gateway of gateways) {
-      const status = gateway.querySelector('[data-paths-status]');
-      status.classList.remove('visually-hidden');
-      status.hidden = false;
-      status.textContent = 'Loading ways to read…';
-    }
+    for (const gateway of gateways) { const status = gateway.querySelector('[data-paths-status]'); status.classList.remove('visually-hidden'); status.hidden = false; status.textContent = 'Loading ways to read…'; }
     try {
       homeCatalog = await loadCatalog();
     } catch (err) {
       for (const gateway of gateways) {
-        gateway.querySelector('[data-primary-paths]').hidden = true;
-        gateway.querySelector('[data-more-paths]').hidden = true;
-        gateway.querySelector('[data-paths-status]').hidden = true;
+        gateway.querySelector('[data-primary-paths]').hidden = true; gateway.querySelector('[data-more-paths]').hidden = true; gateway.querySelector('[data-paths-status]').hidden = true;
       }
-      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
-      notify(report, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
+      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report'; notify(report, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
       return;
     }
     clearNotice(CATALOG_LOAD);
   }
 
+  const recommendation = $('#home-recommended'); if (recommendation) {
+    const list = homeCatalog.lists.find(({ id }) => id === 'avengers-disassembled'); recommendation.hidden = !list; if (list) $('#btn-home-recommended').onclick = () => openPreview(list);
+  }
   if (homeCatalog.dropped) {
     const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
-    notify(
-      report,
-      `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`,
-      'warn',
-    );
+    notify(report, `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`, 'warn');
   }
 
-  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists));
-  const primaryCategories = categories.filter(({ tier }) => tier === 'primary');
-  const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
+  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists)); const primaryCategories = categories.filter(({ tier }) => tier === 'primary'); const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
   for (const gateway of gateways) {
     const primary = gateway.querySelector('[data-primary-paths]');
     const secondary = gateway.querySelector('[data-secondary-paths]');
-    const more = gateway.querySelector('[data-more-paths]');
-    const status = gateway.querySelector('[data-paths-status]');
-    primary.replaceChildren(...primaryCategories.map(homeCategoryTile));
-    secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
-    primary.hidden = primaryCategories.length === 0;
-    more.hidden = secondaryCategories.length === 0;
-    const statusText = categories.length
-      ? `${categories.length} ways to read available.`
-      : 'No reading paths are bundled with this build.';
-    status.classList.toggle('visually-hidden', categories.length > 0);
-    status.hidden = false;
+    const more = gateway.querySelector('[data-more-paths]'); const status = gateway.querySelector('[data-paths-status]');
+    primary.replaceChildren(...primaryCategories.map(homeCategoryTile)); secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
+    primary.hidden = primaryCategories.length === 0; more.hidden = secondaryCategories.length === 0;
+    const statusText = categories.length ? `${categories.length} ways to read available.` : 'No reading paths are bundled with this build.';
+    status.classList.toggle('visually-hidden', categories.length > 0); status.hidden = false;
     if (status.textContent !== statusText) status.textContent = statusText;
   }
 }
