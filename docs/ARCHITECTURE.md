@@ -37,7 +37,7 @@ Imports say what a file mentions. Ownership says who made the thing and who can 
 is the question a reader of this app actually has, because almost every module here is a bag of
 pure functions and the interesting state sits in five objects that one file constructs.
 
-Those five are built together at `src/js/main.js:79-93`. Read that block and you have read the
+Those five are built together at `src/js/main.js:80-93`. Read that block and you have read the
 application's wiring.
 
 ```mermaid
@@ -188,7 +188,7 @@ chosen overwrite.
 
 This is the question the product promise turns on, and the answer is more than one key. The store
 declares four at `src/js/storage.js:9-12`, the view layer writes two more of its own at
-`src/js/main.js:48-49`, and the response cache is not in `localStorage` at all.
+`src/js/main.js:49-50`, and the response cache is not in `localStorage` at all.
 
 Two of the extra keys belong to restoring a backup, which is a path where nothing has gone wrong.
 One belongs to a failed read, which is a path where something has. Collapsing those into a single

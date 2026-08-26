@@ -346,6 +346,89 @@ export function spotlightKindLabel(kind) {
   return SPOTLIGHT_KIND_LABELS[kind] ?? null;
 }
 
+const spotlightRank = (rank, label, aliases = []) => ({ rank, label, aliases: [label, ...aliases] });
+
+// The ordering authority is owner-supplied, exact, and finite. Each alias is a literal label the
+// catalog already ships or a canonical label from the published Top 30 list; nothing here guesses
+// a subject from another field.
+export const SPOTLIGHT_POPULARITY_RANKS = [
+  spotlightRank(1, 'Spider-Man (Peter Parker)', ['Spider-Man', 'The Best of Spider-Man']),
+  spotlightRank(2, 'Wolverine'),
+  spotlightRank(3, 'Iron Man'),
+  spotlightRank(4, 'Captain America', ['The Best of Captain America']),
+  spotlightRank(5, 'Hulk'),
+  spotlightRank(6, 'Thor', ['The Best of Thor']),
+  spotlightRank(7, 'Deadpool'),
+  spotlightRank(8, 'Black Panther'),
+  spotlightRank(9, 'Doctor Strange'),
+  spotlightRank(10, 'Daredevil'),
+  spotlightRank(11, 'Venom'),
+  spotlightRank(12, 'Scarlet Witch', ['The Best of the Scarlet Witch']),
+  spotlightRank(13, 'Captain Marvel (Carol Danvers)'),
+  spotlightRank(14, 'The Punisher'),
+  spotlightRank(15, 'Magneto'),
+  spotlightRank(16, 'Loki'),
+  spotlightRank(17, 'Jean Grey / Phoenix', ['Jean Grey', 'Phoenix']),
+  spotlightRank(18, 'Silver Surfer'),
+  spotlightRank(19, 'Black Widow'),
+  spotlightRank(20, 'Moon Knight'),
+  spotlightRank(21, 'Avengers', ['Essential Avengers']),
+  spotlightRank(22, 'X-Men', ['X-Men: Silver Age to Claremont']),
+  spotlightRank(23, 'Fantastic Four'),
+  spotlightRank(24, 'Guardians of the Galaxy'),
+  spotlightRank(25, 'Defenders'),
+  spotlightRank(26, 'X-Force'),
+  spotlightRank(27, 'S.H.I.E.L.D.'),
+  spotlightRank(28, 'Inhumans'),
+  spotlightRank(29, 'Young Avengers'),
+  spotlightRank(30, 'Runaways'),
+];
+
+const SPOTLIGHT_POPULARITY_LOOKUP = new Map(
+  SPOTLIGHT_POPULARITY_RANKS.flatMap(({ rank, aliases }) => aliases.map((alias) => [fold(alias), rank])),
+);
+
+function spotlightStoryAliases(story) {
+  const aliases = new Set();
+  if (!story || typeof story !== 'object') return aliases;
+  if (typeof story.name === 'string' && story.name.trim()) aliases.add(story.name);
+  if (typeof story.groupName === 'string' && story.groupName.trim()) aliases.add(story.groupName);
+
+  for (const list of Array.isArray(story.lists) ? story.lists : []) {
+    if (typeof list?.name === 'string' && list.name.trim()) aliases.add(list.name);
+    if (typeof list?.variant === 'string' && list.variant.trim()) aliases.add(list.variant);
+  }
+
+  return aliases;
+}
+
+export function spotlightRankForStory(story) {
+  for (const alias of spotlightStoryAliases(story)) {
+    const rank = SPOTLIGHT_POPULARITY_LOOKUP.get(fold(alias));
+    if (rank) return rank;
+  }
+  return null;
+}
+
+export function sortSpotlightStories(stories, sort) {
+  const all = Array.isArray(stories) ? stories : [];
+  if (sort !== 'popularity') return all;
+  return all
+    .map((story, index) => ({ story, index, rank: spotlightRankForStory(story) }))
+    .sort((a, b) => {
+      if (a.rank == null && b.rank == null) return a.index - b.index;
+      if (a.rank == null) return 1;
+      if (b.rank == null) return -1;
+      if (a.rank !== b.rank) return a.rank - b.rank;
+      return a.index - b.index;
+    })
+    .map(({ story }) => story);
+}
+
+export function spotlightSortLabel(sort) {
+  return sort === 'popularity' ? 'Popularity' : 'Current order';
+}
+
 export function resetCatalogNarrowing(state) {
   if (!state || typeof state !== 'object') return null;
   state.query = '';

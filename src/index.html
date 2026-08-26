@@ -437,21 +437,34 @@
           <section id="view-spotlights" class="view" hidden aria-labelledby="spotlights-h">
             <div class="head">
               <div class="head-left"><h1 id="spotlights-h">Character spotlights</h1></div>
-              <fieldset class="filters spotlight-filters">
-                <legend class="visually-hidden">Filter Character Spotlight guides</legend>
-                <label class="fp">
-                  <input type="radio" name="spotlights-kind" value="all" checked />
-                  <span>All</span>
-                </label>
-                <label class="fp">
-                  <input type="radio" name="spotlights-kind" value="best-of" />
-                  <span>Best of</span>
-                </label>
-                <label class="fp">
-                  <input type="radio" name="spotlights-kind" value="complete-guide" />
-                  <span>Complete guides</span>
-                </label>
-              </fieldset>
+              <div class="headright spotlight-controls">
+                <fieldset class="filters spotlight-sort">
+                  <legend class="visually-hidden">Sort Character Spotlight guides</legend>
+                  <label class="fp">
+                    <input type="radio" name="spotlights-sort" value="current-order" checked />
+                    <span>Current order</span>
+                  </label>
+                  <label class="fp">
+                    <input type="radio" name="spotlights-sort" value="popularity" />
+                    <span>Popularity</span>
+                  </label>
+                </fieldset>
+                <fieldset class="filters spotlight-filters">
+                  <legend class="visually-hidden">Filter Character Spotlight guides</legend>
+                  <label class="fp">
+                    <input type="radio" name="spotlights-kind" value="all" checked />
+                    <span>All</span>
+                  </label>
+                  <label class="fp">
+                    <input type="radio" name="spotlights-kind" value="best-of" />
+                    <span>Best of</span>
+                  </label>
+                  <label class="fp">
+                    <input type="radio" name="spotlights-kind" value="complete-guide" />
+                    <span>Complete guides</span>
+                  </label>
+                </fieldset>
+              </div>
             </div>
             <div id="spotlights-report" class="report"></div>
             <form id="form-spotlights-search" class="stack" role="search" hidden>

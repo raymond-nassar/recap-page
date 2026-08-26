@@ -4284,7 +4284,7 @@ never draws.
 
 Three diagrams rather than one, because the app has three separable stories and one picture that told
 all three would tell none of them well. The module graph answers what depends on what: a single view
-file of 5,273 lines wires a store, a metadata client, a rate limiter, a response cache and a hydrator
+file of 5,309 lines wires a store, a metadata client, a rate limiter, a response cache and a hydrator
 together at `src/js/main.js:78-91`, and behind it sit twenty-two browser-reachable library modules, none of which holds
 state of its own at module level. Where state exists it lives in an instance the view file constructs,
 as the rate limiter's queue and its window of recent hits do, which is why the graph is worth drawing
@@ -13719,7 +13719,7 @@ The clearest debt in the repository, and it is concentrated in one file.
   every render function. There is no view layer to change independently.
   Evidence: `src/js/main.js:5247`, `src/js/main.js:1212-1253` (showView switches views by
   mutating a module-level variable).
-  Still open, and wider than audited: the file is 5,273 lines now, so nearly every item shipped
+  Still open, and wider than audited: the file is 5,309 lines now, so nearly every item shipped
   since has been added to the one file this gap is about. `BL-053` is the exception in kind rather
   than in size: it moved the reading filter predicates out to `src/js/lib/readingFilters.js` and
   still left `main.js` 8 lines longer, which is the shape of the problem. `BL-038` is the closest

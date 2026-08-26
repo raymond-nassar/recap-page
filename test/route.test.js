@@ -164,6 +164,25 @@ test('every filter the app offers is routable, so adding one needs no edit here'
   }
 });
 
+test('the popularity sort round trips on the spotlights route', () => {
+  const hash = formatRoute({ view: 'spotlights', sort: 'popularity' });
+  assert.equal(hash, '#/spotlights?sort=popularity');
+  assert.deepEqual(parseRoute(hash), { view: 'spotlights', listId: null, filter: null, sort: 'popularity' });
+});
+
+test('the popularity sort coexists with the reading filter query', () => {
+  const hash = formatRoute({ view: 'spotlights', filter: 'unread', sort: 'popularity' });
+  assert.equal(hash, '#/spotlights?filter=unread&sort=popularity');
+  assert.deepEqual(parseRoute(hash), {
+    view: 'spotlights', listId: null, filter: 'unread', sort: 'popularity',
+  });
+});
+
+test('an unknown spotlights sort is dropped without breaking the route', () => {
+  assert.deepEqual(parseRoute('#/spotlights?sort=bogus'), { view: 'spotlights', listId: null, filter: null });
+  assert.equal(formatRoute({ view: 'spotlights', sort: 'bogus' }), '#/spotlights');
+});
+
 // A stale link from an older build names a view the reader can still be taken to, so the filter is
 // refused and the route is not. Refusing the whole route would answer a dropped filter by refusing
 // to navigate at all, and the address self-corrects on the next sync either way.
@@ -285,7 +304,7 @@ test('a passive sync during a traversal writes the address the traversal began f
   const body = main.slice(main.indexOf('function syncHash'), main.indexOf('function endFilterRun'));
   has(body, /const shown = filterRunOpen && !push \? filterRunBase : filter;/,
     'a passive sync formatting with the base rather than the live filter');
-  has(body, /formatRoute\(\{ view, listId: activeListId\(\), filter: shown \}\)/,
+  has(body, /formatRoute\(\{ view, listId: activeListId\(\), filter: shown, sort \}\)/,
     'and the route being built from it');
 });
 
