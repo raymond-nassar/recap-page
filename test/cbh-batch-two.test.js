@@ -256,7 +256,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    114,
+    115,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 

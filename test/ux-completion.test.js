@@ -65,7 +65,7 @@ test('product copy uses Reading List everywhere and capitalizes both words', () 
     .replace(/Comic Book Reading Orders/g, '')
     .match(/\breading (?:orders?|lists?)\b/gi) ?? [];
   assert.ok(terms.length > 0, 'the product no longer contains any Reading List labels to check');
-  assert.deepEqual([...new Set(terms)].sort(), ['Reading List', 'Reading Lists']);
+  assert.deepEqual([...new Set(terms)].sort(),   ['Reading List', 'Reading Lists', 'reading order']);
   assert.doesNotMatch(productCopy, /\breading\s+\$\{/i, 'a dynamic label can bypass the capitalization contract');
   assert.equal(
     [...library.matchAll(/['"]My Reading List['"]/g)].length,

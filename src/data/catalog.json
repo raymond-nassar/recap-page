@@ -2255,6 +2255,44 @@
       "updatedAt": "2026-08-23T16:37:33.121Z"
     },
     {
+      "id": "agatha-harkness-reading-order",
+      "file": "agatha_harkness_reading_order.json",
+      "name": "Agatha Harkness",
+      "description": "Agatha Harkness across the Comic Book Herald reading order, from Fantastic Four through Scarlet Witch, Vision, and later Wanda-focused stories.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 104,
+      "collections": 0,
+      "characters": [
+        "Agatha Harkness",
+        "Fantastic Four",
+        "Scarlet Witch",
+        "Vision"
+      ],
+      "keywords": [
+        "Agatha Harkness",
+        "Fantastic Four",
+        "Scarlet Witch",
+        "Vision",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/6728e6c1d021f",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T07:16:55.688Z"
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "file": "rocket_raccoon_reading_order.json",
       "name": "Rocket Raccoon",
