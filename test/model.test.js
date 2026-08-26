@@ -1001,15 +1001,18 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   }
 
   assert.ok(empty > 0, 'no bundled order has an item that came back empty, so this check proves nothing');
-  // Read on 2026-08-26 across the one hundred and thirty-five bundled orders. Written down as observations rather
-  // than floors: they move whenever an order is added or re-vendored, and moving one should mean
-  // editing this line deliberately rather than watching a range quietly widen.
+  // Read on 2026-08-15 across the fourteen bundled orders, then re-derived on 2026-08-26 after
+  // WandaVision, Spider-Man: Far From Home, and the Modern X-Men Fast Track order merged in
+  // from main, and again the same day after the Amazing Spider-Man complete guide added 106
+  // placeholders of its own. Written down as observations rather than floors: they move
+  // whenever an order is added or re-vendored, and moving one should mean editing this line
+  // deliberately rather than watching a range quietly widen.
   //
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
-  assert.equal(claimed, 6, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 6, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 72);
   assert.equal(affected, 3);
 });
@@ -1186,8 +1189,16 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // refused on arrival for the same reason an empty item is: no lookup will ever answer for it.
   // The six are two distinct issues in the spine and four in the complete variant, counted twice
   // over because a placeholder's id is hashed from the order it sits in as well as its title. The
+  // Ultimate figure is unchanged at 34, which is the check that this grew for the stated reason
+  // rather than because an order regressed.
+  //
   // Deliberately edited on 2026-08-26, from 40 to 49. WandaVision added nine exact Marvel issue
   // pages that the metadata API refuses while keeping their official issue links.
-  assert.equal(refused.length, 49);
+  //
+  // Deliberately edited again the same day, from 49 to 155. The Amazing Spider-Man complete guide
+  // adds 106 checklist lines with no Marvel link, each hashed to its own placeholder id by title
+  // and order, so all 106 are distinct new refusals with nothing else in the catalog to collide
+  // with.
+  assert.equal(refused.length, 155);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

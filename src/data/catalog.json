@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T08:00:03.091Z",
+  "generatedAt": "2026-08-26T11:09:49.937Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2329,15 +2329,62 @@
       "updatedAt": "2026-08-24T01:05:06.004Z"
     },
     {
+      "id": "modern-x-men-fast-track",
+      "file": "modern_x_men_fast_track.json",
+      "name": "Modern X-Men Fast Track",
+      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "other",
+      "count": 278,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Cyclops",
+        "Jean Grey",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Modern X-Men",
+        "New X-Men",
+        "Astonishing X-Men",
+        "X-Force",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 14933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/",
+      "sourceSection": "X-Men Events & Major Stories (2001 to 2015)",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:56:13.889Z"
+    },
+    {
       "id": "ant-man-reading-order",
       "file": "ant_man_reading_order.json",
       "name": "Ant-Man",
       "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
       "type": "character-run",
-      "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 386,
-      "collections": 0,
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "ant-man-reading-order.md",
+      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "ant_man_reading_order.json",
       "characters": [
         "Ant-Man",
         "Hank Pym",
@@ -2352,19 +2399,14 @@
         "Avengers",
         "Comic Book Herald"
       ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": true,
+      "count": 386,
+      "collections": 0,
       "timeline": null,
       "coverIssueId": 11379,
       "cover": {
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/536d6fa682524",
         "ext": "jpg"
       },
-      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
       "updatedAt": "2026-08-26T08:00:03.031Z"
     },
     {
@@ -4835,6 +4877,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.862Z"
+    },
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "file": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 2043,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1962,
+      "coverIssueId": 16926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/598363848588e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T10:59:32.800Z"
     },
     {
       "id": "silent-war",

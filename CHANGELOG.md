@@ -33,6 +33,27 @@ live full text issue search, leaving 386 distinct issues. The relationship repor
 current-library comparisons; twelve partial and one existing-subset relationship are centrally
 approved as crossover reading both guides independently require.
 
+### Added the Amazing Spider-Man complete reading order
+
+In plain English: There is now a single reading list that carries Amazing Spider-Man from the
+character's first appearance through the present day, following one guide's own path across every
+renumbering, relaunch, and companion title along the way, bringing the catalog to 138 reading
+lists. Nothing you have saved is changed.
+
+Most of the guide's 2,043 named issues, 1,937 of them, resolve to an exact Marvel issue. The
+remaining 106 are references the guide names that could not be matched to a single Marvel-metadata
+issue: a wall calendar, a text recap page, a handful of one-shots and ongoing issues the metadata
+service itself does not carry. None are invented; each ships as a plain checklist row with no link,
+and all 106 are tracked for follow-up research in a linked GitHub issue.
+
+For maintainers: this order is compiled by hand from Comic Book Herald's Amazing Spider-Man reading
+order, in the same manner as the existing Best of Spider-Man reading, rather than through the
+frozen-packet pipeline. Amazing Spider-Man's own numbering restarts seven times across its
+publication history (1963, 1999, 2014, 2017, 2018, 2022, 2025), and Superior Spider-Man's twice
+(2013, 2018), so a source block position rather than the source's own year label was used to
+resolve which volume a bare issue number belongs to wherever the two disagree. It overlaps 32 other
+catalog entries, most heavily the Best of Spider-Man reading at 209 shared issues.
+
 ### Added the opening Ultimate Marvel Universe guide
 
 In plain English: The first original Ultimate Marvel Universe reading guide is now available. It
@@ -60,15 +81,17 @@ partial overlaps are centrally approved: five shared Uncanny X-Men issues with N
 shared crossover issues with the Avengers Dark Reign order. Avengers vs. X-Men remains a handoff,
 not a claimed stop in this page's source coverage.
 
+### Added a Modern X-Men fast-track spotlight
+
+In plain English: Modern X-Men now has a focused team reading guide in Character Spotlights. It follows the selected 2001 to 2015 recommendations from the source page in order, adds 278 issues, brings the catalog to 138 reading lists, and nothing you have saved is changed.
+
+For maintainers: the frozen packet preserves the source section boundary, explicit exclusions, and the approved Giant-Size Astonishing X-Men metadata selection. The relationship report covers 134 current-library comparisons, with 12 approved overlaps and no duplicate event row replacement.
+
 ### Added Jonathan Hickman's X-Men creator-run
 
-In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It
-adds 54 Hickman-written or Hickman-co-written issues in source order, and nothing you have saved is
-changed.
+In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It adds 54 Hickman-written or Hickman-co-written issues in source order, bringing the catalog to 135 reading lists, and nothing you have saved is changed.
 
-For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are
-intentional because those events remain complete event guides, while Destiny of X and Fall of X are
-broader Krakoa continuations rather than Hickman creator-run rows.
+For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are intentional because those events remain complete event guides, while Destiny of X and Fall of X are broader Krakoa continuations rather than Hickman creator-run rows.
 
 ### Added WandaVision to MCU Prep
 
