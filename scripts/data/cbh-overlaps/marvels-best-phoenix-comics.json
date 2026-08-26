@@ -7,7 +7,7 @@
     "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
   },
   "candidateCount": 53,
-  "comparisonCount": 89,
+  "comparisonCount": 93,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -65,6 +65,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -155,6 +161,12 @@
     },
     {
       "orderId": "generations",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "groot-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -322,6 +334,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "rocket-raccoon-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "scarlet-witch-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -395,6 +413,12 @@
     },
     {
       "orderId": "spider-verse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "star-lord-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -546,5 +570,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "3925e08e952a81ae9fcbddbbde56de87026e5a79a004af7c6d07f171b6b1af00"
+  "reportDigest": "ffa23beec00489e72358e1c776c748ca2d26def03a339d6949b5e051dd0db116"
 }
