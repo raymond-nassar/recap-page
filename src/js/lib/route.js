@@ -35,6 +35,8 @@ function canonicalView(view) {
 }
 
 const PREFIX = '#/';
+const SPOTLIGHT_SORT_KEY = 'sort';
+const SPOTLIGHT_POPULARITY_SORT = 'popularity';
 
 // The reading filter travels as a query inside the fragment rather than as a third path segment.
 // The deciding reason is that a query is omitted when it says nothing, so while the filter is the
@@ -53,15 +55,19 @@ const FILTER_KEY = 'filter';
 // Like the active list, the filter rides along on every view rather than on the reading view alone.
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
-export function formatRoute({ view, listId, filter } = {}) {
+export function formatRoute({ view, listId, filter, sort } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
   const tail = listId ? `/${encodeURIComponent(listId)}` : '';
+  const query = new URLSearchParams();
   // An unknown filter is dropped rather than written through, so a value that could not have come
   // from a radio cannot be put into an address by this app and then read back as if it had.
   const known = READING_FILTERS.some((f) => f.value === filter);
-  const query = known && filter !== DEFAULT_FILTER ? `?${FILTER_KEY}=${encodeURIComponent(filter)}` : '';
-  return `${PREFIX}${encodeURIComponent(canonical)}${tail}${query}`;
+  if (known && filter !== DEFAULT_FILTER) query.set(FILTER_KEY, filter);
+  if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort);
+  const search = query.toString();
+  const suffix = search ? `?${search}` : '';
+  return `${PREFIX}${encodeURIComponent(canonical)}${tail}${suffix}`;
 }
 
 // Returns null for anything that is not one of our routes, which the caller must treat as "not
@@ -101,8 +107,13 @@ export function parseRoute(hash) {
   // link from an older build names a view the reader can still be taken to, and the trailing sync
   // then rewrites the address without it. This is unlike the settings path, which corrects an
   // unknown stored value, because that one is a record only this app writes.
-  const raw = new URLSearchParams(search).get(FILTER_KEY);
+  const params = new URLSearchParams(search);
+  const raw = params.get(FILTER_KEY);
   const filter = READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
+  const rawSort = view === 'spotlights' ? params.get(SPOTLIGHT_SORT_KEY) : null;
+  const sort = view === 'spotlights' && rawSort === SPOTLIGHT_POPULARITY_SORT
+    ? rawSort
+    : null;
 
-  return { view, listId: listId || null, filter };
+  return sort ? { view, listId: listId || null, filter, sort } : { view, listId: listId || null, filter };
 }
