@@ -26,6 +26,7 @@ test('the spotlight sort labels the default and popularity states', () => {
 test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exactly', () => {
   const expected = new Map([
     ['The Best of Spider-Man', 1],
+    ['Wolverine', 2],
     ['The Best of Captain America', 4],
     ['The Best of Thor', 6],
     ['The Best of the Scarlet Witch', 12],
@@ -47,6 +48,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
   const sorted = sortSpotlightStories(spotlights, 'popularity').map(title);
   assert.deepEqual(sorted, [
     'The Best of Spider-Man',
+    'Wolverine',
     'The Best of Captain America',
     'The Best of Thor',
     'The Best of the Scarlet Witch',

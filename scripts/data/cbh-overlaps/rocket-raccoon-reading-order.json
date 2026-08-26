@@ -2,10 +2,10 @@
   "candidateId": "rocket-raccoon-reading-order",
   "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
   "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "d40a930551aafff0bc2a60abf99eb648d6eb35f1225d646ad6f8aac0b5fa2489",
+  "libraryDigest": "08cbe04d0b0ffe6ec101555985988f773d71f1fa72f97273c7fec02e6eff4d11",
   "peerDigests": {},
   "candidateCount": 75,
-  "comparisonCount": 143,
+  "comparisonCount": 144,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -862,6 +862,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "wolverine-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "world-war-hulk-aftersmash",
       "sharedCount": 0,
       "sharedIds": [],
@@ -982,5 +988,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4e19120db3da7e77366fa8deb7c1def52e0b7bb8ff016bd120d9edd0cc0598bd"
+  "reportDigest": "5c6520e542eefe8fe23ff9acd75468b7ba25bf704c4dd34a9c6843b8cdb9b05e"
 }

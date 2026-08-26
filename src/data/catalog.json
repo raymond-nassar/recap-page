@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T07:40:10.185Z",
+  "generatedAt": "2026-08-26T20:07:19.021Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2485,17 +2485,10 @@
       "name": "Ant-Man",
       "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
       "type": "character-run",
-      "spotlightKind": "complete-guide",
       "depth": "complete",
-      "beginner": true,
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "sourceFile": "ant-man-reading-order.md",
-      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "out": "ant_man_reading_order.json",
+      "spotlightKind": "complete-guide",
+      "count": 386,
+      "collections": 0,
       "characters": [
         "Ant-Man",
         "Hank Pym",
@@ -2510,15 +2503,56 @@
         "Avengers",
         "Comic Book Herald"
       ],
-      "count": 386,
-      "collections": 0,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
       "timeline": null,
       "coverIssueId": 11379,
       "cover": {
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/536d6fa682524",
         "ext": "jpg"
       },
+      "source": "https://www.comicbookherald.com/ant-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
       "updatedAt": "2026-08-26T08:00:03.031Z"
+    },
+    {
+      "id": "wolverine-reading-order",
+      "file": "wolverine_reading_order.json",
+      "name": "Wolverine",
+      "description": "Wolverine from Giant-Size X-Men through Old Man Logan, preserving exact issue links and unresolved source provenance.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 1222,
+      "collections": 0,
+      "characters": [
+        "Wolverine",
+        "X-Men",
+        "Old Man Logan"
+      ],
+      "keywords": [
+        "Wolverine",
+        "X-Men",
+        "Old Man Logan",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 8797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5b314996e924c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/wolverine-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T20:07:18.806Z"
     },
     {
       "id": "xmen-claremont",

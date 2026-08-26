@@ -553,8 +553,9 @@ function assertManifestProposal(packet, provider) {
   if ((manifest.sourceSection ?? null) !== (packet.sourceSection ?? null)) {
     throw new Error(`${packet.id} proposedManifest sourceSection does not match the packet`);
   }
-  if (manifest.expect !== packet.expectedCount) {
-    throw new Error(`${packet.id} proposedManifest expect does not match expectedCount`);
+  const publishedAndGapCount = packet.expectedCount + (packet.sourceGaps?.length ?? 0);
+  if (manifest.expect !== packet.expectedCount && manifest.expect !== publishedAndGapCount) {
+    throw new Error(`${packet.id} proposedManifest expect does not match its published rows or published and gap rows`);
   }
   if (manifest.sourceOrigin !== provider.sourceOrigin) {
     throw new Error(`${packet.id} proposedManifest has the wrong source origin`);

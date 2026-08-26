@@ -3163,13 +3163,15 @@
     "url": "https://www.comicbookherald.com/wolverine-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The retained source snapshot explicitly names a 2026 issue, beyond the 2025-10-29 metadata horizon.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The source boundary is frozen and the available metadata rows are published while unresolved rows remain explicit provenance linked to Issue #262.",
+    "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked",
-    "centralDisposition": "blocked",
+    "catalogIds": [
+      "wolverine-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Wolverine"
     ],
@@ -3177,9 +3179,9 @@
       123
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "268a26c4935b379a37ccf6c857bf905074f5bc6c333d6760433652ef046f411c",
+    "sourceContentSha256": "4ead5fe8cacb6c5591b701ed0be9ad3446f495deb944bacbfd14baf95b760102",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-confirmed-post-horizon"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 123,
