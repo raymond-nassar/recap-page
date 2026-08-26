@@ -72,6 +72,7 @@ const frozenExcludedIds = [
   ...CBRO_BATCH_SEVEN_SELECTED_IDS,
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   ...CBRO_BATCH_NINE_SELECTED_IDS,
+  'hickman-x-men',
   'ultimate-marvel-intro',
 ];
 
@@ -311,7 +312,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 135);
+  assert.equal(catalog.lists.length, 136);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),

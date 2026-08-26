@@ -17,8 +17,8 @@ quote in a bug report.
 ### Added the opening Ultimate Marvel Universe guide
 
 In plain English: The first original Ultimate Marvel Universe reading guide is now available. It
-adds 121 issues from the early Earth-1610 era, ending at Ultimate War, and nothing you have saved is
-changed.
+adds 121 issues from the early Earth-1610 era, ending at Ultimate War, bringing the catalog to 136
+reading lists, and nothing you have saved is changed.
 
 The guide stops before the next section of the source order. The fast-track recommendations, trade
 path, one source-marked out-of-continuity issue, post-Secret-Wars continuation, and 2023-present New
@@ -28,6 +28,16 @@ For maintainers: the full source inventory records 693 main Earth-1610 issue occ
 sections and four excluded non-main or out-of-scope sections. The first frozen packet, exact mapping,
 and complete relationship report bind all 121 selected rows. The report covers 134 current-library
 comparisons, all with no shared issue.
+
+### Added Jonathan Hickman's X-Men creator-run
+
+In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It
+adds 54 Hickman-written or Hickman-co-written issues in source order, bringing the catalog to 135
+reading lists, and nothing you have saved is changed.
+
+For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are
+intentional because those events remain complete event guides, while Destiny of X and Fall of X are
+broader Krakoa continuations rather than Hickman creator-run rows.
 
 ### Added the final sequential historical Marvel event guides
 
