@@ -14,6 +14,21 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the final sequential historical Marvel event guides
+
+In plain English: The Hunt for Xavier and Magneto War are now available as complete historical
+reading guides. They add 14 issues in source order, bringing the catalog to 134 reading lists, and
+nothing you have saved is changed.
+
+MC2 and Apocalypse: The Twelve were not shortened. Their complete 224-row and 49-row source
+sequences remain preserved while 17 and 4 exact issues are missing from the configured metadata.
+Eighth Day was already available and was not published twice. Marvel 2099 and Second Clone Saga
+remain deferred for separate review.
+
+For maintainers: two frozen packets, exact mappings, and complete relationship reports bind all 14
+selected rows. The reports cover 266 current-library and selected-peer comparisons, all with no
+shared issue. The maintained pre-Maximum Security sequence is now exhausted.
+
 ### Added four complete historical Marvel event guides
 
 In plain English: Time and Time Again, Phalanx Covenant, Operation: Zero Tolerance, and Spider-Man:

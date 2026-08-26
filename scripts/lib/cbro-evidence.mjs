@@ -38,7 +38,7 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 
 export const CBRO_HISTORICAL_COUNT = 58;
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  '7e8842e45573be463af7184495109dbb486751fe1a0c040c909d7e53b3fb54ce';
+  'b773f435cec4a3d4619e1a32c647847b6c11a78307a322e32954dd0263b8f947';
 export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
   '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256 =
@@ -70,6 +70,10 @@ export const CBRO_BATCH_EIGHT_UNTOUCHED_INVENTORY_SHA256 =
   '022521feb4be8ec2a0585567a88b377b15e86bfc06edf50dc3eecac2bae8b33e';
 export const CBRO_BATCH_EIGHT_EVALUATED_OUTCOME_SHA256 =
   'd77f4c6f15a21b524a01b4f4a834867a5b86226acd32ff9b244ed88201bb4585';
+export const CBRO_BATCH_NINE_UNTOUCHED_INVENTORY_SHA256 =
+  '961fcc9ca2e340236d6becd38734632a618318660efe85c49eca813e4ceaa5fd';
+export const CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256 =
+  '486e8e72c2cbe226e17780a0bb4c9c3ab93b4a059eff7e234e02015d271cc5ff';
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
   'muir-island-saga',
@@ -190,6 +194,17 @@ export const CBRO_BATCH_EIGHT_TOUCHED_IDS = Object.freeze([
   'heroes-reborn',
   'spider-man-identity-crisis',
 ]);
+export const CBRO_BATCH_NINE_SELECTED_IDS = Object.freeze([
+  'hunt-for-xavier',
+  'magneto-war',
+]);
+export const CBRO_BATCH_NINE_AUTHOR_IDS = CBRO_BATCH_NINE_SELECTED_IDS;
+export const CBRO_BATCH_NINE_TOUCHED_IDS = Object.freeze([
+  'mc2',
+  'eighth-day',
+  ...CBRO_BATCH_NINE_SELECTED_IDS,
+  'apocalypse-the-twelve',
+]);
 export const CBRO_BATCH_THREE_TOUCHED_IDS = Object.freeze([
   'marvel-super-heroes-secret-wars',
   ...CBRO_BATCH_THREE_BLOCKED_IDS,
@@ -212,6 +227,8 @@ export const CBRO_BATCH_SEVEN_PACKET_REVIEW =
   'MRT-003-C02-B07 central CBRO source review';
 export const CBRO_BATCH_EIGHT_PACKET_REVIEW =
   'MRT-003-C02-B08 central CBRO source review';
+export const CBRO_BATCH_NINE_PACKET_REVIEW =
+  'MRT-003-C02-B09 central CBRO source review';
 export const CBRO_RELEASE_IDS = Object.freeze({
   original: 'mrt-003',
   continuationBatchOne: 'mrt-003-c02-b01',
@@ -222,6 +239,7 @@ export const CBRO_RELEASE_IDS = Object.freeze({
   continuationBatchSix: 'mrt-003-c02-b06',
   continuationBatchSeven: 'mrt-003-c02-b07',
   continuationBatchEight: 'mrt-003-c02-b08',
+  continuationBatchNine: 'mrt-003-c02-b09',
 });
 export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze([
@@ -479,6 +497,14 @@ export const CBRO_RELEASES = Object.freeze({
     authorityIdentity: 'MRT-003-C02-B08 coordinator',
     relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Phalanx Covenant subset is the only approved non-none relationship.',
   }),
+  [CBRO_RELEASE_IDS.continuationBatchNine]: Object.freeze({
+    id: CBRO_RELEASE_IDS.continuationBatchNine,
+    sourceIds: CBRO_BATCH_NINE_SELECTED_IDS,
+    authorIds: CBRO_BATCH_NINE_AUTHOR_IDS,
+    packetReview: CBRO_BATCH_NINE_PACKET_REVIEW,
+    authorityIdentity: 'MRT-003-C02-B09 coordinator',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
+  }),
 });
 const CBRO_PRE_BATCH_FIVE_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
@@ -522,7 +548,7 @@ const CBRO_PRE_BATCH_EIGHT_SELECTED_IDS = Object.freeze([
   ...CBRO_BATCH_SEVEN_SELECTED_IDS,
   ...CBRO_SELECTED_IDS.slice(1),
 ]);
-export const CBRO_ALL_SELECTED_IDS = Object.freeze([
+const CBRO_PRE_BATCH_NINE_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
   ...CBRO_BATCH_TWO_SELECTED_IDS,
   CBRO_BATCH_THREE_SELECTED_IDS[0],
@@ -536,6 +562,10 @@ export const CBRO_ALL_SELECTED_IDS = Object.freeze([
   ...CBRO_SELECTED_IDS.slice(1, 4),
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   CBRO_SELECTED_IDS[4],
+]);
+export const CBRO_ALL_SELECTED_IDS = Object.freeze([
+  ...CBRO_PRE_BATCH_NINE_SELECTED_IDS,
+  ...CBRO_BATCH_NINE_SELECTED_IDS,
 ]);
 
 const INVENTORY_DISPOSITIONS = new Set([
@@ -871,6 +901,36 @@ const BATCH_EIGHT_PREDECESSOR_STATE = Object.freeze({
     'e47ed420275476c557022301cc665798c44b5a6b253331d4b741798b7bd7e8bc',
   ),
 });
+const BATCH_NINE_DEFERRED_REASON =
+  'Deferred to a ranked later chunk; exact metadata and complete-library review have not run.';
+
+function batchNineDeferredPredecessor(sourceContentSha256) {
+  return Object.freeze({
+    sourceRetrievedAt: '2026-08-23',
+    sourceContentSha256,
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: BATCH_NINE_DEFERRED_REASON,
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  });
+}
+
+const BATCH_NINE_PREDECESSOR_STATE = Object.freeze({
+  mc2: batchNineDeferredPredecessor(
+    '6b45c02acdc0d10c7c25b94333b8178bf62fa90d62e06f582c0b5b65b9785643',
+  ),
+  'hunt-for-xavier': batchNineDeferredPredecessor(
+    'e4fbc4ffd2eb67df59f63dcba0ad7bfa532668476190f9053d0e2b3be61c5754',
+  ),
+  'magneto-war': batchNineDeferredPredecessor(
+    '35d5e552622ed11a6e7e5a1d111556ea0933191c14728c89a8ae0c4833122cbe',
+  ),
+  'apocalypse-the-twelve': batchNineDeferredPredecessor(
+    '0dc4c1a9b7124ac09844decef9ad7a449e2f8e22d3fb2ff2f7df2f4050aeb182',
+  ),
+});
 const INVENTORY_DELIVERY = new Set(['ready', 'shipped', 'deferred', 'blocked', 'not-applicable']);
 
 function assert(condition, message) {
@@ -898,6 +958,11 @@ export function cbroBatchSevenPredecessorRecord(record) {
 
 export function cbroBatchEightPredecessorRecord(record) {
   const state = BATCH_EIGHT_PREDECESSOR_STATE[record.id];
+  return state ? { ...record, ...state } : record;
+}
+
+export function cbroBatchNinePredecessorRecord(record) {
+  const state = BATCH_NINE_PREDECESSOR_STATE[record.id];
   return state ? { ...record, ...state } : record;
 }
 
@@ -1135,6 +1200,7 @@ export function validateCbroHistoricalInventory(records) {
     'CBRO historical inventory identity digest changed');
   const batchTwoNonselected = records
     .filter((record) => !CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map(cbroBatchSixPredecessorRecord)
@@ -1155,6 +1221,7 @@ export function validateCbroHistoricalInventory(records) {
     'CBRO batch-two nonselected inventory changed');
   const batchThreeNonselected = records
     .filter((record) => !CBRO_BATCH_THREE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map(cbroBatchSixPredecessorRecord)
@@ -1189,6 +1256,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchFourUntouched = records
     .filter((record) => !CBRO_BATCH_FOUR_SELECTED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map(cbroBatchSixPredecessorRecord)
@@ -1207,6 +1275,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchFiveUntouched = records
     .filter((record) => !CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map(cbroBatchSixPredecessorRecord)
@@ -1224,6 +1293,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchFiveEvaluatedOutcomes = records
     .filter((record) => CBRO_BATCH_FIVE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map(cbroBatchSixPredecessorRecord)
@@ -1237,6 +1307,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchSixUntouched = records
     .filter((record) => !CBRO_BATCH_SIX_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map((record) => CBRO_PRE_BATCH_SEVEN_SELECTED_IDS.includes(record.id)
@@ -1253,6 +1324,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchSixEvaluatedOutcomes = records
     .filter((record) => CBRO_BATCH_SIX_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map(cbroBatchSevenPredecessorRecord)
     .map((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id)
@@ -1265,6 +1337,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchSevenUntouched = records
     .filter((record) => !CBRO_BATCH_SEVEN_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map((record) => CBRO_PRE_BATCH_SEVEN_SELECTED_IDS.includes(record.id)
       ? {
@@ -1280,6 +1353,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchSevenEvaluatedOutcomes = records
     .filter((record) => CBRO_BATCH_SEVEN_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map(cbroBatchEightPredecessorRecord)
     .map((record) => CBRO_BATCH_SEVEN_SELECTED_IDS.includes(record.id)
       ? { ...record, catalogIds: [], deliveryStatus: 'ready' }
@@ -1291,6 +1365,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchEightUntouched = records
     .filter((record) => !CBRO_BATCH_EIGHT_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map((record) => CBRO_PRE_BATCH_EIGHT_SELECTED_IDS.includes(record.id)
       ? {
         ...record,
@@ -1305,6 +1380,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchEightEvaluatedOutcomes = records
     .filter((record) => CBRO_BATCH_EIGHT_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map((record) => CBRO_BATCH_EIGHT_SELECTED_IDS.includes(record.id)
       ? { ...record, catalogIds: [], deliveryStatus: 'ready' }
       : record);
@@ -1312,6 +1388,30 @@ export function validateCbroHistoricalInventory(records) {
     digestCanonicalJson(batchEightEvaluatedOutcomes)
       === CBRO_BATCH_EIGHT_EVALUATED_OUTCOME_SHA256,
     'CBRO batch-eight evaluated outcome changed',
+  );
+  const batchNineUntouched = records
+    .filter((record) => !CBRO_BATCH_NINE_TOUCHED_IDS.includes(record.id))
+    .map((record) => CBRO_PRE_BATCH_NINE_SELECTED_IDS.includes(record.id)
+      ? {
+        ...record,
+        catalogIds: [record.id],
+        deliveryStatus: 'shipped',
+      }
+      : record);
+  assert(
+    digestCanonicalJson(batchNineUntouched)
+      === CBRO_BATCH_NINE_UNTOUCHED_INVENTORY_SHA256,
+    'CBRO batch-nine untouched inventory changed',
+  );
+  const batchNineEvaluatedOutcomes = records
+    .filter((record) => CBRO_BATCH_NINE_TOUCHED_IDS.includes(record.id))
+    .map((record) => CBRO_BATCH_NINE_SELECTED_IDS.includes(record.id)
+      ? { ...record, catalogIds: [], deliveryStatus: 'ready' }
+      : record);
+  assert(
+    digestCanonicalJson(batchNineEvaluatedOutcomes)
+      === CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256,
+    'CBRO batch-nine evaluated outcome changed',
   );
   return true;
 }

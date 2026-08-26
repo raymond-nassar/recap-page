@@ -395,13 +395,14 @@ one known complete source-order or chronology-order set. Unknown releases, incom
 duplicates, and the wrong order are refused so an omitted guide cannot become an ordinary library
 comparison instead of a bound peer.
 
-The maintained historical program currently ships 36 guides. The eighth continuation release has
-four guides and 45 exact rows, which is why release validation names a complete known release rather
-than assuming every release contains five guides. Road to Vengeance: Missing Link, Siege of Darkness,
-Age of Apocalypse, Over the Edge, Onslaught Saga, and Heroes Reborn retain complete blocker records
-for 210 source rows and 16 exact gaps. All earlier blocker records remain unchanged. Marvel 2099 and
-Second Clone Saga remain deferred for separate review, and MC2 at source position 54 is the paused
-next cursor.
+The maintained historical program currently ships 38 guides. The ninth continuation release has two
+guides and 14 exact rows, which is why release validation names a complete known release rather than
+assuming every release contains five guides. MC2 and Apocalypse: The Twelve retain complete blocker
+records for 273 source rows and 21 exact gaps. MC2 keeps `universeScope: "alternate"` in the
+inventory; blocker records remain on schema version 1 and do not duplicate universe scope. All
+earlier blocker records remain unchanged. Marvel 2099 and Second Clone Saga remain deferred for
+separate review. Position 58 is the final maintained pre-Maximum Security entry, so the sequential source is exhausted
+and there is no next cursor.
 
 Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,
 manifest, and chronology evidence before writing. Every resulting card must use

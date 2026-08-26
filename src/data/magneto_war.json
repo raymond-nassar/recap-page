@@ -1,0 +1,288 @@
+{
+  "id": "magneto-war",
+  "name": "Magneto War",
+  "description": "Eight chapters following the X-Men through Magneto War.",
+  "source": "https://comicbookreadingorders.com/marvel/events/magneto-war-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T04:25:58.012Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12393,
+      "title": "X-MEN: THE MAGNETO WAR 1 (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12393/x-men_the_magneto_war_1_1999_1",
+      "seriesId": 2106,
+      "seriesName": "X-MEN: THE MAGNETO WAR 1 (1999)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "1999-03-01T00:00:00+0000",
+      "digitalId": 2877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/51e6fd026d691",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Weeks",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "writer"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13907,
+      "title": "Uncanny X-Men (1963) #366",
+      "number": "366",
+      "url": "https://www.marvel.com/comics/issue/13907/uncanny_x-men_1963_366",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "2013-07-29T00:00:00+0000",
+      "digitalId": 3086,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5919c4f4d2258",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ed Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "writer"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14379,
+      "title": "X-Men (1991) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/14379/x-men_1991_86",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3110,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/58a4c93ebf73e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13908,
+      "title": "Uncanny X-Men (1963) #367",
+      "number": "367",
+      "url": "https://www.marvel.com/comics/issue/13908/uncanny_x-men_1963_367",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1999-04-01T00:00:00+0000",
+      "mu": "2013-07-29T00:00:00+0000",
+      "digitalId": 3087,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/4bc46a7be41aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "writer"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14380,
+      "title": "X-Men (1991) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/14380/x-men_1991_87",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1999-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/58a5ba1a96e57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9999,
+      "title": "Magneto Rex (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9999/magneto_rex_1999_1",
+      "seriesId": 2035,
+      "seriesName": "Magneto Rex (1999)",
+      "onSale": "1999-05-01T00:00:00+0000",
+      "mu": "1999-05-01T00:00:00+0000",
+      "digitalId": 2064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/4bc35ee3ad796",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Pruett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10000,
+      "title": "Magneto Rex (1999) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10000/magneto_rex_1999_2",
+      "seriesId": 2035,
+      "seriesName": "Magneto Rex (1999)",
+      "onSale": "1999-06-01T00:00:00+0000",
+      "mu": "1999-06-01T00:00:00+0000",
+      "digitalId": 2065,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/4bc474c7b8772",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Pruett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10001,
+      "title": "Magneto Rex (1999) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10001/magneto_rex_1999_3",
+      "seriesId": 2035,
+      "seriesName": "Magneto Rex (1999)",
+      "onSale": "1999-07-01T00:00:00+0000",
+      "mu": "1999-07-01T00:00:00+0000",
+      "digitalId": 2066,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4bc474c25a6d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Pruett",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

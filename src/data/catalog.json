@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T15:53:03.240Z",
+  "generatedAt": "2026-08-26T04:25:58.054Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3877,6 +3877,72 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T15:53:03.209Z"
+    },
+    {
+      "id": "hunt-for-xavier",
+      "file": "hunt_for_xavier.json",
+      "name": "The Hunt for Xavier",
+      "description": "Six chapters following the X-Men through The Hunt for Xavier.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Professor X"
+      ],
+      "keywords": [
+        "The Hunt for Xavier",
+        "X-Men",
+        "Professor X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1998,
+      "coverIssueId": 13903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5919b922cc82b",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/hunt-for-xavier-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T04:25:58.010Z"
+    },
+    {
+      "id": "magneto-war",
+      "file": "magneto_war.json",
+      "name": "Magneto War",
+      "description": "Eight chapters following the X-Men through Magneto War.",
+      "type": "event",
+      "depth": "complete",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Magneto"
+      ],
+      "keywords": [
+        "Magneto War",
+        "X-Men",
+        "Magneto"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1999,
+      "coverIssueId": 12393,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/51e6fd026d691",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/magneto-war-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T04:25:58.012Z"
     },
     {
       "id": "maximum-security",
