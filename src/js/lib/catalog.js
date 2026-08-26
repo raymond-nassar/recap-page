@@ -879,6 +879,22 @@ export function availablePublishingCategories(stories, parent = null) {
     });
 }
 
+export function publishingAgeGroups(stories) {
+  const all = Array.isArray(stories) ? stories : [];
+  const matches = all.filter((story) => PUBLISHING_AGES.some(
+    (category) => inPublishingAge(story, category.key),
+  ));
+  const available = availablePublishingCategories(all);
+  const modern = available.find(({ key }) => key === 'modern') ?? null;
+  return {
+    stories: matches,
+    count: matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0),
+    earlier: available.filter(({ key }) => key !== 'modern'),
+    modern,
+    modernChildren: modern ? availablePublishingCategories(all, 'modern') : [],
+  };
+}
+
 // ------------------------------------------------------------------ Home categories
 
 // Home categories answer how somebody wants to browse; shelves answer where a story is filed. Those
@@ -895,6 +911,18 @@ const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : 
     const lists = Array.isArray(story?.lists) ? story.lists : [];
     return lists.length > 0 && lists.every((list) => list?.type === type);
   });
+
+export const MARVEL_AGES_CATEGORY = {
+  key: 'marvel-ages',
+  route: 'marvel-ages',
+  heading: 'Marvel Ages',
+  label: 'Publication history',
+  icon: 'E736',
+  tier: 'secondary',
+  kind: 'publishing-index',
+  highlights: ['Publishing periods', 'Chronological browsing'],
+  select: (stories) => publishingAgeGroups(stories).stories,
+};
 
 export const HOME_CATEGORIES = [
   {
@@ -937,11 +965,7 @@ export const HOME_CATEGORIES = [
     highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],
     select: typeCategory('screen-companion'),
   },
-  ...PUBLISHING_AGES.map((category) => ({
-    ...category,
-    tier: 'secondary',
-    select: (stories) => publishingCategoryStories(stories, category.key),
-  })),
+  MARVEL_AGES_CATEGORY,
 ];
 
 export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {

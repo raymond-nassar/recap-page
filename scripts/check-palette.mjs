@@ -130,7 +130,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1505`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1508`'],
 ];
 
 // Two of the surfaces this stylesheet paints on are not tokens and have no hex value to read, so a
@@ -165,7 +165,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1481`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1484`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a

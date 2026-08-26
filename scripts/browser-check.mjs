@@ -36,7 +36,8 @@ import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
 import {
-  availablePublishingCategories, decadeSections, eraSections, groupCatalog, shelfSections,
+  availablePublishingCategories, decadeSections, eraSections, groupCatalog, publishingAgeGroups,
+  shelfSections,
 } from '../src/js/lib/catalog.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
@@ -291,13 +292,36 @@ const CATALOG = {
   ],
 };
 
+const PUBLISHING_CATALOG = {
+  ...CATALOG,
+  lists: [
+    ...CATALOG.lists,
+    shelfEntry('silver-age-fixture', 'Silver Age Fixture', { timeline: 1961 }),
+    shelfEntry('bronze-age-fixture', 'Bronze Age Fixture', { timeline: 1975 }),
+    shelfEntry('copper-age-fixture', 'Copper Age Fixture', { timeline: 1988 }),
+  ],
+};
+const EMPTY_CATALOG = { lists: [], paths: [] };
+const SPARSE_PUBLISHING_CATALOG = {
+  lists: [
+    shelfEntry('sparse-silver', 'Sparse Silver Fixture', { timeline: 1961 }),
+    shelfEntry('sparse-bronze-one', 'Sparse Bronze Fixture One', { timeline: 1975 }),
+    shelfEntry('sparse-bronze-two', 'Sparse Bronze Fixture Two', { timeline: 1976 }),
+  ],
+  paths: [],
+};
+
 const FIXTURE_SHELVES = new Map(
   shelfSections(groupCatalog(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
 const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
-const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(groupCatalog(CATALOG.lists));
-const FIXTURE_MODERN_PERIODS = availablePublishingCategories(groupCatalog(CATALOG.lists), 'modern');
+const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(groupCatalog(PUBLISHING_CATALOG.lists));
+const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(groupCatalog(PUBLISHING_CATALOG.lists));
+const FIXTURE_MODERN_PERIODS = availablePublishingCategories(
+  groupCatalog(PUBLISHING_CATALOG.lists),
+  'modern',
+);
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
 const ORDER_COUNT = ORDER.items.length;
 const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
@@ -323,6 +347,15 @@ const MUTATIONS = [
         heading.after(sub);
       });
     },
+  },
+  {
+    id: 'marvel-ages-index-dispatch-off',
+    breaks: 'publishing-ages',
+    why: 'the shared Marvel Ages route falls through to generic Reading List cards',
+    rewriteMain: (source) => source.replace(
+      / {2}if \(category\.kind === 'publishing-index'\) \{\r?\n {4}renderPublishingIndex\(category, allStories\);\r?\n {4}return;\r?\n {2}\}\r?\n/,
+      '',
+    ),
   },
   {
     id: 'publishing-render-dispatch-off',
@@ -1296,7 +1329,7 @@ const SCENARIOS = [
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
-      t.check('the populated publishing age appears without empty historical ages',
+      t.check('the shared Marvel Ages gateway replaces peer age tiles',
         JSON.stringify(context.secondary) === JSON.stringify([
           {
             key: 'marvel-on-screen',
@@ -1304,7 +1337,12 @@ const SCENARIOS = [
             title: 'MCU Prep',
             count: '5 Reading Lists',
           },
-          { key: 'modern', label: '1991 to present', title: 'Modern Age', count: '16 Reading Lists' },
+          {
+            key: 'marvel-ages',
+            label: 'Publication history',
+            title: 'Marvel Ages',
+            count: '16 Reading Lists',
+          },
         ]),
         JSON.stringify(context.secondary));
       t.check('the primary paths remain equal choices on one desktop row',
@@ -1403,11 +1441,85 @@ const SCENARIOS = [
     title: 'publishing ages provide direct compact category pages',
     async run(page, t) {
       await open(page, '/');
-      await page.waitForSelector('[data-category="modern"]', { timeout: 15000 });
-      await click(page, '[data-category="modern"]');
+      await page.evaluate(() => localStorage.setItem('mrt.catalog.fixture', 'publishing'));
+      await open(page, '/');
+      await page.waitForSelector('#home-secondary-paths [data-category="marvel-ages"]', {
+        timeout: 15000,
+      });
+      await click(page, '#home-secondary-paths [data-category="marvel-ages"]');
+      await page.waitForSelector('#marvel-ages-modern-list .home-path', { timeout: 15000 });
+
+      const ages = await page.evaluate(() => ({
+        hash: location.hash,
+        focus: document.activeElement?.id ?? null,
+        rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        count: document.querySelector('#marvel-ages-count')?.textContent.trim() ?? '',
+        earlier: [...document.querySelectorAll('#marvel-ages-earlier-list .home-path')]
+          .map((path) => path.dataset.category),
+        modern: [...document.querySelectorAll('#marvel-ages-modern-list .home-path')]
+          .map((path) => path.dataset.category),
+        aggregateName: document.querySelector('#marvel-ages-modern-all')
+          ?.getAttribute('aria-label') ?? '',
+        cards: document.querySelectorAll('#marvel-ages-results .catalog-card').length,
+      }));
+      t.check('Home opens one chronological Marvel Ages gateway',
+        ages.hash === '#/marvel-ages'
+        && ages.focus === 'marvel-ages-h'
+        && ages.rail === 'browse'
+        && ages.count === `${FIXTURE_PUBLISHING_GROUPS.count} Reading Lists`
+        && ages.earlier.join('/') === 'silver/bronze/copper'
+        && ages.modern.join('/') === FIXTURE_MODERN_PERIODS.map(({ key }) => key).join('/')
+        && ages.aggregateName === 'Browse all Modern Age Reading Lists: 1991 to present, 16 Reading Lists'
+        && ages.cards === 0,
+        JSON.stringify(ages));
+
+      await click(page, '#marvel-ages-earlier-list [data-category="silver"]');
+      await page.waitForFunction(() => location.hash === '#/age-silver'
+        && document.activeElement?.id === 'age-silver-h');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/marvel-ages'
+        && document.activeElement?.id === 'marvel-ages-h');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/home'
+        && document.activeElement?.id === 'home-h');
+      await page.evaluate(() => history.forward());
+      await page.waitForFunction(() => location.hash === '#/marvel-ages');
+      await page.evaluate(() => history.forward());
+      await page.waitForFunction(() => location.hash === '#/age-silver');
+      t.check('Home history traverses gateway and Silver in both directions',
+        await page.evaluate(() => location.hash === '#/age-silver'
+          && document.activeElement?.id === 'age-silver-h'));
+
+      await open(page, '/#/browse');
+      await page.waitForSelector('#view-browse [data-secondary-paths] [data-category="marvel-ages"]', {
+        timeout: 15000,
+      });
+      await click(page, '#view-browse [data-secondary-paths] [data-category="marvel-ages"]');
+      await page.waitForSelector('#marvel-ages-earlier-list [data-category="silver"]');
+      await click(page, '#marvel-ages-earlier-list [data-category="silver"]');
+      await page.waitForFunction(() => location.hash === '#/age-silver');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/marvel-ages');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/browse');
+      t.check('Browse history returns through the same gateway',
+        await page.evaluate(() => document.querySelector('.view:not([hidden])')?.id === 'view-browse'
+          && document.activeElement?.id === 'browse-h'));
+
+      await open(page, '/');
+      await click(page, '#home-secondary-paths [data-category="marvel-ages"]');
+      await page.waitForSelector('#marvel-ages-modern-list [data-category="marvel-now"]');
+      await click(page, '#marvel-ages-modern-list [data-category="marvel-now"]');
+      await page.waitForFunction(() => location.hash === '#/age-marvel-now');
+      t.check('Marvel NOW! is a direct gateway child rather than a required Modern detour',
+        await page.evaluate(() => document.activeElement?.id === 'age-marvel-now-h'));
+
+      await open(page, '/');
+      await click(page, '#home-secondary-paths [data-category="marvel-ages"]');
+      await click(page, '#marvel-ages-modern-all');
       await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
 
-      const gateway = await page.evaluate(() => ({
+      const modernGateway = await page.evaluate(() => ({
         hash: location.hash,
         focus: document.activeElement?.id ?? null,
         rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
@@ -1418,8 +1530,8 @@ const SCENARIOS = [
         timeline: Boolean(document.querySelector('#age-modern-results .timeline-flow')),
       }));
       t.check('Modern Age has its own route and receives navigation focus',
-        gateway.hash === '#/age-modern' && gateway.focus === 'age-modern-h'
-        && gateway.rail === 'browse', JSON.stringify(gateway));
+        modernGateway.hash === '#/age-modern' && modernGateway.focus === 'age-modern-h'
+        && modernGateway.rail === 'browse', JSON.stringify(modernGateway));
       const modernCountStatus = await page.$eval('#age-modern-count', (count) => ({
         role: count.getAttribute('role'),
         text: count.textContent.trim(),
@@ -1433,14 +1545,14 @@ const SCENARIOS = [
           & Node.DOCUMENT_POSITION_FOLLOWING));
       t.check('the persistent footer follows the generated age page', panelBeforeFooter);
       t.check('Modern Age shows only populated fixture periods with derived counts',
-        JSON.stringify(gateway.periods) === JSON.stringify(
+        JSON.stringify(modernGateway.periods) === JSON.stringify(
           FIXTURE_MODERN_PERIODS.map(({ key, count }) => ({
             key,
             count: `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`,
           })),
-        ), JSON.stringify(gateway.periods));
+        ), JSON.stringify(modernGateway.periods));
       t.check('Modern Age remains a gateway without an aggregate chronology',
-        gateway.timeline === false, JSON.stringify(gateway));
+        modernGateway.timeline === false, JSON.stringify(modernGateway));
 
       await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .timeline-year-row:not(.is-empty)', { timeout: 15000 });
@@ -1455,9 +1567,9 @@ const SCENARIOS = [
           view: 'H1', era: 'H2', year: 'H3', card: 'H4',
         }), JSON.stringify(canonicalHeadings));
 
-      await openBrowseCategory(page, 'modern');
+      await open(page, '/#/age-modern');
       await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
-      await click(page, '[data-category="event-era"]');
+      await click(page, '#age-modern-category-list [data-category="event-era"]');
       await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
       const leaf = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#age-event-era-results .catalog-card')];
@@ -1665,7 +1777,7 @@ const SCENARIOS = [
           timeline: false,
         }), JSON.stringify(empty));
 
-      await page.setViewport({ width: 620, height: 900 });
+      await page.setViewport({ width: 390, height: 844 });
       await open(page, '/#/age-modern');
       await page.waitForSelector('#age-modern-category-list .home-path', { timeout: 15000 });
       const narrow = await page.$$eval('#age-modern-category-list .home-path', (paths) => paths.map((path) => {
@@ -1675,11 +1787,78 @@ const SCENARIOS = [
       t.check('Modern periods stack without horizontal clipping at the narrow viewport',
         narrow.length === FIXTURE_MODERN_PERIODS.length
         && new Set(narrow.map(({ top }) => top)).size === narrow.length
-        && narrow.every(({ width }) => width > 400 && width < 620),
+        && narrow.every(({ width }) => width > 280 && width < 390),
         JSON.stringify(narrow));
 
-      t.check('the fixture exposes one populated top-level publishing age',
-        FIXTURE_PUBLISHING_AGES.map(({ key }) => key).join('/') === 'modern',
+      await open(page, '/#/marvel-ages');
+      await page.waitForSelector('#marvel-ages-modern-list .home-path', { timeout: 15000 });
+      const narrowGateway = await page.evaluate(() => {
+        const paths = [...document.querySelectorAll('#marvel-ages-results .home-path')];
+        const aggregate = document.querySelector('#marvel-ages-modern-all')?.getBoundingClientRect();
+        return {
+          columns: new Set(paths.map((path) => Math.round(path.getBoundingClientRect().left))).size,
+          targets: paths.map((path) => Math.round(path.getBoundingClientRect().height)),
+          aggregateHeight: Math.round(aggregate?.height ?? 0),
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+        };
+      });
+      t.check('the narrow Marvel Ages gateway keeps one column and usable targets',
+        narrowGateway.columns === 1
+        && narrowGateway.targets.every((height) => height >= 44)
+        && narrowGateway.aggregateHeight >= 44
+        && narrowGateway.scrollWidth <= narrowGateway.viewport,
+        JSON.stringify(narrowGateway));
+
+      await page.evaluate(() => localStorage.setItem('mrt.catalog.fixture', 'empty'));
+      await open(page, '/?catalog=empty#/home');
+      await page.waitForFunction(() => !document.querySelector('#home-paths-status')
+        ?.textContent.includes('Loading'), { timeout: 15000 });
+      const emptyHomeHasGateway = await page.$(
+        '#home-secondary-paths [data-category="marvel-ages"]',
+      );
+      t.check('an empty catalog hides Marvel Ages from Home', emptyHomeHasGateway === null);
+      await open(page, '/?catalog=empty#/marvel-ages');
+      await page.waitForSelector('#marvel-ages-results .publishing-empty', { timeout: 15000 });
+      const emptyGateway = await page.evaluate(() => ({
+        count: document.querySelector('#marvel-ages-count')?.textContent.trim() ?? '',
+        message: document.querySelector('#marvel-ages-results .publishing-empty')
+          ?.textContent.trim() ?? '',
+        groups: document.querySelectorAll('#marvel-ages-results .marvel-ages-group').length,
+      }));
+      t.check('the direct empty gateway stays honest without empty groups',
+        JSON.stringify(emptyGateway) === JSON.stringify({
+          count: '0 Reading Lists',
+          message: 'No Reading Lists are published by age yet.',
+          groups: 0,
+        }), JSON.stringify(emptyGateway));
+
+      await page.evaluate(() => localStorage.setItem('mrt.catalog.fixture', 'sparse'));
+      await open(page, '/?catalog=sparse#/age-silver');
+      await page.waitForSelector('#age-silver-results .catalog-card', { timeout: 15000 });
+      const sparseSilver = await page.evaluate(() => ({
+        count: document.querySelector('#age-silver-count')?.textContent.trim() ?? '',
+        cards: document.querySelectorAll('#age-silver-results .catalog-card').length,
+        timeline: Boolean(document.querySelector('#age-silver-results .timeline-flow')),
+      }));
+      await open(page, '/?catalog=sparse#/age-bronze');
+      await page.waitForSelector('#age-bronze-results .catalog-card', { timeout: 15000 });
+      const sparseBronze = await page.evaluate(() => ({
+        count: document.querySelector('#age-bronze-count')?.textContent.trim() ?? '',
+        cards: document.querySelectorAll('#age-bronze-results .catalog-card').length,
+        timeline: Boolean(document.querySelector('#age-bronze-results .timeline-flow')),
+      }));
+      t.check('one-list and two-list ages keep the ordinary leaf timeline',
+        JSON.stringify(sparseSilver) === JSON.stringify({
+          count: '1 Reading List', cards: 1, timeline: true,
+        })
+        && JSON.stringify(sparseBronze) === JSON.stringify({
+          count: '2 Reading Lists', cards: 2, timeline: true,
+        }),
+        JSON.stringify({ sparseSilver, sparseBronze }));
+
+      t.check('the publishing fixture exposes all current populated top-level age shapes',
+        FIXTURE_PUBLISHING_AGES.map(({ key }) => key).join('/') === 'silver/bronze/copper/modern',
         JSON.stringify(FIXTURE_PUBLISHING_AGES));
     },
   },
@@ -2874,6 +3053,8 @@ async function readUpdateReport(page) {
 // memoized on first read: a stub installed afterwards is a stub the app has already gone past.
 async function preparePage(page, origin, mutation) {
   page.__origin = origin;
+  await page.setCacheEnabled(false);
+  await page.setBypassServiceWorker(true);
   if (mutation?.rewriteMain) {
     const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
     const rewritten = mutation.rewriteMain(source);
@@ -2884,6 +3065,7 @@ async function preparePage(page, origin, mutation) {
         await request.respond({
           status: 200,
           contentType: 'application/javascript; charset=utf-8',
+          headers: { 'cache-control': 'no-store' },
           body: rewritten,
         });
         return;
@@ -2893,7 +3075,7 @@ async function preparePage(page, origin, mutation) {
   }
   await page.setViewport({ width: 1280, height: 900 });
   await page.evaluateOnNewDocument(
-    (catalog, order, orderFile, appVersion, updateApiUrl) => {
+    (catalog, catalogFixtures, order, orderFile, appVersion, updateApiUrl) => {
       const real = window.fetch.bind(window);
       const json = (body, status = 200) => new Response(JSON.stringify(body), {
         status,
@@ -2902,19 +3084,30 @@ async function preparePage(page, origin, mutation) {
       window.fetch = (input, init) => {
         const url = typeof input === 'string' ? input : input?.url ?? '';
         if (url.endsWith('data/catalog.json')) {
+          const fixture = new URL(location.href).searchParams.get('catalog')
+            ?? localStorage.getItem('mrt.catalog.fixture');
+          const selectedCatalog = catalogFixtures[fixture] ?? catalog;
           // Two mutations aimed at the reading path, both applied to the catalog rather than to
           // the app, because the app resolves the path from this payload and nothing else.
-          if (window.__mrtMutation === 'path-strip') return Promise.resolve(json({ ...catalog, paths: [] }));
+          if (window.__mrtMutation === 'path-strip') {
+            return Promise.resolve(json({ ...selectedCatalog, paths: [] }));
+          }
           if (window.__mrtMutation === 'group-strip') {
-            return Promise.resolve(json({ ...catalog, lists: catalog.lists.map((l) => ({ ...l, groupName: null })) }));
+            return Promise.resolve(json({
+              ...selectedCatalog,
+              lists: selectedCatalog.lists.map((l) => ({ ...l, groupName: null })),
+            }));
           }
           // Aimed at the section rule through its input rather than at the function, which the page
           // cannot reach. One type everywhere puts every story on one side, so the empty section is
           // dropped and the shelf paints a single heading.
           if (window.__mrtMutation === 'type-flatten') {
-            return Promise.resolve(json({ ...catalog, lists: catalog.lists.map((l) => ({ ...l, type: 'era' })) }));
+            return Promise.resolve(json({
+              ...selectedCatalog,
+              lists: selectedCatalog.lists.map((l) => ({ ...l, type: 'era' })),
+            }));
           }
-          return Promise.resolve(json(catalog));
+          return Promise.resolve(json(selectedCatalog));
         }
         if (url.endsWith(`data/${orderFile}`)) {
           if (window.__mrtMutation === 'import-fail') return Promise.resolve(json({ error: 'mutation' }, 500));
@@ -3011,6 +3204,11 @@ async function preparePage(page, origin, mutation) {
       };
     },
     CATALOG,
+    {
+      publishing: PUBLISHING_CATALOG,
+      empty: EMPTY_CATALOG,
+      sparse: SPARSE_PUBLISHING_CATALOG,
+    },
     ORDER,
     ORDER_FILE,
     APP_VERSION,

@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Grouped Marvel publishing ages behind one path
+
+In plain English: Home and Browse now offer one Marvel Ages path instead of several publishing-age
+choices. It opens a chronological gateway where you can choose an earlier age, a specific Modern
+period, or all Modern Age reading lists. Modern Timeline remains a primary way to browse, existing
+links still work, and nothing you have saved is changed.
+
+For maintainers: the gateway, its count, and its visibility are derived from the bundled catalog.
+Empty periods remain hidden, all existing age and period addresses remain compatible, and browser
+history includes the gateway when readers enter through Home or Browse.
+
 ### Added the Thanos reading guide
 
 In plain English: A 272-issue Thanos reading guide is now available, from his first Cosmic Cube

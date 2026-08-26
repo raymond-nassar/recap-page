@@ -21,7 +21,7 @@ import {
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
   pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
-  availablePublishingCategories, isPublishingCategoryLeaf, publishingCategoryStories,
+  availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
   CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
 } from './lib/catalog.js';
@@ -1378,20 +1378,9 @@ function ensurePublishingViews() {
       el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
-      el('section', {
-        id: `${category.route}-categories`,
-        class: 'publishing-periods',
-        hidden: true,
-        'aria-labelledby': `${category.route}-categories-h`,
-      }, [
-        el('div', { class: 'sec-h' }, [
-          el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' }),
-        ]),
-        el('ul', {
-          id: `${category.route}-category-list`,
-          class: 'home-paths home-paths-secondary',
-        }),
-      ]),
+      ...(category.kind === 'publishing-index' ? [] : [el('section', { id: `${category.route}-categories`, class: 'publishing-periods', hidden: true, 'aria-labelledby': `${category.route}-categories-h` }, [
+        el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
+        el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' })])]),
       el('div', { id: `${category.route}-results`, class: 'results' }),
     ]), $('.app-footer'));
   }
@@ -1567,6 +1556,14 @@ function homeCategoryTile(category) {
   ]));
 }
 
+function renderPublishingIndex(category, allStories) {
+  const box = $(`#${category.route}-results`); const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
+  $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`; box.replaceChildren();
+  if (count === 0) { box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' })); return; }
+  if (earlier.length) box.append(el('section', { id: 'marvel-ages-earlier', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-earlier-h' }, [el('div', { class: 'sec-h' }, el('h2', { id: 'marvel-ages-earlier-h', text: 'Earlier Marvel' })), el('ul', { id: 'marvel-ages-earlier-list', class: 'home-paths home-paths-secondary' }, earlier.map((child) => homeCategoryTile({ ...child, tier: 'secondary' })))]));
+  if (modern) { const aggregateLabel = labelledName('Browse all Modern Age Reading Lists', `${modern.label}, ${modern.count} Reading Lists`); box.append(el('section', { id: 'marvel-ages-modern', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-modern-h' }, [el('div', { class: 'sec-h' }, [el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }), el('button', { id: 'marvel-ages-modern-all', type: 'button', class: 'quiet', text: 'Browse all Modern Age Reading Lists', 'aria-label': aggregateLabel, onclick: () => showView('age-modern', { push: true }) })]), el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeCategoryTile({ ...child, tier: 'secondary' })))])); }
+}
+
 async function renderPublishingCategory(route) {
   const category = generatedCategoryByRoute.get(route);
   if (!category) return;
@@ -1578,8 +1575,7 @@ async function renderPublishingCategory(route) {
     'aria-hidden': 'true',
     text: 'Loading Reading Lists…',
   }));
-  periods.hidden = true;
-  periodList.replaceChildren();
+  if (periods) periods.hidden = true; if (periodList) periodList.replaceChildren();
   clearNotice(CATALOG_LOAD);
 
   let catalog;
@@ -1597,6 +1593,10 @@ async function renderPublishingCategory(route) {
   }
 
   const allStories = groupCatalog(catalog.lists);
+  if (category.kind === 'publishing-index') {
+    renderPublishingIndex(category, allStories);
+    return;
+  }
   const stories = typeof category.select === 'function'
     ? category.select(allStories)
     : publishingCategoryStories(allStories, category.key);

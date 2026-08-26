@@ -13,6 +13,7 @@ import {
   inPublishingAge,
   isPublishingCategoryLeaf,
   parseCatalog,
+  publishingAgeGroups,
   publishingCategoryStories,
   shelfKey,
   storyYear,
@@ -166,6 +167,57 @@ test('only populated publishing categories are available and counts use Reading 
   );
   assert.equal(byKey.has('early-modern'), true);
   assert.equal(periods.some(({ key }) => key === 'early-modern'), true);
+});
+
+test('the Marvel Ages gateway groups populated leaves without double-counting Modern', () => {
+  const groups = publishingAgeGroups(stories);
+  assert.equal(groups.count, 120);
+  assert.equal(groups.stories.reduce(
+    (total, story) => total + story.lists.length,
+    0,
+  ), groups.count);
+  assert.deepEqual(
+    groups.earlier.map(({ key, count }) => [key, count]),
+    [['silver', 2], ['bronze', 9], ['copper', 11]],
+  );
+  assert.deepEqual(
+    [groups.modern?.key, groups.modern?.count],
+    ['modern', 98],
+  );
+  assert.deepEqual(
+    groups.modernChildren.map(({ key, count }) => [key, count]),
+    [
+      ['early-modern', 13],
+      ['marvel-knights-heroes-return', 6],
+      ['event-era', 36],
+      ['marvel-now', 10],
+      ['all-new-all-different', 7],
+      ['fresh-start', 13],
+      ['current', 13],
+    ],
+  );
+  assert.ok(!groups.earlier.some(({ key }) => key === 'golden'));
+});
+
+test('the Marvel Ages gateway handles empty and sparse catalogs from the same derivation', () => {
+  assert.deepEqual(publishingAgeGroups([]), {
+    stories: [],
+    count: 0,
+    earlier: [],
+    modern: null,
+    modernChildren: [],
+  });
+
+  const sparse = [one(1961), one(2012), one(null)];
+  const groups = publishingAgeGroups(sparse);
+  assert.equal(groups.count, 2);
+  assert.deepEqual(groups.earlier.map(({ key, count }) => [key, count]), [['silver', 1]]);
+  assert.deepEqual([groups.modern?.key, groups.modern?.count], ['modern', 1]);
+  assert.deepEqual(
+    groups.modernChildren.map(({ key, count }) => [key, count]),
+    [['marvel-now', 1]],
+  );
+  assert.deepEqual(groups.stories, sparse.slice(0, 2));
 });
 
 test('publication leaf eligibility comes from registry structure rather than current content', () => {

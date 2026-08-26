@@ -1789,13 +1789,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3006-3010|0": {
-    "anchor": "CHANGELOG.md:3006-3010",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3017-3021|0": {
+    "anchor": "CHANGELOG.md:3017-3021",
     "fp": "705eb84e7693eafb",
     "head": "review. The rule for how urgently to act is now written down beside the settings that act on it,"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3012-3022|0": {
-    "anchor": "CHANGELOG.md:3012-3022",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3023-3033|0": {
+    "anchor": "CHANGELOG.md:3023-3033",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -1984,8 +1984,8 @@
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1453-1455|0": {
-    "anchor": "src/styles.css:1453-1455",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1456-1458|0": {
+    "anchor": "src/styles.css:1456-1458",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2004,8 +2004,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1453-1455|0": {
-    "anchor": "src/styles.css:1453-1455",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1456-1458|0": {
+    "anchor": "src/styles.css:1456-1458",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2109,8 +2109,8 @@
     "fp": "49408e8173086b6e",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view]')) {"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1453-1460|0": {
-    "anchor": "src/styles.css:1453-1460",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1456-1463|0": {
+    "anchor": "src/styles.css:1456-1463",
     "fp": "9bb3bad6e68a2a84",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -5824,13 +5824,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1481|0": {
-    "anchor": "src/styles.css:1481",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1484|0": {
+    "anchor": "src/styles.css:1484",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1505|0": {
-    "anchor": "src/styles.css:1505",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1508|0": {
+    "anchor": "src/styles.css:1508",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
