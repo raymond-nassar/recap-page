@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T06:05:00.000Z",
+  "generatedAt": "2026-08-26T11:09:49.937Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2021,6 +2021,80 @@
       "updatedAt": "2026-08-24T01:03:59.245Z"
     },
     {
+      "id": "wandavision",
+      "file": "wandavision.json",
+      "name": "WandaVision",
+      "description": "Fifty-six exact Scarlet Witch and Vision issues from this WandaVision companion guide.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 56,
+      "collections": 0,
+      "characters": [
+        "Scarlet Witch",
+        "Vision",
+        "Avengers",
+        "Wiccan",
+        "Speed"
+      ],
+      "keywords": [
+        "WandaVision",
+        "Scarlet Witch",
+        "Vision",
+        "House of M",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 11954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5c9b8c175007d",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/10-best-comics-to-read-with-wandavision/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:28:25.902Z"
+    },
+    {
+      "id": "spider-man-far-from-home",
+      "file": "spider_man_far_from_home.json",
+      "name": "Spider-Man: Far From Home",
+      "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Mysterio",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Far From Home",
+        "Spider-Man",
+        "Mysterio",
+        "The Gauntlet",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 74028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5ccc6905b8689",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:16:35.956Z"
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "file": "white_tiger_ava_ayala.json",
       "name": "White Tiger: Ava Ayala",
@@ -2294,6 +2368,46 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T08:33:32.614Z"
+    },
+    {
+      "id": "modern-x-men-fast-track",
+      "file": "modern_x_men_fast_track.json",
+      "name": "Modern X-Men Fast Track",
+      "description": "A selected X-Men team path through the source page's explicit 2001 to 2015 issue and range recommendations, excluding linked events and collection-only references.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "other",
+      "count": 278,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Wolverine",
+        "Cyclops",
+        "Jean Grey",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Modern X-Men",
+        "New X-Men",
+        "Astonishing X-Men",
+        "X-Force",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 14933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/",
+      "sourceSection": "X-Men Events & Major Stories (2001 to 2015)",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:56:13.889Z"
     },
     {
       "id": "xmen-claremont",
@@ -4763,6 +4877,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.862Z"
+    },
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "file": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 2043,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1962,
+      "coverIssueId": 16926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/598363848588e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T10:59:32.800Z"
     },
     {
       "id": "silent-war",

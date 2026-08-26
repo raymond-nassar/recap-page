@@ -35,16 +35,23 @@ const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
-  const spotlightCatalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
-  const spotlights = shelfLists(spotlightCatalog.lists, 'spotlights');
-  assert.equal(spotlights.length, groupCatalog(spotlights).length + 1);
+  const spotlights = shelfLists(catalog.lists, 'spotlights');
+  assert.equal(spotlights.length, 17);
+  assert.equal(groupCatalog(spotlights).length, 16);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
   const other = filterBySpotlightKind(spotlights, 'other');
-  assert.equal(bestOf.length, groupCatalog(bestOf).length, 'best-of story count drifted');
-  assert.equal(completeGuide.length, groupCatalog(completeGuide).length, 'complete-guide story count drifted');
-  assert.equal(other.length, groupCatalog(other).length + 1, 'other story count drifted');
+  const expected = [
+    ['best-of', 5, 5],
+    ['complete-guide', 7, 7],
+    ['other', 5, 4],
+  ];
+  for (const [kind, readingCount, storyCount] of expected) {
+    const filtered = filterBySpotlightKind(spotlights, kind);
+    assert.equal(filtered.length, readingCount, `${kind} reading count drifted`);
+    assert.equal(groupCatalog(filtered).length, storyCount, `${kind} story count drifted`);
+  }
 
   const xMen = groupCatalog(other)
     .find((story) => story.key === 'xmen-claremont');
