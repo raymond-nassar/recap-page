@@ -1,7 +1,7 @@
 {
   "id": "wolverine-reading-order",
   "inventoryId": "wolverine-reading-order",
-  "packetDigest": "def7bbf81e44e81a0e9c3b88f5cd4e98d843a9d5c43bf6e993918db1f789f335",
+  "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2",
   "sourceUrl": "https://www.comicbookherald.com/wolverine-reading-order/",
   "sourceRetrievedAt": "2026-08-26",
   "sourceProvider": "comic-book-herald",
@@ -16588,7 +16588,7 @@
       "Old Man Logan",
       "Comic Book Herald"
     ],
-    "expect": 437,
+    "expect": 1222,
     "timeline": null,
     "coverIssueId": 8797
   },
@@ -33202,7 +33202,7 @@
       "resolvedIssueTitle": "Extermination (2018) #5"
     }
   ],
-  "mappingDigest": "9cbc8faef1360b080a1d60edf6b651f6946d1f1f82168dafa8ada9afdd441c4e",
+  "mappingDigest": "ed898bfb96d5272887c1990b6066ec76f285e734613f39babdc48d7b0c85e05f",
   "reviewStatus": "approved",
   "packetReview": "Final Wolverine source-boundary, metadata-gap, and relationship review",
   "approvedManifest": {
@@ -33232,7 +33232,7 @@
       "Old Man Logan",
       "Comic Book Herald"
     ],
-    "expect": 437,
+    "expect": 1222,
     "timeline": null,
     "coverIssueId": 8797
   },
@@ -33241,10 +33241,10 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Reviewed the canonical overlap report against the settled current-main library. Existing overlaps are intentional source-defined relationships, including Hunt for Wolverine, Wolverine Goes to Hell, Modern X-Men Fast Track, and broader X-Men guides.",
     "reviewedAt": "2026-08-26T19:13:50Z",
-    "reportDigest": "f91ad883213dfb0b711f7de91d9b8475c888e27f4fe40cb0f344b2f8d4508587",
-    "packetDigest": "def7bbf81e44e81a0e9c3b88f5cd4e98d843a9d5c43bf6e993918db1f789f335",
-    "mappingDigest": "9cbc8faef1360b080a1d60edf6b651f6946d1f1f82168dafa8ada9afdd441c4e",
-    "libraryDigest": "6dfc9de39b9cc4105d351031c92d3a6d808194244072d9e51bb5fae1f700d9aa",
+    "reportDigest": "680c1768b5e26dd1466f49d01c3c90fb24cdf2e594067807f440e9230726a344",
+    "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2",
+    "mappingDigest": "ed898bfb96d5272887c1990b6066ec76f285e734613f39babdc48d7b0c85e05f",
+    "libraryDigest": "9ef3d52745a46bf542802fe3083af1ca6b7911af68888f699ff7c917ec39d6cb",
     "peerDigests": {},
     "dispositions": [
       {
@@ -34463,6 +34463,6 @@
         "reviewedAt": "2026-08-26T19:13:50Z"
       }
     ],
-    "approvalDigest": "c1a789d2c40f3223c6f65362142cfcbc76e1387405bc982c9ca68ff34cc2f4e1"
+    "approvalDigest": "dcad65aa9832f5cb7754efe733d9ed2efc58d179a5f2f114855777c32ee355ca"
   }
 }

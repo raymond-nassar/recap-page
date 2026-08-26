@@ -198,7 +198,9 @@ export function manifestEntryForMapping(mapping) {
   assert(entry.sourcePage === mapping.sourceUrl, `${mapping.id} source page differs from its mapping`);
   assert((entry.sourceSection ?? null) === (mapping.sourceSection ?? null),
     `${mapping.id} source section differs from its mapping`);
-  assert(entry.expect === mapping.rows.length, `${mapping.id} expected count differs from its mapping`);
+  assert(entry.expect === mapping.rows.length
+    || entry.expect === mapping.rows.length + (mapping.sourceGaps?.length ?? 0),
+  `${mapping.id} expected count differs from its published mapping or published mapping and gaps`);
   return entry;
 }
 

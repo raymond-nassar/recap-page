@@ -16588,7 +16588,7 @@
       "Old Man Logan",
       "Comic Book Herald"
     ],
-    "expect": 437,
+    "expect": 1222,
     "timeline": null,
     "coverIssueId": 8797
   },
@@ -21410,5 +21410,5 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "def7bbf81e44e81a0e9c3b88f5cd4e98d843a9d5c43bf6e993918db1f789f335"
+  "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2"
 }

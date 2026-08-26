@@ -693,7 +693,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
-  assert.equal(reviewedLibraryDigest, '61fb224ec5658c2d14edaac8855d70b61471f6af193cd5472ab2c67ddc4fba8e');
+  assert.equal(reviewedLibraryDigest, '08cbe04d0b0ffe6ec101555985988f773d71f1fa72f97273c7fec02e6eff4d11');
   assert.equal(report.reportDigest, '3dc96f6675cc0d181cc7b81404dceaf7e1ac59d1f2727b6274f5c7e1d244eb3f');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
@@ -842,7 +842,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
   assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
-  assert.equal(reviewedLibraryDigest, '476bf70c7443ecaefd0ac497ee23d092b6ba6acee8a0cfb4be0256512fb8917f');
+  assert.equal(reviewedLibraryDigest, '1e4b0defeee110e62476e8e2c10e533c1be5b9bbf84eee618a2cb30bf21e6d5b');
   assert.equal(report.reportDigest, '825c0ac22b0ceb245aef4a67dfb083eb21536bddd34f57cf13b9a6809c3c16f0');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
@@ -1002,7 +1002,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
   assert.equal(mapping.mappingDigest, '731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da');
-  assert.equal(reviewedLibraryDigest, '331b1b1bd21f837ae03cb1f910a8f606d194e0e9db112f3ddcbead74e7faccc2');
+  assert.equal(reviewedLibraryDigest, 'd30b034f72e3887aaf26eaee9eb58acdd5151aebc3e87821721140a111102bdc');
   assert.equal(report.reportDigest, '51a0baac13ada042746af365340743ae476e851aa88a8de6d4c72ff8e3f77835');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
@@ -1230,7 +1230,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
   assert.equal(report.reportDigest, '242ea6b651d9522bf21cd08c57db3a3944f93a70dc1afd5d66ca53077acd546c');
-  assert.equal(reviewedLibraryDigest, '3771fd07c1ca92175d8a9b6d72a159bca4b5e9e96048a516215438983afef684');
+  assert.equal(reviewedLibraryDigest, '9c4f0f3bac5322e4a786e61b1314ec3d60b7cf5b49100a76977f8cbb54ffed15');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,

@@ -1013,8 +1013,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
   // gives the agreement assertion above something to compare: before it, every order either read 0
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
-  assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 897, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 897, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1207,6 +1207,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // already present in the bundled catalog.
   //
   // The Abomination guide adds two more exact issue pages with no metadata response.
-  assert.equal(refused.length, 157);
+  assert.equal(refused.length, 942);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
