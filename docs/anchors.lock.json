@@ -1984,8 +1984,8 @@
     "fp": "60c009eef0decb57",
     "head": "const parts = [];"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1456-1458|0": {
-    "anchor": "src/styles.css:1456-1458",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1460-1462|0": {
+    "anchor": "src/styles.css:1460-1462",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2004,8 +2004,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1456-1458|0": {
-    "anchor": "src/styles.css:1456-1458",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1460-1462|0": {
+    "anchor": "src/styles.css:1460-1462",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2109,9 +2109,9 @@
     "fp": "30d214bc1796a5cb",
     "head": "view = next;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1456-1463|0": {
-    "anchor": "src/styles.css:1456-1463",
-    "fp": "9bb3bad6e68a2a84",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1460-1462|0": {
+    "anchor": "src/styles.css:1460-1462",
+    "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
   "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:83|0": {
