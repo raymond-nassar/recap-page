@@ -104,6 +104,13 @@ only to correct the record left by the one before it:
   you choose to make must still be true. It says to make fewer of them.
 - **Do not widen active scope.** Unrelated work becomes a repository Issue, not an extra commit in
   the current change. One major feature per pull request.
+- **Reading-list publication is gap-tolerant.** Missing Marvel Unlimited or provider metadata must
+  not block publishing the whole reading list. Preserve every missing source position in explicit
+  provenance, never invent, substitute, or silently delete an issue identity, and keep publishing
+  the exactly resolved rows. For each gap bundle, file a separate repository Issue assigned to
+  `raymond-nassar` with the exact comics and failed lookups, then link that Issue from the guide
+  Issue and delivery PR. This owner-approved policy supersedes older stop-on-any-gap guidance for
+  reading-list publication.
 - **Review findings are routed, not looped.** Fix what is material to the change in hand; file the
   rest. Do not spiral a task through repeated review rounds chasing findings that belong in a later
   item. Equally, never report a clean review while a material finding is still open.
