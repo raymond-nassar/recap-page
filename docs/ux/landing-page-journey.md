@@ -11,16 +11,18 @@
 
 **Thinking**: "How do I want to get into this?"
 
-**Target experience**: One question and three large choices establish the available reading modes
-without a wall of individual cards.
+**Target experience**: One question distinguishes curated Browse from custom or manual Add. Three
+large choices establish the reading modes without a wall of individual cards, and an optional
+Avengers Disassembled callout offers this app's short modern event path.
 
 ## Stage 2: Orientation
-**Doing**: Chooses Modern Timeline, Storylines or Character spotlights.
+**Doing**: Chooses Modern Timeline, Storylines or Character spotlights, or previews the recommended
+short modern event path.
 
 **Thinking**: "I know whether I want chronology, a complete arc or a character."
 
-**Target experience**: Compact labels distinguish the paths. No paragraph must be read before a
-choice can be made.
+**Target experience**: Compact labels distinguish the paths. The recommendation opens existing
+Preview rather than adding anything or replacing the other ways to browse.
 
 ## Stage 3: Evaluation
 **Doing**: Compares Reading Lists on the selected browse screen.
@@ -31,12 +33,13 @@ choice can be made.
 preview details without crowding Home.
 
 ## Stage 4: Commitment
-**Doing**: Adds a Reading List from its preview.
+**Doing**: Adds a Reading List from its preview, including Preview opened from Home.
 
 **Thinking**: "Did that work, and what should I read first?"
 
-**Target experience**: The action confirms in place, the list appears in My Library, and the reading
-screen names the next issue.
+**Target experience**: The existing announcement confirms the action, the list appears in My
+Library, and the reading screen names the next issue. A separate follow-on owns any expanded
+first-save explanation, including the Home-originated path.
 
 ## Stage 5: Return
 **Doing**: Reopens the app days later.
