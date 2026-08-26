@@ -54,15 +54,17 @@ partial overlaps are centrally approved: five shared Uncanny X-Men issues with N
 shared crossover issues with the Avengers Dark Reign order. Avengers vs. X-Men remains a handoff,
 not a claimed stop in this page's source coverage.
 
+### Added a Modern X-Men fast-track spotlight
+
+In plain English: Modern X-Men now has a focused team reading guide in Character Spotlights. It follows the selected 2001 to 2015 recommendations from the source page in order, adds 278 issues, brings the catalog to 138 reading lists, and nothing you have saved is changed.
+
+For maintainers: the frozen packet preserves the source section boundary, explicit exclusions, and the approved Giant-Size Astonishing X-Men metadata selection. The relationship report covers 134 current-library comparisons, with 12 approved overlaps and no duplicate event row replacement.
+
 ### Added Jonathan Hickman's X-Men creator-run
 
-In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It
-adds 54 Hickman-written or Hickman-co-written issues in source order, and nothing you have saved is
-changed.
+In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It adds 54 Hickman-written or Hickman-co-written issues in source order, bringing the catalog to 135 reading lists, and nothing you have saved is changed.
 
-For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are
-intentional because those events remain complete event guides, while Destiny of X and Fall of X are
-broader Krakoa continuations rather than Hickman creator-run rows.
+For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are intentional because those events remain complete event guides, while Destiny of X and Fall of X are broader Krakoa continuations rather than Hickman creator-run rows.
 
 ### Added WandaVision to MCU Prep
 

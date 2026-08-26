@@ -1803,6 +1803,42 @@
       "coverIssueId": 74028
     },
     {
+      "id": "agents-of-atlas-reading-order",
+      "name": "Agents of Atlas",
+      "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "agents-of-atlas-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "agents_of_atlas_reading_order.json",
+      "characters": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "Namora",
+        "Marvel Boy",
+        "Gorilla-Man",
+        "M-11",
+        "What If?"
+      ],
+      "keywords": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "What If?",
+        "Jeff Parker",
+        "Comic Book Herald"
+      ],
+      "expect": 80,
+      "timeline": null,
+      "coverIssueId": 4801
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
@@ -1939,6 +1975,35 @@
       "expect": 75,
       "timeline": null,
       "coverIssueId": 11353
+    },
+    {
+      "id": "abomination-reading-order",
+      "name": "Abomination",
+      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "abomination-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/abomination-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "abomination_reading_order.json",
+      "characters": [
+        "Abomination",
+        "Hulk"
+      ],
+      "keywords": [
+        "Abomination",
+        "Hulk",
+        "Comic Book Herald"
+      ],
+      "expect": 127,
+      "timeline": null,
+      "coverIssueId": 11427
     },
     {
       "id": "groot-reading-order",
@@ -4158,6 +4223,35 @@
       "expect": 12,
       "timeline": 2005,
       "coverIssueId": 2453
+    },
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "amazing-spider-man-reading-order-modern-marvel-era.md",
+      "sourcePage": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "expect": 2043,
+      "timeline": 1962,
+      "coverIssueId": 16926
     },
     {
       "id": "silent-war",

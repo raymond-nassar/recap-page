@@ -1,0 +1,4157 @@
+{
+  "id": "abomination-reading-order",
+  "name": "Abomination",
+  "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+  "source": "https://www.comicbookherald.com/abomination-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T07:11:31.019Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 127,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 11427,
+      "title": "Tales to Astonish (1959) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/11427/tales_to_astonish_1959_80",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-06-01T00:00:00+0000",
+      "mu": "1966-06-01T00:00:00+0000",
+      "digitalId": 539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/536d4ab702ac1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Everett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11428,
+      "title": "Tales to Astonish (1959) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/11428/tales_to_astonish_1959_81",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-07-01T00:00:00+0000",
+      "mu": "1966-07-01T00:00:00+0000",
+      "digitalId": 3503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/536d4a524a0cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Everett",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11429,
+      "title": "Tales to Astonish (1959) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/11429/tales_to_astonish_1959_82",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-08-01T00:00:00+0000",
+      "mu": "1966-08-01T00:00:00+0000",
+      "digitalId": 3504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/536d45c41716b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Everett",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11430,
+      "title": "Tales to Astonish (1959) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/11430/tales_to_astonish_1959_83",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-09-01T00:00:00+0000",
+      "mu": "1966-09-01T00:00:00+0000",
+      "digitalId": 3505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/536d45929b83b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Everett",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11431,
+      "title": "Tales to Astonish (1959) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/11431/tales_to_astonish_1959_84",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-10-01T00:00:00+0000",
+      "mu": "1966-10-01T00:00:00+0000",
+      "digitalId": 3506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/536d455f1aadd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sol Brodsky",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Everett",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11432,
+      "title": "Tales to Astonish (1959) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/11432/tales_to_astonish_1959_85",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-11-01T00:00:00+0000",
+      "mu": "1966-11-01T00:00:00+0000",
+      "digitalId": 3507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/536d4526c69a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Everett",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11433,
+      "title": "Tales to Astonish (1959) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/11433/tales_to_astonish_1959_86",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1966-12-01T00:00:00+0000",
+      "mu": "1966-12-01T00:00:00+0000",
+      "digitalId": 3508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/536d44f45e34b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Everett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11434,
+      "title": "Tales to Astonish (1959) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/11434/tales_to_astonish_1959_87",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-01-01T00:00:00+0000",
+      "mu": "1967-01-01T00:00:00+0000",
+      "digitalId": 3509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/536d44bd58fa7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Everett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11435,
+      "title": "Tales to Astonish (1959) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/11435/tales_to_astonish_1959_88",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-02-01T00:00:00+0000",
+      "mu": "1967-02-01T00:00:00+0000",
+      "digitalId": 3887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/536d44888e1c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gil Kane",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11436,
+      "title": "Tales to Astonish (1959) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/11436/tales_to_astonish_1959_89",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-03-01T00:00:00+0000",
+      "mu": "1967-03-01T00:00:00+0000",
+      "digitalId": 3888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/536d44539ab9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gil Kane",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11438,
+      "title": "Tales to Astonish (1959) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/11438/tales_to_astonish_1959_90",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-04-01T00:00:00+0000",
+      "mu": "1967-04-01T00:00:00+0000",
+      "digitalId": 3889,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/536d4415580e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gil Kane",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11439,
+      "title": "Tales to Astonish (1959) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/11439/tales_to_astonish_1959_91",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-05-01T00:00:00+0000",
+      "mu": "1967-05-01T00:00:00+0000",
+      "digitalId": 3890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/536d43e07a711",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gil Kane",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11440,
+      "title": "Tales to Astonish (1959) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/11440/tales_to_astonish_1959_92",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-06-01T00:00:00+0000",
+      "mu": "1967-06-01T00:00:00+0000",
+      "digitalId": 3891,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/536d43ad99cbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11441,
+      "title": "Tales to Astonish (1959) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/11441/tales_to_astonish_1959_93",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-07-01T00:00:00+0000",
+      "mu": "1967-07-01T00:00:00+0000",
+      "digitalId": 3892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/536d437b80ffd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11442,
+      "title": "Tales to Astonish (1959) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/11442/tales_to_astonish_1959_94",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-08-01T00:00:00+0000",
+      "mu": "1967-08-01T00:00:00+0000",
+      "digitalId": 3893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/536d433861089",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11443,
+      "title": "Tales to Astonish (1959) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/11443/tales_to_astonish_1959_95",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-09-01T00:00:00+0000",
+      "mu": "1967-09-01T00:00:00+0000",
+      "digitalId": 3894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/536d4305a62e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11444,
+      "title": "Tales to Astonish (1959) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/11444/tales_to_astonish_1959_96",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-10-01T00:00:00+0000",
+      "mu": "1967-10-01T00:00:00+0000",
+      "digitalId": 3895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/536d42d477f61",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11445,
+      "title": "Tales to Astonish (1959) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/11445/tales_to_astonish_1959_97",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-11-01T00:00:00+0000",
+      "mu": "1967-11-01T00:00:00+0000",
+      "digitalId": 3896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/536d42a29051d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11446,
+      "title": "Tales to Astonish (1959) #98",
+      "number": "98",
+      "url": "https://www.marvel.com/comics/issue/11446/tales_to_astonish_1959_98",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1967-12-01T00:00:00+0000",
+      "mu": "1967-12-01T00:00:00+0000",
+      "digitalId": 3897,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/536d42658cdc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11447,
+      "title": "Tales to Astonish (1959) #99",
+      "number": "99",
+      "url": "https://www.marvel.com/comics/issue/11447/tales_to_astonish_1959_99",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1968-01-01T00:00:00+0000",
+      "mu": "1968-01-01T00:00:00+0000",
+      "digitalId": 3898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/536d423306d2a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11349,
+      "title": "Tales to Astonish (1959) #100",
+      "number": "100",
+      "url": "https://www.marvel.com/comics/issue/11349/tales_to_astonish_1959_100",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1968-02-01T00:00:00+0000",
+      "mu": "1968-02-01T00:00:00+0000",
+      "digitalId": 3899,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/536d41febc828",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11350,
+      "title": "Tales to Astonish (1959) #101",
+      "number": "101",
+      "url": "https://www.marvel.com/comics/issue/11350/tales_to_astonish_1959_101",
+      "seriesId": 2080,
+      "seriesName": "Tales to Astonish (1959 - 1968)",
+      "onSale": "1968-03-01T00:00:00+0000",
+      "mu": "1968-03-01T00:00:00+0000",
+      "digitalId": 3900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/536d41c7ed838",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8913,
+      "title": "Incredible Hulk (1962) #102",
+      "number": "102",
+      "url": "https://www.marvel.com/comics/issue/8913/incredible_hulk_1962_102",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1968-04-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 39888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5f3d580502ce0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17148,
+      "title": "Silver Surfer (1968) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/17148/silver_surfer_1968_12",
+      "seriesId": 2585,
+      "seriesName": "Silver Surfer (1968 - 1969)",
+      "onSale": "1970-01-01T00:00:00+0000",
+      "mu": "1970-01-01T00:00:00+0000",
+      "digitalId": 4772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5c9145e9d0d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 11506,
+      "title": "Thor (1966) #178",
+      "number": "178",
+      "url": "https://www.marvel.com/comics/issue/11506/thor_1966_178",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1970-07-01T00:00:00+0000",
+      "mu": "1970-07-01T00:00:00+0000",
+      "digitalId": 20642,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4f6357c4a8b2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8946,
+      "title": "Incredible Hulk (1962) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/8946/incredible_hulk_1962_135",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-01-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 6085,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/4bb67026ebdaf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8947,
+      "title": "Incredible Hulk (1962) #136",
+      "number": "136",
+      "url": "https://www.marvel.com/comics/issue/8947/incredible_hulk_1962_136",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-02-01T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 30704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/52617b1cbb217",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8948,
+      "title": "Incredible Hulk (1962) #137",
+      "number": "137",
+      "url": "https://www.marvel.com/comics/issue/8948/incredible_hulk_1962_137",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-03-01T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 30705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/525eadc759831",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8949,
+      "title": "Incredible Hulk (1962) #138",
+      "number": "138",
+      "url": "https://www.marvel.com/comics/issue/8949/incredible_hulk_1962_138",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3254,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5b73271dd7738",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8950,
+      "title": "Incredible Hulk (1962) #139",
+      "number": "139",
+      "url": "https://www.marvel.com/comics/issue/8950/incredible_hulk_1962_139",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-05-01T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 30706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/52617b1fb34f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8951,
+      "title": "Incredible Hulk (1962) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/8951/incredible_hulk_1962_140",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-06-01T00:00:00+0000",
+      "mu": "2009-05-08T00:00:00+0000",
+      "digitalId": 11942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb5416acff55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Grainger",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8952,
+      "title": "Incredible Hulk (1962) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/8952/incredible_hulk_1962_141",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-07-01T00:00:00+0000",
+      "mu": "1971-07-01T00:00:00+0000",
+      "digitalId": 30707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/52617ad70219d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8953,
+      "title": "Incredible Hulk (1962) #142",
+      "number": "142",
+      "url": "https://www.marvel.com/comics/issue/8953/incredible_hulk_1962_142",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-08-01T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 30708,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/52617a9191a0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8954,
+      "title": "Incredible Hulk (1962) #143",
+      "number": "143",
+      "url": "https://www.marvel.com/comics/issue/8954/incredible_hulk_1962_143",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-09-01T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 30709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/525ec1d1552f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8955,
+      "title": "Incredible Hulk (1962) #144",
+      "number": "144",
+      "url": "https://www.marvel.com/comics/issue/8955/incredible_hulk_1962_144",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1971-10-01T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 30710,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/52617a591545a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7341,
+      "title": "Avengers (1963) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/7341/avengers_1963_88",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-05-01T00:00:00+0000",
+      "mu": "1971-05-01T00:00:00+0000",
+      "digitalId": 19363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4e946415da75d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harlan Ellison",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15427,
+      "title": "Marvel Super-Heroes (1967) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/15427/marvel_super-heroes_1967_16",
+      "seriesId": 2300,
+      "seriesName": "Marvel Super-Heroes (1967 - 1982)",
+      "onSale": "1968-09-01T00:00:00+0000",
+      "mu": "1968-09-01T00:00:00+0000",
+      "digitalId": 48194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/642ddeb626b32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8970,
+      "title": "Incredible Hulk (1962) #159",
+      "number": "159",
+      "url": "https://www.marvel.com/comics/issue/8970/incredible_hulk_1962_159",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1973-01-01T00:00:00+0000",
+      "mu": "2013-08-19T00:00:00+0000",
+      "digitalId": 31199,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/528397a76f47c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Trapani",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8982,
+      "title": "Incredible Hulk (1962) #171",
+      "number": "171",
+      "url": "https://www.marvel.com/comics/issue/8982/incredible_hulk_1962_171",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1974-01-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 31230,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/5b75d99666471",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jack Abel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8995,
+      "title": "Incredible Hulk (1962) #184",
+      "number": "184",
+      "url": "https://www.marvel.com/comics/issue/8995/incredible_hulk_1962_184",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-02-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 31237,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/529361626c4c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8996,
+      "title": "Incredible Hulk (1962) #185",
+      "number": "185",
+      "url": "https://www.marvel.com/comics/issue/8996/incredible_hulk_1962_185",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-03-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 31238,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/52936a2e11f2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8997,
+      "title": "Incredible Hulk (1962) #186",
+      "number": "186",
+      "url": "https://www.marvel.com/comics/issue/8997/incredible_hulk_1962_186",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-04-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 31239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/529369fec7169",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8998,
+      "title": "Incredible Hulk (1962) #187",
+      "number": "187",
+      "url": "https://www.marvel.com/comics/issue/8998/incredible_hulk_1962_187",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-05-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31255,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/529369cfa41c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 8999,
+      "title": "Incredible Hulk (1962) #188",
+      "number": "188",
+      "url": "https://www.marvel.com/comics/issue/8999/incredible_hulk_1962_188",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-06-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5293699aa8cf9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9000,
+      "title": "Incredible Hulk (1962) #189",
+      "number": "189",
+      "url": "https://www.marvel.com/comics/issue/9000/incredible_hulk_1962_189",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-07-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/52937025eb635",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9001,
+      "title": "Incredible Hulk (1962) #190",
+      "number": "190",
+      "url": "https://www.marvel.com/comics/issue/9001/incredible_hulk_1962_190",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-08-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5b7d7a5abd6cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9002,
+      "title": "Incredible Hulk (1962) #191",
+      "number": "191",
+      "url": "https://www.marvel.com/comics/issue/9002/incredible_hulk_1962_191",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-09-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5b7d80bf75430",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9003,
+      "title": "Incredible Hulk (1962) #192",
+      "number": "192",
+      "url": "https://www.marvel.com/comics/issue/9003/incredible_hulk_1962_192",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-10-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5b7d8a8822a44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9004,
+      "title": "Incredible Hulk (1962) #193",
+      "number": "193",
+      "url": "https://www.marvel.com/comics/issue/9004/incredible_hulk_1962_193",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-11-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 32479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5b7d91829ff2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9005,
+      "title": "Incredible Hulk (1962) #194",
+      "number": "194",
+      "url": "https://www.marvel.com/comics/issue/9005/incredible_hulk_1962_194",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1975-12-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 32481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5b7da8a180071",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9006,
+      "title": "Incredible Hulk (1962) #195",
+      "number": "195",
+      "url": "https://www.marvel.com/comics/issue/9006/incredible_hulk_1962_195",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1976-01-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 32482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b7db306070ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9007,
+      "title": "Incredible Hulk (1962) #196",
+      "number": "196",
+      "url": "https://www.marvel.com/comics/issue/9007/incredible_hulk_1962_196",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1976-02-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 32483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5b7db8d57ae4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Staton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9081,
+      "title": "Incredible Hulk (1962) #270",
+      "number": "270",
+      "url": "https://www.marvel.com/comics/issue/9081/incredible_hulk_1962_270",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1982-04-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43678,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/57fd312968e6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9097,
+      "title": "Incredible Hulk (1962) #286",
+      "number": "286",
+      "url": "https://www.marvel.com/comics/issue/9097/incredible_hulk_1962_286",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1983-08-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43695,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/57fd45e9a543e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brent Anderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9098,
+      "title": "Incredible Hulk (1962) #287",
+      "number": "287",
+      "url": "https://www.marvel.com/comics/issue/9098/incredible_hulk_1962_287",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1983-09-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43696,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/57fd46049fe5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9099,
+      "title": "Incredible Hulk (1962) #288",
+      "number": "288",
+      "url": "https://www.marvel.com/comics/issue/9099/incredible_hulk_1962_288",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1983-10-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/57fd455dca4e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9100,
+      "title": "Incredible Hulk (1962) #289",
+      "number": "289",
+      "url": "https://www.marvel.com/comics/issue/9100/incredible_hulk_1962_289",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1983-11-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43698,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/57fd4670db88d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9101,
+      "title": "Incredible Hulk (1962) #290",
+      "number": "290",
+      "url": "https://www.marvel.com/comics/issue/9101/incredible_hulk_1962_290",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1983-12-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43699,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/57fd464eeec12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Carlos Garzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9102,
+      "title": "Incredible Hulk (1962) #291",
+      "number": "291",
+      "url": "https://www.marvel.com/comics/issue/9102/incredible_hulk_1962_291",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-01-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43700,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/57fd479b1c03e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9103,
+      "title": "Incredible Hulk (1962) #292",
+      "number": "292",
+      "url": "https://www.marvel.com/comics/issue/9103/incredible_hulk_1962_292",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-02-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43701,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/57fd47cf762c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Nowlan",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9104,
+      "title": "Incredible Hulk (1962) #293",
+      "number": "293",
+      "url": "https://www.marvel.com/comics/issue/9104/incredible_hulk_1962_293",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-03-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43702,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/57fd47ac1e0bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9105,
+      "title": "Incredible Hulk (1962) #294",
+      "number": "294",
+      "url": "https://www.marvel.com/comics/issue/9105/incredible_hulk_1962_294",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-04-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43703,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/57fd47e807803",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9106,
+      "title": "Incredible Hulk (1962) #295",
+      "number": "295",
+      "url": "https://www.marvel.com/comics/issue/9106/incredible_hulk_1962_295",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-05-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/57fd45480f0f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9108,
+      "title": "Incredible Hulk (1962) #297",
+      "number": "297",
+      "url": "https://www.marvel.com/comics/issue/9108/incredible_hulk_1962_297",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-07-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57fd50e41c758",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Gerry Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9109,
+      "title": "Incredible Hulk (1962) #298",
+      "number": "298",
+      "url": "https://www.marvel.com/comics/issue/9109/incredible_hulk_1962_298",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-08-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57fd503330c86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Nowlan",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9110,
+      "title": "Incredible Hulk (1962) #299",
+      "number": "299",
+      "url": "https://www.marvel.com/comics/issue/9110/incredible_hulk_1962_299",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-09-10T00:00:00+0000",
+      "mu": "2016-10-17T00:00:00+0000",
+      "digitalId": 43708,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/57fd50151c6f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gerry Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Cirocco",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9111,
+      "title": "Incredible Hulk (1962) #300",
+      "number": "300",
+      "url": "https://www.marvel.com/comics/issue/9111/incredible_hulk_1962_300",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1984-10-01T00:00:00+0000",
+      "mu": "2008-10-16T00:00:00+0000",
+      "digitalId": 10585,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4bb609ed6a1d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gerry Talaoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16869,
+      "title": "Incredible Hulk Annual (1976) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/16869/incredible_hulk_annual_1976_12",
+      "seriesId": 2983,
+      "seriesName": "Incredible Hulk Annual (1976 - 1994)",
+      "onSale": "1983-01-01T00:00:00+0000",
+      "mu": "2023-01-26T00:00:00+0000",
+      "digitalId": 47162,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/63d1a652e29bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brent Anderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16872,
+      "title": "Incredible Hulk Annual (1976) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/16872/incredible_hulk_annual_1976_15",
+      "seriesId": 2983,
+      "seriesName": "Incredible Hulk Annual (1976 - 1994)",
+      "onSale": "1986-10-01T00:00:00+0000",
+      "mu": "1986-10-01T00:00:00+0000",
+      "digitalId": 55894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5fca87b75f705",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Fingeroth",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16898,
+      "title": "Amazing Spider-Man Annual (1964) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/16898/amazing_spider-man_annual_1964_23",
+      "seriesId": 2984,
+      "seriesName": "Amazing Spider-Man Annual (1964 - 2018)",
+      "onSale": "1989-01-01T00:00:00+0000",
+      "mu": "1989-01-01T00:00:00+0000",
+      "digitalId": 48059,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/51e40d0bcc4d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Mushynsky",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Hembeck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gavin Curtis",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Brock",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Frenz",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Peter Sanderson",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9175,
+      "title": "Incredible Hulk (1962) #364",
+      "number": "364",
+      "url": "https://www.marvel.com/comics/issue/9175/incredible_hulk_1962_364",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1989-12-20T00:00:00+0000",
+      "mu": "2008-01-24T00:00:00+0000",
+      "digitalId": 9876,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5b90328c4ec82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Purves",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9176,
+      "title": "Incredible Hulk (1962) #365",
+      "number": "365",
+      "url": "https://www.marvel.com/comics/issue/9176/incredible_hulk_1962_365",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10651,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5b9122d12227d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Purves",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9177,
+      "title": "Incredible Hulk (1962) #366",
+      "number": "366",
+      "url": "https://www.marvel.com/comics/issue/9177/incredible_hulk_1962_366",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-02-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10652,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5b9134a4c27bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Purves",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9178,
+      "title": "Incredible Hulk (1962) #367",
+      "number": "367",
+      "url": "https://www.marvel.com/comics/issue/9178/incredible_hulk_1962_367",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-03-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10653,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5b913f6cc6c05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9179,
+      "title": "Incredible Hulk (1962) #368",
+      "number": "368",
+      "url": "https://www.marvel.com/comics/issue/9179/incredible_hulk_1962_368",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-04-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10654,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5b9148565fddc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kelley Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sam Kieth",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9180,
+      "title": "Incredible Hulk (1962) #369",
+      "number": "369",
+      "url": "https://www.marvel.com/comics/issue/9180/incredible_hulk_1962_369",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-05-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5b9154cc3db33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9181,
+      "title": "Incredible Hulk (1962) #370",
+      "number": "370",
+      "url": "https://www.marvel.com/comics/issue/9181/incredible_hulk_1962_370",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10656,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5b916cb15d920",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9182,
+      "title": "Incredible Hulk (1962) #371",
+      "number": "371",
+      "url": "https://www.marvel.com/comics/issue/9182/incredible_hulk_1962_371",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-07-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10657,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5b929dcaec647",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9183,
+      "title": "Incredible Hulk (1962) #372",
+      "number": "372",
+      "url": "https://www.marvel.com/comics/issue/9183/incredible_hulk_1962_372",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 10658,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5b92aa7976a0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16873,
+      "title": "Incredible Hulk Annual (1976) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/16873/incredible_hulk_annual_1976_16",
+      "seriesId": 2983,
+      "seriesName": "Incredible Hulk Annual (1976 - 1994)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "1990-06-01T00:00:00+0000",
+      "digitalId": 10692,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/603e6b586d0bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Albrecht",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Wozniak",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Reed",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Grant",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9194,
+      "title": "Incredible Hulk (1962) #383",
+      "number": "383",
+      "url": "https://www.marvel.com/comics/issue/9194/incredible_hulk_1962_383",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "2010-01-26T00:00:00+0000",
+      "digitalId": 13768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5b7edfe9ed8f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9195,
+      "title": "Incredible Hulk (1962) #384",
+      "number": "384",
+      "url": "https://www.marvel.com/comics/issue/9195/incredible_hulk_1962_384",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5b7ef92c468b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9196,
+      "title": "Incredible Hulk (1962) #385",
+      "number": "385",
+      "url": "https://www.marvel.com/comics/issue/9196/incredible_hulk_1962_385",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5b7f022fe9990",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9197,
+      "title": "Incredible Hulk (1962) #386",
+      "number": "386",
+      "url": "https://www.marvel.com/comics/issue/9197/incredible_hulk_1962_386",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b7f0b18e7239",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9198,
+      "title": "Incredible Hulk (1962) #387",
+      "number": "387",
+      "url": "https://www.marvel.com/comics/issue/9198/incredible_hulk_1962_387",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-11-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5b7f1615ec5fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9199,
+      "title": "Incredible Hulk (1962) #388",
+      "number": "388",
+      "url": "https://www.marvel.com/comics/issue/9199/incredible_hulk_1962_388",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5b855313aac7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9200,
+      "title": "Incredible Hulk (1962) #389",
+      "number": "389",
+      "url": "https://www.marvel.com/comics/issue/9200/incredible_hulk_1962_389",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1992-01-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22859,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5b855d55e01f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Barker",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16874,
+      "title": "Incredible Hulk Annual (1976) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/16874/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 16877,
+      "title": "Incredible Hulk Annual (1976) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/16877/incredible_hulk_annual_1976_20",
+      "seriesId": 2983,
+      "seriesName": "Incredible Hulk Annual (1976 - 1994)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 44195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5d4dd128aa4bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brad Vancata",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Lowe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Christian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Moy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Kobasic",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Felix",
+          "role": "penciler"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Benefiel",
+          "role": "penciler"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Barry Dutter",
+          "role": "writer"
+        },
+        {
+          "name": "Frank Lovece",
+          "role": "writer"
+        },
+        {
+          "name": "Jerry Novick",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22695,
+      "title": "Ghost Rider (0) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/22695/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 9231,
+      "title": "Incredible Hulk (1962) #420",
+      "number": "420",
+      "url": "https://www.marvel.com/comics/issue/9231/incredible_hulk_1962_420",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/52810926b9019",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9232,
+      "title": "Incredible Hulk (1962) #421",
+      "number": "421",
+      "url": "https://www.marvel.com/comics/issue/9232/incredible_hulk_1962_421",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32672,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/528108e40fc83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9233,
+      "title": "Incredible Hulk (1962) #422",
+      "number": "422",
+      "url": "https://www.marvel.com/comics/issue/9233/incredible_hulk_1962_422",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/52810899d6ef1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9234,
+      "title": "Incredible Hulk (1962) #423",
+      "number": "423",
+      "url": "https://www.marvel.com/comics/issue/9234/incredible_hulk_1962_423",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32676,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5281111167a7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9235,
+      "title": "Incredible Hulk (1962) #424",
+      "number": "424",
+      "url": "https://www.marvel.com/comics/issue/9235/incredible_hulk_1962_424",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32677,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/528110ce89553",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Boyd",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9236,
+      "title": "Incredible Hulk (1962) #425",
+      "number": "425",
+      "url": "https://www.marvel.com/comics/issue/9236/incredible_hulk_1962_425",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5382c1d78ad02",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9237,
+      "title": "Incredible Hulk (1962) #426",
+      "number": "426",
+      "url": "https://www.marvel.com/comics/issue/9237/incredible_hulk_1962_426",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32698,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/538bfaa2e23a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9238,
+      "title": "Incredible Hulk (1962) #427",
+      "number": "427",
+      "url": "https://www.marvel.com/comics/issue/9238/incredible_hulk_1962_427",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32703,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/538bfa68b43fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Boyd",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9239,
+      "title": "Incredible Hulk (1962) #428",
+      "number": "428",
+      "url": "https://www.marvel.com/comics/issue/9239/incredible_hulk_1962_428",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/52838f737e788",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9240,
+      "title": "Incredible Hulk (1962) #429",
+      "number": "429",
+      "url": "https://www.marvel.com/comics/issue/9240/incredible_hulk_1962_429",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/52936ff1a620d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9241,
+      "title": "Incredible Hulk (1962) #430",
+      "number": "430",
+      "url": "https://www.marvel.com/comics/issue/9241/incredible_hulk_1962_430",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "2015-08-06T10:29:31+0000",
+      "digitalId": 32756,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5bbe2537b6b76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9242,
+      "title": "Incredible Hulk (1962) #431",
+      "number": "431",
+      "url": "https://www.marvel.com/comics/issue/9242/incredible_hulk_1962_431",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "2014-06-02T00:00:00+0000",
+      "digitalId": 32758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/52937d911de76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9243,
+      "title": "Incredible Hulk (1962) #432",
+      "number": "432",
+      "url": "https://www.marvel.com/comics/issue/9243/incredible_hulk_1962_432",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33067,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5382c1a45a574",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Liam Sharp",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9244,
+      "title": "Incredible Hulk (1962) #433",
+      "number": "433",
+      "url": "https://www.marvel.com/comics/issue/9244/incredible_hulk_1962_433",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5382c17136c3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9245,
+      "title": "Incredible Hulk (1962) #434",
+      "number": "434",
+      "url": "https://www.marvel.com/comics/issue/9245/incredible_hulk_1962_434",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5382c13d9f7c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Josue Justiniano",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9246,
+      "title": "Incredible Hulk (1962) #435",
+      "number": "435",
+      "url": "https://www.marvel.com/comics/issue/9246/incredible_hulk_1962_435",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5bbe29a441386",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Renaud",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66352,
+      "title": "Tales to Astonish (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66352/tales_to_astonish_1994_1",
+      "seriesId": 24038,
+      "seriesName": "Tales to Astonish (1994)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "1994-12-01T00:00:00+0000",
+      "digitalId": 47377,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/5a30703699927",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Estes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65016,
+      "title": "INCREDIBLE HULK VS. VENOM 1 (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/65016/incredible_hulk_vs_venom_1_1994_1",
+      "seriesId": 44660,
+      "seriesName": "INCREDIBLE HULK VS. VENOM 1 (1994 - Present)",
+      "onSale": "1994-04-01T00:00:00+0000",
+      "mu": "1994-04-01T00:00:00+0000",
+      "digitalId": 46188,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5a306fcf20ced",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Anderson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Day",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Day",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Craig",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18189,
+      "title": "X-Man (1995) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/18189/x-man_1995_20",
+      "seriesId": 3643,
+      "seriesName": "X-Man (1995 - 2000)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "2023-04-13T00:00:00+0000",
+      "digitalId": 45177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/643724f1d8edd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Skroce",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9270,
+      "title": "Incredible Hulk (1962) #459",
+      "number": "459",
+      "url": "https://www.marvel.com/comics/issue/9270/incredible_hulk_1962_459",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1997-12-01T00:00:00+0000",
+      "mu": "2012-08-21T00:00:00+0000",
+      "digitalId": 17140,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/52025d0438244",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14366,
+      "title": "X-Men (1991) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/14366/x-men_1991_74",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1998-04-01T00:00:00+0000",
+      "mu": "1998-04-01T00:00:00+0000",
+      "digitalId": 48049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5ac663a251898",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9284,
+      "title": "Incredible Hulk (1962) #473",
+      "number": "473",
+      "url": "https://www.marvel.com/comics/issue/9284/incredible_hulk_1962_473",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1999-02-01T00:00:00+0000",
+      "mu": "2012-08-23T00:00:00+0000",
+      "digitalId": 20201,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/50b3b879ab92b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Pulido",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9285,
+      "title": "Incredible Hulk (1962) #474",
+      "number": "474",
+      "url": "https://www.marvel.com/comics/issue/9285/incredible_hulk_1962_474",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "2012-08-23T00:00:00+0000",
+      "digitalId": 20202,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/50b515fa2e2ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Pulido",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14421,
+      "title": "Hulk (1999) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/14421/hulk_1999_21",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 46131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/59824b4e7e6d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Powell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14422,
+      "title": "Hulk (1999) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/14422/hulk_1999_22",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 46132,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/59824aea64402",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Powell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14423,
+      "title": "Hulk (1999) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/14423/hulk_1999_23",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-01-01T00:00:00+0000",
+      "mu": "2001-01-01T00:00:00+0000",
+      "digitalId": 46133,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/59824b073789b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Powell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14424,
+      "title": "Hulk (1999) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/14424/hulk_1999_24",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-01-17T00:00:00+0000",
+      "mu": "2001-01-17T00:00:00+0000",
+      "digitalId": 46134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/59824bbf0145a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Giordano",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14425,
+      "title": "Hulk (1999) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/14425/hulk_1999_25",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-03-14T00:00:00+0000",
+      "mu": "2001-03-14T00:00:00+0000",
+      "digitalId": 6087,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/59823eac5c696",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14426,
+      "title": "Hulk (1999) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/14426/hulk_1999_26",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-03-28T00:00:00+0000",
+      "mu": "2001-03-28T00:00:00+0000",
+      "digitalId": 46135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/c0/59824adf79e9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Powell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14427,
+      "title": "Hulk (1999) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/14427/hulk_1999_27",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-05-02T00:00:00+0000",
+      "mu": "2001-05-02T00:00:00+0000",
+      "digitalId": 46136,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/59824b8795e80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14428,
+      "title": "Hulk (1999) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/14428/hulk_1999_28",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-05-30T00:00:00+0000",
+      "mu": "2001-05-30T00:00:00+0000",
+      "digitalId": 46137,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/59824b9ff1340",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14429,
+      "title": "Hulk (1999) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/14429/hulk_1999_29",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-06-20T00:00:00+0000",
+      "mu": "2001-06-20T00:00:00+0000",
+      "digitalId": 46138,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/59824c11a9860",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Powell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14430,
+      "title": "Hulk (1999) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/14430/hulk_1999_30",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-07-25T00:00:00+0000",
+      "mu": "2001-07-25T00:00:00+0000",
+      "digitalId": 46174,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/598b2aa4da369",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14431,
+      "title": "Hulk (1999) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/14431/hulk_1999_31",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-08-15T00:00:00+0000",
+      "mu": "2001-08-15T00:00:00+0000",
+      "digitalId": 46175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/598b2f685068e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14432,
+      "title": "Hulk (1999) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/14432/hulk_1999_32",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-09-26T00:00:00+0000",
+      "mu": "2001-09-26T00:00:00+0000",
+      "digitalId": 46176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/598b2fb6beea8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14433,
+      "title": "Hulk (1999) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/14433/hulk_1999_33",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-10-17T00:00:00+0000",
+      "mu": "2001-10-17T00:00:00+0000",
+      "digitalId": 41625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/598b30ad87c6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Bogdanove",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66629,
+      "title": "Incredible Hulk Annual (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66629/incredible_hulk_annual_2001_1",
+      "seriesId": 24125,
+      "seriesName": "Incredible Hulk Annual (2001)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2023-01-26T00:00:00+0000",
+      "digitalId": 47628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/63d1a807528fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J.H. Williams III",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Lucas",
+          "role": "penciler"
+        },
+        {
+          "name": "Erik Larsen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

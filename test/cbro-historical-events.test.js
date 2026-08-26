@@ -1,4 +1,4 @@
-import test from 'node:test';
+﻿import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   access,
@@ -86,6 +86,7 @@ import {
   CBRO_RELATIONSHIP_DECISIONS,
   CBRO_RELEASES,
   CBRO_SELECTED_IDS,
+  CBH_LATER_ORDER_IDS,
   CBRO_PACKET_REVIEW,
   CBRO_SOURCE_ORIGIN,
   CBRO_SOURCE_PROVIDER,
@@ -111,16 +112,12 @@ const packetsDir = path.join(root, 'scripts', 'data', 'cbro-packets');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbro-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbro-overlaps');
 const blockersDir = path.join(root, 'scripts', 'data', 'cbro-blockers');
-const laterCbhOrderIds = Object.freeze([
-  'hickman-x-men',
-  'ultimate-marvel-intro',
-  'x-men-utopia',
-  'x-men-messiah-to-avx',
-]);
+const laterCbhOrderIds = Object.freeze([...CBH_LATER_ORDER_IDS]);
 const postCbroChronologyIds = Object.freeze(['ultimate-marvel-intro']);
 const laterMcuCompanionIds = [
   'wandavision',
   'spider-man-far-from-home',
+  'modern-x-men-fast-track',
 ];
 
 async function readJson(filePath) {
@@ -641,15 +638,13 @@ test('five reports bind the complete library, four peers, and central approvals'
     library,
     [
       ...CBRO_SELECTED_IDS,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
+
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -657,13 +652,10 @@ test('five reports bind the complete library, four peers, and central approvals'
   const existingIds = library.lists
     .filter((entry) => ![
       ...CBRO_SELECTED_IDS,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
+
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ].includes(entry.id))
     .map((entry) => entry.id);
   for (const id of CBRO_SELECTED_IDS) {
@@ -692,7 +684,7 @@ test('five reports bind the complete library, four peers, and central approvals'
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -944,15 +936,13 @@ test('batch two reports authorize exactly seven named non-none relationships', a
     library,
     [
       ...CBRO_BATCH_TWO_SELECTED_IDS,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
+
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_TWO_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -969,13 +959,9 @@ test('batch two reports authorize exactly seven named non-none relationships', a
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_TWO_SELECTED_IDS,
-          ...CBRO_BATCH_FIVE_SELECTED_IDS,
-          ...CBRO_BATCH_SIX_SELECTED_IDS,
-          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -986,7 +972,7 @@ test('batch two reports authorize exactly seven named non-none relationships', a
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1130,15 +1116,13 @@ test('batch three reports authorize exactly five named non-none relationships', 
     library,
     [
       ...CBRO_BATCH_THREE_SELECTED_IDS,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
+
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_THREE_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1155,13 +1139,9 @@ test('batch three reports authorize exactly five named non-none relationships', 
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_THREE_SELECTED_IDS,
-          ...CBRO_BATCH_FIVE_SELECTED_IDS,
-          ...CBRO_BATCH_SIX_SELECTED_IDS,
-          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1172,7 +1152,7 @@ test('batch three reports authorize exactly five named non-none relationships', 
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1302,15 +1282,13 @@ test('batch four reports authorize exactly eight named non-none relationships', 
     library,
     [
       ...CBRO_BATCH_FOUR_SELECTED_IDS,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
+
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_FOUR_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1327,13 +1305,9 @@ test('batch four reports authorize exactly eight named non-none relationships', 
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_FOUR_SELECTED_IDS,
-          ...CBRO_BATCH_FIVE_SELECTED_IDS,
-          ...CBRO_BATCH_SIX_SELECTED_IDS,
-          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1344,7 +1318,7 @@ test('batch four reports authorize exactly eight named non-none relationships', 
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1416,21 +1390,19 @@ test('continuation packets and mappings preserve all 32 exact source rows', asyn
   assert.equal(new Set(issueIds).size, 32);
 });
 
-test('continuation reports bind 580 comparisons and one central subset approval', async () => {
+test('continuation reports bind 665 comparisons and one central subset approval', async () => {
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
     [
       ...CBRO_CONTINUATION_SELECTED_IDS,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
+
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_CONTINUATION_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1448,13 +1420,9 @@ test('continuation reports bind 580 comparisons and one central subset approval'
       ...library.lists
         .filter((entry) => ![
           ...CBRO_CONTINUATION_SELECTED_IDS,
-          ...CBRO_BATCH_FIVE_SELECTED_IDS,
-          ...CBRO_BATCH_SIX_SELECTED_IDS,
-          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1472,7 +1440,7 @@ test('continuation reports bind 580 comparisons and one central subset approval'
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1892,20 +1860,18 @@ test('batch five packets and mappings preserve 71 exact source rows without excl
   assert.equal(new Set(issueIds).size, 71);
 });
 
-test('batch five reports bind 480 all-none comparisons and reject stale evidence', async () => {
+test('batch five reports bind 532 all-none comparisons and reject stale evidence', async () => {
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
     [
       ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_FIVE_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -1922,12 +1888,9 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_FIVE_SELECTED_IDS,
-          ...CBRO_BATCH_SIX_SELECTED_IDS,
-          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -1941,7 +1904,7 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -1956,7 +1919,7 @@ test('batch five reports bind 480 all-none comparisons and reject stale evidence
         packet,
         mapping,
         report: staleReport,
-        currentLibraryDigest: reviewedLibraryDigest,
+        currentLibraryDigest: report.libraryDigest,
         peerMappings,
         expectedOrderIds,
         packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -2293,8 +2256,10 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const mappings = await Promise.all(CBRO_BATCH_SIX_SELECTED_IDS.map((id) => (
     readJson(path.join(mappingsDir, `${id}.json`))
   )));
@@ -2311,11 +2276,9 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...library.lists
         .filter((entry) => ![
           ...CBRO_BATCH_SIX_SELECTED_IDS,
-          ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(entry.id))
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
@@ -2330,7 +2293,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -2345,7 +2308,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
         packet,
         mapping,
         report: staleReport,
-        currentLibraryDigest: reviewedLibraryDigest,
+        currentLibraryDigest: report.libraryDigest,
         peerMappings,
         expectedOrderIds,
         packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -2794,8 +2757,10 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const expectedDigests = new Map([
     ['time-and-time-again', {
       packet: 'eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d',
@@ -2846,9 +2811,9 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       ...library.lists
         .filter((candidate) => ![
           ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
       ...peerMappings.map((peer) => peer.id),
@@ -2865,7 +2830,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -3132,10 +3097,6 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const library = await loadLibrarySnapshot();
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(
-    library,
-    [...CBRO_BATCH_NINE_SELECTED_IDS, ...laterCbhOrderIds, ...laterMcuCompanionIds],
-  );
   const expectedDigests = new Map([
     ['hunt-for-xavier', {
       packet: 'a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba',
@@ -3169,6 +3130,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
           ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
       ...peerMappings.map((peer) => peer.id),
@@ -3185,7 +3147,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
@@ -3264,8 +3226,10 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       ...CBRO_BATCH_NINE_SELECTED_IDS,
       ...laterCbhOrderIds,
       ...laterMcuCompanionIds,
+
     ],
   );
+  void reviewedLibraryDigest;
   const issueIds = [];
   let comparisonCount = 0;
   const expectedDigests = new Map([
@@ -3307,10 +3271,9 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       ...library.lists
         .filter((candidate) => ![
           ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-          ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-          ...CBRO_BATCH_NINE_SELECTED_IDS,
           ...laterCbhOrderIds,
           ...laterMcuCompanionIds,
+
         ].includes(candidate.id))
         .map((candidate) => candidate.id),
       ...peerMappings.map((peer) => peer.id),
@@ -3327,7 +3290,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       packet,
       mapping,
       report,
-      currentLibraryDigest: reviewedLibraryDigest,
+      currentLibraryDigest: report.libraryDigest,
       peerMappings,
       expectedOrderIds,
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },

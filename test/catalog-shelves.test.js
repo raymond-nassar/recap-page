@@ -39,6 +39,9 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.equal(spotlights.length, 15);
   assert.equal(groupCatalog(spotlights).length, 14);
 
+  const bestOf = filterBySpotlightKind(spotlights, 'best-of');
+  const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
+  const other = filterBySpotlightKind(spotlights, 'other');
   const expected = [
     ['best-of', 5, 5],
     ['complete-guide', 5, 5],
@@ -50,23 +53,28 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
     assert.equal(groupCatalog(filtered).length, storyCount, `${kind} story count drifted`);
   }
 
-  const xMen = groupCatalog(filterBySpotlightKind(spotlights, 'other'))
+  const xMen = groupCatalog(other)
     .find((story) => story.key === 'xmen-claremont');
   assert.equal(xMen.lists.length, 2, 'the grouped X-Men readings were split');
 
   const rocket = spotlights.find((list) => list.id === 'rocket-raccoon-reading-order');
-  assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(rocket));
-  assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(rocket), false);
+  assert.ok(completeGuide.includes(rocket));
+  assert.equal(bestOf.includes(rocket), false);
 
   const groot = spotlights.find((list) => list.id === 'groot-reading-order');
   assert.ok(groot, 'Groot is missing from Character Spotlight All');
-  assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(groot));
-  assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(groot), false);
+  assert.ok(completeGuide.includes(groot));
+  assert.equal(bestOf.includes(groot), false);
+
+  const abomination = spotlights.find((list) => list.id === 'abomination-reading-order');
+  assert.ok(abomination, 'Abomination is missing from Character Spotlight All');
+  assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(abomination));
+  assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(abomination), false);
 
   const starLord = spotlights.find((list) => list.id === 'star-lord-reading-order');
   assert.ok(starLord, 'Star-Lord is missing from Character Spotlight All');
-  assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(starLord));
-  assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(starLord), false);
+  assert.ok(completeGuide.includes(starLord));
+  assert.equal(bestOf.includes(starLord), false);
 });
 
 test('a path arrival clears the subset that would hide Essential Avengers', () => {

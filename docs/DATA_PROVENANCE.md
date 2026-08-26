@@ -322,6 +322,16 @@ Groot's Complete guide preserves all 76 issues in its reviewed source order. Its
 with Rocket Raccoon and 25 with Star-Lord are partial relationships between separately sourced
 guides, not permission to merge a card or shorten a sequence.
 
+The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
+shares a story with, rather than carried through the frozen-packet pipeline the six other complete
+guides use: it is not derived from Marvel metadata and cannot be checked against it, only the issue
+ids and titles come from Marvel, by resolving each issue the source guide names. Of 2,043
+source-defined rows, 1,937 resolve to an exact Marvel issue; the remaining 106 ship as explicit
+plain-text placeholders, never an invented identity, and are tracked for follow-up research in a
+linked GitHub issue. It overlaps 32 other catalog entries, the largest being 209 shared issues with
+the Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
+Spider-Verse orders.
+
 Some source guides name one comic in more than one collected range. The frozen packet preserves that
 fact without turning it into a second reading step. Its canonical rows contain each distinct comic
 once at the first source occurrence. A separate repeated-reference ledger records every later source

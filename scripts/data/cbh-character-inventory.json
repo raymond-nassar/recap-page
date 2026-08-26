@@ -6,13 +6,19 @@
     "url": "https://www.comicbookherald.com/abomination-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "All 127 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite three approved partial relationships.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "atlantis-attacks",
+      "essential-avengers",
+      "maximum-security"
+    ],
+    "catalogIds": [
+      "abomination-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Abomination"
     ],
@@ -22,7 +28,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "caffa7a1a36d3fd25396be7be4ace07e45f1e8a09bcdc8e447f32117b0f02665",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 2,
@@ -106,13 +112,48 @@
     "url": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "1,937 of 2,043 source-defined issues resolve exactly in source order; the remaining 106 rows ship as explicit plain-text placeholders (no invented Marvel issue ids or links) and are tracked for follow-up research in issue #248. The separate Complete guide remains distinct despite 32 approved partial relationships.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "spider-man-best-of",
+      "hickman-full",
+      "spider-man-no-way-home",
+      "spider-verse",
+      "original-clone-saga",
+      "spider-geddon",
+      "dark-web",
+      "spider-man-identity-crisis",
+      "civil-war",
+      "civil-war-essential",
+      "kravens-last-hunt",
+      "civil-war-avengers",
+      "doctor-doom-primer",
+      "inferno",
+      "war-of-the-realms",
+      "house-of-m",
+      "secret-war",
+      "damnation",
+      "secret-wars-ii",
+      "maximum-security",
+      "absolute-carnage",
+      "white-tiger-ava-ayala",
+      "the-night-gwen-stacy-died",
+      "monsters-unleashed",
+      "new-ultimate-universe",
+      "new-ultimate-universe-trades",
+      "judgment-day",
+      "xmen-claremont-complete",
+      "eighth-day",
+      "evolutionary-war",
+      "atlantis-attacks",
+      "heroic-age-avengers"
+    ],
+    "catalogIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Amazing Spider-Man"
     ],
@@ -122,7 +163,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "5a32479a05c51673f42ad1fe5a0249ac7c6bb829a8a26e0b8f2dcfbdc946200e",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 6,
@@ -1358,13 +1399,17 @@
     "url": "https://www.comicbookherald.com/iron-man-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The 815-occurrence source boundary has 813 distinct issues and is now representable without duplicate output, but publication remains blocked because the configured metadata contract cannot resolve source-required Crimson Dynamo #1-4, Iron Man: Viva Las Vegas #3-4, or Iron Man Legacy #2, #5, and #10.",
+    "disposition": "new-order",
+    "reason": "The 815-occurrence source boundary reduces to 811 distinct issues once the two repeated Tony Stark: Iron Man (2018) #15/#16 occurrences and the two never-published Iron Man: Viva Las Vegas #3-4 rows are recorded, and all 811 resolve exactly, including the owner-supplied exact ids for Crimson Dynamo #1-4 and Iron Man Legacy #2, #5, and #10, which this project's live metadata index does not currently list.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "iron-man-2020"
+    ],
+    "catalogIds": [
+      "iron-man-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Iron Man"
     ],
@@ -1374,7 +1419,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "61b3eb71bffefe629ce6b2c7f96353d5cb50c5ee66bc8e9d03217858092c9bfa",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 55,

@@ -2095,6 +2095,47 @@
       "updatedAt": "2026-08-26T05:16:35.956Z"
     },
     {
+      "id": "agents-of-atlas-reading-order",
+      "file": "agents_of_atlas_reading_order.json",
+      "name": "Agents of Atlas",
+      "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 80,
+      "collections": 0,
+      "characters": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "Namora",
+        "Marvel Boy",
+        "Gorilla-Man",
+        "M-11",
+        "What If?"
+      ],
+      "keywords": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "What If?",
+        "Jeff Parker",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 4801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56b216e07bc79",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T09:49:42.158Z"
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "file": "white_tiger_ava_ayala.json",
       "name": "White Tiger: Ava Ayala",
@@ -2251,6 +2292,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T20:43:34.162Z"
+    },
+    {
+      "id": "abomination-reading-order",
+      "file": "abomination_reading_order.json",
+      "name": "Abomination",
+      "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 127,
+      "collections": 0,
+      "characters": [
+        "Abomination",
+        "Hulk"
+      ],
+      "keywords": [
+        "Abomination",
+        "Hulk",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 11427,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/536d4ab702ac1",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/abomination-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T07:11:31.019Z"
     },
     {
       "id": "groot-reading-order",
@@ -4834,6 +4909,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.862Z"
+    },
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "file": "amazing_spider_man_reading_order_modern_marvel_era.json",
+      "name": "Amazing Spider-Man",
+      "description": "Comic Book Herald's complete Amazing Spider-Man guide, from Amazing Fantasy #15 through the character's most recent issues, across every renumbering and companion title the guide follows along the way.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 2043,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Amazing Spider-Man",
+        "Spider-Man",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1962,
+      "coverIssueId": 16926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/598363848588e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T10:59:32.800Z"
     },
     {
       "id": "silent-war",

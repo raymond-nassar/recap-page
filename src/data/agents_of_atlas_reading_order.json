@@ -1,0 +1,2823 @@
+{
+  "id": "agents-of-atlas-reading-order",
+  "name": "Agents of Atlas",
+  "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+  "source": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T09:49:42.158Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 80,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 11084,
+      "title": "Strange Tales (1951) #160",
+      "number": "160",
+      "url": "https://www.marvel.com/comics/issue/11084/strange_tales_1951_160",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1967-09-01T00:00:00+0000",
+      "mu": "1967-09-01T00:00:00+0000",
+      "digitalId": 4407,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/66436e425551d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 11085,
+      "title": "Strange Tales (1951) #161",
+      "number": "161",
+      "url": "https://www.marvel.com/comics/issue/11085/strange_tales_1951_161",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1967-10-01T00:00:00+0000",
+      "mu": "1967-10-01T00:00:00+0000",
+      "digitalId": 4408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/57bde47deb23b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 11086,
+      "title": "Strange Tales (1951) #162",
+      "number": "162",
+      "url": "https://www.marvel.com/comics/issue/11086/strange_tales_1951_162",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1967-11-01T00:00:00+0000",
+      "mu": "1967-11-01T00:00:00+0000",
+      "digitalId": 4409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/66436e425cfea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Lawrence",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11087,
+      "title": "Strange Tales (1951) #163",
+      "number": "163",
+      "url": "https://www.marvel.com/comics/issue/11087/strange_tales_1951_163",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1967-12-01T00:00:00+0000",
+      "mu": "1967-12-01T00:00:00+0000",
+      "digitalId": 4410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/66436e427462e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Lawrence",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11090,
+      "title": "Strange Tales (1951) #166",
+      "number": "166",
+      "url": "https://www.marvel.com/comics/issue/11090/strange_tales_1951_166",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1968-03-01T00:00:00+0000",
+      "mu": "1968-03-01T00:00:00+0000",
+      "digitalId": 4413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/30/664370493b787",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Lawrence",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11091,
+      "title": "Strange Tales (1951) #167",
+      "number": "167",
+      "url": "https://www.marvel.com/comics/issue/11091/strange_tales_1951_167",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1968-04-01T00:00:00+0000",
+      "mu": "1968-04-01T00:00:00+0000",
+      "digitalId": 4414,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/66436e4403e60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 11092,
+      "title": "Strange Tales (1951) #168",
+      "number": "168",
+      "url": "https://www.marvel.com/comics/issue/11092/strange_tales_1951_168",
+      "seriesId": 2076,
+      "seriesName": "Strange Tales (1951 - 1968)",
+      "onSale": "1968-05-01T00:00:00+0000",
+      "mu": "1968-05-01T00:00:00+0000",
+      "digitalId": 4415,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/66436e449a8d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27774,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/27774/nick_fury_agent_of_shield_1968_7",
+      "seriesId": 8854,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "onSale": "1968-12-01T00:00:00+0000",
+      "mu": "2023-02-02T00:00:00+0000",
+      "digitalId": 47667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/63d98e89300f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27775,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/27775/nick_fury_agent_of_shield_1968_8",
+      "seriesId": 8854,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "onSale": "1969-01-01T00:00:00+0000",
+      "mu": "2023-02-02T00:00:00+0000",
+      "digitalId": 47668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/63d98e8917555",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 27776,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/27776/nick_fury_agent_of_shield_1968_9",
+      "seriesId": 8854,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "onSale": "1969-02-01T00:00:00+0000",
+      "mu": "2023-02-02T00:00:00+0000",
+      "digitalId": 47669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/63d98e891b1b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27760,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/27760/nick_fury_agent_of_shield_1968_10",
+      "seriesId": 8854,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "onSale": "1969-03-01T00:00:00+0000",
+      "mu": "2023-02-02T00:00:00+0000",
+      "digitalId": 47670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/b0/63d98e88942ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27761,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/27761/nick_fury_agent_of_shield_1968_11",
+      "seriesId": 8854,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "onSale": "1969-04-01T00:00:00+0000",
+      "mu": "2023-02-09T00:00:00+0000",
+      "digitalId": 47671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/63d98e6022fe7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27762,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/27762/nick_fury_agent_of_shield_1968_12",
+      "seriesId": 8854,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "onSale": "1969-05-01T00:00:00+0000",
+      "mu": "2023-02-09T00:00:00+0000",
+      "digitalId": 47672,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/63d98e6024439",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Springer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19785,
+      "title": "Marvel Fanfare (1982) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/19785/marvel_fanfare_1982_12",
+      "seriesId": 3719,
+      "seriesName": "Marvel Fanfare (1982 - 1992)",
+      "onSale": "1984-01-01T00:00:00+0000",
+      "mu": "1984-01-01T00:00:00+0000",
+      "digitalId": 22131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/61001d16a67a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        },
+        {
+          "name": "Ralph Macchio",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 19786,
+      "title": "Marvel Fanfare (1982) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/19786/marvel_fanfare_1982_13",
+      "seriesId": 3719,
+      "seriesName": "Marvel Fanfare (1982 - 1992)",
+      "onSale": "1984-03-01T00:00:00+0000",
+      "mu": "1984-03-01T00:00:00+0000",
+      "digitalId": 22133,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/6100214468c46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Charles Vess",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Zelenetz",
+          "role": "writer"
+        },
+        {
+          "name": "Ralph Macchio",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27747,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/27747/nick_fury_agent_of_shield_1989_43",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 45930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5978dc2f2d775",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 27748,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/27748/nick_fury_agent_of_shield_1989_44",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 45931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5978dcb810012",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16794,
+      "title": "Marvel Mystery Comics (1939) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/16794/marvel_mystery_comics_1939_82",
+      "seriesId": 2981,
+      "seriesName": "Marvel Mystery Comics (1939 - 1949)",
+      "onSale": "1947-05-01T00:00:00+0000",
+      "mu": "1947-05-01T00:00:00+0000",
+      "digitalId": 26039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/50ae18d467b4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17107,
+      "title": "Sub-Mariner (1968) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/17107/sub-mariner_1968_50",
+      "seriesId": 2989,
+      "seriesName": "Sub-Mariner (1968 - 1974)",
+      "onSale": "1972-06-01T00:00:00+0000",
+      "mu": "1972-06-01T00:00:00+0000",
+      "digitalId": 40828,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d0799ec01b7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Everett",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15697,
+      "title": "Marvel Boy (1950) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15697/marvel_boy_1950_1",
+      "seriesId": 2309,
+      "seriesName": "Marvel Boy (1950 - 1951)",
+      "onSale": "1950-12-01T00:00:00+0000",
+      "mu": "1950-12-01T00:00:00+0000",
+      "digitalId": 3134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bc469fe7344b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Russ Heath",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12967,
+      "title": "Fantastic Four (1961) #165",
+      "number": "165",
+      "url": "https://www.marvel.com/comics/issue/12967/fantastic_four_1961_165",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1975-12-01T00:00:00+0000",
+      "mu": "1975-12-01T00:00:00+0000",
+      "digitalId": 5865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5ab9508f64605",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57485,
+      "title": "Menace (1953) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57485/menace_1953_11",
+      "seriesId": 20931,
+      "seriesName": "Menace (1953)",
+      "onSale": "1954-05-10T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 39798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/5807763d94886",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Eadeh",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Powell",
+          "role": "penciler"
+        },
+        {
+          "name": "Harry Anderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Katz",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Sy Moskowitz",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 12167,
+      "title": "What If? (1977) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/12167/what_if_1977_9",
+      "seriesId": 2095,
+      "seriesName": "What If? (1977 - 1984)",
+      "onSale": "1978-06-01T00:00:00+0000",
+      "mu": "1978-06-01T00:00:00+0000",
+      "digitalId": 7575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5bd88b4c6a169",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alan Kupperberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Donald F. Glut",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4801,
+      "title": "Agents of Atlas (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4801/agents_of_atlas_2006_1",
+      "seriesId": 1097,
+      "seriesName": "Agents of Atlas (2006 - 2007)",
+      "onSale": "2006-08-02T00:00:00+0000",
+      "mu": "2006-08-02T00:00:00+0000",
+      "digitalId": 3259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56b216e07bc79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5089,
+      "title": "Agents of Atlas (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/5089/agents_of_atlas_2006_2",
+      "seriesId": 1097,
+      "seriesName": "Agents of Atlas (2006 - 2007)",
+      "onSale": "2006-09-13T00:00:00+0000",
+      "mu": "2006-09-13T00:00:00+0000",
+      "digitalId": 1329,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/56b218752db16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5241,
+      "title": "Agents of Atlas (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5241/agents_of_atlas_2006_3",
+      "seriesId": 1097,
+      "seriesName": "Agents of Atlas (2006 - 2007)",
+      "onSale": "2006-10-04T00:00:00+0000",
+      "mu": "2006-10-04T00:00:00+0000",
+      "digitalId": 4928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/56b21907cb40f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5404,
+      "title": "Agents of Atlas (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5404/agents_of_atlas_2006_4",
+      "seriesId": 1097,
+      "seriesName": "Agents of Atlas (2006 - 2007)",
+      "onSale": "2006-11-01T00:00:00+0000",
+      "mu": "2006-11-01T00:00:00+0000",
+      "digitalId": 4929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/56b21a3540a64",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5665,
+      "title": "Agents of Atlas (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5665/agents_of_atlas_2006_5",
+      "seriesId": 1097,
+      "seriesName": "Agents of Atlas (2006 - 2007)",
+      "onSale": "2006-12-06T00:00:00+0000",
+      "mu": "2006-12-06T00:00:00+0000",
+      "digitalId": 4930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/56b21add1851b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 5842,
+      "title": "Agents of Atlas (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/5842/agents_of_atlas_2006_6",
+      "seriesId": 1097,
+      "seriesName": "Agents of Atlas (2006 - 2007)",
+      "onSale": "2007-01-10T00:00:00+0000",
+      "mu": "2007-01-10T00:00:00+0000",
+      "digitalId": 7954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/56b21bb650c28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16160,
+      "title": "Spider-Man Family (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16160/spider-man_family_2007_4",
+      "seriesId": 1870,
+      "seriesName": "Spider-Man Family (2007 - 2008)",
+      "onSale": "2007-08-15T00:00:00+0000",
+      "mu": "2007-08-15T00:00:00+0000",
+      "digitalId": 8577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/4bc39bec96c49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21418,
+      "title": "SECRET INVASION: WHO DO YOU TRUST? 1 (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21418/secret_invasion_who_do_you_trust_1_2008_1",
+      "seriesId": 5050,
+      "seriesName": "SECRET INVASION: WHO DO YOU TRUST? 1 (2008)",
+      "onSale": "2008-06-11T00:00:00+0000",
+      "mu": "2008-06-11T00:00:00+0000",
+      "digitalId": 10061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/5151f75f969a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Timothy Green II",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Kurth",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23004,
+      "title": "Dark Reign: New Nation (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23004/dark_reign_new_nation_2008_1",
+      "seriesId": 6415,
+      "seriesName": "Dark Reign: New Nation (2008)",
+      "onSale": "2008-12-17T00:00:00+0000",
+      "mu": "2008-12-17T00:00:00+0000",
+      "digitalId": 11014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/5db1d10ac27fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amilton Santos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonardo Manco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Acuna",
+          "role": "penciler"
+        },
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Adam Felber",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Mccann",
+          "role": "writer"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23659,
+      "title": "Agents of Atlas (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23659/agents_of_atlas_2009_1",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-02-04T00:00:00+0000",
+      "mu": "2009-02-04T00:00:00+0000",
+      "digitalId": 12711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/563cfef44cc7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Benton Jew",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23825,
+      "title": "Agents of Atlas (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23825/agents_of_atlas_2009_2",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-03-04T00:00:00+0000",
+      "mu": "2009-03-04T00:00:00+0000",
+      "digitalId": 12835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/563cff212b1f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24015,
+      "title": "Agents of Atlas (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/24015/agents_of_atlas_2009_3",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-04-01T00:00:00+0000",
+      "mu": "2015-05-01T13:32:57+0000",
+      "digitalId": 15541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/563cfecd1dd36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24219,
+      "title": "Agents of Atlas (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/24219/agents_of_atlas_2009_4",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-05-06T00:00:00+0000",
+      "mu": "2009-05-06T00:00:00+0000",
+      "digitalId": 15605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/563cfe5c34af8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Henry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24221,
+      "title": "Agents of Atlas (2009) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/24221/agents_of_atlas_2009_5",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-05-20T00:00:00+0000",
+      "mu": "2009-05-20T00:00:00+0000",
+      "digitalId": 15675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/563cff4514325",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24360,
+      "title": "Agents of Atlas (2009) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/24360/agents_of_atlas_2009_6",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-06-03T00:00:00+0000",
+      "mu": "2009-06-03T00:00:00+0000",
+      "digitalId": 12518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/563d011f4fff4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24361,
+      "title": "Agents of Atlas (2009) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/24361/agents_of_atlas_2009_7",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-07-01T00:00:00+0000",
+      "mu": "2009-07-01T00:00:00+0000",
+      "digitalId": 12750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/563d01470faaf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24362,
+      "title": "Agents of Atlas (2009) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/24362/agents_of_atlas_2009_8",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-07-15T00:00:00+0000",
+      "mu": "2009-07-15T00:00:00+0000",
+      "digitalId": 12809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/563cfea3ee188",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24363,
+      "title": "Agents of Atlas (2009) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/24363/agents_of_atlas_2009_9",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-08-05T00:00:00+0000",
+      "mu": "2009-08-05T00:00:00+0000",
+      "digitalId": 15973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/56533d9dd40e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24354,
+      "title": "Agents of Atlas (2009) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/24354/agents_of_atlas_2009_10",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-09-02T00:00:00+0000",
+      "mu": "2010-11-29T00:00:00+0000",
+      "digitalId": 16654,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/563cfe7c6c744",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Rivoche",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24355,
+      "title": "Agents of Atlas (2009) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/24355/agents_of_atlas_2009_11",
+      "seriesId": 6807,
+      "seriesName": "Agents of Atlas (2009)",
+      "onSale": "2009-09-16T00:00:00+0000",
+      "mu": "2013-03-21T16:54:53+0000",
+      "digitalId": 16939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/563d00db46343",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 28973,
+      "title": "X-Men Vs. Agents of Atlas (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28973/x-men_vs_agents_of_atlas_2009_1",
+      "seriesId": 9050,
+      "seriesName": "X-Men Vs. Agents of Atlas (2009 - 2010)",
+      "onSale": "2009-10-07T00:00:00+0000",
+      "mu": "2011-05-10T08:56:11+0000",
+      "digitalId": 14785,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/4bb3df7c5cfa8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Chris Samnee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 28976,
+      "title": "X-Men Vs. Agents of Atlas (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/28976/x-men_vs_agents_of_atlas_2009_2",
+      "seriesId": 9050,
+      "seriesName": "X-Men Vs. Agents of Atlas (2009 - 2010)",
+      "onSale": "2009-11-04T00:00:00+0000",
+      "mu": "2011-05-10T08:57:30+0000",
+      "digitalId": 14786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/59652ae28fccf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Samnee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 29277,
+      "title": "Assault on New Olympus Prologue One-Shot (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/29277/assault_on_new_olympus_prologue_one-shot_2009_1",
+      "seriesId": 9087,
+      "seriesName": "Assault on New Olympus Prologue One-Shot (2009)",
+      "onSale": "2009-11-04T00:00:00+0000",
+      "mu": "2011-03-10T00:00:00+0000",
+      "digitalId": 13604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/56dddf0d976f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Rodney Buchemi",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25438,
+      "title": "Incredible Hercules (2008) #138",
+      "number": "138",
+      "url": "https://www.marvel.com/comics/issue/25438/incredible_hercules_2008_138",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2010-11-30T00:00:00+0000",
+      "digitalId": 14776,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5c38d4532274a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25439,
+      "title": "Incredible Hercules (2008) #139",
+      "number": "139",
+      "url": "https://www.marvel.com/comics/issue/25439/incredible_hercules_2008_139",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2010-12-02T00:00:00+0000",
+      "digitalId": 14777,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5c38ea94bde99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Reilly Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Buchemi",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25440,
+      "title": "Incredible Hercules (2008) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/25440/incredible_hercules_2008_140",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2010-12-02T00:00:00+0000",
+      "digitalId": 14778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/5c38f64d7fc9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 28315,
+      "title": "Incredible Hercules (2008) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/28315/incredible_hercules_2008_141",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2011-03-04T00:00:00+0000",
+      "digitalId": 14809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5c3901c1a4efb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26761,
+      "title": "Thunderbolts (2006) #139",
+      "number": "139",
+      "url": "https://www.marvel.com/comics/issue/26761/thunderbolts_2006_139",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2011-06-27T00:00:00+0000",
+      "digitalId": 14804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5c23db5cc8bef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 26762,
+      "title": "Thunderbolts (2006) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/26762/thunderbolts_2006_140",
+      "seriesId": 18527,
+      "seriesName": "Thunderbolts (2006 - 2012)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-06-29T00:00:00+0000",
+      "digitalId": 14805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/5c23e112ea040",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 29620,
+      "title": "Avengers Vs. Atlas (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/29620/avengers_vs_atlas_2010_1",
+      "seriesId": 9181,
+      "seriesName": "Avengers Vs. Atlas (2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2010-09-10T00:00:00+0000",
+      "digitalId": 14135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/5b3a4331cc3bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30284,
+      "title": "Avengers Vs. Atlas (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/30284/avengers_vs_atlas_2010_2",
+      "seriesId": 9181,
+      "seriesName": "Avengers Vs. Atlas (2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-09-15T00:00:00+0000",
+      "digitalId": 13882,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4f7a0cb33255f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 33560,
+      "title": "Avengers Vs. Atlas (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/33560/avengers_vs_atlas_2010_3",
+      "seriesId": 9181,
+      "seriesName": "Avengers Vs. Atlas (2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-10-04T00:00:00+0000",
+      "digitalId": 14087,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4f7a0e395340a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter Vale",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Cornell",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30286,
+      "title": "Avengers Vs. Atlas (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/30286/avengers_vs_atlas_2010_4",
+      "seriesId": 9181,
+      "seriesName": "Avengers Vs. Atlas (2010)",
+      "onSale": "2010-04-21T00:00:00+0000",
+      "mu": "2010-10-01T00:00:00+0000",
+      "digitalId": 14394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/4f7a0f69e828a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 31468,
+      "title": "Enter the Heroic Age (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/31468/enter_the_heroic_age_2010_1",
+      "seriesId": 9787,
+      "seriesName": "Enter the Heroic Age (2010)",
+      "onSale": "2010-05-19T00:00:00+0000",
+      "mu": "2011-01-17T00:00:00+0000",
+      "digitalId": 14634,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/4d2523fa5474f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Mccann",
+          "role": "writer"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30033,
+      "title": "Atlas (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/30033/atlas_2010_1",
+      "seriesId": 9782,
+      "seriesName": "Atlas (2010)",
+      "onSale": "2010-05-19T00:00:00+0000",
+      "mu": "2011-01-17T00:00:00+0000",
+      "digitalId": 14635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/4d24fd6f78875",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30037,
+      "title": "Atlas (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/30037/atlas_2010_2",
+      "seriesId": 9782,
+      "seriesName": "Atlas (2010)",
+      "onSale": "2010-06-16T00:00:00+0000",
+      "mu": "2011-01-17T17:38:23+0000",
+      "digitalId": 14928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/56e957afbc240",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30038,
+      "title": "Atlas (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/30038/atlas_2010_3",
+      "seriesId": 9782,
+      "seriesName": "Atlas (2010)",
+      "onSale": "2010-07-21T00:00:00+0000",
+      "mu": "2011-01-24T10:27:12+0000",
+      "digitalId": 15252,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/56e958574e383",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30039,
+      "title": "Atlas (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/30039/atlas_2010_4",
+      "seriesId": 9782,
+      "seriesName": "Atlas (2010)",
+      "onSale": "2010-08-18T00:00:00+0000",
+      "mu": "2011-01-24T10:52:27+0000",
+      "digitalId": 15722,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/56e958d1486b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jae Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 30040,
+      "title": "Atlas (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/30040/atlas_2010_5",
+      "seriesId": 9782,
+      "seriesName": "Atlas (2010)",
+      "onSale": "2010-09-29T00:00:00+0000",
+      "mu": "2011-01-24T10:58:31+0000",
+      "digitalId": 16281,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/56e9594cb7af7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriel Hardman",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 38499,
+      "title": "Fear Itself: The Home Front (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/38499/fear_itself_the_home_front_2010_1",
+      "seriesId": 13881,
+      "seriesName": "Fear Itself: The Home Front (2010)",
+      "onSale": "2011-04-06T00:00:00+0000",
+      "mu": "2012-03-15T00:00:00+0000",
+      "digitalId": 20374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/5bb4cf65ddec9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Elia Bonetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Peter Milligan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 38497,
+      "title": "Fear Itself: The Home Front (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/38497/fear_itself_the_home_front_2010_2",
+      "seriesId": 13881,
+      "seriesName": "Fear Itself: The Home Front (2010)",
+      "onSale": "2011-05-04T00:00:00+0000",
+      "mu": "2012-03-21T00:00:00+0000",
+      "digitalId": 20812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5bb4db0e535e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Elia Bonetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Peter Milligan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 38498,
+      "title": "Fear Itself: The Home Front (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/38498/fear_itself_the_home_front_2010_3",
+      "seriesId": 13881,
+      "seriesName": "Fear Itself: The Home Front (2010)",
+      "onSale": "2011-06-15T00:00:00+0000",
+      "mu": "2012-03-21T00:00:00+0000",
+      "digitalId": 21674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5bb4e456ee94b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Elia Bonetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Chaykin",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Peter Milligan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 38495,
+      "title": "Fear Itself: The Home Front (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/38495/fear_itself_the_home_front_2010_4",
+      "seriesId": 13881,
+      "seriesName": "Fear Itself: The Home Front (2010)",
+      "onSale": "2011-07-20T00:00:00+0000",
+      "mu": "2012-03-23T00:00:00+0000",
+      "digitalId": 22693,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5bb501b5d33ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Elia Bonetti",
+          "role": "penciler"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Howard Chaykin",
+          "role": "writer"
+        },
+        {
+          "name": "Kevin Grevioux",
+          "role": "writer"
+        },
+        {
+          "name": "Peter Milligan",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76615,
+      "title": "War of the Realms: New Agents of Atlas (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-05-08T00:00:00+0000",
+      "digitalId": 51487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5ccb3f294f4bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76616,
+      "title": "War of the Realms: New Agents of Atlas (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/5d08f3bfedab8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77259,
+      "title": "War of the Realms: New Agents of Atlas (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5cf18cbd2f0ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77260,
+      "title": "War of the Realms: New Agents of Atlas (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5d08f3c831b31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Moy Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Pop Mhan",
+          "role": "penciler"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77001,
+      "title": "Agents of Atlas (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5d404ebed84b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77002,
+      "title": "Agents of Atlas (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5d63e45be9e6a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pop Mhan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77003,
+      "title": "Agents of Atlas (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 51835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5da783de279d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77004,
+      "title": "Agents of Atlas (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2020-05-18T00:00:00+0000",
+      "digitalId": 51836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5dc0929b7db34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pop Mhan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77005,
+      "title": "Agents of Atlas (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/77005/agents_of_atlas_2019_5",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5defb295f03da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83989,
+      "title": "Atlantis Attacks (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/83989/atlantis_attacks_2020_1",
+      "seriesId": 29600,
+      "seriesName": "Atlantis Attacks (2020)",
+      "onSale": "2020-01-22T00:00:00+0000",
+      "mu": "2020-07-27T00:00:00+0000",
+      "digitalId": 53531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5e1c8c9a922ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rock-He Kim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83993,
+      "title": "Atlantis Attacks (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/83993/atlantis_attacks_2020_2",
+      "seriesId": 29600,
+      "seriesName": "Atlantis Attacks (2020)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/5e28a22905237",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mico Suayan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Gill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83994,
+      "title": "Atlantis Attacks (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/83994/atlantis_attacks_2020_3",
+      "seriesId": 29600,
+      "seriesName": "Atlantis Attacks (2020)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-21T00:00:00+0000",
+      "digitalId": 54240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5e67aa6331d96",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Gill",
+          "role": "penciler"
+        },
+        {
+          "name": "Rock-He Kim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83995,
+      "title": "Atlantis Attacks (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/83995/atlantis_attacks_2020_4",
+      "seriesId": 29600,
+      "seriesName": "Atlantis Attacks (2020)",
+      "onSale": "2020-11-04T00:00:00+0000",
+      "mu": "2021-02-08T00:00:00+0000",
+      "digitalId": 54580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5e99c30bc7992",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Gill",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83996,
+      "title": "Atlantis Attacks (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/83996/atlantis_attacks_2020_5",
+      "seriesId": 29600,
+      "seriesName": "Atlantis Attacks (2020)",
+      "onSale": "2020-12-02T00:00:00+0000",
+      "mu": "2021-03-08T00:00:00+0000",
+      "digitalId": 54852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/601afd3dd9ee0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ario Anindito",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Gill",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

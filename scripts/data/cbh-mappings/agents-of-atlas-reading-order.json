@@ -1,0 +1,4306 @@
+{
+  "id": "agents-of-atlas-reading-order",
+  "inventoryId": "agents-of-atlas-reading-order",
+  "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
+  "sourceUrl": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceContentSha256": "e58153e982b45d6471de9839f19dcf2c337ddb585a3bec1c19b558497d5454a0",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 87,
+  "excludedSourceReferences": [
+    "Prose-only recommendations and unnumbered background-reading mentions without explicit issue numbers",
+    "Unresolved provenance rows are recorded separately in excludedSourceRows"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Men's Adventures #26",
+      "reason": "The page names the first Gorilla-Man appearance as background reading, but the source-defined row is preserved separately in provenance rather than inflating the checklist.",
+      "decisionScope": "background-reading provenance"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Wolverine: Agent of Atlas #1",
+      "reason": "The Wolverine mini is preserved as excluded provenance because the source mentions the mini separately from the checklist and the maintained packet keeps that boundary explicit.",
+      "decisionScope": "background-reading provenance"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Wolverine: Agent of Atlas #2",
+      "reason": "The Wolverine mini is preserved as excluded provenance because the source mentions the mini separately from the checklist and the maintained packet keeps that boundary explicit.",
+      "decisionScope": "background-reading provenance"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Wolverine: Agent of Atlas #3",
+      "reason": "The Wolverine mini is preserved as excluded provenance because the source mentions the mini separately from the checklist and the maintained packet keeps that boundary explicit.",
+      "decisionScope": "background-reading provenance"
+    }
+  ],
+  "sourceOccurrenceCount": 87,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 25,
+      "canonicalRow": 23,
+      "sourceIssueReference": "What If? #9",
+      "sourceRangeReference": "Avengers Forever by Kurt Busiek and Carlos Pacheco",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 68,
+      "canonicalRow": 58,
+      "sourceIssueReference": "Atlas #1",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 69,
+      "canonicalRow": 23,
+      "sourceIssueReference": "What If? #9",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "9"
+    }
+  ],
+  "proposedManifest": {
+    "id": "agents-of-atlas-reading-order",
+    "name": "Agents of Atlas",
+    "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "agents-of-atlas-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "agents_of_atlas_reading_order.json",
+    "characters": [
+      "Agents of Atlas",
+      "Jimmy Woo",
+      "Namora",
+      "Marvel Boy",
+      "Gorilla-Man",
+      "M-11",
+      "What If?"
+    ],
+    "keywords": [
+      "Agents of Atlas",
+      "Jimmy Woo",
+      "What If?",
+      "Jeff Parker",
+      "Comic Book Herald"
+    ],
+    "expect": 80,
+    "timeline": null,
+    "coverIssueId": 4801
+  },
+  "candidateMetadata": [
+    {
+      "id": 11084,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #160",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "160",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11084/strange_tales_1951_160",
+      "onSaleDate": "1967-09-01T00:00:00+0000"
+    },
+    {
+      "id": 11085,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #161",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "161",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11085/strange_tales_1951_161",
+      "onSaleDate": "1967-10-01T00:00:00+0000"
+    },
+    {
+      "id": 11086,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #162",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "162",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11086/strange_tales_1951_162",
+      "onSaleDate": "1967-11-01T00:00:00+0000"
+    },
+    {
+      "id": 11087,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #163",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "163",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11087/strange_tales_1951_163",
+      "onSaleDate": "1967-12-01T00:00:00+0000"
+    },
+    {
+      "id": 11090,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #166",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "166",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11090/strange_tales_1951_166",
+      "onSaleDate": "1968-03-01T00:00:00+0000"
+    },
+    {
+      "id": 11091,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #167",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "167",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11091/strange_tales_1951_167",
+      "onSaleDate": "1968-04-01T00:00:00+0000"
+    },
+    {
+      "id": 11092,
+      "title": "Strange Tales",
+      "issueTitle": "Strange Tales (1951) #168",
+      "seriesTitle": "Strange Tales",
+      "apiSeriesName": "Strange Tales (1951 - 1968)",
+      "seriesId": 2076,
+      "issueNumber": "168",
+      "seriesYear": 1951,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/11092/strange_tales_1951_168",
+      "onSaleDate": "1968-05-01T00:00:00+0000"
+    },
+    {
+      "id": 27774,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #7",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "seriesId": 8854,
+      "issueNumber": "7",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27774/nick_fury_agent_of_shield_1968_7",
+      "onSaleDate": "1968-12-01T00:00:00+0000"
+    },
+    {
+      "id": 27775,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #8",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "seriesId": 8854,
+      "issueNumber": "8",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27775/nick_fury_agent_of_shield_1968_8",
+      "onSaleDate": "1969-01-01T00:00:00+0000"
+    },
+    {
+      "id": 27776,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #9",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "seriesId": 8854,
+      "issueNumber": "9",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27776/nick_fury_agent_of_shield_1968_9",
+      "onSaleDate": "1969-02-01T00:00:00+0000"
+    },
+    {
+      "id": 27760,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #10",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "seriesId": 8854,
+      "issueNumber": "10",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27760/nick_fury_agent_of_shield_1968_10",
+      "onSaleDate": "1969-03-01T00:00:00+0000"
+    },
+    {
+      "id": 27761,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #11",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "seriesId": 8854,
+      "issueNumber": "11",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27761/nick_fury_agent_of_shield_1968_11",
+      "onSaleDate": "1969-04-01T00:00:00+0000"
+    },
+    {
+      "id": 27762,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #12",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1968 - 1971)",
+      "seriesId": 8854,
+      "issueNumber": "12",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27762/nick_fury_agent_of_shield_1968_12",
+      "onSaleDate": "1969-05-01T00:00:00+0000"
+    },
+    {
+      "id": 19785,
+      "title": "Marvel Fanfare",
+      "issueTitle": "Marvel Fanfare (1982) #12",
+      "seriesTitle": "Marvel Fanfare",
+      "apiSeriesName": "Marvel Fanfare (1982 - 1992)",
+      "seriesId": 3719,
+      "issueNumber": "12",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19785/marvel_fanfare_1982_12",
+      "onSaleDate": "1984-01-01T00:00:00+0000"
+    },
+    {
+      "id": 19786,
+      "title": "Marvel Fanfare",
+      "issueTitle": "Marvel Fanfare (1982) #13",
+      "seriesTitle": "Marvel Fanfare",
+      "apiSeriesName": "Marvel Fanfare (1982 - 1992)",
+      "seriesId": 3719,
+      "issueNumber": "13",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19786/marvel_fanfare_1982_13",
+      "onSaleDate": "1984-03-01T00:00:00+0000"
+    },
+    {
+      "id": 27747,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #43",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "seriesId": 8852,
+      "issueNumber": "43",
+      "seriesYear": 1989,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27747/nick_fury_agent_of_shield_1989_43",
+      "onSaleDate": "1993-01-01T00:00:00+0000"
+    },
+    {
+      "id": 27748,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "issueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #44",
+      "seriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "apiSeriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "seriesId": 8852,
+      "issueNumber": "44",
+      "seriesYear": 1989,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27748/nick_fury_agent_of_shield_1989_44",
+      "onSaleDate": "1993-02-01T00:00:00+0000"
+    },
+    {
+      "id": 16794,
+      "title": "Marvel Mystery Comics",
+      "issueTitle": "Marvel Mystery Comics (1939) #82",
+      "seriesTitle": "Marvel Mystery Comics",
+      "apiSeriesName": "Marvel Mystery Comics (1939 - 1949)",
+      "seriesId": 2981,
+      "issueNumber": "82",
+      "seriesYear": 1939,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/16794/marvel_mystery_comics_1939_82",
+      "onSaleDate": "1947-05-01T00:00:00+0000"
+    },
+    {
+      "id": 17107,
+      "title": "Sub-Mariner",
+      "issueTitle": "Sub-Mariner (1968) #50",
+      "seriesTitle": "Sub-Mariner",
+      "apiSeriesName": "Sub-Mariner (1968 - 1974)",
+      "seriesId": 2989,
+      "issueNumber": "50",
+      "seriesYear": 1968,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17107/sub-mariner_1968_50",
+      "onSaleDate": "1972-06-01T00:00:00+0000"
+    },
+    {
+      "id": 15697,
+      "title": "Marvel Boy",
+      "issueTitle": "Marvel Boy (1950) #1",
+      "seriesTitle": "Marvel Boy",
+      "apiSeriesName": "Marvel Boy (1950 - 1951)",
+      "seriesId": 2309,
+      "issueNumber": "1",
+      "seriesYear": 1950,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15697/marvel_boy_1950_1",
+      "onSaleDate": "1950-12-01T00:00:00+0000"
+    },
+    {
+      "id": 12967,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #165",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "165",
+      "seriesYear": 1961,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12967/fantastic_four_1961_165",
+      "onSaleDate": "1975-12-01T00:00:00+0000"
+    },
+    {
+      "id": 57485,
+      "title": "Menace",
+      "issueTitle": "Menace (1953) #11",
+      "seriesTitle": "Menace",
+      "apiSeriesName": "Menace (1953)",
+      "seriesId": 20931,
+      "issueNumber": "11",
+      "seriesYear": 1953,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57485/menace_1953_11",
+      "onSaleDate": "1954-05-10T00:00:00+0000"
+    },
+    {
+      "id": 12167,
+      "title": "What If?",
+      "issueTitle": "What If? (1977) #9",
+      "seriesTitle": "What If?",
+      "apiSeriesName": "What If? (1977 - 1984)",
+      "seriesId": 2095,
+      "issueNumber": "9",
+      "seriesYear": 1977,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/12167/what_if_1977_9",
+      "onSaleDate": "1978-06-01T00:00:00+0000"
+    },
+    {
+      "id": 4801,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2006) #1",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2006 - 2007)",
+      "seriesId": 1097,
+      "issueNumber": "1",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/4801/agents_of_atlas_2006_1",
+      "onSaleDate": "2006-08-02T00:00:00+0000"
+    },
+    {
+      "id": 5089,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2006) #2",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2006 - 2007)",
+      "seriesId": 1097,
+      "issueNumber": "2",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5089/agents_of_atlas_2006_2",
+      "onSaleDate": "2006-09-13T00:00:00+0000"
+    },
+    {
+      "id": 5241,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2006) #3",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2006 - 2007)",
+      "seriesId": 1097,
+      "issueNumber": "3",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5241/agents_of_atlas_2006_3",
+      "onSaleDate": "2006-10-04T00:00:00+0000"
+    },
+    {
+      "id": 5404,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2006) #4",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2006 - 2007)",
+      "seriesId": 1097,
+      "issueNumber": "4",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5404/agents_of_atlas_2006_4",
+      "onSaleDate": "2006-11-01T00:00:00+0000"
+    },
+    {
+      "id": 5665,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2006) #5",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2006 - 2007)",
+      "seriesId": 1097,
+      "issueNumber": "5",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5665/agents_of_atlas_2006_5",
+      "onSaleDate": "2006-12-06T00:00:00+0000"
+    },
+    {
+      "id": 5842,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2006) #6",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2006 - 2007)",
+      "seriesId": 1097,
+      "issueNumber": "6",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5842/agents_of_atlas_2006_6",
+      "onSaleDate": "2007-01-10T00:00:00+0000"
+    },
+    {
+      "id": 16160,
+      "title": "Spider-Man Family",
+      "issueTitle": "Spider-Man Family (2007) #4",
+      "seriesTitle": "Spider-Man Family",
+      "apiSeriesName": "Spider-Man Family (2007 - 2008)",
+      "seriesId": 1870,
+      "issueNumber": "4",
+      "seriesYear": 2007,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/16160/spider-man_family_2007_4",
+      "onSaleDate": "2007-08-15T00:00:00+0000"
+    },
+    {
+      "id": 21418,
+      "title": "SECRET INVASION: WHO DO YOU TRUST? 1",
+      "issueTitle": "SECRET INVASION: WHO DO YOU TRUST? 1 (2008) #1",
+      "seriesTitle": "SECRET INVASION: WHO DO YOU TRUST? 1",
+      "apiSeriesName": "SECRET INVASION: WHO DO YOU TRUST? 1 (2008)",
+      "seriesId": 5050,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21418/secret_invasion_who_do_you_trust_1_2008_1",
+      "onSaleDate": "2008-06-11T00:00:00+0000"
+    },
+    {
+      "id": 23004,
+      "title": "Dark Reign: New Nation",
+      "issueTitle": "Dark Reign: New Nation (2008) #1",
+      "seriesTitle": "Dark Reign: New Nation",
+      "apiSeriesName": "Dark Reign: New Nation (2008)",
+      "seriesId": 6415,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23004/dark_reign_new_nation_2008_1",
+      "onSaleDate": "2008-12-17T00:00:00+0000"
+    },
+    {
+      "id": 23659,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #1",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23659/agents_of_atlas_2009_1",
+      "onSaleDate": "2009-02-04T00:00:00+0000"
+    },
+    {
+      "id": 23825,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #2",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "2",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23825/agents_of_atlas_2009_2",
+      "onSaleDate": "2009-03-04T00:00:00+0000"
+    },
+    {
+      "id": 24015,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #3",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "3",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24015/agents_of_atlas_2009_3",
+      "onSaleDate": "2009-04-01T00:00:00+0000"
+    },
+    {
+      "id": 24219,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #4",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "4",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24219/agents_of_atlas_2009_4",
+      "onSaleDate": "2009-05-06T00:00:00+0000"
+    },
+    {
+      "id": 24221,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #5",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "5",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24221/agents_of_atlas_2009_5",
+      "onSaleDate": "2009-05-20T00:00:00+0000"
+    },
+    {
+      "id": 24360,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #6",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "6",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24360/agents_of_atlas_2009_6",
+      "onSaleDate": "2009-06-03T00:00:00+0000"
+    },
+    {
+      "id": 24361,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #7",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "7",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24361/agents_of_atlas_2009_7",
+      "onSaleDate": "2009-07-01T00:00:00+0000"
+    },
+    {
+      "id": 24362,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #8",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "8",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24362/agents_of_atlas_2009_8",
+      "onSaleDate": "2009-07-15T00:00:00+0000"
+    },
+    {
+      "id": 24363,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #9",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "9",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24363/agents_of_atlas_2009_9",
+      "onSaleDate": "2009-08-05T00:00:00+0000"
+    },
+    {
+      "id": 24354,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #10",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "10",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24354/agents_of_atlas_2009_10",
+      "onSaleDate": "2009-09-02T00:00:00+0000"
+    },
+    {
+      "id": 24355,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2009) #11",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2009)",
+      "seriesId": 6807,
+      "issueNumber": "11",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24355/agents_of_atlas_2009_11",
+      "onSaleDate": "2009-09-16T00:00:00+0000"
+    },
+    {
+      "id": 28973,
+      "title": "X-Men Vs. Agents of Atlas",
+      "issueTitle": "X-Men Vs. Agents of Atlas (2009) #1",
+      "seriesTitle": "X-Men Vs. Agents of Atlas",
+      "apiSeriesName": "X-Men Vs. Agents of Atlas (2009 - 2010)",
+      "seriesId": 9050,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28973/x-men_vs_agents_of_atlas_2009_1",
+      "onSaleDate": "2009-10-07T00:00:00+0000"
+    },
+    {
+      "id": 28976,
+      "title": "X-Men Vs. Agents of Atlas",
+      "issueTitle": "X-Men Vs. Agents of Atlas (2009) #2",
+      "seriesTitle": "X-Men Vs. Agents of Atlas",
+      "apiSeriesName": "X-Men Vs. Agents of Atlas (2009 - 2010)",
+      "seriesId": 9050,
+      "issueNumber": "2",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28976/x-men_vs_agents_of_atlas_2009_2",
+      "onSaleDate": "2009-11-04T00:00:00+0000"
+    },
+    {
+      "id": 29277,
+      "title": "Assault on New Olympus Prologue One-Shot",
+      "issueTitle": "Assault on New Olympus Prologue One-Shot (2009) #1",
+      "seriesTitle": "Assault on New Olympus Prologue One-Shot",
+      "apiSeriesName": "Assault on New Olympus Prologue One-Shot (2009)",
+      "seriesId": 9087,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/29277/assault_on_new_olympus_prologue_one-shot_2009_1",
+      "onSaleDate": "2009-11-04T00:00:00+0000"
+    },
+    {
+      "id": 25438,
+      "title": "Incredible Hercules",
+      "issueTitle": "Incredible Hercules (2008) #138",
+      "seriesTitle": "Incredible Hercules",
+      "apiSeriesName": "Incredible Hercules (2008 - 2010)",
+      "seriesId": 3762,
+      "issueNumber": "138",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25438/incredible_hercules_2008_138",
+      "onSaleDate": "2009-11-25T00:00:00+0000"
+    },
+    {
+      "id": 25439,
+      "title": "Incredible Hercules",
+      "issueTitle": "Incredible Hercules (2008) #139",
+      "seriesTitle": "Incredible Hercules",
+      "apiSeriesName": "Incredible Hercules (2008 - 2010)",
+      "seriesId": 3762,
+      "issueNumber": "139",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25439/incredible_hercules_2008_139",
+      "onSaleDate": "2009-12-23T00:00:00+0000"
+    },
+    {
+      "id": 25440,
+      "title": "Incredible Hercules",
+      "issueTitle": "Incredible Hercules (2008) #140",
+      "seriesTitle": "Incredible Hercules",
+      "apiSeriesName": "Incredible Hercules (2008 - 2010)",
+      "seriesId": 3762,
+      "issueNumber": "140",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25440/incredible_hercules_2008_140",
+      "onSaleDate": "2010-01-20T00:00:00+0000"
+    },
+    {
+      "id": 28315,
+      "title": "Incredible Hercules",
+      "issueTitle": "Incredible Hercules (2008) #141",
+      "seriesTitle": "Incredible Hercules",
+      "apiSeriesName": "Incredible Hercules (2008 - 2010)",
+      "seriesId": 3762,
+      "issueNumber": "141",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/28315/incredible_hercules_2008_141",
+      "onSaleDate": "2010-02-17T00:00:00+0000"
+    },
+    {
+      "id": 26761,
+      "title": "Thunderbolts",
+      "issueTitle": "Thunderbolts (2006) #139",
+      "seriesTitle": "Thunderbolts",
+      "apiSeriesName": "Thunderbolts (2006 - 2012)",
+      "seriesId": 18527,
+      "issueNumber": "139",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/26761/thunderbolts_2006_139",
+      "onSaleDate": "2009-12-16T00:00:00+0000"
+    },
+    {
+      "id": 26762,
+      "title": "Thunderbolts",
+      "issueTitle": "Thunderbolts (2006) #140",
+      "seriesTitle": "Thunderbolts",
+      "apiSeriesName": "Thunderbolts (2006 - 2012)",
+      "seriesId": 18527,
+      "issueNumber": "140",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/26762/thunderbolts_2006_140",
+      "onSaleDate": "2010-01-20T00:00:00+0000"
+    },
+    {
+      "id": 29620,
+      "title": "Avengers Vs. Atlas",
+      "issueTitle": "Avengers Vs. Atlas (2010) #1",
+      "seriesTitle": "Avengers Vs. Atlas",
+      "apiSeriesName": "Avengers Vs. Atlas (2010)",
+      "seriesId": 9181,
+      "issueNumber": "1",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/29620/avengers_vs_atlas_2010_1",
+      "onSaleDate": "2010-01-20T00:00:00+0000"
+    },
+    {
+      "id": 30284,
+      "title": "Avengers Vs. Atlas",
+      "issueTitle": "Avengers Vs. Atlas (2010) #2",
+      "seriesTitle": "Avengers Vs. Atlas",
+      "apiSeriesName": "Avengers Vs. Atlas (2010)",
+      "seriesId": 9181,
+      "issueNumber": "2",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30284/avengers_vs_atlas_2010_2",
+      "onSaleDate": "2010-02-17T00:00:00+0000"
+    },
+    {
+      "id": 33560,
+      "title": "Avengers Vs. Atlas",
+      "issueTitle": "Avengers Vs. Atlas (2010) #3",
+      "seriesTitle": "Avengers Vs. Atlas",
+      "apiSeriesName": "Avengers Vs. Atlas (2010)",
+      "seriesId": 9181,
+      "issueNumber": "3",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/33560/avengers_vs_atlas_2010_3",
+      "onSaleDate": "2010-03-17T00:00:00+0000"
+    },
+    {
+      "id": 30286,
+      "title": "Avengers Vs. Atlas",
+      "issueTitle": "Avengers Vs. Atlas (2010) #4",
+      "seriesTitle": "Avengers Vs. Atlas",
+      "apiSeriesName": "Avengers Vs. Atlas (2010)",
+      "seriesId": 9181,
+      "issueNumber": "4",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30286/avengers_vs_atlas_2010_4",
+      "onSaleDate": "2010-04-21T00:00:00+0000"
+    },
+    {
+      "id": 31468,
+      "title": "Enter the Heroic Age",
+      "issueTitle": "Enter the Heroic Age (2010) #1",
+      "seriesTitle": "Enter the Heroic Age",
+      "apiSeriesName": "Enter the Heroic Age (2010)",
+      "seriesId": 9787,
+      "issueNumber": "1",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/31468/enter_the_heroic_age_2010_1",
+      "onSaleDate": "2010-05-19T00:00:00+0000"
+    },
+    {
+      "id": 30033,
+      "title": "Atlas",
+      "issueTitle": "Atlas (2010) #1",
+      "seriesTitle": "Atlas",
+      "apiSeriesName": "Atlas (2010)",
+      "seriesId": 9782,
+      "issueNumber": "1",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30033/atlas_2010_1",
+      "onSaleDate": "2010-05-19T00:00:00+0000"
+    },
+    {
+      "id": 30037,
+      "title": "Atlas",
+      "issueTitle": "Atlas (2010) #2",
+      "seriesTitle": "Atlas",
+      "apiSeriesName": "Atlas (2010)",
+      "seriesId": 9782,
+      "issueNumber": "2",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30037/atlas_2010_2",
+      "onSaleDate": "2010-06-16T00:00:00+0000"
+    },
+    {
+      "id": 30038,
+      "title": "Atlas",
+      "issueTitle": "Atlas (2010) #3",
+      "seriesTitle": "Atlas",
+      "apiSeriesName": "Atlas (2010)",
+      "seriesId": 9782,
+      "issueNumber": "3",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30038/atlas_2010_3",
+      "onSaleDate": "2010-07-21T00:00:00+0000"
+    },
+    {
+      "id": 30039,
+      "title": "Atlas",
+      "issueTitle": "Atlas (2010) #4",
+      "seriesTitle": "Atlas",
+      "apiSeriesName": "Atlas (2010)",
+      "seriesId": 9782,
+      "issueNumber": "4",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30039/atlas_2010_4",
+      "onSaleDate": "2010-08-18T00:00:00+0000"
+    },
+    {
+      "id": 30040,
+      "title": "Atlas",
+      "issueTitle": "Atlas (2010) #5",
+      "seriesTitle": "Atlas",
+      "apiSeriesName": "Atlas (2010)",
+      "seriesId": 9782,
+      "issueNumber": "5",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/30040/atlas_2010_5",
+      "onSaleDate": "2010-09-29T00:00:00+0000"
+    },
+    {
+      "id": 38499,
+      "title": "Fear Itself: The Home Front",
+      "issueTitle": "Fear Itself: The Home Front (2010) #1",
+      "seriesTitle": "Fear Itself: The Home Front",
+      "apiSeriesName": "Fear Itself: The Home Front (2010)",
+      "seriesId": 13881,
+      "issueNumber": "1",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/38499/fear_itself_the_home_front_2010_1",
+      "onSaleDate": "2011-04-06T00:00:00+0000"
+    },
+    {
+      "id": 38497,
+      "title": "Fear Itself: The Home Front",
+      "issueTitle": "Fear Itself: The Home Front (2010) #2",
+      "seriesTitle": "Fear Itself: The Home Front",
+      "apiSeriesName": "Fear Itself: The Home Front (2010)",
+      "seriesId": 13881,
+      "issueNumber": "2",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/38497/fear_itself_the_home_front_2010_2",
+      "onSaleDate": "2011-05-04T00:00:00+0000"
+    },
+    {
+      "id": 38498,
+      "title": "Fear Itself: The Home Front",
+      "issueTitle": "Fear Itself: The Home Front (2010) #3",
+      "seriesTitle": "Fear Itself: The Home Front",
+      "apiSeriesName": "Fear Itself: The Home Front (2010)",
+      "seriesId": 13881,
+      "issueNumber": "3",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/38498/fear_itself_the_home_front_2010_3",
+      "onSaleDate": "2011-06-15T00:00:00+0000"
+    },
+    {
+      "id": 38495,
+      "title": "Fear Itself: The Home Front",
+      "issueTitle": "Fear Itself: The Home Front (2010) #4",
+      "seriesTitle": "Fear Itself: The Home Front",
+      "apiSeriesName": "Fear Itself: The Home Front (2010)",
+      "seriesId": 13881,
+      "issueNumber": "4",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/38495/fear_itself_the_home_front_2010_4",
+      "onSaleDate": "2011-07-20T00:00:00+0000"
+    },
+    {
+      "id": 76615,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #1",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
+    },
+    {
+      "id": 76616,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #2",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 77259,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #3",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 77260,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #4",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 77001,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #1",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "onSaleDate": "2019-08-07T00:00:00+0000"
+    },
+    {
+      "id": 77002,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #2",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "onSaleDate": "2019-09-04T00:00:00+0000"
+    },
+    {
+      "id": 77003,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #3",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "onSaleDate": "2019-10-23T00:00:00+0000"
+    },
+    {
+      "id": 77004,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #4",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "onSaleDate": "2019-11-13T00:00:00+0000"
+    },
+    {
+      "id": 77005,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #5",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77005/agents_of_atlas_2019_5",
+      "onSaleDate": "2019-12-18T00:00:00+0000"
+    },
+    {
+      "id": 83989,
+      "title": "Atlantis Attacks",
+      "issueTitle": "Atlantis Attacks (2020) #1",
+      "seriesTitle": "Atlantis Attacks",
+      "apiSeriesName": "Atlantis Attacks (2020)",
+      "seriesId": 29600,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/83989/atlantis_attacks_2020_1",
+      "onSaleDate": "2020-01-22T00:00:00+0000"
+    },
+    {
+      "id": 83993,
+      "title": "Atlantis Attacks",
+      "issueTitle": "Atlantis Attacks (2020) #2",
+      "seriesTitle": "Atlantis Attacks",
+      "apiSeriesName": "Atlantis Attacks (2020)",
+      "seriesId": 29600,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/83993/atlantis_attacks_2020_2",
+      "onSaleDate": "2020-02-19T00:00:00+0000"
+    },
+    {
+      "id": 83994,
+      "title": "Atlantis Attacks",
+      "issueTitle": "Atlantis Attacks (2020) #3",
+      "seriesTitle": "Atlantis Attacks",
+      "apiSeriesName": "Atlantis Attacks (2020)",
+      "seriesId": 29600,
+      "issueNumber": "3",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/83994/atlantis_attacks_2020_3",
+      "onSaleDate": "2020-03-18T00:00:00+0000"
+    },
+    {
+      "id": 83995,
+      "title": "Atlantis Attacks",
+      "issueTitle": "Atlantis Attacks (2020) #4",
+      "seriesTitle": "Atlantis Attacks",
+      "apiSeriesName": "Atlantis Attacks (2020)",
+      "seriesId": 29600,
+      "issueNumber": "4",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/83995/atlantis_attacks_2020_4",
+      "onSaleDate": "2020-11-04T00:00:00+0000"
+    },
+    {
+      "id": 83996,
+      "title": "Atlantis Attacks",
+      "issueTitle": "Atlantis Attacks (2020) #5",
+      "seriesTitle": "Atlantis Attacks",
+      "apiSeriesName": "Atlantis Attacks (2020)",
+      "seriesId": 29600,
+      "issueNumber": "5",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/83996/atlantis_attacks_2020_5",
+      "onSaleDate": "2020-12-02T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourceIssueReference": "Strange Tales #160",
+      "sourceRangeReference": "Strange Tales #160-163",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "160",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11084"
+      ],
+      "selectedIssueId": 11084,
+      "selectedIssueIds": [
+        11084
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #160",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11084/strange_tales_1951_160",
+      "sourcePosition": 1
+    },
+    {
+      "sourceIssueReference": "Strange Tales #161",
+      "sourceRangeReference": "Strange Tales #160-163",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "161",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11085"
+      ],
+      "selectedIssueId": 11085,
+      "selectedIssueIds": [
+        11085
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #161",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11085/strange_tales_1951_161",
+      "sourcePosition": 2
+    },
+    {
+      "sourceIssueReference": "Strange Tales #162",
+      "sourceRangeReference": "Strange Tales #160-163",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "162",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11086"
+      ],
+      "selectedIssueId": 11086,
+      "selectedIssueIds": [
+        11086
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #162",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11086/strange_tales_1951_162",
+      "sourcePosition": 3
+    },
+    {
+      "sourceIssueReference": "Strange Tales #163",
+      "sourceRangeReference": "Strange Tales #160-163",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "163",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11087"
+      ],
+      "selectedIssueId": 11087,
+      "selectedIssueIds": [
+        11087
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #163",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11087/strange_tales_1951_163",
+      "sourcePosition": 4
+    },
+    {
+      "sourceIssueReference": "Strange Tales #166",
+      "sourceRangeReference": "Strange Tales #166-168",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "166",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11090"
+      ],
+      "selectedIssueId": 11090,
+      "selectedIssueIds": [
+        11090
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #166",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11090/strange_tales_1951_166",
+      "sourcePosition": 5
+    },
+    {
+      "sourceIssueReference": "Strange Tales #167",
+      "sourceRangeReference": "Strange Tales #166-168",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "167",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11091"
+      ],
+      "selectedIssueId": 11091,
+      "selectedIssueIds": [
+        11091
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #167",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11091/strange_tales_1951_167",
+      "sourcePosition": 6
+    },
+    {
+      "sourceIssueReference": "Strange Tales #168",
+      "sourceRangeReference": "Strange Tales #166-168",
+      "normalizedSeriesTitle": "Strange Tales",
+      "seriesYear": 1951,
+      "issueNumber": "168",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "11092"
+      ],
+      "selectedIssueId": 11092,
+      "selectedIssueIds": [
+        11092
+      ],
+      "resolvedIssueTitle": "Strange Tales (1951) #168",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11092/strange_tales_1951_168",
+      "sourcePosition": 7
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #7",
+      "sourceRangeReference": "Nick Fury, Agent of S.H.I.E.L.D. #7-12",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1968,
+      "issueNumber": "7",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27774"
+      ],
+      "selectedIssueId": 27774,
+      "selectedIssueIds": [
+        27774
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #7",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27774/nick_fury_agent_of_shield_1968_7",
+      "sourcePosition": 8
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #8",
+      "sourceRangeReference": "Nick Fury, Agent of S.H.I.E.L.D. #7-12",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1968,
+      "issueNumber": "8",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27775"
+      ],
+      "selectedIssueId": 27775,
+      "selectedIssueIds": [
+        27775
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #8",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27775/nick_fury_agent_of_shield_1968_8",
+      "sourcePosition": 9
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #9",
+      "sourceRangeReference": "Nick Fury, Agent of S.H.I.E.L.D. #7-12",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1968,
+      "issueNumber": "9",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27776"
+      ],
+      "selectedIssueId": 27776,
+      "selectedIssueIds": [
+        27776
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #9",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27776/nick_fury_agent_of_shield_1968_9",
+      "sourcePosition": 10
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #10",
+      "sourceRangeReference": "Nick Fury, Agent of S.H.I.E.L.D. #7-12",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1968,
+      "issueNumber": "10",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27760"
+      ],
+      "selectedIssueId": 27760,
+      "selectedIssueIds": [
+        27760
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #10",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27760/nick_fury_agent_of_shield_1968_10",
+      "sourcePosition": 11
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #11",
+      "sourceRangeReference": "Nick Fury, Agent of S.H.I.E.L.D. #7-12",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1968,
+      "issueNumber": "11",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27761"
+      ],
+      "selectedIssueId": 27761,
+      "selectedIssueIds": [
+        27761
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #11",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27761/nick_fury_agent_of_shield_1968_11",
+      "sourcePosition": 12
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #12",
+      "sourceRangeReference": "Nick Fury, Agent of S.H.I.E.L.D. #7-12",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1968,
+      "issueNumber": "12",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27762"
+      ],
+      "selectedIssueId": 27762,
+      "selectedIssueIds": [
+        27762
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1968) #12",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27762/nick_fury_agent_of_shield_1968_12",
+      "sourcePosition": 13
+    },
+    {
+      "sourceIssueReference": "Marvel Fanfare #12",
+      "sourceRangeReference": "Marvel Fanfare #12-13",
+      "normalizedSeriesTitle": "Marvel Fanfare",
+      "seriesYear": 1982,
+      "issueNumber": "12",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19785"
+      ],
+      "selectedIssueId": 19785,
+      "selectedIssueIds": [
+        19785
+      ],
+      "resolvedIssueTitle": "Marvel Fanfare (1982) #12",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19785/marvel_fanfare_1982_12",
+      "sourcePosition": 14
+    },
+    {
+      "sourceIssueReference": "Marvel Fanfare #13",
+      "sourceRangeReference": "Marvel Fanfare #12-13",
+      "normalizedSeriesTitle": "Marvel Fanfare",
+      "seriesYear": 1982,
+      "issueNumber": "13",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19786"
+      ],
+      "selectedIssueId": 19786,
+      "selectedIssueIds": [
+        19786
+      ],
+      "resolvedIssueTitle": "Marvel Fanfare (1982) #13",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19786/marvel_fanfare_1982_13",
+      "sourcePosition": 15
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #43",
+      "sourceRangeReference": "Nick Fury: Agent of S.H.I.E.L.D. #43-44",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1989,
+      "issueNumber": "43",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27747"
+      ],
+      "selectedIssueId": 27747,
+      "selectedIssueIds": [
+        27747
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #43",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27747/nick_fury_agent_of_shield_1989_43",
+      "sourcePosition": 16
+    },
+    {
+      "sourceIssueReference": "Nick Fury, Agent of S.H.I.E.L.D. #44",
+      "sourceRangeReference": "Nick Fury: Agent of S.H.I.E.L.D. #43-44",
+      "normalizedSeriesTitle": "Nick Fury, Agent of S.H.I.E.L.D.",
+      "seriesYear": 1989,
+      "issueNumber": "44",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27748"
+      ],
+      "selectedIssueId": 27748,
+      "selectedIssueIds": [
+        27748
+      ],
+      "resolvedIssueTitle": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #44",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27748/nick_fury_agent_of_shield_1989_44",
+      "sourcePosition": 17
+    },
+    {
+      "sourceIssueReference": "Marvel Mystery Comics #82",
+      "sourceRangeReference": "Marvel Mystery Comics #82",
+      "normalizedSeriesTitle": "Marvel Mystery Comics",
+      "seriesYear": 1939,
+      "issueNumber": "82",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "16794"
+      ],
+      "selectedIssueId": 16794,
+      "selectedIssueIds": [
+        16794
+      ],
+      "resolvedIssueTitle": "Marvel Mystery Comics (1939) #82",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16794/marvel_mystery_comics_1939_82",
+      "sourcePosition": 18
+    },
+    {
+      "sourceIssueReference": "Sub-Mariner #50",
+      "sourceRangeReference": "Sub-Mariner #50",
+      "normalizedSeriesTitle": "Sub-Mariner",
+      "seriesYear": 1968,
+      "issueNumber": "50",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17107"
+      ],
+      "selectedIssueId": 17107,
+      "selectedIssueIds": [
+        17107
+      ],
+      "resolvedIssueTitle": "Sub-Mariner (1968) #50",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17107/sub-mariner_1968_50",
+      "sourcePosition": 19
+    },
+    {
+      "sourceIssueReference": "Marvel Boy #1",
+      "sourceRangeReference": "Marvel Boy #1",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": 1950,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15697"
+      ],
+      "selectedIssueId": 15697,
+      "selectedIssueIds": [
+        15697
+      ],
+      "resolvedIssueTitle": "Marvel Boy (1950) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15697/marvel_boy_1950_1",
+      "sourcePosition": 20
+    },
+    {
+      "sourceIssueReference": "Fantastic Four #165",
+      "sourceRangeReference": "Fantastic Four #165",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "165",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12967"
+      ],
+      "selectedIssueId": 12967,
+      "selectedIssueIds": [
+        12967
+      ],
+      "resolvedIssueTitle": "Fantastic Four (1961) #165",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12967/fantastic_four_1961_165",
+      "sourcePosition": 21
+    },
+    {
+      "sourceIssueReference": "Menace #11",
+      "sourceRangeReference": "Menace #11",
+      "normalizedSeriesTitle": "Menace",
+      "seriesYear": 1953,
+      "issueNumber": "11",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57485"
+      ],
+      "selectedIssueId": 57485,
+      "selectedIssueIds": [
+        57485
+      ],
+      "resolvedIssueTitle": "Menace (1953) #11",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57485/menace_1953_11",
+      "sourcePosition": 23
+    },
+    {
+      "sourceIssueReference": "What If? Vol. 1 #9",
+      "sourceRangeReference": "What If? Vol. 1 #9",
+      "normalizedSeriesTitle": "What If?",
+      "seriesYear": 1977,
+      "issueNumber": "9",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "12167"
+      ],
+      "selectedIssueId": 12167,
+      "selectedIssueIds": [
+        12167
+      ],
+      "resolvedIssueTitle": "What If? (1977) #9",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12167/what_if_1977_9",
+      "sourcePosition": 24
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #1",
+      "sourceRangeReference": "Agents of Atlas (2006) #1-6",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "4801"
+      ],
+      "selectedIssueId": 4801,
+      "selectedIssueIds": [
+        4801
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2006) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4801/agents_of_atlas_2006_1",
+      "sourcePosition": 26
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #2",
+      "sourceRangeReference": "Agents of Atlas (2006) #1-6",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5089"
+      ],
+      "selectedIssueId": 5089,
+      "selectedIssueIds": [
+        5089
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2006) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5089/agents_of_atlas_2006_2",
+      "sourcePosition": 27
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #3",
+      "sourceRangeReference": "Agents of Atlas (2006) #1-6",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5241"
+      ],
+      "selectedIssueId": 5241,
+      "selectedIssueIds": [
+        5241
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2006) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5241/agents_of_atlas_2006_3",
+      "sourcePosition": 28
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #4",
+      "sourceRangeReference": "Agents of Atlas (2006) #1-6",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5404"
+      ],
+      "selectedIssueId": 5404,
+      "selectedIssueIds": [
+        5404
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2006) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5404/agents_of_atlas_2006_4",
+      "sourcePosition": 29
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #5",
+      "sourceRangeReference": "Agents of Atlas (2006) #1-6",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5665"
+      ],
+      "selectedIssueId": 5665,
+      "selectedIssueIds": [
+        5665
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2006) #5",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5665/agents_of_atlas_2006_5",
+      "sourcePosition": 30
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #6",
+      "sourceRangeReference": "Agents of Atlas (2006) #1-6",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2006,
+      "issueNumber": "6",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5842"
+      ],
+      "selectedIssueId": 5842,
+      "selectedIssueIds": [
+        5842
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2006) #6",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5842/agents_of_atlas_2006_6",
+      "sourcePosition": 31
+    },
+    {
+      "sourceIssueReference": "Spider-Man Family #4",
+      "sourceRangeReference": "Spider-Man Family #4",
+      "normalizedSeriesTitle": "Spider-Man Family",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "16160"
+      ],
+      "selectedIssueId": 16160,
+      "selectedIssueIds": [
+        16160
+      ],
+      "resolvedIssueTitle": "Spider-Man Family (2007) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16160/spider-man_family_2007_4",
+      "sourcePosition": 32
+    },
+    {
+      "sourceIssueReference": "Secret Invasion: Who Do You Trust? 1 #1",
+      "sourceRangeReference": "Secret Invasion: Who Do You Trust? #1",
+      "normalizedSeriesTitle": "Secret Invasion: Who Do You Trust? 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21418"
+      ],
+      "selectedIssueId": 21418,
+      "selectedIssueIds": [
+        21418
+      ],
+      "resolvedIssueTitle": "SECRET INVASION: WHO DO YOU TRUST? 1 (2008) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21418/secret_invasion_who_do_you_trust_1_2008_1",
+      "sourcePosition": 33
+    },
+    {
+      "sourceIssueReference": "Dark Reign: New Nation #1",
+      "sourceRangeReference": "Dark Reign: New Nation #1",
+      "normalizedSeriesTitle": "Dark Reign: New Nation",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23004"
+      ],
+      "selectedIssueId": 23004,
+      "selectedIssueIds": [
+        23004
+      ],
+      "resolvedIssueTitle": "Dark Reign: New Nation (2008) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23004/dark_reign_new_nation_2008_1",
+      "sourcePosition": 34
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #1",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23659"
+      ],
+      "selectedIssueId": 23659,
+      "selectedIssueIds": [
+        23659
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23659/agents_of_atlas_2009_1",
+      "sourcePosition": 38
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #2",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23825"
+      ],
+      "selectedIssueId": 23825,
+      "selectedIssueIds": [
+        23825
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23825/agents_of_atlas_2009_2",
+      "sourcePosition": 39
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #3",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24015"
+      ],
+      "selectedIssueId": 24015,
+      "selectedIssueIds": [
+        24015
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24015/agents_of_atlas_2009_3",
+      "sourcePosition": 40
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #4",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24219"
+      ],
+      "selectedIssueId": 24219,
+      "selectedIssueIds": [
+        24219
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24219/agents_of_atlas_2009_4",
+      "sourcePosition": 41
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #5",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "5",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24221"
+      ],
+      "selectedIssueId": 24221,
+      "selectedIssueIds": [
+        24221
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #5",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24221/agents_of_atlas_2009_5",
+      "sourcePosition": 42
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #6",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "6",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24360"
+      ],
+      "selectedIssueId": 24360,
+      "selectedIssueIds": [
+        24360
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #6",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24360/agents_of_atlas_2009_6",
+      "sourcePosition": 43
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #7",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "7",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24361"
+      ],
+      "selectedIssueId": 24361,
+      "selectedIssueIds": [
+        24361
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #7",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24361/agents_of_atlas_2009_7",
+      "sourcePosition": 44
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #8",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "8",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24362"
+      ],
+      "selectedIssueId": 24362,
+      "selectedIssueIds": [
+        24362
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #8",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24362/agents_of_atlas_2009_8",
+      "sourcePosition": 45
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #9",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "9",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24363"
+      ],
+      "selectedIssueId": 24363,
+      "selectedIssueIds": [
+        24363
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #9",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24363/agents_of_atlas_2009_9",
+      "sourcePosition": 46
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #10",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "10",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24354"
+      ],
+      "selectedIssueId": 24354,
+      "selectedIssueIds": [
+        24354
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #10",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24354/agents_of_atlas_2009_10",
+      "sourcePosition": 47
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #11",
+      "sourceRangeReference": "Agents of Atlas (2009) #1-11",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "11",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24355"
+      ],
+      "selectedIssueId": 24355,
+      "selectedIssueIds": [
+        24355
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2009) #11",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24355/agents_of_atlas_2009_11",
+      "sourcePosition": 48
+    },
+    {
+      "sourceIssueReference": "X-Men Vs Agents of Atlas #1",
+      "sourceRangeReference": "X-Men Vs Agents of Atlas #1-2",
+      "normalizedSeriesTitle": "X-Men Vs Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28973"
+      ],
+      "selectedIssueId": 28973,
+      "selectedIssueIds": [
+        28973
+      ],
+      "resolvedIssueTitle": "X-Men Vs. Agents of Atlas (2009) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28973/x-men_vs_agents_of_atlas_2009_1",
+      "sourcePosition": 49
+    },
+    {
+      "sourceIssueReference": "X-Men Vs Agents of Atlas #2",
+      "sourceRangeReference": "X-Men Vs Agents of Atlas #1-2",
+      "normalizedSeriesTitle": "X-Men Vs Agents of Atlas",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28976"
+      ],
+      "selectedIssueId": 28976,
+      "selectedIssueIds": [
+        28976
+      ],
+      "resolvedIssueTitle": "X-Men Vs. Agents of Atlas (2009) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28976/x-men_vs_agents_of_atlas_2009_2",
+      "sourcePosition": 50
+    },
+    {
+      "sourceIssueReference": "Assault on New Olympus Prologue One-Shot #1",
+      "sourceRangeReference": "Assault on New Olympus Prologue One-Shot #1 (end of issue only)",
+      "normalizedSeriesTitle": "Assault on New Olympus Prologue One-Shot",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "29277"
+      ],
+      "selectedIssueId": 29277,
+      "selectedIssueIds": [
+        29277
+      ],
+      "resolvedIssueTitle": "Assault on New Olympus Prologue One-Shot (2009) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/29277/assault_on_new_olympus_prologue_one-shot_2009_1",
+      "sourcePosition": 51
+    },
+    {
+      "sourceIssueReference": "Incredible Hercules #138",
+      "sourceRangeReference": "The Incredible Hercules #138-141 (ends of issues only)",
+      "normalizedSeriesTitle": "Incredible Hercules",
+      "seriesYear": 2008,
+      "issueNumber": "138",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25438"
+      ],
+      "selectedIssueId": 25438,
+      "selectedIssueIds": [
+        25438
+      ],
+      "resolvedIssueTitle": "Incredible Hercules (2008) #138",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25438/incredible_hercules_2008_138",
+      "sourcePosition": 52
+    },
+    {
+      "sourceIssueReference": "Incredible Hercules #139",
+      "sourceRangeReference": "The Incredible Hercules #138-141 (ends of issues only)",
+      "normalizedSeriesTitle": "Incredible Hercules",
+      "seriesYear": 2008,
+      "issueNumber": "139",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25439"
+      ],
+      "selectedIssueId": 25439,
+      "selectedIssueIds": [
+        25439
+      ],
+      "resolvedIssueTitle": "Incredible Hercules (2008) #139",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25439/incredible_hercules_2008_139",
+      "sourcePosition": 53
+    },
+    {
+      "sourceIssueReference": "Incredible Hercules #140",
+      "sourceRangeReference": "The Incredible Hercules #138-141 (ends of issues only)",
+      "normalizedSeriesTitle": "Incredible Hercules",
+      "seriesYear": 2008,
+      "issueNumber": "140",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25440"
+      ],
+      "selectedIssueId": 25440,
+      "selectedIssueIds": [
+        25440
+      ],
+      "resolvedIssueTitle": "Incredible Hercules (2008) #140",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25440/incredible_hercules_2008_140",
+      "sourcePosition": 54
+    },
+    {
+      "sourceIssueReference": "Incredible Hercules #141",
+      "sourceRangeReference": "The Incredible Hercules #138-141 (ends of issues only)",
+      "normalizedSeriesTitle": "Incredible Hercules",
+      "seriesYear": 2008,
+      "issueNumber": "141",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "28315"
+      ],
+      "selectedIssueId": 28315,
+      "selectedIssueIds": [
+        28315
+      ],
+      "resolvedIssueTitle": "Incredible Hercules (2008) #141",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28315/incredible_hercules_2008_141",
+      "sourcePosition": 55
+    },
+    {
+      "sourceIssueReference": "Thunderbolts #139",
+      "sourceRangeReference": "Thunderbolts (2006) #139-140",
+      "normalizedSeriesTitle": "Thunderbolts",
+      "seriesYear": 2006,
+      "issueNumber": "139",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26761"
+      ],
+      "selectedIssueId": 26761,
+      "selectedIssueIds": [
+        26761
+      ],
+      "resolvedIssueTitle": "Thunderbolts (2006) #139",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26761/thunderbolts_2006_139",
+      "sourcePosition": 56
+    },
+    {
+      "sourceIssueReference": "Thunderbolts #140",
+      "sourceRangeReference": "Thunderbolts (2006) #139-140",
+      "normalizedSeriesTitle": "Thunderbolts",
+      "seriesYear": 2006,
+      "issueNumber": "140",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "26762"
+      ],
+      "selectedIssueId": 26762,
+      "selectedIssueIds": [
+        26762
+      ],
+      "resolvedIssueTitle": "Thunderbolts (2006) #140",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/26762/thunderbolts_2006_140",
+      "sourcePosition": 57
+    },
+    {
+      "sourceIssueReference": "Avengers Vs. Atlas #1",
+      "sourceRangeReference": "Avengers Vs Atlas #1-4",
+      "normalizedSeriesTitle": "Avengers Vs. Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "29620"
+      ],
+      "selectedIssueId": 29620,
+      "selectedIssueIds": [
+        29620
+      ],
+      "resolvedIssueTitle": "Avengers Vs. Atlas (2010) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/29620/avengers_vs_atlas_2010_1",
+      "sourcePosition": 58
+    },
+    {
+      "sourceIssueReference": "Avengers Vs. Atlas #2",
+      "sourceRangeReference": "Avengers Vs Atlas #1-4",
+      "normalizedSeriesTitle": "Avengers Vs. Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30284"
+      ],
+      "selectedIssueId": 30284,
+      "selectedIssueIds": [
+        30284
+      ],
+      "resolvedIssueTitle": "Avengers Vs. Atlas (2010) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30284/avengers_vs_atlas_2010_2",
+      "sourcePosition": 59
+    },
+    {
+      "sourceIssueReference": "Avengers Vs. Atlas #3",
+      "sourceRangeReference": "Avengers Vs Atlas #1-4",
+      "normalizedSeriesTitle": "Avengers Vs. Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "33560"
+      ],
+      "selectedIssueId": 33560,
+      "selectedIssueIds": [
+        33560
+      ],
+      "resolvedIssueTitle": "Avengers Vs. Atlas (2010) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/33560/avengers_vs_atlas_2010_3",
+      "sourcePosition": 60
+    },
+    {
+      "sourceIssueReference": "Avengers Vs. Atlas #4",
+      "sourceRangeReference": "Avengers Vs Atlas #1-4",
+      "normalizedSeriesTitle": "Avengers Vs. Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30286"
+      ],
+      "selectedIssueId": 30286,
+      "selectedIssueIds": [
+        30286
+      ],
+      "resolvedIssueTitle": "Avengers Vs. Atlas (2010) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30286/avengers_vs_atlas_2010_4",
+      "sourcePosition": 61
+    },
+    {
+      "sourceIssueReference": "Enter the Heroic Age #1",
+      "sourceRangeReference": "Enter the Heroic Age #1",
+      "normalizedSeriesTitle": "Enter the Heroic Age",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "31468"
+      ],
+      "selectedIssueId": 31468,
+      "selectedIssueIds": [
+        31468
+      ],
+      "resolvedIssueTitle": "Enter the Heroic Age (2010) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/31468/enter_the_heroic_age_2010_1",
+      "sourcePosition": 62
+    },
+    {
+      "sourceIssueReference": "Atlas #1",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30033"
+      ],
+      "selectedIssueId": 30033,
+      "selectedIssueIds": [
+        30033
+      ],
+      "resolvedIssueTitle": "Atlas (2010) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30033/atlas_2010_1",
+      "sourcePosition": 63
+    },
+    {
+      "sourceIssueReference": "Atlas #2",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30037"
+      ],
+      "selectedIssueId": 30037,
+      "selectedIssueIds": [
+        30037
+      ],
+      "resolvedIssueTitle": "Atlas (2010) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30037/atlas_2010_2",
+      "sourcePosition": 64
+    },
+    {
+      "sourceIssueReference": "Atlas #3",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30038"
+      ],
+      "selectedIssueId": 30038,
+      "selectedIssueIds": [
+        30038
+      ],
+      "resolvedIssueTitle": "Atlas (2010) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30038/atlas_2010_3",
+      "sourcePosition": 65
+    },
+    {
+      "sourceIssueReference": "Atlas #4",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30039"
+      ],
+      "selectedIssueId": 30039,
+      "selectedIssueIds": [
+        30039
+      ],
+      "resolvedIssueTitle": "Atlas (2010) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30039/atlas_2010_4",
+      "sourcePosition": 66
+    },
+    {
+      "sourceIssueReference": "Atlas #5",
+      "sourceRangeReference": "Atlas (2010) #1-5",
+      "normalizedSeriesTitle": "Atlas",
+      "seriesYear": 2010,
+      "issueNumber": "5",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "30040"
+      ],
+      "selectedIssueId": 30040,
+      "selectedIssueIds": [
+        30040
+      ],
+      "resolvedIssueTitle": "Atlas (2010) #5",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30040/atlas_2010_5",
+      "sourcePosition": 67
+    },
+    {
+      "sourceIssueReference": "Fear Itself: The Home Front #1",
+      "sourceRangeReference": "Fear Itself: The Home Front #1-4",
+      "normalizedSeriesTitle": "Fear Itself: The Home Front",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "38499"
+      ],
+      "selectedIssueId": 38499,
+      "selectedIssueIds": [
+        38499
+      ],
+      "resolvedIssueTitle": "Fear Itself: The Home Front (2010) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/38499/fear_itself_the_home_front_2010_1",
+      "sourcePosition": 70
+    },
+    {
+      "sourceIssueReference": "Fear Itself: The Home Front #2",
+      "sourceRangeReference": "Fear Itself: The Home Front #1-4",
+      "normalizedSeriesTitle": "Fear Itself: The Home Front",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "38497"
+      ],
+      "selectedIssueId": 38497,
+      "selectedIssueIds": [
+        38497
+      ],
+      "resolvedIssueTitle": "Fear Itself: The Home Front (2010) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/38497/fear_itself_the_home_front_2010_2",
+      "sourcePosition": 71
+    },
+    {
+      "sourceIssueReference": "Fear Itself: The Home Front #3",
+      "sourceRangeReference": "Fear Itself: The Home Front #1-4",
+      "normalizedSeriesTitle": "Fear Itself: The Home Front",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "38498"
+      ],
+      "selectedIssueId": 38498,
+      "selectedIssueIds": [
+        38498
+      ],
+      "resolvedIssueTitle": "Fear Itself: The Home Front (2010) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/38498/fear_itself_the_home_front_2010_3",
+      "sourcePosition": 72
+    },
+    {
+      "sourceIssueReference": "Fear Itself: The Home Front #4",
+      "sourceRangeReference": "Fear Itself: The Home Front #1-4",
+      "normalizedSeriesTitle": "Fear Itself: The Home Front",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "38495"
+      ],
+      "selectedIssueId": 38495,
+      "selectedIssueIds": [
+        38495
+      ],
+      "resolvedIssueTitle": "Fear Itself: The Home Front (2010) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/38495/fear_itself_the_home_front_2010_4",
+      "sourcePosition": 73
+    },
+    {
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #1",
+      "sourceRangeReference": "War of the Realms: New Agents of Atlas #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76615"
+      ],
+      "selectedIssueId": 76615,
+      "selectedIssueIds": [
+        76615
+      ],
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "sourcePosition": 74
+    },
+    {
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #2",
+      "sourceRangeReference": "War of the Realms: New Agents of Atlas #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76616"
+      ],
+      "selectedIssueId": 76616,
+      "selectedIssueIds": [
+        76616
+      ],
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "sourcePosition": 75
+    },
+    {
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #3",
+      "sourceRangeReference": "War of the Realms: New Agents of Atlas #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77259"
+      ],
+      "selectedIssueId": 77259,
+      "selectedIssueIds": [
+        77259
+      ],
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "sourcePosition": 76
+    },
+    {
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas #4",
+      "sourceRangeReference": "War of the Realms: New Agents of Atlas #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77260"
+      ],
+      "selectedIssueId": 77260,
+      "selectedIssueIds": [
+        77260
+      ],
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "sourcePosition": 77
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #1",
+      "sourceRangeReference": "Agents of Atlas (2019) #1-5",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77001"
+      ],
+      "selectedIssueId": 77001,
+      "selectedIssueIds": [
+        77001
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2019) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "sourcePosition": 78
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #2",
+      "sourceRangeReference": "Agents of Atlas (2019) #1-5",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77002"
+      ],
+      "selectedIssueId": 77002,
+      "selectedIssueIds": [
+        77002
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2019) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "sourcePosition": 79
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #3",
+      "sourceRangeReference": "Agents of Atlas (2019) #1-5",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77003"
+      ],
+      "selectedIssueId": 77003,
+      "selectedIssueIds": [
+        77003
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2019) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "sourcePosition": 80
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #4",
+      "sourceRangeReference": "Agents of Atlas (2019) #1-5",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77004"
+      ],
+      "selectedIssueId": 77004,
+      "selectedIssueIds": [
+        77004
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2019) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "sourcePosition": 81
+    },
+    {
+      "sourceIssueReference": "Agents of Atlas #5",
+      "sourceRangeReference": "Agents of Atlas (2019) #1-5",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77005"
+      ],
+      "selectedIssueId": 77005,
+      "selectedIssueIds": [
+        77005
+      ],
+      "resolvedIssueTitle": "Agents of Atlas (2019) #5",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77005/agents_of_atlas_2019_5",
+      "sourcePosition": 82
+    },
+    {
+      "sourceIssueReference": "Atlantis Attacks #1",
+      "sourceRangeReference": "Atlantis Attacks #1-5",
+      "normalizedSeriesTitle": "Atlantis Attacks",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "83989"
+      ],
+      "selectedIssueId": 83989,
+      "selectedIssueIds": [
+        83989
+      ],
+      "resolvedIssueTitle": "Atlantis Attacks (2020) #1",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83989/atlantis_attacks_2020_1",
+      "sourcePosition": 83
+    },
+    {
+      "sourceIssueReference": "Atlantis Attacks #2",
+      "sourceRangeReference": "Atlantis Attacks #1-5",
+      "normalizedSeriesTitle": "Atlantis Attacks",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "83993"
+      ],
+      "selectedIssueId": 83993,
+      "selectedIssueIds": [
+        83993
+      ],
+      "resolvedIssueTitle": "Atlantis Attacks (2020) #2",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83993/atlantis_attacks_2020_2",
+      "sourcePosition": 84
+    },
+    {
+      "sourceIssueReference": "Atlantis Attacks #3",
+      "sourceRangeReference": "Atlantis Attacks #1-5",
+      "normalizedSeriesTitle": "Atlantis Attacks",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "83994"
+      ],
+      "selectedIssueId": 83994,
+      "selectedIssueIds": [
+        83994
+      ],
+      "resolvedIssueTitle": "Atlantis Attacks (2020) #3",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83994/atlantis_attacks_2020_3",
+      "sourcePosition": 85
+    },
+    {
+      "sourceIssueReference": "Atlantis Attacks #4",
+      "sourceRangeReference": "Atlantis Attacks #1-5",
+      "normalizedSeriesTitle": "Atlantis Attacks",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "83995"
+      ],
+      "selectedIssueId": 83995,
+      "selectedIssueIds": [
+        83995
+      ],
+      "resolvedIssueTitle": "Atlantis Attacks (2020) #4",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83995/atlantis_attacks_2020_4",
+      "sourcePosition": 86
+    },
+    {
+      "sourceIssueReference": "Atlantis Attacks #5",
+      "sourceRangeReference": "Atlantis Attacks #1-5",
+      "normalizedSeriesTitle": "Atlantis Attacks",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "83996"
+      ],
+      "selectedIssueId": 83996,
+      "selectedIssueIds": [
+        83996
+      ],
+      "resolvedIssueTitle": "Atlantis Attacks (2020) #5",
+      "note": "",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83996/atlantis_attacks_2020_5",
+      "sourcePosition": 87
+    }
+  ],
+  "reviewStatus": "approved",
+  "packetReview": "MRT-002-C07 final central source and 80-row mapping review",
+  "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
+  "approvedManifest": {
+    "id": "agents-of-atlas-reading-order",
+    "name": "Agents of Atlas",
+    "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "agents-of-atlas-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "agents_of_atlas_reading_order.json",
+    "characters": [
+      "Agents of Atlas",
+      "Jimmy Woo",
+      "Namora",
+      "Marvel Boy",
+      "Gorilla-Man",
+      "M-11",
+      "What If?"
+    ],
+    "keywords": [
+      "Agents of Atlas",
+      "Jimmy Woo",
+      "What If?",
+      "Jeff Parker",
+      "Comic Book Herald"
+    ],
+    "expect": 80,
+    "timeline": null,
+    "coverIssueId": 4801
+  },
+  "relationshipReview": {
+    "reportDigest": "fdade994f0f81e3167261c7a65b7aabe0b406ee823131ad657d9db7e9dcf4031",
+    "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
+    "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
+    "libraryDigest": "b8c7dd2dc80f8652ee792f9d22dbdd2e80f3656df916838008d3f3a03c0b250e",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "21418"
+        ],
+        "decision": "approved",
+        "rationale": "The shared issues are source-required in distinct complete or event guides, so the factual partial remains approved without merging or shortening either guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C07 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "partial",
+        "sharedCount": 4,
+        "sharedIds": [
+          "76615",
+          "76616",
+          "77259",
+          "77260"
+        ],
+        "decision": "approved",
+        "rationale": "The shared issues are source-required in distinct complete or event guides, so the factual partial remains approved without merging or shortening either guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C07 coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-002-C07 coordinator",
+    "rationale": "Central review reconciled the exact Comic Book Herald boundary against the current metadata snapshot, retained 80 resolved rows in source order, and approved the two partial overlaps while leaving every other current-library comparison as none.",
+    "reviewedAt": "2026-08-26",
+    "approvalDigest": "faf446358cc5437daa7a93f13ed426116973f10dfdeaea22a5c275902709fc67"
+  }
+}
