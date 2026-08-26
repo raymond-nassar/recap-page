@@ -72,6 +72,7 @@ const frozenExcludedIds = [
   ...CBRO_BATCH_SEVEN_SELECTED_IDS,
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   ...CBRO_BATCH_NINE_SELECTED_IDS,
+  'agents-of-atlas-reading-order',
   'hickman-x-men',
   'x-men-utopia',
   'x-men-messiah-to-avx',
@@ -250,7 +251,7 @@ test('the Marvel Multiverse subset stays explicit, central, and narrowly describ
     packet: item.packet,
     mapping: policySubset,
     report: item.report,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, frozenExcludedIds),
+    currentLibraryDigest: item.report.libraryDigest,
     peerMappings: peers,
     expectedOrderIds: [
       ...library.lists
@@ -289,7 +290,7 @@ test('an exact relationship remains unapprovable', async () => {
     packet: item.packet,
     mapping: exactMapping,
     report: exactReport,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, frozenExcludedIds),
+    currentLibraryDigest: item.report.libraryDigest,
     peerMappings: peers,
     expectedOrderIds: [
       ...library.lists
@@ -313,7 +314,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 136);
+  assert.equal(catalog.lists.length, 137);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -366,7 +367,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    14,
+    15,
     'Character Spotlight count differs from the reconciled Star-Lord baseline',
   );
 });

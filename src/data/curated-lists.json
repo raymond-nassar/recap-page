@@ -1739,6 +1739,42 @@
       "coverIssueId": 12135
     },
     {
+      "id": "agents-of-atlas-reading-order",
+      "name": "Agents of Atlas",
+      "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "agents-of-atlas-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "agents_of_atlas_reading_order.json",
+      "characters": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "Namora",
+        "Marvel Boy",
+        "Gorilla-Man",
+        "M-11",
+        "What If?"
+      ],
+      "keywords": [
+        "Agents of Atlas",
+        "Jimmy Woo",
+        "What If?",
+        "Jeff Parker",
+        "Comic Book Herald"
+      ],
+      "expect": 80,
+      "timeline": null,
+      "coverIssueId": 4801
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
