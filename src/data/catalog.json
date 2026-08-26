@@ -2363,6 +2363,47 @@
       "updatedAt": "2026-08-24T01:05:06.004Z"
     },
     {
+      "id": "iron-man-reading-order",
+      "file": "iron_man_reading_order.json",
+      "name": "Iron Man",
+      "description": "Tony Stark's Iron Man path from Tales of Suspense through the modern Invincible Iron Man, Tony Stark: Iron Man, and Iron Man (2020) runs, following the source's character-only cuts through broader collections.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 811,
+      "collections": 0,
+      "characters": [
+        "Iron Man",
+        "Tony Stark",
+        "War Machine",
+        "Ironheart",
+        "Riri Williams"
+      ],
+      "keywords": [
+        "Iron Man",
+        "Tony Stark",
+        "War Machine",
+        "Ironheart",
+        "Armor Wars",
+        "Extremis",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/iron-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T08:33:32.614Z"
+    },
+    {
       "id": "modern-x-men-fast-track",
       "file": "modern_x_men_fast_track.json",
       "name": "Modern X-Men Fast Track",

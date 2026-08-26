@@ -14,12 +14,26 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the complete Iron Man Character Spotlight guide
+
+In plain English: the Character spotlights shelf now includes a complete Iron Man guide. It follows
+all 811 issues from the source reading order, including two issues the source names twice for two
+different story turns, listed once each in your checklist. The catalog now has 142 reading lists.
+Nothing you have saved is changed.
+
+For maintainers: the source inventory records 815 occurrences across 813 distinct issue identities.
+The two later occurrences of the same first two Tony Stark: Iron Man issues are recorded as repeated
+source references rather than duplicate canonical rows, and two source-marked out-of-continuity
+issues are excluded with recorded reasons, leaving 811 canonical rows. The frozen packet, exact
+mapping, and complete relationship report bind all 811 rows. Seven of them (Crimson Dynamo #1
+through #4 and Iron Man Legacy #2, #5, and #10) resolve to owner-confirmed exact ids that this
+project's live metadata index does not list, which is why they were the ones still deferred.
+
 ### Added the Amazing Spider-Man complete reading order
 
 In plain English: There is now a single reading list that carries Amazing Spider-Man from the
 character's first appearance through the present day, following one guide's own path across every
-renumbering, relaunch, and companion title along the way, bringing the catalog to 138 reading
-lists. Nothing you have saved is changed.
+renumbering, relaunch, and companion title along the way. Nothing you have saved is changed.
 
 Most of the guide's 2,043 named issues, 1,937 of them, resolve to an exact Marvel issue. The
 remaining 106 are references the guide names that could not be matched to a single Marvel-metadata
