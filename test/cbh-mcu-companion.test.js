@@ -32,12 +32,6 @@ import {
 } from '../src/js/lib/catalog.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const legacyMcuSelectedIds = Object.freeze([
-  'doctor-strange-multiverse-of-madness',
-  'spider-man-no-way-home',
-  'marvel-multiverse',
-  'marvel-what-if',
-]);
 const expectedCounts = new Map([
   ['doctor-strange-multiverse-of-madness', 17],
   ['spider-man-no-way-home', 17],
@@ -69,16 +63,6 @@ const expectedRelationships = {
     ['spider-man-best-of', 'partial', 5],
   ],
 };
-function peerIdsForReviewedReport(id) {
-  if (id === 'wandavision') return legacyMcuSelectedIds;
-  return [...legacyMcuSelectedIds, 'spider-man-far-from-home']
-    .filter((peerId) => peerId !== id);
-}
-
-function excludedIdsForReviewedReport(id) {
-  return [id, ...peerIdsForReviewedReport(id)];
-}
-
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
 }
@@ -236,12 +220,11 @@ test('MCU Prep reports bind their reviewed libraries and selected peers', async 
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
 
   for (const { id, packet, mapping, report } of entries) {
-    const peerIds = peerIdsForReviewedReport(id);
-    const excludedIds = excludedIdsForReviewedReport(id, peerIds);
-    const reviewedLibraryDigest = libraryDigestExcludingOrders(library, excludedIds);
-    const peers = peerIds
+    const peers = MCU_SELECTED_IDS
+      .filter((peerId) => peerId !== id)
       .map((peerId) => mappings.get(peerId));
     const expectedOrderIds = report.comparisons.map((comparison) => comparison.orderId);
+    const reviewedLibraryDigest = libraryDigestExcludingOrders(library, MCU_SELECTED_IDS);
     assert.equal(report.comparisonCount, expectedOrderIds.length);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => validateReportDigest(report));
@@ -288,20 +271,20 @@ test('the Marvel Multiverse subset stays explicit, central, and narrowly describ
   policySubset.relationshipReview.approvalDigest = approvalDigestFor(
     policySubset.relationshipReview,
   );
-  const peerIds = peerIdsForReviewedReport(item.id);
-  const excludedIds = excludedIdsForReviewedReport(item.id);
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
-  const peers = peerIds.map((peerId) => mappings.get(peerId));
+  const peers = MCU_SELECTED_IDS
+    .filter((peerId) => peerId !== item.id)
+    .map((peerId) => mappings.get(peerId));
   const library = await loadLibrarySnapshot();
   assert.throws(() => assertApprovedRelationshipReview({
     packet: item.packet,
     mapping: policySubset,
     report: item.report,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, excludedIds),
+    currentLibraryDigest: libraryDigestExcludingOrders(library, MCU_SELECTED_IDS),
     peerMappings: peers,
     expectedOrderIds: [
       ...library.lists
-        .filter((entry) => !excludedIds.includes(entry.id))
+        .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
         .map((entry) => entry.id),
       ...peers.map((peer) => peer.id),
     ],
@@ -330,20 +313,20 @@ test('an exact relationship remains unapprovable', async () => {
   );
   exactMapping.mappingDigest = mappingDigestFor(exactMapping);
 
-  const peerIds = peerIdsForReviewedReport(item.id);
-  const excludedIds = excludedIdsForReviewedReport(item.id);
   const mappings = new Map(entries.map((entry) => [entry.id, entry.mapping]));
-  const peers = peerIds.map((peerId) => mappings.get(peerId));
+  const peers = MCU_SELECTED_IDS
+    .filter((peerId) => peerId !== item.id)
+    .map((peerId) => mappings.get(peerId));
   const library = await loadLibrarySnapshot();
   assert.throws(() => assertApprovedRelationshipReview({
     packet: item.packet,
     mapping: exactMapping,
     report: exactReport,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, excludedIds),
+    currentLibraryDigest: libraryDigestExcludingOrders(library, MCU_SELECTED_IDS),
     peerMappings: peers,
     expectedOrderIds: [
       ...library.lists
-        .filter((entry) => !excludedIds.includes(entry.id))
+        .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
         .map((entry) => entry.id),
       ...peers.map((peer) => peer.id),
     ],

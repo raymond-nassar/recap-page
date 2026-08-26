@@ -347,10 +347,10 @@ test('the character inventory preserves every central disposition and ships six 
     grootCandidateId,
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
-    cosmicCandidateId,
+    'rocket-raccoon-reading-order',
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
-    candidateId,
+    'white-tiger-ava-ayala',
   ]);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get('phalanx-reading-order').catalogIds, ['phalanx-reading-order']);

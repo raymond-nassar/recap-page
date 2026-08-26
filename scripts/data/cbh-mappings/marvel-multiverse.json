@@ -164,15 +164,16 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "The current library and the four other shipped MCU companion peers were reviewed; prior central approvals were preserved and the new Far From Home peer adds no shared issue.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "d4cbeea8820e31b3c037585828610bbf9a608748df67f6bb40572d286319de32",
+    "reportDigest": "fe65532347cf340f3804c8e5d3f798cb674f51ba499dc5da21fc924132b90e43",
     "packetDigest": "f947dd5ea7b49a428fd01b02cc828f69ad84482636976c182e002b88d9a024b1",
     "mappingDigest": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-    "libraryDigest": "09245d989263995458dcf53e150c07c4440e07d180d3a54dd3845dba37f494b5",
+    "libraryDigest": "c6034d00e708308892a15b7162975b3356b028d5c058cb82d5772d1c84d94e76",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
+      "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
       "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
-      "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
+      "wandavision": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
+      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05"
     },
     "dispositions": [
       {
@@ -1427,6 +1428,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "ca032fe26caa910318d19578252065ac4181962b824a0924505c2090773cb259"
+    "approvalDigest": "24bb370c4c9ed983760a0bbd1ababd92fe39e2577bf9871ce9f19c1bad0b664b"
   }
 }
