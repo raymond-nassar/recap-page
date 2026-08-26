@@ -2302,6 +2302,46 @@
       "timeline": null
     },
     {
+      "id": "captain-america-reading-order-modern-marvel-era",
+      "name": "Captain America: Modern Marvel Era",
+      "description": "Captain America from The New Deal through the 2023 run, preserving Comic Book Herald's modern Marvel-era checklist and any unresolved source rows as explicit provenance.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "captain-america-reading-order-modern-marvel-era.md",
+      "sourcePage": "https://www.comicbookherald.com/captain-america-reading-order-modern-marvel-era/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "captain_america_reading_order_modern_marvel_era.json",
+      "characters": [
+        "Captain America",
+        "Steve Rogers",
+        "Sam Wilson",
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Falcon",
+        "Sharon Carter",
+        "Red Skull"
+      ],
+      "keywords": [
+        "Captain America",
+        "Steve Rogers",
+        "Sam Wilson",
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Secret Empire",
+        "Comic Book Herald",
+        "Modern Marvel Era"
+      ],
+      "expect": 69,
+      "timeline": null,
+      "coverIssueId": 12817
+    },
+    {
       "id": "doctor-doom-primer",
       "name": "There is Only Doom",
       "description": "A primer on Doctor Doom, compiled by hand from a reader's outline of Comic Book Herald's guide to the best Doom comics. It opens with the origin, in Fantastic Four #5, the second Fantastic Four annual and the Ultimate retelling, then Books of Doom and the story of Werner von Doom. From there it follows Doom as monarch, rival and thief of power: the long Fantastic Four sieges, Doomquest in Iron Man, the Silver Surfer and the Power Cosmic, Secret Wars in 1984 and again in 2015, the Infinity Gauntlet, and his turn as a hero in Infamous Iron Man. The sections are the guide's and are kept in its order.",

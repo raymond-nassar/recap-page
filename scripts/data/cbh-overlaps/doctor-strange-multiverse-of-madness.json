@@ -2,16 +2,10 @@
   "candidateId": "doctor-strange-multiverse-of-madness",
   "packetDigest": "bd0b58b61128f9787c658f0f182daf04df4b06a668b20225c049cb233f53ed10",
   "mappingDigest": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-  "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
-  "peerDigests": {
-    "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-    "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-    "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
-    "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
-    "wandavision": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3"
-  },
+  "libraryDigest": "de5266d84053eef569ea1c3b51e4b0fb27613882a6dcec1b16589685facb1680",
+  "peerDigests": {},
   "candidateCount": 17,
-  "comparisonCount": 136,
+  "comparisonCount": 134,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -87,6 +81,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -617,12 +617,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-far-from-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-identity-crisis",
       "sharedCount": 0,
       "sharedIds": [],
@@ -659,12 +653,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "thanos-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -690,12 +678,6 @@
     },
     {
       "orderId": "venomverse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "wandavision",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -839,5 +821,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "08ef6e36ef0dd70df47701fab52c25b26c043d0c2149585b4adcfaf197f51aa4"
+  "reportDigest": "f66d1e52773204cf26f81234c592923c5a29996cce6a3a20e95424d5545f7ec6"
 }

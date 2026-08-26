@@ -2,25 +2,13 @@
   "candidateId": "rocket-raccoon-reading-order",
   "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
   "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "d40a930551aafff0bc2a60abf99eb648d6eb35f1225d646ad6f8aac0b5fa2489",
+  "libraryDigest": "7ccf4a07de5e205b397d44dea5f0b3468dd0adb6d568e56ef28ee427ca0eee12",
   "peerDigests": {},
   "candidateCount": 75,
-  "comparisonCount": 143,
+  "comparisonCount": 133,
   "comparisons": [
     {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "absolute-carnage",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "agatha-harkness-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -38,12 +26,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "annihilation",
       "sharedCount": 0,
       "sharedIds": [],
@@ -51,12 +33,6 @@
     },
     {
       "orderId": "annihilation-conquest",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -333,12 +309,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -696,12 +666,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "spider-man-far-from-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "spider-man-identity-crisis",
       "sharedCount": 0,
       "sharedIds": [],
@@ -764,19 +728,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "thanos-reading-order",
-      "sharedCount": 6,
-      "sharedIds": [
-        "73420",
-        "73421",
-        "73422",
-        "73423",
-        "73424",
-        "73425"
-      ],
-      "relationship": "partial"
-    },
-    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -801,33 +752,10 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "wandavision",
-      "sharedCount": 10,
-      "sharedIds": [
-        "71433",
-        "71435",
-        "71436",
-        "71437",
-        "71438",
-        "71439",
-        "71440",
-        "71441",
-        "71442",
-        "71987"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "war-of-kings",
@@ -946,12 +874,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -982,5 +904,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4e19120db3da7e77366fa8deb7c1def52e0b7bb8ff016bd120d9edd0cc0598bd"
+  "reportDigest": "8d1790f0969a9315aeb6cf9e1dc9f9f7160a3971239de10ff8eb52aa837904e9"
 }
