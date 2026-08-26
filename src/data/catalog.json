@@ -2021,6 +2021,42 @@
       "updatedAt": "2026-08-24T01:03:59.245Z"
     },
     {
+      "id": "spider-man-far-from-home",
+      "file": "spider_man_far_from_home.json",
+      "name": "Spider-Man: Far From Home",
+      "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Mysterio",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Far From Home",
+        "Spider-Man",
+        "Mysterio",
+        "The Gauntlet",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 74028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5ccc6905b8689",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T05:16:35.956Z"
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "file": "white_tiger_ava_ayala.json",
       "name": "White Tiger: Ava Ayala",

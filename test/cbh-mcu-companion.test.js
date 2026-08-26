@@ -48,6 +48,7 @@ const expectedCounts = new Map([
   ['spider-man-no-way-home', 17],
   ['marvel-multiverse', 2],
   ['marvel-what-if', 7],
+  ['spider-man-far-from-home', 8],
 ]);
 const expectedRelationships = {
   'doctor-strange-multiverse-of-madness': [
@@ -60,6 +61,9 @@ const expectedRelationships = {
     ['xmen-claremont-complete', 'candidate-subset', 2],
   ],
   'marvel-what-if': [],
+  'spider-man-far-from-home': [
+    ['spider-man-best-of', 'partial', 5],
+  ],
 };
 const frozenExcludedIds = [
   ...MCU_SELECTED_IDS,
@@ -106,7 +110,7 @@ test('the MCU companion inventory preserves all fourteen user priorities and ter
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'follow-up')
       .map((record) => record.followUpRank),
-    [2, 4, 5, 6],
+    [4, 5, 6],
   );
   assert.equal(
     inventory.records.filter((record) => record.centralDisposition === 'blocked').length,
@@ -138,7 +142,7 @@ test('the MCU companion inventory preserves all fourteen user priorities and ter
   assert.throws(() => validateMcuCompanionInventory(fabricated), /identity digest changed/i);
 });
 
-test('four frozen packets and mappings preserve 43 exact source rows', async () => {
+test('five frozen packets and mappings preserve 51 exact source rows', async () => {
   const { inventory, records, entries } = await loadEvidence();
   assert.doesNotThrow(() => validateMcuCompanionInventory(inventory));
   const allIds = [];
@@ -163,8 +167,8 @@ test('four frozen packets and mappings preserve 43 exact source rows', async () 
     );
     allIds.push(...mapping.rows.map((row) => String(row.selectedIssueId)));
   }
-  assert.equal(allIds.length, 43);
-  assert.equal(new Set(allIds).size, 43);
+  assert.equal(allIds.length, 51);
+  assert.equal(new Set(allIds).size, 51);
 
   const doctor = entries.find((entry) => entry.id === 'doctor-strange-multiverse-of-madness');
   assert.equal(doctor.mapping.rows[10].sourceIssueReference, 'New Avengers: Illuminati #0');
@@ -174,6 +178,26 @@ test('four frozen packets and mappings preserve 43 exact source rows', async () 
   const whatIf = entries.find((entry) => entry.id === 'marvel-what-if');
   assert.equal(whatIf.mapping.rows.at(-1).sourceIssueReference, 'What If? Magik');
   assert.equal(whatIf.mapping.rows.at(-1).manualSeriesSelectionApproved, true);
+
+  const farFromHome = entries.find((entry) => entry.id === 'spider-man-far-from-home');
+  assert.deepEqual(
+    farFromHome.mapping.rows.map((row) => [row.sourceIssueReference, row.selectedIssueId]),
+    [
+      ['Amazing Spider-Man (1963) #66', 6886],
+      ['Amazing Spider-Man (1963) #67', 6887],
+      ['Peter Parker, the Spectacular Spider-Man (1976) #50', 14751],
+      ['Peter Parker, the Spectacular Spider-Man (1976) #51', 14752],
+      ['Amazing Spider-Man (1999) #618', 24425],
+      ['Amazing Spider-Man (1999) #619', 28224],
+      ['Amazing Spider-Man (1999) #620', 28225],
+      ['Friendly Neighborhood Spider-Man (2019) #6', 74028],
+    ],
+  );
+  assert.equal(farFromHome.mapping.rows.at(-1).seriesId, 26679);
+  assert.ok(
+    farFromHome.packet.excludedSourceRows.length >= 8,
+    'Far From Home should record unnumbered and contextual source mentions as exclusions',
+  );
 
   const omitted = structuredClone(whatIf.packet);
   omitted.rows.pop();
@@ -193,7 +217,7 @@ test('four frozen packets and mappings preserve 43 exact source rows', async () 
   }), /issue-bearing boundary differs/i);
 });
 
-test('four reports bind the current library and exactly three selected peers', async () => {
+test('five reports bind the current library and exactly four selected peers', async () => {
   const { records, entries } = await loadEvidence();
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(library, frozenExcludedIds);
@@ -206,7 +230,7 @@ test('four reports bind the current library and exactly three selected peers', a
     const peers = MCU_SELECTED_IDS.filter((peerId) => peerId !== id)
       .map((peerId) => mappings.get(peerId));
     const expectedOrderIds = [...existingIds, ...peers.map((peer) => peer.id)];
-    assert.equal(report.comparisonCount, 100);
+    assert.equal(report.comparisonCount, 101);
     assert.equal(report.comparisonCount, expectedOrderIds.length);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => validateReportDigest(report));
@@ -228,7 +252,7 @@ test('four reports bind the current library and exactly three selected peers', a
         ]),
       expectedRelationships[id],
     );
-    assert.equal(mapping.relationshipReview.dispositions.length, 100);
+    assert.equal(mapping.relationshipReview.dispositions.length, 101);
     assert.equal(records.get(id).relationshipStatus, 'reviewed');
   }
 });
@@ -309,7 +333,7 @@ test('an exact relationship remains unapprovable', async () => {
   }), /exactly duplicates.+no approval path/i);
 });
 
-test('approved evidence reaches four payloads, cards, and one MCU Prep group', async () => {
+test('approved evidence reaches five payloads, cards, and one MCU Prep group', async () => {
   const { inventory, entries } = await loadEvidence();
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = parseCatalog(await readJson('src/data/catalog.json'));
@@ -364,7 +388,7 @@ test('approved evidence reaches four payloads, cards, and one MCU Prep group', a
   const stories = groupCatalog(catalog.lists);
   const screen = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(screen.count, 4);
+  assert.equal(screen.count, 5);
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));

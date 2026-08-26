@@ -54,7 +54,7 @@ test('the current gateway offers every populated canonical shelf and publishing 
     modern.count,
     publishingCategoryStories(stories, 'modern').reduce((total, story) => total + story.lists.length, 0),
   );
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 4);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 5);
 });
 
 test('an empty category stays hidden while overlapping categories remain independent', () => {
@@ -135,7 +135,7 @@ test('empty publishing ages stay declared but hidden from the current gateway', 
   ));
 });
 
-test('MCU Prep keeps the four screen companions in inventory order on the stable route', () => {
+test('MCU Prep keeps the five screen companions in inventory order on the stable route', () => {
   const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.ok(category, 'MCU Prep is not declared');
   assert.equal(category.heading, 'MCU Prep');
@@ -146,6 +146,7 @@ test('MCU Prep keeps the four screen companions in inventory order on the stable
       'spider-man-no-way-home',
       'marvel-multiverse',
       'marvel-what-if',
+      'spider-man-far-from-home',
     ],
   );
   assert.equal(category.route, 'marvel-on-screen');

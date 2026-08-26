@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "id": "spider-man-far-from-home",
+  "inventoryId": "spider-man-far-from-home",
+  "sourceUrl": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceContentSha256": "eb12094ab82fa0605bd35397b14e7148e7306f3036823394d52360a46c409301",
+  "sourceIssueBearingBlocksSha256": "c66912e71522b6aab65a91b57ccd39e8bb60af515b8b4d9f3cc541d25f7cb566",
+  "sourceBoundary": "Includes only the eight issue-specific source rows: Amazing Spider-Man (1963) #66-67; Peter Parker, the Spectacular Spider-Man (1976) #50-51; Amazing Spider-Man (1999) #618-620; and Friendly Neighborhood Spider-Man (2019) #6. Unnumbered recommendations and contextual mentions stay excluded.",
+  "excludedSourceReferences": [
+    "Related reading-order links",
+    "Contextual comic mentions inside included issue discussions",
+    "Video-game and film context links",
+    "Spider-Men unnumbered recommendation",
+    "Spider-Verse and Spider-Geddon unnumbered recommendations",
+    "Hickman Avengers / Secret Wars and whole-run Hickman follow-on links",
+    "Friendly Neighborhood Spider-Man first-seven-issues context outside the exact #6 recommendation",
+    "Editorial commentary, images, embeds, advertisements, and subscription links"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Related Reading Orders: Amazing Spider-Man",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Related Reading Orders: Mysterio",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Related Reading Orders: Miles Morales",
+      "reason": "Related-order link, not an issue-specific recommendation.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #13",
+      "reason": "Contextual Mysterio debut mention inside the #66-67 discussion, not the row recommended by the heading.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Amazing Spider-Man Annual (1964) #1",
+      "reason": "Contextual Sinister Six mention inside the #66-67 discussion, not the row recommended by the heading.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Spider-Man: Shattered Dimensions",
+      "reason": "Video-game influence mention, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Amazing Spider-Man (1963) #2",
+      "reason": "Contextual Tinkerer aliens mention inside the #50-51 discussion, not a recommended row.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Shed",
+      "reason": "Contextual later Gauntlet story mention without an issue-number boundary.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "PS4 Spider-Man",
+      "reason": "Video-game comparison, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Spider-Men",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spider-Man: Into the Spider-Verse",
+      "reason": "Film comparison inside the Spider-Men discussion, not a comic issue recommendation.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Spider-Verse",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Geddon",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Hickman Avengers / Secret Wars",
+      "reason": "Unnumbered recommendation without a complete issue-number boundary.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Hickman's Marvel Universe work as a whole",
+      "reason": "Contextual whole-run follow-on link without an issue-number boundary.",
+      "decisionScope": "contextual-mention"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2019) first seven issues",
+      "reason": "Contextual read-status mention; only #6 is issue-specific recommendation text.",
+      "decisionScope": "contextual-mention"
+    }
+  ],
+  "sourceOccurrenceCount": 24,
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "spider-man-far-from-home",
+    "name": "Spider-Man: Far From Home",
+    "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-man-far-from-home.md",
+    "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "spider_man_far_from_home.json",
+    "characters": [
+      "Spider-Man",
+      "Mysterio",
+      "Peter Parker"
+    ],
+    "keywords": [
+      "Far From Home",
+      "Spider-Man",
+      "Mysterio",
+      "The Gauntlet",
+      "Comic Book Herald"
+    ],
+    "expect": 8,
+    "timeline": null,
+    "coverIssueId": 74028
+  },
+  "insertionAnchor": {
+    "beforeId": "white-tiger-ava-ayala"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "MRT-004 coordinator",
+    "rationale": "The live source was revalidated as WordPress post 40184, the similarly titled podcast post 40334 was rejected, and only exact issue-numbered source rows were admitted.",
+    "reviewedAt": "2026-08-26T05:09:20Z"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Amazing Spider-Man (1963) #66",
+      "sourceRangeReference": "Amazing Spider-Man (1963) #66-67",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "66",
+      "metadataIssueNumber": "66",
+      "seriesId": 1987,
+      "candidateIssueId": 6886,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series."
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (1963) #67",
+      "sourceRangeReference": "Amazing Spider-Man (1963) #66-67",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "67",
+      "metadataIssueNumber": "67",
+      "seriesId": 1987,
+      "candidateIssueId": 6887,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Marvel adds the leading article in The Amazing Spider-Man; the reviewed issues are from this 1963 series."
+    },
+    {
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "sourceRangeReference": "Peter Parker, the Spectacular Spider-Man (1976) #50-51",
+      "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "50",
+      "metadataIssueNumber": "50",
+      "seriesId": 2271,
+      "candidateIssueId": 14751,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "sourceRangeReference": "Peter Parker, the Spectacular Spider-Man (1976) #50-51",
+      "normalizedSeriesTitle": "Peter Parker, the Spectacular Spider-Man",
+      "seriesYear": 1976,
+      "issueNumber": "51",
+      "metadataIssueNumber": "51",
+      "seriesId": 2271,
+      "candidateIssueId": 14752,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (1999) #618",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "618",
+      "metadataIssueNumber": "618",
+      "seriesId": 454,
+      "candidateIssueId": 24425,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (1999) #619",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "619",
+      "metadataIssueNumber": "619",
+      "seriesId": 454,
+      "candidateIssueId": 28224,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (1999) #620",
+      "sourceRangeReference": "Amazing Spider-Man (1999) #618-620",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "620",
+      "metadataIssueNumber": "620",
+      "seriesId": 454,
+      "candidateIssueId": 28225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Friendly Neighborhood Spider-Man (2019) #6",
+      "sourceRangeReference": "Friendly Neighborhood Spider-Man (2019) #6",
+      "normalizedSeriesTitle": "Friendly Neighborhood Spider-Man",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "metadataIssueNumber": "6",
+      "seriesId": 26679,
+      "candidateIssueId": 74028,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The 2019 Tom Taylor series is required here; the 2005 Friendly Neighborhood Spider-Man series is not the source row."
+    }
+  ],
+  "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3"
+}

@@ -1739,6 +1739,37 @@
       "coverIssueId": 12135
     },
     {
+      "id": "spider-man-far-from-home",
+      "name": "Spider-Man: Far From Home",
+      "description": "Eight issue-specific Spider-Man picks connecting Mysterio illusions, the Gauntlet, and Peter Parker neighborhood stakes for Far From Home.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-man-far-from-home.md",
+      "sourcePage": "https://www.comicbookherald.com/the-best-comics-to-read-before-spider-man-far-from-home/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "spider_man_far_from_home.json",
+      "characters": [
+        "Spider-Man",
+        "Mysterio",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "Far From Home",
+        "Spider-Man",
+        "Mysterio",
+        "The Gauntlet",
+        "Comic Book Herald"
+      ],
+      "expect": 8,
+      "timeline": null,
+      "coverIssueId": 74028
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",
