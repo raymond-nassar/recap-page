@@ -14,6 +14,16 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added Jonathan Hickman's X-Men creator-run
+
+In plain English: Jonathan Hickman's X-Men era is now available as a creator-run reading guide. It
+adds 54 Hickman-written or Hickman-co-written issues in source order, bringing the catalog to 135
+reading lists, and nothing you have saved is changed.
+
+For maintainers: the source boundary stops at Inferno. X of Swords and X-Men: Inferno overlaps are
+intentional because those events remain complete event guides, while Destiny of X and Fall of X are
+broader Krakoa continuations rather than Hickman creator-run rows.
+
 ### Added the final sequential historical Marvel event guides
 
 In plain English: The Hunt for Xavier and Magneto War are now available as complete historical
