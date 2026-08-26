@@ -897,16 +897,38 @@ export function validateInventoryState(records) {
   if (records.length === 0) throw new Error('The inventory must not be empty');
   const counts = {};
   const ids = new Set();
-  const urls = new Set();
+  const seenSources = {
+    urls: new Set(),
+    wholePages: new Set(),
+    sections: new Set(),
+  };
   for (const [index, record] of records.entries()) {
     validateInventoryRecord(record, { baseline: false });
     if (record.position !== index + 1) {
       throw new Error(`Record ${record.id} position must be ${index + 1}`);
     }
     if (ids.has(record.id)) throw new Error(`Duplicate inventory id: ${record.id}`);
-    if (urls.has(record.url)) throw new Error(`Duplicate inventory url: ${record.url}`);
+    try {
+      validateSourceIdentities([record], []);
+    } catch (error) {
+      throw new Error(`Record ${record.id} has an invalid source identity: ${error.message}`, { cause: error });
+    }
+    const sourceIdentity = sourceIdentityForRecord(record);
+    if (sourceIdentity?.sourceSection) {
+      if (seenSources.wholePages.has(sourceIdentity.sourceUrl)) {
+        throw new Error(`Duplicate inventory url: ${sourceIdentity.sourceUrl}`);
+      }
+      if (seenSources.sections.has(sourceIdentity.key)) {
+        throw new Error(`Duplicate inventory source section: ${sourceIdentity.sourceUrl} :: ${sourceIdentity.sourceSection}`);
+      }
+      seenSources.sections.add(sourceIdentity.key);
+      seenSources.urls.add(sourceIdentity.sourceUrl);
+    } else {
+      if (seenSources.urls.has(record.url)) throw new Error(`Duplicate inventory url: ${record.url}`);
+      seenSources.wholePages.add(record.url);
+      seenSources.urls.add(record.url);
+    }
     ids.add(record.id);
-    urls.add(record.url);
     if (new Set(record.overlapIds).size !== record.overlapIds.length) {
       throw new Error(`Record ${record.id} contains duplicate overlap ids`);
     }

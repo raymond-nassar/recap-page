@@ -1,0 +1,3818 @@
+{
+  "id": "ultimate-marvel-intro",
+  "name": "Ultimate Marvel: Intro to the Ultimate U",
+  "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/",
+  "sourceSection": "Intro to the Ultimate U",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T05:12:20.429Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 121,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 4372,
+      "title": "Ultimate Spider-Man (2000) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4372/ultimate_spider-man_2000_1",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-09-06T00:00:00+0000",
+      "mu": "2000-09-06T00:00:00+0000",
+      "digitalId": 2679,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14846,
+      "title": "Ultimate Spider-Man (2000) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/14846/ultimate_spider-man_2000_2",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-10-04T00:00:00+0000",
+      "mu": "2000-10-04T00:00:00+0000",
+      "digitalId": 3076,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4bc46aa7c3fd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14857,
+      "title": "Ultimate Spider-Man (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/14857/ultimate_spider-man_2000_3",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 3549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/591dee26519af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14868,
+      "title": "Ultimate Spider-Man (2000) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/14868/ultimate_spider-man_2000_4",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-12-06T00:00:00+0000",
+      "mu": "2000-12-06T00:00:00+0000",
+      "digitalId": 3550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/591def0726c7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14879,
+      "title": "Ultimate Spider-Man (2000) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/14879/ultimate_spider-man_2000_5",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-01-03T00:00:00+0000",
+      "mu": "2001-01-03T00:00:00+0000",
+      "digitalId": 3551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/591def950b586",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14890,
+      "title": "Ultimate Spider-Man (2000) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/14890/ultimate_spider-man_2000_6",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-02-07T00:00:00+0000",
+      "mu": "2001-02-07T00:00:00+0000",
+      "digitalId": 3250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/591df0828fb1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14901,
+      "title": "Ultimate Spider-Man (2000) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/14901/ultimate_spider-man_2000_7",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-03-07T00:00:00+0000",
+      "mu": "2001-03-07T00:00:00+0000",
+      "digitalId": 3077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/591df1a138732",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14912,
+      "title": "Ultimate Spider-Man (2000) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/14912/ultimate_spider-man_2000_8",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-04-04T00:00:00+0000",
+      "mu": "2001-04-04T00:00:00+0000",
+      "digitalId": 3553,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/514c90d6da8a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14923,
+      "title": "Ultimate Spider-Man (2000) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/14923/ultimate_spider-man_2000_9",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-05-02T00:00:00+0000",
+      "mu": "2001-05-02T00:00:00+0000",
+      "digitalId": 3554,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/591df2817b5f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14836,
+      "title": "Ultimate Spider-Man (2000) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/14836/ultimate_spider-man_2000_10",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-06-06T00:00:00+0000",
+      "mu": "2001-06-06T00:00:00+0000",
+      "digitalId": 3555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/590788af1b0ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14837,
+      "title": "Ultimate Spider-Man (2000) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/14837/ultimate_spider-man_2000_11",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-07-04T00:00:00+0000",
+      "mu": "2001-07-04T00:00:00+0000",
+      "digitalId": 3558,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/590787fb2eb5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14838,
+      "title": "Ultimate Spider-Man (2000) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/14838/ultimate_spider-man_2000_12",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-08-01T00:00:00+0000",
+      "mu": "2001-08-01T00:00:00+0000",
+      "digitalId": 3559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/59078719c3024",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14839,
+      "title": "Ultimate Spider-Man (2000) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/14839/ultimate_spider-man_2000_13",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-09-05T00:00:00+0000",
+      "mu": "2008-12-29T00:00:00+0000",
+      "digitalId": 3561,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/5907864504d82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15401,
+      "title": "Ultimate Daredevil and Elektra (2002) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15401/ultimate_daredevil_and_elektra_2002_1",
+      "seriesId": 2298,
+      "seriesName": "Ultimate Daredevil and Elektra (2002 - 2003)",
+      "onSale": "2002-11-06T00:00:00+0000",
+      "mu": "2002-11-06T00:00:00+0000",
+      "digitalId": 3164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/d0/4bc4689959e6f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15402,
+      "title": "Ultimate Daredevil and Elektra (2002) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15402/ultimate_daredevil_and_elektra_2002_2",
+      "seriesId": 2298,
+      "seriesName": "Ultimate Daredevil and Elektra (2002 - 2003)",
+      "onSale": "2002-12-04T00:00:00+0000",
+      "mu": "2002-12-04T00:00:00+0000",
+      "digitalId": 7293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/4c3638961776a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15403,
+      "title": "Ultimate Daredevil and Elektra (2002) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15403/ultimate_daredevil_and_elektra_2002_3",
+      "seriesId": 2298,
+      "seriesName": "Ultimate Daredevil and Elektra (2002 - 2003)",
+      "onSale": "2002-12-25T00:00:00+0000",
+      "mu": "2002-12-25T00:00:00+0000",
+      "digitalId": 7294,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/4c363885ca0a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15404,
+      "title": "Ultimate Daredevil and Elektra (2002) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15404/ultimate_daredevil_and_elektra_2002_4",
+      "seriesId": 2298,
+      "seriesName": "Ultimate Daredevil and Elektra (2002 - 2003)",
+      "onSale": "2003-01-08T00:00:00+0000",
+      "mu": "2003-01-08T00:00:00+0000",
+      "digitalId": 7295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/4c36387b998d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 775,
+      "title": "Ultimate Elektra (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/775/ultimate_elektra_2004_1",
+      "seriesId": 767,
+      "seriesName": "Ultimate Elektra (2004)",
+      "onSale": "2004-08-25T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5a947b88c602f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 848,
+      "title": "Ultimate Elektra (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/848/ultimate_elektra_2004_2",
+      "seriesId": 767,
+      "seriesName": "Ultimate Elektra (2004)",
+      "onSale": "2004-09-22T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7297,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5a957427a28fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 920,
+      "title": "Ultimate Elektra (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/920/ultimate_elektra_2004_3",
+      "seriesId": 767,
+      "seriesName": "Ultimate Elektra (2004)",
+      "onSale": "2004-10-27T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7298,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5a9574d10744d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 43,
+      "title": "Ultimate Elektra (2004) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/43/ultimate_elektra_2004_4",
+      "seriesId": 767,
+      "seriesName": "Ultimate Elektra (2004)",
+      "onSale": "2004-11-24T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/5a957b95a7e9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 1441,
+      "title": "Ultimate Elektra (2004) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/1441/ultimate_elektra_2004_5",
+      "seriesId": 767,
+      "seriesName": "Ultimate Elektra (2004)",
+      "onSale": "2004-12-22T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7300,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5a95846673cef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 1722,
+      "title": "Ultimate Iron Man (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1722/ultimate_iron_man_2005_1",
+      "seriesId": 761,
+      "seriesName": "Ultimate Iron Man (2005)",
+      "onSale": "2005-03-02T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 891,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/517acac6c8fe6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 1831,
+      "title": "Ultimate Iron Man (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1831/ultimate_iron_man_2005_2",
+      "seriesId": 761,
+      "seriesName": "Ultimate Iron Man (2005)",
+      "onSale": "2005-05-25T00:00:00+0000",
+      "mu": "2005-05-25T00:00:00+0000",
+      "digitalId": 2667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/517acad2db073",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2163,
+      "title": "Ultimate Iron Man (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/2163/ultimate_iron_man_2005_3",
+      "seriesId": 761,
+      "seriesName": "Ultimate Iron Man (2005)",
+      "onSale": "2005-08-03T00:00:00+0000",
+      "mu": "2005-08-03T00:00:00+0000",
+      "digitalId": 2668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5a982ce708d3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 2392,
+      "title": "Ultimate Iron Man (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/2392/ultimate_iron_man_2005_4",
+      "seriesId": 761,
+      "seriesName": "Ultimate Iron Man (2005)",
+      "onSale": "2005-09-28T00:00:00+0000",
+      "mu": "2005-09-28T00:00:00+0000",
+      "digitalId": 2669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5a9834ecaff79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jesse Delperdang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Banning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3113,
+      "title": "Ultimate Iron Man (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/3113/ultimate_iron_man_2005_5",
+      "seriesId": 761,
+      "seriesName": "Ultimate Iron Man (2005)",
+      "onSale": "2005-12-14T00:00:00+0000",
+      "mu": "2005-12-14T00:00:00+0000",
+      "digitalId": 2670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5a98481ea4380",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17369,
+      "title": "Ultimate Iron Man II (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17369/ultimate_iron_man_ii_2007_1",
+      "seriesId": 3179,
+      "seriesName": "Ultimate Iron Man II (2007 - 2008)",
+      "onSale": "2007-12-12T00:00:00+0000",
+      "mu": "2007-12-12T00:00:00+0000",
+      "digitalId": 8685,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/517acdff03f7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17607,
+      "title": "Ultimate Iron Man II (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/17607/ultimate_iron_man_ii_2007_2",
+      "seriesId": 3179,
+      "seriesName": "Ultimate Iron Man II (2007 - 2008)",
+      "onSale": "2008-01-23T00:00:00+0000",
+      "mu": "2008-01-23T00:00:00+0000",
+      "digitalId": 11687,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/517acdfe8323d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20657,
+      "title": "Ultimate Iron Man II (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/20657/ultimate_iron_man_ii_2007_3",
+      "seriesId": 3179,
+      "seriesName": "Ultimate Iron Man II (2007 - 2008)",
+      "onSale": "2008-02-13T00:00:00+0000",
+      "mu": "2008-02-13T00:00:00+0000",
+      "digitalId": 11688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/517acdf06ca64",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20850,
+      "title": "Ultimate Iron Man II (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20850/ultimate_iron_man_ii_2007_4",
+      "seriesId": 3179,
+      "seriesName": "Ultimate Iron Man II (2007 - 2008)",
+      "onSale": "2008-03-26T00:00:00+0000",
+      "mu": "2008-03-26T00:00:00+0000",
+      "digitalId": 11689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/517ace5fbb5dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21192,
+      "title": "Ultimate Iron Man II (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/21192/ultimate_iron_man_ii_2007_5",
+      "seriesId": 3179,
+      "seriesName": "Ultimate Iron Man II (2007 - 2008)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2008-08-27T00:00:00+0000",
+      "digitalId": 11690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5a99619e185de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Manco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Orson Scott Card",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15785,
+      "title": "Ultimate Marvel Team-Up (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15785/ultimate_marvel_team-up_2001_1",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-04-01T00:00:00+0000",
+      "mu": "2001-04-01T00:00:00+0000",
+      "digitalId": 3165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/20/5aa1a0713b6c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Wagner",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15776,
+      "title": "Ultimate Marvel Team-Up (2001) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15776/ultimate_marvel_team-up_2001_2",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-05-01T00:00:00+0000",
+      "mu": "2001-05-01T00:00:00+0000",
+      "digitalId": 3534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/5aa1a709601fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15777,
+      "title": "Ultimate Marvel Team-Up (2001) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15777/ultimate_marvel_team-up_2001_3",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-05-16T00:00:00+0000",
+      "mu": "2001-06-01T00:00:00+0000",
+      "digitalId": 3535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5aa2b6c29a09b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15778,
+      "title": "Ultimate Marvel Team-Up (2001) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15778/ultimate_marvel_team-up_2001_4",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-05-30T00:00:00+0000",
+      "mu": "2001-05-30T00:00:00+0000",
+      "digitalId": 3536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/5aa2c18ace33d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Allred",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15779,
+      "title": "Ultimate Marvel Team-Up (2001) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/15779/ultimate_marvel_team-up_2001_5",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-06-27T00:00:00+0000",
+      "mu": "2001-06-27T00:00:00+0000",
+      "digitalId": 3537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/5aa2cb5f03edf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Allred",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15780,
+      "title": "Ultimate Marvel Team-Up (2001) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/15780/ultimate_marvel_team-up_2001_6",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-07-25T00:00:00+0000",
+      "mu": "2001-07-25T00:00:00+0000",
+      "digitalId": 3538,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5aa2e3e588b2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15781,
+      "title": "Ultimate Marvel Team-Up (2001) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/15781/ultimate_marvel_team-up_2001_7",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-09-19T00:00:00+0000",
+      "mu": "2001-09-19T00:00:00+0000",
+      "digitalId": 3539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/04/5aa2ee999b5ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15782,
+      "title": "Ultimate Marvel Team-Up (2001) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/15782/ultimate_marvel_team-up_2001_8",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-11-07T00:00:00+0000",
+      "mu": "2001-11-07T00:00:00+0000",
+      "digitalId": 3540,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5aa2f97c4008c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15699,
+      "title": "Ultimate X-Men (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15699/ultimate_x-men_2001_1",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-02-01T00:00:00+0000",
+      "mu": "2001-02-01T00:00:00+0000",
+      "digitalId": 3166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5ba50b72eee8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15710,
+      "title": "Ultimate X-Men (2001) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15710/ultimate_x-men_2001_2",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-02-08T00:00:00+0000",
+      "mu": "2001-01-17T00:00:00+0000",
+      "digitalId": 3754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5ba51951b7d05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15721,
+      "title": "Ultimate X-Men (2001) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15721/ultimate_x-men_2001_3",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-02-21T00:00:00+0000",
+      "mu": "2001-02-21T00:00:00+0000",
+      "digitalId": 4714,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5ba52296bc4f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15732,
+      "title": "Ultimate X-Men (2001) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15732/ultimate_x-men_2001_4",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-04-04T00:00:00+0000",
+      "mu": "2001-04-04T00:00:00+0000",
+      "digitalId": 4715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5ba53dcb9a710",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15743,
+      "title": "Ultimate X-Men (2001) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/15743/ultimate_x-men_2001_5",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-04-18T00:00:00+0000",
+      "mu": "2001-04-18T00:00:00+0000",
+      "digitalId": 4716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5ba547fd46fe4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Weems",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15754,
+      "title": "Ultimate X-Men (2001) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/15754/ultimate_x-men_2001_6",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-05-16T00:00:00+0000",
+      "mu": "2001-05-16T00:00:00+0000",
+      "digitalId": 4718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5ba5506823292",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14840,
+      "title": "Ultimate Spider-Man (2000) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/14840/ultimate_spider-man_2000_14",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-10-03T00:00:00+0000",
+      "mu": "2001-10-03T00:00:00+0000",
+      "digitalId": 3563,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/590785bf72f62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14841,
+      "title": "Ultimate Spider-Man (2000) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/14841/ultimate_spider-man_2000_15",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-11-07T00:00:00+0000",
+      "mu": "2001-11-07T00:00:00+0000",
+      "digitalId": 3565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5907850f352b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14842,
+      "title": "Ultimate Spider-Man (2000) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/14842/ultimate_spider-man_2000_16",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-12-05T00:00:00+0000",
+      "mu": "2001-12-05T00:00:00+0000",
+      "digitalId": 3567,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/58e28c178e4b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14843,
+      "title": "Ultimate Spider-Man (2000) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/14843/ultimate_spider-man_2000_17",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-01-02T00:00:00+0000",
+      "mu": "2002-01-02T00:00:00+0000",
+      "digitalId": 3569,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/58e295eea8aa7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14844,
+      "title": "Ultimate Spider-Man (2000) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/14844/ultimate_spider-man_2000_18",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-02-06T00:00:00+0000",
+      "mu": "2002-02-06T00:00:00+0000",
+      "digitalId": 3571,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/58e2a01ceffd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14845,
+      "title": "Ultimate Spider-Man (2000) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/14845/ultimate_spider-man_2000_19",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-02-20T00:00:00+0000",
+      "mu": "2002-02-20T00:00:00+0000",
+      "digitalId": 3573,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/58e2a9d2ec0cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14847,
+      "title": "Ultimate Spider-Man (2000) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/14847/ultimate_spider-man_2000_20",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-03-06T00:00:00+0000",
+      "mu": "2002-03-06T00:00:00+0000",
+      "digitalId": 3575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/58e2b15694400",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14848,
+      "title": "Ultimate Spider-Man (2000) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/14848/ultimate_spider-man_2000_21",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-04-03T00:00:00+0000",
+      "mu": "2002-04-03T00:00:00+0000",
+      "digitalId": 3578,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/58e4f0cb96b16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15769,
+      "title": "Ultimate Marvel Team-Up (2001) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/15769/ultimate_marvel_team-up_2001_10",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-01-01T00:00:00+0000",
+      "mu": "2002-01-01T00:00:00+0000",
+      "digitalId": 3542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5aa68a5a0ac95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Totleben",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Randall",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15770,
+      "title": "Ultimate Marvel Team-Up (2001) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/15770/ultimate_marvel_team-up_2001_11",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-02-01T00:00:00+0000",
+      "mu": "2002-02-01T00:00:00+0000",
+      "digitalId": 3543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bc361e188ba4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chynna Clugston-Major",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15771,
+      "title": "Ultimate Marvel Team-Up (2001) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/15771/ultimate_marvel_team-up_2001_12",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2002-03-01T00:00:00+0000",
+      "digitalId": 3544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4bc361e63d154",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ted Mckeever",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15772,
+      "title": "Ultimate Marvel Team-Up (2001) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/15772/ultimate_marvel_team-up_2001_13",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-04-01T00:00:00+0000",
+      "mu": "2002-04-01T00:00:00+0000",
+      "digitalId": 3545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/4bc361eb578af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ted Mckeever",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15773,
+      "title": "Ultimate Marvel Team-Up (2001) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/15773/ultimate_marvel_team-up_2001_14",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/4bc361f07aeeb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15774,
+      "title": "Ultimate Marvel Team-Up (2001) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/15774/ultimate_marvel_team-up_2001_15",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-06-01T00:00:00+0000",
+      "mu": "2002-06-01T00:00:00+0000",
+      "digitalId": 3547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4bc361f5755b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jason Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Mays",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lee",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15775,
+      "title": "Ultimate Marvel Team-Up (2001) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/15775/ultimate_marvel_team-up_2001_16",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2002-07-01T00:00:00+0000",
+      "mu": "2002-07-01T00:00:00+0000",
+      "digitalId": 3548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4bc341c57886b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jason Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Mays",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lee",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15765,
+      "title": "Ultimate X-Men (2001) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/15765/ultimate_x-men_2001_7",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-06-27T00:00:00+0000",
+      "mu": "2001-06-27T00:00:00+0000",
+      "digitalId": 3755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5ba8de0cc5678",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15767,
+      "title": "Ultimate X-Men (2001) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/15767/ultimate_x-men_2001_8",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-08-15T00:00:00+0000",
+      "mu": "2001-08-15T00:00:00+0000",
+      "digitalId": 3756,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5ba8e702adaa5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15768,
+      "title": "Ultimate X-Men (2001) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/15768/ultimate_x-men_2001_9",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-09-12T00:00:00+0000",
+      "mu": "2001-09-12T00:00:00+0000",
+      "digitalId": 3757,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ba8f08b5bc22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15700,
+      "title": "Ultimate X-Men (2001) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/15700/ultimate_x-men_2001_10",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-10-03T00:00:00+0000",
+      "mu": "2001-10-03T00:00:00+0000",
+      "digitalId": 3758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5ba8f7fd2118d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15701,
+      "title": "Ultimate X-Men (2001) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/15701/ultimate_x-men_2001_11",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-11-21T00:00:00+0000",
+      "mu": "2001-11-21T00:00:00+0000",
+      "digitalId": 3759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5baa3331623fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15702,
+      "title": "Ultimate X-Men (2001) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/15702/ultimate_x-men_2001_12",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-12-05T00:00:00+0000",
+      "mu": "2001-12-05T00:00:00+0000",
+      "digitalId": 3760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/5baa3b3724d51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Stucker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Derenick",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15703,
+      "title": "Ultimate X-Men (2001) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/15703/ultimate_x-men_2001_13",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2001-12-19T00:00:00+0000",
+      "mu": "2001-12-19T00:00:00+0000",
+      "digitalId": 3761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5baa425bafaa0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15704,
+      "title": "Ultimate X-Men (2001) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/15704/ultimate_x-men_2001_14",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-02-13T00:00:00+0000",
+      "mu": "2002-02-13T00:00:00+0000",
+      "digitalId": 3762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5baa4df0957d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14849,
+      "title": "Ultimate Spider-Man (2000) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/14849/ultimate_spider-man_2000_22",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2002-05-01T00:00:00+0000",
+      "digitalId": 3580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/58e500e8d433e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14850,
+      "title": "Ultimate Spider-Man (2000) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/14850/ultimate_spider-man_2000_23",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-06-05T00:00:00+0000",
+      "mu": "2002-06-05T00:00:00+0000",
+      "digitalId": 3581,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/58e509b2c62f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14851,
+      "title": "Ultimate Spider-Man (2000) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/14851/ultimate_spider-man_2000_24",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-07-03T00:00:00+0000",
+      "mu": "2002-07-03T00:00:00+0000",
+      "digitalId": 3583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58e5107d60c8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14852,
+      "title": "Ultimate Spider-Man (2000) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/14852/ultimate_spider-man_2000_25",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-08-07T00:00:00+0000",
+      "mu": "2002-08-07T00:00:00+0000",
+      "digitalId": 3585,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/e0/58e5186c9f9f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14853,
+      "title": "Ultimate Spider-Man (2000) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/14853/ultimate_spider-man_2000_26",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-09-04T00:00:00+0000",
+      "mu": "2002-09-04T00:00:00+0000",
+      "digitalId": 3587,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/58e51f34881bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14854,
+      "title": "Ultimate Spider-Man (2000) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/14854/ultimate_spider-man_2000_27",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-09-18T00:00:00+0000",
+      "mu": "2002-09-18T00:00:00+0000",
+      "digitalId": 3589,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/58e528da9bce4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15292,
+      "title": "Ultimates (2002) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15292/ultimates_2002_1",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-01-29T00:00:00+0000",
+      "mu": "2002-01-29T00:00:00+0000",
+      "digitalId": 892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/515f0432a3eb4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15297,
+      "title": "Ultimates (2002) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15297/ultimates_2002_2",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-02-27T00:00:00+0000",
+      "mu": "2002-02-27T00:00:00+0000",
+      "digitalId": 3523,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5a99c30ca12d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15298,
+      "title": "Ultimates (2002) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15298/ultimates_2002_3",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-03-27T00:00:00+0000",
+      "mu": "2002-03-27T00:00:00+0000",
+      "digitalId": 3524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/5a99c866552f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15705,
+      "title": "Ultimate X-Men (2001) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/15705/ultimate_x-men_2001_15",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-02-27T00:00:00+0000",
+      "mu": "2002-02-27T00:00:00+0000",
+      "digitalId": 3763,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bc3669e23f0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15706,
+      "title": "Ultimate X-Men (2001) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/15706/ultimate_x-men_2001_16",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-03-20T00:00:00+0000",
+      "mu": "2002-03-20T00:00:00+0000",
+      "digitalId": 3764,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5baa61703f7a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15707,
+      "title": "Ultimate X-Men (2001) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/15707/ultimate_x-men_2001_17",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2002-05-01T00:00:00+0000",
+      "digitalId": 3765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/5baa699c77d76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15708,
+      "title": "Ultimate X-Men (2001) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/15708/ultimate_x-men_2001_18",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-05-15T00:00:00+0000",
+      "mu": "2002-05-15T00:00:00+0000",
+      "digitalId": 3766,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5baa80f6e7a52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15709,
+      "title": "Ultimate X-Men (2001) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/15709/ultimate_x-men_2001_19",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-06-19T00:00:00+0000",
+      "mu": "2002-06-19T00:00:00+0000",
+      "digitalId": 3767,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5baa8928c1340",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15711,
+      "title": "Ultimate X-Men (2001) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/15711/ultimate_x-men_2001_20",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-07-17T00:00:00+0000",
+      "mu": "2002-07-17T00:00:00+0000",
+      "digitalId": 3768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5baa8f78c900c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14855,
+      "title": "Ultimate Spider-Man (2000) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/14855/ultimate_spider-man_2000_28",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-10-02T00:00:00+0000",
+      "mu": "2002-10-02T00:00:00+0000",
+      "digitalId": 3592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/70/58e6507078649",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14856,
+      "title": "Ultimate Spider-Man (2000) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/14856/ultimate_spider-man_2000_29",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-10-16T00:00:00+0000",
+      "mu": "2002-10-16T00:00:00+0000",
+      "digitalId": 3593,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/58e69b152dfcb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14858,
+      "title": "Ultimate Spider-Man (2000) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/14858/ultimate_spider-man_2000_30",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-11-06T00:00:00+0000",
+      "mu": "2002-11-06T00:00:00+0000",
+      "digitalId": 3596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/58e6626363978",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14859,
+      "title": "Ultimate Spider-Man (2000) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/14859/ultimate_spider-man_2000_31",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-11-20T00:00:00+0000",
+      "mu": "2002-11-20T00:00:00+0000",
+      "digitalId": 3598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/4bc36333730c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14860,
+      "title": "Ultimate Spider-Man (2000) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/14860/ultimate_spider-man_2000_32",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-12-04T00:00:00+0000",
+      "mu": "2002-12-04T00:00:00+0000",
+      "digitalId": 3599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/4bc363388cf7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15299,
+      "title": "Ultimates (2002) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15299/ultimates_2002_4",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2002-05-01T00:00:00+0000",
+      "digitalId": 3525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5a9d543f4e371",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15300,
+      "title": "Ultimates (2002) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/15300/ultimates_2002_5",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-07-10T00:00:00+0000",
+      "mu": "2002-07-10T00:00:00+0000",
+      "digitalId": 3526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5a9d5b69acdc9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15301,
+      "title": "Ultimates (2002) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/15301/ultimates_2002_6",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-08-14T00:00:00+0000",
+      "mu": "2002-08-14T00:00:00+0000",
+      "digitalId": 3527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5a9d614b3a3c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15302,
+      "title": "Ultimates (2002) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/15302/ultimates_2002_7",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2002-10-30T00:00:00+0000",
+      "mu": "2002-10-30T00:00:00+0000",
+      "digitalId": 3528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5a9d66bfb9183",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15303,
+      "title": "Ultimates (2002) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/15303/ultimates_2002_8",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2003-01-15T00:00:00+0000",
+      "mu": "2003-01-15T00:00:00+0000",
+      "digitalId": 3529,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/5a9d6c76758df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15304,
+      "title": "Ultimates (2002) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/15304/ultimates_2002_9",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2003-03-12T00:00:00+0000",
+      "mu": "2003-03-12T00:00:00+0000",
+      "digitalId": 3530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5a9d723238dee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15293,
+      "title": "Ultimates (2002) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/15293/ultimates_2002_10",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2003-05-28T00:00:00+0000",
+      "mu": "2003-05-28T00:00:00+0000",
+      "digitalId": 3531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5a9d7944ddf44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15294,
+      "title": "Ultimates (2002) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/15294/ultimates_2002_11",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2003-07-30T00:00:00+0000",
+      "mu": "2003-07-30T00:00:00+0000",
+      "digitalId": 3532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/5a9d896c12796",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 255,
+      "title": "Ultimates (2002) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/255/ultimates_2002_12",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2003-12-03T00:00:00+0000",
+      "mu": "2003-12-03T00:00:00+0000",
+      "digitalId": 3533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/515f05c5906cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 235,
+      "title": "Ultimates (2002) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/235/ultimates_2002_13",
+      "seriesId": 664,
+      "seriesName": "Ultimates (2002 - 2003)",
+      "onSale": "2004-03-31T00:00:00+0000",
+      "mu": "2004-03-31T00:00:00+0000",
+      "digitalId": 7371,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/515f05d0edf5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95,
+      "title": "Ultimate Fantastic Four (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95/ultimate_fantastic_four_2003_1",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2003-12-31T00:00:00+0000",
+      "mu": "2003-12-31T00:00:00+0000",
+      "digitalId": 887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5a907027b2e79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 159,
+      "title": "Ultimate Fantastic Four (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/159/ultimate_fantastic_four_2003_2",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2004-01-28T00:00:00+0000",
+      "mu": "2004-01-28T00:00:00+0000",
+      "digitalId": 3510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5a907d2924e74",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 158,
+      "title": "Ultimate Fantastic Four (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/158/ultimate_fantastic_four_2003_3",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2004-02-25T00:00:00+0000",
+      "mu": "2004-02-25T00:00:00+0000",
+      "digitalId": 3511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5a941d71c8fb4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 449,
+      "title": "Ultimate Fantastic Four (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/449/ultimate_fantastic_four_2003_4",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2004-03-24T00:00:00+0000",
+      "mu": "2004-03-24T00:00:00+0000",
+      "digitalId": 3512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/5a941ed0ebada",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 503,
+      "title": "Ultimate Fantastic Four (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/503/ultimate_fantastic_four_2003_5",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2004-04-28T00:00:00+0000",
+      "mu": "2004-04-28T00:00:00+0000",
+      "digitalId": 3513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5a942a9e8cf6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 686,
+      "title": "Ultimate Fantastic Four (2003) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/686/ultimate_fantastic_four_2003_6",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2004-06-02T00:00:00+0000",
+      "mu": "2004-06-02T00:00:00+0000",
+      "digitalId": 3514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5a94337e9ff94",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14861,
+      "title": "Ultimate Spider-Man (2000) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/14861/ultimate_spider-man_2000_33",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2002-12-18T00:00:00+0000",
+      "mu": "2002-12-18T00:00:00+0000",
+      "digitalId": 3601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4bc3633d983d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rodney Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14862,
+      "title": "Ultimate Spider-Man (2000) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/14862/ultimate_spider-man_2000_34",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 3603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/4bc363425ee80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14863,
+      "title": "Ultimate Spider-Man (2000) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/14863/ultimate_spider-man_2000_35",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2003-01-15T00:00:00+0000",
+      "mu": "2003-01-15T00:00:00+0000",
+      "digitalId": 3605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/4bc3634770c47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14864,
+      "title": "Ultimate Spider-Man (2000) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/14864/ultimate_spider-man_2000_36",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2003-02-05T00:00:00+0000",
+      "mu": "2003-02-05T00:00:00+0000",
+      "digitalId": 3607,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4bc3634c2b39c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14865,
+      "title": "Ultimate Spider-Man (2000) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/14865/ultimate_spider-man_2000_37",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2003-03-05T00:00:00+0000",
+      "mu": "2003-03-05T00:00:00+0000",
+      "digitalId": 3608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4bc36351073fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14866,
+      "title": "Ultimate Spider-Man (2000) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/14866/ultimate_spider-man_2000_38",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2003-03-19T00:00:00+0000",
+      "mu": "2003-03-19T00:00:00+0000",
+      "digitalId": 3609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4bc36355e369b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14867,
+      "title": "Ultimate Spider-Man (2000) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/14867/ultimate_spider-man_2000_39",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2003-04-02T00:00:00+0000",
+      "mu": "2003-04-02T00:00:00+0000",
+      "digitalId": 3610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4bc3635a9d1ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15712,
+      "title": "Ultimate X-Men (2001) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/15712/ultimate_x-men_2001_21",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-08-21T00:00:00+0000",
+      "mu": "2002-08-21T00:00:00+0000",
+      "digitalId": 3769,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5ba90f6744166",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15713,
+      "title": "Ultimate X-Men (2001) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/15713/ultimate_x-men_2001_22",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-10-02T00:00:00+0000",
+      "mu": "2002-10-02T00:00:00+0000",
+      "digitalId": 3770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5ba9262d7f7b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15714,
+      "title": "Ultimate X-Men (2001) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/15714/ultimate_x-men_2001_23",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-10-16T00:00:00+0000",
+      "mu": "2002-10-16T00:00:00+0000",
+      "digitalId": 3771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5ba92e7dd8140",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kaare Andrews",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15715,
+      "title": "Ultimate X-Men (2001) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/15715/ultimate_x-men_2001_24",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-11-12T00:00:00+0000",
+      "mu": "2009-04-01T00:00:00+0000",
+      "digitalId": 3772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5ba93a1627346",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Kia Asamiya",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15716,
+      "title": "Ultimate X-Men (2001) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/15716/ultimate_x-men_2001_25",
+      "seriesId": 474,
+      "seriesName": "Ultimate X-Men (2001 - 2009)",
+      "onSale": "2002-11-27T00:00:00+0000",
+      "mu": "2002-11-27T00:00:00+0000",
+      "digitalId": 3773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5ba9452036225",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18474,
+      "title": "Ultimate War (2002) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18474/ultimate_war_2002_1",
+      "seriesId": 3659,
+      "seriesName": "Ultimate War (2002 - 2003)",
+      "onSale": "2002-12-04T00:00:00+0000",
+      "mu": "2002-12-04T00:00:00+0000",
+      "digitalId": 7349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/4c361fccc82b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18475,
+      "title": "Ultimate War (2002) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/18475/ultimate_war_2002_2",
+      "seriesId": 3659,
+      "seriesName": "Ultimate War (2002 - 2003)",
+      "onSale": "2002-12-25T00:00:00+0000",
+      "mu": "2002-12-25T00:00:00+0000",
+      "digitalId": 7350,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/4c364f86ee2e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18476,
+      "title": "Ultimate War (2002) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18476/ultimate_war_2002_3",
+      "seriesId": 3659,
+      "seriesName": "Ultimate War (2002 - 2003)",
+      "onSale": "2003-01-29T00:00:00+0000",
+      "mu": "2003-01-29T00:00:00+0000",
+      "digitalId": 7351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4c361fc40691a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18477,
+      "title": "Ultimate War (2002) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/18477/ultimate_war_2002_4",
+      "seriesId": 3659,
+      "seriesName": "Ultimate War (2002 - 2003)",
+      "onSale": "2003-02-19T00:00:00+0000",
+      "mu": "2003-02-19T00:00:00+0000",
+      "digitalId": 7352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4c364f7bb52aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Sowd",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

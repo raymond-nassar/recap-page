@@ -253,10 +253,12 @@ permitting an inferred replacement or a shorter guide.
 
 The maintained source records are split by program. Modern event and crossover candidates remain in
 `scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and
-team guide identities live in `scripts/data/cbh-character-inventory.json`. Named preparation locates
-the packet's stable id in exactly one maintained inventory, then applies the same packet, mapping,
-relationship, approval, authoring, and freshness checks. Do not merge their queue counts or treat a
-character disposition as a modern continuity result.
+team guide identities live in `scripts/data/cbh-character-inventory.json`. Original Ultimate Marvel
+Universe intake identities live in `scripts/data/cbh-ultimate-inventory.json`; that inventory keeps
+the Earth-1610 boundary separate from the post-Secret-Wars and 2023 continuity guides. Named
+preparation locates the packet's stable id in exactly one maintained inventory, then applies the
+same packet, mapping, relationship, approval, authoring, and freshness checks. Do not merge their
+queue counts or treat a character disposition as a modern continuity result.
 
 Movie and streaming companion guides live in
 `scripts/data/cbh-mcu-companion-inventory.json`. That inventory preserves all fourteen user-selected

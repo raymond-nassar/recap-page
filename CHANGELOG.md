@@ -14,6 +14,21 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the opening Ultimate Marvel Universe guide
+
+In plain English: The first original Ultimate Marvel Universe reading guide is now available. It
+adds 121 issues from the early Earth-1610 era, ending at Ultimate War, and nothing you have saved is
+changed.
+
+The guide stops before the next section of the source order. The fast-track recommendations, trade
+path, one source-marked out-of-continuity issue, post-Secret-Wars continuation, and 2023-present New
+Ultimate Universe are recorded as outside this release rather than folded into the checklist.
+
+For maintainers: the full source inventory records 693 main Earth-1610 issue occurrences across 15
+sections and four excluded non-main or out-of-scope sections. The first frozen packet, exact mapping,
+and complete relationship report bind all 121 selected rows. The report covers 134 current-library
+comparisons, all with no shared issue.
+
 ### Added the final sequential historical Marvel event guides
 
 In plain English: The Hunt for Xavier and Magneto War are now available as complete historical
