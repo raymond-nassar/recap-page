@@ -1001,7 +1001,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   }
 
   assert.ok(empty > 0, 'no bundled order has an item that came back empty, so this check proves nothing');
-  // Read on 2026-08-15 across the fourteen bundled orders. Written down as observations rather
+  // Read on 2026-08-26 across the one hundred and thirty-five bundled orders. Written down as observations rather
   // than floors: they move whenever an order is added or re-vendored, and moving one should mean
   // editing this line deliberately rather than watching a range quietly widen.
   //
@@ -1010,7 +1010,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
   assert.equal(claimed, 6, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 6, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 67);
+  assert.equal(empty, 76);
   assert.equal(affected, 3);
 });
 
@@ -1036,8 +1036,9 @@ test('import builds its gap disclosure from the items, not from the order payloa
 // starts asserting metadata it does not have again. Every other check of the refusal builds its own
 // state and so passes with this call site reverted; the defect was never in the model.
 //
-// 688 of the 751 curated items carry metadata and 63 do not, so `hydrated: true` over the map was a
-// statement about the whole file that was false for 34 distinct issues.
+// 4,660 of the 4,732 non-placeholder curated items carry metadata and 72 do not, so
+// `hydrated: true` over the map was a statement about the whole file that was false for 43
+// distinct issues.
 test('import lets each curated item speak for itself rather than asserting metadata over the file', () => {
   const main = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
   const body = main.slice(main.indexOf('async function importCurated('), main.indexOf('// ------------------------------------------------------------------ progress'));
@@ -1048,7 +1049,7 @@ test('import lets each curated item speak for itself rather than asserting metad
   assert.match(code, /source: 'curated'/, 'curated items no longer say where they came from, which is what marks the empty ones refused');
   assert.ok(
     !/hydrated:\s*true/.test(code),
-    'import asserts every curated item arrived with its details again, which is false for 63 of them',
+    'import asserts every curated item arrived with its details again, which is false for 72 of them',
   );
 });
 
@@ -1176,7 +1177,7 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   }
 
   const refused = Object.values(s.issues).filter((i) => i.detailsRefused);
-  // 63 items across two orders, which are 34 distinct issues because the two Ultimate orders
+  // 72 items across three orders, which are 43 distinct issues because the two Ultimate orders
   // overlap. Read on 2026-08-14; written down as an observation rather than a floor, so
   // re-vendoring an order means editing this line deliberately.
   //
@@ -1185,8 +1186,14 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // refused on arrival for the same reason an empty item is: no lookup will ever answer for it.
   // The six are two distinct issues in the spine and four in the complete variant, counted twice
   // over because a placeholder's id is hashed from the order it sits in as well as its title. The
+<<<<<<< HEAD
   // Ultimate figure is unchanged at 34, which is the check that this grew for the stated reason
   // rather than because an order regressed.
   assert.equal(refused.length, 44);
+=======
+  // Deliberately edited on 2026-08-26, from 40 to 49. WandaVision added nine exact Marvel issue
+  // pages that the metadata API refuses while keeping their official issue links.
+  assert.equal(refused.length, 49);
+>>>>>>> 1414b30b (Add WandaVision MCU Prep guide)
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

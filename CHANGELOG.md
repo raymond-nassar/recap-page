@@ -126,6 +126,17 @@ blocked entries. WandaVision keeps its eleven headed picks and current source di
 Avengers #42-45 and #47 are unavailable. The Avengers character pick stays blocked on Hawkeye (2012)
 #23, because the configured series currently ends at #22.
 
+### Added WandaVision to MCU Prep
+
+In plain English: WandaVision now has its own MCU Prep reading guide. It adds the exact Scarlet
+Witch and Vision issues named by the source, and nothing you have saved is changed.
+
+For maintainers: WandaVision ships 56 issue rows, preserves three collection or run headings as
+explicit exclusions, and records four centrally approved partial overlaps. The maintained MCU Prep
+inventory now records six shipped guides, four ranked follow-ups, and four blocked entries. The
+later Avengers character-picks guide is no longer blocked on Hawkeye (2012) #23; that source-list
+error is recorded to omit in its later mapping instead.
+
 ### Added Spider-Man: Far From Home to MCU Prep
 
 In plain English: MCU Prep now includes a Spider-Man: Far From Home guide with eight issue-specific

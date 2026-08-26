@@ -2297,10 +2297,10 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "Every current-library and selected-peer relationship was reviewed after exact WandaVision mapping. Four partial overlaps are approved because they preserve the source sequence for a distinct MCU Prep screen companion; all other comparisons share no issue.",
     "reviewedAt": "2026-08-26",
-    "reportDigest": "937acd0fbc89ff0a6e2eab961566e751d07d5beb2410e6a5a3bf783015ba925f",
+    "reportDigest": "91794bd863fbef7e28cbd7d98977c529495139f39a559daa51550bb4af046ced",
     "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
     "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
-    "libraryDigest": "95826fce84e1f1651d9c4b81ca5fba47555f19089210d07b1c15ed56f318462b",
+    "libraryDigest": "3df84dcbaf83452005e48052f1d295dcabcebf88f9ade8c7b2345fe45f732dcb",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
@@ -3515,6 +3515,6 @@
         "reviewedAt": "2026-08-26"
       }
     ],
-    "approvalDigest": "ee021424d090c66fddf0150cab93c2cebbe47e7963a9d1c77a656985b65ee0fd"
+    "approvalDigest": "7d7935a97f13c6de3bd23c1a066eecee64257c1e062b1bb2020476e9df8d9ceb"
   }
 }
