@@ -2,13 +2,13 @@
   "candidateId": "mys-tech-wars",
   "packetDigest": "8f536f7d5fc44fbcc07f3245f2e1ed3a287d7b6cf4629dd4a4f1bb0ef7590705",
   "mappingDigest": "1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306",
-  "libraryDigest": "3ffe78610ec811180156e08fabd8b4dff9ba978e68f781eba67a9058ab7d9dc7",
+  "libraryDigest": "26ac6915e9bcb6402c767491f96852a3f66ddb75b6e2cd4e39ed493c25e6ac07",
   "peerDigests": {
     "fatal-attractions": "30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9",
     "x-cutioners-song": "0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582"
   },
   "candidateCount": 4,
-  "comparisonCount": 127,
+  "comparisonCount": 128,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -611,6 +611,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -773,5 +779,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "c25469a2a3a6ac5d3de8ccdf7ec0105a26e5a2dbb76b8073a72529c58f34c3ab"
+  "reportDigest": "362e277f0471c4854bea4afe3b2d8f22775b18450eddb29a5ea0811e63242018"
 }

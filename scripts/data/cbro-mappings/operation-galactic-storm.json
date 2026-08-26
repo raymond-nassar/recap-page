@@ -921,10 +921,10 @@
     "coverIssueId": 7779
   },
   "relationshipReview": {
-    "reportDigest": "c1a1b7dcc2da76cf7a1376e3a37d86f3de93963f34bc00ac6478b07887fb05f5",
+    "reportDigest": "0b1ae1f50affef40118580c2035cb6478b5db6a09dac4d3ce0e3a543c9b1f364",
     "packetDigest": "c6dea6816313c62c9cd1432e7961093198844de8d1a82ac47b32ae9ef3577ef9",
     "mappingDigest": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
-    "libraryDigest": "80d399dac493e59524ec3ecebb6bb157444da1bab75af545c60306988e8f031d",
+    "libraryDigest": "c2efd5e0cee96cea7104cfa9d7f495bbc131700a96bf75def7a1fb9307ff1aa2",
     "peerDigests": {
       "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
       "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
@@ -2010,6 +2010,17 @@
         "reviewedAt": "2026-08-25T06:58:53.619Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T06:58:53.619Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -2302,6 +2313,6 @@
     "authorityIdentity": "MRT-003-C02-B06 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T06:58:53.619Z",
-    "approvalDigest": "ac642a0db515bdb04259653634af7f75bd466ec2dcc9d64715ea9841cf5e2587"
+    "approvalDigest": "6f0de97a8befd0f28d18de776d4ab6ab8a6323b2417c37f9a9337274e33ed94b"
   }
 }

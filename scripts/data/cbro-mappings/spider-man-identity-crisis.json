@@ -387,10 +387,10 @@
     "coverIssueId": 6854
   },
   "relationshipReview": {
-    "reportDigest": "ed27a080c97df34e19afe2ad67eff5a9d018a26215af4b030ad0930251244354",
+    "reportDigest": "0270ac392f7c1b1d6cce71daa622b2441a48f86d201deba52fd8b5bd7481492e",
     "packetDigest": "29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1",
     "mappingDigest": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
-    "libraryDigest": "b79d04e15c042c5af7b5c0c909ef413bc8ea0de75d32e74e28fd358192ebe441",
+    "libraryDigest": "8a6bc18372a0a298669453857a4add1ccf1f4d17306754ef88d8bbf09d955977",
     "peerDigests": {
       "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
       "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
@@ -1531,6 +1531,17 @@
         "reviewedAt": "2026-08-25T15:51:59.067Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T15:51:59.067Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1845,6 +1856,6 @@
     "authorityIdentity": "MRT-003-C02-B08 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Phalanx Covenant subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-25T15:51:59.067Z",
-    "approvalDigest": "662fadd1bc4d137d27eefd78fc02020ea932d1a1c34b89b9b34109a332ae2a64"
+    "approvalDigest": "9d1f7cd3738f00941c202f9cedeec478b79985cccdcdc82c06b65d8a00a2585e"
   }
 }

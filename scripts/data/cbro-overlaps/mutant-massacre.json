@@ -2,13 +2,13 @@
   "candidateId": "mutant-massacre",
   "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
   "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-  "libraryDigest": "f645bd66dba3707bf5270b3d00435a9aa5d8cbc9ac2ba4b7d41fd8632f853856",
+  "libraryDigest": "788b8fd89e8e64b3afe56e3e70c3db859be39d94881b055d7abdf074c6ec5aa1",
   "peerDigests": {
     "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
     "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
   },
   "candidateCount": 11,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -557,6 +557,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -731,5 +737,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "cd1de87f43351734a588ca81b08501cb4ddfa408d4274a9ff4ac6543a4ac98b9"
+  "reportDigest": "4afdf39dc6b03c88b7dafb0059fd564267f1262e5de0c7ed7c31ddff4ec39810"
 }

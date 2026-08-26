@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the Thanos reading guide
+
+In plain English: A 272-issue Thanos reading guide is now available, from his first Cosmic Cube
+campaigns through the Legacy of Thanos. Seven comics in the source guide are not on Marvel Unlimited,
+so the checklist leaves them out while preserving their places for maintainers. Nothing you have saved
+is changed.
+
+For maintainers: the frozen source records 321 occurrences across 279 identities, including 42
+intentional later mentions. Twelve exact identities use reviewed Marvel facts because the configured
+metadata provider omits them. Seven closed availability exclusions link to the separately assigned
+missing-comics issue. The complete-library report covers 137 comparisons with nine approved non-none
+relationships.
+
 ### Added the opening Ultimate Marvel Universe guide
 
 In plain English: The first original Ultimate Marvel Universe reading guide is now available. It

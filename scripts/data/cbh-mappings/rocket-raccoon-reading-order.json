@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "fcc1d5607a39e16651ac1b1c05e316a017616c31c4db0d14e1c581f3232f1973",
+    "reportDigest": "7c0b544f13e82fa97187b22cb9491743b57192d02e08cc475582b06e8ee5c3bf",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "30a01783e36ea7e1a799725e8164805c57f17f79e9697d65201d6cb288ef2cab",
+    "libraryDigest": "13884fbd2179e08f3daa9fb420fafac71c723cfc574cd31ce14665d37f47eece",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3472,6 +3472,24 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 6,
+        "sharedIds": [
+          "73420",
+          "73421",
+          "73422",
+          "73423",
+          "73424",
+          "73425"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -3674,6 +3692,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "a62c3676b583f8caea1f422e88f9d22147c96e9533a3b0eca165ba94c8a00b6b"
+    "approvalDigest": "413e707819752b40dd15030689b0749a1339446232ae85a843fb60f5561992bd"
   }
 }

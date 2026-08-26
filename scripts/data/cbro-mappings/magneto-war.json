@@ -383,10 +383,10 @@
     "coverIssueId": 12393
   },
   "relationshipReview": {
-    "reportDigest": "ccc6f4401ddb3105cd395e5ea32363d758c7faf9cde028f07ecdbf3893103db6",
+    "reportDigest": "8dd0ef4645500447a8d20335e1913e9ee8a93dc578ab7a1353740202f2ac5f0a",
     "packetDigest": "3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827",
     "mappingDigest": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1",
-    "libraryDigest": "2b0eeb45ab08abab5b52d6f73a92876572805e4d42c0774e28e09a7163e0fc55",
+    "libraryDigest": "3fd4b9b41f0b20cf35b1e111876c1ec2e15d445c1f2091c161dc38d3aa5f6bfa",
     "peerDigests": {
       "hunt-for-xavier": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c"
     },
@@ -1547,6 +1547,17 @@
         "reviewedAt": "2026-08-26T04:25:35.215Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-26T04:25:35.215Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1861,6 +1872,6 @@
     "authorityIdentity": "MRT-003-C02-B09 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T04:25:35.215Z",
-    "approvalDigest": "595e4e6ea2c23daf25132cf1bc1a4f5861f874599d5b7e68af2e459d8e308d0e"
+    "approvalDigest": "71688a7f234f33c0921ff79da6876637a3620eb21d6bc77d5b2b6264e10a2eb9"
   }
 }

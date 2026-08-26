@@ -237,10 +237,10 @@
     "coverIssueId": 8702
   },
   "relationshipReview": {
-    "reportDigest": "35a309bd670ead3db23115c2f5cef22c08c670c9310c97b62ea700779b0c6c2d",
+    "reportDigest": "9cf9e7368ba01d88d4c737e583da96eba25371529c5f91f04653db7e0d044df3",
     "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b",
     "mappingDigest": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
-    "libraryDigest": "ba66adef6f68e546bc9c3a32a73c8141620636e379d729e67055d86d4d0223f3",
+    "libraryDigest": "24ad1c917e9c690789c8d672bf36c4b2782aa8e417f6d12c81ba5fd20291b02c",
     "peerDigests": {
       "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
       "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
@@ -1293,6 +1293,17 @@
         "reviewedAt": "2026-08-25T04:18:25.991Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T04:18:25.991Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1574,6 +1585,6 @@
     "authorityIdentity": "MRT-003-C02-B05 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T04:18:25.991Z",
-    "approvalDigest": "7c8cb13f9372b4b901697e07b6541cc2bd6ca19456adfaa8d2ff3e98133135bd"
+    "approvalDigest": "d60140c154dfa20806cd7ea922af318bf575616bbdb24f0e8a5297bd20309753"
   }
 }

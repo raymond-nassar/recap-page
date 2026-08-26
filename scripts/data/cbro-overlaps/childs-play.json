@@ -2,7 +2,7 @@
   "candidateId": "childs-play",
   "packetDigest": "a89c36fd519746af77bd6beaf1ddc8f4efa3f82e66e53d2aba88890262dc7a9b",
   "mappingDigest": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
-  "libraryDigest": "4a66bb9890ad1baa1d8dac644fe84685184d7a10e7984f931206b93bfd622b86",
+  "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 4,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -559,6 +559,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -709,5 +715,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "e3a17366dee5a72d8f9c87894cbd1752dfb9d1b299fd9e8ff42b0849bf1a162e"
+  "reportDigest": "bc885ae6f2a732f201b2675dc6f6ee01e88a0cb26789bd58d84ab47df82e1f95"
 }

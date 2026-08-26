@@ -122,10 +122,10 @@
     "coverIssueId": 8707
   },
   "relationshipReview": {
-    "reportDigest": "7faf6a218d7e81ed915daa9b2525e2782aa7867323d8b578d18033a858e34b78",
+    "reportDigest": "6082269a806ad3f87c88bc0cf5679484af619e28cbdc37629496771af40b3f37",
     "packetDigest": "3be04b3a7c5381bd5ce4bcce130e24d5f5f93e58f727a3d4efbde245958dd498",
     "mappingDigest": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
-    "libraryDigest": "e53ba9bc94be8cefcc60b5ba5f6f8e2ee33a8b6d2084658c97dfea93ae1abd2e",
+    "libraryDigest": "6677c4b7a3db279f2c875ee95c1f3f6c50e248da0108ece986d5a3e77c1343b7",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -1135,6 +1135,17 @@
         "reviewedAt": "2026-08-25T03:09:12.554Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:12.554Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1416,6 +1427,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-25T03:09:12.554Z",
-    "approvalDigest": "85eb8729a308a3b9af86f3875787c938fe84e7be2db40a6a3d6a9a3c8c86aaa7"
+    "approvalDigest": "8ca12b4d8342a25b6ba519143b95908afb5cd00e3f664b3f5fd1111a7d106018"
   }
 }

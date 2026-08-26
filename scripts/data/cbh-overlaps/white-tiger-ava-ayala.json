@@ -2,10 +2,10 @@
   "candidateId": "white-tiger-ava-ayala",
   "packetDigest": "959310f882b67d5b83e8f8ba9ff6136adcd3c61523d05bdef3d9113d9767b740",
   "mappingDigest": "0d4465c495c15bf7b405964a6d50975ba3023bc10be03ba6923a19eb3954060c",
-  "libraryDigest": "587aa7f5980b16cbaae187fda5fa0296ef82ca6c26cfc4e0ad89e84094ecdb03",
+  "libraryDigest": "777d291c95f0b34de9c5e08bb6e0445d693dca0b5c427ec6ef1a4fb9dcc5c50e",
   "peerDigests": {},
   "candidateCount": 82,
-  "comparisonCount": 86,
+  "comparisonCount": 87,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -412,6 +412,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -540,5 +546,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "78f69d6b247714512d87ac61da298c3390ca476a3a0e54845202908e7081e7a1"
+  "reportDigest": "5027da0482c2842bd7a0f3e96315c28c1349b6eb5d7514d01a2ef3fc5905e0a7"
 }

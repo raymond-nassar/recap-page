@@ -540,10 +540,10 @@
     "coverIssueId": 9610
   },
   "relationshipReview": {
-    "reportDigest": "15f4ca2a109cb9e0adce9b097a39aa0026363cbe68d1536b4300ec25624c0f38",
+    "reportDigest": "860ee0248d4b21a7a3437b979053b430442733c534bc415ee6d0149e881e5108",
     "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da",
     "mappingDigest": "0c38d78c7155945788e369a586d0409b3953b6339f34c66c5a670945680a3199",
-    "libraryDigest": "e53ba9bc94be8cefcc60b5ba5f6f8e2ee33a8b6d2084658c97dfea93ae1abd2e",
+    "libraryDigest": "6677c4b7a3db279f2c875ee95c1f3f6c50e248da0108ece986d5a3e77c1343b7",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -1564,6 +1564,30 @@
         "reviewedAt": "2026-08-25T03:09:12.554Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 12,
+        "sharedIds": [
+          "9610",
+          "8014",
+          "8015",
+          "8016",
+          "8017",
+          "8018",
+          "23322",
+          "8019",
+          "8020",
+          "8021",
+          "6981",
+          "8022"
+        ],
+        "relationship": "candidate-subset",
+        "decision": "approved",
+        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
+        "reviewedAt": "2026-08-25T03:09:12.554Z"
+      },
+      {
         "orderId": "the-night-gwen-stacy-died",
         "relationship": "none",
         "sharedCount": 0,
@@ -1834,6 +1858,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-25T03:09:12.554Z",
-    "approvalDigest": "e30b32ddb6b7f70196eb91aeec409ce488000b878d3932aac9dafcaa6c0f3f62"
+    "approvalDigest": "7ef184f6ce74e42a348fb949e70bd6855e62e8a404e448ff874180f67edd13d5"
   }
 }

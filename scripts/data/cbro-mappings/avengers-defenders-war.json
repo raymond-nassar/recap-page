@@ -386,10 +386,10 @@
     "coverIssueId": 6970
   },
   "relationshipReview": {
-    "reportDigest": "1193ff32fe5394e9e8cc1ab4692d064e33b59caba68076359edccef1df09ee55",
+    "reportDigest": "0c78fedaaec380be62985cdf1115ea3396ba6b45a9f22c3308a95a3bf0729112",
     "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
     "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-    "libraryDigest": "e53ba9bc94be8cefcc60b5ba5f6f8e2ee33a8b6d2084658c97dfea93ae1abd2e",
+    "libraryDigest": "6677c4b7a3db279f2c875ee95c1f3f6c50e248da0108ece986d5a3e77c1343b7",
     "peerDigests": {
       "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -1399,6 +1399,17 @@
         "reviewedAt": "2026-08-25T03:09:12.554Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:12.554Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1680,6 +1691,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-25T03:09:12.554Z",
-    "approvalDigest": "6ac67765e610c36ea865dab5c711101b85e913fdbaaa39d9a69ed5309a164039"
+    "approvalDigest": "2674e73244c98cf823de8c9ab9fb6190c78d8ad60412cfd50051bb1844ce91d4"
   }
 }

@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "616c4564ad98a0f7f7fe5ac57d021e1e19d7156050c82c887d8e8132e9020949",
+    "reportDigest": "8e12d13ffc49ae811d14f1231c6257ef09a7a594232eccd6bd8163849b7265c7",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "8b5680c2dc9ed3b3da78547d62927a95448616ac8ddafdd554675ef30ec1e870",
+    "libraryDigest": "b234cbb876730b1c164870e4db34cc4fed683a96dc6e1f47c0d5838d5eaded57",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3628,12 +3628,32 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "star-lord-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The complete Groot and Star-Lord guides retain all source-required shared issues as distinct character reading paths.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "MRT-002-C09-DUP coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "thanos-imperative",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
         "reviewedAt": "2026-08-23"
       },
       {
@@ -3833,21 +3853,12 @@
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23"
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The complete Groot and Star-Lord guides retain all source-required shared issues as distinct character reading paths.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-002-C09-DUP coordinator",
-        "reviewedAt": "2026-08-23"
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "c12bf41481b245aade1ea4089d9226dc4a1f9698b96d076d1c219de79ecfe949"
+    "approvalDigest": "15392655136994f10f9e5a8e041f99e915d00e45212b1f2c858756e09b224dc8"
   }
 }

@@ -2,14 +2,14 @@
   "candidateId": "doctor-strange-multiverse-of-madness",
   "packetDigest": "bd0b58b61128f9787c658f0f182daf04df4b06a668b20225c049cb233f53ed10",
   "mappingDigest": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-  "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
+  "libraryDigest": "984709ef62cb29ac93502a74b804d5d8fc856d715a4c83bfa026aa6afb6b6113",
   "peerDigests": {
     "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
     "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
     "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
   },
   "candidateCount": 17,
-  "comparisonCount": 100,
+  "comparisonCount": 101,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -489,6 +489,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -621,5 +627,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "07cd56faedcfc0178da227d42804c93b6ae852e742282bdb53beb5e5a639f550"
+  "reportDigest": "e49791b3553e2745154c538352333e1a08b2a0f092824962506a8d476b928959"
 }

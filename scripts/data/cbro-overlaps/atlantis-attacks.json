@@ -2,14 +2,14 @@
   "candidateId": "atlantis-attacks",
   "packetDigest": "a872b3d3e20e3536b22d7857083ebf54fbf05313fbaa2fdfa107e8ae93d28c01",
   "mappingDigest": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
-  "libraryDigest": "ba66adef6f68e546bc9c3a32a73c8141620636e379d729e67055d86d4d0223f3",
+  "libraryDigest": "24ad1c917e9c690789c8d672bf36c4b2782aa8e417f6d12c81ba5fd20291b02c",
   "peerDigests": {
     "days-of-future-present": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
     "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
     "inferno": "cd50d51c12c4161c2f9c9ad076159f9222fbf4030c8a3318dd94341db0084fca"
   },
   "candidateCount": 17,
-  "comparisonCount": 120,
+  "comparisonCount": 121,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -582,6 +582,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -732,5 +738,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "7460ee0fff37e93d18e87946a5fc78aa08a57fbd1b848aa3bbe95196a0d5d7c4"
+  "reportDigest": "e17034b2bbf659341140cc5725e5156dc9b04913f4eefef4cc7435f6b8db9e40"
 }

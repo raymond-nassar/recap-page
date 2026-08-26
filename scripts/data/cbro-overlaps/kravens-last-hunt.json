@@ -2,13 +2,13 @@
   "candidateId": "kravens-last-hunt",
   "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
   "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-  "libraryDigest": "3acd69dc77bb9ca52b6637c94c38a7d914fa838e08a4653c77086c95b71e0203",
+  "libraryDigest": "d984a6146f14ff1c3d64d0bf6ddd28684595649826dfd64713fa0d4d05e59102",
   "peerDigests": {
     "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
     "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
   },
   "candidateCount": 7,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -564,6 +564,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -714,5 +720,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "53988800674fa72552d623e0306131e51adf20ac370dd5dafab858c5079dc9a1"
+  "reportDigest": "52a4b27f2204cac15b048622fe64cdf30301851d9d22930819a6850f2c12de69"
 }

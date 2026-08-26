@@ -2,13 +2,13 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "8b0b2826b312a913ee631c170f41b6ffebf659a73d2f2651f5ab61d55e293602",
+  "libraryDigest": "48f26e8a67e9f8591a1f3c142bbead9dd800f2a55f81d6905fa04895e7db7814",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 99,
-  "comparisonCount": 96,
+  "comparisonCount": 97,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -509,6 +509,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -649,5 +655,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "552d9bb8cf029f865467f2895e85d4badfc0b3a21aec14215aeec20433040543"
+  "reportDigest": "e9dc90e01a270f9bf005037aad19393148191363809edbf990cf127a0721aa0c"
 }

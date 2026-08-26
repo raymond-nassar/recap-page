@@ -311,10 +311,10 @@
     "coverIssueId": 22661
   },
   "relationshipReview": {
-    "reportDigest": "3f513f0541eaf8fcabd1094226c606a197da3575dc2e6dfe356426d2f29f763f",
+    "reportDigest": "1fbc5afc3ac8d723047bc4eea0f3f382f61242ba8b285f3f1cf4bebe4ee6be70",
     "packetDigest": "6029323e308e00b27b48d4ae71a856faa62cce380551cc9bc7e86541e0149768",
     "mappingDigest": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
-    "libraryDigest": "80d399dac493e59524ec3ecebb6bb157444da1bab75af545c60306988e8f031d",
+    "libraryDigest": "c2efd5e0cee96cea7104cfa9d7f495bbc131700a96bf75def7a1fb9307ff1aa2",
     "peerDigests": {
       "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
       "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
@@ -1400,6 +1400,17 @@
         "reviewedAt": "2026-08-25T06:58:53.619Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T06:58:53.619Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1692,6 +1703,6 @@
     "authorityIdentity": "MRT-003-C02-B06 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T06:58:53.619Z",
-    "approvalDigest": "6916aef3b584c6819fca6ee8ea9c0bb91e4a2d40ded40c4fa8ebd0231c78a5aa"
+    "approvalDigest": "e64903f4f8c41af8a0e5db8bcfb4785377cdc2f5d00ad47d93d876467e78387e"
   }
 }

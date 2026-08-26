@@ -2,12 +2,12 @@
   "candidateId": "groot-reading-order",
   "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
   "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-  "libraryDigest": "8b5680c2dc9ed3b3da78547d62927a95448616ac8ddafdd554675ef30ec1e870",
+  "libraryDigest": "b234cbb876730b1c164870e4db34cc4fed683a96dc6e1f47c0d5838d5eaded57",
   "peerDigests": {
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 76,
-  "comparisonCount": 96,
+  "comparisonCount": 97,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -527,6 +527,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -667,5 +673,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "616c4564ad98a0f7f7fe5ac57d021e1e19d7156050c82c887d8e8132e9020949"
+  "reportDigest": "8e12d13ffc49ae811d14f1231c6257ef09a7a594232eccd6bd8163849b7265c7"
 }

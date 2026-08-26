@@ -1943,6 +1943,39 @@
       "coverIssueId": 19776
     },
     {
+      "id": "thanos-reading-order",
+      "name": "Thanos",
+      "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "thanos-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "thanos_reading_order.json",
+      "characters": [
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Guardians of the Galaxy"
+      ],
+      "keywords": [
+        "Thanos",
+        "Infinity Gauntlet",
+        "Adam Warlock",
+        "Marvel Cosmic",
+        "Comic Book Herald"
+      ],
+      "expect": 272,
+      "timeline": null,
+      "coverIssueId": 9610
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",

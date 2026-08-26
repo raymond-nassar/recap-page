@@ -2,7 +2,7 @@
   "candidateId": "phoenix-saga",
   "packetDigest": "8dd7a741edf28961a20afdc3a80021bd07c2a3f0769ed3b360986ce2219fe9b6",
   "mappingDigest": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa",
-  "libraryDigest": "e569bdbf234b41efd97d52ec61d003b9b05854e526bef8b7034a8d7c3462f94d",
+  "libraryDigest": "feb46ddc30fb2d2d77aa336b80d306ed5bc4ace9ef5ac10945c7d3607d3090f5",
   "peerDigests": {
     "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
     "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
@@ -10,7 +10,7 @@
     "original-clone-saga": "fce26aa2714d7735b24b61d23c4db0b0998b82435f12079acbbf16cee3a712a9"
   },
   "candidateCount": 8,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -559,6 +559,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -727,5 +733,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "d1e6a5a1469151a510495620c89c882318f3b4c4872996c7a6d6c8fa9857696b"
+  "reportDigest": "764cda369408daa7e08a41f6092a33fbc4c375934e815a5e94ba4cce659adc74"
 }

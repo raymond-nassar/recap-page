@@ -1937,10 +1937,10 @@
     "authorityIdentity": "GPT-5.5 central review",
     "rationale": "Approved the creator-run boundary as Hickman-written or Hickman-co-written rows through Inferno. Partial overlaps are intentional because existing event and character guides represent different truthful catalog contexts rather than duplicate line-wide Krakoa intake.",
     "reviewedAt": "2026-08-26T00:00:00Z",
-    "reportDigest": "e131d1d23bea5c186caeb2e0bceb82e82f38c26652d004d828fff3f570e83973",
+    "reportDigest": "97958c44554a934fe471a198c5ce67380c90c1a30f1948b7401e667ebbcfcb84",
     "packetDigest": "800288f321acf9793b0800e2c6c3f8ece3283ba341d672b9903924edae04f439",
     "mappingDigest": "faef0663fd0c7dc17b1f7f8449971662adda7d8612666f4990970955cc30efa7",
-    "libraryDigest": "56c95232986fdbc89528c442be0eaa73cb77b655f5ba0a6412737a6335a2053d",
+    "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
     "peerDigests": {},
     "dispositions": [
       {
@@ -2898,6 +2898,17 @@
         "reviewedAt": "2026-08-26T00:00:00Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "decision": "approved",
@@ -3150,6 +3161,6 @@
         "reviewedAt": "2026-08-26T00:00:00Z"
       }
     ],
-    "approvalDigest": "79cfb01a97b76d22c5fe35e8fad672c7bb0860fba9f7991d30443c1dcf1e49ef"
+    "approvalDigest": "2cae5cdf1306b575e202aaee52e4951698ed970d2e57cf8331aeb11260493084"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T06:05:00.000Z",
+  "generatedAt": "2026-08-26T07:40:10.185Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2253,6 +2253,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-24T01:05:06.004Z"
+    },
+    {
+      "id": "thanos-reading-order",
+      "file": "thanos_reading_order.json",
+      "name": "Thanos",
+      "description": "A source-defined Thanos guide with 272 exact issue links from his first Cosmic Cube campaigns through the Legacy of Thanos, while seven comics unavailable on Marvel Unlimited remain preserved in provenance.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 272,
+      "collections": 0,
+      "characters": [
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Guardians of the Galaxy"
+      ],
+      "keywords": [
+        "Thanos",
+        "Infinity Gauntlet",
+        "Adam Warlock",
+        "Marvel Cosmic",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 9610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/4bb5eafea7ab3",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-thanos-reading-order-guide/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T07:36:34.796Z"
     },
     {
       "id": "xmen-claremont",

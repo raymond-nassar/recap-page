@@ -520,10 +520,10 @@
     "coverIssueId": 9107
   },
   "relationshipReview": {
-    "reportDigest": "4c2e9c86f41c871857963d5acb8b1339bce977cbeeb53ff1da55530060307197",
+    "reportDigest": "fda35523bd6f3471a3e2dc7b544f411ec144a8b4e78c1753822a603e427eb97e",
     "packetDigest": "724e37c0091298acd6a54cc0b576604686fd03ae0f9782b810043022b6511237",
     "mappingDigest": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954",
-    "libraryDigest": "f645bd66dba3707bf5270b3d00435a9aa5d8cbc9ac2ba4b7d41fd8632f853856",
+    "libraryDigest": "788b8fd89e8e64b3afe56e3e70c3db859be39d94881b055d7abdf074c6ec5aa1",
     "peerDigests": {
       "mutant-massacre": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
       "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1"
@@ -1542,6 +1542,17 @@
         "reviewedAt": "2026-08-25T03:07:30.362Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T03:07:30.362Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1822,6 +1833,6 @@
     "authorityIdentity": "MRT-003-C02-B04 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-25T03:07:30.362Z",
-    "approvalDigest": "4b42daa642b7fd63539187578083c79def8bd5038dbe7499265ba1c52f062202"
+    "approvalDigest": "d389bad812c66b437c02226914139e1c6c9813d0f294af823f6cf52d2f5a7243"
   }
 }

@@ -2,7 +2,7 @@
   "candidateId": "midnight-massacre",
   "packetDigest": "9a2870e6538537a067900c1b7d5dc18d729e9a6ab6364c9b35abb3edbdde7853",
   "mappingDigest": "2375538d6e7a657b5a58107dcf9276942544ec68f875bb159586ddc371a06ccf",
-  "libraryDigest": "4a66bb9890ad1baa1d8dac644fe84685184d7a10e7984f931206b93bfd622b86",
+  "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
   "peerDigests": {
     "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 5,
-  "comparisonCount": 116,
+  "comparisonCount": 117,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -559,6 +559,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -709,5 +715,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "ec511aa095abca97bd4e3adc57bfb03dcd39b74f1075a40e9504cc54d8ce132c"
+  "reportDigest": "afbb37fa19f39927995935c7b00cb22d740b27fd7ef7679e7b3197356cf887c0"
 }

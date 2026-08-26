@@ -157,10 +157,10 @@
     "coverIssueId": 12460
   },
   "relationshipReview": {
-    "reportDigest": "c3134aa2d09da0d25b6c542201f10f2dc57f6aebc5b4e33d60106e0652dcc570",
+    "reportDigest": "711c98076a0d82ec78fac22ee7dafffe96295eaa6359e53433271ac8d5af9eaa",
     "packetDigest": "95e367a8ffbeb752469b256201c2368d268e916c13a719caa197888046fcfb2f",
     "mappingDigest": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
-    "libraryDigest": "e569bdbf234b41efd97d52ec61d003b9b05854e526bef8b7034a8d7c3462f94d",
+    "libraryDigest": "feb46ddc30fb2d2d77aa336b80d306ed5bc4ace9ef5ac10945c7d3607d3090f5",
     "peerDigests": {
       "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
       "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
@@ -1172,6 +1172,17 @@
         "reviewedAt": "2026-08-25T03:09:13.162Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:13.162Z"
+      },
+      {
         "orderId": "thanos-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -1459,6 +1470,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-25T03:09:13.162Z",
-    "approvalDigest": "708108eafb9bf4e5fc08b06e1ede7262883813a3d6544f1868ef31eb16d71720"
+    "approvalDigest": "86475a0c1784a6d969448cbd5ba0743187635f2fa11073ed2d2138f9fe3e1757"
   }
 }

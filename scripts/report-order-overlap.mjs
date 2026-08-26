@@ -174,6 +174,15 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
     mappingDigest: mapping.mappingDigest,
     libraryDigest: libraryDigestExcludingOrders(library, excludedIds),
     peerDigests,
+    ...(Array.isArray(mapping.sourceGaps) ? {
+      sourceCounts: {
+        sourceOccurrenceCount: mapping.sourceOccurrenceCount,
+        sourceIdentityCount: rows.length + mapping.sourceGaps.length,
+        includedIssueCount: rows.length,
+        sourceGapCount: mapping.sourceGaps.length,
+        repeatedSourceReferenceCount: mapping.repeatedSourceReferences?.length ?? 0,
+      },
+    } : {}),
     ...factualReport,
   };
   return { ...report, reportDigest: reportDigestFor(report) };

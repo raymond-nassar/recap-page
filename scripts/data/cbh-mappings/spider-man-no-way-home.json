@@ -747,10 +747,10 @@
     "coverIssueId": 43170
   },
   "relationshipReview": {
-    "reportDigest": "13e25304ac54df4bbcd136ddc828404da990fc02a231f1e9615d8f43f54cb564",
+    "reportDigest": "47071789457ef1d2c0ddfe05eec708a31e15285081fc8231db578edc4d00e6fb",
     "packetDigest": "a52ebb52a6d4910ba996ea7e50b089b43dc63554be7b49bcf92879db9c070ed8",
     "mappingDigest": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
-    "libraryDigest": "0179289e6c7eb8d093c8767f8ba353035d010c92f4160d41eb88457d34f7dc2a",
+    "libraryDigest": "984709ef62cb29ac93502a74b804d5d8fc856d715a4c83bfa026aa6afb6b6113",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
@@ -1460,6 +1460,17 @@
         "reviewedAt": "2026-08-24T01:00:00Z"
       },
       {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "authorityType": "policy",
+        "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-24T01:00:00Z"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -1662,6 +1673,6 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "Every current library and selected release-peer relationship was reviewed; exact duplicates remain unapprovable.",
     "reviewedAt": "2026-08-24T01:00:00Z",
-    "approvalDigest": "b11c3c9075ad45264595154780ed4a781bebcb89f1cae9f38b42df51aa1893f6"
+    "approvalDigest": "2306934ab02560bd64cfbad76462d57e3636ca9c81c655ed99846720539ad647"
   }
 }
