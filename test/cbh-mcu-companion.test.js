@@ -22,6 +22,7 @@ import {
   validateMcuCompanionPacket,
 } from '../scripts/lib/cbh-mcu-companion.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   availableHomeCategories,
@@ -54,7 +55,6 @@ const expectedRelationships = {
   'marvel-what-if': [],
   wandavision: [
     ['essential-avengers', 'partial', 3],
-    ['hickman-x-men', 'partial', 3],
     ['marvel-fresh-start-avengers', 'partial', 10],
     ['rocket-raccoon-reading-order', 'partial', 10],
     ['scarlet-witch-best-of', 'partial', 17],
@@ -224,7 +224,10 @@ test('MCU Prep reports bind their reviewed libraries and selected peers', async 
       .filter((peerId) => peerId !== id)
       .map((peerId) => mappings.get(peerId));
     const expectedOrderIds = report.comparisons.map((comparison) => comparison.orderId);
-    const reviewedLibraryDigest = libraryDigestExcludingOrders(library, MCU_SELECTED_IDS);
+    const reviewedLibraryDigest = libraryDigestExcludingOrders(
+      library,
+      [...MCU_SELECTED_IDS, ...CBH_LATER_ORDER_IDS],
+    );
     assert.equal(report.comparisonCount, expectedOrderIds.length);
     assert.equal(report.libraryDigest, reviewedLibraryDigest);
     assert.doesNotThrow(() => validateReportDigest(report));
@@ -280,14 +283,12 @@ test('the Marvel Multiverse subset stays explicit, central, and narrowly describ
     packet: item.packet,
     mapping: policySubset,
     report: item.report,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, MCU_SELECTED_IDS),
+    currentLibraryDigest: libraryDigestExcludingOrders(
+      library,
+      [...MCU_SELECTED_IDS, ...CBH_LATER_ORDER_IDS],
+    ),
     peerMappings: peers,
-    expectedOrderIds: [
-      ...library.lists
-        .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
-        .map((entry) => entry.id),
-      ...peers.map((peer) => peer.id),
-    ],
+    expectedOrderIds: item.report.comparisons.map((comparison) => comparison.orderId),
   }), /unauthorized authority type/i);
 });
 
@@ -322,14 +323,12 @@ test('an exact relationship remains unapprovable', async () => {
     packet: item.packet,
     mapping: exactMapping,
     report: exactReport,
-    currentLibraryDigest: libraryDigestExcludingOrders(library, MCU_SELECTED_IDS),
+    currentLibraryDigest: libraryDigestExcludingOrders(
+      library,
+      [...MCU_SELECTED_IDS, ...CBH_LATER_ORDER_IDS],
+    ),
     peerMappings: peers,
-    expectedOrderIds: [
-      ...library.lists
-        .filter((entry) => !MCU_SELECTED_IDS.includes(entry.id))
-        .map((entry) => entry.id),
-      ...peers.map((peer) => peer.id),
-    ],
+    expectedOrderIds: exactReport.comparisons.map((comparison) => comparison.orderId),
   }), /no approval path/i);
 });
 
@@ -346,7 +345,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 140);
+  assert.equal(catalog.lists.length, 143);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -399,7 +398,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    15,
+    18,
     'Character Spotlight count differs from the reconciled Star-Lord baseline',
   );
 });

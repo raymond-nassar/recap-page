@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "7c0b544f13e82fa97187b22cb9491743b57192d02e08cc475582b06e8ee5c3bf",
+    "reportDigest": "dbd21c1b4a4bbcd1fafc53beeebd889a86af8d4c05342ca04c22b5630ac73715",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "13884fbd2179e08f3daa9fb420fafac71c723cfc574cd31ce14665d37f47eece",
+    "libraryDigest": "31985a3e5f7c5d249dc9c88a2de3655150ee64e193f64983251da497073f72bd",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3517,15 +3517,6 @@
         "reviewedAt": "2026-08-23"
       },
       {
-        "orderId": "modern-x-men-fast-track",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
-      },
-      {
         "orderId": "monsters-unleashed",
         "relationship": "none",
         "decision": "approved",
@@ -3877,6 +3868,28 @@
         "reviewedAt": "2026-08-23"
       },
       {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "decision": "approved",
@@ -4142,6 +4155,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "413e707819752b40dd15030689b0749a1339446232ae85a843fb60f5561992bd"
+    "approvalDigest": "ebd4120757b90a59542172be8221a347842445a5a5807accf6527959c144667e"
   }
 }

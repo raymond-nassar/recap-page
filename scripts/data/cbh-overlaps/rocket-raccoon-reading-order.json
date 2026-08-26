@@ -2,10 +2,10 @@
   "candidateId": "rocket-raccoon-reading-order",
   "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
   "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "13884fbd2179e08f3daa9fb420fafac71c723cfc574cd31ce14665d37f47eece",
+  "libraryDigest": "31985a3e5f7c5d249dc9c88a2de3655150ee64e193f64983251da497073f72bd",
   "peerDigests": {},
   "candidateCount": 75,
-  "comparisonCount": 90,
+  "comparisonCount": 141,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -493,12 +493,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "modern-x-men-fast-track",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "monsters-unleashed",
       "sharedCount": 0,
       "sharedIds": [],
@@ -771,6 +765,18 @@
       "relationship": "partial"
     },
     {
+      "orderId": "thanos-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-night-gwen-stacy-died",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "thor-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -964,5 +970,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "7c0b544f13e82fa97187b22cb9491743b57192d02e08cc475582b06e8ee5c3bf"
+  "reportDigest": "dbd21c1b4a4bbcd1fafc53beeebd889a86af8d4c05342ca04c22b5630ac73715"
 }

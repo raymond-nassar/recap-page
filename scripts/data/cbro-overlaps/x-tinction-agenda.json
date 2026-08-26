@@ -2,14 +2,14 @@
   "candidateId": "x-tinction-agenda",
   "packetDigest": "1db83fdff9270b97a8a6edf8fa389551c842a9f39ef5499322684030bd794aab",
   "mappingDigest": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4",
-  "libraryDigest": "c2efd5e0cee96cea7104cfa9d7f495bbc131700a96bf75def7a1fb9307ff1aa2",
+  "libraryDigest": "66fedc5eaa7b8e088590a0a712c9110af74d8390957ff11422ab4af965b783e5",
   "peerDigests": {
     "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
     "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
     "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e"
   },
   "candidateCount": 9,
-  "comparisonCount": 125,
+  "comparisonCount": 134,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -816,5 +816,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "e42bd7eb666fa5ce1cdb025548089fca7accea7a1b1ed5ad575f36df3eed9ba7"
+  "reportDigest": "3bcfc9f65e7ec38ea0068bbdccba416da1a01196c65f388a39afa3e4aa3134e8"
 }

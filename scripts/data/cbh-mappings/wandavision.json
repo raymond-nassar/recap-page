@@ -2297,16 +2297,16 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "Every current-library and selected-peer relationship was reviewed after exact WandaVision mapping. Four partial overlaps are approved because they preserve the source sequence for a distinct MCU Prep screen companion; all other comparisons share no issue.",
     "reviewedAt": "2026-08-26",
-    "reportDigest": "79ab035330b01d7b534a46f177579a9d1a6b641082f23d7ebe91095e2d227ee2",
+    "reportDigest": "4f0e4dd25798a502e6e80685dca2cd8634ee949207a01e88a8781c838775353a",
     "packetDigest": "92a277665fd261b3dfc0a58619d940dfa81b483df24dda196dcc638d31e8523c",
     "mappingDigest": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
-    "libraryDigest": "c6034d00e708308892a15b7162975b3356b028d5c058cb82d5772d1c84d94e76",
+    "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-      "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
       "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05"
+      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
+      "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4"
     },
     "dispositions": [
       {
@@ -2703,15 +2703,6 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26"
-      },
-      {
-        "orderId": "hickman-x-men",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The reviewed reading purpose is distinct from hickman-x-men.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-004 coordinator",
         "reviewedAt": "2026-08-26"
       },
       {
@@ -3327,15 +3318,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
@@ -3507,15 +3489,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -3561,6 +3534,6 @@
         "reviewedAt": "2026-08-26"
       }
     ],
-    "approvalDigest": "44a9e63bf8db4c8622390b07b1c4ca0a41c42583db5e41dd1a08057b7329309b"
+    "approvalDigest": "e82b565b1ef45186377b5c1e39c0be60476dd0599f9cb2e4a172ffb6bcfc7ab9"
   }
 }

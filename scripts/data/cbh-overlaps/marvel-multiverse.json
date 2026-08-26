@@ -2,7 +2,7 @@
   "candidateId": "marvel-multiverse",
   "packetDigest": "f947dd5ea7b49a428fd01b02cc828f69ad84482636976c182e002b88d9a024b1",
   "mappingDigest": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
-  "libraryDigest": "c6034d00e708308892a15b7162975b3356b028d5c058cb82d5772d1c84d94e76",
+  "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
   "peerDigests": {
     "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
     "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
@@ -11,7 +11,7 @@
     "wandavision": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3"
   },
   "candidateCount": 2,
-  "comparisonCount": 139,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -275,12 +275,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -688,12 +682,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -814,12 +802,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -856,5 +838,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "fe65532347cf340f3804c8e5d3f798cb674f51ba499dc5da21fc924132b90e43"
+  "reportDigest": "f8990912302d5d6f5311419fd759b2801349f44a2a3ff5a78d5a1970ff1748b2"
 }

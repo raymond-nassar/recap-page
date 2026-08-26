@@ -751,16 +751,16 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "The current library and the four other shipped MCU companion peers were reviewed; prior central approvals were preserved and the new Far From Home peer adds no shared issue.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "ebfdc16348b383c8e66bde693b985ae03ccc3e25bc509cc7429862aef9622c9c",
+    "reportDigest": "afe504c92ede8a0f4349fe4cbb0299781ba5e5cf528164ba2ad7bd4e47d175f6",
     "packetDigest": "a52ebb52a6d4910ba996ea7e50b089b43dc63554be7b49bcf92879db9c070ed8",
     "mappingDigest": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
-    "libraryDigest": "c6034d00e708308892a15b7162975b3356b028d5c058cb82d5772d1c84d94e76",
+    "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
       "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-      "wandavision": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3",
-      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05"
+      "spider-man-far-from-home": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
+      "wandavision": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3"
     },
     "dispositions": [
       {
@@ -1152,15 +1152,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26T05:09:20Z"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "decision": "approved",
         "rationale": "The current report contains no shared issue for this order.",
@@ -1772,15 +1763,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26T05:09:20Z"
-      },
-      {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
@@ -1961,15 +1943,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-004 none-overlap policy",
-        "reviewedAt": "2026-08-26T05:09:20Z"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -2015,6 +1988,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "23e17022d522c03a9c01afdf0c615aa41efef9fb0cdb83788490a47bea8ca5ad"
+    "approvalDigest": "49fcd124171996a56c0e4faa042bf481c909a315a034d21aeba62d5faedb91fc"
   }
 }
