@@ -13456,8 +13456,8 @@ relationships per guide and 400 overall. Central review approves two Doctor Stra
 two Marvel Multiverse candidate-subsets of the shipped Claremont paths. The other 396 relationships
 are none, and no exact duplicate has an approval path.
 
-The maintained fourteen-title inventory leaves four ranked mapping follow-ups and six source or
-metadata-blocked guides visible rather than silently dropping them. The catalog adds four reading lists after
+The maintained fourteen-title inventory leaves six ranked mapping follow-ups and four source-blocked
+guides visible rather than silently dropping them. The catalog adds four reading lists after
 Star-Lord, for 101 total, while Character Spotlights remain at fourteen readings across thirteen
 stories. Home and Browse gain one MCU Prep category in user order, with its own category
 subpage as the existing gateway contract requires. Every card also remains reachable through the
