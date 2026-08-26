@@ -3430,4 +3430,3 @@ test('current-library and selected-peer duplicate guards reject exact duplicates
   assert.equal(await readFile(second, 'utf8'), 'second-changed');
   await assert.rejects(() => access(journal), /ENOENT/);
 });
-

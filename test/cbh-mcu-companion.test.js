@@ -386,4 +386,3 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
     'Character Spotlight count differs from the reconciled Agatha baseline',
   );
 });
-
