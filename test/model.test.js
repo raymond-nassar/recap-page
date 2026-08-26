@@ -1004,8 +1004,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Read on 2026-08-15 across the fourteen bundled orders, then re-derived on 2026-08-26 after
   // WandaVision, Spider-Man: Far From Home, and the Modern X-Men Fast Track order merged in
   // from main, and again the same day after the Amazing Spider-Man complete guide added 106
-  // placeholders of its own. Written down as observations rather than floors: they move
-  // whenever an order is added or re-vendored, and moving one should mean editing this line
+  // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
+  // the live metadata index does not list. Written down as observations rather than floors: they
+  // move whenever an order is added or re-vendored, and moving one should mean editing this line
   // deliberately rather than watching a range quietly widen.
   //
   // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
@@ -1013,8 +1014,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // or carried no field at all, so it could not have caught a payload disagreeing with its items.
   assert.equal(claimed, 112, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 112, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 72);
-  assert.equal(affected, 3);
+  assert.equal(empty, 79);
+  assert.equal(affected, 4);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1199,6 +1200,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // adds 106 checklist lines with no Marvel link, each hashed to its own placeholder id by title
   // and order, so all 106 are distinct new refusals with nothing else in the catalog to collide
   // with.
-  assert.equal(refused.length, 155);
+  //
+  // Deliberately edited again the same day, from 155 to 162. The Iron Man guide added seven
+  // owner-confirmed issue ids that the live metadata index does not list, and none repeat an id
+  // already present in the bundled catalog.
+  assert.equal(refused.length, 162);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

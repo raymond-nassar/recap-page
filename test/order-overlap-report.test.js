@@ -9,6 +9,7 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -130,8 +131,8 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, manifest.lists.length - 6);
-  assert.equal(new Set(comparedIds).size, manifest.lists.length - 6);
+  assert.equal(report.comparisonCount, manifest.lists.length - CBH_LATER_ORDER_IDS.length);
+  assert.equal(new Set(comparedIds).size, manifest.lists.length - CBH_LATER_ORDER_IDS.length);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
 });

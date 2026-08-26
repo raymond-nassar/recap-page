@@ -81,6 +81,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'x-men-messiah-to-avx',
   'agents-of-atlas-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
+  'iron-man-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
