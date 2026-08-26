@@ -19,7 +19,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress',
+  'home', 'read', 'issue', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -51,13 +51,33 @@ const SPOTLIGHT_POPULARITY_SORT = 'popularity';
 // intact, assignment fires one hashchange carrying it, no request is made for it, and Back over a
 // filter change returns the previous one.
 const FILTER_KEY = 'filter';
+const ISSUE_CONTEXT_KEYS = new Set(['list', 'order']);
+
+function issueId(value) {
+  const raw = typeof value === 'number' ? String(value) : String(value ?? '');
+  if (!/^-?[1-9]\d*$/.test(raw)) return null;
+  const id = Number(raw);
+  return Number.isSafeInteger(id) && id !== 0 && String(id) === raw ? id : null;
+}
 
 // Like the active list, the filter rides along on every view rather than on the reading view alone.
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
-export function formatRoute({ view, listId, filter, sort } = {}) {
+export function formatRoute({
+  view, listId, filter, sort, issueId: rawIssueId, context,
+} = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
+  if (canonical === 'issue') {
+    const id = issueId(rawIssueId);
+    if (id == null) return '';
+    const query = new URLSearchParams();
+    if (context && ISSUE_CONTEXT_KEYS.has(context.kind) && typeof context.id === 'string' && context.id) {
+      query.set(context.kind, context.id);
+    }
+    const search = query.toString();
+    return `${PREFIX}issue/${id}${search ? `?${search}` : ''}`;
+  }
   const tail = listId ? `/${encodeURIComponent(listId)}` : '';
   const query = new URLSearchParams();
   // An unknown filter is dropped rather than written through, so a value that could not have come
@@ -101,6 +121,19 @@ export function parseRoute(hash) {
 
   view = canonicalView(view);
   if (!VIEWS.includes(view)) return null;
+
+  if (view === 'issue') {
+    if (parts.length !== 2) return null;
+    const id = issueId(listId);
+    if (id == null) return null;
+    const entries = [...new URLSearchParams(search).entries()];
+    const context = entries.length === 1
+      && ISSUE_CONTEXT_KEYS.has(entries[0][0])
+      && entries[0][1]
+      ? { kind: entries[0][0], id: entries[0][1] }
+      : null;
+    return { view, issueId: id, context };
+  }
 
   // Null means the address says nothing about the filter, which is what absent, unknown and the
   // default all amount to. An unknown value refuses the filter rather than the whole route: a stale

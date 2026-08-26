@@ -182,9 +182,12 @@ test('nothing paints a cover except from a vetted builder', () => {
 
   const assignments = [...main.matchAll(/\b\w+\.(?:src|backgroundImage)\s*=\s*([^;\n]+)/g)].map((m) => m[1].trim());
   assert.deepEqual(assignments.sort(), [
-    'bgUrl ? `url("${bgUrl}")` : \'none\'',
     'url',
+    'url ? `url("${url}")` : \'none\'',
   ], 'an image source is assigned somewhere new; it must come from coverUrl or catalogCoverUrl');
+  assert.match(main,
+    /function paintHeroBackground\(target, issue\) \{\s+const url = settings\.covers \? coverUrl\(issue, 'detail'\) : null;/,
+    'the shared hero background must receive its URL from the vetted issue-cover builder');
 
   // The same assignment reached through the DOM API rather than the property.
   assert.ok(!/setAttribute\(\s*['"`]src['"`]/.test(main), 'a src set through setAttribute would bypass the assignment check above');

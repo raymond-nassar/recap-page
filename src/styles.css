@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:767-768`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:772-773`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -571,6 +571,14 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 
 .eyebrow { font-size: var(--t-caption); letter-spacing: .16em; text-transform: uppercase; color: var(--accent-text); font-weight: 800; margin: 0; }
 .hero h2 { font-size: var(--t-title-lg); line-height: 1.1; margin: .45rem 0 .35rem; letter-spacing: -.028em; font-weight: 700; text-wrap: balance; }
+.issue-focus { margin-top: 1rem; }
+.issue-focus-note {
+  max-width: 58ch; margin: 0 0 1.1rem; padding: .7rem .8rem;
+  border: 1px solid var(--line-2); border-radius: 8px; background: rgb(var(--tint-base) / 4.706%);
+  color: var(--dim); font-size: var(--t-body);
+}
+.issue-focus .hero-body { align-self: center; }
+.issue-focus .hero-body > .byline:first-child { margin-top: .2rem; }
 .byline { color: var(--dim); margin: 0 0 .9rem; font-size: var(--t-body); }
 .desc { color: var(--dim); font-size: var(--t-body); margin: 0 0 1.1rem; max-width: 58ch; }
 
@@ -626,7 +634,12 @@ kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--ti
    screen. */
 .shelf { display: flex; flex-wrap: wrap; gap: 1.15rem .9rem; padding: 0; margin: 0; list-style: none; }
 .tile { flex: 1 1 112px; min-width: 0; max-width: 168px; }
-.tile button { display: block; width: 100%; background: none; border: 0; padding: 0; text-align: left; color: inherit; border-radius: 8px; }
+.tile-focus { display: block; color: inherit; text-decoration: none; border-radius: 8px; }
+.tile-read {
+  width: 100%; margin-top: .4rem; padding: .38rem .5rem; border: 1px solid var(--line-2);
+  border-radius: 8px; background: rgb(var(--tint-base) / 5.882%); color: var(--text);
+  font: inherit; font-size: var(--t-caption); font-weight: 600;
+}
 .tile img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); display: block; }
 body.nocovers .tile img, .tile img[hidden] { display: none; }
 .tile .tf {
@@ -639,7 +652,9 @@ body.nocovers .tile .tf, .tile .tf.show { display: flex; }
 .tile .tf .n { font-size: var(--art-n-md); font-weight: 800; letter-spacing: -.03em; }
 .tile .lab { font-size: var(--t-caption); margin-top: .4rem; color: var(--muted); line-height: 1.35; }
 .tile .lab b { color: var(--text); font-weight: 600; display: block; }
-.tile button:hover .lab b { color: var(--accent-text); }
+.tile-focus:hover .lab b { color: var(--accent-text); }
+.preview-issue-link, .row-focus-title, .result-title-link { color: inherit; text-underline-offset: 3px; }
+.preview-issue-link:hover, .row-focus-title:hover, .result-title-link:hover { color: var(--accent-text); }
 
 /* ============================================================ full order */
 
@@ -732,6 +747,8 @@ details.full[open] > summary .chev { transform: rotate(90deg); }
 .row.is-read img { opacity: .5; }
 
 .row .thumb { position: relative; }
+.row-focus-cover { display: block; border-radius: 6px; }
+.row-focus-title { display: inline-block; }
 .row img { width: 44px; aspect-ratio: 2/3; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); display: block; }
 body.nocovers .row img, .row img[hidden] { display: none; }
 .row .rf {
@@ -1616,6 +1633,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    leads the existing main column. The cover is the size and shape the reading rows already use, and
    its fallback follows the reading row's bordered tile, not the larger gradient ones. */
 .result-cov { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: .8rem; align-items: center; }
+.result-focus { color: inherit; text-decoration: none; }
+.result-focus:hover .result-title { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
 .rcov { position: relative; width: 44px; }
 .rcov-i { width: 44px; aspect-ratio: 2/3; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); display: block; }
 body.nocovers .rcov-i, .rcov-i[hidden] { display: none; }

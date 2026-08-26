@@ -102,6 +102,32 @@ const notFound = () => {
   throw err;
 };
 
+test('a focused issue run requests only that positive issue and writes nowhere', async () => {
+  const { state } = stateWith([7, 8]);
+  const store = fakeStore(state);
+  const session = new SessionSynopsis();
+  const api = instantApi(withProse);
+  const runner = new SynopsisRunner({ api, store, session });
+  await within(runner.startIssue(8), 'the focused synopsis');
+  assert.deepEqual(api.asked, [8]);
+  assert.equal(api.opts[0].cache, false);
+  assert.equal(session.text(8), 'Synopsis for 8.');
+  assert.equal(store.writes, 0);
+});
+
+test('a focused issue run refuses local ids and already-known session answers', async () => {
+  const { state } = stateWith([7]);
+  const store = fakeStore(state);
+  const session = new SessionSynopsis();
+  session.record(7, 'Already held.');
+  const api = instantApi(withProse);
+  const runner = new SynopsisRunner({ api, store, session });
+  await runner.startIssue(-7);
+  await runner.startIssue(7);
+  assert.deepEqual(api.asked, []);
+  assert.equal(store.writes, 0);
+});
+
 // ---------------------------------------------------------------- the session store
 
 test('a fetched synopsis is held only in the session store, which starts empty', () => {

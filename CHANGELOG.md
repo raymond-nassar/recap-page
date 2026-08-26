@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added in-app issue details
+
+In plain English: Comic titles and covers can now open a dedicated details page inside the app.
+Reading remains a separate action, and returning with Back restores the place you came from. The
+details page does not change your selected Reading List, progress, or saved data, and any synopsis
+you request still lasts only for the current tab.
+
+For maintainers: issue details have a signed issue address with optional validated saved-list or
+bundled-order context. Saved metadata wins, unsaved Preview items resolve through their declared
+catalog file, and only an unresolved positive issue may make one detail request. Coming up,
+Everything read, Preview, full-order rows, the reading hero, and Search/Add results share the
+destination while retaining their existing Read, Done, Info, and Add contracts.
+
 ### Explained where reading progress is saved
 
 In plain English: After your first Reading List is saved, the reading screen now explains that

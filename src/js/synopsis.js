@@ -122,6 +122,18 @@ export class SynopsisRunner {
   async start(listId, { lookahead = 8 } = {}) {
     if (this.running) return;
     const queue = this.queueFor(listId, lookahead);
+    return this.run(queue);
+  }
+
+  async startIssue(issueId) {
+    if (this.running) return;
+    this.session.seedFrom(this.store.state);
+    const id = Number(issueId);
+    const queue = Number.isInteger(id) && id > 0 && !this.session.known(id) ? [id] : [];
+    return this.run(queue);
+  }
+
+  async run(queue) {
     if (!queue.length) {
       this.onProgress(this.status('idle'));
       return;

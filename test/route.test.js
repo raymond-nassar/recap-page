@@ -18,10 +18,64 @@ const has = (text, re, what) => assert.ok(re.test(text), `expected to find ${wha
 const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to find ${what}`);
 
 test('every view the rail can reach survives a round trip', () => {
-  for (const view of VIEWS) {
+  for (const view of VIEWS.filter((name) => name !== 'issue')) {
     const parsed = parseRoute(formatRoute({ view }));
     assert.deepEqual(parsed, { view, listId: null, filter: null }, `round trip failed for ${view}`);
   }
+});
+
+test('signed issue ids and one optional context survive a canonical round trip', () => {
+  for (const issueId of [1, -1, -1722450000000, Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER]) {
+    assert.deepEqual(parseRoute(formatRoute({ view: 'issue', issueId })), {
+      view: 'issue',
+      issueId,
+      context: null,
+    });
+  }
+  assert.equal(
+    formatRoute({ view: 'issue', issueId: 123, context: { kind: 'list', id: 'list/a b' } }),
+    '#/issue/123?list=list%2Fa+b',
+  );
+  assert.deepEqual(parseRoute('#/issue/123?list=list%2Fa+b'), {
+    view: 'issue',
+    issueId: 123,
+    context: { kind: 'list', id: 'list/a b' },
+  });
+  assert.deepEqual(parseRoute('#/issue/-42?order=house-of-m'), {
+    view: 'issue',
+    issueId: -42,
+    context: { kind: 'order', id: 'house-of-m' },
+  });
+});
+
+test('invalid issue ids are not routes and are never formatted', () => {
+  for (const hash of [
+    '#/issue', '#/issue/', '#/issue/abc', '#/issue/0', '#/issue/-0', '#/issue/+1',
+    '#/issue/01', '#/issue/-01', '#/issue/1.5', '#/issue/1e3',
+    `#/issue/${Number.MAX_SAFE_INTEGER + 1}`, '#/issue/1/extra',
+  ]) {
+    assert.equal(parseRoute(hash), null, `expected null for ${hash}`);
+  }
+  for (const id of [null, undefined, 0, -0, 1.5, Number.MAX_SAFE_INTEGER + 1, '01', '+1', '1e3']) {
+    assert.equal(formatRoute({ view: 'issue', issueId: id }), '', `expected no route for ${id}`);
+  }
+});
+
+test('an invalid issue context is dropped without refusing the issue', () => {
+  for (const hash of [
+    '#/issue/123?list=',
+    '#/issue/123?order=',
+    '#/issue/123?list=a&order=b',
+    '#/issue/123?list=a&list=b',
+    '#/issue/123?other=a',
+    '#/issue/123?list=a&other=b',
+  ]) {
+    assert.deepEqual(parseRoute(hash), { view: 'issue', issueId: 123, context: null });
+  }
+  assert.equal(
+    formatRoute({ view: 'issue', issueId: 123, context: { kind: 'other', id: 'a' } }),
+    '#/issue/123',
+  );
 });
 
 test('every publishing category has a direct route and generated panel contract', () => {

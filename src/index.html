@@ -293,6 +293,9 @@
                       <button type="button" class="btn btn-lg" id="btn-hero-read">
                         Open in Marvel Unlimited <kbd>↵</kbd>
                       </button>
+                      <button type="button" class="btn btn-g" id="btn-hero-inspect">
+                        Inspect issue
+                      </button>
                       <button type="button" class="btn btn-g" id="btn-hero-done">
                         Done, next <kbd>D</kbd>
                       </button>
@@ -337,6 +340,52 @@
                 <ol class="rows" id="rows"></ol>
               </details>
             </div>
+          </section>
+
+          <!-- ---------------------------------------- issue focus view -->
+          <section id="view-issue" class="view view-wide" hidden aria-labelledby="issue-focus-h">
+            <div class="head">
+              <div class="head-left">
+                <p class="eyebrow">Issue details</p>
+                <h1 id="issue-focus-h">Issue details</h1>
+                <p class="sub" id="issue-focus-context"></p>
+              </div>
+            </div>
+            <div id="issue-focus-status" class="report" role="status" aria-live="polite"></div>
+            <section class="hero issue-focus" id="issue-focus-card" hidden aria-labelledby="issue-focus-h">
+              <div class="hero-bg" id="issue-focus-bg" aria-hidden="true"></div>
+              <div class="hero-fade" aria-hidden="true"></div>
+              <div class="hero-in">
+                <div class="art">
+                  <img id="issue-focus-img" alt="" />
+                  <div class="fallback" id="issue-focus-fb" aria-hidden="true">
+                    <span class="fs" id="issue-focus-fs"></span>
+                    <span class="fn" id="issue-focus-fn"></span>
+                  </div>
+                </div>
+                <div class="hero-body">
+                  <p class="byline" id="issue-focus-by"></p>
+                  <p class="desc" id="issue-focus-desc"></p>
+                  <dl class="facts" id="issue-focus-facts"></dl>
+                  <p class="issue-focus-note" id="issue-focus-note" hidden></p>
+                  <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
+                  <div class="cta">
+                    <button type="button" class="btn btn-lg" id="btn-issue-read">
+                      Open in Marvel Unlimited
+                    </button>
+                    <button type="button" class="btn btn-g" id="btn-issue-synopsis">
+                      Fetch synopsis
+                    </button>
+                    <button type="button" class="btn btn-g" id="btn-cancel-issue-synopsis" hidden>
+                      Stop synopsis
+                    </button>
+                    <a class="btn btn-link" id="btn-issue-info" target="_blank" rel="noopener noreferrer">
+                      Issue page ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
           </section>
 
           <!-- ---------------------------------------- library hub -->
