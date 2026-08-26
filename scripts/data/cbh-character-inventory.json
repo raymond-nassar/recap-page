@@ -132,7 +132,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "reason": "The owner's clarification resolves the three previously blocking rows: Ant-Man & The Wasp: Living Legends #1 (one-shot), the War of the Realms: War Scrolls #1 to #3 B and C backup features (later collected in War of the Realms: Giant-Man), and Tales to Astonish #37 and #43 (already inside the #35 to #69 span read in section I). Resolving the remaining rows then surfaces a new gap: section IV's Ant-Man Vol 1, Issues: Ant-Man #1 to #4, a 2003 to 2004 solo series identified as Ant-Man (MAX) Vol. 1 by Daniel Way, has no record in the vendored series index of 6,990 entries, no match across a live series listing pass, and no hit in a live full text issue search for Ant-Man or Ant-Man MAX. Publication remains blocked because the configured metadata contract cannot resolve that source-required run.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
     "catalogIds": [],
