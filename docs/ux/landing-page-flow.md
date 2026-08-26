@@ -4,17 +4,22 @@
 App launch, or selecting the brand lockup in the sidebar.
 
 ## State A: Empty Library
-1. The page asks **"How do you want to read?"**
-2. Three large path tiles appear when their shelves contain published Reading Lists:
+1. The page asks **"Where do you want to start?"**
+2. One line distinguishes **Browse curated Reading Lists** from **Add individual issues or your own
+   list**.
+3. When its bundled Reading List resolves, a compact callout offers **Avengers Disassembled (2004)**
+   as this app's short recommended modern event path. Its action opens Preview without adding or
+   changing progress.
+4. Three large path tiles appear when their shelves contain published Reading Lists:
    - **Modern Timeline** with the compact label **Browse by year**
    - **Storylines** with the compact label **Browse complete arcs**
    - **Character spotlights** with the compact label **Browse heroes and teams**
-3. Each tile shows its Reading List count and opens the matching browse screen.
-4. Additional populated categories appear under **Discover More**. The whole group remains
+5. Each tile shows its Reading List count and opens the matching browse screen.
+6. Additional populated categories appear under **Discover More**. The whole group remains
    hidden while no additional category has content:
    - **MCU Prep** opens preparation lists for Marvel Cinematic Universe titles.
    - **Marvel Ages** opens one chronological gateway for populated publishing periods.
-5. Marvel attribution remains at the end of the surface.
+7. Marvel attribution remains at the end of the surface.
 
 ## State B: Library Has Lists
 1. **Continue reading** names the active Reading List, progress, next issue and direct actions.
@@ -30,7 +35,10 @@ App launch, or selecting the brand lockup in the sidebar.
   Marvel Ages gateway when the reader entered through it.
 - A category with no matching published content is not rendered.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
-- Adding a Reading List happens on its browse screen or in its preview dialog, not on Home.
+- The recommended-start action opens Preview from Home without changing the URL or local state.
+- Preview's existing Add control can complete the first add from Home. Failures target the Home
+  gateway, while the existing success announcement remains unchanged. A separate follow-on owns
+  any expanded first-save explanation.
 - Returning with Back restores Home rather than creating a second navigation model.
 
 ## Design Principles
@@ -42,6 +50,8 @@ App launch, or selecting the brand lockup in the sidebar.
    across those shelves without changing where a story is filed.
 5. **State-aware.** Returning readers keep continuation and saved progress ahead of discovery.
 6. **Offline-first.** Availability is derived from the bundled catalogue.
+7. **A recommendation is optional.** Avengers Disassembled is this app's short modern event path,
+   not the only valid beginner start.
 
 ## Accessibility Requirements
 - [ ] Each category group is a list and each tile is one native button
@@ -49,6 +59,8 @@ App launch, or selecting the brand lockup in the sidebar.
 - [ ] Every tile is at least 44px high and has a visible keyboard focus indicator
 - [ ] Category meaning does not depend on colour or icon alone
 - [ ] Empty and load-failure states remain named in text
+- [ ] The first-run question and recommendation use ordered `h2` and `h3` headings
+- [ ] Closing recommended Preview returns focus to its Home button
 - [ ] The primary grid becomes one column at narrow widths without horizontal clipping
 - [ ] The layout survives 200% text zoom without clipping
 - [ ] Forced colours preserve tile boundaries and focus
