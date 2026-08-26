@@ -120,6 +120,7 @@ const laterCbhOrderIds = Object.freeze([
 ]);
 const postCbroChronologyIds = Object.freeze(['ultimate-marvel-intro']);
 const laterMcuCompanionIds = [
+  'wandavision',
   'spider-man-far-from-home',
 ];
 

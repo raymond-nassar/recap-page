@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "taskId": "MRT-004",
-  "inventoryIdentitySha256": "7c73b0f194c27b663e36ed1bc72dd1112dcc32fdafcfdf62601e01e54bdcf2f1",
+  "inventoryIdentitySha256": "3f1385d457081d0ccaa7513ae161c42895d3ce2dd05ced0d06d5bf25d47bda11",
   "records": [
     {
       "position": 1,
@@ -114,13 +114,20 @@
       "sourceIssueBearingBlocksSha256": "204e570b4afc7f218fb4b3e9549076eb3298c2f43ba8070584624ad547f8f690",
       "sourceIssueBearingBlockCount": 12,
       "sourceBoundaryStatus": "exact-reviewed-boundary",
-      "centralDisposition": "blocked",
-      "relationshipStatus": "not-applicable",
-      "deliveryStatus": "blocked",
+      "centralDisposition": "selected",
+      "relationshipStatus": "reviewed",
+      "deliveryStatus": "shipped",
       "followUpRank": null,
-      "reason": "Blocked: West Coast Avengers #42-45 and #47 are exact source rows missing from the maintained Marvel metadata API; the guide cannot be shortened or filled with inferred substitutions.",
-      "overlapIds": [],
-      "catalogIds": []
+      "reason": "First release: 56 exact issue rows, nine reviewed official Marvel issue pages outside the maintained metadata API, and four centrally approved partial relationships.",
+      "overlapIds": [
+        "essential-avengers",
+        "marvel-fresh-start-avengers",
+        "rocket-raccoon-reading-order",
+        "scarlet-witch-best-of"
+      ],
+      "catalogIds": [
+        "wandavision"
+      ]
     },
     {
       "position": 6,
@@ -160,11 +167,11 @@
       "sourceIssueBearingBlocksSha256": "187c74c64ee4da1ed4fa74a717287114c7765d72297f099ed0b7468f0e98e2c7",
       "sourceIssueBearingBlockCount": 11,
       "sourceBoundaryStatus": "exact-reviewed-boundary",
-      "centralDisposition": "blocked",
-      "relationshipStatus": "not-applicable",
-      "deliveryStatus": "blocked",
-      "followUpRank": null,
-      "reason": "Blocked: Hawkeye (2012) #23 is an exact source row, but Marvel series 16309 currently ends at #22; the candidate cannot be shortened or filled with an inferred Annual substitution.",
+      "centralDisposition": "follow-up",
+      "relationshipStatus": "pending",
+      "deliveryStatus": "deferred",
+      "followUpRank": 3,
+      "reason": "Map in a later release with Hawkeye (2012) #23 recorded as a source-list error to omit, not as a blocker or inferred Annual substitution.",
       "overlapIds": [],
       "catalogIds": []
     },
