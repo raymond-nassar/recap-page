@@ -1178,7 +1178,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 137);
+  assert.equal(catalog.lists.length, 139);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 14);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 13);
