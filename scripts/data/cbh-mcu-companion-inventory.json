@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "taskId": "MRT-004",
-  "inventoryIdentitySha256": "3f1385d457081d0ccaa7513ae161c42895d3ce2dd05ced0d06d5bf25d47bda11",
+  "inventoryIdentitySha256": "ab55d255ed193da20dcf98da1508fe7f03178451d660c4026626be01022eb193",
   "records": [
     {
       "position": 1,
@@ -114,20 +114,13 @@
       "sourceIssueBearingBlocksSha256": "204e570b4afc7f218fb4b3e9549076eb3298c2f43ba8070584624ad547f8f690",
       "sourceIssueBearingBlockCount": 12,
       "sourceBoundaryStatus": "exact-reviewed-boundary",
-      "centralDisposition": "selected",
-      "relationshipStatus": "reviewed",
-      "deliveryStatus": "shipped",
+      "centralDisposition": "blocked",
+      "relationshipStatus": "not-applicable",
+      "deliveryStatus": "blocked",
       "followUpRank": null,
-      "reason": "First release: 56 exact issue rows, nine reviewed official Marvel issue pages outside the maintained metadata API, and four centrally approved partial relationships.",
-      "overlapIds": [
-        "essential-avengers",
-        "marvel-fresh-start-avengers",
-        "rocket-raccoon-reading-order",
-        "scarlet-witch-best-of"
-      ],
-      "catalogIds": [
-        "wandavision"
-      ]
+      "reason": "Blocked: West Coast Avengers #42-45 and #47 are exact source rows missing from the maintained Marvel metadata API; the guide cannot be shortened or filled with inferred substitutions.",
+      "overlapIds": [],
+      "catalogIds": []
     },
     {
       "position": 6,
@@ -137,22 +130,20 @@
       "wordpressType": "post",
       "wordpressId": 40184,
       "wordpressSlug": "the-best-comics-to-read-before-spider-man-far-from-home",
-      "sourceRetrievedAt": "2026-08-26T05:09:20.000Z",
-      "sourceContentSha256": "eb12094ab82fa0605bd35397b14e7148e7306f3036823394d52360a46c409301",
-      "sourceIssueBearingBlocksSha256": "c66912e71522b6aab65a91b57ccd39e8bb60af515b8b4d9f3cc541d25f7cb566",
-      "sourceIssueBearingBlockCount": 8,
+      "sourceRetrievedAt": "2026-08-24T00:22:46.233Z",
+      "sourceContentSha256": "3a31bcf67398d6597f96c12da18c4a311d4a966c576d72b377566b6a5e75fe7f",
+      "sourceIssueBearingBlocksSha256": "b44317c67fc4fc328d83cbb51fa6e6fe88c41219695309cb9b52bd1e485a5992",
+      "sourceIssueBearingBlockCount": 6,
       "sourceBoundaryStatus": "exact-reviewed-boundary",
-      "centralDisposition": "selected",
-      "relationshipStatus": "reviewed",
-      "deliveryStatus": "shipped",
-      "followUpRank": null,
-      "reason": "Second release: eight exact issue rows with one centrally approved partial overlap. Podcast post 40334 and unnumbered source mentions stay excluded.",
+      "centralDisposition": "follow-up",
+      "relationshipStatus": "reviewed-feasibility",
+      "deliveryStatus": "deferred",
+      "followUpRank": 2,
+      "reason": "Eight exact feasibility rows; bind indexed post 40184 and reject podcast post 40334 in a later release.",
       "overlapIds": [
         "spider-man-best-of"
       ],
-      "catalogIds": [
-        "spider-man-far-from-home"
-      ]
+      "catalogIds": []
     },
     {
       "position": 7,
@@ -167,11 +158,11 @@
       "sourceIssueBearingBlocksSha256": "187c74c64ee4da1ed4fa74a717287114c7765d72297f099ed0b7468f0e98e2c7",
       "sourceIssueBearingBlockCount": 11,
       "sourceBoundaryStatus": "exact-reviewed-boundary",
-      "centralDisposition": "follow-up",
-      "relationshipStatus": "pending",
-      "deliveryStatus": "deferred",
-      "followUpRank": 3,
-      "reason": "Map in a later release with Hawkeye (2012) #23 recorded as a source-list error to omit, not as a blocker or inferred Annual substitution.",
+      "centralDisposition": "blocked",
+      "relationshipStatus": "not-applicable",
+      "deliveryStatus": "blocked",
+      "followUpRank": null,
+      "reason": "Blocked: Hawkeye (2012) #23 is an exact source row, but Marvel series 16309 currently ends at #22; the candidate cannot be shortened or filled with an inferred Annual substitution.",
       "overlapIds": [],
       "catalogIds": []
     },

@@ -1789,13 +1789,23 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2905-2916|0": {
-    "anchor": "CHANGELOG.md:2905-2916",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2910-2921|0": {
+    "anchor": "CHANGELOG.md:2910-2921",
+    "fp": "c7953937fe6a4f18",
+    "head": "out, skips one known example at a time rather than a whole file, reads the text format this"
+  },
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2916-2927|0": {
+    "anchor": "CHANGELOG.md:2916-2927",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2918-2928|0": {
-    "anchor": "CHANGELOG.md:2918-2928",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2923-2933|0": {
+    "anchor": "CHANGELOG.md:2923-2933",
+    "fp": "b55af72534bb13f1",
+    "head": "review. The rule for how urgently to act is now written down beside the settings that act on it,"
+  },
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:2929-2939|0": {
+    "anchor": "CHANGELOG.md:2929-2939",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
