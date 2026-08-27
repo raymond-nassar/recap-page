@@ -77,6 +77,7 @@ export const CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256 =
 export const CBH_LATER_ORDER_IDS = Object.freeze([
   'black-panther-reading-order',
   'doctor-strange-reading-order',
+  'daredevil-reading-order',
   'wolverine-reading-order',
   'hickman-x-men',
   'ultimate-marvel-intro',

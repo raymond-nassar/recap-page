@@ -24,6 +24,7 @@ const originalApprovedOverlaps = [
 ];
 const currentOverlaps = [
   ...originalApprovedOverlaps,
+  ['daredevil-reading-order', 73],
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
 ].sort(([left], [right]) => left.localeCompare(right));
 

@@ -14,6 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the complete Daredevil reading guide
+
+In plain English: A complete Daredevil reading guide is now available, from his earliest stories
+through the Team-Ups and Guest Spots section. Eight source comics that the metadata provider cannot
+identify stay visible as honest placeholders, so the reading order keeps its place without guessing
+at a comic. Nothing you have saved is changed.
+
+For maintainers: the frozen source has 909 occurrences: 868 exact published identities, 33
+intentional repeated references, and 8 explicit metadata gaps. The complete-library review has 153
+dispositions: 19 partial relationships, 1 existing-subset relationship, and 133 with no shared
+issues.
+
 ### Made page location and adding comics clearer
 
 In plain English: The sidebar and its destination now say Add comics, making it clear that this is
