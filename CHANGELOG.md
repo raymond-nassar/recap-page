@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Captain Marvel reading guide
+
+In plain English: A new Captain Marvel and Ms. Marvel guide follows the source page from the
+earliest stories through newer additions. It includes 527 comics with exact Marvel links and leaves
+out one source reference that its owner confirmed does not name a real comic. Nothing you have saved
+is changed.
+
 ### Added a complete Venom reading guide
 
 In plain English: You can now follow Venom stories from the symbiote's first appearance through
