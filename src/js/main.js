@@ -1216,6 +1216,8 @@ async function newEmptyList() {
 // once before the route is restored, and an ungated sync there would overwrite the very address the
 // reader arrived on.
 let routeReady = false;
+let applyingRoute = false;
+let applyingRouteToDisclosure = false;
 
 // `push` separates a deliberate navigation from a passive correction, and the distinction is what
 // keeps Back usable. A reader who marks twenty issues read must not have to press Back twenty times
@@ -1248,20 +1250,31 @@ let filterRunOpen = false;
 // What the address claims while a traversal is open, which is the filter in force when it began.
 // Not the same as `filter`, which follows the rows immediately.
 let filterRunBase = null;
+let filterRunAddressed = false;
+// A restored setting can filter closed rows without turning a plain address into opening intent.
+// Only a route token or a filter choice makes the current filter part of the address.
+let filterAddressed = false;
 
 function syncHash({ push = false } = {}) {
-  if (!routeReady) return;
+  if (!routeReady || applyingRoute) return;
   // While a traversal is open the address lags the rows on purpose: the entry on top is the one the
   // reader arrived on and Back has to return to it. A passive sync fired by something else in that
   // window would otherwise replace it with the half-chosen address and destroy it. That is reachable
   // rather than theoretical: background hydration writes through store.update on its own timer, and
   // every store.update reaches renderAll, which syncs.
   const shown = filterRunOpen && !push ? filterRunBase : filter;
+  const showFilter = filterRunOpen && !push ? filterRunAddressed : filterAddressed;
   const spotlightState = shelfState.get('spotlights');
   const sort = view === 'spotlights' && spotlightState ? spotlightState.sort : null;
   const next = view === 'issue' && issueRoute
     ? formatRoute(issueRoute)
-    : formatRoute({ view, listId: activeListId(), filter: shown, sort });
+    : formatRoute({
+      view,
+      listId: activeListId(),
+      filter: showFilter ? shown : DEFAULT_FILTER,
+      full: view === 'read' && $('#full').open,
+      sort,
+    });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1289,7 +1302,11 @@ function endFilterRun({ commit }) {
   if (!filterRunOpen) return;
   filterRunOpen = false;
   filterRunBase = null;
-  if (commit) syncHash({ push: true });
+  filterRunAddressed = false;
+  if (commit) {
+    filterAddressed = true;
+    syncHash({ push: true });
+  }
 }
 
 // Adopting the list first means the redirect inside showView sees the list the URL asked for
@@ -1314,43 +1331,65 @@ function endFilterRun({ commit }) {
 // the question the guard means. BL-068 has since given the map a null prototype, so this now holds
 // twice over, and it stays because it states the question rather than relying on the map's type.
 function applyRoute(route, { focus, filterIfAbsent }) {
-  if (issueSynopsisId != null && (route.view !== 'issue' || route.issueId !== issueSynopsisId)) {
-    synopsisRunner.cancel();
-    issueSynopsisId = null;
-  }
-  if (route.view === 'issue') {
+  applyingRoute = true;
+  try {
+    if (issueSynopsisId != null && (route.view !== 'issue' || route.issueId !== issueSynopsisId)) {
+      synopsisRunner.cancel();
+      issueSynopsisId = null;
+    }
+    if (route.view === 'issue') {
+      endFilterRun({ commit: false });
+      issueRoute = route;
+      showView('issue', { focus });
+      return;
+    }
+    issueFocusLoad?.abort();
+    issueFocusLoad = null;
+    issueFocusResult = null;
+    issueRoute = null;
+    if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
+      store.update((s) => setActive(s, route.listId));
+    }
+    const spotlightState = shelfState.get('spotlights');
+    if (route.view === 'spotlights' && spotlightState) {
+      spotlightState.sort = route.sort === 'popularity' ? 'popularity' : null;
+    }
+    // Before showView, so the passive sync at the end of showView computes the address this route
+    // already describes and returns early rather than writing one and being corrected a moment later.
+    filterAddressed = route.filter !== null;
+    setFilter(route.filter ?? filterIfAbsent);
+    // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
+    // because the address this route describes is the authoritative one and writing the traversal's
+    // would fight it.
+    //
+    // Above showView, and that is the whole of it. Below the trailing sync, the run would still be open
+    // when that sync ran, so it would format the address from filterRunBase and leave the address
+    // claiming a filter the rows are not showing. Measured on a modelled stack: pending in force,
+    // ArrowRight once, then Alt+Left leaves the address saying pending over rows showing all, and puts
+    // the same address in two adjacent entries, which is the dead Back this whole design exists to
+    // close.
     endFilterRun({ commit: false });
-    issueRoute = route;
-    showView('issue', { focus });
-    return;
+    if (route.view === 'read') {
+      const openFromRoute = route.full === true || route.filter !== null;
+      setFullOrderFromRoute(openFromRoute);
+      if (openFromRoute && rowsPending) renderRows();
+    }
+    showView(route.view, { focus });
+  } finally {
+    applyingRoute = false;
   }
-  issueFocusLoad?.abort();
-  issueFocusLoad = null;
-  issueFocusResult = null;
-  issueRoute = null;
-  if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
-    store.update((s) => setActive(s, route.listId));
-  }
-  const spotlightState = shelfState.get('spotlights');
-  if (route.view === 'spotlights' && spotlightState) {
-    spotlightState.sort = route.sort === 'popularity' ? 'popularity' : null;
-  }
-  // Before showView, so the passive sync at the end of showView computes the address this route
-  // already describes and returns early rather than writing one and being corrected a moment later.
-  setFilter(route.filter ?? filterIfAbsent);
-  // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
-  // because the address this route describes is the authoritative one and writing the traversal's
-  // would fight it.
-  //
-  // Above showView, and that is the whole of it. Below the trailing sync, the run would still be open
-  // when that sync ran, so it would format the address from filterRunBase and leave the address
-  // claiming a filter the rows are not showing. Measured on a modelled stack: pending in force,
-  // ArrowRight once, then Alt+Left leaves the address saying pending over rows showing all, and puts
-  // the same address in two adjacent entries, which is the dead Back this whole design exists to
-  // close.
-  endFilterRun({ commit: false });
-  showView(route.view, { focus });
   if (focus) void restoreIssueFocusOpener(route.view);
+}
+
+function setFullOrderFromRoute(open) {
+  const full = $('#full');
+  if (full.open === open) return;
+  const active = document.activeElement;
+  if (!open && active && full.contains(active) && active !== full.querySelector('summary')) {
+    full.querySelector('summary').focus({ preventScroll: true });
+  }
+  applyingRouteToDisclosure = true;
+  full.open = open;
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1457,8 +1496,23 @@ async function restoreIssueFocusOpener(sourceView) {
   }
   await new Promise((resolve) => requestAnimationFrame(resolve));
   const target = matchingIssueOpener(opener);
-  if (target?.isConnected) target.focus({ preventScroll: true });
-  else focusViewHeading(sourceView);
+  if (target?.isConnected) {
+    target.focus({ preventScroll: true });
+    return;
+  }
+  if (sourceView === 'read' && view === 'read') {
+    const checked = [...document.querySelectorAll('input[name="filter"]')].find((radio) => radio.checked);
+    if (checked?.isConnected) {
+      checked.focus({ preventScroll: true });
+      return;
+    }
+    const summary = $('#full').querySelector('summary');
+    if (summary?.isConnected) {
+      summary.focus({ preventScroll: true });
+      return;
+    }
+  }
+  focusViewHeading(view);
 }
 
 function loadBundledOrder(file, { signal } = {}) {
@@ -2263,11 +2317,17 @@ function wireReading() {
   ])));
   $('#save-education-settings').addEventListener('click', () => showView('data', { push: true }));
 
-  // `renderRows` builds nothing while the order is closed, so opening it is what asks for the
-  // rows. `toggle` fires before the next paint, so the order is filled by the time the details
-  // has finished opening and there is no empty frame in between.
+  // The native toggle event may be delivered after an animation frame that was already queued by
+  // the activation. The click microtask runs after the summary's default action has opened the
+  // details and fills pending rows before that frame. Toggle remains the source of URL state.
+  $('#full > summary').addEventListener('click', () => {
+    queueMicrotask(() => { if ($('#full').open && rowsPending) renderRows(); });
+  });
   $('#full').addEventListener('toggle', () => {
-    if ($('#full').open && rowsPending) renderRows();
+    const routeDriven = applyingRouteToDisclosure;
+    applyingRouteToDisclosure = false;
+    renderRows();
+    if (!routeDriven) syncHash();
   });
 
   const radios = [...document.querySelectorAll('input[name="filter"]')];
@@ -2318,6 +2378,7 @@ function wireReading() {
         // able to return to and what a passive sync must keep claiming while it runs.
         if (!filterRunOpen) {
           filterRunBase = filter;
+          filterRunAddressed = filterAddressed;
           filterRunOpen = true;
         }
         setFilter(e.target.value);
@@ -2333,6 +2394,7 @@ function wireReading() {
         // rail, and pushing is the whole of what "Back works across filter changes" means. The
         // passive paths still replace, so marking twenty issues read does not put twenty entries in
         // the way.
+        filterAddressed = true;
         syncHash({ push: true });
       }
       arrowing = false;
@@ -2916,7 +2978,7 @@ function renderRows() {
     const unread = all.length - all.filter((it) => it.read).length;
     // The count lives in the <summary>, which is on screen whether or not the order below it is,
     // so it is written before the early return rather than alongside the rows it counts.
-    $('#full-count').textContent = fullCountText(all, unread);
+    writeFullSummary(all, unread);
 
     // The full order is inside a <details> that starts closed, so on a first visit every one of
     // these rows is built for a container the reader has not opened. Measured in Edge on the 219
@@ -5696,10 +5758,12 @@ function writeYoursSummary(sec, state) {
 // order is said plainly rather than as "0 of 0 read", which reads as a fault, not as the fact it is.
 // The unread half used to be spelled out beside the read half. It is the same fact subtracted, and
 // this line is the fifth place on the screen that the same fact appears, so it says one of them.
-function fullCountText(all, unread) {
-  if (!all.length) return 'No issues yet';
-  const read = all.length - unread;
-  return `${read} of ${all.length} read`;
+function writeFullSummary(all, unread) {
+  const total = all.length;
+  $('#full-action').textContent = $('#full').open
+    ? 'Hide full Reading List'
+    : `View all ${total} issue${total === 1 ? '' : 's'}`;
+  $('#full-count').textContent = !total ? 'No issues yet' : unread ? `${unread} unread` : 'All read';
 }
 
 // A quiet row above the reading filters: a bar for the whole order and its percentage, and, when a

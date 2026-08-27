@@ -51,6 +51,7 @@ const SPOTLIGHT_POPULARITY_SORT = 'popularity';
 // intact, assignment fires one hashchange carrying it, no request is made for it, and Back over a
 // filter change returns the previous one.
 const FILTER_KEY = 'filter';
+const FULL_KEY = 'full';
 const ISSUE_CONTEXT_KEYS = new Set(['list', 'order']);
 
 function issueId(value) {
@@ -64,7 +65,7 @@ function issueId(value) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, sort, issueId: rawIssueId, context,
+  view, listId, filter, full = false, sort, issueId: rawIssueId, context,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -84,6 +85,7 @@ export function formatRoute({
   // from a radio cannot be put into an address by this app and then read back as if it had.
   const known = READING_FILTERS.some((f) => f.value === filter);
   if (known && filter !== DEFAULT_FILTER) query.set(FILTER_KEY, filter);
+  if (canonical === 'read' && full === true) query.set(FULL_KEY, '1');
   if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort);
   const search = query.toString();
   const suffix = search ? `?${search}` : '';
@@ -143,10 +145,18 @@ export function parseRoute(hash) {
   const params = new URLSearchParams(search);
   const raw = params.get(FILTER_KEY);
   const filter = READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
+  const fullValues = params.getAll(FULL_KEY);
+  const full = view === 'read' && fullValues.length === 1 && fullValues[0] === '1';
   const rawSort = view === 'spotlights' ? params.get(SPOTLIGHT_SORT_KEY) : null;
   const sort = view === 'spotlights' && rawSort === SPOTLIGHT_POPULARITY_SORT
     ? rawSort
     : null;
 
-  return sort ? { view, listId: listId || null, filter, sort } : { view, listId: listId || null, filter };
+  return sort
+    ? {
+      view, listId: listId || null, filter, full, sort,
+    }
+    : {
+      view, listId: listId || null, filter, full,
+    };
 }

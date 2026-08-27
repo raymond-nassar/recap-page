@@ -313,8 +313,13 @@ test('the full order is skipped while closed and filled when it is opened', () =
   );
   assert.match(
     main,
-    /\$\('#full'\)\.addEventListener\('toggle', \(\) => \{\s*if \(\$\('#full'\)\.open && rowsPending\) renderRows\(\);/,
-    'nothing renders the rows when the order is opened, so it would fill only on the next change',
+    /\$\('#full > summary'\)\.addEventListener\('click', \(\) => \{[\s\S]*?queueMicrotask\([\s\S]*?rowsPending[\s\S]*?renderRows\(\);/,
+    'summary activation no longer fills pending rows before the first animation frame',
+  );
+  assert.match(
+    main,
+    /\$\('#full'\)\.addEventListener\('toggle', \(\) => \{[\s\S]*?syncHash\(\);/,
+    'the native disclosure no longer synchronizes its settled open state to the route',
   );
 });
 
@@ -324,10 +329,20 @@ test('the full order is skipped while closed and filled when it is opened', () =
 test('the unread count is written before the closed-order return, not after it', () => {
   const main = read('src/js/main.js');
   const body = main.slice(main.indexOf('function renderRows()'));
-  const count = body.indexOf("$('#full-count').textContent");
+  const count = body.indexOf('writeFullSummary(all, unread)');
   const guard = body.indexOf("if (!$('#full').open)");
   assert.ok(count !== -1 && guard !== -1, 'renderRows no longer holds both the count and the guard');
   assert.ok(count < guard, 'the unread count is now written after the return that skips a closed order');
+});
+
+test('the full Reading List summary keeps action and state copy separate', () => {
+  const main = read('src/js/main.js');
+  const body = main.slice(main.indexOf('function writeFullSummary'), main.indexOf('function writeOrderStrip'));
+  assert.match(body, /Hide full Reading List/);
+  assert.match(body, /View all \$\{total\} issue/);
+  assert.match(body, /No issues yet/);
+  assert.match(body, /\$\{unread\} unread/);
+  assert.match(body, /All read/);
 });
 
 // The cache key is the whole item on purpose. An enumerated list of the fields a row happens to

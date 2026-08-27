@@ -47,10 +47,10 @@ test('the Add hub groups five routes with five dedicated pages', () => {
 test('the Add address opens the hub while old child addresses stay valid', () => {
   assert.equal(VIEWS.includes('add'), true);
   assert.equal(LEGACY_VIEW_ALIASES.add, undefined);
-  assert.deepEqual(parseRoute('#/add'), { view: 'add', listId: null, filter: null });
+  assert.deepEqual(parseRoute('#/add'), { view: 'add', listId: null, filter: null, full: false });
   assert.equal(formatRoute({ view: 'add' }), '#/add');
   for (const view of ADD_VIEWS) {
-    assert.deepEqual(parseRoute(`#/${view}`), { view, listId: null, filter: null });
+    assert.deepEqual(parseRoute(`#/${view}`), { view, listId: null, filter: null, full: false });
   }
 });
 
