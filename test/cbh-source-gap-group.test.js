@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import {
@@ -97,7 +98,7 @@ test('source gap groups are validated and included in their evidence digest', ()
 });
 
 test('source gap groups reject invalid and unsupported fields', () => {
-  for (const sourceGroup of ['', 1]) {
+  for (const sourceGroup of ['', null, 1]) {
     assert.throws(
       () => validateFrozenPacket(packetWithGap(sourceGroup)),
       /sourceGroup/i,
@@ -108,4 +109,10 @@ test('source gap groups reject invalid and unsupported fields', () => {
   packet.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(packet.sourceGaps[0]);
   packet.packetDigest = packetDigestFor(packet);
   assert.throws(() => validateFrozenPacket(packet), /unsupported fields/i);
+});
+
+test('omitted source groups retain existing packet evidence digests', async () => {
+  const packet = JSON.parse(await readFile('scripts/data/cbh-packets/thanos-reading-order.json', 'utf8'));
+  assert.equal(Object.hasOwn(packet.sourceGaps[0], 'sourceGroup'), false);
+  assert.doesNotThrow(() => validateFrozenPacket(packet));
 });
