@@ -2007,6 +2007,35 @@
       "coverIssueId": 12903
     },
     {
+      "id": "punisher-reading-order",
+      "name": "Punisher",
+      "description": "A complete Punisher reading path that follows the source page from the earliest Punisher material through the latest additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "punisher-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/punisher-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "punisher_reading_order.json",
+      "characters": [
+        "Punisher",
+        "Frank Castle"
+      ],
+      "keywords": [
+        "Punisher",
+        "Comic Book Herald",
+        "Frank Castle"
+      ],
+      "expect": 638,
+      "timeline": null,
+      "coverIssueId": 6515
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "name": "Rocket Raccoon",
       "description": "Rocket Raccoon from his Half-World debut through the modern Guardians, his solo adventures, and Avengers: No Road Home.",
