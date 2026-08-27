@@ -221,10 +221,9 @@ async function main() {
     },
   });
 
-  await mkdir(DATA_DIR, { recursive: true });
-
   const summary = [];
   const catalogById = new Map();
+  const outputs = [];
   for (const { order, entries, unresolved } of parsed) {
     let missingDigital = 0;
     let missingCover = 0;
@@ -341,7 +340,10 @@ async function main() {
       items,
     };
 
-    await writeFile(join(DATA_DIR, order.out), JSON.stringify(payload, null, 2) + '\n', 'utf8');
+    outputs.push({
+      path: join(DATA_DIR, order.out),
+      content: `${JSON.stringify(payload, null, 2)}\n`,
+    });
     summary.push({
       file: order.out,
       count: items.length,
@@ -370,14 +372,17 @@ async function main() {
   const catalog = orders.map((o) => catalogById.get(o.id));
   const checked = parseCatalog({ lists: catalog });
   if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
-  await writeFile(
-    join(DATA_DIR, 'catalog.json'),
+  outputs.push({
+    path: join(DATA_DIR, 'catalog.json'),
     // Paths are copied through rather than derived, because a path is editorial: which stories
     // connect, and in what order, is not something the issue data can be asked. They are written
     // after the lists so a hand-read diff of a catalog rebuild shows them together at the end.
-    JSON.stringify({ generatedAt: new Date().toISOString(), lists: catalog, paths }, null, 2) + '\n',
-    'utf8',
-  );
+    content: `${JSON.stringify({ generatedAt: new Date().toISOString(), lists: catalog, paths }, null, 2)}\n`,
+  });
+  await mkdir(DATA_DIR, { recursive: true });
+  for (const output of outputs) {
+    await writeFile(output.path, output.content, 'utf8');
+  }
 
   if (summary.length) console.table(summary);
   const bad = summary.filter((s) => s.count !== s.expected);

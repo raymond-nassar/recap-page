@@ -86,6 +86,39 @@ guide and have separate follow-up work in [Issue #281](https://github.com/raymon
 none is substituted or silently removed. Its complete-library review records eight partial
 relationships and 139 no-overlap relationships.
 
+Doctor Strange's complete guide retains the full visible page boundary: 932 source occurrences
+across 76 issue-bearing blocks and nine top-level headings. It publishes 711 exact issue identities,
+records 181 repeated source references once at their first occurrence, preserves 39 open metadata
+gaps, and names one source exclusion. The open gaps retain their exact source positions and failed
+provider lookups, with follow-up assigned in [Issue #283](https://github.com/raymond-nassar/recap-page/issues/283).
+The complete-library report compares the guide with all 152 existing reading lists: three are
+existing-subset relationships, 26 are partial, and 123 have no shared issues. The source groups and
+gaps remain maintained evidence rather than replacements or invented issue identities.
+
+The Daredevil Character Spotlight guide follows the full page because it has no separate qualifying
+Best Comics or Essential Comics section. Its frozen source preserves 909 occurrences: 868 exact
+issue identities, 33 repeated occurrences, and 8 explicit provider gaps. The published checklist
+keeps each gap at its source position as a non-linked placeholder: Marvel Holiday Special #2;
+Daredevil/Deadpool Annual '97; Typhoid Fever: Daredevil #1; Marvel Team-Up #56; Daredevil and the
+Punisher: Child's Play (OGN); Daredevil/Bullseye: The Target (OGN); Daredevil/Spider-Man (OGN); and
+Defenders #11. The separate [gap follow-up issue](https://github.com/raymond-nassar/recap-page/issues/287)
+holds only future one-to-one identity research. The source range, source position, and unresolved
+status remain intact unless exact provider evidence resolves an identity.
+
+The complete-library report compares Daredevil with 153 reading lists. It records 19 approved
+partial relationships, 1 approved existing-subset relationship, and 133 relationships with no
+shared issue identities. The guide remains complete because its source boundary is the full page,
+not because an unresolved identity is silently removed.
+
+The Venom Character Spotlight follows the complete maintained page because it has no qualifying
+Best Comics or Essential Comics subsection. Its frozen source evidence preserves 932 issue
+occurrences across 646 identities: 610 exact provider-resolved comics, 286 intentional repeats,
+33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The 33 gaps
+remain visible in the published checklist and are tracked in
+[Issue #288](https://github.com/raymond-nassar/recap-page/issues/288); none is substituted or
+silently removed. Its complete-library review covers 154 current orders, with 22 approved
+non-none relationships and 132 no-overlap relationships.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records
@@ -638,9 +671,9 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/main.js:2749` and the issue-details view at
-`src/js/main.js:1566`. The function behind both already answers for the absence at
-`src/js/main.js:2936-2945`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/main.js:2799` and the issue-details view at
+`src/js/main.js:1612`. The function behind both already answers for the absence at
+`src/js/main.js:2986-2995`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.

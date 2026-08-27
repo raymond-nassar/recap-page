@@ -4,8 +4,12 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { VIEWS, formatRoute, parseRoute } from '../src/js/lib/route.js';
-import { HOME_CATEGORIES, PUBLISHING_CATEGORIES } from '../src/js/lib/catalog.js';
+import {
+  VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
+} from '../src/js/lib/route.js';
+import {
+  CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES,
+} from '../src/js/lib/catalog.js';
 import { LIBRARY_VIEWS } from '../src/js/lib/library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from '../src/js/lib/readingFilters.js';
 
@@ -141,6 +145,102 @@ test('the library views are routable, not just the seven typed ones', () => {
     assert.deepEqual(parseRoute(formatRoute({ view: value })), {
       view: value, listId: null, filter: null, full: false,
     });
+  }
+});
+
+test('every routable view has one stable hierarchy and Home has none', () => {
+  const expected = new Map([
+    ['library', ['Home', 'Library']],
+    ['read', ['Home', 'Library', 'Saved name']],
+    ['progress', ['Home', 'Library', 'Progress by series']],
+    ['library-read', ['Home', 'Library', 'Everything read']],
+    ['library-manual', ['Home', 'Library', 'Added by hand']],
+    ['browse', ['Home', 'Browse']],
+    ['add', ['Home', 'Add comics']],
+    ['data', ['Home', 'Backup & settings']],
+    ['about', ['Home', 'About this app']],
+    ['marvel-on-screen', ['Home', 'Browse', 'MCU Prep']],
+    ['marvel-ages', ['Home', 'Browse', 'Marvel Ages']],
+    ['issue', ['Home', 'Issue details']],
+  ]);
+  for (const shelf of CATALOG_SHELVES) {
+    expected.set(shelf.key, ['Home', 'Browse', shelf.heading]);
+  }
+  for (const [view, label] of [
+    ['add-search', 'Search issues'],
+    ['add-series', 'Find a series'],
+    ['add-creator', 'Browse a creator'],
+    ['add-import', 'Paste a Reading List'],
+    ['add-manual', 'Add an issue by hand'],
+  ]) {
+    expected.set(view, ['Home', 'Add comics', label]);
+  }
+  for (const category of PUBLISHING_CATEGORIES) {
+    const labels = ['Home', 'Browse', 'Marvel Ages'];
+    if (category.parent) {
+      labels.push(PUBLISHING_CATEGORIES.find(({ key }) => key === category.parent).heading);
+    }
+    expected.set(category.route, [...labels, category.heading]);
+  }
+
+  assert.deepEqual(breadcrumbHierarchy({ view: 'home' }), []);
+  for (const view of VIEWS.filter((candidate) => candidate !== 'home')) {
+    const trail = breadcrumbHierarchy({
+      view,
+      list: view === 'read' ? { id: 'saved', name: 'Saved name' } : null,
+    });
+    assert.deepEqual(
+      trail.map(({ label }) => label),
+      expected.get(view),
+      `${view} has the wrong hierarchy`,
+    );
+    assert.equal(trail.at(-1).current, true, `${view} has no plain current item`);
+    assert.equal('href' in trail.at(-1), false, `${view} links to itself`);
+    assert.ok(trail.slice(0, -1).every(({ href }) => href?.startsWith('#/')), `${view} has a non-link ancestor`);
+  }
+});
+
+test('dynamic Reading List and issue hierarchies use only validated context', () => {
+  assert.deepEqual(
+    breadcrumbHierarchy({ view: 'read', list: { id: 'list/a', name: 'A saved list' } }),
+    [
+      { label: 'Home', href: '#/home' },
+      { label: 'Library', href: '#/library' },
+      { label: 'A saved list', current: true },
+    ],
+  );
+  assert.deepEqual(
+    breadcrumbHierarchy({
+      view: 'issue',
+      issueTitle: 'A loaded issue',
+      context: { kind: 'list', id: 'list/a', name: 'A saved list' },
+    }),
+    [
+      { label: 'Home', href: '#/home' },
+      { label: 'Library', href: '#/library' },
+      { label: 'A saved list', href: '#/read/list%2Fa' },
+      { label: 'A loaded issue', current: true },
+    ],
+  );
+  assert.deepEqual(
+    breadcrumbHierarchy({
+      view: 'issue',
+      issueTitle: 'A bundled issue',
+      context: { kind: 'order', id: 'order-a', name: 'Transient Preview title', shelf: 'lines' },
+    }).map(({ label }) => label),
+    ['Home', 'Browse', 'Storylines', 'A bundled issue'],
+  );
+  for (const context of [
+    null,
+    { kind: 'list', id: 'missing', name: '' },
+    { kind: 'order', id: '', shelf: 'lines' },
+    { kind: 'order', shelf: 'lines' },
+    { kind: 'order', id: 'missing', shelf: 'missing' },
+  ]) {
+    assert.deepEqual(
+      breadcrumbHierarchy({ view: 'issue', issueTitle: 'Resolved title', context }).map(({ label }) => label),
+      ['Home', 'Resolved title'],
+    );
   }
 });
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T07:00:33.770Z",
+  "generatedAt": "2026-08-27T14:02:27.921Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2667,6 +2667,123 @@
       "updatedAt": "2026-08-27T04:26:25.607Z"
     },
     {
+      "id": "doctor-strange-reading-order",
+      "file": "doctor_strange_reading_order.json",
+      "name": "Doctor Strange",
+      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 750,
+      "collections": 72,
+      "characters": [
+        "Doctor Strange",
+        "Defenders",
+        "Avengers",
+        "Clea",
+        "Wong"
+      ],
+      "keywords": [
+        "Doctor Strange",
+        "Sorcerer Supreme",
+        "Defenders",
+        "Strange Academy",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11029,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bc480360bd1f",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:36:57.369Z"
+    },
+    {
+      "id": "daredevil-reading-order",
+      "file": "daredevil_reading_order.json",
+      "name": "Daredevil",
+      "description": "The complete Daredevil guide, from the character origins through modern runs and team ups.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 876,
+      "collections": 11,
+      "characters": [
+        "Daredevil",
+        "Matt Murdock",
+        "Elektra",
+        "Punisher",
+        "Kingpin"
+      ],
+      "keywords": [
+        "Daredevil",
+        "Matt Murdock",
+        "Elektra",
+        "Hell's Kitchen",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 8073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/51894efb25f92",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/daredevil-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T13:18:34.558Z"
+    },
+    {
+      "id": "venom-reading-order",
+      "file": "venom_reading_order.json",
+      "name": "Venom",
+      "description": "Venom from the symbiote's origin in Secret Wars and Spider-Man's black costume saga through Eddie Brock's Lethal Protector era, Mac Gargan, Flash Thompson's Agent Venom, Dylan Brock, and the modern Donny Cates and Al Ewing epic.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 643,
+      "collections": 91,
+      "characters": [
+        "Venom",
+        "Eddie Brock",
+        "Anti-Venom",
+        "Flash Thompson",
+        "Carnage"
+      ],
+      "keywords": [
+        "Venom",
+        "Eddie Brock",
+        "Symbiote",
+        "Carnage",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 10590,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5757174e3255d",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/venom-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T06:39:54.285Z"
+    },
+    {
       "id": "xmen-claremont",
       "file": "xmen_claremont.json",
       "name": "X-Men: Silver Age to Claremont",
@@ -4420,6 +4537,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T15:53:03.208Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x",
+      "file": "marvel_knights_to_planet_x.json",
+      "name": "Marvel Knights to Planet X",
+      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "type": "event",
+      "depth": "complete",
+      "count": 487,
+      "collections": 3,
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four",
+        "Avengers",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X",
+        "Guardian Devil",
+        "E is for Extinction",
+        "X-Corps",
+        "Planet X crossover"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1998,
+      "coverIssueId": 15609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/57223eff00d5d",
+        "ext": "jpg"
+      },
+      "source": null,
+      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
     },
     {
       "id": "spider-man-identity-crisis",

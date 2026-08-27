@@ -21,6 +21,55 @@ earliest stories through newer additions. It includes 527 comics with exact Marv
 out one source reference that its owner confirmed does not name a real comic. Nothing you have saved
 is changed.
 
+### Added a complete Venom reading guide
+
+In plain English: You can now follow Venom stories from the symbiote's first appearance through
+the newest source-page material. Repeated recommendations appear only once in the checklist, and
+33 comics that the maintained metadata cannot yet identify remain visible as unresolved entries
+instead of being replaced or hidden. Nothing you have saved is changed.
+
+### Added the complete Daredevil reading guide
+
+In plain English: A complete Daredevil reading guide is now available, from his earliest stories
+through the Team-Ups and Guest Spots section. Eight source comics that the metadata provider cannot
+identify stay visible as honest placeholders, so the reading order keeps its place without guessing
+at a comic. Nothing you have saved is changed.
+
+For maintainers: the frozen source has 909 occurrences: 868 exact published identities, 33
+intentional repeated references, and 8 explicit metadata gaps. The complete-library review has 153
+dispositions: 19 partial relationships, 1 existing-subset relationship, and 133 with no shared
+issues.
+
+### Made page location and adding comics clearer
+
+In plain English: The sidebar and its destination now say Add comics, making it clear that this is
+where individual issues and personal Reading Lists are added. Every page except Home now shows where
+it sits in the app and links back through its parent pages. Preview and confirmation dialogs remain
+focused on the current task, and nothing you have saved is changed.
+
+For maintainers: one pure route hierarchy and one shared renderer cover static, generated,
+saved-list, bundled-order and issue-detail routes. Ancestors remain native hash links, current items
+remain plain text, and stale issue context falls back without guessing at browser history.
+
+### Chose a clear starting boundary for Modern Timeline
+
+In plain English: Modern Timeline now starts in 1998, a boundary chosen for this app rather than an
+official Marvel era. Empty Home recommends Setup to Modern Timeline, and that same guide is featured
+above the timeline through Preview without being duplicated or counted as a normal card. The 76
+included Reading Lists appear as 72 grouped story cards, beginning with Marvel Knights to Planet X.
+Earlier events remain available through Marvel Ages and their existing addresses, and nothing you
+have saved is changed.
+
+For maintainers: Home, Browse, and Modern Timeline share pure catalog selectors for the 1998-plus
+subset. Canonical shelves and Marvel Ages remain unchanged. Modern Timeline era descriptions alone
+use their full box width, including narrow, zoomed, keyboard, and forced-colors conditions.
+
+### Added a Marvel Knights to Planet X reading guide
+
+In plain English: You can now follow 487 comics from Marvel Knights through the Planet X
+crossover. The new guide preserves all ninety-nine source positions across three sections and
+includes complete issue links and series details. Nothing you have saved is changed.
+
 ### Added a complete Black Panther reading guide
 
 In plain English: You can now follow Black Panther stories from his earliest Fantastic Four appearance through the newest source-page additions. Repeated source recommendations appear only once in the checklist, and four comics missing from the maintained metadata remain visible as unresolved entries instead of being replaced or hidden.
@@ -31,6 +80,19 @@ In plain English: A new Deadpool starter guide is available in Character Spotlig
 thirteen recommendations from its source, includes thirty-eight comics that can be opened to read,
 and keeps two unavailable Deadpool MAX entries visible instead of silently leaving them out. Nothing
 you have saved is changed.
+
+### Added the complete Doctor Strange Character Spotlight guide
+
+In plain English: The Character Spotlights now include a 711-comic Doctor Strange guide, from his
+first appearances through modern stories. Thirty-nine comics named by the source need a verified
+metadata record, so they are documented for correction instead of being guessed at or silently
+replaced. Nothing you have saved is changed.
+
+For maintainers: the full visible source page has 932 occurrences across 76 issue-bearing blocks
+and nine top-level headings. The frozen packet retains 711 exact rows, 181 repeated references, 39
+open metadata gaps linked to Issue #283, and one exclusion. The complete-library review covers 152
+existing reading lists: three are existing-subset relationships, 26 are partial, and 123 have no
+shared issue.
 
 ### Made the reading screen easier to scan
 

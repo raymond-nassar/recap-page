@@ -42,6 +42,15 @@ test('the Add hub groups five routes with five dedicated pages', () => {
     assert.match(hub, new RegExp(`data-view="${view}"`), `${view} has no Add hub choice`);
   }
   assert.match(html, /class="ri" data-view="add"/, 'the rail has no Add hub entry');
+  assert.match(html, /class="ri" data-view="add"[\s\S]*?<span class="lbl">Add comics<\/span>/);
+  assert.match(hub, /<h1 id="add-h">Add comics<\/h1>/);
+});
+
+test('the destination rename does not alter Add action labels', () => {
+  assert.match(main, /const CATALOG_ADD = '\+ Add to library'/);
+  assert.match(allPages, />Add issue<\/button>/);
+  assert.match(main, /\}, 'Add all issues'\)/);
+  assert.match(main, /\}, 'Add'\);/);
 });
 
 test('the Add address opens the hub while old child addresses stay valid', () => {
