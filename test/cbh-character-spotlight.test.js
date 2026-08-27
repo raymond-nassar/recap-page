@@ -370,7 +370,7 @@ test('the character inventory preserves every central disposition, ships ninetee
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 98);
+  assert.equal(dispositionCounts.deferred, 97);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
   assert.equal(dispositionCounts['pilot-approved'], 23);
@@ -601,7 +601,11 @@ test('the Punisher guide preserves its full source ledger through publication', 
     [],
     { excludedOrderIds: [] },
   );
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, ['punisher-reading-order']);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    ['punisher-reading-order'],
+    true,
+  );
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: 'punisher-reading-order',
@@ -705,7 +709,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.rows.length, 480);
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
-  assert.equal(report.comparisonCount, 153);
+  assert.equal(report.comparisonCount, 156);
   assert.equal(report.comparisonCount, manifest.lists.length - 1);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -766,8 +770,10 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [
     doctorStrangeCandidateId,
+    captainMarvelCandidateId,
     'daredevil-reading-order',
-  ]);
+    venomCandidateId,
+  ], true);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: doctorStrangeCandidateId,
@@ -843,7 +849,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   const record = inventory.find((candidate) => candidate.id === captainMarvelCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [captainMarvelCandidateId],
+    [captainMarvelCandidateId, 'punisher-reading-order'],
     true,
   );
 

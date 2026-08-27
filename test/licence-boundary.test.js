@@ -100,7 +100,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 163, `${scanned} item-bearing files were found, not 163, so this test's coverage has changed`);
+  assert.equal(scanned, 162, `${scanned} item-bearing files were found, not 162, so this test's coverage has changed`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });
 

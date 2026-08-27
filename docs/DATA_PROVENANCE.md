@@ -101,7 +101,7 @@ repeated source occurrences, 158 open metadata gaps, and 74 explicit non-issue e
 unresolved identities remain visible as placeholders, while 23 later source occurrences repeat an
 earlier unresolved identity without producing a duplicate Reading List entry. Live review verified
 all 480 exact IDs, series, and issue numbers, and corrected 76 current Marvel detail links. The
-current-library report records eight partial relationships and 145 with no shared issues. Remaining
+current-library report records ten partial relationships and 146 with no shared issues. Remaining
 metadata gaps are assigned in [Issue #298](https://github.com/raymond-nassar/recap-page/issues/298);
 none is substituted or silently removed.
 

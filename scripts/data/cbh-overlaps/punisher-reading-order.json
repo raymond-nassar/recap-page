@@ -2,7 +2,7 @@
   "candidateId": "punisher-reading-order",
   "packetDigest": "b52164f244217533ccb8d312ebcb58ab0f01c62c80170b49f00e0f7ab3b717da",
   "mappingDigest": "0d403238205a691d74e3ae90a2098d12792060180ad7b3d2084351aff3bfa3cc",
-  "libraryDigest": "fefe7518389233452de5122ab7606ee9f6f1551bf3eb2dceaf8f1fff7f9c56c4",
+  "libraryDigest": "f21aaa9c46a70643e395188fd0c5affc7cc15d89f9124a1e667517a285cb5028",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 857,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 145
   },
   "candidateCount": 480,
-  "comparisonCount": 153,
+  "comparisonCount": 156,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -151,6 +151,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "captain-marvel-ms-marvel-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "chaos-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -197,6 +203,42 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "daredevil-reading-order",
+      "sharedCount": 29,
+      "sharedIds": [
+        "8165",
+        "8166",
+        "8167",
+        "8248",
+        "82156",
+        "18958",
+        "18959",
+        "18960",
+        "18961",
+        "18962",
+        "18963",
+        "18964",
+        "18965",
+        "18966",
+        "18967",
+        "18968",
+        "18969",
+        "39941",
+        "2202",
+        "2203",
+        "2322",
+        "2432",
+        "2433",
+        "3014",
+        "62923",
+        "63230",
+        "63692",
+        "64138",
+        "64527"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "dark-phoenix-saga",
@@ -835,6 +877,45 @@
       "relationship": "none"
     },
     {
+      "orderId": "venom-reading-order",
+      "sharedCount": 32,
+      "sharedIds": [
+        "45389",
+        "45393",
+        "46519",
+        "46522",
+        "46524",
+        "46526",
+        "46527",
+        "46528",
+        "46529",
+        "46530",
+        "46531",
+        "46532",
+        "46533",
+        "46534",
+        "46535",
+        "46536",
+        "46537",
+        "46538",
+        "48860",
+        "48861",
+        "48862",
+        "48863",
+        "48864",
+        "48865",
+        "48866",
+        "48867",
+        "48868",
+        "48869",
+        "48870",
+        "48871",
+        "48872",
+        "51096"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1003,5 +1084,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "273211ef0705ec56190fe69bbd352351dc95f76be02a062380af64a8734f2595"
+  "reportDigest": "3511efcfac83fad17513a8b2fcb40529a28836582f2b21d584022dfb242cd6d1"
 }
