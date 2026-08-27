@@ -344,13 +344,15 @@
     "url": "https://www.comicbookherald.com/black-panther-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The Stage A checkpoint freezes the full-page CBH source boundary and the exact issue-bearing references in source order while preserving unresolved issues as explicit provenance instead of inventing missing rows.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "black-panther-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Black Panther"
     ],
@@ -358,9 +360,9 @@
       11
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "9466c5e4e0bddb3290c8e2320e1ca1f10ac06f868216f62afebe2ecce83336f9",
+    "sourceContentSha256": "c8e2625c090b9f096b799f06b4cebad2fa619da2d33ca0b9b804f938f58f76cc",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 12,

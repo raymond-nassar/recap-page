@@ -4794,6 +4794,34 @@
       "expect": 20,
       "timeline": 2016,
       "coverIssueId": 61594
+    },
+    {
+      "id": "black-panther-reading-order",
+      "name": "Black Panther",
+      "description": "Black Panther reading guide authored from the maintained CBH page with exact issue-bearing references preserved in source order and unresolved rows left explicit.",
+      "type": "character-run",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "black-panther-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "black_panther_reading_order.json",
+      "characters": [
+        "Black Panther",
+        "T'Challa"
+      ],
+      "keywords": [
+        "Black Panther",
+        "Wakanda",
+        "Comic Book Herald"
+      ],
+      "expect": 247,
+      "timeline": null,
+      "coverIssueId": null
     }
   ],
   "paths": [

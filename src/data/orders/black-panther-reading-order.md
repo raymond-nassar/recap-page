@@ -1,0 +1,265 @@
+# Black Panther: Issue-by-Issue Reading Checklist
+
+Generated for this project by the Stage A CBH packet work for the maintained Black Panther page. The source boundary is the full page, and the checklist preserves the page's issue-bearing references in source order while leaving unresolved rows explicit rather than inventing any issue identities.
+
+## Black Panther debuts
+
+- [ ] Fantastic Four #52
+- [ ] Fantastic Four #53
+- [ ] Fantastic Four #54
+- [ ] Tales of Suspense #97
+- [ ] Tales of Suspense #98
+- [ ] Tales of Suspense #99
+- [ ] Captain America #100
+- [ ] Avengers #52
+
+## Black Panther in the 1970s
+
+- [ ] Jungle Action #6
+- [ ] Jungle Action #7
+- [ ] Jungle Action #8
+- [ ] Jungle Action #9
+- [ ] Jungle Action #10
+- [ ] Jungle Action #11
+- [ ] Jungle Action #12
+- [ ] Jungle Action #13
+- [ ] Jungle Action #14
+- [ ] Jungle Action #15
+- [ ] Jungle Action #16
+- [ ] Jungle Action #17
+- [ ] Jungle Action #18
+- [ ] Jungle Action #19
+- [ ] Jungle Action #20
+- [ ] Jungle Action #21
+- [ ] Jungle Action #22
+- [ ] Jungle Action #23
+- [ ] Jungle Action #24
+- [ ] Black Panther #14
+- [ ] Black Panther #15
+- [ ] Marvel Premiere #51
+- [ ] Marvel Premiere #52
+- [ ] Marvel Premiere #53
+
+## Black Panther in the 1980s
+
+- [ ] Black Panther #1
+- [ ] Black Panther #2
+- [ ] Black Panther #3
+- [ ] Black Panther #4
+- [ ] Marvel Team-Up #100
+- [ ] Marvel Comics Presents #13
+- [ ] Marvel Comics Presents #14
+- [ ] Marvel Comics Presents #15
+- [ ] Marvel Comics Presents #16
+- [ ] Marvel Comics Presents #17
+- [ ] Marvel Comics Presents #18
+- [ ] Marvel Comics Presents #19
+- [ ] Marvel Comics Presents #20
+- [ ] Marvel Comics Presents #21
+- [ ] Marvel Comics Presents #22
+- [ ] Marvel Comics Presents #23
+- [ ] Marvel Comics Presents #24
+- [ ] Marvel Comics Presents #25
+- [ ] Marvel Comics Presents #26
+- [ ] Marvel Comics Presents #27
+- [ ] Marvel Comics Presents #28
+- [ ] Marvel Comics Presents #29
+- [ ] Marvel Comics Presents #30
+- [ ] Marvel Comics Presents #31
+- [ ] Marvel Comics Presents #32
+- [ ] Marvel Comics Presents #33
+- [ ] Marvel Comics Presents #34
+- [ ] Marvel Comics Presents #35
+- [ ] Marvel Comics Presents #36
+- [ ] Marvel Comics Presents #37
+
+## Marvel Knights Black Panther
+
+- [ ] Black Panther (1998) #1
+- [ ] Black Panther (1998) #2
+- [ ] Black Panther (1998) #3
+- [ ] Black Panther (1998) #4
+- [ ] Black Panther (1998) #5
+- [ ] Black Panther (1998) #6
+- [ ] Black Panther (1998) #7
+- [ ] Black Panther (1998) #8
+- [ ] Black Panther (1998) #9
+- [ ] Black Panther (1998) #10
+- [ ] Black Panther (1998) #11
+- [ ] Black Panther (1998) #12
+- [ ] Black Panther (1998) #13
+- [ ] Black Panther (1998) #14
+- [ ] Black Panther (1998) #15
+- [ ] Black Panther (1998) #16
+- [ ] Black Panther (1998) #17
+- [ ] Black Panther (1998) #18
+- [ ] Black Panther (1998) #19
+- [ ] Black Panther (1998) #20
+- [ ] Black Panther (1998) #21
+- [ ] Black Panther (1998) #22
+- [ ] Black Panther (1998) #23
+- [ ] Black Panther (1998) #24
+- [ ] Black Panther (1998) #25
+- [ ] Black Panther (1998) #26
+- [ ] Black Panther (1998) #27
+- [ ] Black Panther (1998) #28
+- [ ] Black Panther (1998) #29
+- [ ] Black Panther (1998) #30
+- [ ] Black Panther (1998) #31
+- [ ] Black Panther (1998) #32
+- [ ] Black Panther (1998) #33
+- [ ] Black Panther (1998) #34
+- [ ] Black Panther (1998) #35
+- [ ] Deadpool #44
+- [ ] Black Panther (1998) #36
+- [ ] Black Panther (1998) #37
+- [ ] Black Panther (1998) #38
+- [ ] Black Panther (1998) #39
+- [ ] Black Panther (1998) #40
+- [ ] Black Panther (1998) #41
+- [ ] Black Panther (1998) #42
+- [ ] Black Panther (1998) #43
+- [ ] Black Panther (1998) #44
+- [ ] Black Panther (1998) #45
+- [ ] Black Panther (1998) #46
+- [ ] Black Panther (1998) #47
+- [ ] Black Panther (1998) #48
+- [ ] Black Panther (1998) #49
+- [ ] Black Panther (1998) #50
+- [ ] Black Panther (1998) #51
+- [ ] Black Panther (1998) #52
+- [ ] Black Panther (1998) #53
+- [ ] Black Panther (1998) #54
+- [ ] Black Panther (1998) #55
+- [ ] Black Panther (1998) #56
+- [ ] Black Panther (1998) #57
+- [ ] Black Panther (1998) #58
+- [ ] Black Panther (1998) #59
+- [ ] Black Panther (1998) #60
+- [ ] Black Panther (1998) #61
+- [ ] Black Panther (1998) #62
+
+## 2000s Black Panther
+
+- [ ] Black Panther #1
+- [ ] Black Panther #2
+- [ ] Black Panther #3
+- [ ] Black Panther #4
+- [ ] Black Panther #5
+- [ ] Black Panther #6
+- [ ] Black Panther #7
+- [ ] X-Men #175
+- [ ] Black Panther #8
+- [ ] X-Men #176
+- [ ] Black Panther #9
+- [ ] Black Panther #10
+- [ ] Black Panther #11
+- [ ] Black Panther #12
+- [ ] Black Panther #13
+- [ ] Black Panther #14
+- [ ] Black Panther #15
+- [ ] Black Panther #16
+- [ ] Black Panther #17
+- [ ] Black Panther #18
+- [ ] Black Panther #19
+- [ ] Black Panther #20
+- [ ] Black Panther #21
+- [ ] Black Panther #22
+- [ ] Black Panther #23
+- [ ] Black Panther #24
+- [ ] Black Panther #25
+- [ ] Black Panther #26
+- [ ] Black Panther #27
+- [ ] Black Panther #28
+- [ ] Black Panther #29
+- [ ] Black Panther #30
+- [ ] Black Panther #31
+- [ ] Black Panther #32
+- [ ] Black Panther #33
+- [ ] Black Panther #34
+- [ ] Black Panther Annual #1
+- [ ] Black Panther #35
+- [ ] Black Panther #36
+- [ ] Black Panther #37
+- [ ] Black Panther #38
+- [ ] Black Panther #39
+- [ ] Black Panther #40
+- [ ] Black Panther #41
+- [ ] Black Panther (2009) #1
+- [ ] Black Panther (2009) #2
+- [ ] Black Panther (2009) #3
+- [ ] Black Panther (2009) #4
+- [ ] Black Panther (2009) #5
+- [ ] Black Panther (2009) #6
+- [ ] Black Panther/Captain America: Flags of Our Father #1
+- [ ] Black Panther/Captain America: Flags of Our Father #2
+- [ ] Black Panther/Captain America: Flags of Our Father #3
+- [ ] Black Panther/Captain America: Flags of Our Father #4
+- [ ] Fantastic Four #544
+- [ ] Fantastic Four #545
+- [ ] Fantastic Four #546
+- [ ] Fantastic Four #547
+- [ ] Fantastic Four #548
+- [ ] Fantastic Four #549
+- [ ] Fantastic Four #550
+- [ ] X-Men: Worlds Apart #1
+- [ ] X-Men: Worlds Apart #2
+- [ ] X-Men: Worlds Apart #3
+- [ ] X-Men: Worlds Apart #4
+- [ ] Black Panther #7
+- [ ] Black Panther #8
+- [ ] Black Panther #9
+- [ ] Black Panther #10
+- [ ] Black Panther #11
+- [ ] Black Panther #7
+- [ ] Black Panther #8
+- [ ] Black Panther #9
+- [ ] Black Panther #10
+- [ ] Black Panther #11
+- [ ] Black Panther #12
+- [ ] Black Panther #13
+- [ ] Black Panther #14
+- [ ] Black Panther #15
+- [ ] Black Panther #16
+- [ ] Black Panther #17
+- [ ] Black Panther #18
+- [ ] Black Panther #19
+- [ ] Black Panther #20
+- [ ] Black Panther #21
+- [ ] Black Panther #22
+- [ ] Black Panther #23
+- [ ] Black Panther #24
+- [ ] Black Panther #25
+- [ ] Black Panther (2018) #1
+- [ ] Black Panther (2018) #2
+- [ ] Black Panther (2018) #3
+- [ ] Black Panther (2018) #4
+- [ ] Black Panther (2018) #5
+- [ ] Black Panther (2018) #6
+- [ ] Rise of the Black Panther #1
+- [ ] Rise of the Black Panther #2
+- [ ] Rise of the Black Panther #3
+- [ ] Rise of the Black Panther #4
+- [ ] Rise of the Black Panther #5
+- [ ] Rise of the Black Panther #6
+- [ ] Black Panther (2021) #1
+- [ ] Black Panther (2021) #2
+- [ ] Black Panther (2021) #3
+- [ ] Black Panther (2021) #4
+- [ ] Black Panther (2021) #5
+- [ ] Black Panther (2021) #6
+- [ ] Black Panther (2021) #7
+- [ ] Black Panther (2021) #8
+- [ ] Black Panther (2021) #9
+- [ ] Black Panther (2021) #10
+- [ ] Black Panther (2021) #11
+- [ ] Black Panther (2021) #12
+- [ ] Black Panther (2021) #13
+- [ ] Black Panther (2021) #14
+- [ ] Black Panther (2021) #15
+- [ ] Black Panther (2023) #1
+- [ ] Black Panther (2023) #2
+- [ ] Black Panther (2023) #3
+- [ ] Black Panther (2023) #4
+- [ ] Black Panther (2023) #5
+- [ ] Black Panther (2023) #6
