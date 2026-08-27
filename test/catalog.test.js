@@ -786,6 +786,14 @@ test('the timeline year survives parsing the catalog', () => {
   assert.equal(lists[0].timeline, 2006);
 });
 
+test('Marvel Knights to Planet X leads the 1998 timeline block', async () => {
+  const catalog = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
+  const first1998 = catalog.lists.find((list) => list.timeline === 1998);
+  assert.ok(first1998, 'no 1998 timeline entries were found');
+  assert.equal(first1998.id, 'marvel-knights-to-planet-x');
+  assert.equal(first1998.count, 487);
+});
+
 // A year is a whole number no earlier than Marvel Comics #1. Anything else is a maintainer's
 // typo, and a string would sort as though it were undated while looking correct in the file.
 test('a timeline that is not a usable year becomes null rather than being trusted', () => {
