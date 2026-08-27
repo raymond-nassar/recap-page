@@ -6,6 +6,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
+import { digestJson } from '../scripts/lib/chapter-orders.mjs';
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 function writeFixture(rootPath) {
@@ -49,6 +51,188 @@ function writeFixture(rootPath) {
   return hook;
 }
 
+function writePartitionFixture(rootPath) {
+  const hook = writeFixture(rootPath);
+  const data = path.join(rootPath, 'src', 'data');
+  const orders = path.join(data, 'orders');
+  const scriptData = path.join(rootPath, 'scripts', 'data');
+  const items = [1, 2, 3].map((issueId) => ({
+    issueId,
+    title: `Atomic Parent #${issueId}`,
+    number: String(issueId),
+    url: `https://www.marvel.com/comics/issue/${issueId}/atomic_parent_${issueId}`,
+    seriesId: 10,
+    seriesName: 'Atomic Parent (2000 - 2001)',
+    onSale: issueId === 3 ? '2001-01-01T00:00:00+0000' : '2000-01-01T00:00:00+0000',
+    mu: null,
+    digitalId: 100 + issueId,
+    cover: { path: `https://example.test/cover-${issueId}`, ext: 'jpg' },
+    description: null,
+    pageCount: 0,
+    creators: [],
+    collectedIn: 'Group',
+  }));
+  const chapters = [
+    {
+      id: 'atomic-parent-01',
+      name: 'First part',
+      sourceStart: 1,
+      sourceCount: 1,
+      ownerBulletCount: 1,
+      issueCount: 2,
+      timelineYear: 2000,
+      issueIdsSha256: digestJson([1, 2]),
+    },
+    {
+      id: 'atomic-parent-02',
+      name: 'Second part',
+      sourceStart: 2,
+      sourceCount: 1,
+      ownerBulletCount: 1,
+      issueCount: 1,
+      timelineYear: 2001,
+      issueIdsSha256: digestJson([3]),
+    },
+  ];
+  const ledger = {
+    schemaVersion: 1,
+    parentId: 'atomic-parent',
+    ownerIssue: 'https://example.test/issues/1',
+    ownerAttachmentSha256: '1'.repeat(64),
+    sourcePositions: 2,
+    sourceVectorSha256: digestJson(['First row', 'Second row']),
+    sourceGroups: [{
+      name: 'Group', sourceStart: 1, sourceCount: 2, issueCount: 3,
+    }],
+    chapterCount: 2,
+    issueCount: 3,
+    issueIdsSha256: digestJson([1, 2, 3]),
+    ownerBulletCount: 2,
+    chapterContractSha256: digestJson(chapters.map((chapter) => ({
+      id: chapter.id,
+      name: chapter.name,
+      sourceStart: chapter.sourceStart,
+      sourceCount: chapter.sourceCount,
+      ownerBulletCount: chapter.ownerBulletCount,
+      issueCount: chapter.issueCount,
+      timelineYear: chapter.timelineYear,
+      issueIdDigest: chapter.issueIdsSha256,
+    }))),
+    chapterNamesSha256: digestJson(chapters.map((chapter) => chapter.name)),
+    overlapFile: 'atomic-parent-overlaps.json',
+    path: {
+      id: 'atomic-parent',
+      name: 'Atomic Parent',
+      description: 'The two parts in source order.',
+      sourceOrigin: 'Fixture',
+      stepsSha256: digestJson(chapters.map((chapter) => chapter.id)),
+    },
+    corrections: [],
+    chapters,
+  };
+  const parent = {
+    id: 'atomic-parent',
+    name: 'Atomic Parent',
+    description: 'A partition parent fixture.',
+    source: null,
+    sourceOrigin: 'Fixture source',
+    sourceLicense: null,
+    generatedAt: '2026-01-01T00:00:00.000Z',
+    apiBase: 'https://example.test/v1',
+    count: 3,
+    collections: 1,
+    placeholders: 0,
+    unresolved: [],
+    items,
+  };
+  const peer = {
+    ...parent,
+    id: 'peer',
+    name: 'Peer',
+    description: 'A peer fixture.',
+    count: 1,
+    collections: 0,
+    items: [{ ...items[0], collectedIn: undefined }],
+  };
+  const manifest = {
+    lists: [
+      {
+        id: 'atomic-parent',
+        name: 'Atomic Parent',
+        description: 'A partition parent fixture.',
+        type: 'event',
+        depth: 'complete',
+        beginner: false,
+        group: null,
+        groupName: null,
+        variant: null,
+        sourceFile: 'atomic-parent.md',
+        partitionFile: 'atomic-parent-parts.json',
+        catalog: false,
+        sourceOrigin: 'Fixture source',
+        sourceLicense: null,
+        out: 'atomic_parent.json',
+        characters: ['Atomic Parent'],
+        keywords: [],
+        expect: 3,
+        timeline: 2000,
+        coverIssueId: 1,
+      },
+      {
+        id: 'peer',
+        name: 'Peer',
+        description: 'A peer fixture.',
+        type: 'event',
+        depth: 'complete',
+        beginner: false,
+        group: null,
+        groupName: null,
+        variant: null,
+        sourceFile: 'peer.md',
+        sourceOrigin: 'Fixture source',
+        sourceLicense: null,
+        out: 'peer.json',
+        characters: ['Peer'],
+        keywords: [],
+        expect: 1,
+        timeline: 2000,
+        coverIssueId: 1,
+      },
+    ],
+  };
+  writeFileSync(path.join(data, 'curated-lists.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+  writeFileSync(path.join(orders, 'atomic-parent.md'), [
+    '## Group',
+    '> First row',
+    '- [ ] [Atomic Parent #1](https://www.marvel.com/comics/issue/1/atomic_parent_1)',
+    '- [ ] [Atomic Parent #2](https://www.marvel.com/comics/issue/2/atomic_parent_2)',
+    '> Second row',
+    '- [ ] [Atomic Parent #3](https://www.marvel.com/comics/issue/3/atomic_parent_3)',
+  ].join('\n'));
+  writeFileSync(path.join(orders, 'peer.md'), '- [ ] [Atomic Parent #1](https://www.marvel.com/comics/issue/1/atomic_parent_1)\n');
+  writeFileSync(path.join(data, 'atomic_parent.json'), `${JSON.stringify(parent, null, 2)}\n`);
+  writeFileSync(path.join(data, 'peer.json'), `${JSON.stringify(peer, null, 2)}\n`);
+  writeFileSync(path.join(data, 'atomic_parent_01.json'), '{"sentinel":"existing child"}\n');
+  writeFileSync(path.join(data, 'atomic_parent_02.json'), '{"sentinel":"existing child"}\n');
+  writeFileSync(path.join(scriptData, 'atomic-parent-parts.json'), `${JSON.stringify(ledger, null, 2)}\n`);
+  writeFileSync(path.join(scriptData, 'atomic-parent-overlaps.json'), '{"sentinel":"existing overlap"}\n');
+
+  writeFileSync(hook, `globalThis.fetch = async (url) => {
+    const id = Number(String(url).match(/issues\\/(\\d+)/)?.[1]);
+    return new Response(JSON.stringify({
+      id,
+      title: 'Atomic Parent #' + id,
+      detailUrl: 'https://www.marvel.com/comics/issue/' + id + '/atomic_parent_' + id,
+      seriesId: 10,
+      seriesName: 'Atomic Parent (2000 - 2001)',
+      onSaleDate: id === 3 ? '2001-01-01T00:00:00+0000' : '2000-01-01T00:00:00+0000',
+      digitalId: 100 + id,
+      cover: { path: 'https://example.test/cover-' + id, extension: 'jpg' },
+    }), { status: 200, headers: { 'content-type': 'application/json' } });
+  };\n`);
+  return { hook, ledger };
+}
+
 test('an invalid configured cover leaves both final vendor outputs unchanged', (t) => {
   const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-atomic-'));
   t.after(() => rmSync(fixture, { recursive: true, force: true }));
@@ -62,4 +246,84 @@ test('an invalid configured cover leaves both final vendor outputs unchanged', (
   assert.match(output.stderr, /coverIssueId 2 is not an issue in this order/);
   assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json'), 'utf8'), '{"sentinel":"existing payload"}\n');
   assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'), '{"sentinel":"existing catalog"}\n');
+});
+
+test('catalog-only expands a noncatalog parent into ordinary children, a path, and overlaps', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-partition-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writePartitionFixture(fixture);
+  const output = spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--catalog-only'], {
+    cwd: fixture,
+    encoding: 'utf8',
+  });
+  assert.equal(output.status, 0, output.stderr);
+
+  const data = path.join(fixture, 'src', 'data');
+  const catalog = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8'));
+  assert.deepEqual(catalog.lists.map((entry) => entry.id), ['atomic-parent-01', 'atomic-parent-02', 'peer']);
+  assert.equal(catalog.lists.some((entry) => entry.id === 'atomic-parent'), false);
+  assert.deepEqual(catalog.paths.map((entry) => entry.steps), [['atomic-parent-01', 'atomic-parent-02']]);
+  const first = JSON.parse(readFileSync(path.join(data, 'atomic_parent_01.json'), 'utf8'));
+  assert.equal(first.collections, 0);
+  assert.deepEqual(first.items.map((item) => item.issueId), [1, 2]);
+  assert.ok(first.items.every((item) => !Object.hasOwn(item, 'collectedIn')));
+  const overlap = JSON.parse(readFileSync(
+    path.join(fixture, 'scripts', 'data', 'atomic-parent-overlaps.json'),
+    'utf8',
+  ));
+  assert.deepEqual(
+    [overlap.pairCount, overlap.chapterCountWithOverlap, overlap.existingListCount],
+    [1, 1, 1],
+  );
+});
+
+test('a generated child id is a valid --only target for its complete family', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-partition-only-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  const { hook } = writePartitionFixture(fixture);
+  const output = spawnSync(
+    process.execPath,
+    ['--import', pathToFileURL(hook).href, 'scripts/vendor-orders.mjs', '--only=atomic-parent-02'],
+    { cwd: fixture, encoding: 'utf8' },
+  );
+  assert.equal(output.status, 0, output.stderr);
+  assert.match(output.stdout, /Vendoring 1 of 2 source orders/);
+  for (const ordinal of ['01', '02']) {
+    const child = JSON.parse(readFileSync(
+      path.join(fixture, 'src', 'data', `atomic_parent_${ordinal}.json`),
+      'utf8',
+    ));
+    assert.equal(child.id, `atomic-parent-${ordinal}`);
+  }
+});
+
+test('an invalid partition leaves every generated output unchanged', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-partition-atomic-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  const { ledger } = writePartitionFixture(fixture);
+  ledger.chapters[1].sourceStart += 1;
+  writeFileSync(
+    path.join(fixture, 'scripts', 'data', 'atomic-parent-parts.json'),
+    `${JSON.stringify(ledger, null, 2)}\n`,
+  );
+  const output = spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--catalog-only'], {
+    cwd: fixture,
+    encoding: 'utf8',
+  });
+  assert.notEqual(output.status, 0);
+  assert.match(output.stderr, /does not continue the source-position vector/);
+  for (const file of ['atomic_parent_01.json', 'atomic_parent_02.json']) {
+    assert.equal(
+      readFileSync(path.join(fixture, 'src', 'data', file), 'utf8'),
+      '{"sentinel":"existing child"}\n',
+    );
+  }
+  assert.equal(
+    readFileSync(path.join(fixture, 'scripts', 'data', 'atomic-parent-overlaps.json'), 'utf8'),
+    '{"sentinel":"existing overlap"}\n',
+  );
+  assert.equal(
+    readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'),
+    '{"sentinel":"existing catalog"}\n',
+  );
 });

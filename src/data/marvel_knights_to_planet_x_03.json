@@ -1,0 +1,236 @@
+{
+  "id": "marvel-knights-to-planet-x-03",
+  "name": "Marvel Boy to Early X-Men Setup",
+  "description": "Owner-curated chapter 03 of 78 in the Marvel Knights to Planet X reading path, from Marvel Boy (2000) #1 through Uncanny X-Men (1963) #394.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 6,
+    "sourceCount": 2,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 10002,
+      "title": "Marvel Boy (2000) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10002/marvel_boy_2000_1",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-08-01T00:00:00+0000",
+      "mu": "2000-08-01T00:00:00+0000",
+      "digitalId": 10596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/4bb5b94169046",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10003,
+      "title": "Marvel Boy (2000) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10003/marvel_boy_2000_2",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-09-01T00:00:00+0000",
+      "mu": "2000-09-01T00:00:00+0000",
+      "digitalId": 10597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/4bb5b93c3b8ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10004,
+      "title": "Marvel Boy (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10004/marvel_boy_2000_3",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-10-01T00:00:00+0000",
+      "mu": "2000-10-01T00:00:00+0000",
+      "digitalId": 11238,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bb5b936db261",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10005,
+      "title": "Marvel Boy (2000) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10005/marvel_boy_2000_4",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 11239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/4bb5b79309359",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10006,
+      "title": "Marvel Boy (2000) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10006/marvel_boy_2000_5",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 11240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/4bb5b78dd8b00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10007,
+      "title": "Marvel Boy (2000) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10007/marvel_boy_2000_6",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2001-01-31T00:00:00+0000",
+      "mu": "2001-01-31T00:00:00+0000",
+      "digitalId": 11241,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/50/4bb5b5bbae141",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Kelly",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13935,
+      "title": "Uncanny X-Men (1963) #394",
+      "number": "394",
+      "url": "https://www.marvel.com/comics/issue/13935/uncanny_x-men_1963_394",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-06-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31297,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5919a86abab7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

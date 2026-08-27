@@ -1,0 +1,165 @@
+{
+  "id": "marvel-knights-to-planet-x-64",
+  "name": "Spectacular Spider-Man: The Hunger",
+  "description": "Owner-curated chapter 64 of 78 in the Marvel Knights to Planet X reading path, from Spectacular Spider-Man (2003) #1 through Spectacular Spider-Man (2003) #5.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 78,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 18832,
+      "title": "Spectacular Spider-Man (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18832/spectacular_spider-man_2003_1",
+      "seriesId": 556,
+      "seriesName": "Spectacular Spider-Man (2003 - 2005)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2003-09-01T00:00:00+0000",
+      "digitalId": 6902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/5c599ceeb6f08",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18843,
+      "title": "Spectacular Spider-Man (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/18843/spectacular_spider-man_2003_2",
+      "seriesId": 556,
+      "seriesName": "Spectacular Spider-Man (2003 - 2005)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2003-09-01T00:00:00+0000",
+      "digitalId": 6913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5c59a2a6bf03c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18852,
+      "title": "Spectacular Spider-Man (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18852/spectacular_spider-man_2003_3",
+      "seriesId": 556,
+      "seriesName": "Spectacular Spider-Man (2003 - 2005)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 6917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/4bb7c2bd44ffe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18853,
+      "title": "Spectacular Spider-Man (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/18853/spectacular_spider-man_2003_4",
+      "seriesId": 556,
+      "seriesName": "Spectacular Spider-Man (2003 - 2005)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2003-11-01T00:00:00+0000",
+      "digitalId": 6918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5c59b70ce9e62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 197,
+      "title": "Spectacular Spider-Man (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/197/spectacular_spider-man_2003_5",
+      "seriesId": 556,
+      "seriesName": "Spectacular Spider-Man (2003 - 2005)",
+      "onSale": "2003-12-01T00:00:00+0000",
+      "mu": "2003-12-01T00:00:00+0000",
+      "digitalId": 6919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5c59bd1326720",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

@@ -2,10 +2,10 @@
   "candidateId": "iron-man-reading-order",
   "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805",
   "mappingDigest": "3b1656e2f3d9eda936d2930e7d1fbb3db5ab7a094268e40a2cf0560aa463828c",
-  "libraryDigest": "7b50fe8bf9a37a34a10045e6176bd4f42e0e384908a6061e7a302ce7940da2b9",
+  "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
   "peerDigests": {},
   "candidateCount": 811,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -72,6 +72,46 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 33,
+      "sharedIds": [
+        "11295",
+        "11296",
+        "11300",
+        "11304",
+        "11308",
+        "9525",
+        "9526",
+        "37769",
+        "37780",
+        "37791",
+        "37802",
+        "37813",
+        "37824",
+        "37835",
+        "37846",
+        "37857",
+        "37770",
+        "37771",
+        "37772",
+        "37773",
+        "19885",
+        "40",
+        "1438",
+        "1532",
+        "1628",
+        "1720",
+        "1829",
+        "6097",
+        "6301",
+        "13477",
+        "15855",
+        "15965",
+        "16519"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -916,5 +956,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "9197432155888c44bf4957107b4315c63e5d785660ee4c133e6ddb9a7a1222b1"
+  "reportDigest": "56008133e7792d1e9719ae8623a6caf486cb7559ab1d775ed50ca228a8d7a8ac"
 }

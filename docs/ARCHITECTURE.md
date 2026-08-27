@@ -105,11 +105,15 @@ back to constructing both when it is handed neither, at `src/js/api.js:68-69`. T
 tests and for any future caller; the running app always passes its own, which is what keeps one
 budget across every request the page makes.
 
-**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js` parses
-the curated-list manifest, and its only importer outside the tests is the vendoring script, at
-`scripts/vendor-orders.mjs:28`. It runs in Node when someone adds a reading list, never in the
-browser. So twenty-two of the twenty-three are reachable from the page, and a graph drawn from the
-directory listing rather than from the imports would have been wrong by one.
+**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js`
+parses the curated-list manifest, and its only importer outside the tests is the vendoring script,
+at `scripts/vendor-orders.mjs:28`.
+It runs in Node when someone adds a reading list, never in the browser. The same Node-only boundary
+contains `scripts/lib/chapter-orders.mjs`: one noncatalog source order can be validated and emitted
+as ordinary child payloads, catalog entries, a reading path and overlap evidence without teaching
+the browser a partition model. So twenty-two of the twenty-three browser library modules are
+reachable from the page, and a graph drawn from directory listings rather than imports would be
+wrong.
 
 ## Marking one issue read
 

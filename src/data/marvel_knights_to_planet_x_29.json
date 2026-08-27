@@ -1,0 +1,81 @@
+{
+  "id": "marvel-knights-to-planet-x-29",
+  "name": "New X-Men: New Worlds (Part 1)",
+  "description": "Owner-curated chapter 29 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #127 through New X-Men (2001) #128.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 2,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 39,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14946,
+      "title": "New X-Men (2001) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/14946/new_x-men_2001_127",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-06-05T00:00:00+0000",
+      "mu": "2002-06-05T00:00:00+0000",
+      "digitalId": 3052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/577d1e5e3289c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Paul Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14947,
+      "title": "New X-Men (2001) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/14947/new_x-men_2001_128",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-06-19T00:00:00+0000",
+      "mu": "2002-06-19T00:00:00+0000",
+      "digitalId": 6576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/577d25a808cf7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

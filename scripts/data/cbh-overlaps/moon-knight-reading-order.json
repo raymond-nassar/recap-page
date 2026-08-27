@@ -2,7 +2,7 @@
   "candidateId": "moon-knight-reading-order",
   "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
   "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-  "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
+  "libraryDigest": "dea6d11af8d938e756ed14121cf07189c4eb5a6ba6d74ef042af73b3e0b14061",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 414,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 11
   },
   "candidateCount": 374,
-  "comparisonCount": 160,
+  "comparisonCount": 161,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -158,6 +158,39 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 26,
+      "sharedIds": [
+        "17888",
+        "17889",
+        "17890",
+        "17891",
+        "17892",
+        "17893",
+        "17894",
+        "6929",
+        "16055",
+        "16062",
+        "16063",
+        "16064",
+        "16065",
+        "16066",
+        "16067",
+        "16068",
+        "16069",
+        "16056",
+        "16057",
+        "16058",
+        "35160",
+        "37346",
+        "35140",
+        "35130",
+        "35128",
+        "35144"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -1120,5 +1153,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4f75280efdccd37e7749678ec27844879a9af3a1bac90fe2d2a417946b0da5ae"
+  "reportDigest": "96e6ff3d365a0d4e06684dd522cf6db68d3fad6cb40f2cb4fb3f7064abba0e4a"
 }

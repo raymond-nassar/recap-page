@@ -1,0 +1,149 @@
+{
+  "id": "marvel-knights-to-planet-x-67",
+  "name": "Exiles: Fantastic Voyage",
+  "description": "Owner-curated chapter 67 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #31 through Exiles (2001) #37.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 81,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 4881,
+      "title": "Exiles (2001) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/4881/exiles_2001_31",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 724,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/5d51c08349436",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16274,
+      "title": "Exiles (2001) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/16274/exiles_2001_32",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 4029,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4bc36c2de2539",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16275,
+      "title": "Exiles (2001) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/16275/exiles_2001_33",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2003-11-01T00:00:00+0000",
+      "digitalId": 4030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bc36c32c4c89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16276,
+      "title": "Exiles (2001) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/16276/exiles_2001_34",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2003-11-01T00:00:00+0000",
+      "digitalId": 4031,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/4bc36c37caaee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 354,
+      "title": "Exiles (2001) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/354/exiles_2001_35",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-12-01T00:00:00+0000",
+      "mu": "2003-12-01T00:00:00+0000",
+      "digitalId": 3304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/57ead4e3670d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 313,
+      "title": "Exiles (2001) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/313/exiles_2001_36",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-12-01T00:00:00+0000",
+      "mu": "2003-12-01T00:00:00+0000",
+      "digitalId": 3305,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/55f1ebd14a4d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 345,
+      "title": "Exiles (2001) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/345/exiles_2001_37",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2004-01-01T00:00:00+0000",
+      "mu": "2004-01-01T00:00:00+0000",
+      "digitalId": 3306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/57ead575e525b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

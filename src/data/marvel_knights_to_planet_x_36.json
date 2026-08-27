@@ -1,0 +1,178 @@
+{
+  "id": "marvel-knights-to-planet-x-36",
+  "name": "Spider-Man: Life and Death of Spiders",
+  "description": "Owner-curated chapter 36 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #46 through Amazing Spider-Man (1999) #50.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 46,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 43159,
+      "title": "Amazing Spider-Man (1999) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/43159/amazing_spider-man_1999_46",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-11-06T00:00:00+0000",
+      "mu": "2002-11-06T00:00:00+0000",
+      "digitalId": 30165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/52962a9406367",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43160,
+      "title": "Amazing Spider-Man (1999) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/43160/amazing_spider-man_1999_47",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-11-20T00:00:00+0000",
+      "mu": "2002-11-20T00:00:00+0000",
+      "digitalId": 30166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/529628f826025",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43161,
+      "title": "Amazing Spider-Man (1999) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/43161/amazing_spider-man_1999_48",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-12-25T00:00:00+0000",
+      "mu": "2002-12-25T00:00:00+0000",
+      "digitalId": 30167,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/57e94f6845cd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43162,
+      "title": "Amazing Spider-Man (1999) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/43162/amazing_spider-man_1999_49",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-01-22T00:00:00+0000",
+      "mu": "2003-01-22T00:00:00+0000",
+      "digitalId": 30168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/57e9513b9994f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43163,
+      "title": "Amazing Spider-Man (1999) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/43163/amazing_spider-man_1999_50",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-02-26T00:00:00+0000",
+      "mu": "2003-02-26T00:00:00+0000",
+      "digitalId": 30169,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57e952d3b3a86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

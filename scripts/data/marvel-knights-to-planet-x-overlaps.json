@@ -1,0 +1,720 @@
+{
+  "parentId": "marvel-knights-to-planet-x",
+  "generatedAt": "2026-08-27T18:01:26.436Z",
+  "pairCount": 53,
+  "chapterCountWithOverlap": 44,
+  "existingListCount": 14,
+  "sharedOccurrenceCount": 279,
+  "internalChildOverlapCount": 0,
+  "matrixSha256": "89f987ace565c82c236a81a33fca18091eeac54cba47963cdd7f7be0e5198561",
+  "existingLists": [
+    {
+      "id": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 53
+    },
+    {
+      "id": "captain-america-reading-order-modern-marvel-era",
+      "sharedCount": 1
+    },
+    {
+      "id": "daredevil-reading-order",
+      "sharedCount": 73
+    },
+    {
+      "id": "doctor-doom-primer",
+      "sharedCount": 1
+    },
+    {
+      "id": "loki-reading-order",
+      "sharedCount": 2
+    },
+    {
+      "id": "magneto-reading-order",
+      "sharedCount": 13
+    },
+    {
+      "id": "marvels-best-phoenix-comics",
+      "sharedCount": 9
+    },
+    {
+      "id": "punisher-reading-order",
+      "sharedCount": 38
+    },
+    {
+      "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 32
+    },
+    {
+      "id": "silver-surfer-reading-order",
+      "sharedCount": 1
+    },
+    {
+      "id": "spider-man-best-of",
+      "sharedCount": 6
+    },
+    {
+      "id": "spider-man-no-way-home",
+      "sharedCount": 3
+    },
+    {
+      "id": "venom-reading-order",
+      "sharedCount": 5
+    },
+    {
+      "id": "wolverine-reading-order",
+      "sharedCount": 42
+    }
+  ],
+  "pairs": [
+    {
+      "chapterId": "marvel-knights-to-planet-x-01",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 15,
+      "sharedIssueIds": [
+        15609,
+        15620,
+        15631,
+        15642,
+        15653,
+        15664,
+        15675,
+        15686,
+        15694,
+        15610,
+        15611,
+        15612,
+        15613,
+        15614,
+        15615
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-02",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 12,
+      "sharedIssueIds": [
+        18977,
+        18978,
+        18979,
+        18980,
+        18981,
+        18982,
+        18983,
+        18984,
+        18985,
+        18986,
+        22447,
+        22448
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-05",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        14933,
+        14934,
+        14935
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-06",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        15616,
+        15617,
+        15618,
+        15619,
+        4618,
+        4619,
+        4620,
+        4622,
+        4623
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-07",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        10534,
+        3583,
+        43123,
+        43125,
+        43128,
+        43130,
+        43132
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-07",
+      "existingListId": "spider-man-best-of",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        3583,
+        43123,
+        43125,
+        43128,
+        43130,
+        43132
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-12",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        14936,
+        14937,
+        14938,
+        14939,
+        14940,
+        14941
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-13",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        18958,
+        18959,
+        18960,
+        18961,
+        18962
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-13",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        18958,
+        18959,
+        18960,
+        18961,
+        18962
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-15",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        14942,
+        14943,
+        14944,
+        14945
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-17",
+      "existingListId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        14434,
+        14435,
+        14436,
+        14437,
+        14438,
+        14439
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-19",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        18963,
+        18964
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-19",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        18963,
+        18964
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-20",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        15627,
+        15628,
+        15629,
+        15630,
+        15632,
+        15633
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-21",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        43134,
+        43137,
+        43139
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-24",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        43141,
+        43143,
+        43145,
+        43147,
+        43148,
+        43149
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-25",
+      "existingListId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        14440,
+        14441,
+        14442,
+        14443
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-26",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        15634,
+        15635,
+        15636,
+        15637,
+        15638,
+        15639,
+        15640,
+        15641,
+        15643
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-28",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        10555,
+        10556,
+        10557,
+        10558
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-29",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        14946,
+        14947
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-31",
+      "existingListId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        14444,
+        14445,
+        14446,
+        14447,
+        14448,
+        14449
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-32",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14948,
+        14949,
+        14950,
+        14951,
+        14952
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-34",
+      "existingListId": "silver-surfer-reading-order",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        15583
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-35",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        18970,
+        18971,
+        18972,
+        18973,
+        18974
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-36",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        43159,
+        43160,
+        43161,
+        43162,
+        43163
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-38",
+      "existingListId": "captain-america-reading-order-modern-marvel-era",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        12817
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-42",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14953,
+        14954,
+        14955,
+        14956,
+        14957
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-43",
+      "existingListId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14450,
+        14451,
+        14452,
+        14453,
+        14454
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-44",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        18975,
+        18976,
+        17174,
+        17175,
+        17176
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-45",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        15644,
+        15645,
+        15646,
+        15647,
+        15648
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-46",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        43164,
+        43165,
+        43166,
+        43167,
+        43168,
+        43169
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-47",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        10929,
+        10930,
+        10931,
+        10932,
+        10933,
+        10934
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-49",
+      "existingListId": "doctor-doom-primer",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        15590
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-52",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        17177,
+        17178,
+        17179,
+        17180
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-53",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        15649,
+        15650,
+        15651,
+        15652,
+        15654
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-54",
+      "existingListId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14455,
+        14456,
+        14457,
+        14458,
+        14459
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-55",
+      "existingListId": "punisher-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        17155,
+        17156,
+        34318,
+        34319,
+        34320
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-56",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        20054,
+        20055,
+        20056,
+        20057,
+        20058
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-58",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        20059,
+        20060,
+        20061,
+        20062,
+        20064,
+        20065,
+        20066
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-63",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        43170,
+        43171,
+        277,
+        322,
+        392
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-63",
+      "existingListId": "spider-man-no-way-home",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        43170,
+        43171,
+        277
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-64",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        18832,
+        18843,
+        18852,
+        18853,
+        197
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-64",
+      "existingListId": "venom-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        18832,
+        18843,
+        18852,
+        18853,
+        197
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-65",
+      "existingListId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        14460,
+        14461,
+        318,
+        339,
+        364,
+        333
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-69",
+      "existingListId": "daredevil-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        15655,
+        15656,
+        326,
+        358,
+        327
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-70",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        231
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-73",
+      "existingListId": "magneto-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        14961,
+        14962,
+        14963,
+        14964
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-73",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        14958,
+        14959,
+        14960,
+        14961,
+        14962,
+        14963,
+        14964
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-76",
+      "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        290,
+        361,
+        413,
+        441,
+        491,
+        643
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-76",
+      "existingListId": "loki-reading-order",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        290,
+        361
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-78",
+      "existingListId": "magneto-reading-order",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        14965,
+        125,
+        136,
+        124,
+        123,
+        122,
+        121,
+        120,
+        420
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-78",
+      "existingListId": "marvels-best-phoenix-comics",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        14965,
+        125,
+        136,
+        124,
+        123,
+        122,
+        121,
+        120,
+        420
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-78",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        14965,
+        125,
+        136,
+        124,
+        123,
+        122,
+        121,
+        120,
+        420
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "id": "marvel-knights-to-planet-x-43",
+  "name": "Hulk: Dark Minds, Dark Hearts",
+  "description": "Owner-curated chapter 43 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #50 through Hulk (1999) #54.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 55,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14450,
+      "title": "Hulk (1999) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/14450/hulk_1999_50",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-02-12T00:00:00+0000",
+      "mu": "2008-02-15T00:00:00+0000",
+      "digitalId": 3022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5b3a293984628",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14451,
+      "title": "Hulk (1999) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/14451/hulk_1999_51",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-03-12T00:00:00+0000",
+      "mu": "2007-04-01T00:00:00+0000",
+      "digitalId": 3023,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5b3a32f86d85e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14452,
+      "title": "Hulk (1999) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/14452/hulk_1999_52",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-04-09T00:00:00+0000",
+      "mu": "2008-02-29T00:00:00+0000",
+      "digitalId": 3024,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/4bc46b919845e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14453,
+      "title": "Hulk (1999) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/14453/hulk_1999_53",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-04-23T00:00:00+0000",
+      "mu": "2008-03-14T00:00:00+0000",
+      "digitalId": 3025,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/4bc46b8cdf0ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14454,
+      "title": "Hulk (1999) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/14454/hulk_1999_54",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-05-14T00:00:00+0000",
+      "mu": "2008-03-28T00:00:00+0000",
+      "digitalId": 3026,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/4bc46b87d49c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -24,6 +24,22 @@ have saved is changed.
 For maintainers: the frozen source has 414 occurrences: 374 exact identities, 11 backward repeats,
 18 metadata gaps tracked in Issue #310, and 11 partial-material exclusions.
 
+### Added a complete Black Widow reading guide
+
+In plain English: A new Black Widow guide follows Natasha Romanoff's comics from her earliest appearances through the latest source-page additions. It has exact Marvel links for 556 comics, while 14 source references stay visible as unresolved placeholders rather than being guessed at or hidden. Nothing you have saved is changed.
+
+### Split Marvel Knights to Planet X into shorter Reading Lists
+
+In plain English: Modern Timeline now offers the owner-curated Marvel Knights to Planet X journey
+as 78 shorter Reading Lists from 1998 through 2004 instead of one 487-issue list. Each chapter can
+be previewed, added and tracked on its own, while the separate setup guide and other Marvel Ages
+lists stay where they were. Any copy of the former full list already saved in this browser remains
+unchanged, including its progress.
+
+For maintainers: one noncatalog partition parent and one checked ledger generate all 78 payloads,
+their owner-order path and current overlap evidence. The children conserve all 99 source positions
+and 487 unique issue IDs exactly.
+
 ### Added a complete Loki reading guide
 
 In plain English: A complete Loki reading guide is now available from the character's earliest
@@ -33,13 +49,6 @@ saved is changed.
 
 For maintainers: the source expands to 830 occurrences: 638 exact issue rows, 53 repeats, 18
 metadata gaps tracked in Issue #302, and 121 exclusions.
-
-### Corrected the opening of Modern Timeline
-
-In plain English: Modern Timeline now begins with Marvel Knights to Planet X in 1998 and moves
-directly to Avengers Disassembled in 2004. The empty years between them remain visible, while the
-other Reading Lists from those years stay available in Marvel Ages. Nothing you have saved is
-changed.
 
 ### Added a complete Magneto reading guide
 

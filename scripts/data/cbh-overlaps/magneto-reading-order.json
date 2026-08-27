@@ -2,7 +2,7 @@
   "candidateId": "magneto-reading-order",
   "packetDigest": "c3295cf4a756bbfcd42638712edd5f0dd3386d1924f95ffa94402711d020a1d6",
   "mappingDigest": "74d8d5a2bcf13c4b2034a695fe156c919ff20dcf8fce23819471c45a65709ed5",
-  "libraryDigest": "4eb4cab6b0ff289e6b97ea03d238ca717b7efe268970b04504b1e28d8db3c9a5",
+  "libraryDigest": "117338e4d6908d1718f7a0b9093c19c27da46388f486a680c2cf77a80c2db12b",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 811,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 47
   },
   "candidateCount": 695,
-  "comparisonCount": 157,
+  "comparisonCount": 158,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -136,6 +136,30 @@
         "13438",
         "15939",
         "16122"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 17,
+      "sharedIds": [
+        "7294",
+        "7290",
+        "7291",
+        "7292",
+        "7293",
+        "7295",
+        "7296",
+        "7297",
+        "7298",
+        "7300",
+        "6923",
+        "18784",
+        "7250",
+        "7251",
+        "14313",
+        "17788",
+        "13848"
       ],
       "relationship": "partial"
     },
@@ -1847,5 +1871,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "59f639a70b168d622f1df961cf3b8a219e504282c4e72ebbd59c2a7916fd47ad"
+  "reportDigest": "47005123e2ae853bc4d2c46c7ac0ad24a95647f01e87e49080541599628ef1a9"
 }

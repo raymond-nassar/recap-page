@@ -2,7 +2,7 @@
   "candidateId": "question-of-the-week-do-you-have-a-hulk-reading-order",
   "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
   "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-  "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
+  "libraryDigest": "efb63bc80dfda2a16068ed8ea7dfc149db54d1aa0455d1e541f5c71df9a182ec",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1242,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 75
   },
   "candidateCount": 1140,
-  "comparisonCount": 136,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -88,6 +88,17 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "16880",
+        "9255",
+        "9260",
+        "7409"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -1008,5 +1019,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "331d4dd520c3203c52cdbe6d384b50bf3d5908dc8d6d64b65ad3513583410752"
+  "reportDigest": "692261a9e06675172416d86470873e9f923c173a825169a49116ad2cd51920bf"
 }

@@ -91,10 +91,14 @@ export function parseChecklist(text) {
   const entries = [];
   const unresolved = [];
   const headings = [];
-  if (typeof text !== 'string') return { entries, unresolved, headings };
+  const sourcePositions = [];
+  if (typeof text !== 'string') return {
+    entries, unresolved, headings, sourcePositions,
+  };
 
   let index = 0;
   let section = null;
+  let sourcePosition = null;
   for (const rawLine of text.split(/\r?\n/)) {
     const line = rawLine.replace(/\u00a0/g, ' ');
     if (!line.trim()) continue;
@@ -107,6 +111,21 @@ export function parseChecklist(text) {
       // second `#` further down the file would leave the issues under it still labelled with
       // the last trade, which is the one wrong answer that looks right.
       section = h[1].length >= 2 ? (title || null) : null;
+      sourcePosition = null;
+      continue;
+    }
+
+    const quoted = /^\s{0,3}>\s+(.+)$/.exec(line);
+    if (quoted) {
+      const label = stripInlineMarkdown(quoted[1]);
+      sourcePosition = label ? {
+        ordinal: sourcePositions.length + 1,
+        label,
+        section,
+        start: index,
+        count: 0,
+      } : null;
+      if (sourcePosition) sourcePositions.push(sourcePosition);
       continue;
     }
 
@@ -146,6 +165,7 @@ export function parseChecklist(text) {
     const issueId = issueIdFromUrl(url);
     const at = index;
     index += 1;
+    if (sourcePosition) sourcePosition.count += 1;
 
     if (issueId != null) {
       entries.push({
@@ -161,7 +181,9 @@ export function parseChecklist(text) {
     }
   }
 
-  return { entries, unresolved, headings };
+  return {
+    entries, unresolved, headings, sourcePositions,
+  };
 }
 
 // Plain title list: one per line, optional leading bullet or checkbox.

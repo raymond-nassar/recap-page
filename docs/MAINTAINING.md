@@ -200,6 +200,21 @@ npm run vendor -- --only=<id>
 Re-vendoring every order costs hundreds of API requests and restamps files whose content did not
 change. A malformed or unresolved entry fails rather than shipping a quietly shorter order.
 
+One local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`, and
+keep the checked ledger under `scripts/data`. The vendor validates source-position coverage, the
+pinned parent issue vector, child metadata, derived years, path order and overlaps before writing
+anything. It then keeps the parent payload for provenance and existing saved lists while emitting
+ordinary child payloads and catalog entries. Catalog-only regeneration is offline and still rebuilds
+the children, generated path and overlap matrix:
+
+```text
+npm run vendor -- --catalog-only
+npm run vendor -- --only=<parent-or-generated-child-id>
+```
+
+A generated child ID resolves to its partition parent so the whole family remains coherent. Review
+all generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
+
 ### Preserve source evidence
 
 Every manually curated order must have enough evidence for another maintainer to reproduce it.
@@ -444,12 +459,14 @@ a Character Spotlight classification; Storylines remains the canonical shelf.
 
 ## Create reading paths and collected-edition groups
 
-A reading path is a named sequence of existing order IDs. Define it in the `paths` array beside the
-curated lists in `src/data/curated-lists.json`. Each step is a list `id`, not a story-group key.
-Include a stable path ID, reader-facing name and description, source credit, and at least two steps.
+A reading path is a named sequence of existing order IDs. An ordinary authored path belongs in the
+`paths` array beside the curated lists in `src/data/curated-lists.json`. A partition path belongs in
+its ledger because its child IDs do not exist until generation. Each step is a list `id`, not a
+story-group key. Include a stable path ID, reader-facing name and description, source credit, and at
+least two steps.
 
-The vendor run refuses missing list IDs, duplicate stories, duplicate path IDs, and paths with fewer
-than two steps. Tests also verify that shipped path stops do not overlap.
+The vendor run refuses missing list IDs, duplicate stories, duplicate path IDs, stale generated
+steps, and paths with fewer than two steps. Tests also verify that shipped path stops do not overlap.
 
 A hand-authored checklist can divide issues with `##` subheadings. Each subheading names a collected
 edition and groups the issues beneath it. A `#` heading remains the order title and ends any open

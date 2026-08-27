@@ -8947,12 +8947,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Reviewed every complete-library comparison, including later guides. The 17 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
+    "rationale": "Reviewed every complete-library comparison, including later guides. The 18 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "4f75280efdccd37e7749678ec27844879a9af3a1bac90fe2d2a417946b0da5ae",
+    "reportDigest": "96e6ff3d365a0d4e06684dd522cf6db68d3fad6cb40f2cb4fb3f7064abba0e4a",
     "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
     "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-    "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
+    "libraryDigest": "dea6d11af8d938e756ed14121cf07189c4eb5a6ba6d74ef042af73b3e0b14061",
     "peerDigests": {},
     "dispositions": [
       {
@@ -9106,6 +9106,15 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ids were found in the complete-library comparison.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The partial relationship shares 26 provider issue ids but does not duplicate the Moon Knight source guide.",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -10396,6 +10405,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "28602509ba83145b16a8c00f5ac3ce25f4090df95f4a91cc5cd826e24df85893"
+    "approvalDigest": "90d40425242d62249b1529d9c5ac0f9422cadfc54f3af0d90c85ec0977e33bb6"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T16:47:23.578Z",
+  "generatedAt": "2026-08-27T18:01:26.436Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2631,7 +2631,7 @@
       "id": "ant-man-reading-order",
       "file": "ant_man_reading_order.json",
       "name": "Ant-Man",
-      "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
+      "description": "Ant-Man from Hank Pym\u2019s first appearance through Scott Lang, Eric O\u2019Grady, and the modern Ant-Man and the Wasp era.",
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
@@ -2778,6 +2778,45 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T09:36:57.369Z"
+    },
+    {
+      "id": "black-widow-reading-order",
+      "file": "black_widow_reading_order.json",
+      "name": "Black Widow",
+      "description": "The complete Black Widow reading guide from Natasha Romanoff's earliest Marvel appearances through her modern solo series and team appearances.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 570,
+      "collections": 143,
+      "characters": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Daredevil",
+        "Avengers",
+        "Hawkeye"
+      ],
+      "keywords": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Avengers",
+        "Marvel",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/536d5bd4362ea",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T17:44:12.206Z"
     },
     {
       "id": "daredevil-reading-order",
@@ -4723,30 +4762,21 @@
       "updatedAt": "2026-08-25T15:53:03.208Z"
     },
     {
-      "id": "marvel-knights-to-planet-x",
-      "file": "marvel_knights_to_planet_x.json",
-      "name": "Marvel Knights to Planet X",
-      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "id": "marvel-knights-to-planet-x-01",
+      "file": "marvel_knights_to_planet_x_01.json",
+      "name": "Daredevil & Black Widow Opening Sequence",
+      "description": "Owner-curated chapter 01 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #1 through Daredevil (1998) #15.",
       "type": "event",
       "depth": "complete",
-      "count": 487,
-      "collections": 3,
+      "count": 21,
+      "collections": 0,
       "characters": [
         "Daredevil",
-        "Punisher",
-        "Spider-Man",
-        "X-Men",
-        "Fantastic Four",
-        "Avengers",
-        "Wolverine"
+        "Black Widow"
       ],
       "keywords": [
         "Marvel Knights",
-        "Planet X",
-        "Guardian Devil",
-        "E is for Extinction",
-        "X-Corps",
-        "Planet X crossover"
+        "Planet X"
       ],
       "group": null,
       "groupName": null,
@@ -4758,8 +4788,2406 @@
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/57223eff00d5d",
         "ext": "jpg"
       },
-      "source": null,
-      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-02",
+      "file": "marvel_knights_to_planet_x_02.json",
+      "name": "Punisher: Welcome Back Frank",
+      "description": "Owner-curated chapter 02 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2000) #1 through Punisher (2000) #12.",
+      "type": "event",
+      "depth": "complete",
+      "count": 12,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2000,
+      "coverIssueId": 18977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/51894cb5d1245",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-03",
+      "file": "marvel_knights_to_planet_x_03.json",
+      "name": "Marvel Boy to Early X-Men Setup",
+      "description": "Owner-curated chapter 03 of 78 in the Marvel Knights to Planet X reading path, from Marvel Boy (2000) #1 through Uncanny X-Men (1963) #394.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Marvel Boy",
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2000,
+      "coverIssueId": 10002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/4bb5b94169046",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-04",
+      "file": "marvel_knights_to_planet_x_04.json",
+      "name": "X-Treme X-Men: Destiny",
+      "description": "Owner-curated chapter 04 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #1 through X-Treme X-Men (2001) #4.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 15011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5c473ff2f03f2",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-05",
+      "file": "marvel_knights_to_planet_x_05.json",
+      "name": "New X-Men Begins",
+      "description": "Owner-curated chapter 05 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #114 through New X-Men (2001) #116.",
+      "type": "event",
+      "depth": "complete",
+      "count": 3,
+      "collections": 0,
+      "characters": [
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 14933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-06",
+      "file": "marvel_knights_to_planet_x_06.json",
+      "name": "Daredevil Companion",
+      "description": "Owner-curated chapter 06 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #16 through Daredevil: Yellow (2001) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 10,
+      "collections": 0,
+      "characters": [
+        "Daredevil",
+        "Daredevil: Yellow"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 15616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5b435d1a3e757",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-07",
+      "file": "marvel_knights_to_planet_x_07.json",
+      "name": "Spider-Man: JMS Era Begins",
+      "description": "Owner-curated chapter 07 of 78 in the Marvel Knights to Planet X reading path, from Peter Parker: Spider-Man (1999) #25 through Amazing Spider-Man (1999) #35.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Peter Parker: Spider-Man",
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 10534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5bbe577ed72a5",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-08",
+      "file": "marvel_knights_to_planet_x_08.json",
+      "name": "Uncanny X-Men: Poptopia",
+      "description": "Owner-curated chapter 08 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #395 through Uncanny X-Men (1963) #398.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 13936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5919ab26b065b",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-09",
+      "file": "marvel_knights_to_planet_x_09.json",
+      "name": "Exiles Launch",
+      "description": "Owner-curated chapter 09 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #1 through Exiles (2001) #4.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Exiles"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 4673,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/4bc37e0080808",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-10",
+      "file": "marvel_knights_to_planet_x_10.json",
+      "name": "Wolverine: Origin",
+      "description": "Owner-curated chapter 10 of 78 in the Marvel Knights to Planet X reading path, from Wolverine: The Origin (2001) #1 through Wolverine: The Origin (2001) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Wolverine: The Origin"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 10574,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/51e4179fa1896",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-11",
+      "file": "marvel_knights_to_planet_x_11.json",
+      "name": "X-Treme X-Men: Savage Land",
+      "description": "Owner-curated chapter 11 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men: Savage Land (2001) #1 through X-Treme X-Men: Savage Land (2001) #4.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men: Savage Land"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 12394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5c50824f96168",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-12",
+      "file": "marvel_knights_to_planet_x_12.json",
+      "name": "New X-Men: Germ-Free Generation",
+      "description": "Owner-curated chapter 12 of 78 in the Marvel Knights to Planet X reading path, from NEW X-MEN ANNUAL 1 (2001) #1 through New X-Men (2001) #122.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "NEW X-MEN ANNUAL 1",
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 18997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/577e6c883fc98",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-13",
+      "file": "marvel_knights_to_planet_x_13.json",
+      "name": "Punisher: No Limits",
+      "description": "Owner-curated chapter 13 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #1 through Punisher (2001) #5.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 18958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/51894d16b4f37",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-14",
+      "file": "marvel_knights_to_planet_x_14.json",
+      "name": "X-Treme X-Men: Paradise Lost + Annual",
+      "description": "Owner-curated chapter 14 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #5 through X-Treme X-Men Annual (2001) #1.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men",
+        "X-Treme X-Men Annual"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 15052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5c477e4151c33",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-15",
+      "file": "marvel_knights_to_planet_x_15.json",
+      "name": "New X-Men: Imperial",
+      "description": "Owner-curated chapter 15 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #123 through New X-Men (2001) #126.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 14942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/4c35ef277dd6e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-16",
+      "file": "marvel_knights_to_planet_x_16.json",
+      "name": "Uncanny X-Men: X-Corps (Prelude)",
+      "description": "Owner-curated chapter 16 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #399 through Uncanny X-Men Annual (2001) #1.",
+      "type": "event",
+      "depth": "complete",
+      "count": 3,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men",
+        "Uncanny X-Men Annual"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 13940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/591de376d838f",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-17",
+      "file": "marvel_knights_to_planet_x_17.json",
+      "name": "Hulk: Return of the Monster",
+      "description": "Owner-curated chapter 17 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #34 through Hulk (1999) #39.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Hulk"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 14434,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5b33e946842da",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-18",
+      "file": "marvel_knights_to_planet_x_18.json",
+      "name": "Exiles: A World Apart",
+      "description": "Owner-curated chapter 18 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #5 through Exiles (2001) #11.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Exiles"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 4876,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/4bc37f6ea5a39",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-19",
+      "file": "marvel_knights_to_planet_x_19.json",
+      "name": "Punisher: Do Not Fall in New York City",
+      "description": "Owner-curated chapter 19 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #6 through Punisher (2001) #7.",
+      "type": "event",
+      "depth": "complete",
+      "count": 2,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 18963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4bb71f57432b3",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-20",
+      "file": "marvel_knights_to_planet_x_20.json",
+      "name": "Daredevil: Underboss",
+      "description": "Owner-curated chapter 20 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #26 through Daredevil (1998) #31.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Daredevil"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2001,
+      "coverIssueId": 15627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/5727637552032",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-21",
+      "file": "marvel_knights_to_planet_x_21.json",
+      "name": "Spider-Man: Revelations",
+      "description": "Owner-curated chapter 21 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #37 through Amazing Spider-Man (1999) #39.",
+      "type": "event",
+      "depth": "complete",
+      "count": 3,
+      "collections": 0,
+      "characters": [
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 43134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/57a346e832eaa",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-22",
+      "file": "marvel_knights_to_planet_x_22.json",
+      "name": "Uncanny X-Men: X-Corps (Main Arc)",
+      "description": "Owner-curated chapter 22 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #401 through Uncanny X-Men (1963) #407.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 13942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/591de8d2d0c3a",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-23",
+      "file": "marvel_knights_to_planet_x_23.json",
+      "name": "X-Treme X-Men: Invasion",
+      "description": "Owner-curated chapter 23 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #10 through X-Treme X-Men (2001) #18.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 15012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5c4b4ddd0ef33",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-24",
+      "file": "marvel_knights_to_planet_x_24.json",
+      "name": "Spider-Man: Until the Stars Turn Cold",
+      "description": "Owner-curated chapter 24 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #40 through Amazing Spider-Man (1999) #45.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 43141,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/57a34410cdd46",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-25",
+      "file": "marvel_knights_to_planet_x_25.json",
+      "name": "Hulk: Boiling Point",
+      "description": "Owner-curated chapter 25 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #40 through Hulk (1999) #43.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Hulk"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 14440,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5b35308aabfed",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-26",
+      "file": "marvel_knights_to_planet_x_26.json",
+      "name": "Daredevil: Out",
+      "description": "Owner-curated chapter 26 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #32 through Daredevil (1998) #40.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "Daredevil"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 15634,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/4bb7b822b926b",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-27",
+      "file": "marvel_knights_to_planet_x_27.json",
+      "name": "Exiles: Out of Time",
+      "description": "Owner-curated chapter 27 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #12 through Exiles (2001) #19.",
+      "type": "event",
+      "depth": "complete",
+      "count": 8,
+      "collections": 0,
+      "characters": [
+        "Exiles"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 4877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5d484dc0e63f7",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-28",
+      "file": "marvel_knights_to_planet_x_28.json",
+      "name": "Spider-Man: Return of the Goblin",
+      "description": "Owner-curated chapter 28 of 78 in the Marvel Knights to Planet X reading path, from Peter Parker: Spider-Man (1999) #44 through Peter Parker: Spider-Man (1999) #47.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Peter Parker: Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 10555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/58248837460bb",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-29",
+      "file": "marvel_knights_to_planet_x_29.json",
+      "name": "New X-Men: New Worlds (Part 1)",
+      "description": "Owner-curated chapter 29 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #127 through New X-Men (2001) #128.",
+      "type": "event",
+      "depth": "complete",
+      "count": 2,
+      "collections": 0,
+      "characters": [
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 14946,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/577d1e5e3289c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-30",
+      "file": "marvel_knights_to_planet_x_30.json",
+      "name": "Uncanny X-Men: Identity Crisis",
+      "description": "Owner-curated chapter 30 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #408 through Uncanny X-Men (1963) #409.",
+      "type": "event",
+      "depth": "complete",
+      "count": 2,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 13949,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/591dec8934f8a",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-31",
+      "file": "marvel_knights_to_planet_x_31.json",
+      "name": "Hulk: Transfer of Power",
+      "description": "Owner-curated chapter 31 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #44 through Hulk (1999) #49.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Hulk"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 14444,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/5b364bfc02be1",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-32",
+      "file": "marvel_knights_to_planet_x_32.json",
+      "name": "New X-Men: New Worlds (Part 2)",
+      "description": "Owner-curated chapter 32 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #129 through New X-Men (2001) #133.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 14948,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/577d3a18aef99",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-33",
+      "file": "marvel_knights_to_planet_x_33.json",
+      "name": "Uncanny X-Men: Hope",
+      "description": "Owner-curated chapter 33 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #410 through Uncanny X-Men (1963) #415.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 13951,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5919bf773e00e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-34",
+      "file": "marvel_knights_to_planet_x_34.json",
+      "name": "Fantastic Four: Imaginauts",
+      "description": "Owner-curated chapter 34 of 78 in the Marvel Knights to Planet X reading path, from Fantastic Four (1998) #60 through Fantastic Four (1998) #66.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 15583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5ab3fb7c14461",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-35",
+      "file": "marvel_knights_to_planet_x_35.json",
+      "name": "Punisher: You Talkin\u2019 To Me?",
+      "description": "Owner-curated chapter 35 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #13 through Punisher (2001) #17.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 18970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/4bb71d87cdf86",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-36",
+      "file": "marvel_knights_to_planet_x_36.json",
+      "name": "Spider-Man: Life and Death of Spiders",
+      "description": "Owner-curated chapter 36 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #46 through Amazing Spider-Man (1999) #50.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 43159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/52962a9406367",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-37",
+      "file": "marvel_knights_to_planet_x_37.json",
+      "name": "X-Treme X-Men: X-Pose + Schism",
+      "description": "Owner-curated chapter 37 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #19 through X-Treme X-Men (2001) #23.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men",
+        "X-Treme X-Men: X-Pose"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 15021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5c4f6644608d6",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-38",
+      "file": "marvel_knights_to_planet_x_38.json",
+      "name": "Captain America: Enemy",
+      "description": "Owner-curated chapter 38 of 78 in the Marvel Knights to Planet X reading path, from Captain America (2002) #1 through Captain America (2002) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Captain America"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 12817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5bc4c652db1e4",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-39",
+      "file": "marvel_knights_to_planet_x_39.json",
+      "name": "Truth: Red, White and Black",
+      "description": "Owner-curated chapter 39 of 78 in the Marvel Knights to Planet X reading path, from Truth: Red, White and Black (2003) #1 through Truth: Red, White and Black (2003) #7.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Truth: Red, White and Black"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 16070,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5ee0fe188afb0",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-40",
+      "file": "marvel_knights_to_planet_x_40.json",
+      "name": "Uncanny X-Men: Dominant Species",
+      "description": "Owner-curated chapter 40 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #416 through Uncanny X-Men (1963) #420.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 13957,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4bc46a7720054",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-41",
+      "file": "marvel_knights_to_planet_x_41.json",
+      "name": "Exiles: Legacy",
+      "description": "Owner-curated chapter 41 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #20 through Exiles (2001) #25.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Exiles"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 4878,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5d49805c47875",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-42",
+      "file": "marvel_knights_to_planet_x_42.json",
+      "name": "New X-Men: Riot at Xavier\u2019s",
+      "description": "Owner-curated chapter 42 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #134 through New X-Men (2001) #138.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 14953,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4c35ed2920f8d",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-43",
+      "file": "marvel_knights_to_planet_x_43.json",
+      "name": "Hulk: Dark Minds, Dark Hearts",
+      "description": "Owner-curated chapter 43 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #50 through Hulk (1999) #54.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Hulk"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 14450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5b3a293984628",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-44",
+      "file": "marvel_knights_to_planet_x_44.json",
+      "name": "Punisher: Brotherhood",
+      "description": "Owner-curated chapter 44 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #18 through Punisher (2001) #22.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 18975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/4bb71d2b7c2cf",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-45",
+      "file": "marvel_knights_to_planet_x_45.json",
+      "name": "Daredevil: Lowlife",
+      "description": "Owner-curated chapter 45 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #41 through Daredevil (1998) #45.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Daredevil"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15644,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/5727bb6adedcf",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-46",
+      "file": "marvel_knights_to_planet_x_46.json",
+      "name": "Spider-Man: Unintended Consequences",
+      "description": "Owner-curated chapter 46 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #51 through Amazing Spider-Man (1999) #56.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 43164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/57e953be7b0b4",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-47",
+      "file": "marvel_knights_to_planet_x_47.json",
+      "name": "Spider-Man: Blue",
+      "description": "Owner-curated chapter 47 of 78 in the Marvel Knights to Planet X reading path, from Spider-Man: Blue (2002) #1 through Spider-Man: Blue (2002) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Spider-Man: Blue"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 10929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/53767557adfc5",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-48",
+      "file": "marvel_knights_to_planet_x_48.json",
+      "name": "Uncanny X-Men: Holy War",
+      "description": "Owner-curated chapter 48 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #421 through Uncanny X-Men (1963) #427.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 13962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/4bb65a4091cce",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-49",
+      "file": "marvel_knights_to_planet_x_49.json",
+      "name": "Fantastic Four: Unthinkable",
+      "description": "Owner-curated chapter 49 of 78 in the Marvel Knights to Planet X reading path, from Fantastic Four (1998) #67 through Fantastic Four (1998) #502.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15590,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5acf94e06295a",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-50",
+      "file": "marvel_knights_to_planet_x_50.json",
+      "name": "Avengers: Red Zone + Search for She-Hulk",
+      "description": "Owner-curated chapter 50 of 78 in the Marvel Knights to Planet X reading path, from Avengers (1998) #65 through Avengers (1998) #76.",
+      "type": "event",
+      "depth": "complete",
+      "count": 12,
+      "collections": 0,
+      "characters": [
+        "Avengers"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 17551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/586bd19104dde",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-51",
+      "file": "marvel_knights_to_planet_x_51.json",
+      "name": "X-Treme X-Men: God Loves, Man Kills II",
+      "description": "Owner-curated chapter 51 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #24 through X-Treme X-Men (2001) #30.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5c50773fa385f",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-52",
+      "file": "marvel_knights_to_planet_x_52.json",
+      "name": "Punisher: Hidden",
+      "description": "Owner-curated chapter 52 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #23 through Punisher (2001) #26.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 17177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/4bb682c04a045",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-53",
+      "file": "marvel_knights_to_planet_x_53.json",
+      "name": "Daredevil: Hardcore",
+      "description": "Owner-curated chapter 53 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #46 through Daredevil (1998) #50.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Daredevil"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/5727987d1991a",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-54",
+      "file": "marvel_knights_to_planet_x_54.json",
+      "name": "Hulk: Hide in Plain Sight",
+      "description": "Owner-curated chapter 54 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #55 through Hulk (1999) #59.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Hulk"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 14455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bc46b82ef083",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-55",
+      "file": "marvel_knights_to_planet_x_55.json",
+      "name": "Punisher: Streets of Laredo",
+      "description": "Owner-curated chapter 55 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #27 through Punisher (2001) #31.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Punisher"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 17155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/4bc350ea2b473",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-56",
+      "file": "marvel_knights_to_planet_x_56.json",
+      "name": "Elektra: Introspect",
+      "description": "Owner-curated chapter 56 of 78 in the Marvel Knights to Planet X reading path, from Elektra (2001) #11 through Elektra (2001) #15.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Elektra"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2002,
+      "coverIssueId": 20054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5c0fdd70b766d",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-57",
+      "file": "marvel_knights_to_planet_x_57.json",
+      "name": "Wolverine: The Brotherhood",
+      "description": "Owner-curated chapter 57 of 78 in the Marvel Knights to Planet X reading path, from Wolverine (2003) #1 through Wolverine (2003) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 14225,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ae748d0d11cc",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-58",
+      "file": "marvel_knights_to_planet_x_58.json",
+      "name": "Elektra: Everything Old Is New Again",
+      "description": "Owner-curated chapter 58 of 78 in the Marvel Knights to Planet X reading path, from Elektra (2001) #16 through Elektra (2001) #22.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Elektra"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 20059,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/5c10111d7aa44",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-59",
+      "file": "marvel_knights_to_planet_x_59.json",
+      "name": "Exiles: Unnatural Instincts",
+      "description": "Owner-curated chapter 59 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #26 through Exiles (2001) #30.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Exiles"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 4879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5d49a7ffa7dcb",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-60",
+      "file": "marvel_knights_to_planet_x_60.json",
+      "name": "New Mutants: Back to School",
+      "description": "Owner-curated chapter 60 of 78 in the Marvel Knights to Planet X reading path, from New Mutants (2003) #1 through New Mutants (2003) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "New Mutants"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 10322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5a032f394cb79",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-61",
+      "file": "marvel_knights_to_planet_x_61.json",
+      "name": "Runaways: Pride and Joy",
+      "description": "Owner-curated chapter 61 of 78 in the Marvel Knights to Planet X reading path, from Runaways (2003) #1 through Runaways (2003) #6.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Runaways"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57910e324df34",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-62",
+      "file": "marvel_knights_to_planet_x_62.json",
+      "name": "Fantastic Four: Authoritative Action + Hereafter",
+      "description": "Owner-curated chapter 62 of 78 in the Marvel Knights to Planet X reading path, from Fantastic Four (1998) #503 through Fantastic Four (1998) #511.",
+      "type": "event",
+      "depth": "complete",
+      "count": 9,
+      "collections": 0,
+      "characters": [
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 12857,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5ad4b777b18a2",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-63",
+      "file": "marvel_knights_to_planet_x_63.json",
+      "name": "Spider-Man: Happy Birthday",
+      "description": "Owner-curated chapter 63 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #57 through Amazing Spider-Man (1999) #502.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 43170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/57ea8d7ee79e4",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-64",
+      "file": "marvel_knights_to_planet_x_64.json",
+      "name": "Spectacular Spider-Man: The Hunger",
+      "description": "Owner-curated chapter 64 of 78 in the Marvel Knights to Planet X reading path, from Spectacular Spider-Man (2003) #1 through Spectacular Spider-Man (2003) #5.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Spectacular Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 18832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/5c599ceeb6f08",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-65",
+      "file": "marvel_knights_to_planet_x_65.json",
+      "name": "Hulk: Split Decisions",
+      "description": "Owner-curated chapter 65 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #60 through Hulk (1999) #65.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Hulk"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 14460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/4bc46b6a00de2",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-66",
+      "file": "marvel_knights_to_planet_x_66.json",
+      "name": "Uncanny X-Men: The Draco",
+      "description": "Owner-curated chapter 66 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #428 through Uncanny X-Men (1963) #434.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 13969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/591b60ae77e48",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-67",
+      "file": "marvel_knights_to_planet_x_67.json",
+      "name": "Exiles: Fantastic Voyage",
+      "description": "Owner-curated chapter 67 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #31 through Exiles (2001) #37.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Exiles"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 4881,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/5d51c08349436",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-68",
+      "file": "marvel_knights_to_planet_x_68.json",
+      "name": "Iron Man: The Best Defense",
+      "description": "Owner-curated chapter 68 of 78 in the Marvel Knights to Planet X reading path, from Iron Man (1998) #73 through Iron Man (1998) #78.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Iron Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5a68ee5b42a8c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-69",
+      "file": "marvel_knights_to_planet_x_69.json",
+      "name": "Daredevil: Echo",
+      "description": "Owner-curated chapter 69 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #51 through Daredevil (1998) #55.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Daredevil"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/57277be9bb56b",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-70",
+      "file": "marvel_knights_to_planet_x_70.json",
+      "name": "Wolverine: Coyote Crossing",
+      "description": "Owner-curated chapter 70 of 78 in the Marvel Knights to Planet X reading path, from Wolverine (2003) #7 through Wolverine (2003) #11.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 233,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5b119b0f20423",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-71",
+      "file": "marvel_knights_to_planet_x_71.json",
+      "name": "New Mutants: The Ties That Bind",
+      "description": "Owner-curated chapter 71 of 78 in the Marvel Knights to Planet X reading path, from New Mutants (2003) #7 through New Mutants (2003) #12.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "New Mutants"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2004,
+      "coverIssueId": 128,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5a033af415faf",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-72",
+      "file": "marvel_knights_to_planet_x_72.json",
+      "name": "Uncanny X-Men: She Lies With Angels",
+      "description": "Owner-curated chapter 72 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #435 through Uncanny X-Men (1963) #441.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "Uncanny X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 242,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/591c874e814d1",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-73",
+      "file": "marvel_knights_to_planet_x_73.json",
+      "name": "New X-Men: Assault on Weapon Plus",
+      "description": "Owner-curated chapter 73 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #139 through New X-Men (2001) #145.",
+      "type": "event",
+      "depth": "complete",
+      "count": 7,
+      "collections": 0,
+      "characters": [
+        "New X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 14958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/577d723e96f94",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-74",
+      "file": "marvel_knights_to_planet_x_74.json",
+      "name": "X-Treme X-Men: Intifada",
+      "description": "Owner-curated chapter 74 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #31 through X-Treme X-Men (2001) #35.",
+      "type": "event",
+      "depth": "complete",
+      "count": 5,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 15035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/4bc468837743d",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-75",
+      "file": "marvel_knights_to_planet_x_75.json",
+      "name": "Runaways: Teenage Wasteland",
+      "description": "Owner-curated chapter 75 of 78 in the Marvel Knights to Planet X reading path, from Runaways (2003) #7 through Runaways (2003) #12.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Runaways"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 107,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5791338e1e411",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-76",
+      "file": "marvel_knights_to_planet_x_76.json",
+      "name": "Spider-Man: The Book of Ezekiel",
+      "description": "Owner-curated chapter 76 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #503 through Amazing Spider-Man (1999) #508.",
+      "type": "event",
+      "depth": "complete",
+      "count": 6,
+      "collections": 0,
+      "characters": [
+        "Amazing Spider-Man"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2004,
+      "coverIssueId": 290,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/57fe72e85427e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-77",
+      "file": "marvel_knights_to_planet_x_77.json",
+      "name": "X-Treme X-Men: Storm: The Arena",
+      "description": "Owner-curated chapter 77 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #36 through X-Treme X-Men (2001) #39.",
+      "type": "event",
+      "depth": "complete",
+      "count": 4,
+      "collections": 0,
+      "characters": [
+        "X-Treme X-Men"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2004,
+      "coverIssueId": 208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/56af8eeea0440",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-78",
+      "file": "marvel_knights_to_planet_x_78.json",
+      "name": "Planet X Crossover Cluster",
+      "description": "Owner-curated chapter 78 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #146 through New X-Men (2001) #156.",
+      "type": "event",
+      "depth": "complete",
+      "count": 25,
+      "collections": 0,
+      "characters": [
+        "New X-Men",
+        "X-Treme X-Men",
+        "Uncanny X-Men",
+        "New Mutants",
+        "Excalibur"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2003,
+      "coverIssueId": 14965,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bc46b1e313f8",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+      "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T09:11:14.577Z"
     },
@@ -6141,6 +8569,92 @@
         "x-men-age-of-x",
         "x-men-schism",
         "x-men-regenesis"
+      ]
+    },
+    {
+      "id": "marvel-knights-to-planet-x",
+      "name": "Marvel Knights to Planet X",
+      "description": "The 78 owner-curated chapters in reading order.",
+      "sourceOrigin": "Compiled for this project from the owner chapter ledger in issue #303",
+      "steps": [
+        "marvel-knights-to-planet-x-01",
+        "marvel-knights-to-planet-x-02",
+        "marvel-knights-to-planet-x-03",
+        "marvel-knights-to-planet-x-04",
+        "marvel-knights-to-planet-x-05",
+        "marvel-knights-to-planet-x-06",
+        "marvel-knights-to-planet-x-07",
+        "marvel-knights-to-planet-x-08",
+        "marvel-knights-to-planet-x-09",
+        "marvel-knights-to-planet-x-10",
+        "marvel-knights-to-planet-x-11",
+        "marvel-knights-to-planet-x-12",
+        "marvel-knights-to-planet-x-13",
+        "marvel-knights-to-planet-x-14",
+        "marvel-knights-to-planet-x-15",
+        "marvel-knights-to-planet-x-16",
+        "marvel-knights-to-planet-x-17",
+        "marvel-knights-to-planet-x-18",
+        "marvel-knights-to-planet-x-19",
+        "marvel-knights-to-planet-x-20",
+        "marvel-knights-to-planet-x-21",
+        "marvel-knights-to-planet-x-22",
+        "marvel-knights-to-planet-x-23",
+        "marvel-knights-to-planet-x-24",
+        "marvel-knights-to-planet-x-25",
+        "marvel-knights-to-planet-x-26",
+        "marvel-knights-to-planet-x-27",
+        "marvel-knights-to-planet-x-28",
+        "marvel-knights-to-planet-x-29",
+        "marvel-knights-to-planet-x-30",
+        "marvel-knights-to-planet-x-31",
+        "marvel-knights-to-planet-x-32",
+        "marvel-knights-to-planet-x-33",
+        "marvel-knights-to-planet-x-34",
+        "marvel-knights-to-planet-x-35",
+        "marvel-knights-to-planet-x-36",
+        "marvel-knights-to-planet-x-37",
+        "marvel-knights-to-planet-x-38",
+        "marvel-knights-to-planet-x-39",
+        "marvel-knights-to-planet-x-40",
+        "marvel-knights-to-planet-x-41",
+        "marvel-knights-to-planet-x-42",
+        "marvel-knights-to-planet-x-43",
+        "marvel-knights-to-planet-x-44",
+        "marvel-knights-to-planet-x-45",
+        "marvel-knights-to-planet-x-46",
+        "marvel-knights-to-planet-x-47",
+        "marvel-knights-to-planet-x-48",
+        "marvel-knights-to-planet-x-49",
+        "marvel-knights-to-planet-x-50",
+        "marvel-knights-to-planet-x-51",
+        "marvel-knights-to-planet-x-52",
+        "marvel-knights-to-planet-x-53",
+        "marvel-knights-to-planet-x-54",
+        "marvel-knights-to-planet-x-55",
+        "marvel-knights-to-planet-x-56",
+        "marvel-knights-to-planet-x-57",
+        "marvel-knights-to-planet-x-58",
+        "marvel-knights-to-planet-x-59",
+        "marvel-knights-to-planet-x-60",
+        "marvel-knights-to-planet-x-61",
+        "marvel-knights-to-planet-x-62",
+        "marvel-knights-to-planet-x-63",
+        "marvel-knights-to-planet-x-64",
+        "marvel-knights-to-planet-x-65",
+        "marvel-knights-to-planet-x-66",
+        "marvel-knights-to-planet-x-67",
+        "marvel-knights-to-planet-x-68",
+        "marvel-knights-to-planet-x-69",
+        "marvel-knights-to-planet-x-70",
+        "marvel-knights-to-planet-x-71",
+        "marvel-knights-to-planet-x-72",
+        "marvel-knights-to-planet-x-73",
+        "marvel-knights-to-planet-x-74",
+        "marvel-knights-to-planet-x-75",
+        "marvel-knights-to-planet-x-76",
+        "marvel-knights-to-planet-x-77",
+        "marvel-knights-to-planet-x-78"
       ]
     }
   ]

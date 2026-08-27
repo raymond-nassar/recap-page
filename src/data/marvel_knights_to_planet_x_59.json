@@ -1,0 +1,182 @@
+{
+  "id": "marvel-knights-to-planet-x-59",
+  "name": "Exiles: Unnatural Instincts",
+  "description": "Owner-curated chapter 59 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #26 through Exiles (2001) #30.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 72,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 4879,
+      "title": "Exiles (2001) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/4879/exiles_2001_26",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 722,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5d49a7ffa7dcb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16268,
+      "title": "Exiles (2001) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/16268/exiles_2001_27",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 4025,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5d49a91d22b3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16269,
+      "title": "Exiles (2001) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/16269/exiles_2001_28",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-08-01T00:00:00+0000",
+      "mu": "2003-08-01T00:00:00+0000",
+      "digitalId": 4026,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/5d49a99eeabd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16270,
+      "title": "Exiles (2001) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/16270/exiles_2001_29",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2003-09-01T00:00:00+0000",
+      "digitalId": 4027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/5d49ab0a0e0a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16272,
+      "title": "Exiles (2001) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/16272/exiles_2001_30",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2003-09-01T00:00:00+0000",
+      "digitalId": 4028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5d49abe156493",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

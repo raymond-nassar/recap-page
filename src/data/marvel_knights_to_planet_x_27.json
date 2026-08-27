@@ -1,0 +1,231 @@
+{
+  "id": "marvel-knights-to-planet-x-27",
+  "name": "Exiles: Out of Time",
+  "description": "Owner-curated chapter 27 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #12 through Exiles (2001) #19.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 8,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 37,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 4877,
+      "title": "Exiles (2001) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/4877/exiles_2001_12",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-04-03T00:00:00+0000",
+      "mu": "2002-04-03T00:00:00+0000",
+      "digitalId": 720,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5d484dc0e63f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16253,
+      "title": "Exiles (2001) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/16253/exiles_2001_13",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2002-05-01T00:00:00+0000",
+      "digitalId": 4013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5d48519c9983c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16254,
+      "title": "Exiles (2001) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/16254/exiles_2001_14",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-06-05T00:00:00+0000",
+      "mu": "2002-06-05T00:00:00+0000",
+      "digitalId": 4014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5d485236c8b1f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16255,
+      "title": "Exiles (2001) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/16255/exiles_2001_15",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-07-03T00:00:00+0000",
+      "mu": "2002-07-03T00:00:00+0000",
+      "digitalId": 4015,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5d4853253baf3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16256,
+      "title": "Exiles (2001) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/16256/exiles_2001_16",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-08-07T00:00:00+0000",
+      "mu": "2002-08-07T00:00:00+0000",
+      "digitalId": 4016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5d485f6433dd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Calafiore",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16257,
+      "title": "Exiles (2001) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/16257/exiles_2001_17",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-09-04T00:00:00+0000",
+      "mu": "2002-09-04T00:00:00+0000",
+      "digitalId": 4017,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5d4876fb32a03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Calafiore",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16258,
+      "title": "Exiles (2001) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/16258/exiles_2001_18",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-10-02T00:00:00+0000",
+      "mu": "2002-10-02T00:00:00+0000",
+      "digitalId": 4018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5d487e934247a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16259,
+      "title": "Exiles (2001) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/16259/exiles_2001_19",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-11-06T00:00:00+0000",
+      "mu": "2002-11-06T00:00:00+0000",
+      "digitalId": 4019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/5d4887d7957c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

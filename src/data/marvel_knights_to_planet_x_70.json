@@ -1,0 +1,113 @@
+{
+  "id": "marvel-knights-to-planet-x-70",
+  "name": "Wolverine: Coyote Crossing",
+  "description": "Owner-curated chapter 70 of 78 in the Marvel Knights to Planet X reading path, from Wolverine (2003) #7 through Wolverine (2003) #11.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 84,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 233,
+      "title": "Wolverine (2003) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/233/wolverine_2003_7",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-11-05T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5b119b0f20423",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 268,
+      "title": "Wolverine (2003) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/268/wolverine_2003_8",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-11-19T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5b11a17dd6fc1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 231,
+      "title": "Wolverine (2003) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/231/wolverine_2003_9",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5b11a80da6623",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 237,
+      "title": "Wolverine (2003) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/237/wolverine_2003_10",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 523,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5b11af37730f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 236,
+      "title": "Wolverine (2003) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/236/wolverine_2003_11",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/51ed62a59000e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

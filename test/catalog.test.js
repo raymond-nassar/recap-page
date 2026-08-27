@@ -795,13 +795,20 @@ test('a timeline that is not a usable year becomes null rather than being truste
   }
 });
 
-test('the shipped catalog carries the timeline recorded in the manifest', async () => {
+test('the shipped catalog carries manifest timelines and generated partition years', async () => {
   const catalog = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
   const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
-  const wanted = new Map(manifest.lists.map((l) => [l.id, l.timeline ?? null]));
+  const ledger = JSON.parse(await readFile(
+    new URL('../scripts/data/marvel-knights-to-planet-x-lists.json', import.meta.url),
+    'utf8',
+  ));
+  const wanted = new Map(
+    manifest.lists.filter((list) => list.catalog !== false).map((list) => [list.id, list.timeline ?? null]),
+  );
+  for (const chapter of ledger.chapters) wanted.set(chapter.id, chapter.timelineYear);
   assert.equal(catalog.lists.length, wanted.size);
   for (const list of catalog.lists) {
-    assert.equal(list.timeline, wanted.get(list.id), `${list.id} is not where the manifest puts it`);
+    assert.equal(list.timeline, wanted.get(list.id), `${list.id} is not where its source contract puts it`);
   }
 });
 

@@ -33241,12 +33241,23 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Reviewed the canonical overlap report against the settled current-main library. Existing overlaps are intentional source-defined relationships, including Hunt for Wolverine, Wolverine Goes to Hell, Modern X-Men Fast Track, and broader X-Men guides.",
     "reviewedAt": "2026-08-26T19:13:50Z",
-    "reportDigest": "680c1768b5e26dd1466f49d01c3c90fb24cdf2e594067807f440e9230726a344",
+    "reportDigest": "17f6bfea2ea72fb64d669fd7130d7db672f2e3bac437bdc32b8f0779a85ff3e0",
     "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2",
     "mappingDigest": "ed898bfb96d5272887c1990b6066ec76f285e734613f39babdc48d7b0c85e05f",
-    "libraryDigest": "9ef3d52745a46bf542802fe3083af1ca6b7911af68888f699ff7c917ec39d6cb",
+    "libraryDigest": "a400d6727f5cbe342c16f3520dd29e88ed73e6cade37b3b0afde0eb4864832d9",
     "peerDigests": {},
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -33254,6 +33265,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33263,6 +33287,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33272,6 +33309,22 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "sharedCount": 2,
+        "sharedIds": [
+          "1532",
+          "18005"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33281,7 +33334,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -33290,6 +33345,36 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "partial",
+        "sharedCount": 16,
+        "sharedIds": [
+          "40251",
+          "40250",
+          "40253",
+          "40254",
+          "40264",
+          "40706",
+          "40705",
+          "40709",
+          "47001",
+          "47003",
+          "37405",
+          "37406",
+          "37407",
+          "45904",
+          "45905",
+          "45906"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33299,7 +33384,15 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "55440",
+          "55441",
+          "55442",
+          "55443",
+          "55444"
+        ]
       },
       {
         "orderId": "atlantis-attacks",
@@ -33308,7 +33401,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
@@ -33317,7 +33412,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-disassembled",
@@ -33326,7 +33423,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -33335,7 +33434,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
@@ -33344,6 +33445,33 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "48907"
+        ]
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 11,
+        "sharedIds": [
+          "40",
+          "1438",
+          "1532",
+          "1628",
+          "1720",
+          "1829",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33353,7 +33481,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
@@ -33362,7 +33492,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
@@ -33371,7 +33503,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -33380,7 +33514,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -33389,7 +33525,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
@@ -33398,7 +33536,17 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 7,
+        "sharedIds": [
+          "5096",
+          "5248",
+          "5413",
+          "5963",
+          "6122",
+          "6265",
+          "13437"
+        ]
       },
       {
         "orderId": "civil-war-essential",
@@ -33407,7 +33555,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -33416,7 +33566,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -33425,7 +33577,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
@@ -33434,7 +33588,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -33443,7 +33599,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
@@ -33452,7 +33610,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-web",
@@ -33461,7 +33621,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
@@ -33470,7 +33632,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
@@ -33479,7 +33643,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -33488,7 +33654,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -33497,7 +33665,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
@@ -33506,7 +33676,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
@@ -33515,7 +33687,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -33524,7 +33698,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doomwar",
@@ -33533,7 +33709,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -33542,7 +33720,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -33551,7 +33731,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "evolutionary-war",
@@ -33560,7 +33742,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -33569,7 +33753,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -33578,7 +33764,13 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 3,
+        "sharedIds": [
+          "9151",
+          "12241",
+          "12242"
+        ]
       },
       {
         "orderId": "fatal-attractions",
@@ -33587,7 +33779,16 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "14198",
+          "14312",
+          "12315",
+          "17989",
+          "13845",
+          "8656"
+        ]
       },
       {
         "orderId": "generations",
@@ -33596,7 +33797,18 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 8,
+        "sharedIds": [
+          "64386",
+          "63956",
+          "64389",
+          "64396",
+          "63961",
+          "64383",
+          "63967",
+          "63958"
+        ]
       },
       {
         "orderId": "groot-reading-order",
@@ -33605,7 +33817,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -33614,7 +33828,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
@@ -33623,7 +33839,20 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 10,
+        "sharedIds": [
+          "40706",
+          "40705",
+          "40709",
+          "40405",
+          "40410",
+          "40406",
+          "40404",
+          "40409",
+          "40400",
+          "39852"
+        ]
       },
       {
         "orderId": "hickman-full",
@@ -33632,7 +33861,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -33641,6 +33872,21 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "76763"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33650,7 +33896,18 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 8,
+        "sharedIds": [
+          "2092",
+          "2093",
+          "2198",
+          "2199",
+          "2316",
+          "14511",
+          "2427",
+          "2428"
+        ]
       },
       {
         "orderId": "house-of-m-essential",
@@ -33659,7 +33916,18 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 8,
+        "sharedIds": [
+          "2092",
+          "2093",
+          "2198",
+          "2199",
+          "2316",
+          "14511",
+          "2427",
+          "2428"
+        ]
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -33668,7 +33936,34 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 24,
+        "sharedIds": [
+          "66416",
+          "66912",
+          "67019",
+          "68605",
+          "68606",
+          "68608",
+          "67341",
+          "68583",
+          "68584",
+          "68586",
+          "67342",
+          "68591",
+          "68592",
+          "68594",
+          "67343",
+          "68599",
+          "68600",
+          "68602",
+          "67583",
+          "70117",
+          "70127",
+          "70129",
+          "70130",
+          "70131"
+        ]
       },
       {
         "orderId": "hunt-for-xavier",
@@ -33677,7 +33972,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -33686,7 +33983,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
@@ -33695,7 +33994,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -33704,7 +34005,15 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656"
+        ]
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -33713,7 +34022,23 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 13,
+        "sharedIds": [
+          "56064",
+          "60862",
+          "60863",
+          "61593",
+          "61594",
+          "61595",
+          "61596",
+          "61597",
+          "61598",
+          "61982",
+          "55449",
+          "55450",
+          "55451"
+        ]
       },
       {
         "orderId": "iron-man-2020",
@@ -33722,7 +34047,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -33731,7 +34058,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "king-in-black",
@@ -33740,7 +34069,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -33749,7 +34080,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -33758,7 +34091,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
@@ -33767,7 +34102,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-war",
@@ -33776,7 +34113,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -33785,7 +34124,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-multiverse",
@@ -33794,7 +34135,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -33803,7 +34146,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-what-if",
@@ -33812,7 +34157,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -33821,7 +34168,21 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 11,
+        "sharedIds": [
+          "14965",
+          "125",
+          "136",
+          "124",
+          "123",
+          "122",
+          "121",
+          "120",
+          "420",
+          "48912",
+          "64417"
+        ]
       },
       {
         "orderId": "maximum-security",
@@ -33830,7 +34191,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-complex",
@@ -33839,7 +34202,20 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 10,
+        "sharedIds": [
+          "17206",
+          "17336",
+          "17576",
+          "17205",
+          "17334",
+          "17575",
+          "17223",
+          "17356",
+          "17595",
+          "17615"
+        ]
       },
       {
         "orderId": "messiah-war",
@@ -33848,7 +34224,16 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "23971",
+          "24171",
+          "24631",
+          "23969",
+          "24170",
+          "27253"
+        ]
       },
       {
         "orderId": "midnight-massacre",
@@ -33857,7 +34242,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -33866,7 +34253,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
@@ -33875,7 +34264,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -33884,7 +34275,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
@@ -33893,7 +34286,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mys-tech-wars",
@@ -33902,7 +34297,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -33911,7 +34308,16 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "26055",
+          "26057",
+          "27348",
+          "28415",
+          "30700",
+          "30701"
+        ]
       },
       {
         "orderId": "new-ultimate-universe",
@@ -33920,7 +34326,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -33929,7 +34337,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
@@ -33938,7 +34348,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -33947,7 +34359,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -33956,7 +34370,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -33965,7 +34381,12 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "14209",
+          "7389"
+        ]
       },
       {
         "orderId": "phalanx-reading-order",
@@ -33974,7 +34395,12 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "14209",
+          "7389"
+        ]
       },
       {
         "orderId": "phoenix-saga",
@@ -33983,7 +34409,18 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 8,
+        "sharedIds": [
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423"
+        ]
       },
       {
         "orderId": "planet-hulk",
@@ -33992,7 +34429,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reckoning-war",
@@ -34001,7 +34440,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -34010,7 +34451,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -34019,7 +34462,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -34028,7 +34473,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -34037,7 +34484,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -34046,7 +34495,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "second-coming",
@@ -34055,7 +34506,22 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "32564",
+          "30621",
+          "30622",
+          "32552",
+          "30486",
+          "30487",
+          "32598",
+          "30703",
+          "30704",
+          "32583",
+          "30673",
+          "30674"
+        ]
       },
       {
         "orderId": "secret-invasion",
@@ -34064,7 +34530,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion-essential",
@@ -34073,7 +34541,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -34082,7 +34552,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -34091,7 +34563,11 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "10367"
+        ]
       },
       {
         "orderId": "shadowland",
@@ -34100,7 +34576,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
@@ -34109,7 +34587,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "sins-of-sinister",
@@ -34118,7 +34598,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -34127,7 +34609,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -34136,7 +34620,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
@@ -34145,6 +34631,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -34154,7 +34653,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -34163,7 +34664,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -34172,7 +34675,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -34181,7 +34686,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -34190,7 +34697,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-imperative",
@@ -34199,7 +34708,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
@@ -34208,7 +34719,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-war",
@@ -34217,7 +34730,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -34226,7 +34741,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -34235,7 +34752,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "time-and-time-again",
@@ -34244,6 +34763,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -34253,6 +34785,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -34262,7 +34807,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -34271,7 +34818,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -34280,7 +34829,15 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "40251",
+          "40250",
+          "40253",
+          "40254",
+          "40264"
+        ]
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -34289,7 +34846,19 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 9,
+        "sharedIds": [
+          "30224",
+          "30228",
+          "30229",
+          "30230",
+          "30231",
+          "30232",
+          "30233",
+          "30234",
+          "39288"
+        ]
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -34298,7 +34867,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -34307,7 +34878,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-cutioners-song",
@@ -34316,7 +34889,12 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "17980",
+          "17981"
+        ]
       },
       {
         "orderId": "x-men-age-of-x",
@@ -34325,7 +34903,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -34334,7 +34914,14 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "46738",
+          "48097",
+          "46677",
+          "48095"
+        ]
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -34343,7 +34930,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -34352,7 +34941,26 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 16,
+        "sharedIds": [
+          "20642",
+          "20833",
+          "20971",
+          "21180",
+          "20704",
+          "20895",
+          "21028",
+          "21561",
+          "21757",
+          "21996",
+          "22322",
+          "22521",
+          "22929",
+          "23125",
+          "23617",
+          "23772"
+        ]
       },
       {
         "orderId": "x-men-extermination",
@@ -34361,7 +34969,15 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "68367",
+          "68368",
+          "68369",
+          "68370",
+          "68371"
+        ]
       },
       {
         "orderId": "x-men-inferno",
@@ -34370,7 +34986,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -34379,7 +34997,14 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "22380",
+          "22571",
+          "22988",
+          "23164"
+        ]
       },
       {
         "orderId": "x-men-nation-x",
@@ -34388,7 +35013,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
@@ -34397,7 +35024,18 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 8,
+        "sharedIds": [
+          "36469",
+          "36466",
+          "38839",
+          "38586",
+          "38584",
+          "38582",
+          "38576",
+          "40454"
+        ]
       },
       {
         "orderId": "x-men-schism",
@@ -34406,7 +35044,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -34415,6 +35055,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -34424,7 +35077,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -34433,7 +35088,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -34442,7 +35099,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -34451,7 +35110,50 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 40,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12424",
+          "12426",
+          "12168",
+          "12169",
+          "12170",
+          "12171",
+          "13713",
+          "13714",
+          "21645",
+          "21646",
+          "21647",
+          "21648",
+          "21649",
+          "21650",
+          "13746",
+          "10365",
+          "10367",
+          "10368",
+          "10369",
+          "12425",
+          "12458",
+          "12461",
+          "12465",
+          "12467"
+        ]
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -34460,9 +35162,53 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "reviewedAt": "2026-08-26T19:13:50Z"
+        "reviewedAt": "2026-08-26T19:13:50Z",
+        "sharedCount": 41,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12424",
+          "12426",
+          "12168",
+          "12169",
+          "12170",
+          "12171",
+          "13713",
+          "13714",
+          "21645",
+          "21646",
+          "21647",
+          "21648",
+          "21649",
+          "21650",
+          "5722",
+          "13746",
+          "10365",
+          "10367",
+          "10368",
+          "10369",
+          "12425",
+          "12458",
+          "12461",
+          "12465",
+          "12467"
+        ]
       }
     ],
-    "approvalDigest": "dcad65aa9832f5cb7754efe733d9ed2efc58d179a5f2f114855777c32ee355ca"
+    "approvalDigest": "5ac5bd345208c64312501c362f41e6666f70867c8c08bf9edad04522bce5066f"
   }
 }

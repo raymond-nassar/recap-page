@@ -1,0 +1,278 @@
+{
+  "id": "marvel-knights-to-planet-x-02",
+  "name": "Punisher: Welcome Back Frank",
+  "description": "Owner-curated chapter 02 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2000) #1 through Punisher (2000) #12.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 5,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 18977,
+      "title": "Punisher (2000) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18977/punisher_2000_1",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-04-01T00:00:00+0000",
+      "mu": "2000-04-01T00:00:00+0000",
+      "digitalId": 6713,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/51894cb5d1245",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18978,
+      "title": "Punisher (2000) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/18978/punisher_2000_2",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-05-01T00:00:00+0000",
+      "mu": "2000-05-01T00:00:00+0000",
+      "digitalId": 6728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/4bb69280c9a35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18979,
+      "title": "Punisher (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18979/punisher_2000_3",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-06-01T00:00:00+0000",
+      "mu": "2000-06-01T00:00:00+0000",
+      "digitalId": 6731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4bb6930e5d044",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18980,
+      "title": "Punisher (2000) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/18980/punisher_2000_4",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-07-01T00:00:00+0000",
+      "mu": "2000-07-01T00:00:00+0000",
+      "digitalId": 6740,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bb69304ac6f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18981,
+      "title": "Punisher (2000) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/18981/punisher_2000_5",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-08-01T00:00:00+0000",
+      "mu": "2000-08-01T00:00:00+0000",
+      "digitalId": 6742,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bb692fd864a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18982,
+      "title": "Punisher (2000) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/18982/punisher_2000_6",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-09-01T00:00:00+0000",
+      "mu": "2000-09-01T00:00:00+0000",
+      "digitalId": 6744,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/4bb692f655e47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18983,
+      "title": "Punisher (2000) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/18983/punisher_2000_7",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-10-01T00:00:00+0000",
+      "mu": "2000-10-01T00:00:00+0000",
+      "digitalId": 10198,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb692ecf05b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Dillon",
+          "role": "penciler"
+        },
+        {
+          "name": "Garth Ennis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 18984,
+      "title": "Punisher (2000) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/18984/punisher_2000_8",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 6747,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/4bb692e31c5cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18985,
+      "title": "Punisher (2000) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/18985/punisher_2000_9",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 6749,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4bb692d90554d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18986,
+      "title": "Punisher (2000) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/18986/punisher_2000_10",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2001-01-01T00:00:00+0000",
+      "mu": "2001-01-01T00:00:00+0000",
+      "digitalId": 6715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/58c991935f3b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 22447,
+      "title": "Punisher (2000) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/22447/punisher_2000_11",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2001-02-01T00:00:00+0000",
+      "mu": "2001-02-01T00:00:00+0000",
+      "digitalId": 10205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/4bb6913113b7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Dillon",
+          "role": "penciler"
+        },
+        {
+          "name": "Garth Ennis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22448,
+      "title": "Punisher (2000) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/22448/punisher_2000_12",
+      "seriesId": 3698,
+      "seriesName": "Punisher (2000 - 2001)",
+      "onSale": "2001-03-01T00:00:00+0000",
+      "mu": "2001-03-01T00:00:00+0000",
+      "digitalId": 10206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/4bb6912b34a12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Dillon",
+          "role": "penciler"
+        },
+        {
+          "name": "Garth Ennis",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

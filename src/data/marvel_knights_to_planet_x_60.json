@@ -1,0 +1,269 @@
+{
+  "id": "marvel-knights-to-planet-x-60",
+  "name": "New Mutants: Back to School",
+  "description": "Owner-curated chapter 60 of 78 in the Marvel Knights to Planet X reading path, from New Mutants (2003) #1 through New Mutants (2003) #6.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 73,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 10322,
+      "title": "New Mutants (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10322/new_mutants_2003_1",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 2271,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5a032f394cb79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pierre-Andre Dery",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keron Grant",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10327,
+      "title": "New Mutants (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10327/new_mutants_2003_2",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2003-06-18T00:00:00+0000",
+      "mu": "2003-06-18T00:00:00+0000",
+      "digitalId": 3407,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5a03319b5c228",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keron Grant",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10328,
+      "title": "New Mutants (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10328/new_mutants_2003_3",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2003-07-16T00:00:00+0000",
+      "mu": "2003-07-16T00:00:00+0000",
+      "digitalId": 3408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/5a0332cace17d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pierre-Andre Dery",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Elmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keron Grant",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10329,
+      "title": "New Mutants (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10329/new_mutants_2003_4",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2003-09-03T00:00:00+0000",
+      "mu": "2003-09-03T00:00:00+0000",
+      "digitalId": 3409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5a0334b8b0890",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Stull",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keron Grant",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 130,
+      "title": "New Mutants (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/130/new_mutants_2003_5",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2003-11-01T00:00:00+0000",
+      "digitalId": 3410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5a03362155fb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Sowd",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Elmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 129,
+      "title": "New Mutants (2003) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/129/new_mutants_2003_6",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2003-12-01T00:00:00+0000",
+      "mu": "2003-12-01T00:00:00+0000",
+      "digitalId": 3411,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5a0338c1e2946",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pat Davidson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Elmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

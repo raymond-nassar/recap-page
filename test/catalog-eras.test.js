@@ -9,9 +9,10 @@ import {
   eraKey,
   eraSections,
   groupCatalog,
+  isModernTimelineChapterId,
+  modernTimelineLists,
+  modernTimelineStories,
   parseCatalog,
-  shelfLists,
-  shelfStories,
   spanLabel,
   storyYear,
 } from '../src/js/lib/catalog.js';
@@ -30,7 +31,7 @@ const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', '
 const stories = groupCatalog(catalog.lists);
 // Eras divide one shelf rather than the whole catalog, so they are asked about the shelf that uses
 // them. Feeding them everything would test an arrangement the app never draws.
-const events = shelfStories(stories, 'catalog');
+const events = modernTimelineStories(stories);
 const sections = eraSections(events);
 
 const named = CATALOG_ERAS.filter((era) => !era.undated && !era.fallback);
@@ -59,7 +60,7 @@ test('the eras account for every bundled reading path, not merely every story', 
   const inSections = sections.reduce((n, s) => n + s.stories.reduce((m, x) => m + x.lists.length, 0), 0);
   assert.equal(
     inSections,
-    shelfLists(catalog.lists, 'catalog').length,
+    modernTimelineLists(catalog.lists).length,
     'the eras and the events shelf disagree about how many orders exist',
   );
 });
@@ -165,6 +166,11 @@ test('every era is named after orders the catalog actually contains', () => {
   assert.equal(CATALOG_ERAS.filter((e) => e.fallback).length, 1, 'exactly one era is expected to catch strays');
 
   for (const era of named) {
+    if (era.key === 'marvel-knights') {
+      assert.equal(era.heading, 'Marvel Knights to Planet X');
+      assert.equal(catalog.lists.filter(({ id }) => isModernTimelineChapterId(id)).length, 78);
+      continue;
+    }
     // The heading names two orders, joined by "to", and both ends have to exist on the shelf.
     for (const part of era.heading.split(' to ')) {
       const needle = part.trim().toLowerCase();
@@ -174,6 +180,32 @@ test('every era is named after orders the catalog actually contains', () => {
       );
     }
   }
+});
+
+test('the first two eras state the chapter bridge and the Avengers handoff truthfully', () => {
+  assert.deepEqual(
+    named.slice(0, 2).map((era) => ({
+      key: era.key,
+      heading: era.heading,
+      from: era.from,
+      to: era.to,
+    })),
+    [
+      {
+        key: 'marvel-knights',
+        heading: 'Marvel Knights to Planet X',
+        from: 1998,
+        to: 2003,
+      },
+      {
+        key: 'disassembled',
+        heading: 'Avengers Disassembled to Civil War',
+        from: 2004,
+        to: 2007,
+      },
+    ],
+  );
+  assert.match(named[1].blurb, /final three Planet X bridge chapters share 2004 with Avengers Disassembled/);
 });
 
 // Closed at both ends, which is the decision the fallback exists to make safe. An open end would

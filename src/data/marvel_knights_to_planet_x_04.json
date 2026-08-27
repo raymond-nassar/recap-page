@@ -1,0 +1,131 @@
+{
+  "id": "marvel-knights-to-planet-x-04",
+  "name": "X-Treme X-Men: Destiny",
+  "description": "Owner-curated chapter 04 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #1 through X-Treme X-Men (2001) #4.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 8,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15011,
+      "title": "X-Treme X-Men (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15011/x-treme_x-men_2001_1",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2001-05-09T00:00:00+0000",
+      "mu": "2001-05-09T00:00:00+0000",
+      "digitalId": 3115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5c473ff2f03f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15022,
+      "title": "X-Treme X-Men (2001) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15022/x-treme_x-men_2001_2",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2001-06-13T00:00:00+0000",
+      "mu": "2001-06-13T00:00:00+0000",
+      "digitalId": 3804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5c474c48247b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15033,
+      "title": "X-Treme X-Men (2001) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15033/x-treme_x-men_2001_3",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2001-07-11T00:00:00+0000",
+      "mu": "2001-07-11T00:00:00+0000",
+      "digitalId": 3805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5c4756ba51eef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15044,
+      "title": "X-Treme X-Men (2001) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15044/x-treme_x-men_2001_4",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2001-08-08T00:00:00+0000",
+      "mu": "2001-08-08T00:00:00+0000",
+      "digitalId": 3806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5c4773937baad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

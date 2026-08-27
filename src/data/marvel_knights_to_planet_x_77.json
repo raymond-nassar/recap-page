@@ -1,0 +1,95 @@
+{
+  "id": "marvel-knights-to-planet-x-77",
+  "name": "X-Treme X-Men: Storm: The Arena",
+  "description": "Owner-curated chapter 77 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #36 through X-Treme X-Men (2001) #39.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 91,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 208,
+      "title": "X-Treme X-Men (2001) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/208/x-treme_x-men_2001_36",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-02-01T00:00:00+0000",
+      "mu": "2004-02-01T00:00:00+0000",
+      "digitalId": 3834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/56af8eeea0440",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 263,
+      "title": "X-Treme X-Men (2001) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/263/x-treme_x-men_2001_37",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-02-01T00:00:00+0000",
+      "mu": "2004-02-01T00:00:00+0000",
+      "digitalId": 3835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bc33490cdb8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 270,
+      "title": "X-Treme X-Men (2001) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/270/x-treme_x-men_2001_38",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-02-01T00:00:00+0000",
+      "mu": "2004-02-01T00:00:00+0000",
+      "digitalId": 3836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/4bc3348bac09e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 207,
+      "title": "X-Treme X-Men (2001) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/207/x-treme_x-men_2001_39",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-02-01T00:00:00+0000",
+      "mu": "2004-02-01T00:00:00+0000",
+      "digitalId": 3837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/5351989a53787",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

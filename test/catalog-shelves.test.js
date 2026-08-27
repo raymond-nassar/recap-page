@@ -53,15 +53,15 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 34);
-  assert.equal(groupCatalog(spotlights).length, 33);
+  assert.equal(spotlights.length, 35);
+  assert.equal(groupCatalog(spotlights).length, 34);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
   const other = filterBySpotlightKind(spotlights, 'other');
   const expected = [
     ['best-of', 6, 6],
-    ['complete-guide', 23, 23],
+    ['complete-guide', 24, 24],
     ['other', 5, 4],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
@@ -253,7 +253,7 @@ test('the timeline spine derives its ends and preserves internal empty years', (
     years.filter(({ count }) => count === 0).map(({ year }) => year),
     [
       1966, 1967, 1968, 1969, 1970, 1972, 1974, 1975, 1977, 1978, 1979,
-      1983, 1995, 1996, 2001, 2002, 2003, 2015, 2023,
+      1983, 1995, 1996, 2015, 2023,
     ],
   );
 });

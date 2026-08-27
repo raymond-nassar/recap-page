@@ -1,0 +1,185 @@
+{
+  "id": "marvel-knights-to-planet-x-47",
+  "name": "Spider-Man: Blue",
+  "description": "Owner-curated chapter 47 of 78 in the Marvel Knights to Planet X reading path, from Spider-Man: Blue (2002) #1 through Spider-Man: Blue (2002) #6.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 59,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 10929,
+      "title": "Spider-Man: Blue (2002) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10929/spider-man_blue_2002_1",
+      "seriesId": 2072,
+      "seriesName": "Spider-Man: Blue (2002 - 2003)",
+      "onSale": "2002-05-08T00:00:00+0000",
+      "mu": "2002-05-08T00:00:00+0000",
+      "digitalId": 2551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/53767557adfc5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10930,
+      "title": "Spider-Man: Blue (2002) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10930/spider-man_blue_2002_2",
+      "seriesId": 2072,
+      "seriesName": "Spider-Man: Blue (2002 - 2003)",
+      "onSale": "2002-06-12T00:00:00+0000",
+      "mu": "2002-06-12T00:00:00+0000",
+      "digitalId": 2552,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/537675a62a645",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10931,
+      "title": "Spider-Man: Blue (2002) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10931/spider-man_blue_2002_3",
+      "seriesId": 2072,
+      "seriesName": "Spider-Man: Blue (2002 - 2003)",
+      "onSale": "2002-07-17T00:00:00+0000",
+      "mu": "2002-07-17T00:00:00+0000",
+      "digitalId": 2553,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/537675b2ea5d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10932,
+      "title": "Spider-Man: Blue (2002) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10932/spider-man_blue_2002_4",
+      "seriesId": 2072,
+      "seriesName": "Spider-Man: Blue (2002 - 2003)",
+      "onSale": "2002-08-21T00:00:00+0000",
+      "mu": "2002-08-21T00:00:00+0000",
+      "digitalId": 2554,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/5376757ab2938",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10933,
+      "title": "Spider-Man: Blue (2002) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10933/spider-man_blue_2002_5",
+      "seriesId": 2072,
+      "seriesName": "Spider-Man: Blue (2002 - 2003)",
+      "onSale": "2002-12-18T00:00:00+0000",
+      "mu": "2002-12-18T00:00:00+0000",
+      "digitalId": 2555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/00/5376758733d32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10934,
+      "title": "Spider-Man: Blue (2002) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10934/spider-man_blue_2002_6",
+      "seriesId": 2072,
+      "seriesName": "Spider-Man: Blue (2002 - 2003)",
+      "onSale": "2003-03-05T00:00:00+0000",
+      "mu": "2003-03-05T00:00:00+0000",
+      "digitalId": 6997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5376759008bb7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

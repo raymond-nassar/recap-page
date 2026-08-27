@@ -211,14 +211,15 @@ export function selectedIssueIds(mapping) {
     assert(Number.isInteger(Number(row.selectedIssueId)), `${mapping.id} row ${index + 1} has no selected issue id`);
     assert(/^https:\/\/www\.marvel\.com\/comics\/issue\/\d+\//.test(String(row.marvelIssueUrl)), `${mapping.id} row ${index + 1} has no exact Marvel issue URL`);
     assert(typeof row.resolvedIssueTitle === 'string' && row.resolvedIssueTitle.trim(), `${mapping.id} row ${index + 1} has no resolved title`);
-    assert(String(row.issueNumber ?? '').trim(), `${mapping.id} row ${index + 1} has no reviewed issue number`);
+    assert(String(row.metadataIssueNumber ?? row.issueNumber ?? '').trim(),
+      `${mapping.id} row ${index + 1} has no reviewed issue number`);
     return String(row.selectedIssueId);
   });
 }
 
 function checklistTitleForRow(row) {
   const title = row.resolvedIssueTitle.trim().replace(/[\u2013\u2014]/g, '-');
-  const issueNumber = String(row.issueNumber).trim();
+  const issueNumber = String(row.metadataIssueNumber ?? row.issueNumber).trim();
   const escapedNumber = issueNumber.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`#\\s*${escapedNumber}(?=\\s|$)`, 'i').test(title)
     ? title

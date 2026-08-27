@@ -1,0 +1,131 @@
+{
+  "id": "marvel-knights-to-planet-x-57",
+  "name": "Wolverine: The Brotherhood",
+  "description": "Owner-curated chapter 57 of 78 in the Marvel Knights to Planet X reading path, from Wolverine (2003) #1 through Wolverine (2003) #6.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 70,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14225,
+      "title": "Wolverine (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/14225/wolverine_2003_1",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ae748d0d11cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 14236,
+      "title": "Wolverine (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/14236/wolverine_2003_2",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3639,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/4bc36546cc104",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 14247,
+      "title": "Wolverine (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/14247/wolverine_2003_3",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3642,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/51ed612b4ddb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 14259,
+      "title": "Wolverine (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/14259/wolverine_2003_4",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-09-17T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3645,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5b1187e526bf4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 14264,
+      "title": "Wolverine (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/14264/wolverine_2003_5",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3647,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5b118ed811809",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 234,
+      "title": "Wolverine (2003) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/234/wolverine_2003_6",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2003-10-15T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5b1194c6c105d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

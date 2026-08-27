@@ -2395,6 +2395,40 @@
       "coverIssueId": 11029
     },
     {
+      "id": "black-widow-reading-order",
+      "name": "Black Widow",
+      "description": "The complete Black Widow reading guide from Natasha Romanoff's earliest Marvel appearances through her modern solo series and team appearances.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "black-widow-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "black_widow_reading_order.json",
+      "characters": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Daredevil",
+        "Avengers",
+        "Hawkeye"
+      ],
+      "keywords": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Avengers",
+        "Marvel",
+        "Comic Book Herald"
+      ],
+      "expect": 570,
+      "timeline": null,
+      "coverIssueId": 11295
+    },
+    {
       "id": "daredevil-reading-order",
       "name": "Daredevil",
       "description": "The complete Daredevil guide, from the character origins through modern runs and team ups.",
@@ -4087,6 +4121,8 @@
       "groupName": null,
       "variant": null,
       "sourceFile": "marvel-knights-to-planet-x.md",
+      "partitionFile": "marvel-knights-to-planet-x-lists.json",
+      "catalog": false,
       "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
       "sourceLicense": null,
       "out": "marvel_knights_to_planet_x.json",

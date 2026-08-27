@@ -22821,10 +22821,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed all 154 complete-library comparisons against the frozen 638-row Loki mapping. The guide is not an exact duplicate; all partial and existing-subset relationships retain their separate source identities and the 18 unresolved positions remain explicit gaps.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "c8fd8e73efaa14e2a8185d4fbc297bb91562d16f265f3448e8e9ddeacbe7249a",
+    "reportDigest": "75331b27d148e22a9e34fc61d6fce7aea9101f13a1f8f4d4f530ce95f4e68138",
     "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
     "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
-    "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
+    "libraryDigest": "efb63bc80dfda2a16068ed8ea7dfc149db54d1aa0455d1e541f5c71df9a182ec",
     "peerDigests": {},
     "dispositions": [
       {
@@ -22834,7 +22834,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "age-of-x-man",
@@ -22843,7 +22845,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -22852,7 +22856,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation",
@@ -22861,7 +22867,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -22870,7 +22878,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "apocalypse-wars",
@@ -22879,7 +22889,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "atlantis-attacks",
@@ -22888,7 +22900,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
@@ -22897,7 +22911,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 8,
+        "sharedIds": [
+          "6970",
+          "6971",
+          "6972",
+          "6973",
+          "20392",
+          "20403",
+          "20263",
+          "20274"
+        ]
       },
       {
         "orderId": "avengers-disassembled",
@@ -22906,7 +22931,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -22915,7 +22942,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
@@ -22924,7 +22953,37 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 4,
+        "sharedIds": [
+          "48519",
+          "50715",
+          "51078",
+          "51170"
+        ]
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 11,
+        "sharedIds": [
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151"
+        ]
       },
       {
         "orderId": "bloodties",
@@ -22933,7 +22992,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
@@ -22942,7 +23003,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
@@ -22951,7 +23014,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -22960,7 +23025,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -22969,7 +23036,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
@@ -22978,7 +23047,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-essential",
@@ -22987,7 +23058,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -22996,7 +23069,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -23005,7 +23080,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
@@ -23014,7 +23091,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -23023,7 +23102,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
@@ -23032,7 +23113,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-web",
@@ -23041,7 +23124,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
@@ -23050,7 +23135,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
@@ -23059,7 +23146,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -23068,7 +23157,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -23077,7 +23168,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
@@ -23086,7 +23179,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
@@ -23095,7 +23190,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -23104,7 +23201,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doomwar",
@@ -23113,7 +23212,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -23122,7 +23223,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -23131,7 +23234,30 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 20,
+        "sharedIds": [
+          "6951",
+          "7063",
+          "7174",
+          "7285",
+          "7299",
+          "7310",
+          "7321",
+          "7332",
+          "7343",
+          "6953",
+          "6964",
+          "6975",
+          "6986",
+          "6997",
+          "7008",
+          "7019",
+          "7030",
+          "7041",
+          "7052",
+          "7064"
+        ]
       },
       {
         "orderId": "evolutionary-war",
@@ -23140,7 +23266,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -23149,7 +23277,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -23158,7 +23288,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fatal-attractions",
@@ -23167,7 +23299,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "generations",
@@ -23176,7 +23310,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 1,
+        "sharedIds": [
+          "63967"
+        ]
       },
       {
         "orderId": "groot-reading-order",
@@ -23185,7 +23323,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -23194,7 +23334,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
@@ -23203,7 +23345,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-full",
@@ -23212,7 +23356,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -23221,7 +23367,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m",
@@ -23230,7 +23378,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m-essential",
@@ -23239,7 +23389,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -23248,7 +23400,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 1,
+        "sharedIds": [
+          "66416"
+        ]
       },
       {
         "orderId": "hunt-for-xavier",
@@ -23257,7 +23413,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -23266,7 +23424,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
@@ -23275,7 +23435,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -23284,7 +23446,28 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 18,
+        "sharedIds": [
+          "66283",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "66158",
+          "67349",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151",
+          "73415",
+          "71037",
+          "71308",
+          "71310"
+        ]
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -23293,7 +23476,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "iron-man-2020",
@@ -23302,7 +23487,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -23311,7 +23498,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "king-in-black",
@@ -23320,7 +23509,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -23329,7 +23520,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -23338,7 +23531,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
@@ -23347,7 +23542,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-war",
@@ -23356,7 +23553,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -23365,7 +23564,22 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 12,
+        "sharedIds": [
+          "67002",
+          "67311",
+          "67756",
+          "67760",
+          "67762",
+          "67763",
+          "67764",
+          "67765",
+          "67766",
+          "67767",
+          "67768",
+          "67769"
+        ]
       },
       {
         "orderId": "marvel-multiverse",
@@ -23374,7 +23588,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -23383,7 +23599,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-what-if",
@@ -23392,7 +23610,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -23401,7 +23621,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 1,
+        "sharedIds": [
+          "64417"
+        ]
       },
       {
         "orderId": "maximum-security",
@@ -23410,7 +23634,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-complex",
@@ -23419,7 +23645,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
@@ -23428,7 +23656,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
@@ -23437,7 +23667,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -23446,7 +23678,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
@@ -23455,7 +23689,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -23464,7 +23700,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
@@ -23473,7 +23711,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 2,
+        "sharedIds": [
+          "11701",
+          "11702"
+        ]
       },
       {
         "orderId": "mys-tech-wars",
@@ -23482,7 +23725,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -23491,7 +23736,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe",
@@ -23500,7 +23747,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -23509,7 +23758,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
@@ -23518,7 +23769,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -23527,7 +23780,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -23536,7 +23791,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -23545,7 +23802,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
@@ -23554,7 +23813,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phoenix-saga",
@@ -23563,7 +23824,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "planet-hulk",
@@ -23572,7 +23835,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reckoning-war",
@@ -23581,7 +23846,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -23590,7 +23857,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -23599,7 +23868,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -23608,7 +23879,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -23617,7 +23890,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -23626,7 +23901,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "second-coming",
@@ -23635,7 +23912,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion",
@@ -23644,7 +23923,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion-essential",
@@ -23653,7 +23934,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -23662,7 +23945,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -23671,7 +23956,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 1,
+        "sharedIds": [
+          "11691"
+        ]
       },
       {
         "orderId": "shadowland",
@@ -23680,7 +23969,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
@@ -23689,7 +23980,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -23698,7 +23991,27 @@
         "rationale": "The 17 shared issues with silver-surfer-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 17,
+        "sharedIds": [
+          "16099",
+          "6970",
+          "6971",
+          "6972",
+          "6973",
+          "20392",
+          "20403",
+          "20263",
+          "20274",
+          "61093",
+          "66283",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "66158"
+        ]
       },
       {
         "orderId": "sins-of-sinister",
@@ -23707,7 +24020,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -23716,7 +24031,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -23725,7 +24042,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
@@ -23734,7 +24053,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -23743,7 +24064,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -23752,7 +24075,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -23761,7 +24086,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -23770,7 +24097,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -23779,7 +24108,22 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 12,
+        "sharedIds": [
+          "61513",
+          "61514",
+          "61516",
+          "61518",
+          "61520",
+          "61522",
+          "61515",
+          "61517",
+          "61519",
+          "61521",
+          "61523",
+          "61524"
+        ]
       },
       {
         "orderId": "thanos-imperative",
@@ -23788,7 +24132,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
@@ -23797,7 +24143,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 4,
+        "sharedIds": [
+          "69925",
+          "69926",
+          "67349",
+          "71037"
+        ]
       },
       {
         "orderId": "thanos-war",
@@ -23806,7 +24159,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -23815,7 +24170,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -23824,7 +24181,90 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 80,
+        "sharedIds": [
+          "9689",
+          "9696",
+          "9697",
+          "9698",
+          "9699",
+          "11454",
+          "11482",
+          "11483",
+          "11484",
+          "11485",
+          "11486",
+          "11487",
+          "11488",
+          "11489",
+          "11490",
+          "11491",
+          "11492",
+          "11493",
+          "11494",
+          "11495",
+          "11568",
+          "11569",
+          "16671",
+          "11665",
+          "11676",
+          "11677",
+          "11678",
+          "11679",
+          "11680",
+          "11681",
+          "11683",
+          "11690",
+          "875",
+          "23093",
+          "55786",
+          "55788",
+          "55790",
+          "55791",
+          "55792",
+          "55793",
+          "55794",
+          "55795",
+          "55796",
+          "55797",
+          "55798",
+          "55799",
+          "55800",
+          "55801",
+          "55802",
+          "55803",
+          "61012",
+          "61013",
+          "61014",
+          "61015",
+          "61016",
+          "61017",
+          "61018",
+          "66546",
+          "69920",
+          "69922",
+          "69925",
+          "69926",
+          "69927",
+          "69928",
+          "69929",
+          "69930",
+          "69931",
+          "69932",
+          "69933",
+          "71271",
+          "71273",
+          "71274",
+          "71275",
+          "71276",
+          "71277",
+          "69934",
+          "70791",
+          "70792",
+          "70793",
+          "70794"
+        ]
       },
       {
         "orderId": "time-and-time-again",
@@ -23833,7 +24273,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venomverse",
@@ -23842,7 +24284,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-kings",
@@ -23851,7 +24295,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -23860,7 +24306,25 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 15,
+        "sharedIds": [
+          "71271",
+          "71273",
+          "71274",
+          "71275",
+          "71276",
+          "71277",
+          "74814",
+          "69934",
+          "70791",
+          "70792",
+          "70793",
+          "77480",
+          "73996",
+          "73997",
+          "73998"
+        ]
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -23869,7 +24333,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 3,
+        "sharedIds": [
+          "46844",
+          "46845",
+          "61093"
+        ]
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -23878,7 +24348,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -23887,7 +24359,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -23896,7 +24370,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-cutioners-song",
@@ -23905,7 +24381,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
@@ -23914,7 +24392,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -23923,7 +24403,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -23932,7 +24414,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -23941,7 +24425,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-extermination",
@@ -23950,7 +24436,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-inferno",
@@ -23959,7 +24447,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -23968,7 +24458,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-nation-x",
@@ -23977,7 +24469,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
@@ -23986,7 +24480,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-schism",
@@ -23995,7 +24491,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -24004,7 +24502,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-of-swords",
@@ -24013,7 +24513,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -24022,7 +24524,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -24031,7 +24535,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -24040,7 +24546,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 2,
+        "sharedIds": [
+          "11701",
+          "11702"
+        ]
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -24049,9 +24560,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 2,
+        "sharedIds": [
+          "11701",
+          "11702"
+        ]
       }
     ],
-    "approvalDigest": "3847120e212f8e9b81b798ed991e72fe9f54933be228064064d6a0240a962408"
+    "approvalDigest": "89b4301252c8de4ca81c4ee37d63ac10211f754c34f042408b6b272f60590809"
   }
 }

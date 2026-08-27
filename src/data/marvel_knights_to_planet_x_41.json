@@ -1,0 +1,131 @@
+{
+  "id": "marvel-knights-to-planet-x-41",
+  "name": "Exiles: Legacy",
+  "description": "Owner-curated chapter 41 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #20 through Exiles (2001) #25.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 53,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 4878,
+      "title": "Exiles (2001) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/4878/exiles_2001_20",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-12-04T00:00:00+0000",
+      "mu": "2002-12-04T00:00:00+0000",
+      "digitalId": 721,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5d49805c47875",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16262,
+      "title": "Exiles (2001) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/16262/exiles_2001_21",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 4020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5d4979c29ccbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16263,
+      "title": "Exiles (2001) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/16263/exiles_2001_22",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-02-05T00:00:00+0000",
+      "mu": "2003-02-05T00:00:00+0000",
+      "digitalId": 4021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/5d498664e7b79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16264,
+      "title": "Exiles (2001) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/16264/exiles_2001_23",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-03-05T00:00:00+0000",
+      "mu": "2003-03-05T00:00:00+0000",
+      "digitalId": 4022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5d49963fd129c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16265,
+      "title": "Exiles (2001) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/16265/exiles_2001_24",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-03-26T00:00:00+0000",
+      "mu": "2003-03-26T00:00:00+0000",
+      "digitalId": 4023,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5d4997a924a6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16266,
+      "title": "Exiles (2001) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/16266/exiles_2001_25",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2003-04-09T00:00:00+0000",
+      "mu": "2003-04-09T00:00:00+0000",
+      "digitalId": 4024,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5d49a0f4518f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

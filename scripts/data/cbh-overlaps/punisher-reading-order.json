@@ -2,7 +2,7 @@
   "candidateId": "punisher-reading-order",
   "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
   "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
-  "libraryDigest": "f21aaa9c46a70643e395188fd0c5affc7cc15d89f9124a1e667517a285cb5028",
+  "libraryDigest": "aa63070ce65bbf4fc74310b45fad3ed1305b8b77e4bb73769b5b25b0766c0d5d",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 857,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 145
   },
   "candidateCount": 480,
-  "comparisonCount": 156,
+  "comparisonCount": 157,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -131,6 +131,18 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 5,
+      "sharedIds": [
+        "67563",
+        "67564",
+        "69851",
+        "69852",
+        "69853"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -1084,5 +1096,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "fecc65879edca6df6769db94cb139da7e55a80bd918fc51b83b5c364ce145148"
+  "reportDigest": "4cfb9eb23ef66f9fc465a7043437f2fee4fa869e309c39e0c871368c7a48b5d5"
 }

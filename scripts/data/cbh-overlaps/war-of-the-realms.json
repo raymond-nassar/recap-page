@@ -2,12 +2,12 @@
   "candidateId": "war-of-the-realms",
   "packetDigest": "1a14ff7aeef925329a961b323c7c03fdf8817378f6cb3073441ff7d99ad44b2d",
   "mappingDigest": "6a7cee46ef9ae023c87deb5aebdecd4dc5011f35e9a98e9a4b1c9e450f22c287",
-  "libraryDigest": "7ae9fe26c863d3c19dcdf3cde3f69753c70fbeb9b76f017f7dff32a89f6a8e34",
+  "libraryDigest": "a782f103c4e8b13b99c4277ed46f7ff5bce4201b36d6512e6b7a31c8f7c9312c",
   "peerDigests": {
     "absolute-carnage": "87bbad853038ab891fcf0d48545b5a3e9010da3e784af28f4e06f629ed43165b"
   },
   "candidateCount": 66,
-  "comparisonCount": 86,
+  "comparisonCount": 87,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -62,6 +62,16 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "75484",
+        "75482",
+        "75483"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "captain-america-best-of",
@@ -538,5 +548,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "57240d60cf5920d79f9caca1960491d633acbbc30197f8c2260361d05c0fe905"
+  "reportDigest": "40773cdb1535ebf93818df2933b3d96ad2d9d0d94725be85ea161e278ae3a3e4"
 }
