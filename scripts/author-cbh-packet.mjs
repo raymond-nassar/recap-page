@@ -23,6 +23,7 @@ const OVERLAPS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-overlaps');
 const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const ORDERS_DIR = path.join(ROOT, 'src', 'data', 'orders');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
+const TYPHOGRAPHIC_DASHES = new RegExp(String.fromCodePoint(0x2013, 0x2014), 'g');
 
 export const FIRST_PACKET_IDS = Object.freeze([
   'secret-war',
@@ -260,7 +261,7 @@ export function buildMarkdown(mapping) {
       if (entry.kind === 'exact') {
         return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`];
       }
-      return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference).replace(/[\u2013\u2014]/g, '-')}`];
+      return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference).replace(TYPHOGRAPHIC_DASHES, '-')} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`];
     });
   return `# ${manifest.name}: Issue-by-Issue Reading Checklist\n\n${trail}\n\n${checklist.join('\n')}\n`;
 }

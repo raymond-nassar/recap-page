@@ -29,7 +29,7 @@ export const DELIVERY_STATUSES = Object.freeze([
 ]);
 
 export const BASELINE_COUNT = 86;
-export const CHARACTER_INVENTORY_COUNT = 128;
+export const CHARACTER_INVENTORY_COUNT = 129;
 export const CBH_SOURCE_PROVIDER = Object.freeze({
   id: 'comic-book-herald',
   hosts: Object.freeze(['www.comicbookherald.com']),
@@ -279,7 +279,13 @@ function assertRepeatedSourceReference(reference, index, rows) {
       && !Number.isInteger(reference.seriesYear))) {
     throw new Error(`${label} seriesYear must be an integer or null for a source-gap repeat`);
   }
-  assertNonEmptyString(String(reference.issueNumber ?? ''), `${label} issueNumber`);
+  if (reference.issueNumber == null) {
+    if (!hasCanonicalGap) {
+      throw new Error(`${label} issueNumber must name its canonical packet row`);
+    }
+  } else {
+    assertNonEmptyString(String(reference.issueNumber), `${label} issueNumber`);
+  }
 }
 
 function assertExcludedSourceRow(row, index) {

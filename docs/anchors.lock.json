@@ -1589,8 +1589,8 @@
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:28|0": {
-    "anchor": "scripts/vendor-orders.mjs:28",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:31|0": {
+    "anchor": "scripts/vendor-orders.mjs:31",
     "fp": "2691c5a6c7db0bcf",
     "head": "import { parseManifest } from '../src/js/lib/curated.js';"
   },
@@ -1789,15 +1789,15 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:1963-1968|0": {
-    "anchor": "CHANGELOG.md:1963-1968",
-    "fp": "73b9fc5b0915626a",
-    "head": "Several places in the project say, in so many words, that outsiders cannot see it yet. The security"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3217-3221|0": {
+    "anchor": "CHANGELOG.md:3217-3221",
+    "fp": "705eb84e7693eafb",
+    "head": "review. The rule for how urgently to act is now written down beside the settings that act on it,"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:1970-1975|0": {
-    "anchor": "CHANGELOG.md:1970-1975",
-    "fp": "15b4b397b06b3373",
-    "head": "So every statement of that kind was hunted down and written on one page, each one named on the page"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3229-3233|0": {
+    "anchor": "CHANGELOG.md:3229-3233",
+    "fp": "c0881ad10fa2a929",
+    "head": "not in scope, including Marvel's own services, the outside metadata service the app reads from,"
   },
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|PRODUCT_BACKLOG.md:30-42|0": {
     "anchor": "PRODUCT_BACKLOG.md:30-42",

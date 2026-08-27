@@ -107,7 +107,7 @@ budget across every request the page makes.
 
 **One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js`
 parses the curated-list manifest, and its only importer outside the tests is the vendoring script,
-at `scripts/vendor-orders.mjs:28`.
+at `scripts/vendor-orders.mjs:31`.
 It runs in Node when someone adds a reading list, never in the browser. The same Node-only boundary
 contains `scripts/lib/chapter-orders.mjs`: one noncatalog source order can be validated and emitted
 as ordinary child payloads, catalog entries, a reading path and overlap evidence without teaching

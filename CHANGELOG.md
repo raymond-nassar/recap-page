@@ -14,6 +14,16 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete X-Force reading guide
+
+In plain English: A complete X-Force reading guide is now available from its early Cable-led team
+through later team eras and Uncanny X-Force. It includes 262 comics with exact Marvel links, while 23
+unresolved source references remain visible as placeholders rather than being guessed at or hidden.
+Nothing you have saved is changed.
+
+For maintainers: the frozen source has 409 occurrences: 262 exact identities, 81 backward repeats,
+23 metadata gaps tracked in Issue #321, and 43 semantic exclusions.
+
 ### Added a complete Moon Knight reading guide
 
 In plain English: A complete Moon Knight reading guide is now available from his earliest

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T18:01:26.436Z",
+  "generatedAt": "2026-08-27T20:53:47.177Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2631,7 +2631,7 @@
       "id": "ant-man-reading-order",
       "file": "ant_man_reading_order.json",
       "name": "Ant-Man",
-      "description": "Ant-Man from Hank Pym\u2019s first appearance through Scott Lang, Eric O\u2019Grady, and the modern Ant-Man and the Wasp era.",
+      "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
@@ -3513,6 +3513,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T04:10:56.795Z"
+    },
+    {
+      "id": "x-force-reading-order",
+      "file": "x_force_reading_order.json",
+      "name": "X-Force",
+      "description": "X-Force from its early Cable-led missions through later team eras and Uncanny X-Force.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 285,
+      "collections": 60,
+      "characters": [
+        "X-Force",
+        "Cable"
+      ],
+      "keywords": [
+        "X-Force",
+        "Cable",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1991,
+      "coverIssueId": 10441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c7d506d22f2b",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/x-force-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T20:53:47.177Z"
     },
     {
       "id": "muir-island-saga",
@@ -5825,7 +5859,7 @@
     {
       "id": "marvel-knights-to-planet-x-35",
       "file": "marvel_knights_to_planet_x_35.json",
-      "name": "Punisher: You Talkin\u2019 To Me?",
+      "name": "Punisher: You Talkin’ To Me?",
       "description": "Owner-curated chapter 35 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #13 through Punisher (2001) #17.",
       "type": "event",
       "depth": "complete",
@@ -6043,7 +6077,7 @@
     {
       "id": "marvel-knights-to-planet-x-42",
       "file": "marvel_knights_to_planet_x_42.json",
-      "name": "New X-Men: Riot at Xavier\u2019s",
+      "name": "New X-Men: Riot at Xavier’s",
       "description": "Owner-curated chapter 42 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #134 through New X-Men (2001) #138.",
       "type": "event",
       "depth": "complete",

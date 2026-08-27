@@ -42,6 +42,7 @@ test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exac
     ['Moon Knight', 20],
     ['Essential Avengers', 21],
     ['X-Men: Silver Age to Claremont', 22],
+    ['X-Force', 26],
   ]);
 
   for (const story of spotlights) {
@@ -73,6 +74,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Moon Knight',
     'Essential Avengers',
     'X-Men: Silver Age to Claremont',
+    'X-Force',
     'Amazing Spider-Man',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',
