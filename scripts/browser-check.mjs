@@ -23,7 +23,9 @@
 //
 // **The data is fixtures, not the catalog.** The scenarios assert what the interface does, and
 // the vendored orders have their own gates. Stubbing `fetch` for the two data files keeps this
-// check fast, deterministic and immune to a catalog edit that has nothing to do with it.
+// check fast, deterministic and immune to a catalog edit that has nothing to do with it. The
+// Modern Timeline contract is the exception: its boundary and aggregate assertions intentionally
+// run against the checked-in snapshot because the exact first entry and totals are the contract.
 
 import { createStaticServer, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
@@ -35,6 +37,7 @@ import { APP_VERSION } from '../src/js/lib/version.js';
 import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
+import { DEFAULT_BASE } from '../src/js/api.js';
 import {
   availablePublishingCategories, decadeSections, eraSections, groupCatalog, publishingAgeGroups,
   shelfSections,
@@ -106,6 +109,9 @@ function prerequisiteFailure(what, how) {
 // The second deliberately has no digitalId, because the launcher has two paths and only one of
 // them is exercised by an issue we already know the reference for.
 const ORDER_FILE = 'browser_check_fixture.json';
+const ACTUAL_CATALOG = JSON.parse(
+  readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
+);
 
 const ORDER = {
   id: 'browser-check',
@@ -301,6 +307,9 @@ const CATALOG = {
       `Fixture Event ${index + 1}`,
       { timeline: index === 0 ? 2012 : 2008 },
     )),
+    shelfEntry('setup-to-modern-timeline', 'Setup to Modern Timeline', {
+      type: 'era', timeline: null,
+    }),
   ],
   paths: [
     {
@@ -1073,6 +1082,29 @@ const MUTATIONS = [
       .replace('export function boot() {', 'export async function boot() {')
       .replace('  void runAutomaticUpdateCheck();', '  await runAutomaticUpdateCheck();'),
   },
+  {
+    id: 'modern-timeline-boundary-1997',
+    breaks: 'modern-timeline-actual-data',
+    why: 'the app boundary moves back one year and admits the first excluded 1997 event',
+    rewriteCatalog: (source) => source.replace(
+      'export const MODERN_TIMELINE_START_YEAR = 1998;',
+      'export const MODERN_TIMELINE_START_YEAR = 1997;',
+    ),
+  },
+  {
+    id: 'modern-timeline-prose-cap',
+    breaks: 'modern-timeline-layout',
+    why: 'the era description is forced back under the shared prose measure instead of using its box',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule(
+          '#view-catalog .shelf-section-blurb { max-width: 64ch !important; }',
+          sheet.cssRules.length,
+        );
+      });
+    },
+  },
 ];
 
 // ------------------------------------------------------------------ scenarios
@@ -1550,7 +1582,7 @@ const SCENARIOS = [
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
           { key: 'timeline', label: 'Browse by year', title: 'Modern Timeline', count: '14 Reading Lists' },
-          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '7 Reading Lists' },
+          { key: 'storylines', label: 'Browse complete arcs', title: 'Storylines', count: '8 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
         JSON.stringify(context.paths));
@@ -1676,7 +1708,7 @@ const SCENARIOS = [
       t.check('clean Home asks one visible question and distinguishes curated Browse from Add',
         initial.question === 'Where do you want to start?'
         && initial.distinction === 'Browse curated Reading Lists. Add individual issues or your own list.'
-        && initial.recommendation === 'Recommended start: Avengers Disassembled (2004)'
+        && initial.recommendation === 'Recommended start: Setup to Modern Timeline'
         && initial.recommendationHidden === false,
         JSON.stringify(initial));
 
@@ -1731,7 +1763,7 @@ const SCENARIOS = [
         button.click();
       });
       await page.waitForFunction(() => document.querySelector('#preview')?.open
-        && document.querySelector('#preview-h')?.textContent.trim() === 'Avengers Disassembled');
+        && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open);
       const after = await page.evaluate(() => ({
@@ -1769,6 +1801,361 @@ const SCENARIOS = [
         populated.firstRunHidden && !populated.continueHidden && !populated.yoursHidden
         && populated.order[0] < populated.order[1] && populated.order[1] < populated.order[2],
         JSON.stringify(populated));
+    },
+  },
+  {
+    id: 'modern-timeline-actual-data',
+    title: 'the chosen 1998 timeline and setup guide stay distinct on actual data',
+    async run(page, t) {
+      const externalRequests = [];
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) {
+          externalRequests.push(request.url());
+        }
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+      await open(page, '/?catalog=actual#/home');
+      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
+      const home = await page.evaluate(() => ({
+        recommendation: document.querySelector('#home-recommended-h')?.textContent.trim() ?? '',
+        homeCount: document.querySelector(
+          '#home-primary-paths [data-category="timeline"] .home-path-count',
+        )?.textContent.trim() ?? '',
+      }));
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse:not([hidden])');
+      const browseCount = await page.$eval(
+        '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
+        (node) => node.textContent.trim(),
+      );
+      t.check('Home recommends the setup guide and both gateways count 76 normal Reading Lists',
+        home.recommendation === 'Recommended start: Setup to Modern Timeline'
+        && home.homeCount === '76 Reading Lists'
+        && browseCount === '76 Reading Lists',
+        JSON.stringify({ ...home, browseCount }));
+      await open(page, '/?catalog=actual#/home');
+      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
+
+      const beforeHomePreview = await page.evaluate(() => ({
+        href: location.href,
+        history: history.length,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      await page.focus('#btn-home-recommended');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open
+        && document.activeElement?.id === 'btn-home-recommended');
+      const afterHomePreview = await page.evaluate(() => ({
+        href: location.href,
+        history: history.length,
+        state: localStorage.getItem('mrt.state.v2'),
+        focus: document.activeElement?.id ?? '',
+      }));
+      t.check('the Home setup action uses Preview without changing history, state, or return focus',
+        afterHomePreview.href === beforeHomePreview.href
+        && afterHomePreview.history === beforeHomePreview.history
+        && afterHomePreview.state === beforeHomePreview.state
+        && afterHomePreview.focus === 'btn-home-recommended',
+        JSON.stringify({ beforeHomePreview, afterHomePreview }));
+
+      await click(page, '#btn-home-recommended');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return Object.values(state.lists)
+          .some((list) => list.catalogId === 'setup-to-modern-timeline');
+      });
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      const trackedSetup = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const list = Object.values(state.lists)
+          .find((candidate) => candidate.catalogId === 'setup-to-modern-timeline');
+        return {
+          catalogId: list?.catalogId ?? '',
+          issueCount: list?.itemIds.length ?? 0,
+          listCount: state.listOrder.length,
+        };
+      });
+      t.check('the featured setup remains one normal trackable 21-issue Reading List',
+        trackedSetup.catalogId === 'setup-to-modern-timeline'
+        && trackedSetup.issueCount === 21
+        && trackedSetup.listCount === 1,
+        JSON.stringify(trackedSetup));
+
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse:not([hidden])');
+      await click(page, '#view-browse [data-primary-paths] [data-category="timeline"]');
+      await page.waitForSelector('#modern-timeline-feature:not([hidden])', { timeout: 15000 });
+      await page.waitForSelector('#catalog-results .catalog-card');
+      const timeline = await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
+        const years = [...document.querySelectorAll('#catalog-results .timeline-year-label')]
+          .map((node) => Number(node.textContent.trim()));
+        return {
+          featureHeading: document.querySelector('#modern-timeline-feature-h')?.textContent.trim() ?? '',
+          featureCopy: document.querySelector('#modern-timeline-feature p')?.textContent.trim() ?? '',
+          cards: cards.length,
+          firstTitle: cards[0]?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+          years,
+          setupCards: cards.filter((card) => card.dataset.story === 'list:setup-to-modern-timeline').length,
+          operationCards: cards.filter((card) => card.dataset.story === 'list:operation-zero-tolerance').length,
+          avengersCards: cards.filter((card) => card.dataset.story === 'list:avengers-disassembled').length,
+        };
+      });
+      t.check('the feature names the product boundary without becoming a normal card',
+        timeline.featureHeading === 'Start with Setup to Modern Timeline'
+        && timeline.featureCopy.includes('This app chooses 1998 as the start of its Modern Timeline.')
+        && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
+        && timeline.setupCards === 0,
+        JSON.stringify(timeline));
+      t.check('76 selected lists render as 72 story cards with Marvel Knights first',
+        timeline.cards === 72 && timeline.firstTitle === 'Marvel Knights to Planet X',
+        JSON.stringify({ cards: timeline.cards, firstTitle: timeline.firstTitle }));
+      t.check('1997 is excluded, 1998 is included, and Avengers Disassembled remains available',
+        !timeline.years.includes(1997) && timeline.years[0] === 1998
+        && timeline.operationCards === 0 && timeline.avengersCards === 1,
+        JSON.stringify(timeline));
+
+      const beforeFeaturePreview = await page.evaluate(() => ({
+        href: location.href,
+        history: history.length,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      await page.focus('#btn-modern-timeline-feature');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open
+        && document.activeElement?.id === 'btn-modern-timeline-feature');
+      const afterFeaturePreview = await page.evaluate(() => ({
+        href: location.href,
+        history: history.length,
+        state: localStorage.getItem('mrt.state.v2'),
+        focus: document.activeElement?.id ?? '',
+      }));
+      t.check('the featured action uses the same Preview flow without a second tracked guide',
+        afterFeaturePreview.href === beforeFeaturePreview.href
+        && afterFeaturePreview.history === beforeFeaturePreview.history
+        && afterFeaturePreview.state === beforeFeaturePreview.state
+        && afterFeaturePreview.focus === 'btn-modern-timeline-feature',
+        JSON.stringify({ beforeFeaturePreview, afterFeaturePreview }));
+
+      await page.$eval('#catalog-q', (input) => {
+        input.value = 'Avengers Disassembled';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
+      const searched = await page.evaluate(() => ({
+        featureVisible: !document.querySelector('#modern-timeline-feature')?.hidden,
+        title: document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() ?? '',
+        setupCard: Boolean(document.querySelector(
+          '#catalog-results [data-story="list:setup-to-modern-timeline"]',
+        )),
+      }));
+      await click(page, '#catalog-clear');
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 72);
+      await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
+      const filtered = await page.evaluate(() => ({
+        featureVisible: !document.querySelector('#modern-timeline-feature')?.hidden,
+        checked: document.querySelector('#catalog-filters input:checked')?.value ?? '',
+        setupCard: Boolean(document.querySelector(
+          '#catalog-results [data-story="list:setup-to-modern-timeline"]',
+        )),
+      }));
+      t.check('search and facets rerender normal cards without removing or duplicating the feature',
+        searched.featureVisible && searched.title === 'Avengers Disassembled' && !searched.setupCard
+        && filtered.featureVisible && filtered.checked !== 'all' && !filtered.setupCard,
+        JSON.stringify({ searched, filtered }));
+
+      await open(page, '/?catalog=actual#/age-early-modern');
+      await page.waitForSelector('#age-early-modern-results .catalog-card', { timeout: 15000 });
+      const olderPreviewSelector =
+        '#age-early-modern-results [data-story="list:operation-zero-tolerance"] [data-act="preview"]';
+      const olderPreviewAvailable = Boolean(await page.$(olderPreviewSelector));
+      if (olderPreviewAvailable) {
+        await click(page, olderPreviewSelector);
+        await page.waitForFunction(() => document.querySelector('#preview')?.open
+          && document.querySelector('#preview-h')?.textContent.trim() === 'Operation: Zero Tolerance');
+        await click(page, '#preview-close');
+      }
+      await open(page, '/?catalog=actual#/marvel-ages');
+      await page.waitForSelector(
+        '#marvel-ages-modern-list [data-category="early-modern"]',
+        { timeout: 15000 },
+      );
+      const olderDiscovery = await page.evaluate(() => ({
+        ageTile: document.querySelector(
+          '#marvel-ages-modern-list [data-category="early-modern"]',
+        )?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        trackedLists: JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length,
+        blockedExternal: window.__mrtBlockedExternal ?? [],
+      }));
+      t.check('a pre-1998 event still previews directly and remains discoverable through Marvel Ages',
+        olderPreviewAvailable
+        && olderDiscovery.ageTile.includes('Early Modern')
+        && olderDiscovery.ageTile.includes('1991 to 1997')
+        && olderDiscovery.trackedLists === 1,
+        JSON.stringify(olderDiscovery));
+      t.check('actual-data browsing sends no cross-origin request when covers are off',
+        externalRequests.length === 0
+        && olderDiscovery.blockedExternal.every(
+          (url) => url === 'https://marvel.emreparker.com/v1/health',
+        ),
+        JSON.stringify({ externalRequests, blockedExternal: olderDiscovery.blockedExternal }));
+    },
+  },
+  {
+    id: 'modern-timeline-layout',
+    title: 'Modern Timeline era copy uses its box and remains readable under constrained display',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForSelector('#catalog-results .shelf-section-blurb', { timeout: 15000 });
+      const wide = await page.$eval(
+        '#catalog-results .timeline-era-head',
+        (head) => {
+          const blurb = head.querySelector('.shelf-section-blurb');
+          const headRect = head.getBoundingClientRect();
+          const blurbRect = blurb.getBoundingClientRect();
+          const style = getComputedStyle(head);
+          const contentLeft = headRect.left
+            + Number.parseFloat(style.borderLeftWidth)
+            + Number.parseFloat(style.paddingLeft);
+          const contentRight = headRect.right
+            - Number.parseFloat(style.borderRightWidth)
+            - Number.parseFloat(style.paddingRight);
+          return {
+            maxWidth: getComputedStyle(blurb).maxWidth,
+            leftGap: Math.round(blurbRect.left - contentLeft),
+            rightGap: Math.round(contentRight - blurbRect.right),
+            blurbWidth: Math.round(blurbRect.width),
+          };
+        },
+      );
+      t.check('an era description uses the full content width inside its section box',
+        wide.maxWidth === 'none' && Math.abs(wide.leftGap) <= 1
+        && Math.abs(wide.rightGap) <= 1 && wide.blurbWidth > 700,
+        JSON.stringify(wide));
+
+      await page.setViewport({ width: 320, height: 900 });
+      await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
+      const narrow = await page.$eval(
+        '#catalog-results .timeline-era-head',
+        (head) => {
+          const blurb = head.querySelector('.shelf-section-blurb');
+          const headRect = head.getBoundingClientRect();
+          const blurbRect = blurb.getBoundingClientRect();
+          return {
+            viewport: innerWidth,
+            documentWidth: document.documentElement.scrollWidth,
+            headLeft: Math.round(headRect.left),
+            headRight: Math.round(headRect.right),
+            blurbLeft: Math.round(blurbRect.left),
+            blurbRight: Math.round(blurbRect.right),
+            blurbScroll: blurb.scrollWidth,
+            blurbClient: blurb.clientWidth,
+          };
+        },
+      );
+      t.check('the era box and its copy reflow without horizontal clipping at 320 pixels',
+        narrow.documentWidth <= narrow.viewport
+        && narrow.headLeft >= 0 && narrow.headRight <= narrow.viewport
+        && narrow.blurbLeft >= narrow.headLeft && narrow.blurbRight <= narrow.headRight
+        && narrow.blurbScroll <= narrow.blurbClient,
+        JSON.stringify(narrow));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => {
+        document.querySelector('#catalog-h').focus();
+      });
+      for (let press = 0; press < 20; press += 1) {
+        if (await page.evaluate(() => document.activeElement?.id === 'btn-modern-timeline-feature')) break;
+        await page.keyboard.press('Tab');
+      }
+      const keyboardFocus = await page.$eval('#btn-modern-timeline-feature', (button) => ({
+        active: document.activeElement === button,
+        outlineStyle: getComputedStyle(button).outlineStyle,
+        outlineWidth: Number.parseFloat(getComputedStyle(button).outlineWidth),
+      }));
+      t.check('keyboard traversal reaches the featured setup action with a visible focus ring',
+        keyboardFocus.active && keyboardFocus.outlineStyle !== 'none' && keyboardFocus.outlineWidth >= 3,
+        JSON.stringify(keyboardFocus));
+
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      await page.$eval('#btn-modern-timeline-feature', (button) => {
+        button.scrollIntoView({ block: 'center', inline: 'center' });
+      });
+      const zoom = await page.$eval('#modern-timeline-feature', (feature) => {
+        const button = feature.querySelector('#btn-modern-timeline-feature');
+        const buttonRect = button.getBoundingClientRect();
+        const copy = feature.querySelector('p');
+        return {
+          scale: visualViewport.scale,
+          active: document.activeElement === button,
+          buttonLeft: buttonRect.left,
+          buttonRight: buttonRect.right,
+          viewportLeft: visualViewport.offsetLeft,
+          viewportRight: visualViewport.offsetLeft + visualViewport.width,
+          copyScroll: copy.scrollWidth,
+          copyClient: copy.clientWidth,
+        };
+      });
+      t.check('the focused feature remains operable and its copy remains unclipped at 200 percent zoom',
+        zoom.scale === 2 && zoom.active
+        && zoom.buttonLeft >= zoom.viewportLeft && zoom.buttonRight <= zoom.viewportRight
+        && zoom.copyScroll <= zoom.copyClient,
+        JSON.stringify(zoom));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+
+      await client.send('Emulation.setEmulatedMedia', {
+        features: [{ name: 'forced-colors', value: 'active' }],
+      });
+      const forced = await page.$eval(
+        '#catalog-results .timeline-era-head',
+        (head) => {
+          const systemColor = (value) => {
+            const probe = document.createElement('span');
+            probe.style.color = value;
+            document.body.append(probe);
+            const color = getComputedStyle(probe).color;
+            probe.remove();
+            return color;
+          };
+          const blurb = head.querySelector('.shelf-section-blurb');
+          const feature = document.querySelector('#modern-timeline-feature');
+          const style = getComputedStyle(head);
+          return {
+            active: matchMedia('(forced-colors: active)').matches,
+            canvasText: systemColor('CanvasText'),
+            highlight: systemColor('Highlight'),
+            headBorder: style.borderTopColor,
+            accentBorder: style.borderLeftColor,
+            blurbColor: getComputedStyle(blurb).color,
+            featureBorder: getComputedStyle(feature).borderTopColor,
+          };
+        },
+      );
+      t.check('forced colors preserves system-colored era and featured-region boundaries and copy',
+        forced.active && forced.headBorder === forced.canvasText
+        && forced.accentBorder === forced.highlight
+        && forced.blurbColor === forced.canvasText
+        && forced.featureBorder === forced.canvasText,
+        JSON.stringify(forced));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
     },
   },
   {
@@ -3940,13 +4327,22 @@ async function preparePage(page, origin, mutation) {
   page.__origin = origin;
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
-  if (mutation?.rewriteMain) {
-    const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
-    const rewritten = mutation.rewriteMain(source);
-    if (rewritten === source) throw new Error(`Mutation ${mutation.id} did not change main.js`);
+  const rewrites = new Map();
+  for (const [path, rewrite] of [
+    ['/js/main.js', mutation?.rewriteMain],
+    ['/js/lib/catalog.js', mutation?.rewriteCatalog],
+  ]) {
+    if (!rewrite) continue;
+    const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
+    const rewritten = rewrite(source);
+    if (rewritten === source) throw new Error(`Mutation ${mutation.id} did not change ${path}`);
+    rewrites.set(`${origin}${path}`, rewritten);
+  }
+  if (rewrites.size > 0) {
     await page.setRequestInterception(true);
     page.on('request', async (request) => {
-      if (request.url() === `${origin}/js/main.js`) {
+      const rewritten = rewrites.get(request.url());
+      if (rewritten) {
         await request.respond({
           status: 200,
           contentType: 'application/javascript; charset=utf-8',
@@ -3960,7 +4356,10 @@ async function preparePage(page, origin, mutation) {
   }
   await page.setViewport({ width: 1280, height: 900 });
   await page.evaluateOnNewDocument(
-    (catalog, catalogFixtures, order, longOrder, negativeOrderItem, orderFile, appVersion, updateApiUrl) => {
+    (
+      catalog, catalogFixtures, order, longOrder, negativeOrderItem, orderFile,
+      appVersion, updateApiUrl, defaultApiBase,
+    ) => {
       const real = window.fetch.bind(window);
       const json = (body, status = 200) => new Response(JSON.stringify(body), {
         status,
@@ -4001,6 +4400,9 @@ async function preparePage(page, origin, mutation) {
             return Promise.resolve(json({ ...order, items: [...order.items, negativeOrderItem] }));
           }
           return Promise.resolve(json(new URL(location.href).searchParams.get('long') === '1' ? longOrder : order));
+        }
+        if (url === `${defaultApiBase}/health`) {
+          return Promise.resolve(json({ issue_count: 1 }));
         }
         if (url === updateApiUrl) {
           window.__mrtUpdateRequests = (window.__mrtUpdateRequests ?? 0) + 1;
@@ -4076,6 +4478,16 @@ async function preparePage(page, origin, mutation) {
             }, 400);
           });
         }
+        if (window.__mrtBlockExternal) {
+          const requestUrl = new URL(url, location.href);
+          if (requestUrl.protocol.startsWith('http') && requestUrl.origin !== location.origin) {
+            window.__mrtBlockedExternal = [
+              ...(window.__mrtBlockedExternal ?? []),
+              requestUrl.href,
+            ];
+            return Promise.reject(new TypeError('Blocked by actual-data browser check'));
+          }
+        }
         return real(input, init);
       };
 
@@ -4099,6 +4511,7 @@ async function preparePage(page, origin, mutation) {
       publishing: PUBLISHING_CATALOG,
       empty: EMPTY_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG,
+      actual: ACTUAL_CATALOG,
     },
     ORDER,
     LONG_ORDER,
@@ -4106,6 +4519,7 @@ async function preparePage(page, origin, mutation) {
     ORDER_FILE,
     APP_VERSION,
     LATEST_RELEASE_API_URL,
+    DEFAULT_BASE,
   );
   // Handed to puppeteer as a function rather than stringified and passed to `new Function`, which
   // the app's own CSP refuses: server.mjs sends `script-src 'self'` with no 'unsafe-eval'. A

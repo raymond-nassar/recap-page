@@ -13,7 +13,6 @@ import {
   availableHomeCategories,
   groupCatalog,
   parseCatalog,
-  shelfStories,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
 
@@ -42,11 +41,12 @@ test('the current gateway offers three primary modes and two secondary gateways'
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
-    const expected = shelfStories(stories, category.shelf)
+    const expected = HOME_CATEGORIES.find(({ key }) => key === category.key).select(stories)
       .reduce((total, story) => total + story.lists.length, 0);
     assert.ok(expected > 0, `${category.heading} has no content`);
     assert.equal(category.count, expected, `${category.heading} reports the wrong availability`);
   }
+  assert.equal(categories.find(({ key }) => key === 'timeline').count, 76);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 121);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 6);
 });
@@ -191,7 +191,7 @@ test('the recommended start resolves after catalog load and only opens Preview',
   const start = source.indexOf("const recommendation = $('#home-recommended')");
   const body = source.slice(start, source.indexOf('if (homeCatalog.dropped)', start));
   assert.notEqual(start, -1, 'the recommended-start catalog resolution is missing');
-  assert.match(body, /homeCatalog\.lists\.find\(\(\{ id \}\) => id === 'avengers-disassembled'\)/);
+  assert.match(body, /modernTimelineFeaturedList\(homeCatalog\.lists\)/);
   assert.match(body, /\$\('#btn-home-recommended'\)\.onclick = \(\) => openPreview\(list\)/);
   assert.doesNotMatch(body, /importCurated|setActive|showView|location\.hash|localStorage/);
 });

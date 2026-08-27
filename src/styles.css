@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:772-773`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:773-774`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -1065,6 +1065,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .shelf-section:first-child { margin-top: 0; }
 .shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
 .shelf-section-blurb { color: var(--muted); font-size: var(--t-caption); margin: .2rem 0 0; max-width: 64ch; }
+#catalog-results .timeline-era-head .shelf-section-blurb { max-width: none; }
+.modern-timeline-feature { margin-top: .7rem; }
 
 .timeline-flow {
   --timeline-rail: 5rem;
@@ -1507,6 +1509,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .addpri, .pill-held, .res-head { border-color: CanvasText; }
   #view-data .setgroup > h2 { border-bottom: 1px solid CanvasText; }
   .notice { border: 1px solid CanvasText; }
+  .timeline-era-head { border-color: CanvasText; border-left-color: Highlight; }
+  .timeline-era-head .shelf-section-blurb { color: CanvasText; }
   .fp input:checked + span { border: 2px solid Highlight; }
 }
 

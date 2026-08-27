@@ -14,6 +14,19 @@ quote in a bug report.
 
 ## Unreleased
 
+### Chose a clear starting boundary for Modern Timeline
+
+In plain English: Modern Timeline now starts in 1998, a boundary chosen for this app rather than an
+official Marvel era. Empty Home recommends Setup to Modern Timeline, and that same guide is featured
+above the timeline through Preview without being duplicated or counted as a normal card. The 76
+included Reading Lists appear as 72 grouped story cards, beginning with Marvel Knights to Planet X.
+Earlier events remain available through Marvel Ages and their existing addresses, and nothing you
+have saved is changed.
+
+For maintainers: Home, Browse, and Modern Timeline share pure catalog selectors for the 1998-plus
+subset. Canonical shelves and Marvel Ages remain unchanged. Modern Timeline era descriptions alone
+use their full box width, including narrow, zoomed, keyboard, and forced-colors conditions.
+
 ### Added a Marvel Knights to Planet X reading guide
 
 In plain English: You can now follow 487 comics from Marvel Knights through the Planet X

@@ -13,11 +13,11 @@
 
 **Target experience**: One question distinguishes curated Browse from custom or manual Add. Three
 large choices establish the reading modes without a wall of individual cards, and an optional
-Avengers Disassembled callout offers this app's short modern event path.
+Setup to Modern Timeline callout offers the preparation path for this app's Modern Timeline.
 
 ## Stage 2: Orientation
 **Doing**: Chooses Modern Timeline, Storylines or Character spotlights, or previews the recommended
-short modern event path.
+setup path.
 
 **Thinking**: "I know whether I want chronology, a complete arc or a character."
 
@@ -29,8 +29,10 @@ Preview rather than adding anything or replacing the other ways to browse.
 
 **Thinking**: "How long is this? Where does it start? Is it beginner-friendly?"
 
-**Target experience**: The dedicated screen provides search, filters, cover-led cards, scope and
-preview details without crowding Home.
+**Target experience**: The dedicated screen says that 1998 is this app's chosen boundary, features
+the same Setup Reading List through Preview, and keeps that feature outside its normal cards and
+count. Search, filters, cover-led cards, scope and preview details remain off Home. Earlier events
+remain reachable through Marvel Ages and direct addresses.
 
 ## Stage 4: Commitment
 **Doing**: Adds a Reading List from its preview, including Preview opened from Home.

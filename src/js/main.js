@@ -25,6 +25,7 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
   CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
+  modernTimelineLists, modernTimelineFeaturedList,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -1842,8 +1843,8 @@ function ensureHomeFirstRun() {
   if (section) return section;
   const recommendation = el('div', { id: 'home-recommended', class: 'notice notice-act', hidden: true }, [
     el('div', { class: 'grow' }, [
-      el('h3', { id: 'home-recommended-h', text: 'Recommended start: Avengers Disassembled (2004)' }),
-      el('p', { text: "This app's short modern event path. Five issues, with many later stories building from it." }),
+      el('h3', { id: 'home-recommended-h', text: 'Recommended start: Setup to Modern Timeline' }),
+      el('p', { text: "A guided path through the earlier stories that prepare you for this app's Modern Timeline." }),
     ]),
     el('button', { type: 'button', id: 'btn-home-recommended', class: 'btn' }, 'Preview this Reading List'),
   ]);
@@ -1872,7 +1873,7 @@ async function renderHomeCategories() {
   }
 
   const recommendation = $('#home-recommended'); if (recommendation) {
-    const list = homeCatalog.lists.find(({ id }) => id === 'avengers-disassembled'); recommendation.hidden = !list; if (list) $('#btn-home-recommended').onclick = () => openPreview(list);
+    const list = modernTimelineFeaturedList(homeCatalog.lists); recommendation.hidden = !list; if (list) $('#btn-home-recommended').onclick = () => openPreview(list);
   }
   if (homeCatalog.dropped) {
     const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
@@ -4116,6 +4117,35 @@ function announceCatalog(msg) {
   catalogAnnounceTimer = setTimeout(() => announce(msg), 500);
 }
 
+function ensureModernTimelineFeature(lists) {
+  let feature = $('#modern-timeline-feature');
+  if (!feature) {
+    feature = el('section', {
+      id: 'modern-timeline-feature',
+      class: 'notice notice-act modern-timeline-feature',
+      hidden: true,
+      'aria-labelledby': 'modern-timeline-feature-h',
+    }, [
+      el('div', { class: 'grow' }, [
+        el('h2', { id: 'modern-timeline-feature-h', text: 'Start with Setup to Modern Timeline' }),
+        el('p', {
+          text: 'This app chooses 1998 as the start of its Modern Timeline. It is not an official Marvel editorial-era boundary. Preview this setup guide for earlier context.',
+        }),
+      ]),
+      el('button', {
+        type: 'button',
+        id: 'btn-modern-timeline-feature',
+        class: 'btn',
+      }, 'Preview Setup to Modern Timeline'),
+    ]);
+    $('#catalog-results').before(feature);
+  }
+
+  const list = modernTimelineFeaturedList(lists);
+  feature.hidden = !list;
+  if (list) $('#btn-modern-timeline-feature').onclick = () => openPreview(list);
+}
+
 // One renderer for all three catalog screens. The shelves differ in what they hold and in what
 // they are called, and in nothing else, so the differences live in `CATALOG_SHELVES` and the
 // element ids are derived from the shelf key rather than written out three times. Writing this
@@ -4156,9 +4186,13 @@ async function renderCatalogShelf(key) {
     );
   }
 
+  if (key === 'catalog') ensureModernTimelineFeature(catalog.lists);
+
   // This shelf's own share of the catalog, taken before anything else looks at it, so the facets
   // count what this screen can show and the search never turns up a row that belongs elsewhere.
-  const mine = shelfLists(catalog.lists, key);
+  const mine = key === 'catalog'
+    ? modernTimelineLists(catalog.lists)
+    : shelfLists(catalog.lists, key);
 
   box.replaceChildren();
   if (!mine.length) {
