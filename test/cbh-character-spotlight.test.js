@@ -5,7 +5,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   approvalDigestFor,
-  libraryDigestExcludingOrders,
   libraryDigestFor,
   packetDigestFor,
   sourcePositionsForPacket,
@@ -17,7 +16,8 @@ import {
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
@@ -37,33 +37,8 @@ const magnetoCandidateId = 'magneto-reading-order';
 const starLordCandidateId = 'star-lord-reading-order';
 const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics-timeline';
 const modernXMenCandidateId = 'modern-x-men-fast-track';
-const marvelKnightsToPlanetXId = 'marvel-knights-to-planet-x';
 const venomCandidateId = 'venom-reading-order';
 const moonKnightCandidateId = 'moon-knight-reading-order';
-const laterCharacterIds = [
-  'ant-man-reading-order',
-  'agatha-harkness-reading-order',
-  'wolverine-reading-order',
-  'captain-america-reading-order-modern-marvel-era',
-  modernXMenCandidateId,
-  'deadpool-best-of',
-  hulkCandidateId,
-  'loki-reading-order',
-  'punisher-reading-order',
-  venomCandidateId,
-  magnetoCandidateId,
-  moonKnightCandidateId,
-];
-const characterCandidateIds = [
-  abominationCandidateId,
-  grootCandidateId,
-  starLordCandidateId,
-  'phalanx-reading-order',
-  'marvels-best-phoenix-comics',
-  cosmicCandidateId,
-  candidateId,
-];
-
 function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
 }
@@ -211,72 +186,6 @@ function assertRocketSourceBoundary(packet) {
     rocketSourceSequence,
   );
 }
-const laterHistoricalIds = [
-  'muir-island-saga',
-  'bloodties',
-  'midnight-massacre',
-  'childs-play',
-  'eighth-day',
-  'reed-richards-and-sue-storms-wedding',
-  'kree-skrull-war',
-  'the-night-gwen-stacy-died',
-  'avengers-defenders-war',
-  'thanos-war',
-  'original-clone-saga',
-  'phoenix-saga',
-  'dark-phoenix-saga',
-  'days-of-future-past',
-  'contest-of-champions',
-  'marvel-super-heroes-secret-wars',
-  'wraith-war',
-  'secret-wars-ii',
-  'mutant-massacre',
-  'kravens-last-hunt',
-  'fall-of-the-mutants',
-  'evolutionary-war',
-  'inferno',
-  'atlantis-attacks',
-  'days-of-future-present',
-  'x-tinction-agenda',
-  'operation-galactic-storm',
-  'dead-mans-hand',
-  'rise-of-the-midnight-sons',
-  'x-cutioners-song',
-  'mys-tech-wars',
-  'fatal-attractions',
-  'time-and-time-again',
-  'phalanx-covenant',
-  'operation-zero-tolerance',
-  'spider-man-identity-crisis',
-  'hunt-for-xavier',
-  'magneto-war',
-];
-const laterMcuIds = [
-  'doctor-strange-multiverse-of-madness',
-  'spider-man-no-way-home',
-  'marvel-multiverse',
-  'marvel-what-if',
-  'wandavision',
-  'spider-man-far-from-home',
-];
-const laterCbhIds = [
-  'hickman-x-men',
-  'ultimate-marvel-intro',
-  'x-men-utopia',
-  'x-men-messiah-to-avx',
-  abominationCandidateId,
-  blackPantherCandidateId,
-  doctorStrangeCandidateId,
-  'daredevil-reading-order',
-  'loki-reading-order',
-  'agents-of-atlas-reading-order',
-  'amazing-spider-man-reading-order-modern-marvel-era',
-  ironManCandidateId,
-  'setup-to-modern-timeline',
-  marvelKnightsToPlanetXId,
-];
-const continuationHistoricalIds = laterHistoricalIds.slice(5);
-
 function assertGrootSourceBoundary(packet) {
   assert.equal(
     packet.sourceIssueBearingBlocksSha256,
@@ -515,18 +424,8 @@ async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
 }
 
-async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId], includeLater = false) {
-  const excluded = new Set([
-    ...excludedIds,
-    moonKnightCandidateId,
-    'loki-reading-order',
-    ...(includeLater ? [] : [
-      captainMarvelCandidateId,
-      'punisher-reading-order',
-      venomCandidateId,
-      magnetoCandidateId,
-    ]),
-  ]);
+async function libraryDigestForScope(manifest, excludedIds) {
+  const excluded = new Set(excludedIds);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -540,6 +439,19 @@ async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]
     };
   }));
   return libraryDigestFor({ ...manifest, lists, paths }, orderIssueIds);
+}
+
+async function historicalReportLibraryDigest(manifest, excludedIds) {
+  return libraryDigestForScope(manifest, [
+    ...excludedIds,
+    'loki-reading-order',
+    'silver-surfer-reading-order',
+    moonKnightCandidateId,
+  ]);
+}
+
+async function currentPublicationLibraryDigest(manifest, excludedIds) {
+  return libraryDigestForScope(manifest, [...excludedIds, ...CBH_LATER_ORDER_IDS]);
 }
 
 test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => {
@@ -567,7 +479,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-one spotlights, and prepares four', async () => {
+test('the character inventory preserves every central disposition, ships twenty-two spotlights, and prepares five', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -578,10 +490,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 94);
+  assert.equal(dispositionCounts.deferred, 93);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 26);
+  assert.equal(dispositionCounts['pilot-approved'], 27);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -620,6 +532,9 @@ test('the character inventory preserves every central disposition, ships twenty-
   const magneto = inventory.find((record) => record.id === magnetoCandidateId);
   assert.equal(magneto?.centralDisposition, 'pilot-approved');
   assert.equal(magneto?.deliveryStatus, 'shipped');
+  const silverSurfer = inventory.find((record) => record.id === 'silver-surfer-reading-order');
+  assert.equal(silverSurfer?.centralDisposition, 'pilot-approved');
+  assert.equal(silverSurfer?.deliveryStatus, 'ready');
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
   assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 17);
@@ -815,12 +730,11 @@ test('the Punisher guide preserves its full source ledger through publication', 
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
     [],
-    { excludedOrderIds: [magnetoCandidateId, 'loki-reading-order', moonKnightCandidateId] },
+    { excludedOrderIds: [magnetoCandidateId, 'loki-reading-order', 'silver-surfer-reading-order', moonKnightCandidateId] },
   );
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+  const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
     ['punisher-reading-order', magnetoCandidateId],
-    true,
   );
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -972,7 +886,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 156);
-  assert.equal(report.comparisonCount, manifest.lists.length - 4);
+  assert.equal(report.comparisonCount, manifest.lists.length - 5);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1039,15 +953,9 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   const manifestEntry = manifest.lists.find((entry) => entry.id === doctorStrangeCandidateId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === doctorStrangeCandidateId);
   const parsed = parseChecklist(markdown);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, [
     doctorStrangeCandidateId,
-    captainMarvelCandidateId,
-    'daredevil-reading-order',
-    'loki-reading-order',
-    venomCandidateId,
-    magnetoCandidateId,
-    moonKnightCandidateId,
-  ], true);
+  ]);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: doctorStrangeCandidateId,
@@ -1083,11 +991,11 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(mapping.candidateMetadata.length, 711);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.equal(report.candidateCount, 711);
-  assert.equal(report.comparisonCount, 153);
-  assert.equal(mapping.relationshipReview.dispositions.length, 153);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 123);
+  assert.equal(report.comparisonCount, 136);
+  assert.equal(mapping.relationshipReview.dispositions.length, 136);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 112);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'existing-subset').length, 3);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 27);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 21);
   assert.equal(manifestEntry.expect, 750);
   assert.equal(manifestEntry.spotlightKind, 'complete-guide');
   assert.equal(catalogEntry.count, 750);
@@ -1367,7 +1275,7 @@ test('Loki publishes every cached exact issue and preserves its source gaps', as
   assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 638);
   assert.ok(mapping.repeatedSourceReferences.every((entry) => entry.canonicalRow > 0));
   assert.equal(mapping.reviewStatus, 'approved');
-  assert.equal(report.comparisonCount, 158);
+  assert.equal(report.comparisonCount, 136);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'exact').length, 0);
   assert.equal(manifestEntry.expect, 656);
   assert.equal(payload.count, 656);
@@ -1418,6 +1326,97 @@ test('Loki source-gap identities survive re-vendoring and import without collaps
   );
 });
 
+test('Silver Surfer preserves all 426 source occurrences and the four issue #304 gap records', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson('scripts/data/cbh-packets/silver-surfer-reading-order.json');
+  const mapping = await readJson('scripts/data/cbh-mappings/silver-surfer-reading-order.json');
+  const report = await readJson('scripts/data/cbh-overlaps/silver-surfer-reading-order.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const generated = await readJson('src/data/silver_surfer_reading_order.json');
+  const markdown = await readFile(path.join(root, 'src/data/orders/silver-surfer-reading-order.md'), 'utf8');
+  const record = inventory.find((entry) => entry.id === 'silver-surfer-reading-order');
+  const manifestEntry = manifest.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
+  const catalogEntry = catalog.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
+  const expectedOrderIds = manifest.lists
+    .map((entry) => entry.id)
+    .filter((id) => id !== 'silver-surfer-reading-order' && id !== moonKnightCandidateId)
+    .sort();
+  const reviewedLibraryDigest = await libraryDigestForScope(
+    manifest,
+    ['silver-surfer-reading-order', moonKnightCandidateId],
+  );
+  const regeneratedReport = await buildReportForMapping(
+    path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
+    [],
+    { excludedOrderIds: [moonKnightCandidateId] },
+  );
+
+  assert.equal(packet.sourceOccurrenceCount, 426);
+  assert.equal(packet.rows.length, 294);
+  assert.equal(packet.repeatedSourceReferences.length, 17);
+  assert.equal(packet.sourceGaps.length, 4);
+  assert.equal(packet.excludedSourceRows.length, 111);
+  assert.equal(
+    packet.rows.length
+      + packet.repeatedSourceReferences.length
+      + packet.sourceGaps.length
+      + packet.excludedSourceRows.length,
+    packet.sourceOccurrenceCount,
+  );
+  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
+  for (const sourceGaps of [packet.sourceGaps, mapping.sourceGaps]) {
+    assert.equal(sourceGaps.length, 4);
+    assert.ok(sourceGaps.every((gap) => (
+      gap.auditBasis.includes('issue #304')
+      && gap.evidenceSources.some((source) => (
+        source.kind === 'gap-tracking-issue'
+        && source.url === 'https://github.com/raymond-nassar/recap-page/issues/304'
+      ))
+    )));
+  }
+  assert.equal(record?.centralDisposition, 'pilot-approved');
+  assert.equal(record?.deliveryStatus, 'ready');
+  assert.equal(manifestEntry?.expect, 298);
+  assert.equal(catalogEntry?.count, 298);
+  assert.equal(generated.count, 298);
+  assert.equal(generated.placeholders, 4);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 294);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 4);
+  assert.equal(parseChecklist(markdown).entries.length, 294);
+  assert.equal(parseChecklist(markdown).unresolved.length, 4);
+  assert.equal(report.candidateCount, 294);
+  assert.equal(report.comparisonCount, expectedOrderIds.length);
+  assert.deepEqual(
+    report.comparisons.map((comparison) => comparison.orderId).sort(),
+    expectedOrderIds,
+  );
+  assert.deepEqual(
+    report.comparisons.find((comparison) => comparison.orderId === 'loki-reading-order'),
+    {
+      orderId: 'loki-reading-order',
+      relationship: 'partial',
+      sharedCount: 17,
+      sharedIds: [
+        '16099', '6970', '6971', '6972', '6973', '20392', '20403', '20263',
+        '20274', '61093', '66283', '66416', '66684', '67022', '68653', '68656', '66158',
+      ],
+    },
+  );
+  assert.equal(report.libraryDigest, reviewedLibraryDigest);
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.deepEqual(report, regeneratedReport);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds,
+  }));
+  assert.doesNotMatch(markdown, /\b(?:TODO|TBD|placeholder|implementation)\b/i);
+});
+
 test('the Captain Marvel packet preserves its legacy run boundary, exclusion, and source order evidence', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson(`scripts/data/cbh-packets/${captainMarvelCandidateId}.json`);
@@ -1429,10 +1428,9 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   const markdown = await readFile(path.join(root, 'src/data/orders/captain-marvel-ms-marvel-reading-order.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const record = inventory.find((candidate) => candidate.id === captainMarvelCandidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+  const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
     [captainMarvelCandidateId, 'punisher-reading-order', magnetoCandidateId],
-    true,
   );
 
   assert.equal(record.centralDisposition, 'pilot-approved');
@@ -1497,16 +1495,7 @@ test('the Deadpool Best of guide preserves its source groups, repeats, metadata 
   const manifest = await readJson('src/data/curated-lists.json');
   const generated = await readJson('src/data/deadpool_best_of.json');
   const markdown = await readFile(path.join(root, 'src/data/orders/deadpool-best-of.md'), 'utf8');
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      'deadpool-best-of',
-      marvelKnightsToPlanetXId,
-      doctorStrangeCandidateId,
-      'daredevil-reading-order',
-      magnetoCandidateId,
-    ],
-  );
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, ['deadpool-best-of']);
 
   assert.equal(packet.sourceOccurrenceCount, 56);
   assert.equal(packet.rows.length, 38);
@@ -1524,15 +1513,10 @@ test('the Deadpool Best of guide preserves its source groups, repeats, metadata 
   assert.equal(generated.count, 40);
   assert.equal(generated.placeholders, 2);
   assert.equal(parseChecklist(markdown).entries.length, 38);
-  assert.equal(report.comparisonCount, 150);
+  assert.equal(report.comparisonCount, 136);
   assert.deepEqual(
     report.comparisons.filter((comparison) => comparison.relationship !== 'none'),
-    [{
-      orderId: 'wolverine-reading-order',
-      sharedCount: 2,
-      sharedIds: ['32573', '32581'],
-      relationship: 'partial',
-    }],
+    [],
   );
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1692,16 +1676,7 @@ test('Hulk preserves all reviewed source positions and distinguishes provider ga
   const report = await readJson(`scripts/data/cbh-overlaps/${hulkCandidateId}.json`);
   const generated = await readJson('src/data/question_of_the_week_do_you_have_a_hulk_reading_order.json');
   const record = inventory.find((candidate) => candidate.id === hulkCandidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      hulkCandidateId,
-      marvelKnightsToPlanetXId,
-      doctorStrangeCandidateId,
-      'daredevil-reading-order',
-      magnetoCandidateId,
-    ],
-  );
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, [hulkCandidateId]);
 
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.equal(record.deliveryStatus, 'shipped');
@@ -1768,39 +1743,14 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const markdown = await readFile(path.join(root, 'src/data/orders/white-tiger-ava-ayala.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      ...characterCandidateIds,
-      ...laterCharacterIds,
-      ...laterHistoricalIds,
-      ...laterMcuIds,
-      ...laterCbhIds,
-      ...continuationHistoricalIds,
-    ],
-  );
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, [candidateId]);
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
 
-  assert.equal(reviewedLibraryDigest, '777d291c95f0b34de9c5e08bb6e0445d693dca0b5c427ec6ef1a4fb9dcc5c50e');
+  assert.equal(reviewedLibraryDigest, '8df15c1bb4ddba19126ef6129d758c6edc69fa78ae067228396420f52dc04cf2');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
-  assert.deepEqual(
-    regeneratedReport.comparisons.filter((comparison) => (
-      ![
-        ...batchCandidateIds,
-        cosmicCandidateId,
-        grootCandidateId,
-        starLordCandidateId,
-        ...laterCharacterIds,
-        ...laterHistoricalIds,
-        ...laterMcuIds,
-        ...laterCbhIds,
-      ]
-        .includes(comparison.orderId)
-    )),
-    report.comparisons,
-  );
+  assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: candidateId,
     inventoryRecord,
@@ -1819,7 +1769,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   assert.equal(packet.rows.length, 82);
   assert.equal(mapping.rows.length, 82);
   assert.equal(report.candidateCount, 82);
-  assert.equal(report.comparisonCount, 87);
+  assert.equal(report.comparisonCount, 135);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 82);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
 
@@ -1830,6 +1780,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
     { orderId: 'all-new-all-different-avengers', relationship: 'partial', sharedCount: 6 },
     { orderId: 'axis', relationship: 'partial', sharedCount: 4 },
     { orderId: 'hickman-full', relationship: 'partial', sharedCount: 1 },
+    { orderId: 'silver-surfer-reading-order', relationship: 'partial', sharedCount: 1 },
     { orderId: 'x-men-regenesis', relationship: 'partial', sharedCount: 1 },
   ]);
 
@@ -1964,8 +1915,7 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
   const markdown = await readFile(path.join(root, 'src/data/orders/moon-knight-reading-order.md'), 'utf8');
   const record = inventory.find((entry) => entry.id === moonKnightCandidateId);
   const parsed = parseChecklist(markdown);
-  const currentLibrary = await loadLibrarySnapshot();
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(currentLibrary, [moonKnightCandidateId]);
+  const reviewedLibraryDigest = await libraryDigestForScope(manifest, [moonKnightCandidateId]);
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');
@@ -2015,53 +1965,18 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   );
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === cosmicCandidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      cosmicCandidateId,
-      blackPantherCandidateId,
-      'agents-of-atlas-reading-order',
-      ironManCandidateId,
-      hulkCandidateId,
-      marvelKnightsToPlanetXId,
-      doctorStrangeCandidateId,
-      'punisher-reading-order',
-      'daredevil-reading-order',
-      'loki-reading-order',
-      venomCandidateId,
-      magnetoCandidateId,
-      moonKnightCandidateId,
-    ],
-  );
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, [cosmicCandidateId]);
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
-    [],
-    {
-      excludedOrderIds: [
-        captainMarvelCandidateId,
-        blackPantherCandidateId,
-        'agents-of-atlas-reading-order',
-        ironManCandidateId,
-        hulkCandidateId,
-        marvelKnightsToPlanetXId,
-        doctorStrangeCandidateId,
-        'punisher-reading-order',
-        'daredevil-reading-order',
-        'loki-reading-order',
-        venomCandidateId,
-        magnetoCandidateId,
-        moonKnightCandidateId,
-      ],
-    },
   );
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
-  assert.equal(reviewedLibraryDigest, '20da585ff8aab5c3c5f1d30b2e8b8ee10454425674acd016e9459fe9dea505a2');
-  assert.equal(report.reportDigest, '5a06689e902231d713a01696af12651a26469c6b34d486f85d6e243508d817be');
+  assert.equal(reviewedLibraryDigest, '05729498f22c3dbc2f93f675455dad8d03342d6b51376a6cbc4009da96798202');
+  assert.equal(report.reportDigest, '573e2f25e262a4b6076bc99a677743325527b4164839f524d1af720a5121606d');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '2b029b84df81383d16af9091a9d97bbcf8a513a2a9506e03d2f1de7a1197bf2b',
+    'd47ebb2d6d88f1f8d04222438816c78d80cc4fe32524a1eab6c1d8289243541f',
   );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(regeneratedReport.comparisons, report.comparisons);
@@ -2083,8 +1998,8 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   assertRocketSourceBoundary(packet);
   assert.equal(mapping.rows.length, 75);
   assert.equal(report.candidateCount, 75);
-  assert.equal(report.comparisonCount, 147);
-  assert.equal(mapping.relationshipReview.dispositions.length, 147);
+  assert.equal(report.comparisonCount, 135);
+  assert.equal(mapping.relationshipReview.dispositions.length, 135);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 75);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -2104,9 +2019,9 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
       { orderId: grootCandidateId, relationship: 'partial', sharedCount: 41 },
       { orderId: 'marvel-fresh-start-avengers', relationship: 'partial', sharedCount: 10 },
       { orderId: 'scarlet-witch-best-of', relationship: 'partial', sharedCount: 10 },
+      { orderId: 'silver-surfer-reading-order', relationship: 'partial', sharedCount: 4 },
       { orderId: starLordCandidateId, relationship: 'partial', sharedCount: 25 },
       { orderId: 'thanos-reading-order', relationship: 'partial', sharedCount: 6 },
-      { orderId: 'wandavision', relationship: 'partial', sharedCount: 10 },
       { orderId: 'war-of-kings', relationship: 'partial', sharedCount: 7 },
     ],
   );
@@ -2189,53 +2104,22 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   );
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === grootCandidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(
     manifest,
-    [
-      grootCandidateId,
-      cosmicCandidateId,
-      blackPantherCandidateId,
-      'agents-of-atlas-reading-order',
-      ironManCandidateId,
-      hulkCandidateId,
-      marvelKnightsToPlanetXId,
-      doctorStrangeCandidateId,
-      'punisher-reading-order',
-      'daredevil-reading-order',
-      venomCandidateId,
-      magnetoCandidateId,
-      moonKnightCandidateId,
-    ],
+    [grootCandidateId, cosmicCandidateId],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
     [path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`)],
-    {
-      excludedOrderIds: [
-        captainMarvelCandidateId,
-        blackPantherCandidateId,
-        'agents-of-atlas-reading-order',
-        ironManCandidateId,
-        hulkCandidateId,
-        marvelKnightsToPlanetXId,
-        doctorStrangeCandidateId,
-        'punisher-reading-order',
-        'daredevil-reading-order',
-        'loki-reading-order',
-        venomCandidateId,
-        magnetoCandidateId,
-        moonKnightCandidateId,
-      ],
-    },
   );
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
   assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
-  assert.equal(reviewedLibraryDigest, '8caa8d65aec5ef550e3d32922412ca6748287c7829095696bc419b944985d39f');
-  assert.equal(report.reportDigest, '3cc6a75e06e4ddea8596cd17440771c0e1029301e8d2daf8d191664845530a26');
+  assert.equal(reviewedLibraryDigest, '2f49b301a5c58db4879e99a0a79ce53abbcdd75885617ff2f0764d5561e54054');
+  assert.equal(report.reportDigest, '59905ad14263c6215178f49ab3fbf53bce77070b3f19d26fb7ceb741712fbf0e');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    'd6acf91d2c4c65001a4d6bc9daf523aa5c135b4bf0bfcd9fb3a845a84cd37303',
+    '62539ac5c7e228ca5edf38f6b3d2f551adb2b6416c6eb738e4c58c3ebdf77964',
   );
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
@@ -2260,8 +2144,8 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   assertGrootSourceBoundary(packet);
   assert.equal(mapping.rows.length, 76);
   assert.equal(report.candidateCount, 76);
-  assert.equal(report.comparisonCount, 147);
-  assert.equal(mapping.relationshipReview.dispositions.length, 147);
+  assert.equal(report.comparisonCount, 135);
+  assert.equal(mapping.relationshipReview.dispositions.length, 135);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 76);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.equal(mapping.approvedSourceCount, 84);
@@ -2291,6 +2175,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   assert.deepEqual(partials, [
     { orderId: 'annihilation-conquest', relationship: 'partial', sharedCount: 4 },
     { orderId: cosmicCandidateId, relationship: 'partial', sharedCount: 41 },
+    { orderId: 'silver-surfer-reading-order', relationship: 'partial', sharedCount: 4 },
     { orderId: starLordCandidateId, relationship: 'partial', sharedCount: 25 },
     { orderId: 'war-of-kings', relationship: 'partial', sharedCount: 7 },
   ]);
@@ -2370,21 +2255,9 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   const inventoryRecord = inventory.find((record) => (
     record.id === starLordInventoryId
   ));
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(
     manifest,
-    [
-      starLordCandidateId,
-      cosmicCandidateId,
-      grootCandidateId,
-      blackPantherCandidateId,
-      'agents-of-atlas-reading-order',
-      ironManCandidateId,
-      hulkCandidateId,
-      marvelKnightsToPlanetXId,
-      doctorStrangeCandidateId,
-      'punisher-reading-order',
-      'daredevil-reading-order',
-    ],
+    [starLordCandidateId, cosmicCandidateId, grootCandidateId],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${starLordCandidateId}.json`),
@@ -2392,32 +2265,15 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
       path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
     ],
-    {
-      excludedOrderIds: [
-        captainMarvelCandidateId,
-        blackPantherCandidateId,
-        'agents-of-atlas-reading-order',
-        ironManCandidateId,
-        hulkCandidateId,
-        marvelKnightsToPlanetXId,
-        doctorStrangeCandidateId,
-        'punisher-reading-order',
-        'daredevil-reading-order',
-        'loki-reading-order',
-        venomCandidateId,
-        magnetoCandidateId,
-        moonKnightCandidateId,
-      ],
-    },
   );
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
   assert.equal(mapping.mappingDigest, '731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da');
-  assert.equal(reviewedLibraryDigest, '4210ebf874e1ff8dc442690919751c782451df4f0e15cc936fedc57344a4e918');
-  assert.equal(report.reportDigest, '640d0b4c35d82b55c5a2e769ce777e5d8f7f3b2e6b5dc45d94495321f7ddb5d3');
+  assert.equal(reviewedLibraryDigest, '2364599c45a87148d0e77730843b5f74fd110dbbf833adaef0b509697a38345a');
+  assert.equal(report.reportDigest, '65e04cf558b3c977bcc556f0cd3467538a416cf2279bffabe40d2df713ea3111');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '4f1621ee894b0ee02f204c7959cecd0d4414184b3034149c951203141d1c91ed',
+    'f550ef741a54e6c1e3efe235fae24f680073b20152bf86cff0ecd9b37b6cc14d',
   );
   assert.deepEqual(report.peerDigests, {
     [grootCandidateId]: '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523',
@@ -2443,8 +2299,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assertStarLordSourceBoundary(packet);
   assert.equal(mapping.rows.length, 99);
   assert.equal(report.candidateCount, 99);
-  assert.equal(report.comparisonCount, 147);
-  assert.equal(mapping.relationshipReview.dispositions.length, 147);
+  assert.equal(report.comparisonCount, 135);
+  assert.equal(mapping.relationshipReview.dispositions.length, 135);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 99);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -2475,7 +2331,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     { orderId: cosmicCandidateId, relationship: 'partial', sharedCount: 25 },
     { orderId: 'war-of-kings', relationship: 'partial', sharedCount: 7 },
   ]);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 143);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 131);
 
   const starLordIds = new Set(mapping.rows.map((row) => String(row.selectedIssueId)));
   for (const peerMapping of [rocketMapping, grootMapping]) {
@@ -2628,59 +2484,23 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
     'utf8',
   );
   const parsed = parseChecklist(markdown);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      abominationCandidateId,
-      modernXMenCandidateId,
-      blackPantherCandidateId,
-      'agents-of-atlas-reading-order',
-      hulkCandidateId,
-      marvelKnightsToPlanetXId,
-      doctorStrangeCandidateId,
-      'punisher-reading-order',
-      'daredevil-reading-order',
-    ],
-  );
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, [modernXMenCandidateId]);
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${modernXMenCandidateId}.json`),
-    [],
-    {
-      excludedOrderIds: [
-        captainMarvelCandidateId,
-        blackPantherCandidateId,
-        'abomination-reading-order',
-        'agents-of-atlas-reading-order',
-        hulkCandidateId,
-        marvelKnightsToPlanetXId,
-        doctorStrangeCandidateId,
-        'punisher-reading-order',
-        'daredevil-reading-order',
-        'loki-reading-order',
-        venomCandidateId,
-        magnetoCandidateId,
-        moonKnightCandidateId,
-      ],
-    },
   );
 
   assert.equal(packet.packetDigest, '7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a');
   assert.equal(packet.sourceIssueBearingBlocksSha256, 'f0c54ad986cc4b07f06cc0345d3d909d4e95e2926b2e69aebf8b077c9672c9b5');
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
-  assert.equal(report.reportDigest, '9a2986f77772135b3721405be84f33fad0cd49c7717f186556e8b1942d066398');
-  assert.equal(reviewedLibraryDigest, '47c6d64bcbb6235d4ba68d8645c5449d294897041354e55a9d1ba9c2871ce838');
+  assert.equal(report.reportDigest, '922f3577b5a4cd06a09fbc43da85f0766c3f14043a4096b9109832a2b3832754');
+  assert.equal(reviewedLibraryDigest, '4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '4cca9950ae514f2eb8996fe3f60f060acd9feb0b278deb28ecc01a5224740d80',
+    'ee682d3ce13facbc0b1a64bab256431d6f809a192222cfc951b1f629748b1be8',
   );
-  assert.deepEqual(
-    regeneratedReport.comparisons.filter((comparison) => (
-      ![abominationCandidateId, ironManCandidateId].includes(comparison.orderId)
-    )),
-    report.comparisons,
-  );
+  assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: modernXMenCandidateId,
     catalogEntries: manifest.lists.filter((entry) => entry.id !== modernXMenCandidateId),
@@ -2700,8 +2520,8 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.rows.length, 278);
   assert.equal(mapping.rows.length, 278);
   assert.equal(report.candidateCount, 278);
-  assert.equal(report.comparisonCount, 147);
-  assert.equal(mapping.relationshipReview.dispositions.length, 147);
+  assert.equal(report.comparisonCount, 136);
+  assert.equal(mapping.relationshipReview.dispositions.length, 136);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 278);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(
@@ -2741,11 +2561,9 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       .map(({ orderId, relationship, sharedCount }) => ({ orderId, relationship, sharedCount })),
     [
       { orderId: 'dark-reign-avengers', relationship: 'partial', sharedCount: 3 },
-      { orderId: 'deadpool-best-of', relationship: 'partial', sharedCount: 2 },
       { orderId: 'marvels-best-phoenix-comics', relationship: 'partial', sharedCount: 9 },
       { orderId: 'messiah-war', relationship: 'existing-subset', sharedCount: 10 },
       { orderId: 'second-coming', relationship: 'existing-subset', sharedCount: 23 },
-      { orderId: 'wolverine-reading-order', relationship: 'partial', sharedCount: 134 },
       { orderId: 'x-men-age-of-x', relationship: 'partial', sharedCount: 9 },
       { orderId: 'x-men-battle-of-the-atom', relationship: 'existing-subset', sharedCount: 10 },
       { orderId: 'x-men-curse-of-the-mutants', relationship: 'partial', sharedCount: 6 },
@@ -2754,7 +2572,6 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       { orderId: 'x-men-regenesis', relationship: 'partial', sharedCount: 6 },
       { orderId: 'x-men-schism', relationship: 'partial', sharedCount: 5 },
       { orderId: 'x-men-trial-of-jean-grey', relationship: 'existing-subset', sharedCount: 6 },
-      { orderId: 'x-men-utopia', relationship: 'partial', sharedCount: 10 },
     ],
   );
 
@@ -2777,19 +2594,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
-    manifest,
-    [
-      ...batchCandidateIds,
-      cosmicCandidateId,
-      grootCandidateId,
-      starLordCandidateId,
-      ...laterCharacterIds,
-      ...laterHistoricalIds,
-      ...laterMcuIds,
-      ...laterCbhIds,
-    ],
-  );
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, batchCandidateIds);
   const evidence = await Promise.all(batchCandidateIds.map(async (id) => ({
     id,
     packet: await readJson(`scripts/data/cbh-packets/${id}.json`),
@@ -2803,6 +2608,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
       count: 28,
       checkpoints: [10353, 8664, 102527],
       partials: [
+        { orderId: 'phalanx-covenant', relationship: 'existing-subset', sharedCount: 9 },
         { orderId: 'xmen-claremont', relationship: 'partial', sharedCount: 8 },
         { orderId: 'xmen-claremont-complete', relationship: 'partial', sharedCount: 8 },
       ],
@@ -2816,7 +2622,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
     },
   };
 
-  assert.equal(reviewedLibraryDigest, '98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196');
+  assert.equal(reviewedLibraryDigest, 'd6ec86d326d603674be92e884aa6973ff844f6dca8ac7bf77ef00f8533bf083e');
   for (const item of evidence) {
     const peer = evidence.find((candidate) => candidate.id !== item.id);
     const inventoryRecord = inventory.find((record) => record.id === item.id);
@@ -2840,7 +2646,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
     assert.equal(item.mapping.rows.length, config.count);
     assert.equal(item.report.candidateCount, config.count);
-    assert.equal(item.report.comparisonCount, 88);
+    assert.equal(item.report.comparisonCount, 135);
     assert.ok(item.mapping.rows.every((row) => row.resolutionStatus === 'exact'));
     assert.equal(new Set(item.mapping.rows.map((row) => String(row.selectedIssueId))).size, config.count);
     assert.deepEqual(
@@ -2868,10 +2674,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 160);
+  assert.equal(catalog.lists.length, 161);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 33);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 32);
+  assert.equal(characterRuns.length, 34);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 33);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2885,7 +2691,7 @@ test('Venom preserves every source occurrence through its published guide', asyn
   const markdown = await readFile(path.join(root, 'src/data/orders/venom-reading-order.md'), 'utf8');
   const parsed = parseChecklist(markdown);
   const record = inventory.find((entry) => entry.id === venomCandidateId);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [venomCandidateId]);
+  const reviewedLibraryDigest = await currentPublicationLibraryDigest(manifest, [venomCandidateId]);
 
   assert.equal(record?.centralDisposition, 'pilot-approved');
   assert.equal(record?.deliveryStatus, 'ready');
@@ -2933,17 +2739,17 @@ test('Venom preserves every source occurrence through its published guide', asyn
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 610);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 610);
-  assert.equal(report.comparisonCount, 154);
+  assert.equal(report.comparisonCount, 136);
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
-  assert.deepEqual(
-    record?.overlapIds,
-    report.comparisons
-      .filter((comparison) => comparison.relationship !== 'none')
-      .map((comparison) => comparison.orderId),
-  );
+  assert.equal(record?.overlapIds.length, 22);
+  const reportOverlapIds = report.comparisons
+    .filter((comparison) => comparison.relationship !== 'none')
+    .map((comparison) => comparison.orderId);
+  assert.equal(reportOverlapIds.length, 13);
+  assert.ok(reportOverlapIds.every((id) => record?.overlapIds.includes(id)));
   assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Terra');
-  assert.equal(mapping.relationshipReview.dispositions.length, 154);
-  assert.match(mapping.relationshipReview.rationale, /154 current catalog orders/);
+  assert.equal(mapping.relationshipReview.dispositions.length, 136);
+  assert.match(mapping.relationshipReview.rationale, /155 current catalog orders/);
   assert.match(mapping.relationshipReview.rationale, /Twenty-two non-none relationships/);
 
   const manifestEntry = manifest.lists.find((entry) => entry.id === venomCandidateId);
@@ -2975,10 +2781,9 @@ test('Magneto preserves cache-only source accounting through publication', async
   const ledger = await readJson('scripts/data/cbh-source-ledgers/magneto-occurrences.json');
   const record = inventory.find((entry) => entry.id === magnetoCandidateId);
   const parsed = parseChecklist(markdown);
-  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+  const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
     [magnetoCandidateId],
-    true,
   );
   const positions = [
     ...sourcePositionsForPacket(packet),

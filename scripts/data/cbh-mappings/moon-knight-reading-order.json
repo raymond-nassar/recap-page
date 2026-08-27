@@ -8949,10 +8949,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 17 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "55cb97b15e46aead97142a36b4c436a4774abde4c9c534437da2482aff65e34e",
+    "reportDigest": "4f75280efdccd37e7749678ec27844879a9af3a1bac90fe2d2a417946b0da5ae",
     "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
     "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-    "libraryDigest": "41d8bb4ad8c03b7ebe1e78c6fd503645fced2e8139ec6f34254bed4ed40ad58f",
+    "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
     "peerDigests": {},
     "dispositions": [
       {
@@ -9982,6 +9982,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "decision": "approved",
@@ -10387,6 +10396,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "520182da716a6501443c33d3e5750c8c9828940bdd14a41fe2d154ee5acef6d3"
+    "approvalDigest": "28602509ba83145b16a8c00f5ac3ce25f4090df95f4a91cc5cd826e24df85893"
   }
 }

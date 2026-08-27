@@ -425,10 +425,10 @@
     "coverIssueId": 8304
   },
   "relationshipReview": {
-    "reportDigest": "6ae6abeb906a62a8b1cda35d94e77d4ee5cd24a1a3473688c5271d411a479d98",
+    "reportDigest": "6c1eaa5e1a1d6fb20d7e2da92d50bd68514fce13e0012ae77f7e9ccc7785cfa5",
     "packetDigest": "65b4c9e1308f1bd68fe0c1538691fe3fc16e622611a7e598fbc74a56c6f112ee",
     "mappingDigest": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
-    "libraryDigest": "66fedc5eaa7b8e088590a0a712c9110af74d8390957ff11422ab4af965b783e5",
+    "libraryDigest": "38233c4f59621594536c1977cce6dd39fce6277f32842518a42dc631f5d8e782",
     "peerDigests": {
       "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
       "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
@@ -444,7 +444,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "age-of-x-man",
@@ -455,7 +455,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -466,7 +466,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "annihilation",
@@ -477,7 +477,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "annihilation-conquest",
@@ -488,7 +488,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "apocalypse-wars",
@@ -499,7 +499,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "atlantis-attacks",
@@ -510,7 +510,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -521,7 +521,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-disassembled",
@@ -532,7 +532,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -543,7 +543,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "axis",
@@ -554,7 +554,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "bloodties",
@@ -565,7 +565,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "captain-america-best-of",
@@ -576,7 +576,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "chaos-war",
@@ -587,7 +587,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "childs-play",
@@ -598,7 +598,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war",
@@ -609,7 +609,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war-avengers",
@@ -620,7 +620,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war-essential",
@@ -631,7 +631,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "clone-conspiracy",
@@ -642,7 +642,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "contest-of-champions",
@@ -653,7 +653,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "damnation",
@@ -664,7 +664,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -675,7 +675,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -686,7 +686,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-web",
@@ -697,7 +697,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "days-of-future-past",
@@ -708,7 +708,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "days-of-future-present",
@@ -719,7 +719,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -730,7 +730,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "devils-reign",
@@ -741,7 +741,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -752,7 +752,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -763,7 +763,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doomwar",
@@ -774,7 +774,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "eighth-day",
@@ -785,7 +785,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "essential-avengers",
@@ -796,7 +796,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "evolutionary-war",
@@ -807,7 +807,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -818,7 +818,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -829,7 +829,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fatal-attractions",
@@ -840,7 +840,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "generations",
@@ -851,7 +851,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "groot-reading-order",
@@ -862,7 +862,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -873,7 +873,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -884,7 +884,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hickman-full",
@@ -895,7 +895,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hickman-minimal",
@@ -906,7 +906,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "house-of-m",
@@ -917,7 +917,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "house-of-m-essential",
@@ -928,7 +928,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -939,7 +939,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -950,7 +950,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "inferno",
@@ -961,7 +961,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "infinite-destinies",
@@ -972,7 +972,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -983,7 +983,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -994,7 +994,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "iron-man-2020",
@@ -1005,7 +1005,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "judgment-day",
@@ -1016,7 +1016,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "king-in-black",
@@ -1027,7 +1027,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -1038,7 +1038,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "kree-skrull-war",
@@ -1049,7 +1049,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "last-annihilation",
@@ -1060,7 +1060,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "magneto-war",
@@ -1071,7 +1071,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -1082,7 +1082,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-multiverse",
@@ -1093,7 +1093,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -1104,7 +1104,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-what-if",
@@ -1115,7 +1115,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -1126,7 +1126,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "maximum-security",
@@ -1137,7 +1137,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "messiah-complex",
@@ -1148,7 +1148,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "messiah-war",
@@ -1159,7 +1159,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "midnight-massacre",
@@ -1170,7 +1170,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "minimum-carnage",
@@ -1181,7 +1181,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "monsters-unleashed",
@@ -1192,7 +1192,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "muir-island-saga",
@@ -1203,7 +1203,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "mutant-massacre",
@@ -1214,7 +1214,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "mys-tech-wars",
@@ -1225,7 +1225,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "necrosha",
@@ -1236,7 +1236,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -1247,7 +1247,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -1258,7 +1258,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -1269,7 +1269,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -1280,7 +1280,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "original-clone-saga",
@@ -1291,7 +1291,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "phalanx-covenant",
@@ -1302,7 +1302,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -1313,7 +1313,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "phoenix-saga",
@@ -1324,7 +1324,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "planet-hulk",
@@ -1335,7 +1335,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "reckoning-war",
@@ -1346,7 +1346,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -1357,7 +1357,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "revolutionary-war",
@@ -1368,7 +1368,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -1379,7 +1379,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -1390,7 +1390,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -1401,7 +1401,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "second-coming",
@@ -1412,7 +1412,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-invasion",
@@ -1423,7 +1423,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -1434,7 +1434,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-war",
@@ -1445,7 +1445,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-wars-ii",
@@ -1456,7 +1456,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "shadowland",
@@ -1467,7 +1467,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "silent-war",
@@ -1478,7 +1478,18 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "sins-of-sinister",
@@ -1489,7 +1500,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-geddon",
@@ -1500,7 +1511,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-island",
@@ -1511,7 +1522,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-best-of",
@@ -1522,7 +1533,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -1533,7 +1544,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -1544,7 +1555,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-the-other",
@@ -1555,7 +1566,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-verse",
@@ -1566,7 +1577,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -1577,7 +1588,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-imperative",
@@ -1588,7 +1599,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-reading-order",
@@ -1599,7 +1610,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-war",
@@ -1610,7 +1621,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -1621,7 +1632,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thor-best-of",
@@ -1632,7 +1643,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "time-and-time-again",
@@ -1643,7 +1654,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "venomverse",
@@ -1654,7 +1665,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "war-of-kings",
@@ -1665,7 +1676,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "war-of-the-realms",
@@ -1676,7 +1687,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -1687,7 +1698,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -1698,7 +1709,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -1709,7 +1720,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "wraith-war",
@@ -1720,7 +1731,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-cutioners-song",
@@ -1731,7 +1742,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -1742,7 +1753,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -1753,7 +1764,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -1764,7 +1775,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -1775,7 +1786,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-extermination",
@@ -1786,7 +1797,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-inferno",
@@ -1797,7 +1808,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -1808,7 +1819,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-nation-x",
@@ -1819,7 +1830,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-regenesis",
@@ -1830,7 +1841,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-schism",
@@ -1841,7 +1852,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -1852,7 +1863,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-of-swords",
@@ -1863,7 +1874,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-termination",
@@ -1874,7 +1885,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -1885,7 +1896,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "xmen-claremont",
@@ -1896,7 +1907,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -1907,15 +1918,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:28:56.881Z"
+        "reviewedAt": "2026-08-27"
       }
     ],
     "sourceProvider": "comic-book-reading-orders",
     "packetReview": "MRT-003-C02-B06 central CBRO source review",
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-003-C02-B06 coordinator",
-    "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
-    "reviewedAt": "2026-08-26T15:28:56.881Z",
-    "approvalDigest": "cdb12f3a1dbada2d0c4b1c584e114ae21c7b0b93c48e35d494421b3628cfd771"
+    "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
+    "reviewedAt": "2026-08-27",
+    "approvalDigest": "18c0383380437c977ace043c8a6f77d7a4ddf1afdb05cd814d8a5bcced49995d"
   }
 }

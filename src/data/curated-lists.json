@@ -2070,6 +2070,41 @@
       "coverIssueId": 11353
     },
     {
+      "id": "silver-surfer-reading-order",
+      "name": "Silver Surfer",
+      "description": "A source-ordered Silver Surfer reading path from Galactus through the latest additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "silver-surfer-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "silver_surfer_reading_order.json",
+      "characters": [
+        "Silver Surfer",
+        "Norrin Radd",
+        "Galactus",
+        "Fantastic Four",
+        "Defenders",
+        "Thanos"
+      ],
+      "keywords": [
+        "Silver Surfer",
+        "Norrin Radd",
+        "Galactus",
+        "Comic Book Herald",
+        "Marvel Cosmic"
+      ],
+      "expect": 298,
+      "timeline": null,
+      "coverIssueId": 16096
+    },
+    {
       "id": "abomination-reading-order",
       "name": "Abomination",
       "description": "Abomination's Hulk-focused reading path from the source's exact issue and range cuts, with later prose-only mentions excluded per the owner clarification.",

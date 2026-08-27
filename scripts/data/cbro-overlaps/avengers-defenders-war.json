@@ -2,7 +2,7 @@
   "candidateId": "avengers-defenders-war",
   "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
   "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-  "libraryDigest": "bca1d4ab7c87dc95fcf8927ebb1d3dc4111644648e88752b0e08c67f93ac45b2",
+  "libraryDigest": "2be47c73917798e5ddb925ed0c3b733dfb1f2323e43f318124179d0c43fc15a4",
   "peerDigests": {
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
     "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 8,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -583,6 +583,21 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 8,
+      "sharedIds": [
+        "6970",
+        "20392",
+        "6971",
+        "20403",
+        "6972",
+        "20263",
+        "6973",
+        "20274"
+      ],
+      "relationship": "candidate-subset"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -817,5 +832,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "13d3b531a2f0cd3bde21dd8ad1290bb6c3c97ec26ca437f714347b82a52c056e"
+  "reportDigest": "80c1099cf141c8519486b4364f28aacf07d215fa36b1a1360e6adf04cb27a37c"
 }

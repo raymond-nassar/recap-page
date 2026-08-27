@@ -2,7 +2,7 @@
   "candidateId": "question-of-the-week-do-you-have-a-hulk-reading-order",
   "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
   "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-  "libraryDigest": "f6027ce55f287f73929e922c39fcd5cb9e8a46ef71feb4dadf0d0c312a0203db",
+  "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1242,
@@ -12,118 +12,8 @@
     "repeatedSourceReferenceCount": 75
   },
   "candidateCount": 1140,
-  "comparisonCount": 150,
+  "comparisonCount": 136,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 103,
-      "sharedIds": [
-        "11427",
-        "11428",
-        "11429",
-        "11430",
-        "11431",
-        "11432",
-        "11433",
-        "11434",
-        "11435",
-        "11436",
-        "11438",
-        "11439",
-        "11440",
-        "11441",
-        "11442",
-        "11443",
-        "11444",
-        "11445",
-        "11446",
-        "11447",
-        "11349",
-        "11350",
-        "8913",
-        "8946",
-        "8947",
-        "8948",
-        "15427",
-        "8949",
-        "8950",
-        "8951",
-        "8952",
-        "8953",
-        "8954",
-        "8955",
-        "7341",
-        "8970",
-        "8982",
-        "8995",
-        "8996",
-        "8997",
-        "8998",
-        "8999",
-        "9000",
-        "9001",
-        "9002",
-        "9003",
-        "9004",
-        "9005",
-        "9006",
-        "9007",
-        "9081",
-        "9108",
-        "9109",
-        "9110",
-        "9111",
-        "16872",
-        "9175",
-        "9176",
-        "9177",
-        "9178",
-        "9179",
-        "9180",
-        "9181",
-        "9182",
-        "9183",
-        "9194",
-        "9195",
-        "9196",
-        "9197",
-        "9198",
-        "9199",
-        "9200",
-        "16873",
-        "9231",
-        "9232",
-        "9233",
-        "9234",
-        "9235",
-        "9236",
-        "9237",
-        "9238",
-        "9239",
-        "9240",
-        "9241",
-        "9242",
-        "9243",
-        "9244",
-        "9245",
-        "9246",
-        "16877",
-        "65016",
-        "66352",
-        "9270",
-        "9284",
-        "9285",
-        "14421",
-        "14422",
-        "14423",
-        "14424",
-        "14425",
-        "14426",
-        "14427",
-        "14428"
-      ],
-      "relationship": "partial"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 1,
@@ -133,19 +23,7 @@
       "relationship": "partial"
     },
     {
-      "orderId": "agatha-harkness-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "age-of-x-man",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "agents-of-atlas-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -155,17 +33,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 4,
-      "sharedIds": [
-        "6527",
-        "9194",
-        "9195",
-        "9196"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "annihilation",
@@ -178,28 +45,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
-      "sharedCount": 15,
-      "sharedIds": [
-        "6951",
-        "7063",
-        "7174",
-        "7299",
-        "11403",
-        "11405",
-        "11406",
-        "11407",
-        "11408",
-        "11409",
-        "11410",
-        "11411",
-        "11412",
-        "11413",
-        "11414"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "apocalypse-wars",
@@ -245,14 +90,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "black-panther-reading-order",
-      "sharedCount": 1,
-      "sharedIds": [
-        "10104"
-      ],
-      "relationship": "partial"
-    },
-    {
       "orderId": "bloodties",
       "sharedCount": 0,
       "sharedIds": [],
@@ -260,12 +97,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -350,12 +181,6 @@
     },
     {
       "orderId": "dead-mans-hand",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "deadpool-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -528,12 +353,6 @@
         "52267"
       ],
       "relationship": "partial"
-    },
-    {
-      "orderId": "hickman-x-men",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
     },
     {
       "orderId": "house-of-m",
@@ -873,12 +692,6 @@
       "relationship": "partial"
     },
     {
-      "orderId": "setup-to-modern-timeline",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "shadowland",
       "sharedCount": 0,
       "sharedIds": [],
@@ -889,6 +702,37 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 24,
+      "sharedIds": [
+        "11440",
+        "11441",
+        "20262",
+        "20326",
+        "20337",
+        "20348",
+        "20359",
+        "20370",
+        "20381",
+        "20392",
+        "20403",
+        "20263",
+        "20274",
+        "3530",
+        "3955",
+        "4081",
+        "4195",
+        "22916",
+        "23115",
+        "23609",
+        "23768",
+        "23769",
+        "24168",
+        "26314"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "sins-of-sinister",
@@ -915,12 +759,6 @@
         "6527"
       ],
       "relationship": "partial"
-    },
-    {
-      "orderId": "spider-man-far-from-home",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
     },
     {
       "orderId": "spider-man-identity-crisis",
@@ -1000,39 +838,10 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "wandavision",
-      "sharedCount": 16,
-      "sharedIds": [
-        "65415",
-        "65897",
-        "65898",
-        "65899",
-        "66086",
-        "66185",
-        "66266",
-        "66267",
-        "66395",
-        "66482",
-        "66530",
-        "66531",
-        "66668",
-        "66753",
-        "66829",
-        "66905"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "war-of-kings",
@@ -1057,16 +866,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "wolverine-reading-order",
-      "sharedCount": 3,
-      "sharedIds": [
-        "9151",
-        "63870",
-        "60851"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "world-war-hulk-aftersmash",
@@ -1169,12 +968,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1215,5 +1008,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "cb0946ae047daf849f34e8033a9f2d2ff1b998042d38d9581a6c306d64555907"
+  "reportDigest": "331d4dd520c3203c52cdbe6d384b50bf3d5908dc8d6d64b65ad3513583410752"
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T17:46:34.548Z",
+  "generatedAt": "2026-08-27T16:47:23.578Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2404,6 +2404,46 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T20:43:34.162Z"
+    },
+    {
+      "id": "silver-surfer-reading-order",
+      "file": "silver_surfer_reading_order.json",
+      "name": "Silver Surfer",
+      "description": "A source-ordered Silver Surfer reading path from Galactus through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 298,
+      "collections": 46,
+      "characters": [
+        "Silver Surfer",
+        "Norrin Radd",
+        "Galactus",
+        "Fantastic Four",
+        "Defenders",
+        "Thanos"
+      ],
+      "keywords": [
+        "Silver Surfer",
+        "Norrin Radd",
+        "Galactus",
+        "Comic Book Herald",
+        "Marvel Cosmic"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 16096,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/51b63958a75e4",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/silver-surfer-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T14:57:53.205Z"
     },
     {
       "id": "abomination-reading-order",

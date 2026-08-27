@@ -2,7 +2,7 @@
   "candidateId": "venom-reading-order",
   "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
   "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
-  "libraryDigest": "952e2327d0043e44725cc1dfdb87d9e6e56ae5a2ee5a720c9a6328135f540d7f",
+  "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 932,
@@ -12,16 +12,8 @@
     "repeatedSourceReferenceCount": 286
   },
   "candidateCount": 610,
-  "comparisonCount": 154,
+  "comparisonCount": 136,
   "comparisons": [
-    {
-      "orderId": "abomination-reading-order",
-      "sharedCount": 1,
-      "sharedIds": [
-        "65016"
-      ],
-      "relationship": "partial"
-    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 4,
@@ -34,19 +26,7 @@
       "relationship": "partial"
     },
     {
-      "orderId": "agatha-harkness-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "age-of-x-man",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "agents-of-atlas-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -56,134 +36,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 121,
-      "sharedIds": [
-        "6652",
-        "6653",
-        "6654",
-        "6655",
-        "6656",
-        "6657",
-        "6658",
-        "6659",
-        "6702",
-        "6703",
-        "6706",
-        "6722",
-        "6723",
-        "6724",
-        "11973",
-        "6741",
-        "6742",
-        "6756",
-        "6757",
-        "6802",
-        "16900",
-        "16901",
-        "54823",
-        "53453",
-        "6739",
-        "6740",
-        "6754",
-        "6755",
-        "11994",
-        "11995",
-        "10814",
-        "10815",
-        "6773",
-        "6774",
-        "6775",
-        "62680",
-        "6786",
-        "6788",
-        "6787",
-        "6791",
-        "6792",
-        "6794",
-        "14656",
-        "14657",
-        "14658",
-        "10795",
-        "10796",
-        "10797",
-        "11976",
-        "11977",
-        "11978",
-        "10573",
-        "10518",
-        "10524",
-        "10525",
-        "48434",
-        "18832",
-        "18843",
-        "18852",
-        "18853",
-        "197",
-        "41920",
-        "10520",
-        "641",
-        "673",
-        "732",
-        "575",
-        "777",
-        "889",
-        "30",
-        "1622",
-        "521",
-        "805",
-        "1427",
-        "1523",
-        "1715",
-        "21704",
-        "21705",
-        "21932",
-        "21931",
-        "21930",
-        "22261",
-        "23180",
-        "35521",
-        "39291",
-        "39018",
-        "35505",
-        "35534",
-        "35501",
-        "35515",
-        "35503",
-        "47386",
-        "47387",
-        "47388",
-        "48033",
-        "48034",
-        "47389",
-        "65261",
-        "65259",
-        "65260",
-        "65313",
-        "65822",
-        "65895",
-        "66706",
-        "66805",
-        "66869",
-        "66924",
-        "67049",
-        "114560",
-        "114562",
-        "114563",
-        "114564",
-        "115160",
-        "116178",
-        "116179",
-        "116180",
-        "116181",
-        "118734",
-        "118735",
-        "118736",
-        "125782"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "annihilation",
@@ -196,29 +48,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "ant-man-reading-order",
-      "sharedCount": 16,
-      "sharedIds": [
-        "35133",
-        "37342",
-        "35167",
-        "40708",
-        "40706",
-        "40705",
-        "40709",
-        "40704",
-        "40710",
-        "40703",
-        "40712",
-        "40711",
-        "40707",
-        "40702",
-        "40701",
-        "40700"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "apocalypse-wars",
@@ -257,12 +86,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "black-panther-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "bloodties",
       "sharedCount": 0,
       "sharedIds": [],
@@ -270,12 +93,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -342,16 +159,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "daredevil-reading-order",
-      "sharedCount": 3,
-      "sharedIds": [
-        "73597",
-        "73601",
-        "73602"
-      ],
-      "relationship": "partial"
-    },
-    {
       "orderId": "dark-phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
@@ -410,12 +217,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "deadpool-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "death-of-doctor-strange",
       "sharedCount": 0,
       "sharedIds": [],
@@ -440,17 +241,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "doctor-strange-reading-order",
-      "sharedCount": 4,
-      "sharedIds": [
-        "12097",
-        "12098",
-        "62404",
-        "62405"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "doomwar",
@@ -539,12 +329,6 @@
     },
     {
       "orderId": "hickman-minimal",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "hickman-x-men",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -644,18 +428,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "marvel-knights-to-planet-x",
-      "sharedCount": 5,
-      "sharedIds": [
-        "18832",
-        "18843",
-        "18852",
-        "18853",
-        "197"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "marvel-multiverse",
@@ -809,22 +581,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-      "sharedCount": 9,
-      "sharedIds": [
-        "10590",
-        "13088",
-        "65016",
-        "40639",
-        "40644",
-        "42171",
-        "42170",
-        "42662",
-        "42663"
-      ],
-      "relationship": "partial"
-    },
-    {
       "orderId": "reckoning-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -891,12 +647,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "setup-to-modern-timeline",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "shadowland",
       "sharedCount": 0,
       "sharedIds": [],
@@ -904,6 +654,12 @@
     },
     {
       "orderId": "silent-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "silver-surfer-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -941,12 +697,6 @@
     },
     {
       "orderId": "spider-man-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "spider-man-far-from-home",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1018,12 +768,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "venomverse",
       "sharedCount": 10,
       "sharedIds": [
@@ -1039,12 +783,6 @@
         "64757"
       ],
       "relationship": "partial"
-    },
-    {
-      "orderId": "wandavision",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
     },
     {
       "orderId": "war-of-kings",
@@ -1073,19 +811,6 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
-    },
-    {
-      "orderId": "wolverine-reading-order",
-      "sharedCount": 6,
-      "sharedIds": [
-        "10030",
-        "10032",
-        "10036",
-        "40706",
-        "40705",
-        "40709"
-      ],
-      "relationship": "partial"
     },
     {
       "orderId": "world-war-hulk-aftersmash",
@@ -1172,15 +897,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "x-men-utopia",
-      "sharedCount": 2,
-      "sharedIds": [
-        "24814",
-        "24806"
-      ],
-      "relationship": "partial"
-    },
-    {
       "orderId": "x-of-swords",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1211,5 +927,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "36c13fa25871ac9d60563660afa2fcdad828c60ee3cb3ad59bddef45ad0851d5"
+  "reportDigest": "7fc687bca4e3359a207837b44b7d8fd1369b85476bec0710bde027e9b388deb4"
 }

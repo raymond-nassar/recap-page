@@ -39,7 +39,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "The modern Marvel-era guide now ships with 69 source rows, 13 resolved items, and 56 explicit placeholders, so the remaining metadata gaps are preserved as provenance instead of blocking publication.",
-    "sourceRetrievedAt": "2026-08-27",
+    "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "captain-america-best-of",
       "doctor-doom-primer",
@@ -2111,7 +2111,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "The frozen full-page source ledger preserves 414 occurrences: 374 exact provider-resolved comics, 11 backward repeats, 18 explicit open metadata gaps, and 11 partial-material exclusions. The complete-library report has 17 approved non-none relationships and no exact duplicate.",
-    "sourceRetrievedAt": "2026-08-27",
+    "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "agatha-harkness-reading-order",
       "amazing-spider-man-reading-order-modern-marvel-era",
@@ -2797,13 +2797,13 @@
     "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The 426-occurrence source packet is prepared from the settled offline provider cache: 294 exact rows, 17 backward repeats, four explicit metadata gaps tracked in issue #304, and 111 exclusions. Overlap review, catalog generation, and merge remain pending; issue #239 remains the source queue record.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Silver Surfer"
     ],
@@ -2813,7 +2813,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "b9fbb29d0a7fbb0ec7ac59cbdfa90f090e16ab940e1571345f8ec1fec1b5cfef",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 102,

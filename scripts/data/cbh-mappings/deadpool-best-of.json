@@ -1705,21 +1705,12 @@
     "coverIssueId": 8462
   },
   "relationshipReview": {
-    "reportDigest": "f515c0c9208a71d7598ffd20395e0eefe37d7dcd99bf241424aa3c96855affd0",
+    "reportDigest": "e1733eeda5c488e5179b475555c613474bddc85d36f17734912d9a0ead39b2a1",
     "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
     "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
-    "libraryDigest": "2adaf22f349325e3b2423de4fdcc46f7347f58fd9af23784862659d6e45bb35e",
+    "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
     "peerDigests": {},
     "dispositions": [
-      {
-        "orderId": "abomination-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -1727,16 +1718,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "age-of-x-man",
@@ -1745,16 +1727,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "agents-of-atlas-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -1763,16 +1736,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "annihilation",
@@ -1781,7 +1745,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "annihilation-conquest",
@@ -1790,16 +1754,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "apocalypse-wars",
@@ -1808,7 +1763,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "atlantis-attacks",
@@ -1817,7 +1772,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -1826,7 +1781,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-disassembled",
@@ -1835,7 +1790,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -1844,7 +1799,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "axis",
@@ -1853,16 +1808,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "black-panther-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No selected issue identities overlap, so the guides remain distinct.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "bloodties",
@@ -1871,7 +1817,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "captain-america-best-of",
@@ -1880,16 +1826,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "chaos-war",
@@ -1898,7 +1835,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "childs-play",
@@ -1907,7 +1844,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war",
@@ -1916,7 +1853,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war-avengers",
@@ -1925,7 +1862,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war-essential",
@@ -1934,7 +1871,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "clone-conspiracy",
@@ -1943,7 +1880,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "contest-of-champions",
@@ -1952,7 +1889,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "damnation",
@@ -1961,7 +1898,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -1970,7 +1907,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -1979,7 +1916,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-web",
@@ -1988,7 +1925,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "days-of-future-past",
@@ -1997,7 +1934,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "days-of-future-present",
@@ -2006,7 +1943,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dead-mans-hand",
@@ -2015,7 +1952,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -2024,7 +1961,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "devils-reign",
@@ -2033,7 +1970,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -2042,7 +1979,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -2051,7 +1988,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doomwar",
@@ -2060,7 +1997,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "eighth-day",
@@ -2069,7 +2006,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "essential-avengers",
@@ -2078,7 +2015,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "evolutionary-war",
@@ -2087,7 +2024,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -2096,7 +2033,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -2105,7 +2042,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fatal-attractions",
@@ -2114,7 +2051,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "generations",
@@ -2123,7 +2060,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "groot-reading-order",
@@ -2132,7 +2069,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -2141,7 +2078,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -2150,7 +2087,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hickman-full",
@@ -2159,7 +2096,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hickman-minimal",
@@ -2168,16 +2105,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "hickman-x-men",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "house-of-m",
@@ -2186,7 +2114,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "house-of-m-essential",
@@ -2195,7 +2123,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -2204,7 +2132,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -2213,7 +2141,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "inferno",
@@ -2222,7 +2150,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "infinite-destinies",
@@ -2231,7 +2159,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -2240,7 +2168,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -2249,7 +2177,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "iron-man-2020",
@@ -2258,7 +2186,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "judgment-day",
@@ -2267,7 +2195,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "king-in-black",
@@ -2276,7 +2204,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -2285,7 +2213,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "kree-skrull-war",
@@ -2294,7 +2222,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "last-annihilation",
@@ -2303,7 +2231,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "magneto-war",
@@ -2312,7 +2240,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -2321,7 +2249,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-multiverse",
@@ -2330,7 +2258,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -2339,7 +2267,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-what-if",
@@ -2348,7 +2276,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -2357,7 +2285,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "maximum-security",
@@ -2366,7 +2294,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "messiah-complex",
@@ -2375,7 +2303,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "messiah-war",
@@ -2384,7 +2312,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "midnight-massacre",
@@ -2393,7 +2321,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "minimum-carnage",
@@ -2402,7 +2330,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "monsters-unleashed",
@@ -2411,7 +2339,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "muir-island-saga",
@@ -2420,7 +2348,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "mutant-massacre",
@@ -2429,7 +2357,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "mys-tech-wars",
@@ -2438,7 +2366,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "necrosha",
@@ -2447,7 +2375,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -2456,7 +2384,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -2465,7 +2393,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -2474,7 +2402,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -2483,7 +2411,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "original-clone-saga",
@@ -2492,7 +2420,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "phalanx-covenant",
@@ -2501,7 +2429,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -2510,7 +2438,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "phoenix-saga",
@@ -2519,7 +2447,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "planet-hulk",
@@ -2528,16 +2456,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "reckoning-war",
@@ -2546,7 +2465,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -2555,7 +2474,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "revolutionary-war",
@@ -2564,7 +2483,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -2573,7 +2492,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -2582,7 +2501,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -2591,7 +2510,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "second-coming",
@@ -2600,7 +2519,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-invasion",
@@ -2609,7 +2528,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -2618,7 +2537,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-war",
@@ -2627,7 +2546,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-wars-ii",
@@ -2636,16 +2555,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "shadowland",
@@ -2654,7 +2564,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "silent-war",
@@ -2663,7 +2573,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "sins-of-sinister",
@@ -2672,7 +2593,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-geddon",
@@ -2681,7 +2602,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-island",
@@ -2690,7 +2611,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-best-of",
@@ -2699,16 +2620,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -2717,7 +2629,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -2726,7 +2638,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-the-other",
@@ -2735,7 +2647,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-verse",
@@ -2744,7 +2656,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -2753,7 +2665,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-imperative",
@@ -2762,7 +2674,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-reading-order",
@@ -2771,7 +2683,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-war",
@@ -2780,7 +2692,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -2789,7 +2701,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thor-best-of",
@@ -2798,7 +2710,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "time-and-time-again",
@@ -2807,16 +2719,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "venomverse",
@@ -2825,16 +2728,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "wandavision",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "war-of-kings",
@@ -2843,7 +2737,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "war-of-the-realms",
@@ -2852,7 +2746,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -2861,7 +2755,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -2870,16 +2764,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "The reviewed shared issue identities support a distinct starter guide and do not duplicate the compared guide.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -2888,7 +2773,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "wraith-war",
@@ -2897,7 +2782,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-cutioners-song",
@@ -2906,7 +2791,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -2915,7 +2800,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -2924,7 +2809,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -2933,7 +2818,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -2942,7 +2827,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-extermination",
@@ -2951,7 +2836,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-inferno",
@@ -2960,7 +2845,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -2969,7 +2854,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-nation-x",
@@ -2978,7 +2863,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-regenesis",
@@ -2987,7 +2872,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-schism",
@@ -2996,7 +2881,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -3005,16 +2890,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
-      },
-      {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-of-swords",
@@ -3023,7 +2899,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-termination",
@@ -3032,7 +2908,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -3041,7 +2917,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "xmen-claremont",
@@ -3050,7 +2926,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -3059,13 +2935,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-08-27"
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The complete-library comparison was refreshed after the Black Panther guide joined the catalog. Every resulting relationship remains approved.",
-    "reviewedAt": "2026-08-27T05:03:43.866Z",
-    "approvalDigest": "d2764918ccc65281efc400969fd2e960e80dcb1677a179a7c43eb8849fd4cbf8"
+    "rationale": "The complete-library comparison was refreshed after the Black Panther guide joined the catalog. Every resulting relationship remains approved. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
+    "reviewedAt": "2026-08-27",
+    "approvalDigest": "4b84d3f334bc3f15dc0e4a3d272cdefbbfae0ad26f2c45a6a3d16f64a7333f7a"
   }
 }

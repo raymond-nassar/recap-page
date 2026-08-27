@@ -2,7 +2,7 @@
   "candidateId": "moon-knight-reading-order",
   "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
   "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-  "libraryDigest": "41d8bb4ad8c03b7ebe1e78c6fd503645fced2e8139ec6f34254bed4ed40ad58f",
+  "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 414,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 11
   },
   "candidateCount": 374,
-  "comparisonCount": 159,
+  "comparisonCount": 160,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -827,6 +827,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1114,5 +1120,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "55cb97b15e46aead97142a36b4c436a4774abde4c9c534437da2482aff65e34e"
+  "reportDigest": "4f75280efdccd37e7749678ec27844879a9af3a1bac90fe2d2a417946b0da5ae"
 }

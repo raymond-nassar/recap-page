@@ -2,7 +2,7 @@
   "candidateId": "phoenix-saga",
   "packetDigest": "8dd7a741edf28961a20afdc3a80021bd07c2a3f0769ed3b360986ce2219fe9b6",
   "mappingDigest": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa",
-  "libraryDigest": "e63c8e6a92e25f93805cae6517f27ea83e91b27ee334ff83c84374afe850bac7",
+  "libraryDigest": "3516a3c75e22bff69bed2ddc746ebe38aaaeeac0f11d4ba45342768c42a0d499",
   "peerDigests": {
     "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
     "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
@@ -10,7 +10,7 @@
     "original-clone-saga": "fce26aa2714d7735b24b61d23c4db0b0998b82435f12079acbbf16cee3a712a9"
   },
   "candidateCount": 8,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -583,6 +583,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -835,5 +841,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "baeef35211c6ad3348a4423d097d1fb2c33c64a36ce178b0cc6385712c57016c"
+  "reportDigest": "b48233673d99887b94dacb57de791e725340983dfb2b7115c2ef6d17a30496c6"
 }
