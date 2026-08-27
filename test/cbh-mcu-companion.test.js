@@ -382,7 +382,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    25,
+    26,
     'Character Spotlight count differs from the merged catalog',
   );
 });

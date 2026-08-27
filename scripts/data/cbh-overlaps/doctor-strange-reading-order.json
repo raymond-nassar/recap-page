@@ -2,7 +2,7 @@
   "candidateId": "doctor-strange-reading-order",
   "packetDigest": "44bf6593238e366136b8c341272262c51f5412a103f499f16c6783324ead05bd",
   "mappingDigest": "807760c148cdcdf3c1c1fc2943f14b0410ca457c470c7ee6b1ac88ad8cf2da7e",
-  "libraryDigest": "c88f3bc048979d0e3b3854556514ca875d45727cc48fa3dd32ac0f4df519cc55",
+  "libraryDigest": "fa639620c25ab38c21974e0b96cac070776215e6cb0bfa6477ac19174a2cfce5",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 932,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 181
   },
   "candidateCount": 711,
-  "comparisonCount": 148,
+  "comparisonCount": 151,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -150,6 +150,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "black-panther-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "bloodties",
       "sharedCount": 0,
       "sharedIds": [],
@@ -270,6 +276,12 @@
     },
     {
       "orderId": "dead-mans-hand",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "deadpool-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -676,6 +688,31 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 18,
+      "sharedIds": [
+        "20262",
+        "20326",
+        "20337",
+        "20348",
+        "20359",
+        "20370",
+        "20381",
+        "20392",
+        "20403",
+        "20263",
+        "20274",
+        "8937",
+        "16875",
+        "73432",
+        "73455",
+        "73414",
+        "73467",
+        "73412"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "reckoning-war",
@@ -1099,5 +1136,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "ec1e84dea884643d2b187e5f117d8cc91c76847261ddd3962d6ceffdf77db6a4"
+  "reportDigest": "01cf547a9b9058828bef220b2fbac01ff77a1da98bfe3567b4fead1f064febcd"
 }

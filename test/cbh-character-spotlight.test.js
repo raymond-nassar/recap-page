@@ -26,6 +26,7 @@ const cosmicCandidateId = 'rocket-raccoon-reading-order';
 const grootCandidateId = 'groot-reading-order';
 const ironManCandidateId = 'iron-man-reading-order';
 const hulkCandidateId = 'question-of-the-week-do-you-have-a-hulk-reading-order';
+const doctorStrangeCandidateId = 'doctor-strange-reading-order';
 const starLordCandidateId = 'star-lord-reading-order';
 const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics-timeline';
 const modernXMenCandidateId = 'modern-x-men-fast-track';
@@ -251,6 +252,7 @@ const laterCbhIds = [
   'x-men-messiah-to-avx',
   abominationCandidateId,
   blackPantherCandidateId,
+  doctorStrangeCandidateId,
   'agents-of-atlas-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
   ironManCandidateId,
@@ -506,6 +508,83 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.match(markdown, /^## Latest Additions$/m);
 });
 
+test('the Doctor Strange guide preserves its complete source ledger through publication', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${doctorStrangeCandidateId}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${doctorStrangeCandidateId}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${doctorStrangeCandidateId}.json`);
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const generated = await readJson('src/data/doctor_strange_reading_order.json');
+  const markdown = await readFile(
+    path.join(root, 'src/data/orders/doctor-strange-reading-order.md'),
+    'utf8',
+  );
+  const inventoryRecord = inventory.find((record) => record.id === doctorStrangeCandidateId);
+  const manifestEntry = manifest.lists.find((entry) => entry.id === doctorStrangeCandidateId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === doctorStrangeCandidateId);
+  const parsed = parseChecklist(markdown);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [doctorStrangeCandidateId]);
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: doctorStrangeCandidateId,
+    inventoryRecord,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+
+  assert.equal(packet.sourceOccurrenceCount, 932);
+  assert.equal(packet.rows.length, 711);
+  assert.equal(packet.sourceGaps.length, 39);
+  assert.equal(packet.repeatedSourceReferences.length, 181);
+  assert.equal(packet.excludedSourceRows.length, 1);
+  assert.equal(new Set(
+    [...packet.rows, ...packet.sourceGaps].map((entry) => entry.sourceGroup),
+  ).size, 72);
+  assert.match(packet.sourceBoundary, /all 76 issue-bearing blocks/);
+  assert.equal(
+    packet.sourceBoundary.match(/\b(?:I|II|III|IV|V|VI|VII|VIII)\)/g)?.length,
+    8,
+  );
+  assert.match(packet.sourceBoundary, /Latest Additions:/);
+  assert.equal(mapping.rows.length, 711);
+  assert.equal(mapping.sourceGaps.length, 39);
+  assert.equal(mapping.candidateMetadata.length, 711);
+  assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  assert.equal(report.candidateCount, 711);
+  assert.equal(report.comparisonCount, 151);
+  assert.equal(mapping.relationshipReview.dispositions.length, 151);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 122);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'existing-subset').length, 3);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 26);
+  assert.equal(manifestEntry.expect, 750);
+  assert.equal(manifestEntry.spotlightKind, 'complete-guide');
+  assert.equal(catalogEntry.count, 750);
+  assert.equal(generated.count, 750);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 711);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 39);
+  assert.equal(generated.placeholders, 39);
+  assert.equal(parsed.entries.length, 711);
+  assert.equal(parsed.unresolved.length, 39);
+  assert.deepEqual(
+    generated.items.filter((item) => item.issueId > 0).map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.match(markdown, /^## I\) Dr\. Strange Origins and The 1960's \| Collects:/m);
+  assert.match(markdown, /^## Latest Additions:/m);
+  const doctorIndex = manifest.lists.findIndex((entry) => entry.id === doctorStrangeCandidateId);
+  assert.equal(manifest.lists[doctorIndex - 1].id, hulkCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 1].id, 'xmen-claremont');
+});
+
 test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
   const packet = await readJson('scripts/data/cbh-packets/deadpool-best-of.json');
   const mapping = await readJson('scripts/data/cbh-mappings/deadpool-best-of.json');
@@ -515,7 +594,7 @@ test('the Deadpool Best of guide preserves its source groups, repeats, metadata 
   const markdown = await readFile(path.join(root, 'src/data/orders/deadpool-best-of.md'), 'utf8');
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    ['deadpool-best-of', marvelKnightsToPlanetXId],
+    ['deadpool-best-of', marvelKnightsToPlanetXId, doctorStrangeCandidateId],
   );
 
   assert.equal(packet.sourceOccurrenceCount, 56);
@@ -704,7 +783,7 @@ test('Hulk preserves all reviewed source positions and distinguishes provider ga
   const record = inventory.find((candidate) => candidate.id === hulkCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [hulkCandidateId, marvelKnightsToPlanetXId],
+    [hulkCandidateId, marvelKnightsToPlanetXId, doctorStrangeCandidateId],
   );
 
   assert.equal(record.centralDisposition, 'pilot-approved');
@@ -890,6 +969,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
       ironManCandidateId,
       hulkCandidateId,
       marvelKnightsToPlanetXId,
+      doctorStrangeCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -902,6 +982,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
         ironManCandidateId,
         hulkCandidateId,
         marvelKnightsToPlanetXId,
+        doctorStrangeCandidateId,
       ],
     },
   );
@@ -1050,6 +1131,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
       ironManCandidateId,
       hulkCandidateId,
       marvelKnightsToPlanetXId,
+      doctorStrangeCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1062,6 +1144,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
         ironManCandidateId,
         hulkCandidateId,
         marvelKnightsToPlanetXId,
+        doctorStrangeCandidateId,
       ],
     },
   );
@@ -1218,6 +1301,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       ironManCandidateId,
       hulkCandidateId,
       marvelKnightsToPlanetXId,
+      doctorStrangeCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1233,6 +1317,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
         ironManCandidateId,
         hulkCandidateId,
         marvelKnightsToPlanetXId,
+        doctorStrangeCandidateId,
       ],
     },
   );
@@ -1350,7 +1435,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 2].id, 'ant-man-reading-order');
   assert.equal(manifest.lists[starLordIndex + 3].id, 'wolverine-reading-order');
   assert.equal(manifest.lists[starLordIndex + 4].id, hulkCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 5].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 5].id, doctorStrangeCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 6].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -1457,6 +1543,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       'agents-of-atlas-reading-order',
       hulkCandidateId,
       marvelKnightsToPlanetXId,
+      doctorStrangeCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1469,6 +1556,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
         'agents-of-atlas-reading-order',
         hulkCandidateId,
         marvelKnightsToPlanetXId,
+        doctorStrangeCandidateId,
       ],
     },
   );
@@ -1679,6 +1767,6 @@ test('the first character batch stays exact through evidence, catalog, and gener
   assert.equal(new Set(allBatchIds).size, 81);
   assert.equal(catalog.lists.length, 152);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 25);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 24);
+  assert.equal(characterRuns.length, 26);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 25);
 });
