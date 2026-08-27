@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T13:18:34.620Z",
+  "generatedAt": "2026-08-27T13:21:12.935Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2406,6 +2406,40 @@
       "updatedAt": "2026-08-26T07:11:31.019Z"
     },
     {
+      "id": "black-panther-reading-order",
+      "file": "black_panther_reading_order.json",
+      "name": "Black Panther",
+      "description": "A complete Black Panther reading path that follows the source page from T Challa debut through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 367,
+      "collections": 11,
+      "characters": [
+        "Black Panther",
+        "T'Challa"
+      ],
+      "keywords": [
+        "Black Panther",
+        "Comic Book Herald",
+        "Wakanda"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 13258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5372d7b815a17",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T03:53:15.980Z"
+    },
+    {
       "id": "groot-reading-order",
       "file": "groot_reading_order.json",
       "name": "Groot",
@@ -2593,6 +2627,83 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T20:07:18.806Z"
+    },
+    {
+      "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "file": "question_of_the_week_do_you_have_a_hulk_reading_order.json",
+      "name": "Hulk (and She-Hulk, Red Hulk)",
+      "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 1159,
+      "collections": 12,
+      "characters": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar"
+      ],
+      "keywords": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 8906,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/59933ea5b5c2e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T04:26:25.607Z"
+    },
+    {
+      "id": "doctor-strange-reading-order",
+      "file": "doctor_strange_reading_order.json",
+      "name": "Doctor Strange",
+      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 750,
+      "collections": 72,
+      "characters": [
+        "Doctor Strange",
+        "Defenders",
+        "Avengers",
+        "Clea",
+        "Wong"
+      ],
+      "keywords": [
+        "Doctor Strange",
+        "Sorcerer Supreme",
+        "Defenders",
+        "Strange Academy",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11029,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bc480360bd1f",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:36:57.369Z"
     },
     {
       "id": "daredevil-reading-order",
@@ -2969,6 +3080,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T04:10:56.790Z"
+    },
+    {
+      "id": "deadpool-best-of",
+      "file": "deadpool_best_of.json",
+      "name": "The Best Deadpool Comics To Start With!",
+      "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+      "type": "character-run",
+      "depth": "essential",
+      "spotlightKind": "best-of",
+      "count": 40,
+      "collections": 9,
+      "characters": [
+        "Deadpool",
+        "Cable",
+        "Wolverine",
+        "Spider-Man",
+        "X-Force",
+        "Lady Deadpool"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "best-of",
+        "Deadpool",
+        "Cable",
+        "Wolverine"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 8462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4f20226fb8142",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/deadpool-reading-order/",
+      "sourceSection": "The Best Deadpool Comics To Start With!",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T02:17:07.601Z"
     },
     {
       "id": "scarlet-witch-best-of",
@@ -4308,6 +4460,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T15:53:03.208Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x",
+      "file": "marvel_knights_to_planet_x.json",
+      "name": "Marvel Knights to Planet X",
+      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "type": "event",
+      "depth": "complete",
+      "count": 487,
+      "collections": 3,
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four",
+        "Avengers",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X",
+        "Guardian Devil",
+        "E is for Extinction",
+        "X-Corps",
+        "Planet X crossover"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1998,
+      "coverIssueId": 15609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/57223eff00d5d",
+        "ext": "jpg"
+      },
+      "source": null,
+      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
     },
     {
       "id": "spider-man-identity-crisis",

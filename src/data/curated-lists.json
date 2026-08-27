@@ -2070,6 +2070,35 @@
       "coverIssueId": 11427
     },
     {
+      "id": "black-panther-reading-order",
+      "name": "Black Panther",
+      "description": "A complete Black Panther reading path that follows the source page from T Challa debut through the latest additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "black-panther-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "black_panther_reading_order.json",
+      "characters": [
+        "Black Panther",
+        "T'Challa"
+      ],
+      "keywords": [
+        "Black Panther",
+        "Comic Book Herald",
+        "Wakanda"
+      ],
+      "expect": 367,
+      "timeline": null,
+      "coverIssueId": 13258
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",
@@ -2233,6 +2262,73 @@
       "expect": 1222,
       "timeline": null,
       "coverIssueId": 8797
+    },
+    {
+      "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "name": "Hulk (and She-Hulk, Red Hulk)",
+      "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "question-of-the-week-do-you-have-a-hulk-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "question_of_the_week_do_you_have_a_hulk_reading_order.json",
+      "characters": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar"
+      ],
+      "keywords": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar",
+        "Comic Book Herald"
+      ],
+      "expect": 1159,
+      "timeline": null,
+      "coverIssueId": 8906
+    },
+    {
+      "id": "doctor-strange-reading-order",
+      "name": "Doctor Strange",
+      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "doctor-strange-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "doctor_strange_reading_order.json",
+      "characters": [
+        "Doctor Strange",
+        "Defenders",
+        "Avengers",
+        "Clea",
+        "Wong"
+      ],
+      "keywords": [
+        "Doctor Strange",
+        "Sorcerer Supreme",
+        "Defenders",
+        "Strange Academy",
+        "Comic Book Herald"
+      ],
+      "expect": 750,
+      "timeline": null,
+      "coverIssueId": 11029
     },
     {
       "id": "daredevil-reading-order",
@@ -2551,6 +2647,42 @@
       ],
       "expect": 131,
       "timeline": null
+    },
+    {
+      "id": "deadpool-best-of",
+      "name": "The Best Deadpool Comics To Start With!",
+      "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "essential",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "deadpool-best-of.md",
+      "sourcePage": "https://www.comicbookherald.com/deadpool-reading-order/",
+      "sourceSection": "The Best Deadpool Comics To Start With!",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "deadpool_best_of.json",
+      "characters": [
+        "Deadpool",
+        "Cable",
+        "Wolverine",
+        "Spider-Man",
+        "X-Force",
+        "Lady Deadpool"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "best-of",
+        "Deadpool",
+        "Cable",
+        "Wolverine"
+      ],
+      "expect": 40,
+      "timeline": null,
+      "coverIssueId": 8462
     },
     {
       "id": "scarlet-witch-best-of",
@@ -3717,6 +3849,40 @@
       "expect": 20,
       "timeline": 1997,
       "coverIssueId": 22754
+    },
+    {
+      "id": "marvel-knights-to-planet-x",
+      "name": "Marvel Knights to Planet X",
+      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-knights-to-planet-x.md",
+      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "sourceLicense": null,
+      "out": "marvel_knights_to_planet_x.json",
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four",
+        "Avengers",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X",
+        "Guardian Devil",
+        "E is for Extinction",
+        "X-Corps",
+        "Planet X crossover"
+      ],
+      "expect": 487,
+      "timeline": 1998
     },
     {
       "id": "spider-man-identity-crisis",

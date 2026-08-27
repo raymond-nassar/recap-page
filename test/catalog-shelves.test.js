@@ -7,12 +7,16 @@ import { fileURLToPath } from 'node:url';
 import {
   CATALOG_SHELVES,
   PUBLISHING_AGES,
+  catalogListShelf,
   decadeSections,
   firstSentence,
   filterBySpotlightKind,
   groupCatalog,
   inPublishingAge,
+  modernTimelineFeaturedList,
+  modernTimelineStories,
   parseCatalog,
+  publishingAgeGroups,
   resetCatalogNarrowing,
   shelfLists,
   shelfSections,
@@ -34,18 +38,31 @@ const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', '
 const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
 
+test('each bundled Reading List resolves through its grouped story to one canonical shelf', () => {
+  for (const story of stories) {
+    const shelf = keys.find((key) => shelfStories([story], key).length === 1);
+    assert.ok(shelf, `${story.key} has no shelf`);
+    for (const list of story.lists) {
+      assert.equal(catalogListShelf(catalog.lists, list.id), shelf, `${list.id} resolved to the wrong shelf`);
+    }
+  }
+  for (const [lists, id] of [[null, 'a'], [catalog.lists, ''], [catalog.lists, 'missing']]) {
+    assert.equal(catalogListShelf(lists, id), null);
+  }
+});
+
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 22);
-  assert.equal(groupCatalog(spotlights).length, 21);
+  assert.equal(spotlights.length, 27);
+  assert.equal(groupCatalog(spotlights).length, 26);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
   const other = filterBySpotlightKind(spotlights, 'other');
   const expected = [
-    ['best-of', 5, 5],
-    ['complete-guide', 13, 13],
-    ['other', 4, 3],
+    ['best-of', 6, 6],
+    ['complete-guide', 16, 16],
+    ['other', 5, 4],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
     const filtered = filterBySpotlightKind(spotlights, kind);
@@ -70,6 +87,16 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(abomination, 'Abomination is missing from Character Spotlight All');
   assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(abomination));
   assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(abomination), false);
+
+  const blackPanther = spotlights.find((list) => list.id === 'black-panther-reading-order');
+  assert.ok(blackPanther, 'Black Panther is missing from Character Spotlight All');
+  assert.ok(completeGuide.includes(blackPanther));
+  assert.equal(bestOf.includes(blackPanther), false);
+
+  const doctorStrange = spotlights.find((list) => list.id === 'doctor-strange-reading-order');
+  assert.ok(doctorStrange, 'Doctor Strange is missing from Character Spotlight All');
+  assert.ok(completeGuide.includes(doctorStrange));
+  assert.equal(bestOf.includes(doctorStrange), false);
 
   const starLord = spotlights.find((list) => list.id === 'star-lord-reading-order');
   assert.ok(starLord, 'Star-Lord is missing from Character Spotlight All');
@@ -111,6 +138,26 @@ test('the screens sum to the catalog, in stories and in reading paths alike', ()
 
   const byList = keys.reduce((n, key) => n + shelfLists(catalog.lists, key).length, 0);
   assert.equal(byList, catalog.lists.length, 'the screens and the catalog disagree about how many orders exist');
+});
+
+test('filtering Modern Timeline leaves every story on a discovery path', () => {
+  const discovered = new Set();
+  const add = (matches) => {
+    for (const story of matches) discovered.add(story.key);
+  };
+
+  add(modernTimelineStories(stories));
+  add(shelfStories(stories, 'lines'));
+  add(shelfStories(stories, 'spotlights'));
+  add(publishingAgeGroups(stories).stories);
+
+  const featured = modernTimelineFeaturedList(catalog.lists);
+  const featuredStory = stories.find((story) => story.lists.includes(featured));
+  assert.ok(featuredStory, 'the featured setup guide has no catalog story');
+  discovered.add(featuredStory.key);
+
+  const missing = stories.filter((story) => !discovered.has(story.key)).map((story) => story.key);
+  assert.deepEqual(missing, [], `stories disappeared from every discovery path: ${missing.join(', ')}`);
 });
 
 // A story is assigned by all of its readings together, so a story read two ways cannot be torn in

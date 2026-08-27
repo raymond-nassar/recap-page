@@ -6,7 +6,8 @@ The frozen source records 909 issue occurrences, including 33 intentional repeat
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
-## I) Daredevil's Origins
+## Daredevil Epic Collection Vol. 1: The Man Without Fear
+Collects: Daredevil #1-21.
 - [ ] [Daredevil (1964) #1](https://www.marvel.com/comics/issue/8073/daredevil_1964_1)
 - [ ] [Daredevil (1964) #2](https://www.marvel.com/comics/issue/8184/daredevil_1964_2)
 - [ ] [Daredevil (1964) #3](https://www.marvel.com/comics/issue/8295/daredevil_1964_3)
@@ -28,10 +29,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #19](https://www.marvel.com/comics/issue/8173/daredevil_1964_19)
 - [ ] [Daredevil (1964) #20](https://www.marvel.com/comics/issue/8185/daredevil_1964_20)
 - [ ] [Daredevil (1964) #21](https://www.marvel.com/comics/issue/8196/daredevil_1964_21)
+## Daredevil: Battlin' Jack Murdock
+#1 - #4
 - [ ] [Daredevil: Battlin' Jack Murdock (2007) #1](https://www.marvel.com/comics/issue/15867/daredevil_battlin_jack_murdock_2007_1)
 - [ ] [Daredevil: Battlin' Jack Murdock (2007) #2](https://www.marvel.com/comics/issue/15975/daredevil_battlin_jack_murdock_2007_2)
 - [ ] [Daredevil: Battlin' Jack Murdock (2007) #3](https://www.marvel.com/comics/issue/16161/daredevil_battlin_jack_murdock_2007_3)
 - [ ] [Daredevil: Battlin' Jack Murdock (2007) #4](https://www.marvel.com/comics/issue/16538/daredevil_battlin_jack_murdock_2007_4)
+## Daredevil Epic Collection Vol. 2: Mike Murdock Must Die!
+Collects: Daredevil #22-41, Annual (1967) #1; material from Not Brand Echh #4.
 - [ ] [Daredevil (1964) #22](https://www.marvel.com/comics/issue/8207/daredevil_1964_22)
 - [ ] [Daredevil (1964) #23](https://www.marvel.com/comics/issue/8218/daredevil_1964_23)
 - [ ] [Daredevil (1964) #24](https://www.marvel.com/comics/issue/8229/daredevil_1964_24)
@@ -54,6 +59,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #41](https://www.marvel.com/comics/issue/8389/daredevil_1964_41)
 - [ ] [Daredevil Annual (1967) #1](https://www.marvel.com/comics/issue/16601/daredevil_annual_1967_1)
 - [ ] [Not Brand Echh (1967) #4](https://www.marvel.com/comics/issue/65346/not_brand_echh_1967_4)
+## Daredevil Epic Collection Vol. 3: Brother, Take My Hand
+Collects: Daredevil #42-63.
 - [ ] [Daredevil (1964) #42](https://www.marvel.com/comics/issue/8390/daredevil_1964_42)
 - [ ] [Daredevil (1964) #43](https://www.marvel.com/comics/issue/8391/daredevil_1964_43)
 - [ ] [Daredevil (1964) #44](https://www.marvel.com/comics/issue/8392/daredevil_1964_44)
@@ -76,6 +83,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #61](https://www.marvel.com/comics/issue/8411/daredevil_1964_61)
 - [ ] [Daredevil (1964) #62](https://www.marvel.com/comics/issue/8412/daredevil_1964_62)
 - [ ] [Daredevil (1964) #63](https://www.marvel.com/comics/issue/8413/daredevil_1964_63)
+## Daredevil Epic Collection Vol. 4: A Woman Called Widow
+Collects: Daredevil #64-86, Iron Man #35-36.
 - [ ] [Daredevil (1964) #64](https://www.marvel.com/comics/issue/8414/daredevil_1964_64)
 - [ ] [Daredevil (1964) #65](https://www.marvel.com/comics/issue/8415/daredevil_1964_65)
 - [ ] [Daredevil (1964) #66](https://www.marvel.com/comics/issue/8416/daredevil_1964_66)
@@ -101,6 +110,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #86](https://www.marvel.com/comics/issue/8438/daredevil_1964_86)
 - [ ] [Iron Man (1968) #35](https://www.marvel.com/comics/issue/9588/iron_man_1968_35)
 - [ ] [Iron Man (1968) #36](https://www.marvel.com/comics/issue/9589/iron_man_1968_36)
+## Daredevil Epic Collection Vol. 5: Going Out West
+Collects: Daredevil #87-107, Avengers #111.
 - [ ] [Daredevil (1964) #87](https://www.marvel.com/comics/issue/8439/daredevil_1964_87)
 - [ ] [Daredevil (1964) #88](https://www.marvel.com/comics/issue/8440/daredevil_1964_88)
 - [ ] [Daredevil (1964) #89](https://www.marvel.com/comics/issue/8441/daredevil_1964_89)
@@ -123,6 +134,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #106](https://www.marvel.com/comics/issue/8081/daredevil_1964_106)
 - [ ] [Daredevil (1964) #107](https://www.marvel.com/comics/issue/8082/daredevil_1964_107)
 - [ ] [Avengers (1963) #111](https://www.marvel.com/comics/issue/6966/avengers_1963_111)
+## Daredevil Epic Collection Vol. 6: Watch Out For Bullseye
+Collects: Daredevil #108-132, Marvel Two-in-One #3.
 - [ ] [Daredevil (1964) #108](https://www.marvel.com/comics/issue/8083/daredevil_1964_108)
 - [ ] [Daredevil (1964) #109](https://www.marvel.com/comics/issue/8084/daredevil_1964_109)
 - [ ] [Daredevil (1964) #110](https://www.marvel.com/comics/issue/8086/daredevil_1964_110)
@@ -149,6 +162,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #131](https://www.marvel.com/comics/issue/8109/daredevil_1964_131)
 - [ ] [Daredevil (1964) #132](https://www.marvel.com/comics/issue/8110/daredevil_1964_132)
 - [ ] [Marvel Two-in-One (1974) #3](https://www.marvel.com/comics/issue/19498/marvel_two-in-one_1974_3)
+## Daredevil Epic Collection Vol. 7: The Concrete Jungle
+Collects: Daredevil #133-154, Annual #4, Ghost Rider (1973) #20, Marvel Premiere #39-40, #43.
 - [ ] [Daredevil (1964) #133](https://www.marvel.com/comics/issue/8111/daredevil_1964_133)
 - [ ] [Daredevil (1964) #134](https://www.marvel.com/comics/issue/8112/daredevil_1964_134)
 - [ ] [Daredevil (1964) #135](https://www.marvel.com/comics/issue/8113/daredevil_1964_135)
@@ -176,7 +191,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Marvel Premiere (1972) #39](https://www.marvel.com/comics/issue/10227/marvel_premiere_1972_39)
 - [ ] [Marvel Premiere (1972) #40](https://www.marvel.com/comics/issue/10229/marvel_premiere_1972_40)
 - [ ] [Marvel Premiere (1972) #43](https://www.marvel.com/comics/issue/10232/marvel_premiere_1972_43)
-## II) Daredevil: The Frank Miller Era
+## Daredevil by Frank Miller and Klaus Janson Vol. 1
+Collects: Peter Parker, the Spectacular Spider-Man #27-28, Daredevil #158-161, #163-172.
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #27](https://www.marvel.com/comics/issue/14725/peter_parker_the_spectacular_spider-man_1976_27)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #28](https://www.marvel.com/comics/issue/14726/peter_parker_the_spectacular_spider-man_1976_28)
 - [ ] [Daredevil (1964) #158](https://www.marvel.com/comics/issue/8138/daredevil_1964_158)
@@ -193,6 +209,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #170](https://www.marvel.com/comics/issue/8152/daredevil_1964_170)
 - [ ] [Daredevil (1964) #171](https://www.marvel.com/comics/issue/8153/daredevil_1964_171)
 - [ ] [Daredevil (1964) #172](https://www.marvel.com/comics/issue/8154/daredevil_1964_172)
+## Daredevil by Frank Miller and Klaus Janson Vol. 2
+Collects: Daredevil #173-184.
 - [ ] [Daredevil (1964) #173](https://www.marvel.com/comics/issue/8155/daredevil_1964_173)
 - [ ] [Daredevil (1964) #174](https://www.marvel.com/comics/issue/8156/daredevil_1964_174)
 - [ ] [Daredevil (1964) #175](https://www.marvel.com/comics/issue/8157/daredevil_1964_175)
@@ -205,6 +223,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #182](https://www.marvel.com/comics/issue/8165/daredevil_1964_182)
 - [ ] [Daredevil (1964) #183](https://www.marvel.com/comics/issue/8166/daredevil_1964_183)
 - [ ] [Daredevil (1964) #184](https://www.marvel.com/comics/issue/8167/daredevil_1964_184)
+## Daredevil by Frank Miller and Klaus Janson Vol. 3
+Collects: Daredevil #185-191, #219, Love and War (OGN), and a What If story.
 - [ ] [Daredevil (1964) #185](https://www.marvel.com/comics/issue/8168/daredevil_1964_185)
 - [ ] [Daredevil (1964) #186](https://www.marvel.com/comics/issue/8169/daredevil_1964_186)
 - [ ] [Daredevil (1964) #187](https://www.marvel.com/comics/issue/8170/daredevil_1964_187)
@@ -214,6 +234,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #191](https://www.marvel.com/comics/issue/8175/daredevil_1964_191)
 - [ ] [Daredevil (1964) #219](https://www.marvel.com/comics/issue/8206/daredevil_1964_219)
 - [ ] [Daredevil: Love and War (1986) #OGN](https://www.marvel.com/comics/issue/20779/daredevil_love_and_war_1986)
+## Daredevil: Love's Labors Lost
+Collects: Daredevil #215-217, #219-222, #225-226.
 - [ ] [Daredevil (1964) #215](https://www.marvel.com/comics/issue/8202/daredevil_1964_215)
 - [ ] [Daredevil (1964) #216](https://www.marvel.com/comics/issue/8203/daredevil_1964_216)
 - [ ] [Daredevil (1964) #217](https://www.marvel.com/comics/issue/8204/daredevil_1964_217)
@@ -222,6 +244,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #222](https://www.marvel.com/comics/issue/8210/daredevil_1964_222)
 - [ ] [Daredevil (1964) #225](https://www.marvel.com/comics/issue/8213/daredevil_1964_225)
 - [ ] [Daredevil (1964) #226](https://www.marvel.com/comics/issue/8214/daredevil_1964_226)
+## Daredevil: Born Again
+Daredevil #226 - #233
 - [ ] [Daredevil (1964) #227](https://www.marvel.com/comics/issue/8215/daredevil_1964_227)
 - [ ] [Daredevil (1964) #228](https://www.marvel.com/comics/issue/8216/daredevil_1964_228)
 - [ ] [Daredevil (1964) #229](https://www.marvel.com/comics/issue/8217/daredevil_1964_229)
@@ -229,12 +253,15 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #231](https://www.marvel.com/comics/issue/8220/daredevil_1964_231)
 - [ ] [Daredevil (1964) #232](https://www.marvel.com/comics/issue/8221/daredevil_1964_232)
 - [ ] [Daredevil (1964) #233](https://www.marvel.com/comics/issue/8222/daredevil_1964_233)
+## Daredevil: The Man Without Fear
+#1 - #5 (1993)
 - [ ] [Daredevil: The Man Without Fear (1993) #1](https://www.marvel.com/comics/issue/20750/daredevil_the_man_without_fear_1993_1)
 - [ ] [Daredevil: The Man Without Fear (1993) #2](https://www.marvel.com/comics/issue/20751/daredevil_the_man_without_fear_1993_2)
 - [ ] [Daredevil: The Man Without Fear (1993) #3](https://www.marvel.com/comics/issue/20752/daredevil_the_man_without_fear_1993_3)
 - [ ] [Daredevil: The Man Without Fear (1993) #4](https://www.marvel.com/comics/issue/20753/daredevil_the_man_without_fear_1993_4)
 - [ ] [Daredevil: The Man Without Fear (1993) #5](https://www.marvel.com/comics/issue/20754/daredevil_the_man_without_fear_1993_5)
-## II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's
+## Daredevil Epic Collection Vol. 12: It Comes With The Claws
+Collects: Daredevil #234-252.
 - [ ] [Daredevil (1964) #234](https://www.marvel.com/comics/issue/8223/daredevil_1964_234)
 - [ ] [Daredevil (1964) #235](https://www.marvel.com/comics/issue/8224/daredevil_1964_235)
 - [ ] [Daredevil (1964) #236](https://www.marvel.com/comics/issue/8225/daredevil_1964_236)
@@ -254,6 +281,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #250](https://www.marvel.com/comics/issue/8241/daredevil_1964_250)
 - [ ] [Daredevil (1964) #251](https://www.marvel.com/comics/issue/8242/daredevil_1964_251)
 - [ ] [Daredevil (1964) #252](https://www.marvel.com/comics/issue/8243/daredevil_1964_252)
+## Daredevil Epic Collection: A Touch of Typhoid
+Collects: Daredevil #253 to #270
 - [ ] [Daredevil (1964) #253](https://www.marvel.com/comics/issue/8244/daredevil_1964_253)
 - [ ] [Daredevil (1964) #254](https://www.marvel.com/comics/issue/8245/daredevil_1964_254)
 - [ ] [Daredevil (1964) #255](https://www.marvel.com/comics/issue/8246/daredevil_1964_255)
@@ -272,6 +301,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #268](https://www.marvel.com/comics/issue/8260/daredevil_1964_268)
 - [ ] [Daredevil (1964) #269](https://www.marvel.com/comics/issue/8261/daredevil_1964_269)
 - [ ] [Daredevil (1964) #270](https://www.marvel.com/comics/issue/8263/daredevil_1964_270)
+## Daredevil Epic Collection Vol. 14: Heart of Darkness
+Collects: Daredevil #271-282, Annual #5-6; material from Punisher Annual #3, Incredible Hulk Annual #16, Silver Surfer Annual #3.
 - [ ] [Daredevil (1964) #271](https://www.marvel.com/comics/issue/8264/daredevil_1964_271)
 - [ ] [Daredevil (1964) #272](https://www.marvel.com/comics/issue/8265/daredevil_1964_272)
 - [ ] [Daredevil (1964) #273](https://www.marvel.com/comics/issue/8266/daredevil_1964_273)
@@ -289,6 +320,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Punisher Annual (1988) #3](https://www.marvel.com/comics/issue/82156/the_punisher_annual_1988_3)
 - [ ] [Incredible Hulk Annual (1976) #16](https://www.marvel.com/comics/issue/16873/incredible_hulk_annual_1976_16)
 - [ ] [Silver Surfer Annual (1988) #3](https://www.marvel.com/comics/issue/70420/silver_surfer_annual_1988_3)
+## Daredevil Epic Collection Vol. 15: Last Rites
+Collects: Daredevil #283-300, Annual #7.
 - [ ] [Daredevil (1964) #283](https://www.marvel.com/comics/issue/8277/daredevil_1964_283)
 - [ ] [Daredevil (1964) #284](https://www.marvel.com/comics/issue/8278/daredevil_1964_284)
 - [ ] [Daredevil (1964) #285](https://www.marvel.com/comics/issue/8279/daredevil_1964_285)
@@ -308,6 +341,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #299](https://www.marvel.com/comics/issue/8294/daredevil_1964_299)
 - [ ] [Daredevil (1964) #300](https://www.marvel.com/comics/issue/8297/daredevil_1964_300)
 - [ ] [Daredevil Annual (1967) #7](https://www.marvel.com/comics/issue/75301/daredevil_annual_1967_7)
+## Daredevil Epic Collection Vol. 16: Dead Man's Hand
+Collects: Daredevil #301-311, Annual #8, Nomad #4-6, Punisher War Journal #45-47; material from Marvel Holiday Special #2.
 - [ ] [Daredevil (1964) #301](https://www.marvel.com/comics/issue/8298/daredevil_1964_301)
 - [ ] [Daredevil (1964) #302](https://www.marvel.com/comics/issue/8299/daredevil_1964_302)
 - [ ] [Daredevil (1964) #303](https://www.marvel.com/comics/issue/8300/daredevil_1964_303)
@@ -327,6 +362,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher War Journal (1988) #46](https://www.marvel.com/comics/issue/22202/punisher_war_journal_1988_46)
 - [ ] [Punisher War Journal (1988) #47](https://www.marvel.com/comics/issue/22203/punisher_war_journal_1988_47)
 - [ ] Marvel Holiday Special #2
+## Daredevil Epic Collection Vol. 17: Into the Fire
+Collects: Daredevil (1964) #312-318, Annual #9, Daredevil/Black Widow: Abattoir, Daredevil: The Man Without Fear #1-5.
 - [ ] [Daredevil (1964) #312](https://www.marvel.com/comics/issue/8310/daredevil_1964_312)
 - [ ] [Daredevil (1964) #313](https://www.marvel.com/comics/issue/8311/daredevil_1964_313)
 - [ ] [Daredevil (1964) #314](https://www.marvel.com/comics/issue/8312/daredevil_1964_314)
@@ -336,10 +373,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #318](https://www.marvel.com/comics/issue/8316/daredevil_1964_318)
 - [ ] [Daredevil Annual (1967) #9](https://www.marvel.com/comics/issue/75302/daredevil_annual_1967_9)
 - [ ] [Daredevil/Black Widow: Abattoir Graphic Novel (1993) #OGN](https://www.marvel.com/comics/issue/91444/daredevilblack_widow_abattoir_graphic_novel_1993_1)
+## Daredevil Epic Collection: Fall From Grace
+Collects: Daredevil #319 to #322
 - [ ] [Daredevil (1964) #319](https://www.marvel.com/comics/issue/8317/daredevil_1964_319)
 - [ ] [Daredevil (1964) #320](https://www.marvel.com/comics/issue/8319/daredevil_1964_320)
 - [ ] [Daredevil (1964) #321](https://www.marvel.com/comics/issue/8320/daredevil_1964_321)
 - [ ] [Daredevil (1964) #322](https://www.marvel.com/comics/issue/8321/daredevil_1964_322)
+## Daredevil Epic Collection Vol. 19: Root of Evil
+Collects: Daredevil #333-344, Elektra: Root of Evil #1-4.
 - [ ] [Daredevil (1964) #333](https://www.marvel.com/comics/issue/8333/daredevil_1964_333)
 - [ ] [Daredevil (1964) #334](https://www.marvel.com/comics/issue/8334/daredevil_1964_334)
 - [ ] [Daredevil (1964) #335](https://www.marvel.com/comics/issue/8335/daredevil_1964_335)
@@ -356,6 +397,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Elektra: Root of Evil (1995) #2](https://www.marvel.com/comics/issue/71595/elektra_root_of_evil_1995_2)
 - [ ] [Elektra: Root of Evil (1995) #3](https://www.marvel.com/comics/issue/71596/elektra_root_of_evil_1995_3)
 - [ ] [Elektra: Root of Evil (1995) #4](https://www.marvel.com/comics/issue/71597/elektra_root_of_evil_1995_4)
+## Daredevil Epic Collection Vol. 20: Purgatory & Paradise
+Collects: Daredevil #345-364.
 - [ ] [Daredevil (1964) #345](https://www.marvel.com/comics/issue/8346/daredevil_1964_345)
 - [ ] [Daredevil (1964) #346](https://www.marvel.com/comics/issue/8347/daredevil_1964_346)
 - [ ] [Daredevil (1964) #347](https://www.marvel.com/comics/issue/8348/daredevil_1964_347)
@@ -376,6 +419,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #362](https://www.marvel.com/comics/issue/8365/daredevil_1964_362)
 - [ ] [Daredevil (1964) #363](https://www.marvel.com/comics/issue/8366/daredevil_1964_363)
 - [ ] [Daredevil (1964) #364](https://www.marvel.com/comics/issue/8367/daredevil_1964_364)
+## Daredevil Epic Collection: Widow's Kiss
+Collects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97
 - [ ] [Daredevil (1964) #365](https://www.marvel.com/comics/issue/8368/daredevil_1964_365)
 - [ ] [Daredevil (1964) #366](https://www.marvel.com/comics/issue/8369/daredevil_1964_366)
 - [ ] [Daredevil (1964) #367](https://www.marvel.com/comics/issue/8370/daredevil_1964_367)
@@ -393,7 +438,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1964) #379](https://www.marvel.com/comics/issue/8383/daredevil_1964_379)
 - [ ] [Daredevil (1964) #380](https://www.marvel.com/comics/issue/8385/daredevil_1964_380)
 - [ ] Daredevil/Deadpool Annual '97
-## III) Daredevil in the 2000's: Kevin Smith and Marvel Knights
+## Daredevil: Guardian Devil
+Daredevil #1 - #8
 - [ ] [Daredevil (1998) #1](https://www.marvel.com/comics/issue/15609/daredevil_1998_1)
 - [ ] [Daredevil (1998) #2](https://www.marvel.com/comics/issue/15620/daredevil_1998_2)
 - [ ] [Daredevil (1998) #3](https://www.marvel.com/comics/issue/15631/daredevil_1998_3)
@@ -402,11 +448,15 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #6](https://www.marvel.com/comics/issue/15664/daredevil_1998_6)
 - [ ] [Daredevil (1998) #7](https://www.marvel.com/comics/issue/15675/daredevil_1998_7)
 - [ ] [Daredevil (1998) #8](https://www.marvel.com/comics/issue/15686/daredevil_1998_8)
+## Daredevil, Vol. 1: Yellow
+#1 - #5
 - [ ] [Daredevil: Yellow (2001) #1](https://www.marvel.com/comics/issue/4618/daredevil_yellow_2001_1)
 - [ ] [Daredevil: Yellow (2001) #2](https://www.marvel.com/comics/issue/4619/daredevil_yellow_2001_2)
 - [ ] [Daredevil: Yellow (2001) #3](https://www.marvel.com/comics/issue/4620/daredevil_yellow_2001_3)
 - [ ] [Daredevil: Yellow (2001) #4](https://www.marvel.com/comics/issue/4622/daredevil_yellow_2001_4)
 - [ ] [Daredevil: Yellow (2001) #5](https://www.marvel.com/comics/issue/4623/daredevil_yellow_2001_5)
+## Punisher Vol 1: Welcome Back Frank
+Collects: Punisher #1 to #12
 - [ ] [Punisher (2001) #1](https://www.marvel.com/comics/issue/18958/punisher_2001_1)
 - [ ] [Punisher (2001) #2](https://www.marvel.com/comics/issue/18959/punisher_2001_2)
 - [ ] [Punisher (2001) #3](https://www.marvel.com/comics/issue/18960/punisher_2001_3)
@@ -419,6 +469,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher (2001) #10](https://www.marvel.com/comics/issue/18967/punisher_2001_10)
 - [ ] [Punisher (2001) #11](https://www.marvel.com/comics/issue/18968/punisher_2001_11)
 - [ ] [Punisher (2001) #12](https://www.marvel.com/comics/issue/18969/punisher_2001_12)
+## Marvel Knights (Vol. 1)
+#1 - #15
 - [ ] [Marvel Knights (2000) #1](https://www.marvel.com/comics/issue/16055/marvel_knights_2000_1)
 - [ ] [Marvel Knights (2000) #2](https://www.marvel.com/comics/issue/16062/marvel_knights_2000_2)
 - [ ] [Marvel Knights (2000) #3](https://www.marvel.com/comics/issue/16063/marvel_knights_2000_3)
@@ -434,7 +486,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Marvel Knights (2000) #13](https://www.marvel.com/comics/issue/16059/marvel_knights_2000_13)
 - [ ] [Marvel Knights (2000) #14](https://www.marvel.com/comics/issue/16060/marvel_knights_2000_14)
 - [ ] [Marvel Knights (2000) #15](https://www.marvel.com/comics/issue/16061/marvel_knights_2000_15)
+## Spider-Man / Daredevil
+#1
 - [ ] [Spider-Man/Daredevil (2002) #1](https://www.marvel.com/comics/issue/18826/spider-mandaredevil_2002_1)
+## Daredevil Vol. 2: Parts of a Hole
+Daredevil #9 - #15
 - [ ] [Daredevil (1998) #9](https://www.marvel.com/comics/issue/15694/daredevil_1998_9)
 - [ ] [Daredevil (1998) #10](https://www.marvel.com/comics/issue/15610/daredevil_1998_10)
 - [ ] [Daredevil (1998) #11](https://www.marvel.com/comics/issue/15611/daredevil_1998_11)
@@ -442,7 +498,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #13](https://www.marvel.com/comics/issue/15613/daredevil_1998_13)
 - [ ] [Daredevil (1998) #14](https://www.marvel.com/comics/issue/15614/daredevil_1998_14)
 - [ ] [Daredevil (1998) #15](https://www.marvel.com/comics/issue/15615/daredevil_1998_15)
-## IV) Daredevil: The Bendis & Maleev Era
+## Daredevil by Brian Michael Bendis & Alex Maleev Ultimate Collection - Book 1
+Daredevil #16-19 & #26-40
 - [ ] [Daredevil (1998) #16](https://www.marvel.com/comics/issue/15616/daredevil_1998_16)
 - [ ] [Daredevil (1998) #17](https://www.marvel.com/comics/issue/15617/daredevil_1998_17)
 - [ ] [Daredevil (1998) #18](https://www.marvel.com/comics/issue/15618/daredevil_1998_18)
@@ -462,6 +519,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #38](https://www.marvel.com/comics/issue/15640/daredevil_1998_38)
 - [ ] [Daredevil (1998) #39](https://www.marvel.com/comics/issue/15641/daredevil_1998_39)
 - [ ] [Daredevil (1998) #40](https://www.marvel.com/comics/issue/15643/daredevil_1998_40)
+## Elektra By Greg Rucka Ultimate Collection
+Elektra #1 - #22
 - [ ] [Elektra (2001) #1](https://www.marvel.com/comics/issue/20052/elektra_2001_1)
 - [ ] [Elektra (2001) #2](https://www.marvel.com/comics/issue/20063/elektra_2001_2)
 - [ ] [Elektra (2001) #3](https://www.marvel.com/comics/issue/20074/elektra_2001_3)
@@ -484,12 +543,16 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Elektra (2001) #20](https://www.marvel.com/comics/issue/20064/elektra_2001_20)
 - [ ] [Elektra (2001) #21](https://www.marvel.com/comics/issue/20065/elektra_2001_21)
 - [ ] [Elektra (2001) #22](https://www.marvel.com/comics/issue/20066/elektra_2001_22)
+## Kingpin
+#1 - #6
 - [ ] [Kingpin (2003) #1](https://www.marvel.com/comics/issue/19848/kingpin_2003_1)
 - [ ] [Kingpin (2003) #2](https://www.marvel.com/comics/issue/19849/kingpin_2003_2)
 - [ ] [Kingpin (2003) #3](https://www.marvel.com/comics/issue/19850/kingpin_2003_3)
 - [ ] [Kingpin (2003) #4](https://www.marvel.com/comics/issue/19851/kingpin_2003_4)
 - [ ] [Kingpin (2003) #5](https://www.marvel.com/comics/issue/302/kingpin_2003_5)
 - [ ] [Kingpin (2003) #6](https://www.marvel.com/comics/issue/336/kingpin_2003_6)
+## Daredevil by Brian Michael Bendis & Alex Maleev Ultimate Collection - Book 2
+Daredevil #41 - #50 & #56 - #60
 - [ ] [Daredevil (1998) #41](https://www.marvel.com/comics/issue/15644/daredevil_1998_41)
 - [ ] [Daredevil (1998) #42](https://www.marvel.com/comics/issue/15645/daredevil_1998_42)
 - [ ] [Daredevil (1998) #43](https://www.marvel.com/comics/issue/15646/daredevil_1998_43)
@@ -505,28 +568,40 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #58](https://www.marvel.com/comics/issue/415/daredevil_1998_58)
 - [ ] [Daredevil (1998) #59](https://www.marvel.com/comics/issue/481/daredevil_1998_59)
 - [ ] [Daredevil (1998) #60](https://www.marvel.com/comics/issue/647/daredevil_1998_60)
+## Daredevil / Echo: Vision Quest
+Daredevil #51-55
 - [ ] [Daredevil (1998) #51](https://www.marvel.com/comics/issue/15655/daredevil_1998_51)
 - [ ] [Daredevil (1998) #52](https://www.marvel.com/comics/issue/15656/daredevil_1998_52)
 - [ ] [Daredevil (1998) #53](https://www.marvel.com/comics/issue/326/daredevil_1998_53)
 - [ ] [Daredevil (1998) #54](https://www.marvel.com/comics/issue/358/daredevil_1998_54)
 - [ ] [Daredevil (1998) #55](https://www.marvel.com/comics/issue/327/daredevil_1998_55)
+## Daredevil 2099
+#1
 - [ ] [DAREDEVIL 2099 1 (2004) #1](https://www.marvel.com/comics/issue/1397/daredevil_2099_1_2004_1)
+## Elektra: The Hand
+#1 - #5
 - [ ] [Elektra: The Hand (2004) #1](https://www.marvel.com/comics/issue/796/elektra_the_hand_2004_1)
 - [ ] [Elektra: The Hand (2004) #2](https://www.marvel.com/comics/issue/857/elektra_the_hand_2004_2)
 - [ ] [Elektra: The Hand (2004) #3](https://www.marvel.com/comics/issue/918/elektra_the_hand_2004_3)
 - [ ] [Elektra: The Hand (2004) #4](https://www.marvel.com/comics/issue/78/elektra_the_hand_2004_4)
 - [ ] [Elektra: The Hand (2004) #5](https://www.marvel.com/comics/issue/1480/elektra_the_hand_2004_5)
+## Bullseye: Greatest Hits
+#1 - #5
 - [ ] [Bullseye: Greatest Hits (2004) #1](https://www.marvel.com/comics/issue/791/bullseye_greatest_hits_2004_1)
 - [ ] [Bullseye: Greatest Hits (2004) #2](https://www.marvel.com/comics/issue/895/bullseye_greatest_hits_2004_2)
 - [ ] [Bullseye: Greatest Hits (2004) #3](https://www.marvel.com/comics/issue/47/bullseye_greatest_hits_2004_3)
 - [ ] [Bullseye: Greatest Hits (2004) #4](https://www.marvel.com/comics/issue/1444/bullseye_greatest_hits_2004_4)
 - [ ] [Bullseye: Greatest Hits (2004) #5](https://www.marvel.com/comics/issue/1536/bullseye_greatest_hits_2004_5)
+## Daredevil: Father
+#1 - #6
 - [ ] [Daredevil: Father (2004) #1](https://www.marvel.com/comics/issue/494/daredevil_father_2004_1)
 - [ ] [Daredevil: Father (2004) #2](https://www.marvel.com/comics/issue/2965/daredevil_father_2004_2)
 - [ ] [Daredevil: Father (2004) #3](https://www.marvel.com/comics/issue/2390/daredevil_father_2004_3)
 - [ ] [Daredevil: Father (2004) #4](https://www.marvel.com/comics/issue/2391/daredevil_father_2004_4)
 - [ ] [Daredevil: Father (2004) #5](https://www.marvel.com/comics/issue/2994/daredevil_father_2004_5)
 - [ ] [Daredevil: Father (2004) #6](https://www.marvel.com/comics/issue/3228/daredevil_father_2004_6)
+## Daredevil by Brian Michael Bendis & Alex Maleev Ultimate Collection - Book 3
+Daredevil #66-81, What If Karen Page Had Lived? #1 (Oct 2004 - Jan 2006)
 - [ ] [Daredevil (1998) #66](https://www.marvel.com/comics/issue/909/daredevil_1998_66)
 - [ ] [Daredevil (1998) #67](https://www.marvel.com/comics/issue/18/daredevil_1998_67)
 - [ ] [Daredevil (1998) #68](https://www.marvel.com/comics/issue/1420/daredevil_1998_68)
@@ -544,18 +619,23 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #80](https://www.marvel.com/comics/issue/3146/daredevil_1998_80)
 - [ ] [Daredevil (1998) #81](https://www.marvel.com/comics/issue/3369/daredevil_1998_81)
 - [ ] [What If Karen Page Had Lived? (2004) #1](https://www.marvel.com/comics/issue/1473/what_if_karen_page_had_lived_2004_1)
+## Daredevil vs. Punisher: Means & Ends
+#1 - #6
 - [ ] [Daredevil Vs. Punisher (2005) #1](https://www.marvel.com/comics/issue/2202/daredevil_vs_punisher_2005_1)
 - [ ] [Daredevil Vs. Punisher (2005) #2](https://www.marvel.com/comics/issue/2203/daredevil_vs_punisher_2005_2)
 - [ ] [Daredevil Vs. Punisher (2005) #3](https://www.marvel.com/comics/issue/2322/daredevil_vs_punisher_2005_3)
 - [ ] [Daredevil Vs. Punisher (2005) #4](https://www.marvel.com/comics/issue/2432/daredevil_vs_punisher_2005_4)
 - [ ] [Daredevil Vs. Punisher (2005) #5](https://www.marvel.com/comics/issue/2433/daredevil_vs_punisher_2005_5)
 - [ ] [Daredevil Vs. Punisher (2005) #6](https://www.marvel.com/comics/issue/3014/daredevil_vs_punisher_2005_6)
+## Daredevil: Redemption
+#1 - #5
 - [ ] [Daredevil: Redemption (2005) #1](https://www.marvel.com/comics/issue/4694/daredevil_redemption_2005_1)
 - [ ] [Daredevil: Redemption (2005) #2](https://www.marvel.com/comics/issue/1645/daredevil_redemption_2005_2)
 - [ ] [Daredevil: Redemption (2005) #3](https://www.marvel.com/comics/issue/1739/daredevil_redemption_2005_3)
 - [ ] [Daredevil: Redemption (2005) #4](https://www.marvel.com/comics/issue/1847/daredevil_redemption_2005_4)
 - [ ] [Daredevil: Redemption (2005) #5](https://www.marvel.com/comics/issue/1953/daredevil_redemption_2005_5)
-## V) Daredevil: The Brubaker & Lark Era
+## Daredevil By Ed Brubaker & Michael Lark Ultimate Collection - Book 1
+Daredevil #82 - #93 (through Jan 2007)
 - [ ] [Daredevil (1998) #82](https://www.marvel.com/comics/issue/3482/daredevil_1998_82)
 - [ ] [Daredevil (1998) #83](https://www.marvel.com/comics/issue/3946/daredevil_1998_83)
 - [ ] [Daredevil (1998) #84](https://www.marvel.com/comics/issue/4070/daredevil_1998_84)
@@ -568,6 +648,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #91](https://www.marvel.com/comics/issue/5412/daredevil_1998_91)
 - [ ] [Daredevil (1998) #92](https://www.marvel.com/comics/issue/5670/daredevil_1998_92)
 - [ ] [Daredevil (1998) #93](https://www.marvel.com/comics/issue/5810/daredevil_1998_93)
+## Daredevil by Ed Brubaker & Michael Lark Ultimate Collection - Book 2
+Daredevil #94 - #105 (through Feb 2008)
 - [ ] [Daredevil (1998) #94](https://www.marvel.com/comics/issue/5962/daredevil_1998_94)
 - [ ] [Daredevil (1998) #95](https://www.marvel.com/comics/issue/6178/daredevil_1998_95)
 - [ ] [Daredevil (1998) #96](https://www.marvel.com/comics/issue/6327/daredevil_1998_96)
@@ -580,6 +662,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #103](https://www.marvel.com/comics/issue/17337/daredevil_1998_103)
 - [ ] [Daredevil (1998) #104](https://www.marvel.com/comics/issue/17579/daredevil_1998_104)
 - [ ] [Daredevil (1998) #105](https://www.marvel.com/comics/issue/20635/daredevil_1998_105)
+## Daredevil by Ed Brubaker & Michael Lark Ultimate Collection Book 3
+Daredevil #106 - #119 & #500 (through Aug 2009)
 - [ ] [Daredevil (1998) #106](https://www.marvel.com/comics/issue/20822/daredevil_1998_106)
 - [ ] [Daredevil (1998) #107](https://www.marvel.com/comics/issue/21170/daredevil_1998_107)
 - [ ] [Daredevil (1998) #108](https://www.marvel.com/comics/issue/21320/daredevil_1998_108)
@@ -595,13 +679,20 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #118](https://www.marvel.com/comics/issue/23924/daredevil_1998_118)
 - [ ] [Daredevil (1998) #119](https://www.marvel.com/comics/issue/24756/daredevil_1998_119)
 - [ ] [Daredevil (1998) #500](https://www.marvel.com/comics/issue/24757/daredevil_1998_500)
+## Daredevil & Captain America: Dead on Arrival
+#1
 - [ ] [DAREDEVIL & CAPTAIN AMERICA: DEAD ON ARRIVAL 1 (2008) #1](https://www.marvel.com/comics/issue/22578/daredevil_captain_america_dead_on_arrival_1_2008_1)
+## Blood of the Tarantula
+#1
 - [ ] [DAREDEVIL: BLOOD OF THE TARANTULA 1 (2008) #1](https://www.marvel.com/comics/issue/20954/daredevil_blood_of_the_tarantula_1_2008_1)
+## Daredevil Noir
+#1 - #4
 - [ ] [Daredevil Noir (2009) #1](https://www.marvel.com/comics/issue/23977/daredevil_noir_2009_1)
 - [ ] [Daredevil Noir (2009) #2](https://www.marvel.com/comics/issue/24180/daredevil_noir_2009_2)
 - [ ] [Daredevil Noir (2009) #3](https://www.marvel.com/comics/issue/24766/daredevil_noir_2009_3)
 - [ ] [Daredevil Noir (2009) #4](https://www.marvel.com/comics/issue/24768/daredevil_noir_2009_4)
-## VI) Shadowland
+## Daredevil: The Devil's Hand
+Daredevil: Dark Days & Daredevil #501-507
 - [ ] [Daredevil (1998) #501](https://www.marvel.com/comics/issue/24758/daredevil_1998_501)
 - [ ] [Daredevil (1998) #502](https://www.marvel.com/comics/issue/24759/daredevil_1998_502)
 - [ ] [Daredevil (1998) #503](https://www.marvel.com/comics/issue/24760/daredevil_1998_503)
@@ -609,13 +700,20 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #505](https://www.marvel.com/comics/issue/24762/daredevil_1998_505)
 - [ ] [Daredevil (1998) #506](https://www.marvel.com/comics/issue/32538/daredevil_1998_506)
 - [ ] [Daredevil (1998) #507](https://www.marvel.com/comics/issue/30366/daredevil_1998_507)
+## Daredvil: Cage Match
+#1
 - [ ] [Daredevil: Cage Match (2010) #1](https://www.marvel.com/comics/issue/32912/daredevil_cage_match_2010_1)
+## Daredevil: Black and White
+#1
 - [ ] [Daredevil: Black and White (2010) #1](https://www.marvel.com/comics/issue/34286/daredevil_black_and_white_2010_1)
+## Daredevil: Reborn
+#1 - #4
 - [ ] [Daredevil: Reborn (2010) #1](https://www.marvel.com/comics/issue/34954/daredevil_reborn_2010_1)
 - [ ] [Daredevil: Reborn (2010) #2](https://www.marvel.com/comics/issue/36200/daredevil_reborn_2010_2)
 - [ ] [Daredevil: Reborn (2010) #3](https://www.marvel.com/comics/issue/34939/daredevil_reborn_2010_3)
 - [ ] [Daredevil: Reborn (2010) #4](https://www.marvel.com/comics/issue/36198/daredevil_reborn_2010_4)
-## VII) Daredevil: The Mark Waid & Marvel NOW! Era
+## Daredevil by Mark Waid, Vol. 1
+Daredevil #1-10, 10.1; Amazing Spider -Man 677 (July 2011 - March 2012)
 - [ ] [Daredevil (2011) #1](https://www.marvel.com/comics/issue/36508/daredevil_2011_1)
 - [ ] [Daredevil (2011) #2](https://www.marvel.com/comics/issue/36507/daredevil_2011_2)
 - [ ] [Daredevil (2011) #3](https://www.marvel.com/comics/issue/36506/daredevil_2011_3)
@@ -628,6 +726,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2011) #10](https://www.marvel.com/comics/issue/36515/daredevil_2011_10)
 - [ ] [Daredevil (2011) #10.1](https://www.marvel.com/comics/issue/42861/daredevil_2011_10.1)
 - [ ] [Amazing Spider-Man (1999) #677](https://www.marvel.com/comics/issue/35491/amazing_spider-man_1999_677)
+## Daredevil by Mark Waid Volume 2
+Daredevil #11 - #21, Avenging Spider-Man #6, Punisher #10 (Omega Effect Tie-Ins)
 - [ ] [Daredevil (2011) #11](https://www.marvel.com/comics/issue/36513/daredevil_2011_11)
 - [ ] [Daredevil (2011) #12](https://www.marvel.com/comics/issue/36510/daredevil_2011_12)
 - [ ] [Daredevil (2011) #13](https://www.marvel.com/comics/issue/40509/daredevil_2011_13)
@@ -641,6 +741,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2011) #21](https://www.marvel.com/comics/issue/40502/daredevil_2011_21)
 - [ ] [Avenging Spider-Man (2011) #6](https://www.marvel.com/comics/issue/39253/avenging_spider-man_2011_6)
 - [ ] [The Punisher (2011) #10](https://www.marvel.com/comics/issue/39941/the_punisher_2011_10)
+## Daredevil by Mark Waid Volume 3
+Daredevil #22 - #36
 - [ ] [Daredevil (2011) #22](https://www.marvel.com/comics/issue/40507/daredevil_2011_22)
 - [ ] [Daredevil (2011) #23](https://www.marvel.com/comics/issue/40496/daredevil_2011_23)
 - [ ] [Daredevil (2011) #24](https://www.marvel.com/comics/issue/40506/daredevil_2011_24)
@@ -656,6 +758,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2011) #34](https://www.marvel.com/comics/issue/46006/daredevil_2011_34)
 - [ ] [Daredevil (2011) #35](https://www.marvel.com/comics/issue/48593/daredevil_2011_35)
 - [ ] [Daredevil (2011) #36](https://www.marvel.com/comics/issue/48594/daredevil_2011_36)
+## Daredevil: Dark Knights
+#1 - #8
 - [ ] [Daredevil: Dark Nights (2013) #1](https://www.marvel.com/comics/issue/46009/daredevil_dark_nights_2013_1)
 - [ ] [Daredevil: Dark Nights (2013) #2](https://www.marvel.com/comics/issue/46011/daredevil_dark_nights_2013_2)
 - [ ] [Daredevil: Dark Nights (2013) #3](https://www.marvel.com/comics/issue/46012/daredevil_dark_nights_2013_3)
@@ -664,6 +768,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil: Dark Nights (2013) #6](https://www.marvel.com/comics/issue/46015/daredevil_dark_nights_2013_6)
 - [ ] [Daredevil: Dark Nights (2013) #7](https://www.marvel.com/comics/issue/46016/daredevil_dark_nights_2013_7)
 - [ ] [Daredevil: Dark Nights (2013) #8](https://www.marvel.com/comics/issue/46017/daredevil_dark_nights_2013_8)
+## Daredevil Volume 1: Devil at Bay
+Daredevil #1 - #5, 1.5, .1
 - [ ] [Daredevil (2014) #1](https://www.marvel.com/comics/issue/49031/daredevil_2014_1)
 - [ ] [Daredevil (2014) #2](https://www.marvel.com/comics/issue/49032/daredevil_2014_2)
 - [ ] [Daredevil (2014) #3](https://www.marvel.com/comics/issue/49033/daredevil_2014_3)
@@ -671,16 +777,22 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2014) #5](https://www.marvel.com/comics/issue/49035/daredevil_2014_5)
 - [ ] [Daredevil (2014) #1.5](https://www.marvel.com/comics/issue/53390/daredevil_2014_15.1)
 - [ ] [Daredevil (2014) #.1](https://www.marvel.com/comics/issue/50907/daredevil_2014_0.1)
+## Daredevil Volume 2: West-Case Scenerio
+Daredevil #6 to #10
 - [ ] [Daredevil (2014) #6](https://www.marvel.com/comics/issue/49036/daredevil_2014_6)
 - [ ] [Daredevil (2014) #7](https://www.marvel.com/comics/issue/49037/daredevil_2014_7)
 - [ ] [Daredevil (2014) #8](https://www.marvel.com/comics/issue/49038/daredevil_2014_8)
 - [ ] [Daredevil (2014) #9](https://www.marvel.com/comics/issue/49039/daredevil_2014_9)
 - [ ] [Daredevil (2014) #10](https://www.marvel.com/comics/issue/49040/daredevil_2014_10)
+## Superior Iron Man Volume 1: Infamous
+Superior Iron Man #1 - #5
 - [ ] [Superior Iron Man (2014) #1](https://www.marvel.com/comics/issue/51062/superior_iron_man_2014_1)
 - [ ] [Superior Iron Man (2014) #2](https://www.marvel.com/comics/issue/51087/superior_iron_man_2014_2)
 - [ ] [Superior Iron Man (2014) #3](https://www.marvel.com/comics/issue/51174/superior_iron_man_2014_3)
 - [ ] [Superior Iron Man (2014) #4](https://www.marvel.com/comics/issue/52739/superior_iron_man_2014_4)
 - [ ] [Superior Iron Man (2014) #5](https://www.marvel.com/comics/issue/52741/superior_iron_man_2014_5)
+## Daredevil Vol. 4: The Autobiography of Matt Murdock
+Daredevil #11 to #18
 - [ ] [Daredevil (2014) #11](https://www.marvel.com/comics/issue/49041/daredevil_2014_11)
 - [ ] [Daredevil (2014) #12](https://www.marvel.com/comics/issue/49042/daredevil_2014_12)
 - [ ] [Daredevil (2014) #13](https://www.marvel.com/comics/issue/51611/daredevil_2014_13)
@@ -689,7 +801,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2014) #16](https://www.marvel.com/comics/issue/51615/daredevil_2014_16)
 - [ ] [Daredevil (2014) #17](https://www.marvel.com/comics/issue/51616/daredevil_2014_17)
 - [ ] [Daredevil (2014) #18](https://www.marvel.com/comics/issue/51617/daredevil_2014_18)
-## VIII) All-New All-Different Daredevil by Charles Soule
+## Daredevil: Back in Black Vol. 4: Identity
+Takes you through Daredevil #1 to #20.
 - [ ] [Daredevil (2015) #1](https://www.marvel.com/comics/issue/56708/daredevil_2015_1)
 - [ ] [Daredevil (2015) #2](https://www.marvel.com/comics/issue/56710/daredevil_2015_2)
 - [ ] [Daredevil (2015) #3](https://www.marvel.com/comics/issue/56712/daredevil_2015_3)
@@ -710,21 +823,29 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2015) #18](https://www.marvel.com/comics/issue/60582/daredevil_2015_18)
 - [ ] [Daredevil (2015) #19](https://www.marvel.com/comics/issue/60583/daredevil_2015_19)
 - [ ] [Daredevil (2015) #20](https://www.marvel.com/comics/issue/60584/daredevil_2015_20)
+## Civil War II: Kingpin
+Collects: Civil War Ii: Kingpin #1-4, Amazing Spider-Man (1963) #51
 - [ ] [Civil War II: Kingpin (2016) #1](https://www.marvel.com/comics/issue/59621/civil_war_ii_kingpin_2016_1)
 - [ ] [Civil War II: Kingpin (2016) #2](https://www.marvel.com/comics/issue/59622/civil_war_ii_kingpin_2016_2)
 - [ ] [Civil War II: Kingpin (2016) #3](https://www.marvel.com/comics/issue/59623/civil_war_ii_kingpin_2016_3)
 - [ ] [Civil War II: Kingpin (2016) #4](https://www.marvel.com/comics/issue/59624/civil_war_ii_kingpin_2016_4)
 - [ ] [The Amazing Spider-Man (1963) #51](https://www.marvel.com/comics/issue/6870/the_amazing_spider-man_1963_51)
+## Kingpin Vol. 1: Born Again
+Collects: Kingpin #1-5:
 - [ ] [Kingpin (2017) #1](https://www.marvel.com/comics/issue/61616/kingpin_2017_1)
 - [ ] [Kingpin (2017) #2](https://www.marvel.com/comics/issue/61617/kingpin_2017_2)
 - [ ] [Kingpin (2017) #3](https://www.marvel.com/comics/issue/61618/kingpin_2017_3)
 - [ ] [Kingpin (2017) #4](https://www.marvel.com/comics/issue/61619/kingpin_2017_4)
 - [ ] [Kingpin (2017) #5](https://www.marvel.com/comics/issue/61620/kingpin_2017_5)
+## Bullseye: The Colombian Connection
+Collects: Bullseye #1-5:
 - [ ] [Bullseye (2017) #1](https://www.marvel.com/comics/issue/61260/bullseye_2017_1)
 - [ ] [Bullseye (2017) #2](https://www.marvel.com/comics/issue/61261/bullseye_2017_2)
 - [ ] [Bullseye (2017) #3](https://www.marvel.com/comics/issue/61262/bullseye_2017_3)
 - [ ] [Bullseye (2017) #4](https://www.marvel.com/comics/issue/61263/bullseye_2017_4)
 - [ ] [Bullseye (2017) #5](https://www.marvel.com/comics/issue/61264/bullseye_2017_5)
+## Daredevil - Back in Black, Vol. 5: Supreme
+Collects: Daredevil #21-28:
 - [ ] [Daredevil (2015) #21](https://www.marvel.com/comics/issue/60585/daredevil_2015_21)
 - [ ] [Daredevil (2015) #22](https://www.marvel.com/comics/issue/60586/daredevil_2015_22)
 - [ ] [Daredevil (2015) #23](https://www.marvel.com/comics/issue/60587/daredevil_2015_23)
@@ -733,142 +854,202 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (2015) #26](https://www.marvel.com/comics/issue/60590/daredevil_2015_26)
 - [ ] [Daredevil (2015) #27](https://www.marvel.com/comics/issue/64792/daredevil_2015_27)
 - [ ] [Daredevil (2015) #28](https://www.marvel.com/comics/issue/64967/daredevil_2015_28)
+## Daredevil - Back in Black, Vol. 6: Mayor Fisk
+Collects: Daredevil 595-600
 - [ ] [Daredevil (2015) #595](https://www.marvel.com/comics/issue/65063/daredevil_2015_595)
 - [ ] [Daredevil (2015) #596](https://www.marvel.com/comics/issue/65272/daredevil_2015_596)
 - [ ] [Daredevil (2015) #597](https://www.marvel.com/comics/issue/65495/daredevil_2015_597)
 - [ ] [Daredevil (2015) #598](https://www.marvel.com/comics/issue/66092/daredevil_2015_598)
 - [ ] [Daredevil (2015) #599](https://www.marvel.com/comics/issue/66273/daredevil_2015_599)
 - [ ] [Daredevil (2015) #600](https://www.marvel.com/comics/issue/66538/daredevil_2015_600)
+## Typhoid Fever
+Collects: Typhoid Fever: Spider-Man 1, Typhoid Fever: Daredevil 1, Typhoid Fever: X-Men 1
 - [ ] [Typhoid Fever: Spider-Man (2018) #1](https://www.marvel.com/comics/issue/71874/typhoid_fever_spider-man_2018_1)
 - [ ] Typhoid Fever: Daredevil 1
 - [ ] [Typhoid Fever: X-Men (2018) #1](https://www.marvel.com/comics/issue/71875/typhoid_fever_x-men_2018_1)
+## Hunt for Wolverine: Weapon Lost
+Collects: Collects Hunt For Wolverine (2018) #1 And Hunt For Wolverine: Weapon Lost (2018) #1-4.
 - [ ] [Hunt for Wolverine (2018) #1](https://www.marvel.com/comics/issue/66912/hunt_for_wolverine_2018_1)
 - [ ] [Hunt for Wolverine: Weapon Lost (2018) #1](https://www.marvel.com/comics/issue/67019/hunt_for_wolverine_weapon_lost_2018_1)
 - [ ] [Hunt for Wolverine: Weapon Lost (2018) #2](https://www.marvel.com/comics/issue/68605/hunt_for_wolverine_weapon_lost_2018_2)
 - [ ] [Hunt for Wolverine: Weapon Lost (2018) #3](https://www.marvel.com/comics/issue/68606/hunt_for_wolverine_weapon_lost_2018_3)
 - [ ] [Hunt for Wolverine: Weapon Lost (2018) #4](https://www.marvel.com/comics/issue/68608/hunt_for_wolverine_weapon_lost_2018_4)
+## Daredevil - Back in Black, Vol. 7: Mayor Murdock
+Collects: Daredevil 601-605
 - [ ] [Daredevil (2015) #601](https://www.marvel.com/comics/issue/66833/daredevil_2015_601)
 - [ ] [Daredevil (2015) #602](https://www.marvel.com/comics/issue/67325/daredevil_2015_602)
 - [ ] [Daredevil (2015) #603](https://www.marvel.com/comics/issue/67326/daredevil_2015_603)
 - [ ] [Daredevil (2015) #604](https://www.marvel.com/comics/issue/68099/daredevil_2015_604)
 - [ ] [Daredevil (2015) #605](https://www.marvel.com/comics/issue/68100/daredevil_2015_605)
+## Daredevil Back in Black, Vol. 8: Death of Daredevil
+Collects: Daredevil 606-611
 - [ ] [Daredevil (2015) #606](https://www.marvel.com/comics/issue/68101/daredevil_2015_606)
 - [ ] [Daredevil (2015) #607](https://www.marvel.com/comics/issue/68102/daredevil_2015_607)
 - [ ] [Daredevil (2015) #608](https://www.marvel.com/comics/issue/68103/daredevil_2015_608)
 - [ ] [Daredevil (2015) #609](https://www.marvel.com/comics/issue/71068/daredevil_2015_609)
 - [ ] [Daredevil (2015) #610](https://www.marvel.com/comics/issue/71069/daredevil_2015_610)
 - [ ] [Daredevil (2015) #611](https://www.marvel.com/comics/issue/71070/daredevil_2015_611)
-## IV) Fresh Start Daredevil Comics by Chip Zdarsky
+## Man Without Fear: The Death of Daredevil - By Jed McKay
+Collects: Man Without Fear 1-5
 - [ ] [Man Without Fear (2019) #1](https://www.marvel.com/comics/issue/74774/man_without_fear_2019_1)
 - [ ] [Man Without Fear (2019) #2](https://www.marvel.com/comics/issue/74775/man_without_fear_2019_2)
 - [ ] [Man Without Fear (2019) #3](https://www.marvel.com/comics/issue/74776/man_without_fear_2019_3)
 - [ ] [Man Without Fear (2019) #4](https://www.marvel.com/comics/issue/74777/man_without_fear_2019_4)
 - [ ] [Man Without Fear (2019) #5](https://www.marvel.com/comics/issue/74778/man_without_fear_2019_5)
+## Daredevil by Chip Zdarsky Vol. 1: To Know Fear
+Collects: Daredevil 1-5
 - [ ] [Daredevil (2019) #1](https://www.marvel.com/comics/issue/71553/daredevil_2019_1)
 - [ ] [Daredevil (2019) #2](https://www.marvel.com/comics/issue/71556/daredevil_2019_2)
 - [ ] [Daredevil (2019) #3](https://www.marvel.com/comics/issue/71559/daredevil_2019_3)
 - [ ] [Daredevil (2019) #4](https://www.marvel.com/comics/issue/71561/daredevil_2019_4)
 - [ ] [Daredevil (2019) #5](https://www.marvel.com/comics/issue/71563/daredevil_2019_5)
+## Daredevil by Chip Zdarsky Vol. 2
+Collects: Daredevil 6-10
 - [ ] [Daredevil (2019) #6](https://www.marvel.com/comics/issue/71565/daredevil_2019_6)
 - [ ] [Daredevil (2019) #7](https://www.marvel.com/comics/issue/71566/daredevil_2019_7)
 - [ ] [Daredevil (2019) #8](https://www.marvel.com/comics/issue/71567/daredevil_2019_8)
 - [ ] [Daredevil (2019) #9](https://www.marvel.com/comics/issue/71568/daredevil_2019_9)
 - [ ] [Daredevil (2019) #10](https://www.marvel.com/comics/issue/71569/daredevil_2019_10)
+## Daredevil by Chip Zdarsky Vol. 3: Through Hell
+Collects: Daredevil #11 to #15
 - [ ] [Daredevil (2019) #11](https://www.marvel.com/comics/issue/71570/daredevil_2019_11)
 - [ ] [Daredevil (2019) #12](https://www.marvel.com/comics/issue/71571/daredevil_2019_12)
 - [ ] [Daredevil (2019) #13](https://www.marvel.com/comics/issue/77123/daredevil_2019_13)
 - [ ] [Daredevil (2019) #14](https://www.marvel.com/comics/issue/77124/daredevil_2019_14)
 - [ ] [Daredevil (2019) #15](https://www.marvel.com/comics/issue/77125/daredevil_2019_15)
+## Daredevil by Chip Zdarsky Vol. 4: End of Hell
+Collects: Daredevil #16 to #20
 - [ ] [Daredevil (2019) #16](https://www.marvel.com/comics/issue/77126/daredevil_2019_16)
 - [ ] [Daredevil (2019) #17](https://www.marvel.com/comics/issue/77127/daredevil_2019_17)
 - [ ] [Daredevil (2019) #18](https://www.marvel.com/comics/issue/77128/daredevil_2019_18)
 - [ ] [Daredevil (2019) #19](https://www.marvel.com/comics/issue/77129/daredevil_2019_19)
 - [ ] [Daredevil (2019) #20](https://www.marvel.com/comics/issue/77130/daredevil_2019_20)
+## Daredevil by Chip Zdarsky Vol. 5: Truth/Dare
+Collects: Daredevil (2019) #21 to #25, Daredevil Annual (2020) #1
 - [ ] [Daredevil (2019) #21](https://www.marvel.com/comics/issue/77131/daredevil_2019_21)
 - [ ] [Daredevil (2019) #22](https://www.marvel.com/comics/issue/77132/daredevil_2019_22)
 - [ ] [Daredevil (2019) #23](https://www.marvel.com/comics/issue/77133/daredevil_2019_23)
 - [ ] [Daredevil (2019) #24](https://www.marvel.com/comics/issue/77134/daredevil_2019_24)
 - [ ] [Daredevil (2019) #25](https://www.marvel.com/comics/issue/77135/daredevil_2019_25)
 - [ ] [Daredevil Annual (2020) #1](https://www.marvel.com/comics/issue/89485/daredevil_annual_2020_1)
+## Daredevil by Chip Zdarsky Vol. 6: Doing Time
+Collects: Daredevil (2019) #26 to #30
 - [ ] [Daredevil (2019) #26](https://www.marvel.com/comics/issue/77136/daredevil_2019_26)
 - [ ] [Daredevil (2019) #27](https://www.marvel.com/comics/issue/77137/daredevil_2019_27)
 - [ ] [Daredevil (2019) #28](https://www.marvel.com/comics/issue/89598/daredevil_2019_28)
 - [ ] [Daredevil (2019) #29](https://www.marvel.com/comics/issue/89599/daredevil_2019_29)
 - [ ] [Daredevil (2019) #30](https://www.marvel.com/comics/issue/89600/daredevil_2019_30)
+## Daredevil by Chip Zdarsky Vol. 7: Lockdown
+Collects: Daredevil (2019) #31 to #36
 - [ ] [Daredevil (2019) #31](https://www.marvel.com/comics/issue/89601/daredevil_2019_31)
 - [ ] [Daredevil (2019) #32](https://www.marvel.com/comics/issue/89602/daredevil_2019_32)
 - [ ] [Daredevil (2019) #33](https://www.marvel.com/comics/issue/89603/daredevil_2019_33)
 - [ ] [Daredevil (2019) #34](https://www.marvel.com/comics/issue/89604/daredevil_2019_34)
 - [ ] [Daredevil (2019) #35](https://www.marvel.com/comics/issue/89605/daredevil_2019_35)
 - [ ] [Daredevil (2019) #36](https://www.marvel.com/comics/issue/89606/daredevil_2019_36)
+## Daredevil: Woman Without Fear
+Collects: Woman Without Fear #1 to #3, Elektra (2022) #100
 - [ ] [Daredevil: Woman Without Fear (2022) #1](https://www.marvel.com/comics/issue/98676/daredevil_woman_without_fear_2022_1)
 - [ ] [Daredevil: Woman Without Fear (2022) #2](https://www.marvel.com/comics/issue/98677/daredevil_woman_without_fear_2022_2)
 - [ ] [Daredevil: Woman Without Fear (2022) #3](https://www.marvel.com/comics/issue/98678/daredevil_woman_without_fear_2022_3)
 - [ ] [Elektra (2022) #100](https://www.marvel.com/comics/issue/98680/elektra_2022_100)
+## Daredevil & Echo
+Collects: Daredevil & Echo (2023) #1 to #4, Elektra (2022) #100
 - [ ] [Daredevil & Echo (2023) #1](https://www.marvel.com/comics/issue/107117/daredevil_echo_2023_1)
 - [ ] [Daredevil & Echo (2023) #2](https://www.marvel.com/comics/issue/107120/daredevil_echo_2023_2)
 - [ ] [Daredevil & Echo (2023) #3](https://www.marvel.com/comics/issue/107121/daredevil_echo_2023_3)
 - [ ] [Daredevil & Echo (2023) #4](https://www.marvel.com/comics/issue/107122/daredevil_echo_2023_4)
+## Daredevil (2022) Vol. 1: The Red Fist Saga Part 1
+Collects: Daredevil (2022) #1 to #5
 - [ ] [Daredevil (2022) #1](https://www.marvel.com/comics/issue/101077/daredevil_2022_1)
 - [ ] [Daredevil (2022) #2](https://www.marvel.com/comics/issue/101078/daredevil_2022_2)
 - [ ] [Daredevil (2022) #3](https://www.marvel.com/comics/issue/101079/daredevil_2022_3)
 - [ ] [Daredevil (2022) #4](https://www.marvel.com/comics/issue/101080/daredevil_2022_4)
 - [ ] [Daredevil (2022) #5](https://www.marvel.com/comics/issue/101081/daredevil_2022_5)
+## Daredevil (2022) Vol. 2: The Red Fist Saga Part 2
+Collects: Daredevil (2022) #6 to #10
 - [ ] [Daredevil (2022) #6](https://www.marvel.com/comics/issue/101082/daredevil_2022_6)
 - [ ] [Daredevil (2022) #7](https://www.marvel.com/comics/issue/101083/daredevil_2022_7)
 - [ ] [Daredevil (2022) #8](https://www.marvel.com/comics/issue/101084/daredevil_2022_8)
 - [ ] [Daredevil (2022) #9](https://www.marvel.com/comics/issue/101085/daredevil_2022_9)
 - [ ] [Daredevil (2022) #10](https://www.marvel.com/comics/issue/101086/daredevil_2022_10)
+## Daredevil (2022) Vol. 3
+Collects: Daredevil (2022) #11 to #14
 - [ ] [Daredevil (2022) #11](https://www.marvel.com/comics/issue/102206/daredevil_2022_11)
 - [ ] [Daredevil (2022) #12](https://www.marvel.com/comics/issue/102207/daredevil_2022_12)
 - [ ] [Daredevil (2022) #13](https://www.marvel.com/comics/issue/102208/daredevil_2022_13)
 - [ ] [Daredevil (2022) #14](https://www.marvel.com/comics/issue/102209/daredevil_2022_14)
+## Daredevil: Black Armor
+Collects: Daredevil: Black Armor #1 to #4
 - [ ] [Daredevil: Black Armor (2023) #1](https://www.marvel.com/comics/issue/107124/daredevil_black_armor_2023_1)
 - [ ] [Daredevil: Black Armor (2023) #2](https://www.marvel.com/comics/issue/107126/daredevil_black_armor_2023_2)
 - [ ] [Daredevil: Black Armor (2023) #3](https://www.marvel.com/comics/issue/107127/daredevil_black_armor_2023_3)
 - [ ] [Daredevil: Black Armor (2023) #4](https://www.marvel.com/comics/issue/107128/daredevil_black_armor_2023_4)
+## Daredevil Vol. 1: Hell Breaks Loose
+Collects: Daredevil (2023) #1-4.
 - [ ] [Daredevil (2023) #1](https://www.marvel.com/comics/issue/105838/daredevil_2023_1)
 - [ ] [Daredevil (2023) #2](https://www.marvel.com/comics/issue/105839/daredevil_2023_2)
 - [ ] [Daredevil (2023) #3](https://www.marvel.com/comics/issue/105840/daredevil_2023_3)
 - [ ] [Daredevil (2023) #4](https://www.marvel.com/comics/issue/105841/daredevil_2023_4)
+## Daredevil by Saladin Ahmed Vol. 2: Hell To Pay
+Collects: Daredevil (2023) #6 to #10
 - [ ] [Daredevil (2023) #6](https://www.marvel.com/comics/issue/105843/daredevil_2023_6)
 - [ ] [Daredevil (2023) #7](https://www.marvel.com/comics/issue/105844/daredevil_2023_7)
 - [ ] [Daredevil (2023) #8](https://www.marvel.com/comics/issue/105845/daredevil_2023_8)
 - [ ] [Daredevil (2023) #9](https://www.marvel.com/comics/issue/105846/daredevil_2023_9)
 - [ ] [Daredevil (2023) #10](https://www.marvel.com/comics/issue/105847/daredevil_2023_10)
+## Daredevil By Saladin Ahmed Vol. 3: Living Hell
+Collects: Daredevil (20230 #11 to #15
 - [ ] [Daredevil (2023) #11](https://www.marvel.com/comics/issue/109694/daredevil_2023_11)
 - [ ] [Daredevil (2023) #12](https://www.marvel.com/comics/issue/109695/daredevil_2023_12)
 - [ ] [Daredevil (2023) #13](https://www.marvel.com/comics/issue/109696/daredevil_2023_13)
 - [ ] [Daredevil (2023) #14](https://www.marvel.com/comics/issue/120319/daredevil_2023_14)
 - [ ] [Daredevil (2023) #15](https://www.marvel.com/comics/issue/120320/daredevil_2023_15)
+## Daredevil by Saladin Ahmed Vol. 4: Last Rites
+Collects: Daredevil (2023) #16-19, Laura Kinney: Wolverine (2024) #2-3.
 - [ ] [Daredevil (2023) #16](https://www.marvel.com/comics/issue/120321/daredevil_2023_16)
 - [ ] [Daredevil (2023) #17](https://www.marvel.com/comics/issue/120322/daredevil_2023_17)
 - [ ] [Daredevil (2023) #18](https://www.marvel.com/comics/issue/120323/daredevil_2023_18)
 - [ ] [Daredevil (2023) #19](https://www.marvel.com/comics/issue/120324/daredevil_2023_19)
 - [ ] [Laura Kinney: Wolverine (2024) #2](https://www.marvel.com/comics/issue/120403/laura_kinney_wolverine_2024_2)
 - [ ] [Laura Kinney: Wolverine (2024) #3](https://www.marvel.com/comics/issue/120404/laura_kinney_wolverine_2024_3)
+## Daredevil by Saladin Ahmed Vol. 5: Rites of Reconciliation
+Collects: Daredevil (2023) #20-25.
 - [ ] [Daredevil (2023) #20](https://www.marvel.com/comics/issue/120325/daredevil_2023_20)
 - [ ] [Daredevil (2023) #21](https://www.marvel.com/comics/issue/120326/daredevil_2023_21)
 - [ ] [Daredevil (2023) #22](https://www.marvel.com/comics/issue/120327/daredevil_2023_22)
 - [ ] [Daredevil (2023) #23](https://www.marvel.com/comics/issue/120328/daredevil_2023_23)
 - [ ] [Daredevil (2023) #24](https://www.marvel.com/comics/issue/120329/daredevil_2023_24)
 - [ ] [Daredevil (2023) #25](https://www.marvel.com/comics/issue/120330/daredevil_2023_25)
+## Daredevil: Cold Day in Hell
+Collects: Daredevil: Cold Day in Hell (2025) #1-3.
 - [ ] [Daredevil: Cold Day in Hell (2025) #1](https://www.marvel.com/comics/issue/78382/daredevil_cold_day_in_hell_2025_1)
 - [ ] [Daredevil: Cold Day in Hell (2025) #2](https://www.marvel.com/comics/issue/78384/daredevil_cold_day_in_hell_2025_2)
 - [ ] [Daredevil: Cold Day in Hell (2025) #3](https://www.marvel.com/comics/issue/78385/daredevil_cold_day_in_hell_2025_3)
-## X) Team-Ups & Guest Spots
+## Greatest Spider-Man and Daredevil Team-Ups
+Collects: Collects The Amazing Spider-Man #'S 16, 396, Daredevil #270, Marvel Team-Up #'S 56, 73, The Spectacular Spider-Man #'S 26, 27, 28, 219.
 - [ ] [The Amazing Spider-Man (1963) #16](https://www.marvel.com/comics/issue/6549/the_amazing_spider-man_1963_16)
 - [ ] [The Amazing Spider-Man (1963) #396](https://www.marvel.com/comics/issue/6811/the_amazing_spider-man_1963_396)
 - [ ] Marvel Team-Up #56
 - [ ] [Marvel Team-Up (1972) #73](https://www.marvel.com/comics/issue/19696/marvel_team-up_1972_73)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #26](https://www.marvel.com/comics/issue/14720/peter_parker_the_spectacular_spider-man_1976_26)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #219](https://www.marvel.com/comics/issue/14675/peter_parker_the_spectacular_spider-man_1976_219)
+## Daredevil and the Punisher: Child's Play | Jan 1988 | Miller
+Collects: Ogn
 - [ ] Daredevil and the Punisher: Child's Play (OGN)
+## Venom on Trial
+Collects: Venom On Trial #1-3
 - [ ] [Venom: On Trial (1997) #1](https://www.marvel.com/comics/issue/73597/venom_on_trial_1997_1)
 - [ ] [Venom: On Trial (1997) #2](https://www.marvel.com/comics/issue/73601/venom_on_trial_1997_2)
 - [ ] [Venom: On Trial (1997) #3](https://www.marvel.com/comics/issue/73602/venom_on_trial_1997_3)
+## Daredevil/Bullseye: The Target
+Collects: Ogn
 - [ ] Daredevil/Bullseye: The Target (OGN)
+## Daredevil/Spider-Man
+Collects: Ogn
 - [ ] Daredevil/Spider-Man (OGN)
+## Marvel Knights Daredevil: Unusual Suspects
+Collects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1
 - [ ] [Daredevil Ninja (2000) #1](https://www.marvel.com/comics/issue/75104/daredevil_ninja_2000_1)
 - [ ] [Daredevil Ninja (2000) #2](https://www.marvel.com/comics/issue/75105/daredevil_ninja_2000_2)
 - [ ] [Daredevil Ninja (2000) #3](https://www.marvel.com/comics/issue/75106/daredevil_ninja_2000_3)
@@ -882,11 +1063,15 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Daredevil (1998) #23](https://www.marvel.com/comics/issue/15624/daredevil_1998_23)
 - [ ] [Daredevil (1998) #24](https://www.marvel.com/comics/issue/15625/daredevil_1998_24)
 - [ ] [Daredevil (1998) #25](https://www.marvel.com/comics/issue/15626/daredevil_1998_25)
+## Defenders Vol. 1: Diamonds Are Forever
+Collects: Defenders 1-5
 - [ ] [Defenders (2017) #1](https://www.marvel.com/comics/issue/62923/defenders_2017_1)
 - [ ] [Defenders (2017) #2](https://www.marvel.com/comics/issue/63230/defenders_2017_2)
 - [ ] [Defenders (2017) #3](https://www.marvel.com/comics/issue/63692/defenders_2017_3)
 - [ ] [Defenders (2017) #4](https://www.marvel.com/comics/issue/64138/defenders_2017_4)
 - [ ] [Defenders (2017) #5](https://www.marvel.com/comics/issue/64527/defenders_2017_5)
+## Defenders Vol. 2: Kingpins of New York
+Collects: Defenders 6-11
 - [ ] [Defenders (2017) #6](https://www.marvel.com/comics/issue/64794/defenders_2017_6)
 - [ ] [Defenders (2017) #7](https://www.marvel.com/comics/issue/65068/defenders_2017_7)
 - [ ] [Defenders (2017) #8](https://www.marvel.com/comics/issue/65275/defenders_2017_8)

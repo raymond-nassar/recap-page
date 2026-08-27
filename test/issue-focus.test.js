@@ -278,3 +278,13 @@ test('leaving issue focus cancels pending detail and synopsis work', () => {
   assert.match(show, /issueFocusResult = null/);
   assert.match(show, /synopsisRunner\.cancel\(\)/);
 });
+
+test('issue focus repaints dynamic breadcrumbs only after context validation', () => {
+  const main = read('src/js/main.js');
+  const render = main.slice(main.indexOf('async function renderIssueFocus'), main.indexOf('function wireIssueFocus'));
+  assert.match(render, /result\.contextStatus === 'valid' && result\.context\?\.kind === 'order'/);
+  assert.match(render, /catalogListShelf\(catalog\?\.lists, result\.context\.id\)/);
+  assert.match(render, /paintIssueFocus\(\{ \.\.\.result, breadcrumbShelf \}\)/);
+  const paint = main.slice(main.indexOf('function paintIssueFocus'), main.indexOf('async function renderIssueFocus'));
+  assert.ok((paint.match(/renderBreadcrumbs\(\)/g) ?? []).length >= 2);
+});

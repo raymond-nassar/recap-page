@@ -2,7 +2,7 @@
   "candidateId": "daredevil-reading-order",
   "packetDigest": "38e20060c4273a817c3c1d6133c13461ce0520332feb981bb4d156d7f778f36f",
   "mappingDigest": "4ecb083c6de5089b754d8322e21d95c369a9988023f9d4930e192364b89a8683",
-  "libraryDigest": "c88f3bc048979d0e3b3854556514ca875d45727cc48fa3dd32ac0f4df519cc55",
+  "libraryDigest": "fefe7518389233452de5122ab7606ee9f6f1551bf3eb2dceaf8f1fff7f9c56c4",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 909,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 33
   },
   "candidateCount": 868,
-  "comparisonCount": 148,
+  "comparisonCount": 153,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -131,6 +131,12 @@
       "relationship": "partial"
     },
     {
+      "orderId": "black-panther-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "bloodties",
       "sharedCount": 0,
       "sharedIds": [],
@@ -243,6 +249,12 @@
       "relationship": "existing-subset"
     },
     {
+      "orderId": "deadpool-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "death-of-doctor-strange",
       "sharedCount": 0,
       "sharedIds": [],
@@ -266,6 +278,12 @@
     },
     {
       "orderId": "doctor-strange-multiverse-of-madness",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "doctor-strange-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -463,6 +481,86 @@
       "relationship": "none"
     },
     {
+      "orderId": "marvel-knights-to-planet-x",
+      "sharedCount": 73,
+      "sharedIds": [
+        "15609",
+        "15620",
+        "15631",
+        "15642",
+        "15653",
+        "15664",
+        "15675",
+        "15686",
+        "4618",
+        "4619",
+        "4620",
+        "4622",
+        "4623",
+        "18958",
+        "18959",
+        "18960",
+        "18961",
+        "18962",
+        "18963",
+        "18964",
+        "15694",
+        "15610",
+        "15611",
+        "15612",
+        "15613",
+        "15614",
+        "15615",
+        "15616",
+        "15617",
+        "15618",
+        "15619",
+        "15627",
+        "15628",
+        "15629",
+        "15630",
+        "15632",
+        "15633",
+        "15634",
+        "15635",
+        "15636",
+        "15637",
+        "15638",
+        "15639",
+        "15640",
+        "15641",
+        "15643",
+        "20054",
+        "20055",
+        "20056",
+        "20057",
+        "20058",
+        "20059",
+        "20060",
+        "20061",
+        "20062",
+        "20064",
+        "20065",
+        "20066",
+        "15644",
+        "15645",
+        "15646",
+        "15647",
+        "15648",
+        "15649",
+        "15650",
+        "15651",
+        "15652",
+        "15654",
+        "15655",
+        "15656",
+        "326",
+        "358",
+        "327"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "marvel-multiverse",
       "sharedCount": 0,
       "sharedIds": [],
@@ -603,6 +701,14 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 1,
+      "sharedIds": [
+        "16873"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "reckoning-war",
@@ -974,5 +1080,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "e23f5cfa3f95da6d81f0089fce5a2df74f60ba4c34b3dad1ff14a70e273fd467"
+  "reportDigest": "86b128472345c8f21d5f32566f278e80156cd641f2c6f6ce8867fd07bed28fd1"
 }

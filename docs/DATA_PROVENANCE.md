@@ -77,6 +77,24 @@ subset relationships are approved and the other 128 contain no shared issue. The
 `partial` because the seven unavailable comics remain part of the source record but not the published
 Marvel Unlimited checklist.
 
+The Black Panther Character Spotlight follows the complete maintained source page from the
+introductory Fantastic Four references through the latest additions. It preserves 424 explicit
+issue occurrences across 367 identities: 363 exact provider-resolved comics and four open metadata
+gaps. Fifty-seven repeated occurrences remain in the frozen source evidence while the checklist
+publishes each canonical comic once. The four unresolved source positions remain visible in the
+guide and have separate follow-up work in [Issue #281](https://github.com/raymond-nassar/recap-page/issues/281);
+none is substituted or silently removed. Its complete-library review records eight partial
+relationships and 139 no-overlap relationships.
+
+Doctor Strange's complete guide retains the full visible page boundary: 932 source occurrences
+across 76 issue-bearing blocks and nine top-level headings. It publishes 711 exact issue identities,
+records 181 repeated source references once at their first occurrence, preserves 39 open metadata
+gaps, and names one source exclusion. The open gaps retain their exact source positions and failed
+provider lookups, with follow-up assigned in [Issue #283](https://github.com/raymond-nassar/recap-page/issues/283).
+The complete-library report compares the guide with all 152 existing reading lists: three are
+existing-subset relationships, 26 are partial, and 123 have no shared issues. The source groups and
+gaps remain maintained evidence rather than replacements or invented issue identities.
+
 The Daredevil Character Spotlight guide follows the full page because it has no separate qualifying
 Best Comics or Essential Comics section. Its frozen source preserves 909 occurrences: 868 exact
 issue identities, 33 repeated occurrences, and 8 explicit provider gaps. The published checklist
@@ -87,8 +105,8 @@ Defenders #11. The separate [gap follow-up issue](https://github.com/raymond-nas
 holds only future one-to-one identity research. The source range, source position, and unresolved
 status remain intact unless exact provider evidence resolves an identity.
 
-The complete-library report compares Daredevil with 148 reading lists. It records 17 approved
-partial relationships, 1 approved existing-subset relationship, and 130 relationships with no
+The complete-library report compares Daredevil with 153 reading lists. It records 19 approved
+partial relationships, 1 approved existing-subset relationship, and 133 relationships with no
 shared issue identities. The guide remains complete because its source boundary is the full page,
 not because an unresolved identity is silently removed.
 
@@ -234,12 +252,12 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-One hundred and thirty-five files under [`src/data/`](../src/data), one per curated list, holding
-4,736 issue records covering 3,882 distinct issues. Each record copies from the upstream API:
+One hundred and forty-eight files under [`src/data/`](../src/data), one per curated list, holding
+9,278 issue records covering 7,573 distinct issues. Each record copies from the upstream API:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
 object of `path` and `ext`, and `creators` of `name` and `role`. Across the one hundred and
-thirty-five, 4,667 records carry a cover URL and 4,575 carry creator credits.
+forty-eight, 8,221 records carry a cover URL and 7,978 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -248,12 +266,13 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Six records copy nothing, and they are the only place the sentence above does not hold. Two sit in
+Eight records copy nothing, and they are the only place the sentence above does not hold. Two sit in
 [`src/data/xmen_claremont.json`](../src/data/xmen_claremont.json) and four in
 [`src/data/xmen_claremont_complete.json`](../src/data/xmen_claremont_complete.json), standing for
 checklist lines the upstream holds no issue for. Each carries `placeholder: true`, no `url`, and an
 `issueId` computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the
-order and the title and then negated, so it can never be read as one of Marvel's. The title is the
+order and the title and then negated, so it can never be read as one of Marvel's. The two remaining
+records preserve the unresolved Deadpool MAX source positions. The title is the
 one written into an order compiled in this repository, so nothing in those six was fetched at all.
 That is a statement about where the bytes came from and not about who may license them: the title
 still names a Marvel series and issue, so these six sit inside the fourth open question at the end
@@ -267,7 +286,7 @@ standing constraint of this project rather than an incidental property of the sc
 |---|---|---|
 | Assembled from Marvel series metadata (publication order) | 8 | The selection of series, and the rule that branded series are in and unbranded crossover chapters are out. Generated by [`scripts/build-event-order.mjs`](../scripts/build-event-order.mjs), so the derivation is a script anyone can read and re-run |
 | Compiled for this project | 4 | The whole sequence, by hand. See the trail at the top of each file in [`src/data/orders/`](../src/data/orders) |
-| Compiled for this project from Comic Book Herald's guide | 86 | The guide's issue selection and sequence, re-expressed as local checklists. Every card links to the exact guide followed |
+| Compiled for this project from Comic Book Herald's guide | 96 | The guide's issue selection and sequence, re-expressed as local checklists. Every card links to the exact guide followed |
 | Compiled for this project from Comic Book Reading Orders | 38 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 2 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 
@@ -282,12 +301,12 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The one hundred and thirty-six Markdown files in [`src/data/orders/`](../src/data/orders) are
-authored in this repository. One hundred and eighteen are generated by committed scripts: eight from
-series metadata, seventy-two from reviewed Comic Book Herald mappings, and thirty-eight from reviewed
+The one hundred and forty-eight Markdown files in [`src/data/orders/`](../src/data/orders) are
+authored in this repository. One hundred and thirty are generated by committed scripts: eight from
+series metadata, eighty-four from reviewed Comic Book Herald mappings, and thirty-eight from reviewed
 Comic Book Reading Orders mappings.
-Eighteen are compiled by hand. Every file carries its own derivation trail. Eighty-nine reference a
-Comic Book Herald guide, and eighty-six name it on their catalog card and link to the exact page or
+Eighteen are compiled by hand. Every file carries its own derivation trail. Ninety-six name a
+Comic Book Herald guide on their catalog card and link to the exact page or
 section followed. Thirty-eight reference Comic Book Reading Orders and name it on their card.
 
 ### Design mockups
@@ -317,7 +336,7 @@ authored work, which is why they are named separately rather than left to this s
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all one hundred and thirty-eight shipped lists today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all one hundred and forty-eight shipped lists today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -328,14 +347,20 @@ refuses all ten of the old prose values by construction rather than by anyone re
 check. The shape test is the point. An enumeration of permitted identifiers would be one more
 list somebody has to keep complete.
 
-The current Character Spotlight shelf has fifteen readings across fourteen stories. Five readings are
-explicit Best of selections, five are complete guides, and five are `other`. The two X-Men readings
+The current Character Spotlight shelf has twenty-three readings across twenty-two stories. Six readings are
+explicit Best of selections, thirteen are complete guides, and four are `other`. The two X-Men readings
 share one story and one classification. The Doom primer and Essential Avengers remain under All
 rather than acquiring a claim their source boundaries do not support.
 
 Groot's Complete guide preserves all 76 issues in its reviewed source order. Its 41 shared issues
 with Rocket Raccoon and 25 with Star-Lord are partial relationships between separately sourced
 guides, not permission to merge a card or shorten a sequence.
+
+The Deadpool Best of guide preserves thirteen source recommendation groups through 56 source
+occurrences: 38 distinct issues publish exactly, sixteen later source references remain attached to
+their first canonical issue, and two Deadpool MAX identities remain explicit metadata gaps. The guide
+stops before the source page's exhaustive chronology. The two gaps are tracked in Issue 275 rather
+than being guessed or dropped.
 
 The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
 shares a story with, rather than carried through the frozen-packet pipeline the six other complete
@@ -637,9 +662,9 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/main.js:2749` and the issue-details view at
-`src/js/main.js:1566`. The function behind both already answers for the absence at
-`src/js/main.js:2936-2945`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/main.js:2799` and the issue-details view at
+`src/js/main.js:1612`. The function behind both already answers for the absence at
+`src/js/main.js:2986-2995`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
