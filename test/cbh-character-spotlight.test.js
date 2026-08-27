@@ -479,11 +479,18 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 8);
   assert.equal(catalogEntry.expect, 367);
   assert.equal(catalogEntry.coverIssueId, 13258);
-  assert.equal(catalog.lists.find((entry) => entry.id === blackPantherCandidateId).count, 367);
+  const catalogList = catalog.lists.find((entry) => entry.id === blackPantherCandidateId);
+  assert.equal(catalogEntry.out, 'black_panther_reading_order.json');
+  assert.equal(catalogList.file, 'black_panther_reading_order.json');
+  assert.equal(catalogList.count, 367);
   assert.equal(generated.count, 367);
   assert.equal(generated.items.filter((item) => item.issueId > 0).length, 363);
   assert.equal(generated.items.filter((item) => item.issueId < 0).length, 4);
   assert.equal(generated.placeholders, 4);
+  await assert.rejects(
+    readFile(path.join(root, 'src', 'data', 'black-panther-reading-order.json'), 'utf8'),
+    { code: 'ENOENT' },
+  );
   assert.equal(parsed.entries.length, 363);
   assert.equal(parsed.unresolved.length, 4);
   assert.match(markdown, /^## Introductory prose$/m);
