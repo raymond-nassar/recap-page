@@ -14,6 +14,12 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a Marvel Knights to Planet X reading guide
+
+In plain English: You can now follow 487 comics from Marvel Knights through the Planet X
+crossover. The new guide preserves all ninety-nine source positions across three sections and
+includes complete issue links and series details. Nothing you have saved is changed.
+
 ### Added a complete Black Panther reading guide
 
 In plain English: You can now follow Black Panther stories from his earliest Fantastic Four appearance through the newest source-page additions. Repeated source recommendations appear only once in the checklist, and four comics missing from the maintained metadata remain visible as unresolved entries instead of being replaced or hidden.

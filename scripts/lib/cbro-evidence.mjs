@@ -94,6 +94,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'modern-x-men-fast-track',
   'question-of-the-week-do-you-have-a-hulk-reading-order',
   'deadpool-best-of',
+  'marvel-knights-to-planet-x',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T04:26:26.281Z",
+  "generatedAt": "2026-08-27T09:11:14.682Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -4382,6 +4382,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T15:53:03.208Z"
+    },
+    {
+      "id": "marvel-knights-to-planet-x",
+      "file": "marvel_knights_to_planet_x.json",
+      "name": "Marvel Knights to Planet X",
+      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "type": "event",
+      "depth": "complete",
+      "count": 487,
+      "collections": 3,
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four",
+        "Avengers",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X",
+        "Guardian Devil",
+        "E is for Extinction",
+        "X-Corps",
+        "Planet X crossover"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1998,
+      "coverIssueId": 15609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/57223eff00d5d",
+        "ext": "jpg"
+      },
+      "source": null,
+      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T09:11:14.577Z"
     },
     {
       "id": "spider-man-identity-crisis",
