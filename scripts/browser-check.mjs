@@ -729,6 +729,80 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'breadcrumb-wrong-parent',
+    breaks: 'breadcrumb-navigation',
+    why: 'an Add comics child is placed under Browse, so the trail no longer states the route hierarchy',
+    rewriteRoute: (source) => source.replace(
+      "return [home, linked('add', 'Add comics'), current(addLabel)];",
+      "return [home, linked('browse', 'Browse'), current(addLabel)];",
+    ),
+  },
+  {
+    id: 'breadcrumb-on-home',
+    breaks: 'breadcrumb-navigation',
+    why: 'Home receives a redundant trail even though it has no route ancestors',
+    script: () => {
+      const inject = () => {
+        if (!['', '#', '#/', '#/home'].includes(location.hash)) return;
+        const head = document.querySelector('#view-home > .head');
+        if (!head || document.querySelector('#view-home > .breadcrumb')) return;
+        const nav = document.createElement('nav');
+        nav.className = 'breadcrumb';
+        nav.setAttribute('aria-label', 'Breadcrumb');
+        nav.innerHTML = '<ol><li><span aria-current="page">Home</span></li></ol>';
+        head.before(nav);
+      };
+      addEventListener('load', inject);
+      addEventListener('hashchange', () => queueMicrotask(inject));
+    },
+  },
+  {
+    id: 'breadcrumb-in-preview',
+    breaks: 'breadcrumb-navigation',
+    why: 'the Preview dialog receives route ancestry even though it is not a routed page',
+    script: () => {
+      const inject = () => {
+        const dialog = document.querySelector('#preview[open]');
+        if (!dialog || dialog.querySelector('.breadcrumb')) return;
+        const nav = document.createElement('nav');
+        nav.className = 'breadcrumb';
+        nav.setAttribute('aria-label', 'Breadcrumb');
+        nav.innerHTML = '<ol><li><a href="#/browse">Browse</a></li><li><span aria-current="page">Preview</span></li></ol>';
+        dialog.prepend(nav);
+      };
+      addEventListener('load', () => {
+        new MutationObserver(inject).observe(document.body, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+        inject();
+      });
+    },
+  },
+  {
+    id: 'breadcrumb-non-anchor',
+    breaks: 'breadcrumb-navigation',
+    why: 'ancestor destinations become inert text instead of real hash links',
+    rewriteMain: (source) => source.replace(
+      "? el('a', { href: item.href }, item.label)",
+      "? el('span', {}, item.label)",
+    ),
+  },
+  {
+    id: 'add-comics-drift',
+    breaks: 'breadcrumb-navigation',
+    why: 'the destination and its hub regress to the ambiguous Add name',
+    script: () => {
+      addEventListener('DOMContentLoaded', () => {
+        const rail = document.querySelector('.ri[data-view="add"]');
+        const heading = document.querySelector('#add-h');
+        if (rail) rail.querySelector('.lbl').textContent = 'Add';
+        if (heading) heading.textContent = 'Add';
+      });
+    },
+  },
+  {
     id: 'issue-focus-no-push',
     breaks: 'issue-focus',
     why: 'issue inspection stops creating its one history entry, so Back cannot return to the source',
@@ -1522,6 +1596,304 @@ const SCENARIOS = [
         && narrow.controlsTop >= narrow.headingBottom
         && narrow.labelsVisible,
         JSON.stringify(narrow));
+    },
+  },
+  {
+    id: 'breadcrumb-navigation',
+    title: 'routed pages show one truthful, usable breadcrumb trail',
+    async run(page, t) {
+      const trail = () => page.evaluate(() => {
+        const visible = [...document.querySelectorAll('.view')].filter((node) => !node.hidden);
+        const breadcrumbs = visible.flatMap((node) => [...node.querySelectorAll(':scope > .breadcrumb')]);
+        const breadcrumb = breadcrumbs[0] ?? null;
+        return {
+          visible: visible.map((node) => node.id),
+          count: breadcrumbs.length,
+          labels: breadcrumb
+            ? [...breadcrumb.querySelectorAll('li')].map((node) => node.textContent.trim())
+            : [],
+          ancestors: breadcrumb
+            ? [...breadcrumb.querySelectorAll('li:not(:last-child) > *')].map((node) => ({
+              tag: node.tagName,
+              href: node.getAttribute('href'),
+            }))
+            : [],
+          current: breadcrumb?.querySelector('li:last-child > *')
+            ? {
+              tag: breadcrumb.querySelector('li:last-child > *').tagName,
+              ariaCurrent: breadcrumb.querySelector('li:last-child > *').getAttribute('aria-current'),
+              href: breadcrumb.querySelector('li:last-child > *').getAttribute('href'),
+            }
+            : null,
+          dialogBreadcrumbs: document.querySelectorAll('dialog .breadcrumb').length,
+        };
+      });
+      const visit = async (route, labels) => {
+        await page.evaluate((hash) => { location.hash = hash; }, `#/${route}`);
+        await page.waitForFunction(
+          (view, expected) => {
+            const panel = document.querySelector(`#view-${view}`);
+            const actual = [...(panel?.querySelectorAll(':scope > .breadcrumb li') ?? [])]
+              .map((node) => node.textContent.trim());
+            return panel?.hidden === false && JSON.stringify(actual) === JSON.stringify(expected);
+          },
+          {},
+          route,
+          labels,
+        );
+        const actual = await trail();
+        const semantic = actual.count === 1
+          && actual.labels.join('/') === labels.join('/')
+          && actual.ancestors.every(({ tag, href }) => tag === 'A' && href?.startsWith('#/'))
+          && actual.current?.tag === 'SPAN'
+          && actual.current.ariaCurrent === 'page'
+          && actual.current.href === null
+          && actual.dialogBreadcrumbs === 0;
+        t.check(`${route} has its intended semantic hierarchy`, semantic, JSON.stringify(actual));
+      };
+
+      await open(page, '/');
+      await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
+      const home = await trail();
+      t.check('Home has no breadcrumb trail', home.count === 0, JSON.stringify(home));
+
+      await click(page, '#btn-rail-toggle');
+      await page.focus('.ri[data-view="add"]');
+      await page.waitForSelector('#rail-tip:not([hidden])');
+      const addButton = await page.$('.ri[data-view="add"]');
+      const addAccessible = await page.accessibility.snapshot({ root: addButton });
+      const addNaming = await page.evaluate(() => ({
+        label: document.querySelector('.ri[data-view="add"] .lbl')?.textContent.trim(),
+        tip: document.querySelector('#rail-tip')?.textContent.trim(),
+        heading: document.querySelector('#add-h')?.textContent.trim(),
+      }));
+      t.check('the collapsed destination, tooltip, accessible name and hub all say Add comics',
+        addNaming.label === 'Add comics'
+        && addNaming.tip === 'Add comics'
+        && addNaming.heading === 'Add comics'
+        && addAccessible?.name === 'Add comics',
+        JSON.stringify({ ...addNaming, accessible: addAccessible?.name }));
+      await addButton.dispose();
+
+      const routes = [
+        ['library', ['Home', 'Library']],
+        ['progress', ['Home', 'Library', 'Progress by series']],
+        ['library-read', ['Home', 'Library', 'Everything read']],
+        ['library-manual', ['Home', 'Library', 'Added by hand']],
+        ['browse', ['Home', 'Browse']],
+        ['catalog', ['Home', 'Browse', 'Modern Timeline']],
+        ['lines', ['Home', 'Browse', 'Storylines']],
+        ['spotlights', ['Home', 'Browse', 'Character spotlights']],
+        ['marvel-on-screen', ['Home', 'Browse', 'MCU Prep']],
+        ['marvel-ages', ['Home', 'Browse', 'Marvel Ages']],
+        ['age-golden', ['Home', 'Browse', 'Marvel Ages', 'Golden Age']],
+        ['age-silver', ['Home', 'Browse', 'Marvel Ages', 'Silver Age']],
+        ['age-bronze', ['Home', 'Browse', 'Marvel Ages', 'Bronze Age']],
+        ['age-copper', ['Home', 'Browse', 'Marvel Ages', 'Copper Age']],
+        ['age-modern', ['Home', 'Browse', 'Marvel Ages', 'Modern Age']],
+        ['age-early-modern', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Early Modern']],
+        ['age-marvel-knights-heroes-return', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Marvel Knights / Heroes Return']],
+        ['age-event-era', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Event Era']],
+        ['age-marvel-now', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Marvel NOW!']],
+        ['age-all-new-all-different', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'All-New All-Different']],
+        ['age-fresh-start', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Fresh Start']],
+        ['age-current', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Current era']],
+        ['add', ['Home', 'Add comics']],
+        ['add-series', ['Home', 'Add comics', 'Find a series']],
+        ['add-creator', ['Home', 'Add comics', 'Browse a creator']],
+        ['add-import', ['Home', 'Add comics', 'Paste a Reading List']],
+        ['add-manual', ['Home', 'Add comics', 'Add an issue by hand']],
+        ['data', ['Home', 'Backup & settings']],
+        ['about', ['Home', 'About this app']],
+        ['add-search', ['Home', 'Add comics', 'Search issues']],
+      ];
+      for (const [route, labels] of routes) await visit(route, labels);
+
+      await page.focus('#view-add-search .breadcrumb a[href="#/add"]');
+      const focusedLink = await page.$eval(
+        '#view-add-search .breadcrumb a[href="#/add"]',
+        (link) => ({
+          active: document.activeElement === link,
+          outline: getComputedStyle(link).outlineStyle,
+          outlineWidth: Number.parseFloat(getComputedStyle(link).outlineWidth),
+        }),
+      );
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash === '#/add' && document.activeElement?.id === 'add-h');
+      t.check('a focused ancestor has a visible ring and keyboard activation focuses the destination heading',
+        focusedLink.active && focusedLink.outline !== 'none' && focusedLink.outlineWidth >= 3,
+        JSON.stringify(focusedLink));
+
+      await visit('data', ['Home', 'Backup & settings']);
+      await visit('about', ['Home', 'About this app']);
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/data' && document.activeElement?.id === 'data-h');
+      const backTrail = await trail();
+      await page.evaluate(() => history.forward());
+      await page.waitForFunction(() => location.hash === '#/about' && document.activeElement?.id === 'about-h');
+      const forwardTrail = await trail();
+      t.check('Back and Forward repaint the hierarchy and destination focus',
+        backTrail.labels.join('/') === 'Home/Backup & settings'
+        && forwardTrail.labels.join('/') === 'Home/About this app',
+        JSON.stringify({ back: backTrail.labels, forward: forwardTrail.labels }));
+
+      await open(page, '/#/about');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-about:not([hidden]) > .breadcrumb');
+      const directAbout = await trail();
+      await open(page, '/#/age-current');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-age-current:not([hidden]) > .breadcrumb');
+      const directAge = await trail();
+      t.check('direct loads derive the same route hierarchy',
+        directAbout.labels.join('/') === 'Home/About this app'
+        && directAge.labels.join('/') === 'Home/Browse/Marvel Ages/Modern Age/Current era',
+        JSON.stringify({ about: directAbout.labels, age: directAge.labels }));
+
+      await importOrder(page);
+      const dynamic = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return {
+          id: state.active,
+          name: 'AReadingListNameWithoutSpacesThatMustWrapSafelyAcrossNarrowBreadcrumbLayouts',
+        };
+      });
+      await click(page, '#btn-rename-list');
+      await page.waitForSelector('#ask[open] #ask-input');
+      await page.$eval('#ask-input', (input, name) => { input.value = name; }, dynamic.name);
+      await click(page, '#ask-ok');
+      await page.waitForFunction(
+        (name) => document.querySelector('#view-read .breadcrumb [aria-current="page"]')?.textContent.trim() === name,
+        {},
+        dynamic.name,
+      );
+      const encodedList = encodeURIComponent(dynamic.id);
+      await open(page, `/#/read/${encodedList}`);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-read .breadcrumb [aria-current="page"]', { timeout: 15000 });
+      const savedTrail = await trail();
+      t.check('a saved Reading List uses its validated current name',
+        savedTrail.labels.join('/') === `Home/Library/${dynamic.name}`,
+        JSON.stringify(savedTrail));
+
+      await open(page, `/#/issue/900001?list=${encodedList}`);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
+          === 'Browser Check (2026) #1');
+      const listIssue = await trail();
+      t.check('a saved-list issue stays under Library and its saved list',
+        listIssue.labels.join('/') === `Home/Library/${dynamic.name}/Browser Check (2026) #1`,
+        JSON.stringify(listIssue));
+
+      await open(page, '/#/issue/900001?order=browser-check');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
+          === 'Browser Check (2026) #1');
+      const orderIssue = await trail();
+      t.check('a bundled issue uses the canonical Browse shelf rather than Preview',
+        orderIssue.labels.join('/') === 'Home/Browse/Modern Timeline/Browser Check (2026) #1',
+        JSON.stringify(orderIssue));
+
+      await open(page, '/#/issue/900001?list=missing');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        location.hash === '#/issue/900001'
+        && document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
+          === 'Browser Check (2026) #1');
+      const staleIssue = await trail();
+      await open(page, '/#/issue/900001');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
+          === 'Browser Check (2026) #1');
+      const unscopedIssue = await trail();
+      t.check('stale and unscoped issue routes fall back to truthful issue-only trails',
+        staleIssue.labels.join('/') === 'Home/Browser Check (2026) #1'
+        && unscopedIssue.labels.join('/') === 'Home/Browser Check (2026) #1',
+        JSON.stringify({ stale: staleIssue.labels, unscoped: unscopedIssue.labels }));
+
+      await open(page, '/#/catalog');
+      await page.waitForSelector('#catalog-results [data-act="preview"]', { timeout: 15000 });
+      await click(page, '#catalog-results [data-act="preview"]');
+      await page.waitForSelector('#preview[open]');
+      const previewCrumbs = await page.$$eval('#preview .breadcrumb', (nodes) => nodes.length);
+      t.check('Preview remains a modal dialog with no breadcrumb trail', previewCrumbs === 0, previewCrumbs);
+      await click(page, '#preview-close');
+
+      await open(page, '/#/library');
+      await click(page, '#btn-new-list');
+      await page.waitForSelector('#ask[open]');
+      const askCrumbs = await page.$$eval('#ask .breadcrumb', (nodes) => nodes.length);
+      t.check('Ask remains a modal dialog with no breadcrumb trail', askCrumbs === 0, askCrumbs);
+      await click(page, '#ask-cancel');
+
+      const responsive = async (width) => {
+        await page.setViewport({ width, height: 900 });
+        await open(page, `/#/read/${encodedList}`);
+        await page.waitForSelector('#view-read .breadcrumb [aria-current="page"]', { timeout: 15000 });
+        await page.evaluate(() => {
+          document.querySelector('#full').open = false;
+          return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        });
+        return page.$eval('#view-read .breadcrumb', (breadcrumb) => ({
+          viewport: innerWidth,
+          pageScroll: document.documentElement.scrollWidth,
+          pageClient: document.documentElement.clientWidth,
+          breadcrumbScroll: breadcrumb.scrollWidth,
+          breadcrumbClient: breadcrumb.clientWidth,
+          currentScroll: breadcrumb.querySelector('[aria-current="page"]').scrollWidth,
+          currentClient: breadcrumb.querySelector('[aria-current="page"]').clientWidth,
+        }));
+      };
+      const width390 = await responsive(390);
+      const width320 = await responsive(320);
+      t.check('long trails wrap at 390 and 320 CSS pixels without page-level overflow',
+        [width390, width320].every((size) =>
+          size.pageScroll <= size.pageClient
+          && size.breadcrumbScroll <= size.breadcrumbClient
+          && size.currentScroll <= size.currentClient),
+        JSON.stringify({ width390, width320 }));
+
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      const zoom = await page.$eval('#view-read .breadcrumb', (breadcrumb) => ({
+        scale: visualViewport.scale,
+        pageScroll: document.documentElement.scrollWidth,
+        pageClient: document.documentElement.clientWidth,
+        breadcrumbScroll: breadcrumb.scrollWidth,
+        breadcrumbClient: breadcrumb.clientWidth,
+      }));
+      t.check('the wrapped trail has no horizontal overflow at 200 percent zoom',
+        zoom.scale === 2
+        && zoom.pageScroll <= zoom.pageClient
+        && zoom.breadcrumbScroll <= zoom.breadcrumbClient,
+        JSON.stringify(zoom));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+
+      await client.send('Emulation.setEmulatedMedia', {
+        features: [{ name: 'forced-colors', value: 'active' }],
+      });
+      const forced = await page.$eval('#view-read .breadcrumb', (breadcrumb) => {
+        const link = getComputedStyle(breadcrumb.querySelector('a'));
+        const current = getComputedStyle(breadcrumb.querySelector('[aria-current="page"]'));
+        return {
+          active: matchMedia('(forced-colors: active)').matches,
+          linkColor: link.color,
+          currentColor: current.color,
+          linkDecoration: link.textDecorationLine,
+          currentDecoration: current.textDecorationLine,
+          currentWeight: current.fontWeight,
+        };
+      });
+      t.check('forced colors keeps ancestor links distinct from the current item',
+        forced.active
+        && forced.linkColor !== forced.currentColor
+        && forced.linkDecoration.includes('underline')
+        && !forced.currentDecoration.includes('underline'),
+        JSON.stringify(forced));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
     },
   },
   {
@@ -3013,7 +3385,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:827` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:841` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -4331,6 +4703,7 @@ async function preparePage(page, origin, mutation) {
   for (const [path, rewrite] of [
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
+    ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
     if (!rewrite) continue;
     const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');

@@ -24,7 +24,7 @@ import {
   pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
-  CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
+  catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
   modernTimelineLists, modernTimelineFeaturedList,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
@@ -43,7 +43,9 @@ import { shortcutAllowed } from './lib/shortcuts.js';
 import { lookupIssue } from './lib/wiki.js';
 import { READING_FILTERS, DEFAULT_FILTER, matchesReadingFilter } from './lib/readingFilters.js';
 import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
-import { ADD_VIEWS, VIEWS, formatRoute, parseRoute } from './lib/route.js';
+import {
+  ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
+} from './lib/route.js';
 import { labelledName } from './lib/accname.js';
 import { issuePresentation, resolveIssueFocus } from './lib/issueFocus.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
@@ -1091,7 +1093,7 @@ function wireRailTips() {
   const show = (e) => {
     const target = e.target instanceof Element ? e.target.closest('.ri, .brand, .pill') : null;
     if (!target || !railed) return hideRailTip();
-    const text = (target.dataset.tip || target.textContent || '').trim();
+    const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
     if (!text) return hideRailTip();
     const tip = $('#rail-tip');
     tip.textContent = text;
@@ -1432,6 +1434,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') renderHomeCategories();
   if (next === 'issue') void renderIssueFocus();
+  renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
@@ -1448,6 +1451,47 @@ function showView(next, { focus = true, push = false } = {}) {
 
   if (!focus) return;
   focusViewHeading(next);
+}
+
+function renderBreadcrumbs() {
+  const section = $(`#view-${view}`);
+  for (const breadcrumb of document.querySelectorAll('.breadcrumb')) {
+    if (!section?.contains(breadcrumb)) breadcrumb.remove();
+  }
+  const head = section?.querySelector(':scope > .head');
+  if (!head) return;
+
+  const activeId = activeListId();
+  const active = Object.hasOwn(store.state.lists, activeId ?? '')
+    ? store.state.lists[activeId]
+    : null;
+  const resolvedContext = issueFocusResult?.contextStatus === 'valid'
+    ? {
+      ...issueFocusResult.context,
+      shelf: issueFocusResult.breadcrumbShelf ?? null,
+    }
+    : null;
+  const trail = breadcrumbHierarchy({
+    view,
+    list: active ? { id: active.id, name: active.name } : null,
+    issueTitle: issueFocusResult?.issue?.title ?? null,
+    context: resolvedContext,
+  });
+  const existing = section.querySelector(':scope > .breadcrumb');
+  if (!trail.length) {
+    existing?.remove();
+    return;
+  }
+  const trailKey = JSON.stringify(trail);
+  if (existing?.dataset.trail === trailKey) return;
+
+  const list = el('ol', {}, trail.map((item) => el('li', {}, item.href
+    ? el('a', { href: item.href }, item.label)
+    : el('span', { 'aria-current': item.current ? 'page' : null }, item.label))));
+  const breadcrumb = existing || el('nav', { class: 'breadcrumb', 'aria-label': 'Breadcrumb' });
+  breadcrumb.dataset.trail = trailKey;
+  breadcrumb.replaceChildren(list);
+  if (!existing) head.before(breadcrumb);
 }
 
 function railParentView(next) {
@@ -1541,6 +1585,7 @@ function paintIssueFocus(result) {
     status.textContent = issueRoute?.issueId < 0
       ? 'This local issue is no longer in saved data or the bundled order named by the link.'
       : 'Issue details could not be loaded. Your saved lists and progress are unchanged.';
+    renderBreadcrumbs();
     return;
   }
 
@@ -1583,6 +1628,7 @@ function paintIssueFocus(result) {
   }
   $('#btn-issue-synopsis').hidden = issue.issueId < 0 || synopsisRunner.active;
   $('#btn-cancel-issue-synopsis').hidden = true;
+  renderBreadcrumbs();
 }
 
 async function renderIssueFocus() {
@@ -1614,7 +1660,10 @@ async function renderIssueFocus() {
       signal: controller.signal,
     });
     if (issueFocusLoad !== controller || controller.signal.aborted) return;
-    paintIssueFocus(result);
+    const breadcrumbShelf = result.contextStatus === 'valid' && result.context?.kind === 'order'
+      ? catalogListShelf(catalog?.lists, result.context.id)
+      : null;
+    paintIssueFocus({ ...result, breadcrumbShelf });
     if (result.contextStatus === 'stale' && issueRoute.context) {
       issueRoute = { ...issueRoute, context: null };
       syncHash();
@@ -5550,6 +5599,7 @@ function renderAll() {
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
   renderBlocked();
+  renderBreadcrumbs();
   // The active list changes at more than a dozen places that never navigate, among them
   // duplicating a list and restoring a backup. This is the one point every one of them passes
   // through, so syncing here is what stops the address naming a list that is no longer on screen.

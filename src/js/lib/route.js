@@ -7,7 +7,7 @@
 
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
-import { HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catalog.js';
+import { CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catalog.js';
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
 const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
@@ -29,6 +29,112 @@ export const VIEWS = [
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
 // renderable views, so every member of VIEWS still names a real panel.
 export const LEGACY_VIEW_ALIASES = {};
+
+const ADD_VIEW_LABELS = new Map([
+  ['add-search', 'Search issues'],
+  ['add-series', 'Find a series'],
+  ['add-creator', 'Browse a creator'],
+  ['add-import', 'Paste a Reading List'],
+  ['add-manual', 'Add an issue by hand'],
+]);
+
+const STATIC_VIEW_LABELS = new Map([
+  ['library', 'Library'],
+  ['browse', 'Browse'],
+  ['add', 'Add comics'],
+  ['progress', 'Progress by series'],
+  ['data', 'Backup & settings'],
+  ['about', 'About this app'],
+]);
+
+const cleanLabel = (value, fallback) => (
+  typeof value === 'string' && value.trim() ? value.trim() : fallback
+);
+
+function linked(view, label, extra = {}) {
+  return { label, href: formatRoute({ view, ...extra }) };
+}
+
+const current = (label) => ({ label, current: true });
+
+export function breadcrumbHierarchy({
+  view, list = null, issueTitle = null, context = null,
+} = {}) {
+  if (!VIEWS.includes(view) || view === 'home') return [];
+  const home = linked('home', 'Home');
+
+  if (view === 'read') {
+    return [
+      home,
+      linked('library', 'Library'),
+      current(cleanLabel(list?.name, 'Reading List')),
+    ];
+  }
+
+  if (view === 'issue') {
+    const title = cleanLabel(issueTitle, 'Issue details');
+    if (context?.kind === 'list'
+      && typeof context.id === 'string' && context.id
+      && typeof context.name === 'string' && context.name.trim()) {
+      return [
+        home,
+        linked('library', 'Library'),
+        linked('read', context.name.trim(), { listId: context.id }),
+        current(title),
+      ];
+    }
+    if (context?.kind === 'order' && typeof context.id === 'string' && context.id) {
+      const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === context.shelf);
+      if (shelf) {
+        return [
+          home,
+          linked('browse', 'Browse'),
+          linked(shelf.key, shelf.heading),
+          current(title),
+        ];
+      }
+    }
+    return [home, current(title)];
+  }
+
+  const libraryView = LIBRARY_VIEWS.find((candidate) => candidate.value === view);
+  if (libraryView) {
+    return [home, linked('library', 'Library'), current(libraryView.label)];
+  }
+
+  const addLabel = ADD_VIEW_LABELS.get(view);
+  if (addLabel) {
+    return [home, linked('add', 'Add comics'), current(addLabel)];
+  }
+
+  const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === view);
+  if (shelf) {
+    return [home, linked('browse', 'Browse'), current(shelf.heading)];
+  }
+
+  const publishing = PUBLISHING_CATEGORIES.find((candidate) => candidate.route === view);
+  if (publishing) {
+    const ancestors = [home, linked('browse', 'Browse'), linked('marvel-ages', 'Marvel Ages')];
+    if (publishing.parent) {
+      const parent = PUBLISHING_CATEGORIES.find((candidate) => candidate.key === publishing.parent);
+      if (parent) ancestors.push(linked(parent.route, parent.heading));
+    }
+    return [...ancestors, current(publishing.heading)];
+  }
+
+  const category = HOME_CATEGORIES.find((candidate) => candidate.route === view);
+  if (category) {
+    return [home, linked('browse', 'Browse'), current(category.heading)];
+  }
+
+  const label = STATIC_VIEW_LABELS.get(view);
+  if (label) {
+    const parent = view === 'progress' ? linked('library', 'Library') : null;
+    return [home, parent, current(label)].filter(Boolean);
+  }
+
+  return [];
+}
 
 function canonicalView(view) {
   return LEGACY_VIEW_ALIASES[view] ?? view;

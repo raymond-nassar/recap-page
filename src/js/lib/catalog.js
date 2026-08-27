@@ -788,6 +788,13 @@ export function shelfLists(lists, key) {
   return (Array.isArray(lists) ? lists : []).filter((list) => mine.has(list));
 }
 
+export function catalogListShelf(lists, id) {
+  if (typeof id !== 'string' || !id) return null;
+  const story = groupCatalog(Array.isArray(lists) ? lists : [])
+    .find((candidate) => candidate.lists.some((list) => list.id === id));
+  return story ? shelfKey(story) : null;
+}
+
 export const MODERN_TIMELINE_START_YEAR = 1998;
 export const MODERN_TIMELINE_FEATURED_ID = 'setup-to-modern-timeline';
 
