@@ -382,7 +382,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    23,
+    24,
     'Character Spotlight count differs from the reconciled Captain America baseline',
   );
 });

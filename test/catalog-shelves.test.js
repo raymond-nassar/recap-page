@@ -36,8 +36,8 @@ const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 23);
-  assert.equal(groupCatalog(spotlights).length, 22);
+  assert.equal(spotlights.length, 24);
+  assert.equal(groupCatalog(spotlights).length, 23);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
