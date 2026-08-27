@@ -39,6 +39,7 @@ const laterCharacterIds = [
   modernXMenCandidateId,
   'deadpool-best-of',
   hulkCandidateId,
+  'loki-reading-order',
 ];
 const characterCandidateIds = [
   abominationCandidateId,
@@ -254,6 +255,7 @@ const laterCbhIds = [
   blackPantherCandidateId,
   doctorStrangeCandidateId,
   'daredevil-reading-order',
+  'loki-reading-order',
   'agents-of-atlas-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
   ironManCandidateId,
@@ -310,7 +312,7 @@ async function readJson(relativePath) {
 }
 
 async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]) {
-  const excluded = new Set(excludedIds);
+  const excluded = new Set([...excludedIds, 'loki-reading-order']);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -351,7 +353,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships nineteen spotlights', async () => {
+test('the character inventory preserves every central disposition and ships twenty spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -362,10 +364,10 @@ test('the character inventory preserves every central disposition and ships nine
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 100);
+  assert.equal(dispositionCounts.deferred, 99);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 20);
+  assert.equal(dispositionCounts['pilot-approved'], 21);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -381,6 +383,7 @@ test('the character inventory preserves every central disposition and ships nine
     grootCandidateId,
     hulkCandidateId,
     ironManCandidateId,
+    'loki-reading-order',
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
     'rocket-raccoon-reading-order',
@@ -590,6 +593,7 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [
     doctorStrangeCandidateId,
     'daredevil-reading-order',
+    'loki-reading-order',
   ]);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -649,7 +653,8 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   const doctorIndex = manifest.lists.findIndex((entry) => entry.id === doctorStrangeCandidateId);
   assert.equal(manifest.lists[doctorIndex - 1].id, hulkCandidateId);
   assert.equal(manifest.lists[doctorIndex + 1].id, 'daredevil-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 2].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 2].id, 'loki-reading-order');
+  assert.equal(manifest.lists[doctorIndex + 3].id, 'xmen-claremont');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -822,16 +827,16 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
     }
   }
 
-  assert.equal(inventoryRecord.centralDisposition, 'deferred');
-  assert.equal(inventoryRecord.deliveryStatus, 'not-applicable');
-  assert.equal(inventoryRecord.metadataHorizonStatus, 'blocked-exact-resolution-not-run');
+  assert.equal(inventoryRecord.centralDisposition, 'pilot-approved');
+  assert.equal(inventoryRecord.deliveryStatus, 'shipped');
+  assert.equal(inventoryRecord.metadataHorizonStatus, 'approved');
   assert.equal(inventoryRecord.sourceRetrievedAt, '2026-08-27');
   assert.equal(inventoryRecord.sourceContentSha256, ledger.sourceContentSha256);
-  assert.match(inventoryRecord.reason, /232 ordered occurrences/i);
-  assert.match(inventoryRecord.reason, /66 exact source blocks/i);
-  assert.match(inventoryRecord.reason, /nine provider gaps/i);
-  assert.match(inventoryRecord.reason, /39 repeats/i);
-  assert.match(inventoryRecord.reason, /118 exclusions/i);
+  assert.match(inventoryRecord.reason, /830 issue and marker occurrences/i);
+  assert.match(inventoryRecord.reason, /638 exact issue rows/i);
+  assert.match(inventoryRecord.reason, /18 explicit metadata gaps/i);
+  assert.match(inventoryRecord.reason, /53 repeated issue occurrences/i);
+  assert.match(inventoryRecord.reason, /121 exclusions/i);
 
   assert.doesNotThrow(() => validateLedgerShape(ledger));
   assert.equal(expandedLedger.sourceBlockCount, ledger.sourceOccurrenceCount);
@@ -877,6 +882,49 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   const duplicated = JSON.parse(JSON.stringify(ledger));
   duplicated.occurrences.splice(3, 0, duplicated.occurrences[3]);
   assert.throws(() => validateLedgerShape(duplicated));
+});
+
+test('Loki publishes every cached exact issue and preserves its source gaps', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson('scripts/data/cbh-packets/loki-reading-order.json');
+  const mapping = await readJson('scripts/data/cbh-mappings/loki-reading-order.json');
+  const report = await readJson('scripts/data/cbh-overlaps/loki-reading-order.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const payload = await readJson('src/data/loki_reading_order.json');
+  const markdown = await readFile(path.join(root, 'src/data/orders/loki-reading-order.md'), 'utf8');
+  const inventoryRecord = inventory.find((record) => record.id === 'loki-reading-order');
+  const manifestEntry = manifest.lists.find((entry) => entry.id === 'loki-reading-order');
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: 'loki-reading-order',
+    inventoryRecord,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.equal(packet.sourceOccurrenceCount, 830);
+  assert.equal(packet.rows.length, 638);
+  assert.equal(packet.repeatedSourceReferences.length, 53);
+  assert.equal(packet.sourceGaps.length, 18);
+  assert.equal(packet.excludedSourceRows.length, 121);
+  assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 638);
+  assert.ok(mapping.repeatedSourceReferences.every((entry) => entry.canonicalRow > 0));
+  assert.equal(mapping.reviewStatus, 'approved');
+  assert.equal(report.comparisonCount, 154);
+  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'exact').length, 0);
+  assert.equal(manifestEntry.expect, 656);
+  assert.equal(payload.count, 656);
+  assert.equal(payload.placeholders, 18);
+  assert.equal(payload.items.filter((item) => item.issueId > 0).length, 638);
+  assert.equal(payload.items.filter((item) => item.issueId < 0).length, 18);
+  assert.equal(payload.collections, 75);
+  assert.deepEqual(
+    [...new Set(payload.items.map((item) => item.collectedIn))],
+    parseChecklist(markdown).headings.slice(1),
+  );
+  assert.match(markdown, /^## Journey Into Mystery \(1952\) 83-109$/m);
+  assert.ok(packet.sourceGaps.every((gap) => /issue #302/.test(gap.auditBasis)));
 });
 
 test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
@@ -1265,6 +1313,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
       marvelKnightsToPlanetXId,
       doctorStrangeCandidateId,
       'daredevil-reading-order',
+      'loki-reading-order',
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1279,6 +1328,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
         'daredevil-reading-order',
+        'loki-reading-order',
       ],
     },
   );
@@ -1443,6 +1493,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
         'daredevil-reading-order',
+        'loki-reading-order',
       ],
     },
   );
@@ -1618,6 +1669,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
         'daredevil-reading-order',
+        'loki-reading-order',
       ],
     },
   );
@@ -1737,7 +1789,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 4].id, hulkCandidateId);
   assert.equal(manifest.lists[starLordIndex + 5].id, doctorStrangeCandidateId);
   assert.equal(manifest.lists[starLordIndex + 6].id, 'daredevil-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 7].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 7].id, 'loki-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 8].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -1860,6 +1913,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
         'daredevil-reading-order',
+        'loki-reading-order',
       ],
     },
   );
@@ -2068,8 +2122,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 154);
+  assert.equal(catalog.lists.length, 155);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 27);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 26);
+  assert.equal(characterRuns.length, 28);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 27);
 });

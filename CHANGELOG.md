@@ -14,6 +14,16 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Loki reading guide
+
+In plain English: A complete Loki reading guide is now available from the character's earliest
+stories through the latest additions. Eighteen comics whose metadata could not be verified remain
+visible as placeholders, so the reading order never guesses or loses their place. Nothing you have
+saved is changed.
+
+For maintainers: the source expands to 830 occurrences: 638 exact issue rows, 53 repeats, 18
+metadata gaps tracked in Issue #302, and 121 exclusions.
+
 ### Added the complete Daredevil reading guide
 
 In plain English: A complete Daredevil reading guide is now available, from his earliest stories

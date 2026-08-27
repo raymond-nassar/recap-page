@@ -1679,13 +1679,41 @@
     "url": "https://www.comicbookherald.com/loki-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The full-page source ledger preserves 232 ordered occurrences: 66 exact source blocks, nine provider gaps, 39 repeats, and 118 exclusions. No complete Best/Essential section exists on the source page, so the full page remains the correct boundary while gap-tolerant publication evidence is prepared.",
+    "disposition": "new-order",
+    "reason": "The complete source evidence expands to 830 issue and marker occurrences: 638 exact issue rows, 53 repeated issue occurrences, 18 explicit metadata gaps tracked in issue #302, and 121 exclusions. The full source page has no narrower Best/Essential section.",
     "sourceRetrievedAt": "2026-08-27",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "abomination-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "avengers-defenders-war",
+      "axis",
+      "doctor-strange-reading-order",
+      "essential-avengers",
+      "generations",
+      "hunt-for-wolverine",
+      "infinity-countdown-wars",
+      "marvel-fresh-start-avengers",
+      "marvel-knights-to-planet-x",
+      "marvels-best-phoenix-comics",
+      "mutant-massacre",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "secret-wars-ii",
+      "star-lord-reading-order",
+      "thanos-reading-order",
+      "thor-best-of",
+      "war-of-the-realms",
+      "white-tiger-ava-ayala",
+      "wolverine-reading-order",
+      "x-men-utopia",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "loki-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Loki"
     ],
@@ -1695,7 +1723,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "7d640d24163a83967d8c496e71c259f26a93f5b7c3912bfdca82a4324da26290",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 62,
