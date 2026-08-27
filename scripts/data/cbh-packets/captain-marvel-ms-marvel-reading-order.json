@@ -653,38 +653,6 @@
       "issueNumber": "5"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 548,
-      "sourceIssueReference": "Captain Marvel #130",
-      "sourceRangeReference": "The Mighty Captain Marvel Vol. 3: Dark Origins",
-      "normalizedSeriesTitle": "The Mighty Captain Marvel",
-      "seriesYear": 2017,
-      "issueNumber": "130",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The maintained Marvel metadata for The Mighty Captain Marvel stops at #129, and no live issue record was returned for the source’s final legacy-numbered #130 slot during the review.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Captain%20Marvel%20130&limit=10",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22551/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "c3f9f98237a2487de7a7cdd172a5f147fc62a334c3ba13e75513edb16d7553a5"
-    }
-  ],
   "expectedCount": 527,
   "proposedManifest": {
     "id": "captain-marvel-ms-marvel-reading-order",
@@ -716,16 +684,17 @@
     ],
     "expect": 527,
     "timeline": null,
-    "coverIssueId": 15423
+    "coverIssueId": 15423,
+    "spotlightKind": "complete-guide"
   },
   "insertionAnchor": {
-    "beforeId": "carnage-reading-order"
+    "beforeId": "captain-america-best-of"
   },
   "sourceReview": {
-    "authorityType": "human",
-    "authorityIdentity": "GPT-5.4 Mini",
-    "rationale": "Contrarian boundary review confirmed the live Comic Book Herald page has no qualifying Best or Essential subsection, so the full page boundary was frozen and all 599 issue occurrences were expanded in source order under the bounded Stage A construction constraints.",
-    "reviewedAt": "2026-08-27T06:29:13.173Z"
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "Independent heading and block review found no heading named Best Comics or Essential Comics and no complete issue-bearing block under either title. Contrarian checks found those words only in collection titles and scattered prose, which do not qualify as a section. The complete guide, from I) The Captain Marvel / Phil Lawson Years (Origins and Beginnings) through Latest Additions, is therefore the frozen boundary; every explicit numbered issue occurrence is retained in source order, with the owner-authorized non-existent #130 identity recorded as an exclusion.",
+    "reviewedAt": "2026-08-27T07:15:00.000Z"
   },
   "rows": [
     {
@@ -16539,5 +16508,13 @@
       "note": "Marvel series 38647 (Captain Marvel (2023 - Present)) is the reviewed metadata series for this source reference."
     }
   ],
-  "packetDigest": "e5470a47a5ddf74ae34d15245abb8356be65c87be8aea35ed2727c00da8d06e9"
+  "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 548,
+      "sourceIssueReference": "Captain Marvel #130",
+      "reason": "Owner-authorized exclusion after closed issue #290 confirmed that this explicit source occurrence names no existing comic identity.",
+      "decisionScope": "owner-authorized non-existent identity"
+    }
+  ]
 }

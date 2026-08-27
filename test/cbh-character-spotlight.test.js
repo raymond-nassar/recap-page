@@ -31,6 +31,7 @@ const starLordCandidateId = 'star-lord-reading-order';
 const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics-timeline';
 const modernXMenCandidateId = 'modern-x-men-fast-track';
 const laterCharacterIds = [
+  captainMarvelCandidateId,
   'ant-man-reading-order',
   'agatha-harkness-reading-order',
   'wolverine-reading-order',
@@ -306,7 +307,7 @@ async function readJson(relativePath) {
 }
 
 async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId]) {
-  const excluded = new Set(excludedIds);
+  const excluded = new Set([...excludedIds, captainMarvelCandidateId]);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -504,12 +505,13 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.match(markdown, /^## Latest Additions$/m);
 });
 
-test('the Captain Marvel packet preserves its legacy run boundary, gap, and source order evidence', async () => {
+test('the Captain Marvel packet preserves its legacy run boundary, exclusion, and source order evidence', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson(`scripts/data/cbh-packets/${captainMarvelCandidateId}.json`);
   const mapping = await readJson(`scripts/data/cbh-mappings/${captainMarvelCandidateId}.json`);
   const report = await readJson(`scripts/data/cbh-overlaps/${captainMarvelCandidateId}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
   const generated = await readJson('src/data/captain_marvel_ms_marvel_reading_order.json');
   const markdown = await readFile(path.join(root, 'src/data/orders/captain-marvel-ms-marvel-reading-order.md'), 'utf8');
   const parsed = parseChecklist(markdown);
@@ -522,7 +524,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, gap, and sour
   assert.deepEqual(record.catalogIds, [captainMarvelCandidateId]);
   assert.match(
     record.reason,
-    /599 issue occurrences as 527 exact rows, 71 repeats, and 1 explicit metadata gap/i,
+    /599 issue occurrences as 527 exact rows, 71 repeats, and 1 owner-authorized non-existent-identity exclusion/i,
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: captainMarvelCandidateId,
@@ -543,31 +545,28 @@ test('the Captain Marvel packet preserves its legacy run boundary, gap, and sour
   assert.equal(packet.sourceOccurrenceCount, 599);
   assert.equal(packet.rows.length, 527);
   assert.equal(packet.repeatedSourceReferences.length, 71);
-  assert.equal(packet.sourceGaps.length, 1);
-  assert.deepEqual(packet.sourceGaps[0], {
-    ...packet.sourceGaps[0],
-    normalizedSeriesTitle: 'The Mighty Captain Marvel',
-    seriesYear: 2017,
-    issueNumber: '130',
-    kind: 'published-metadata-gap',
-    status: 'open',
+  assert.equal(packet.sourceGaps, undefined);
+  assert.deepEqual(packet.excludedSourceRows, [{
+    sourcePosition: 548,
     sourceIssueReference: 'Captain Marvel #130',
-    sourceRangeReference: 'The Mighty Captain Marvel Vol. 3: Dark Origins',
-  });
+    reason: 'Owner-authorized exclusion after closed issue #290 confirmed that this explicit source occurrence names no existing comic identity.',
+    decisionScope: 'owner-authorized non-existent identity',
+  }]);
   assert.equal(mapping.rows.length, 527);
   assert.equal(report.candidateCount, 527);
   assert.equal(report.comparisonCount, 151);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 26);
-  assert.equal(generated.count, 528);
-  assert.equal(generated.placeholders, 1);
-  assert.equal(generated.unresolved.length, 1);
-  assert.equal(generated.unresolved[0].title, 'Captain Marvel #130');
+  assert.equal(generated.count, 527);
+  assert.equal(generated.placeholders, 0);
+  assert.deepEqual(generated.unresolved, []);
   assert.equal(generated.items.filter((item) => item.issueId > 0).length, 527);
-  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 1);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 0);
   assert.equal(parsed.entries.length, 527);
-  assert.equal(parsed.unresolved.length, 1);
-  assert.match(markdown, /^## The Mighty Captain Marvel Vol. 3: Dark Origins$/m);
-  assert.match(markdown, /^- \[ \] Captain Marvel #130$/m);
+  assert.deepEqual(parsed.unresolved, []);
+  assert.doesNotMatch(markdown, /^- \[ \] Captain Marvel #130$/m);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === captainMarvelCandidateId);
+  assert.equal(catalogEntry.count, 527);
+  assert.equal(catalogEntry.coverIssueId, 15423);
   assert.deepEqual(
     generated.items.filter((item) => item.issueId > 0).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -950,7 +949,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
     [],
-    { excludedOrderIds: [blackPantherCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
+    { excludedOrderIds: [captainMarvelCandidateId, blackPantherCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
@@ -1101,7 +1100,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
     [path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`)],
-    { excludedOrderIds: [blackPantherCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
+    { excludedOrderIds: [captainMarvelCandidateId, blackPantherCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
@@ -1263,7 +1262,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
       path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
     ],
-    { excludedOrderIds: [blackPantherCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
+    { excludedOrderIds: [captainMarvelCandidateId, blackPantherCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
@@ -1490,7 +1489,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${modernXMenCandidateId}.json`),
     [],
-    { excludedOrderIds: [blackPantherCandidateId, 'abomination-reading-order', 'agents-of-atlas-reading-order', hulkCandidateId] },
+    { excludedOrderIds: [captainMarvelCandidateId, blackPantherCandidateId, 'abomination-reading-order', 'agents-of-atlas-reading-order', hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, '7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a');
@@ -1697,8 +1696,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 151);
+  assert.equal(catalog.lists.length, 152);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 25);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 24);
+  assert.equal(characterRuns.length, 26);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 25);
 });

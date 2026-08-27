@@ -1,16 +1,9 @@
 {
   "candidateId": "captain-marvel-ms-marvel-reading-order",
-  "packetDigest": "e5470a47a5ddf74ae34d15245abb8356be65c87be8aea35ed2727c00da8d06e9",
-  "mappingDigest": "26102d82aa94aff1610d07490b7b914dc08d64bce16d90772bf0771579c1601f",
+  "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
+  "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
   "libraryDigest": "fa639620c25ab38c21974e0b96cac070776215e6cb0bfa6477ac19174a2cfce5",
   "peerDigests": {},
-  "sourceCounts": {
-    "sourceOccurrenceCount": 599,
-    "sourceIdentityCount": 528,
-    "includedIssueCount": 527,
-    "sourceGapCount": 1,
-    "repeatedSourceReferenceCount": 71
-  },
   "candidateCount": 527,
   "comparisonCount": 151,
   "comparisons": [
@@ -1272,5 +1265,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "b2ba849feb56b21ec8de61ca7cd6f6d230f1f4c569433574e8ee728ad45a71e5"
+  "reportDigest": "0ebdfcc4a2fd71ce0b3a4de690e59aa4572d514083d44dff831eca48af578939"
 }

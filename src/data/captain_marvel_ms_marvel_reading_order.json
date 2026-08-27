@@ -7,18 +7,10 @@
   "sourceLicense": null,
   "generatedAt": "2026-08-27T06:29:13.173Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 528,
+  "count": 527,
   "collections": 0,
-  "placeholders": 1,
-  "unresolved": [
-    {
-      "title": "Captain Marvel #130",
-      "url": null,
-      "read": false,
-      "index": 548,
-      "section": "The Mighty Captain Marvel Vol. 3: Dark Origins"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 15423,
@@ -30,7 +22,10 @@
       "onSale": "1967-12-01T00:00:00+0000",
       "mu": "1967-12-01T00:00:00+0000",
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/4bc469f984514",
+        "ext": "jpg"
+      },
       "description": null,
       "pageCount": 0,
       "creators": []
@@ -7159,15 +7154,6 @@
       "description": null,
       "pageCount": 0,
       "creators": []
-    },
-    {
-      "issueId": -2316068852,
-      "title": "Captain Marvel #130",
-      "url": null,
-      "read": false,
-      "index": 548,
-      "section": "The Mighty Captain Marvel Vol. 3: Dark Origins",
-      "placeholder": true
     },
     {
       "issueId": 69113,

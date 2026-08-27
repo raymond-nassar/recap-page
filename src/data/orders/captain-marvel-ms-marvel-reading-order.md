@@ -1,9 +1,9 @@
 # Captain Marvel / Ms. Marvel: Issue-by-Issue Reading Checklist
 
-Generated for this project from the reviewed and frozen Captain Marvel / Ms. Marvel issue mapping.
+Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen captain-marvel-ms-marvel-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
 The frozen source records 599 issue occurrences, including 71 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
-No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata after the packet resolution and overlap gates passed.
+No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
 ## Of all the Captain Marvel origins, Doctor Philip Lawson is perhaps the most overlooked. The Captain Marvel mag began as an early foray into Marvel Cosmic, with a story launching out of Fantastic Four (Many Marvel characters like Black Panther or Silver Surfer have similar FF beginnings).
@@ -527,7 +527,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Mighty Captain Marvel (2017) #127](https://www.marvel.com/comics/issue/65271/the_mighty_captain_marvel_2017_127)
 - [ ] [The Mighty Captain Marvel (2017) #128](https://www.marvel.com/comics/issue/65902/the_mighty_captain_marvel_2017_128)
 - [ ] [The Mighty Captain Marvel (2017) #129](https://www.marvel.com/comics/issue/66271/the_mighty_captain_marvel_2017_129)
-- [ ] Captain Marvel #130
 ## Ms. Marvel Vol. 10
 - [ ] [Ms. Marvel (2015) #31](https://www.marvel.com/comics/issue/69113/ms_marvel_2015_31)
 - [ ] [Ms. Marvel (2015) #32](https://www.marvel.com/comics/issue/69114/ms_marvel_2015_32)

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T04:26:26.281Z",
+  "generatedAt": "2026-08-27T07:00:33.770Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2767,6 +2767,44 @@
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
       "updatedAt": "2026-08-15T07:57:51.563Z"
+    },
+    {
+      "id": "captain-marvel-ms-marvel-reading-order",
+      "file": "captain_marvel_ms_marvel_reading_order.json",
+      "name": "Captain Marvel / Ms. Marvel",
+      "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 527,
+      "collections": 0,
+      "characters": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "keywords": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Carol Danvers",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 15423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/4bc469f984514",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T06:29:13.173Z"
     },
     {
       "id": "captain-america-best-of",

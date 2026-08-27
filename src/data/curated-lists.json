@@ -2387,6 +2387,39 @@
       "timeline": null
     },
     {
+      "id": "captain-marvel-ms-marvel-reading-order",
+      "name": "Captain Marvel / Ms. Marvel",
+      "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "captain-marvel-ms-marvel-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "captain_marvel_ms_marvel_reading_order.json",
+      "characters": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "keywords": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Carol Danvers",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "expect": 527,
+      "timeline": null,
+      "coverIssueId": 15423,
+      "spotlightKind": "complete-guide"
+    },
+    {
       "id": "captain-america-best-of",
       "name": "The Best of Captain America",
       "description": "A best-of path through Captain America on Marvel Unlimited, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. Ed Brubaker's run comes first and whole, from the Winter Soldier's return through the death of Steve Rogers, Reborn, Rebirth and the restored numbering, followed by Man Out of Time and the Life of Bucky Barnes. It then goes back for the Silver and Bronze Age chapters the guide picks out: the Red Skull and the Cosmic Cube in Tales of Suspense, the Life and Times of the Red Skull, Mark Gruenwald's The Captain, and issue #250 as a bonus. The sections are the guide's and are kept in its order rather than sorted by publication date.",

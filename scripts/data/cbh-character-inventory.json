@@ -558,7 +558,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The exact source boundary is frozen through publication evidence, preserving 599 issue occurrences as 527 exact rows, 71 repeats, and 1 explicit metadata gap while the draft delivery remains unpublished.",
+    "reason": "The exact source boundary is frozen through publication evidence, preserving 599 issue occurrences as 527 exact rows, 71 repeats, and 1 owner-authorized non-existent-identity exclusion while the draft delivery remains unpublished.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [
