@@ -630,7 +630,10 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(packet.repeatedSourceReferences.length, 145);
   assert.equal(packet.sourceGaps.length, 158);
   assert.equal(packet.excludedSourceRows.length, 74);
-  assert.equal(new Set(packet.rows.map((row) => row.sourceGroup)).size, 10);
+  assert.equal(new Set([
+    ...packet.rows,
+    ...packet.sourceGaps,
+  ].map((entry) => entry.sourceGroup).filter(Boolean)).size, 11);
   assert.deepEqual(
     mapping.rows.map((row) => row.sourcePosition),
     packet.rows.map((row) => row.sourcePosition),
@@ -640,13 +643,56 @@ test('the Punisher guide preserves its full source ledger through publication', 
     packet.rows.map((row) => row.sourceGroup),
   );
   assert.ok(packet.sourceGaps.every((gap) => gap.normalizedSeriesTitle && gap.issueNumber));
+  const sourceLedger = [
+    ...packet.rows,
+    ...packet.repeatedSourceReferences,
+    ...packet.sourceGaps,
+    ...packet.excludedSourceRows,
+  ].sort((left, right) => left.sourcePosition - right.sourcePosition);
+  assert.deepEqual(
+    sourceLedger.slice(0, 13).map((entry) => entry.sourceIssueReference),
+    [
+      'Punisher: Back to the War Omnibus (trade header)',
+      'Amazing Spider-Man (1963) #129',
+      'Amazing Spider-Man (1963) #134',
+      'Amazing Spider-Man (1963) #135',
+      'Amazing Spider-Man (1963) #161',
+      'Amazing Spider-Man (1963) #162',
+      'Amazing Spider-Man (1963) #174',
+      'Amazing Spider-Man (1963) #175',
+      'Amazing Spider-Man (1963) #201',
+      'Amazing Spider-Man (1963) #202',
+      'Amazing Spider-Man Annual (1964) #15',
+      'Marvel Preview (1975) #2',
+      'Marvel Super Action (1975) #1',
+    ],
+  );
+  const jasonAaronGaps = packet.sourceGaps.filter(
+    (gap) => gap.sourceGroup === "III) Jason Aaron's Punisher MAX",
+  );
+  assert.deepEqual(
+    jasonAaronGaps.map((gap) => gap.sourceIssueReference),
+    Array.from({ length: 22 }, (_, index) => `Punisher MAX (2009) #${index + 1}`),
+  );
+  assert.deepEqual(
+    packet.sourceGaps
+      .filter((gap) => gap.normalizedSeriesTitle === 'Punisher Presents: Barracuda MAX')
+      .map((gap) => [gap.sourcePosition, gap.sourceIssueReference, gap.seriesYear, gap.kind, gap.status]),
+    Array.from({ length: 5 }, (_, index) => [
+      392 + index,
+      `Punisher Presents: Barracuda MAX (2007) #${index + 1}`,
+      2007,
+      'published-metadata-gap',
+      'open',
+    ]),
+  );
   assert.deepEqual(
     packet.repeatedSourceReferences
       .filter((reference) => Object.hasOwn(reference, 'canonicalGapPosition'))
       .map((reference) => [reference.sourcePosition, reference.canonicalGapPosition]),
     [
-      [529, 407],
-      ...Array.from({ length: 22 }, (_, index) => [530 + index, 507 + index]),
+      [571, 436],
+      ...Array.from({ length: 22 }, (_, index) => [572 + index, 549 + index]),
     ],
   );
   assert.equal(packet.sourceReview.authorityIdentity, 'GPT-5.6 Terra');
@@ -680,27 +726,27 @@ test('the Punisher guide preserves its full source ledger through publication', 
       })),
     [
       {
-        sourcePosition: 840,
+        sourcePosition: 782,
         sourceIssueReference: 'Punisher: World War Frank',
         reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
       },
       {
-        sourcePosition: 841,
+        sourcePosition: 783,
         sourceIssueReference: 'Cosmic Ghost Rider',
         reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
       },
       {
-        sourcePosition: 842,
+        sourcePosition: 784,
         sourceIssueReference: 'War of the Realms',
         reason: 'The source names the event but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
       },
       {
-        sourcePosition: 843,
+        sourcePosition: 785,
         sourceIssueReference: 'Punisher: Kill Krew',
         reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
       },
       {
-        sourcePosition: 845,
+        sourcePosition: 792,
         sourceIssueReference: 'Punisher/Captain America: Blood & Glory (1992)',
         reason: 'The source names the crossover but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
       },
@@ -725,6 +771,15 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(generated.items.filter((item) => item.issueId > 0).length, 480);
   assert.equal(generated.placeholders, 158);
   assert.equal(new Set(generated.items.map((item) => item.issueId)).size, 638);
+  assert.deepEqual(
+    generated.items
+      .filter((item) => item.title.startsWith('Punisher Presents: Barracuda MAX'))
+      .map((item) => [item.title, item.placeholder]),
+    Array.from({ length: 5 }, (_, index) => [
+      `Punisher Presents: Barracuda MAX (2007) #${index + 1}`,
+      true,
+    ]),
+  );
   assert.equal(catalog.lists.find((entry) => entry.id === 'punisher-reading-order').count, 638);
   assert.equal(new Set(allPositions).size, allPositions.length);
   assert.deepEqual(

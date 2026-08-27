@@ -17,8 +17,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man #201](https://www.marvel.com/comics/issue/6596/the_amazing_spider-man_1963_201)
 - [ ] [Amazing Spider-Man #202](https://www.marvel.com/comics/issue/6597/the_amazing_spider-man_1963_202)
 - [ ] [Amazing Spider-Man Annual #15](https://www.marvel.com/comics/issue/16889/amazing_spider-man_annual_1964_15)
-- [ ] Marvel Super Action (1975) #1
 - [ ] [Marvel Preview #2](https://www.marvel.com/comics/issue/19769/marvel_preview_1975_2)
+- [ ] Marvel Super Action (1975) #1
 - [ ] [Captain America #241](https://www.marvel.com/comics/issue/7622/captain_america_1968_241)
 - [ ] [Daredevil #182](https://www.marvel.com/comics/issue/8165/daredevil_1964_182)
 - [ ] [Daredevil #183](https://www.marvel.com/comics/issue/8166/daredevil_1964_183)
@@ -329,11 +329,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Punisher MAX (2004) #48
 - [ ] Punisher MAX (2004) #49
 ## The Punisher MAX: Complete Collection Vol. 4
-- [ ] Punisher Presents: Barracuda MAX (2020) #1
-- [ ] Punisher Presents: Barracuda MAX (2020) #2
-- [ ] Punisher Presents: Barracuda MAX (2020) #3
-- [ ] Punisher Presents: Barracuda MAX (2020) #4
-- [ ] Punisher Presents: Barracuda MAX (2020) #5
+- [ ] Punisher Presents: Barracuda MAX (2007) #1
+- [ ] Punisher Presents: Barracuda MAX (2007) #2
+- [ ] Punisher Presents: Barracuda MAX (2007) #3
+- [ ] Punisher Presents: Barracuda MAX (2007) #4
+- [ ] Punisher Presents: Barracuda MAX (2007) #5
 - [ ] Punisher MAX (2004) #50
 - [ ] Punisher MAX (2004) #51
 - [ ] Punisher MAX (2004) #52

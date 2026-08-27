@@ -96,7 +96,7 @@ existing-subset relationships, 27 are partial, and 123 have no shared issues. Th
 gaps remain maintained evidence rather than replacements or invented issue identities.
 
 The complete Punisher guide retains the visible source page through Latest Additions: 857 source
-occurrences across ten source groups. It publishes 480 exact provider-resolved comics, preserves 145
+occurrences across eleven source groups. It publishes 480 exact provider-resolved comics, preserves 145
 repeated source occurrences, 158 open metadata gaps, and 74 explicit non-issue exclusions. The 158
 unresolved identities remain visible as placeholders, while 23 later source occurrences repeat an
 earlier unresolved identity without producing a duplicate Reading List entry. Live review verified
