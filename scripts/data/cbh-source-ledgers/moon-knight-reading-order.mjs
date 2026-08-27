@@ -275,7 +275,7 @@ const moonKnightSourceLedger = expandLedger([
     ]),
     block(51, 'Collects: Moon Knight #21 to #25, Moon Knight: Silent Night One-Shot', [
       range({ title: 'Moon Knight', year: 2006, start: 21, end: 25, sourceRangeReference: 'Moon Knight #21 to #25' }),
-      namedCandidate({ title: 'Moon Knight: Silent Knight', sourceIssueReference: 'Moon Knight: Silent Night One-Shot', note: 'The source calls it Silent Night One-Shot; provider series 6361 identifies the one-shot as Moon Knight: Silent Knight.' }),
+      namedCandidate({ title: 'Moon Knight: Silent Knight', year: 2008, sourceIssueReference: 'Moon Knight: Silent Night One-Shot', note: 'The source calls it Silent Night One-Shot; provider series 6361 identifies the one-shot as Moon Knight: Silent Knight (2008).' }),
     ]),
     block(53, 'Collects: Moon Knight (2006 to 2009) #26 to #30', [
       range({ title: 'Moon Knight', year: 2006, start: 26, end: 30, sourceRangeReference: 'Moon Knight (2006 to 2009) #26 to #30' }),

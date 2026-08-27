@@ -470,6 +470,7 @@ function assertMoonKnightSourceLedgerShape(ledger) {
   assert.ok(block51.occurrences.slice(0, -1).every((occurrence) => occurrence.classification === 'provisional-canonical-candidate'));
   assert.equal(block51.occurrences.at(-1).classification, 'provisional-canonical-candidate');
   assert.equal(block51.occurrences.at(-1).normalizedSeriesTitle, 'Moon Knight: Silent Knight');
+  assert.equal(block51.occurrences.at(-1).seriesYear, 2008);
   assert.match(block51.occurrences.at(-1).note, /source calls it Silent Night/i);
   assert.equal(block124.occurrences.length, 7);
   assert.ok(block124.occurrences.slice(0, -1).every((occurrence) => occurrence.classification === 'provisional-canonical-candidate'));
