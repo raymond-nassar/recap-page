@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Made page location and adding comics clearer
+
+In plain English: The sidebar and its destination now say Add comics, making it clear that this is
+where individual issues and personal Reading Lists are added. Every page except Home now shows where
+it sits in the app and links back through its parent pages. Preview and confirmation dialogs remain
+focused on the current task, and nothing you have saved is changed.
+
+For maintainers: one pure route hierarchy and one shared renderer cover static, generated,
+saved-list, bundled-order and issue-detail routes. Ancestors remain native hash links, current items
+remain plain text, and stale issue context falls back without guessing at browser history.
+
 ### Chose a clear starting boundary for Modern Timeline
 
 In plain English: Modern Timeline now starts in 1998, a boundary chosen for this app rather than an

@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import {
   CATALOG_SHELVES,
   PUBLISHING_AGES,
+  catalogListShelf,
   decadeSections,
   firstSentence,
   filterBySpotlightKind,
@@ -36,6 +37,19 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
 const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
+
+test('each bundled Reading List resolves through its grouped story to one canonical shelf', () => {
+  for (const story of stories) {
+    const shelf = keys.find((key) => shelfStories([story], key).length === 1);
+    assert.ok(shelf, `${story.key} has no shelf`);
+    for (const list of story.lists) {
+      assert.equal(catalogListShelf(catalog.lists, list.id), shelf, `${list.id} resolved to the wrong shelf`);
+    }
+  }
+  for (const [lists, id] of [[null, 'a'], [catalog.lists, ''], [catalog.lists, 'missing']]) {
+    assert.equal(catalogListShelf(lists, id), null);
+  }
+});
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');

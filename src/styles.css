@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:773-774`, so only saturation and lightness are the theme's to set. */
+     `src/js/main.js:775-776`, so only saturation and lightness are the theme's to set. */
   --fallback-a: hsl(var(--h) 42% 26%);
   --fallback-b: hsl(calc(var(--h) + 40) 38% 14%);
   --fallback-fg: hsl(var(--h) 60% 88%);
@@ -478,9 +478,23 @@ main { min-width: 0; }
   display: flex; justify-content: space-between; align-items: center;
   gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem;
 }
-.head h1 { font-size: var(--t-title); margin: 0; font-weight: 600; }
+.head h1 {
+  font-size: var(--t-title); margin: 0; font-weight: 600;
+  overflow-wrap: anywhere;
+}
 .head .sub { color: var(--muted); font-size: var(--t-body); margin-top: .12rem; max-width: 62ch; }
 .headright { display: flex; align-items: center; gap: 1rem; }
+
+.breadcrumb { margin: 0 0 .7rem; min-width: 0; }
+.breadcrumb ol {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .45rem;
+  list-style: none; margin: 0; padding: 0; min-width: 0;
+  color: var(--muted); font-size: var(--t-caption);
+}
+.breadcrumb li { display: flex; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.breadcrumb li + li::before { content: "/"; margin-right: .45rem; color: var(--dim); }
+.breadcrumb a { color: var(--blue); text-underline-offset: .16em; }
+.breadcrumb [aria-current="page"] { color: var(--text); font-weight: 600; }
 
 .ring { display: flex; align-items: center; gap: .55rem; color: var(--muted); font-size: var(--t-caption); font-variant-numeric: tabular-nums; }
 .ring svg { transform: rotate(-90deg); }
@@ -1497,6 +1511,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   /* The accent bar and the raised surface both disappear in forced colours, so the
      selected item is marked with a border the mode is required to honour. */
   .ri[aria-current], .ri.on { border: 2px solid Highlight; }
+  .breadcrumb a { color: LinkText; }
+  .breadcrumb [aria-current="page"] { color: CanvasText; }
   .home-path, .yours button, .preview { border: 1px solid CanvasText; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
