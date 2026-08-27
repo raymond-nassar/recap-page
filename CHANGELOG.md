@@ -14,6 +14,10 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Black Panther reading guide
+
+In plain English: You can now follow Black Panther stories from his earliest Fantastic Four appearance through the newest source-page additions. Repeated source recommendations appear only once in the checklist, and four comics missing from the maintained metadata remain visible as unresolved entries instead of being replaced or hidden.
+
 ### Made the reading screen easier to scan
 
 In plain English: Coming up now keeps every Read button aligned even when comic titles have

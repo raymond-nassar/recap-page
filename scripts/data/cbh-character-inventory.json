@@ -345,13 +345,13 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The Stage A checkpoint freezes the full-page CBH source boundary and the exact issue-bearing references in source order while preserving unresolved issues as explicit provenance instead of inventing missing rows.",
-    "sourceRetrievedAt": "2026-08-27",
+    "reason": "The full-page source ledger preserves 424 issue occurrences, 363 exactly resolved items, 57 repeats, and four explicit metadata gaps while the draft delivery remains unmerged.",
+    "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [],
     "catalogIds": [
       "black-panther-reading-order"
     ],
-    "deliveryStatus": "shipped",
+    "deliveryStatus": "ready",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Black Panther"

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T22:02:50.533Z",
+  "generatedAt": "2026-08-27T03:53:16.232Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2364,6 +2364,40 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T07:11:31.019Z"
+    },
+    {
+      "id": "black-panther-reading-order",
+      "file": "black_panther_reading_order.json",
+      "name": "Black Panther",
+      "description": "A complete Black Panther reading path that follows the source page from T Challa debut through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 367,
+      "collections": 11,
+      "characters": [
+        "Black Panther",
+        "T'Challa"
+      ],
+      "keywords": [
+        "Black Panther",
+        "Comic Book Herald",
+        "Wakanda"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 13258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5372d7b815a17",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T03:53:15.980Z"
     },
     {
       "id": "groot-reading-order",

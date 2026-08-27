@@ -1,312 +1,388 @@
 # Black Panther: Issue-by-Issue Reading Checklist
 
-Generated for this project by the Stage A CBH packet work for the maintained Black Panther page. The source boundary is the full page, and the checklist preserves the page's issue-bearing references in source order while leaving unresolved rows explicit rather than inventing any issue identities.
+Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen black-panther-reading-order issue mapping.
+The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
+The frozen source records 424 issue occurrences, including 57 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
+No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
+See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
-## Black Panther debuts
-
-- [ ] Fantastic Four #52
-- [ ] Fantastic Four #53
-- [ ] Fantastic Four #54
-- [ ] Tales of Suspense #97
-- [ ] Tales of Suspense #98
-- [ ] Tales of Suspense #99
-- [ ] Captain America #100
-- [ ] Avengers #52
-
+## Introductory prose
+- [ ] [Fantastic Four (1961) #48](https://www.marvel.com/comics/issue/13253/fantastic_four_1961_48)
+- [ ] [Fantastic Four (1961) #49](https://www.marvel.com/comics/issue/13254/fantastic_four_1961_49)
+- [ ] [Fantastic Four (1961) #50](https://www.marvel.com/comics/issue/13256/fantastic_four_1961_50)
+- [ ] [Fantastic Four (1961) #51](https://www.marvel.com/comics/issue/13257/fantastic_four_1961_51)
+## Black Panther Debuts
+- [ ] [Fantastic Four (1961) #52](https://www.marvel.com/comics/issue/13258/fantastic_four_1961_52)
+- [ ] [Fantastic Four (1961) #53](https://www.marvel.com/comics/issue/13259/fantastic_four_1961_53)
+- [ ] [Fantastic Four (1961) #54](https://www.marvel.com/comics/issue/13260/fantastic_four_1961_54)
+- [ ] [Tales of Suspense (1959) #97](https://www.marvel.com/comics/issue/11344/tales_of_suspense_1959_97)
+- [ ] [Tales of Suspense (1959) #98](https://www.marvel.com/comics/issue/11345/tales_of_suspense_1959_98)
+- [ ] [Tales of Suspense (1959) #99](https://www.marvel.com/comics/issue/11346/tales_of_suspense_1959_99)
+- [ ] [Captain America (1968) #100](https://www.marvel.com/comics/issue/7481/captain_america_1968_100)
+- [ ] [Avengers (1963) #52](https://www.marvel.com/comics/issue/7302/avengers_1963_52)
+- [ ] [Avengers (1963) #92](https://www.marvel.com/comics/issue/7346/avengers_1963_92)
 ## Black Panther in the 1970s
-
-- [ ] Jungle Action #6
-- [ ] Jungle Action #7
-- [ ] Jungle Action #8
-- [ ] Jungle Action #9
-- [ ] Jungle Action #10
-- [ ] Jungle Action #11
-- [ ] Jungle Action #12
-- [ ] Jungle Action #13
-- [ ] Jungle Action #14
-- [ ] Jungle Action #15
-- [ ] Jungle Action #16
-- [ ] Jungle Action #17
-- [ ] Jungle Action #18
-- [ ] Jungle Action #19
-- [ ] Jungle Action #20
-- [ ] Jungle Action #21
-- [ ] Jungle Action #22
-- [ ] Jungle Action #23
-- [ ] Jungle Action #24
-- [ ] Black Panther #14
-- [ ] Black Panther #15
-- [ ] Marvel Premiere #51
-- [ ] Marvel Premiere #52
-- [ ] Marvel Premiere #53
-
+- [ ] [Jungle Action (1972) #6](https://www.marvel.com/comics/issue/62639/jungle_action_1972_6)
+- [ ] [Jungle Action (1972) #7](https://www.marvel.com/comics/issue/62640/jungle_action_1972_7)
+- [ ] [Jungle Action (1972) #8](https://www.marvel.com/comics/issue/70359/jungle_action_1972_8)
+- [ ] [Jungle Action (1972) #9](https://www.marvel.com/comics/issue/70360/jungle_action_1972_9)
+- [ ] [Jungle Action (1972) #10](https://www.marvel.com/comics/issue/70361/jungle_action_1972_10)
+- [ ] [Jungle Action (1972) #11](https://www.marvel.com/comics/issue/70362/jungle_action_1972_11)
+- [ ] [Jungle Action (1972) #12](https://www.marvel.com/comics/issue/70363/jungle_action_1972_12)
+- [ ] [Jungle Action (1972) #13](https://www.marvel.com/comics/issue/70364/jungle_action_1972_13)
+- [ ] [Jungle Action (1972) #14](https://www.marvel.com/comics/issue/70365/jungle_action_1972_14)
+- [ ] [Jungle Action (1972) #15](https://www.marvel.com/comics/issue/70366/jungle_action_1972_15)
+- [ ] [Jungle Action (1972) #16](https://www.marvel.com/comics/issue/70367/jungle_action_1972_16)
+- [ ] [Jungle Action (1972) #17](https://www.marvel.com/comics/issue/70368/jungle_action_1972_17)
+- [ ] [Jungle Action (1972) #18](https://www.marvel.com/comics/issue/70369/jungle_action_1972_18)
+- [ ] [Jungle Action (1972) #19](https://www.marvel.com/comics/issue/70370/jungle_action_1972_19)
+- [ ] [Jungle Action (1972) #20](https://www.marvel.com/comics/issue/70371/jungle_action_1972_20)
+- [ ] [Jungle Action (1972) #21](https://www.marvel.com/comics/issue/70372/jungle_action_1972_21)
+- [ ] [Jungle Action (1972) #22](https://www.marvel.com/comics/issue/70373/jungle_action_1972_22)
+- [ ] [Jungle Action (1972) #23](https://www.marvel.com/comics/issue/70374/jungle_action_1972_23)
+- [ ] [Jungle Action (1972) #24](https://www.marvel.com/comics/issue/70375/jungle_action_1972_24)
+- [ ] [Black Panther (1977) #1](https://www.marvel.com/comics/issue/17855/black_panther_1977_1)
+- [ ] [Black Panther (1977) #2](https://www.marvel.com/comics/issue/17862/black_panther_1977_2)
+- [ ] [Black Panther (1977) #3](https://www.marvel.com/comics/issue/17863/black_panther_1977_3)
+- [ ] [Black Panther (1977) #4](https://www.marvel.com/comics/issue/17864/black_panther_1977_4)
+- [ ] [Black Panther (1977) #5](https://www.marvel.com/comics/issue/17865/black_panther_1977_5)
+- [ ] [Black Panther (1977) #6](https://www.marvel.com/comics/issue/17866/black_panther_1977_6)
+- [ ] [Black Panther (1977) #7](https://www.marvel.com/comics/issue/17867/black_panther_1977_7)
+- [ ] [Black Panther (1977) #8](https://www.marvel.com/comics/issue/17868/black_panther_1977_8)
+- [ ] [Black Panther (1977) #9](https://www.marvel.com/comics/issue/17869/black_panther_1977_9)
+- [ ] [Black Panther (1977) #10](https://www.marvel.com/comics/issue/17856/black_panther_1977_10)
+- [ ] [Black Panther (1977) #11](https://www.marvel.com/comics/issue/17857/black_panther_1977_11)
+- [ ] [Black Panther (1977) #12](https://www.marvel.com/comics/issue/17858/black_panther_1977_12)
+- [ ] [Black Panther (1977) #13](https://www.marvel.com/comics/issue/17859/black_panther_1977_13)
+- [ ] [Black Panther (1977) #14](https://www.marvel.com/comics/issue/17860/black_panther_1977_14)
+- [ ] [Black Panther (1977) #15](https://www.marvel.com/comics/issue/17861/black_panther_1977_15)
+- [ ] [Marvel Premiere (1972) #51](https://www.marvel.com/comics/issue/10241/marvel_premiere_1972_51)
+- [ ] [Marvel Premiere (1972) #52](https://www.marvel.com/comics/issue/10242/marvel_premiere_1972_52)
+- [ ] [Marvel Premiere (1972) #53](https://www.marvel.com/comics/issue/10243/marvel_premiere_1972_53)
 ## Black Panther in the 1980s
-
-- [ ] Black Panther #1
-- [ ] Black Panther #2
-- [ ] Black Panther #3
-- [ ] Black Panther #4
-- [ ] Marvel Team-Up #100
-- [ ] Marvel Comics Presents #13
-- [ ] Marvel Comics Presents #14
-- [ ] Marvel Comics Presents #15
-- [ ] Marvel Comics Presents #16
-- [ ] Marvel Comics Presents #17
-- [ ] Marvel Comics Presents #18
-- [ ] Marvel Comics Presents #19
-- [ ] Marvel Comics Presents #20
-- [ ] Marvel Comics Presents #21
-- [ ] Marvel Comics Presents #22
-- [ ] Marvel Comics Presents #23
-- [ ] Marvel Comics Presents #24
-- [ ] Marvel Comics Presents #25
-- [ ] Marvel Comics Presents #26
-- [ ] Marvel Comics Presents #27
-- [ ] Marvel Comics Presents #28
-- [ ] Marvel Comics Presents #29
-- [ ] Marvel Comics Presents #30
-- [ ] Marvel Comics Presents #31
-- [ ] Marvel Comics Presents #32
-- [ ] Marvel Comics Presents #33
-- [ ] Marvel Comics Presents #34
-- [ ] Marvel Comics Presents #35
-- [ ] Marvel Comics Presents #36
-- [ ] Marvel Comics Presents #37
-
-## Marvel Knights Black Panther
-
-- [ ] Black Panther (1998) #1
-- [ ] Black Panther (1998) #2
-- [ ] Black Panther (1998) #3
-- [ ] Black Panther (1998) #4
-- [ ] Black Panther (1998) #5
-- [ ] Black Panther (1998) #6
-- [ ] Black Panther (1998) #7
-- [ ] Black Panther (1998) #8
-- [ ] Black Panther (1998) #9
-- [ ] Black Panther (1998) #10
-- [ ] Black Panther (1998) #11
-- [ ] Black Panther (1998) #12
-- [ ] Black Panther (1998) #13
-- [ ] Black Panther (1998) #14
-- [ ] Black Panther (1998) #15
-- [ ] Black Panther (1998) #16
-- [ ] Black Panther (1998) #17
-- [ ] Black Panther (1998) #18
-- [ ] Black Panther (1998) #19
-- [ ] Black Panther (1998) #20
-- [ ] Black Panther (1998) #21
-- [ ] Black Panther (1998) #22
-- [ ] Black Panther (1998) #23
-- [ ] Black Panther (1998) #24
-- [ ] Black Panther (1998) #25
-- [ ] Black Panther (1998) #26
-- [ ] Black Panther (1998) #27
-- [ ] Black Panther (1998) #28
-- [ ] Black Panther (1998) #29
-- [ ] Black Panther (1998) #30
-- [ ] Black Panther (1998) #31
-- [ ] Black Panther (1998) #32
-- [ ] Black Panther (1998) #33
-- [ ] Black Panther (1998) #34
-- [ ] Black Panther (1998) #35
-- [ ] Deadpool #44
-- [ ] Black Panther (1998) #36
-- [ ] Black Panther (1998) #37
-- [ ] Black Panther (1998) #38
-- [ ] Black Panther (1998) #39
-- [ ] Black Panther (1998) #40
-- [ ] Black Panther (1998) #41
-- [ ] Black Panther (1998) #42
-- [ ] Black Panther (1998) #43
-- [ ] Black Panther (1998) #44
-- [ ] Black Panther (1998) #45
-- [ ] Black Panther (1998) #46
-- [ ] Black Panther (1998) #47
-- [ ] Black Panther (1998) #48
-- [ ] Black Panther (1998) #49
-- [ ] Black Panther (1998) #50
-- [ ] Black Panther (1998) #51
-- [ ] Black Panther (1998) #52
-- [ ] Black Panther (1998) #53
-- [ ] Black Panther (1998) #54
-- [ ] Black Panther (1998) #55
-- [ ] Black Panther (1998) #56
-- [ ] Black Panther (1998) #57
-- [ ] Black Panther (1998) #58
-- [ ] Black Panther (1998) #59
-- [ ] Black Panther (1998) #60
-- [ ] Black Panther (1998) #61
-- [ ] Black Panther (1998) #62
-
-## Crossovers and side stories
-
-- [ ] Black Panther: World of Wakanda #1
-- [ ] Black Panther: World of Wakanda #2
-- [ ] Black Panther: World of Wakanda #3
-- [ ] Black Panther: World of Wakanda #4
-- [ ] Black Panther: World of Wakanda #5
-- [ ] Black Panther: World of Wakanda #6
-- [ ] Black Panther and the Crew #1
-- [ ] Black Panther and the Crew #2
-- [ ] Black Panther and the Crew #3
-- [ ] Black Panther and the Crew #4
-- [ ] Black Panther and the Crew #5
-- [ ] Black Panther and the Crew #6
-- [ ] Ultimates 2 (2016) #1
-- [ ] Ultimates 2 (2016) #2
-- [ ] Ultimates 2 (2016) #3
-- [ ] Ultimates 2 (2016) #4
-- [ ] Ultimates 2 (2016) #5
-- [ ] Ultimates 2 (2016) #6
-- [ ] Ultimates 2 (2016) #7
-- [ ] Ultimates 2 (2016) #8
-- [ ] Ultimates 2 (2016) #9
-- [ ] Ultimates 2 (2016) #10
-- [ ] Ultimates 2 (2016) #11
-- [ ] Ultimates 2 (2016) #12
-- [ ] Black Panther #166
-- [ ] Black Panther #167
-- [ ] Black Panther #168
-- [ ] Black Panther #169
-- [ ] Black Panther #170
-- [ ] Black Panther #171
-- [ ] Shuri #1
-- [ ] Shuri #2
-- [ ] Shuri #3
-- [ ] Shuri #4
-- [ ] Shuri #5
-- [ ] Black Panther vs. Deadpool #1
-- [ ] Black Panther vs. Deadpool #2
-- [ ] Black Panther vs. Deadpool #3
-- [ ] Black Panther vs. Deadpool #4
-- [ ] Black Panther vs. Deadpool #5
-- [ ] Killmonger #1
-- [ ] Killmonger #2
-- [ ] Killmonger #3
-- [ ] Killmonger #4
-
-## 2000s Black Panther
-
-- [ ] Black Panther #1
-- [ ] Black Panther #2
-- [ ] Black Panther #3
-- [ ] Black Panther #4
-- [ ] Black Panther #5
-- [ ] Black Panther #6
-- [ ] Black Panther #7
-- [ ] X-Men #175
-- [ ] Black Panther #8
-- [ ] X-Men #176
-- [ ] Black Panther #9
-- [ ] Black Panther #10
-- [ ] Black Panther #11
-- [ ] Black Panther #12
-- [ ] Black Panther #13
-- [ ] Black Panther #14
-- [ ] Black Panther #15
-- [ ] Black Panther #16
-- [ ] Black Panther #17
-- [ ] Black Panther #18
-- [ ] Black Panther #19
-- [ ] Black Panther #20
-- [ ] Black Panther #21
-- [ ] Black Panther #22
-- [ ] Black Panther #23
-- [ ] Black Panther #24
-- [ ] Black Panther #25
-- [ ] Black Panther #26
-- [ ] Black Panther #27
-- [ ] Black Panther #28
-- [ ] Black Panther #29
-- [ ] Black Panther #30
-- [ ] Black Panther #31
-- [ ] Black Panther #32
-- [ ] Black Panther #33
-- [ ] Black Panther #34
-- [ ] Black Panther Annual #1
-- [ ] Black Panther #35
-- [ ] Black Panther #36
-- [ ] Black Panther #37
-- [ ] Black Panther #38
-- [ ] Black Panther #39
-- [ ] Black Panther #40
-- [ ] Black Panther #41
-- [ ] Black Panther (2009) #1
-- [ ] Black Panther (2009) #2
-- [ ] Black Panther (2009) #3
-- [ ] Black Panther (2009) #4
-- [ ] Black Panther (2009) #5
-- [ ] Black Panther (2009) #6
-- [ ] Black Panther/Captain America: Flags of Our Father #1
-- [ ] Black Panther/Captain America: Flags of Our Father #2
-- [ ] Black Panther/Captain America: Flags of Our Father #3
-- [ ] Black Panther/Captain America: Flags of Our Father #4
-- [ ] Fantastic Four #544
-- [ ] Fantastic Four #545
-- [ ] Fantastic Four #546
-- [ ] Fantastic Four #547
-- [ ] Fantastic Four #548
-- [ ] Fantastic Four #549
-- [ ] Fantastic Four #550
-- [ ] X-Men: Worlds Apart #1
-- [ ] X-Men: Worlds Apart #2
-- [ ] X-Men: Worlds Apart #3
-- [ ] X-Men: Worlds Apart #4
-- [ ] Black Panther #7
-- [ ] Black Panther #8
-- [ ] Black Panther #9
-- [ ] Black Panther #10
-- [ ] Black Panther #11
-- [ ] Black Panther #7
-- [ ] Black Panther #8
-- [ ] Black Panther #9
-- [ ] Black Panther #10
-- [ ] Black Panther #11
-- [ ] Black Panther #12
-- [ ] Black Panther #13
-- [ ] Black Panther #14
-- [ ] Black Panther #15
-- [ ] Black Panther #16
-- [ ] Black Panther #17
-- [ ] Black Panther #18
-- [ ] Black Panther #19
-- [ ] Black Panther #20
-- [ ] Black Panther #21
-- [ ] Black Panther #22
-- [ ] Black Panther #23
-- [ ] Black Panther #24
-- [ ] Black Panther #25
-- [ ] Black Panther (2018) #1
-- [ ] Black Panther (2018) #2
-- [ ] Black Panther (2018) #3
-- [ ] Black Panther (2018) #4
-- [ ] Black Panther (2018) #5
-- [ ] Black Panther (2018) #6
-- [ ] Rise of the Black Panther #1
-- [ ] Rise of the Black Panther #2
-- [ ] Rise of the Black Panther #3
-- [ ] Rise of the Black Panther #4
-- [ ] Rise of the Black Panther #5
-- [ ] Rise of the Black Panther #6
-- [ ] Black Panther (2021) #1
-- [ ] Black Panther (2021) #2
-- [ ] Black Panther (2021) #3
-- [ ] Black Panther (2021) #4
-- [ ] Black Panther (2021) #5
-- [ ] Black Panther (2021) #6
-- [ ] Black Panther (2021) #7
-- [ ] Black Panther (2021) #8
-- [ ] Black Panther (2021) #9
-- [ ] Black Panther (2021) #10
-- [ ] Black Panther (2021) #11
-- [ ] Black Panther (2021) #12
-- [ ] Black Panther (2021) #13
-- [ ] Black Panther (2021) #14
-- [ ] Black Panther (2021) #15
-- [ ] Black Panther (2023) #1
-- [ ] Black Panther (2023) #2
-- [ ] Black Panther (2023) #3
-- [ ] Black Panther (2023) #4
-- [ ] Black Panther (2023) #5
-- [ ] Black Panther (2023) #6
+- [ ] [Iron Man Annual (1976) #5](https://www.marvel.com/comics/issue/19869/iron_man_annual_1976_5)
+- [ ] [Black Panther (1988) #1](https://www.marvel.com/comics/issue/75845/black_panther_1988_1)
+- [ ] [Black Panther (1988) #2](https://www.marvel.com/comics/issue/75846/black_panther_1988_2)
+- [ ] [Black Panther (1988) #3](https://www.marvel.com/comics/issue/75787/black_panther_1988_3)
+- [ ] [Black Panther (1988) #4](https://www.marvel.com/comics/issue/75788/black_panther_1988_4)
+- [ ] [Marvel Team-Up (1972) #100](https://www.marvel.com/comics/issue/19577/marvel_team-up_1972_100)
+- [ ] [Marvel Comics Presents (1988) #13](https://www.marvel.com/comics/issue/10044/marvel_comics_presents_1988_13)
+- [ ] [Marvel Comics Presents (1988) #14](https://www.marvel.com/comics/issue/10055/marvel_comics_presents_1988_14)
+- [ ] [Marvel Comics Presents (1988) #15](https://www.marvel.com/comics/issue/10066/marvel_comics_presents_1988_15)
+- [ ] [Marvel Comics Presents (1988) #16](https://www.marvel.com/comics/issue/10077/marvel_comics_presents_1988_16)
+- [ ] [Marvel Comics Presents (1988) #17](https://www.marvel.com/comics/issue/10088/marvel_comics_presents_1988_17)
+- [ ] [Marvel Comics Presents (1988) #18](https://www.marvel.com/comics/issue/10095/marvel_comics_presents_1988_18)
+- [ ] [Marvel Comics Presents (1988) #19](https://www.marvel.com/comics/issue/10096/marvel_comics_presents_1988_19)
+- [ ] [Marvel Comics Presents (1988) #20](https://www.marvel.com/comics/issue/10098/marvel_comics_presents_1988_20)
+- [ ] [Marvel Comics Presents (1988) #21](https://www.marvel.com/comics/issue/10099/marvel_comics_presents_1988_21)
+- [ ] [Marvel Comics Presents (1988) #22](https://www.marvel.com/comics/issue/10100/marvel_comics_presents_1988_22)
+- [ ] [Marvel Comics Presents (1988) #23](https://www.marvel.com/comics/issue/10101/marvel_comics_presents_1988_23)
+- [ ] [Marvel Comics Presents (1988) #24](https://www.marvel.com/comics/issue/10102/marvel_comics_presents_1988_24)
+- [ ] [Marvel Comics Presents (1988) #25](https://www.marvel.com/comics/issue/10103/marvel_comics_presents_1988_25)
+- [ ] [Marvel Comics Presents (1988) #26](https://www.marvel.com/comics/issue/10104/marvel_comics_presents_1988_26)
+- [ ] [Marvel Comics Presents (1988) #27](https://www.marvel.com/comics/issue/10105/marvel_comics_presents_1988_27)
+- [ ] [Marvel Comics Presents (1988) #28](https://www.marvel.com/comics/issue/10106/marvel_comics_presents_1988_28)
+- [ ] [Marvel Comics Presents (1988) #29](https://www.marvel.com/comics/issue/10107/marvel_comics_presents_1988_29)
+- [ ] [Marvel Comics Presents (1988) #30](https://www.marvel.com/comics/issue/10109/marvel_comics_presents_1988_30)
+- [ ] [Marvel Comics Presents (1988) #31](https://www.marvel.com/comics/issue/10110/marvel_comics_presents_1988_31)
+- [ ] [Marvel Comics Presents (1988) #32](https://www.marvel.com/comics/issue/10111/marvel_comics_presents_1988_32)
+- [ ] [Marvel Comics Presents (1988) #33](https://www.marvel.com/comics/issue/10112/marvel_comics_presents_1988_33)
+- [ ] [Marvel Comics Presents (1988) #34](https://www.marvel.com/comics/issue/10113/marvel_comics_presents_1988_34)
+- [ ] [Marvel Comics Presents (1988) #35](https://www.marvel.com/comics/issue/10114/marvel_comics_presents_1988_35)
+- [ ] [Marvel Comics Presents (1988) #36](https://www.marvel.com/comics/issue/10115/marvel_comics_presents_1988_36)
+- [ ] [Marvel Comics Presents (1988) #37](https://www.marvel.com/comics/issue/10116/marvel_comics_presents_1988_37)
+## Marvel Knights Black Panther (1998 to 2005)
+- [ ] [Black Panther (1998) #1](https://www.marvel.com/comics/issue/12575/black_panther_1998_1)
+- [ ] [Black Panther (1998) #2](https://www.marvel.com/comics/issue/12586/black_panther_1998_2)
+- [ ] [Black Panther (1998) #3](https://www.marvel.com/comics/issue/12597/black_panther_1998_3)
+- [ ] [Black Panther (1998) #4](https://www.marvel.com/comics/issue/12608/black_panther_1998_4)
+- [ ] [Black Panther (1998) #5](https://www.marvel.com/comics/issue/12619/black_panther_1998_5)
+- [ ] [Black Panther (1998) #6](https://www.marvel.com/comics/issue/12630/black_panther_1998_6)
+- [ ] [Black Panther (1998) #7](https://www.marvel.com/comics/issue/12634/black_panther_1998_7)
+- [ ] [Black Panther (1998) #8](https://www.marvel.com/comics/issue/12635/black_panther_1998_8)
+- [ ] [Black Panther (1998) #9](https://www.marvel.com/comics/issue/12636/black_panther_1998_9)
+- [ ] [Black Panther (1998) #10](https://www.marvel.com/comics/issue/12576/black_panther_1998_10)
+- [ ] [Black Panther (1998) #11](https://www.marvel.com/comics/issue/12577/black_panther_1998_11)
+- [ ] [Black Panther (1998) #12](https://www.marvel.com/comics/issue/12578/black_panther_1998_12)
+- [ ] [Black Panther (1998) #13](https://www.marvel.com/comics/issue/12579/black_panther_1998_13)
+- [ ] [Black Panther (1998) #14](https://www.marvel.com/comics/issue/12580/black_panther_1998_14)
+- [ ] [Black Panther (1998) #15](https://www.marvel.com/comics/issue/12581/black_panther_1998_15)
+- [ ] [Black Panther (1998) #16](https://www.marvel.com/comics/issue/12582/black_panther_1998_16)
+- [ ] [Black Panther (1998) #17](https://www.marvel.com/comics/issue/12583/black_panther_1998_17)
+- [ ] [Black Panther (1998) #18](https://www.marvel.com/comics/issue/12584/black_panther_1998_18)
+- [ ] [Black Panther (1998) #19](https://www.marvel.com/comics/issue/12585/black_panther_1998_19)
+- [ ] [Black Panther (1998) #20](https://www.marvel.com/comics/issue/12587/black_panther_1998_20)
+- [ ] [Black Panther (1998) #21](https://www.marvel.com/comics/issue/12588/black_panther_1998_21)
+- [ ] [Black Panther (1998) #22](https://www.marvel.com/comics/issue/12589/black_panther_1998_22)
+- [ ] [Black Panther (1998) #23](https://www.marvel.com/comics/issue/12590/black_panther_1998_23)
+- [ ] [Black Panther (1998) #24](https://www.marvel.com/comics/issue/12591/black_panther_1998_24)
+- [ ] [Black Panther (1998) #25](https://www.marvel.com/comics/issue/12592/black_panther_1998_25)
+- [ ] [Black Panther (1998) #26](https://www.marvel.com/comics/issue/12593/black_panther_1998_26)
+- [ ] [Black Panther (1998) #27](https://www.marvel.com/comics/issue/12594/black_panther_1998_27)
+- [ ] [Black Panther (1998) #28](https://www.marvel.com/comics/issue/12595/black_panther_1998_28)
+- [ ] [Black Panther (1998) #29](https://www.marvel.com/comics/issue/12596/black_panther_1998_29)
+- [ ] [Black Panther (1998) #30](https://www.marvel.com/comics/issue/12598/black_panther_1998_30)
+- [ ] [Black Panther (1998) #31](https://www.marvel.com/comics/issue/12599/black_panther_1998_31)
+- [ ] [Black Panther (1998) #32](https://www.marvel.com/comics/issue/12600/black_panther_1998_32)
+- [ ] [Black Panther (1998) #33](https://www.marvel.com/comics/issue/12601/black_panther_1998_33)
+- [ ] [Black Panther (1998) #34](https://www.marvel.com/comics/issue/12602/black_panther_1998_34)
+- [ ] [Black Panther (1998) #35](https://www.marvel.com/comics/issue/12603/black_panther_1998_35)
+- [ ] [Black Panther (1998) #36](https://www.marvel.com/comics/issue/12604/black_panther_1998_36)
+- [ ] [Black Panther (1998) #37](https://www.marvel.com/comics/issue/12605/black_panther_1998_37)
+- [ ] [Black Panther (1998) #38](https://www.marvel.com/comics/issue/12606/black_panther_1998_38)
+- [ ] [Black Panther (1998) #39](https://www.marvel.com/comics/issue/12607/black_panther_1998_39)
+- [ ] [Black Panther (1998) #40](https://www.marvel.com/comics/issue/12609/black_panther_1998_40)
+- [ ] [Black Panther (1998) #41](https://www.marvel.com/comics/issue/12610/black_panther_1998_41)
+- [ ] [Black Panther (1998) #42](https://www.marvel.com/comics/issue/12611/black_panther_1998_42)
+- [ ] [Black Panther (1998) #43](https://www.marvel.com/comics/issue/12612/black_panther_1998_43)
+- [ ] [Black Panther (1998) #44](https://www.marvel.com/comics/issue/12613/black_panther_1998_44)
+- [ ] [Black Panther (1998) #45](https://www.marvel.com/comics/issue/12614/black_panther_1998_45)
+- [ ] [Black Panther (1998) #46](https://www.marvel.com/comics/issue/12615/black_panther_1998_46)
+- [ ] [Black Panther (1998) #47](https://www.marvel.com/comics/issue/12616/black_panther_1998_47)
+- [ ] [Black Panther (1998) #48](https://www.marvel.com/comics/issue/12617/black_panther_1998_48)
+- [ ] [Black Panther (1998) #49](https://www.marvel.com/comics/issue/12618/black_panther_1998_49)
+- [ ] [Black Panther (1998) #50](https://www.marvel.com/comics/issue/12620/black_panther_1998_50)
+- [ ] [Black Panther (1998) #51](https://www.marvel.com/comics/issue/12621/black_panther_1998_51)
+- [ ] [Black Panther (1998) #52](https://www.marvel.com/comics/issue/12622/black_panther_1998_52)
+- [ ] [Black Panther (1998) #53](https://www.marvel.com/comics/issue/12623/black_panther_1998_53)
+- [ ] [Black Panther (1998) #54](https://www.marvel.com/comics/issue/12624/black_panther_1998_54)
+- [ ] [Black Panther (1998) #55](https://www.marvel.com/comics/issue/12625/black_panther_1998_55)
+- [ ] [Black Panther (1998) #56](https://www.marvel.com/comics/issue/12626/black_panther_1998_56)
+- [ ] [Black Panther (1998) #57](https://www.marvel.com/comics/issue/12627/black_panther_1998_57)
+- [ ] [Black Panther (1998) #58](https://www.marvel.com/comics/issue/12628/black_panther_1998_58)
+- [ ] [Black Panther (1998) #59](https://www.marvel.com/comics/issue/12629/black_panther_1998_59)
+- [ ] [Black Panther (1998) #60](https://www.marvel.com/comics/issue/12631/black_panther_1998_60)
+- [ ] [Black Panther (1998) #61](https://www.marvel.com/comics/issue/12632/black_panther_1998_61)
+- [ ] [Black Panther (1998) #62](https://www.marvel.com/comics/issue/12633/black_panther_1998_62)
+- [ ] [Deadpool (1997) #44](https://www.marvel.com/comics/issue/8500/deadpool_1997_44)
+## 2000's Black Panther (2005 to 2012)
+- [ ] [Black Panther (2005) #1](https://www.marvel.com/comics/issue/1637/black_panther_2005_1)
+- [ ] [Black Panther (2005) #2](https://www.marvel.com/comics/issue/1731/black_panther_2005_2)
+- [ ] [Black Panther (2005) #3](https://www.marvel.com/comics/issue/1838/black_panther_2005_3)
+- [ ] [Black Panther (2005) #4](https://www.marvel.com/comics/issue/1945/black_panther_2005_4)
+- [ ] [Black Panther (2005) #5](https://www.marvel.com/comics/issue/2053/black_panther_2005_5)
+- [ ] [Black Panther (2005) #6](https://www.marvel.com/comics/issue/2165/black_panther_2005_6)
+- [ ] [Black Panther (2005) #7](https://www.marvel.com/comics/issue/2323/black_panther_2005_7)
+- [ ] [Black Panther (2005) #8](https://www.marvel.com/comics/issue/2435/black_panther_2005_8)
+- [ ] [Black Panther (2005) #9](https://www.marvel.com/comics/issue/2436/black_panther_2005_9)
+- [ ] [Black Panther (2005) #10](https://www.marvel.com/comics/issue/3015/black_panther_2005_10)
+- [ ] [Black Panther (2005) #11](https://www.marvel.com/comics/issue/3130/black_panther_2005_11)
+- [ ] [Black Panther (2005) #12](https://www.marvel.com/comics/issue/3356/black_panther_2005_12)
+- [ ] [Black Panther (2005) #13](https://www.marvel.com/comics/issue/3470/black_panther_2005_13)
+- [ ] [Black Panther (2005) #14](https://www.marvel.com/comics/issue/3913/black_panther_2005_14)
+- [ ] [Black Panther (2005) #15](https://www.marvel.com/comics/issue/4044/black_panther_2005_15)
+- [ ] [Black Panther (2005) #16](https://www.marvel.com/comics/issue/4156/black_panther_2005_16)
+- [ ] [Black Panther (2005) #17](https://www.marvel.com/comics/issue/4266/black_panther_2005_17)
+- [ ] [Black Panther (2005) #18](https://www.marvel.com/comics/issue/4425/black_panther_2005_18)
+- [ ] [Black Panther (2005) #19](https://www.marvel.com/comics/issue/4804/black_panther_2005_19)
+- [ ] [Black Panther (2005) #20](https://www.marvel.com/comics/issue/5092/black_panther_2005_20)
+- [ ] [Black Panther (2005) #21](https://www.marvel.com/comics/issue/5243/black_panther_2005_21)
+- [ ] [Black Panther (2005) #22](https://www.marvel.com/comics/issue/5408/black_panther_2005_22)
+- [ ] [Black Panther (2005) #23](https://www.marvel.com/comics/issue/5667/black_panther_2005_23)
+- [ ] [Black Panther (2005) #24](https://www.marvel.com/comics/issue/5805/black_panther_2005_24)
+- [ ] [Black Panther (2005) #25](https://www.marvel.com/comics/issue/6047/black_panther_2005_25)
+- [ ] [Black Panther (2005) #26](https://www.marvel.com/comics/issue/6180/black_panther_2005_26)
+- [ ] [Black Panther (2005) #27](https://www.marvel.com/comics/issue/6321/black_panther_2005_27)
+- [ ] [Black Panther (2005) #28](https://www.marvel.com/comics/issue/13438/black_panther_2005_28)
+- [ ] [Black Panther (2005) #29](https://www.marvel.com/comics/issue/15939/black_panther_2005_29)
+- [ ] [Black Panther (2005) #30](https://www.marvel.com/comics/issue/16122/black_panther_2005_30)
+- [ ] [Black Panther (2005) #31](https://www.marvel.com/comics/issue/16471/black_panther_2005_31)
+- [ ] [Black Panther (2005) #32](https://www.marvel.com/comics/issue/17226/black_panther_2005_32)
+- [ ] [Black Panther (2005) #33](https://www.marvel.com/comics/issue/17358/black_panther_2005_33)
+- [ ] [Black Panther (2005) #34](https://www.marvel.com/comics/issue/17596/black_panther_2005_34)
+- [ ] [Black Panther (2005) #35](https://www.marvel.com/comics/issue/20838/black_panther_2005_35)
+- [ ] [Black Panther (2005) #36](https://www.marvel.com/comics/issue/20976/black_panther_2005_36)
+- [ ] [Black Panther (2005) #37](https://www.marvel.com/comics/issue/21184/black_panther_2005_37)
+- [ ] [Black Panther (2005) #38](https://www.marvel.com/comics/issue/21334/black_panther_2005_38)
+- [ ] [Black Panther (2005) #39](https://www.marvel.com/comics/issue/21513/black_panther_2005_39)
+- [ ] [Black Panther (2005) #40](https://www.marvel.com/comics/issue/21716/black_panther_2005_40)
+- [ ] [Black Panther (2005) #41](https://www.marvel.com/comics/issue/21943/black_panther_2005_41)
+- [ ] [X-Men (2004) #175](https://www.marvel.com/comics/issue/2410/x-men_2004_175)
+- [ ] [X-Men (2004) #176](https://www.marvel.com/comics/issue/2465/x-men_2004_176)
+- [ ] [BLACK PANTHER ANNUAL 1 (2008) #1](https://www.marvel.com/comics/issue/20715/black_panther_annual_1_2008_1)
+- [ ] [Black Panther (2009) #1](https://www.marvel.com/comics/issue/23657/black_panther_2009_1)
+- [ ] [Black Panther (2009) #2](https://www.marvel.com/comics/issue/27540/black_panther_2009_2)
+- [ ] [Black Panther (2009) #3](https://www.marvel.com/comics/issue/24014/black_panther_2009_3)
+- [ ] [Black Panther (2009) #4](https://www.marvel.com/comics/issue/24218/black_panther_2009_4)
+- [ ] [Black Panther (2009) #5](https://www.marvel.com/comics/issue/24616/black_panther_2009_5)
+- [ ] [Black Panther (2009) #6](https://www.marvel.com/comics/issue/24617/black_panther_2009_6)
+- [ ] [Captain America/Black Panther: Flags of Our Fathers (2010) #1](https://www.marvel.com/comics/issue/31160/captain_americablack_panther_flags_of_our_fathers_2010_1)
+- [ ] [Captain America/Black Panther: Flags of Our Fathers (2010) #2](https://www.marvel.com/comics/issue/31162/captain_americablack_panther_flags_of_our_fathers_2010_2)
+- [ ] [Captain America/Black Panther: Flags of Our Fathers (2010) #3](https://www.marvel.com/comics/issue/31164/captain_americablack_panther_flags_of_our_fathers_2010_3)
+- [ ] [Captain America/Black Panther: Flags of Our Fathers (2010) #4](https://www.marvel.com/comics/issue/31166/captain_americablack_panther_flags_of_our_fathers_2010_4)
+- [ ] [Fantastic Four (1998) #544](https://www.marvel.com/comics/issue/6164/fantastic_four_1998_544)
+- [ ] [Fantastic Four (1998) #545](https://www.marvel.com/comics/issue/6342/fantastic_four_1998_545)
+- [ ] [Fantastic Four (1998) #546](https://www.marvel.com/comics/issue/13424/fantastic_four_1998_546)
+- [ ] [Fantastic Four (1998) #547](https://www.marvel.com/comics/issue/15804/fantastic_four_1998_547)
+- [ ] [Fantastic Four (1998) #548](https://www.marvel.com/comics/issue/15922/fantastic_four_1998_548)
+- [ ] [Fantastic Four (1998) #549](https://www.marvel.com/comics/issue/16103/fantastic_four_1998_549)
+- [ ] [Fantastic Four (1998) #550](https://www.marvel.com/comics/issue/16444/fantastic_four_1998_550)
+- [ ] [X-Men: Worlds Apart (2008) #1](https://www.marvel.com/comics/issue/22386/x-men_worlds_apart_2008_1)
+- [ ] [X-Men: Worlds Apart (2008) #2](https://www.marvel.com/comics/issue/22579/x-men_worlds_apart_2008_2)
+- [ ] [X-Men: Worlds Apart (2008) #3](https://www.marvel.com/comics/issue/22995/x-men_worlds_apart_2008_3)
+- [ ] [X-Men: Worlds Apart (2008) #4](https://www.marvel.com/comics/issue/23170/x-men_worlds_apart_2008_4)
+- [ ] [Black Panther (2009) #7](https://www.marvel.com/comics/issue/24618/black_panther_2009_7)
+- [ ] [Black Panther (2009) #8](https://www.marvel.com/comics/issue/24619/black_panther_2009_8)
+- [ ] [Black Panther (2009) #9](https://www.marvel.com/comics/issue/24620/black_panther_2009_9)
+- [ ] [Black Panther (2009) #10](https://www.marvel.com/comics/issue/24611/black_panther_2009_10)
+- [ ] [Black Panther (2009) #11](https://www.marvel.com/comics/issue/24612/black_panther_2009_11)
+- [ ] [Black Panther: The Man Without Fear (2010) #513](https://www.marvel.com/comics/issue/30372/black_panther_the_man_without_fear_2010_513)
+- [ ] [Black Panther: The Man Without Fear (2010) #514](https://www.marvel.com/comics/issue/30373/black_panther_the_man_without_fear_2010_514)
+- [ ] [Black Panther: The Man Without Fear (2010) #515](https://www.marvel.com/comics/issue/30374/black_panther_the_man_without_fear_2010_515)
+- [ ] [Black Panther: The Man Without Fear (2010) #516](https://www.marvel.com/comics/issue/30375/black_panther_the_man_without_fear_2010_516)
+- [ ] [Black Panther: The Man Without Fear (2010) #517](https://www.marvel.com/comics/issue/31176/black_panther_the_man_without_fear_2010_517)
+- [ ] [Black Panther: The Man Without Fear (2010) #518](https://www.marvel.com/comics/issue/34277/black_panther_the_man_without_fear_2010_518)
+- [ ] [Black Panther: The Man Without Fear (2010) #519](https://www.marvel.com/comics/issue/36782/black_panther_the_man_without_fear_2010_519)
+- [ ] [Black Panther: The Man Without Fear (2010) #520](https://www.marvel.com/comics/issue/36784/black_panther_the_man_without_fear_2010_520)
+- [ ] [Black Panther: The Man Without Fear (2010) #521](https://www.marvel.com/comics/issue/36785/black_panther_the_man_without_fear_2010_521)
+- [ ] [Black Panther: The Man Without Fear (2010) #522](https://www.marvel.com/comics/issue/36787/black_panther_the_man_without_fear_2010_522)
+- [ ] [Black Panther: The Man Without Fear (2010) #523](https://www.marvel.com/comics/issue/36786/black_panther_the_man_without_fear_2010_523)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #523.1](https://www.marvel.com/comics/issue/40662/black_panther_the_most_dangerous_man_alive_2011_523.1)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #524](https://www.marvel.com/comics/issue/36783/black_panther_the_most_dangerous_man_alive_2011_524)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #525](https://www.marvel.com/comics/issue/36788/black_panther_the_most_dangerous_man_alive_2011_525)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #526](https://www.marvel.com/comics/issue/37948/black_panther_the_most_dangerous_man_alive_2011_526)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #527](https://www.marvel.com/comics/issue/40285/black_panther_the_most_dangerous_man_alive_2011_527)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #528](https://www.marvel.com/comics/issue/40289/black_panther_the_most_dangerous_man_alive_2011_528)
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #529](https://www.marvel.com/comics/issue/40291/black_panther_the_most_dangerous_man_alive_2011_529)
+## Black Panther & The New Avengers: Illuminati (2012 to 2015)
+- [ ] [A+X (2012) #3](https://www.marvel.com/comics/issue/43498/ax_2012_3)
+- [ ] [Fantastic Four (1998) #607](https://www.marvel.com/comics/issue/40467/fantastic_four_1998_607)
+- [ ] [Fantastic Four (1998) #608](https://www.marvel.com/comics/issue/40474/fantastic_four_1998_608)
+## Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)
+- [ ] [Ultimates (2015) #1](https://www.marvel.com/comics/issue/57251/ultimates_2015_1)
+- [ ] [Ultimates (2015) #2](https://www.marvel.com/comics/issue/57255/ultimates_2015_2)
+- [ ] [Ultimates (2015) #3](https://www.marvel.com/comics/issue/57257/ultimates_2015_3)
+- [ ] [Ultimates (2015) #4](https://www.marvel.com/comics/issue/57258/ultimates_2015_4)
+- [ ] [Ultimates (2015) #5](https://www.marvel.com/comics/issue/57259/ultimates_2015_5)
+- [ ] Avengers #0
+## Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)
+- [ ] [Ultimates (2015) #7](https://www.marvel.com/comics/issue/57261/ultimates_2015_7)
+- [ ] [Ultimates (2015) #8](https://www.marvel.com/comics/issue/57262/ultimates_2015_8)
+- [ ] [Ultimates (2015) #9](https://www.marvel.com/comics/issue/57263/ultimates_2015_9)
+- [ ] [Ultimates (2015) #10](https://www.marvel.com/comics/issue/57264/ultimates_2015_10)
+- [ ] [Ultimates (2015) #11](https://www.marvel.com/comics/issue/57265/ultimates_2015_11)
+- [ ] [Ultimates (2015) #12](https://www.marvel.com/comics/issue/57266/ultimates_2015_12)
+- [ ] [Black Panther (2016) #1](https://www.marvel.com/comics/issue/57382/black_panther_2016_1)
+- [ ] [Black Panther (2016) #2](https://www.marvel.com/comics/issue/57383/black_panther_2016_2)
+- [ ] [Black Panther (2016) #3](https://www.marvel.com/comics/issue/57384/black_panther_2016_3)
+- [ ] [Black Panther (2016) #4](https://www.marvel.com/comics/issue/57385/black_panther_2016_4)
+- [ ] [Black Panther (2016) #5](https://www.marvel.com/comics/issue/57386/black_panther_2016_5)
+- [ ] [Black Panther (2016) #6](https://www.marvel.com/comics/issue/57387/black_panther_2016_6)
+- [ ] [Black Panther (2016) #7](https://www.marvel.com/comics/issue/57388/black_panther_2016_7)
+- [ ] [Black Panther (2016) #8](https://www.marvel.com/comics/issue/57389/black_panther_2016_8)
+- [ ] [Black Panther (2016) #9](https://www.marvel.com/comics/issue/57390/black_panther_2016_9)
+- [ ] [Black Panther (2016) #10](https://www.marvel.com/comics/issue/57391/black_panther_2016_10)
+- [ ] [Black Panther (2016) #11](https://www.marvel.com/comics/issue/57392/black_panther_2016_11)
+- [ ] [Black Panther (2016) #12](https://www.marvel.com/comics/issue/57393/black_panther_2016_12)
+- [ ] [Black Panther (2016) #13](https://www.marvel.com/comics/issue/60929/black_panther_2016_13)
+- [ ] [Black Panther (2016) #14](https://www.marvel.com/comics/issue/60930/black_panther_2016_14)
+- [ ] [Black Panther (2016) #15](https://www.marvel.com/comics/issue/60931/black_panther_2016_15)
+- [ ] [Black Panther (2016) #16](https://www.marvel.com/comics/issue/60932/black_panther_2016_16)
+- [ ] [Black Panther (2016) #17](https://www.marvel.com/comics/issue/60933/black_panther_2016_17)
+- [ ] [Black Panther (2016) #18](https://www.marvel.com/comics/issue/60934/black_panther_2016_18)
+- [ ] [Black Panther: World of Wakanda (2016) #1](https://www.marvel.com/comics/issue/61406/black_panther_world_of_wakanda_2016_1)
+- [ ] [Black Panther: World of Wakanda (2016) #2](https://www.marvel.com/comics/issue/61407/black_panther_world_of_wakanda_2016_2)
+- [ ] [Black Panther: World of Wakanda (2016) #3](https://www.marvel.com/comics/issue/61408/black_panther_world_of_wakanda_2016_3)
+- [ ] [Black Panther: World of Wakanda (2016) #4](https://www.marvel.com/comics/issue/61409/black_panther_world_of_wakanda_2016_4)
+- [ ] [Black Panther: World of Wakanda (2016) #5](https://www.marvel.com/comics/issue/61410/black_panther_world_of_wakanda_2016_5)
+- [ ] [Black Panther: World of Wakanda (2016) #6](https://www.marvel.com/comics/issue/61411/black_panther_world_of_wakanda_2016_6)
+- [ ] [Black Panther and the Crew (2017) #1](https://www.marvel.com/comics/issue/62721/black_panther_and_the_crew_2017_1)
+- [ ] [Black Panther and the Crew (2017) #2](https://www.marvel.com/comics/issue/62815/black_panther_and_the_crew_2017_2)
+- [ ] [Black Panther and the Crew (2017) #3](https://www.marvel.com/comics/issue/63114/black_panther_and_the_crew_2017_3)
+- [ ] [Black Panther and the Crew (2017) #4](https://www.marvel.com/comics/issue/63671/black_panther_and_the_crew_2017_4)
+- [ ] [Black Panther and the Crew (2017) #5](https://www.marvel.com/comics/issue/64207/black_panther_and_the_crew_2017_5)
+- [ ] [Black Panther and the Crew (2017) #6](https://www.marvel.com/comics/issue/64277/black_panther_and_the_crew_2017_6)
+- [ ] [Ultimates 2 (2016) #1](https://www.marvel.com/comics/issue/57267/ultimates_2_2016_1)
+- [ ] [Ultimates 2 (2016) #2](https://www.marvel.com/comics/issue/62432/ultimates_2_2016_2)
+- [ ] [Ultimates 2 (2016) #3](https://www.marvel.com/comics/issue/62512/ultimates_2_2016_3)
+- [ ] [Ultimates 2 (2016) #4](https://www.marvel.com/comics/issue/62588/ultimates_2_2016_4)
+- [ ] [Ultimates 2 (2016) #5](https://www.marvel.com/comics/issue/62646/ultimates_2_2016_5)
+- [ ] [Ultimates 2 (2016) #6](https://www.marvel.com/comics/issue/62718/ultimates_2_2016_6)
+- [ ] [Ultimates 2 (2016) #7](https://www.marvel.com/comics/issue/62845/ultimates_2_2016_7)
+- [ ] [Ultimates 2 (2016) #8](https://www.marvel.com/comics/issue/63204/ultimates_2_2016_8)
+- [ ] [Ultimates 2 (2016) #9](https://www.marvel.com/comics/issue/63863/ultimates_2_2016_9)
+- [ ] Ultimates 2 #10
+- [ ] Ultimates 2 #11
+- [ ] Ultimates 2 #12
+## Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)
+- [ ] [Black Panther (2016) #166](https://www.marvel.com/comics/issue/64968/black_panther_2016_166)
+- [ ] [Black Panther (2016) #167](https://www.marvel.com/comics/issue/65059/black_panther_2016_167)
+- [ ] [Black Panther (2016) #168](https://www.marvel.com/comics/issue/65268/black_panther_2016_168)
+- [ ] [Black Panther (2016) #169](https://www.marvel.com/comics/issue/65901/black_panther_2016_169)
+- [ ] [Black Panther (2016) #170](https://www.marvel.com/comics/issue/66269/black_panther_2016_170)
+- [ ] [Black Panther (2016) #171](https://www.marvel.com/comics/issue/66534/black_panther_2016_171)
+## The Intergalactic Empire of Wakanda
+- [ ] [Rise of the Black Panther (2018) #1](https://www.marvel.com/comics/issue/65692/rise_of_the_black_panther_2018_1)
+- [ ] [Rise of the Black Panther (2018) #2](https://www.marvel.com/comics/issue/66107/rise_of_the_black_panther_2018_2)
+- [ ] [Rise of the Black Panther (2018) #3](https://www.marvel.com/comics/issue/66450/rise_of_the_black_panther_2018_3)
+- [ ] [Rise of the Black Panther (2018) #4](https://www.marvel.com/comics/issue/66695/rise_of_the_black_panther_2018_4)
+- [ ] [Rise of the Black Panther (2018) #5](https://www.marvel.com/comics/issue/67030/rise_of_the_black_panther_2018_5)
+- [ ] [Rise of the Black Panther (2018) #6](https://www.marvel.com/comics/issue/69382/rise_of_the_black_panther_2018_6)
+- [ ] [Black Panther (2018) #1](https://www.marvel.com/comics/issue/67315/black_panther_2018_1)
+- [ ] [Black Panther (2018) #2](https://www.marvel.com/comics/issue/67865/black_panther_2018_2)
+- [ ] [Black Panther (2018) #3](https://www.marvel.com/comics/issue/67867/black_panther_2018_3)
+- [ ] [Black Panther (2018) #4](https://www.marvel.com/comics/issue/67868/black_panther_2018_4)
+- [ ] [Black Panther (2018) #5](https://www.marvel.com/comics/issue/67869/black_panther_2018_5)
+- [ ] [Black Panther (2018) #6](https://www.marvel.com/comics/issue/67870/black_panther_2018_6)
+- [ ] [Amazing Spider-Man: Wakanda Forever (2018) #1](https://www.marvel.com/comics/issue/67307/amazing_spider-man_wakanda_forever_2018_1)
+- [ ] [Avengers: Wakanda Forever (2018) #1](https://www.marvel.com/comics/issue/67312/avengers_wakanda_forever_2018_1)
+- [ ] [Shuri (2018) #1](https://www.marvel.com/comics/issue/71795/shuri_2018_1)
+- [ ] [Shuri (2018) #2](https://www.marvel.com/comics/issue/71796/shuri_2018_2)
+- [ ] [Shuri (2018) #3](https://www.marvel.com/comics/issue/71797/shuri_2018_3)
+- [ ] [Shuri (2018) #4](https://www.marvel.com/comics/issue/71798/shuri_2018_4)
+- [ ] [Shuri (2018) #5](https://www.marvel.com/comics/issue/71799/shuri_2018_5)
+- [ ] [Black Panther (2018) #7](https://www.marvel.com/comics/issue/67872/black_panther_2018_7)
+- [ ] [Black Panther (2018) #8](https://www.marvel.com/comics/issue/67874/black_panther_2018_8)
+- [ ] [Black Panther (2018) #9](https://www.marvel.com/comics/issue/67877/black_panther_2018_9)
+- [ ] [Black Panther (2018) #10](https://www.marvel.com/comics/issue/67879/black_panther_2018_10)
+- [ ] [Black Panther (2018) #11](https://www.marvel.com/comics/issue/67882/black_panther_2018_11)
+- [ ] [Black Panther (2018) #12](https://www.marvel.com/comics/issue/67883/black_panther_2018_12)
+- [ ] [Black Panther Vs. Deadpool (2018) #1](https://www.marvel.com/comics/issue/71949/black_panther_vs_deadpool_2018_1)
+- [ ] [Black Panther Vs. Deadpool (2018) #2](https://www.marvel.com/comics/issue/71950/black_panther_vs_deadpool_2018_2)
+- [ ] [Black Panther Vs. Deadpool (2018) #3](https://www.marvel.com/comics/issue/71951/black_panther_vs_deadpool_2018_3)
+- [ ] [Black Panther Vs. Deadpool (2018) #4](https://www.marvel.com/comics/issue/71952/black_panther_vs_deadpool_2018_4)
+- [ ] [Black Panther Vs. Deadpool (2018) #5](https://www.marvel.com/comics/issue/71953/black_panther_vs_deadpool_2018_5)
+- [ ] [Killmonger (2018) #1](https://www.marvel.com/comics/issue/73446/killmonger_2018_1)
+- [ ] [Killmonger (2018) #2](https://www.marvel.com/comics/issue/73447/killmonger_2018_2)
+- [ ] [Killmonger (2018) #3](https://www.marvel.com/comics/issue/73448/killmonger_2018_3)
+- [ ] [Killmonger (2018) #4](https://www.marvel.com/comics/issue/73449/killmonger_2018_4)
+- [ ] [Black Panther (2018) #13](https://www.marvel.com/comics/issue/70738/black_panther_2018_13)
+- [ ] [Black Panther (2018) #14](https://www.marvel.com/comics/issue/70739/black_panther_2018_14)
+- [ ] [Black Panther (2018) #15](https://www.marvel.com/comics/issue/70740/black_panther_2018_15)
+- [ ] [Black Panther (2018) #16](https://www.marvel.com/comics/issue/70741/black_panther_2018_16)
+- [ ] [Black Panther (2018) #17](https://www.marvel.com/comics/issue/70742/black_panther_2018_17)
+- [ ] [Black Panther (2018) #18](https://www.marvel.com/comics/issue/77788/black_panther_2018_18)
+- [ ] [Black Panther (2018) #19](https://www.marvel.com/comics/issue/77789/black_panther_2018_19)
+- [ ] [Black Panther (2018) #20](https://www.marvel.com/comics/issue/77790/black_panther_2018_20)
+- [ ] [Black Panther (2018) #21](https://www.marvel.com/comics/issue/77791/black_panther_2018_21)
+- [ ] [Black Panther (2018) #22](https://www.marvel.com/comics/issue/77792/black_panther_2018_22)
+- [ ] [Black Panther (2018) #23](https://www.marvel.com/comics/issue/77793/black_panther_2018_23)
+- [ ] [Black Panther (2018) #24](https://www.marvel.com/comics/issue/77794/black_panther_2018_24)
+- [ ] [Black Panther (2018) #25](https://www.marvel.com/comics/issue/90058/black_panther_2018_25)
+## John Ridley's Black Panther
+- [ ] [Black Panther (2021) #1](https://www.marvel.com/comics/issue/92203/black_panther_2021_1)
+- [ ] [Black Panther (2021) #2](https://www.marvel.com/comics/issue/92205/black_panther_2021_2)
+- [ ] [Black Panther (2021) #3](https://www.marvel.com/comics/issue/92207/black_panther_2021_3)
+- [ ] [Black Panther (2021) #4](https://www.marvel.com/comics/issue/92208/black_panther_2021_4)
+- [ ] [Black Panther (2021) #5](https://www.marvel.com/comics/issue/92209/black_panther_2021_5)
+- [ ] [Black Panther (2021) #6](https://www.marvel.com/comics/issue/92210/black_panther_2021_6)
+- [ ] [Black Panther (2021) #7](https://www.marvel.com/comics/issue/92211/black_panther_2021_7)
+- [ ] [Black Panther (2021) #8](https://www.marvel.com/comics/issue/92212/black_panther_2021_8)
+- [ ] [Black Panther (2021) #9](https://www.marvel.com/comics/issue/92213/black_panther_2021_9)
+- [ ] [Black Panther (2021) #10](https://www.marvel.com/comics/issue/92214/black_panther_2021_10)
+## Latest Additions
+- [ ] [Black Panther (2021) #11](https://www.marvel.com/comics/issue/92215/black_panther_2021_11)
+- [ ] [Black Panther (2021) #12](https://www.marvel.com/comics/issue/92216/black_panther_2021_12)
+- [ ] [Black Panther (2021) #13](https://www.marvel.com/comics/issue/102502/black_panther_2021_13)
+- [ ] [Black Panther (2021) #14](https://www.marvel.com/comics/issue/102503/black_panther_2021_14)
+- [ ] [Black Panther (2021) #15](https://www.marvel.com/comics/issue/102504/black_panther_2021_15)
+- [ ] [Black Panther Legends (2021) #1](https://www.marvel.com/comics/issue/94626/black_panther_legends_2021_1)
+- [ ] [Black Panther Legends (2021) #2](https://www.marvel.com/comics/issue/94627/black_panther_legends_2021_2)
+- [ ] [Black Panther Legends (2021) #3](https://www.marvel.com/comics/issue/94628/black_panther_legends_2021_3)
+- [ ] [Black Panther Legends (2021) #4](https://www.marvel.com/comics/issue/94629/black_panther_legends_2021_4)
+- [ ] [Black Panther (2023) #1](https://www.marvel.com/comics/issue/104798/black_panther_2023_1)
+- [ ] [Black Panther (2023) #2](https://www.marvel.com/comics/issue/104799/black_panther_2023_2)
+- [ ] [Black Panther (2023) #3](https://www.marvel.com/comics/issue/104800/black_panther_2023_3)
+- [ ] [Black Panther (2023) #4](https://www.marvel.com/comics/issue/104801/black_panther_2023_4)
+- [ ] [Black Panther (2023) #5](https://www.marvel.com/comics/issue/104802/black_panther_2023_5)
+- [ ] [Black Panther (2023) #6](https://www.marvel.com/comics/issue/104803/black_panther_2023_6)

@@ -217,6 +217,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const laterReviewedIds = new Set([
     'wolverine-reading-order',
     'abomination-reading-order',
+    'black-panther-reading-order',
     'rocket-raccoon-reading-order',
     'groot-reading-order',
     'star-lord-reading-order',
