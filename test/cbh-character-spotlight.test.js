@@ -585,6 +585,110 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 1].id, 'xmen-claremont');
 });
 
+test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const ledger = await readJson('scripts/data/cbh-source-ledgers/loki-reading-order.json');
+  const inventoryRecord = inventory.find((record) => record.id === 'loki-reading-order');
+
+  function validateLedgerShape(candidateLedger) {
+    assert.equal(candidateLedger.sourceUrl, 'https://www.comicbookherald.com/loki-reading-order/');
+    assert.equal(candidateLedger.sourceRetrievedAt, '2026-08-27');
+    assert.equal(candidateLedger.sourceGroupCount, 11);
+    assert.equal(candidateLedger.sourceOccurrenceCount, candidateLedger.occurrences.length);
+    assert.equal(
+      candidateLedger.counts['canonical-candidate']
+        + candidateLedger.counts.repeat
+        + candidateLedger.counts.gap
+        + candidateLedger.counts.exclusion,
+      candidateLedger.sourceOccurrenceCount,
+    );
+    assert.equal(candidateLedger.counts['canonical-candidate'], 114);
+    assert.equal(candidateLedger.counts.repeat, 0);
+    assert.equal(candidateLedger.counts.gap, 75);
+    assert.equal(candidateLedger.counts.exclusion, 43);
+    assert.match(candidateLedger.sourceBoundary, /No complete Best Comics or Essential Comics section exists/i);
+    assert.match(candidateLedger.sourceBoundary, /full page is the correct owner-policy boundary/i);
+    assert.equal(candidateLedger.boundaryEvidence.length, 3);
+    assert.match(candidateLedger.boundaryEvidence[1].text, /incidental prose words/i);
+
+    const positions = candidateLedger.occurrences.map((entry) => entry.position);
+    assert.equal(new Set(positions).size, positions.length);
+    assert.equal(
+      new Set(candidateLedger.occurrences.map((entry) => entry.sourceGroup)).size,
+      candidateLedger.sourceGroupCount,
+    );
+    assert.deepEqual(
+      [...positions].sort((left, right) => left - right),
+      Array.from({ length: candidateLedger.sourceOccurrenceCount }, (_, index) => index + 1),
+    );
+    const derivedCounts = {
+      'canonical-candidate': 0,
+      repeat: 0,
+      gap: 0,
+      exclusion: 0,
+    };
+    for (const entry of candidateLedger.occurrences) {
+      derivedCounts[entry.disposition] += 1;
+    }
+    assert.deepEqual(derivedCounts, candidateLedger.counts);
+
+    const byText = new Map(candidateLedger.occurrences.map((entry) => [entry.sourceText, entry]));
+    assert.equal(byText.get('Thor Epic Collection: The God of Thunder').disposition, 'gap');
+    assert.equal(byText.get('Thor & Loki: Blood Brothers').disposition, 'gap');
+    assert.equal(byText.get('Jack Kirby and Stan Lee launch Thor, Loki, and the Gods of Asgard into the Marvel Universe!').disposition, 'exclusion');
+    assert.equal(byText.get('Loki centric issues can be found in:').disposition, 'exclusion');
+    assert.equal(byText.get('Loki by Kibblesmith & Bazaldua').disposition, 'gap');
+    assert.deepEqual(byText.get('Collects: Loki #1-4, Journey Into Mystery #85, Journey Into Mystery #112').repeatOfPositions, [4, 55]);
+    assert.deepEqual(byText.get('Collects: Loki (2019) #1 to #5, material from War of the Realms: Omega (2019) #1').repeatOfPositions, [214]);
+
+    for (const entry of candidateLedger.occurrences) {
+      assert.equal(typeof entry.sourceText, 'string');
+      assert.ok(entry.sourceText.length > 0);
+      assert.equal(typeof entry.sourceReference, 'string');
+      assert.ok(entry.sourceReference.length > 0);
+      assert.equal(typeof entry.sourceGroup, 'string');
+      assert.ok(entry.sourceGroup.length > 0);
+      assert.ok([
+        'canonical-candidate',
+        'repeat',
+        'gap',
+        'exclusion',
+      ].includes(entry.disposition));
+      if (entry.disposition === 'gap') {
+        assert.equal(typeof entry.gapReason, 'string');
+        assert.ok(entry.gapReason.length > 0);
+      }
+      if (entry.disposition === 'exclusion') {
+        assert.equal(typeof entry.exclusionReason, 'string');
+        assert.ok(entry.exclusionReason.length > 0);
+      }
+      if (Array.isArray(entry.repeatOfPositions)) {
+        assert.ok(entry.repeatOfPositions.every((position) => position < entry.position));
+      }
+    }
+  }
+
+  assert.equal(inventoryRecord.centralDisposition, 'deferred');
+  assert.equal(inventoryRecord.deliveryStatus, 'not-applicable');
+  assert.equal(inventoryRecord.metadataHorizonStatus, 'blocked-exact-resolution-not-run');
+  assert.equal(inventoryRecord.sourceRetrievedAt, '2026-08-27');
+  assert.equal(inventoryRecord.sourceContentSha256, ledger.sourceContentSha256);
+  assert.match(inventoryRecord.reason, /232 ordered occurrences/i);
+  assert.match(inventoryRecord.reason, /114 canonical candidates/i);
+  assert.match(inventoryRecord.reason, /75 gaps/i);
+  assert.match(inventoryRecord.reason, /43 exclusions/i);
+
+  assert.doesNotThrow(() => validateLedgerShape(ledger));
+
+  const removed = JSON.parse(JSON.stringify(ledger));
+  removed.occurrences.splice(41, 1);
+  assert.throws(() => validateLedgerShape(removed));
+
+  const duplicated = JSON.parse(JSON.stringify(ledger));
+  duplicated.occurrences.splice(10, 0, duplicated.occurrences[10]);
+  assert.throws(() => validateLedgerShape(duplicated));
+});
+
 test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
   const packet = await readJson('scripts/data/cbh-packets/deadpool-best-of.json');
   const mapping = await readJson('scripts/data/cbh-mappings/deadpool-best-of.json');
