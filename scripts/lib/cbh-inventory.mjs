@@ -100,6 +100,7 @@ const REPEATED_SOURCE_REFERENCE_FIELDS = new Set([
   'sourcePosition',
   'canonicalRow',
   'canonicalGapPosition',
+  'canonicalGapSourcePosition',
   'sourceIssueReference',
   'sourceRangeReference',
   'normalizedSeriesTitle',
@@ -234,7 +235,9 @@ function assertRepeatedSourceReference(reference, index, rows) {
   if (!isPlainObject(reference)) throw new Error(`${label} must be an object`);
   const fields = Object.keys(reference);
   const required = [...REPEATED_SOURCE_REFERENCE_FIELDS].filter((field) => (
-    field !== 'canonicalRow' && field !== 'canonicalGapPosition'
+    field !== 'canonicalRow'
+      && field !== 'canonicalGapPosition'
+      && field !== 'canonicalGapSourcePosition'
   ));
   const missing = required.filter((field) => !Object.hasOwn(reference, field));
   if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
@@ -245,8 +248,15 @@ function assertRepeatedSourceReference(reference, index, rows) {
   }
 
   const hasCanonicalRow = Object.hasOwn(reference, 'canonicalRow');
-  const hasCanonicalGap = Object.hasOwn(reference, 'canonicalGapPosition');
-  if (hasCanonicalRow === hasCanonicalGap) {
+  const canonicalGapField = Object.hasOwn(reference, 'canonicalGapPosition')
+    ? 'canonicalGapPosition'
+    : (Object.hasOwn(reference, 'canonicalGapSourcePosition')
+      ? 'canonicalGapSourcePosition'
+      : null);
+  const hasCanonicalGap = canonicalGapField !== null;
+  if ((hasCanonicalRow ? 1 : 0) + (hasCanonicalGap ? 1 : 0) !== 1
+    || (Object.hasOwn(reference, 'canonicalGapPosition')
+      && Object.hasOwn(reference, 'canonicalGapSourcePosition'))) {
     throw new Error(`${label} must name exactly one canonical row or source gap`);
   }
   if (hasCanonicalRow && (!Number.isInteger(reference.canonicalRow)
@@ -254,9 +264,9 @@ function assertRepeatedSourceReference(reference, index, rows) {
     || reference.canonicalRow > rows.length)) {
     throw new Error(`${label} canonicalRow must name a canonical packet row`);
   }
-  if (hasCanonicalGap && (!Number.isInteger(reference.canonicalGapPosition)
-    || reference.canonicalGapPosition < 1)) {
-    throw new Error(`${label} canonicalGapPosition must name a canonical source gap`);
+  if (hasCanonicalGap && (!Number.isInteger(reference[canonicalGapField])
+    || reference[canonicalGapField] < 1)) {
+    throw new Error(`${label} ${canonicalGapField} must name a canonical source gap`);
   }
   assertNonEmptyString(reference.sourceIssueReference, `${label} sourceIssueReference`);
   if (reference.sourceRangeReference != null) {
@@ -503,7 +513,8 @@ export function sourcePositionsForPacket(packet) {
     for (const reference of references) {
       const canonical = Object.hasOwn(reference, 'canonicalRow')
         ? rows[reference.canonicalRow - 1]
-        : gapsBySourcePosition.get(reference.canonicalGapPosition);
+        : gapsBySourcePosition.get(reference.canonicalGapPosition
+          ?? reference.canonicalGapSourcePosition);
       if (!canonical) {
         throw new Error(`${packetId} repeated source position ${reference.sourcePosition} must target a canonical source gap`);
       }
@@ -527,15 +538,18 @@ export function sourcePositionsForPacket(packet) {
       canonicalSourcePositions.push(sourcePosition);
       continue;
     }
-    if (Object.hasOwn(reference, 'canonicalGapPosition')) {
-      const canonical = gapsBySourcePosition.get(reference.canonicalGapPosition);
+    if (Object.hasOwn(reference, 'canonicalGapPosition')
+      || Object.hasOwn(reference, 'canonicalGapSourcePosition')) {
+      const canonicalGapPosition = reference.canonicalGapPosition
+        ?? reference.canonicalGapSourcePosition;
+      const canonical = gapsBySourcePosition.get(canonicalGapPosition);
       if (!canonical || canonical.sourcePosition >= sourcePosition) {
         throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier canonical source gap`);
       }
       const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
       for (const field of fields) {
         if (String(reference[field]) !== String(canonical[field])) {
-          throw new Error(`${packetId} repeated source position ${sourcePosition} ${field} differs from canonical source gap ${reference.canonicalGapPosition}`);
+          throw new Error(`${packetId} repeated source position ${sourcePosition} ${field} differs from canonical source gap ${canonicalGapPosition}`);
         }
       }
       continue;

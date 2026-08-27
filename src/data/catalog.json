@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T14:02:27.921Z",
+  "generatedAt": "2026-08-27T15:34:39.542Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2816,6 +2816,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T06:39:54.285Z"
+    },
+    {
+      "id": "magneto-reading-order",
+      "file": "magneto_reading_order.json",
+      "name": "Magneto",
+      "description": "A source-ordered Magneto reading guide from early X-Men appearances through modern stories, with unresolved source identities retained as plain-text provenance.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 753,
+      "collections": 87,
+      "characters": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver"
+      ],
+      "keywords": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 13741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/590899aae5de3",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/magneto-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T13:50:21.414Z"
     },
     {
       "id": "xmen-claremont",

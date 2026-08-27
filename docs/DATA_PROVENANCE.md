@@ -129,6 +129,16 @@ remain visible in the published checklist and are tracked in
 silently removed. Its complete-library review covers 154 current orders, with 22 approved
 non-none relationships and 132 no-overlap relationships.
 
+Magneto's published order preserves all 811 positions from its frozen source snapshot. Its 695
+resolved rows and 47 deliberate repeat links were assembled only from retained provider-resolution
+cache records. The 58 unresolved positions remain visible as placeholders with cached candidate and
+rejection evidence, rather than guessed identities. One repeat points to an earlier unresolved gap,
+so its provenance records that source position instead of inventing a canonical resolved row.
+The separate [gap follow-up issue](https://github.com/raymond-nassar/recap-page/issues/306) records
+future one-to-one identity research without changing a source position or selecting a guessed issue.
+The complete-library report compares all 157 other guides and records 10 existing-subset, 38
+partial, and 109 no-overlap relationships.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records
