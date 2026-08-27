@@ -2,14 +2,14 @@
   "candidateId": "spider-man-identity-crisis",
   "packetDigest": "29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1",
   "mappingDigest": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
-  "libraryDigest": "cefa5c69e6bbc20f7e5129ccf0852a95c0d2db6274db268890af018c541d00d3",
+  "libraryDigest": "724d426b70a96bdfa865a5d5f63fca35dc074a3ecae5c5c602b46c3f634e0d7e",
   "peerDigests": {
     "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
     "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
     "time-and-time-again": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4"
   },
   "candidateCount": 8,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -594,6 +594,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -822,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "949e318112e74b8902d5365d295f058073fa65d8145ed039625b7b6ffdf22eb9"
+  "reportDigest": "514f276488acd9846c30554939260ba5c3714a0003c5b78ba935d835459ae5b7"
 }

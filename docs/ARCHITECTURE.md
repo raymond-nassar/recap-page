@@ -95,7 +95,7 @@ view layer itself created and can throw away.
 
 **Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
 base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:5260-5262`. The hydrator itself is not rebuilt; only its reference to the client is
+`src/js/main.js:5274-5276`. The hydrator itself is not rebuilt; only its reference to the client is
 swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
 to the reader's connection rather than to whichever base URL is configured. The store is never
 replaced at all.
@@ -105,11 +105,15 @@ back to constructing both when it is handed neither, at `src/js/api.js:68-69`. T
 tests and for any future caller; the running app always passes its own, which is what keeps one
 budget across every request the page makes.
 
-**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js` parses
-the curated-list manifest, and its only importer outside the tests is the vendoring script, at
-`scripts/vendor-orders.mjs:28`. It runs in Node when someone adds a reading list, never in the
-browser. So twenty-two of the twenty-three are reachable from the page, and a graph drawn from the
-directory listing rather than from the imports would have been wrong by one.
+**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js`
+parses the curated-list manifest, and its only importer outside the tests is the vendoring script,
+at `scripts/vendor-orders.mjs:28`.
+It runs in Node when someone adds a reading list, never in the browser. The same Node-only boundary
+contains `scripts/lib/chapter-orders.mjs`: one noncatalog source order can be validated and emitted
+as ordinary child payloads, catalog entries, a reading path and overlap evidence without teaching
+the browser a partition model. So twenty-two of the twenty-three browser library modules are
+reachable from the page, and a graph drawn from directory listings rather than imports would be
+wrong.
 
 ## Marking one issue read
 
@@ -165,7 +169,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:5587-5608`, but the reading
+surfaces, the six screens plus the blocked banner, at `src/js/main.js:5601-5622`, but the reading
 order compares each row against a cache key built from the whole item and reuses the node when
 nothing about it changed, and the full order
 is skipped entirely while its container is closed. Focus is captured before a rebuild and restored

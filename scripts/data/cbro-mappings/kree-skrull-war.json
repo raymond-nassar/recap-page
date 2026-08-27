@@ -426,10 +426,10 @@
     "coverIssueId": 7342
   },
   "relationshipReview": {
-    "reportDigest": "9f09e6e980c7343af9f64959accd21ae7ca1ceb1c4cf2d48d5931350eb6ad0a0",
+    "reportDigest": "f997c98e57759071bd84f271a78ec8400e20c0e7a5bac57da6a745dc597926cd",
     "packetDigest": "4b49d41011aa5b1c32eaab8fb960278aec7de448d4606053b242ab2670bcdf59",
     "mappingDigest": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
-    "libraryDigest": "e0c6fb13cc67e49c7782428274936923288c128eb0b944a8104806b75d001e88",
+    "libraryDigest": "f9238b18f49c64b5205108b7149811e93c60327d1506f8f62022a3f0c7d2a6fc",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -490,19 +490,6 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b01 none-overlap policy",
-        "reviewedAt": "2026-08-26T15:38:48.585Z"
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "partial",
-        "sharedCount": 1,
-        "sharedIds": [
-          "7347"
-        ],
-        "decision": "approved",
-        "rationale": "The compact nine-issue event route keeps one shared Kree-Skrull chapter while the broader Ant-Man reading order serves a different story purpose.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-003-C02 coordinator",
         "reviewedAt": "2026-08-26T15:38:48.585Z"
       },
       {
@@ -1517,6 +1504,17 @@
         "reviewedAt": "2026-08-26T15:38:48.585Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b01 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:38:48.585Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -1952,6 +1950,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:38:48.585Z",
-    "approvalDigest": "fddb93925672dbc48b0e268eed2e22b4c8e6db6ebfd844e41fd138d12f9f11d6"
+    "approvalDigest": "408259fe8e773db29a46aa02cac6764663c75e4afbd852edc113532ad20cee43"
   }
 }

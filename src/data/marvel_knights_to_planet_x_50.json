@@ -1,0 +1,379 @@
+{
+  "id": "marvel-knights-to-planet-x-50",
+  "name": "Avengers: Red Zone + Search for She-Hulk",
+  "description": "Owner-curated chapter 50 of 78 in the Marvel Knights to Planet X reading path, from Avengers (1998) #65 through Avengers (1998) #76.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 62,
+    "sourceCount": 2,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 17551,
+      "title": "Avengers (1998) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/17551/avengers_1998_65",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-03-26T00:00:00+0000",
+      "mu": "2003-03-26T00:00:00+0000",
+      "digitalId": 5216,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/586bd19104dde",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17552,
+      "title": "Avengers (1998) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/17552/avengers_1998_66",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-04-23T00:00:00+0000",
+      "mu": "2003-04-23T00:00:00+0000",
+      "digitalId": 5217,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/586bd299cbaef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17553,
+      "title": "Avengers (1998) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/17553/avengers_1998_67",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-05-28T00:00:00+0000",
+      "mu": "2003-05-28T00:00:00+0000",
+      "digitalId": 5218,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/586bd36edf4cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17554,
+      "title": "Avengers (1998) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/17554/avengers_1998_68",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-06-25T00:00:00+0000",
+      "mu": "2003-06-25T00:00:00+0000",
+      "digitalId": 5219,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/586bd4318f7d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17555,
+      "title": "Avengers (1998) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/17555/avengers_1998_69",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-08-13T00:00:00+0000",
+      "mu": "2003-08-13T00:00:00+0000",
+      "digitalId": 5221,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/586bd504bc79f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 324,
+      "title": "Avengers (1998) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/324/avengers_1998_70",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 5225,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/586bd5ea58bd0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4648,
+      "title": "Avengers (1998) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/4648/avengers_1998_71",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-10-15T00:00:00+0000",
+      "mu": "2003-10-15T00:00:00+0000",
+      "digitalId": 1480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/586d4b693ae89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Sadowski",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 375,
+      "title": "Avengers (1998) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/375/avengers_1998_72",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-10-29T00:00:00+0000",
+      "mu": "2003-10-29T00:00:00+0000",
+      "digitalId": 4088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/586d4eecd44b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Kolins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4940,
+      "title": "Avengers (1998) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/4940/avengers_1998_73",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-11-12T00:00:00+0000",
+      "mu": "2003-11-12T00:00:00+0000",
+      "digitalId": 1482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/586d4ff926a9c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Kolins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 348,
+      "title": "Avengers (1998) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/348/avengers_1998_74",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2003-11-26T00:00:00+0000",
+      "digitalId": 4116,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/586d530a711f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Kolins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4925,
+      "title": "Avengers (1998) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/4925/avengers_1998_75",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-12-10T00:00:00+0000",
+      "mu": "2003-12-10T00:00:00+0000",
+      "digitalId": 790,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/586d54d638086",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Kolins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4937,
+      "title": "Avengers (1998) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/4937/avengers_1998_76",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2003-12-24T00:00:00+0000",
+      "mu": "2003-12-24T00:00:00+0000",
+      "digitalId": 800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/04/586d55dd8decf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Sadowski",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Johns",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,595 @@
+{
+  "id": "marvel-knights-to-planet-x-78",
+  "name": "Planet X Crossover Cluster",
+  "description": "Owner-curated chapter 78 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #146 through New X-Men (2001) #156.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 25,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 92,
+    "sourceCount": 8,
+    "sourceGroup": "Planet X Crossover Cluster",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14965,
+      "title": "New X-Men (2001) #146",
+      "number": "146",
+      "url": "https://www.marvel.com/comics/issue/14965/new_x-men_2001_146",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-09-10T00:00:00+0000",
+      "mu": "2003-09-10T00:00:00+0000",
+      "digitalId": 3054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bc46b1e313f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 125,
+      "title": "New X-Men (2001) #147",
+      "number": "147",
+      "url": "https://www.marvel.com/comics/issue/125/new_x-men_2001_147",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 13875,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/577d6c820980b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 136,
+      "title": "New X-Men (2001) #148",
+      "number": "148",
+      "url": "https://www.marvel.com/comics/issue/136/new_x-men_2001_148",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-10-15T00:00:00+0000",
+      "mu": "2003-10-15T00:00:00+0000",
+      "digitalId": 6593,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/577e61629d0c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 124,
+      "title": "New X-Men (2001) #149",
+      "number": "149",
+      "url": "https://www.marvel.com/comics/issue/124/new_x-men_2001_149",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2003-11-26T00:00:00+0000",
+      "digitalId": 6594,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/577e6760e25cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 123,
+      "title": "New X-Men (2001) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/123/new_x-men_2001_150",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2003-12-17T00:00:00+0000",
+      "digitalId": 6595,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/577e6cfba4e76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simon Coleby",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 206,
+      "title": "X-Treme X-Men (2001) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/206/x-treme_x-men_2001_40",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-03-01T00:00:00+0000",
+      "mu": "2004-03-01T00:00:00+0000",
+      "digitalId": 2918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/56af8f852d441",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 205,
+      "title": "X-Treme X-Men (2001) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/205/x-treme_x-men_2001_41",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-04-01T00:00:00+0000",
+      "mu": "2004-04-01T00:00:00+0000",
+      "digitalId": 3838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/56af8f3c575b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 261,
+      "title": "X-Treme X-Men (2001) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/261/x-treme_x-men_2001_42",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-04-01T00:00:00+0000",
+      "mu": "2004-04-01T00:00:00+0000",
+      "digitalId": 3839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/56af8fa8095e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 204,
+      "title": "X-Treme X-Men (2001) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/204/x-treme_x-men_2001_43",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-05-01T00:00:00+0000",
+      "mu": "2004-05-01T00:00:00+0000",
+      "digitalId": 3840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/56af908d52e87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 439,
+      "title": "X-Treme X-Men (2001) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/439/x-treme_x-men_2001_44",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-05-01T00:00:00+0000",
+      "mu": "2004-05-01T00:00:00+0000",
+      "digitalId": 3841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/56af90389df0c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 478,
+      "title": "X-Treme X-Men (2001) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/478/x-treme_x-men_2001_45",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-06-01T00:00:00+0000",
+      "mu": "2004-06-01T00:00:00+0000",
+      "digitalId": 3842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/4bc6944ce1725",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 122,
+      "title": "New X-Men (2001) #151",
+      "number": "151",
+      "url": "https://www.marvel.com/comics/issue/122/new_x-men_2001_151",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-01-07T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 2294,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5e56a3c63c3b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 121,
+      "title": "New X-Men (2001) #152",
+      "number": "152",
+      "url": "https://www.marvel.com/comics/issue/121/new_x-men_2001_152",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2009-12-02T00:00:00+0000",
+      "digitalId": 6596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5e56a3be4278f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 120,
+      "title": "New X-Men (2001) #153",
+      "number": "153",
+      "url": "https://www.marvel.com/comics/issue/120/new_x-men_2001_153",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2009-12-09T00:00:00+0000",
+      "digitalId": 6597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5e56a3c25330d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 420,
+      "title": "New X-Men (2001) #154",
+      "number": "154",
+      "url": "https://www.marvel.com/comics/issue/420/new_x-men_2001_154",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-03-17T00:00:00+0000",
+      "mu": "2010-01-20T00:00:00+0000",
+      "digitalId": 6598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5e56a3b9b9759",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 463,
+      "title": "Uncanny X-Men (1963) #442",
+      "number": "442",
+      "url": "https://www.marvel.com/comics/issue/463/uncanny_x-men_1963_442",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-04-07T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7436,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/591c6a7562621",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 489,
+      "title": "Uncanny X-Men (1963) #443",
+      "number": "443",
+      "url": "https://www.marvel.com/comics/issue/489/uncanny_x-men_1963_443",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-04-21T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/591c6e9501476",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 485,
+      "title": "New Mutants (2003) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/485/new_mutants_2003_13",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-06-01T00:00:00+0000",
+      "mu": "2004-06-01T00:00:00+0000",
+      "digitalId": 2272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5a03573f3e8b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khary Randolph",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 509,
+      "title": "X-Treme X-Men (2001) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/509/x-treme_x-men_2001_46",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2004-06-01T00:00:00+0000",
+      "mu": "2004-06-01T00:00:00+0000",
+      "digitalId": 3843,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/56af906308cce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 648,
+      "title": "Excalibur (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/648/excalibur_2004_1",
+      "seriesId": 740,
+      "seriesName": "Excalibur (2004 - 2005)",
+      "onSale": "2004-07-01T00:00:00+0000",
+      "mu": "2004-07-01T00:00:00+0000",
+      "digitalId": 1799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5669b3256e68e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 727,
+      "title": "Excalibur (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/727/excalibur_2004_2",
+      "seriesId": 740,
+      "seriesName": "Excalibur (2004 - 2005)",
+      "onSale": "2004-08-01T00:00:00+0000",
+      "mu": "2004-08-01T00:00:00+0000",
+      "digitalId": 3299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5669afb05ae5a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 524,
+      "title": "Excalibur (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/524/excalibur_2004_3",
+      "seriesId": 740,
+      "seriesName": "Excalibur (2004 - 2005)",
+      "onSale": "2004-09-01T00:00:00+0000",
+      "mu": "2004-09-01T00:00:00+0000",
+      "digitalId": 3300,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/660d66bec6158",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 769,
+      "title": "Excalibur (2004) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/769/excalibur_2004_4",
+      "seriesId": 740,
+      "seriesName": "Excalibur (2004 - 2005)",
+      "onSale": "2004-10-01T00:00:00+0000",
+      "mu": "2004-10-01T00:00:00+0000",
+      "digitalId": 3301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/660d66bec7fed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 451,
+      "title": "New X-Men (2001) #155",
+      "number": "155",
+      "url": "https://www.marvel.com/comics/issue/451/new_x-men_2001_155",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-04-07T00:00:00+0000",
+      "mu": "2004-04-07T00:00:00+0000",
+      "digitalId": 6599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/577e9e9064565",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 486,
+      "title": "New X-Men (2001) #156",
+      "number": "156",
+      "url": "https://www.marvel.com/comics/issue/486/new_x-men_2001_156",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2004-04-21T00:00:00+0000",
+      "mu": "2004-04-21T00:00:00+0000",
+      "digitalId": 6600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/577bfb7243456",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

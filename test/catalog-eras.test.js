@@ -9,9 +9,10 @@ import {
   eraKey,
   eraSections,
   groupCatalog,
+  isModernTimelineChapterId,
+  modernTimelineLists,
+  modernTimelineStories,
   parseCatalog,
-  shelfLists,
-  shelfStories,
   spanLabel,
   storyYear,
 } from '../src/js/lib/catalog.js';
@@ -30,7 +31,7 @@ const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', '
 const stories = groupCatalog(catalog.lists);
 // Eras divide one shelf rather than the whole catalog, so they are asked about the shelf that uses
 // them. Feeding them everything would test an arrangement the app never draws.
-const events = shelfStories(stories, 'catalog');
+const events = modernTimelineStories(stories);
 const sections = eraSections(events);
 
 const named = CATALOG_ERAS.filter((era) => !era.undated && !era.fallback);
@@ -59,7 +60,7 @@ test('the eras account for every bundled reading path, not merely every story', 
   const inSections = sections.reduce((n, s) => n + s.stories.reduce((m, x) => m + x.lists.length, 0), 0);
   assert.equal(
     inSections,
-    shelfLists(catalog.lists, 'catalog').length,
+    modernTimelineLists(catalog.lists).length,
     'the eras and the events shelf disagree about how many orders exist',
   );
 });
@@ -96,6 +97,8 @@ test('nothing in the shipped catalog needs the fallback', () => {
 test('the fallback never claims a range, however many years it holds', () => {
   const [section] = eraSections([one('early', 1964), one('future', 2999)]);
   assert.equal(section.key, fallback.key);
+  assert.equal('from' in section, false);
+  assert.equal('to' in section, false);
   assert.equal(section.blurb, fallback.blurb, 'the fallback appended a span to its blurb');
   assert.equal(/\d{4}/.test(section.blurb), false, 'the fallback printed a year');
 });
@@ -163,6 +166,11 @@ test('every era is named after orders the catalog actually contains', () => {
   assert.equal(CATALOG_ERAS.filter((e) => e.fallback).length, 1, 'exactly one era is expected to catch strays');
 
   for (const era of named) {
+    if (era.key === 'marvel-knights') {
+      assert.equal(era.heading, 'Marvel Knights to Planet X');
+      assert.equal(catalog.lists.filter(({ id }) => isModernTimelineChapterId(id)).length, 78);
+      continue;
+    }
     // The heading names two orders, joined by "to", and both ends have to exist on the shelf.
     for (const part of era.heading.split(' to ')) {
       const needle = part.trim().toLowerCase();
@@ -172,6 +180,32 @@ test('every era is named after orders the catalog actually contains', () => {
       );
     }
   }
+});
+
+test('the first two eras state the chapter bridge and the Avengers handoff truthfully', () => {
+  assert.deepEqual(
+    named.slice(0, 2).map((era) => ({
+      key: era.key,
+      heading: era.heading,
+      from: era.from,
+      to: era.to,
+    })),
+    [
+      {
+        key: 'marvel-knights',
+        heading: 'Marvel Knights to Planet X',
+        from: 1998,
+        to: 2003,
+      },
+      {
+        key: 'disassembled',
+        heading: 'Avengers Disassembled to Civil War',
+        from: 2004,
+        to: 2007,
+      },
+    ],
+  );
+  assert.match(named[1].blurb, /final three Planet X bridge chapters share 2004 with Avengers Disassembled/);
 });
 
 // Closed at both ends, which is the decision the fallback exists to make safe. An open end would
@@ -210,17 +244,10 @@ test('the eras are declared in order and no year belongs to two of them', () => 
 // Three years of slack, because the longest run of years the bundled catalog skips is three, 2001 to
 // 2003, so an era may legitimately reach three empty years past its content. Further than that and
 // the bound is reaching past the stretch of publishing its heading names.
-test('no era reaches far past what it holds', () => {
-  const SLACK = 3;
+test('named era render bounds stop at the first and last stories they hold', () => {
   for (const section of sections) {
     if (section.undated || section.fallback) continue;
-    assert.ok(
-      section.span.from - section.from <= SLACK,
-      `"${section.heading}" starts at ${section.from} but holds nothing before ${section.span.from}`,
-    );
-    assert.ok(
-      section.to - section.span.to <= SLACK,
-      `"${section.heading}" runs to ${section.to} but holds nothing after ${section.span.to}`,
-    );
+    assert.equal(section.from, section.span.from, `"${section.heading}" renders empty years before its first story`);
+    assert.equal(section.to, section.span.to, `"${section.heading}" renders empty years after its last story`);
   }
 });

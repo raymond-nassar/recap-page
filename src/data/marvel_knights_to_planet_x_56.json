@@ -1,0 +1,178 @@
+{
+  "id": "marvel-knights-to-planet-x-56",
+  "name": "Elektra: Introspect",
+  "description": "Owner-curated chapter 56 of 78 in the Marvel Knights to Planet X reading path, from Elektra (2001) #11 through Elektra (2001) #15.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 69,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 20054,
+      "title": "Elektra (2001) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/20054/elektra_2001_11",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2002-08-01T00:00:00+0000",
+      "digitalId": 5742,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5c0fdd70b766d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20055,
+      "title": "Elektra (2001) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/20055/elektra_2001_12",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2002-09-01T00:00:00+0000",
+      "mu": "2002-09-01T00:00:00+0000",
+      "digitalId": 5743,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5c0fe773f1d20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20056,
+      "title": "Elektra (2001) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/20056/elektra_2001_13",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2002-10-01T00:00:00+0000",
+      "digitalId": 5744,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5c0fee8269ba9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20057,
+      "title": "Elektra (2001) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/20057/elektra_2001_14",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2002-11-01T00:00:00+0000",
+      "digitalId": 5745,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5c0ff45e25498",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20058,
+      "title": "Elektra (2001) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/20058/elektra_2001_15",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-12-01T00:00:00+0000",
+      "digitalId": 5746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5c0ffa339d79a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

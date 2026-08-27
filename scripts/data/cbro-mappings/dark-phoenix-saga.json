@@ -423,10 +423,10 @@
     "coverIssueId": 12446
   },
   "relationshipReview": {
-    "reportDigest": "7203d038da457157c2e5be94184651d739bcdd0e9913d1e08d57a30ed60f20f1",
+    "reportDigest": "2cc70d748809ba2fb65978868dbc3cb9b94b0cb3c70e3561a6dbcdb0ea55578f",
     "packetDigest": "7144b1d5e2cb36f3ff00631ee2aab7dc3053345ce7f7dee4327ea2a4cebfd752",
     "mappingDigest": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
-    "libraryDigest": "12043f3f7f9403d6b54f82a374406f71e45ec806f4d2e08843be74093f35ef29",
+    "libraryDigest": "370d1169a2a55fbc1451c4fb484b3e730fbc2e0281b523930c5b5989f973d977",
     "peerDigests": {
       "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
       "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -1491,6 +1491,17 @@
         "reviewedAt": "2026-08-26T15:28:53.308Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b02 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:53.308Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -1946,6 +1957,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:53.308Z",
-    "approvalDigest": "d5e6c53cc6f464467e47c936f28acfdb9e0c2523cae18f4a7030118a639df81c"
+    "approvalDigest": "27203d52b186034bb51d64c625e70c7a41dbc4e93da1f68b05217d81d5b93a9a"
   }
 }

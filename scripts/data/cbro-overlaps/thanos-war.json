@@ -2,7 +2,7 @@
   "candidateId": "thanos-war",
   "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da",
   "mappingDigest": "0c38d78c7155945788e369a586d0409b3953b6339f34c66c5a670945680a3199",
-  "libraryDigest": "b643002362550d6c4d2cbd17abc7a991a74b18cd69016f00d41dab561f8f25db",
+  "libraryDigest": "f9238b18f49c64b5205108b7149811e93c60327d1506f8f62022a3f0c7d2a6fc",
   "peerDigests": {
     "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 12,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -595,6 +595,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -836,5 +842,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b31be4bcd1b8b4a9a437d3a4102059fe6a7739ee64e639fc2e2abc7e3fcaf1b8"
+  "reportDigest": "45ea0fc117b9f30c5cec41fecdb9b0c6557ed1e90e81aab44c120a7e0f0b3341"
 }

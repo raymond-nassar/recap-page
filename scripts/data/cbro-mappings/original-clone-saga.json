@@ -575,10 +575,10 @@
     "coverIssueId": 6526
   },
   "relationshipReview": {
-    "reportDigest": "39e26df01a82f35e3fd2ff58f5b8bda6ea4332dd7bc8da24adc57174e6f35949",
+    "reportDigest": "21bb160734c08a2c02ea6a18c88dd54aee28bd14ba3b61aad3413422d4b0d30b",
     "packetDigest": "8190accea7cdd47fd9f5ca5c91cb6497167e67e1c4fb8100541c625c57478ee5",
     "mappingDigest": "fce26aa2714d7735b24b61d23c4db0b0998b82435f12079acbbf16cee3a712a9",
-    "libraryDigest": "12043f3f7f9403d6b54f82a374406f71e45ec806f4d2e08843be74093f35ef29",
+    "libraryDigest": "370d1169a2a55fbc1451c4fb484b3e730fbc2e0281b523930c5b5989f973d977",
     "peerDigests": {
       "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
       "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
@@ -1643,6 +1643,17 @@
         "reviewedAt": "2026-08-26T15:28:53.308Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b02 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:53.308Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -2078,6 +2089,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:53.308Z",
-    "approvalDigest": "532607dca485a82359217c7b7378f552a830630225ae87eb00e068c0d4540c01"
+    "approvalDigest": "9f372fe79b0118a32598f9f747c7ef6ec23c6627b7b66c7306ee171707413792"
   }
 }

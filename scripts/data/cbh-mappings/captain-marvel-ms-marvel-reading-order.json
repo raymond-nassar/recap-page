@@ -24459,7 +24459,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "absolute-carnage",
@@ -24468,7 +24470,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -24477,7 +24481,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "age-of-x-man",
@@ -24486,7 +24492,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -24495,7 +24503,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -24504,7 +24514,16 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "55351",
+          "55354",
+          "55356",
+          "55357",
+          "55358",
+          "55359"
+        ]
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -24513,7 +24532,13 @@
         "rationale": "Reviewed 3 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 3,
+        "sharedIds": [
+          "16890",
+          "39263",
+          "39262"
+        ]
       },
       {
         "orderId": "annihilation",
@@ -24522,7 +24547,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -24531,7 +24558,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "ant-man-reading-order",
@@ -24540,7 +24569,23 @@
         "rationale": "Reviewed 13 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 13,
+        "sharedIds": [
+          "7347",
+          "7094",
+          "7095",
+          "7096",
+          "7098",
+          "6097",
+          "6301",
+          "13477",
+          "15855",
+          "15965",
+          "16519",
+          "21355",
+          "22500"
+        ]
       },
       {
         "orderId": "apocalypse-wars",
@@ -24549,7 +24594,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "atlantis-attacks",
@@ -24558,7 +24605,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
@@ -24567,7 +24616,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-disassembled",
@@ -24576,7 +24627,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -24585,7 +24638,15 @@
         "rationale": "Reviewed 5 exact shared provider identities; this remains a existing-subset relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "47565",
+          "45880",
+          "46857",
+          "47591",
+          "46858"
+        ]
       },
       {
         "orderId": "axis",
@@ -24594,7 +24655,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "black-panther-reading-order",
@@ -24603,7 +24666,16 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "7346",
+          "57251",
+          "57255",
+          "57257",
+          "57258",
+          "57259"
+        ]
       },
       {
         "orderId": "black-widow-reading-order",
@@ -24646,7 +24718,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
@@ -24655,7 +24729,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -24664,7 +24740,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
@@ -24673,7 +24751,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -24682,7 +24762,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -24691,7 +24773,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
@@ -24700,7 +24784,22 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "6097",
+          "6301",
+          "13477",
+          "15855",
+          "15965",
+          "16519",
+          "17247",
+          "17627",
+          "20670",
+          "20865",
+          "20866",
+          "21001"
+        ]
       },
       {
         "orderId": "civil-war-essential",
@@ -24709,7 +24808,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -24718,7 +24819,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -24727,7 +24830,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
@@ -24736,7 +24841,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "daredevil-reading-order",
@@ -24745,7 +24852,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -24754,7 +24863,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
@@ -24763,7 +24874,27 @@
         "rationale": "Reviewed 17 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 17,
+        "sharedIds": [
+          "22880",
+          "23088",
+          "23583",
+          "23747",
+          "23938",
+          "24145",
+          "26031",
+          "26033",
+          "26035",
+          "26036",
+          "26037",
+          "26038",
+          "26039",
+          "29016",
+          "29017",
+          "29018",
+          "29944"
+        ]
       },
       {
         "orderId": "dark-web",
@@ -24772,7 +24903,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
@@ -24781,7 +24914,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
@@ -24790,7 +24925,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -24799,7 +24936,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "deadpool-best-of",
@@ -24808,7 +24947,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -24817,7 +24958,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
@@ -24826,7 +24969,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
@@ -24835,7 +24980,22 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "10580",
+          "10584",
+          "10585",
+          "10586",
+          "10587",
+          "10588",
+          "10589",
+          "10590",
+          "10591",
+          "10581",
+          "10582",
+          "10583"
+        ]
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -24844,7 +25004,11 @@
         "rationale": "Reviewed 1 exact shared provider identity; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "23747"
+        ]
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -24853,7 +25017,19 @@
         "rationale": "Reviewed 9 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 9,
+        "sharedIds": [
+          "8022",
+          "6981",
+          "20367",
+          "19699",
+          "19700",
+          "23747",
+          "23938",
+          "24145",
+          "26031"
+        ]
       },
       {
         "orderId": "doomwar",
@@ -24862,7 +25038,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -24871,7 +25049,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -24880,7 +25060,49 @@
         "rationale": "Reviewed 39 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 39,
+        "sharedIds": [
+          "7342",
+          "7344",
+          "7345",
+          "7346",
+          "7347",
+          "7348",
+          "7349",
+          "7350",
+          "7351",
+          "7065",
+          "7060",
+          "7061",
+          "7062",
+          "7028",
+          "7029",
+          "7031",
+          "7032",
+          "7033",
+          "7034",
+          "7035",
+          "7036",
+          "7037",
+          "7038",
+          "7045",
+          "7125",
+          "7126",
+          "7127",
+          "7128",
+          "7129",
+          "7131",
+          "7132",
+          "7142",
+          "7143",
+          "7144",
+          "7145",
+          "7146",
+          "7147",
+          "7148",
+          "7149"
+        ]
       },
       {
         "orderId": "evolutionary-war",
@@ -24889,7 +25111,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -24898,7 +25122,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -24907,7 +25133,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fatal-attractions",
@@ -24916,7 +25144,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "generations",
@@ -24925,7 +25155,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "groot-reading-order",
@@ -24934,7 +25166,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -24943,7 +25177,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
@@ -24952,7 +25188,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-full",
@@ -24961,7 +25199,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -24970,7 +25210,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-x-men",
@@ -24979,7 +25221,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m",
@@ -24988,7 +25232,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m-essential",
@@ -24997,7 +25243,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -25006,7 +25254,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-xavier",
@@ -25015,7 +25265,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -25024,7 +25276,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
@@ -25033,7 +25287,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -25042,7 +25298,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -25051,7 +25309,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "iron-man-2020",
@@ -25060,7 +25320,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -25069,7 +25331,11 @@
         "rationale": "Reviewed 1 exact shared provider identity; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "95788"
+        ]
       },
       {
         "orderId": "king-in-black",
@@ -25078,7 +25344,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -25087,7 +25355,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -25096,7 +25366,19 @@
         "rationale": "Reviewed 9 exact shared provider identities; this remains a existing-subset relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 9,
+        "sharedIds": [
+          "7342",
+          "7344",
+          "7345",
+          "7346",
+          "7347",
+          "7348",
+          "7349",
+          "7350",
+          "7351"
+        ]
       },
       {
         "orderId": "last-annihilation",
@@ -25105,7 +25387,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-war",
@@ -25114,7 +25398,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -25123,7 +25409,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -25132,7 +25420,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-multiverse",
@@ -25141,7 +25431,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -25150,7 +25442,22 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a existing-subset relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "10580",
+          "10584",
+          "10585",
+          "10586",
+          "10587",
+          "10588",
+          "10589",
+          "10590",
+          "10591",
+          "10581",
+          "10582",
+          "10583"
+        ]
       },
       {
         "orderId": "marvel-what-if",
@@ -25159,7 +25466,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -25168,7 +25477,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "maximum-security",
@@ -25177,7 +25488,13 @@
         "rationale": "Reviewed 3 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 3,
+        "sharedIds": [
+          "17518",
+          "20541",
+          "20542"
+        ]
       },
       {
         "orderId": "messiah-complex",
@@ -25186,7 +25503,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
@@ -25195,7 +25514,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
@@ -25204,7 +25525,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -25213,7 +25536,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
@@ -25222,7 +25547,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -25231,7 +25558,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
@@ -25240,7 +25569,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mys-tech-wars",
@@ -25249,7 +25580,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -25258,7 +25591,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe",
@@ -25267,7 +25602,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -25276,7 +25613,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
@@ -25285,7 +25624,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -25294,7 +25635,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -25303,7 +25646,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -25312,7 +25657,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
@@ -25321,7 +25668,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phoenix-saga",
@@ -25330,7 +25679,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "planet-hulk",
@@ -25339,7 +25690,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -25348,7 +25701,22 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "10580",
+          "10584",
+          "10585",
+          "10586",
+          "10587",
+          "10588",
+          "10589",
+          "10590",
+          "10591",
+          "10581",
+          "10582",
+          "10583"
+        ]
       },
       {
         "orderId": "reckoning-war",
@@ -25357,7 +25725,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -25366,7 +25736,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -25375,7 +25747,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -25384,7 +25758,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -25393,7 +25769,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -25402,7 +25780,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "second-coming",
@@ -25411,7 +25791,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion",
@@ -25420,7 +25802,11 @@
         "rationale": "Reviewed 1 exact shared provider identity; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "22980"
+        ]
       },
       {
         "orderId": "secret-invasion-essential",
@@ -25429,7 +25815,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -25438,7 +25826,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -25447,7 +25837,17 @@
         "rationale": "Reviewed 7 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 7,
+        "sharedIds": [
+          "13737",
+          "13743",
+          "13744",
+          "7131",
+          "7132",
+          "7136",
+          "7137"
+        ]
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -25456,7 +25856,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "shadowland",
@@ -25465,7 +25867,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
@@ -25474,7 +25878,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "sins-of-sinister",
@@ -25483,7 +25889,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -25492,7 +25900,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -25501,7 +25911,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
@@ -25510,7 +25922,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -25519,7 +25933,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -25528,7 +25944,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -25537,7 +25955,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -25546,7 +25966,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -25555,7 +25977,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -25564,7 +25988,15 @@
         "rationale": "Reviewed 5 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "64961",
+          "65062",
+          "65271",
+          "65902",
+          "66271"
+        ]
       },
       {
         "orderId": "thanos-imperative",
@@ -25573,7 +26005,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
@@ -25582,7 +26016,38 @@
         "rationale": "Reviewed 28 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 28,
+        "sharedIds": [
+          "8014",
+          "8015",
+          "8016",
+          "8017",
+          "8018",
+          "8019",
+          "8020",
+          "8021",
+          "8022",
+          "8023",
+          "9610",
+          "6981",
+          "22130",
+          "22131",
+          "22132",
+          "50905",
+          "11972",
+          "11959",
+          "11960",
+          "11961",
+          "11962",
+          "11963",
+          "11964",
+          "6943",
+          "47961",
+          "307",
+          "371",
+          "308"
+        ]
       },
       {
         "orderId": "thanos-war",
@@ -25591,7 +26056,21 @@
         "rationale": "Reviewed 11 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 11,
+        "sharedIds": [
+          "8014",
+          "8015",
+          "8016",
+          "8017",
+          "8018",
+          "8019",
+          "8020",
+          "8021",
+          "8022",
+          "9610",
+          "6981"
+        ]
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -25600,7 +26079,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -25609,7 +26090,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "time-and-time-again",
@@ -25618,7 +26101,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -25627,7 +26112,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venom-reading-order",
@@ -25636,7 +26123,12 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "10590",
+          "42671"
+        ]
       },
       {
         "orderId": "venomverse",
@@ -25645,7 +26137,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wandavision",
@@ -25654,7 +26148,12 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "7123",
+          "7124"
+        ]
       },
       {
         "orderId": "war-of-kings",
@@ -25663,7 +26162,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -25672,7 +26173,12 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "74006",
+          "74007"
+        ]
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -25681,7 +26187,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -25690,7 +26198,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-reading-order",
@@ -25699,7 +26209,12 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "13713",
+          "13714"
+        ]
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -25708,7 +26223,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -25717,7 +26234,16 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "13726",
+          "13727",
+          "13728",
+          "13729",
+          "7113",
+          "7114"
+        ]
       },
       {
         "orderId": "x-cutioners-song",
@@ -25726,7 +26252,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
@@ -25735,7 +26263,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -25744,7 +26274,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -25753,7 +26285,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -25762,7 +26296,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-extermination",
@@ -25771,7 +26307,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-inferno",
@@ -25780,7 +26318,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -25789,7 +26329,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-nation-x",
@@ -25798,7 +26340,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
@@ -25807,7 +26351,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-schism",
@@ -25816,7 +26362,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -25825,7 +26373,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-utopia",
@@ -25834,7 +26384,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-of-swords",
@@ -25843,7 +26395,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -25852,7 +26406,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -25861,7 +26417,9 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -25870,7 +26428,65 @@
         "rationale": "Reviewed 55 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 55,
+        "sharedIds": [
+          "13691",
+          "13692",
+          "13693",
+          "13694",
+          "13695",
+          "13696",
+          "13697",
+          "13698",
+          "13699",
+          "13700",
+          "13701",
+          "13702",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708",
+          "13709",
+          "13710",
+          "13711",
+          "13712",
+          "13713",
+          "13714",
+          "13715",
+          "13716",
+          "13717",
+          "13718",
+          "13719",
+          "13720",
+          "13721",
+          "13722",
+          "13723",
+          "13724",
+          "13725",
+          "13726",
+          "13727",
+          "13728",
+          "13729",
+          "13730",
+          "13731",
+          "13732",
+          "13733",
+          "13734",
+          "13735",
+          "13736",
+          "13737",
+          "13738",
+          "13739",
+          "13740",
+          "13741",
+          "13742",
+          "13743",
+          "13744",
+          "7134"
+        ]
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -25879,10 +26495,68 @@
         "rationale": "Reviewed 55 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "sharedCount": 55,
+        "sharedIds": [
+          "13691",
+          "13692",
+          "13693",
+          "13694",
+          "13695",
+          "13696",
+          "13697",
+          "13698",
+          "13699",
+          "13700",
+          "13701",
+          "13702",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708",
+          "13709",
+          "13710",
+          "13711",
+          "13712",
+          "13713",
+          "13714",
+          "13715",
+          "13716",
+          "13717",
+          "13718",
+          "13719",
+          "13720",
+          "13721",
+          "13722",
+          "13723",
+          "13724",
+          "13725",
+          "13726",
+          "13727",
+          "13728",
+          "13729",
+          "13730",
+          "13731",
+          "13732",
+          "13733",
+          "13734",
+          "13735",
+          "13736",
+          "13737",
+          "13738",
+          "13739",
+          "13740",
+          "13741",
+          "13742",
+          "13743",
+          "13744",
+          "7134"
+        ]
       }
     ],
-    "approvalDigest": "358fd1ed5ae29eabfb7ba7c86db4e13372300e7e672d9514fd2f6120b8ad0264"
+    "approvalDigest": "3ab5a2450a348018449278aec2ab44b0da2a1d2a3e6604841ad5de2770e028ed"
   },
   "excludedSourceRows": [
     {

@@ -2,14 +2,14 @@
   "candidateId": "time-and-time-again",
   "packetDigest": "eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d",
   "mappingDigest": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4",
-  "libraryDigest": "cefa5c69e6bbc20f7e5129ccf0852a95c0d2db6274db268890af018c541d00d3",
+  "libraryDigest": "724d426b70a96bdfa865a5d5f63fca35dc074a3ecae5c5c602b46c3f634e0d7e",
   "peerDigests": {
     "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
     "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
     "spider-man-identity-crisis": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741"
   },
   "candidateCount": 8,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -594,6 +594,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -822,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8ca5e8171cd105325faf80e28875e7ad33e22bab5898feb1b37eff8cc56e64e2"
+  "reportDigest": "e04745ba82e71755ec4ea1007f951c065757bc01b53e3d0660c3f45109bccd6b"
 }

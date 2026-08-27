@@ -1,0 +1,140 @@
+{
+  "id": "marvel-knights-to-planet-x-55",
+  "name": "Punisher: Streets of Laredo",
+  "description": "Owner-curated chapter 55 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #27 through Punisher (2001) #31.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 68,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 17155,
+      "title": "Punisher (2001) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/17155/punisher_2001_27",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-05-28T00:00:00+0000",
+      "mu": "2003-05-28T00:00:00+0000",
+      "digitalId": 4779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/4bc350ea2b473",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17156,
+      "title": "Punisher (2001) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/17156/punisher_2001_28",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-06-11T00:00:00+0000",
+      "mu": "2003-06-11T00:00:00+0000",
+      "digitalId": 4780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/4bc350d23bad3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 34318,
+      "title": "Punisher (2001) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/34318/punisher_2001_29",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-07-09T00:00:00+0000",
+      "mu": "2003-07-09T00:00:00+0000",
+      "digitalId": 14405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/50b4472a24b2c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Kennedy",
+          "role": "penciler"
+        },
+        {
+          "name": "Garth Ennis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 34319,
+      "title": "Punisher (2001) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/34319/punisher_2001_30",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-08-13T00:00:00+0000",
+      "mu": "2003-08-13T00:00:00+0000",
+      "digitalId": 14406,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/50b4491780d53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Kennedy",
+          "role": "penciler"
+        },
+        {
+          "name": "Garth Ennis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 34320,
+      "title": "Punisher (2001) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/34320/punisher_2001_31",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-09-10T00:00:00+0000",
+      "mu": "2003-09-10T00:00:00+0000",
+      "digitalId": 14407,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/50b4483d085e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Kennedy",
+          "role": "penciler"
+        },
+        {
+          "name": "Garth Ennis",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

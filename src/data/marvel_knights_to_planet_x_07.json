@@ -1,0 +1,218 @@
+{
+  "id": "marvel-knights-to-planet-x-07",
+  "name": "Spider-Man: JMS Era Begins",
+  "description": "Owner-curated chapter 07 of 78 in the Marvel Knights to Planet X reading path, from Peter Parker: Spider-Man (1999) #25 through Amazing Spider-Man (1999) #35.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 12,
+    "sourceCount": 2,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 10534,
+      "title": "Peter Parker: Spider-Man (1999) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/10534/peter_parker_spider-man_1999_25",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2001-01-01T00:00:00+0000",
+      "mu": "2001-01-01T00:00:00+0000",
+      "digitalId": 2353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5bbe577ed72a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rodney Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 3583,
+      "title": "Amazing Spider-Man (1999) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-04-11T00:00:00+0000",
+      "mu": "2001-04-11T00:00:00+0000",
+      "digitalId": 71,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/50b3a4745f209",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43123,
+      "title": "Amazing Spider-Man (1999) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-05-09T00:00:00+0000",
+      "mu": "2001-05-09T00:00:00+0000",
+      "digitalId": 26316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/50b51242d631d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43125,
+      "title": "Amazing Spider-Man (1999) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/43125/amazing_spider-man_1999_32",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-06-13T00:00:00+0000",
+      "mu": "2001-06-13T00:00:00+0000",
+      "digitalId": 26320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/57a34c140a58c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43128,
+      "title": "Amazing Spider-Man (1999) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/43128/amazing_spider-man_1999_33",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-09-01T00:00:00+0000",
+      "mu": "2012-05-01T00:00:00+0000",
+      "digitalId": 26322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/57a34b04dbc2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 43130,
+      "title": "Amazing Spider-Man (1999) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-10-01T00:00:00+0000",
+      "mu": "2001-08-15T00:00:00+0000",
+      "digitalId": 26327,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/57a349c3ee333",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43132,
+      "title": "Amazing Spider-Man (1999) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2012-05-01T00:00:00+0000",
+      "digitalId": 26324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/57a34895df8f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

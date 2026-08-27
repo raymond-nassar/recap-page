@@ -1,0 +1,209 @@
+{
+  "id": "marvel-knights-to-planet-x-17",
+  "name": "Hulk: Return of the Monster",
+  "description": "Owner-curated chapter 17 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #34 through Hulk (1999) #39.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 27,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14434,
+      "title": "Hulk (1999) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/14434/hulk_1999_34",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-11-21T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5b33e946842da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14435,
+      "title": "Hulk (1999) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/14435/hulk_1999_35",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-12-19T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5b34e2d7be9d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14436,
+      "title": "Hulk (1999) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/14436/hulk_1999_36",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-01-16T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5b34f2be873fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14437,
+      "title": "Hulk (1999) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/14437/hulk_1999_37",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-02-20T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b34fdf61f368",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14438,
+      "title": "Hulk (1999) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/14438/hulk_1999_38",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-03-27T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3010,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/5b350a2740ae2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14439,
+      "title": "Hulk (1999) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/14439/hulk_1999_39",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-04-17T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5b3513a9d4a46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

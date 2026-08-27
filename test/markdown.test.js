@@ -78,6 +78,35 @@ test('ignores prose and blank lines', () => {
   assert.equal(unresolved.length, 0);
 });
 
+test('quoted source positions retain their group and expanded item spans', () => {
+  const parsed = parseChecklist([
+    '## First group',
+    '> First source row',
+    '- [ ] [One](https://www.marvel.com/comics/issue/1/one)',
+    '- [ ] Missing but counted',
+    '> Second source row',
+    '- [ ] [Two](https://www.marvel.com/comics/issue/2/two)',
+  ].join('\n'));
+
+  assert.deepEqual(parsed.sourcePositions, [
+    {
+      ordinal: 1, label: 'First source row', section: 'First group', start: 0, count: 2,
+    },
+    {
+      ordinal: 2, label: 'Second source row', section: 'First group', start: 2, count: 1,
+    },
+  ]);
+  assert.equal(parsed.entries.length, 2);
+  assert.equal(parsed.unresolved.length, 1);
+});
+
+test('ordinary checklists keep an empty additive source-position result', () => {
+  assert.deepEqual(
+    parseChecklist('- [ ] [One](https://www.marvel.com/comics/issue/1/one)').sourcePositions,
+    [],
+  );
+});
+
 test('issueIdFromUrl accepts real shapes and rejects lookalikes', () => {
   assert.equal(issueIdFromUrl('https://www.marvel.com/comics/issue/52447/slug'), 52447);
   assert.equal(issueIdFromUrl('http://marvel.com/comics/issue/1/'), 1);

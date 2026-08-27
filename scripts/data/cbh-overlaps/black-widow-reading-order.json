@@ -2,7 +2,7 @@
   "candidateId": "black-widow-reading-order",
   "packetDigest": "f52951e63428ee3d32445a7826872a349adae5a84da3326c7c5f9887667bb54e",
   "mappingDigest": "84108d9b21d817e3aba7f435f17e560a3e3073fd4aaa65de596b380a5d244e57",
-  "libraryDigest": "f21aaa9c46a70643e395188fd0c5affc7cc15d89f9124a1e667517a285cb5028",
+  "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 773,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 20
   },
   "candidateCount": 556,
-  "comparisonCount": 156,
+  "comparisonCount": 160,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -700,6 +700,48 @@
       "relationship": "none"
     },
     {
+      "orderId": "loki-reading-order",
+      "sharedCount": 11,
+      "sharedIds": [
+        "66416",
+        "66684",
+        "67022",
+        "68653",
+        "68656",
+        "67145",
+        "67147",
+        "67148",
+        "67149",
+        "67150",
+        "67151"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "magneto-reading-order",
+      "sharedCount": 17,
+      "sharedIds": [
+        "7290",
+        "7291",
+        "7292",
+        "7293",
+        "7294",
+        "7295",
+        "7296",
+        "7297",
+        "7298",
+        "7300",
+        "6923",
+        "18784",
+        "7250",
+        "7251",
+        "17788",
+        "14313",
+        "13848"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -881,6 +923,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "punisher-reading-order",
+      "sharedCount": 5,
+      "sharedIds": [
+        "67563",
+        "67564",
+        "69851",
+        "69852",
+        "69853"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
       "sharedCount": 4,
       "sharedIds": [
@@ -977,6 +1031,18 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 5,
+      "sharedIds": [
+        "66416",
+        "66684",
+        "67022",
+        "68653",
+        "68656"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "sins-of-sinister",
@@ -1285,5 +1351,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "91b9262637c45376323924259e58514aa8d0e31f0001e0a54e652663310c9a39"
+  "reportDigest": "6b73cdcdacc718351d2e4678a792632178578065393f388e7a83454fa695726f"
 }

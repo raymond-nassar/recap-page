@@ -112,6 +112,41 @@ const ORDER_FILE = 'browser_check_fixture.json';
 const ACTUAL_CATALOG = JSON.parse(
   readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
 );
+const ACTUAL_MARVEL_KNIGHTS_PARENT = JSON.parse(
+  readFileSync(new URL('../src/data/marvel_knights_to_planet_x.json', import.meta.url), 'utf8'),
+);
+
+function legacyMarvelKnightsState() {
+  const items = ACTUAL_MARVEL_KNIGHTS_PARENT.items;
+  const issues = Object.fromEntries(items.map(({ collectedIn: _collectedIn, ...item }) => [
+    item.issueId,
+    { ...item, source: 'curated' },
+  ]));
+  const collectedIn = Object.fromEntries(
+    items.filter((item) => item.collectedIn).map((item) => [item.issueId, item.collectedIn]),
+  );
+  return {
+    schemaVersion: 2,
+    issues,
+    read: { [items[0].issueId]: 1234 },
+    overrides: { [items[1].issueId]: 'available' },
+    notes: { [items[2].issueId]: 'Legacy issue note' },
+    lists: {
+      legacy: {
+        id: 'legacy',
+        name: ACTUAL_MARVEL_KNIGHTS_PARENT.name,
+        description: ACTUAL_MARVEL_KNIGHTS_PARENT.description,
+        note: 'Legacy list note',
+        created: 1234,
+        catalogId: ACTUAL_MARVEL_KNIGHTS_PARENT.id,
+        itemIds: items.map((item) => item.issueId),
+        collectedIn,
+      },
+    },
+    listOrder: ['legacy'],
+    active: 'legacy',
+  };
+}
 
 const ORDER = {
   id: 'browser-check',
@@ -1157,12 +1192,41 @@ const MUTATIONS = [
       .replace('  void runAutomaticUpdateCheck();', '  await runAutomaticUpdateCheck();'),
   },
   {
-    id: 'modern-timeline-boundary-1997',
+    id: 'modern-timeline-boundary-2000',
     breaks: 'modern-timeline-actual-data',
-    why: 'the app boundary moves back one year and admits the first excluded 1997 event',
+    why: 'the chosen opening year moves forward, so the intended 1998 chapter disappears',
     rewriteCatalog: (source) => source.replace(
       'export const MODERN_TIMELINE_START_YEAR = 1998;',
-      'export const MODERN_TIMELINE_START_YEAR = 1997;',
+      'export const MODERN_TIMELINE_START_YEAR = 2000;',
+    ),
+  },
+  {
+    id: 'modern-timeline-static-era-bounds',
+    breaks: 'modern-timeline-actual-data',
+    why: 'named eras expose their static assignment bounds again, so the visible spine starts decades before its first selected story',
+    rewriteCatalog: (source) => source
+      .replace(
+        /( {4}key: 'marvel-knights',[\s\S]*? {4}from:) 1998,/,
+        '$1 1965,',
+      )
+      .replace(/ {8}\.\.\.\(span && !era\.fallback \? span : \{\}\),\r?\n/, ''),
+  },
+  {
+    id: 'modern-timeline-extra-opening',
+    breaks: 'modern-timeline-actual-data',
+    why: 'one Marvel Ages event is admitted beside the intended 1998 opening',
+    rewriteCatalog: (source) => source.replace(
+      '(isModernTimelineChapterId(list.id) && list.timeline >= MODERN_TIMELINE_START_YEAR)',
+      "((isModernTimelineChapterId(list.id) || list.id === 'spider-man-identity-crisis') && list.timeline >= MODERN_TIMELINE_START_YEAR)",
+    ),
+  },
+  {
+    id: 'modern-timeline-stale-era-heading',
+    breaks: 'modern-timeline-actual-data',
+    why: 'the first era reverts to the historical heading that no longer describes its cards',
+    rewriteCatalog: (source) => source.replace(
+      "    heading: 'Marvel Knights to Planet X',",
+      "    heading: \"Reed Richards and Sue Storm's Wedding to Eighth Day\",",
     ),
   },
   {
@@ -2204,10 +2268,10 @@ const SCENARIOS = [
         '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check('Home recommends the setup guide and both gateways count 76 normal Reading Lists',
+      t.check('Home recommends the setup guide and both gateways count 148 normal Reading Lists',
         home.recommendation === 'Recommended start: Setup to Modern Timeline'
-        && home.homeCount === '76 Reading Lists'
-        && browseCount === '76 Reading Lists',
+        && home.homeCount === '148 Reading Lists'
+        && browseCount === '148 Reading Lists',
         JSON.stringify({ ...home, browseCount }));
       await open(page, '/?catalog=actual#/home');
       await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
@@ -2270,14 +2334,39 @@ const SCENARIOS = [
       await page.waitForSelector('#catalog-results .catalog-card');
       const timeline = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
-        const years = [...document.querySelectorAll('#catalog-results .timeline-year-label')]
-          .map((node) => Number(node.textContent.trim()));
+        const chapterCards = cards.filter((card) => (
+          /^list:marvel-knights-to-planet-x-\d{2}$/.test(card.dataset.story)
+        ));
+        const spine = [...document.querySelectorAll('#catalog-results .timeline-year-marker')]
+          .map((marker) => ({
+            year: Number(
+              marker.querySelector('.timeline-year-label')?.textContent
+              ?? marker.querySelector('[aria-hidden="true"]')?.textContent,
+            ),
+            empty: marker.classList.contains('is-empty'),
+          }));
         return {
           featureHeading: document.querySelector('#modern-timeline-feature-h')?.textContent.trim() ?? '',
           featureCopy: document.querySelector('#modern-timeline-feature p')?.textContent.trim() ?? '',
           cards: cards.length,
-          firstTitle: cards[0]?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
-          years,
+          firstCards: cards.slice(0, 3).map((card) => ({
+            title: card.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+            year: Number(card.dataset.year),
+          })),
+          cardYears: cards.map((card) => Number(card.dataset.year)),
+          chapterCards: chapterCards.length,
+          chapterYears: Object.fromEntries(
+            [1998, 1999, 2000, 2001, 2002, 2003, 2004].map((year) => [
+              year,
+              chapterCards.filter((card) => Number(card.dataset.year) === year).length,
+            ]),
+          ),
+          eras: [...document.querySelectorAll('#catalog-results .timeline-era-head')].slice(0, 2)
+            .map((head) => ({
+              heading: head.querySelector('.shelf-section-title')?.textContent.trim() ?? '',
+              copy: head.querySelector('.shelf-section-blurb')?.textContent.trim() ?? '',
+            })),
+          spine,
           setupCards: cards.filter((card) => card.dataset.story === 'list:setup-to-modern-timeline').length,
           operationCards: cards.filter((card) => card.dataset.story === 'list:operation-zero-tolerance').length,
           avengersCards: cards.filter((card) => card.dataset.story === 'list:avengers-disassembled').length,
@@ -2289,11 +2378,32 @@ const SCENARIOS = [
         && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
         && timeline.setupCards === 0,
         JSON.stringify(timeline));
-      t.check('76 selected lists render as 72 story cards with Marvel Knights first',
-        timeline.cards === 72 && timeline.firstTitle === 'Marvel Knights to Planet X',
-        JSON.stringify({ cards: timeline.cards, firstTitle: timeline.firstTitle }));
-      t.check('1997 is excluded, 1998 is included, and Avengers Disassembled remains available',
-        !timeline.years.includes(1997) && timeline.years[0] === 1998
+      t.check('148 selected lists render as 144 cards beginning with the owner chapters',
+        timeline.cards === 144
+        && timeline.chapterCards === 78
+        && JSON.stringify(timeline.firstCards) === JSON.stringify([
+          { title: 'Daredevil & Black Widow Opening Sequence', year: 1998 },
+          { title: 'Punisher: Welcome Back Frank', year: 2000 },
+          { title: 'Marvel Boy to Early X-Men Setup', year: 2000 },
+        ]),
+        JSON.stringify({ cards: timeline.cards, firstCards: timeline.firstCards }));
+      t.check('the chapter years are derived exactly and only 1999 remains empty before 2004',
+        timeline.spine[0]?.year === 1998
+        && timeline.spine.every(({ year }) => year >= 1998)
+        && JSON.stringify(timeline.chapterYears) === JSON.stringify({
+          1998: 1, 1999: 0, 2000: 2, 2001: 16, 2002: 24, 2003: 32, 2004: 3,
+        })
+        && timeline.spine
+          .filter(({ empty }) => empty)
+          .map(({ year }) => year)
+          .filter((year) => year <= 2003)
+          .join('/') === '1999',
+        JSON.stringify(timeline.spine));
+      t.check('the first era names Marvel Knights and the 2004 era explains the Avengers handoff',
+        timeline.eras[0]?.heading === 'Marvel Knights to Planet X'
+        && timeline.eras[0]?.copy.includes('Dated 1998 to 2003.')
+        && timeline.eras[1]?.heading === 'Avengers Disassembled to Civil War'
+        && timeline.eras[1]?.copy.includes('final three Planet X bridge chapters share 2004')
         && timeline.operationCards === 0 && timeline.avengersCards === 1,
         JSON.stringify(timeline));
 
@@ -2333,9 +2443,10 @@ const SCENARIOS = [
         setupCard: Boolean(document.querySelector(
           '#catalog-results [data-story="list:setup-to-modern-timeline"]',
         )),
+        emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       await click(page, '#catalog-clear');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 72);
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
         featureVisible: !document.querySelector('#modern-timeline-feature')?.hidden,
@@ -2343,11 +2454,179 @@ const SCENARIOS = [
         setupCard: Boolean(document.querySelector(
           '#catalog-results [data-story="list:setup-to-modern-timeline"]',
         )),
+        emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       t.check('search and facets rerender normal cards without removing or duplicating the feature',
         searched.featureVisible && searched.title === 'Avengers Disassembled' && !searched.setupCard
-        && filtered.featureVisible && filtered.checked !== 'all' && !filtered.setupCard,
+        && searched.emptyMarkers === 0
+        && filtered.featureVisible && filtered.checked !== 'all' && !filtered.setupCard
+        && filtered.emptyMarkers === 0,
         JSON.stringify({ searched, filtered }));
+      await page.$eval('#catalog-filters input[value="all"]', (input) => input.click());
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
+
+      await page.setViewport({ width: 320, height: 900 });
+      const denseYear = await page.evaluate(() => {
+        const heading = document.querySelector('#timeline-year-2003');
+        const row = heading?.closest('.timeline-year-row');
+        const grid = row?.querySelector('.timeline-year-cards');
+        return {
+          cards: grid?.querySelectorAll('.catalog-card').length ?? 0,
+          columns: grid ? getComputedStyle(grid).gridTemplateColumns.split(' ').length : 0,
+          overflow: document.documentElement.scrollWidth - innerWidth,
+          markerAboveCards: heading && grid
+            ? heading.getBoundingClientRect().bottom <= grid.getBoundingClientRect().top
+            : false,
+        };
+      });
+      t.check('the 32-card 2003 row stays one-column and unclipped at 320 pixels',
+        denseYear.cards === 32
+          && denseYear.columns === 1
+          && denseYear.overflow <= 1
+          && denseYear.markerAboveCards,
+        JSON.stringify(denseYear));
+      await page.setViewport({ width: 1280, height: 900 });
+
+      const representatives = [
+        {
+          id: 'marvel-knights-to-planet-x-01',
+          name: 'Daredevil & Black Widow Opening Sequence',
+          count: 21,
+          first: 'Daredevil (1998) #1',
+        },
+        {
+          id: 'marvel-knights-to-planet-x-37',
+          name: 'X-Treme X-Men: X-Pose + Schism',
+          count: 7,
+          first: 'X-Treme X-Men (2001) #19',
+        },
+        {
+          id: 'marvel-knights-to-planet-x-78',
+          name: 'Planet X Crossover Cluster',
+          count: 25,
+          first: 'New X-Men (2001) #146',
+        },
+      ];
+      const representativeResults = [];
+      for (const representative of representatives) {
+        await page.$eval('#catalog-q', (input, name) => {
+          input.value = name;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }, representative.name);
+        await page.waitForFunction(
+          (name) => document.querySelectorAll('#catalog-results .catalog-card').length === 1
+              && document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() === name,
+          { timeout: 15000 },
+          representative.name,
+        );
+        const preview = '#catalog-results .catalog-card [data-act="preview"]';
+        await page.focus(preview);
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(
+          (name) => document.querySelector('#preview')?.open
+              && document.querySelector('#preview-h')?.textContent.trim() === name,
+          {},
+          representative.name,
+        );
+        await page.waitForFunction(
+          (count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
+          { timeout: 15000 },
+          representative.count,
+        );
+        const shown = await page.evaluate(() => ({
+          count: document.querySelectorAll('#preview-body .preview-issue-link').length,
+          first: document.querySelector('#preview-body .preview-issue-link')?.textContent.trim() ?? '',
+          add: document.querySelector('#preview-add [data-act="main"]')?.textContent.trim() ?? '',
+        }));
+        await click(page, '#preview-add [data-act="main"]');
+        await page.waitForFunction(
+          (id) => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+            .some((list) => list.catalogId === id),
+          {},
+          representative.id,
+        );
+        const savedCount = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return Object.values(state.lists).find((list) => list.catalogId === id)?.itemIds.length ?? 0;
+        }, representative.id);
+        await click(page, '#preview-close');
+        await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+        representativeResults.push({ ...shown, savedCount });
+      }
+      t.check('representative first, corrected middle, and final chapters preview and save normally',
+        representativeResults.every((result, index) => (
+          result.count === representatives[index].count
+            && result.first === representatives[index].first
+            && result.add === '+ Add to library'
+            && result.savedCount === representatives[index].count
+        )),
+        JSON.stringify(representativeResults));
+      await click(page, '#catalog-clear');
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
+
+      const excluded = [
+        ['spider-man-identity-crisis', 'Spider-Man: Identity Crisis'],
+        ['hunt-for-xavier', 'The Hunt for Xavier'],
+        ['eighth-day', 'Eighth Day'],
+        ['magneto-war', 'Magneto War'],
+        ['maximum-security', 'Maximum Security'],
+      ];
+      await open(page, '/?catalog=actual#/age-marvel-knights-heroes-return');
+      await page.waitForSelector('#age-marvel-knights-heroes-return-results .catalog-card', { timeout: 15000 });
+      const excludedOnPeriod = [];
+      for (const [id, title] of excluded) {
+        const selector = `#age-marvel-knights-heroes-return-results [data-story="list:${id}"] [data-act="preview"]`;
+        const available = Boolean(await page.$(selector));
+        if (available) {
+          await click(page, selector);
+          await page.waitForSelector('#preview[open]');
+          const previewTitle = await page.$eval('#preview-h', (heading) => heading.textContent.trim());
+          await click(page, '#preview-close');
+          excludedOnPeriod.push({ id, available, title: previewTitle, expected: title });
+          continue;
+        }
+        excludedOnPeriod.push({ id, available });
+      }
+      t.check('every excluded 1998 to 2000 event remains on its direct Marvel Ages route and previews',
+        excludedOnPeriod.every(({ available, title, expected }) => available && title === expected),
+        JSON.stringify(excludedOnPeriod));
+      const periodChapters = await page.$$eval(
+        '#age-marvel-knights-heroes-return-results [data-story]',
+        (cards) => cards.filter((card) => (
+          /^list:marvel-knights-to-planet-x-\d{2}$/.test(card.dataset.story)
+        )).length,
+      );
+      const firstPeriodChapter =
+        '#age-marvel-knights-heroes-return-results [data-story="list:marvel-knights-to-planet-x-01"] [data-act="preview"]';
+      await click(page, firstPeriodChapter);
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'Daredevil & Black Widow Opening Sequence');
+      await click(page, '#preview-close');
+      t.check('Marvel Knights / Heroes Return carries and previews all 75 pre-2004 chapters',
+        periodChapters === 75, `${periodChapters} chapters`);
+
+      await open(page, '/?catalog=actual#/age-event-era');
+      await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
+      const eventEraChapters = await page.$$eval(
+        '#age-event-era-results [data-story]',
+        (cards) => cards.filter((card) => (
+          /^list:marvel-knights-to-planet-x-\d{2}$/.test(card.dataset.story)
+        )).map((card) => card.querySelector('.catalog-card-title')?.textContent.trim()),
+      );
+      await click(
+        page,
+        '#age-event-era-results [data-story="list:marvel-knights-to-planet-x-71"] [data-act="preview"]',
+      );
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'New Mutants: The Ties That Bind');
+      await click(page, '#preview-close');
+      t.check('Event Era carries the three 2004 chapters in owner tie order and previews them',
+        JSON.stringify(eventEraChapters) === JSON.stringify([
+          'New Mutants: The Ties That Bind',
+          'Spider-Man: The Book of Ezekiel',
+          'X-Treme X-Men: Storm: The Arena',
+        ]),
+        JSON.stringify(eventEraChapters));
 
       await open(page, '/?catalog=actual#/age-early-modern');
       await page.waitForSelector('#age-early-modern-results .catalog-card', { timeout: 15000 });
@@ -2376,7 +2655,7 @@ const SCENARIOS = [
         olderPreviewAvailable
         && olderDiscovery.ageTile.includes('Early Modern')
         && olderDiscovery.ageTile.includes('1991 to 1997')
-        && olderDiscovery.trackedLists === 1,
+        && olderDiscovery.trackedLists === 4,
         JSON.stringify(olderDiscovery));
       t.check('actual-data browsing sends no cross-origin request when covers are off',
         externalRequests.length === 0
@@ -2384,6 +2663,114 @@ const SCENARIOS = [
           (url) => url === 'https://marvel.emreparker.com/v1/health',
         ),
         JSON.stringify({ externalRequests, blockedExternal: olderDiscovery.blockedExternal }));
+    },
+  },
+  {
+    id: 'marvel-knights-legacy-actual-data',
+    title: 'a saved 487-issue umbrella remains intact and shares progress with an added chapter',
+    async run(page, t) {
+      const legacy = legacyMarvelKnightsState();
+      await page.evaluateOnNewDocument((state) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      }, legacy);
+      await open(page, '/?catalog=actual#/read');
+      await page.waitForFunction(() => document.querySelector('#order-name')?.textContent.trim()
+        === 'Marvel Knights to Planet X');
+
+      const loaded = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const list = state.lists.legacy;
+        return {
+          schemaVersion: state.schemaVersion,
+          name: list.name,
+          catalogId: list.catalogId,
+          note: list.note,
+          items: list.itemIds.length,
+          first: list.itemIds[0],
+          last: list.itemIds.at(-1),
+          read: Object.keys(state.read),
+          override: state.overrides[list.itemIds[1]],
+          issueNote: state.notes[list.itemIds[2]],
+          ring: document.querySelector('#ring-sub')?.textContent.trim() ?? '',
+        };
+      });
+      t.check('schema load preserves the complete legacy list and its local/global fields',
+        loaded.schemaVersion === 2
+        && loaded.name === 'Marvel Knights to Planet X'
+        && loaded.catalogId === 'marvel-knights-to-planet-x'
+        && loaded.note === 'Legacy list note'
+        && loaded.items === 487
+        && loaded.first === 15609
+        && loaded.last === 486
+        && loaded.read.join('/') === '15609'
+        && loaded.override === 'available'
+        && loaded.issueNote === 'Legacy issue note'
+        && loaded.ring === '1 of 487 read',
+        JSON.stringify(loaded));
+
+      await openFullOrder(page);
+      const rows = await page.evaluate(() => ({
+        count: document.querySelectorAll('#rows .row').length,
+        first: document.querySelector('#rows .row .rt')?.textContent.trim() ?? '',
+        last: [...document.querySelectorAll('#rows .row .rt')].at(-1)?.textContent.trim() ?? '',
+      }));
+      t.check('the legacy Full Reading List still renders every issue in order',
+        rows.count === 487
+        && rows.first === 'Daredevil (1998) #1'
+        && rows.last === 'New X-Men (2001) #156',
+        JSON.stringify(rows));
+
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
+      await page.$eval('#catalog-q', (input) => {
+        input.value = 'Daredevil & Black Widow Opening Sequence';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
+      await click(page, '#catalog-results .catalog-card [data-act="preview"]');
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim()
+          === 'Daredevil & Black Widow Opening Sequence');
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim()
+          === 'Daredevil & Black Widow Opening Sequence');
+
+      const shared = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const legacyList = state.lists.legacy;
+        const chapter = Object.values(state.lists)
+          .find((list) => list.catalogId === 'marvel-knights-to-planet-x-01');
+        return {
+          schemaVersion: state.schemaVersion,
+          listCount: state.listOrder.length,
+          legacyItems: legacyList.itemIds.length,
+          legacyCatalogId: legacyList.catalogId,
+          legacyNote: legacyList.note,
+          chapterItems: chapter?.itemIds.length ?? 0,
+          chapterRead: chapter?.itemIds.filter((id) => Object.hasOwn(state.read, id)).length ?? 0,
+          override: state.overrides[legacyList.itemIds[1]],
+          issueNote: state.notes[legacyList.itemIds[2]],
+          ring: document.querySelector('#ring-sub')?.textContent.trim() ?? '',
+        };
+      });
+      t.check('an individually added chapter shares progress without splitting or changing the umbrella',
+        shared.schemaVersion === 2
+        && shared.listCount === 2
+        && shared.legacyItems === 487
+        && shared.legacyCatalogId === 'marvel-knights-to-planet-x'
+        && shared.legacyNote === 'Legacy list note'
+        && shared.chapterItems === 21
+        && shared.chapterRead === 1
+        && shared.override === 'available'
+        && shared.issueNote === 'Legacy issue note'
+        && shared.ring === '1 of 21 read',
+        JSON.stringify(shared));
     },
   },
   {

@@ -66,6 +66,7 @@ const PACKET_FIELDS = new Set([
   'excludedSourceReferences',
   'excludedSourceRows',
   'sourceOccurrenceCount',
+  'canonicalSourcePositions',
   'repeatedSourceReferences',
   'sourceGaps',
   'expectedCount',
@@ -98,6 +99,7 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
 const REPEATED_SOURCE_REFERENCE_FIELDS = new Set([
   'sourcePosition',
   'canonicalRow',
+  'canonicalGapPosition',
   'canonicalGapSourcePosition',
   'sourceIssueReference',
   'sourceRangeReference',
@@ -186,6 +188,10 @@ function assertPacketRow(row, index) {
     throw new Error(`${label} seriesYear must be an integer`);
   }
   if (row.issueNumber != null) assertNonEmptyString(String(row.issueNumber), `${label} issueNumber`);
+  if (row.sourcePosition != null
+    && (!Number.isInteger(row.sourcePosition) || row.sourcePosition < 1)) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
   if (row.seriesId != null && !Number.isInteger(row.seriesId)) {
     throw new Error(`${label} seriesId must be an integer or null`);
   }
@@ -228,8 +234,12 @@ function assertRepeatedSourceReference(reference, index, rows) {
   const label = `Repeated source reference ${index + 1}`;
   if (!isPlainObject(reference)) throw new Error(`${label} must be an object`);
   const fields = Object.keys(reference);
-  const missing = [...REPEATED_SOURCE_REFERENCE_FIELDS]
-    .filter((field) => field !== 'canonicalRow' && field !== 'canonicalGapSourcePosition' && !Object.hasOwn(reference, field));
+  const required = [...REPEATED_SOURCE_REFERENCE_FIELDS].filter((field) => (
+    field !== 'canonicalRow'
+      && field !== 'canonicalGapPosition'
+      && field !== 'canonicalGapSourcePosition'
+  ));
+  const missing = required.filter((field) => !Object.hasOwn(reference, field));
   if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
   const unexpected = fields.filter((field) => !REPEATED_SOURCE_REFERENCE_FIELDS.has(field));
   if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
@@ -238,26 +248,36 @@ function assertRepeatedSourceReference(reference, index, rows) {
   }
 
   const hasCanonicalRow = Object.hasOwn(reference, 'canonicalRow');
-  const hasCanonicalGap = Object.hasOwn(reference, 'canonicalGapSourcePosition');
-  if (hasCanonicalRow === hasCanonicalGap) {
-    throw new Error(`${label} must name exactly one canonical row or canonical gap`);
+  const canonicalGapField = Object.hasOwn(reference, 'canonicalGapPosition')
+    ? 'canonicalGapPosition'
+    : (Object.hasOwn(reference, 'canonicalGapSourcePosition')
+      ? 'canonicalGapSourcePosition'
+      : null);
+  const hasCanonicalGap = canonicalGapField !== null;
+  if ((hasCanonicalRow ? 1 : 0) + (hasCanonicalGap ? 1 : 0) !== 1
+    || (Object.hasOwn(reference, 'canonicalGapPosition')
+      && Object.hasOwn(reference, 'canonicalGapSourcePosition'))) {
+    throw new Error(`${label} must name exactly one canonical row or source gap`);
   }
   if (hasCanonicalRow && (!Number.isInteger(reference.canonicalRow)
     || reference.canonicalRow < 1
     || reference.canonicalRow > rows.length)) {
     throw new Error(`${label} canonicalRow must name a canonical packet row`);
   }
-  if (hasCanonicalGap && (!Number.isInteger(reference.canonicalGapSourcePosition)
-    || reference.canonicalGapSourcePosition < 1)) {
-    throw new Error(`${label} canonicalGapSourcePosition must name a source gap`);
+  if (hasCanonicalGap && (!Number.isInteger(reference[canonicalGapField])
+    || reference[canonicalGapField] < 1)) {
+    throw new Error(`${label} ${canonicalGapField} must name a canonical source gap`);
   }
   assertNonEmptyString(reference.sourceIssueReference, `${label} sourceIssueReference`);
   if (reference.sourceRangeReference != null) {
     assertNonEmptyString(reference.sourceRangeReference, `${label} sourceRangeReference`);
   }
   assertNonEmptyString(reference.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
-  if (!Number.isInteger(reference.seriesYear)) {
-    throw new Error(`${label} seriesYear must be an integer`);
+  if ((!hasCanonicalGap && !Number.isInteger(reference.seriesYear))
+    || (hasCanonicalGap
+      && reference.seriesYear !== null
+      && !Number.isInteger(reference.seriesYear))) {
+    throw new Error(`${label} seriesYear must be an integer or null for a source-gap repeat`);
   }
   assertNonEmptyString(String(reference.issueNumber ?? ''), `${label} issueNumber`);
 }
@@ -380,6 +400,17 @@ export function sourcePositionsForPacket(packet) {
   const packetId = String(packet?.id ?? 'Frozen packet');
   const rows = Array.isArray(packet?.rows) ? packet.rows : [];
   assertCanonicalPacketRows(rows, packetId);
+  if (packet.canonicalSourcePositions != null
+    && typeof packet.canonicalSourcePositions !== 'boolean') {
+    throw new Error(`${packetId} canonicalSourcePositions must be a boolean when present`);
+  }
+  const declaredCanonicalPositions = rows.filter((row) => Object.hasOwn(row, 'sourcePosition')).length;
+  const rowsDeclareSourcePositions = packet.canonicalSourcePositions === true
+    || declaredCanonicalPositions === rows.length;
+  if (packet.canonicalSourcePositions === true
+    && !rows.every((row) => Object.hasOwn(row, 'sourcePosition'))) {
+    throw new Error(`${packetId} rows must either all define sourcePosition or all omit it`);
+  }
   const hasOccurrenceCount = Object.hasOwn(packet ?? {}, 'sourceOccurrenceCount');
   const hasRepeatedReferences = Object.hasOwn(packet ?? {}, 'repeatedSourceReferences');
   const hasExcludedRows = Object.hasOwn(packet ?? {}, 'excludedSourceRows');
@@ -439,6 +470,7 @@ export function sourcePositionsForPacket(packet) {
   }
   const rowIdentities = new Set(rows.map(sourceIdentityKey));
   const gapIdentities = new Set();
+  const gapsBySourcePosition = new Map();
   for (const [index, gap] of gaps.entries()) {
     assertSourceGap(gap, index);
     if (index > 0 && gap.sourcePosition <= gaps[index - 1].sourcePosition) {
@@ -456,6 +488,49 @@ export function sourcePositionsForPacket(packet) {
     }
     gapIdentities.add(identity);
     bySourcePosition.set(gap.sourcePosition, gap);
+    gapsBySourcePosition.set(gap.sourcePosition, gap);
+  }
+
+  if (rowsDeclareSourcePositions) {
+    const canonicalSourcePositions = [];
+    let previousSourcePosition = 0;
+    for (const row of rows) {
+      const sourcePosition = row.sourcePosition;
+      if (sourcePosition > packet.sourceOccurrenceCount) {
+        throw new Error(`${packetId} canonical source position ${sourcePosition} is outside the source occurrence count`);
+      }
+      if (bySourcePosition.has(sourcePosition)) {
+        throw new Error(`${packetId} source position ${sourcePosition} is used more than once`);
+      }
+      if (sourcePosition <= previousSourcePosition) {
+        throw new Error(`${packetId} canonical rows must be in sourcePosition order`);
+      }
+      bySourcePosition.set(sourcePosition, row);
+      canonicalSourcePositions.push(sourcePosition);
+      previousSourcePosition = sourcePosition;
+    }
+    if (bySourcePosition.size !== packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} source occurrence positions do not cover the source occurrence count`);
+    }
+    for (const reference of references) {
+      const canonical = Object.hasOwn(reference, 'canonicalRow')
+        ? rows[reference.canonicalRow - 1]
+        : gapsBySourcePosition.get(reference.canonicalGapPosition
+          ?? reference.canonicalGapSourcePosition);
+      if (!canonical) {
+        throw new Error(`${packetId} repeated source position ${reference.sourcePosition} must target a canonical source gap`);
+      }
+      if (canonical.sourcePosition >= reference.sourcePosition) {
+        throw new Error(`${packetId} repeated source position ${reference.sourcePosition} must target an earlier canonical identity`);
+      }
+      const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
+      for (const field of fields) {
+        if (String(reference[field]) !== String(canonical[field])) {
+          throw new Error(`${packetId} repeated source position ${reference.sourcePosition} ${field} differs from canonical row ${reference.canonicalRow}`);
+        }
+      }
+    }
+    return canonicalSourcePositions;
   }
 
   const canonicalSourcePositions = [];
@@ -465,15 +540,18 @@ export function sourcePositionsForPacket(packet) {
       canonicalSourcePositions.push(sourcePosition);
       continue;
     }
-    if (Object.hasOwn(reference, 'canonicalGapSourcePosition')) {
-      const canonical = gaps.find((gap) => gap.sourcePosition === reference.canonicalGapSourcePosition);
+    if (Object.hasOwn(reference, 'canonicalGapPosition')
+      || Object.hasOwn(reference, 'canonicalGapSourcePosition')) {
+      const canonicalGapPosition = reference.canonicalGapPosition
+        ?? reference.canonicalGapSourcePosition;
+      const canonical = gapsBySourcePosition.get(canonicalGapPosition);
       if (!canonical || canonical.sourcePosition >= sourcePosition) {
-        throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier source gap`);
+        throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier canonical source gap`);
       }
       const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
       for (const field of fields) {
         if (String(reference[field]) !== String(canonical[field])) {
-          throw new Error(`${packetId} repeated source position ${sourcePosition} ${field} differs from source gap ${canonical.sourcePosition}`);
+          throw new Error(`${packetId} repeated source position ${sourcePosition} ${field} differs from canonical source gap ${canonicalGapPosition}`);
         }
       }
       continue;
@@ -647,7 +725,12 @@ export function approvalDigestFor(relationshipReview) {
 export function libraryDigestFor(manifest, orderIssueIds) {
   const reviewedManifest = {
     ...manifest,
-    lists: manifest.lists.map(({ spotlightKind: _spotlightKind, ...entry }) => entry),
+    lists: manifest.lists.map(({
+      spotlightKind: _spotlightKind,
+      partitionFile: _partitionFile,
+      catalog: _catalog,
+      ...entry
+    }) => entry),
   };
   return digestCanonicalJson({ manifest: reviewedManifest, orderIssueIds });
 }

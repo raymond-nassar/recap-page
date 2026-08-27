@@ -2,13 +2,13 @@
   "candidateId": "kravens-last-hunt",
   "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
   "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-  "libraryDigest": "a99980983f52ba8017ec642b6150ae63906c74e170c6c0776cead81ddc1f22ce",
+  "libraryDigest": "d8a6e203e4ea52cd19b78f68d9171cdc2427f36786d7410e5cceade233dbed5f",
   "peerDigests": {
     "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
     "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
   },
   "candidateCount": 7,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -587,6 +587,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -828,5 +834,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "01c886829cb37f1c8fab8f16817ff5e22000d2a001fbd26843bb56832be6274c"
+  "reportDigest": "d75e02e384416a4295bb227e1e7f84741acbe36800e0a163e3f5022d3cc90c8e"
 }

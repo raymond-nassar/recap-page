@@ -347,10 +347,10 @@
     "coverIssueId": 12027
   },
   "relationshipReview": {
-    "reportDigest": "01c886829cb37f1c8fab8f16817ff5e22000d2a001fbd26843bb56832be6274c",
+    "reportDigest": "d75e02e384416a4295bb227e1e7f84741acbe36800e0a163e3f5022d3cc90c8e",
     "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
     "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-    "libraryDigest": "a99980983f52ba8017ec642b6150ae63906c74e170c6c0776cead81ddc1f22ce",
+    "libraryDigest": "d8a6e203e4ea52cd19b78f68d9171cdc2427f36786d7410e5cceade233dbed5f",
     "peerDigests": {
       "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
       "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
@@ -1413,6 +1413,17 @@
         "reviewedAt": "2026-08-26T15:28:54.251Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b03 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:54.251Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -1855,6 +1866,6 @@
     "authorityIdentity": "MRT-003-C02-B03 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the five named Secret Wars, Spider-Man, Captain America, and X-Men relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:54.251Z",
-    "approvalDigest": "8f3ffbcbabff9bd21107fc152b2ed6a4be55577af9d8907452758fa70a0a40fa"
+    "approvalDigest": "ad1c5ba025a3f80d51b45103f7c56f32b233d51ea0c5f81fe6f557056a02220f"
   }
 }

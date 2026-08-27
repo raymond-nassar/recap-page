@@ -36,10 +36,12 @@ App launch, or selecting the brand lockup in the sidebar.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
 - The recommended-start action opens Preview from Home without changing the URL or local state.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
-  claim. Its 76 Reading Lists dated 1998 or later appear as 72 grouped normal story cards.
+  claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
+  in 2004. Its 71 Reading Lists appear as 67 grouped normal story cards.
 - Setup to Modern Timeline is featured above the normal Modern Timeline cards through the same
   Preview flow. It is not duplicated as a card and is not included in the timeline count.
-- Pre-1998 events remain available through Marvel Ages and existing direct addresses.
+- Events outside that guided sequence remain available through Marvel Ages and existing direct
+  addresses.
 - Preview's existing Add control can complete the first add from Home. Failures target the Home
   gateway, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
@@ -56,8 +58,8 @@ App launch, or selecting the brand lockup in the sidebar.
    across those shelves without changing where a story is filed.
 5. **State-aware.** Returning readers keep continuation and saved progress ahead of discovery.
 6. **Offline-first.** Availability is derived from the bundled catalogue.
-7. **A recommendation is optional.** Setup to Modern Timeline prepares a reader for the 1998-plus
-   path, but it is not the only valid beginner start.
+7. **A recommendation is optional.** Setup to Modern Timeline prepares a reader for the guided
+   sequence, but it is not the only valid beginner start.
 
 ## Accessibility Requirements
 - [ ] Each category group is a list and each tile is one native button

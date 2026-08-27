@@ -1,0 +1,150 @@
+{
+  "id": "marvel-knights-to-planet-x-09",
+  "name": "Exiles Launch",
+  "description": "Owner-curated chapter 09 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #1 through Exiles (2001) #4.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 15,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 4673,
+      "title": "Exiles (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4673/exiles_2001_1",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-06-06T00:00:00+0000",
+      "mu": "2001-06-06T00:00:00+0000",
+      "digitalId": 592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/4bc37e0080808",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 16260,
+      "title": "Exiles (2001) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/16260/exiles_2001_2",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-07-04T00:00:00+0000",
+      "mu": "2001-07-04T00:00:00+0000",
+      "digitalId": 4004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/4bc35d8366408",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16271,
+      "title": "Exiles (2001) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16271/exiles_2001_3",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-08-01T00:00:00+0000",
+      "mu": "2001-08-01T00:00:00+0000",
+      "digitalId": 4005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5d4468522d49a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16282,
+      "title": "Exiles (2001) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16282/exiles_2001_4",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-09-05T00:00:00+0000",
+      "mu": "2001-09-05T00:00:00+0000",
+      "digitalId": 4006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d446e4be74a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

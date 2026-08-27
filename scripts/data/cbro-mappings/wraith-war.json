@@ -520,10 +520,10 @@
     "coverIssueId": 9107
   },
   "relationshipReview": {
-    "reportDigest": "dbfd5c3af1cb2bca9e6bde561935b75b54517f55a397d29c4267a722da6fede1",
+    "reportDigest": "7317741a6ecaf5b1c542b1241c8a7cb7d45647738ae96e2c8d8f434cb8af15ee",
     "packetDigest": "724e37c0091298acd6a54cc0b576604686fd03ae0f9782b810043022b6511237",
     "mappingDigest": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954",
-    "libraryDigest": "9e20d84f6fd8c9eeed2ce136b1f1019681aaceec7aed5eece912eb8da3560e1a",
+    "libraryDigest": "e74ef5c54a1995a38427f499be01ba19c0f8f4ca3d9d025114f2c94867ba7734",
     "peerDigests": {
       "mutant-massacre": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
       "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1"
@@ -1597,6 +1597,17 @@
         "reviewedAt": "2026-08-26T15:28:55.194Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b04 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:55.194Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -2031,6 +2042,6 @@
     "authorityIdentity": "MRT-003-C02-B04 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:55.194Z",
-    "approvalDigest": "f9ccf266776d9e4327677eca3c61a21c6ba82e705a0354de4e3b4a9e420c5657"
+    "approvalDigest": "dd44efa96ba1e3b77c9509087b4a314239831cc6ed512dc2d19de96a79bc8ca4"
   }
 }

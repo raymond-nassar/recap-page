@@ -18,6 +18,53 @@ quote in a bug report.
 
 In plain English: A new Black Widow guide follows Natasha Romanoff's comics from her earliest appearances through the latest source-page additions. It has exact Marvel links for 556 comics, while 14 source references stay visible as unresolved placeholders rather than being guessed at or hidden. Nothing you have saved is changed.
 
+### Split Marvel Knights to Planet X into shorter Reading Lists
+
+In plain English: Modern Timeline now offers the owner-curated Marvel Knights to Planet X journey
+as 78 shorter Reading Lists from 1998 through 2004 instead of one 487-issue list. Each chapter can
+be previewed, added and tracked on its own, while the separate setup guide and other Marvel Ages
+lists stay where they were. Any copy of the former full list already saved in this browser remains
+unchanged, including its progress.
+
+For maintainers: one noncatalog partition parent and one checked ledger generate all 78 payloads,
+their owner-order path and current overlap evidence. The children conserve all 99 source positions
+and 487 unique issue IDs exactly.
+
+### Added a complete Loki reading guide
+
+In plain English: A complete Loki reading guide is now available from the character's earliest
+stories through the latest additions. Eighteen comics whose metadata could not be verified remain
+visible as placeholders, so the reading order never guesses or loses their place. Nothing you have
+saved is changed.
+
+For maintainers: the source expands to 830 occurrences: 638 exact issue rows, 53 repeats, 18
+metadata gaps tracked in Issue #302, and 121 exclusions.
+
+### Added a complete Magneto reading guide
+
+In plain English: You can now follow Magneto stories from his earliest X-Men appearances through
+modern stories. The guide has 695 linked comics, while 58 source recommendations that could not be
+identified safely from the local records remain visible as unresolved entries rather than being
+guessed at or hidden. Repeated recommendations appear only once, and nothing you have saved changes.
+
+For maintainers: the frozen cache-only source record retains all 811 positions: 695 exact identities,
+47 repeated references, 58 provider-complete gaps, and 11 prose exclusions. The complete-library
+comparison covers 157 other guides: 10 existing-subset relationships, 38 partial relationships, and
+109 with no shared issues.
+
+### Corrected Punisher source details
+
+In plain English: Five unresolved Punisher Presents: Barracuda MAX entries now identify their 2007
+series correctly. The reading guide keeps them as placeholders until exact metadata is available,
+and nothing you have saved is changed.
+
+### Added a complete Punisher reading guide
+
+In plain English: You can now follow 480 Punisher comics from his earliest appearances through the
+latest additions. The guide keeps 158 comics that the metadata source cannot identify as clear
+placeholders instead of guessing or dropping them, and it keeps repeated source mentions from
+duplicating comics in your Reading List. Nothing you have saved is changed.
+
 ### Added a complete Captain Marvel reading guide
 
 In plain English: A new Captain Marvel and Ms. Marvel guide follows the source page from the
@@ -59,12 +106,12 @@ remain plain text, and stale issue context falls back without guessing at browse
 
 In plain English: Modern Timeline now starts in 1998, a boundary chosen for this app rather than an
 official Marvel era. Empty Home recommends Setup to Modern Timeline, and that same guide is featured
-above the timeline through Preview without being duplicated or counted as a normal card. The 76
-included Reading Lists appear as 72 grouped story cards, beginning with Marvel Knights to Planet X.
-Earlier events remain available through Marvel Ages and their existing addresses, and nothing you
-have saved is changed.
+above the timeline through Preview without being duplicated or counted as a normal card. The 71
+included Reading Lists appear as 67 grouped story cards, beginning with Marvel Knights to Planet X
+and continuing with Avengers Disassembled. Other events remain available through Marvel Ages and
+their existing addresses, and nothing you have saved is changed.
 
-For maintainers: Home, Browse, and Modern Timeline share pure catalog selectors for the 1998-plus
+For maintainers: Home, Browse, and Modern Timeline share pure catalog selectors for the guided
 subset. Canonical shelves and Marvel Ages remain unchanged. Modern Timeline era descriptions alone
 use their full box width, including narrow, zoomed, keyboard, and forced-colors conditions.
 

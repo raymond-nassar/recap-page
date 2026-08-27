@@ -2862,23 +2862,12 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "ce8922b3bc912a428a73312aa7af2d2610ddcbfb5406188a0e67dc8166444077",
+    "reportDigest": "4ad58d47b49d975782eae632559c8174c73d1a82e969aba038352be87beed150",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "624fc1afcbc6ebbe86dd5a2402916b7820d60742185bd60c7b21de8fbfaa5882",
+    "libraryDigest": "675878b33ab7659dfd47da4d1232a7ada701752c560081af323014c01b998366",
     "peerDigests": {},
     "dispositions": [
-      {
-        "orderId": "abomination-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -2889,17 +2878,6 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "age-of-x-man",
@@ -2917,17 +2895,6 @@
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -2955,17 +2922,6 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No shared issue needs an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C05 coordinator",
-        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "apocalypse-wars",
@@ -3057,17 +3013,6 @@
       },
       {
         "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
@@ -3230,15 +3175,6 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "deadpool-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "repository publication policy",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -3460,17 +3396,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
@@ -4042,17 +3967,6 @@
         "sharedIds": []
       },
       {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
-        "authorityType": "policy",
-        "authorityIdentity": "mrt-003 none-overlap policy",
-        "reviewedAt": "2026-08-23"
-      },
-      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -4073,6 +3987,22 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "sharedCount": 4,
+        "sharedIds": [
+          "36644",
+          "36647",
+          "36646",
+          "36645"
+        ],
+        "decision": "approved",
+        "rationale": "The 4 shared issues with Silver Surfer are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "sins-of-sinister",
@@ -4112,17 +4042,6 @@
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -4284,17 +4203,6 @@
         "sharedIds": []
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
@@ -4304,28 +4212,6 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "wandavision",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "10 shared issues were reviewed; both source sequences remain intact.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-004 coordinator",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 10,
-        "sharedIds": [
-          "71433",
-          "71435",
-          "71436",
-          "71437",
-          "71438",
-          "71439",
-          "71440",
-          "71441",
-          "71442",
-          "71987"
-        ]
       },
       {
         "orderId": "war-of-kings",
@@ -4378,15 +4264,6 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -4543,17 +4420,6 @@
         "sharedIds": []
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -4613,6 +4479,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "8084eff86be8311d24262506e714b53e07edfd557aa3cca3fee3dfa873bf9499"
+    "approvalDigest": "94716125fbccc9022d92d773455dca6115917a372e2362e5e5c16ae54288fddf"
   }
 }

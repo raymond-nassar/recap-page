@@ -237,10 +237,10 @@
     "coverIssueId": 8702
   },
   "relationshipReview": {
-    "reportDigest": "2e1627d21076de40d52b1cf9579e7469547029ea415762a59b1649abf3fc1d37",
+    "reportDigest": "a4115e4661b9b0df0fdb2a93c82c466f685de2cbf004086a6087cca4711d65f8",
     "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b",
     "mappingDigest": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
-    "libraryDigest": "ee5f3645a0e1b4689a10fd7a68e32becac16a03d7d60eaaf482255a1c1c9bcee",
+    "libraryDigest": "928cb903929b41151006d9ee67083831b72d67c81a75cb2f9a900099ab514e44",
     "peerDigests": {
       "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
       "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
@@ -1304,6 +1304,17 @@
         "reviewedAt": "2026-08-26T15:28:56.020Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b05 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:56.020Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -1739,6 +1750,6 @@
     "authorityIdentity": "MRT-003-C02-B05 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:56.020Z",
-    "approvalDigest": "7cb621d3842e3acc7b1df887eeaf809ab87deff12ec8dbccebe05e3c7483d86f"
+    "approvalDigest": "349569495fd7378433cca3219cdcd145f5a92c09f78181c9e976cd0b89c6cdf6"
   }
 }

@@ -847,10 +847,10 @@
     "coverIssueId": 22754
   },
   "relationshipReview": {
-    "reportDigest": "5f47e4ab431866c1b86943c043ea550d665cf3593639d0085e133d27e1e6fd2e",
+    "reportDigest": "83fabe5a43035bd065f6732ec1257c82816f3643bd6672f25d8d2e80b7f5cf89",
     "packetDigest": "a132a3a3661900f6a5e81e9d7bc505df833a9d85cedfcc114a2b354aba637ec2",
     "mappingDigest": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
-    "libraryDigest": "cefa5c69e6bbc20f7e5129ccf0852a95c0d2db6274db268890af018c541d00d3",
+    "libraryDigest": "724d426b70a96bdfa865a5d5f63fca35dc074a3ecae5c5c602b46c3f634e0d7e",
     "peerDigests": {
       "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
       "spider-man-identity-crisis": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
@@ -1914,6 +1914,17 @@
         "reviewedAt": "2026-08-26T15:28:58.606Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b08 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:58.606Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -2349,6 +2360,6 @@
     "authorityIdentity": "MRT-003-C02-B08 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Phalanx Covenant subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-26T15:28:58.606Z",
-    "approvalDigest": "ddd1716facce070a8c086fbae4493569e57bae3e10351d9e67a7245a22c5a173"
+    "approvalDigest": "dc9fef58b9cadcedbcd7329bc198750c4e2a7a8f279970cfd6f1cfdc09a90d95"
   }
 }

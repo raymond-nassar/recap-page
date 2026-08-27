@@ -2,14 +2,14 @@
   "candidateId": "days-of-future-present",
   "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b",
   "mappingDigest": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
-  "libraryDigest": "ee5f3645a0e1b4689a10fd7a68e32becac16a03d7d60eaaf482255a1c1c9bcee",
+  "libraryDigest": "928cb903929b41151006d9ee67083831b72d67c81a75cb2f9a900099ab514e44",
   "peerDigests": {
     "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
     "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
     "inferno": "cd50d51c12c4161c2f9c9ad076159f9222fbf4030c8a3318dd94341db0084fca"
   },
   "candidateCount": 4,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -588,6 +588,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -822,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "2e1627d21076de40d52b1cf9579e7469547029ea415762a59b1649abf3fc1d37"
+  "reportDigest": "a4115e4661b9b0df0fdb2a93c82c466f685de2cbf004086a6087cca4711d65f8"
 }

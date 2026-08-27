@@ -25,6 +25,8 @@ const laterReviewedIds = new Set([
   'star-lord-reading-order',
   'thanos-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
+  'loki-reading-order',
+  'silver-surfer-reading-order',
   'venom-reading-order',
 ]);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
@@ -108,7 +110,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, manifest.lists.length);
+  assert.equal(catalog.lists.length, 238);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(

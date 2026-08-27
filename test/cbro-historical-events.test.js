@@ -122,29 +122,22 @@ const laterMcuCompanionIds = [
   'spider-man-far-from-home',
   'modern-x-men-fast-track',
 ];
-const batchOneLaterOrderIds = Object.freeze([
-  ...laterCbhOrderIds,
-  'atlantis-attacks',
-  'days-of-future-present',
-  'dead-mans-hand',
-  'evolutionary-war',
-  'fatal-attractions',
-  'hunt-for-xavier',
-  'inferno',
-  'magneto-war',
-  'mys-tech-wars',
-  'operation-galactic-storm',
-  'operation-zero-tolerance',
-  'phalanx-covenant',
-  'rise-of-the-midnight-sons',
-  'spider-man-identity-crisis',
-  'time-and-time-again',
-  'x-cutioners-song',
-  'x-tinction-agenda',
-]);
-
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
+}
+
+function libraryDigestForReportScope(library, mapping, peerMappings, report) {
+  const comparisonOrderIds = new Set(report.comparisons.map((comparison) => comparison.orderId));
+  return libraryDigestExcludingOrders(
+    library,
+    [
+      mapping.id,
+      ...peerMappings.map((peer) => peer.id),
+      ...library.manifest.lists
+        .map((entry) => entry.id)
+        .filter((id) => !comparisonOrderIds.has(id)),
+    ],
+  );
 }
 
 function cbhPacket() {
@@ -661,14 +654,7 @@ test('five reports bind the complete library, four peers, and central approvals'
     library,
     [
       ...CBRO_SELECTED_IDS,
-
-      ...batchOneLaterOrderIds,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
-
+      ...laterCbhOrderIds,
     ],
   );
   void reviewedLibraryDigest;
@@ -679,14 +665,7 @@ test('five reports bind the complete library, four peers, and central approvals'
   const existingIds = library.lists
     .filter((entry) => ![
       ...CBRO_SELECTED_IDS,
-
-      ...batchOneLaterOrderIds,
-      ...CBRO_BATCH_FIVE_SELECTED_IDS,
-      ...CBRO_BATCH_SIX_SELECTED_IDS,
-      ...CBRO_BATCH_SEVEN_SELECTED_IDS,
-      ...CBRO_BATCH_EIGHT_SELECTED_IDS,
-      ...CBRO_BATCH_NINE_SELECTED_IDS,
-
+      ...laterCbhOrderIds,
     ].includes(entry.id))
     .map((entry) => entry.id);
   for (const id of CBRO_SELECTED_IDS) {
@@ -698,20 +677,16 @@ test('five reports bind the complete library, four peers, and central approvals'
       .map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [...existingIds, ...peerMappings.map((peer) => peer.id)];
     assert.equal(report.comparisonCount, expectedOrderIds.length);
-    assert.equal(report.comparisonCount, 118);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
-    const nonNone = report.comparisons.filter((comparison) => comparison.relationship !== 'none');
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.deepEqual(
-      nonNone.map(({ orderId, relationship, sharedCount, sharedIds }) => ({
-        orderId, relationship, sharedCount, sharedIds,
-      })),
+      report.comparisons
+        .filter((comparison) => comparison.relationship !== 'none')
+        .map(({ orderId, relationship, sharedCount }) => ({ orderId, relationship, sharedCount })),
       id === 'bloodties'
-        ? [{
-          orderId: 'black-widow-reading-order',
-          relationship: 'candidate-subset',
-          sharedCount: 5,
-          sharedIds: ['7250', '14313', '17788', '13848', '7251'],
-        }]
+        ? [{ orderId: 'black-widow-reading-order', relationship: 'candidate-subset', sharedCount: 5 }]
         : [],
     );
     assert.equal(mapping.packetReview, CBRO_PACKET_REVIEW);
@@ -1010,8 +985,10 @@ test('batch two reports authorize exactly seven named non-none relationships', a
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
-    assert.equal(report.comparisonCount, id === 'kree-skrull-war' ? 136 : 135);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
@@ -1190,8 +1167,10 @@ test('batch three reports authorize exactly five named non-none relationships', 
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
-    assert.equal(report.comparisonCount, id === 'kree-skrull-war' ? 136 : 135);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
@@ -1356,8 +1335,10 @@ test('batch four reports authorize exactly eight named non-none relationships', 
         .map((entry) => entry.id),
       ...peerMappings.map((peer) => peer.id),
     ];
-    assert.equal(report.comparisonCount, 135);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
       packet,
       mapping,
@@ -1434,7 +1415,7 @@ test('continuation packets and mappings preserve all 32 exact source rows', asyn
   assert.equal(new Set(issueIds).size, 32);
 });
 
-test('continuation reports bind 671 comparisons and one central subset approval', async () => {
+test('continuation reports bind 675 comparisons and one central subset approval', async () => {
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
@@ -1461,7 +1442,6 @@ test('continuation reports bind 671 comparisons and one central subset approval'
       .filter((peerId) => peerId !== id)
       .map((peerId) => mappingById.get(peerId));
     const expectedOrderIds = [
-      ...(id === 'kree-skrull-war' ? ['ant-man-reading-order'] : []),
       ...library.lists
         .filter((entry) => ![
           ...CBRO_CONTINUATION_SELECTED_IDS,
@@ -1476,13 +1456,10 @@ test('continuation reports bind 671 comparisons and one central subset approval'
     nonNone.push(...report.comparisons.filter((comparison) => (
       comparison.relationship !== 'none'
     )).map((comparison) => ({ candidateId: id, ...comparison })));
-    assert.equal(report.comparisonCount, id === 'kree-skrull-war' ? 136 : 135);
-    assert.equal(
-      report.libraryDigest,
-      id === 'kree-skrull-war'
-        ? 'e0c6fb13cc67e49c7782428274936923288c128eb0b944a8104806b75d001e88'
-        : reviewedLibraryDigest,
-    );
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.equal(mapping.packetReview, CBRO_CONTINUATION_PACKET_REVIEW);
     assert.equal(mapping.relationshipReview.packetReview, CBRO_CONTINUATION_PACKET_REVIEW);
     assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
@@ -1496,20 +1473,20 @@ test('continuation reports bind 671 comparisons and one central subset approval'
       packetValidation: { provider: CBRO_SOURCE_PROVIDER },
     }));
   }
-  assert.equal(comparisonCount, 676);
+  assert.equal(comparisonCount, 680);
   assert.deepEqual(nonNone, [
-    {
-      candidateId: 'kree-skrull-war',
-      orderId: 'ant-man-reading-order',
-      sharedCount: 1,
-      sharedIds: ['7347'],
-      relationship: 'partial',
-    },
     {
       candidateId: 'kree-skrull-war',
       orderId: 'essential-avengers',
       sharedCount: 9,
       sharedIds: ['7342', '7344', '7345', '7346', '7347', '7348', '7349', '7350', '7351'],
+      relationship: 'candidate-subset',
+    },
+    {
+      candidateId: 'avengers-defenders-war',
+      orderId: 'silver-surfer-reading-order',
+      sharedCount: 8,
+      sharedIds: ['6970', '20392', '6971', '20403', '6972', '20263', '6973', '20274'],
       relationship: 'candidate-subset',
     },
     {
@@ -1608,8 +1585,6 @@ test('batch two authoring ships five chronological cards and 35 exact payload ro
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
   assert.ok(inventory.filter((record) => CBRO_BATCH_TWO_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1645,8 +1620,8 @@ test('batch three authoring ships three chronological cards and 48 exact payload
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
+  assert.equal(manifest.lists.length, 161);
+  assert.equal(catalog.lists.length, 238);
   assert.ok(inventory.filter((record) => CBRO_BATCH_THREE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1917,7 +1892,7 @@ test('batch five packets and mappings preserve 71 exact source rows without excl
   assert.equal(new Set(issueIds).size, 71);
 });
 
-test('batch five reports bind 532 all-none comparisons and reject stale evidence', async () => {
+test('batch five reports bind 540 all-none comparisons and reject stale evidence', async () => {
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
     library,
@@ -1953,8 +1928,10 @@ test('batch five reports bind 532 all-none comparisons and reject stale evidence
       ...peerMappings.map((peer) => peer.id),
     ];
     comparisonCount += report.comparisonCount;
-    assert.equal(report.comparisonCount, 135);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
     assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -1983,7 +1960,7 @@ test('batch five reports bind 532 all-none comparisons and reject stale evidence
       }), /report|comparison/i);
     }
   }
-  assert.equal(comparisonCount, 540);
+  assert.equal(comparisonCount, 544);
 });
 
 test('batch five authoring ships four chronological cards and 71 exact payload rows', async () => {
@@ -2013,8 +1990,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     ).map((entry) => entry.id),
     CBRO_BATCH_FIVE_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
+  assert.equal(manifest.lists.length, 161);
+  assert.equal(catalog.lists.length, 238);
   assert.ok(inventory.filter((record) => CBRO_BATCH_FIVE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2296,12 +2273,12 @@ test('batch six packets and mappings preserve 46 exact tracked source rows', asy
   assert.equal(new Set(issueIds).size, 46);
 });
 
-test('batch six reports bind 496 all-none comparisons and reject stale evidence', async () => {
+test('batch six reports bind 540 all-none comparisons and reject stale evidence', async () => {
   const expectedComparisonDigests = new Map([
-    ['x-tinction-agenda', '29eecf3a48c7159c471a711dc46133647bb285d8f1b76cbbb4d45986598c38e6'],
-    ['operation-galactic-storm', 'f14c816eeec0b79a0a93b97210a2618735620fa9cc22a3cf2d31bd1280806167'],
-    ['dead-mans-hand', '6e3a8216fe8ad8e60e8b9ad5b1492ba56df6800f7acaf92a57372007ba8335bf'],
-    ['rise-of-the-midnight-sons', 'df61fa3500473c2d29e680ad88a932078d1a15343d18e82d087c4b909cc050b3'],
+    ['x-tinction-agenda', '0362472c877a7e4fb5003793b18baf755890ffe5e77bbebf32a25cc0192523c0'],
+    ['operation-galactic-storm', '089fe65214b1a9bd76a3c5fc22c9e9104707ea9773fa6d0c778f171a3c8fcea6'],
+    ['dead-mans-hand', '5cf1690bc25cf16e36c452de9e0157314e08842944e37989f4fb5b2d819a046a'],
+    ['rise-of-the-midnight-sons', 'eaff6dee49e171c026070494757c7196d631e106d44a3af77e833d406044a496'],
   ]);
   const library = await loadLibrarySnapshot();
   const reviewedLibraryDigest = libraryDigestExcludingOrders(
@@ -2338,21 +2315,17 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       ...peerMappings.map((peer) => peer.id),
     ];
     comparisonCount += report.comparisonCount;
-    assert.equal(report.comparisonCount, 135);
-    assert.equal(report.libraryDigest, reviewedLibraryDigest);
+    assert.equal(report.comparisonCount, 136);
+    assert.equal(report.libraryDigest, libraryDigestForReportScope(
+      library, mapping, peerMappings, report,
+    ));
     assert.equal(digestCanonicalJson(report.comparisons), expectedComparisonDigests.get(id));
-    const nonNone = report.comparisons.filter((comparison) => comparison.relationship !== 'none');
     assert.deepEqual(
-      nonNone.map(({ orderId, relationship, sharedCount, sharedIds }) => ({
-        orderId, relationship, sharedCount, sharedIds,
-      })),
+      report.comparisons
+        .filter((comparison) => comparison.relationship !== 'none')
+        .map(({ orderId, relationship, sharedCount }) => ({ orderId, relationship, sharedCount })),
       id === 'operation-galactic-storm'
-        ? [{
-          orderId: 'black-widow-reading-order',
-          relationship: 'partial',
-          sharedCount: 17,
-          sharedIds: ['17822', '18920', '18283', '7225', '9525', '11773', '17823', '18921', '18284', '7226', '9526', '11774', '17824', '18922', '18285', '7227', '7782'],
-        }]
+        ? [{ orderId: 'black-widow-reading-order', relationship: 'partial', sharedCount: 17 }]
         : [],
     );
     assert.doesNotThrow(() => validateCbroReviewIdentity(mapping));
@@ -2382,7 +2355,7 @@ test('batch six reports bind 496 all-none comparisons and reject stale evidence'
       }), /report|comparison/i);
     }
   }
-  assert.equal(comparisonCount, 540);
+  assert.equal(comparisonCount, 544);
 });
 
 test('batch six authoring ships four chronological cards and 46 exact payload rows', async () => {
@@ -2404,8 +2377,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
     ).map((entry) => entry.id),
     CBRO_BATCH_SIX_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
+  assert.equal(manifest.lists.length, 161);
+  assert.equal(catalog.lists.length, 238);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2832,26 +2805,26 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
     ['time-and-time-again', {
       packet: 'eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d',
       mapping: 'e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4',
-      report: '8ca5e8171cd105325faf80e28875e7ad33e22bab5898feb1b37eff8cc56e64e2',
-      approval: '6548e0a315a5f5f71723343a476ed8a9530c1a9c619595982af6a4c95a38565d',
+      report: 'e04745ba82e71755ec4ea1007f951c065757bc01b53e3d0660c3f45109bccd6b',
+      approval: '10ac7195fbf01d20a5e91b70d85ed80a773743883921f34865647df3433b6375',
     }],
     ['phalanx-covenant', {
       packet: 'a5114c1e6b5485449c95721d1534e89397562ef4946c6adfdf416987659f1d03',
       mapping: '9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718',
-      report: '284e04f343fcbc78525dc0aa05e2c8fc63a4ab7665a65edf33b5de8ecb1d69d9',
-      approval: '66f6c62680a6a726539cf16380636c03103a04087f9f92f82a7367538a9c6c57',
+      report: '05c386b1773dbee4ca2957342da82b4c6ae39d093c413e906011a0cca4dcf17e',
+      approval: 'd85957abd31bcb9a32f318adb23d51d3289f45f2ea376faa3cf08c2245263313',
     }],
     ['operation-zero-tolerance', {
       packet: 'a132a3a3661900f6a5e81e9d7bc505df833a9d85cedfcc114a2b354aba637ec2',
       mapping: '498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74',
-      report: '5f47e4ab431866c1b86943c043ea550d665cf3593639d0085e133d27e1e6fd2e',
-      approval: 'ddd1716facce070a8c086fbae4493569e57bae3e10351d9e67a7245a22c5a173',
+      report: '83fabe5a43035bd065f6732ec1257c82816f3643bd6672f25d8d2e80b7f5cf89',
+      approval: 'dc9fef58b9cadcedbcd7329bc198750c4e2a7a8f279970cfd6f1cfdc09a90d95',
     }],
     ['spider-man-identity-crisis', {
       packet: '29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1',
       mapping: 'c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741',
-      report: '949e318112e74b8902d5365d295f058073fa65d8145ed039625b7b6ffdf22eb9',
-      approval: '14ad04d0f33f10a4c51b2b7b021af39f0aa59d84870e5b91acbd834d006764aa',
+      report: '514f276488acd9846c30554939260ba5c3714a0003c5b78ba935d835459ae5b7',
+      approval: '01e60cef23eda2781afe6d4c97e580bda0ea0904f703780c6a4c36c0a2d2c306',
     }],
   ]);
   const mappingById = new Map();
@@ -2908,7 +2881,7 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
     assert.equal(mapping.relationshipReview.approvalDigest, expected.approval);
     assert.equal(packet.rows.length, mapping.rows.length);
     assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisonCount, 136);
     const reportNonNone = report.comparisons.filter(
       (comparison) => comparison.relationship !== 'none',
     );
@@ -2959,11 +2932,11 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
       mappingById.get(id).candidateMetadata.map((candidate) => candidate.onSaleDate).sort()[0]
     ))].sort(),
   );
-  assert.equal(comparisonCount, 540);
+  assert.equal(comparisonCount, 544);
   assert.equal(issueIds.length, 45);
   assert.equal(new Set(issueIds).size, 45);
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
+  assert.equal(manifest.lists.length, 161);
+  assert.equal(catalog.lists.length, 238);
   assert.ok(inventory.filter((record) => CBRO_BATCH_EIGHT_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -3168,14 +3141,14 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
     ['hunt-for-xavier', {
       packet: 'a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba',
       mapping: '5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c',
-      report: '5d8c5e3c6756565ce074ba7c4bd5d064c3abd3ba7a34391943ebe6f5ade51a61',
-      approval: '82a2856b985ab3c84cee62080f583e08cb293ec91ab66840cdff3da446f0f7b5',
+      report: '699b54fa16d3cb1b32dfae4463891f4ab378e5802f2b32ca98d1a969462af4e1',
+      approval: '06b8f138cf68a647de634b5ea3988ef988353cbb39614c7eb07d831430da1722',
     }],
     ['magneto-war', {
       packet: '3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827',
       mapping: 'bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1',
-      report: 'd716e8095536d94de5c5c566b2f994d58dac89392a4e92668a0b43cfca370b91',
-      approval: '8ed981821ce0c915f6a1267336651d8d5f0c7857acf259ba3117c5c0ede737d2',
+      report: '3092d447cf860917ffc148d7086ff12492080baacafeaa10b44832447db6080b',
+      approval: 'ed9c755a8278de1eafe318d40b79d44e00b593e985eda49867fa0def08d414e0',
     }],
   ]);
   const mappingById = new Map();
@@ -3223,7 +3196,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
     assert.equal(mapping.mappingDigest, expected.mapping);
     assert.equal(report.reportDigest, expected.report);
     assert.equal(mapping.relationshipReview.approvalDigest, expected.approval);
-    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisonCount, 136);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     issueIds.push(...mapping.rows.map((row) => String(row.selectedIssueId)));
     comparisonCount += report.comparisonCount;
@@ -3238,7 +3211,7 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
   );
   assert.equal(issueIds.length, 14);
   assert.equal(new Set(issueIds).size, 14);
-  assert.equal(comparisonCount, 270);
+  assert.equal(comparisonCount, 272);
   const stale = structuredClone(mappingById.get('hunt-for-xavier'));
   stale.rows[0].selectedIssueId += 1;
   assert.throws(() => validateMappingDigest(stale), /mapping digest is stale/);
@@ -3248,8 +3221,8 @@ test('batch nine product output and maintained records close the sequential sour
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
+  assert.equal(manifest.lists.length, 161);
+  assert.equal(catalog.lists.length, 238);
   for (const [id, count] of [['hunt-for-xavier', 6], ['magneto-war', 8]]) {
     const entry = manifest.lists.find((candidate) => candidate.id === id);
     const catalogEntry = catalog.lists.find((candidate) => candidate.id === id);
@@ -3303,20 +3276,20 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
     ['x-cutioners-song', {
       packet: 'ee73d3140c7b22e81fb5a68ba699fe05acd1674ecd66704df9519defa80183f3',
       mapping: '0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582',
-      report: '8a1c20147727023c023bfe462d539c21efaa665328fe4901b1834d8757979298',
-      approval: '90bc5e9267879407b4d6f678c31cce70ded29e7a9598b0ad2b385c054b8e2083',
+      report: '1464dacb2deddac3650a2fbdbee831e45a485a1ec64a5348aa48f42e57c21f64',
+      approval: '7fd73fad2ce6984b5c8e249e24a5e5f55de9aee232bab52c1ea01558852ac959',
     }],
     ['mys-tech-wars', {
       packet: '8f536f7d5fc44fbcc07f3245f2e1ed3a287d7b6cf4629dd4a4f1bb0ef7590705',
       mapping: '1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306',
-      report: 'e0ca04a32db06ccd92d9899e44c8f962ced71d70221f74651a24fed719135ebb',
-      approval: '6ab18514607ddb0d009df3bf5ec72480a8e80bb9c6c7af8a05a76bc96a2ceb50',
+      report: 'ad8e7f0fb80e7bf77a9bd2412166bb0f03f46d44884a3c8f5b83ae034a1ae3b8',
+      approval: 'afa2e5eb92018a3728cc74cbf3e90ea9e5e5f90aa1cfc8ecc97b1908119390bf',
     }],
     ['fatal-attractions', {
       packet: '2f52914f5c42ab4c8459064bdafac5f932b7f628f00fbae37e1b16f409016bbb',
       mapping: '30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9',
-      report: 'e92412f96054d8ac9696f81304bd3b88b9d48fa2a8509d6e4ce779dafc00ab0c',
-      approval: 'e8d69749165fd9851b5a0fe76f0855b9ef768926e9c24eaa6cf2fb4161937b8f',
+      report: '6eb8e69af4ca5e92c306176b610efe1ea49dbbf0f5c9b1516143403641fbfa3e',
+      approval: '566ac5878fe8c188d9d04f8ce0f18fc184329cadb0fa34b4969f375c5d9f3ab1',
     }],
   ]);
   const mappingById = new Map();
@@ -3368,7 +3341,7 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
     assert.equal(report.reportDigest, expected.report);
     assert.equal(mapping.relationshipReview.approvalDigest, expected.approval);
     assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisonCount, 136);
     assert.ok(report.comparisons.every((comparison) => comparison.relationship === 'none'));
     assert.equal(entry.depth, 'complete');
     assert.equal(catalogEntry.depth, 'complete');
@@ -3387,11 +3360,11 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
       mappingById.get(id).candidateMetadata.map((candidate) => candidate.onSaleDate).sort()[0]
     ))].sort(),
   );
-  assert.equal(comparisonCount, 405);
+  assert.equal(comparisonCount, 408);
   assert.equal(issueIds.length, 23);
   assert.equal(new Set(issueIds).size, 23);
-  assert.equal(manifest.lists.length, 157);
-  assert.equal(catalog.lists.length, 157);
+  assert.equal(manifest.lists.length, 161);
+  assert.equal(catalog.lists.length, 238);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SEVEN_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));

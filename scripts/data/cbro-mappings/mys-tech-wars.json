@@ -227,10 +227,10 @@
     "coverIssueId": 102530
   },
   "relationshipReview": {
-    "reportDigest": "e0ca04a32db06ccd92d9899e44c8f962ced71d70221f74651a24fed719135ebb",
+    "reportDigest": "ad8e7f0fb80e7bf77a9bd2412166bb0f03f46d44884a3c8f5b83ae034a1ae3b8",
     "packetDigest": "8f536f7d5fc44fbcc07f3245f2e1ed3a287d7b6cf4629dd4a4f1bb0ef7590705",
     "mappingDigest": "1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306",
-    "libraryDigest": "4a839c925785d596e394bce1655c55500f4c2debbd20dd1a669ca0c8341ed94f",
+    "libraryDigest": "8c9d1a5d29e1e3ae9d60512242b65e349dee2f2d9409f4de18065e621e1de28f",
     "peerDigests": {
       "fatal-attractions": "30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9",
       "x-cutioners-song": "0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582"
@@ -1293,6 +1293,17 @@
         "reviewedAt": "2026-08-26T15:28:57.776Z"
       },
       {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003-c02-b07 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:57.776Z"
+      },
+      {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "sharedCount": 0,
@@ -1728,6 +1739,6 @@
     "authorityIdentity": "MRT-003-C02-B07 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:57.776Z",
-    "approvalDigest": "6ab18514607ddb0d009df3bf5ec72480a8e80bb9c6c7af8a05a76bc96a2ceb50"
+    "approvalDigest": "afa2e5eb92018a3728cc74cbf3e90ea9e5e5f90aa1cfc8ecc97b1908119390bf"
   }
 }

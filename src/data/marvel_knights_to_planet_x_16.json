@@ -1,0 +1,136 @@
+{
+  "id": "marvel-knights-to-planet-x-16",
+  "name": "Uncanny X-Men: X-Corps (Prelude)",
+  "description": "Owner-curated chapter 16 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #399 through Uncanny X-Men Annual (2001) #1.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 3,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 25,
+    "sourceCount": 2,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13940,
+      "title": "Uncanny X-Men (1963) #399",
+      "number": "399",
+      "url": "https://www.marvel.com/comics/issue/13940/uncanny_x-men_1963_399",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 28852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/591de376d838f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Derenick",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13941,
+      "title": "Uncanny X-Men (1963) #400",
+      "number": "400",
+      "url": "https://www.marvel.com/comics/issue/13941/uncanny_x-men_1963_400",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-12-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31302,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/591de84e345a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Cully Hamner",
+          "role": "penciler"
+        },
+        {
+          "name": "Eddie Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Pulido",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50827,
+      "title": "Uncanny X-Men Annual (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50827/uncanny_x-men_annual_2001_1",
+      "seriesId": 19021,
+      "seriesName": "Uncanny X-Men Annual (2001)",
+      "onSale": "2001-02-01T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 33552,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5850206fe4a7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

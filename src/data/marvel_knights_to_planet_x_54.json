@@ -1,0 +1,158 @@
+{
+  "id": "marvel-knights-to-planet-x-54",
+  "name": "Hulk: Hide in Plain Sight",
+  "description": "Owner-curated chapter 54 of 78 in the Marvel Knights to Planet X reading path, from Hulk (1999) #55 through Hulk (1999) #59.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 67,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14455,
+      "title": "Hulk (1999) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/14455/hulk_1999_55",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-06-11T00:00:00+0000",
+      "mu": "2008-04-11T00:00:00+0000",
+      "digitalId": 3027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bc46b82ef083",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Leo Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14456,
+      "title": "Hulk (1999) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/14456/hulk_1999_56",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-06-25T00:00:00+0000",
+      "mu": "2008-04-25T00:00:00+0000",
+      "digitalId": 3028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/4bc46b7e1f3ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Leo Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14457,
+      "title": "Hulk (1999) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/14457/hulk_1999_57",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-07-09T00:00:00+0000",
+      "mu": "2008-05-23T00:00:00+0000",
+      "digitalId": 3029,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/4bc46b7916f9c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Leo Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14458,
+      "title": "Hulk (1999) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/14458/hulk_1999_58",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-07-23T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bc46b73e5e06",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Leo Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14459,
+      "title": "Hulk (1999) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/14459/hulk_1999_59",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2003-08-13T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3031,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4bc46b6ef2524",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Leo Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

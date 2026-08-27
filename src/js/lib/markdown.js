@@ -9,6 +9,14 @@ const LINK_TEXT = '((?:[^\\]\\\\]|\\\\.)*)';
 const CHECKBOX_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[( |x|X)\\]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
 const CHECKBOX_PLAIN_RE = /^\s*[-*]\s*\[( |x|X)\]\s*(.+?)\s*$/;
 const BULLET_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
+const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=([1-9]\d*)\s*-->\s*$/;
+
+function sourceIdentity(title) {
+  const match = SOURCE_OCCURRENCE_RE.exec(title);
+  return match
+    ? { title: title.slice(0, match.index).trim(), sourceKey: match[1] }
+    : { title, sourceKey: null };
+}
 
 export function unescapeLinkText(s) {
   return String(s ?? '').replace(/\\(.)/g, '$1');
@@ -83,10 +91,14 @@ export function parseChecklist(text) {
   const entries = [];
   const unresolved = [];
   const headings = [];
-  if (typeof text !== 'string') return { entries, unresolved, headings };
+  const sourcePositions = [];
+  if (typeof text !== 'string') return {
+    entries, unresolved, headings, sourcePositions,
+  };
 
   let index = 0;
   let section = null;
+  let sourcePosition = null;
   for (const rawLine of text.split(/\r?\n/)) {
     const line = rawLine.replace(/\u00a0/g, ' ');
     if (!line.trim()) continue;
@@ -99,6 +111,21 @@ export function parseChecklist(text) {
       // second `#` further down the file would leave the issues under it still labelled with
       // the last trade, which is the one wrong answer that looks right.
       section = h[1].length >= 2 ? (title || null) : null;
+      sourcePosition = null;
+      continue;
+    }
+
+    const quoted = /^\s{0,3}>\s+(.+)$/.exec(line);
+    if (quoted) {
+      const label = stripInlineMarkdown(quoted[1]);
+      sourcePosition = label ? {
+        ordinal: sourcePositions.length + 1,
+        label,
+        section,
+        start: index,
+        count: 0,
+      } : null;
+      if (sourcePosition) sourcePositions.push(sourcePosition);
       continue;
     }
 
@@ -132,20 +159,31 @@ export function parseChecklist(text) {
       }
     }
 
+    const identified = sourceIdentity(title);
+    title = identified.title;
     if (!title) continue;
     const issueId = issueIdFromUrl(url);
     const at = index;
     index += 1;
+    if (sourcePosition) sourcePosition.count += 1;
 
     if (issueId != null) {
-      entries.push({ issueId, title, url: url, read, index: at, section });
+      entries.push({
+        issueId, title, url: url, read, index: at, section,
+        ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+      });
     } else {
       // A title we could not map to a Marvel issue id. Never silently dropped.
-      unresolved.push({ title, url: url && isSafeMarvelUrl(url) ? url : null, read, index: at, section });
+      unresolved.push({
+        title, url: url && isSafeMarvelUrl(url) ? url : null, read, index: at, section,
+        ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+      });
     }
   }
 
-  return { entries, unresolved, headings };
+  return {
+    entries, unresolved, headings, sourcePositions,
+  };
 }
 
 // Plain title list: one per line, optional leading bullet or checkbox.

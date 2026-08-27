@@ -2,12 +2,12 @@
   "candidateId": "hunt-for-xavier",
   "packetDigest": "a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba",
   "mappingDigest": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c",
-  "libraryDigest": "b044ff912e1c0306858824c3d06f9b101289684d362ad2ef9793626cc8be4192",
+  "libraryDigest": "b46de53942d04d11570d215d608163b00330771bb21182e4510f2d2fefbbac37",
   "peerDigests": {
     "magneto-war": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1"
   },
   "candidateCount": 6,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -586,6 +586,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -820,5 +826,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "5d8c5e3c6756565ce074ba7c4bd5d064c3abd3ba7a34391943ebe6f5ade51a61"
+  "reportDigest": "699b54fa16d3cb1b32dfae4463891f4ab378e5802f2b32ca98d1a969462af4e1"
 }

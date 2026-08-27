@@ -6,7 +6,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { parseChecklist } from '../src/js/lib/markdown.js';
-import { hasMetadata } from '../src/js/lib/model.js';
+import {
+  addIssuesToList,
+  createEmptyState,
+  createList,
+  hasMetadata,
+  isRead,
+  listProgress,
+  markRead,
+  SCHEMA_VERSION,
+} from '../src/js/lib/model.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -25,7 +34,11 @@ const originalApprovedOverlaps = [
 const currentOverlaps = [
   ...originalApprovedOverlaps,
   ['daredevil-reading-order', 73],
+  ['loki-reading-order', 2],
+  ['magneto-reading-order', 13],
+  ['punisher-reading-order', 38],
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
+  ['silver-surfer-reading-order', 1],
   ['venom-reading-order', 5],
 ].sort(([left], [right]) => left.localeCompare(right));
 
@@ -74,7 +87,7 @@ test('Marvel Knights to Planet X preserves the exact owner source vector and gro
   assert.deepEqual(parsed.unresolved, []);
 });
 
-test('Marvel Knights to Planet X is the first 1998 card with 487 ordered hydrated issues', async () => {
+test('Marvel Knights to Planet X remains a hidden 487-issue partition parent', async () => {
   const markdown = await readFile(
     path.join(dataDir, 'orders', 'marvel-knights-to-planet-x.md'),
     'utf8',
@@ -85,17 +98,19 @@ test('Marvel Knights to Planet X is the first 1998 card with 487 ordered hydrate
   const payload = await readJson(`src/data/${guideFile}`);
   const manifestIndex = manifest.lists.findIndex((entry) => entry.id === guideId);
   const catalogIndex = catalog.lists.findIndex((entry) => entry.id === guideId);
+  const children = catalog.lists.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.id));
 
   assert.ok(manifestIndex >= 0);
   assert.equal(manifest.lists[manifestIndex + 1].id, 'spider-man-identity-crisis');
   assert.equal(manifest.lists[manifestIndex].sourceFile, 'marvel-knights-to-planet-x.md');
   assert.equal(manifest.lists[manifestIndex].out, guideFile);
+  assert.equal(manifest.lists[manifestIndex].partitionFile, 'marvel-knights-to-planet-x-lists.json');
+  assert.equal(manifest.lists[manifestIndex].catalog, false);
   assert.equal(manifest.lists[manifestIndex].timeline, 1998);
   assert.equal(manifest.lists[manifestIndex].expect, 487);
 
-  assert.ok(catalogIndex >= 0);
-  assert.equal(catalog.lists[catalogIndex + 1].id, 'spider-man-identity-crisis');
-  assert.equal(catalog.lists[catalogIndex].count, 487);
+  assert.equal(catalogIndex, -1);
+  assert.equal(children.length, 78);
   assert.equal(payload.count, 487);
   assert.equal(payload.placeholders, 0);
   assert.deepEqual(payload.unresolved, []);
@@ -126,7 +141,7 @@ test('Marvel Knights to Planet X preserves approved and current-library overlaps
   const overlaps = [];
 
   for (const list of catalog.lists) {
-    if (list.id === guideId) continue;
+    if (list.id === guideId || /^marvel-knights-to-planet-x-\d{2}$/.test(list.id)) continue;
     const peer = await readJson(`src/data/${list.file}`);
     const sharedCount = peer.items.filter((item) => guideIssueIds.has(String(item.issueId))).length;
     if (sharedCount > 0) overlaps.push([list.id, sharedCount]);
@@ -137,4 +152,44 @@ test('Marvel Knights to Planet X preserves approved and current-library overlaps
     overlaps.sort(([left], [right]) => left.localeCompare(right)),
     currentOverlaps,
   );
+});
+
+test('a saved umbrella stays intact and shares read progress with a later chapter', async () => {
+  const parent = await readJson(`src/data/${guideFile}`);
+  const chapter = await readJson('src/data/marvel_knights_to_planet_x_01.json');
+  let state = createEmptyState();
+  state = createList(state, {
+    id: 'legacy-umbrella',
+    name: parent.name,
+    description: parent.description,
+    catalogId: guideId,
+  });
+  state = addIssuesToList(
+    state,
+    'legacy-umbrella',
+    parent.items.map((item) => ({ ...item, source: 'curated' })),
+  ).state;
+  state = markRead(state, parent.items[0].issueId, true, 1234);
+  const legacyIds = [...state.lists['legacy-umbrella'].itemIds];
+
+  state = createList(state, {
+    id: 'chapter-01',
+    name: chapter.name,
+    description: chapter.description,
+    catalogId: chapter.id,
+  });
+  state = addIssuesToList(
+    state,
+    'chapter-01',
+    chapter.items.map((item) => ({ ...item, source: 'curated' })),
+  ).state;
+
+  assert.equal(state.schemaVersion, SCHEMA_VERSION);
+  assert.equal(SCHEMA_VERSION, 2);
+  assert.deepEqual(state.lists['legacy-umbrella'].itemIds, legacyIds);
+  assert.equal(state.lists['legacy-umbrella'].catalogId, guideId);
+  assert.deepEqual(listProgress(state, 'legacy-umbrella'), { read: 1, total: 487 });
+  assert.deepEqual(listProgress(state, 'chapter-01'), { read: 1, total: 21 });
+  assert.equal(isRead(state, chapter.items[0].issueId), true);
+  assert.equal(state.listOrder.length, 2);
 });

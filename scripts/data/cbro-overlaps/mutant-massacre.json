@@ -2,13 +2,13 @@
   "candidateId": "mutant-massacre",
   "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
   "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-  "libraryDigest": "9e20d84f6fd8c9eeed2ce136b1f1019681aaceec7aed5eece912eb8da3560e1a",
+  "libraryDigest": "e74ef5c54a1995a38427f499be01ba19c0f8f4ca3d9d025114f2c94867ba7734",
   "peerDigests": {
     "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
     "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
   },
   "candidateCount": 11,
-  "comparisonCount": 135,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -587,6 +587,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -845,5 +851,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "f1f923d1a93909ce47e24f58083ba8c329821cf0486c98efce21488c3e3060cc"
+  "reportDigest": "959dae661165a2d307265a65e2c40ca36433ae906963b8201885e8a4f796625e"
 }

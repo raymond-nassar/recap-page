@@ -1,0 +1,265 @@
+{
+  "id": "marvel-knights-to-planet-x-71",
+  "name": "New Mutants: The Ties That Bind",
+  "description": "Owner-curated chapter 71 of 78 in the Marvel Knights to Planet X reading path, from New Mutants (2003) #7 through New Mutants (2003) #12.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 85,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 128,
+      "title": "New Mutants (2003) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/128/new_mutants_2003_7",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-01-01T00:00:00+0000",
+      "mu": "2004-01-01T00:00:00+0000",
+      "digitalId": 3412,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5a033af415faf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 127,
+      "title": "New Mutants (2003) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/127/new_mutants_2003_8",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-01-01T00:00:00+0000",
+      "mu": "2004-01-01T00:00:00+0000",
+      "digitalId": 3413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5a033d2ca6537",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Khary Randolph",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 126,
+      "title": "New Mutants (2003) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/126/new_mutants_2003_9",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-02-01T00:00:00+0000",
+      "mu": "2004-02-01T00:00:00+0000",
+      "digitalId": 3414,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5a03409e8ae0f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khary Randolph",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 132,
+      "title": "New Mutants (2003) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/132/new_mutants_2003_10",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-05-01T00:00:00+0000",
+      "mu": "2004-05-01T00:00:00+0000",
+      "digitalId": 3415,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5a034283596ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 131,
+      "title": "New Mutants (2003) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/131/new_mutants_2003_11",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-06-01T00:00:00+0000",
+      "mu": "2004-06-01T00:00:00+0000",
+      "digitalId": 3416,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/5a03449e28428",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Avalon Studios",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 419,
+      "title": "New Mutants (2003) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/419/new_mutants_2003_12",
+      "seriesId": 563,
+      "seriesName": "New Mutants (2003 - 2004)",
+      "onSale": "2004-06-01T00:00:00+0000",
+      "mu": "2004-06-01T00:00:00+0000",
+      "digitalId": 3417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5a0355d0d9b1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khary Randolph",
+          "role": "penciler"
+        },
+        {
+          "name": "Christina Weir",
+          "role": "writer"
+        },
+        {
+          "name": "Nunzio Defilippis",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

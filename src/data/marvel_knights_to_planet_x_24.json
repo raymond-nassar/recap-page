@@ -1,0 +1,213 @@
+{
+  "id": "marvel-knights-to-planet-x-24",
+  "name": "Spider-Man: Until the Stars Turn Cold",
+  "description": "Owner-curated chapter 24 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #40 through Amazing Spider-Man (1999) #45.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 34,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 43141,
+      "title": "Amazing Spider-Man (1999) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/43141/amazing_spider-man_1999_40",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-05-08T00:00:00+0000",
+      "mu": "2002-05-08T00:00:00+0000",
+      "digitalId": 26330,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/57a34410cdd46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43143,
+      "title": "Amazing Spider-Man (1999) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/43143/amazing_spider-man_1999_41",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-05-29T00:00:00+0000",
+      "mu": "2002-05-29T00:00:00+0000",
+      "digitalId": 26328,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/57a3431f1983e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Christopher Schmidt",
+          "role": "writer"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43145,
+      "title": "Amazing Spider-Man (1999) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/43145/amazing_spider-man_1999_42",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-06-26T00:00:00+0000",
+      "mu": "2002-06-26T00:00:00+0000",
+      "digitalId": 26325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/57a3421d322b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43147,
+      "title": "Amazing Spider-Man (1999) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/43147/amazing_spider-man_1999_43",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-07-24T00:00:00+0000",
+      "mu": "2002-07-24T00:00:00+0000",
+      "digitalId": 26323,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/57a340fd16462",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43148,
+      "title": "Amazing Spider-Man (1999) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/43148/amazing_spider-man_1999_44",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-08-28T00:00:00+0000",
+      "mu": "2002-08-28T00:00:00+0000",
+      "digitalId": 26321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/57a33fab0ce5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43149,
+      "title": "Amazing Spider-Man (1999) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/43149/amazing_spider-man_1999_45",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-09-25T00:00:00+0000",
+      "mu": "2002-09-25T00:00:00+0000",
+      "digitalId": 29061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/57a33e5ca420a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
