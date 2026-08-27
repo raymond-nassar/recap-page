@@ -458,6 +458,7 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     'loki-reading-order',
     'silver-surfer-reading-order',
     moonKnightCandidateId,
+    'the-defenders-reading-order',
   ]);
 }
 
@@ -738,7 +739,15 @@ test('the Punisher guide preserves its full source ledger through publication', 
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
     [],
-    { excludedOrderIds: [magnetoCandidateId, 'loki-reading-order', 'silver-surfer-reading-order', moonKnightCandidateId] },
+    {
+      excludedOrderIds: [
+        magnetoCandidateId,
+        'loki-reading-order',
+        'silver-surfer-reading-order',
+        moonKnightCandidateId,
+        'the-defenders-reading-order',
+      ],
+    },
   );
   const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
@@ -894,7 +903,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 6);
+  assert.equal(report.comparisonCount, manifest.lists.length - 7);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1348,18 +1357,19 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const catalogEntry = catalog.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
   const expectedOrderIds = manifest.lists
     .map((entry) => entry.id)
-    .filter((id) => id !== 'silver-surfer-reading-order'
-      && id !== moonKnightCandidateId
-      && id !== guardiansCandidateId)
+   .filter((id) => id !== 'silver-surfer-reading-order'
+     && id !== moonKnightCandidateId
+     && id !== guardiansCandidateId
+     && id !== 'the-defenders-reading-order')
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
-    ['silver-surfer-reading-order', moonKnightCandidateId],
+    ['silver-surfer-reading-order', moonKnightCandidateId, 'the-defenders-reading-order'],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
     [],
-    { excludedOrderIds: [moonKnightCandidateId] },
+    { excludedOrderIds: [moonKnightCandidateId, 'the-defenders-reading-order'] },
   );
 
   assert.equal(packet.sourceOccurrenceCount, 426);

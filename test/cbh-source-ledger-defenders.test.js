@@ -4,6 +4,13 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import {
+  sourcePositionsForPacket,
+  validateFrozenPacket,
+  validateMappingDigest,
+  validateReportDigest,
+} from '../scripts/lib/cbh-inventory.mjs';
+import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const EXPECTED = {
   occurrenceCount: 331,
@@ -53,6 +60,10 @@ async function readLedger() {
 
 async function readInventory() {
   return JSON.parse(await readFile(inventoryPath, 'utf8'));
+}
+
+async function readJson(relativePath) {
+  return JSON.parse(await readFile(path.join(root, relativePath), 'utf8'));
 }
 
 function orderDigest(ledger) {
@@ -799,4 +810,77 @@ test('The Defenders source ledger rejects the known defect shapes', async () => 
     collectionTitle: null,
   };
   assert.throws(() => assertLedgerShape(refreshDerivedFields(inheritedRangeIdentityLoss)));
+});
+
+test('The Defenders publication preserves the settled source partition and cache-only resolution', async () => {
+  const [packet, mapping, report, manifest, generated, markdown] = await Promise.all([
+    readJson('scripts/data/cbh-packets/the-defenders-reading-order.json'),
+    readJson('scripts/data/cbh-mappings/the-defenders-reading-order.json'),
+    readJson('scripts/data/cbh-overlaps/the-defenders-reading-order.json'),
+    readJson('src/data/curated-lists.json'),
+    readJson('src/data/the_defenders_reading_order.json'),
+    readFile(path.join(root, 'src/data/orders/the-defenders-reading-order.md'), 'utf8'),
+  ]);
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: 'the-defenders-reading-order',
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.equal(packet.sourceOccurrenceCount, 331);
+  assert.equal(packet.rows.length, 245);
+  assert.equal(packet.sourceGaps.length, 23);
+  assert.equal(packet.repeatedSourceReferences.length, 12);
+  assert.equal(packet.excludedSourceRows.length, 51);
+  assert.equal(packet.rows.length + packet.sourceGaps.length
+    + packet.repeatedSourceReferences.length + packet.excludedSourceRows.length, 331);
+  assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourcePosition), [
+    57, 102, 198, 199, 200, 201, 202, 203, 204, 267, 268, 269, 270, 271, 272,
+    274, 275, 276, 277, 278, 279, 303, 310,
+  ]);
+  assert.deepEqual(packet.sourceGaps.find((gap) => gap.sourcePosition === 303), {
+    sourcePosition: 303,
+    sourceIssueReference: 'Free Comic Book Day 2017 (Defenders Story)',
+    sourceRangeReference: 'Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)',
+    sourceGroup: 'Marvel Netflix Defenders!',
+    normalizedSeriesTitle: 'Free Comic Book Day 2017 (Defenders Story)',
+    seriesYear: 2017,
+    issueNumber: 'named work',
+    kind: 'published-metadata-gap',
+    status: 'open',
+    checkedAt: '2026-08-27',
+    auditBasis: 'The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.',
+    evidenceSources: [
+      {
+        kind: 'comic-book-herald',
+        url: 'https://www.comicbookherald.com/the-defenders-reading-order/',
+        retrievedAt: '2026-08-27',
+      },
+      {
+        kind: 'gap-tracking-issue',
+        url: 'https://github.com/raymond-nassar/recap-page/issues/317',
+        retrievedAt: '2026-08-27',
+      },
+    ],
+    evidenceDigest: '3bddf71a5392629c9fbe7ca59f7683780429dca1ba1f246aa9ec210c57dd3dd6',
+  });
+  assert.deepEqual(
+    sourcePositionsForPacket(packet),
+    mapping.rows.map((row) => row.sourcePosition),
+  );
+  assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 245);
+  assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
+  assert.equal(report.candidateCount, 245);
+  assert.equal(report.comparisonCount, 160);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'exact').length, 0);
+  assert.equal(generated.count, 268);
+  assert.equal(generated.placeholders, 23);
+  assert.equal(generated.unresolved.length, 23);
+  assert.equal(parseChecklist(markdown).entries.length, 245);
+  assert.match(markdown, /^- \[ \] Free Comic Book Day 2017 \(Defenders Story\)$/m);
+  const entry = manifest.lists.find((candidate) => candidate.id === 'the-defenders-reading-order');
+  assert.ok(entry);
+  assert.equal(entry.expect, 268);
+  assert.equal(entry.coverIssueId, 17089);
 });

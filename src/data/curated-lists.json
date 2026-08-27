@@ -2163,6 +2163,40 @@
       "coverIssueId": 13258
     },
     {
+      "id": "the-defenders-reading-order",
+      "name": "The Defenders",
+      "description": "A complete Defenders reading path from the non-team origins through the latest source additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "the-defenders-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/the-defenders-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "the_defenders_reading_order.json",
+      "characters": [
+        "The Defenders",
+        "Doctor Strange",
+        "Hulk",
+        "Namor",
+        "Silver Surfer"
+      ],
+      "keywords": [
+        "The Defenders",
+        "Comic Book Herald",
+        "Doctor Strange",
+        "Hulk",
+        "Marvel"
+      ],
+      "expect": 268,
+      "timeline": null,
+      "coverIssueId": 17089
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",
