@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "18ed3dc9e44f64d5955a65308030d32149a439aaae2d524db9b6ab159a2abbab",
+    "reportDigest": "05fbd3a8ab96325410e3e7f2329800d24ee467a1406e38082a45822e6e75d16d",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "1e4b0defeee110e62476e8e2c10e533c1be5b9bbf84eee618a2cb30bf21e6d5b",
+    "libraryDigest": "ba5de0a3a08285d7508b4f6b46f71d86965d5356c839e110b421221687d21bca",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3162,6 +3162,17 @@
       },
       {
         "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
@@ -4647,6 +4658,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "af1e0c277f000f091376f76ef1195cf2843d7e4066e16dc18b88ec62388907b4"
+    "approvalDigest": "9ee7133793d13e244ef1c0df6ba7f6238fa36cb245b47e38f57450dca62d0aec"
   }
 }

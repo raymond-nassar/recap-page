@@ -2,12 +2,12 @@
   "candidateId": "groot-reading-order",
   "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
   "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-  "libraryDigest": "1e4b0defeee110e62476e8e2c10e533c1be5b9bbf84eee618a2cb30bf21e6d5b",
+  "libraryDigest": "ba5de0a3a08285d7508b4f6b46f71d86965d5356c839e110b421221687d21bca",
   "peerDigests": {
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 76,
-  "comparisonCount": 144,
+  "comparisonCount": 145,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -112,6 +112,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -955,5 +961,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "18ed3dc9e44f64d5955a65308030d32149a439aaae2d524db9b6ab159a2abbab"
+  "reportDigest": "05fbd3a8ab96325410e3e7f2329800d24ee467a1406e38082a45822e6e75d16d"
 }

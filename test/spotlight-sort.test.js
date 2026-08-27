@@ -66,6 +66,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Star-Lord',
     'Thanos',
     'Ant-Man',
+    'Captain America: Modern Marvel Era',
     'There is Only Doom',
   ]);
 });

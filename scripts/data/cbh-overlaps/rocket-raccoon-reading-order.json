@@ -2,10 +2,10 @@
   "candidateId": "rocket-raccoon-reading-order",
   "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
   "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "08cbe04d0b0ffe6ec101555985988f773d71f1fa72f97273c7fec02e6eff4d11",
+  "libraryDigest": "2f7ded40f78b6ba53fd96d168b32db2b51a6fd3fc57acd1ce226397333823236",
   "peerDigests": {},
   "candidateCount": 75,
-  "comparisonCount": 144,
+  "comparisonCount": 145,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -105,6 +105,12 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -988,5 +994,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "5c6520e542eefe8fe23ff9acd75468b7ba25bf704c4dd34a9c6843b8cdb9b05e"
+  "reportDigest": "409622f259a08d1581c928b43e29d687f55348f3deccfe5a778f3c7532f436e1"
 }
