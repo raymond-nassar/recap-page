@@ -2297,6 +2297,40 @@
       "coverIssueId": 8906
     },
     {
+      "id": "doctor-strange-reading-order",
+      "name": "Doctor Strange",
+      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "doctor-strange-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "doctor_strange_reading_order.json",
+      "characters": [
+        "Doctor Strange",
+        "Defenders",
+        "Avengers",
+        "Clea",
+        "Wong"
+      ],
+      "keywords": [
+        "Doctor Strange",
+        "Sorcerer Supreme",
+        "Defenders",
+        "Strange Academy",
+        "Comic Book Herald"
+      ],
+      "expect": 750,
+      "timeline": null,
+      "coverIssueId": 11029
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
@@ -3781,6 +3815,40 @@
       "expect": 20,
       "timeline": 1997,
       "coverIssueId": 22754
+    },
+    {
+      "id": "marvel-knights-to-planet-x",
+      "name": "Marvel Knights to Planet X",
+      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-knights-to-planet-x.md",
+      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "sourceLicense": null,
+      "out": "marvel_knights_to_planet_x.json",
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four",
+        "Avengers",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X",
+        "Guardian Devil",
+        "E is for Extinction",
+        "X-Corps",
+        "Planet X crossover"
+      ],
+      "expect": 487,
+      "timeline": 1998
     },
     {
       "id": "spider-man-identity-crisis",

@@ -791,13 +791,15 @@
     "url": "https://www.comicbookherald.com/doctor-strange-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "The complete 76-block source packet is prepared with exact metadata rows and explicit source-gap provenance; mapping, overlap review, catalog generation, and merge remain separate delivery work.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "doctor-strange-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Doctor Strange"
     ],
@@ -807,7 +809,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "f0d4f1d322af2bd448f2455f79666debba42683248fbbb9732e292b64288e446",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 29,

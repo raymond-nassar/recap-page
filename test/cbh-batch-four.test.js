@@ -20,6 +20,7 @@ const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const laterReviewedIds = new Set([
   'wolverine-reading-order',
+  'doctor-strange-reading-order',
   'star-lord-reading-order',
   'thanos-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
