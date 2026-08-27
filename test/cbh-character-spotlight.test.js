@@ -59,6 +59,37 @@ function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
 }
 
+function validateMagnetoOccurrences(occurrences) {
+  assert.equal(Array.isArray(occurrences), true);
+  assert.equal(occurrences.length, 736);
+
+  const positions = occurrences.map((entry) => entry.sourcePosition);
+  assert.deepEqual(positions, Array.from({ length: 736 }, (_, index) => index + 1));
+  assert.equal(new Set(positions).size, 736);
+
+  const counts = occurrences.reduce((accumulator, entry) => {
+    accumulator[entry.disposition] = (accumulator[entry.disposition] ?? 0) + 1;
+    return accumulator;
+  }, {});
+
+  assert.deepEqual(counts, {
+    'canonical-candidate': 707,
+    repeat: 15,
+    gap: 3,
+    exclusion: 11,
+  });
+
+  assert.equal(
+    occurrences.every((entry) => typeof entry.sourceGroup === 'string'
+      && entry.sourceGroup.trim().length > 0
+      && typeof entry.sourceIssueReference === 'string'
+      && entry.sourceIssueReference.trim().length > 0
+      && typeof entry.sourceTextClause === 'string'
+      && entry.sourceTextClause.trim().length > 0),
+    true,
+  );
+}
+
 const rocketSourceSequence = [
   'Tales to Astonish|1959|13',
   'Incredible Hulk|1962|271',
@@ -1055,6 +1086,7 @@ test('Magneto keeps the frozen offline boundary and accounting summary', async (
 
 test('Magneto source ledger preserves the frozen special ledger', async () => {
   const ledger = await readJson('scripts/data/cbh-source-ledgers/magneto-reading-order.json');
+  const exactLedger = await readJson('scripts/data/cbh-source-ledgers/magneto-exact-candidates.json');
 
   assert.equal(ledger.id, 'magneto-reading-order');
   assert.equal(ledger.sourceUrl, 'https://www.comicbookherald.com/magneto-reading-order/');
@@ -1090,6 +1122,30 @@ test('Magneto source ledger preserves the frozen special ledger', async () => {
     ledger.specialLedger.filter((entry) => entry.classification === 'gap').every((entry) => entry.evidence.localSeriesEvidence),
     true,
   );
+  assert.equal(Array.isArray(exactLedger.rows), true);
+  assert.equal(exactLedger.rows.length, 707);
+  assert.equal(
+    exactLedger.rows.every((row, index) => row.sourcePosition === index + 1
+      && typeof row.sourceIssueReference === 'string'
+      && typeof row.sourceRangeReference === 'string'
+      && typeof row.normalizedSeriesTitle === 'string'),
+    true,
+  );
+  assert.equal(new Set(exactLedger.rows.map((row) => row.sourcePosition)).size, 707);
+});
+
+test('Magneto occurrences ledger preserves all 736 positions', async () => {
+  const ledger = await readJson('scripts/data/cbh-source-ledgers/magneto-occurrences.json');
+
+  validateMagnetoOccurrences(ledger.occurrences);
+
+  const brokenMissing = ledger.occurrences.slice();
+  brokenMissing.splice(100, 1);
+  assert.throws(() => validateMagnetoOccurrences(brokenMissing), /736/);
+
+  const brokenDuplicate = ledger.occurrences.map((entry) => ({ ...entry }));
+  brokenDuplicate[1].sourcePosition = brokenDuplicate[0].sourcePosition;
+  assert.throws(() => validateMagnetoOccurrences(brokenDuplicate));
 });
 
 test('Iron Man ships with its exact boundary and generated surfaces', async () => {

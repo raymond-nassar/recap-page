@@ -1,0 +1,149 @@
+{
+  "id": "magneto-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/magneto-reading-order/",
+  "sourceBoundary": "Full page; no qualifying Best Comics or Essential Comics section exists.",
+  "sourceOccurrenceCount": 736,
+  "counts": {
+    "exactCandidates": 707,
+    "repeats": 15,
+    "gaps": 3,
+    "exclusions": 11
+  },
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 1,
+      "canonicalRow": 52,
+      "sourceIssueReference": "Uncanny X-Men #43",
+      "sourceRangeReference": "X-Men Epic Collection: Lonely Are The Hunted",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "43"
+    },
+    {
+      "sourcePosition": 2,
+      "canonicalRow": 61,
+      "sourceIssueReference": "Avengers #47",
+      "sourceRangeReference": "Avengers Epic Collection: Masters of Evil",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "47"
+    },
+    {
+      "sourcePosition": 3,
+      "canonicalRow": 62,
+      "sourceIssueReference": "Avengers #48",
+      "sourceRangeReference": "Avengers Epic Collection: Masters of Evil",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "48"
+    },
+    {
+      "sourcePosition": 4,
+      "canonicalRow": 63,
+      "sourceIssueReference": "Avengers #49",
+      "sourceRangeReference": "Avengers Epic Collection: Masters of Evil",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "49"
+    },
+    {
+      "sourcePosition": 5,
+      "canonicalRow": 82,
+      "sourceIssueReference": "Uncanny X-Men #63",
+      "sourceRangeReference": "X-Men Masterworks Vol. 6",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "63"
+    },
+    {
+      "sourcePosition": 6,
+      "canonicalRow": 136,
+      "sourceIssueReference": "Uncanny Men #148",
+      "sourceRangeReference": "The Uncanny X-Men Omnibus Vol. 2",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1981,
+      "issueNumber": "148"
+    },
+    {
+      "sourcePosition": 7,
+      "canonicalRow": 158,
+      "sourceIssueReference": "Uncanny Men #149",
+      "sourceRangeReference": "The Uncanny X-Men Omnibus Vol. 2",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1981,
+      "issueNumber": "149"
+    },
+    {
+      "sourcePosition": 8,
+      "canonicalRow": 137,
+      "sourceIssueReference": "Uncanny Men #150",
+      "sourceRangeReference": "The Uncanny X-Men Omnibus Vol. 2",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1981,
+      "issueNumber": "150"
+    },
+    {
+      "sourcePosition": 9,
+      "canonicalRow": 230,
+      "sourceIssueReference": "Uncanny X-Men #188",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "188"
+    },
+    {
+      "sourcePosition": 10,
+      "canonicalRow": 245,
+      "sourceIssueReference": "New Mutants #24",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "24"
+    },
+    {
+      "sourcePosition": 11,
+      "canonicalRow": 246,
+      "sourceIssueReference": "New Mutants #29",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "29"
+    },
+    {
+      "sourcePosition": 12,
+      "canonicalRow": 238,
+      "sourceIssueReference": "Uncanny X-Men #196",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "196"
+    },
+    {
+      "sourcePosition": 13,
+      "canonicalRow": 255,
+      "sourceIssueReference": "Uncanny X-Men #200",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "200"
+    },
+    {
+      "sourcePosition": 14,
+      "canonicalRow": 256,
+      "sourceIssueReference": "Uncanny X-Men #201",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "201"
+    },
+    {
+      "sourcePosition": 15,
+      "canonicalRow": 257,
+      "sourceIssueReference": "Uncanny X-Men #202",
+      "sourceRangeReference": "Avengers - West Coast Avengers: Family Ties",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "202"
+    }
+  ]
+}
