@@ -79,6 +79,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'wolverine-reading-order',
   'hickman-x-men',
   'ultimate-marvel-intro',
+  'setup-to-modern-timeline',
   'x-men-utopia',
   'x-men-messiah-to-avx',
   'abomination-reading-order',
@@ -91,6 +92,8 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'wandavision',
   'spider-man-far-from-home',
   'modern-x-men-fast-track',
+  'question-of-the-week-do-you-have-a-hulk-reading-order',
+  'deadpool-best-of',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

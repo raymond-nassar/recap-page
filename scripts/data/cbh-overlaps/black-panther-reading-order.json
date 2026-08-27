@@ -2,7 +2,7 @@
   "candidateId": "black-panther-reading-order",
   "packetDigest": "5acb5c9727357a3418d30998f661040f02f2750f09d84013670a7136f914139e",
   "mappingDigest": "c9cc9a2cd8e513c01afe40218bfcee48f3ac7b333fd47b26f317eaf654e1a2c6",
-  "libraryDigest": "de6712d8c731536b0252fe25acba9a4caca30cb94a2aeed8617bee09327c7571",
+  "libraryDigest": "96a8ab88d7060b5fc5a2399b02caf799b6a0f30d6ab6af31ad2aaa5eb4ab4d24",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 424,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 57
   },
   "candidateCount": 363,
-  "comparisonCount": 147,
+  "comparisonCount": 150,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -210,6 +210,12 @@
     },
     {
       "orderId": "dead-mans-hand",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "deadpool-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -571,6 +577,14 @@
       "relationship": "none"
     },
     {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 1,
+      "sharedIds": [
+        "10104"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "reckoning-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -634,6 +648,12 @@
     },
     {
       "orderId": "secret-wars-ii",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "setup-to-modern-timeline",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -915,5 +935,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "a192b58227b699a552b898570ce04e8730f5f4a3bc70ec7cabaae8872d051bd1"
+  "reportDigest": "6cdbef2ce50b16779a28c4a10f358eeb992aeffe535466002925ba630d3b3ea9"
 }

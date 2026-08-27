@@ -7,7 +7,7 @@
     "marvels-best-phoenix-comics": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0"
   },
   "candidateCount": 28,
-  "comparisonCount": 93,
+  "comparisonCount": 88,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -65,12 +65,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -166,12 +160,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "groot-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "heroes-reborn-2021",
       "sharedCount": 0,
       "sharedIds": [],
@@ -262,12 +250,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "marvels-best-phoenix-comics",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "maximum-security",
       "sharedCount": 0,
       "sharedIds": [],
@@ -329,12 +311,6 @@
     },
     {
       "orderId": "revolutionary-war",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "rocket-raccoon-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -413,12 +389,6 @@
     },
     {
       "orderId": "spider-verse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "star-lord-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -586,5 +556,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "90a7164b03497533c915828d43c550e283a3376d34372feff79628b6d3eb0c8a"
+  "reportDigest": "9678e09ca3826bd2d56db6eb67a36720f8db07ccbf63a036ff85511c53336edf"
 }

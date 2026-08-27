@@ -10661,10 +10661,10 @@
     "authorityIdentity": "GPT-5.5 implementation session",
     "rationale": "Central relationship review approved the Modern X-Men fast-track as a source-preserving selected spotlight. Existing subset relationships remain canonical event guides, and partial overlaps are justified by narrower or different spotlight boundaries rather than duplicate catalog identities.",
     "reviewedAt": "2026-08-25",
-    "reportDigest": "1f060973d05dda3787063b516450903db0aeb85dadb0a9dc84a1056f4e68bdcc",
+    "reportDigest": "9a2986f77772135b3721405be84f33fad0cd49c7717f186556e8b1942d066398",
     "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
     "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-    "libraryDigest": "9e8aa9f21ebc47e4ae0fa250914aab5bcd8937b05a9c8c7f6feaff65af87ded5",
+    "libraryDigest": "47c6d64bcbb6235d4ba68d8645c5449d294897041354e55a9d1ba9c2871ce838",
     "peerDigests": {},
     "dispositions": [
       {
@@ -11010,6 +11010,15 @@
         "authorityType": "policy",
         "authorityIdentity": "zero-overlap policy",
         "rationale": "No shared issue IDs were observed in the current overlap report.",
+        "reviewedAt": "2026-08-25"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The reviewed shared issue identities do not duplicate this guide.",
         "reviewedAt": "2026-08-25"
       },
       {
@@ -11806,6 +11815,17 @@
         "reviewedAt": "2026-08-25"
       },
       {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-25"
+      },
+      {
         "orderId": "shadowland",
         "relationship": "none",
         "sharedCount": 0,
@@ -12393,6 +12413,6 @@
         "reviewedAt": "2026-08-25"
       }
     ],
-    "approvalDigest": "c13cb13f2400c125e361b8172e0176b0d70095486fbfae9d3c74b1f2a835292d"
+    "approvalDigest": "4cca9950ae514f2eb8996fe3f60f060acd9feb0b278deb28ecc01a5224740d80"
   }
 }

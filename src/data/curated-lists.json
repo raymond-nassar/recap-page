@@ -1052,6 +1052,37 @@
       "timeline": 2023
     },
     {
+      "id": "setup-to-modern-timeline",
+      "name": "Setup to Modern Timeline",
+      "description": "A product-curated orientation path through Marvels and Sentry stories that sets readers up for the Modern Timeline.",
+      "type": "era",
+      "depth": "essential",
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 75504,
+      "sourceFile": "setup_to_modern_timeline.md",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "out": "setup_to_modern_timeline.json",
+      "characters": [
+        "Phil Sheldon",
+        "Robert Reynolds",
+        "Spider-Man",
+        "Fantastic Four",
+        "Hulk",
+        "X-Men"
+      ],
+      "keywords": [
+        "Marvels",
+        "Sentry",
+        "Alex Ross",
+        "Kurt Busiek",
+        "Modern Timeline",
+        "setup"
+      ],
+      "expect": 21
+    },
+    {
       "id": "reckoning-war",
       "name": "Reckoning War",
       "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",
@@ -2233,6 +2264,39 @@
       "coverIssueId": 8797
     },
     {
+      "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "name": "Hulk (and She-Hulk, Red Hulk)",
+      "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "question-of-the-week-do-you-have-a-hulk-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "question_of_the_week_do_you_have_a_hulk_reading_order.json",
+      "characters": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar"
+      ],
+      "keywords": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar",
+        "Comic Book Herald"
+      ],
+      "expect": 1159,
+      "timeline": null,
+      "coverIssueId": 8906
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
@@ -2515,6 +2579,42 @@
       ],
       "expect": 131,
       "timeline": null
+    },
+    {
+      "id": "deadpool-best-of",
+      "name": "The Best Deadpool Comics To Start With!",
+      "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "essential",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "deadpool-best-of.md",
+      "sourcePage": "https://www.comicbookherald.com/deadpool-reading-order/",
+      "sourceSection": "The Best Deadpool Comics To Start With!",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "deadpool_best_of.json",
+      "characters": [
+        "Deadpool",
+        "Cable",
+        "Wolverine",
+        "Spider-Man",
+        "X-Force",
+        "Lady Deadpool"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "best-of",
+        "Deadpool",
+        "Cable",
+        "Wolverine"
+      ],
+      "expect": 40,
+      "timeline": null,
+      "coverIssueId": 8462
     },
     {
       "id": "scarlet-witch-best-of",

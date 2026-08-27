@@ -687,13 +687,17 @@
     "url": "https://www.comicbookherald.com/deadpool-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The owner-approved thirteen-group source boundary has thirty-eight exact issue rows, sixteen documented source repeats, and two explicit metadata gaps. The guide stops before the exhaustive chronology.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "deadpool-best-of"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Deadpool"
     ],
@@ -703,7 +707,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "c00cb7706d865e27e020443d1be72696dd8dd74aee4d75d984e88efeee05603c",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 25,
@@ -1319,13 +1323,42 @@
     "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The complete source page yields 1,242 ordered source occurrences: 1,140 distinct verified issues, 75 intentional repeat references, 19 explicit provider gaps, and eight excluded collection or Issues parser markers. The published spotlight retains all verified issues in source order while leaving unavailable source positions as plain-text provenance.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "abomination-reading-order",
+      "absolute-carnage",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "atlantis-attacks",
+      "avengers-defenders-war",
+      "doctor-doom-primer",
+      "essential-avengers",
+      "fall-of-the-mutants",
+      "groot-reading-order",
+      "heroic-age-avengers",
+      "hickman-full",
+      "hickman-minimal",
+      "king-in-black",
+      "marvel-super-heroes-secret-wars",
+      "maximum-security",
+      "planet-hulk",
+      "rocket-raccoon-reading-order",
+      "secret-wars-ii",
+      "spider-man-best-of",
+      "thanos-reading-order",
+      "wandavision",
+      "wolverine-reading-order",
+      "world-war-hulk-aftersmash",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "question-of-the-week-do-you-have-a-hulk-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Hulk (and She-Hulk, Red Hulk)"
     ],
@@ -1333,9 +1366,9 @@
       49
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "f4547e8c02a7d2f077c88cbb8556f7666d08573e84cc44e7c35ddb44bbb7c947",
+    "sourceContentSha256": "a5f0bb49c53d495a597f8ec9dbefdb64b89e6aaf812de73e5040a45bab0705a6",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 50,

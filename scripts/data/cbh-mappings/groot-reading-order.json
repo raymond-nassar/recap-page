@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "05fbd3a8ab96325410e3e7f2329800d24ee467a1406e38082a45822e6e75d16d",
+    "reportDigest": "3cc6a75e06e4ddea8596cd17440771c0e1029301e8d2daf8d191664845530a26",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "ba5de0a3a08285d7508b4f6b46f71d86965d5356c839e110b421221687d21bca",
+    "libraryDigest": "8caa8d65aec5ef550e3d32922412ca6748287c7829095696bc419b944985d39f",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3335,6 +3335,15 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "repository publication policy",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -4116,6 +4125,17 @@
         "sharedIds": []
       },
       {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "The current report contains no shared issue for this order.",
+        "authorityType": "policy",
+        "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-23"
+      },
+      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -4658,6 +4678,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "9ee7133793d13e244ef1c0df6ba7f6238fa36cb245b47e38f57450dca62d0aec"
+    "approvalDigest": "d6acf91d2c4c65001a4d6bc9daf523aa5c135b4bf0bfcd9fb3a845a84cd37303"
   }
 }

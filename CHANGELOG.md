@@ -18,6 +18,13 @@ quote in a bug report.
 
 In plain English: You can now follow Black Panther stories from his earliest Fantastic Four appearance through the newest source-page additions. Repeated source recommendations appear only once in the checklist, and four comics missing from the maintained metadata remain visible as unresolved entries instead of being replaced or hidden.
 
+### Added a Deadpool starter guide
+
+In plain English: A new Deadpool starter guide is available in Character Spotlight. It follows the
+thirteen recommendations from its source, includes thirty-eight comics that can be opened to read,
+and keeps two unavailable Deadpool MAX entries visible instead of silently leaving them out. Nothing
+you have saved is changed.
+
 ### Made the reading screen easier to scan
 
 In plain English: Coming up now keeps every Read button aligned even when comic titles have

@@ -249,7 +249,7 @@ export function buildMarkdown(mapping) {
   const checklist = [...rowsBySourcePosition.entries()]
     .sort(([left], [right]) => left - right)
     .flatMap(([, entry]) => {
-      const sourceGroup = entry.value.sourceGroup ?? null;
+      const sourceGroup = entry.value.sourceRangeReference ?? entry.value.sourceGroup ?? null;
       const heading = sourceGroup && sourceGroup !== currentGroup
         ? [`## ${escapeLinkText(sourceGroup)}`]
         : [];
