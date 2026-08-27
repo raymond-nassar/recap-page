@@ -9,9 +9,9 @@ const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'bla
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-character-inventory.json');
 
 const expectedCategoryCounts = {
-  'provisional-canonical-candidate': 588,
-  'semantic-exclusion': 169,
-  'true-repeat': 16,
+  'provisional-canonical-candidate': 573,
+  'semantic-exclusion': 183,
+  'true-repeat': 17,
   'unresolved-included-identity-gap': 0,
 };
 
@@ -37,6 +37,15 @@ const expectedNodeCounts = new Map([
   [150, 1],
   [164, 13],
   [177, 7],
+]);
+
+const namedComicsWithoutSourceIssueNumbers = new Map([
+  [226, { title: 'Daredevil: Love and War', year: 1986 }],
+  [318, { title: 'Avengers: Deathtrap ? The Vault', year: 1991 }],
+  [441, { title: 'Captain America: The Legend', year: 1996 }],
+  [453, { title: 'Onslaught: X-Men', year: 1996 }],
+  [466, { title: 'Thunderbolts Annual', year: 1997 }],
+  [699, { title: 'Infinity Countdown Prime', year: 2018 }],
 ]);
 
 function range(start, end) {
@@ -136,6 +145,11 @@ function validateLedger(ledger) {
         true,
         `included source row ${entry.sourcePosition} must retain its inherited series identity`,
       );
+      assert.equal(
+        /^\d{4}$/.test(String(entry.issueNumber ?? '')),
+        false,
+        `included source row ${entry.sourcePosition} must not store a publication year as its issue number`,
+      );
       const identity = [
         entry.normalizedSeriesTitle,
         entry.seriesYear,
@@ -148,6 +162,13 @@ function validateLedger(ledger) {
         seenIdentities.add(identity);
       }
     }
+    if (/\bmaterial from\b/i.test(String(entry.sourceRangeReference ?? ''))) {
+      assert.equal(
+        entry.disposition,
+        'semantic-exclusion',
+        `partial-material source row ${entry.sourcePosition} must stay excluded`,
+      );
+    }
 
     const group = grouped.get(entry.sourceNode) ?? [];
     group.push(entry);
@@ -159,6 +180,13 @@ function validateLedger(ledger) {
     assert.deepEqual(localPositions, range(1, items.length), `sourceBlockPosition sequence for node ${node}`);
   }
 
+  for (const [sourcePosition, expected] of namedComicsWithoutSourceIssueNumbers.entries()) {
+    const entry = ledger.occurrences.find((candidate) => candidate.sourcePosition === sourcePosition);
+    assert.equal(entry?.normalizedSeriesTitle, expected.title, `named comic at source position ${sourcePosition}`);
+    assert.equal(entry?.seriesYear, expected.year, `named comic year at source position ${sourcePosition}`);
+    assert.equal(entry?.issueNumber, null, `named comic at source position ${sourcePosition} must not infer issue #1`);
+  }
+
   const node10 = ledger.occurrences.filter((entry) => entry.sourceNode === 10);
   assert.equal(node10.filter((entry) => entry.disposition === 'true-repeat').length, 1);
   assert.equal(node10.some((entry) => entry.sourceIssueReference === 'Amazing Spider-Man #86'), true);
@@ -168,7 +196,8 @@ function validateLedger(ledger) {
   assert.equal(node54.some((entry) => entry.sourceIssueReference === 'Daredevil: Love and War (1986)'), true);
 
   const node74 = ledger.occurrences.filter((entry) => entry.sourceNode === 74);
-  assert.equal(node74.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 18);
+  assert.equal(node74.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 17);
+  assert.equal(node74.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
   assert.equal(node74.some((entry) => entry.sourceIssueReference === 'Avengers: Deathtrap ? The Vault (1991)'), true);
 
   const node95 = ledger.occurrences.filter((entry) => entry.sourceNode === 95);
@@ -213,6 +242,17 @@ function validateLedger(ledger) {
   const node142 = ledger.occurrences.filter((entry) => entry.sourceNode === 142);
   assert.equal(node142.every((entry) => entry.normalizedSeriesTitle === 'Black Widow' && entry.seriesYear === 2010), true);
   assert.equal(node142.every((entry) => entry.disposition === 'provisional-canonical-candidate'), true);
+
+  const node6 = ledger.occurrences.filter((entry) => entry.sourceNode === 6);
+  assert.equal(node6.find((entry) => entry.sourcePosition === 6)?.normalizedSeriesTitle, 'Tales of Suspense');
+  assert.equal(node6.find((entry) => entry.sourcePosition === 6)?.seriesYear, 1959);
+
+  const node9 = ledger.occurrences.filter((entry) => entry.sourceNode === 9);
+  assert.equal(node9.find((entry) => entry.sourcePosition === 18)?.disposition, 'true-repeat');
+
+  const node74Partial = ledger.occurrences.filter((entry) => entry.sourceNode === 74);
+  assert.equal(node74Partial.find((entry) => entry.sourcePosition === 314)?.disposition, 'semantic-exclusion');
+  assert.equal(node74Partial.find((entry) => entry.sourcePosition === 314)?.reason, 'Partial-material label remains excluded.');
 
   const node164 = ledger.occurrences.filter((entry) => entry.sourceNode === 164);
   assert.equal(node164.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
@@ -310,5 +350,10 @@ test('the Black Widow source ledger rejects the contrarian mutations', async () 
   expectLedgerFailure(ledger, (draft) => {
     const mixed = draft.occurrences.find((entry) => entry.sourceNode === 164 && entry.disposition === 'semantic-exclusion');
     mixed.disposition = 'unresolved-included-identity-gap';
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    const namedOneShot = draft.occurrences.find((entry) => entry.sourcePosition === 226);
+    namedOneShot.issueNumber = '1';
   });
 });
