@@ -16,14 +16,14 @@
     "issueBearingBlockCount": 55,
     "issueBearingBlocksSha256": "ea5c02e6209d5cc3c20e5927e1746e056b5e847875840b6db21e3f866c19308f"
   },
-  "normalizedSourceHash": "ec08f23032c24e71d5baad5a3c94efa808b2a68039c72d135b57d32c49ae7e39",
-  "sourceNodeOrderHash": "b0b6e2cc14f99da23bd5b314a42518497dc28932054708815b3cd80a460099d2",
+  "normalizedSourceHash": "1aedaa14f9671bbf6cffdb9d8adc0171c7af2343be71c3a6ccbc882178b964a3",
+  "sourceNodeOrderHash": "82d979f730300d6dfc76d5ebd8265059910311e26e4a327a321d876397b36cc8",
   "groupCount": 8,
-  "occurrenceCount": 418,
+  "occurrenceCount": 425,
   "occurrenceCounts": {
-    "exclusion": 106,
-    "canonical-candidate": 275,
-    "repeat": 32,
+    "exclusion": 103,
+    "canonical-candidate": 277,
+    "repeat": 40,
     "gap": 5
   },
   "occurrences": [
@@ -39,7 +39,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 2,
@@ -53,7 +54,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker"
+      "reason": "boundary marker",
+      "repeatOfPosition": null
     },
     {
       "position": 3,
@@ -67,7 +69,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 4,
@@ -81,7 +84,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 5,
@@ -95,7 +99,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker"
+      "reason": "boundary marker",
+      "repeatOfPosition": null
     },
     {
       "position": 6,
@@ -109,7 +114,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
       "position": 7,
@@ -123,7 +129,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 8,
@@ -277,7 +284,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 19,
@@ -315,11 +323,12 @@
       "sourceText": "Silver Surfer duels the Hulk. For the record, these are totally in Marvel Unlimited.",
       "sourceRangeReference": "Silver Surfer duels the Hulk. For the record, these are totally in Marvel Unlimited.",
       "collectionTitle": "Tales to Astonish",
-      "normalizedSeriesTitle": "Tales to Astonish",
+      "normalizedSeriesTitle": null,
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "canonical-candidate",
-      "reason": "issue-bearing prose marker"
+      "provisionalDisposition": "exclusion",
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 22,
@@ -333,7 +342,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 23,
@@ -361,7 +371,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 25,
@@ -459,7 +470,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 32,
@@ -725,7 +737,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 51,
@@ -739,7 +752,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker"
+      "reason": "boundary marker",
+      "repeatOfPosition": null
     },
     {
       "position": 52,
@@ -753,7 +767,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
       "position": 53,
@@ -767,7 +782,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 54,
@@ -809,7 +825,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 57,
@@ -823,7 +840,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 58,
@@ -865,7 +883,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 61,
@@ -879,7 +898,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 62,
@@ -991,7 +1011,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
       "position": 70,
@@ -1005,7 +1026,8 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
       "position": 71,
@@ -1123,18 +1145,116 @@
       "position": 79,
       "sourceNodeIndex": 36,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
-      "sourceType": "prose",
-      "sourceText": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "sourceType": "issue",
+      "sourceText": "Avengers #115",
       "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
       "collectionTitle": "Avengers Defenders War",
-      "normalizedSeriesTitle": null,
+      "normalizedSeriesTitle": "Avengers",
       "seriesYear": null,
-      "issueNumber": null,
-      "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "issueNumber": "115",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 71
     },
     {
       "position": 80,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Defenders #8",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": null,
+      "issueNumber": "8",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 75
+    },
+    {
+      "position": 81,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Avengers #116",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": null,
+      "issueNumber": "116",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 72
+    },
+    {
+      "position": 82,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Defenders #9",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": null,
+      "issueNumber": "9",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 76
+    },
+    {
+      "position": 83,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Avengers #117",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": null,
+      "issueNumber": "117",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 73
+    },
+    {
+      "position": 84,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Defenders #10",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": null,
+      "issueNumber": "10",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 77
+    },
+    {
+      "position": 85,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Avengers #118",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": null,
+      "issueNumber": "118",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 74
+    },
+    {
+      "position": 86,
+      "sourceNodeIndex": 36,
+      "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
+      "sourceType": "issue",
+      "sourceText": "Defenders #11",
+      "sourceRangeReference": "Avengers vs. Defenders crossover from the early 70’s. It’s a pretty great early Marvel event involving the likes of Loki and Dormammu! Reading order is: Avengers #115, Defenders #8, Avengers #116, Defenders #9, Avengers #117, Defenders #10, Avengers #118, Defenders #11",
+      "collectionTitle": "Avengers Defenders War",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": null,
+      "issueNumber": "11",
+      "provisionalDisposition": "repeat",
+      "repeatOfPosition": 78
+    },
+    {
+      "position": 87,
       "sourceNodeIndex": 38,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "collection",
@@ -1145,10 +1265,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 81,
+      "position": 88,
       "sourceNodeIndex": 39,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "issue",
@@ -1162,7 +1283,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 82,
+      "position": 89,
       "sourceNodeIndex": 39,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "issue",
@@ -1176,7 +1297,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 83,
+      "position": 90,
       "sourceNodeIndex": 39,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "issue",
@@ -1190,7 +1311,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 84,
+      "position": 91,
       "sourceNodeIndex": 40,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "collection",
@@ -1201,10 +1322,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 85,
+      "position": 92,
       "sourceNodeIndex": 41,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "issue",
@@ -1218,7 +1340,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 86,
+      "position": 93,
       "sourceNodeIndex": 42,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "prose",
@@ -1229,10 +1351,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 87,
+      "position": 94,
       "sourceNodeIndex": 43,
       "sourceGroup": "II) Norrin Radd Does the 70?s ? Defenders Origins",
       "sourceType": "figure",
@@ -1243,10 +1366,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker"
+      "reason": "boundary marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 88,
+      "position": 95,
       "sourceNodeIndex": 44,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "h3",
@@ -1257,10 +1381,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 89,
+      "position": 96,
       "sourceNodeIndex": 45,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "collection",
@@ -1271,10 +1396,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 90,
+      "position": 97,
       "sourceNodeIndex": 46,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1288,7 +1414,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 91,
+      "position": 98,
       "sourceNodeIndex": 46,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1302,7 +1428,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 92,
+      "position": 99,
       "sourceNodeIndex": 46,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1316,7 +1442,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 93,
+      "position": 100,
       "sourceNodeIndex": 46,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1330,7 +1456,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 94,
+      "position": 101,
       "sourceNodeIndex": 47,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "prose",
@@ -1341,10 +1467,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 95,
+      "position": 102,
       "sourceNodeIndex": 48,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "collection",
@@ -1355,10 +1482,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 96,
+      "position": 103,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1372,7 +1500,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 97,
+      "position": 104,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1386,7 +1514,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 98,
+      "position": 105,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1400,7 +1528,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 99,
+      "position": 106,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1414,7 +1542,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 100,
+      "position": 107,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1428,7 +1556,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 101,
+      "position": 108,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1442,7 +1570,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 102,
+      "position": 109,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1456,7 +1584,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 103,
+      "position": 110,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1470,7 +1598,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 104,
+      "position": 111,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1484,7 +1612,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 105,
+      "position": 112,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1498,7 +1626,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 106,
+      "position": 113,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1512,7 +1640,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 107,
+      "position": 114,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1526,7 +1654,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 108,
+      "position": 115,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1540,7 +1668,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 109,
+      "position": 116,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1554,7 +1682,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 110,
+      "position": 117,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1568,7 +1696,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 111,
+      "position": 118,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1582,7 +1710,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 112,
+      "position": 119,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1596,7 +1724,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 113,
+      "position": 120,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1610,7 +1738,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 114,
+      "position": 121,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1624,7 +1752,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 115,
+      "position": 122,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1638,7 +1766,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 116,
+      "position": 123,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1652,7 +1780,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 117,
+      "position": 124,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1666,7 +1794,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 118,
+      "position": 125,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1680,7 +1808,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 119,
+      "position": 126,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1694,7 +1822,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 120,
+      "position": 127,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1708,7 +1836,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 121,
+      "position": 128,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1722,7 +1850,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 122,
+      "position": 129,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1736,7 +1864,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 123,
+      "position": 130,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1750,7 +1878,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 124,
+      "position": 131,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1764,7 +1892,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 125,
+      "position": 132,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1778,7 +1906,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 126,
+      "position": 133,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1792,7 +1920,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 127,
+      "position": 134,
       "sourceNodeIndex": 49,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1806,7 +1934,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 128,
+      "position": 135,
       "sourceNodeIndex": 51,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "prose",
@@ -1817,10 +1945,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 129,
+      "position": 136,
       "sourceNodeIndex": 52,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "collection",
@@ -1831,10 +1960,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 130,
+      "position": 137,
       "sourceNodeIndex": 53,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1848,7 +1978,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 131,
+      "position": 138,
       "sourceNodeIndex": 54,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "prose",
@@ -1859,10 +1989,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 132,
+      "position": 139,
       "sourceNodeIndex": 55,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "collection",
@@ -1873,10 +2004,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 133,
+      "position": 140,
       "sourceNodeIndex": 56,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1890,7 +2022,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 134,
+      "position": 141,
       "sourceNodeIndex": 56,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "issue",
@@ -1904,7 +2036,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 135,
+      "position": 142,
       "sourceNodeIndex": 57,
       "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
       "sourceType": "prose",
@@ -1915,10 +2047,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 136,
+      "position": 143,
       "sourceNodeIndex": 59,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "h3",
@@ -1929,10 +2062,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 137,
+      "position": 144,
       "sourceNodeIndex": 60,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -1943,10 +2077,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 138,
+      "position": 145,
       "sourceNodeIndex": 61,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -1960,7 +2095,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 139,
+      "position": 146,
       "sourceNodeIndex": 61,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -1974,7 +2109,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 140,
+      "position": 147,
       "sourceNodeIndex": 61,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -1988,7 +2123,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 141,
+      "position": 148,
       "sourceNodeIndex": 61,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2002,7 +2137,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 142,
+      "position": 149,
       "sourceNodeIndex": 61,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2016,7 +2151,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 143,
+      "position": 150,
       "sourceNodeIndex": 62,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2027,10 +2162,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 144,
+      "position": 151,
       "sourceNodeIndex": 64,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2041,10 +2177,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 145,
+      "position": 152,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2058,7 +2195,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 146,
+      "position": 153,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2072,7 +2209,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 147,
+      "position": 154,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2086,7 +2223,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 148,
+      "position": 155,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2100,7 +2237,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 149,
+      "position": 156,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2114,7 +2251,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 150,
+      "position": 157,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2128,7 +2265,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 151,
+      "position": 158,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2142,7 +2279,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 152,
+      "position": 159,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2156,7 +2293,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 153,
+      "position": 160,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2170,7 +2307,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 154,
+      "position": 161,
       "sourceNodeIndex": 65,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2184,7 +2321,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 155,
+      "position": 162,
       "sourceNodeIndex": 66,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "prose",
@@ -2195,10 +2332,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 156,
+      "position": 163,
       "sourceNodeIndex": 67,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2209,10 +2347,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 157,
+      "position": 164,
       "sourceNodeIndex": 68,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2223,10 +2362,10 @@
       "seriesYear": null,
       "issueNumber": "OGN",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 130
+      "repeatOfPosition": 137
     },
     {
-      "position": 158,
+      "position": 165,
       "sourceNodeIndex": 69,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "prose",
@@ -2237,10 +2376,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 159,
+      "position": 166,
       "sourceNodeIndex": 70,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2251,10 +2391,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 160,
+      "position": 167,
       "sourceNodeIndex": 71,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2268,7 +2409,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 161,
+      "position": 168,
       "sourceNodeIndex": 71,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2282,7 +2423,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 162,
+      "position": 169,
       "sourceNodeIndex": 71,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2296,7 +2437,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 163,
+      "position": 170,
       "sourceNodeIndex": 71,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2310,7 +2451,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 164,
+      "position": 171,
       "sourceNodeIndex": 71,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2324,7 +2465,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 165,
+      "position": 172,
       "sourceNodeIndex": 71,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2338,7 +2479,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 166,
+      "position": 173,
       "sourceNodeIndex": 72,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2349,10 +2490,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 167,
+      "position": 174,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2366,7 +2508,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 168,
+      "position": 175,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2380,7 +2522,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 169,
+      "position": 176,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2394,7 +2536,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 170,
+      "position": 177,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2408,7 +2550,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 171,
+      "position": 178,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2422,7 +2564,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 172,
+      "position": 179,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2436,7 +2578,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 173,
+      "position": 180,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2450,7 +2592,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 174,
+      "position": 181,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2464,7 +2606,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 175,
+      "position": 182,
       "sourceNodeIndex": 73,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2478,7 +2620,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 176,
+      "position": 183,
       "sourceNodeIndex": 74,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "prose",
@@ -2489,10 +2631,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 177,
+      "position": 184,
       "sourceNodeIndex": 75,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2503,10 +2646,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 178,
+      "position": 185,
       "sourceNodeIndex": 76,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "gap",
@@ -2517,10 +2661,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "gap",
-      "reason": "blank issue line"
+      "reason": "blank issue line",
+      "repeatOfPosition": null
     },
     {
-      "position": 179,
+      "position": 186,
       "sourceNodeIndex": 77,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2531,10 +2676,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 180,
+      "position": 187,
       "sourceNodeIndex": 78,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2548,7 +2694,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 181,
+      "position": 188,
       "sourceNodeIndex": 78,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2562,7 +2708,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 182,
+      "position": 189,
       "sourceNodeIndex": 78,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2576,7 +2722,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 183,
+      "position": 190,
       "sourceNodeIndex": 78,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2590,7 +2736,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 184,
+      "position": 191,
       "sourceNodeIndex": 79,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "prose",
@@ -2601,10 +2747,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 185,
+      "position": 192,
       "sourceNodeIndex": 80,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2615,10 +2762,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 186,
+      "position": 193,
       "sourceNodeIndex": 81,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "gap",
@@ -2629,10 +2777,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "gap",
-      "reason": "blank issue line"
+      "reason": "blank issue line",
+      "repeatOfPosition": null
     },
     {
-      "position": 187,
+      "position": 194,
       "sourceNodeIndex": 82,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "collection",
@@ -2643,10 +2792,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 188,
+      "position": 195,
       "sourceNodeIndex": 83,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2660,7 +2810,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 189,
+      "position": 196,
       "sourceNodeIndex": 83,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2674,7 +2824,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 190,
+      "position": 197,
       "sourceNodeIndex": 83,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2688,7 +2838,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 191,
+      "position": 198,
       "sourceNodeIndex": 83,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2702,7 +2852,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 192,
+      "position": 199,
       "sourceNodeIndex": 83,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "issue",
@@ -2716,7 +2866,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 193,
+      "position": 200,
       "sourceNodeIndex": 84,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
       "sourceType": "prose",
@@ -2727,10 +2877,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 194,
+      "position": 201,
       "sourceNodeIndex": 86,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "h3",
@@ -2741,10 +2892,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 195,
+      "position": 202,
       "sourceNodeIndex": 87,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -2755,10 +2907,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 196,
+      "position": 203,
       "sourceNodeIndex": 88,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2772,7 +2925,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 197,
+      "position": 204,
       "sourceNodeIndex": 89,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -2783,10 +2936,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 198,
+      "position": 205,
       "sourceNodeIndex": 90,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -2797,10 +2951,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 199,
+      "position": 206,
       "sourceNodeIndex": 91,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2814,7 +2969,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 200,
+      "position": 207,
       "sourceNodeIndex": 92,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -2825,10 +2980,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 201,
+      "position": 208,
       "sourceNodeIndex": 93,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -2839,10 +2995,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 202,
+      "position": 209,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2856,7 +3013,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 203,
+      "position": 210,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2870,7 +3027,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 204,
+      "position": 211,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2884,7 +3041,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 205,
+      "position": 212,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2898,7 +3055,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 206,
+      "position": 213,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2912,7 +3069,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 207,
+      "position": 214,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2926,7 +3083,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 208,
+      "position": 215,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2940,7 +3097,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 209,
+      "position": 216,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2954,7 +3111,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 210,
+      "position": 217,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2968,7 +3125,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 211,
+      "position": 218,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2982,7 +3139,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 212,
+      "position": 219,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -2996,7 +3153,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 213,
+      "position": 220,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3010,7 +3167,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 214,
+      "position": 221,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3024,7 +3181,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 215,
+      "position": 222,
       "sourceNodeIndex": 94,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3038,7 +3195,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 216,
+      "position": 223,
       "sourceNodeIndex": 95,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -3049,10 +3206,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 217,
+      "position": 224,
       "sourceNodeIndex": 96,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3063,10 +3221,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 218,
+      "position": 225,
       "sourceNodeIndex": 97,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3080,7 +3239,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 219,
+      "position": 226,
       "sourceNodeIndex": 98,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -3091,10 +3250,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 220,
+      "position": 227,
       "sourceNodeIndex": 99,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3105,10 +3265,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 221,
+      "position": 228,
       "sourceNodeIndex": 100,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3122,7 +3283,7 @@
       "repeatOfPosition": 62
     },
     {
-      "position": 222,
+      "position": 229,
       "sourceNodeIndex": 100,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3136,7 +3297,7 @@
       "repeatOfPosition": 63
     },
     {
-      "position": 223,
+      "position": 230,
       "sourceNodeIndex": 100,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3150,7 +3311,7 @@
       "repeatOfPosition": 64
     },
     {
-      "position": 224,
+      "position": 231,
       "sourceNodeIndex": 100,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3164,7 +3325,7 @@
       "repeatOfPosition": 65
     },
     {
-      "position": 225,
+      "position": 232,
       "sourceNodeIndex": 100,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3178,7 +3339,7 @@
       "repeatOfPosition": 66
     },
     {
-      "position": 226,
+      "position": 233,
       "sourceNodeIndex": 101,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3189,10 +3350,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 227,
+      "position": 234,
       "sourceNodeIndex": 102,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "gap",
@@ -3203,10 +3365,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "gap",
-      "reason": "blank issue line"
+      "reason": "blank issue line",
+      "repeatOfPosition": null
     },
     {
-      "position": 228,
+      "position": 235,
       "sourceNodeIndex": 103,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3217,10 +3380,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 229,
+      "position": 236,
       "sourceNodeIndex": 104,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3231,10 +3395,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 230,
+      "position": 237,
       "sourceNodeIndex": 105,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3248,7 +3413,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 231,
+      "position": 238,
       "sourceNodeIndex": 105,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3262,7 +3427,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 232,
+      "position": 239,
       "sourceNodeIndex": 105,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3276,7 +3441,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 233,
+      "position": 240,
       "sourceNodeIndex": 105,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3290,7 +3455,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 234,
+      "position": 241,
       "sourceNodeIndex": 106,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -3301,10 +3466,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 235,
+      "position": 242,
       "sourceNodeIndex": 107,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3315,10 +3481,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 236,
+      "position": 243,
       "sourceNodeIndex": 108,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3332,7 +3499,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 237,
+      "position": 244,
       "sourceNodeIndex": 108,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3346,7 +3513,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 238,
+      "position": 245,
       "sourceNodeIndex": 108,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3360,7 +3527,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 239,
+      "position": 246,
       "sourceNodeIndex": 108,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3374,7 +3541,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 240,
+      "position": 247,
       "sourceNodeIndex": 108,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3388,7 +3555,7 @@
       "repeatOfPosition": 23
     },
     {
-      "position": 241,
+      "position": 248,
       "sourceNodeIndex": 108,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3402,7 +3569,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 242,
+      "position": 249,
       "sourceNodeIndex": 109,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -3413,10 +3580,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 243,
+      "position": 250,
       "sourceNodeIndex": 110,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3427,10 +3595,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 244,
+      "position": 251,
       "sourceNodeIndex": 111,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3444,7 +3613,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 245,
+      "position": 252,
       "sourceNodeIndex": 111,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3458,7 +3627,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 246,
+      "position": 253,
       "sourceNodeIndex": 111,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3472,7 +3641,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 247,
+      "position": 254,
       "sourceNodeIndex": 111,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3486,7 +3655,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 248,
+      "position": 255,
       "sourceNodeIndex": 112,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -3497,10 +3666,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 249,
+      "position": 256,
       "sourceNodeIndex": 113,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3511,10 +3681,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 250,
+      "position": 257,
       "sourceNodeIndex": 114,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3528,7 +3699,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 251,
+      "position": 258,
       "sourceNodeIndex": 114,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3542,7 +3713,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 252,
+      "position": 259,
       "sourceNodeIndex": 114,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3556,7 +3727,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 253,
+      "position": 260,
       "sourceNodeIndex": 114,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3570,7 +3741,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 254,
+      "position": 261,
       "sourceNodeIndex": 114,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3584,7 +3755,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 255,
+      "position": 262,
       "sourceNodeIndex": 115,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3595,10 +3766,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 256,
+      "position": 263,
       "sourceNodeIndex": 116,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3612,7 +3784,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 257,
+      "position": 264,
       "sourceNodeIndex": 116,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3626,7 +3798,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 258,
+      "position": 265,
       "sourceNodeIndex": 116,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3640,7 +3812,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 259,
+      "position": 266,
       "sourceNodeIndex": 116,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3654,7 +3826,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 260,
+      "position": 267,
       "sourceNodeIndex": 117,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3665,10 +3837,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 261,
+      "position": 268,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3682,7 +3855,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 262,
+      "position": 269,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3696,7 +3869,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 263,
+      "position": 270,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3710,7 +3883,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 264,
+      "position": 271,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3724,7 +3897,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 265,
+      "position": 272,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3738,7 +3911,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 266,
+      "position": 273,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3752,7 +3925,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 267,
+      "position": 274,
       "sourceNodeIndex": 118,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3766,7 +3939,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 268,
+      "position": 275,
       "sourceNodeIndex": 119,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3777,10 +3950,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 269,
+      "position": 276,
       "sourceNodeIndex": 120,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3794,7 +3968,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 270,
+      "position": 277,
       "sourceNodeIndex": 120,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3808,7 +3982,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 271,
+      "position": 278,
       "sourceNodeIndex": 120,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3822,7 +3996,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 272,
+      "position": 279,
       "sourceNodeIndex": 120,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3836,7 +4010,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 273,
+      "position": 280,
       "sourceNodeIndex": 121,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3847,10 +4021,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 274,
+      "position": 281,
       "sourceNodeIndex": 122,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3861,10 +4036,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 275,
+      "position": 282,
       "sourceNodeIndex": 123,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "gap",
@@ -3875,10 +4051,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "gap",
-      "reason": "blank issue line"
+      "reason": "blank issue line",
+      "repeatOfPosition": null
     },
     {
-      "position": 276,
+      "position": 283,
       "sourceNodeIndex": 124,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3889,10 +4066,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 277,
+      "position": 284,
       "sourceNodeIndex": 125,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3903,10 +4081,10 @@
       "seriesYear": 2003,
       "issueNumber": "1",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 202
+      "repeatOfPosition": 209
     },
     {
-      "position": 278,
+      "position": 285,
       "sourceNodeIndex": 125,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3917,10 +4095,10 @@
       "seriesYear": 2003,
       "issueNumber": "2",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 203
+      "repeatOfPosition": 210
     },
     {
-      "position": 279,
+      "position": 286,
       "sourceNodeIndex": 125,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3931,10 +4109,10 @@
       "seriesYear": 2003,
       "issueNumber": "3",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 204
+      "repeatOfPosition": 211
     },
     {
-      "position": 280,
+      "position": 287,
       "sourceNodeIndex": 125,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3945,10 +4123,10 @@
       "seriesYear": 2003,
       "issueNumber": "4",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 205
+      "repeatOfPosition": 212
     },
     {
-      "position": 281,
+      "position": 288,
       "sourceNodeIndex": 125,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -3959,10 +4137,10 @@
       "seriesYear": 2003,
       "issueNumber": "5",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 206
+      "repeatOfPosition": 213
     },
     {
-      "position": 282,
+      "position": 289,
       "sourceNodeIndex": 126,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "prose",
@@ -3973,10 +4151,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 283,
+      "position": 290,
       "sourceNodeIndex": 127,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "collection",
@@ -3987,10 +4166,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 284,
+      "position": 291,
       "sourceNodeIndex": 128,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -4004,7 +4184,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 285,
+      "position": 292,
       "sourceNodeIndex": 128,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -4018,7 +4198,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 286,
+      "position": 293,
       "sourceNodeIndex": 128,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -4032,7 +4212,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 287,
+      "position": 294,
       "sourceNodeIndex": 128,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
       "sourceType": "issue",
@@ -4046,7 +4226,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 288,
+      "position": 295,
       "sourceNodeIndex": 130,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "h3",
@@ -4057,10 +4237,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 289,
+      "position": 296,
       "sourceNodeIndex": 131,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "collection",
@@ -4071,10 +4252,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 290,
+      "position": 297,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4088,7 +4270,7 @@
       "repeatOfPosition": 62
     },
     {
-      "position": 291,
+      "position": 298,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4102,7 +4284,7 @@
       "repeatOfPosition": 63
     },
     {
-      "position": 292,
+      "position": 299,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4116,7 +4298,7 @@
       "repeatOfPosition": 64
     },
     {
-      "position": 293,
+      "position": 300,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4130,7 +4312,7 @@
       "repeatOfPosition": 65
     },
     {
-      "position": 294,
+      "position": 301,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4144,7 +4326,7 @@
       "repeatOfPosition": 66
     },
     {
-      "position": 295,
+      "position": 302,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4158,7 +4340,7 @@
       "repeatOfPosition": 67
     },
     {
-      "position": 296,
+      "position": 303,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4172,7 +4354,7 @@
       "repeatOfPosition": 68
     },
     {
-      "position": 297,
+      "position": 304,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4186,7 +4368,7 @@
       "repeatOfPosition": 75
     },
     {
-      "position": 298,
+      "position": 305,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4200,7 +4382,7 @@
       "repeatOfPosition": 76
     },
     {
-      "position": 299,
+      "position": 306,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4214,7 +4396,7 @@
       "repeatOfPosition": 77
     },
     {
-      "position": 300,
+      "position": 307,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4228,7 +4410,7 @@
       "repeatOfPosition": 78
     },
     {
-      "position": 301,
+      "position": 308,
       "sourceNodeIndex": 132,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4242,7 +4424,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 302,
+      "position": 309,
       "sourceNodeIndex": 133,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "prose",
@@ -4253,10 +4435,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 303,
+      "position": 310,
       "sourceNodeIndex": 134,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "collection",
@@ -4267,10 +4450,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 304,
+      "position": 311,
       "sourceNodeIndex": 135,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4284,7 +4468,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 305,
+      "position": 312,
       "sourceNodeIndex": 136,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "collection",
@@ -4295,10 +4479,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 306,
+      "position": 313,
       "sourceNodeIndex": 137,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4312,7 +4497,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 307,
+      "position": 314,
       "sourceNodeIndex": 137,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4326,7 +4511,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 308,
+      "position": 315,
       "sourceNodeIndex": 137,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4340,7 +4525,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 309,
+      "position": 316,
       "sourceNodeIndex": 137,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4354,7 +4539,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 310,
+      "position": 317,
       "sourceNodeIndex": 138,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "collection",
@@ -4365,10 +4550,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 311,
+      "position": 318,
       "sourceNodeIndex": 139,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4382,7 +4568,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 312,
+      "position": 319,
       "sourceNodeIndex": 140,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "prose",
@@ -4393,24 +4579,26 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 313,
+      "position": 320,
       "sourceNodeIndex": 141,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
-      "sourceType": "collection",
+      "sourceType": "issue-title",
       "sourceText": "FF #16",
       "sourceRangeReference": "FF #16",
       "collectionTitle": "FF #16",
-      "normalizedSeriesTitle": null,
+      "normalizedSeriesTitle": "FF",
       "seriesYear": null,
-      "issueNumber": null,
-      "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "issueNumber": "16",
+      "provisionalDisposition": "canonical-candidate",
+      "reason": "issue-bearing title",
+      "repeatOfPosition": null
     },
     {
-      "position": 314,
+      "position": 321,
       "sourceNodeIndex": 142,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "gap",
@@ -4421,10 +4609,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "gap",
-      "reason": "blank issue line"
+      "reason": "blank issue line",
+      "repeatOfPosition": null
     },
     {
-      "position": 315,
+      "position": 322,
       "sourceNodeIndex": 143,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "prose",
@@ -4435,10 +4624,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker"
+      "reason": "prose marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 316,
+      "position": 323,
       "sourceNodeIndex": 144,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "collection",
@@ -4449,10 +4639,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 317,
+      "position": 324,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4466,7 +4657,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 318,
+      "position": 325,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4480,7 +4671,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 319,
+      "position": 326,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4494,7 +4685,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 320,
+      "position": 327,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4508,7 +4699,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 321,
+      "position": 328,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4522,7 +4713,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 322,
+      "position": 329,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4536,7 +4727,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 323,
+      "position": 330,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4550,7 +4741,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 324,
+      "position": 331,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4564,7 +4755,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 325,
+      "position": 332,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4578,7 +4769,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 326,
+      "position": 333,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4592,7 +4783,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 327,
+      "position": 334,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4606,7 +4797,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 328,
+      "position": 335,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4620,7 +4811,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 329,
+      "position": 336,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4634,7 +4825,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 330,
+      "position": 337,
       "sourceNodeIndex": 145,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "issue",
@@ -4648,7 +4839,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 331,
+      "position": 338,
       "sourceNodeIndex": 146,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
       "sourceType": "collection",
@@ -4659,10 +4850,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 332,
+      "position": 339,
       "sourceNodeIndex": 147,
       "sourceGroup": "Latest Additions:",
       "sourceType": "h2",
@@ -4673,10 +4865,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker"
+      "reason": "section marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 333,
+      "position": 340,
       "sourceNodeIndex": 148,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -4687,10 +4880,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 334,
+      "position": 341,
       "sourceNodeIndex": 149,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4701,10 +4895,10 @@
       "seriesYear": 2014,
       "issueNumber": "6",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 322
+      "repeatOfPosition": 329
     },
     {
-      "position": 335,
+      "position": 342,
       "sourceNodeIndex": 149,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4715,10 +4909,10 @@
       "seriesYear": 2014,
       "issueNumber": "7",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 323
+      "repeatOfPosition": 330
     },
     {
-      "position": 336,
+      "position": 343,
       "sourceNodeIndex": 149,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4729,10 +4923,10 @@
       "seriesYear": 2014,
       "issueNumber": "8",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 324
+      "repeatOfPosition": 331
     },
     {
-      "position": 337,
+      "position": 344,
       "sourceNodeIndex": 149,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4743,10 +4937,10 @@
       "seriesYear": 2014,
       "issueNumber": "9",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 325
+      "repeatOfPosition": 332
     },
     {
-      "position": 338,
+      "position": 345,
       "sourceNodeIndex": 149,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4757,10 +4951,10 @@
       "seriesYear": 2014,
       "issueNumber": "10",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 326
+      "repeatOfPosition": 333
     },
     {
-      "position": 339,
+      "position": 346,
       "sourceNodeIndex": 150,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -4771,10 +4965,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 340,
+      "position": 347,
       "sourceNodeIndex": 151,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4785,10 +4980,10 @@
       "seriesYear": 2014,
       "issueNumber": "11",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 327
+      "repeatOfPosition": 334
     },
     {
-      "position": 341,
+      "position": 348,
       "sourceNodeIndex": 151,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4799,10 +4994,10 @@
       "seriesYear": 2014,
       "issueNumber": "12",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 328
+      "repeatOfPosition": 335
     },
     {
-      "position": 342,
+      "position": 349,
       "sourceNodeIndex": 151,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4813,10 +5008,10 @@
       "seriesYear": 2014,
       "issueNumber": "13",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 329
+      "repeatOfPosition": 336
     },
     {
-      "position": 343,
+      "position": 350,
       "sourceNodeIndex": 151,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4827,10 +5022,10 @@
       "seriesYear": 2014,
       "issueNumber": "14",
       "provisionalDisposition": "repeat",
-      "repeatOfPosition": 330
+      "repeatOfPosition": 337
     },
     {
-      "position": 344,
+      "position": 351,
       "sourceNodeIndex": 151,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4844,7 +5039,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 345,
+      "position": 352,
       "sourceNodeIndex": 152,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -4855,10 +5050,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 346,
+      "position": 353,
       "sourceNodeIndex": 153,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4872,7 +5068,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 347,
+      "position": 354,
       "sourceNodeIndex": 153,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4886,7 +5082,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 348,
+      "position": 355,
       "sourceNodeIndex": 153,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4900,7 +5096,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 349,
+      "position": 356,
       "sourceNodeIndex": 153,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4914,7 +5110,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 350,
+      "position": 357,
       "sourceNodeIndex": 153,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4928,7 +5124,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 351,
+      "position": 358,
       "sourceNodeIndex": 153,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4942,7 +5138,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 352,
+      "position": 359,
       "sourceNodeIndex": 154,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -4953,10 +5149,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 353,
+      "position": 360,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4970,7 +5167,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 354,
+      "position": 361,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4984,7 +5181,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 355,
+      "position": 362,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -4998,7 +5195,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 356,
+      "position": 363,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5012,7 +5209,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 357,
+      "position": 364,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5026,7 +5223,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 358,
+      "position": 365,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5040,7 +5237,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 359,
+      "position": 366,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5054,7 +5251,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 360,
+      "position": 367,
       "sourceNodeIndex": 155,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5068,35 +5265,37 @@
       "repeatOfPosition": null
     },
     {
-      "position": 361,
+      "position": 368,
       "sourceNodeIndex": 156,
       "sourceGroup": "Latest Additions:",
-      "sourceType": "collection",
+      "sourceType": "issue-title",
       "sourceText": "The Unbeatable Squirrel Girl #27",
       "sourceRangeReference": "The Unbeatable Squirrel Girl #27",
       "collectionTitle": "The Unbeatable Squirrel Girl #27",
-      "normalizedSeriesTitle": null,
+      "normalizedSeriesTitle": "The Unbeatable Squirrel Girl",
       "seriesYear": null,
-      "issueNumber": null,
-      "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "issueNumber": "27",
+      "provisionalDisposition": "canonical-candidate",
+      "reason": "issue-bearing title",
+      "repeatOfPosition": null
     },
     {
-      "position": 362,
+      "position": 369,
       "sourceNodeIndex": 157,
       "sourceGroup": "Latest Additions:",
-      "sourceType": "collection",
+      "sourceType": "issue-title",
       "sourceText": "Moon Girl & Devil Dinosaur #26",
       "sourceRangeReference": "Moon Girl & Devil Dinosaur #26",
       "collectionTitle": "Moon Girl & Devil Dinosaur #26",
-      "normalizedSeriesTitle": null,
+      "normalizedSeriesTitle": "Moon Girl & Devil Dinosaur",
       "seriesYear": null,
-      "issueNumber": null,
-      "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "issueNumber": "26",
+      "provisionalDisposition": "canonical-candidate",
+      "reason": "issue-bearing title",
+      "repeatOfPosition": null
     },
     {
-      "position": 363,
+      "position": 370,
       "sourceNodeIndex": 158,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5107,10 +5306,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 364,
+      "position": 371,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5124,7 +5324,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 365,
+      "position": 372,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5138,7 +5338,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 366,
+      "position": 373,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5152,7 +5352,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 367,
+      "position": 374,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5166,7 +5366,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 368,
+      "position": 375,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5180,7 +5380,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 369,
+      "position": 376,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5194,7 +5394,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 370,
+      "position": 377,
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5208,7 +5408,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 371,
+      "position": 378,
       "sourceNodeIndex": 160,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5219,10 +5419,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 372,
+      "position": 379,
       "sourceNodeIndex": 161,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5233,10 +5434,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 373,
+      "position": 380,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5250,7 +5452,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 374,
+      "position": 381,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5264,7 +5466,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 375,
+      "position": 382,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5278,7 +5480,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 376,
+      "position": 383,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5292,7 +5494,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 377,
+      "position": 384,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5306,7 +5508,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 378,
+      "position": 385,
       "sourceNodeIndex": 163,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5317,10 +5519,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 379,
+      "position": 386,
       "sourceNodeIndex": 164,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5331,10 +5534,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 380,
+      "position": 387,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5348,7 +5552,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 381,
+      "position": 388,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5362,7 +5566,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 382,
+      "position": 389,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5376,7 +5580,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 383,
+      "position": 390,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5390,7 +5594,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 384,
+      "position": 391,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5404,7 +5608,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 385,
+      "position": 392,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5418,7 +5622,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 386,
+      "position": 393,
       "sourceNodeIndex": 166,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5429,10 +5633,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 387,
+      "position": 394,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5446,7 +5651,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 388,
+      "position": 395,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5460,7 +5665,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 389,
+      "position": 396,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5474,7 +5679,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 390,
+      "position": 397,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5488,7 +5693,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 391,
+      "position": 398,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5502,7 +5707,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 392,
+      "position": 399,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5516,7 +5721,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 393,
+      "position": 400,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5530,7 +5735,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 394,
+      "position": 401,
       "sourceNodeIndex": 168,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5541,10 +5746,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 395,
+      "position": 402,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5558,7 +5764,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 396,
+      "position": 403,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5572,7 +5778,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 397,
+      "position": 404,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5586,7 +5792,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 398,
+      "position": 405,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5600,7 +5806,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 399,
+      "position": 406,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5614,7 +5820,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 400,
+      "position": 407,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5628,7 +5834,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 401,
+      "position": 408,
       "sourceNodeIndex": 170,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5639,10 +5845,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 402,
+      "position": 409,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5656,7 +5863,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 403,
+      "position": 410,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5670,7 +5877,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 404,
+      "position": 411,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5684,7 +5891,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 405,
+      "position": 412,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5698,7 +5905,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 406,
+      "position": 413,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5712,7 +5919,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 407,
+      "position": 414,
       "sourceNodeIndex": 172,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5723,10 +5930,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 408,
+      "position": 415,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5740,7 +5948,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 409,
+      "position": 416,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5754,7 +5962,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 410,
+      "position": 417,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5768,7 +5976,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 411,
+      "position": 418,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5782,7 +5990,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 412,
+      "position": 419,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5796,7 +6004,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 413,
+      "position": 420,
       "sourceNodeIndex": 174,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5807,10 +6015,11 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker"
+      "reason": "collection marker",
+      "repeatOfPosition": null
     },
     {
-      "position": 414,
+      "position": 421,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5824,7 +6033,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 415,
+      "position": 422,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5838,7 +6047,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 416,
+      "position": 423,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5852,7 +6061,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 417,
+      "position": 424,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5866,7 +6075,7 @@
       "repeatOfPosition": null
     },
     {
-      "position": 418,
+      "position": 425,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5896,7 +6105,6 @@
       17,
       19,
       20,
-      21,
       23,
       25,
       26,
@@ -5941,21 +6149,14 @@
       76,
       77,
       78,
-      81,
-      82,
-      83,
-      85,
+      88,
+      89,
       90,
-      91,
       92,
-      93,
-      96,
       97,
       98,
       99,
       100,
-      101,
-      102,
       103,
       104,
       105,
@@ -5981,57 +6182,57 @@
       125,
       126,
       127,
+      128,
+      129,
       130,
+      131,
+      132,
       133,
       134,
-      138,
-      139,
+      137,
       140,
       141,
-      142,
       145,
       146,
       147,
       148,
       149,
-      150,
-      151,
       152,
       153,
       154,
+      155,
+      156,
+      157,
+      158,
+      159,
       160,
       161,
-      162,
-      163,
-      164,
-      165,
       167,
       168,
       169,
       170,
       171,
       172,
-      173,
       174,
       175,
+      176,
+      177,
+      178,
+      179,
       180,
       181,
       182,
-      183,
+      187,
       188,
       189,
       190,
-      191,
-      192,
+      195,
       196,
+      197,
+      198,
       199,
-      202,
       203,
-      204,
-      205,
       206,
-      207,
-      208,
       209,
       210,
       211,
@@ -6039,58 +6240,59 @@
       213,
       214,
       215,
+      216,
+      217,
       218,
-      230,
-      231,
-      232,
-      233,
-      236,
+      219,
+      220,
+      221,
+      222,
+      225,
       237,
       238,
       239,
-      241,
+      240,
+      243,
       244,
       245,
       246,
-      247,
-      250,
+      248,
       251,
       252,
       253,
       254,
-      256,
       257,
       258,
       259,
+      260,
       261,
-      262,
       263,
       264,
       265,
       266,
-      267,
+      268,
       269,
       270,
       271,
       272,
-      284,
-      285,
-      286,
-      287,
-      301,
-      304,
-      306,
-      307,
+      273,
+      274,
+      276,
+      277,
+      278,
+      279,
+      291,
+      292,
+      293,
+      294,
       308,
-      309,
       311,
-      317,
+      313,
+      314,
+      315,
+      316,
       318,
-      319,
       320,
-      321,
-      322,
-      323,
       324,
       325,
       326,
@@ -6098,12 +6300,13 @@
       328,
       329,
       330,
-      344,
-      346,
-      347,
-      348,
-      349,
-      350,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
       351,
       353,
       354,
@@ -6111,15 +6314,18 @@
       356,
       357,
       358,
-      359,
       360,
+      361,
+      362,
+      363,
       364,
       365,
       366,
       367,
       368,
       369,
-      370,
+      371,
+      372,
       373,
       374,
       375,
@@ -6130,14 +6336,13 @@
       382,
       383,
       384,
-      385,
       387,
       388,
       389,
       390,
       391,
       392,
-      393,
+      394,
       395,
       396,
       397,
@@ -6149,57 +6354,71 @@
       404,
       405,
       406,
-      408,
+      407,
       409,
       410,
       411,
       412,
-      414,
+      413,
       415,
       416,
       417,
-      418
+      418,
+      419,
+      421,
+      422,
+      423,
+      424,
+      425
     ],
     "repeatPositions": [
-      157,
-      221,
-      222,
-      223,
-      224,
-      225,
-      240,
-      277,
-      278,
-      279,
-      280,
-      281,
-      290,
-      291,
-      292,
-      293,
-      294,
-      295,
-      296,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      164,
+      228,
+      229,
+      230,
+      231,
+      232,
+      247,
+      284,
+      285,
+      286,
+      287,
+      288,
       297,
       298,
       299,
       300,
-      334,
-      335,
-      336,
-      337,
-      338,
-      340,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
       341,
       342,
-      343
+      343,
+      344,
+      345,
+      347,
+      348,
+      349,
+      350
     ],
     "gapPositions": [
-      178,
-      186,
-      227,
-      275,
-      314
+      185,
+      193,
+      234,
+      282,
+      321
     ],
     "exclusionPositions": [
       1,
@@ -6210,6 +6429,7 @@
       6,
       7,
       18,
+      21,
       22,
       24,
       31,
@@ -6223,91 +6443,200 @@
       61,
       69,
       70,
-      79,
-      80,
-      84,
-      86,
       87,
-      88,
-      89,
+      91,
+      93,
       94,
       95,
-      128,
-      129,
-      131,
-      132,
+      96,
+      101,
+      102,
       135,
       136,
-      137,
+      138,
+      139,
+      142,
       143,
       144,
-      155,
-      156,
-      158,
-      159,
+      150,
+      151,
+      162,
+      163,
+      165,
       166,
-      176,
-      177,
-      179,
+      173,
+      183,
       184,
-      185,
-      187,
-      193,
+      186,
+      191,
+      192,
       194,
-      195,
-      197,
-      198,
       200,
       201,
-      216,
-      217,
-      219,
-      220,
+      202,
+      204,
+      205,
+      207,
+      208,
+      223,
+      224,
       226,
-      228,
-      229,
-      234,
+      227,
+      233,
       235,
+      236,
+      241,
       242,
-      243,
-      248,
       249,
+      250,
       255,
-      260,
-      268,
-      273,
-      274,
-      276,
-      282,
+      256,
+      262,
+      267,
+      275,
+      280,
+      281,
       283,
-      288,
       289,
-      302,
-      303,
-      305,
+      290,
+      295,
+      296,
+      309,
       310,
       312,
-      313,
-      315,
-      316,
-      331,
-      332,
-      333,
+      317,
+      319,
+      322,
+      323,
+      338,
       339,
-      345,
+      340,
+      346,
       352,
-      361,
-      362,
-      363,
-      371,
-      372,
+      359,
+      370,
       378,
       379,
+      385,
       386,
-      394,
+      393,
       401,
-      407,
-      413
+      408,
+      414,
+      420
+    ]
+  },
+  "exclusionCategories": {
+    "boundary marker": [
+      2,
+      5,
+      51,
+      94
+    ],
+    "collection marker": [
+      7,
+      18,
+      22,
+      24,
+      31,
+      53,
+      57,
+      61,
+      70,
+      87,
+      91,
+      96,
+      102,
+      136,
+      139,
+      144,
+      150,
+      151,
+      163,
+      166,
+      173,
+      184,
+      186,
+      192,
+      194,
+      202,
+      205,
+      208,
+      224,
+      227,
+      233,
+      235,
+      236,
+      242,
+      250,
+      256,
+      262,
+      267,
+      275,
+      280,
+      281,
+      283,
+      290,
+      296,
+      310,
+      312,
+      317,
+      323,
+      338,
+      340,
+      346,
+      352,
+      359,
+      370,
+      378,
+      379,
+      385,
+      386,
+      393,
+      401,
+      408,
+      414,
+      420
+    ],
+    "prose marker": [
+      1,
+      3,
+      4,
+      21,
+      50,
+      56,
+      60,
+      69,
+      93,
+      101,
+      135,
+      138,
+      142,
+      162,
+      165,
+      183,
+      191,
+      200,
+      204,
+      207,
+      223,
+      226,
+      241,
+      249,
+      255,
+      289,
+      309,
+      319,
+      322
+    ],
+    "section marker": [
+      6,
+      52,
+      95,
+      143,
+      201,
+      295,
+      339
     ]
   }
 }
