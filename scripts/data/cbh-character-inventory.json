@@ -557,13 +557,15 @@
     "url": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The exact source boundary is frozen through publication evidence, preserving 599 issue occurrences as 527 exact rows, 71 repeats, and 1 owner-authorized non-existent-identity exclusion while the draft delivery remains unpublished.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "captain-marvel-ms-marvel-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Captain Marvel",
       "Ms. Marvel (All)"
@@ -578,7 +580,7 @@
     ],
     "sourceContentSha256": "7997c83ef09d9f503afe933dbc146b5e64b6826d0a7048e9907a68c164303ba1",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 20,

@@ -75,6 +75,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Thanos',
     'Ant-Man',
     'Hulk (and She-Hulk, Red Hulk)',
+    'Captain Marvel / Ms. Marvel',
     'Captain America: Modern Marvel Era',
     'There is Only Doom',
     'The Best Deadpool Comics To Start With!',

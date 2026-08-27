@@ -251,7 +251,7 @@ export function buildMarkdown(mapping) {
     .flatMap(([, entry]) => {
       const sourceGroup = entry.value.sourceRangeReference ?? entry.value.sourceGroup ?? null;
       const heading = sourceGroup && sourceGroup !== currentGroup
-        ? [`## ${escapeLinkText(sourceGroup)}`]
+        ? [`## ${escapeLinkText(sourceGroup).replace(/[\u2013\u2014]/g, '-')}`]
         : [];
       currentGroup = sourceGroup;
       if (entry.kind === 'exact') {
