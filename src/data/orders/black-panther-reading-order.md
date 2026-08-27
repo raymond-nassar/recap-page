@@ -139,6 +139,53 @@ Generated for this project by the Stage A CBH packet work for the maintained Bla
 - [ ] Black Panther (1998) #61
 - [ ] Black Panther (1998) #62
 
+## Crossovers and side stories
+
+- [ ] Black Panther: World of Wakanda #1
+- [ ] Black Panther: World of Wakanda #2
+- [ ] Black Panther: World of Wakanda #3
+- [ ] Black Panther: World of Wakanda #4
+- [ ] Black Panther: World of Wakanda #5
+- [ ] Black Panther: World of Wakanda #6
+- [ ] Black Panther and the Crew #1
+- [ ] Black Panther and the Crew #2
+- [ ] Black Panther and the Crew #3
+- [ ] Black Panther and the Crew #4
+- [ ] Black Panther and the Crew #5
+- [ ] Black Panther and the Crew #6
+- [ ] Ultimates 2 (2016) #1
+- [ ] Ultimates 2 (2016) #2
+- [ ] Ultimates 2 (2016) #3
+- [ ] Ultimates 2 (2016) #4
+- [ ] Ultimates 2 (2016) #5
+- [ ] Ultimates 2 (2016) #6
+- [ ] Ultimates 2 (2016) #7
+- [ ] Ultimates 2 (2016) #8
+- [ ] Ultimates 2 (2016) #9
+- [ ] Ultimates 2 (2016) #10
+- [ ] Ultimates 2 (2016) #11
+- [ ] Ultimates 2 (2016) #12
+- [ ] Black Panther #166
+- [ ] Black Panther #167
+- [ ] Black Panther #168
+- [ ] Black Panther #169
+- [ ] Black Panther #170
+- [ ] Black Panther #171
+- [ ] Shuri #1
+- [ ] Shuri #2
+- [ ] Shuri #3
+- [ ] Shuri #4
+- [ ] Shuri #5
+- [ ] Black Panther vs. Deadpool #1
+- [ ] Black Panther vs. Deadpool #2
+- [ ] Black Panther vs. Deadpool #3
+- [ ] Black Panther vs. Deadpool #4
+- [ ] Black Panther vs. Deadpool #5
+- [ ] Killmonger #1
+- [ ] Killmonger #2
+- [ ] Killmonger #3
+- [ ] Killmonger #4
+
 ## 2000s Black Panther
 
 - [ ] Black Panther #1

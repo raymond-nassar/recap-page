@@ -1,16 +1,16 @@
 {
   "id": "black-panther-reading-order",
   "inventoryId": "black-panther-reading-order",
-  "packetDigest": "2008e42fc5d3399dccd6f42bec959c0b96f40a42116d72afcf204a422f491df9",
+  "packetDigest": "087e97ad6e528a3fa873c1584bc2fdc17e1548c923bdc91508256e0e3610d1b5",
   "sourceUrl": "https://www.comicbookherald.com/black-panther-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceRetrievalStatus": "retrieved",
-  "approvedSourceCount": 247,
+  "approvedSourceCount": 291,
   "excludedSourceReferences": [
     "Named collection links and broader crossover pages without issue-bearing enumeration are excluded from the issue order."
   ],
   "excludedSourceRows": [],
-  "sourceOccurrenceCount": 247,
+  "sourceOccurrenceCount": 291,
   "repeatedSourceReferences": [],
   "proposedManifest": {
     "id": "black-panther-reading-order",
@@ -37,7 +37,7 @@
       "Comic Book Herald",
       "Wakanda"
     ],
-    "expect": 247,
+    "expect": 291,
     "timeline": null,
     "coverIssueId": null
   },

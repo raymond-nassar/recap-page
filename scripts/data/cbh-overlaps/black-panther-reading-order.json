@@ -1,10 +1,10 @@
 {
   "candidateId": "black-panther-reading-order",
-  "packetDigest": "2008e42fc5d3399dccd6f42bec959c0b96f40a42116d72afcf204a422f491df9",
-  "mappingDigest": "afd9b714f07a1c1b4d3ed7f429d91e1c45aab86635f6e343782d9c25b3e1040f",
+  "packetDigest": "087e97ad6e528a3fa873c1584bc2fdc17e1548c923bdc91508256e0e3610d1b5",
+  "mappingDigest": "c33f867e8f514b1f81b8e201c3cf81fe6b254d28b3eebe2cd63a28e4fd8327f4",
   "libraryDigest": "89e73036264e1799eecfd615d3a1a414ef945953d8a712384530aa065ff8437f",
   "peerDigests": {},
-  "candidateCount": 247,
+  "candidateCount": 291,
   "comparisonCount": 0,
   "comparisons": []
 }
