@@ -14,12 +14,12 @@ quote in a bug report.
 
 ## Unreleased
 
-### Made the full Reading List easier to find
+### Made the reading screen easier to scan
 
-In plain English: The complete Reading List now appears before Coming up as one clear, full-width
-action. It says how many issues the list contains and how many remain unread, while still staying
-closed until you ask for it. A direct link can open it for you, and comic titles still open issue
-details without replacing the separate Read action.
+In plain English: Coming up now keeps every Read button aligned even when comic titles have
+different lengths. The immediate next issues appear before the complete Reading List, which remains
+one clear, full-width action that stays closed until you ask for it. A direct link can open the full
+list for you, and comic titles still open issue details without replacing the separate Read action.
 
 For maintainers: reading addresses accept canonical full-list intent alongside non-default filters.
 Ordinary arrivals create no issue rows, explicit intent renders before the first frame, and the
