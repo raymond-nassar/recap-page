@@ -245,13 +245,19 @@ export function buildMarkdown(mapping) {
     'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
   ].join('\n');
+  let currentGroup = null;
   const checklist = [...rowsBySourcePosition.entries()]
     .sort(([left], [right]) => left - right)
-    .map(([, entry]) => {
+    .flatMap(([, entry]) => {
+      const sourceGroup = entry.value.sourceGroup ?? null;
+      const heading = sourceGroup && sourceGroup !== currentGroup
+        ? [`## ${escapeLinkText(sourceGroup)}`]
+        : [];
+      currentGroup = sourceGroup;
       if (entry.kind === 'exact') {
-        return `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`;
+        return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`];
       }
-      return `- [ ] ${escapeLinkText(entry.value.sourceIssueReference).replace(/[\u2013\u2014]/g, '-')}`;
+      return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference).replace(/[\u2013\u2014]/g, '-')}`];
     });
   return `# ${manifest.name}: Issue-by-Issue Reading Checklist\n\n${trail}\n\n${checklist.join('\n')}\n`;
 }

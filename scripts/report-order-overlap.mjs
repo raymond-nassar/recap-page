@@ -192,16 +192,23 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
   return { ...report, reportDigest: reportDigestFor(report) };
 }
 
+export function reportArgs(args) {
+  const includeLater = args.includes('--include-later');
+  return {
+    peerPaths: args.filter((arg) => arg !== '--include-later'),
+    options: includeLater ? { excludedOrderIds: [] } : {},
+  };
+}
+
 async function main() {
   const mappingPath = process.argv[2];
   if (!mappingPath) {
-    console.error('Usage: npm run orders:overlap -- <mapping-path> [peer-mapping-path...]');
+    console.error('Usage: npm run orders:overlap -- <mapping-path> [peer-mapping-path...] [--include-later]');
     process.exitCode = 1;
     return;
   }
-
-  const peerPaths = process.argv.slice(3);
-  const report = await buildReportForMapping(mappingPath, peerPaths);
+  const { peerPaths, options } = reportArgs(process.argv.slice(3));
+  const report = await buildReportForMapping(mappingPath, peerPaths, options);
   const outputDir = path.join(rootDir, 'scripts', 'data', 'cbh-overlaps');
   const outPath = path.join(outputDir, `${path.basename(mappingPath, path.extname(mappingPath))}.json`);
   await mkdir(outputDir, { recursive: true });
