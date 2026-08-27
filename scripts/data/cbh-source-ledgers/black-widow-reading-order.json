@@ -1,0 +1,1522 @@
+{
+  "schemaVersion": 1,
+  "id": "black-widow-reading-order",
+  "inventoryId": "black-widow-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/black-widow-reading-order/",
+  "sourceRetrievedAt": "2026-08-23",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "d038b80551132f73436c6fe32608d1d7005c4319f9e94d536c9ffb3bd29f193e",
+  "sourceIssueBearingBlocksSha256": "61e9c2bd0929a4b80dfb75e028faeca96505d00907d1af5567d7a27ced1d1de2",
+  "sourceBoundary": "The complete CBH Black Widow page, from the introductory prose through Latest Additions, because the page has no qualifying Best Comics or Essential Comics subsection. The frozen boundary preserves every issue-bearing block in source order and keeps the full page visible instead of narrowing to a partial list.",
+  "pageBlockCount": 209,
+  "issueBearingBlockCount": 76,
+  "sourceNodeCount": 209,
+  "provenanceGroupCount": 8,
+  "sourceNodes": [
+    {
+      "sourceNodeIndex": 1,
+      "tag": "p",
+      "text": "As the Marvel Cinematic Universe’s lone female Avenger (at least initially), Natasha Romanova has never had a larger profile or more eager fan base. The complicated Black Widow has a challenging, hard-to-trace Marvel comics continuity, worthy of her former days as a Soviet Spy.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 2,
+      "tag": "p",
+      "text": "The potential confusion for new readers with Black Widow is exacerbated by the fact that Marvel has literally never committed to a Black Widow solo title longer than 20 issues (even launching two separate solo titles that lasted a mere three issues!).",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 3,
+      "tag": "p",
+      "text": "Nonetheless, below you’ll find a proper Black Widow reading order for the best double agent in the Marvel Universe.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 4,
+      "tag": "h2",
+      "text": "Black Widow Origins",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 5,
+      "tag": "p",
+      "text": "Black Widow: The Sting of the Widow",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 6,
+      "tag": "p",
+      "text": "Collects: Collects Tales of Suspense #52, Amazing Spider-Man #86, Amazing Adventures #1-8, and Daredevil #81.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 7,
+      "tag": "p",
+      "text": "A variety of Black Widow’s relatively early 1960’s to early 70’s appearances in Marvel Comics. It’s a bit of an odd collection that could use some additions if you’re truly interested in Black Widow’s early days.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 8,
+      "tag": "p",
+      "text": "For the Marvel Unlimited crowd, I’d recommend in the below order:",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 9,
+      "tag": "p",
+      "text": "Tales of Suspense #52, #53, #57, #60, #64",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 10,
+      "tag": "p",
+      "text": "Amazing Spider-Man #86",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 11,
+      "tag": "p",
+      "text": "Insert the Below Avengers appearances and then continue!",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 12,
+      "tag": "p",
+      "text": "Amazing Adventures #1 to #8",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 13,
+      "tag": "p",
+      "text": "Daredevil #81 to #83",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 14,
+      "tag": "p",
+      "text": "Black Widow: Deadly Origin",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 15,
+      "tag": "p",
+      "text": "Keep in mind that this is a modern take on what the Black Widow’s origin looks like – it didn’t really look like this until the 2000’s.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 16,
+      "tag": "p",
+      "text": "Avengers Masterworks Vol. 4",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 17,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #31-40",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 18,
+      "tag": "p",
+      "text": "Part One of Natasha’s Silver Age face turn as a supporting cast member of the Avengers starts here!",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 19,
+      "tag": "p",
+      "text": "Avengers #39 to #45 is essentially where Black Widow goes from “Red Spy” to potential Marvel hero. It’s kind of amazing how many 60’s Marvel stories feature redemption arcs for genuine super villains, with a list including Hawkeye, Quicksilver, Scarlet Witch, and of course, Black Widow. If you’re particularly invested, you could run Avengers all the way back to issue #29 and read forward from there.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 20,
+      "tag": "p",
+      "text": "Avengers Masterworks Vol. 5",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 21,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #41-50, Avengers Annual (1967) #1",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 22,
+      "tag": "p",
+      "text": "Part Two featuring a face off with Nat’s ex, the Red Guardian!",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 23,
+      "tag": "p",
+      "text": "Avengers Masterworks Vol. 7",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 24,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #59-68, Marvel Super Heroes (1967) #17",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 25,
+      "tag": "p",
+      "text": "Nat’s last Silver Age Avengers guest appearances before joining SHIELD!",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 26,
+      "tag": "p",
+      "text": "Black Panther: Killmonger – By Any Means",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 27,
+      "tag": "p",
+      "text": "Collects: Killmonger (2018) #1-5",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 28,
+      "tag": "p",
+      "text": "As a SHIELD agent, apparently Nat was caught up in the secret origin of Erik Killmonger.",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 29,
+      "tag": "p",
+      "text": "Daredevil Masterworks Vol. 8",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 30,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #75-84, Material from Amazing Adventures (1970) #1-8",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 31,
+      "tag": "p",
+      "text": "Nat’s adventures with the Man Without Fear start here!",
+      "provenanceGroup": "Black Widow Origins"
+    },
+    {
+      "sourceNodeIndex": 32,
+      "tag": "h2",
+      "text": "Essential Black Widow Stories From 70’s To 90’s",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 33,
+      "tag": "p",
+      "text": "Daredevil Masterworks Vol. 9",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 34,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #85-96",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 35,
+      "tag": "p",
+      "text": "Black Widow begins to co-headline DD’s title!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 36,
+      "tag": "p",
+      "text": "Daredevil Masterworks Vol. 10",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 37,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #97-107, Avengers (1963) #111",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 38,
+      "tag": "p",
+      "text": "More adventures with DD in San Francisco. Nat finally (briefly) joins the Avengers. Plus, guest-star arc by Captain Mar-Vell and Moondragon with a sidebar Thanos War tie-in!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 39,
+      "tag": "p",
+      "text": "Daredevil Masterworks Vol. 11",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 40,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #108-119, Marvel Two-In-One (1974) #3",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 41,
+      "tag": "p",
+      "text": "Nat’s name is no longer on cover but she’s still a regular featuring character all the same!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 42,
+      "tag": "p",
+      "text": "Daredevil Masterworks Vol. 12",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 43,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #120-132, Material from FOOM (1973) #13",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 44,
+      "tag": "p",
+      "text": "The first half contains the final classic Bronze Age DD team-up stories!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 45,
+      "tag": "p",
+      "text": "Champions Classic: The Complete Collection",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 46,
+      "tag": "p",
+      "text": "Collects: Champions (1975) #1-17, Iron Man Annual (1970) #4, Avengers (1963) #163, Super-Villain Team-Up (1975) #14, Spectacular Spider-Man (1976) #17-18, Incredible Hulk Annual (1968) #7",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 47,
+      "tag": "p",
+      "text": "Nat joins Hercules, Iceman, Angel and Ghost Rider in this unlikely and short-lived super group operating out of Los Angeles!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 48,
+      "tag": "p",
+      "text": "Natasha played around with both the Avengers and SHIELD, but never really had a squad of her own until the 70’s Champions.",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 49,
+      "tag": "p",
+      "text": "Avengers: The Korvac Saga – Black Widow and the Champions make some major appearances starting around Avengers #173.",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 50,
+      "tag": "p",
+      "text": "Daredevil by Frank Miller and Klaus Janson Vol. 1",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 51,
+      "tag": "p",
+      "text": "Collects: Peter Parker, The Spectacular Spider-Man (1976) #27-28, Daredevil (1964) #158-161, 163-172",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 52,
+      "tag": "p",
+      "text": "Nat returns to being a regular supporting cast member in DD’s world!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 53,
+      "tag": "p",
+      "text": "Daredevil by Frank Miller and Klaus Janson Vol. 3",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 54,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #185-191 & 219, Daredevil: Love and War (1986), What If? (1977) #28",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 55,
+      "tag": "p",
+      "text": "Nat continues her supporting role as Miller and Janson’s acclaimed DD run concludes!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 56,
+      "tag": "p",
+      "text": "In particular, I’d consider Daredevil #188 to #190 – Although for this one you’ll want to read from Daredevil #178 (at least), which gives you some great Frank Miller and Klaus Janson Daredevil comics.",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 57,
+      "tag": "p",
+      "text": "Avengers: Absolute Vision – Book One",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 58,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #231-241, Avengers Annual (1967) #11-12, Amazing Spider-Man Annual (1964) #16, Fantastic Four (1961) #256, Doctor Strange (1974) #60",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 59,
+      "tag": "p",
+      "text": "Only for the total Black Widow completist: Nat makes a one issue guest app in Avengers- featuring alongside Hawkeye, T’Challa and others on real-life late night legend David Letterman’s TV show! Also, to date this marks the earliest collected appearance of the Widow’s short hair and popped-collar 80s look!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 60,
+      "tag": "p",
+      "text": "Daredevil: Love’s Labors Lost",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 61,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #215-217, 219-222 & 225-226",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 62,
+      "tag": "p",
+      "text": "Nat just cannot stay out of the world of Daredevil!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 63,
+      "tag": "p",
+      "text": "Avengers: West Coast Avengers – Sins Of The Past",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 64,
+      "tag": "p",
+      "text": "Collects: West Coast Avengers (1985) #10-16, West Coast Avengers Annual (1986) #1, Avengers Annual (1967) #15",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 65,
+      "tag": "p",
+      "text": "Nat takes part in a very unceremonious Avengers reunion to confront a traitor in their ranks!",
+      "provenanceGroup": "Essential Black Widow Stories From 70's To 90's"
+    },
+    {
+      "sourceNodeIndex": 66,
+      "tag": "h2",
+      "text": "Black Widow in the 1990’s",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 67,
+      "tag": "p",
+      "text": "Captain America Epic Collection: Streets of Poison",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 68,
+      "tag": "p",
+      "text": "Collects: Captain America (1968) #372-386, Captain America Annual (1971) #9-10",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 69,
+      "tag": "p",
+      "text": "Nat becomes a regular supporting guest star in this early 90s story of Cap trying to get a dangerous desinger drug off the streets!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 70,
+      "tag": "p",
+      "text": "Black Widow: Web of Intrigue",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 71,
+      "tag": "p",
+      "text": "Collects: Marvel Fanfare #10 to #13, Bizarre Adventures #25, Black Widow: The Coldest War Marvel OGN #61",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 72,
+      "tag": "p",
+      "text": "Uncanny X-Men #268 – Ok, Black Widow, Wolverine, and Captain America walk into a bar…",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 73,
+      "tag": "p",
+      "text": "Avengers Epic Collection: The Collection Obsession",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 74,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #333-344, Avengers Annual (1967) #20, Avengers: Deathtrap – The Vault (1991), Material from Incredible Hulk Annual (1968) #17, Namor The Sub-Mariner Annual (1991) #1, Iron Man Annual (1970) #12, West Coast Avengers Annual (1986) #6",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 75,
+      "tag": "p",
+      "text": "Nat rejoins the Avengers just in time for some cosmic weirdness with The Collector and a big crossover: The Subterranean Wars!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 76,
+      "tag": "p",
+      "text": "Avengers Epic Collection: Operation Galactic Storm",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 77,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #345-347, Avengers West Coast (1985) #80-82, Quasar (1989) #32-34, Wonder Man (1991) #7-9, Iron Man (1968) #278-279, Thor (1966) #445-446, Captain America (1968) #401, Material from Captain America (1968) #398-400",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 78,
+      "tag": "p",
+      "text": "Nat and the Avengers are once again drawn into a cosmic dispute between two warring empires. Along the way, Earth’s Mightiest become Earth’s Most Divided…",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 79,
+      "tag": "p",
+      "text": "Infinity War: Collected Edition",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 80,
+      "tag": "p",
+      "text": "Collects: Infinity War (1992) #1-6, Warlock and the Infinity Watch (1992) #7-10, Marvel Comics Presents (1988) #108-111",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 81,
+      "tag": "p",
+      "text": "Nat and the Avengers get caught up in The Magus’ madness!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 82,
+      "tag": "p",
+      "text": "Iron Man #315 to #317 – Vs. the Titanium Man",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 83,
+      "tag": "p",
+      "text": "Punisher, Black Widow: Spinning Doomsday’s Web (Marvel Graphic Novel #74)",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 84,
+      "tag": "p",
+      "text": "Avengers Epic Collection: Fear The Reaper",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 85,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #348-359, Avengers Annual (1967) #21, Material from Captain America Annual (1971) #11, Thor Annual (1966) #17, Fantastic Four Annual (1963) #25",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 86,
+      "tag": "p",
+      "text": "Nat becomes the new leader of the Avengers!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 87,
+      "tag": "p",
+      "text": "Daredevil/Black Widow: Abattoir (Marvel Graphic Novel #75)",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 88,
+      "tag": "p",
+      "text": "Avengers/X-Men: Bloodties",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 89,
+      "tag": "p",
+      "text": "Collects: Avengers (1963) #368-369, Avengers West Coast (1985) #101, X-Men (1991) #26, Uncanny X-Men (1963) #307, Black Knight: Exodus (1996) #1",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 90,
+      "tag": "p",
+      "text": "Nat and the Avengers team up with the X-Men over a crisis on the island nation of Genosha!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 91,
+      "tag": "p",
+      "text": "Daredevil & Elektra: Fall From Grace",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 92,
+      "tag": "p",
+      "text": "Collects: Daredevil (1964) #319-332, Daredevil Annual (1967) #10",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 93,
+      "tag": "p",
+      "text": "Nat and the Avengers guest star for a story arc!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 94,
+      "tag": "p",
+      "text": "Avengers/Iron Man: Force Works",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 95,
+      "tag": "p",
+      "text": "Collects: Force Works (1994) #1-11, 12 (A story), 13-15, Ashcan Edition, Century: Distant Sons (1996) #1, Material from Iron Man/Force Works Collectors’ Preview (1994)",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 96,
+      "tag": "p",
+      "text": "Nat is a recurring guest star as former West Coast Avengers form their own short-lived splinter group!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 97,
+      "tag": "p",
+      "text": "Captain America Epic Collection: Man Without A Country",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 98,
+      "tag": "p",
+      "text": "Collects: Captain America (1968) #444-454, Thor (1966) #496, Iron Man (1968) #326, Avengers (1963) #496, Material from Captain America Ashcan Edition, Captain America: The Legend (1996), Captain America Collectors’ Preview (1995)",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 99,
+      "tag": "p",
+      "text": "Nat and the Avengers guest star for the start of Mark Waid and Ron Garney’s fan-fave run!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 100,
+      "tag": "p",
+      "text": "X-Men: The Complete Onslaught Epic – Book One",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 101,
+      "tag": "p",
+      "text": "Collects: X-Men (1991) #53-54, Uncanny X-Men (1963) #335, Onslaught: X-Men (1996), Avengers (1963) #401, Fantastic Four (1961) #415, Cable (1993) #34, Incredible Hulk (1962) #444",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 102,
+      "tag": "p",
+      "text": "Nat and the Avengers are brought in to help fight a mutant crisis so big it needs ALL the heroes!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 103,
+      "tag": "p",
+      "text": "For the full guide, check out Comic Book Herald’s Onslaught reading order.",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 104,
+      "tag": "p",
+      "text": "Thunderbolts Classics Vol. 1",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 105,
+      "tag": "p",
+      "text": "Collects: Thunderbolts (1997) #1-5 & -1, Incredible Hulk (1968) #449, Tales of the Marvel Universe (1997) #1, Spider-Man Team-Up (1995) #7, Thunderbolts Annual ’97",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 106,
+      "tag": "p",
+      "text": "Nat is a recurring character, suspicious of these new “heroes” who just show up while the Avengers are thought dead.",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 107,
+      "tag": "p",
+      "text": "Thunderbolts Classics Vol. 2",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 108,
+      "tag": "p",
+      "text": "Collects: Thunderbolts (1997) #6-14, Heroes For Hire (1997) #7",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 109,
+      "tag": "p",
+      "text": "Nat confronts the Tbolts!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 110,
+      "tag": "p",
+      "text": "Daredevil Epic Collection: Widow’s Kiss",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 111,
+      "tag": "p",
+      "text": "Collects: Daredevil #365 to #380",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 112,
+      "tag": "p",
+      "text": "Avengers Assemble Vol. 1",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 113,
+      "tag": "p",
+      "text": "Collects: Avengers (1998) #1-11",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 114,
+      "tag": "p",
+      "text": "The Avengers turn out to be not dead and Nat takes part in their reunion!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 115,
+      "tag": "p",
+      "text": "Iron Man: Heroes Return – The Complete Collection",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 116,
+      "tag": "p",
+      "text": "Collects: Iron Man (1998) #1-14, Captain America (1998) #8, Quicksilver (1997) #10, Avengers (1998) #7, Iron Man/Captain America Annual 1998, Fantastic Four (1998) #15",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 117,
+      "tag": "p",
+      "text": "Nat guest stars in some of Shellhead’s solo stories!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 118,
+      "tag": "p",
+      "text": "Hawkeye & The Thunderbolts Vol. 2",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 119,
+      "tag": "p",
+      "text": "Collects: Thunderbolts (1997) #38-50, Avengers (1998) #31-34",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 120,
+      "tag": "p",
+      "text": "Nat teams up with both the Thunderbolts and the Avengers to tackle some dangling plotlines from the pre-Onslaught era!",
+      "provenanceGroup": "Black Widow in the 1990's"
+    },
+    {
+      "sourceNodeIndex": 121,
+      "tag": "h2",
+      "text": "Marvel Knights Black Widow (1999 through 2000’s)",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 122,
+      "tag": "p",
+      "text": "Black Widow: The Itsy Bitsy Spider",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 123,
+      "tag": "p",
+      "text": "This collection contains issues #1 to #3 of both the 1999 and 2001 Black Widow miniseries. Note that the 2001 miniseries from Greg Rucka and Devin Grayson is labeled Black Widow: Breakdown in Marvel Unlimited.",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 124,
+      "tag": "p",
+      "text": "Marvel Knights #1 to #12",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 125,
+      "tag": "p",
+      "text": "Daredevil: The Widow",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 126,
+      "tag": "p",
+      "text": "Issues: #61 to #66",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 127,
+      "tag": "p",
+      "text": "As always, I highly recommend Bendis and Maleev’s run on Daredevil. This collection is the most important for the Daredevil and Black Widow relationship.",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 128,
+      "tag": "p",
+      "text": "Black Widow Vol. 1: Homecoming",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 129,
+      "tag": "p",
+      "text": "Issues: #1 to #5",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 130,
+      "tag": "p",
+      "text": "New Avengers: Breakout",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 131,
+      "tag": "p",
+      "text": "Issues: #1 to #6",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 132,
+      "tag": "p",
+      "text": "Note that only issue #6 has any Black Widow appearance, and even then calling this a “Black Widow” comic is a bit of a reach. Nonetheless, the story has surprisingly essential implications for Black Widow moving forward.",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 133,
+      "tag": "p",
+      "text": "Black Widow Vol 2: The Things They Say About Her",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 134,
+      "tag": "p",
+      "text": "Issues: #1 to #6",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 135,
+      "tag": "p",
+      "text": "Mighty Avengers",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 136,
+      "tag": "p",
+      "text": "Issues: #1 to #6",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 137,
+      "tag": "p",
+      "text": "Note that Mighty Avengers occurs directly in the wake of Civil War. If you are not up to speed on Marvel’s Civil War event, I highly recommend you give it a read prior to Mighty Avengers.",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 138,
+      "tag": "p",
+      "text": "Black Widow & The Marvel Girls",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 139,
+      "tag": "p",
+      "text": "Issues: #1 to #4",
+      "provenanceGroup": "Marvel Knights Black Widow (1999 through 2000's)"
+    },
+    {
+      "sourceNodeIndex": 140,
+      "tag": "h2",
+      "text": "Black Widow Comics From 2010 to 2012",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 141,
+      "tag": "p",
+      "text": "Black Widow: The Name of the Rose",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 142,
+      "tag": "p",
+      "text": "Issues: #1 to #5",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 143,
+      "tag": "p",
+      "text": "If you read nothing else on this list, read “The Name of the Rose” from Marjorie Liu and Daniel Acuna. It’s not only my favorite Black Widow comic of the 2000’s, but it’s one of my favorite Marvel Comics since 1998.",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 144,
+      "tag": "p",
+      "text": "Black Widow: Kiss or Kill",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 145,
+      "tag": "p",
+      "text": "Issues: #6 to #8 – Duane Swiercyznski’s follow up to the Liu story.",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 146,
+      "tag": "p",
+      "text": "Hawkeye & Mockingbird / Black Widow: Widowmaker",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 147,
+      "tag": "p",
+      "text": "Note that this is simply titled ‘Widowmaker’ in Marvel Unlimited.",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 148,
+      "tag": "p",
+      "text": "Secret Avengers Vol 3",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 149,
+      "tag": "p",
+      "text": "Issues: #16 to #21",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 150,
+      "tag": "p",
+      "text": "Natasha is a member of the Secret Avengers, but it’s issue #20 that is one of my all-time favorite Black Widow stories. A single issue masterpiece from Warren Ellis and co.",
+      "provenanceGroup": "Black Widow Comics From 2010 to 2012"
+    },
+    {
+      "sourceNodeIndex": 151,
+      "tag": "h2",
+      "text": "Marvel NOW! Black Widow",
+      "provenanceGroup": "Marvel NOW! Black Widow"
+    },
+    {
+      "sourceNodeIndex": 152,
+      "tag": "p",
+      "text": "Winter Soldier",
+      "provenanceGroup": "Marvel NOW! Black Widow"
+    },
+    {
+      "sourceNodeIndex": 153,
+      "tag": "p",
+      "text": "Fourteen glorious issues from Ed Brubaker, Butch Guice, and Michael Lark. Sure it’s a “Winter Soldier” comic but Natasha plays every bit as essential a role.",
+      "provenanceGroup": "Marvel NOW! Black Widow"
+    },
+    {
+      "sourceNodeIndex": 154,
+      "tag": "p",
+      "text": "Black Widow Volume 1: The Finely Woven Thread",
+      "provenanceGroup": "Marvel NOW! Black Widow"
+    },
+    {
+      "sourceNodeIndex": 155,
+      "tag": "p",
+      "text": "This collects the first six issues of Nathan Edmondson and Phil Noto’s twenty issue run on Black Widow. The series takes you all the way to “Last Days” tie-ins prior to Secret Wars.",
+      "provenanceGroup": "Marvel NOW! Black Widow"
+    },
+    {
+      "sourceNodeIndex": 156,
+      "tag": "h2",
+      "text": "All-New All-Different Black Widow",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 157,
+      "tag": "p",
+      "text": "Black Widow Vol. 1: S.H.I.E.L.D.’s Most Wanted",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 158,
+      "tag": "p",
+      "text": "Collects: Black Widow (2016) #1-6",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 159,
+      "tag": "p",
+      "text": "Mark Waid and Chris Samnee step in to give Nat a new solo series!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 160,
+      "tag": "p",
+      "text": "Black Widow Vol. 2: No More Secrets",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 161,
+      "tag": "p",
+      "text": "Collects: Black Widow (2016) #7-12",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 162,
+      "tag": "p",
+      "text": "The dramatic conclusion of Nat being on the run from SHIELD!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 163,
+      "tag": "p",
+      "text": "Secret Empire",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 164,
+      "tag": "p",
+      "text": "Collects: Secret Empire (2017) #0-10, Secret Empire Omega (2017) #1, Captain America (2015) #25 and Material from Free Comic Book Day 2017 (Secret Empire)",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 165,
+      "tag": "p",
+      "text": "Nat is a key player in the resistance movement against the Evil Cap’s new Hydra America!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 166,
+      "tag": "p",
+      "text": "For the full guide, check out Comic Book Herald’s Secret Empire reading order.",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 167,
+      "tag": "p",
+      "text": "Secret Empire: United We Stand",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 168,
+      "tag": "p",
+      "text": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 169,
+      "tag": "p",
+      "text": "Nat takes the teen heroes to assassin school in a resistance-style Red Room!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 170,
+      "tag": "p",
+      "text": "Tales Of Suspense: Hawkeye & The Winter Soldier",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 171,
+      "tag": "p",
+      "text": "Collects: Tales Of Suspense (2017) #100-104",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 172,
+      "tag": "p",
+      "text": "Nat supposedly died during Secret Empire, so why does it still look like she’s leaving a fresh trail of bodies? Hawkguy and Bucky have a very uneasily bromantic team up to learn the truth about their mutual ex. And maybe a little about themselves…",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 173,
+      "tag": "p",
+      "text": "The Punisher: War Machine Vol. 2",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 174,
+      "tag": "p",
+      "text": "Collects: The Punisher (2016) #224-228",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 175,
+      "tag": "p",
+      "text": "After using the War Machine armor to overthrow a despot overseas, Frank’s antics go noticed by the super hero community once he cycles back stateside- except Nat has other plans for Frank Castle…",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 176,
+      "tag": "p",
+      "text": "Infinity Countdown",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 177,
+      "tag": "p",
+      "text": "Collects: Infinity Countdown Prime (2018), Infinity Countdown (2018) #1-5, Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 178,
+      "tag": "p",
+      "text": "Nat joins Dr. Strange’s new Infinity Watch – For the full guide, check out Comic Book Herald’s Infinity Countdown + Infinity Wars reading order.",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 179,
+      "tag": "p",
+      "text": "Infinity Countdown: Companion",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 180,
+      "tag": "p",
+      "text": "Collects: Infinity Countdown: Black Widow (2018) #1, Infinity Countdown: Captain Marvel (2018) #1, Infinity Countdown: Champions (2018) #1-2, & Infinity Countdown: Daredevil (2018) #1",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 181,
+      "tag": "p",
+      "text": "Nat inherits the Space Stone from Wolverine!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 182,
+      "tag": "p",
+      "text": "Infinty Wars",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 183,
+      "tag": "p",
+      "text": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 184,
+      "tag": "p",
+      "text": "Despite a new Infinity Watch, Gamora has her own plans for the Infinity Stones!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 185,
+      "tag": "p",
+      "text": "The Punisher Vol.1: World War Frank",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 186,
+      "tag": "p",
+      "text": "Collects: The Punisher (2018) #1-5",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 187,
+      "tag": "p",
+      "text": "Frank may no longer have the War Machine armor but Nat is still working as his handler!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 188,
+      "tag": "p",
+      "text": "Weapon H Vol.2: War For Weirdworld",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 189,
+      "tag": "p",
+      "text": "Collects: Weapon H (2018) #7-12",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 190,
+      "tag": "p",
+      "text": "Nat goes undercover as Roxxon Industries tries to pillage the resources of Weirdworld!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 191,
+      "tag": "p",
+      "text": "Black Widow: No Restraints Play",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 192,
+      "tag": "p",
+      "text": "Collects: Black Widow (2019) #1-5",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 193,
+      "tag": "p",
+      "text": "Nat is back in an all-new solo adventure!",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 194,
+      "tag": "p",
+      "text": "War Of The Realms: Strikeforce",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 195,
+      "tag": "p",
+      "text": "Collects: War Of The Realms Strikeforce: The Land Of The Giants (2019) #1, War Of The Realms Strikeforce: The Dark Elf Realm (2019) #1, War Of The Realms Strikeforce: The War Avengers (2019) #1",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 196,
+      "tag": "p",
+      "text": "Nat is part of Carol Danvers’ War Avengers! For the full guide, check out Comic Book Herald’s War of the Realms reading order.",
+      "provenanceGroup": "All-New All-Different Black Widow"
+    },
+    {
+      "sourceNodeIndex": 197,
+      "tag": "h3",
+      "text": "Latest Additions",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 198,
+      "tag": "p",
+      "text": "The Web of Black Widow",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 199,
+      "tag": "p",
+      "text": "Collects: The Web of Black Widow #1 to #5",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 200,
+      "tag": "p",
+      "text": "Black Widow: Widow’s Sting",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 201,
+      "tag": "p",
+      "text": "Collects: Black Widow: Widow’s Sting #1",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 202,
+      "tag": "p",
+      "text": "Wastelanders: Black Widow",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 203,
+      "tag": "p",
+      "text": "Collects: Wastelanders: Black Widow #1",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 204,
+      "tag": "p",
+      "text": "Black Widow (2020) Vol. 1: The Ties That Bind",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 205,
+      "tag": "p",
+      "text": "Collects: Black Widow #1 to #5",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 206,
+      "tag": "p",
+      "text": "Black Widow (2020) Vol. 2: I Am Black Widow",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 207,
+      "tag": "p",
+      "text": "Collects: Black Widow (2020) #6 to #10",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 208,
+      "tag": "p",
+      "text": "Black Widow (2020) Vol. 3: Die By The Blade",
+      "provenanceGroup": "Latest Additions"
+    },
+    {
+      "sourceNodeIndex": 209,
+      "tag": "p",
+      "text": "Collects: Black Widow (2020) #11 to #15",
+      "provenanceGroup": "Latest Additions"
+    }
+  ],
+  "provenanceGroups": [
+    {
+      "name": "Black Widow Origins",
+      "sourceNodeIndices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    },
+    {
+      "name": "Essential Black Widow Stories From 70's To 90's",
+      "sourceNodeIndices": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ]
+    },
+    {
+      "name": "Black Widow in the 1990's",
+      "sourceNodeIndices": [
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ]
+    },
+    {
+      "name": "Marvel Knights Black Widow (1999 through 2000's)",
+      "sourceNodeIndices": [
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ]
+    },
+    {
+      "name": "Black Widow Comics From 2010 to 2012",
+      "sourceNodeIndices": [
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150
+      ]
+    },
+    {
+      "name": "Marvel NOW! Black Widow",
+      "sourceNodeIndices": [
+        151,
+        152,
+        153,
+        154,
+        155
+      ]
+    },
+    {
+      "name": "All-New All-Different Black Widow",
+      "sourceNodeIndices": [
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196
+      ]
+    },
+    {
+      "name": "Latest Additions",
+      "sourceNodeIndices": [
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209
+      ]
+    }
+  ]
+}
