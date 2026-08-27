@@ -62,10 +62,10 @@ test('the hero offers one dominant action, and the way out of the app is a link'
   assert.equal((cta.match(/btn-lg/g) || []).length, 1, 'more than one call to action carries the dominant treatment');
 });
 
-test('the one native full Reading List disclosure precedes Coming up', () => {
+test('Coming up precedes the one native full Reading List disclosure', () => {
   const fullAt = html.indexOf('id="full"');
   const shelfAt = html.indexOf('id="shelf-sec"');
-  assert.ok(fullAt >= 0 && shelfAt >= 0 && fullAt < shelfAt, 'the full Reading List is not before Coming up');
+  assert.ok(fullAt >= 0 && shelfAt >= 0 && shelfAt < fullAt, 'Coming up is not before the full Reading List');
   const disclosures = html.match(/<details class="full" id="full"[\s\S]*?<\/details>/g) ?? [];
   assert.equal(disclosures.length, 1, 'the reading screen no longer has exactly one full-order disclosure');
   assert.equal((disclosures[0].match(/<summary>/g) ?? []).length, 1, 'the disclosure no longer has one native summary');
@@ -117,7 +117,17 @@ test('the shelf wraps, so no upcoming issue is off the right edge', () => {
   // hands the space of each collapsed track to the survivors, which put four remaining tiles a
   // measured 80px apart on a declared 14.4px gap. A cap on the tile does not cap the track.
   assert.equal(/auto-fit/.test(shelf), false, 'the shelf stretches its tracks again');
-  assert.match(css, /\.tile \{[^}]*flex: 1 1 112px[^}]*max-width: 168px/);
+  const tile = css.match(/\n\.tile \{[^}]*\}/)[0];
+  assert.match(tile, /flex: 1 1 112px/);
+  assert.match(tile, /max-width: 168px/);
+});
+
+test('Coming up tiles align Read controls when titles wrap to different heights', () => {
+  const tile = css.match(/\n\.tile \{[^}]*\}/)[0];
+  const button = css.match(/\n\.tile-read \{[^}]*\}/)[0];
+  assert.match(tile, /display: flex/);
+  assert.match(tile, /flex-direction: column/);
+  assert.match(button, /margin-top: auto/, 'Coming up actions no longer share the row baseline');
 });
 
 test('the current row is marked by more than a tint, and the rows carry a rule between them', () => {
