@@ -24,7 +24,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 
 - [ ] [Marvels Epilogue (2019) #1](https://www.marvel.com/comics/issue/77526/marvels_epilogue_2019_1)
 
-## The Sentry
+## The Sentry Core Mini-Series
 
 - [ ] [Sentry (2000) #1](https://www.marvel.com/comics/issue/10639/sentry_2000_1)
 - [ ] [Sentry (2000) #2](https://www.marvel.com/comics/issue/10640/sentry_2000_2)

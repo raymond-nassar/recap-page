@@ -281,16 +281,36 @@ test('setup to modern timeline keeps its five sections, twenty-one rows, and no 
 
   const pinned = JSON.parse(await readFile(new URL('../src/data/setup_to_modern_timeline.json', import.meta.url), 'utf8'));
   assert.equal(pinned.items.length, 21);
-  assert.deepEqual(
-    [...new Set(pinned.items.map((item) => item.collectedIn))],
-    [
-      'Marvels Annotated',
-      'Marvels: Eye of the Camera',
-      'Marvels Epilogue',
-      'The Sentry',
-      'The Sentry One-Shot Tie-Ins',
-    ],
-  );
+  assert.deepEqual(pinned.items.map((item) => item.issueId), [
+    75504, 75505, 75506, 75507,
+    22874, 22875, 23084, 23578, 23932, 25958,
+    77526,
+    10639, 10640, 10641, 10642, 10643,
+    22442, 22443, 22444, 22446, 22445,
+  ]);
+  assert.deepEqual(pinned.items.map((item) => item.collectedIn), [
+    'Marvels Annotated',
+    'Marvels Annotated',
+    'Marvels Annotated',
+    'Marvels Annotated',
+    'Marvels: Eye of the Camera',
+    'Marvels: Eye of the Camera',
+    'Marvels: Eye of the Camera',
+    'Marvels: Eye of the Camera',
+    'Marvels: Eye of the Camera',
+    'Marvels: Eye of the Camera',
+    'Marvels Epilogue',
+    'The Sentry Core Mini-Series',
+    'The Sentry Core Mini-Series',
+    'The Sentry Core Mini-Series',
+    'The Sentry Core Mini-Series',
+    'The Sentry Core Mini-Series',
+    'The Sentry One-Shot Tie-Ins',
+    'The Sentry One-Shot Tie-Ins',
+    'The Sentry One-Shot Tie-Ins',
+    'The Sentry One-Shot Tie-Ins',
+    'The Sentry One-Shot Tie-Ins',
+  ]);
 
   const setupIds = new Set(pinned.items.map((item) => item.issueId));
   for (const entry of entries) {
