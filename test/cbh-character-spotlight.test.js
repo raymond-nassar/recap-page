@@ -21,6 +21,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const abominationCandidateId = 'abomination-reading-order';
 const candidateId = 'white-tiger-ava-ayala';
 const blackPantherCandidateId = 'black-panther-reading-order';
+const captainMarvelCandidateId = 'captain-marvel-ms-marvel-reading-order';
 const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics'];
 const cosmicCandidateId = 'rocket-raccoon-reading-order';
 const grootCandidateId = 'groot-reading-order';
@@ -357,10 +358,10 @@ test('the character inventory preserves every central disposition and ships eigh
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 102);
+  assert.equal(dispositionCounts.deferred, 101);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 18);
+  assert.equal(dispositionCounts['pilot-approved'], 19);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -501,6 +502,76 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.equal(parsed.unresolved.length, 4);
   assert.match(markdown, /^## Introductory prose$/m);
   assert.match(markdown, /^## Latest Additions$/m);
+});
+
+test('the Captain Marvel packet preserves its legacy run boundary, gap, and source order evidence', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${captainMarvelCandidateId}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${captainMarvelCandidateId}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${captainMarvelCandidateId}.json`);
+  const manifest = await readJson('src/data/curated-lists.json');
+  const generated = await readJson('src/data/captain_marvel_ms_marvel_reading_order.json');
+  const markdown = await readFile(path.join(root, 'src/data/orders/captain-marvel-ms-marvel-reading-order.md'), 'utf8');
+  const parsed = parseChecklist(markdown);
+  const record = inventory.find((candidate) => candidate.id === captainMarvelCandidateId);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [captainMarvelCandidateId]);
+
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.deliveryStatus, 'ready');
+  assert.equal(record.metadataHorizonStatus, 'approved');
+  assert.deepEqual(record.catalogIds, [captainMarvelCandidateId]);
+  assert.match(
+    record.reason,
+    /599 issue occurrences as 527 exact rows, 71 repeats, and 1 explicit metadata gap/i,
+  );
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: captainMarvelCandidateId,
+    inventoryRecord: record,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.equal(report.libraryDigest, reviewedLibraryDigest);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+
+  assert.equal(packet.sourceOccurrenceCount, 599);
+  assert.equal(packet.rows.length, 527);
+  assert.equal(packet.repeatedSourceReferences.length, 71);
+  assert.equal(packet.sourceGaps.length, 1);
+  assert.deepEqual(packet.sourceGaps[0], {
+    ...packet.sourceGaps[0],
+    normalizedSeriesTitle: 'The Mighty Captain Marvel',
+    seriesYear: 2017,
+    issueNumber: '130',
+    kind: 'published-metadata-gap',
+    status: 'open',
+    sourceIssueReference: 'Captain Marvel #130',
+    sourceRangeReference: 'The Mighty Captain Marvel Vol. 3: Dark Origins',
+  });
+  assert.equal(mapping.rows.length, 527);
+  assert.equal(report.candidateCount, 527);
+  assert.equal(report.comparisonCount, 151);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 26);
+  assert.equal(generated.count, 528);
+  assert.equal(generated.placeholders, 1);
+  assert.equal(generated.unresolved.length, 1);
+  assert.equal(generated.unresolved[0].title, 'Captain Marvel #130');
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 527);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 1);
+  assert.equal(parsed.entries.length, 527);
+  assert.equal(parsed.unresolved.length, 1);
+  assert.match(markdown, /^## The Mighty Captain Marvel Vol. 3: Dark Origins$/m);
+  assert.match(markdown, /^- \[ \] Captain Marvel #130$/m);
+  assert.deepEqual(
+    generated.items.filter((item) => item.issueId > 0).map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
 });
 
 test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
