@@ -1037,6 +1037,22 @@ test('the character inventory rejects incomplete evidence and source sets', asyn
   );
 });
 
+test('Magneto keeps the frozen offline boundary and accounting summary', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const record = inventory.find((entry) => entry.id === 'magneto-reading-order');
+
+  assert.ok(record);
+  assert.equal(record.disposition, 'deferred');
+  assert.equal(record.deliveryStatus, 'not-applicable');
+  assert.equal(record.centralDisposition, 'deferred');
+  assert.equal(record.sourceRetrievedAt, '2026-08-27');
+  assert.equal(record.sourceBoundaryStatus, 'exact-page-snapshot');
+  assert.equal(record.metadataHorizonStatus, 'blocked-exact-resolution-not-run');
+  assert.equal(record.sourceContentSha256, '9311edf7f432cb2e927ae85e7f54ea01109215df2d0ecd2e118d2201b28115a5');
+  assert.match(record.reason, /736 issue-bearing source positions/);
+  assert.match(record.reason, /707 exact candidates, 15 repeats, 3 gaps, and 11 exclusions/);
+});
+
 test('Iron Man ships with its exact boundary and generated surfaces', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');

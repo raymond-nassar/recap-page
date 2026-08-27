@@ -1782,8 +1782,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot. The offline ledger is frozen at 736 issue-bearing source positions: 707 exact candidates, 15 repeats, 3 gaps, and 11 exclusions. Exact resolution remains blocked until the later metadata lane transfers.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -1795,7 +1795,7 @@
       65
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "9f58433c3fd85a0b5ec5b0dd9a1f57099c7ed8e678ee8a4f3c2249aa2ff344e9",
+    "sourceContentSha256": "9311edf7f432cb2e927ae85e7f54ea01109215df2d0ecd2e118d2201b28115a5",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
