@@ -1680,7 +1680,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The full-page source ledger preserves 232 ordered occurrences: 75 canonical candidates, 39 repeats, no gaps, and 118 exclusions. No complete Best/Essential section exists on the source page, so the full page remains the correct boundary while provider verification stays blocked.",
+    "reason": "The full-page source ledger preserves 232 ordered occurrences: 66 exact source blocks, nine provider gaps, 39 repeats, and 118 exclusions. No complete Best/Essential section exists on the source page, so the full page remains the correct boundary while gap-tolerant publication evidence is prepared.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],

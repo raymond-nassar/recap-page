@@ -655,6 +655,7 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const ledger = await readJson('scripts/data/cbh-source-ledgers/loki-reading-order.json');
+  const expandedLedger = await readJson('scripts/data/cbh-source-ledgers/loki-reading-order-expanded.json');
   const inventoryRecord = inventory.find((record) => record.id === 'loki-reading-order');
   const repeatPositions = [
     4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 23, 30, 31, 32, 33, 34, 35,
@@ -686,6 +687,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
       positions: [87],
     },
   ];
+  const gapBlockPositions = [77, 92, 108, 122, 126, 149, 172, 184, 205];
 
   function validateLedgerShape(candidateLedger) {
     assert.equal(candidateLedger.sourceUrl, 'https://www.comicbookherald.com/loki-reading-order/');
@@ -693,7 +695,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
     assert.equal(candidateLedger.sourceGroupCount, 11);
     assert.equal(candidateLedger.sourceOccurrenceCount, candidateLedger.occurrences.length);
     assert.equal(
-      candidateLedger.counts['canonical-candidate']
+      candidateLedger.counts.exact
         + candidateLedger.counts.repeat
         + candidateLedger.counts.gap
         + candidateLedger.counts.exclusion,
@@ -715,7 +717,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
       Array.from({ length: candidateLedger.sourceOccurrenceCount }, (_, index) => index + 1),
     );
     const derivedCounts = {
-      'canonical-candidate': 0,
+      exact: 0,
       repeat: 0,
       gap: 0,
       exclusion: 0,
@@ -726,14 +728,16 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
     assert.deepEqual(derivedCounts, candidateLedger.counts);
 
     const exclusionPositions = exclusionClasses.flatMap((entry) => entry.positions);
-    const expectedCanonicalPositions = Array.from(
+    const expectedExactBlockPositions = Array.from(
       { length: candidateLedger.sourceOccurrenceCount },
       (_, index) => index + 1,
-    ).filter((position) => !repeatPositions.includes(position) && !exclusionPositions.includes(position));
+    ).filter((position) => !repeatPositions.includes(position)
+      && !exclusionPositions.includes(position)
+      && !gapBlockPositions.includes(position));
     const expectedCounts = {
-      'canonical-candidate': expectedCanonicalPositions.length,
+      exact: expectedExactBlockPositions.length,
       repeat: repeatPositions.length,
-      gap: 0,
+      gap: gapBlockPositions.length,
       exclusion: exclusionPositions.length,
     };
     assert.deepEqual(candidateLedger.counts, expectedCounts);
@@ -743,16 +747,16 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
         positions: repeatPositions,
       },
       gaps: {
-        rationale: 'No included issue or range is source-ambiguous; provider verification is pending for every candidate.',
-        positions: [],
+        rationale: 'Provider lookup did not establish every issue identity in the source block.',
+        positions: gapBlockPositions,
       },
       exclusions: exclusionClasses,
     });
     assert.deepEqual(
       candidateLedger.occurrences
-        .filter((entry) => entry.disposition === 'canonical-candidate')
+        .filter((entry) => entry.disposition === 'exact')
         .map((entry) => entry.position),
-      expectedCanonicalPositions,
+      expectedExactBlockPositions,
     );
     assert.deepEqual(
       candidateLedger.occurrences
@@ -764,7 +768,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
       candidateLedger.occurrences
         .filter((entry) => entry.disposition === 'gap')
         .map((entry) => entry.position),
-      [],
+      gapBlockPositions,
     );
     assert.deepEqual(
       candidateLedger.occurrences
@@ -795,14 +799,14 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
       assert.equal(typeof entry.sourceGroup, 'string');
       assert.ok(entry.sourceGroup.length > 0);
       assert.ok([
-        'canonical-candidate',
+        'exact',
         'repeat',
         'gap',
         'exclusion',
       ].includes(entry.disposition));
       if (entry.disposition === 'gap') {
-        assert.equal(typeof entry.gapReason, 'string');
-        assert.ok(entry.gapReason.length > 0);
+        assert.equal(entry.providerSettlement.status, 'gap');
+        assert.ok(entry.providerSettlement.unresolved.length > 0);
       }
       if (entry.disposition === 'exclusion') {
         assert.equal(typeof entry.exclusionReason, 'string');
@@ -824,12 +828,45 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   assert.equal(inventoryRecord.sourceRetrievedAt, '2026-08-27');
   assert.equal(inventoryRecord.sourceContentSha256, ledger.sourceContentSha256);
   assert.match(inventoryRecord.reason, /232 ordered occurrences/i);
-  assert.match(inventoryRecord.reason, /75 canonical candidates/i);
+  assert.match(inventoryRecord.reason, /66 exact source blocks/i);
+  assert.match(inventoryRecord.reason, /nine provider gaps/i);
   assert.match(inventoryRecord.reason, /39 repeats/i);
-  assert.match(inventoryRecord.reason, /no gaps/i);
   assert.match(inventoryRecord.reason, /118 exclusions/i);
 
   assert.doesNotThrow(() => validateLedgerShape(ledger));
+  assert.equal(expandedLedger.sourceBlockCount, ledger.sourceOccurrenceCount);
+  assert.equal(expandedLedger.sourceOccurrenceCount, expandedLedger.occurrences.length);
+  assert.deepEqual(expandedLedger.counts, {
+    exact: 638,
+    repeat: 53,
+    gap: 18,
+    exclusion: 121,
+  });
+  assert.equal(
+    Object.values(expandedLedger.counts).reduce((sum, value) => sum + value, 0),
+    expandedLedger.sourceOccurrenceCount,
+  );
+  assert.deepEqual(
+    expandedLedger.occurrences.map((entry) => entry.position),
+    Array.from({ length: expandedLedger.sourceOccurrenceCount }, (_, index) => index + 1),
+  );
+  assert.deepEqual(
+    [...new Set(expandedLedger.occurrences.map((entry) => entry.sourceBlockPosition))].sort(
+      (left, right) => left - right,
+    ),
+    Array.from({ length: ledger.sourceOccurrenceCount }, (_, index) => index + 1),
+  );
+  assert.equal(
+    expandedLedger.occurrences.filter((entry) => (
+      entry.sourceBlockPosition === 149 && entry.disposition === 'gap'
+    )).length,
+    5,
+  );
+  for (const disposition of ['exact', 'repeat', 'gap', 'exclusion']) {
+    const removed = JSON.parse(JSON.stringify(expandedLedger));
+    removed.occurrences.splice(removed.occurrences.findIndex((entry) => entry.disposition === disposition), 1);
+    assert.notEqual(removed.occurrences.length, expandedLedger.sourceOccurrenceCount);
+  }
 
   for (const position of [1, 2, 4]) {
     const removed = JSON.parse(JSON.stringify(ledger));

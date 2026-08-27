@@ -23,10 +23,10 @@
   "sourceGroupCount": 11,
   "sourceOccurrenceCount": 232,
   "counts": {
-    "canonical-candidate": 75,
+    "exclusion": 118,
+    "exact": 66,
     "repeat": 39,
-    "gap": 0,
-    "exclusion": 118
+    "gap": 9
   },
   "occurrences": [
     {
@@ -42,10 +42,43 @@
       "sourceGroup": "Loki Comics Reading Order",
       "sourceText": "Collects: Journey Into Mystery (1952) 83-109",
       "sourceReference": "Journey Into Mystery (1952) 83-109",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Journey Into Mystery (1952) 83-109"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "9779",
+          "9780",
+          "9781",
+          "9782",
+          "9783",
+          "9784",
+          "35490",
+          "9787",
+          "9788",
+          "9789",
+          "9790",
+          "9791",
+          "9792",
+          "9793",
+          "9794",
+          "9795",
+          "9796",
+          "9674",
+          "9675",
+          "9676",
+          "9677",
+          "9678",
+          "9679",
+          "9680",
+          "9681",
+          "9682",
+          "9683"
+        ]
+      }
     },
     {
       "position": 3,
@@ -250,10 +283,36 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Avengers (1963) 1-20",
       "sourceReference": "Avengers (1963) 1-20",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Avengers (1963) 1-20"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "6951",
+          "7063",
+          "7174",
+          "7285",
+          "7299",
+          "7310",
+          "7321",
+          "7332",
+          "7343",
+          "6953",
+          "6964",
+          "6975",
+          "6986",
+          "6997",
+          "7008",
+          "7019",
+          "7030",
+          "7041",
+          "7052",
+          "7064"
+        ]
+      }
     },
     {
       "position": 20,
@@ -282,11 +341,52 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Strange Tales #110 to #111, #114 to #146",
       "sourceReference": "Strange Tales #110 to #111; Strange Tales #114 to #146",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Strange Tales #110 to #111",
         "Strange Tales #114 to #146"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11029",
+          "11030",
+          "11033",
+          "11034",
+          "11035",
+          "11036",
+          "11037",
+          "11038",
+          "11040",
+          "11041",
+          "11042",
+          "11043",
+          "11044",
+          "11045",
+          "11046",
+          "11047",
+          "11048",
+          "11049",
+          "11051",
+          "11052",
+          "11053",
+          "11054",
+          "11055",
+          "11056",
+          "11057",
+          "11058",
+          "11059",
+          "11060",
+          "11062",
+          "11063",
+          "11064",
+          "11065",
+          "11066",
+          "11067",
+          "11068"
+        ]
+      }
     },
     {
       "position": 23,
@@ -314,13 +414,41 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Journey Into Mystery (1952) 110 to #113, Journey Into Mystery Annual #1, Journey Into Mystery #114 to #125, Thor (1966) 126-130",
       "sourceReference": "Journey Into Mystery (1952) 110 to #113; Journey Into Mystery Annual #1; Journey Into Mystery #114 to #125; Thor (1966) 126-130",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Journey Into Mystery (1952) 110 to #113",
         "Journey Into Mystery Annual #1",
         "Journey Into Mystery #114 to #125",
         "Thor (1966) 126-130"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "9685",
+          "9686",
+          "9687",
+          "9688",
+          "15526",
+          "9689",
+          "9690",
+          "9691",
+          "9692",
+          "9693",
+          "9694",
+          "9696",
+          "9697",
+          "9698",
+          "9699",
+          "9700",
+          "9701",
+          "11454",
+          "11455",
+          "11456",
+          "11457",
+          "11458"
+        ]
+      }
     },
     {
       "position": 26,
@@ -343,10 +471,28 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Thor #141 to #152",
       "sourceReference": "Thor #141 to #152",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #141 to #152"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11469",
+          "11470",
+          "11471",
+          "11472",
+          "11473",
+          "11474",
+          "11475",
+          "11476",
+          "11477",
+          "11478",
+          "11479",
+          "11480"
+        ]
+      }
     },
     {
       "position": 29,
@@ -460,10 +606,37 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Thor (1966) 154-174",
       "sourceReference": "Thor (1966) 154-174",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor (1966) 154-174"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11482",
+          "11483",
+          "11484",
+          "11485",
+          "11486",
+          "11487",
+          "11488",
+          "11489",
+          "11490",
+          "11491",
+          "11492",
+          "11493",
+          "11494",
+          "11495",
+          "11496",
+          "11497",
+          "11498",
+          "11499",
+          "11500",
+          "11501",
+          "11502"
+        ]
+      }
     },
     {
       "position": 39,
@@ -483,20 +656,34 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Tales To Astonish #101",
       "sourceReference": "Tales To Astonish #101",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Tales To Astonish #101"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11350"
+        ]
+      }
     },
     {
       "position": 41,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Silver Surfer #4",
       "sourceReference": "Silver Surfer #4",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Silver Surfer #4"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "16099"
+        ]
+      }
     },
     {
       "position": 42,
@@ -511,13 +698,40 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Thor #173 to #183",
       "sourceReference": "Thor #173 to #183",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #173 to #183"
       ],
       "repeatOfPositions": [
         38
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11501",
+          "11502",
+          "11503",
+          "11504",
+          "11505",
+          "11506",
+          "11507",
+          "11508",
+          "11509",
+          "11510",
+          "11511"
+        ],
+        "duplicateIssueIds": [
+          {
+            "issueId": "11501",
+            "priorSourcePosition": 38
+          },
+          {
+            "issueId": "11502",
+            "priorSourcePosition": 38
+          }
+        ]
+      }
     },
     {
       "position": 44,
@@ -532,10 +746,27 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #184 to #194",
       "sourceReference": "Thor #184 to #194",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #184 to #194"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11512",
+          "11513",
+          "11514",
+          "11515",
+          "11516",
+          "11517",
+          "11518",
+          "11519",
+          "11520",
+          "11521",
+          "11522"
+        ]
+      }
     },
     {
       "position": 46,
@@ -550,10 +781,27 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Thor #195 to #205",
       "sourceReference": "Thor #195 to #205",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #195 to #205"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11523",
+          "11524",
+          "11525",
+          "11526",
+          "11527",
+          "11528",
+          "11529",
+          "11530",
+          "11531",
+          "11532",
+          "11533"
+        ]
+      }
     },
     {
       "position": 48,
@@ -568,10 +816,28 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Thor: Son Of Asgard #1-12",
       "sourceReference": "Thor: Son Of Asgard #1-12",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor: Son Of Asgard #1-12"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "411",
+          "446",
+          "475",
+          "639",
+          "703",
+          "554",
+          "515",
+          "804",
+          "882",
+          "70",
+          "1468",
+          "1561"
+        ]
+      }
     },
     {
       "position": 50,
@@ -594,10 +860,21 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Thor: First Thunder #1-5",
       "sourceReference": "Thor: First Thunder #1-5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor: First Thunder #1-5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "33865",
+          "33828",
+          "33838",
+          "33797",
+          "33868"
+        ]
+      }
     },
     {
       "position": 53,
@@ -620,10 +897,20 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Loki #1 To #4",
       "sourceReference": "Loki #1 To #4",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Loki #1 To #4"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "608",
+          "544",
+          "751",
+          "823"
+        ]
+      }
     },
     {
       "position": 56,
@@ -646,11 +933,25 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Collects: Avengers (1963) #115-118 And Defenders (1972) #8-11",
       "sourceReference": "Avengers (1963) #115-118; Defenders (1972) #8-11",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Avengers (1963) #115-118",
         "Defenders (1972) #8-11"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "6970",
+          "6971",
+          "6972",
+          "6973",
+          "20392",
+          "20403",
+          "20263",
+          "20274"
+        ]
+      }
     },
     {
       "position": 59,
@@ -673,12 +974,32 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Collects: Thor #229 to #235, Thor Annual #5, Thor #236 to #241",
       "sourceReference": "Thor #229 to #235; Thor Annual #5; Thor #236 to #241",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #229 to #235",
         "Thor Annual #5",
         "Thor #236 to #241"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11557",
+          "11558",
+          "11559",
+          "11560",
+          "11561",
+          "11562",
+          "11563",
+          "16684",
+          "11564",
+          "11565",
+          "11566",
+          "11567",
+          "11568",
+          "11569"
+        ]
+      }
     },
     {
       "position": 62,
@@ -693,21 +1014,56 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Thor #261 to #279, Thor Annual #8",
       "sourceReference": "Thor #261 to #279; Thor Annual #8",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #261 to #279",
         "Thor Annual #8"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11589",
+          "11590",
+          "11591",
+          "11592",
+          "11593",
+          "11594",
+          "11595",
+          "11596",
+          "11597",
+          "11598",
+          "11599",
+          "11600",
+          "11601",
+          "11602",
+          "11603",
+          "11604",
+          "11605",
+          "11606",
+          "11607",
+          "16687"
+        ]
+      }
     },
     {
       "position": 64,
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Thor #293 to #295",
       "sourceReference": "Thor #293 to #295",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #293 to #295"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11621",
+          "11622",
+          "11623"
+        ]
+      }
     },
     {
       "position": 65,
@@ -722,11 +1078,36 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Collects: Thor #303 to #319, Thor Annual #9 to #10",
       "sourceReference": "Thor #303 to #319; Thor Annual #9 to #10",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #303 to #319",
         "Thor Annual #9 to #10"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11631",
+          "11632",
+          "11633",
+          "11634",
+          "11635",
+          "11636",
+          "11637",
+          "11638",
+          "11639",
+          "11640",
+          "11641",
+          "11642",
+          "11643",
+          "11644",
+          "11645",
+          "11646",
+          "11647",
+          "16688",
+          "16671"
+        ]
+      }
     },
     {
       "position": 67,
@@ -741,11 +1122,35 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Collects: Thor #320 to #336, Annual #11",
       "sourceReference": "Thor #320 to #336; Annual #11",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #320 to #336",
         "Annual #11"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11648",
+          "11649",
+          "11650",
+          "11651",
+          "11652",
+          "11653",
+          "11654",
+          "11655",
+          "11656",
+          "11657",
+          "11658",
+          "11659",
+          "11660",
+          "11661",
+          "11662",
+          "11663",
+          "11664",
+          "16672"
+        ]
+      }
     },
     {
       "position": 69,
@@ -760,10 +1165,25 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor 337-345",
       "sourceReference": "Thor 337-345",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor 337-345"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11665",
+          "11666",
+          "11667",
+          "11668",
+          "11669",
+          "11670",
+          "11671",
+          "11672",
+          "11673"
+        ]
+      }
     },
     {
       "position": 71,
@@ -786,10 +1206,26 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor 346-355",
       "sourceReference": "Thor 346-355",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor 346-355"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11674",
+          "11675",
+          "11676",
+          "11677",
+          "11678",
+          "11679",
+          "11680",
+          "11681",
+          "11682",
+          "11683"
+        ]
+      }
     },
     {
       "position": 74,
@@ -804,11 +1240,28 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor 357-363, Balder The Brave 1-4",
       "sourceReference": "Thor 357-363; Balder The Brave 1-4",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor 357-363",
         "Balder The Brave 1-4"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11685",
+          "11686",
+          "11687",
+          "11688",
+          "11689",
+          "11690",
+          "11691",
+          "17847",
+          "17848",
+          "17849",
+          "17850"
+        ]
+      }
     },
     {
       "position": 76,
@@ -823,12 +1276,28 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: New Mutants Special Edition #1, Uncanny X-Men Annual #9, X-Men/Alpha Flight #1 To #2",
       "sourceReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "New Mutants Special Edition #1",
         "Uncanny X-Men Annual #9",
         "X-Men/Alpha Flight #1 To #2"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "10342",
+          "62577",
+          "62578"
+        ],
+        "unresolved": [
+          {
+            "key": "missingUncannyAnnual",
+            "issueNumber": "9",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 78,
@@ -851,11 +1320,27 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor 364-369, 371-374",
       "sourceReference": "Thor #364-369; Thor #371-374",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #364-369",
         "Thor #371-374"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11692",
+          "11693",
+          "11694",
+          "11695",
+          "11696",
+          "11697",
+          "11699",
+          "11700",
+          "11701",
+          "11702"
+        ]
+      }
     },
     {
       "position": 81,
@@ -878,10 +1363,24 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor 375-382",
       "sourceReference": "Thor 375-382",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor 375-382"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11703",
+          "11704",
+          "11705",
+          "11706",
+          "11707",
+          "11708",
+          "11709",
+          "11710"
+        ]
+      }
     },
     {
       "position": 84,
@@ -896,10 +1395,34 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor #383 to Thor #400",
       "sourceReference": "Thor #383 to Thor #400",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #383 to Thor #400"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11711",
+          "11712",
+          "11713",
+          "11714",
+          "11715",
+          "11716",
+          "11717",
+          "11718",
+          "11719",
+          "11720",
+          "11721",
+          "11722",
+          "11723",
+          "11724",
+          "11725",
+          "11726",
+          "11727",
+          "11728"
+        ]
+      }
     },
     {
       "position": 86,
@@ -938,11 +1461,27 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Thor #426 to #432, #440 to #442",
       "sourceReference": "Thor #426 to #432; #440 to #442",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #426 to #432",
         "Thor #440 to #442"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "11754",
+          "11755",
+          "11756",
+          "11757",
+          "11758",
+          "11759",
+          "11760",
+          "11768",
+          "11769",
+          "11770"
+        ]
+      }
     },
     {
       "position": 91,
@@ -957,10 +1496,37 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Collects: Journey Into Mystery (1996) #503-513",
       "sourceReference": "Journey Into Mystery (1996) #503-513",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Journey Into Mystery (1996) #503-513"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "48369",
+          "48370",
+          "48371",
+          "48372",
+          "48373",
+          "48374",
+          "48375",
+          "48376",
+          "61241"
+        ],
+        "unresolved": [
+          {
+            "key": "jim1996",
+            "issueNumber": "509",
+            "matches": []
+          },
+          {
+            "key": "jim1996",
+            "issueNumber": "512",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 93,
@@ -1017,10 +1583,18 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Amazing Spider-Man #503 to #504 of the J. Michael Straczynski features a two-part Spider-Man and Loki story.",
       "sourceReference": "Amazing Spider-Man #503 to #504",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Amazing Spider-Man #503 to #504"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "290",
+          "361"
+        ]
+      }
     },
     {
       "position": 99,
@@ -1035,10 +1609,22 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Collects: Thor #80-85",
       "sourceReference": "Thor #80-85",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #80-85"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "685",
+          "715",
+          "599",
+          "567",
+          "795",
+          "875"
+        ]
+      }
     },
     {
       "position": 101,
@@ -1061,10 +1647,22 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Collects: Thor #1-6 (July 2007 – Feb 2008)",
       "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #1-6 (July 2007 – Feb 2008)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "15943",
+          "16128",
+          "16479",
+          "16481",
+          "17229",
+          "17363"
+        ]
+      }
     },
     {
       "position": 104,
@@ -1087,10 +1685,23 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Collects: Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #7 – #12 + #600 (March 2008 – Feb 2009)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "20652",
+          "20845",
+          "21187",
+          "21518",
+          "21947",
+          "22484",
+          "23093"
+        ]
+      }
     },
     {
       "position": 107,
@@ -1105,21 +1716,44 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Collects: Thor #601-603, And Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
       "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Thor #601-603",
         "Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "23751",
+          "24149",
+          "26690"
+        ],
+        "unresolved": [
+          {
+            "key": "missingDefiningMoments",
+            "issueNumber": "1",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 109,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Dark Reign: The Cabal #1",
       "sourceReference": "Dark Reign: The Cabal #1",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Dark Reign: The Cabal #1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "24059"
+        ]
+      }
     },
     {
       "position": 110,
@@ -1142,11 +1776,29 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Collects: Thor (1966) #604-614, Siege: Loki And New Mutants (2009) #11",
       "sourceReference": "Thor (1966) #604-614; New Mutants (2009) #11",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor (1966) #604-614",
         "New Mutants (2009) #11"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "26691",
+          "26692",
+          "26693",
+          "26694",
+          "30570",
+          "30571",
+          "30572",
+          "30573",
+          "30574",
+          "30575",
+          "32726",
+          "30484"
+        ]
+      }
     },
     {
       "position": 113,
@@ -1169,10 +1821,23 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: Thor #615 – #621 (Sept 2010 – March 2011)",
       "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #615 – #621 (Sept 2010 – March 2011)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "32728",
+          "32730",
+          "32732",
+          "32734",
+          "32736",
+          "32738",
+          "32740"
+        ]
+      }
     },
     {
       "position": 116,
@@ -1187,10 +1852,22 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "The Mighty Thor 1-6 (April 2011 – Sept 2011)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "38213",
+          "38217",
+          "38215",
+          "38216",
+          "38211",
+          "38209"
+        ]
+      }
     },
     {
       "position": 118,
@@ -1205,11 +1882,33 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: Journey Into Mystery 622-636, 626.1 (April 2011 – April 2012)",
       "sourceReference": "Journey Into Mystery #622-636; Journey Into Mystery #626.1",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Journey Into Mystery #622-636",
         "Journey Into Mystery #626.1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "39901",
+          "40887",
+          "39878",
+          "41482",
+          "41056",
+          "36560",
+          "36557",
+          "36555",
+          "36553",
+          "37683",
+          "37682",
+          "37681",
+          "38055",
+          "40565",
+          "40567",
+          "39968"
+        ]
+      }
     },
     {
       "position": 120,
@@ -1232,11 +1931,30 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: The Mighty Thor #7 – #12 (Oct 2011 – March 2012), Fear Itself #7.2: Thor",
       "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "The Mighty Thor #7 – #12 (Oct 2011 – March 2012)",
         "Fear Itself #7.2: Thor"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "38210",
+          "38208",
+          "38212",
+          "38214",
+          "38207",
+          "38218"
+        ],
+        "unresolved": [
+          {
+            "key": "missingFearThor",
+            "issueNumber": "7.2",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 123,
@@ -1251,11 +1969,23 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: The Mighty Thor: 12.1, 13-17",
       "sourceReference": "The Mighty Thor #12.1; The Mighty Thor #13-17",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "The Mighty Thor #12.1",
         "The Mighty Thor #13-17"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "42181",
+          "40824",
+          "40816",
+          "40818",
+          "40828",
+          "40826"
+        ]
+      }
     },
     {
       "position": 125,
@@ -1270,14 +2000,44 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: Exiled 1; New Mutants 42-43; Journey Into Mystery 637-645; The Mighty Thor 18-22, Annual 1 (Ends October 2012)",
       "sourceReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Exiled #1",
         "New Mutants #42-43",
         "Journey Into Mystery #637-645",
         "The Mighty Thor #18-22",
         "The Mighty Thor Annual #1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "42400",
+          "40718",
+          "40720",
+          "40566",
+          "40552",
+          "40553",
+          "40551",
+          "40550",
+          "40556",
+          "40549",
+          "40555",
+          "40558",
+          "40817",
+          "40823",
+          "40827",
+          "40821",
+          "40814"
+        ],
+        "unresolved": [
+          {
+            "key": "missingMightyAnnual",
+            "issueNumber": "1",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 127,
@@ -1490,11 +2250,33 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Young Avengers (2013) 1-15, Marvel Now! Point One 1 (Young Avengers Story)",
       "sourceReference": "Young Avengers (2013) 1-15; Marvel Now! Point One 1 (Young Avengers Story)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Young Avengers (2013) 1-15",
         "Marvel Now! Point One 1 (Young Avengers Story)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "46824",
+          "46829",
+          "46832",
+          "46834",
+          "46836",
+          "46838",
+          "46839",
+          "46840",
+          "46841",
+          "46842",
+          "46843",
+          "46844",
+          "46845",
+          "47720",
+          "47721",
+          "45717"
+        ]
+      }
     },
     {
       "position": 145,
@@ -1517,10 +2299,21 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Loki: Agent of Asgard #1 to #5",
       "sourceReference": "Loki: Agent of Asgard #1 to #5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Loki: Agent of Asgard #1 to #5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "48514",
+          "48515",
+          "48516",
+          "48517",
+          "48518"
+        ]
+      }
     },
     {
       "position": 148,
@@ -1535,10 +2328,42 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Original Sin: Thor & Loki – The Tenth Realm 1-5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [],
+        "unresolved": [
+          {
+            "key": "missingTenthRealm",
+            "issueNumber": "1",
+            "matches": []
+          },
+          {
+            "key": "missingTenthRealm",
+            "issueNumber": "2",
+            "matches": []
+          },
+          {
+            "key": "missingTenthRealm",
+            "issueNumber": "3",
+            "matches": []
+          },
+          {
+            "key": "missingTenthRealm",
+            "issueNumber": "4",
+            "matches": []
+          },
+          {
+            "key": "missingTenthRealm",
+            "issueNumber": "5",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 150,
@@ -1561,10 +2386,22 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Loki: Agent Of Asgard 6-11",
       "sourceReference": "Loki: Agent Of Asgard 6-11",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Loki: Agent Of Asgard 6-11"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "48519",
+          "50715",
+          "51078",
+          "51170",
+          "52044",
+          "52045"
+        ]
+      }
     },
     {
       "position": 153,
@@ -1587,10 +2424,22 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Loki: Agent of Asgard #12 to #17 (Secret Wars, Last Days tie-ins)",
       "sourceReference": "Loki: Agent of Asgard #12 to #17",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Loki: Agent of Asgard #12 to #17"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "52046",
+          "52047",
+          "52048",
+          "52049",
+          "52050",
+          "52051"
+        ]
+      }
     },
     {
       "position": 156,
@@ -1621,10 +2470,21 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Mighty Thor #1 to #5",
       "sourceReference": "Mighty Thor #1 to #5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Mighty Thor #1 to #5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "55786",
+          "55788",
+          "55790",
+          "55791",
+          "55792"
+        ]
+      }
     },
     {
       "position": 160,
@@ -1639,10 +2499,20 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Vote Loki #1 to #4",
       "sourceReference": "Vote Loki #1 to #4",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Vote Loki #1 to #4"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "59870",
+          "59872",
+          "59873",
+          "59874"
+        ]
+      }
     },
     {
       "position": 162,
@@ -1657,10 +2527,23 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Mighty Thor (2015) #6-12",
       "sourceReference": "Mighty Thor (2015) #6-12",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Mighty Thor (2015) #6-12"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "55793",
+          "55794",
+          "55795",
+          "55796",
+          "55797",
+          "55798",
+          "55799"
+        ]
+      }
     },
     {
       "position": 164,
@@ -1683,10 +2566,23 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Mighty Thor (2015) #13-19",
       "sourceReference": "Mighty Thor (2015) #13-19",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Mighty Thor (2015) #13-19"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "55800",
+          "55801",
+          "55802",
+          "55803",
+          "61012",
+          "61013",
+          "61014"
+        ]
+      }
     },
     {
       "position": 167,
@@ -1709,11 +2605,22 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Mighty Thor (2015) #20-23, Generations: The Unworthy Thor & The Mighty Thor (2017) #1",
       "sourceReference": "Mighty Thor (2015) #20-23; Generations: The Unworthy Thor & The Mighty Thor (2017) #1",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Mighty Thor (2015) #20-23",
         "Generations: The Unworthy Thor & The Mighty Thor (2017) #1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "61015",
+          "61016",
+          "61017",
+          "61018",
+          "63967"
+        ]
+      }
     },
     {
       "position": 170,
@@ -1736,7 +2643,7 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10",
       "sourceReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
         "All-New Guardians of the Galaxy (2017) #1-2",
@@ -1744,7 +2651,26 @@
         "All-New Guardians of the Galaxy (2017) #6",
         "All-New Guardians of the Galaxy (2017) #8",
         "All-New Guardians of the Galaxy (2017) #10"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "61513",
+          "61514",
+          "61516",
+          "61518",
+          "61520",
+          "61522"
+        ],
+        "unresolved": [
+          {
+            "key": "fcbdGuardians2017",
+            "issueNumber": "1",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 173,
@@ -1767,11 +2693,18 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Marvel Legacy (2017) #1, Marvel Legacy Primer pages, FOOM Magazine (2017)",
       "sourceReference": "Marvel Legacy (2017) #1; FOOM Magazine (2017)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Marvel Legacy (2017) #1",
         "FOOM Magazine (2017)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "64417"
+        ]
+      }
     },
     {
       "position": 176,
@@ -1794,10 +2727,21 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Doctor Strange #381 to #385",
       "sourceReference": "Doctor Strange #381 to #385",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Doctor Strange #381 to #385"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "65070",
+          "65278",
+          "65279",
+          "65905",
+          "66197"
+        ]
+      }
     },
     {
       "position": 179,
@@ -1812,11 +2756,23 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Unbeatable Squirrel Girl (2015b) #27-31, Material from Not Brand Echh (2017) #14",
       "sourceReference": "Unbeatable Squirrel Girl (2015b) #27-31; Material from Not Brand Echh (2017) #14",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Unbeatable Squirrel Girl (2015b) #27-31",
         "Material from Not Brand Echh (2017) #14"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "61093",
+          "65805",
+          "66219",
+          "66513",
+          "66799",
+          "65089"
+        ]
+      }
     },
     {
       "position": 181,
@@ -1847,12 +2803,44 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Amazing Spider-Man (2015) #794-796, Amazing Spider-Man Annual (2018) #42,Material from Amazing Spider-Man (2015) #25",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Amazing Spider-Man (2015) #794-796",
         "Amazing Spider-Man Annual (2018) #42",
         "Material from Amazing Spider-Man (2015) #25"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [],
+        "unresolved": [
+          {
+            "key": "missingAsm2015",
+            "issueNumber": "794",
+            "matches": []
+          },
+          {
+            "key": "missingAsm2015",
+            "issueNumber": "795",
+            "matches": []
+          },
+          {
+            "key": "missingAsm2015",
+            "issueNumber": "796",
+            "matches": []
+          },
+          {
+            "key": "asmAnnual2018",
+            "issueNumber": "42",
+            "matches": []
+          },
+          {
+            "key": "missingAsm2015",
+            "issueNumber": "25",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 185,
@@ -1875,14 +2863,26 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: All-New Guardians of the Galaxy (2017) #3, 5, 7, 9 & 11-12",
       "sourceReference": "All-New Guardians of the Galaxy (2017) #3; All-New Guardians of the Galaxy (2017) #5; All-New Guardians of the Galaxy (2017) #7; All-New Guardians of the Galaxy (2017) #9; All-New Guardians of the Galaxy (2017) #11-12",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "All-New Guardians of the Galaxy (2017) #3",
         "All-New Guardians of the Galaxy (2017) #5",
         "All-New Guardians of the Galaxy (2017) #7",
         "All-New Guardians of the Galaxy (2017) #9",
         "All-New Guardians of the Galaxy (2017) #11-12"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "61515",
+          "61517",
+          "61519",
+          "61521",
+          "61523",
+          "61524"
+        ]
+      }
     },
     {
       "position": 188,
@@ -1905,11 +2905,25 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Mighty Thor (2015) 700-706, Mighty Thor: At The Gates Of Valhalla (2018) #1",
       "sourceReference": "Mighty Thor (2015) 700-706; Mighty Thor: At The Gates Of Valhalla (2018) #1",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Mighty Thor (2015) 700-706",
         "Mighty Thor: At The Gates Of Valhalla (2018) #1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "64931",
+          "65086",
+          "65293",
+          "65917",
+          "66288",
+          "66546",
+          "66851",
+          "67528"
+        ]
+      }
     },
     {
       "position": 191,
@@ -1932,13 +2946,26 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Infinity Countdown Prime (2018), Infinity Countdown (2018) #1-5, Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
       "sourceReference": "Infinity Countdown Prime (2018); Infinity Countdown (2018) #1-5; Infinity Countdown: Adam Warlock (2018) #1; Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Infinity Countdown Prime (2018)",
         "Infinity Countdown (2018) #1-5",
         "Infinity Countdown: Adam Warlock (2018) #1",
         "Material from Free Comic Book Day 2018 (Amazing Spider-Man)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "66283",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "66158"
+        ]
+      }
     },
     {
       "position": 194,
@@ -1961,10 +2988,22 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Thor (2018) #1-6",
       "sourceReference": "Thor (2018) #1-6",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor (2018) #1-6"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "69920",
+          "69922",
+          "69925",
+          "69926",
+          "69927",
+          "69928"
+        ]
+      }
     },
     {
       "position": 197,
@@ -1987,11 +3026,23 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Avengers (2018) #1-6, Material from Free Comic Book Day 2018 (Avengers/Captain America)",
       "sourceReference": "Avengers (2018) #1-6; Material from Free Comic Book Day 2018 (Avengers/Captain America)",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Avengers (2018) #1-6",
         "Material from Free Comic Book Day 2018 (Avengers/Captain America)"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "67002",
+          "67311",
+          "67756",
+          "67760",
+          "67762",
+          "67763"
+        ]
+      }
     },
     {
       "position": 200,
@@ -2014,10 +3065,22 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Avengers (2018) #7-12",
       "sourceReference": "Avengers (2018) #7-12",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Avengers (2018) #7-12"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "67764",
+          "67765",
+          "67766",
+          "67767",
+          "67768",
+          "67769"
+        ]
+      }
     },
     {
       "position": 203,
@@ -2040,14 +3103,36 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
       "sourceReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
-      "disposition": "canonical-candidate",
+      "disposition": "gap",
       "issueReferences": [
         "Infinty Wars Prime (2018) #1",
         "Infinity Wars (2018) #1-6",
         "Infinity Wars: Fallen Guardian (2018) #1",
         "Infinity Wars: Infinity (2018) #1",
         "Material from Thanos Legacy (2018) #1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "gap",
+        "exactIssueIds": [
+          "67349",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151",
+          "73415",
+          "71037"
+        ],
+        "unresolved": [
+          {
+            "key": "missingWarsInfinity",
+            "issueNumber": "1",
+            "matches": []
+          }
+        ]
+      }
     },
     {
       "position": 206,
@@ -2070,10 +3155,21 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Wolverine: Infinity Watch (2019) #1-5",
       "sourceReference": "Wolverine: Infinity Watch (2019) #1-5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Wolverine: Infinity Watch (2019) #1-5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "73045",
+          "73046",
+          "73047",
+          "73048",
+          "73049"
+        ]
+      }
     },
     {
       "position": 209,
@@ -2096,10 +3192,21 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Thor (2018) #7-11",
       "sourceReference": "Thor (2018) #7-11",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor (2018) #7-11"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "69929",
+          "69930",
+          "69931",
+          "69932",
+          "69933"
+        ]
+      }
     },
     {
       "position": 212,
@@ -2122,11 +3229,24 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: War Of The Realms (2019) #1-6, War Of The Realms: Omega (2019) #1",
       "sourceReference": "War Of The Realms (2019) #1-6; War Of The Realms: Omega (2019) #1",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "War Of The Realms (2019) #1-6",
         "War Of The Realms: Omega (2019) #1"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "71271",
+          "71273",
+          "71274",
+          "71275",
+          "71276",
+          "71277",
+          "74814"
+        ]
+      }
     },
     {
       "position": 215,
@@ -2149,10 +3269,21 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Thor (2018) #12-16",
       "sourceReference": "Thor (2018) #12-16",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor (2018) #12-16"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "69934",
+          "70791",
+          "70792",
+          "70793",
+          "70794"
+        ]
+      }
     },
     {
       "position": 218,
@@ -2175,14 +3306,32 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Loki (2019) #1 to #5, material from War of the Realms: Omega (2019) #1",
       "sourceReference": "Loki (2019) #1 to #5; material from War of the Realms: Omega (2019) #1",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Loki (2019) #1 to #5",
         "material from War of the Realms: Omega (2019) #1"
       ],
       "repeatOfPositions": [
         214
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "77480",
+          "78444",
+          "78887",
+          "79420",
+          "79421",
+          "74814"
+        ],
+        "duplicateIssueIds": [
+          {
+            "issueId": "74814",
+            "priorSourcePosition": 214
+          }
+        ]
+      }
     },
     {
       "position": 221,
@@ -2197,10 +3346,21 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Asgardians of the Galaxy #1 to #5",
       "sourceReference": "Asgardians of the Galaxy #1 to #5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Asgardians of the Galaxy #1 to #5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "71308",
+          "71310",
+          "71311",
+          "71312",
+          "71313"
+        ]
+      }
     },
     {
       "position": 223,
@@ -2215,10 +3375,21 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Asgardians of the Galaxy #6 to #10",
       "sourceReference": "Asgardians of the Galaxy #6 to #10",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Asgardians of the Galaxy #6 to #10"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "73994",
+          "73995",
+          "73996",
+          "73997",
+          "73998"
+        ]
+      }
     },
     {
       "position": 225,
@@ -2233,10 +3404,21 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: The Mighty Valkyries (2021) #1 to #5",
       "sourceReference": "The Mighty Valkyries (2021) #1 to #5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "The Mighty Valkyries (2021) #1 to #5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "93337",
+          "93338",
+          "93339",
+          "93340",
+          "93341"
+        ]
+      }
     },
     {
       "position": 227,
@@ -2251,10 +3433,20 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Thor & Loki: Double Trouble (2021) #1 to #4",
       "sourceReference": "Thor & Loki: Double Trouble (2021) #1 to #4",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Thor & Loki: Double Trouble (2021) #1 to #4"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "89745",
+          "89747",
+          "89748",
+          "89749"
+        ]
+      }
     },
     {
       "position": 229,
@@ -2269,10 +3461,21 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Defenders: Beyond #1 to #5",
       "sourceReference": "Defenders: Beyond #1 to #5",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Defenders: Beyond #1 to #5"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "100036",
+          "100037",
+          "100038",
+          "100039",
+          "100040"
+        ]
+      }
     },
     {
       "position": 231,
@@ -2287,10 +3490,20 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Loki (2023) #1 to #4",
       "sourceReference": "Loki (2023) #1 to #4",
-      "disposition": "canonical-candidate",
+      "disposition": "exact",
       "issueReferences": [
         "Loki (2023) #1 to #4"
-      ]
+      ],
+      "providerSettlement": {
+        "checkedAt": "2026-08-27",
+        "status": "exact",
+        "exactIssueIds": [
+          "97121",
+          "97123",
+          "97124",
+          "97125"
+        ]
+      }
     }
   ],
   "classificationSummary": {
@@ -2339,8 +3552,18 @@
       ]
     },
     "gaps": {
-      "rationale": "No included issue or range is source-ambiguous; provider verification is pending for every candidate.",
-      "positions": []
+      "rationale": "Provider lookup did not establish every issue identity in the source block.",
+      "positions": [
+        77,
+        92,
+        108,
+        122,
+        126,
+        149,
+        172,
+        184,
+        205
+      ]
     },
     "exclusions": [
       {
@@ -2480,6 +3703,33 @@
         "positions": [
           87
         ]
+      }
+    ]
+  },
+  "providerSettlement": {
+    "checkedAt": "2026-08-27",
+    "providerBaseUrl": "https://marvel.emreparker.com/v1",
+    "successfulPageCount": 61,
+    "cachedFailureCount": 0,
+    "candidateCounts": {
+      "exact": 66,
+      "gap": 9
+    },
+    "duplicateProviderIds": [
+      {
+        "sourcePosition": 43,
+        "issueId": "11501",
+        "repeatOfSourcePosition": 38
+      },
+      {
+        "sourcePosition": 43,
+        "issueId": "11502",
+        "repeatOfSourcePosition": 38
+      },
+      {
+        "sourcePosition": 220,
+        "issueId": "74814",
+        "repeatOfSourcePosition": 214
       }
     ]
   }
