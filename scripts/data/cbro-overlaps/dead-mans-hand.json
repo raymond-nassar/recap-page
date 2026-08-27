@@ -2,14 +2,14 @@
   "candidateId": "dead-mans-hand",
   "packetDigest": "65b4c9e1308f1bd68fe0c1538691fe3fc16e622611a7e598fbc74a56c6f112ee",
   "mappingDigest": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
-  "libraryDigest": "66fedc5eaa7b8e088590a0a712c9110af74d8390957ff11422ab4af965b783e5",
+  "libraryDigest": "38233c4f59621594536c1977cce6dd39fce6277f32842518a42dc631f5d8e782",
   "peerDigests": {
     "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
     "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
     "x-tinction-agenda": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4"
   },
   "candidateCount": 9,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -582,6 +582,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -816,5 +822,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6ae6abeb906a62a8b1cda35d94e77d4ee5cd24a1a3473688c5271d411a479d98"
+  "reportDigest": "6c1eaa5e1a1d6fb20d7e2da92d50bd68514fce13e0012ae77f7e9ccc7785cfa5"
 }

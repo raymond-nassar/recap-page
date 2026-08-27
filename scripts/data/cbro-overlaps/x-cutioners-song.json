@@ -2,13 +2,13 @@
   "candidateId": "x-cutioners-song",
   "packetDigest": "ee73d3140c7b22e81fb5a68ba699fe05acd1674ecd66704df9519defa80183f3",
   "mappingDigest": "0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582",
-  "libraryDigest": "7c7698447619a06dbd8916738b929589553650ac01bef54355e6b472d01a6dc7",
+  "libraryDigest": "76ad162ce3959ba8d45e414258021f8e0dcbf8c0b65bcae469c28a41ccad33d5",
   "peerDigests": {
     "fatal-attractions": "30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9",
     "mys-tech-wars": "1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306"
   },
   "candidateCount": 13,
-  "comparisonCount": 134,
+  "comparisonCount": 135,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -587,6 +587,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -815,5 +821,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "cfe0851b00bc3957f9239426d4f807f986f13f9e255bd9873dd4053404eed363"
+  "reportDigest": "4dbf0a7d0462b02c7b9a0bb8a3b926c8cb9352449aa438be74a847a15d344633"
 }

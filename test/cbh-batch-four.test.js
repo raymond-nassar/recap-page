@@ -26,6 +26,7 @@ const laterReviewedIds = new Set([
   'thanos-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
   'loki-reading-order',
+  'silver-surfer-reading-order',
   'venom-reading-order',
 ]);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
