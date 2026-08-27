@@ -189,21 +189,25 @@ test('the start year is a phrase, and an order that ranges across the timeline h
 
 // ------------------------------------------------------------------ the shipped data
 
-test('the shipped manifest declares paths that resolve end to end', async () => {
+test('manifest and generated paths resolve end to end', async () => {
   const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
   const { paths, errors } = parseManifest(manifest);
   assert.deepEqual(errors, []);
   assert.equal(paths.length, 2);
 
-  const catalog = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
+  const catalogRaw = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  const catalog = parseCatalog(catalogRaw);
   assert.equal(catalog.dropped, 0);
+  assert.equal(catalog.paths.length, 3);
+  const generated = catalog.paths.find((readingPath) => readingPath.id === 'marvel-knights-to-planet-x');
+  assert.equal(generated.steps.length, 78);
   const placed = pathPlacements(catalog.paths, catalog.lists);
 
   // Every step resolves, so the rendered total is the declared one. A step that stopped resolving
   // would renumber the path silently, which is exactly the drift this asserts against.
-  const expectedTotal = paths.reduce((total, readingPath) => total + readingPath.steps.length, 0);
+  const expectedTotal = catalog.paths.reduce((total, readingPath) => total + readingPath.steps.length, 0);
   assert.equal(placed.size, expectedTotal);
-  for (const readingPath of paths) {
+  for (const readingPath of catalog.paths) {
     const pathPlacementsForPath = [...placed.values()].filter((placement) => placement.pathId === readingPath.id);
     assert.equal(pathPlacementsForPath.length, readingPath.steps.length);
     assert.ok(pathPlacementsForPath.every((placement) => placement.total === readingPath.steps.length));
@@ -252,5 +256,5 @@ test('no two stops on a shipped path share an issue, at any reading depth', asyn
       }
     }
   }
-  assert.equal(pairs, 111);
+  assert.equal(pairs, 3114);
 });

@@ -1,0 +1,290 @@
+{
+  "id": "marvel-knights-to-planet-x-62",
+  "name": "Fantastic Four: Authoritative Action + Hereafter",
+  "description": "Owner-curated chapter 62 of 78 in the Marvel Knights to Planet X reading path, from Fantastic Four (1998) #503 through Fantastic Four (1998) #511.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 75,
+    "sourceCount": 2,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 12857,
+      "title": "Fantastic Four (1998) #503",
+      "number": "503",
+      "url": "https://www.marvel.com/comics/issue/12857/fantastic_four_1998_503",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-10-15T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5ad4b777b18a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12858,
+      "title": "Fantastic Four (1998) #504",
+      "number": "504",
+      "url": "https://www.marvel.com/comics/issue/12858/fantastic_four_1998_504",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-10-22T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5ad4bdf54040f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 385,
+      "title": "Fantastic Four (1998) #505",
+      "number": "505",
+      "url": "https://www.marvel.com/comics/issue/385/fantastic_four_1998_505",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-10-29T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1843,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/04/5ad4c7e97bf8d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 299,
+      "title": "Fantastic Four (1998) #506",
+      "number": "506",
+      "url": "https://www.marvel.com/comics/issue/299/fantastic_four_1998_506",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-11-12T00:00:00+0000",
+      "mu": "2003-11-12T00:00:00+0000",
+      "digitalId": 1844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5ad4d0a8e9b92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 283,
+      "title": "Fantastic Four (1998) #507",
+      "number": "507",
+      "url": "https://www.marvel.com/comics/issue/283/fantastic_four_1998_507",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2003-11-26T00:00:00+0000",
+      "digitalId": 1845,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5ad4e71b8ceb5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 314,
+      "title": "Fantastic Four (1998) #508",
+      "number": "508",
+      "url": "https://www.marvel.com/comics/issue/314/fantastic_four_1998_508",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2003-12-17T00:00:00+0000",
+      "digitalId": 1846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5ad4ef8f88045",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 343,
+      "title": "Fantastic Four (1998) #509",
+      "number": "509",
+      "url": "https://www.marvel.com/comics/issue/343/fantastic_four_1998_509",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2004-01-21T00:00:00+0000",
+      "digitalId": 1847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5ad4f7402570e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Karl Kesel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 284,
+      "title": "Fantastic Four (1998) #510",
+      "number": "510",
+      "url": "https://www.marvel.com/comics/issue/284/fantastic_four_1998_510",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2004-02-18T00:00:00+0000",
+      "digitalId": 1849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5ad500d9c42ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Karl Kesel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 417,
+      "title": "Fantastic Four (1998) #511",
+      "number": "511",
+      "url": "https://www.marvel.com/comics/issue/417/fantastic_four_1998_511",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2004-03-17T00:00:00+0000",
+      "mu": "2004-03-17T00:00:00+0000",
+      "digitalId": 1850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5ad5ee5c0761f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Karl Kesel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

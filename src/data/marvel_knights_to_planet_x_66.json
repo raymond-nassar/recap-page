@@ -1,0 +1,244 @@
+{
+  "id": "marvel-knights-to-planet-x-66",
+  "name": "Uncanny X-Men: The Draco",
+  "description": "Owner-curated chapter 66 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #428 through Uncanny X-Men (1963) #434.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 80,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13969,
+      "title": "Uncanny X-Men (1963) #428",
+      "number": "428",
+      "url": "https://www.marvel.com/comics/issue/13969/uncanny_x-men_1963_428",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-07-09T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7422,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/591b60ae77e48",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13970,
+      "title": "Uncanny X-Men (1963) #429",
+      "number": "429",
+      "url": "https://www.marvel.com/comics/issue/13970/uncanny_x-men_1963_429",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-08-06T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/591b6a3ce65a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13971,
+      "title": "Uncanny X-Men (1963) #430",
+      "number": "430",
+      "url": "https://www.marvel.com/comics/issue/13971/uncanny_x-men_1963_430",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-09-03T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7424,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/591c52ee4d880",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13972,
+      "title": "Uncanny X-Men (1963) #431",
+      "number": "431",
+      "url": "https://www.marvel.com/comics/issue/13972/uncanny_x-men_1963_431",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-09-17T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7425,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/591c5a8736ac2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 254,
+      "title": "Uncanny X-Men (1963) #432",
+      "number": "432",
+      "url": "https://www.marvel.com/comics/issue/254/uncanny_x-men_1963_432",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-10-31T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7426,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/591c64641061b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 274,
+      "title": "Uncanny X-Men (1963) #433",
+      "number": "433",
+      "url": "https://www.marvel.com/comics/issue/274/uncanny_x-men_1963_433",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7427,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/591c6bcd75f5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 252,
+      "title": "Uncanny X-Men (1963) #434",
+      "number": "434",
+      "url": "https://www.marvel.com/comics/issue/252/uncanny_x-men_1963_434",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4f624fb30392a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

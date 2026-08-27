@@ -59,6 +59,31 @@ test('an order can be authored in this repository instead of fetched', () => {
   assert.equal(entries[0].sourcePage, null);
 });
 
+test('a partition parent is local, explicit and excluded from the visible catalog', () => {
+  const parent = {
+    ...valid,
+    sourceUrl: undefined,
+    sourcePage: undefined,
+    sourceFile: 'civil_war.md',
+    partitionFile: 'civil-war-parts.json',
+    catalog: false,
+  };
+  const { entries, errors } = parseManifest({ lists: [parent] });
+  assert.deepEqual(errors, []);
+  assert.equal(entries[0].partitionFile, 'civil-war-parts.json');
+  assert.equal(entries[0].catalog, false);
+
+  for (const bad of [
+    { ...parent, partitionFile: '../parts.json' },
+    { ...parent, catalog: true },
+    { ...parent, catalog: 'false' },
+    { ...parent, sourceFile: undefined, sourceUrl: valid.sourceUrl },
+    { ...valid, catalog: false },
+  ]) {
+    assert.ok(parseManifest({ lists: [bad] }).errors.length, JSON.stringify(bad));
+  }
+});
+
 // BL-099. Origin and licence were one field, and ten of the twelve values it held were prose
 // about where an order came from. Prose is not a grant, so the shape is checked: anything that
 // is not an SPDX expression is refused, which is every one of those ten.
@@ -213,8 +238,18 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
   const catalogRaw = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
   const { lists } = parseCatalog(catalogRaw);
 
-  assert.deepEqual(entries.map((e) => e.id).sort(), lists.map((l) => l.id).sort());
-  for (const entry of entries) {
+  const visibleEntries = entries.filter((entry) => entry.catalog);
+  const partitionParents = entries.filter((entry) => !entry.catalog);
+  const generatedChildren = lists.filter((list) => /^marvel-knights-to-planet-x-\d{2}$/.test(list.id));
+  assert.equal(partitionParents.length, 1);
+  assert.equal(partitionParents[0].id, 'marvel-knights-to-planet-x');
+  assert.equal(lists.some((list) => list.id === partitionParents[0].id), false);
+  assert.equal(generatedChildren.length, 78);
+  assert.deepEqual(
+    visibleEntries.map((entry) => entry.id).sort(),
+    lists.filter((list) => !generatedChildren.includes(list)).map((list) => list.id).sort(),
+  );
+  for (const entry of visibleEntries) {
     const list = lists.find((l) => l.id === entry.id);
     const rawList = catalogRaw.lists.find((l) => l.id === entry.id);
     assert.equal(list.file, entry.out, `${entry.id} file drifted from the manifest`);

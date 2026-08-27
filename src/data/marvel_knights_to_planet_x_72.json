@@ -1,0 +1,183 @@
+{
+  "id": "marvel-knights-to-planet-x-72",
+  "name": "Uncanny X-Men: She Lies With Angels",
+  "description": "Owner-curated chapter 72 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #435 through Uncanny X-Men (1963) #441.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 86,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 242,
+      "title": "Uncanny X-Men (1963) #435",
+      "number": "435",
+      "url": "https://www.marvel.com/comics/issue/242/uncanny_x-men_1963_435",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-12-10T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/591c874e814d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 240,
+      "title": "Uncanny X-Men (1963) #436",
+      "number": "436",
+      "url": "https://www.marvel.com/comics/issue/240/uncanny_x-men_1963_436",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-12-24T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/591c8e18f2ff6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 269,
+      "title": "Uncanny X-Men (1963) #437",
+      "number": "437",
+      "url": "https://www.marvel.com/comics/issue/269/uncanny_x-men_1963_437",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-01-07T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/591c950b61d15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 251,
+      "title": "Uncanny X-Men (1963) #438",
+      "number": "438",
+      "url": "https://www.marvel.com/comics/issue/251/uncanny_x-men_1963_438",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7432,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/591c9d681dad1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 250,
+      "title": "Uncanny X-Men (1963) #439",
+      "number": "439",
+      "url": "https://www.marvel.com/comics/issue/250/uncanny_x-men_1963_439",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-02-04T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/591ca93f46c7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 249,
+      "title": "Uncanny X-Men (1963) #440",
+      "number": "440",
+      "url": "https://www.marvel.com/comics/issue/249/uncanny_x-men_1963_440",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7434,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/591cb0396e406",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 400,
+      "title": "Uncanny X-Men (1963) #441",
+      "number": "441",
+      "url": "https://www.marvel.com/comics/issue/400/uncanny_x-men_1963_441",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2004-03-03T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7435,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/591c64714fc05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "id": "marvel-knights-to-planet-x-28",
+  "name": "Spider-Man: Return of the Goblin",
+  "description": "Owner-curated chapter 28 of 78 in the Marvel Knights to Planet X reading path, from Peter Parker: Spider-Man (1999) #44 through Peter Parker: Spider-Man (1999) #47.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 38,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 10555,
+      "title": "Peter Parker: Spider-Man (1999) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/10555/peter_parker_spider-man_1999_44",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2002-08-01T00:00:00+0000",
+      "digitalId": 2374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/58248837460bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10556,
+      "title": "Peter Parker: Spider-Man (1999) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/10556/peter_parker_spider-man_1999_45",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2002-08-01T00:00:00+0000",
+      "digitalId": 2375,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/58248bbf6bd47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10557,
+      "title": "Peter Parker: Spider-Man (1999) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/10557/peter_parker_spider-man_1999_46",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2002-09-01T00:00:00+0000",
+      "mu": "2002-09-01T00:00:00+0000",
+      "digitalId": 2376,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/58248ce0b75bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10558,
+      "title": "Peter Parker: Spider-Man (1999) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/10558/peter_parker_spider-man_1999_47",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2002-10-01T00:00:00+0000",
+      "digitalId": 2377,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/58248ddf7c353",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "id": "marvel-knights-to-planet-x-26",
+  "name": "Daredevil: Out",
+  "description": "Owner-curated chapter 26 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #32 through Daredevil (1998) #40.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 36,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15634,
+      "title": "Daredevil (1998) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/15634/daredevil_1998_32",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-06-01T00:00:00+0000",
+      "mu": "2008-04-21T00:00:00+0000",
+      "digitalId": 5606,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/4bb7b822b926b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15635,
+      "title": "Daredevil (1998) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/15635/daredevil_1998_33",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-07-01T00:00:00+0000",
+      "mu": "2008-05-05T00:00:00+0000",
+      "digitalId": 5607,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5727a1af23991",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": []
+    },
+    {
+      "issueId": 15636,
+      "title": "Daredevil (1998) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/15636/daredevil_1998_34",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2008-06-02T00:00:00+0000",
+      "digitalId": 5608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/514ca5a023952",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15637,
+      "title": "Daredevil (1998) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/15637/daredevil_1998_35",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-09-01T00:00:00+0000",
+      "mu": "2008-06-09T00:00:00+0000",
+      "digitalId": 5609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5727abc79900f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15638,
+      "title": "Daredevil (1998) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/15638/daredevil_1998_36",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2008-06-16T00:00:00+0000",
+      "digitalId": 5610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5727b39e2f546",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15639,
+      "title": "Daredevil (1998) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/15639/daredevil_1998_37",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2008-06-30T00:00:00+0000",
+      "digitalId": 5611,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5728aedf11726",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15640,
+      "title": "Daredevil (1998) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/15640/daredevil_1998_38",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-12-01T00:00:00+0000",
+      "digitalId": 5612,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/57277078333dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manuel Gutierrez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15641,
+      "title": "Daredevil (1998) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/15641/daredevil_1998_39",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 5613,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/572772023def9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manuel Gutierrez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15643,
+      "title": "Daredevil (1998) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/15643/daredevil_1998_40",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 5615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/572772f074360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

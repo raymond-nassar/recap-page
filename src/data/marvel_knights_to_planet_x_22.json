@@ -1,0 +1,232 @@
+{
+  "id": "marvel-knights-to-planet-x-22",
+  "name": "Uncanny X-Men: X-Corps (Main Arc)",
+  "description": "Owner-curated chapter 22 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #401 through Uncanny X-Men (1963) #407.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 32,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13942,
+      "title": "Uncanny X-Men (1963) #401",
+      "number": "401",
+      "url": "https://www.marvel.com/comics/issue/13942/uncanny_x-men_1963_401",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-02-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31303,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/591de8d2d0c3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13943,
+      "title": "Uncanny X-Men (1963) #402",
+      "number": "402",
+      "url": "https://www.marvel.com/comics/issue/13943/uncanny_x-men_1963_402",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-02-06T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/591de95a5e5e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13944,
+      "title": "Uncanny X-Men (1963) #403",
+      "number": "403",
+      "url": "https://www.marvel.com/comics/issue/13944/uncanny_x-men_1963_403",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31305,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/591dea058c7ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13945,
+      "title": "Uncanny X-Men (1963) #404",
+      "number": "404",
+      "url": "https://www.marvel.com/comics/issue/13945/uncanny_x-men_1963_404",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-04-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/591deab576a53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13946,
+      "title": "Uncanny X-Men (1963) #405",
+      "number": "405",
+      "url": "https://www.marvel.com/comics/issue/13946/uncanny_x-men_1963_405",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/591deb1bd1554",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13947,
+      "title": "Uncanny X-Men (1963) #406",
+      "number": "406",
+      "url": "https://www.marvel.com/comics/issue/13947/uncanny_x-men_1963_406",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-06-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31308,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/591deb9a803d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13948,
+      "title": "Uncanny X-Men (1963) #407",
+      "number": "407",
+      "url": "https://www.marvel.com/comics/issue/13948/uncanny_x-men_1963_407",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-07-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31309,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/591dec119a5fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

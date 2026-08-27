@@ -1,0 +1,131 @@
+{
+  "id": "marvel-knights-to-planet-x-76",
+  "name": "Spider-Man: The Book of Ezekiel",
+  "description": "Owner-curated chapter 76 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #503 through Amazing Spider-Man (1999) #508.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 90,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 290,
+      "title": "Amazing Spider-Man (1999) #503",
+      "number": "503",
+      "url": "https://www.marvel.com/comics/issue/290/amazing_spider-man_1999_503",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2004-01-28T00:00:00+0000",
+      "mu": "2004-01-28T00:00:00+0000",
+      "digitalId": 5015,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/57fe72e85427e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 361,
+      "title": "Amazing Spider-Man (1999) #504",
+      "number": "504",
+      "url": "https://www.marvel.com/comics/issue/361/amazing_spider-man_1999_504",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2004-02-25T00:00:00+0000",
+      "mu": "2004-02-25T00:00:00+0000",
+      "digitalId": 4854,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/57fe745adbddf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 413,
+      "title": "Amazing Spider-Man (1999) #505",
+      "number": "505",
+      "url": "https://www.marvel.com/comics/issue/413/amazing_spider-man_1999_505",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2004-03-17T00:00:00+0000",
+      "mu": "2004-03-17T00:00:00+0000",
+      "digitalId": 5016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/57fe7638db089",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 441,
+      "title": "Amazing Spider-Man (1999) #506",
+      "number": "506",
+      "url": "https://www.marvel.com/comics/issue/441/amazing_spider-man_1999_506",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2004-04-07T00:00:00+0000",
+      "mu": "2004-04-07T00:00:00+0000",
+      "digitalId": 5017,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/57fe7737c939d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 491,
+      "title": "Amazing Spider-Man (1999) #507",
+      "number": "507",
+      "url": "https://www.marvel.com/comics/issue/491/amazing_spider-man_1999_507",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2004-05-19T00:00:00+0000",
+      "mu": "2004-05-19T00:00:00+0000",
+      "digitalId": 5018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/57fe78a0212de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 643,
+      "title": "Amazing Spider-Man (1999) #508",
+      "number": "508",
+      "url": "https://www.marvel.com/comics/issue/643/amazing_spider-man_1999_508",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2004-06-16T00:00:00+0000",
+      "mu": "2004-06-16T00:00:00+0000",
+      "digitalId": 5019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/57fe7ba07013a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

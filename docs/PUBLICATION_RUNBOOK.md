@@ -152,8 +152,8 @@ that must not be rewritten, for the same reason the dated tracking artifacts are
 - `PRODUCT_BACKLOG.md:7071-7076`, why blank issues stay enabled.
 - `PRODUCT_BACKLOG.md:7114-7118`, why `required: true` collects nothing today.
 - `PRODUCT_BACKLOG.md:9219-9224`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:3181-3192`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:3194-3204`, the released note that the private channel is not switched on.
+- `CHANGELOG.md:3186-3197`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:3199-3209`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
@@ -273,3 +273,8 @@ quietly advertise a private, stale, or unreachable source surface. The MCU Prep 
 four public source-linked cards after Star-Lord. Nine historical continuation batches add thirty-three
 Comic Book Reading Orders cards containing 372 delivered issues across those guides, bringing the
 catalog to 134 without changing the accepted publication boundary or any saved reader data.
+
+A catalog partition release keeps its aggregate source as an explicit noncatalog parent and emits
+ordinary child Reading Lists only after the ledger, aggregate vector, generated path and child
+overlap matrix all validate. Run the publication gates against the complete generated tree, confirm
+the parent has no visible catalog row, and keep any existing saved parent list untouched.

@@ -1,0 +1,77 @@
+{
+  "id": "marvel-knights-to-planet-x-30",
+  "name": "Uncanny X-Men: Identity Crisis",
+  "description": "Owner-curated chapter 30 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #408 through Uncanny X-Men (1963) #409.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 2,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 40,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13949,
+      "title": "Uncanny X-Men (1963) #408",
+      "number": "408",
+      "url": "https://www.marvel.com/comics/issue/13949/uncanny_x-men_1963_408",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-07-10T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31310,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/591dec8934f8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13950,
+      "title": "Uncanny X-Men (1963) #409",
+      "number": "409",
+      "url": "https://www.marvel.com/comics/issue/13950/uncanny_x-men_1963_409",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-07-17T00:00:00+0000",
+      "mu": "2002-07-17T00:00:00+0000",
+      "digitalId": 31311,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/591decf413ff9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

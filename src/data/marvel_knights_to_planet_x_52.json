@@ -1,0 +1,95 @@
+{
+  "id": "marvel-knights-to-planet-x-52",
+  "name": "Punisher: Hidden",
+  "description": "Owner-curated chapter 52 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #23 through Punisher (2001) #26.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 65,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 17177,
+      "title": "Punisher (2001) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/17177/punisher_2001_23",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-03-19T00:00:00+0000",
+      "mu": "2003-03-19T00:00:00+0000",
+      "digitalId": 4337,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/4bb682c04a045",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17178,
+      "title": "Punisher (2001) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/17178/punisher_2001_24",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-04-09T00:00:00+0000",
+      "mu": "2003-04-09T00:00:00+0000",
+      "digitalId": 4336,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/4bb682bb4cac7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17179,
+      "title": "Punisher (2001) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/17179/punisher_2001_25",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-04-23T00:00:00+0000",
+      "mu": "2003-04-23T00:00:00+0000",
+      "digitalId": 4335,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/4bb682b69754c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17180,
+      "title": "Punisher (2001) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/17180/punisher_2001_26",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-05-14T00:00:00+0000",
+      "mu": "2003-05-14T00:00:00+0000",
+      "digitalId": 4701,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4bc37b328867d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

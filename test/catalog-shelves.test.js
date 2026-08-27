@@ -253,7 +253,7 @@ test('the timeline spine derives its ends and preserves internal empty years', (
     years.filter(({ count }) => count === 0).map(({ year }) => year),
     [
       1966, 1967, 1968, 1969, 1970, 1972, 1974, 1975, 1977, 1978, 1979,
-      1983, 1995, 1996, 2001, 2002, 2003, 2015, 2023,
+      1983, 1995, 1996, 2015, 2023,
     ],
   );
 });

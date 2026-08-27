@@ -1,0 +1,170 @@
+{
+  "id": "marvel-knights-to-planet-x-32",
+  "name": "New X-Men: New Worlds (Part 2)",
+  "description": "Owner-curated chapter 32 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #129 through New X-Men (2001) #133.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 42,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14948,
+      "title": "New X-Men (2001) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/14948/new_x-men_2001_129",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-07-17T00:00:00+0000",
+      "mu": "2002-07-17T00:00:00+0000",
+      "digitalId": 6577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/577d3a18aef99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14949,
+      "title": "New X-Men (2001) #130",
+      "number": "130",
+      "url": "https://www.marvel.com/comics/issue/14949/new_x-men_2001_130",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-08-14T00:00:00+0000",
+      "mu": "2002-08-14T00:00:00+0000",
+      "digitalId": 6578,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4c35ed42cf97a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14950,
+      "title": "New X-Men (2001) #131",
+      "number": "131",
+      "url": "https://www.marvel.com/comics/issue/14950/new_x-men_2001_131",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-09-04T00:00:00+0000",
+      "mu": "2002-09-04T00:00:00+0000",
+      "digitalId": 6579,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/577d40205b9f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Paul Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14951,
+      "title": "New X-Men (2001) #132",
+      "number": "132",
+      "url": "https://www.marvel.com/comics/issue/14951/new_x-men_2001_132",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-09-11T00:00:00+0000",
+      "mu": "2002-09-11T00:00:00+0000",
+      "digitalId": 6580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4c35ed38e05b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14952,
+      "title": "New X-Men (2001) #133",
+      "number": "133",
+      "url": "https://www.marvel.com/comics/issue/14952/new_x-men_2001_133",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-10-16T00:00:00+0000",
+      "mu": "2002-10-16T00:00:00+0000",
+      "digitalId": 6581,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/4c35ed2edae79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ethan Van Sciver",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

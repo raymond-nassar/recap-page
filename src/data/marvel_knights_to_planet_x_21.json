@@ -1,0 +1,116 @@
+{
+  "id": "marvel-knights-to-planet-x-21",
+  "name": "Spider-Man: Revelations",
+  "description": "Owner-curated chapter 21 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #37 through Amazing Spider-Man (1999) #39.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 3,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 31,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 43134,
+      "title": "Amazing Spider-Man (1999) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/43134/amazing_spider-man_1999_37",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-01-09T00:00:00+0000",
+      "mu": "2002-01-09T00:00:00+0000",
+      "digitalId": 26329,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/57a346e832eaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43137,
+      "title": "Amazing Spider-Man (1999) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/43137/amazing_spider-man_1999_38",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-02-06T00:00:00+0000",
+      "mu": "2002-02-06T00:00:00+0000",
+      "digitalId": 26331,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/57a3460d4d5aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43139,
+      "title": "Amazing Spider-Man (1999) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/43139/amazing_spider-man_1999_39",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2002-03-13T00:00:00+0000",
+      "mu": "2002-03-13T00:00:00+0000",
+      "digitalId": 26332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/57a345002788f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

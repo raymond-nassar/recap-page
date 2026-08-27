@@ -110,7 +110,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, manifest.lists.length);
+  assert.equal(catalog.lists.length, 237);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(

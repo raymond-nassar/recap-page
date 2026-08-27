@@ -797,13 +797,23 @@ export function catalogListShelf(lists, id) {
 
 export const MODERN_TIMELINE_START_YEAR = 1998;
 export const MODERN_TIMELINE_FEATURED_ID = 'setup-to-modern-timeline';
-export const MODERN_TIMELINE_OPENING_ID = 'marvel-knights-to-planet-x';
+export const MODERN_TIMELINE_CHAPTER_PARENT_ID = 'marvel-knights-to-planet-x';
+export const MODERN_TIMELINE_CHAPTER_COUNT = 78;
 export const MODERN_TIMELINE_CONTINUATION_YEAR = 2004;
+const MODERN_TIMELINE_CHAPTER_ID = new RegExp(
+  `^${MODERN_TIMELINE_CHAPTER_PARENT_ID}-(\\d{2})$`,
+);
+
+export function isModernTimelineChapterId(id) {
+  const match = MODERN_TIMELINE_CHAPTER_ID.exec(String(id));
+  const ordinal = match ? Number(match[1]) : 0;
+  return ordinal >= 1 && ordinal <= MODERN_TIMELINE_CHAPTER_COUNT;
+}
 
 const isModernTimelineList = (list) => list?.type === 'event'
   && Number.isInteger(list.timeline)
   && (
-    (list?.id === MODERN_TIMELINE_OPENING_ID && list.timeline === MODERN_TIMELINE_START_YEAR)
+    (isModernTimelineChapterId(list.id) && list.timeline >= MODERN_TIMELINE_START_YEAR)
     || list.timeline >= MODERN_TIMELINE_CONTINUATION_YEAR
   );
 
@@ -1158,17 +1168,17 @@ export function shelfSections(stories) {
 // Siege is not bundled, so it names nothing here.
 export const CATALOG_ERAS = [
   {
-    key: 'historical',
-    heading: "Reed Richards and Sue Storm's Wedding to Eighth Day",
-    blurb: 'The historical event shelf, from the first Silver Age gatherings through the line-wide stories at the 1990s close.',
-    from: 1965,
-    to: 1999,
+    key: 'marvel-knights',
+    heading: 'Marvel Knights to Planet X',
+    blurb: 'The owner-curated chapters that bridge Marvel\'s 1998 relaunches to the event era, kept as shorter Reading Lists in their source order.',
+    from: 1998,
+    to: 2003,
   },
   {
     key: 'disassembled',
-    heading: 'Disassembled to Civil War',
-    blurb: 'Where the modern line starts. The Avengers foundation, then the run of crossovers that builds to Civil War and the fallout it left behind.',
-    from: 2000,
+    heading: 'Avengers Disassembled to Civil War',
+    blurb: 'The final three Planet X bridge chapters share 2004 with Avengers Disassembled, then the crossovers build to Civil War and its fallout.',
+    from: 2004,
     to: 2007,
   },
   {

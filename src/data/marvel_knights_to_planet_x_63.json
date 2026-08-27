@@ -1,0 +1,139 @@
+{
+  "id": "marvel-knights-to-planet-x-63",
+  "name": "Spider-Man: Happy Birthday",
+  "description": "Owner-curated chapter 63 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #57 through Amazing Spider-Man (1999) #502.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 77,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 43170,
+      "title": "Amazing Spider-Man (1999) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/43170/amazing_spider-man_1999_57",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-08-27T00:00:00+0000",
+      "mu": "2003-08-27T00:00:00+0000",
+      "digitalId": 29870,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/57ea8d7ee79e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43171,
+      "title": "Amazing Spider-Man (1999) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/43171/amazing_spider-man_1999_58",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-09-24T00:00:00+0000",
+      "mu": "2003-09-24T00:00:00+0000",
+      "digitalId": 29879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/57ea901a600d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 277,
+      "title": "Amazing Spider-Man (1999) #500",
+      "number": "500",
+      "url": "https://www.marvel.com/comics/issue/277/amazing_spider-man_1999_500",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-10-22T00:00:00+0000",
+      "mu": "2003-10-22T00:00:00+0000",
+      "digitalId": 5012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57fe6d3d58106",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 322,
+      "title": "Amazing Spider-Man (1999) #501",
+      "number": "501",
+      "url": "https://www.marvel.com/comics/issue/322/amazing_spider-man_1999_501",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2003-11-26T00:00:00+0000",
+      "digitalId": 5013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/57fe6ffde4d3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 392,
+      "title": "Amazing Spider-Man (1999) #502",
+      "number": "502",
+      "url": "https://www.marvel.com/comics/issue/392/amazing_spider-man_1999_502",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-12-24T00:00:00+0000",
+      "mu": "2003-12-24T00:00:00+0000",
+      "digitalId": 5014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/57fe717c5379f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

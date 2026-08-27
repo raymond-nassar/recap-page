@@ -1,0 +1,151 @@
+{
+  "id": "marvel-knights-to-planet-x-11",
+  "name": "X-Treme X-Men: Savage Land",
+  "description": "Owner-curated chapter 11 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men: Savage Land (2001) #1 through X-Treme X-Men: Savage Land (2001) #4.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 17,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 12394,
+      "title": "X-Treme X-Men: Savage Land (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12394/x-treme_x-men_savage_land_2001_1",
+      "seriesId": 2107,
+      "seriesName": "X-Treme X-Men: Savage Land (2001 - 2002)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2001-11-01T00:00:00+0000",
+      "digitalId": 2925,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5c50824f96168",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Stucker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12395,
+      "title": "X-Treme X-Men: Savage Land (2001) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/12395/x-treme_x-men_savage_land_2001_2",
+      "seriesId": 2107,
+      "seriesName": "X-Treme X-Men: Savage Land (2001 - 2002)",
+      "onSale": "2001-12-01T00:00:00+0000",
+      "mu": "2001-12-01T00:00:00+0000",
+      "digitalId": 231,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/4bc37da76896d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12396,
+      "title": "X-Treme X-Men: Savage Land (2001) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/12396/x-treme_x-men_savage_land_2001_3",
+      "seriesId": 2107,
+      "seriesName": "X-Treme X-Men: Savage Land (2001 - 2002)",
+      "onSale": "2002-01-01T00:00:00+0000",
+      "mu": "2002-01-01T00:00:00+0000",
+      "digitalId": 2927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5c509d3cc8fbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12397,
+      "title": "X-Treme X-Men: Savage Land (2001) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/12397/x-treme_x-men_savage_land_2001_4",
+      "seriesId": 2107,
+      "seriesName": "X-Treme X-Men: Savage Land (2001 - 2002)",
+      "onSale": "2002-02-01T00:00:00+0000",
+      "mu": "2002-02-01T00:00:00+0000",
+      "digitalId": 2928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5c50a5813edb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

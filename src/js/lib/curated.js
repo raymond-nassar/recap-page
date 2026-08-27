@@ -57,6 +57,7 @@ function checkEntry(raw, index, seen) {
   const sourceUrl = httpsUrl(raw.sourceUrl);
   const sourceFile = safeOrderFile(raw.sourceFile);
   const sourceSection = str(raw.sourceSection);
+  const partitionFile = safeFile(raw.partitionFile);
 
   if (!id) at('has no id');
   else if (seen.has(id)) at(`duplicate id "${id}"`);
@@ -74,6 +75,19 @@ function checkEntry(raw, index, seen) {
   }
   if (raw.sourceSection != null && !sourceSection) {
     at('sourceSection must be a non-empty string when present');
+  }
+  if (raw.partitionFile != null && !partitionFile) {
+    at('partitionFile must be a plain *.json name when present');
+  }
+  if (raw.catalog != null && typeof raw.catalog !== 'boolean') {
+    at('catalog must be true or false when present');
+  }
+  if (partitionFile && raw.catalog !== false) {
+    at('a partition parent must declare catalog: false');
+  } else if (partitionFile && !sourceFile) {
+    at('a partition parent must use a local sourceFile');
+  } else if (raw.catalog === false && !partitionFile) {
+    at('catalog: false is only valid on a partition parent');
   }
   if (!str(raw.sourceOrigin)) at('has no sourceOrigin');
   // Origin and licence are different claims and were one field until BL-099. Ten of the twelve
@@ -129,6 +143,8 @@ function checkEntry(raw, index, seen) {
       out,
       sourceUrl,
       sourceFile,
+      partitionFile,
+      catalog: raw.catalog !== false,
       // The page a reader can open is not always the raw file we fetch; fall back to the raw
       // URL so attribution is never blank. An order authored here has no upstream page, so it
       // is credited by sourceOrigin alone rather than given a link that goes nowhere.

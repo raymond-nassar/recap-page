@@ -1,0 +1,234 @@
+{
+  "id": "marvel-knights-to-planet-x-23",
+  "name": "X-Treme X-Men: Invasion",
+  "description": "Owner-curated chapter 23 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #10 through X-Treme X-Men (2001) #18.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 33,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15012,
+      "title": "X-Treme X-Men (2001) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/15012/x-treme_x-men_2001_10",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3116,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5c4b4ddd0ef33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15013,
+      "title": "X-Treme X-Men (2001) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/15013/x-treme_x-men_2001_11",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5c4b831a27b30",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15014,
+      "title": "X-Treme X-Men (2001) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/15014/x-treme_x-men_2001_12",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-06-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5c4b8a3d2adf1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15015,
+      "title": "X-Treme X-Men (2001) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/15015/x-treme_x-men_2001_13",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5c4f246db88ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15016,
+      "title": "X-Treme X-Men (2001) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/15016/x-treme_x-men_2001_14",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3815,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5c4f2e6b111eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15017,
+      "title": "X-Treme X-Men (2001) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/15017/x-treme_x-men_2001_15",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3816,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5c4f356e92490",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15018,
+      "title": "X-Treme X-Men (2001) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/15018/x-treme_x-men_2001_16",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-09-20T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5c4f3ead88334",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15019,
+      "title": "X-Treme X-Men (2001) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/15019/x-treme_x-men_2001_17",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-10-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3818,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5c4f565a5b1c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15020,
+      "title": "X-Treme X-Men (2001) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/15020/x-treme_x-men_2001_18",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3819,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5c4f5bc6c38e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "marvel-knights-to-planet-x-44",
+  "name": "Punisher: Brotherhood",
+  "description": "Owner-curated chapter 44 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #18 through Punisher (2001) #22.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 56,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 18975,
+      "title": "Punisher (2001) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/18975/punisher_2001_18",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-11-13T00:00:00+0000",
+      "mu": "2002-11-13T00:00:00+0000",
+      "digitalId": 6726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/4bb71d2b7c2cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18976,
+      "title": "Punisher (2001) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/18976/punisher_2001_19",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-12-11T00:00:00+0000",
+      "mu": "2002-12-11T00:00:00+0000",
+      "digitalId": 6727,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4bb71c14823bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17174,
+      "title": "Punisher (2001) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/17174/punisher_2001_20",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 4334,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/4bb682d2784e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17175,
+      "title": "Punisher (2001) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/17175/punisher_2001_21",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-02-05T00:00:00+0000",
+      "mu": "2003-02-05T00:00:00+0000",
+      "digitalId": 4333,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/55bfd42d22b56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 17176,
+      "title": "Punisher (2001) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/17176/punisher_2001_22",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2003-02-19T00:00:00+0000",
+      "mu": "2003-02-19T00:00:00+0000",
+      "digitalId": 4332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/4bb682c53dd99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

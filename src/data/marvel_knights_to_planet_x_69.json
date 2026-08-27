@@ -1,0 +1,113 @@
+{
+  "id": "marvel-knights-to-planet-x-69",
+  "name": "Daredevil: Echo",
+  "description": "Owner-curated chapter 69 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #51 through Daredevil (1998) #55.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 83,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15655,
+      "title": "Daredevil (1998) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/15655/daredevil_1998_51",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-11-01T00:00:00+0000",
+      "mu": "2008-11-03T00:00:00+0000",
+      "digitalId": 5628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/57277be9bb56b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15656,
+      "title": "Daredevil (1998) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/15656/daredevil_1998_52",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-11-08T00:00:00+0000",
+      "mu": "2008-11-10T00:00:00+0000",
+      "digitalId": 5629,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/57277ca32d22a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 326,
+      "title": "Daredevil (1998) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/326/daredevil_1998_53",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-11-15T00:00:00+0000",
+      "mu": "2003-10-15T00:00:00+0000",
+      "digitalId": 5630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/57277d5661090",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 358,
+      "title": "Daredevil (1998) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/358/daredevil_1998_54",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-11-19T00:00:00+0000",
+      "mu": "2003-11-19T00:00:00+0000",
+      "digitalId": 5631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/57277e218edf2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 327,
+      "title": "Daredevil (1998) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/327/daredevil_1998_55",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2003-12-17T00:00:00+0000",
+      "digitalId": 5632,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/57277ed613453",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

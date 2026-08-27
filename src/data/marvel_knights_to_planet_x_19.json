@@ -1,0 +1,59 @@
+{
+  "id": "marvel-knights-to-planet-x-19",
+  "name": "Punisher: Do Not Fall in New York City",
+  "description": "Owner-curated chapter 19 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #6 through Punisher (2001) #7.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 2,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 29,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 18963,
+      "title": "Punisher (2001) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/18963/punisher_2001_6",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2001-11-21T00:00:00+0000",
+      "mu": "2001-11-21T00:00:00+0000",
+      "digitalId": 6745,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4bb71f57432b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18964,
+      "title": "Punisher (2001) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/18964/punisher_2001_7",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2001-12-12T00:00:00+0000",
+      "mu": "2001-12-12T00:00:00+0000",
+      "digitalId": 6746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/4bb71f526c024",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

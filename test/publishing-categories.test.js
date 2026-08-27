@@ -99,8 +99,8 @@ test('every shared year belongs to the later period and never to both', () => {
 test('the shipped dated catalog partitions once by age and once by Modern subperiod', () => {
   const dated = stories.filter((story) => storyYear(story) !== null);
   const modern = publishingCategoryStories(stories, 'modern');
-  assert.equal(dated.length, 115);
-  assert.equal(modern.length, 93);
+  assert.equal(dated.length, 192);
+  assert.equal(modern.length, 170);
 
   for (const story of dated) {
     assert.equal(
@@ -127,8 +127,8 @@ test('the shipped dated catalog partitions once by age and once by Modern subper
       .reduce((sum, story) => sum + story.lists.length, 0),
     0,
   );
-  assert.equal(topLists, 121);
-  assert.equal(periodLists, 99);
+  assert.equal(topLists, 198);
+  assert.equal(periodLists, 176);
 });
 
 test('undated stories are not guessed into any publishing category', () => {
@@ -150,15 +150,15 @@ test('publishing categories cross canonical shelves without changing shelf owner
 test('only populated publishing categories are available and counts use Reading Lists', () => {
   const ages = availablePublishingCategories(stories);
   assert.deepEqual(ages.map(({ key }) => key), ['silver', 'bronze', 'copper', 'modern']);
-  assert.deepEqual(ages.map(({ count }) => count), [2, 9, 11, 99]);
+  assert.deepEqual(ages.map(({ count }) => count), [2, 9, 11, 176]);
 
   const periods = availablePublishingCategories(stories, 'modern');
   assert.deepEqual(
     periods.map(({ key, count }) => [key, count]),
     [
       ['early-modern', 13],
-      ['marvel-knights-heroes-return', 7],
-      ['event-era', 36],
+      ['marvel-knights-heroes-return', 81],
+      ['event-era', 39],
       ['marvel-now', 10],
       ['all-new-all-different', 7],
       ['fresh-start', 13],
@@ -171,7 +171,7 @@ test('only populated publishing categories are available and counts use Reading 
 
 test('the Marvel Ages gateway groups populated leaves without double-counting Modern', () => {
   const groups = publishingAgeGroups(stories);
-  assert.equal(groups.count, 121);
+  assert.equal(groups.count, 198);
   assert.equal(groups.stories.reduce(
     (total, story) => total + story.lists.length,
     0,
@@ -182,14 +182,14 @@ test('the Marvel Ages gateway groups populated leaves without double-counting Mo
   );
   assert.deepEqual(
     [groups.modern?.key, groups.modern?.count],
-    ['modern', 99],
+    ['modern', 176],
   );
   assert.deepEqual(
     groups.modernChildren.map(({ key, count }) => [key, count]),
     [
       ['early-modern', 13],
-      ['marvel-knights-heroes-return', 7],
-      ['event-era', 36],
+      ['marvel-knights-heroes-return', 81],
+      ['event-era', 39],
       ['marvel-now', 10],
       ['all-new-all-different', 7],
       ['fresh-start', 13],

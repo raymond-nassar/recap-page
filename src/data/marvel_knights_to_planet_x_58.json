@@ -1,0 +1,228 @@
+{
+  "id": "marvel-knights-to-planet-x-58",
+  "name": "Elektra: Everything Old Is New Again",
+  "description": "Owner-curated chapter 58 of 78 in the Marvel Knights to Planet X reading path, from Elektra (2001) #16 through Elektra (2001) #22.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 71,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 20059,
+      "title": "Elektra (2001) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/20059/elektra_2001_16",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 5747,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/5c10111d7aa44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Bennett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20060,
+      "title": "Elektra (2001) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/20060/elektra_2001_17",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-01-15T00:00:00+0000",
+      "mu": "2003-01-15T00:00:00+0000",
+      "digitalId": 5748,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/5c101ab8b1f3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Bennett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20061,
+      "title": "Elektra (2001) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/20061/elektra_2001_18",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 5749,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/5c10221da0ac7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20062,
+      "title": "Elektra (2001) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/20062/elektra_2001_19",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-02-15T00:00:00+0000",
+      "mu": "2003-02-15T00:00:00+0000",
+      "digitalId": 5750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5c1028b618c6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Carlos Meglia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20064,
+      "title": "Elektra (2001) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/20064/elektra_2001_20",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2003-03-01T00:00:00+0000",
+      "digitalId": 5752,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5c1113f32ea83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Carlos Meglia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20065,
+      "title": "Elektra (2001) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/20065/elektra_2001_21",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-06-01T00:00:00+0000",
+      "mu": "2003-06-01T00:00:00+0000",
+      "digitalId": 5753,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bb7b9f7338e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20066,
+      "title": "Elektra (2001) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/20066/elektra_2001_22",
+      "seriesId": 574,
+      "seriesName": "Elektra (2001 - 2004)",
+      "onSale": "2003-06-15T00:00:00+0000",
+      "mu": "2003-06-15T00:00:00+0000",
+      "digitalId": 5754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/5c101cb423c9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Rucka",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
