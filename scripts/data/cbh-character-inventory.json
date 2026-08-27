@@ -660,13 +660,32 @@
     "url": "https://www.comicbookherald.com/daredevil-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
+    "disposition": "new-order",
+    "reason": "The full current page preserves 909 source occurrences across 868 exact rows, 33 repeats, and 8 explicit source gaps. The guide has no distinct qualifying Best of or Essential Comics section, so the approved complete guide follows the full page.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "abomination-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "atlantis-attacks",
+      "axis",
+      "dead-mans-hand",
+      "devils-reign",
+      "fall-of-the-mutants",
+      "hunt-for-wolverine",
+      "inferno",
+      "maximum-security",
+      "mutant-massacre",
+      "spider-man-best-of",
+      "thanos-reading-order",
+      "white-tiger-ava-ayala",
+      "wolverine-reading-order",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Daredevil"
     ],
@@ -674,9 +693,9 @@
       23
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "10f01432c368de441e6a72fe7617c6d098a834334b65233e011fbb32b70c650b",
+    "sourceContentSha256": "3322ffae13d23ce743399af9dc957666b744a2d609bef6db758d551508292e81",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 24,
