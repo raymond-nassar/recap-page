@@ -47,7 +47,7 @@ test('the current gateway offers three primary modes and two secondary gateways'
     assert.equal(category.count, expected, `${category.heading} reports the wrong availability`);
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 71);
-  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 121);
+  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 122);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 6);
 });
 

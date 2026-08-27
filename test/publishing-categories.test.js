@@ -99,7 +99,7 @@ test('every shared year belongs to the later period and never to both', () => {
 test('the shipped dated catalog partitions once by age and once by Modern subperiod', () => {
   const dated = stories.filter((story) => storyYear(story) !== null);
   const modern = publishingCategoryStories(stories, 'modern');
-  assert.equal(dated.length, 115);
+  assert.equal(dated.length, 116);
   assert.equal(modern.length, 93);
 
   for (const story of dated) {
@@ -127,7 +127,7 @@ test('the shipped dated catalog partitions once by age and once by Modern subper
       .reduce((sum, story) => sum + story.lists.length, 0),
     0,
   );
-  assert.equal(topLists, 121);
+  assert.equal(topLists, 122);
   assert.equal(periodLists, 99);
 });
 
@@ -150,7 +150,7 @@ test('publishing categories cross canonical shelves without changing shelf owner
 test('only populated publishing categories are available and counts use Reading Lists', () => {
   const ages = availablePublishingCategories(stories);
   assert.deepEqual(ages.map(({ key }) => key), ['silver', 'bronze', 'copper', 'modern']);
-  assert.deepEqual(ages.map(({ count }) => count), [2, 9, 11, 99]);
+  assert.deepEqual(ages.map(({ count }) => count), [2, 10, 11, 99]);
 
   const periods = availablePublishingCategories(stories, 'modern');
   assert.deepEqual(
@@ -171,14 +171,14 @@ test('only populated publishing categories are available and counts use Reading 
 
 test('the Marvel Ages gateway groups populated leaves without double-counting Modern', () => {
   const groups = publishingAgeGroups(stories);
-  assert.equal(groups.count, 121);
+  assert.equal(groups.count, 122);
   assert.equal(groups.stories.reduce(
     (total, story) => total + story.lists.length,
     0,
   ), groups.count);
   assert.deepEqual(
     groups.earlier.map(({ key, count }) => [key, count]),
-    [['silver', 2], ['bronze', 9], ['copper', 11]],
+    [['silver', 2], ['bronze', 10], ['copper', 11]],
   );
   assert.deepEqual(
     [groups.modern?.key, groups.modern?.count],

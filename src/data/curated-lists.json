@@ -2492,6 +2492,37 @@
       "coverIssueId": 9779
     },
     {
+      "id": "moon-knight-reading-order",
+      "name": "Moon Knight",
+      "description": "Moon Knight from his Werewolf by Night debut through his modern solo runs, Avengers appearances, and latest collected adventures.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "moon-knight-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/moon-knight-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "moon_knight_reading_order.json",
+      "characters": [
+        "Moon Knight",
+        "Marc Spector",
+        "Khonshu"
+      ],
+      "keywords": [
+        "Moon Knight",
+        "Marc Spector",
+        "Khonshu",
+        "Comic Book Herald"
+      ],
+      "expect": 392,
+      "timeline": 1972,
+      "coverIssueId": 51010
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",

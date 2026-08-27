@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   approvalDigestFor,
+  libraryDigestExcludingOrders,
   libraryDigestFor,
   packetDigestFor,
   sourcePositionsForPacket,
@@ -16,7 +17,7 @@ import {
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
@@ -38,6 +39,7 @@ const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics
 const modernXMenCandidateId = 'modern-x-men-fast-track';
 const marvelKnightsToPlanetXId = 'marvel-knights-to-planet-x';
 const venomCandidateId = 'venom-reading-order';
+const moonKnightCandidateId = 'moon-knight-reading-order';
 const laterCharacterIds = [
   'ant-man-reading-order',
   'agatha-harkness-reading-order',
@@ -50,6 +52,7 @@ const laterCharacterIds = [
   'punisher-reading-order',
   venomCandidateId,
   magnetoCandidateId,
+  moonKnightCandidateId,
 ];
 const characterCandidateIds = [
   abominationCandidateId,
@@ -515,6 +518,7 @@ async function readJson(relativePath) {
 async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId], includeLater = false) {
   const excluded = new Set([
     ...excludedIds,
+    moonKnightCandidateId,
     'loki-reading-order',
     ...(includeLater ? [] : [
       captainMarvelCandidateId,
@@ -563,7 +567,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty spotlights, and prepares four', async () => {
+test('the character inventory preserves every central disposition, ships twenty-one spotlights, and prepares four', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -574,10 +578,10 @@ test('the character inventory preserves every central disposition, ships twenty 
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 95);
+  assert.equal(dispositionCounts.deferred, 94);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 25);
+  assert.equal(dispositionCounts['pilot-approved'], 26);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -595,6 +599,7 @@ test('the character inventory preserves every central disposition, ships twenty 
     ironManCandidateId,
     'loki-reading-order',
     magnetoCandidateId,
+    moonKnightCandidateId,
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
     'rocket-raccoon-reading-order',
@@ -616,6 +621,8 @@ test('the character inventory preserves every central disposition, ships twenty 
   assert.equal(magneto?.centralDisposition, 'pilot-approved');
   assert.equal(magneto?.deliveryStatus, 'shipped');
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
+  assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
+  assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 17);
   assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);
   assert.deepEqual(shippedById.get(abominationCandidateId).catalogIds, [abominationCandidateId]);
   assert.deepEqual(shippedById.get(abominationCandidateId).overlapIds, [
@@ -808,7 +815,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
     [],
-    { excludedOrderIds: [magnetoCandidateId, 'loki-reading-order'] },
+    { excludedOrderIds: [magnetoCandidateId, 'loki-reading-order', moonKnightCandidateId] },
   );
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
@@ -965,7 +972,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 156);
-  assert.equal(report.comparisonCount, manifest.lists.length - 3);
+  assert.equal(report.comparisonCount, manifest.lists.length - 4);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1039,6 +1046,7 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
     'loki-reading-order',
     venomCandidateId,
     magnetoCandidateId,
+    moonKnightCandidateId,
   ], true);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -1101,7 +1109,8 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 2].id, venomCandidateId);
   assert.equal(manifest.lists[doctorIndex + 3].id, magnetoCandidateId);
   assert.equal(manifest.lists[doctorIndex + 4].id, 'loki-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 5].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 5].id, moonKnightCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 6].id, 'xmen-claremont');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -1860,12 +1869,12 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
   const record = inventory.find((entry) => entry.id === 'moon-knight-reading-order');
 
   assert.ok(record);
-  assert.equal(record.centralDisposition, 'deferred');
-  assert.equal(record.deliveryStatus, 'not-applicable');
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.sourceBoundaryStatus, 'exact-page-snapshot');
-  assert.equal(record.metadataHorizonStatus, 'blocked-exact-resolution-not-run');
+  assert.equal(record.metadataHorizonStatus, 'approved');
   assert.equal(record.sourceRetrievedAt, '2026-08-23');
-  assert.equal(record.reason, 'The source boundary and Stage A source ledger are frozen, but issue rows have not been resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.');
+  assert.match(record.reason, /374 exact provider-resolved comics, 11 backward repeats, 18 explicit open metadata gaps, and 11 partial-material exclusions/i);
 
   assertMoonKnightSourceLedgerShape(moonKnightSourceLedger);
 
@@ -1945,6 +1954,53 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
   assert.throws(() => assertMoonKnightSourceLedgerShape(mixedClauseMutation), /deep-equal/);
 });
 
+test('Moon Knight publishes its complete source accounting with explicit metadata gaps', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${moonKnightCandidateId}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${moonKnightCandidateId}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${moonKnightCandidateId}.json`);
+  const generated = await readJson('src/data/moon_knight_reading_order.json');
+  const markdown = await readFile(path.join(root, 'src/data/orders/moon-knight-reading-order.md'), 'utf8');
+  const record = inventory.find((entry) => entry.id === moonKnightCandidateId);
+  const parsed = parseChecklist(markdown);
+  const currentLibrary = await loadLibrarySnapshot();
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(currentLibrary, [moonKnightCandidateId]);
+
+  assert.equal(record.deliveryStatus, 'shipped');
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(packet.sourceOccurrenceCount, 414);
+  assert.equal(packet.rows.length, 374);
+  assert.equal(packet.repeatedSourceReferences.length, 11);
+  assert.equal(packet.sourceGaps.length, 18);
+  assert.equal(packet.excludedSourceRows.length, 11);
+  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 374);
+  assert.equal(generated.count, 392);
+  assert.equal(generated.placeholders, 18);
+  assert.deepEqual(
+    generated.unresolved.map((entry) => entry.title),
+    packet.sourceGaps.map((gap) => gap.sourceIssueReference),
+  );
+  assert.deepEqual(
+    parsed.entries.map((entry) => String(entry.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: moonKnightCandidateId,
+    inventoryRecord: record,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+});
+
 test('the frozen Rocket evidence stays complete, fresh, and exact through every generated surface', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson(`scripts/data/cbh-packets/${cosmicCandidateId}.json`);
@@ -1974,6 +2030,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
       'loki-reading-order',
       venomCandidateId,
       magnetoCandidateId,
+      moonKnightCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1993,6 +2050,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
         'loki-reading-order',
         venomCandidateId,
         magnetoCandidateId,
+        moonKnightCandidateId,
       ],
     },
   );
@@ -2146,6 +2204,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
       'daredevil-reading-order',
       venomCandidateId,
       magnetoCandidateId,
+      moonKnightCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -2165,6 +2224,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
         'loki-reading-order',
         venomCandidateId,
         magnetoCandidateId,
+        moonKnightCandidateId,
       ],
     },
   );
@@ -2346,6 +2406,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
         'loki-reading-order',
         venomCandidateId,
         magnetoCandidateId,
+        moonKnightCandidateId,
       ],
     },
   );
@@ -2468,7 +2529,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 7].id, venomCandidateId);
   assert.equal(manifest.lists[starLordIndex + 8].id, magnetoCandidateId);
   assert.equal(manifest.lists[starLordIndex + 9].id, 'loki-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 10].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 10].id, moonKnightCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 11].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -2597,6 +2659,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
         'loki-reading-order',
         venomCandidateId,
         magnetoCandidateId,
+        moonKnightCandidateId,
       ],
     },
   );
@@ -2805,10 +2868,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 159);
+  assert.equal(catalog.lists.length, 160);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 32);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 31);
+  assert.equal(characterRuns.length, 33);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 32);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
