@@ -1199,6 +1199,7 @@ test('Loki source-gap identities survive re-vendoring and import without collaps
   state = addIssuesToList(state, listId, items).state;
 
   assert.equal(items.length, 656);
+  assert.ok(items.every((item) => !item.title.includes('mrt:source-occurrence=')));
   assert.deepEqual(
     unresolved.map((entry) => entry.sourceKey),
     mapping.sourceGaps.map((gap) => String(gap.sourcePosition)),
