@@ -42,6 +42,186 @@ function occurrencesAt(ledger, sourceBlockPosition) {
   return ledger.issueOccurrences.filter((entry) => entry.sourceBlockPosition === sourceBlockPosition);
 }
 
+function cloneLedger(ledger) {
+  return JSON.parse(JSON.stringify(ledger));
+}
+
+function assertGuardiansLedgerShape(ledger) {
+  const expectedNodeRoles = {
+    prose: 36,
+    heading: 8,
+    blank: 6,
+    'collection-label': 36,
+    'collection-clause': 41,
+    'named-work-label': 5,
+    'issue-range-label': 1,
+    'issue-prose': 3,
+    'event-label': 6,
+    'creator-run-label': 1,
+    'issue-label': 1,
+  };
+  const expectedClauseClassifications = {
+    'collection-label': 'semantic-exclusion',
+    'named-work-label': 'unresolved-included-identity-gap',
+    'event-label': 'semantic-exclusion',
+    'creator-run-label': 'semantic-exclusion',
+    'issue-prose': 'provisional-canonical-candidate',
+    'issue-range-label': 'provisional-canonical-candidate',
+    'issue-label': 'provisional-canonical-candidate',
+  };
+
+  assert.equal(ledger.sourceNodes.length, ledger.sourceBlockCount);
+  assert.equal(ledger.provenanceGroups.length, ledger.provenanceGroupCount);
+  assert.equal(ledger.issueOccurrences.length, ledger.sourceOccurrenceCount);
+  assert.equal(ledger.sourceContentSha256, sourceContentDigest(ledger));
+  assert.equal(ledger.sourceIssueBearingBlocksSha256, issueBearingBlocksDigest(ledger));
+  assert.equal(ledger.sourceBoundaryDigest, digest(ledger.sourceBoundary));
+  assert.deepEqual(
+    ledger.sourceNodes.map((node) => node.sourceBlockPosition),
+    Array.from({ length: ledger.sourceBlockCount }, (_, index) => index + 1),
+  );
+  assert.deepEqual(
+    ledger.sourceNodes.reduce((counts, node) => {
+      counts[node.semanticRole] = (counts[node.semanticRole] || 0) + 1;
+      return counts;
+    }, {}),
+    expectedNodeRoles,
+  );
+  assert.deepEqual(
+    ledger.provenanceGroups.map((group) => group.heading),
+    [
+      'Prelude',
+      'Guardians of the Galaxy Reading Order',
+      'Original Guardians of the Galaxy',
+      "1990's Guardians of the Galaxy by Jim Valentino",
+      'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run',
+      'Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run',
+      'All-New All-Different Guardians of the Galaxy... Still by Bendis',
+      'Marvel Legacy to Marvel Fresh Start Guardians',
+      'Latest Additions:',
+    ],
+  );
+  assert.deepEqual(
+    ledger.provenanceGroups.map((group) => [
+      group.sourceBlockStartPosition,
+      group.sourceBlockEndPosition,
+    ]),
+    [[1, 3], [4, 5], [6, 14], [15, 29], [30, 43], [44, 81], [82, 98], [99, 129], [130, 144]],
+  );
+  assert.deepEqual(
+    ledger.provenanceGroups.map((group) => group.issueBearingBlockCount),
+    [0, 0, 4, 12, 7, 25, 13, 20, 13],
+  );
+  assert.deepEqual(
+    ledger.provenanceGroups.map((group) => group.issueOccurrenceCount),
+    [0, 0, 38, 78, 30, 94, 42, 95, 43],
+  );
+  assert.deepEqual(
+    ledger.issueOccurrences.map((entry) => entry.sourceOccurrencePosition),
+    Array.from({ length: ledger.sourceOccurrenceCount }, (_, index) => index + 1),
+  );
+  assert.deepEqual(
+    ledger.categoryCounts,
+    {
+      'provisional-canonical-candidate': 318,
+      'semantic-exclusion': 59,
+      'true-repeat': 38,
+      'unresolved-included-identity-gap': 5,
+    },
+  );
+  for (const [classification, positions] of Object.entries(ledger.categoryPositions)) {
+    assert.deepEqual(
+      positions,
+      ledger.issueOccurrences
+        .filter((entry) => entry.classification === classification)
+        .map((entry) => entry.sourceOccurrencePosition),
+    );
+  }
+
+  const identityBuckets = new Map();
+  const seenIssueIdentities = new Set();
+  for (const entry of ledger.issueOccurrences) {
+    const classification = expectedClauseClassifications[entry.sourceClauseKind];
+
+    if (classification) {
+      assert.equal(entry.classification, classification);
+      if (entry.sourceIdentity) {
+        const identity = sourceIdentity(entry);
+        const seen = identityBuckets.get(identity) || [];
+        seen.push(entry);
+        identityBuckets.set(identity, seen);
+        seenIssueIdentities.add(identity);
+      }
+    } else {
+      assert.equal(entry.sourceClauseKind, 'collection-clause');
+      if (entry.sourceIdentity == null) {
+        assert.equal(entry.classification, 'semantic-exclusion');
+      } else {
+        const identity = sourceIdentity(entry);
+        const bucket = identityBuckets.get(identity) || [];
+        assert.equal(entry.classification, seenIssueIdentities.has(identity) ? 'true-repeat' : 'provisional-canonical-candidate');
+        bucket.push(entry);
+        identityBuckets.set(identity, bucket);
+        seenIssueIdentities.add(identity);
+      }
+    }
+
+    if (entry.sourceClauseKind === 'collection-label') {
+      assert.equal(entry.normalizedSeriesTitle, null);
+      assert.equal(entry.seriesYear, null);
+      assert.equal(entry.issueNumber, null);
+      assert.equal(entry.sourceIdentity, null);
+    }
+
+    if (entry.sourceClauseKind === 'named-work-label') {
+      assert.equal(entry.classification, 'unresolved-included-identity-gap');
+      assert.ok(entry.normalizedSeriesTitle);
+      assert.equal(entry.issueNumber, null);
+      assert.equal(entry.sourceIdentity, null);
+    }
+
+    if (entry.sourceClauseKind === 'issue-prose'
+      || entry.sourceClauseKind === 'issue-range-label'
+      || entry.sourceClauseKind === 'issue-label') {
+      assert.equal(entry.classification, 'provisional-canonical-candidate');
+      assert.ok(entry.sourceIdentity);
+    }
+
+    if (entry.sourceClauseKind === 'event-label' || entry.sourceClauseKind === 'creator-run-label') {
+      assert.equal(entry.sourceIdentity, null);
+    }
+  }
+
+  let singletonCount = 0;
+  let doubleCount = 0;
+  let tripleCount = 0;
+  for (const [identity, entries] of identityBuckets) {
+    assert.ok(entries.length >= 1 && entries.length <= 3, identity);
+    if (entries.length === 1) {
+      singletonCount += 1;
+      assert.equal(entries[0].classification, 'provisional-canonical-candidate', identity);
+    } else if (entries.length === 2) {
+      doubleCount += 1;
+      assert.deepEqual(
+        entries.map((entry) => entry.classification).sort(),
+        ['provisional-canonical-candidate', 'true-repeat'],
+        identity,
+      );
+    } else {
+      tripleCount += 1;
+      assert.deepEqual(
+        entries.map((entry) => entry.classification),
+        ['provisional-canonical-candidate', 'true-repeat', 'true-repeat'],
+        identity,
+      );
+    }
+  }
+  assert.equal(identityBuckets.size, 318);
+  assert.equal(singletonCount, 285);
+  assert.equal(doubleCount, 28);
+  assert.equal(tripleCount, 5);
+}
+
 test('the Guardians Stage A ledger freezes the full-page boundary and inventory checkpoint', async () => {
   const ledger = await readJson('scripts/data/cbh-source-ledgers/guardians-of-the-galaxy-reading-order.json');
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
@@ -102,6 +282,14 @@ test('the Guardians Stage A ledger freezes the full-page boundary and inventory 
   assert.deepEqual(
     ledger.provenanceGroups.map((group) => group.issueOccurrenceCount),
     [0, 0, 38, 78, 30, 94, 42, 95, 43],
+  );
+  assert.equal(
+    ledger.issueOccurrences.filter((entry) => entry.sourceClauseKind === 'named-work-label').length,
+    5,
+  );
+  assert.equal(
+    ledger.issueOccurrences.filter((entry) => entry.sourceClauseKind === 'issue-prose').length,
+    7,
   );
 
   const categoryTotals = Object.fromEntries(
@@ -317,4 +505,82 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
     false,
     'star-lord-reading-order should stay distinct from the 2013 team launch',
   );
+});
+
+test('the Guardians Stage A ledger fails before the requested mutation cases', async () => {
+  const ledger = await readJson('scripts/data/cbh-source-ledgers/guardians-of-the-galaxy-reading-order.json');
+
+  assert.doesNotThrow(() => assertGuardiansLedgerShape(ledger));
+
+  const expectFailure = (name, mutate) => {
+    const mutated = cloneLedger(ledger);
+    mutate(mutated);
+    assert.throws(() => assertGuardiansLedgerShape(mutated), name);
+  };
+
+  expectFailure('tail truncation', (mutated) => {
+    mutated.issueOccurrences.pop();
+  });
+
+  expectFailure('whole-node omission', (mutated) => {
+    mutated.sourceNodes.pop();
+  });
+
+  expectFailure('source/category reorder', (mutated) => {
+    mutated.categoryPositions['provisional-canonical-candidate'] = [...mutated.categoryPositions['provisional-canonical-candidate']].reverse();
+  });
+
+  expectFailure('duplicate positions', (mutated) => {
+    mutated.issueOccurrences[1].sourceOccurrencePosition = mutated.issueOccurrences[0].sourceOccurrencePosition;
+  });
+
+  for (const classification of [
+    'provisional-canonical-candidate',
+    'semantic-exclusion',
+    'true-repeat',
+    'unresolved-included-identity-gap',
+  ]) {
+    expectFailure(`deletion from ${classification}`, (mutated) => {
+      const index = mutated.issueOccurrences.findIndex((entry) => entry.classification === classification);
+      mutated.issueOccurrences.splice(index, 1);
+    });
+  }
+
+  expectFailure('dropped range member', (mutated) => {
+    const index = mutated.issueOccurrences.findIndex((entry) => entry.sourceBlockPosition === 10);
+    mutated.issueOccurrences.splice(index, 1);
+  });
+
+  expectFailure('issue-bearing prose misclassification', (mutated) => {
+    const entry = mutated.issueOccurrences.find((row) => row.sourceClauseKind === 'issue-prose');
+    entry.classification = 'semantic-exclusion';
+  });
+
+  expectFailure('title-only cross-series repeat collision', (mutated) => {
+    const entry = mutated.issueOccurrences.find((row) => row.sourceIssueReference === 'Guardians Team-Up #2' && row.classification === 'true-repeat');
+    entry.normalizedSeriesTitle = 'Guardians of the Galaxy';
+    entry.seriesYear = 2013;
+    entry.issueNumber = '24';
+  });
+
+  expectFailure('blank formatting as gap', (mutated) => {
+    const entry = mutated.sourceNodes.find((node) => node.semanticRole === 'blank');
+    entry.sourceOccurrenceCount = 1;
+  });
+
+  expectFailure('mixed whole-comic and partial-material conflation', (mutated) => {
+    const entry = mutated.issueOccurrences.find((row) => row.classification === 'semantic-exclusion' && row.reason === 'Partial-material reference rather than a whole-comic occurrence.');
+    entry.classification = 'provisional-canonical-candidate';
+  });
+
+  expectFailure('named work forced into gap', (mutated) => {
+    const entry = mutated.issueOccurrences.find((row) => row.sourceClauseKind === 'named-work-label');
+    entry.classification = 'semantic-exclusion';
+  });
+
+  expectFailure('inherited range identity loss', (mutated) => {
+    const entry = mutated.issueOccurrences.find((row) => row.sourceClauseKind === 'issue-range-label');
+    entry.normalizedSeriesTitle = null;
+    entry.sourceIdentity = null;
+  });
 });
