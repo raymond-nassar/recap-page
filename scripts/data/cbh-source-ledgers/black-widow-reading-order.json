@@ -13,10 +13,10 @@
   "issueBearingBlockCount": 76,
   "sourceOccurrenceCount": 773,
   "categoryCounts": {
-    "semantic-exclusion": 169,
-    "provisional-canonical-candidate": 560,
+    "provisional-canonical-candidate": 566,
     "true-repeat": 38,
-    "unresolved-included-identity-gap": 6
+    "unresolved-included-identity-gap": 0,
+    "semantic-exclusion": 169
   },
   "excludedSourceReferences": [
     "Narrative prose issue mentions remain excluded from the canonical candidate set.",
@@ -2738,11 +2738,11 @@
       "sourceNode": 54,
       "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
       "sourceIssueReference": "Daredevil: Love and War (1986)",
-      "normalizedSeriesTitle": "Love and War",
+      "normalizedSeriesTitle": "Daredevil: Love and War",
       "seriesYear": 1986,
       "issueNumber": "1986",
-      "disposition": "unresolved-included-identity-gap",
-      "reason": "Named comic identity appears in source but lacks a fully resolvable issue row."
+      "disposition": "provisional-canonical-candidate",
+      "reason": "Named OGN is source-identifiable from the surrounding Essential Black Widow Stories section."
     },
     {
       "sourcePosition": 227,
@@ -3843,11 +3843,11 @@
       "sourceNode": 74,
       "sourceGroup": "Black Widow in the 1990's",
       "sourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
-      "normalizedSeriesTitle": "Deathtrap ? The Vault",
+      "normalizedSeriesTitle": "Avengers: Deathtrap ? The Vault",
       "seriesYear": 1991,
       "issueNumber": "1991",
-      "disposition": "unresolved-included-identity-gap",
-      "reason": "Named comic identity appears in source but lacks a fully resolvable issue row."
+      "disposition": "provisional-canonical-candidate",
+      "reason": "Named OGN is source-identifiable from the surrounding Black Widow in the 1990s section."
     },
     {
       "sourcePosition": 319,
@@ -5319,11 +5319,11 @@
       "sourceNode": 98,
       "sourceGroup": "Black Widow in the 1990's",
       "sourceIssueReference": "Captain America: The Legend (1996)",
-      "normalizedSeriesTitle": "The Legend",
+      "normalizedSeriesTitle": "Captain America: The Legend",
       "seriesYear": 1996,
       "issueNumber": "1996",
-      "disposition": "unresolved-included-identity-gap",
-      "reason": "Named comic identity appears in source but lacks a fully resolvable issue row."
+      "disposition": "provisional-canonical-candidate",
+      "reason": "Named collection is source-identifiable from the surrounding Black Widow in the 1990s section."
     },
     {
       "sourcePosition": 442,
@@ -5463,11 +5463,11 @@
       "sourceNode": 101,
       "sourceGroup": "Black Widow in the 1990's",
       "sourceIssueReference": "Onslaught: X-Men (1996)",
-      "normalizedSeriesTitle": "X-Men",
+      "normalizedSeriesTitle": "Onslaught: X-Men",
       "seriesYear": 1996,
       "issueNumber": "1996",
-      "disposition": "unresolved-included-identity-gap",
-      "reason": "Named comic identity appears in source but lacks a fully resolvable issue row."
+      "disposition": "provisional-canonical-candidate",
+      "reason": "Named crossover collection is source-identifiable from the surrounding Black Widow in the 1990s section."
     },
     {
       "sourcePosition": 454,
@@ -5619,11 +5619,11 @@
       "sourceNode": 105,
       "sourceGroup": "Black Widow in the 1990's",
       "sourceIssueReference": "Thunderbolts Annual ?97",
-      "normalizedSeriesTitle": "Thunderbolts Annual ?97",
-      "seriesYear": 0,
-      "issueNumber": "",
-      "disposition": "unresolved-included-identity-gap",
-      "reason": "Named comic identity appears in source but lacks a fully resolvable issue row."
+      "normalizedSeriesTitle": "Thunderbolts Annual",
+      "seriesYear": 1997,
+      "issueNumber": "Annual '97",
+      "disposition": "provisional-canonical-candidate",
+      "reason": "Named annual is source-identifiable from the surrounding Black Widow in the 1990s section."
     },
     {
       "sourcePosition": 467,
@@ -8445,9 +8445,9 @@
       "sourceIssueReference": "Infinity Countdown Prime (2018)",
       "normalizedSeriesTitle": "Infinity Countdown Prime",
       "seriesYear": 2018,
-      "issueNumber": "2018",
-      "disposition": "unresolved-included-identity-gap",
-      "reason": "Named comic identity appears in source but lacks a fully resolvable issue row."
+      "issueNumber": "Prime",
+      "disposition": "provisional-canonical-candidate",
+      "reason": "Named one-shot is source-identifiable from the surrounding All-New All-Different Black Widow section."
     },
     {
       "sourcePosition": 700,

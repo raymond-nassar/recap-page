@@ -372,7 +372,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The full page boundary is frozen from the intro through Latest Additions. The Stage A occurrence ledger preserves 209 page blocks, 76 issue-bearing blocks, 8 provenance groups, and 773 ordered occurrences split across 560 canonical candidates, 38 true repeats, 6 gaps, and 169 exclusions, so the guide can stay deferred without a mapping or publication artifact.",
+    "reason": "The full page boundary is frozen from the intro through Latest Additions. The Stage A occurrence ledger preserves 209 page blocks, 76 issue-bearing blocks, 8 provenance groups, and 773 ordered occurrences split across 566 canonical candidates, 38 true repeats, 0 gaps, and 169 exclusions, so the guide can stay deferred without a mapping or publication artifact.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
     "catalogIds": [],

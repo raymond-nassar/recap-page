@@ -9,15 +9,16 @@ const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'bla
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-character-inventory.json');
 
 const expectedCategoryCounts = {
-  'provisional-canonical-candidate': 560,
-  'unresolved-included-identity-gap': 6,
+  'provisional-canonical-candidate': 566,
   'semantic-exclusion': 169,
   'true-repeat': 38,
+  'unresolved-included-identity-gap': 0,
 };
 
 const expectedNodeCounts = new Map([
   [19, 8],
   [49, 1],
+  [10, 1],
   [54, 10],
   [56, 4],
   [72, 1],
@@ -80,10 +81,18 @@ function validateLedger(ledger) {
     acc[entry.disposition] = (acc[entry.disposition] ?? 0) + 1;
     return acc;
   }, {});
-  assert.deepEqual(derivedCounts, expectedCategoryCounts);
+  assert.deepEqual(
+    {
+      'provisional-canonical-candidate': derivedCounts['provisional-canonical-candidate'] ?? 0,
+      'true-repeat': derivedCounts['true-repeat'] ?? 0,
+      'unresolved-included-identity-gap': derivedCounts['unresolved-included-identity-gap'] ?? 0,
+      'semantic-exclusion': derivedCounts['semantic-exclusion'] ?? 0,
+    },
+    expectedCategoryCounts,
+  );
   assert.equal(
     derivedCounts['provisional-canonical-candidate']
-      + derivedCounts['unresolved-included-identity-gap']
+      + (derivedCounts['unresolved-included-identity-gap'] ?? 0)
       + derivedCounts['semantic-exclusion']
       + derivedCounts['true-repeat'],
     ledger.sourceOccurrenceCount,
@@ -145,27 +154,42 @@ function validateLedger(ledger) {
     assert.deepEqual(localPositions, range(1, items.length), `sourceBlockPosition sequence for node ${node}`);
   }
 
+  const node10 = ledger.occurrences.filter((entry) => entry.sourceNode === 10);
+  assert.equal(node10.filter((entry) => entry.disposition === 'true-repeat').length, 1);
+  assert.equal(node10.some((entry) => entry.sourceIssueReference === 'Amazing Spider-Man #86'), true);
+
   const node54 = ledger.occurrences.filter((entry) => entry.sourceNode === 54);
-  assert.equal(node54.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 9);
-  assert.equal(node54.filter((entry) => entry.disposition === 'unresolved-included-identity-gap').length, 1);
+  assert.equal(node54.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 10);
   assert.equal(node54.some((entry) => entry.sourceIssueReference === 'Daredevil: Love and War (1986)'), true);
+
+  const node74 = ledger.occurrences.filter((entry) => entry.sourceNode === 74);
+  assert.equal(node74.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 18);
+  assert.equal(node74.some((entry) => entry.sourceIssueReference === 'Avengers: Deathtrap ? The Vault (1991)'), true);
 
   const node95 = ledger.occurrences.filter((entry) => entry.sourceNode === 95);
   assert.equal(node95.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 16);
   assert.equal(node95.filter((entry) => entry.disposition === 'semantic-exclusion').length, 2);
   assert.equal(node95.some((entry) => entry.sourceIssueReference === 'Ashcan Edition'), true);
 
+  const node98 = ledger.occurrences.filter((entry) => entry.sourceNode === 98);
+  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 15);
+  assert.equal(node98.filter((entry) => entry.disposition === 'semantic-exclusion').length, 2);
+  assert.equal(node98.some((entry) => entry.sourceIssueReference === 'Captain America: The Legend (1996)'), true);
+
   const node101 = ledger.occurrences.filter((entry) => entry.sourceNode === 101);
-  assert.equal(node101.filter((entry) => entry.disposition === 'unresolved-included-identity-gap').length, 1);
+  assert.equal(node101.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 8);
   assert.equal(node101.some((entry) => entry.sourceIssueReference === 'Onslaught: X-Men (1996)'), true);
+
+  const node105 = ledger.occurrences.filter((entry) => entry.sourceNode === 105);
+  assert.equal(node105.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 10);
+  assert.equal(node105.some((entry) => entry.sourceIssueReference === 'Thunderbolts Annual ?97'), true);
 
   const node164 = ledger.occurrences.filter((entry) => entry.sourceNode === 164);
   assert.equal(node164.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
   assert.equal(node164.some((entry) => entry.sourceIssueReference === 'Material from Free Comic Book Day 2017 (Secret Empire)'), true);
 
   const node177 = ledger.occurrences.filter((entry) => entry.sourceNode === 177);
-  assert.equal(node177.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 5);
-  assert.equal(node177.filter((entry) => entry.disposition === 'unresolved-included-identity-gap').length, 1);
+  assert.equal(node177.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 6);
   assert.equal(node177.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
   assert.equal(node177.some((entry) => entry.sourceIssueReference === 'Infinity Countdown Prime (2018)'), true);
 
@@ -227,6 +251,12 @@ test('the Black Widow source ledger rejects the contrarian mutations', async () 
   expectLedgerFailure(ledger, (draft) => {
     draft.occurrences = draft.occurrences.filter((entry) => !(entry.sourceNode === 61 && entry.issueNumber === '225'));
     draft.categoryCounts['provisional-canonical-candidate'] -= 1;
+    draft.sourceOccurrenceCount -= 1;
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    draft.occurrences = draft.occurrences.filter((entry) => entry.sourceNode !== 10);
+    draft.categoryCounts['true-repeat'] -= 1;
     draft.sourceOccurrenceCount -= 1;
   });
 
