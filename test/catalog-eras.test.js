@@ -96,6 +96,8 @@ test('nothing in the shipped catalog needs the fallback', () => {
 test('the fallback never claims a range, however many years it holds', () => {
   const [section] = eraSections([one('early', 1964), one('future', 2999)]);
   assert.equal(section.key, fallback.key);
+  assert.equal('from' in section, false);
+  assert.equal('to' in section, false);
   assert.equal(section.blurb, fallback.blurb, 'the fallback appended a span to its blurb');
   assert.equal(/\d{4}/.test(section.blurb), false, 'the fallback printed a year');
 });
@@ -210,17 +212,10 @@ test('the eras are declared in order and no year belongs to two of them', () => 
 // Three years of slack, because the longest run of years the bundled catalog skips is three, 2001 to
 // 2003, so an era may legitimately reach three empty years past its content. Further than that and
 // the bound is reaching past the stretch of publishing its heading names.
-test('no era reaches far past what it holds', () => {
-  const SLACK = 3;
+test('named era render bounds stop at the first and last stories they hold', () => {
   for (const section of sections) {
     if (section.undated || section.fallback) continue;
-    assert.ok(
-      section.span.from - section.from <= SLACK,
-      `"${section.heading}" starts at ${section.from} but holds nothing before ${section.span.from}`,
-    );
-    assert.ok(
-      section.to - section.span.to <= SLACK,
-      `"${section.heading}" runs to ${section.to} but holds nothing after ${section.span.to}`,
-    );
+    assert.equal(section.from, section.span.from, `"${section.heading}" renders empty years before its first story`);
+    assert.equal(section.to, section.span.to, `"${section.heading}" renders empty years after its last story`);
   }
 });

@@ -27,8 +27,10 @@ anything new, so I do not have to remember which issue was next.
   editorial era.
 - Offer Setup to Modern Timeline as the recommended preparation path, opening existing Preview
   without adding it automatically.
-- Feature that same Reading List above the 1998-plus normal timeline cards without duplicating or
-  counting it, while keeping earlier events discoverable through Marvel Ages and direct addresses.
+- Feature that same Reading List above the guided normal timeline cards without duplicating or
+  counting it. Keep Marvel Knights to Planet X as the 1998 opening before the sequence resumes with
+  Avengers Disassembled in 2004, while other events remain discoverable through Marvel Ages and
+  direct addresses.
 - Use compact browse labels and counts instead of explanatory paragraphs.
 - Reveal future overlapping categories only when content and a destination both exist.
 - Keep Continue reading and Your Reading Lists ahead of discovery for returning readers.
