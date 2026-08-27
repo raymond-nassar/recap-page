@@ -215,10 +215,13 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const packetSet = new Set(PACKET_IDS);
   const laterReviewedIds = new Set([
+    'captain-marvel-ms-marvel-reading-order',
     'wolverine-reading-order',
     'abomination-reading-order',
+    'venom-reading-order',
     'black-panther-reading-order',
     'doctor-strange-reading-order',
+    'daredevil-reading-order',
     'setup-to-modern-timeline',
     'rocket-raccoon-reading-order',
     'groot-reading-order',

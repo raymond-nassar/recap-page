@@ -4375,7 +4375,11 @@ const SCENARIOS = [
         JSON.stringify(passiveStoredFilter));
 
       const explicitFrame = await page.evaluate(async (id) => {
+        const routeApplied = new Promise((resolve) => {
+          window.addEventListener('hashchange', resolve, { once: true });
+        });
         location.hash = `#/read/${encodeURIComponent(id)}?full=1`;
+        await routeApplied;
         await new Promise((resolve) => requestAnimationFrame(resolve));
         return {
           open: document.querySelector('#full')?.open,

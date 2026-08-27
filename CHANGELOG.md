@@ -21,6 +21,32 @@ latest additions. The guide keeps 158 comics that the metadata source cannot ide
 placeholders instead of guessing or dropping them, and it keeps repeated source mentions from
 duplicating comics in your Reading List. Nothing you have saved is changed.
 
+### Added a complete Captain Marvel reading guide
+
+In plain English: A new Captain Marvel and Ms. Marvel guide follows the source page from the
+earliest stories through newer additions. It includes 527 comics with exact Marvel links and leaves
+out one source reference that its owner confirmed does not name a real comic. Nothing you have saved
+is changed.
+
+### Added a complete Venom reading guide
+
+In plain English: You can now follow Venom stories from the symbiote's first appearance through
+the newest source-page material. Repeated recommendations appear only once in the checklist, and
+33 comics that the maintained metadata cannot yet identify remain visible as unresolved entries
+instead of being replaced or hidden. Nothing you have saved is changed.
+
+### Added the complete Daredevil reading guide
+
+In plain English: A complete Daredevil reading guide is now available, from his earliest stories
+through the Team-Ups and Guest Spots section. Eight source comics that the metadata provider cannot
+identify stay visible as honest placeholders, so the reading order keeps its place without guessing
+at a comic. Nothing you have saved is changed.
+
+For maintainers: the frozen source has 909 occurrences: 868 exact published identities, 33
+intentional repeated references, and 8 explicit metadata gaps. The complete-library review has 153
+dispositions: 19 partial relationships, 1 existing-subset relationship, and 133 with no shared
+issues.
+
 ### Made page location and adding comics clearer
 
 In plain English: The sidebar and its destination now say Add comics, making it clear that this is

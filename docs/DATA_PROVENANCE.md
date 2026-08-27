@@ -105,6 +105,30 @@ current-library report records eight partial relationships and 145 with no share
 metadata gaps are assigned in [Issue #298](https://github.com/raymond-nassar/recap-page/issues/298);
 none is substituted or silently removed.
 
+The Daredevil Character Spotlight guide follows the full page because it has no separate qualifying
+Best Comics or Essential Comics section. Its frozen source preserves 909 occurrences: 868 exact
+issue identities, 33 repeated occurrences, and 8 explicit provider gaps. The published checklist
+keeps each gap at its source position as a non-linked placeholder: Marvel Holiday Special #2;
+Daredevil/Deadpool Annual '97; Typhoid Fever: Daredevil #1; Marvel Team-Up #56; Daredevil and the
+Punisher: Child's Play (OGN); Daredevil/Bullseye: The Target (OGN); Daredevil/Spider-Man (OGN); and
+Defenders #11. The separate [gap follow-up issue](https://github.com/raymond-nassar/recap-page/issues/287)
+holds only future one-to-one identity research. The source range, source position, and unresolved
+status remain intact unless exact provider evidence resolves an identity.
+
+The complete-library report compares Daredevil with 153 reading lists. It records 19 approved
+partial relationships, 1 approved existing-subset relationship, and 133 relationships with no
+shared issue identities. The guide remains complete because its source boundary is the full page,
+not because an unresolved identity is silently removed.
+
+The Venom Character Spotlight follows the complete maintained page because it has no qualifying
+Best Comics or Essential Comics subsection. Its frozen source evidence preserves 932 issue
+occurrences across 646 identities: 610 exact provider-resolved comics, 286 intentional repeats,
+33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The 33 gaps
+remain visible in the published checklist and are tracked in
+[Issue #288](https://github.com/raymond-nassar/recap-page/issues/288); none is substituted or
+silently removed. Its complete-library review covers 154 current orders, with 22 approved
+non-none relationships and 132 no-overlap relationships.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records

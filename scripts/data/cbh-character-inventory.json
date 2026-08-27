@@ -557,13 +557,15 @@
     "url": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The exact source boundary is frozen through publication evidence, preserving 599 issue occurrences as 527 exact rows, 71 repeats, and 1 owner-authorized non-existent-identity exclusion while the draft delivery remains unpublished.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "captain-marvel-ms-marvel-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Captain Marvel",
       "Ms. Marvel (All)"
@@ -578,7 +580,7 @@
     ],
     "sourceContentSha256": "7997c83ef09d9f503afe933dbc146b5e64b6826d0a7048e9907a68c164303ba1",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 20,
@@ -662,13 +664,34 @@
     "url": "https://www.comicbookherald.com/daredevil-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The full current page preserves 909 source occurrences across 868 exact rows, 33 repeats, and 8 explicit source gaps. The guide has no distinct qualifying Best of or Essential Comics section, so the approved complete guide follows the full page.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "abomination-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "atlantis-attacks",
+      "axis",
+      "dead-mans-hand",
+      "devils-reign",
+      "fall-of-the-mutants",
+      "hunt-for-wolverine",
+      "inferno",
+      "maximum-security",
+      "mutant-massacre",
+      "spider-man-best-of",
+      "thanos-reading-order",
+      "white-tiger-ava-ayala",
+      "wolverine-reading-order",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "daredevil-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Daredevil"
     ],
@@ -676,9 +699,9 @@
       23
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "10f01432c368de441e6a72fe7617c6d098a834334b65233e011fbb32b70c650b",
+    "sourceContentSha256": "3322ffae13d23ce743399af9dc957666b744a2d609bef6db758d551508292e81",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 24,
@@ -3020,13 +3043,38 @@
     "url": "https://www.comicbookherald.com/venom-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The full source page is frozen as 932 occurrences: 610 exact provider-resolved comics, 286 repeats, 33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The complete-library report has 22 approved non-none relationships and no exact duplicate.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "abomination-reading-order",
+      "absolute-carnage",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "civil-war-avengers",
+      "daredevil-reading-order",
+      "dark-reign-avengers",
+      "dark-web",
+      "doctor-doom-primer",
+      "doctor-strange-reading-order",
+      "heroic-age-avengers",
+      "marvel-knights-to-planet-x",
+      "marvel-super-heroes-secret-wars",
+      "minimum-carnage",
+      "new-ultimate-universe",
+      "new-ultimate-universe-trades",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "spider-island",
+      "venomverse",
+      "war-of-the-realms",
+      "wolverine-reading-order",
+      "x-men-utopia"
+    ],
+    "catalogIds": [
+      "venom-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Venom"
     ],
@@ -3036,7 +3084,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "1678b4cbf69f9c97f05a6fcc85648bfc9e5ac98391b408cae462aaa23e5551b8",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 115,

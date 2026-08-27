@@ -2360,6 +2360,74 @@
       "coverIssueId": 11029
     },
     {
+      "id": "daredevil-reading-order",
+      "name": "Daredevil",
+      "description": "The complete Daredevil guide, from the character origins through modern runs and team ups.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "daredevil-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/daredevil-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "daredevil_reading_order.json",
+      "characters": [
+        "Daredevil",
+        "Matt Murdock",
+        "Elektra",
+        "Punisher",
+        "Kingpin"
+      ],
+      "keywords": [
+        "Daredevil",
+        "Matt Murdock",
+        "Elektra",
+        "Hell's Kitchen",
+        "Comic Book Herald"
+      ],
+      "expect": 876,
+      "timeline": null,
+      "coverIssueId": 8073
+    },
+    {
+      "id": "venom-reading-order",
+      "name": "Venom",
+      "description": "Venom from the symbiote's origin in Secret Wars and Spider-Man's black costume saga through Eddie Brock's Lethal Protector era, Mac Gargan, Flash Thompson's Agent Venom, Dylan Brock, and the modern Donny Cates and Al Ewing epic.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "venom-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/venom-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "venom_reading_order.json",
+      "characters": [
+        "Venom",
+        "Eddie Brock",
+        "Anti-Venom",
+        "Flash Thompson",
+        "Carnage"
+      ],
+      "keywords": [
+        "Venom",
+        "Eddie Brock",
+        "Symbiote",
+        "Carnage",
+        "Comic Book Herald"
+      ],
+      "expect": 643,
+      "timeline": null,
+      "coverIssueId": 10590
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
@@ -2448,6 +2516,39 @@
       ],
       "expect": 404,
       "timeline": null
+    },
+    {
+      "id": "captain-marvel-ms-marvel-reading-order",
+      "name": "Captain Marvel / Ms. Marvel",
+      "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "captain-marvel-ms-marvel-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "captain_marvel_ms_marvel_reading_order.json",
+      "characters": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "keywords": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Carol Danvers",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "expect": 527,
+      "timeline": null,
+      "coverIssueId": 15423,
+      "spotlightKind": "complete-guide"
     },
     {
       "id": "captain-america-best-of",
