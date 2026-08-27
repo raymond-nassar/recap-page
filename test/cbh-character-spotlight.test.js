@@ -1140,9 +1140,18 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const record = inventory.find((entry) => entry.id === 'silver-surfer-reading-order');
   const manifestEntry = manifest.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
   const catalogEntry = catalog.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
-  const reviewedLibraryDigest = await currentPublicationLibraryDigest(
+  const expectedOrderIds = manifest.lists
+    .map((entry) => entry.id)
+    .filter((id) => id !== 'silver-surfer-reading-order')
+    .sort();
+  const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
     ['silver-surfer-reading-order'],
+  );
+  const regeneratedReport = await buildReportForMapping(
+    path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
+    [],
+    { excludedOrderIds: [] },
   );
 
   assert.equal(packet.sourceOccurrenceCount, 426);
@@ -1179,10 +1188,35 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   assert.equal(parseChecklist(markdown).entries.length, 294);
   assert.equal(parseChecklist(markdown).unresolved.length, 4);
   assert.equal(report.candidateCount, 294);
-  assert.equal(report.comparisonCount, 135);
+  assert.equal(report.comparisonCount, expectedOrderIds.length);
+  assert.deepEqual(
+    report.comparisons.map((comparison) => comparison.orderId).sort(),
+    expectedOrderIds,
+  );
+  assert.deepEqual(
+    report.comparisons.find((comparison) => comparison.orderId === 'loki-reading-order'),
+    {
+      orderId: 'loki-reading-order',
+      relationship: 'partial',
+      sharedCount: 17,
+      sharedIds: [
+        '16099', '6970', '6971', '6972', '6973', '20392', '20403', '20263',
+        '20274', '61093', '66283', '66416', '66684', '67022', '68653', '68656', '66158',
+      ],
+    },
+  );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
+  assert.deepEqual(report, regeneratedReport);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds,
+  }));
+  assert.doesNotMatch(markdown, /\b(?:TODO|TBD|placeholder|implementation)\b/i);
 });
 
 test('the Captain Marvel packet preserves its legacy run boundary, exclusion, and source order evidence', async () => {
