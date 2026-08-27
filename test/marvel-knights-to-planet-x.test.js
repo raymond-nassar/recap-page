@@ -26,6 +26,7 @@ const currentOverlaps = [
   ...originalApprovedOverlaps,
   ['daredevil-reading-order', 73],
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
+  ['venom-reading-order', 5],
 ].sort(([left], [right]) => left.localeCompare(right));
 
 async function readJson(relativePath) {
@@ -118,7 +119,7 @@ test('Marvel Knights to Planet X is the first 1998 card with 487 ordered hydrate
   );
 });
 
-test('Marvel Knights to Planet X preserves seven approved overlaps plus current Hulk overlap', async () => {
+test('Marvel Knights to Planet X preserves approved and current-library overlaps', async () => {
   const catalog = await readJson('src/data/catalog.json');
   const payload = await readJson(`src/data/${guideFile}`);
   const guideIssueIds = new Set(payload.items.map((item) => String(item.issueId)));

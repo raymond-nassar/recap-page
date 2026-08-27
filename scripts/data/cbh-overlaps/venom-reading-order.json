@@ -2,7 +2,7 @@
   "candidateId": "venom-reading-order",
   "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
   "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
-  "libraryDigest": "fa639620c25ab38c21974e0b96cac070776215e6cb0bfa6477ac19174a2cfce5",
+  "libraryDigest": "952e2327d0043e44725cc1dfdb87d9e6e56ae5a2ee5a720c9a6328135f540d7f",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 932,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 286
   },
   "candidateCount": 610,
-  "comparisonCount": 151,
+  "comparisonCount": 154,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -342,6 +342,16 @@
       "relationship": "none"
     },
     {
+      "orderId": "daredevil-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "73597",
+        "73601",
+        "73602"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "dark-phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
@@ -430,6 +440,17 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "doctor-strange-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "12097",
+        "12098",
+        "62404",
+        "62405"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "doomwar",
@@ -623,6 +644,18 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x",
+      "sharedCount": 5,
+      "sharedIds": [
+        "18832",
+        "18843",
+        "18852",
+        "18853",
+        "197"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "marvel-multiverse",
@@ -1178,5 +1211,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6153aea3790c43b385270fe661db356b772ccd0b8b588f3ecbb3f12a7f49e280"
+  "reportDigest": "36c13fa25871ac9d60563660afa2fcdad828c60ee3cb3ad59bddef45ad0851d5"
 }

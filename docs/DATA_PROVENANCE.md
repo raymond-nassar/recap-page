@@ -116,8 +116,8 @@ occurrences across 646 identities: 610 exact provider-resolved comics, 286 inten
 33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The 33 gaps
 remain visible in the published checklist and are tracked in
 [Issue #288](https://github.com/raymond-nassar/recap-page/issues/288); none is substituted or
-silently removed. Its complete-library review is refreshed against every current order before
-publication.
+silently removed. Its complete-library review covers 154 current orders, with 22 approved
+non-none relationships and 132 no-overlap relationships.
 
 ## Historical Comic Book Reading Orders intake
 
