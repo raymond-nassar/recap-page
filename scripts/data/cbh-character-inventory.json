@@ -1199,8 +1199,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The full-page boundary and Stage A source ledger are frozen, but issue rows have not been resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -1212,7 +1212,7 @@
       43
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "09c1d8ea66560003c04aed00579b1a51060dac18d725aad9a186cf228cb0accb",
+    "sourceContentSha256": "c6e5f90f6dafd6908640a187fc7da29440055a81521cc2cd50158f3c2d28eef3",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
