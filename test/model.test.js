@@ -1019,9 +1019,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // adds four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
   // adds 39 source-preserving metadata gaps with distinct negative identifiers. Daredevil adds
   // eight more source-preserving metadata gaps with distinct negative identifiers. Venom adds 33
-  // further source-preserving metadata gaps with distinct negative identifiers.
-  assert.equal(claimed, 1071, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1071, 'the bundled placeholder total moved; re-derive the figures in the record');
+  // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
+  // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
+  assert.equal(claimed, 1229, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1229, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1218,7 +1219,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // record already has a pinned Marvel issue id. Deadpool adds two official issue identities
   // that the provider also cannot answer. Black Panther adds four negative placeholder identifiers.
   // Doctor Strange adds 39 more negative placeholder identifiers. Venom adds 33 more negative
-  // placeholder identifiers.
-  assert.equal(refused.length, 1115);
+  // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
+  // source occurrences without duplicate identifiers.
+  assert.equal(refused.length, 1273);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

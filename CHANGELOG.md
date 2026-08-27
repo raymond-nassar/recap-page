@@ -21,6 +21,19 @@ directly to Avengers Disassembled in 2004. The empty years between them remain v
 other Reading Lists from those years stay available in Marvel Ages. Nothing you have saved is
 changed.
 
+### Corrected Punisher source details
+
+In plain English: Five unresolved Punisher Presents: Barracuda MAX entries now identify their 2007
+series correctly. The reading guide keeps them as placeholders until exact metadata is available,
+and nothing you have saved is changed.
+
+### Added a complete Punisher reading guide
+
+In plain English: You can now follow 480 Punisher comics from his earliest appearances through the
+latest additions. The guide keeps 158 comics that the metadata source cannot identify as clear
+placeholders instead of guessing or dropping them, and it keeps repeated source mentions from
+duplicating comics in your Reading List. Nothing you have saved is changed.
+
 ### Added a complete Captain Marvel reading guide
 
 In plain English: A new Captain Marvel and Ms. Marvel guide follows the source page from the

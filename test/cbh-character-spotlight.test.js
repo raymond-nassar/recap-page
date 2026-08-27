@@ -7,6 +7,7 @@ import {
   approvalDigestFor,
   libraryDigestFor,
   packetDigestFor,
+  sourcePositionsForPacket,
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
@@ -41,6 +42,7 @@ const laterCharacterIds = [
   modernXMenCandidateId,
   'deadpool-best-of',
   hulkCandidateId,
+  'punisher-reading-order',
   venomCandidateId,
 ];
 const characterCandidateIds = [
@@ -315,7 +317,7 @@ async function readJson(relativePath) {
 async function prePublicationLibraryDigest(manifest, excludedIds = [candidateId], includeLater = false) {
   const excluded = new Set([
     ...excludedIds,
-    ...(includeLater ? [] : [captainMarvelCandidateId, venomCandidateId]),
+    ...(includeLater ? [] : [captainMarvelCandidateId, 'punisher-reading-order', venomCandidateId]),
   ]);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
@@ -357,7 +359,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships twenty spotlights', async () => {
+test('the character inventory preserves every central disposition, ships nineteen spotlights, and prepares three', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -368,10 +370,10 @@ test('the character inventory preserves every central disposition and ships twen
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 98);
+  assert.equal(dispositionCounts.deferred, 97);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 22);
+  assert.equal(dispositionCounts['pilot-approved'], 23);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -398,6 +400,9 @@ test('the character inventory preserves every central disposition and ships twen
   const ready = inventory.find((record) => record.id === 'black-panther-reading-order');
   assert.equal(ready?.centralDisposition, 'pilot-approved');
   assert.equal(ready?.deliveryStatus, 'ready');
+  const punisher = inventory.find((record) => record.id === 'punisher-reading-order');
+  assert.equal(punisher?.centralDisposition, 'pilot-approved');
+  assert.equal(punisher?.deliveryStatus, 'ready');
   const venom = inventory.find((record) => record.id === venomCandidateId);
   assert.equal(venom?.centralDisposition, 'pilot-approved');
   assert.equal(venom?.deliveryStatus, 'ready');
@@ -580,6 +585,228 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.match(markdown, /^## Latest Additions$/m);
 });
 
+test('the Punisher guide preserves its full source ledger through publication', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson('scripts/data/cbh-packets/punisher-reading-order.json');
+  const mapping = await readJson('scripts/data/cbh-mappings/punisher-reading-order.json');
+  const report = await readJson('scripts/data/cbh-overlaps/punisher-reading-order.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const generated = await readJson('src/data/punisher_reading_order.json');
+  const markdown = await readFile(path.join(root, 'src/data/orders/punisher-reading-order.md'), 'utf8');
+  const inventoryRecord = inventory.find((record) => record.id === 'punisher-reading-order');
+  const parsed = parseChecklist(markdown);
+  const regeneratedReport = await buildReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
+    [],
+    { excludedOrderIds: [] },
+  );
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(
+    manifest,
+    ['punisher-reading-order'],
+    true,
+  );
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: 'punisher-reading-order',
+    inventoryRecord,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  const exactPositions = sourcePositionsForPacket(packet);
+  const repeatedPositions = packet.repeatedSourceReferences.map((reference) => reference.sourcePosition);
+  const gapPositions = packet.sourceGaps.map((gap) => gap.sourcePosition);
+  const excludedPositions = packet.excludedSourceRows.map((row) => row.sourcePosition);
+  const allPositions = [
+    ...exactPositions,
+    ...repeatedPositions,
+    ...gapPositions,
+    ...excludedPositions,
+  ];
+
+  assert.equal(packet.sourceOccurrenceCount, 857);
+  assert.equal(packet.rows.length, 480);
+  assert.equal(packet.repeatedSourceReferences.length, 145);
+  assert.equal(packet.sourceGaps.length, 158);
+  assert.equal(packet.excludedSourceRows.length, 74);
+  assert.equal(new Set([
+    ...packet.rows,
+    ...packet.sourceGaps,
+  ].map((entry) => entry.sourceGroup).filter(Boolean)).size, 11);
+  assert.deepEqual(
+    mapping.rows.map((row) => row.sourcePosition),
+    packet.rows.map((row) => row.sourcePosition),
+  );
+  assert.deepEqual(
+    mapping.rows.map((row) => row.sourceGroup),
+    packet.rows.map((row) => row.sourceGroup),
+  );
+  assert.ok(packet.sourceGaps.every((gap) => gap.normalizedSeriesTitle && gap.issueNumber));
+  const sourceLedger = [
+    ...packet.rows,
+    ...packet.repeatedSourceReferences,
+    ...packet.sourceGaps,
+    ...packet.excludedSourceRows,
+  ].sort((left, right) => left.sourcePosition - right.sourcePosition);
+  assert.deepEqual(
+    sourceLedger.slice(0, 13).map((entry) => entry.sourceIssueReference),
+    [
+      'Punisher: Back to the War Omnibus (trade header)',
+      'Amazing Spider-Man (1963) #129',
+      'Amazing Spider-Man (1963) #134',
+      'Amazing Spider-Man (1963) #135',
+      'Amazing Spider-Man (1963) #161',
+      'Amazing Spider-Man (1963) #162',
+      'Amazing Spider-Man (1963) #174',
+      'Amazing Spider-Man (1963) #175',
+      'Amazing Spider-Man (1963) #201',
+      'Amazing Spider-Man (1963) #202',
+      'Amazing Spider-Man Annual (1964) #15',
+      'Marvel Preview (1975) #2',
+      'Marvel Super Action (1975) #1',
+    ],
+  );
+  const jasonAaronGaps = packet.sourceGaps.filter(
+    (gap) => gap.sourceGroup === "III) Jason Aaron's Punisher MAX",
+  );
+  assert.deepEqual(
+    jasonAaronGaps.map((gap) => gap.sourceIssueReference),
+    Array.from({ length: 22 }, (_, index) => `Punisher MAX (2009) #${index + 1}`),
+  );
+  assert.deepEqual(
+    packet.sourceGaps
+      .filter((gap) => gap.normalizedSeriesTitle === 'Punisher Presents: Barracuda MAX')
+      .map((gap) => [gap.sourcePosition, gap.sourceIssueReference, gap.seriesYear, gap.kind, gap.status]),
+    Array.from({ length: 5 }, (_, index) => [
+      392 + index,
+      `Punisher Presents: Barracuda MAX (2007) #${index + 1}`,
+      2007,
+      'published-metadata-gap',
+      'open',
+    ]),
+  );
+  assert.deepEqual(
+    packet.repeatedSourceReferences
+      .filter((reference) => Object.hasOwn(reference, 'canonicalGapPosition'))
+      .map((reference) => [reference.sourcePosition, reference.canonicalGapPosition]),
+    [
+      [571, 436],
+      ...Array.from({ length: 22 }, (_, index) => [572 + index, 549 + index]),
+    ],
+  );
+  assert.equal(packet.sourceReview.authorityIdentity, 'GPT-5.6 Terra');
+  assert.equal(
+    packet.excludedSourceRows.filter((row) => row.sourceIssueReference.includes('trade header')).length,
+    58,
+  );
+  assert.equal(packet.excludedSourceRows.filter((row) => (
+    /(section header|section marker|series intro|cross-link)/.test(row.sourceIssueReference)
+  )).length, 9);
+  assert.equal(packet.excludedSourceRows.filter((row) => row.sourceIssueReference.includes('DC co-publication')).length, 2);
+  assert.equal(packet.excludedSourceRows.filter((row) => (
+    /(trade header|section header|section marker|series intro|cross-link|DC co-publication)/.test(
+      row.sourceIssueReference,
+    )
+  )).length, 69);
+  assert.equal(packet.excludedSourceRows.filter((row) => (
+    !/(trade header|section header|section marker|series intro|cross-link|DC co-publication)/.test(
+      row.sourceIssueReference,
+    )
+  )).length, 5);
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter((row) => !/(trade header|section header|section marker|series intro|cross-link|DC co-publication)/.test(
+        row.sourceIssueReference,
+      ))
+      .map(({ sourcePosition, sourceIssueReference, reason }) => ({
+        sourcePosition,
+        sourceIssueReference,
+        reason,
+      })),
+    [
+      {
+        sourcePosition: 782,
+        sourceIssueReference: 'Punisher: World War Frank',
+        reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 783,
+        sourceIssueReference: 'Cosmic Ghost Rider',
+        reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 784,
+        sourceIssueReference: 'War of the Realms',
+        reason: 'The source names the event but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 785,
+        sourceIssueReference: 'Punisher: Kill Krew',
+        reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 792,
+        sourceIssueReference: 'Punisher/Captain America: Blood & Glory (1992)',
+        reason: 'The source names the crossover but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+    ],
+  );
+  assert.equal(mapping.rows.length, 480);
+  assert.equal(mapping.approvedSourceCount, 857);
+  assert.equal(report.candidateCount, 480);
+  assert.equal(report.comparisonCount, 156);
+  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+  assert.deepEqual(regeneratedReport, report);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+  assert.equal(parsed.entries.length, 480);
+  assert.equal(parsed.unresolved.length, 158);
+  assert.equal(generated.count, 638);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 480);
+  assert.equal(generated.placeholders, 158);
+  assert.equal(new Set(generated.items.map((item) => item.issueId)).size, 638);
+  assert.deepEqual(
+    generated.items
+      .filter((item) => item.title.startsWith('Punisher Presents: Barracuda MAX'))
+      .map((item) => [item.title, item.placeholder]),
+    Array.from({ length: 5 }, (_, index) => [
+      `Punisher Presents: Barracuda MAX (2007) #${index + 1}`,
+      true,
+    ]),
+  );
+  assert.equal(catalog.lists.find((entry) => entry.id === 'punisher-reading-order').count, 638);
+  assert.equal(new Set(allPositions).size, allPositions.length);
+  assert.deepEqual(
+    [...allPositions].sort((left, right) => left - right),
+    Array.from({ length: packet.sourceOccurrenceCount }, (_, index) => index + 1),
+  );
+  const missingCanonicalPosition = structuredClone(packet);
+  delete missingCanonicalPosition.rows[0].sourcePosition;
+  missingCanonicalPosition.packetDigest = packetDigestFor(missingCanonicalPosition);
+  assert.throws(
+    () => validateFrozenPacket(missingCanonicalPosition),
+    /must either all define sourcePosition or all omit it/i,
+  );
+  const duplicateCanonicalPosition = structuredClone(packet);
+  duplicateCanonicalPosition.rows[0].sourcePosition = packet.sourceGaps[0].sourcePosition;
+  duplicateCanonicalPosition.packetDigest = packetDigestFor(duplicateCanonicalPosition);
+  assert.throws(
+    () => validateFrozenPacket(duplicateCanonicalPosition),
+    /source position .* is used more than once/i,
+  );
+  assert.equal(inventoryRecord?.deliveryStatus, 'ready');
+  assert.equal(inventoryRecord?.centralDisposition, 'pilot-approved');
+  assert.match(markdown, /^## Punisher: Back to the War Omnibus$/m);
+  assert.match(markdown, /^## Punisher War Journal by Carl Potts & Jim Lee$/m);
+  assert.match(markdown, /Marvel Super Action \(1975\) #1/);
+});
+
 test('the Doctor Strange guide preserves its complete source ledger through publication', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson(`scripts/data/cbh-packets/${doctorStrangeCandidateId}.json`);
@@ -598,8 +825,10 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [
     doctorStrangeCandidateId,
+    captainMarvelCandidateId,
     'daredevil-reading-order',
-  ]);
+    venomCandidateId,
+  ], true);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: doctorStrangeCandidateId,
@@ -635,11 +864,11 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(mapping.candidateMetadata.length, 711);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.equal(report.candidateCount, 711);
-  assert.equal(report.comparisonCount, 152);
-  assert.equal(mapping.relationshipReview.dispositions.length, 152);
+  assert.equal(report.comparisonCount, 153);
+  assert.equal(mapping.relationshipReview.dispositions.length, 153);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 123);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'existing-subset').length, 3);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 26);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 27);
   assert.equal(manifestEntry.expect, 750);
   assert.equal(manifestEntry.spotlightKind, 'complete-guide');
   assert.equal(catalogEntry.count, 750);
@@ -675,7 +904,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   const record = inventory.find((candidate) => candidate.id === captainMarvelCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [captainMarvelCandidateId],
+    [captainMarvelCandidateId, 'punisher-reading-order'],
     true,
   );
 
@@ -1074,11 +1303,12 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const manifestIndex = manifest.lists.findIndex((entry) => entry.id === candidateId);
   assert.ok(manifestIndex >= 0);
   assert.deepEqual(
-    manifest.lists.slice(manifestIndex + 1, manifestIndex + 5).map((entry) => entry.id),
+    manifest.lists.slice(manifestIndex + 1, manifestIndex + 6).map((entry) => entry.id),
     [
       'phalanx-reading-order',
       'marvels-best-phoenix-comics',
       'agatha-harkness-reading-order',
+      'punisher-reading-order',
       cosmicCandidateId,
     ],
   );
@@ -1119,6 +1349,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
       hulkCandidateId,
       marvelKnightsToPlanetXId,
       doctorStrangeCandidateId,
+      'punisher-reading-order',
       'daredevil-reading-order',
       venomCandidateId,
     ],
@@ -1135,6 +1366,7 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
         hulkCandidateId,
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
+        'punisher-reading-order',
         'daredevil-reading-order',
         venomCandidateId,
       ],
@@ -1286,6 +1518,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
       hulkCandidateId,
       marvelKnightsToPlanetXId,
       doctorStrangeCandidateId,
+      'punisher-reading-order',
       'daredevil-reading-order',
       venomCandidateId,
     ],
@@ -1302,6 +1535,7 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
         hulkCandidateId,
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
+        'punisher-reading-order',
         'daredevil-reading-order',
         venomCandidateId,
       ],
@@ -1461,6 +1695,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       hulkCandidateId,
       marvelKnightsToPlanetXId,
       doctorStrangeCandidateId,
+      'punisher-reading-order',
       'daredevil-reading-order',
     ],
   );
@@ -1479,6 +1714,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
         hulkCandidateId,
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
+        'punisher-reading-order',
         'daredevil-reading-order',
         venomCandidateId,
       ],
@@ -1709,6 +1945,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       hulkCandidateId,
       marvelKnightsToPlanetXId,
       doctorStrangeCandidateId,
+      'punisher-reading-order',
       'daredevil-reading-order',
     ],
   );
@@ -1724,6 +1961,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
         hulkCandidateId,
         marvelKnightsToPlanetXId,
         doctorStrangeCandidateId,
+        'punisher-reading-order',
         'daredevil-reading-order',
         venomCandidateId,
       ],
@@ -1934,10 +2172,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 156);
+  assert.equal(catalog.lists.length, 157);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 29);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 28);
+  assert.equal(characterRuns.length, 30);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 29);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {

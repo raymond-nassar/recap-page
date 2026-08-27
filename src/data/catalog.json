@@ -2333,6 +2333,40 @@
       "updatedAt": "2026-08-26T07:16:55.688Z"
     },
     {
+      "id": "punisher-reading-order",
+      "file": "punisher_reading_order.json",
+      "name": "Punisher",
+      "description": "A complete Punisher reading path that follows the source page from the earliest Punisher material through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 638,
+      "collections": 76,
+      "characters": [
+        "Punisher",
+        "Frank Castle"
+      ],
+      "keywords": [
+        "Punisher",
+        "Comic Book Herald",
+        "Frank Castle"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 6515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/57b7694649690",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/punisher-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T13:31:19.178Z"
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "file": "rocket_raccoon_reading_order.json",
       "name": "Rocket Raccoon",

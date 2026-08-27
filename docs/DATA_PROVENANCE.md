@@ -91,9 +91,19 @@ across 76 issue-bearing blocks and nine top-level headings. It publishes 711 exa
 records 181 repeated source references once at their first occurrence, preserves 39 open metadata
 gaps, and names one source exclusion. The open gaps retain their exact source positions and failed
 provider lookups, with follow-up assigned in [Issue #283](https://github.com/raymond-nassar/recap-page/issues/283).
-The complete-library report compares the guide with all 152 existing reading lists: three are
-existing-subset relationships, 26 are partial, and 123 have no shared issues. The source groups and
+The complete-library report compares the guide with all 153 existing reading lists: three are
+existing-subset relationships, 27 are partial, and 123 have no shared issues. The source groups and
 gaps remain maintained evidence rather than replacements or invented issue identities.
+
+The complete Punisher guide retains the visible source page through Latest Additions: 857 source
+occurrences across eleven source groups. It publishes 480 exact provider-resolved comics, preserves 145
+repeated source occurrences, 158 open metadata gaps, and 74 explicit non-issue exclusions. The 158
+unresolved identities remain visible as placeholders, while 23 later source occurrences repeat an
+earlier unresolved identity without producing a duplicate Reading List entry. Live review verified
+all 480 exact IDs, series, and issue numbers, and corrected 76 current Marvel detail links. The
+current-library report records ten partial relationships and 146 with no shared issues. Remaining
+metadata gaps are assigned in [Issue #298](https://github.com/raymond-nassar/recap-page/issues/298);
+none is substituted or silently removed.
 
 The Daredevil Character Spotlight guide follows the full page because it has no separate qualifying
 Best Comics or Essential Comics section. Its frozen source preserves 909 occurrences: 868 exact

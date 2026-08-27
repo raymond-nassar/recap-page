@@ -587,6 +587,20 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
     /approvedSourceCount differs from its frozen source occurrence count/i,
   );
 
+  const declaredLegacyPositions = structuredClone(evidence.packet);
+  declaredLegacyPositions.rows[0].sourcePosition = 1;
+  declaredLegacyPositions.rows[1].sourcePosition = 3;
+  declaredLegacyPositions.packetDigest = packetDigestFor(declaredLegacyPositions);
+  assert.doesNotThrow(() => validateFrozenPacket(declaredLegacyPositions));
+
+  const driftedLegacyPosition = structuredClone(declaredLegacyPositions);
+  driftedLegacyPosition.rows[1].sourcePosition = 4;
+  driftedLegacyPosition.packetDigest = packetDigestFor(driftedLegacyPosition);
+  assert.throws(
+    () => validateFrozenPacket(driftedLegacyPosition),
+    /outside the source occurrence count|do not cover the source occurrence count/i,
+  );
+
   const divergentMirror = genericEvidence({ withRepeat: true });
   divergentMirror.mapping.repeatedSourceReferences[0].sourceRangeReference = 'Different source block';
   refreshEvidenceDigests(divergentMirror);

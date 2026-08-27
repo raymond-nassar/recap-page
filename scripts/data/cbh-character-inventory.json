@@ -2515,13 +2515,13 @@
     "url": "https://www.comicbookherald.com/punisher-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "A serialized live provider audit verified 480 exact issue identities; the full-page ledger preserves 145 repeats, 158 unresolved metadata gaps, and 74 explicit non-issue exclusions while publication awaits delivery.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Punisher"
     ],
@@ -2529,9 +2529,9 @@
       95
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e0ed74660dc0527b2b3bf3425483630aefd5e25737512fea17b401860a3491a3",
+    "sourceContentSha256": "9fc9fda7924d7837bc1c300135b7dad3893b3714a3f5c7a576a3f18843516367",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 95,
