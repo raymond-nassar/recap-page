@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T14:42:20.857Z",
+  "generatedAt": "2026-08-27T15:34:39.542Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2333,6 +2333,40 @@
       "updatedAt": "2026-08-26T07:16:55.688Z"
     },
     {
+      "id": "punisher-reading-order",
+      "file": "punisher_reading_order.json",
+      "name": "Punisher",
+      "description": "A complete Punisher reading path that follows the source page from the earliest Punisher material through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 638,
+      "collections": 76,
+      "characters": [
+        "Punisher",
+        "Frank Castle"
+      ],
+      "keywords": [
+        "Punisher",
+        "Comic Book Herald",
+        "Frank Castle"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 6515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/57b7694649690",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/punisher-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T13:31:19.178Z"
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "file": "rocket_raccoon_reading_order.json",
       "name": "Rocket Raccoon",
@@ -2745,6 +2779,83 @@
       "updatedAt": "2026-08-27T13:18:34.558Z"
     },
     {
+      "id": "venom-reading-order",
+      "file": "venom_reading_order.json",
+      "name": "Venom",
+      "description": "Venom from the symbiote's origin in Secret Wars and Spider-Man's black costume saga through Eddie Brock's Lethal Protector era, Mac Gargan, Flash Thompson's Agent Venom, Dylan Brock, and the modern Donny Cates and Al Ewing epic.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 643,
+      "collections": 91,
+      "characters": [
+        "Venom",
+        "Eddie Brock",
+        "Anti-Venom",
+        "Flash Thompson",
+        "Carnage"
+      ],
+      "keywords": [
+        "Venom",
+        "Eddie Brock",
+        "Symbiote",
+        "Carnage",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 10590,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5757174e3255d",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/venom-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T06:39:54.285Z"
+    },
+    {
+      "id": "magneto-reading-order",
+      "file": "magneto_reading_order.json",
+      "name": "Magneto",
+      "description": "A source-ordered Magneto reading guide from early X-Men appearances through modern stories, with unresolved source identities retained as plain-text provenance.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 753,
+      "collections": 87,
+      "characters": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver"
+      ],
+      "keywords": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 13741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/590899aae5de3",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/magneto-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T13:50:21.414Z"
+    },
+    {
       "id": "loki-reading-order",
       "file": "loki_reading_order.json",
       "name": "Loki",
@@ -2881,6 +2992,44 @@
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
       "updatedAt": "2026-08-15T07:57:51.563Z"
+    },
+    {
+      "id": "captain-marvel-ms-marvel-reading-order",
+      "file": "captain_marvel_ms_marvel_reading_order.json",
+      "name": "Captain Marvel / Ms. Marvel",
+      "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 527,
+      "collections": 0,
+      "characters": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "keywords": [
+        "Captain Marvel",
+        "Ms. Marvel",
+        "Carol Danvers",
+        "Mar-Vell",
+        "Monica Rambeau"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 15423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/4bc469f984514",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T06:29:13.173Z"
     },
     {
       "id": "captain-america-best-of",

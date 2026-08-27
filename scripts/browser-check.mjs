@@ -1159,10 +1159,28 @@ const MUTATIONS = [
   {
     id: 'modern-timeline-boundary-1997',
     breaks: 'modern-timeline-actual-data',
-    why: 'the app boundary moves back one year and admits the first excluded 1997 event',
+    why: 'the chosen opening year moves back one year, so the intended 1998 opening disappears',
     rewriteCatalog: (source) => source.replace(
       'export const MODERN_TIMELINE_START_YEAR = 1998;',
       'export const MODERN_TIMELINE_START_YEAR = 1997;',
+    ),
+  },
+  {
+    id: 'modern-timeline-static-era-bounds',
+    breaks: 'modern-timeline-actual-data',
+    why: 'named eras expose their static assignment bounds again, so the visible spine starts decades before its first selected story',
+    rewriteCatalog: (source) => source.replace(
+      / {8}\.\.\.\(span && !era\.fallback \? span : \{\}\),\r?\n/,
+      '',
+    ),
+  },
+  {
+    id: 'modern-timeline-extra-opening',
+    breaks: 'modern-timeline-actual-data',
+    why: 'one Marvel Ages event is admitted beside the intended 1998 opening',
+    rewriteCatalog: (source) => source.replace(
+      'list?.id === MODERN_TIMELINE_OPENING_ID',
+      "[MODERN_TIMELINE_OPENING_ID, 'spider-man-identity-crisis'].includes(list?.id)",
     ),
   },
   {
@@ -2204,10 +2222,10 @@ const SCENARIOS = [
         '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check('Home recommends the setup guide and both gateways count 76 normal Reading Lists',
+      t.check('Home recommends the setup guide and both gateways count 71 normal Reading Lists',
         home.recommendation === 'Recommended start: Setup to Modern Timeline'
-        && home.homeCount === '76 Reading Lists'
-        && browseCount === '76 Reading Lists',
+        && home.homeCount === '71 Reading Lists'
+        && browseCount === '71 Reading Lists',
         JSON.stringify({ ...home, browseCount }));
       await open(page, '/?catalog=actual#/home');
       await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
@@ -2270,14 +2288,24 @@ const SCENARIOS = [
       await page.waitForSelector('#catalog-results .catalog-card');
       const timeline = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
-        const years = [...document.querySelectorAll('#catalog-results .timeline-year-label')]
-          .map((node) => Number(node.textContent.trim()));
+        const spine = [...document.querySelectorAll('#catalog-results .timeline-year-marker')]
+          .map((marker) => ({
+            year: Number(
+              marker.querySelector('.timeline-year-label')?.textContent
+              ?? marker.querySelector('[aria-hidden="true"]')?.textContent,
+            ),
+            empty: marker.classList.contains('is-empty'),
+          }));
         return {
           featureHeading: document.querySelector('#modern-timeline-feature-h')?.textContent.trim() ?? '',
           featureCopy: document.querySelector('#modern-timeline-feature p')?.textContent.trim() ?? '',
           cards: cards.length,
-          firstTitle: cards[0]?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
-          years,
+          firstCards: cards.slice(0, 2).map((card) => ({
+            title: card.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+            year: Number(card.dataset.year),
+          })),
+          cardYears: cards.map((card) => Number(card.dataset.year)),
+          spine,
           setupCards: cards.filter((card) => card.dataset.story === 'list:setup-to-modern-timeline').length,
           operationCards: cards.filter((card) => card.dataset.story === 'list:operation-zero-tolerance').length,
           avengersCards: cards.filter((card) => card.dataset.story === 'list:avengers-disassembled').length,
@@ -2289,11 +2317,24 @@ const SCENARIOS = [
         && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
         && timeline.setupCards === 0,
         JSON.stringify(timeline));
-      t.check('76 selected lists render as 72 story cards with Marvel Knights first',
-        timeline.cards === 72 && timeline.firstTitle === 'Marvel Knights to Planet X',
-        JSON.stringify({ cards: timeline.cards, firstTitle: timeline.firstTitle }));
-      t.check('1997 is excluded, 1998 is included, and Avengers Disassembled remains available',
-        !timeline.years.includes(1997) && timeline.years[0] === 1998
+      t.check('71 selected lists render as 67 story cards from Marvel Knights directly to Avengers',
+        timeline.cards === 67
+        && JSON.stringify(timeline.firstCards) === JSON.stringify([
+          { title: 'Marvel Knights to Planet X', year: 1998 },
+          { title: 'Avengers Disassembled', year: 2004 },
+        ]),
+        JSON.stringify({ cards: timeline.cards, firstCards: timeline.firstCards }));
+      t.check('the complete spine starts at 1998 and preserves the empty 1999 to 2003 gap',
+        timeline.spine[0]?.year === 1998
+        && timeline.spine.every(({ year }) => year >= 1998)
+        && timeline.spine
+          .filter(({ empty }) => empty)
+          .map(({ year }) => year)
+          .filter((year) => year <= 2003)
+          .join('/') === '1999/2000/2001/2002/2003',
+        JSON.stringify(timeline.spine));
+      t.check('no story after Marvel Knights predates 2004 and Avengers remains available',
+        timeline.cardYears.slice(1).every((year) => year >= 2004)
         && timeline.operationCards === 0 && timeline.avengersCards === 1,
         JSON.stringify(timeline));
 
@@ -2333,9 +2374,10 @@ const SCENARIOS = [
         setupCard: Boolean(document.querySelector(
           '#catalog-results [data-story="list:setup-to-modern-timeline"]',
         )),
+        emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       await click(page, '#catalog-clear');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 72);
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 67);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
         featureVisible: !document.querySelector('#modern-timeline-feature')?.hidden,
@@ -2343,11 +2385,42 @@ const SCENARIOS = [
         setupCard: Boolean(document.querySelector(
           '#catalog-results [data-story="list:setup-to-modern-timeline"]',
         )),
+        emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       t.check('search and facets rerender normal cards without removing or duplicating the feature',
         searched.featureVisible && searched.title === 'Avengers Disassembled' && !searched.setupCard
-        && filtered.featureVisible && filtered.checked !== 'all' && !filtered.setupCard,
+        && searched.emptyMarkers === 0
+        && filtered.featureVisible && filtered.checked !== 'all' && !filtered.setupCard
+        && filtered.emptyMarkers === 0,
         JSON.stringify({ searched, filtered }));
+      await page.$eval('#catalog-filters input[value="all"]', (input) => input.click());
+
+      const excluded = [
+        ['spider-man-identity-crisis', 'Spider-Man: Identity Crisis'],
+        ['hunt-for-xavier', 'The Hunt for Xavier'],
+        ['eighth-day', 'Eighth Day'],
+        ['magneto-war', 'Magneto War'],
+        ['maximum-security', 'Maximum Security'],
+      ];
+      await open(page, '/?catalog=actual#/age-marvel-knights-heroes-return');
+      await page.waitForSelector('#age-marvel-knights-heroes-return-results .catalog-card', { timeout: 15000 });
+      const excludedOnPeriod = [];
+      for (const [id, title] of excluded) {
+        const selector = `#age-marvel-knights-heroes-return-results [data-story="list:${id}"] [data-act="preview"]`;
+        const available = Boolean(await page.$(selector));
+        if (available) {
+          await click(page, selector);
+          await page.waitForSelector('#preview[open]');
+          const previewTitle = await page.$eval('#preview-h', (heading) => heading.textContent.trim());
+          await click(page, '#preview-close');
+          excludedOnPeriod.push({ id, available, title: previewTitle, expected: title });
+          continue;
+        }
+        excludedOnPeriod.push({ id, available });
+      }
+      t.check('every excluded 1998 to 2000 event remains on its direct Marvel Ages route and previews',
+        excludedOnPeriod.every(({ available, title, expected }) => available && title === expected),
+        JSON.stringify(excludedOnPeriod));
 
       await open(page, '/?catalog=actual#/age-early-modern');
       await page.waitForSelector('#age-early-modern-results .catalog-card', { timeout: 15000 });
@@ -4375,7 +4448,11 @@ const SCENARIOS = [
         JSON.stringify(passiveStoredFilter));
 
       const explicitFrame = await page.evaluate(async (id) => {
+        const routeApplied = new Promise((resolve) => {
+          window.addEventListener('hashchange', resolve, { once: true });
+        });
         location.hash = `#/read/${encodeURIComponent(id)}?full=1`;
+        await routeApplied;
         await new Promise((resolve) => requestAnimationFrame(resolve));
         return {
           open: document.querySelector('#full')?.open,

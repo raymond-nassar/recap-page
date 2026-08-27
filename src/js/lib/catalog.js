@@ -797,10 +797,15 @@ export function catalogListShelf(lists, id) {
 
 export const MODERN_TIMELINE_START_YEAR = 1998;
 export const MODERN_TIMELINE_FEATURED_ID = 'setup-to-modern-timeline';
+export const MODERN_TIMELINE_OPENING_ID = 'marvel-knights-to-planet-x';
+export const MODERN_TIMELINE_CONTINUATION_YEAR = 2004;
 
 const isModernTimelineList = (list) => list?.type === 'event'
   && Number.isInteger(list.timeline)
-  && list.timeline >= MODERN_TIMELINE_START_YEAR;
+  && (
+    (list?.id === MODERN_TIMELINE_OPENING_ID && list.timeline === MODERN_TIMELINE_START_YEAR)
+    || list.timeline >= MODERN_TIMELINE_CONTINUATION_YEAR
+  );
 
 export function modernTimelineStories(stories) {
   return shelfStories(stories, 'catalog').filter((story) => {
@@ -1288,6 +1293,7 @@ export function eraSections(stories) {
       const label = era.fallback ? null : spanLabel(span);
       return {
         ...era,
+        ...(span && !era.fallback ? span : {}),
         stories: inSection,
         span,
         // Appended rather than held apart, because it is a claim about this section's own contents

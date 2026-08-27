@@ -2,7 +2,7 @@
   "candidateId": "doctor-strange-reading-order",
   "packetDigest": "44bf6593238e366136b8c341272262c51f5412a103f499f16c6783324ead05bd",
   "mappingDigest": "807760c148cdcdf3c1c1fc2943f14b0410ca457c470c7ee6b1ac88ad8cf2da7e",
-  "libraryDigest": "6f7cad677f78daaa4b3b150573e8bdf418f5bdf8a566281ae6fb66865f7e6fb0",
+  "libraryDigest": "0e0a767a304229b7492a2c3a13ce19c1c5bd7c0559e1dc27633a710768dec245",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 932,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 181
   },
   "candidateCount": 711,
-  "comparisonCount": 152,
+  "comparisonCount": 153,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -696,6 +696,17 @@
       "relationship": "none"
     },
     {
+      "orderId": "punisher-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "58705",
+        "58706",
+        "62771",
+        "74814"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
       "sharedCount": 18,
       "sharedIds": [
@@ -1142,5 +1153,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "a9c16c745002c9fb71f87c8b2bcae5beadd0f0fcb60e7a9e575dca326b52f4ed"
+  "reportDigest": "36534b2c84fa00261fa48ab1dd440b7334f5a8090ccb18771bb0aedf2f728cdd"
 }

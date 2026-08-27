@@ -24,6 +24,52 @@ saved is changed.
 For maintainers: the source expands to 830 occurrences: 638 exact issue rows, 53 repeats, 18
 metadata gaps tracked in Issue #302, and 121 exclusions.
 
+### Corrected the opening of Modern Timeline
+
+In plain English: Modern Timeline now begins with Marvel Knights to Planet X in 1998 and moves
+directly to Avengers Disassembled in 2004. The empty years between them remain visible, while the
+other Reading Lists from those years stay available in Marvel Ages. Nothing you have saved is
+changed.
+
+### Added a complete Magneto reading guide
+
+In plain English: You can now follow Magneto stories from his earliest X-Men appearances through
+modern stories. The guide has 695 linked comics, while 58 source recommendations that could not be
+identified safely from the local records remain visible as unresolved entries rather than being
+guessed at or hidden. Repeated recommendations appear only once, and nothing you have saved changes.
+
+For maintainers: the frozen cache-only source record retains all 811 positions: 695 exact identities,
+47 repeated references, 58 provider-complete gaps, and 11 prose exclusions. The complete-library
+comparison covers 157 other guides: 10 existing-subset relationships, 38 partial relationships, and
+109 with no shared issues.
+
+### Corrected Punisher source details
+
+In plain English: Five unresolved Punisher Presents: Barracuda MAX entries now identify their 2007
+series correctly. The reading guide keeps them as placeholders until exact metadata is available,
+and nothing you have saved is changed.
+
+### Added a complete Punisher reading guide
+
+In plain English: You can now follow 480 Punisher comics from his earliest appearances through the
+latest additions. The guide keeps 158 comics that the metadata source cannot identify as clear
+placeholders instead of guessing or dropping them, and it keeps repeated source mentions from
+duplicating comics in your Reading List. Nothing you have saved is changed.
+
+### Added a complete Captain Marvel reading guide
+
+In plain English: A new Captain Marvel and Ms. Marvel guide follows the source page from the
+earliest stories through newer additions. It includes 527 comics with exact Marvel links and leaves
+out one source reference that its owner confirmed does not name a real comic. Nothing you have saved
+is changed.
+
+### Added a complete Venom reading guide
+
+In plain English: You can now follow Venom stories from the symbiote's first appearance through
+the newest source-page material. Repeated recommendations appear only once in the checklist, and
+33 comics that the maintained metadata cannot yet identify remain visible as unresolved entries
+instead of being replaced or hidden. Nothing you have saved is changed.
+
 ### Added the complete Daredevil reading guide
 
 In plain English: A complete Daredevil reading guide is now available, from his earliest stories
@@ -51,12 +97,12 @@ remain plain text, and stale issue context falls back without guessing at browse
 
 In plain English: Modern Timeline now starts in 1998, a boundary chosen for this app rather than an
 official Marvel era. Empty Home recommends Setup to Modern Timeline, and that same guide is featured
-above the timeline through Preview without being duplicated or counted as a normal card. The 76
-included Reading Lists appear as 72 grouped story cards, beginning with Marvel Knights to Planet X.
-Earlier events remain available through Marvel Ages and their existing addresses, and nothing you
-have saved is changed.
+above the timeline through Preview without being duplicated or counted as a normal card. The 71
+included Reading Lists appear as 67 grouped story cards, beginning with Marvel Knights to Planet X
+and continuing with Avengers Disassembled. Other events remain available through Marvel Ages and
+their existing addresses, and nothing you have saved is changed.
 
-For maintainers: Home, Browse, and Modern Timeline share pure catalog selectors for the 1998-plus
+For maintainers: Home, Browse, and Modern Timeline share pure catalog selectors for the guided
 subset. Canonical shelves and Marvel Ages remain unchanged. Modern Timeline era descriptions alone
 use their full box width, including narrow, zoomed, keyboard, and forced-colors conditions.
 

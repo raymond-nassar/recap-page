@@ -557,13 +557,15 @@
     "url": "https://www.comicbookherald.com/captain-marvel-ms-marvel-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The exact source boundary is frozen through publication evidence, preserving 599 issue occurrences as 527 exact rows, 71 repeats, and 1 owner-authorized non-existent-identity exclusion while the draft delivery remains unpublished.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "captain-marvel-ms-marvel-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Captain Marvel",
       "Ms. Marvel (All)"
@@ -578,7 +580,7 @@
     ],
     "sourceContentSha256": "7997c83ef09d9f503afe933dbc146b5e64b6826d0a7048e9907a68c164303ba1",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 20,
@@ -1807,13 +1809,63 @@
     "url": "https://www.comicbookherald.com/magneto-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The frozen page boundary preserves 811 document-ordered source positions: 695 exact metadata rows, 47 intentional repeats including 16 title-evolution repeats, 58 provider-complete gaps with cached candidate and rejection evidence, and 11 source-prose exclusions. Every exact row ships in source order while every gap remains plain-text provenance.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "ant-man-reading-order",
+      "apocalypse-wars",
+      "axis",
+      "black-panther-reading-order",
+      "bloodties",
+      "captain-america-best-of",
+      "daredevil-reading-order",
+      "dark-phoenix-saga",
+      "days-of-future-past",
+      "doctor-strange-reading-order",
+      "fall-house-x-rise-powers-x",
+      "fall-of-the-mutants",
+      "fatal-attractions",
+      "hickman-x-men",
+      "house-of-m",
+      "house-of-m-essential",
+      "inferno",
+      "inhumans-vs-x-men",
+      "judgment-day",
+      "last-annihilation",
+      "magneto-war",
+      "marvel-knights-to-planet-x",
+      "marvel-multiverse",
+      "marvels-best-phoenix-comics",
+      "muir-island-saga",
+      "mutant-massacre",
+      "necrosha",
+      "phalanx-reading-order",
+      "phoenix-saga",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "scarlet-witch-best-of",
+      "second-coming",
+      "secret-wars-ii",
+      "wolverine-reading-order",
+      "wraith-war",
+      "x-men-age-of-x",
+      "x-men-divided-we-stand",
+      "x-men-extermination",
+      "x-men-inferno",
+      "x-men-manifest-destiny",
+      "x-men-nation-x",
+      "x-men-regenesis",
+      "x-men-schism",
+      "x-men-utopia",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "magneto-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Magneto"
     ],
@@ -1821,9 +1873,9 @@
       65
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "9f58433c3fd85a0b5ec5b0dd9a1f57099c7ed8e678ee8a4f3c2249aa2ff344e9",
+    "sourceContentSha256": "eee0f0eedf0e3d1350e54410d6ee80f0fd0b56d9491a36c3700ea429d9d61078",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 66,
@@ -2541,13 +2593,13 @@
     "url": "https://www.comicbookherald.com/punisher-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "A serialized live provider audit verified 480 exact issue identities; the full-page ledger preserves 145 repeats, 158 unresolved metadata gaps, and 74 explicit non-issue exclusions while publication awaits delivery.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Punisher"
     ],
@@ -2555,9 +2607,9 @@
       95
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e0ed74660dc0527b2b3bf3425483630aefd5e25737512fea17b401860a3491a3",
+    "sourceContentSha256": "9fc9fda7924d7837bc1c300135b7dad3893b3714a3f5c7a576a3f18843516367",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 95,
@@ -3069,13 +3121,38 @@
     "url": "https://www.comicbookherald.com/venom-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The full source page is frozen as 932 occurrences: 610 exact provider-resolved comics, 286 repeats, 33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The complete-library report has 22 approved non-none relationships and no exact duplicate.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "abomination-reading-order",
+      "absolute-carnage",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "civil-war-avengers",
+      "daredevil-reading-order",
+      "dark-reign-avengers",
+      "dark-web",
+      "doctor-doom-primer",
+      "doctor-strange-reading-order",
+      "heroic-age-avengers",
+      "marvel-knights-to-planet-x",
+      "marvel-super-heroes-secret-wars",
+      "minimum-carnage",
+      "new-ultimate-universe",
+      "new-ultimate-universe-trades",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "spider-island",
+      "venomverse",
+      "war-of-the-realms",
+      "wolverine-reading-order",
+      "x-men-utopia"
+    ],
+    "catalogIds": [
+      "venom-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Venom"
     ],
@@ -3085,7 +3162,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "1678b4cbf69f9c97f05a6fcc85648bfc9e5ac98391b408cae462aaa23e5551b8",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 115,

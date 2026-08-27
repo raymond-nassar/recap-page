@@ -95,7 +95,7 @@ view layer itself created and can throw away.
 
 **Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
 base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:5260-5262`. The hydrator itself is not rebuilt; only its reference to the client is
+`src/js/main.js:5274-5276`. The hydrator itself is not rebuilt; only its reference to the client is
 swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
 to the reader's connection rather than to whichever base URL is configured. The store is never
 replaced at all.
@@ -165,7 +165,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:5587-5608`, but the reading
+surfaces, the six screens plus the blocked banner, at `src/js/main.js:5601-5622`, but the reading
 order compares each row against a cache key built from the whole item and reuses the node when
 nothing about it changed, and the full order
 is skipped entirely while its container is closed. Focus is captured before a rebuild and restored
