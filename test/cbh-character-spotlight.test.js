@@ -340,6 +340,13 @@ const moonKnightExpectedCategoryCounts = {
 
 const moonKnightExpectedRepeatPositions = [59, 60, 61, 62, 63, 64, 65, 66, 133, 134];
 const moonKnightExpectedGapPositions = [206, 248, 384, 389, 390];
+const moonKnightExpectedGapReferences = [
+  'Spider-Man: Fear Itself (1992)',
+  'Moon Knight: Silent Night One-Shot',
+  "Devil's Reign: Moon Knight",
+  'Ms. Marvel & Moon Knight',
+  "Devil's Reign: Moon Knight",
+];
 const moonKnightExpectedSemanticExclusionPositions = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 132];
 const moonKnightExpectedMoonKnightIssue1Identities = [
   '1980:provisional-canonical-candidate',
@@ -369,15 +376,43 @@ function assertMoonKnightSourceLedgerShape(ledger) {
     ledger.sourceBoundaryDigest,
     'ab1c62db1b4e809646c2bbb119b6c127322a329b8d4b6a287b7075a34938183b',
   );
+  assert.equal(ledger.sourceBlockCount, ledger.sourceNodes.length);
+  assert.equal(ledger.provenanceGroupCount, ledger.provenanceGroups.length);
+  assert.equal(ledger.sourceOccurrenceCount, ledger.issueOccurrences.length);
   assert.equal(ledger.sourceBlockCount, 45);
   assert.equal(ledger.provenanceGroupCount, 8);
   assert.equal(ledger.sourceOccurrenceCount, 413);
+  const derivedCategoryPositions = Object.fromEntries(
+    ['provisional-canonical-candidate', 'true-repeat', 'unresolved-included-identity-gap', 'semantic-exclusion']
+      .map((classification) => [
+        classification,
+        ledger.issueOccurrences
+          .filter((occurrence) => occurrence.classification === classification)
+          .map((occurrence) => occurrence.sourceOccurrencePosition),
+      ]),
+  );
+  const derivedCategoryCounts = Object.fromEntries(
+    Object.entries(derivedCategoryPositions).map(([classification, positions]) => [classification, positions.length]),
+  );
+  const derivedBlockPositions = [...new Set(ledger.issueOccurrences.map((occurrence) => occurrence.sourceBlockPosition))];
+  const derivedGroupPositions = [...new Set(ledger.issueOccurrences.map((occurrence) => occurrence.sourceGroupPosition))];
+
+  assert.deepEqual(ledger.categoryPositions, derivedCategoryPositions);
+  assert.deepEqual(ledger.categoryCounts, derivedCategoryCounts);
+  assert.deepEqual(ledger.sourceNodes.map((node) => node.sourceBlockPosition), derivedBlockPositions);
+  assert.deepEqual(ledger.provenanceGroups.map((group) => group.sourceGroupPosition), derivedGroupPositions);
   assert.deepEqual(ledger.provenanceGroups.map((group) => group.heading), moonKnightExpectedGroupHeadings);
   assert.deepEqual(ledger.sourceNodes.map((node) => node.sourceBlockPosition), moonKnightExpectedBlockPositions);
   assert.deepEqual(ledger.categoryCounts, moonKnightExpectedCategoryCounts);
   assert.deepEqual(ledger.categoryPositions['true-repeat'], moonKnightExpectedRepeatPositions);
   assert.deepEqual(ledger.categoryPositions['unresolved-included-identity-gap'], moonKnightExpectedGapPositions);
   assert.deepEqual(ledger.categoryPositions['semantic-exclusion'], moonKnightExpectedSemanticExclusionPositions);
+  assert.deepEqual(
+    ledger.issueOccurrences.filter((occurrence) => occurrence.classification === 'unresolved-included-identity-gap')
+      .map((occurrence) => occurrence.sourceIssueReference),
+    moonKnightExpectedGapReferences,
+  );
+  assert.ok(ledger.issueOccurrences.every((occurrence) => typeof occurrence.sourceIssueReference === 'string' && occurrence.sourceIssueReference.trim().length > 0));
   assert.equal(ledger.issueOccurrences.length, 413);
   assert.deepEqual(
     ledger.issueOccurrences.map((occurrence) => occurrence.sourceOccurrencePosition),
@@ -429,6 +464,15 @@ function assertMoonKnightSourceLedgerShape(ledger) {
       .filter((occurrence) => occurrence.normalizedSeriesTitle === 'Moon Knight' && occurrence.issueNumber === '1')
       .map((occurrence) => `${occurrence.seriesYear}:${occurrence.classification}`),
     moonKnightExpectedMoonKnightIssue1Identities,
+  );
+  assert.equal(
+    ledger.issueOccurrences.filter((occurrence) => occurrence.sourceIssueReference === "Devil's Reign: Moon Knight").length,
+    2,
+  );
+  assert.ok(
+    ledger.issueOccurrences
+      .filter((occurrence) => occurrence.sourceIssueReference === "Devil's Reign: Moon Knight")
+      .every((occurrence) => occurrence.classification === 'unresolved-included-identity-gap'),
   );
 }
 
@@ -1235,15 +1279,39 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
 
   const truncated = structuredClone(moonKnightSourceLedger);
   truncated.sourceNodes.pop();
-  assert.throws(() => assertMoonKnightSourceLedgerShape(truncated), /deep-equal/);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(truncated), /45 !== 44/);
+
+  const omittedNode = structuredClone(moonKnightSourceLedger);
+  omittedNode.sourceNodes.splice(10, 1);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(omittedNode), /45 !== 44/);
 
   const reordered = structuredClone(moonKnightSourceLedger);
   reordered.sourceNodes.reverse();
   assert.throws(() => assertMoonKnightSourceLedgerShape(reordered), /deep-equal/);
 
+  const categorySorted = structuredClone(moonKnightSourceLedger);
+  categorySorted.categoryPositions['true-repeat'].sort((left, right) => right - left);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(categorySorted), /deep-equal/);
+
   const droppedRangeMember = structuredClone(moonKnightSourceLedger);
   droppedRangeMember.issueOccurrences.splice(1, 1);
-  assert.throws(() => assertMoonKnightSourceLedgerShape(droppedRangeMember), /412 !== 413/);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(droppedRangeMember), /413 !== 412/);
+
+  const deletedCandidate = structuredClone(moonKnightSourceLedger);
+  deletedCandidate.issueOccurrences.splice(0, 1);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(deletedCandidate), /413 !== 412/);
+
+  const deletedRepeat = structuredClone(moonKnightSourceLedger);
+  deletedRepeat.issueOccurrences.splice(58, 1);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(deletedRepeat), /413 !== 412/);
+
+  const deletedGap = structuredClone(moonKnightSourceLedger);
+  deletedGap.issueOccurrences.splice(205, 1);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(deletedGap), /413 !== 412/);
+
+  const deletedExclusion = structuredClone(moonKnightSourceLedger);
+  deletedExclusion.issueOccurrences.splice(10, 1);
+  assert.throws(() => assertMoonKnightSourceLedgerShape(deletedExclusion), /413 !== 412/);
 
   const duplicatePosition = structuredClone(moonKnightSourceLedger);
   duplicatePosition.issueOccurrences[1].sourceOccurrencePosition = 1;
@@ -1260,6 +1328,11 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
     && occurrence.issueNumber === '1'
   )).seriesYear = 1980;
   assert.throws(() => assertMoonKnightSourceLedgerShape(titleOnlyCollision), /deep-equal/);
+
+  const blankGap = structuredClone(moonKnightSourceLedger);
+  blankGap.issueOccurrences.find((occurrence) => occurrence.classification === 'unresolved-included-identity-gap')
+    .sourceIssueReference = '   ';
+  assert.throws(() => assertMoonKnightSourceLedgerShape(blankGap), /deep-equal/);
 
   const mixedClauseMutation = structuredClone(moonKnightSourceLedger);
   mixedClauseMutation.sourceNodes.find((node) => node.sourceBlockPosition === 11)
