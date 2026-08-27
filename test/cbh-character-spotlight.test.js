@@ -560,9 +560,9 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(mapping.candidateMetadata.length, 711);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.equal(report.candidateCount, 711);
-  assert.equal(report.comparisonCount, 151);
-  assert.equal(mapping.relationshipReview.dispositions.length, 151);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 122);
+  assert.equal(report.comparisonCount, 152);
+  assert.equal(mapping.relationshipReview.dispositions.length, 152);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 123);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'existing-subset').length, 3);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 26);
   assert.equal(manifestEntry.expect, 750);
@@ -1765,7 +1765,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 152);
+  assert.equal(catalog.lists.length, 153);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 26);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 25);

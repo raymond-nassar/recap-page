@@ -40,8 +40,8 @@ replaced. Nothing you have saved is changed.
 
 For maintainers: the full visible source page has 932 occurrences across 76 issue-bearing blocks
 and nine top-level headings. The frozen packet retains 711 exact rows, 181 repeated references, 39
-open metadata gaps linked to Issue #283, and one exclusion. The complete-library review covers 151
-existing reading lists: three are existing-subset relationships, 26 are partial, and 122 have no
+open metadata gaps linked to Issue #283, and one exclusion. The complete-library review covers 152
+existing reading lists: three are existing-subset relationships, 26 are partial, and 123 have no
 shared issue.
 
 ### Made the reading screen easier to scan
