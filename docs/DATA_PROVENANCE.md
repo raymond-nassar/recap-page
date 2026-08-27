@@ -110,6 +110,15 @@ partial relationships, 1 approved existing-subset relationship, and 133 relation
 shared issue identities. The guide remains complete because its source boundary is the full page,
 not because an unresolved identity is silently removed.
 
+The Venom Character Spotlight follows the complete maintained page because it has no qualifying
+Best Comics or Essential Comics subsection. Its frozen source evidence preserves 932 issue
+occurrences across 646 identities: 610 exact provider-resolved comics, 286 intentional repeats,
+33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The 33 gaps
+remain visible in the published checklist and are tracked in
+[Issue #288](https://github.com/raymond-nassar/recap-page/issues/288); none is substituted or
+silently removed. Its complete-library review is refreshed against every current order before
+publication.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records

@@ -2,14 +2,11 @@
   "id": "venom-reading-order",
   "inventoryId": "venom-reading-order",
   "sourceUrl": "https://www.comicbookherald.com/venom-reading-order/",
-  "sourceRetrievedAt": "2026-08-27",
+  "sourceRetrievedAt": "2026-08-26",
   "sourceRetrievalStatus": "retrieved",
   "approvedSourceCount": 932,
   "excludedSourceReferences": [
-    "Amazon and other product links without an issue-bearing range",
-    "Prose-only editorial commentary and recommendations that name no specific issue",
-    "Series or one-shots named without an explicit issue number (e.g. the 1990s \"Super Special\" anthologies, \"Spider-Man Holiday Special 1995\", and \"one-shot\" collection descriptions with no digit)",
-    "Trade paperback / collected-edition headings with no issue-bearing body text of their own"
+    "Owner-authorized A-Z-absent omissions retain their source positions without fabricated metadata: Marvel Graphic Novel #68 and Silver Sable & the Wild Pack #18-19."
   ],
   "sourceOccurrenceCount": 932,
   "repeatedSourceReferences": [
@@ -2592,221 +2589,23 @@
     {
       "sourcePosition": 29,
       "sourceIssueReference": "Marvel Graphic Novel #68",
-      "reason": "\"Marvel Graphic Novel (1982)\" #68 is a real Marvel series (id 16385, Marvel Graphic Novel (1982 - 1990)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "The owner authorized this A-Z-absent source row as an omission instead of a publishable metadata gap.",
+      "decisionScope": "owner-authorized-a-z-absent-omission"
     },
     {
       "sourcePosition": 99,
       "sourceIssueReference": "Silver Sable & the Wild Pack #18",
-      "reason": "\"Silver Sable & the Wild Pack (1992)\" #18 is a real Marvel series (id 16367) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "The owner authorized this A-Z-absent source row as an omission instead of a publishable metadata gap.",
+      "decisionScope": "owner-authorized-a-z-absent-omission"
     },
     {
       "sourcePosition": 100,
       "sourceIssueReference": "Silver Sable & the Wild Pack #19",
-      "reason": "\"Silver Sable & the Wild Pack (1992)\" #19 is a real Marvel series (id 16367) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 898,
-      "sourceIssueReference": "Eddie Brock: Carnage #10",
-      "reason": "\"Eddie Brock: Carnage (2025)\" #10 is a real Marvel series (id 42317, Eddie Brock: Carnage (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 899,
-      "sourceIssueReference": "Knull #1",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 900,
-      "sourceIssueReference": "Knull #2",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 901,
-      "sourceIssueReference": "Knull #3",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 902,
-      "sourceIssueReference": "Knull #4",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 903,
-      "sourceIssueReference": "Knull #5",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 905,
-      "sourceIssueReference": "Venom #251",
-      "reason": "\"Venom (2025)\" #251 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 906,
-      "sourceIssueReference": "Venom #252",
-      "reason": "\"Venom (2025)\" #252 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 907,
-      "sourceIssueReference": "Venom #253",
-      "reason": "\"Venom (2025)\" #253 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 908,
-      "sourceIssueReference": "Venom #254",
-      "reason": "\"Venom (2025)\" #254 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 909,
-      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral #1",
-      "reason": "\"Amazing Spider-Man/Venom: Death Spiral (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 910,
-      "sourceIssueReference": "Amazing Spider-Man #23",
-      "reason": "\"Amazing Spider-Man (2025)\" #23 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 911,
-      "sourceIssueReference": "Amazing Spider-Man #24",
-      "reason": "\"Amazing Spider-Man (2025)\" #24 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 912,
-      "sourceIssueReference": "Amazing Spider-Man #25",
-      "reason": "\"Amazing Spider-Man (2025)\" #25 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 913,
-      "sourceIssueReference": "Amazing Spider-Man #26",
-      "reason": "\"Amazing Spider-Man (2025)\" #26 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 914,
-      "sourceIssueReference": "Amazing Spider-Man #27",
-      "reason": "\"Amazing Spider-Man (2025)\" #27 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 915,
-      "sourceIssueReference": "Venom #255",
-      "reason": "\"Venom (2025)\" #255 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 916,
-      "sourceIssueReference": "Venom #256",
-      "reason": "\"Venom (2025)\" #256 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 917,
-      "sourceIssueReference": "Venom #257",
-      "reason": "\"Venom (2025)\" #257 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 918,
-      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral - Body Count #1",
-      "reason": "\"Amazing Spider-Man/Venom: Death Spiral - Body Count (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 920,
-      "sourceIssueReference": "Queen in Black #1",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 921,
-      "sourceIssueReference": "Queen in Black #2",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 922,
-      "sourceIssueReference": "Queen in Black #3",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 923,
-      "sourceIssueReference": "Queen in Black #4",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 924,
-      "sourceIssueReference": "Queen in Black #5",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 925,
-      "sourceIssueReference": "Queen in Black: Hela #1",
-      "reason": "\"Queen in Black: Hela (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 926,
-      "sourceIssueReference": "Queen in Black: Venom Unchained #1",
-      "reason": "\"Queen in Black: Venom Unchained (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 927,
-      "sourceIssueReference": "Queen in Black: Venom Unchained #2",
-      "reason": "\"Queen in Black: Venom Unchained (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 928,
-      "sourceIssueReference": "Queen in Black: Venom Unchained #3",
-      "reason": "\"Queen in Black: Venom Unchained (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 929,
-      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #1",
-      "reason": "\"Queen in Black: Defenders of Light and Dark (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 930,
-      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #2",
-      "reason": "\"Queen in Black: Defenders of Light and Dark (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 931,
-      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #3",
-      "reason": "\"Queen in Black: Defenders of Light and Dark (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 932,
-      "sourceIssueReference": "Queen in Black: Thor #1",
-      "reason": "\"Queen in Black: Thor (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "The source says #19; the owner-supplied #274 conflicts with the retained source occurrence and is not fabricated.",
+      "decisionScope": "owner-authorized-a-z-absent-omission"
     }
   ],
-  "reviewStatus": "pending-independent-review",
+  "reviewStatus": "approved",
   "proposedManifest": {
     "id": "venom-reading-order",
     "name": "Venom",
@@ -2837,7 +2636,7 @@
       "Carnage",
       "Comic Book Herald"
     ],
-    "expect": 610,
+    "expect": 643,
     "timeline": null,
     "coverIssueId": 10590
   },
@@ -16263,6 +16062,2241 @@
       "note": "Source note: C story"
     }
   ],
-  "packetDigest": "047128043b8a15a9ee94d46a7bef1c2d7122f40b1f509982f90ba1f1a189df3f",
-  "mappingDigest": "caa20c98246fba8e5b90e85476a6f595af5ee68e447a42f3dc4ad4fce40da40c"
+  "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
+  "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
+  "sourceGaps": [
+    {
+      "sourcePosition": 898,
+      "sourceIssueReference": "Eddie Brock: Carnage #10",
+      "sourceRangeReference": "Collects: Eddie Brock: Carnage (2025) #6-10",
+      "normalizedSeriesTitle": "Eddie Brock: Carnage",
+      "seriesYear": 2025,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/42317/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "4afcd757d48e63910989672a7697602e74c6339a237b665fb860aa6b7e8c6605"
+    },
+    {
+      "sourcePosition": 899,
+      "sourceIssueReference": "Knull #1",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "ee5d0363cd622ce325df4d27927d8e902781c0dbbd0f1105ef6f87a72c64a79b"
+    },
+    {
+      "sourcePosition": 900,
+      "sourceIssueReference": "Knull #2",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "553f40f0c1722754e5ca3ae8aa3fe0aba22a1bf66c624b13d29961946aceb370"
+    },
+    {
+      "sourcePosition": 901,
+      "sourceIssueReference": "Knull #3",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "6f7e81e9c4a0bbe6777b7198d78bf8fe87e6cbb0ee78481cbc3b5ec5c0b4e472"
+    },
+    {
+      "sourcePosition": 902,
+      "sourceIssueReference": "Knull #4",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "f3c502d97034d7326fd058eadd5f559d10cc67e68cd22be1d441e11da5917a1a"
+    },
+    {
+      "sourcePosition": 903,
+      "sourceIssueReference": "Knull #5",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "0a27ba725ab52e025dddd0d01baa9040f2da0a503b3755e4196dc62f9bd6a9fd"
+    },
+    {
+      "sourcePosition": 905,
+      "sourceIssueReference": "Venom #251",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "251",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "fe8e7838529123341ac3458bb017d7c66c7b81864a4093cb4c9b281b0772acd7"
+    },
+    {
+      "sourcePosition": 906,
+      "sourceIssueReference": "Venom #252",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "252",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "307cfbcfaf7e6c28f503eb8d3b13892a03c7b0a3a1c08689a663faf965d34d31"
+    },
+    {
+      "sourcePosition": 907,
+      "sourceIssueReference": "Venom #253",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "253",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "12c53b00b2177b3a060dea12fa9bd4d514ac7160168cdda29dd76df0ee010ac2"
+    },
+    {
+      "sourcePosition": 908,
+      "sourceIssueReference": "Venom #254",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "254",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "b07ddc58bad5f1333101e7e4af3b3f4971e31377a83e0b53b284c9028f763e60"
+    },
+    {
+      "sourcePosition": 909,
+      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man/Venom: Death Spiral",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "7ba3bd02ee52fee55e40946beeeb4f38264bd7d5a9c3365d260139df57e9344b"
+    },
+    {
+      "sourcePosition": 910,
+      "sourceIssueReference": "Amazing Spider-Man #23",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "23",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "ef6bc5db1c110cd756a266a5a7a187a77fd608e8a8a96dd0861057c99f76769d"
+    },
+    {
+      "sourcePosition": 911,
+      "sourceIssueReference": "Amazing Spider-Man #24",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "24",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "4a16737a38a0f73e5c3fd3ac3620026750d61c64246a034ad4693883d7b617e0"
+    },
+    {
+      "sourcePosition": 912,
+      "sourceIssueReference": "Amazing Spider-Man #25",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "25",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "1e2af3b70f031ef14896f11254b4139e0397e4f6eb490b133c0aae6e6d728299"
+    },
+    {
+      "sourcePosition": 913,
+      "sourceIssueReference": "Amazing Spider-Man #26",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "26",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "004eeae3907459f282499eee917b377ded999d59f0309cba09b3f55437361a92"
+    },
+    {
+      "sourcePosition": 914,
+      "sourceIssueReference": "Amazing Spider-Man #27",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "27",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "269605e4b1c2d937079ee278effb403776a01ae44cbe8f8677b1a694b5c58d4f"
+    },
+    {
+      "sourcePosition": 915,
+      "sourceIssueReference": "Venom #255",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "255",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "011629ad77bda5fa5be1d826b1e95f4bceeb00c77eed3bc432b0f6a0bd527a31"
+    },
+    {
+      "sourcePosition": 916,
+      "sourceIssueReference": "Venom #256",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "256",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "f48fe5905171907174cb39f08bbfa442b9c5c0c9ef60ebfce69ad702bd4aa054"
+    },
+    {
+      "sourcePosition": 917,
+      "sourceIssueReference": "Venom #257",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "257",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "3430484ba395bf9ff5a907bda5fc78c97252a1e17ef65ab630e2b6cbba0740a6"
+    },
+    {
+      "sourcePosition": 918,
+      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral - Body Count #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man/Venom: Death Spiral - Body Count",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "1ccc6ec56bbe7964f7a73b57de4bbd186241813c28714f14c213c8c3f3e4ed69"
+    },
+    {
+      "sourcePosition": 920,
+      "sourceIssueReference": "Queen in Black #1",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "c3a5c533583f561148592af4deacc2f2028897748a76f92034c5dadcda9b2414"
+    },
+    {
+      "sourcePosition": 921,
+      "sourceIssueReference": "Queen in Black #2",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "e4a587d8e5d26e1d71597736729978bb2d2cbec94f1dd92cc3eac12897e34435"
+    },
+    {
+      "sourcePosition": 922,
+      "sourceIssueReference": "Queen in Black #3",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "d15020866551288ea845e7142714e3d4065b11c03f60f3fd550dbb9cb7cb82bb"
+    },
+    {
+      "sourcePosition": 923,
+      "sourceIssueReference": "Queen in Black #4",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "e6977c4f0b10c15772bb40fb5cbdd208ee35d003ac30b05c194c16c6cc3bb4c5"
+    },
+    {
+      "sourcePosition": 924,
+      "sourceIssueReference": "Queen in Black #5",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "3e3f05a5ccfba958e454e1c3e12b2cf5d57642fd861aa83979ebe41e958ac758"
+    },
+    {
+      "sourcePosition": 925,
+      "sourceIssueReference": "Queen in Black: Hela #1",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Hela",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "592d23ad1f800b1c2bcea23b99299456f2a4dfe9b00cf728d9a01e8ab64074ae"
+    },
+    {
+      "sourcePosition": 926,
+      "sourceIssueReference": "Queen in Black: Venom Unchained #1",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Venom Unchained",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "b89a5894a48c01cdddf31e17be8987daa14a15a3ca859c3ccbc9a6758ae82648"
+    },
+    {
+      "sourcePosition": 927,
+      "sourceIssueReference": "Queen in Black: Venom Unchained #2",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Venom Unchained",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "3bd736b617424c0e5e4d778cc04a18e09854ffcf3c0d86f08d861b198060250d"
+    },
+    {
+      "sourcePosition": 928,
+      "sourceIssueReference": "Queen in Black: Venom Unchained #3",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Venom Unchained",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "a3ad5004046385dea4649fdfa6836642f6873fbdb052f466f1a2a61a54521c68"
+    },
+    {
+      "sourcePosition": 929,
+      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #1",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Defenders of Light and Dark",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "2d4d7ec4b3c4c5d2c7568118590633c2aee28cffaccc85fc98c5ffe99b175742"
+    },
+    {
+      "sourcePosition": 930,
+      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #2",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Defenders of Light and Dark",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "ad3792a4c28d010fc83b4c38098ea8ec968ba4c571eb0c0ea15cd8fb5db76709"
+    },
+    {
+      "sourcePosition": 931,
+      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #3",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Defenders of Light and Dark",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "b5d4eccda1ef40a40faaaaabc4503815a3bdd8dd39a2271e0940afcb598070bd"
+    },
+    {
+      "sourcePosition": 932,
+      "sourceIssueReference": "Queen in Black: Thor #1",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Thor",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "99e526417b2806913d7ea089c1d9937a42e9dfda1b3ec111830fcc08fc7b49df"
+    }
+  ],
+  "packetReview": "GPT-5.6 Terra independently confirmed the full-page boundary, converted 33 in-boundary unresolved references into explicit open gaps, retained only three owner-authorized A-Z-absent omissions, and checked the 610 exact provider identities separately.",
+  "approvedManifest": {
+    "id": "venom-reading-order",
+    "name": "Venom",
+    "description": "Venom from the symbiote's origin in Secret Wars and Spider-Man's black costume saga through Eddie Brock's Lethal Protector era, Mac Gargan, Flash Thompson's Agent Venom, Dylan Brock, and the modern Donny Cates and Al Ewing epic.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "venom-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/venom-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "venom_reading_order.json",
+    "characters": [
+      "Venom",
+      "Eddie Brock",
+      "Anti-Venom",
+      "Flash Thompson",
+      "Carnage"
+    ],
+    "keywords": [
+      "Venom",
+      "Eddie Brock",
+      "Symbiote",
+      "Carnage",
+      "Comic Book Herald"
+    ],
+    "expect": 643,
+    "timeline": null,
+    "coverIssueId": 10590
+  },
+  "relationshipReview": {
+    "reportDigest": "6153aea3790c43b385270fe661db356b772ccd0b8b588f3ecbb3f12a7f49e280",
+    "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
+    "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
+    "libraryDigest": "fa639620c25ab38c21974e0b96cac070776215e6cb0bfa6477ac19174a2cfce5",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 1 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 4 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 121 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 16 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 12 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 16 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 4 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 1 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 12 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 1 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "existing-subset",
+        "decision": "approved",
+        "rationale": "The verified existing-subset relationship has 6 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 1 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 1 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 9 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 12 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 10 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 3 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 6 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The verified partial relationship has 2 shared provider identities and does not duplicate the candidate guide.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "The include-later complete-library report was rebuilt against 151 current catalog orders. Nineteen non-none relationships were reviewed as intentional crossover overlap or an existing subset; no exact duplicate exists.",
+    "reviewedAt": "2026-08-27T05:41:32.288Z",
+    "approvalDigest": "10c32641a98e6908f07c31ac4e4ebeb2534e3f1211f1c63d51ae1db0316f73f5"
+  }
 }

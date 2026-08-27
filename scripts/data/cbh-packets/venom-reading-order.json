@@ -3,13 +3,10 @@
   "id": "venom-reading-order",
   "inventoryId": "venom-reading-order",
   "sourceUrl": "https://www.comicbookherald.com/venom-reading-order/",
-  "sourceRetrievedAt": "2026-08-27",
-  "sourceBoundary": "Full page, no qualifying Best/Essential subsection. Begins with Secret Wars #8 in \"The Birth of Venom\" and ends with Queen in Black: Thor #1 in the guide's newest, still-solicited 2026 material. Preserves all 932 source-defined whole-issue occurrences across the guide's nine numbered sections (I to IX), the \"Venom One-Shots\" list, and the post-2020 epilogue material, including every \"Collects:\" annotation, bare issue-range body line, and explicit prose cross-reference to an issue by number. Each of the 610 distinct issues is placed once at its first source occurrence; the other 286 are intentional repeats (see repeatedSourceReferences). 36 source-required issues are excluded as absent from this app's configured metadata contract after a vendored-index check, a live series-listing pass, and a live full text issue search for each; see excludedSourceRows. Most of the excluded rows sit past this app's documented 2025 metadata horizon (Repository Constraint 8): the guide's \"Last Updated: 8/24/2026\" text already includes issues solicited for later in 2026 (the \"Queen in Black\" family, \"Amazing Spider-Man/Venom: Death Spiral\") and 2025 issues not yet cataloged (the tail of \"Venom\" (2025), \"Amazing Spider-Man\" (2025), \"Eddie Brock: Carnage\" (2025), and \"Knull\" (2025)).",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceBoundary": "Full page, with no qualifying Best Comics or Essential Comics subsection. The retained source begins at Secret Wars #8 in I) The Birth of Venom, continues through the page's nine numbered sections, Venom One-Shots list, and post-2020 material, and ends at Queen in Black: Thor #1. Every whole-issue occurrence is preserved in source order: 610 exact canonical rows, 286 repeats, 33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions.",
   "excludedSourceReferences": [
-    "Amazon and other product links without an issue-bearing range",
-    "Prose-only editorial commentary and recommendations that name no specific issue",
-    "Series or one-shots named without an explicit issue number (e.g. the 1990s \"Super Special\" anthologies, \"Spider-Man Holiday Special 1995\", and \"one-shot\" collection descriptions with no digit)",
-    "Trade paperback / collected-edition headings with no issue-bearing body text of their own"
+    "Owner-authorized A-Z-absent omissions retain their source positions without fabricated metadata: Marvel Graphic Novel #68 and Silver Sable & the Wild Pack #18-19."
   ],
   "sourceOccurrenceCount": 932,
   "repeatedSourceReferences": [
@@ -2592,218 +2589,20 @@
     {
       "sourcePosition": 29,
       "sourceIssueReference": "Marvel Graphic Novel #68",
-      "reason": "\"Marvel Graphic Novel (1982)\" #68 is a real Marvel series (id 16385, Marvel Graphic Novel (1982 - 1990)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "The owner authorized this A-Z-absent source row as an omission instead of a publishable metadata gap.",
+      "decisionScope": "owner-authorized-a-z-absent-omission"
     },
     {
       "sourcePosition": 99,
       "sourceIssueReference": "Silver Sable & the Wild Pack #18",
-      "reason": "\"Silver Sable & the Wild Pack (1992)\" #18 is a real Marvel series (id 16367) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "The owner authorized this A-Z-absent source row as an omission instead of a publishable metadata gap.",
+      "decisionScope": "owner-authorized-a-z-absent-omission"
     },
     {
       "sourcePosition": 100,
       "sourceIssueReference": "Silver Sable & the Wild Pack #19",
-      "reason": "\"Silver Sable & the Wild Pack (1992)\" #19 is a real Marvel series (id 16367) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 898,
-      "sourceIssueReference": "Eddie Brock: Carnage #10",
-      "reason": "\"Eddie Brock: Carnage (2025)\" #10 is a real Marvel series (id 42317, Eddie Brock: Carnage (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 899,
-      "sourceIssueReference": "Knull #1",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 900,
-      "sourceIssueReference": "Knull #2",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 901,
-      "sourceIssueReference": "Knull #3",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 902,
-      "sourceIssueReference": "Knull #4",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 903,
-      "sourceIssueReference": "Knull #5",
-      "reason": "\"Knull (2025)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 905,
-      "sourceIssueReference": "Venom #251",
-      "reason": "\"Venom (2025)\" #251 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 906,
-      "sourceIssueReference": "Venom #252",
-      "reason": "\"Venom (2025)\" #252 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 907,
-      "sourceIssueReference": "Venom #253",
-      "reason": "\"Venom (2025)\" #253 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 908,
-      "sourceIssueReference": "Venom #254",
-      "reason": "\"Venom (2025)\" #254 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 909,
-      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral #1",
-      "reason": "\"Amazing Spider-Man/Venom: Death Spiral (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 910,
-      "sourceIssueReference": "Amazing Spider-Man #23",
-      "reason": "\"Amazing Spider-Man (2025)\" #23 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 911,
-      "sourceIssueReference": "Amazing Spider-Man #24",
-      "reason": "\"Amazing Spider-Man (2025)\" #24 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 912,
-      "sourceIssueReference": "Amazing Spider-Man #25",
-      "reason": "\"Amazing Spider-Man (2025)\" #25 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 913,
-      "sourceIssueReference": "Amazing Spider-Man #26",
-      "reason": "\"Amazing Spider-Man (2025)\" #26 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 914,
-      "sourceIssueReference": "Amazing Spider-Man #27",
-      "reason": "\"Amazing Spider-Man (2025)\" #27 is a real Marvel series (id 41731) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 915,
-      "sourceIssueReference": "Venom #255",
-      "reason": "\"Venom (2025)\" #255 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 916,
-      "sourceIssueReference": "Venom #256",
-      "reason": "\"Venom (2025)\" #256 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 917,
-      "sourceIssueReference": "Venom #257",
-      "reason": "\"Venom (2025)\" #257 is a real Marvel series (id 44248, Venom (2025 - Present)) but this exact issue number is absent from a live series-issue listing and a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 918,
-      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral - Body Count #1",
-      "reason": "\"Amazing Spider-Man/Venom: Death Spiral - Body Count (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 920,
-      "sourceIssueReference": "Queen in Black #1",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 921,
-      "sourceIssueReference": "Queen in Black #2",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 922,
-      "sourceIssueReference": "Queen in Black #3",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 923,
-      "sourceIssueReference": "Queen in Black #4",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 924,
-      "sourceIssueReference": "Queen in Black #5",
-      "reason": "\"Queen in Black (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 925,
-      "sourceIssueReference": "Queen in Black: Hela #1",
-      "reason": "\"Queen in Black: Hela (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 926,
-      "sourceIssueReference": "Queen in Black: Venom Unchained #1",
-      "reason": "\"Queen in Black: Venom Unchained (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 927,
-      "sourceIssueReference": "Queen in Black: Venom Unchained #2",
-      "reason": "\"Queen in Black: Venom Unchained (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 928,
-      "sourceIssueReference": "Queen in Black: Venom Unchained #3",
-      "reason": "\"Queen in Black: Venom Unchained (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 929,
-      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #1",
-      "reason": "\"Queen in Black: Defenders of Light and Dark (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 930,
-      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #2",
-      "reason": "\"Queen in Black: Defenders of Light and Dark (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 931,
-      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #3",
-      "reason": "\"Queen in Black: Defenders of Light and Dark (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 932,
-      "sourceIssueReference": "Queen in Black: Thor #1",
-      "reason": "\"Queen in Black: Thor (2026)\" returns no record in the vendored series index or a live full text issue search; the guide cites a comic beyond this app's configured metadata horizon (Repository Constraint 8).",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "The source says #19; the owner-supplied #274 conflicts with the retained source occurrence and is not fabricated.",
+      "decisionScope": "owner-authorized-a-z-absent-omission"
     }
   ],
   "expectedCount": 610,
@@ -2837,18 +2636,18 @@
       "Carnage",
       "Comic Book Herald"
     ],
-    "expect": 610,
+    "expect": 643,
     "timeline": null,
     "coverIssueId": 10590
   },
   "insertionAnchor": {
-    "beforeId": "the-vision-reading-order"
+    "beforeId": "xmen-claremont"
   },
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.4 Mini",
-    "rationale": "Re-fetched the live guide (a fresh DOM extraction that also recovered a <ul> reading-order breakdown three earlier candidate passes had missed, since it split on <br> as well as block-level tags), transcribed all 932 issue-bearing occurrences into individual issue rows in source order, and resolved every occurrence against live Marvel metadata (a vendored series-name index plus live /series/{id}/issues and /search/issues calls), preferring whichever same-titled candidate series' issue list actually contained the cited issue number over a same-year guess. 36 source-required issues remain absent after that check and are recorded in excludedSourceRows.",
-    "reviewedAt": "2026-08-27"
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "Independently checked the page structure and issue-bearing blocks. No qualifying Best Comics or Essential Comics boundary exists, so the whole guide is retained. The Stage A 36 exclusions were re-reviewed: rows 898-932 are 33 in-boundary issue occurrences and remain explicit open metadata gaps until live provider identities resolve; only rows 29, 99, and 100 are owner-authorized A-Z-absent omissions. The source actually gives row 100 as Silver Sable & the Wild Pack #19, not #274.",
+    "reviewedAt": "2026-08-26"
   },
   "rows": [
     {
@@ -16272,5 +16071,832 @@
       "note": "Source note: C story"
     }
   ],
-  "packetDigest": "047128043b8a15a9ee94d46a7bef1c2d7122f40b1f509982f90ba1f1a189df3f"
+  "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
+  "sourceGaps": [
+    {
+      "sourcePosition": 898,
+      "sourceIssueReference": "Eddie Brock: Carnage #10",
+      "sourceRangeReference": "Collects: Eddie Brock: Carnage (2025) #6-10",
+      "normalizedSeriesTitle": "Eddie Brock: Carnage",
+      "seriesYear": 2025,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/42317/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "4afcd757d48e63910989672a7697602e74c6339a237b665fb860aa6b7e8c6605"
+    },
+    {
+      "sourcePosition": 899,
+      "sourceIssueReference": "Knull #1",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "ee5d0363cd622ce325df4d27927d8e902781c0dbbd0f1105ef6f87a72c64a79b"
+    },
+    {
+      "sourcePosition": 900,
+      "sourceIssueReference": "Knull #2",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "553f40f0c1722754e5ca3ae8aa3fe0aba22a1bf66c624b13d29961946aceb370"
+    },
+    {
+      "sourcePosition": 901,
+      "sourceIssueReference": "Knull #3",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "6f7e81e9c4a0bbe6777b7198d78bf8fe87e6cbb0ee78481cbc3b5ec5c0b4e472"
+    },
+    {
+      "sourcePosition": 902,
+      "sourceIssueReference": "Knull #4",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "f3c502d97034d7326fd058eadd5f559d10cc67e68cd22be1d441e11da5917a1a"
+    },
+    {
+      "sourcePosition": 903,
+      "sourceIssueReference": "Knull #5",
+      "sourceRangeReference": "Collects: Knull (2025) #1 to #5",
+      "normalizedSeriesTitle": "Knull",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "0a27ba725ab52e025dddd0d01baa9040f2da0a503b3755e4196dc62f9bd6a9fd"
+    },
+    {
+      "sourcePosition": 905,
+      "sourceIssueReference": "Venom #251",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "251",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "fe8e7838529123341ac3458bb017d7c66c7b81864a4093cb4c9b281b0772acd7"
+    },
+    {
+      "sourcePosition": 906,
+      "sourceIssueReference": "Venom #252",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "252",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "307cfbcfaf7e6c28f503eb8d3b13892a03c7b0a3a1c08689a663faf965d34d31"
+    },
+    {
+      "sourcePosition": 907,
+      "sourceIssueReference": "Venom #253",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "253",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "12c53b00b2177b3a060dea12fa9bd4d514ac7160168cdda29dd76df0ee010ac2"
+    },
+    {
+      "sourcePosition": 908,
+      "sourceIssueReference": "Venom #254",
+      "sourceRangeReference": "Collects: Venom (2025) #250-254",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "254",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "b07ddc58bad5f1333101e7e4af3b3f4971e31377a83e0b53b284c9028f763e60"
+    },
+    {
+      "sourcePosition": 909,
+      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man/Venom: Death Spiral",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "7ba3bd02ee52fee55e40946beeeb4f38264bd7d5a9c3365d260139df57e9344b"
+    },
+    {
+      "sourcePosition": 910,
+      "sourceIssueReference": "Amazing Spider-Man #23",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "23",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "ef6bc5db1c110cd756a266a5a7a187a77fd608e8a8a96dd0861057c99f76769d"
+    },
+    {
+      "sourcePosition": 911,
+      "sourceIssueReference": "Amazing Spider-Man #24",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "24",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "4a16737a38a0f73e5c3fd3ac3620026750d61c64246a034ad4693883d7b617e0"
+    },
+    {
+      "sourcePosition": 912,
+      "sourceIssueReference": "Amazing Spider-Man #25",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "25",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "1e2af3b70f031ef14896f11254b4139e0397e4f6eb490b133c0aae6e6d728299"
+    },
+    {
+      "sourcePosition": 913,
+      "sourceIssueReference": "Amazing Spider-Man #26",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "26",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "004eeae3907459f282499eee917b377ded999d59f0309cba09b3f55437361a92"
+    },
+    {
+      "sourcePosition": 914,
+      "sourceIssueReference": "Amazing Spider-Man #27",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2025,
+      "issueNumber": "27",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/41731/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "269605e4b1c2d937079ee278effb403776a01ae44cbe8f8677b1a694b5c58d4f"
+    },
+    {
+      "sourcePosition": 915,
+      "sourceIssueReference": "Venom #255",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "255",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "011629ad77bda5fa5be1d826b1e95f4bceeb00c77eed3bc432b0f6a0bd527a31"
+    },
+    {
+      "sourcePosition": 916,
+      "sourceIssueReference": "Venom #256",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "256",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "f48fe5905171907174cb39f08bbfa442b9c5c0c9ef60ebfce69ad702bd4aa054"
+    },
+    {
+      "sourcePosition": 917,
+      "sourceIssueReference": "Venom #257",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2025,
+      "issueNumber": "257",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/44248/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "3430484ba395bf9ff5a907bda5fc78c97252a1e17ef65ab630e2b6cbba0740a6"
+    },
+    {
+      "sourcePosition": 918,
+      "sourceIssueReference": "Amazing Spider-Man/Venom: Death Spiral - Body Count #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story).",
+      "normalizedSeriesTitle": "Amazing Spider-Man/Venom: Death Spiral - Body Count",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "1ccc6ec56bbe7964f7a73b57de4bbd186241813c28714f14c213c8c3f3e4ed69"
+    },
+    {
+      "sourcePosition": 920,
+      "sourceIssueReference": "Queen in Black #1",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "c3a5c533583f561148592af4deacc2f2028897748a76f92034c5dadcda9b2414"
+    },
+    {
+      "sourcePosition": 921,
+      "sourceIssueReference": "Queen in Black #2",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "e4a587d8e5d26e1d71597736729978bb2d2cbec94f1dd92cc3eac12897e34435"
+    },
+    {
+      "sourcePosition": 922,
+      "sourceIssueReference": "Queen in Black #3",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "d15020866551288ea845e7142714e3d4065b11c03f60f3fd550dbb9cb7cb82bb"
+    },
+    {
+      "sourcePosition": 923,
+      "sourceIssueReference": "Queen in Black #4",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "e6977c4f0b10c15772bb40fb5cbdd208ee35d003ac30b05c194c16c6cc3bb4c5"
+    },
+    {
+      "sourcePosition": 924,
+      "sourceIssueReference": "Queen in Black #5",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black",
+      "seriesYear": 2026,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "3e3f05a5ccfba958e454e1c3e12b2cf5d57642fd861aa83979ebe41e958ac758"
+    },
+    {
+      "sourcePosition": 925,
+      "sourceIssueReference": "Queen in Black: Hela #1",
+      "sourceRangeReference": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Hela",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "592d23ad1f800b1c2bcea23b99299456f2a4dfe9b00cf728d9a01e8ab64074ae"
+    },
+    {
+      "sourcePosition": 926,
+      "sourceIssueReference": "Queen in Black: Venom Unchained #1",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Venom Unchained",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "b89a5894a48c01cdddf31e17be8987daa14a15a3ca859c3ccbc9a6758ae82648"
+    },
+    {
+      "sourcePosition": 927,
+      "sourceIssueReference": "Queen in Black: Venom Unchained #2",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Venom Unchained",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "3bd736b617424c0e5e4d778cc04a18e09854ffcf3c0d86f08d861b198060250d"
+    },
+    {
+      "sourcePosition": 928,
+      "sourceIssueReference": "Queen in Black: Venom Unchained #3",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Venom Unchained",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "a3ad5004046385dea4649fdfa6836642f6873fbdb052f466f1a2a61a54521c68"
+    },
+    {
+      "sourcePosition": 929,
+      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #1",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Defenders of Light and Dark",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "2d4d7ec4b3c4c5d2c7568118590633c2aee28cffaccc85fc98c5ffe99b175742"
+    },
+    {
+      "sourcePosition": 930,
+      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #2",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Defenders of Light and Dark",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "ad3792a4c28d010fc83b4c38098ea8ec968ba4c571eb0c0ea15cd8fb5db76709"
+    },
+    {
+      "sourcePosition": 931,
+      "sourceIssueReference": "Queen in Black: Defenders of Light and Dark #3",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Defenders of Light and Dark",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "b5d4eccda1ef40a40faaaaabc4503815a3bdd8dd39a2271e0940afcb598070bd"
+    },
+    {
+      "sourcePosition": 932,
+      "sourceIssueReference": "Queen in Black: Thor #1",
+      "sourceRangeReference": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1",
+      "normalizedSeriesTitle": "Queen in Black: Thor",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The source includes this exact issue, but the configured live metadata provider has no exact result. Issue #288 tracks resolution without substituting a different comic.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/venom-reading-order/",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "99e526417b2806913d7ea089c1d9937a42e9dfda1b3ec111830fcc08fc7b49df"
+    }
+  ]
 }

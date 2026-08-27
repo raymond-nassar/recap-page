@@ -1,11 +1,18 @@
 {
   "candidateId": "venom-reading-order",
-  "packetDigest": "047128043b8a15a9ee94d46a7bef1c2d7122f40b1f509982f90ba1f1a189df3f",
-  "mappingDigest": "caa20c98246fba8e5b90e85476a6f595af5ee68e447a42f3dc4ad4fce40da40c",
-  "libraryDigest": "c88f3bc048979d0e3b3854556514ca875d45727cc48fa3dd32ac0f4df519cc55",
+  "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
+  "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
+  "libraryDigest": "fa639620c25ab38c21974e0b96cac070776215e6cb0bfa6477ac19174a2cfce5",
   "peerDigests": {},
+  "sourceCounts": {
+    "sourceOccurrenceCount": 932,
+    "sourceIdentityCount": 643,
+    "includedIssueCount": 610,
+    "sourceGapCount": 33,
+    "repeatedSourceReferenceCount": 286
+  },
   "candidateCount": 610,
-  "comparisonCount": 148,
+  "comparisonCount": 151,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -250,6 +257,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "black-panther-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "bloodties",
       "sharedCount": 0,
       "sharedIds": [],
@@ -382,6 +395,12 @@
     },
     {
       "orderId": "dead-mans-hand",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "deadpool-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -755,6 +774,22 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 9,
+      "sharedIds": [
+        "10590",
+        "13088",
+        "65016",
+        "40639",
+        "40644",
+        "42171",
+        "42170",
+        "42662",
+        "42663"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "reckoning-war",
@@ -1143,5 +1178,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b75dd12ce8314bf957ca365be1c03a479ecb83e477b0ffdfd1b71cc168cecc02"
+  "reportDigest": "6153aea3790c43b385270fe661db356b772ccd0b8b588f3ecbb3f12a7f49e280"
 }
