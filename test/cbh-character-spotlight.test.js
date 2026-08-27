@@ -341,7 +341,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and keeps Daredevil ready until publication', async () => {
+test('the character inventory preserves every central disposition after Daredevil publication', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -359,8 +359,7 @@ test('the character inventory preserves every central disposition and keeps Dare
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   const ready = inventory.filter((record) => record.deliveryStatus === 'ready');
-  assert.deepEqual(ready.map((record) => record.id), ['daredevil-reading-order']);
-  assert.equal(shipped.some((record) => record.id === 'daredevil-reading-order'), false);
+  assert.deepEqual(ready, []);
   assert.deepEqual(shipped.map((record) => record.id), [
     abominationCandidateId,
     'adam-warlock-reading-order',
@@ -368,6 +367,7 @@ test('the character inventory preserves every central disposition and keeps Dare
     'amazing-spider-man-reading-order-modern-marvel-era',
     'ant-man-reading-order',
     'captain-america-reading-order-modern-marvel-era',
+    'daredevil-reading-order',
     grootCandidateId,
     ironManCandidateId,
     'phalanx-reading-order',
@@ -379,6 +379,7 @@ test('the character inventory preserves every central disposition and keeps Dare
     'wolverine-reading-order',
   ]);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
+  assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);
   assert.deepEqual(shippedById.get(abominationCandidateId).catalogIds, [abominationCandidateId]);
   assert.deepEqual(shippedById.get(abominationCandidateId).overlapIds, [
     'atlantis-attacks',
@@ -457,6 +458,62 @@ test('the character inventory rejects incomplete evidence and source sets', asyn
       { ...inventory[0], position: 128 },
     ]),
     /duplicate inventory id/i,
+  );
+});
+
+test('Daredevil publishes the audited full-page guide without hiding provider gaps', async () => {
+  const id = 'daredevil-reading-order';
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${id}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${id}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
+  const generated = await readJson('src/data/daredevil_reading_order.json');
+  const markdown = await readFile(path.join(root, `src/data/orders/${id}.md`), 'utf8');
+  const record = inventory.find((candidate) => candidate.id === id);
+  const parsed = parseChecklist(markdown);
+
+  assert.equal(record.deliveryStatus, 'shipped');
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.deepEqual(record.catalogIds, [id]);
+  assert.equal(manifest.lists.some((entry) => entry.id === id), true);
+  assert.equal(catalog.lists.find((entry) => entry.id === id).count, 876);
+  assert.equal(Object.hasOwn(packet, 'sourceGroups'), false);
+  assert.equal(Object.hasOwn(mapping, 'sourceGroups'), false);
+  assert.equal(packet.sourceReview.authorityIdentity, 'GPT-5.6 Terra');
+  assert.equal(packet.sourceOccurrenceCount, 909);
+  assert.equal(packet.rows.length, 868);
+  assert.equal(packet.repeatedSourceReferences.length, 33);
+  assert.equal(packet.sourceGaps.length, 8);
+  assert.equal(report.comparisonCount, 148);
+  assert.equal(mapping.relationshipReview.dispositions.length, 148);
+  assert.ok(packet.rows.every((row) => typeof row.sourceGroup === 'string' && row.sourceGroup));
+  assert.ok(packet.sourceGaps.every((gap) => typeof gap.sourceGroup === 'string' && gap.sourceGroup));
+  assert.equal(
+    packet.sourceGaps.find((gap) => gap.sourcePosition === 867).sourceIssueReference,
+    'Marvel Team-Up #56',
+  );
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: id,
+    inventoryRecord: record,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.deepEqual(
+    parsed.entries.map((entry) => String(entry.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.deepEqual(
+    generated.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.equal(generated.count, 876);
+  assert.equal(generated.placeholders, 8);
+  assert.deepEqual(
+    generated.unresolved.map((gap) => gap.title),
+    packet.sourceGaps.map((gap) => gap.sourceIssueReference),
   );
 });
 

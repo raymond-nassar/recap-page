@@ -556,7 +556,7 @@
     ],
     "expect": 876,
     "timeline": null,
-    "coverIssueId": 15587
+    "coverIssueId": 8073
   },
   "insertionAnchor": {
     "beforeId": "xmen-claremont"
@@ -10989,5 +10989,5 @@
       "sourceGroup": "X) Team-Ups & Guest Spots"
     }
   ],
-  "packetDigest": "07c2e47ea3735d952f2799dafde696b311495bc745beac75a64f0f6e78609b7e"
+  "packetDigest": "38e20060c4273a817c3c1d6133c13461ce0520332feb981bb4d156d7f778f36f"
 }

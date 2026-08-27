@@ -77,6 +77,21 @@ subset relationships are approved and the other 128 contain no shared issue. The
 `partial` because the seven unavailable comics remain part of the source record but not the published
 Marvel Unlimited checklist.
 
+The Daredevil Character Spotlight guide follows the full page because it has no separate qualifying
+Best Comics or Essential Comics section. Its frozen source preserves 909 occurrences: 868 exact
+issue identities, 33 repeated occurrences, and 8 explicit provider gaps. The published checklist
+keeps each gap at its source position as a non-linked placeholder: Marvel Holiday Special #2;
+Daredevil/Deadpool Annual '97; Typhoid Fever: Daredevil #1; Marvel Team-Up #56; Daredevil and the
+Punisher: Child's Play (OGN); Daredevil/Bullseye: The Target (OGN); Daredevil/Spider-Man (OGN); and
+Defenders #11. The separate [gap follow-up issue](https://github.com/raymond-nassar/recap-page/issues/287)
+holds only future one-to-one identity research. The source range, source position, and unresolved
+status remain intact unless exact provider evidence resolves an identity.
+
+The complete-library report compares Daredevil with 148 reading lists. It records 17 approved
+partial relationships, 1 approved existing-subset relationship, and 130 relationships with no
+shared issue identities. The guide remains complete because its source boundary is the full page,
+not because an unresolved identity is silently removed.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records

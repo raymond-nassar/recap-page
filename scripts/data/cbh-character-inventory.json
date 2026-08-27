@@ -683,8 +683,10 @@
       "xmen-claremont",
       "xmen-claremont-complete"
     ],
-    "catalogIds": [],
-    "deliveryStatus": "ready",
+    "catalogIds": [
+      "daredevil-reading-order"
+    ],
+    "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Daredevil"
