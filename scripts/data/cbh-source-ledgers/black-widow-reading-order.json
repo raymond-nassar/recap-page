@@ -13,8 +13,8 @@
   "issueBearingBlockCount": 76,
   "sourceOccurrenceCount": 773,
   "categoryCounts": {
-    "provisional-canonical-candidate": 566,
-    "true-repeat": 38,
+    "provisional-canonical-candidate": 588,
+    "true-repeat": 16,
     "unresolved-included-identity-gap": 0,
     "semantic-exclusion": 169
   },
@@ -245,8 +245,8 @@
       "sourceNode": 9,
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": " #53",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Tales of Suspense",
+      "seriesYear": 1959,
       "issueNumber": "53",
       "sourceRangeReference": "#53",
       "disposition": "provisional-canonical-candidate"
@@ -257,8 +257,8 @@
       "sourceNode": 9,
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": " #57",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Tales of Suspense",
+      "seriesYear": 1959,
       "issueNumber": "57",
       "sourceRangeReference": "#57",
       "disposition": "provisional-canonical-candidate"
@@ -269,8 +269,8 @@
       "sourceNode": 9,
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": " #60",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Tales of Suspense",
+      "seriesYear": 1959,
       "issueNumber": "60",
       "sourceRangeReference": "#60",
       "disposition": "provisional-canonical-candidate"
@@ -281,8 +281,8 @@
       "sourceNode": 9,
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": " #64",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Tales of Suspense",
+      "seriesYear": 1959,
       "issueNumber": "64",
       "sourceRangeReference": "#64",
       "disposition": "provisional-canonical-candidate"
@@ -6868,8 +6868,8 @@
       "sourceNode": 126,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #61",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
       "issueNumber": "61",
       "sourceRangeReference": "Issues: #61 to #66",
       "disposition": "provisional-canonical-candidate"
@@ -6880,8 +6880,8 @@
       "sourceNode": 126,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #62",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
       "issueNumber": "62",
       "sourceRangeReference": "Issues: #61 to #66",
       "disposition": "provisional-canonical-candidate"
@@ -6892,8 +6892,8 @@
       "sourceNode": 126,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #63",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
       "issueNumber": "63",
       "sourceRangeReference": "Issues: #61 to #66",
       "disposition": "provisional-canonical-candidate"
@@ -6904,12 +6904,11 @@
       "sourceNode": 126,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #64",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
       "issueNumber": "64",
       "sourceRangeReference": "Issues: #61 to #66",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 574,
@@ -6917,8 +6916,8 @@
       "sourceNode": 126,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #65",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
       "issueNumber": "65",
       "sourceRangeReference": "Issues: #61 to #66",
       "disposition": "provisional-canonical-candidate"
@@ -6929,8 +6928,8 @@
       "sourceNode": 126,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #66",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
       "issueNumber": "66",
       "sourceRangeReference": "Issues: #61 to #66",
       "disposition": "provisional-canonical-candidate"
@@ -6965,8 +6964,8 @@
       "sourceNode": 129,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #1",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "1",
       "sourceRangeReference": "Issues: #1 to #5",
       "disposition": "provisional-canonical-candidate"
@@ -6977,8 +6976,8 @@
       "sourceNode": 129,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #2",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "2",
       "sourceRangeReference": "Issues: #1 to #5",
       "disposition": "provisional-canonical-candidate"
@@ -6989,8 +6988,8 @@
       "sourceNode": 129,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #3",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "3",
       "sourceRangeReference": "Issues: #1 to #5",
       "disposition": "provisional-canonical-candidate"
@@ -7001,8 +7000,8 @@
       "sourceNode": 129,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #4",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "4",
       "sourceRangeReference": "Issues: #1 to #5",
       "disposition": "provisional-canonical-candidate"
@@ -7013,8 +7012,8 @@
       "sourceNode": 129,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #5",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "5",
       "sourceRangeReference": "Issues: #1 to #5",
       "disposition": "provisional-canonical-candidate"
@@ -7037,12 +7036,11 @@
       "sourceNode": 131,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #1",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2004,
       "issueNumber": "1",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 585,
@@ -7050,12 +7048,11 @@
       "sourceNode": 131,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #2",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2004,
       "issueNumber": "2",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 586,
@@ -7063,12 +7060,11 @@
       "sourceNode": 131,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #3",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2004,
       "issueNumber": "3",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 587,
@@ -7076,12 +7072,11 @@
       "sourceNode": 131,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #4",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2004,
       "issueNumber": "4",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 588,
@@ -7089,12 +7084,11 @@
       "sourceNode": 131,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #5",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2004,
       "issueNumber": "5",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 589,
@@ -7102,8 +7096,8 @@
       "sourceNode": 131,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #6",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2004,
       "issueNumber": "6",
       "sourceRangeReference": "Issues: #1 to #6",
       "disposition": "provisional-canonical-candidate"
@@ -7138,8 +7132,8 @@
       "sourceNode": 134,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #1",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "1",
       "sourceRangeReference": "Issues: #1 to #6",
       "disposition": "true-repeat",
@@ -7151,8 +7145,8 @@
       "sourceNode": 134,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #2",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "2",
       "sourceRangeReference": "Issues: #1 to #6",
       "disposition": "true-repeat",
@@ -7164,8 +7158,8 @@
       "sourceNode": 134,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #3",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "3",
       "sourceRangeReference": "Issues: #1 to #6",
       "disposition": "true-repeat",
@@ -7177,8 +7171,8 @@
       "sourceNode": 134,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #4",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "4",
       "sourceRangeReference": "Issues: #1 to #6",
       "disposition": "true-repeat",
@@ -7190,8 +7184,8 @@
       "sourceNode": 134,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #5",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "5",
       "sourceRangeReference": "Issues: #1 to #6",
       "disposition": "true-repeat",
@@ -7203,12 +7197,11 @@
       "sourceNode": 134,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #6",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2004,
       "issueNumber": "6",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 598,
@@ -7228,12 +7221,11 @@
       "sourceNode": 136,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #1",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
       "issueNumber": "1",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 600,
@@ -7241,12 +7233,11 @@
       "sourceNode": 136,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #2",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
       "issueNumber": "2",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 601,
@@ -7254,12 +7245,11 @@
       "sourceNode": 136,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #3",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
       "issueNumber": "3",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 602,
@@ -7267,12 +7257,11 @@
       "sourceNode": 136,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #4",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
       "issueNumber": "4",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 603,
@@ -7280,12 +7269,11 @@
       "sourceNode": 136,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #5",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
       "issueNumber": "5",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 604,
@@ -7293,12 +7281,11 @@
       "sourceNode": 136,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #6",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
       "issueNumber": "6",
       "sourceRangeReference": "Issues: #1 to #6",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 605,
@@ -7330,12 +7317,11 @@
       "sourceNode": 139,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #1",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow & the Marvel Girls",
+      "seriesYear": 2009,
       "issueNumber": "1",
       "sourceRangeReference": "Issues: #1 to #4",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 608,
@@ -7343,12 +7329,11 @@
       "sourceNode": 139,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #2",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow & the Marvel Girls",
+      "seriesYear": 2009,
       "issueNumber": "2",
       "sourceRangeReference": "Issues: #1 to #4",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 609,
@@ -7356,12 +7341,11 @@
       "sourceNode": 139,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #3",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow & the Marvel Girls",
+      "seriesYear": 2009,
       "issueNumber": "3",
       "sourceRangeReference": "Issues: #1 to #4",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 610,
@@ -7369,12 +7353,11 @@
       "sourceNode": 139,
       "sourceGroup": "Marvel Knights Black Widow (1999 through 2000's)",
       "sourceIssueReference": " #4",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow & the Marvel Girls",
+      "seriesYear": 2009,
       "issueNumber": "4",
       "sourceRangeReference": "Issues: #1 to #4",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 611,
@@ -7406,12 +7389,11 @@
       "sourceNode": 142,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #1",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2010,
       "issueNumber": "1",
       "sourceRangeReference": "Issues: #1 to #5",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 614,
@@ -7419,12 +7401,11 @@
       "sourceNode": 142,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #2",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2010,
       "issueNumber": "2",
       "sourceRangeReference": "Issues: #1 to #5",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 615,
@@ -7432,12 +7413,11 @@
       "sourceNode": 142,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #3",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2010,
       "issueNumber": "3",
       "sourceRangeReference": "Issues: #1 to #5",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 616,
@@ -7445,12 +7425,11 @@
       "sourceNode": 142,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #4",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2010,
       "issueNumber": "4",
       "sourceRangeReference": "Issues: #1 to #5",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 617,
@@ -7458,12 +7437,11 @@
       "sourceNode": 142,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #5",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2010,
       "issueNumber": "5",
       "sourceRangeReference": "Issues: #1 to #5",
-      "disposition": "true-repeat",
-      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
+      "disposition": "provisional-canonical-candidate"
     },
     {
       "sourcePosition": 618,
@@ -7567,8 +7545,8 @@
       "sourceNode": 149,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #16",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Secret Avengers",
+      "seriesYear": 2010,
       "issueNumber": "16",
       "sourceRangeReference": "Issues: #16 to #21",
       "disposition": "provisional-canonical-candidate"
@@ -7579,8 +7557,8 @@
       "sourceNode": 149,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #17",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Secret Avengers",
+      "seriesYear": 2010,
       "issueNumber": "17",
       "sourceRangeReference": "Issues: #16 to #21",
       "disposition": "provisional-canonical-candidate"
@@ -7591,8 +7569,8 @@
       "sourceNode": 149,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #18",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Secret Avengers",
+      "seriesYear": 2010,
       "issueNumber": "18",
       "sourceRangeReference": "Issues: #16 to #21",
       "disposition": "provisional-canonical-candidate"
@@ -7603,8 +7581,8 @@
       "sourceNode": 149,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #19",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Secret Avengers",
+      "seriesYear": 2010,
       "issueNumber": "19",
       "sourceRangeReference": "Issues: #16 to #21",
       "disposition": "provisional-canonical-candidate"
@@ -7615,8 +7593,8 @@
       "sourceNode": 149,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #20",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Secret Avengers",
+      "seriesYear": 2010,
       "issueNumber": "20",
       "sourceRangeReference": "Issues: #16 to #21",
       "disposition": "provisional-canonical-candidate"
@@ -7627,8 +7605,8 @@
       "sourceNode": 149,
       "sourceGroup": "Black Widow Comics From 2010 to 2012",
       "sourceIssueReference": " #21",
-      "normalizedSeriesTitle": "",
-      "seriesYear": 0,
+      "normalizedSeriesTitle": "Secret Avengers",
+      "seriesYear": 2010,
       "issueNumber": "21",
       "sourceRangeReference": "Issues: #16 to #21",
       "disposition": "provisional-canonical-candidate"

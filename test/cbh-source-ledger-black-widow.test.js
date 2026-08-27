@@ -9,9 +9,9 @@ const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'bla
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-character-inventory.json');
 
 const expectedCategoryCounts = {
-  'provisional-canonical-candidate': 566,
+  'provisional-canonical-candidate': 588,
   'semantic-exclusion': 169,
-  'true-repeat': 38,
+  'true-repeat': 16,
   'unresolved-included-identity-gap': 0,
 };
 
@@ -131,6 +131,11 @@ function validateLedger(ledger) {
     assert.equal(typeof entry.disposition, 'string');
 
     if (entry.disposition !== 'semantic-exclusion') {
+      assert.equal(
+        typeof entry.normalizedSeriesTitle === 'string' && entry.normalizedSeriesTitle.trim().length > 0,
+        true,
+        `included source row ${entry.sourcePosition} must retain its inherited series identity`,
+      );
       const identity = [
         entry.normalizedSeriesTitle,
         entry.seriesYear,
@@ -183,6 +188,31 @@ function validateLedger(ledger) {
   const node105 = ledger.occurrences.filter((entry) => entry.sourceNode === 105);
   assert.equal(node105.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 10);
   assert.equal(node105.some((entry) => entry.sourceIssueReference === 'Thunderbolts Annual ?97'), true);
+
+  const node126 = ledger.occurrences.filter((entry) => entry.sourceNode === 126);
+  assert.equal(node126.every((entry) => entry.normalizedSeriesTitle === 'Daredevil' && entry.seriesYear === 1998), true);
+  assert.equal(node126.every((entry) => entry.disposition === 'provisional-canonical-candidate'), true);
+
+  const node131 = ledger.occurrences.filter((entry) => entry.sourceNode === 131);
+  assert.equal(node131.every((entry) => entry.normalizedSeriesTitle === 'New Avengers' && entry.seriesYear === 2004), true);
+  assert.equal(node131.every((entry) => entry.disposition === 'provisional-canonical-candidate'), true);
+
+  const node134 = ledger.occurrences.filter((entry) => entry.sourceNode === 134);
+  assert.equal(node134.every((entry) => entry.normalizedSeriesTitle === 'Black Widow' && entry.seriesYear === 2004), true);
+  assert.equal(node134.filter((entry) => entry.disposition === 'true-repeat').length, 5);
+  assert.equal(node134.some((entry) => entry.issueNumber === '6' && entry.disposition === 'provisional-canonical-candidate'), true);
+
+  const node136 = ledger.occurrences.filter((entry) => entry.sourceNode === 136);
+  assert.equal(node136.every((entry) => entry.normalizedSeriesTitle === 'Mighty Avengers' && entry.seriesYear === 2007), true);
+  assert.equal(node136.every((entry) => entry.disposition === 'provisional-canonical-candidate'), true);
+
+  const node139 = ledger.occurrences.filter((entry) => entry.sourceNode === 139);
+  assert.equal(node139.every((entry) => entry.normalizedSeriesTitle === 'Black Widow & the Marvel Girls' && entry.seriesYear === 2009), true);
+  assert.equal(node139.every((entry) => entry.disposition === 'provisional-canonical-candidate'), true);
+
+  const node142 = ledger.occurrences.filter((entry) => entry.sourceNode === 142);
+  assert.equal(node142.every((entry) => entry.normalizedSeriesTitle === 'Black Widow' && entry.seriesYear === 2010), true);
+  assert.equal(node142.every((entry) => entry.disposition === 'provisional-canonical-candidate'), true);
 
   const node164 = ledger.occurrences.filter((entry) => entry.sourceNode === 164);
   assert.equal(node164.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
