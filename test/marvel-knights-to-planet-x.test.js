@@ -25,6 +25,7 @@ const originalApprovedOverlaps = [
 const currentOverlaps = [
   ...originalApprovedOverlaps,
   ['daredevil-reading-order', 73],
+  ['loki-reading-order', 2],
   ['magneto-reading-order', 13],
   ['punisher-reading-order', 38],
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],

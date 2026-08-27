@@ -329,7 +329,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 158);
+  assert.equal(catalog.lists.length, 159);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -382,7 +382,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    31,
+    32,
     'Character Spotlight count differs from the merged catalog',
   );
 });

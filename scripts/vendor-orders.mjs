@@ -28,6 +28,7 @@ import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
+import { placeholderId } from './lib/placeholder-id.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
@@ -80,20 +81,6 @@ function parseOnly(argv) {
     }
   }
   return ids;
-}
-
-// A checklist line with no Marvel link still belongs in the reading order, so it is vendored as
-// a placeholder rather than dropped. The id is a hash of the order and title, which keeps it
-// stable across re-vendoring: a random or time-based id would hand the reader a brand new,
-// unread issue every time the list was rebuilt, silently resetting their progress. It is
-// negative so it can never collide with a real Marvel issue id.
-function placeholderId(orderId, title) {
-  let h = 0x811c9dc5;
-  for (const ch of `${orderId}:${title}`) {
-    h ^= ch.codePointAt(0);
-    h = Math.imul(h, 0x01000193) >>> 0;
-  }
-  return -((h % 0x7ffffffe) + 1);
 }
 
 // Marvel's metadata occasionally carries a doubled space inside a title, as in
@@ -286,7 +273,7 @@ async function main() {
     const placeholderItems = unresolved.map((u) => ({
       at: u.index,
       item: {
-        issueId: placeholderId(order.id, u.title),
+        issueId: placeholderId(order.id, u.title, u.sourceKey),
         title: u.title,
         number: parseIssueNumber(u.title),
         url: u.url ?? null,

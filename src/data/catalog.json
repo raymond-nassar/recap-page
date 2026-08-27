@@ -2856,6 +2856,42 @@
       "updatedAt": "2026-08-27T13:50:21.414Z"
     },
     {
+      "id": "loki-reading-order",
+      "file": "loki_reading_order.json",
+      "name": "Loki",
+      "description": "A complete Loki reading path from the character origins through the latest source additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 656,
+      "collections": 75,
+      "characters": [
+        "Loki",
+        "Thor",
+        "Asgard"
+      ],
+      "keywords": [
+        "Loki",
+        "Thor",
+        "Asgard",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 9779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5a83133fa0008",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/loki-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T14:42:20.271Z"
+    },
+    {
       "id": "xmen-claremont",
       "file": "xmen_claremont.json",
       "name": "X-Men: Silver Age to Claremont",
